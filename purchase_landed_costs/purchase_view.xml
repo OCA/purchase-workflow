@@ -54,7 +54,7 @@
       </field>
     </record>
     
-    <!-- Landed costs Purchase Line Form-->
+    <!-- Landed costs Purchase Form-->
     <record model="ir.ui.view" id="c2c_purchase_order_landed_cost_view">
       <field name="name">c2c_purchase.order.landed.cost.form.view</field>
       <field name="model">purchase.order</field>
@@ -66,6 +66,7 @@
              <field name="landed_cost_base_quantity"/>
              <field name="quantity_total"/>
              <field name="landed_cost_base_value"/>
+             <field name="landing_cost_lines"/>
              <field name="landed_cost"/>
              <field name="landed_cost_line_ids" colspan="4" nolabel="1"  widget="one2many_list"/>
           </page>
