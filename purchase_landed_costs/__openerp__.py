@@ -38,7 +38,7 @@
     * quantity - example freight
     """,
     'author': 'Camptocamp Austria',
-    'depends': ['purchase', 'stock' ],
+    'depends': ['purchase' ],
     'update_xml': ['security/ir.model.access.csv',
                    'purchase_view.xml',
                    'stock_view.xml',
