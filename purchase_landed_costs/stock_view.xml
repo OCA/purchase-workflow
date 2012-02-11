@@ -11,16 +11,11 @@
       <field name="arch" type="xml">
         <page string="Notes" position="after">
           <page string="Landing Costs" attrs="{'readonly':[('state','=','done')]}">
-            <group colspan="2" col="2">
-             <field name="quantity_total"/>
              <field name="landed_cost_base_quantity"/>
+             <field name="quantity_total"/>
              <field name="landed_cost_base_value"/>
-            </group>
-            <group colspan="2" col="2">
-             <field name="total_amount"/>
              <field name="landing_cost_lines"/>
              <field name="landed_cost"/>
-            </group>
              <field name="landed_cost_line_ids" colspan="4" nolabel="1"  widget="one2many_list"/>
           </page>
         </page>
@@ -29,7 +24,7 @@
     
     <!-- Landed costs Picking In Line Form-->
     <record model="ir.ui.view" id="ic2c_stock_picking_landed_cost_line_view">
-      <field name="name">move.line.landed.cost.line.view</field>
+      <field name="name">move.line.landed.cost.view</field>
       <field name="model">stock.picking</field>
       <field name="inherit_id" ref="stock.view_picking_in_form"/>
       <field name="type">form</field>
@@ -38,8 +33,9 @@
              <group string="Landing Costs" colspan="4">
                   <field name="landing_costs"/>
                   <field name="landing_costs_picking"/>
-                  <field name="sub_total"/>
-                  <field name="landed_cost"/>
+<!--
+                  <field name="landed_costs"/>
+-->
                   <field name="landed_cost_line_ids" colspan="4" nolabel="1"  widget="one2many_list"/>
              </group>     
         </xpath>
