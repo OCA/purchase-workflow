@@ -23,7 +23,7 @@
 
 import product
 import purchase
-#import stock
+import stock
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
