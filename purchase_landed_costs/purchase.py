@@ -180,7 +180,7 @@ class purchase_order(osv.osv):
 
     def _prepare_order_line_move(self, cr, uid, order, order_line, picking_id, context=None):
         res = super(purchase_order,self)._prepare_order_line_move( cr, uid, order, order_line, picking_id, context)
-        
+        res['price_unit'] = order_line.landed_costs / order_line.product_qty        
         return res
 
     def _prepare_order_picking(self, cr, uid, order, context=None):
