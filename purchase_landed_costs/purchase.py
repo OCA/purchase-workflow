@@ -66,13 +66,23 @@ class purchase_order_line(osv.osv):
                         landed_costs += costs.amount
                     else:       
                         landed_costs += costs.amount * line.product_qty
-        # distrubution of landed costs of PO
+            result[line.id] = landed_costs
+        return result
+
+    def _landing_cost_order(self, cr, uid, ids, name, args, context):
+        if not ids : return {}
+        result = {}
+        landed_costs = 0.0
+        # landed costss for the line
+        for line in self.browse(cr, uid, ids):
+            # distrubution of landed costs of PO
             if line.order_id.landed_cost_line_ids:
                landed_costs += line.order_id.landed_cost_base_value / line.order_id.amount_total * line.price_subtotal + \
                         line.order_id.landed_cost_base_quantity / line.order_id.quantity_total * line.product_qty
             result[line.id] = landed_costs
-                        
+
         return result
+
 
     def _landed_cost(self, cr, uid, ids, name, args, context):
         if not ids : return {}
@@ -80,7 +90,7 @@ class purchase_order_line(osv.osv):
         landed_costs = 0.0
         # landed costss for the line
         for line in self.browse(cr, uid, ids):
-            landed_costs += line.price_subtotal + line.landing_costs
+            landed_costs += line.price_subtotal + line.landing_costs +  line.landing_costs_order
             result[line.id] = landed_costs
 
         return result
@@ -89,6 +99,7 @@ class purchase_order_line(osv.osv):
        {
          'landed_cost_line_ids': fields.one2many('landed.cost.position', 'purchase_order_line_id', 'Landed Costs Positions'),
          'landing_costs' : fields.function(_landing_cost, digits_compute=dp.get_precision('Account'), string='Landing Costs'),
+         'landing_costs_order' : fields.function(_landing_cost_order, digits_compute=dp.get_precision('Account'), string='Landing Costs from Order'),
          'landed_costs' : fields.function(_landed_cost, digits_compute=dp.get_precision('Account'), string='Landed Costs'),
     }
 
