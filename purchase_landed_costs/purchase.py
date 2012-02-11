@@ -180,12 +180,19 @@ class purchase_order(osv.osv):
 
     def _prepare_order_line_move(self, cr, uid, order, order_line, picking_id, context=None):
         res = super(purchase_order,self)._prepare_order_line_move( cr, uid, order, order_line, picking_id, context)
-        #price_unit_id = order_line.price_unit_id.id
-        #price_unit_pu = order_line.price_unit_pu
-        #res.update({'price_unit_id' : price_unit_id,'price_unit_pu' : price_unit_pu})
+        
+        # FIXME - must create duplicates
+        landed_cost_line_ids_dup = order_line.landed_cost_line_ids
+        
+        res.update({'landed_cost_line_ids' : landed_cost_line_ids_dup})
         return res
 
-    # FIXME - must create new landed cost for picking and stock moves on confirm
-    # FIXME - must create picking for each partner on confirm
+    def _prepare_order_picking(self, cr, uid, order, context=None):
+        res = super(purchase_order,self)._prepare_order_picking( cr, uid, order, context)
+        # FIXME - must create duplicates
+        landed_cost_line_ids_dup = order_line.landed_cost_line_ids
+        res.update({'landed_cost_line_ids' : landed_cost_line_ids_dup})
+        return res
+
 
 purchase_order()
