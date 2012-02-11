@@ -181,4 +181,15 @@ class stock_picking(osv.osv):
 
 stock_picking()
 
+class stock_partial_picking(osv.osv_memory):
+    _inherit = "stock.partial.picking"
 
+    def _product_cost_for_average_update(self, cr, uid, move):
+       res = super(stock_partial_picking, self)._product_cost_for_average_update(cr, uid, move)
+       import sys
+       print >> sys.stderr, 'res stock_partial_picking', res  
+       res['cost'] = move.landed_cost / move.product_qty
+       print >> sys.stderr, 'res stock_partial_picking', res  
+       return res
+
+stock_partial_picking()
