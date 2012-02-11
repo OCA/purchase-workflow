@@ -24,24 +24,12 @@ from osv import osv, fields
 import decimal_precision as dp
 from tools.translate import _
         
-import sys
-
-class product_product(osv.osv):
-    _inherit = "product.product"
-
-    _columns = \
-        {
-          'landed_cost_type': fields.selection( [('value','Value'), ('quantity','Quantity'), ('none','None'), 'Distribution Type', required=True, \
-                  help="Used for Landed Costs: If landed costs are defined for purchase orders or pickings, this indicates how the costs are distributed to the lines"),
-        }
-
-landed_cost_category()
 
 class landed_cost_position(osv.osv):
     _name = "landed.cost.position"
 
     _columns = \
-      { 'product_id' : fields.many2one('product.product','Landed Cost Name', required=True, domain=[(landed_cost_type),'!=', False)]),
+      { 'product_id' : fields.many2one('product.product','Landed Cost Name', required=True, domain=[('landed_cost_type','!=', False)]),
         'amount'      : fields.float
             ( 'Amount'
             , required=True
@@ -50,12 +38,12 @@ class landed_cost_position(osv.osv):
         'amount_currency': fields.float('Amount Currency', help="The amount expressed in an optional other currency."),
         'currency_id': fields.many2one('res.currency', 'Secondary Currency', help="Optional other currency."),
         'partner_id': fields.many2one('res.partner', 'Partner', help="The supplier of this cost component ."),
-        'price_type': fields.selection( [('per_unit','Per Unit'), ('value','Absolute Value'), 'Amount Type', required=True,  \
+        'price_type': fields.selection( [('per_unit','Per Unit'), ('value','Absolute Value')], 'Amount Type', required=True,  \
                   help="Defines if the amount is to be calculated for each quantity or an absolute value"),
-        'purchase_order_line_id': fields.many2one('purchase.order.line', 'Purchase Order Line',
-        'purchase_order_id': fields.many2one('purchase.order', 'Purchase Order',
-        'move_line_id': fields.many2one('stock.move', 'Picking Line',
-        'picking_id': fields.many2one('stock.picking', 'Picking',
+        'purchase_order_line_id': fields.many2one('purchase.order.line', 'Purchase Order Line'),
+        'purchase_order_id': fields.many2one('purchase.order', 'Purchase Order'),
+        'move_line_id': fields.many2one('stock.move', 'Picking Line'),
+        'picking_id': fields.many2one('stock.picking', 'Picking'),
       }
 
 landed_cost_position()
@@ -98,9 +86,10 @@ class purchase_order_line(osv.osv):
         return result
         
     _columns = \
-         'landed_cost_line_ids': fields.one2many('account.move.line', 'purchase_order_line_id', 'Landed Costs Positions'),
-         'landing_costs' : fields.function(_landing_costs, digits_compute=dp.get_precision('Account'), string='Landing Costs'),
-         'landed_costs' : fields.function(_landed_costs, digits_compute=dp.get_precision('Account'), string='Landed Costs'),
+       {
+         'landed_cost_line_ids': fields.one2many('landed.cost.position', 'purchase_order_line_id', 'Landed Costs Positions'),
+         'landing_costs' : fields.function(_landing_cost, digits_compute=dp.get_precision('Account'), string='Landing Costs'),
+         'landed_costs' : fields.function(_landed_cost, digits_compute=dp.get_precision('Account'), string='Landed Costs'),
     }
 
 purchase_order_line()
@@ -144,11 +133,24 @@ class purchase_order(osv.osv):
             result[line.id] = quantity_total
         return result
 
+    def _landed_cost(self, cr, uid, ids, name, args, context):
+        if not ids : return {}
+        result = {}
+        landed_costs = 0.0
+        # landed costss for the line
+        for line in self.browse(cr, uid, ids):
+            landed_costs += line.landed_cost_base_value + line.landed_cost_base_quantity + line.amount_total
+            result[line.id] = landed_costs
+
+        return result
+
 
     _columns = \
-         'landed_cost_line_ids': fields.one2many('account.move.line', 'purchase_order_line_id', 'Landed Costs'),
+        {
+         'landed_cost_line_ids': fields.one2many('landed.cost.position', 'purchase_order_id', 'Landed Costs'),
          'landed_cost_base_value' : fields.function(_landed_cost_base_value, digits_compute=dp.get_precision('Account'), string='Landed Costs Base Value'),
          'landed_cost_base_quantity' : fields.function(_landed_cost_base_quantity, digits_compute=dp.get_precision('Account'), string='Landed Costs Base Quantity'),
+         'landed_cost' : fields.function(_landed_cost, digits_compute=dp.get_precision('Account'), string='Landed Costs Total'),
          'quantity_total' : fields.function(_quantity_total, digits_compute=dp.get_precision('Product UoM'), string='Total Quantity'),
     }
 

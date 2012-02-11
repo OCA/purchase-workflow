@@ -2,13 +2,13 @@
 <openerp>
   <data>
 
-     <record model="ir.ui.view" id="c2c_landed_cost_form">
-      <field name="name">c2clanded.cost.form</field>
+     <record model="ir.ui.view" id="c2c_landed_cost_tree">
+      <field name="name">c2clanded.cost.tree</field>
       <field name="model">landed.cost.position</field>
       <field name="priority">1</field>
       <field name="type">tree</field>
       <field name="arch" type="xml">
-        <tree string="Price Units" editable="bottom">
+        <tree string="Landing Costs" editable="bottom">
               <field name="product_id"/>
               <field name="partner_id"/>
               <field name="amount"/>
@@ -25,7 +25,7 @@
       <field name="priority">1</field>
       <field name="type">form</field>
       <field name="arch" type="xml">
-        <form string="Price Units">
+        <form string="Landing Costs">
               <field name="product_id"/>
               <field name="partner_id"/>
               <field name="amount"/>
@@ -49,6 +49,7 @@
       <field name="arch" type="xml">
         <field name="active" position="after">
              <field name="landed_cost_type"/>
+             <field name="landed_cost"/>
         </field>
       </field>
     </record>
@@ -61,11 +62,12 @@
       <field name="type">form</field>
       <field name="arch" type="xml">
         <notebook position="inside">
-          <page string="Landed Costs" attrs="{'readonly':[('state','=','done')]}">
+          <page string="Landing Costs" attrs="{'readonly':[('state','=','done')]}">
              <field name="landed_cost_base_quantity"/>
              <field name="quantity_total"/>
              <field name="landed_cost_base_value"/>
-             <field name="landed_cost_line_ids" colspan="4"/>
+             <field name="landed_cost"/>
+             <field name="landed_cost_line_ids" colspan="4" nolabel="1"  widget="one2many_list"/>
           </page>
         </notebook>
       </field>
@@ -79,10 +81,10 @@
       <field name="type">form</field>
       <field name="arch" type="xml">
         <notebook position="inside">
-             <page string="Landed Costs" attrs="{'readonly':[('state','=','done')]}">
-                  <field name="landing_cost"/>
-                  <field name="landed_cost"/>
-                  <field name="landed_cost_line_ids" colspan="4"/>
+             <page string="Landing Costs" >
+                  <field name="landing_costs"/>
+                  <field name="landed_costs"/>
+                  <field name="landed_cost_line_ids" colspan="4" nolabel="1"  widget="one2many_list"/>
              </page>     
         </notebook>
       </field>
