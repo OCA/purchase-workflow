@@ -23,74 +23,76 @@
 from osv import osv, fields
 import decimal_precision as dp
 
+import math
+#from _common import rounding
+import re  
+from tools.translate import _
+import sys
+import netsvc
+
 
 #----------------------------------------------------------
-#  Stock Move
+#  Account Invoice Line INHERIT
 #----------------------------------------------------------
 class stock_move(osv.osv):
     _inherit = "stock.move"
-    
-    def _landing_cost(self, cr, uid, ids, name, args, context):
-        if not ids : return {}
-        result = {}
-        landed_costs = 0.0
-        # landed costss for the line
-        for line in self.browse(cr, uid, ids):
-            if line.landed_cost_line_ids:
-                for costs in line.landed_cost_line_ids:
-                    if costs.price_type == 'value':
-                        landed_costs += costs.amount
-                    else:
-                        landed_costs += costs.amount * line.product_qty
-            result[line.id] = landed_costs
-        return result
 
-    def _landing_cost_order(self, cr, uid, ids, name, args, context):
-        if not ids : return {}
-        result = {}
-        landed_costs = 0.0
-        # landed costss for the line
-        for line in self.browse(cr, uid, ids):
-            # distrubution of landed costs of PO
-            if line.picking_id.landed_cost_line_ids:
-               if line.picking_id.total_amount and line.picking_id.total_amount > 0.0:
-                   landed_costs += line.picking_id.landed_cost_base_value / line.picking_id.total_amount * line.price_unit * line.product_qty 
-               if line.picking_id.quantity_total and line.picking_id.quantity_total >0.0:
-                   landed_costs +=  line.picking_id.landed_cost_base_quantity / line.picking_id.quantity_total * line.product_qty
-            result[line.id] = landed_costs
-
-        return result
-
-    def _landed_cost(self, cr, uid, ids, name, args, context):
-        if not ids : return {}
-        result = {}
-        landed_costs = 0.0
-        # landed costss for the line
-        for line in self.browse(cr, uid, ids):
-            landed_costs +=  line.product_qty * line.price_unit
-            result[line.id] = landed_costs
-
-        return result
-
-    def _sub_total(self, cr, uid, ids, name, args, context):
-        if not ids : return {}
-        result = {}
-        sub_total = 0.0
-        for line in self.browse(cr, uid, ids):
-            sub_total += line.product_qty * line.price_unit_net or 0.0
-            result[line.id] = sub_total
-
-        return result
+    def _get_price_unit_id(self, cr, uid, context=None):
+        if context is None:
+            context = {}
+        if not context.get('product_id', False):
+            return False 
+        pu_id = self.pool.get('product.product').browse(cr, uid, context['product_id']).price_unit_id.id
+        return pu_id or False
 
 
     _columns = { 
-         'landed_cost_line_ids': fields.one2many('landed.cost.position', 'move_line_id', 'Landed Costs Positions'),
-         'landing_costs' : fields.function(_landing_cost, digits_compute=dp.get_precision('Account'), string='Line Landing Costs'),
-         'landing_costs_picking' : fields.function(_landing_cost_order, digits_compute=dp.get_precision('Account'), string='Landing Costs from Picking'),
-         'landed_cost' : fields.function(_landed_cost, digits_compute=dp.get_precision('Account'), string='Landed Costs'),
-         'sub_total' : fields.function(_sub_total, digits_compute=dp.get_precision('Account'), string='Line Sub Total'),
-         'price_unit_net' : fields.float('Purchase Price', digits_compute=dp.get_precision('Account'), ),
+        'price_unit_id'    : fields.many2one('c2c_product.price_unit','Price Unit'),
+        'price_unit_pu'    : fields.float(string='Unit Price',digits_compute=dp.get_precision('Sale Price'),  \
+                            help='Price using "Price Units"') ,
+        'price_unit'       : fields.float(string='Unit Price internal',  digits=(16, 8), \
+                            help="""Product's cost for accounting stock valuation."""),
+        'price_unit_sale'  : fields.float(string='Unit Price Sale',  digits=(16, 8), \
+                            help="""Product's sale for accounting stock valuation."""),
+
+        'price_unit_sale_id' : fields.many2one('c2c_product.price_unit','Price Unit Sale'),
+        'price_unit_coeff':fields.float(string='Price/Coeff internal',digits=(16,8) ),
+
     }
+
+    _defaults = {
+        'price_unit_id'   : _get_price_unit_id,
+#        'price_unit_pu'   : _get_price_unit_pu,
+#        'price_unit'      : _get_price_unit,
+    }
+
+    def init(self, cr):
+      cr.execute("""
+          update stock_move set price_unit_pu = price_unit  where price_unit_pu is null;
+      """)
+      cr.execute("""
+          update stock_move set price_unit_id = (select min(id) from c2c_product_price_unit where coefficient=1) where price_unit_id is null;
+      """)
+
+    def onchange_price_unit(self, cr, uid, ids, field_name,price_pu, price_unit_id):
+        if  price_pu and  price_unit_id:
+           pu = self.pool.get('c2c_product.price_unit').browse(cr, uid, price_unit_id)
+           price = price_pu / float(pu.coefficient)
+           return {'value': {field_name : price}}
+        return {}
+        
+    def onchange_product_id(self, cr, uid, ids, prod_id=False, loc_id=False,
+                            loc_dest_id=False, address_id=False):
+        context = {}
+        res = super(stock_move,self).onchange_product_id( cr, uid, ids, prod_id, loc_id,
+                            loc_dest_id, address_id)
+        if prod_id :
+            prod_obj = self.pool.get('product.product').browse(cr, uid, prod_id)
+            pu_id = prod_obj.price_unit_id.id
+            standard_price_pu = prod_obj.standard_price_pu
+            res['value'].update({'price_unit_id':pu_id, 'price_unit_pu':standard_price_pu})
+        return res
+      
 
 stock_move()
 
@@ -100,101 +102,181 @@ stock_move()
 class stock_picking(osv.osv):
     _inherit = "stock.picking"
 
-    def _landed_cost_base_value(self, cr, uid, ids, name, args, context):
-        if not ids : return {}
-        result = {}
-        landed_costs_base_value = 0.0
-        for line in self.browse(cr, uid, ids):
-            if line.landed_cost_line_ids:
-                for costs in line.landed_cost_line_ids:
-                    if costs.product_id.landed_cost_type == 'value':
-                        landed_costs_base_value += costs.amount
-            result[line.id] = landed_costs_base_value
-        return result
 
-    def _landed_cost_base_quantity(self, cr, uid, ids, name, args, context):
-        if not ids : return {}
-        result = {}
-        landed_costs_base_quantity = 0.0
-        for line in self.browse(cr, uid, ids):
-            if line.landed_cost_line_ids:
-                for costs in line.landed_cost_line_ids:
-                    if costs.product_id.landed_cost_type == 'quantity':
-                         landed_costs_base_quantity += costs.amount
-            result[line.id] = landed_costs_base_quantity
-        return result
+    def _invoice_line_hook(self, cr, uid, move_line, invoice_line_id):
+        '''Call after the creation of the invoice line'''
+        #res = super(stock_picking,self)._invoice_line_hook(cr, uid, move_line, invoice_line_id)
+        logger = netsvc.Logger()
+        logger.notifyChannel('addons.'+self._name, netsvc.LOG_INFO,'price unit stock line hook FGF:  %s '%(invoice_line_id))
+        price_unit_id = ''
+        price_unit_pu = ''
+        if move_line.price_unit_id:
+            price_unit_id =  move_line.price_unit_id.id
+        if move_line.price_unit_pu:
+            price_unit_pu =  move_line.price_unit_pu
+        if not price_unit_id or not price_unit_pu:
+         if move_line.purchase_line_id:
+          if not move_line.price_unit_id:
+            price_unit_id = self.pool.get('c2c_product.price_unit').get_default_id(cr, uid, None)
+          else:
+            price_unit_id = move_line.price_unit_id.id
+          coeff = self.pool.get('c2c_product.price_unit').get_coeff(cr, uid, price_unit_id)
+          print >> sys.stderr,'price_unit invoice_line-hook coeff:', coeff
+          price_unit_pu = move_line.price_unit_pu or move_line.price_unit * coeff or ''
+         if move_line.sale_line_id:
+          price_unit = move_line.price_unit or ''
+          price_unit_pu = move_line.price_unit or ''
+          price_unit_id = move_line.price_unit_id.id or ''
+          
+        inv_line_obj = self.pool.get('account.invoice.line')
+        inv_line_obj.write(cr, uid, invoice_line_id, {'price_unit_id': price_unit_id, 'price_unit_pu': price_unit_pu})
 
-    def _landed_cost(self, cr, uid, ids, name, args, context):
-        if not ids : return {}
-        result = {}
-        landed_costs = 0.0
-        # landed costss for the line
-        for line in self.browse(cr, uid, ids):
-            if line.move_lines:
-                for ml in line.move_lines:
-                    landed_costs += ml.landed_cost 
-            result[line.id] = landed_costs
+        return  super(stock_picking, self)._invoice_line_hook(cr, uid, move_line, invoice_line_id)
 
-        return result
+    def action_invoice_create_nok(self, cr, uid, ids, journal_id=False,
+            group=False, type='out_invoice', context=None):
+        """ Creates invoice based on the invoice state selected for picking.
+        @param journal_id: Id of journal
+        @param group: Whether to create a group invoice or not
+        @param type: Type invoice to be created
+        @return: Ids of created invoices for the pickings
+        """
+        if context is None:
+            context = {}
 
-    def _landing_cost_lines(self, cr, uid, ids, name, args, context):
-        if not ids : return {}
-        result = {}
-        landed_cost_lines = 0.0
-        for line in self.browse(cr, uid, ids):
-            if line.move_lines:
-                for ml in line.move_lines:
-                    if ml.product_qty > 0.0:
-                         landed_cost_lines += ml.landing_costs + ml.landing_costs_picking
-            result[line.id] = landed_cost_lines
-        return result
+        invoice_obj = self.pool.get('account.invoice')
+        invoice_line_obj = self.pool.get('account.invoice.line')
+        address_obj = self.pool.get('res.partner.address')
+        invoices_group = {}
+        res = {}
+        inv_type = type
+        for picking in self.browse(cr, uid, ids, context=context):
+            if picking.invoice_state != '2binvoiced':
+                continue
+            payment_term_id = False
+            partner =  picking.address_id and picking.address_id.partner_id
+            if not partner:
+                raise osv.except_osv(_('Error, no partner !'),
+                    _('Please put a partner on the picking list if you want to generate invoice.'))
 
-    def _quantity_total(self, cr, uid, ids, name, args, context):
-        if not ids : return {}
-        result = {}
-        quantity_total = 0.0
-        for line in self.browse(cr, uid, ids):
-            if line.move_lines:
-                for ml in line.move_lines:
-                    if ml.product_qty > 0.0:
-                         quantity_total += ml.product_qty
-            result[line.id] = quantity_total
-        return result
+            if not inv_type:
+                inv_type = self._get_invoice_type(picking)
 
-    def _amount_total(self, cr, uid, ids, name, args, context):
-        if not ids : return {}
-        result = {}
-        amount_total = 0.0
-        for line in self.browse(cr, uid, ids):
-            if line.move_lines:
-                for ml in line.move_lines:
-                    if ml.product_qty > 0.0 and ml.price_unit:
-                         amount_total += ml.sub_total
-            result[line.id] = amount_total
-        return result
+            if inv_type in ('out_invoice', 'out_refund'):
+                account_id = partner.property_account_receivable.id
+                payment_term_id = self._get_payment_term(cr, uid, picking)
+            else:
+                account_id = partner.property_account_payable.id
 
+            address_contact_id, address_invoice_id = \
+                    self._get_address_invoice(cr, uid, picking).values()
+            address = address_obj.browse(cr, uid, address_contact_id, context=context)
 
-    _columns = { 
-         'landed_cost_line_ids': fields.one2many('landed.cost.position', 'picking_id', 'Landed Costs Positions'),
-         'landed_cost_base_value' : fields.function(_landed_cost_base_value, digits_compute=dp.get_precision('Account'), string='Landed Costs Base Value'),
-         'landed_cost_base_quantity' : fields.function(_landed_cost_base_quantity, digits_compute=dp.get_precision('Account'), string='Landed Costs Base Quantity'),
-         'landing_cost_lines' : fields.function(_landing_cost_lines, digits_compute=dp.get_precision('Account'), string='Landing Cost Lines'),
-         'landed_cost' : fields.function(_landed_cost, digits_compute=dp.get_precision('Account'), string='Landed Costs Total Untaxed'),
-         'total_amount' : fields.function(_amount_total, digits_compute=dp.get_precision('Account'), string='Total Product Price'),
-         'quantity_total' : fields.function(_quantity_total, digits_compute=dp.get_precision('Product UoM'), string='Total Quantity'),
-    }
+            comment = self._get_comment_invoice(cr, uid, picking)
+            if group and partner.id in invoices_group:
+                invoice_id = invoices_group[partner.id]
+                invoice = invoice_obj.browse(cr, uid, invoice_id)
+                invoice_vals = {
+                    'name': (invoice.name or '') + ', ' + (picking.name or ''),
+                    'origin': (invoice.origin or '') + ', ' + (picking.name or '') + (picking.origin and (':' + picking.origin) or ''),
+                    'comment': (comment and (invoice.comment and invoice.comment+"\n"+comment or comment)) or (invoice.comment and invoice.comment or ''),
+                    'date_invoice':context.get('date_inv',False),
+                    'user_id':uid
+                }
+                invoice_obj.write(cr, uid, [invoice_id], invoice_vals, context=context)
+            else:
+                invoice_vals = {
+                    'name': picking.name,
+                    'origin': (picking.name or '') + (picking.origin and (':' + picking.origin) or ''),
+                    'type': inv_type,
+                    'account_id': account_id,
+                    'partner_id': address.partner_id.id,
+                    'address_invoice_id': address_invoice_id,
+                    'address_contact_id': address_contact_id,
+                    'comment': comment,
+                    'payment_term': payment_term_id,
+                    'fiscal_position': partner.property_account_position.id,
+                    'date_invoice': context.get('date_inv',False),
+                    'company_id': picking.company_id.id,
+                    'user_id':uid
+                }
+                cur_id = self.get_currency_id(cr, uid, picking)
+                if cur_id:
+                    invoice_vals['currency_id'] = cur_id
+                if journal_id:
+                    invoice_vals['journal_id'] = journal_id
+                invoice_id = invoice_obj.create(cr, uid, invoice_vals,
+                        context=context)
+                invoices_group[partner.id] = invoice_id
+            res[picking.id] = invoice_id
+            for move_line in picking.move_lines:
+                if move_line.state == 'cancel':
+                    continue
+                origin = move_line.picking_id.name or ''
+                if move_line.picking_id.origin:
+                    origin += ':' + move_line.picking_id.origin
+                if group:
+                    name = (picking.name or '') + '-' + move_line.name
+                else:
+                    name = move_line.name
 
+                if inv_type in ('out_invoice', 'out_refund'):
+                    account_id = move_line.product_id.product_tmpl_id.\
+                            property_account_income.id
+                    if not account_id:
+                        account_id = move_line.product_id.categ_id.\
+                                property_account_income_categ.id
+                else:
+                    account_id = move_line.product_id.product_tmpl_id.\
+                            property_account_expense.id
+                    if not account_id:
+                        account_id = move_line.product_id.categ_id.\
+                                property_account_expense_categ.id
+
+                price_unit = self._get_price_unit_invoice(cr, uid,
+                        move_line, inv_type)
+                # FIXME        
+                price_unit_id = self.pool.get('c2c_product.price_unit').get_default_id(cr, uid, move_line.price_unit_id.id) 
+                coeff = self.pool.get('c2c_product.price_unit').get_coeff(cr, uid, price_unit_id)        
+                price_unit_pu = price_unit * coeff        
+                discount = self._get_discount_invoice(cr, uid, move_line)
+                tax_ids = self._get_taxes_invoice(cr, uid, move_line, inv_type)
+                account_analytic_id = self._get_account_analytic_invoice(cr, uid, picking, move_line)
+
+                #set UoS if it's a sale and the picking doesn't have one
+                uos_id = move_line.product_uos and move_line.product_uos.id or False
+                if not uos_id and inv_type in ('out_invoice', 'out_refund'):
+                    uos_id = move_line.product_uom.id
+
+                account_id = self.pool.get('account.fiscal.position').map_account(cr, uid, partner.property_account_position, account_id)
+                
+                invoice_line_id = invoice_line_obj.create(cr, uid, {
+                    'name': name,
+                    'origin': origin,
+                    'invoice_id': invoice_id,
+                    'uos_id': uos_id,
+                    'product_id': move_line.product_id.id,
+                    'account_id': account_id,
+                    'price_unit': price_unit,
+                    'price_unit_pu': price_unit_pu,
+                    'price_unit_id': price_unit_id,
+                    'discount': discount,
+                    'quantity': move_line.product_uos_qty or move_line.product_qty,
+                    'invoice_line_tax_id': [(6, 0, tax_ids)],
+                    'account_analytic_id': account_analytic_id,
+                }, context=context)
+                self._invoice_line_hook(cr, uid, move_line, invoice_line_id)
+
+            invoice_obj.button_compute(cr, uid, [invoice_id], context=context,
+                    set_total=(inv_type in ('in_invoice', 'in_refund')))
+            self.write(cr, uid, [picking.id], {
+                'invoice_state': 'invoiced',
+                }, context=context)
+            self._invoice_hook(cr, uid, picking, invoice_id)
+        self.write(cr, uid, res.keys(), {
+            'invoice_state': 'invoiced',
+            }, context=context)
+        return res
 stock_picking()
 
-class stock_partial_picking(osv.osv_memory):
-    _inherit = "stock.partial.picking"
 
-    def _product_cost_for_average_update(self, cr, uid, move):
-       res = super(stock_partial_picking, self)._product_cost_for_average_update(cr, uid, move)
-       import sys
-       print >> sys.stderr, 'res stock_partial_picking', res  
-       res['cost'] = move.landed_cost / move.product_qty
-       print >> sys.stderr, 'res stock_partial_picking', res  
-       return res
-
-stock_partial_picking()
