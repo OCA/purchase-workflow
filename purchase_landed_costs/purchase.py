@@ -104,7 +104,7 @@ class purchase_order(osv.osv):
         for line in self.browse(cr, uid, ids):
             if line.landed_cost_line_ids:
                 for costs in line.landed_cost_line_ids:
-                    if costs.category_id.type == 'value':
+                    if costs.product_id.landed_cost_type == 'value':
                         landed_costs_base_value += costs.amount
             result[line.id] = landed_costs_base_value
         return result
@@ -116,7 +116,7 @@ class purchase_order(osv.osv):
         for line in self.browse(cr, uid, ids):
             if line.landed_cost_line_ids:
                 for costs in line.landed_cost_line_ids:
-                    if costs.category_id.type == 'quantity':
+                    if costs.product_id.landed_cost_type == 'quantity':
                          landed_costs_base_quantity += costs.amount
             result[line.id] = landed_costs_base_quantity
         return result
@@ -139,9 +139,21 @@ class purchase_order(osv.osv):
         landed_costs = 0.0
         # landed costss for the line
         for line in self.browse(cr, uid, ids):
-            landed_costs += line.landed_cost_base_value + line.landed_cost_base_quantity + line.amount_total
+            landed_costs += line.landing_cost_lines + line.amount_untaxed
             result[line.id] = landed_costs
 
+        return result
+
+    def _landing_cost_lines(self, cr, uid, ids, name, args, context):
+        if not ids : return {}
+        result = {}
+        landed_cost_lines = 0.0
+        for line in self.browse(cr, uid, ids):
+            if line.order_line:
+                for pol in line.order_line:
+                    if pol.product_qty > 0.0:
+                         landed_cost_lines += pol.landing_costs
+            result[line.id] = landed_cost_lines
         return result
 
 
@@ -150,7 +162,8 @@ class purchase_order(osv.osv):
          'landed_cost_line_ids': fields.one2many('landed.cost.position', 'purchase_order_id', 'Landed Costs'),
          'landed_cost_base_value' : fields.function(_landed_cost_base_value, digits_compute=dp.get_precision('Account'), string='Landed Costs Base Value'),
          'landed_cost_base_quantity' : fields.function(_landed_cost_base_quantity, digits_compute=dp.get_precision('Account'), string='Landed Costs Base Quantity'),
-         'landed_cost' : fields.function(_landed_cost, digits_compute=dp.get_precision('Account'), string='Landed Costs Total'),
+         'landing_cost_lines' : fields.function(_landing_cost_lines, digits_compute=dp.get_precision('Account'), string='Landing Cost Lines'),
+         'landed_cost' : fields.function(_landed_cost, digits_compute=dp.get_precision('Account'), string='Landed Costs Total Untaxed'),
          'quantity_total' : fields.function(_quantity_total, digits_compute=dp.get_precision('Product UoM'), string='Total Quantity'),
     }
 
