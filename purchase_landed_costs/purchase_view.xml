@@ -2,14 +2,14 @@
 <openerp>
   <data>
 
-     <record model="ir.ui.view" id="c2c_landed_cost_tree">
-      <field name="name">c2clanded.cost.tree</field>
+     <record model="ir.ui.view" id="c2c_landed_cost_form">
+      <field name="name">c2clanded.cost.form</field>
       <field name="model">landed.cost.position</field>
       <field name="priority">1</field>
       <field name="type">tree</field>
       <field name="arch" type="xml">
-        <tree string="Landing Costs" editable="bottom">
-              <field name="product_id" on_change="onchange_product_id(product_id)"/>
+        <tree string="Price Units" editable="bottom">
+              <field name="product_id"/>
               <field name="partner_id"/>
               <field name="amount"/>
               <field name="price_type"/>
@@ -25,8 +25,8 @@
       <field name="priority">1</field>
       <field name="type">form</field>
       <field name="arch" type="xml">
-        <form string="Landing Costs">
-              <field name="product_id" on_change="onchange_product_id(product_id)"/>
+        <form string="Price Units">
+              <field name="product_id"/>
               <field name="partner_id"/>
               <field name="amount"/>
               <field name="price_type"/>
@@ -49,12 +49,11 @@
       <field name="arch" type="xml">
         <field name="active" position="after">
              <field name="landed_cost_type"/>
-             <field name="landed_cost"/>
         </field>
       </field>
     </record>
     
-    <!-- Landed costs Purchase Form-->
+    <!-- Landed costs Purchase Line Form-->
     <record model="ir.ui.view" id="c2c_purchase_order_landed_cost_view">
       <field name="name">c2c_purchase.order.landed.cost.form.view</field>
       <field name="model">purchase.order</field>
@@ -62,19 +61,11 @@
       <field name="type">form</field>
       <field name="arch" type="xml">
         <notebook position="inside">
-          <page string="Landing Costs" attrs="{'readonly':[('state','=','done')]}">
-            <group colspan="2" col="2"> 
-             <field name="quantity_total"/>
+          <page string="Landed Costs" attrs="{'readonly':[('state','=','done')]}">
              <field name="landed_cost_base_quantity"/>
+             <field name="quantity_total"/>
              <field name="landed_cost_base_value"/>
-           </group>
-           <group colspan="2" col="2"> 
-              
-             <field name="landing_cost_lines"/>
-             <field name="landed_cost"/>
-           </group>
-             <field name="landed_cost_line_ids" colspan="4" nolabel="1"  widget="one2many_list"/>
-           
+             <field name="landed_cost_line_ids" colspan="4"/>
           </page>
         </notebook>
       </field>
@@ -88,13 +79,10 @@
       <field name="type">form</field>
       <field name="arch" type="xml">
         <notebook position="inside">
-             <page string="Landing Costs" >
-                <group colspan="2" col="2"> 
-                  <field name="landing_costs"/>
-                  <field name="landing_costs_order"/>
-                  <field name="landed_costs"/>
-                  <field name="landed_cost_line_ids" colspan="4" nolabel="1"  widget="one2many_list"/>
-                </group>  
+             <page string="Landed Costs" attrs="{'readonly':[('state','=','done')]}">
+                  <field name="landing_cost"/>
+                  <field name="landed_cost"/>
+                  <field name="landed_cost_line_ids" colspan="4"/>
              </page>     
         </notebook>
       </field>
