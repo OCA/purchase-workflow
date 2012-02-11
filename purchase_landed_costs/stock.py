@@ -65,16 +65,28 @@ class stock_move(osv.osv):
         landed_costs = 0.0
         # landed costss for the line
         for line in self.browse(cr, uid, ids):
-            landed_costs += line.price_subtotal + line.landing_costs +  line.landing_costs_order
+            landed_costs += line.sub_total + line.landing_costs 
             result[line.id] = landed_costs
 
         return result
 
+    def _sub_total(self, cr, uid, ids, name, args, context):
+        if not ids : return {}
+        result = {}
+        sub_total = 0.0
+        for line in self.browse(cr, uid, ids):
+            sub_total += line.product_qty * line.price_unit 
+            result[line.id] = sub_total
+
+        return result
+
+
     _columns = { 
          'landed_cost_line_ids': fields.one2many('landed.cost.position', 'move_line_id', 'Landed Costs Positions'),
-         'landing_costs' : fields.function(_landing_cost, digits_compute=dp.get_precision('Account'), string='Landing Costs'),
+         'landing_costs' : fields.function(_landing_cost, digits_compute=dp.get_precision('Account'), string='Line Landing Costs'),
          'landing_costs_picking' : fields.function(_landing_cost_order, digits_compute=dp.get_precision('Account'), string='Landing Costs from Picking'),
          'landed_cost' : fields.function(_landed_cost, digits_compute=dp.get_precision('Account'), string='Landed Costs'),
+         'sub_total' : fields.function(_sub_total, digits_compute=dp.get_precision('Account'), string='Line Sub Total'),
     }
 
 stock_move()
