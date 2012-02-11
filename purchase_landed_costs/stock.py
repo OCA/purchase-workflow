@@ -53,8 +53,8 @@ class stock_move(osv.osv):
         for line in self.browse(cr, uid, ids):
             # distrubution of landed costs of PO
             if line.picking_id.landed_cost_line_ids:
-               landed_costs += line.picking_id.landed_cost_base_value / line.order_id.amount_total * line.price_subtotal + \
-                        line.order_id.landed_cost_base_quantity / line.order_id.quantity_total * line.product_qty
+               landed_costs += line.picking_id.landed_cost_base_value / line.picking_id.total_amount * line.price_unit * line.product_qty + \
+                        line.picking_id.landed_cost_base_quantity / line.picking_id.quantity_total * line.product_qty
             result[line.id] = landed_costs
 
         return result
@@ -71,7 +71,7 @@ class stock_move(osv.osv):
         return result
 
     _columns = { 
-         'landed_cost_line_ids': fields.one2many('landed.cost.position', 'purchase_order_line_id', 'Landed Costs Positions'),
+         'landed_cost_line_ids': fields.one2many('landed.cost.position', 'move_line_id', 'Landed Costs Positions'),
          'landing_costs' : fields.function(_landing_cost, digits_compute=dp.get_precision('Account'), string='Landing Costs'),
          'landing_costs_picking' : fields.function(_landing_cost_order, digits_compute=dp.get_precision('Account'), string='Landing Costs from Picking'),
          'landed_cost' : fields.function(_landed_cost, digits_compute=dp.get_precision('Account'), string='Landed Costs'),
@@ -158,7 +158,7 @@ class stock_picking(osv.osv):
 
 
     _columns = { 
-         'landed_cost_line_ids': fields.one2many('landed.cost.position', 'purchase_order_line_id', 'Landed Costs Positions'),
+         'landed_cost_line_ids': fields.one2many('landed.cost.position', 'picking_id', 'Landed Costs Positions'),
          'landed_cost_base_value' : fields.function(_landed_cost_base_value, digits_compute=dp.get_precision('Account'), string='Landed Costs Base Value'),
          'landed_cost_base_quantity' : fields.function(_landed_cost_base_quantity, digits_compute=dp.get_precision('Account'), string='Landed Costs Base Quantity'),
          'landing_cost_lines' : fields.function(_landing_cost_lines, digits_compute=dp.get_precision('Account'), string='Landing Cost Lines'),

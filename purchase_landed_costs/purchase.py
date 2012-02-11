@@ -181,18 +181,51 @@ class purchase_order(osv.osv):
     def _prepare_order_line_move(self, cr, uid, order, order_line, picking_id, context=None):
         res = super(purchase_order,self)._prepare_order_line_move( cr, uid, order, order_line, picking_id, context)
         
-        # FIXME - must create duplicates
-        landed_cost_line_ids_dup = order_line.landed_cost_line_ids
-        
-        res.update({'landed_cost_line_ids' : landed_cost_line_ids_dup})
         return res
 
     def _prepare_order_picking(self, cr, uid, order, context=None):
         res = super(purchase_order,self)._prepare_order_picking( cr, uid, order, context)
-        # FIXME - must create duplicates
-        landed_cost_line_ids_dup = order_line.landed_cost_line_ids
-        res.update({'landed_cost_line_ids' : landed_cost_line_ids_dup})
+
         return res
 
+    def _create_pickings(self, cr, uid, order, order_lines, picking_id=False, context=None): 
+        res =  super(purchase_order,self)._create_pickings(cr, uid, order, order_lines, picking_id, context)
+        import sys
+        pick_id = int(res[0])
+        # landing costs for PICK from PO 
+        cost_obj = self.pool.get('landed.cost.position')
+        for order_cost in order.landed_cost_line_ids:
+            vals = {}
+            vals['product_id'] = order_cost.product_id.id
+            vals['partner_id'] = order_cost.partner_id.id
+            vals['amount'] = order_cost.amount
+            vals['amount_currency'] = order_cost.amount_currency
+            vals['currency_id'] = order_cost.currency_id.id
+            vals['price_type'] = order_cost.price_type
+            vals['picking_id'] = pick_id
+            print >> sys.stderr, 'vals', vals
+            cost_obj.create(cr, uid, vals, context=None) 
+
+        #self.pool.get('landed.cost.position').create(cr, uid, cost_lines, context=None) 
+        # landing costs for PICK Lines from PO   
+        pick_obj = self.pool.get('stock.picking')
+        for pick in pick_obj.browse(cr, uid, [pick_id], context=None):
+          print >> sys.stderr, 'pick', pick
+          for line in pick.move_lines:
+           print >> sys.stderr, 'line', line
+           for order_cost in line.purchase_line_id.landed_cost_line_ids:
+            vals = {}
+            vals['product_id'] = order_cost.product_id.id
+            vals['partner_id'] = order_cost.partner_id.id
+            vals['amount'] = order_cost.amount
+            vals['amount_currency'] = order_cost.amount_currency
+            vals['currency_id'] = order_cost.currency_id.id
+            vals['price_type'] = order_cost.price_type
+            vals['move_line_id'] = line.id
+            print >> sys.stderr, 'vals', vals
+            cost_obj.create(cr, uid, vals, context=None) 
+        print >> sys.stderr, 'cost created'
+           
+        return res
 
 purchase_order()
