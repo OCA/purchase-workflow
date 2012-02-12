@@ -63,12 +63,18 @@
       <field name="arch" type="xml">
         <notebook position="inside">
           <page string="Landing Costs" attrs="{'readonly':[('state','=','done')]}">
-             <field name="landed_cost_base_quantity"/>
+            <group colspan="2" col="2"> 
              <field name="quantity_total"/>
+             <field name="landed_cost_base_quantity"/>
              <field name="landed_cost_base_value"/>
+           </group>
+           <group colspan="2" col="2"> 
+              
              <field name="landing_cost_lines"/>
              <field name="landed_cost"/>
+           </group>
              <field name="landed_cost_line_ids" colspan="4" nolabel="1"  widget="one2many_list"/>
+           
           </page>
         </notebook>
       </field>
@@ -83,10 +89,12 @@
       <field name="arch" type="xml">
         <notebook position="inside">
              <page string="Landing Costs" >
+                <group colspan="2" col="2"> 
                   <field name="landing_costs"/>
                   <field name="landing_costs_order"/>
                   <field name="landed_costs"/>
                   <field name="landed_cost_line_ids" colspan="4" nolabel="1"  widget="one2many_list"/>
+                </group>  
              </page>     
         </notebook>
       </field>
