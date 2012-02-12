@@ -46,6 +46,14 @@ class landed_cost_position(osv.osv):
         'picking_id': fields.many2one('stock.picking', 'Picking'),
       }
 
+    def onchange_product_id(self, cr, uid, ids, product_id, context=None):
+        if product_id:
+            prod_obj=self.pool.get('product.product')
+            prod=prod_obj.browse(cr,uid,[product_id])[0]
+            v = {'price_type':prod.landed_cost_type}
+            return {'value': v}
+        return {}
+
 landed_cost_position()
 
 #----------------------------------------------------------
