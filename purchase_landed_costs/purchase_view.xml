@@ -9,7 +9,7 @@
       <field name="type">tree</field>
       <field name="arch" type="xml">
         <tree string="Landing Costs" editable="bottom">
-              <field name="product_id"/>
+              <field name="product_id" on_change="onchange_product_id(product_id)"/>
               <field name="partner_id"/>
               <field name="amount"/>
               <field name="price_type"/>
@@ -26,7 +26,7 @@
       <field name="type">form</field>
       <field name="arch" type="xml">
         <form string="Landing Costs">
-              <field name="product_id"/>
+              <field name="product_id" on_change="onchange_product_id(product_id)"/>
               <field name="partner_id"/>
               <field name="amount"/>
               <field name="price_type"/>
