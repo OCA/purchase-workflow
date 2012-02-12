@@ -29,7 +29,7 @@ import decimal_precision as dp
 #----------------------------------------------------------
 class stock_move(osv.osv):
     _inherit = "stock.move"
-
+    
     def _landing_cost(self, cr, uid, ids, name, args, context):
         if not ids : return {}
         result = {}
@@ -53,8 +53,10 @@ class stock_move(osv.osv):
         for line in self.browse(cr, uid, ids):
             # distrubution of landed costs of PO
             if line.picking_id.landed_cost_line_ids:
-               landed_costs += line.picking_id.landed_cost_base_value / line.picking_id.total_amount * line.price_unit * line.product_qty + \
-                        line.picking_id.landed_cost_base_quantity / line.picking_id.quantity_total * line.product_qty
+               if line.picking_id.total_amount and line.picking_id.total_amount > 0.0:
+                   landed_costs += line.picking_id.landed_cost_base_value / line.picking_id.total_amount * line.price_unit * line.product_qty 
+               if line.picking_id.quantity_total and line.picking_id.quantity_total >0.0:
+                   landed_costs +=  line.picking_id.landed_cost_base_quantity / line.picking_id.quantity_total * line.product_qty
             result[line.id] = landed_costs
 
         return result
@@ -65,7 +67,7 @@ class stock_move(osv.osv):
         landed_costs = 0.0
         # landed costss for the line
         for line in self.browse(cr, uid, ids):
-            landed_costs += line.sub_total + line.landing_costs 
+            landed_costs +=  line.product_qty * line.price_unit
             result[line.id] = landed_costs
 
         return result
@@ -75,7 +77,7 @@ class stock_move(osv.osv):
         result = {}
         sub_total = 0.0
         for line in self.browse(cr, uid, ids):
-            sub_total += line.product_qty * line.price_unit 
+            sub_total += line.product_qty * line.price_unit_net or 0.0
             result[line.id] = sub_total
 
         return result
@@ -87,6 +89,7 @@ class stock_move(osv.osv):
          'landing_costs_picking' : fields.function(_landing_cost_order, digits_compute=dp.get_precision('Account'), string='Landing Costs from Picking'),
          'landed_cost' : fields.function(_landed_cost, digits_compute=dp.get_precision('Account'), string='Landed Costs'),
          'sub_total' : fields.function(_sub_total, digits_compute=dp.get_precision('Account'), string='Line Sub Total'),
+         'price_unit_net' : fields.float('Purchase Price', digits_compute=dp.get_precision('Account'), ),
     }
 
 stock_move()
@@ -127,7 +130,9 @@ class stock_picking(osv.osv):
         landed_costs = 0.0
         # landed costss for the line
         for line in self.browse(cr, uid, ids):
-            landed_costs += line.landing_cost_lines + line.total_amount
+            if line.move_lines:
+                for ml in line.move_lines:
+                    landed_costs += ml.landed_cost 
             result[line.id] = landed_costs
 
         return result
@@ -140,7 +145,7 @@ class stock_picking(osv.osv):
             if line.move_lines:
                 for ml in line.move_lines:
                     if ml.product_qty > 0.0:
-                         landed_cost_lines += ml.landing_costs
+                         landed_cost_lines += ml.landing_costs + ml.landing_costs_picking
             result[line.id] = landed_cost_lines
         return result
 
@@ -164,7 +169,7 @@ class stock_picking(osv.osv):
             if line.move_lines:
                 for ml in line.move_lines:
                     if ml.product_qty > 0.0 and ml.price_unit:
-                         amount_total += ml.product_qty * ml.price_unit
+                         amount_total += ml.sub_total
             result[line.id] = amount_total
         return result
 
