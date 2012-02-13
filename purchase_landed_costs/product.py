@@ -33,7 +33,7 @@ class product_template(osv.osv):
     _columns = {
         'landed_cost_type': fields.selection( [('value','Value'), ('per_unit','Quantity'), ('none','None')], 'Distribution Type',  \
                   help="Used if this product is landed costs: If landed costs are defined for purchase orders or pickings, this indicates how the costs are distributed to the lines"),
-        'landed_cost'    :fields.boolean('Calculate Landed Costs', help="Checck this if you want to use landed cost calculation for average price for this product"), 
+        'landed_cost'    :fields.boolean('Calculate Landed Costs', help="Check this if you want to use landed cost calculation for average price for this product"), 
     }
 
 product_template()
@@ -41,7 +41,7 @@ product_template()
 class product_category(osv.osv):
     _inherit = 'product.category'
     _columns = {
-        'landed_cost'    :fields.boolean('Calculate Landed Costs', help="Checck this if you want to use landed cost calculation for average price for this catgory"),
+        'landed_cost'    :fields.boolean('Calculate Landed Costs', help="Check this if you want to use landed cost calculation for average price for this catgory"),
     }
 product_category()
 
