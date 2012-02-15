@@ -1,0 +1,320 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# 	* purchase_landed_costs
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.1rc1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-02-12 08:57+0000\n"
+"PO-Revision-Date: 2012-02-12 08:57+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_landed_costs
+#: field:product.category,landed_cost:0 field:product.template,landed_cost:0
+msgid "Calculate Landed Costs"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: sql_constraint:purchase.order:0
+msgid "Order Reference must be unique per Company!"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: model:ir.model,name:purchase_landed_costs.model_purchase_order_line
+#: field:landed.cost.position,purchase_order_line_id:0
+msgid "Purchase Order Line"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: field:landed.cost.position,move_line_id:0
+msgid "Picking Line"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: field:stock.move,sub_total:0
+msgid "Line Sub Total"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: help:landed.cost.position,partner_id:0
+msgid "The supplier of this cost component ."
+msgstr ""
+
+#. module: purchase_landed_costs
+#: constraint:product.template:0
+msgid ""
+"Error: The default UOM and the purchase UOM must be in the same category."
+msgstr ""
+
+#. module: purchase_landed_costs
+#: constraint:stock.move:0
+msgid "You must assign a production lot for this product"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: help:landed.cost.position,amount_currency:0
+msgid "The amount expressed in an optional other currency."
+msgstr ""
+
+#. module: purchase_landed_costs
+#: help:product.template,landed_cost_type:0
+msgid ""
+"Used if this product is landed costs: If landed costs are defined for "
+"purchase orders or pickings, this indicates how the costs are distributed to "
+"the lines"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: selection:landed.cost.position,price_type:0
+msgid "Per Unit"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: model:ir.model,name:purchase_landed_costs.model_stock_picking
+msgid "Picking List"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: model:ir.model,name:purchase_landed_costs.model_landed_cost_position
+msgid "landed.cost.position"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: field:stock.move,landing_costs_picking:0
+msgid "Landing Costs from Picking"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: selection:landed.cost.position,price_type:0
+msgid "Absolute Value"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: help:product.template,landed_cost:0
+msgid ""
+"Checck this if you want to use landed cost calculation for average price for "
+"this product"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: field:purchase.order,landed_cost_line_ids:0
+#: field:purchase.order.line,landed_costs:0 field:stock.move,landed_cost:0
+msgid "Landed Costs"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: constraint:stock.move:0
+msgid "You try to assign a lot which is not from the same product"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: constraint:stock.move:0
+msgid "You can not move products from or to a location of the type view."
+msgstr ""
+
+#. module: purchase_landed_costs
+#: view:landed.cost.position:0 view:purchase.order:0
+#: view:purchase.order.line:0 field:purchase.order.line,landing_costs:0
+#: view:stock.picking:0
+msgid "Landing Costs"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: model:ir.model,name:purchase_landed_costs.model_stock_partial_picking_line
+msgid "stock.partial.picking.line"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: field:purchase.order,quantity_total:0 field:stock.picking,quantity_total:0
+msgid "Total Quantity"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: help:landed.cost.position,currency_id:0
+msgid "Optional other currency."
+msgstr ""
+
+#. module: purchase_landed_costs
+#: field:purchase.order,landed_cost_base_value:0
+#: field:stock.picking,landed_cost_base_value:0
+msgid "Landed Costs Base Value"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: field:landed.cost.position,picking_id:0
+msgid "Picking"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: field:stock.picking,total_amount:0
+msgid "Total Product Price"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: field:stock.move,price_unit_net:0
+msgid "Purchase Price"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: field:purchase.order,landing_cost_lines:0
+#: field:stock.picking,landing_cost_lines:0
+msgid "Landing Cost Lines"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: constraint:stock.move:0
+msgid ""
+"Error: Negative quantities for location and/or lots are not allowed for this "
+"product or product category"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: selection:product.template,landed_cost_type:0
+msgid "None"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: field:product.template,landed_cost_type:0
+msgid "Distribution Type"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: model:ir.model,name:purchase_landed_costs.model_stock_partial_move
+msgid "Partial Move Processing Wizard"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: view:stock.picking:0
+msgid "Notes"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: field:landed.cost.position,currency_id:0
+msgid "Secondary Currency"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: selection:product.template,landed_cost_type:0
+msgid "Value"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: model:ir.model,name:purchase_landed_costs.model_purchase_order
+#: field:landed.cost.position,purchase_order_id:0
+msgid "Purchase Order"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: field:purchase.order.line,landed_cost_line_ids:0
+#: field:stock.move,landed_cost_line_ids:0
+#: field:stock.picking,landed_cost_line_ids:0
+msgid "Landed Costs Positions"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: field:purchase.order.line,landing_costs_order:0
+msgid "Landing Costs from Order"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: field:landed.cost.position,amount:0
+msgid "Amount"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: model:ir.model,name:purchase_landed_costs.model_product_category
+msgid "Product Category"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: sql_constraint:stock.picking:0
+msgid "Reference must be unique per Company!"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: model:ir.model,name:purchase_landed_costs.model_stock_partial_picking
+msgid "Partial Picking Processing Wizard"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: help:landed.cost.position,price_type:0
+msgid ""
+"Defines if the amount is to be calculated for each quantity or an absolute "
+"value"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: selection:product.template,landed_cost_type:0
+msgid "Quantity"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: field:landed.cost.position,product_id:0
+msgid "Landed Cost Name"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: field:purchase.order,landed_cost_base_quantity:0
+#: field:stock.picking,landed_cost_base_quantity:0
+msgid "Landed Costs Base Quantity"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: help:product.category,landed_cost:0
+msgid ""
+"Checck this if you want to use landed cost calculation for average price for "
+"this catgory"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: model:ir.model,name:purchase_landed_costs.model_product_template
+msgid "Product Template"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: model:ir.model,name:purchase_landed_costs.model_stock_move
+msgid "Stock Move"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: constraint:product.category:0
+msgid "Error ! You cannot create recursive categories."
+msgstr ""
+
+#. module: purchase_landed_costs
+#: field:landed.cost.position,amount_currency:0
+msgid "Amount Currency"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: field:stock.move,landing_costs:0
+msgid "Line Landing Costs"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: help:landed.cost.position,amount:0
+msgid ""
+"Landed cost for stock valuation. It will be added to the price of the "
+"supplier price."
+msgstr ""
+
+#. module: purchase_landed_costs
+#: field:landed.cost.position,partner_id:0
+msgid "Partner"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: field:purchase.order,landed_cost:0 field:stock.picking,landed_cost:0
+msgid "Landed Costs Total Untaxed"
+msgstr ""
+
+#. module: purchase_landed_costs
+#: field:landed.cost.position,price_type:0
+msgid "Amount Type"
+msgstr ""
