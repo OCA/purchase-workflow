@@ -3,7 +3,7 @@
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
-#    Copyright (C) 2010-2012 Camptocamp Austria (<http://www.camptocamp.at>)
+#    Copyright (C) 2010-2010 Camptocamp Austria (<http://www.camptocamp.at>)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -19,9 +19,11 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+
 from osv import osv, fields
 import decimal_precision as dp
-import logging
+
+
 #----------------------------------------------------------
 #  Stock Move
 #----------------------------------------------------------
@@ -186,13 +188,13 @@ stock_picking()
 
 class stock_partial_picking(osv.osv_memory):
     _inherit = "stock.partial.picking"
-    _logger = logging.getLogger(__name__)
 
     def _product_cost_for_average_update(self, cr, uid, move):
        res = super(stock_partial_picking, self)._product_cost_for_average_update(cr, uid, move)
-       self._logger.debug('res stock_partial_picking `%s`', res)
+       import sys
+       print >> sys.stderr, 'res stock_partial_picking', res  
        res['cost'] = move.landed_cost / move.product_qty
-       self._logger.debug('res stock_partial_picking `%s`', res)
+       print >> sys.stderr, 'res stock_partial_picking', res  
        return res
 
 stock_partial_picking()
