@@ -3,7 +3,7 @@
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
-#    Copyright (C) 2010-2012 Camptocamp Austria (<http://www.camptocamp.at>)
+#    Copyright (C) 2010-2010 Camptocamp Austria (<http://www.camptocamp.at>)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -23,7 +23,7 @@
 from osv import osv, fields
 import decimal_precision as dp
 from tools.translate import _
-import logging
+        
 
 class landed_cost_position(osv.osv):
     _name = "landed.cost.position"
@@ -115,7 +115,6 @@ purchase_order_line()
 
 class purchase_order(osv.osv):
     _inherit = "purchase.order"
-    _logger = logging.getLogger(_name)
 
     def _landed_cost_base_value(self, cr, uid, ids, name, args, context):
         if not ids : return {}
@@ -200,6 +199,7 @@ class purchase_order(osv.osv):
 
     def _create_pickings(self, cr, uid, order, order_lines, picking_id=False, context=None): 
         res =  super(purchase_order,self)._create_pickings(cr, uid, order, order_lines, picking_id, context)
+        import sys
         pick_id = int(res[0])
         # landing costs for PICK from PO 
         cost_obj = self.pool.get('landed.cost.position')
@@ -212,16 +212,16 @@ class purchase_order(osv.osv):
             vals['currency_id'] = order_cost.currency_id.id
             vals['price_type'] = order_cost.price_type
             vals['picking_id'] = pick_id
-            self._logger.debug('vals `%s`', vals)
+            print >> sys.stderr, 'vals', vals
             cost_obj.create(cr, uid, vals, context=None) 
 
         #self.pool.get('landed.cost.position').create(cr, uid, cost_lines, context=None) 
         # landing costs for PICK Lines from PO   
         pick_obj = self.pool.get('stock.picking')
         for pick in pick_obj.browse(cr, uid, [pick_id], context=None):
-          self._logger.debug('pick `%s`', pick)
+          print >> sys.stderr, 'pick', pick
           for line in pick.move_lines:
-           self._logger.debug('line `%s`', line)
+           print >> sys.stderr, 'line', line
            for order_cost in line.purchase_line_id.landed_cost_line_ids:
             vals = {}
             vals['product_id'] = order_cost.product_id.id
@@ -231,9 +231,9 @@ class purchase_order(osv.osv):
             vals['currency_id'] = order_cost.currency_id.id
             vals['price_type'] = order_cost.price_type
             vals['move_line_id'] = line.id
-            self._logger.debug('vals `%s`', vals)
+            print >> sys.stderr, 'vals', vals
             cost_obj.create(cr, uid, vals, context=None) 
-        self._logger.debug('cost created')
+        print >> sys.stderr, 'cost created'
            
         return res
 
