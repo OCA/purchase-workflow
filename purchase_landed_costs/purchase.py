@@ -115,7 +115,7 @@ purchase_order_line()
 
 class purchase_order(osv.osv):
     _inherit = "purchase.order"
-    _logger = logging.getLogger(_name)
+    _logger = logging.getLogger(__name__)
 
     def _landed_cost_base_value(self, cr, uid, ids, name, args, context):
         if not ids : return {}

@@ -186,7 +186,7 @@ stock_picking()
 
 class stock_partial_picking(osv.osv_memory):
     _inherit = "stock.partial.picking"
-    _logger = logging.getLogger(_name)
+    _logger = logging.getLogger(__name__)
 
     def _product_cost_for_average_update(self, cr, uid, move):
        res = super(stock_partial_picking, self)._product_cost_for_average_update(cr, uid, move)
