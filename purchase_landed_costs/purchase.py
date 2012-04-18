@@ -23,7 +23,7 @@
 from osv import osv, fields
 import decimal_precision as dp
 from tools.translate import _
-        
+import logging
 
 class landed_cost_position(osv.osv):
     _name = "landed.cost.position"
@@ -115,6 +115,7 @@ purchase_order_line()
 
 class purchase_order(osv.osv):
     _inherit = "purchase.order"
+    _logger = logging.getLogger(_name)
 
     def _landed_cost_base_value(self, cr, uid, ids, name, args, context):
         if not ids : return {}
@@ -199,7 +200,6 @@ class purchase_order(osv.osv):
 
     def _create_pickings(self, cr, uid, order, order_lines, picking_id=False, context=None): 
         res =  super(purchase_order,self)._create_pickings(cr, uid, order, order_lines, picking_id, context)
-        import sys
         pick_id = int(res[0])
         # landing costs for PICK from PO 
         cost_obj = self.pool.get('landed.cost.position')
@@ -212,16 +212,16 @@ class purchase_order(osv.osv):
             vals['currency_id'] = order_cost.currency_id.id
             vals['price_type'] = order_cost.price_type
             vals['picking_id'] = pick_id
-            print >> sys.stderr, 'vals', vals
+            self._logger.debug('vals `%s`', vals)
             cost_obj.create(cr, uid, vals, context=None) 
 
         #self.pool.get('landed.cost.position').create(cr, uid, cost_lines, context=None) 
         # landing costs for PICK Lines from PO   
         pick_obj = self.pool.get('stock.picking')
         for pick in pick_obj.browse(cr, uid, [pick_id], context=None):
-          print >> sys.stderr, 'pick', pick
+          self._logger.debug('pick `%s`', pick)
           for line in pick.move_lines:
-           print >> sys.stderr, 'line', line
+           self._logger.debug('line `%s`', line)
            for order_cost in line.purchase_line_id.landed_cost_line_ids:
             vals = {}
             vals['product_id'] = order_cost.product_id.id
@@ -231,9 +231,9 @@ class purchase_order(osv.osv):
             vals['currency_id'] = order_cost.currency_id.id
             vals['price_type'] = order_cost.price_type
             vals['move_line_id'] = line.id
-            print >> sys.stderr, 'vals', vals
+            self._logger.debug('vals `%s`', vals)
             cost_obj.create(cr, uid, vals, context=None) 
-        print >> sys.stderr, 'cost created'
+        self._logger.debug('cost created')
            
         return res
 
