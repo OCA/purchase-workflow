@@ -32,7 +32,7 @@
  'demo_xml': [],
  'tests': [],
  'installable': True,
- 'auto_install': False,
+ 'auto_install': True,
  'license': 'AGPL-3',
  'application': True}
 
