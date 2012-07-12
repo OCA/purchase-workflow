@@ -75,7 +75,7 @@ class purchase_order(Model):
                                              relation='res.partner',
                                              string='Carrier Name',
                                              readonly=True,
-                                             help="Name of the carrier partner in charge of delivering the related sale order")
+                                             help="Name of the carrier partner")
 
         }
     def do_merge(self, cr, uid, ids, context=None):

@@ -19,12 +19,12 @@
 #
 ##############################################################################
 {'name' : 'Purchase Group Orders by Shop and Carrier',
- 'version' : '0.3',
+ 'version' : '0.2',
  'author' : 'Camptocamp',
  'maintainer': 'Camptocamp',
  'category': 'Purchase Management',
  'complexity': "normal",  # easy, normal, expert
- 'depends' : ['delivery', 'sale', 'purchase',
+ 'depends' : ['delivery', 'sale', 'purchase', 'procurement' # already depends on sale and purchase
               ],
  'description': """Only merge PO with the same shop and carrier.
 
