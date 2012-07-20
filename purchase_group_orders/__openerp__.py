@@ -19,7 +19,7 @@
 #
 ##############################################################################
 {'name' : 'Purchase Group Orders by Shop and Carrier',
- 'version' : '0.4',
+ 'version' : '0.3',
  'author' : 'Camptocamp',
  'maintainer': 'Camptocamp',
  'category': 'Purchase Management',
