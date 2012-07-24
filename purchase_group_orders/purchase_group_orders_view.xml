@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <record id="view_purchase_order_group_shop_carrier" model="ir.ui.view">
+      <field name="name">Merger Purchase Orders</field>
+      <field name="model">purchase.order.group</field>
+      <field name="inherit_id" ref='purchase.view_purchase_order_group'/>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <xpath expr="/form/label" position="replace">
+                    <label string="
+Please note that: &#10; &#10;
+Orders will only be merged if: &#10;
+ * Purchase Orders are in draft &#10;
+ * Purchase Orders belong to the same supplier &#10;
+ * Purchase Orders are have same stock location, same pricelist &#10;
+ * Purchase Orders have been generated from Sale Orders issued by the same Shop, and having the same Carrier &#10; &#10;
+Lines will only be merged if: &#10;
+ * Order lines are exactly the same except for the product,quantity and unit &#10;
+" colspan="4"/>
+        </xpath>
+      </field>
+    </record>
+  </data>
+</openerp>
