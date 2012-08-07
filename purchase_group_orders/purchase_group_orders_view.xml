@@ -21,5 +21,18 @@ Lines will only be merged if: &#10;
         </xpath>
       </field>
     </record>
+
+    <record id="purchase_order_form_shop_carrier" model="ir.ui.view">
+      <field name="name">purchase.order.form</field>
+      <field name="model">purchase.order</field>
+      <field name="type">form</field>
+      <field name="inherit_id" ref='purchase.purchase_order_form'/>
+      <field name="arch" type="xml">
+        <field name="company_id" position="after">
+          <field name="shop_id" readonly="1" />
+          <field name="carrier_partner_id" readonly="1" />
+        </field>
+      </field>
+    </record>
   </data>
 </openerp>
