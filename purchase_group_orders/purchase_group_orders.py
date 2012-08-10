@@ -29,6 +29,9 @@ class procurement_order(Model):
 
     _columns = {'sale_id': fields.many2one('sale.order', 'Sale Order',
                                            help='the sale order which generated the procurement'),
+                'origin': fields.char('Source Document', size=512,
+                                      help="Reference of the document that created this Procurement.\n"
+                                      "This is automatically completed by OpenERP."),
                 }
     def create_procurement_purchase_order(self, cr, uid, procurement, po_vals, line_vals, context=None):
         """Create the purchase order from the procurement, using
@@ -75,7 +78,9 @@ class purchase_order(Model):
                                              relation='res.partner',
                                              string='Carrier Name',
                                              readonly=True,
-                                             help="Name of the carrier partner in charge of delivering the related sale order")
+                                             help="Name of the carrier partner in charge of delivering the related sale order"),
+        'origin': fields.char('Source Document', size=512,
+                              help="Reference of the document that generated this purchase order request."),
 
         }
     def do_merge(self, cr, uid, ids, context=None):
