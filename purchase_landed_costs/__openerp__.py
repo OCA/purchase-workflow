@@ -35,6 +35,10 @@
     * value - example custom fees
     * quantity - example freight
     for each landed cost position a draft invoice is created in validation of purchase order
+    the products used to define landed cost must be classified "Distribution Type" as 
+    ** "Value" (for customs) or 
+    ** "Quantity" (for freight)
+
     """,
     'author': 'Camptocamp Austria',
     'depends': ['purchase' ],
