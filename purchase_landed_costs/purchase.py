@@ -201,39 +201,65 @@ class purchase_order(osv.osv):
     def _create_pickings(self, cr, uid, order, order_lines, picking_id=False, context=None): 
         res =  super(purchase_order,self)._create_pickings(cr, uid, order, order_lines, picking_id, context)
         pick_id = int(res[0])
-        # landing costs for PICK from PO 
-        cost_obj = self.pool.get('landed.cost.position')
+        # landing costs Invoices from PO 
+        #cost_obj = self.pool.get('landed.cost.position')
+        invoice_obj = self.pool.get('account.invoice')
+        invoice_line_obj = self.pool.get('account.invoice.line')
+        journal_obj = self.pool.get('account.journal')
+        journal_ids = journal_obj.search(cr, uid, [('type', '=','purchase'),('company_id', '=', order.company_id.id)], limit=1)
         for order_cost in order.landed_cost_line_ids:
-            vals = {}
-            vals['product_id'] = order_cost.product_id.id
-            vals['partner_id'] = order_cost.partner_id.id
-            vals['amount'] = order_cost.amount
-            vals['amount_currency'] = order_cost.amount_currency
-            vals['currency_id'] = order_cost.currency_id.id
-            vals['price_type'] = order_cost.price_type
-            vals['picking_id'] = pick_id
-            self._logger.debug('vals `%s`', vals)
-            cost_obj.create(cr, uid, vals, context=None) 
+            vals_inv = {
+            'partner_id' : order_cost.partner_id.id
+           ,'amount' : order_cost.amount
+           ,'amount_currency' : order_cost.amount_currency
+           ,'currency_id' : order_cost.currency_id.id or order.company_id.currency_id.id
+           ,'account_id' : order_cost.partner_id.property_account_payable.id
+           ,'type' : 'in_invoice'
+           ,'origin' : order.name
+           ,'fiscal_position':  order.partner_id.property_account_position and order.partner_id.property_account_position.id or False
+           ,'company_id': order.company_id.id
+           ,'journal_id': len(journal_ids) and journal_ids[0] or False
+
+                }
+            self._logger.debug('vals inv`%s`', vals_inv)
+            #cost_obj.create(cr, uid, vals, context=None) 
+            inv_id = invoice_obj.create(cr, uid, vals_inv, context=None) 
+            vals_line = {
+            'product_id' : order_cost.product_id.id
+           ,'name' : order_cost.product_id.name
+           ,'amount' : order_cost.amount
+           ,'amount_currency' : order_cost.amount_currency
+           ,'picking_id' : pick_id
+           ,'account_id' : order_cost.product_id.property_account_expense.id
+           ,'partner_id' : order_cost.partner_id.id
+           ,'invoice_id' : inv_id
+           ,'price_unit' : order_cost.amount
+           ,'invoice_line_tax_id': [(6, 0, [x.id for x in order_cost.product_id.supplier_taxes_id])],
+
+                }
+            self._logger.debug('vals line `%s`', vals_line)
+            inv_line_id = invoice_line_obj.create(cr, uid, vals_line, context=None) 
+            
 
         #self.pool.get('landed.cost.position').create(cr, uid, cost_lines, context=None) 
         # landing costs for PICK Lines from PO   
-        pick_obj = self.pool.get('stock.picking')
-        for pick in pick_obj.browse(cr, uid, [pick_id], context=None):
-          self._logger.debug('pick `%s`', pick)
-          for line in pick.move_lines:
-           self._logger.debug('line `%s`', line)
-           for order_cost in line.purchase_line_id.landed_cost_line_ids:
-            vals = {}
-            vals['product_id'] = order_cost.product_id.id
-            vals['partner_id'] = order_cost.partner_id.id
-            vals['amount'] = order_cost.amount
-            vals['amount_currency'] = order_cost.amount_currency
-            vals['currency_id'] = order_cost.currency_id.id
-            vals['price_type'] = order_cost.price_type
-            vals['move_line_id'] = line.id
-            self._logger.debug('vals `%s`', vals)
-            cost_obj.create(cr, uid, vals, context=None) 
-        self._logger.debug('cost created')
+        #pick_obj = self.pool.get('stock.picking')
+        #for pick in pick_obj.browse(cr, uid, [pick_id], context=None):
+        #  self._logger.debug('pick `%s`', pick)
+        #  for line in pick.move_lines:
+        #   self._logger.debug('line `%s`', line)
+        #   for order_cost in line.purchase_line_id.landed_cost_line_ids:
+        #    vals = {}
+        #    vals['product_id'] = order_cost.product_id.id
+        #    vals['partner_id'] = order_cost.partner_id.id
+        #    vals['amount'] = order_cost.amount
+        #    vals['amount_currency'] = order_cost.amount_currency
+        #    vals['currency_id'] = order_cost.currency_id.id
+        #    vals['price_type'] = order_cost.price_type
+        #    vals['move_line_id'] = line.id
+        #    self._logger.debug('vals `%s`', vals)
+        #    cost_obj.create(cr, uid, vals, context=None) 
+        #self._logger.debug('cost created')
            
         return res
 
