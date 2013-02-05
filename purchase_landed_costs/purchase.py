@@ -65,9 +65,9 @@ class purchase_order_line(osv.osv):
     def _landing_cost(self, cr, uid, ids, name, args, context):
         if not ids : return {}
         result = {}
-        landed_costs = 0.0
         # landed costss for the line
         for line in self.browse(cr, uid, ids):
+            landed_costs = 0.0
             if line.landed_cost_line_ids:
                 for costs in line.landed_cost_line_ids:
                     if costs.price_type == 'value':
@@ -80,9 +80,9 @@ class purchase_order_line(osv.osv):
     def _landing_cost_order(self, cr, uid, ids, name, args, context):
         if not ids : return {}
         result = {}
-        landed_costs = 0.0
         # landed costss for the line
         for line in self.browse(cr, uid, ids):
+            landed_costs = 0.0
             # distrubution of landed costs of PO
             if line.order_id.landed_cost_line_ids:
                landed_costs += line.order_id.landed_cost_base_value / line.order_id.amount_total * line.price_subtotal + \
@@ -95,9 +95,9 @@ class purchase_order_line(osv.osv):
     def _landed_cost(self, cr, uid, ids, name, args, context):
         if not ids : return {}
         result = {}
-        landed_costs = 0.0
         # landed costss for the line
         for line in self.browse(cr, uid, ids):
+            landed_costs = 0.0
             landed_costs += line.price_subtotal + line.landing_costs +  line.landing_costs_order
             result[line.id] = landed_costs
 
@@ -136,7 +136,7 @@ class purchase_order(osv.osv):
         for line in self.browse(cr, uid, ids):
             if line.landed_cost_line_ids:
                 for costs in line.landed_cost_line_ids:
-                    if costs.product_id.landed_cost_type == 'quantity':
+                    if costs.product_id.landed_cost_type == 'per_unit':
                          landed_costs_base_quantity += costs.amount
             result[line.id] = landed_costs_base_quantity
         return result
@@ -159,7 +159,7 @@ class purchase_order(osv.osv):
         landed_costs = 0.0
         # landed costss for the line
         for line in self.browse(cr, uid, ids):
-            landed_costs += line.landing_cost_lines + line.amount_untaxed
+            landed_costs += line.landing_cost_lines + line.landed_cost_base_value + line.landed_cost_base_quantity + line.amount_untaxed
             result[line.id] = landed_costs
 
         return result
