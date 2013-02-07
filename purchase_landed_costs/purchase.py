@@ -37,7 +37,7 @@ class landed_cost_position(osv.osv):
             , help="""Landed cost for stock valuation. It will be added to the price of the supplier price."""),
         'amount_currency': fields.float('Amount Currency', help="The amount expressed in an optional other currency."),
         'currency_id': fields.many2one('res.currency', 'Secondary Currency', help="Optional other currency."),
-        'partner_id': fields.many2one('res.partner', 'Partner', help="The supplier of this cost component ."),
+        'partner_id': fields.many2one('res.partner', 'Partner', help="The supplier of this cost component.", required="True"),
         'price_type': fields.selection( [('per_unit','Per Quantity'), ('value','Absolute Value')], 'Amount Type', required=True,  \
                   help="Defines if the amount is to be calculated for each quantity or an absolute value"),
         'purchase_order_line_id': fields.many2one('purchase.order.line', 'Purchase Order Line'),
