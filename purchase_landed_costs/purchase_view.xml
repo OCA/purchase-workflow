@@ -63,6 +63,16 @@
       <field name="inherit_id" ref="purchase.purchase_order_form"/>
       <field name="type">form</field>
       <field name="arch" type="xml">
+       <data>
+<!--
+        <xpath expr="/sheet/notebook/page[@string='Purchase Order']/field[@name='order_line']/tree/field[@name='price_subtotal'" position="after">
+--> 
+        
+             <field name="price_subtotal" position="after">
+                <field name="landing_costs" invisible="1"/>
+                <field name="landing_costs_order"/>
+                <field name="landed_costs"/>
+            </field> 
         <notebook position="inside">
           <page string="Landing Costs" attrs="{'readonly':[('state','=','done')]}">
             <group colspan="2" col="2"> 
@@ -76,9 +86,9 @@
              <field name="landed_cost"/>
            </group>
              <field name="landed_cost_line_ids" colspan="4" nolabel="1"  widget="one2many_list"/>
-           
           </page>
         </notebook>
+        </data>
       </field>
     </record>
     
