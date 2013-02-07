@@ -210,8 +210,8 @@ class purchase_order(osv.osv):
         for order_cost in order.landed_cost_line_ids:
             vals_inv = {
             'partner_id' : order_cost.partner_id.id
-           ,'amount' : order_cost.amount
-           ,'amount_currency' : order_cost.amount_currency
+           #,'amount' : order_cost.amount
+           #,'amount_currency' : order_cost.amount_currency
            ,'currency_id' : order_cost.currency_id.id or order.company_id.currency_id.id
            ,'account_id' : order_cost.partner_id.property_account_payable.id
            ,'type' : 'in_invoice'
@@ -227,9 +227,9 @@ class purchase_order(osv.osv):
             vals_line = {
             'product_id' : order_cost.product_id.id
            ,'name' : order_cost.product_id.name
-           ,'amount' : order_cost.amount
-           ,'amount_currency' : order_cost.amount_currency
-           ,'picking_id' : pick_id
+           #,'amount' : order_cost.amount
+           #,'amount_currency' : order_cost.amount_currency
+           #,'picking_id' : pick_id
            ,'account_id' : order_cost.product_id.property_account_expense.id
            ,'partner_id' : order_cost.partner_id.id
            ,'invoice_id' : inv_id
