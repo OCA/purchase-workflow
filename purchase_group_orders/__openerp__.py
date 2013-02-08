@@ -36,7 +36,7 @@
  'update_xml': ['purchase_group_orders_view.xml'],
  'demo_xml': [],
  'tests': [],
- 'installable': True,
+ 'installable': False,
  'auto_install': False,
  'license': 'AGPL-3',
  'application': False
