@@ -1,0 +1,23 @@
+<openerp>
+    <data>
+        <record id="purchase_order_line_form" model="ir.ui.view">
+            <field name="name">purchase.order.line.form</field>
+            <field name="model">purchase.order.line</field>
+            <field name="inherit_id" ref="purchase.purchase_order_line_form"></field>
+            <field name="arch" type="xml">
+                <field name="account_analytic_id" position="after">
+                    <field name="picking_group_id"/>
+                </field>
+            </field>
+        </record>
+        <record id="action_purchase_order_line_group_form" model="ir.actions.act_window">
+            <field name="name">Purchase order line Groups</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.order.line.group</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem action="action_purchase_order_line_group_form" id="menu_action_purchase_order_line_group_form" parent="purchase.menu_purchase_config_purchase" />
+    </data>
+</openerp>

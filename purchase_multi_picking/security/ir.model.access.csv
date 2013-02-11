@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_purchase_order_line_group,purchase.order.line_group user,model_purchase_order_line_group,purchase.group_purchase_user,1,1,1,1
+access_purchase_order_line_group_manager,purchase.order.line_group manager,model_purchase_order_line_group,purchase.group_purchase_manager,1,0,0,0
+access_purchase_order_line_group_stock_worker,purchase.order.line_group manager,model_purchase_order_line_group,stock.group_stock_user,1,0,0,0
+access_purchase_order_line_group_manager,purchase.order.line_group manager,model_purchase_order_line_group,purchase.group_purchase_manager,1,1,1,1
