@@ -55,12 +55,11 @@ class purchase_order(orm.Model):
                 lines_by_group.setdefault(group_id, []).append(line)
             for group in lines_by_group:
                 if not group:
-                    picking_ids.extend(super(purchase_order, self)._create_pickings(
-                        cr, uid, order, lines_by_group[group], None, context=context))
+                    picking_id = None
                 else:
                     picking_vals = super(purchase_order, self)._prepare_order_picking(cr, uid, order, context=context)
                     picking_id = picking_pool.create(cr, uid, picking_vals, context=context)
-                    picking_ids.extend(super(purchase_order, self)._create_pickings(
-                        cr, uid, order, lines_by_group[group], picking_id, context=context))
+                picking_ids.extend(super(purchase_order, self)._create_pickings(
+                    cr, uid, order, lines_by_group[group], picking_id, context=context))
         return picking_ids[0] if picking_ids else False # ?
         
