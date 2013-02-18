@@ -32,12 +32,11 @@ You can then associate the term to the 'main' order line and generate the 'detai
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
     "depends" : ['purchase_multi_picking'],
-    "init_xml" : [],
-    "update_xml" : [
+    "data" : [
         'purchase_view.xml',
         'security/ir.model.access.csv',
         ],
-    "demo_xml" : [],
+    "demo" : [],
     "active": False,
     "installable": True
 }

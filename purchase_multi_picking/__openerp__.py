@@ -31,12 +31,11 @@ You just have to indicate which order lines have to be grouped in the same picki
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
     "depends" : ['purchase', 'stock'],
-    "init_xml" : [],
-    "update_xml" : [
+    "data" : [
         'purchase_view.xml',
         'security/ir.model.access.csv',
         ],
-    "demo_xml" : [],
+    "demo" : [],
     "active": False,
     "installable": True
 }
