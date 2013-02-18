@@ -22,7 +22,7 @@
 
 from openerp.osv import fields, osv
 
-class purchase_order_line_group(osv.osv):
+class purchase_order_line_group(orm.Model):
     _name = 'purchase.order.line.group'
     _columns = {
         'name': fields.char('Group', size=64, required=True),
@@ -31,16 +31,16 @@ class purchase_order_line_group(osv.osv):
     _defaults = {
         'company_id': lambda self,cr,uid,c: self.pool.get('res.company')._company_default_get(cr, uid, 'purchase.order.line.group', context=c),
     }
-purchase_order_line_group()
 
-class purchase_order_line(osv.osv):
+
+class purchase_order_line(orm.Model):
     _inherit = 'purchase.order.line'
     _columns = {
         'picking_group_id': fields.many2one('purchase.order.line.group', 'Group', help='This is used by \'multi-picking\' to group order lines in one picking'),
         }
-purchase_order_line()
 
-class purchase_order(osv.osv):
+
+class purchase_order(orm.Model):
     _inherit = 'purchase.order'
 
     def action_picking_create(self, cr, uid, ids, context=None):
@@ -68,4 +68,3 @@ class purchase_order(osv.osv):
                         cr, uid, order, lines_by_group[group], picking_id, context=context))
         return picking_ids[0] if picking_ids else False # ?
         
-purchase_order()

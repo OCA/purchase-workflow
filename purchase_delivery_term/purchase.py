@@ -26,7 +26,7 @@ import openerp.addons.decimal_precision as dp
 from datetime import datetime, timedelta
 from openerp.tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT
 
-class purchase_delivery_term(osv.osv):
+class purchase_delivery_term(orm.Model):
     _name = 'purchase.delivery.term'
     _columns = {
         'name': fields.char('Name', size=64, required=True),
@@ -46,9 +46,8 @@ class purchase_delivery_term(osv.osv):
                 return False
         return True
         
-purchase_delivery_term()
 
-class purchase_delivery_term_line(osv.osv):
+class purchase_delivery_term_line(orm.Model):
 
     _name = 'purchase.delivery.term.line'
     _rec_name = 'term_id'
@@ -59,7 +58,7 @@ class purchase_delivery_term_line(osv.osv):
             help="Number of days between the order confirmation and the shipping of the products from the supplier"),
         }
 
-class purchase_order_line_master(osv.osv):
+class purchase_order_line_master(orm.Model):
     
     def onchange_product_id(self, cr, uid, ids, pricelist_id, product_id, qty, uom_id,
             partner_id, date_order=False, fiscal_position_id=False, date_planned=False,
@@ -161,9 +160,8 @@ class purchase_order_line_master(osv.osv):
             })
         return super(purchase_order_line_master, self).copy_data(cr, uid, id, default, context=context)
         
-purchase_order_line_master()
 
-class purchase_order_line(osv.osv):
+class purchase_order_line(orm.Model):
     _inherit = 'purchase.order.line'
     _columns = {
         'master_line_id': fields.many2one('purchase.order.line.master', 'Master Line'),
@@ -174,9 +172,9 @@ class purchase_order_line(osv.osv):
             default = {}
         default.update({'master_line_id': False})
         return super(purchase_order_line, self).copy_data(cr, uid, id, default, context=context)
-purchase_order_line()
 
-class purchase_order(osv.osv):
+
+class purchase_order(orm.Model):
     _inherit = 'purchase.order'
     _columns = {
         'master_order_line': fields.one2many('purchase.order.line.master', 'order_id', 'Master Order Lines', readonly=True, states={'draft': [('readonly', False)]}),
@@ -196,4 +194,3 @@ class purchase_order(osv.osv):
                 master_line.generate_detailed_lines()
         return True
         
-purchase_order()
