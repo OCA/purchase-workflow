@@ -20,7 +20,7 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, osv
+from openerp.osv import fields, orm
 from openerp.tools.translate import _
 import openerp.addons.decimal_precision as dp
 from datetime import datetime, timedelta
@@ -34,7 +34,8 @@ class purchase_delivery_term(orm.Model):
         'company_id': fields.many2one('res.company','Company',required=True,select=1),
         }
     _defaults = {
-        'company_id': lambda self,cr,uid,c: self.pool.get('res.company')._company_default_get(cr, uid, 'purchase.delivery.term', context=c),
+        'company_id': lambda self,cr,uid,c: self.pool.get(
+            'res.company')._company_default_get(cr, uid, 'purchase.delivery.term', context=c),
     }
     
     def is_total_percentage_correct(self, cr, uid, term_ids, context=None):
@@ -53,7 +54,8 @@ class purchase_delivery_term_line(orm.Model):
     _rec_name = 'term_id'
     _columns = {
         'term_id': fields.many2one('purchase.delivery.term', 'Term'),
-        'quantity_perc': fields.float('Quantity percentage', required=True, help="For 20% set '0.2'"),
+        'quantity_perc': fields.float('Quantity percentage',
+            required=True, help="For 20% set '0.2'"),
         'delay': fields.float('Delivery Lead Time', required=True,
             help="Number of days between the order confirmation and the shipping of the products from the supplier"),
         }
@@ -87,15 +89,21 @@ class purchase_order_line_master(orm.Model):
         
     _name = 'purchase.order.line.master'
     _columns = {
-        'order_id': fields.many2one('purchase.order', 'Order Reference', select=True, required=True, ondelete='cascade'),
-        'delivery_term_id': fields.many2one('purchase.delivery.term', 'Delivery term', required=True),
+        'order_id': fields.many2one('purchase.order', 'Order Reference',
+            select=True, required=True, ondelete='cascade'),
+        'delivery_term_id': fields.many2one('purchase.delivery.term',
+            'Delivery term', required=True),
         'name': fields.char('Description', size=256, required=True),
-        'product_id': fields.many2one('product.product', 'Product', domain=[('purchase_ok','=',True)], change_default=True),
-        'price_unit': fields.float('Unit Price', required=True, digits_compute= dp.get_precision('Purchase Price')),
-        'price_subtotal': fields.function(_amount_line, string='Subtotal', digits_compute= dp.get_precision('Purchase Price')),
+        'product_id': fields.many2one('product.product', 'Product',
+            domain=[('purchase_ok','=',True)], change_default=True),
+        'price_unit': fields.float('Unit Price', required=True,
+            digits_compute= dp.get_precision('Purchase Price')),
+        'price_subtotal': fields.function(_amount_line, string='Subtotal',
+            digits_compute= dp.get_precision('Purchase Price')),
         'product_qty': fields.float('Quantity', digits_compute=dp.get_precision('Product UoM'), required=True),
         'product_uom': fields.many2one('product.uom', 'Product UOM', required=True),
-        'order_line_ids': fields.one2many('purchase.order.line', 'master_line_id', 'Detailed lines'),
+        'order_line_ids': fields.one2many('purchase.order.line',
+            'master_line_id', 'Detailed lines'),
         'taxes_id': fields.many2many('account.tax', 'purchase_master_order_line_tax', 'ord_line_id', 'tax_id', 'Taxes'),
         'date_planned': fields.date('Scheduled Date', required=True, select=True),
         }
@@ -111,7 +119,8 @@ class purchase_order_line_master(orm.Model):
         order_line_vals = {}
         on_change_res = order_line_pool.onchange_product_id(cr, uid, [],
             master_line.order_id.pricelist_id.id, master_line.product_id.id, master_line.product_qty, master_line.product_uom.id,
-            master_line.order_id.partner_id.id, date_order=master_line.order_id.date_order, fiscal_position_id=master_line.order_id.fiscal_position.id, date_planned=master_line.date_planned,
+            master_line.order_id.partner_id.id, date_order=master_line.order_id.date_order,
+            fiscal_position_id=master_line.order_id.fiscal_position.id, date_planned=master_line.date_planned,
             name=master_line.name, price_unit=master_line.price_unit, context=context)
         order_line_vals.update(on_change_res['value'])
         date_planned = datetime.strptime(master_line.date_planned, 
@@ -147,7 +156,8 @@ class purchase_order_line_master(orm.Model):
                     _("Total percentage of delivery term %s is not equal to 1") % master_line.delivery_term_id.name)
             group_index  = 0
             for term_line in master_line.delivery_term_id.line_ids:
-                order_line_vals = self._prepare_order_line(cr, uid, term_line, master_line, group_index=group_index, context=context)
+                order_line_vals = self._prepare_order_line(cr, uid, term_line,
+                    master_line, group_index=group_index, context=context)
                 group_index += 1
                 order_line_pool.create(cr, uid, order_line_vals, context=context)
         return True
@@ -158,7 +168,8 @@ class purchase_order_line_master(orm.Model):
         default.update({
             'order_line_ids': [],
             })
-        return super(purchase_order_line_master, self).copy_data(cr, uid, id, default, context=context)
+        return super(purchase_order_line_master, self).copy_data(
+            cr, uid, id, default, context=context)
         
 
 class purchase_order_line(orm.Model):
@@ -177,7 +188,9 @@ class purchase_order_line(orm.Model):
 class purchase_order(orm.Model):
     _inherit = 'purchase.order'
     _columns = {
-        'master_order_line': fields.one2many('purchase.order.line.master', 'order_id', 'Master Order Lines', readonly=True, states={'draft': [('readonly', False)]}),
+        'master_order_line': fields.one2many('purchase.order.line.master',
+            'order_id', 'Master Order Lines', readonly=True,
+            states={'draft': [('readonly', False)]}),
         }
         
     def copy(self, cr, uid, id, default=None, context=None):
