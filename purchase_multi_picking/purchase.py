@@ -38,7 +38,7 @@ class purchase_order_line(orm.Model):
     _inherit = 'purchase.order.line'
     _columns = {
         'picking_group_id': fields.many2one('purchase.order.line.group',
-            'Group', help='This is used by \'multi-picking\' to group order lines in one picking'),
+            'Group', help="This is used by 'multi-picking' to group order lines in one picking"),
         }
 
 
