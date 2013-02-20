@@ -108,7 +108,7 @@ class purchase_order_line_master(orm.Model):
         'date_planned': fields.date('Scheduled Date', required=True, select=True),
         }
     _defaults = {
-        'product_qty': lambda *a: 1.0,
+        'product_qty': 1.0,
     }
     
     def _prepare_order_line(self, cr, uid, term_line, master_line, group_index=0, context=None):
@@ -118,7 +118,8 @@ class purchase_order_line_master(orm.Model):
         product_qty = master_line.product_qty * term_line.quantity_perc
         order_line_vals = {}
         on_change_res = order_line_pool.onchange_product_id(cr, uid, [],
-            master_line.order_id.pricelist_id.id, master_line.product_id.id, master_line.product_qty, master_line.product_uom.id,
+            master_line.order_id.pricelist_id.id, master_line.product_id.id,
+            master_line.product_qty, master_line.product_uom.id,
             master_line.order_id.partner_id.id, date_order=master_line.order_id.date_order,
             fiscal_position_id=master_line.order_id.fiscal_position.id, date_planned=master_line.date_planned,
             name=master_line.name, price_unit=master_line.price_unit, context=context)
