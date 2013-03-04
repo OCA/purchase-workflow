@@ -1,0 +1,79 @@
+<openerp>
+    <data>
+        <record id="purchase_delivery_term_form" model="ir.ui.view">
+            <field name="name">purchase.delivery.term.form</field>
+            <field name="model">purchase.delivery.term</field>
+            <field name="arch" type="xml">
+                <form string="Delivery term">
+                    <field name="name" select="1"/>
+                    <field name="line_ids" string="Term Lines" colspan="4" nolabel="1">
+                        <form>
+                            <field name="quantity_perc"></field>
+                            <field name="delay"></field>
+                        </form>
+                        <tree editable="bottom">
+                            <field name="quantity_perc"></field>
+                            <field name="delay"></field>
+                        </tree>
+                    </field>
+                </form>
+            </field>
+        </record>
+        <record id="action_delivery_term_form" model="ir.actions.act_window">
+            <field name="name">Delivery Terms</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.delivery.term</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem action="action_delivery_term_form" id="menu_action_delivery_term_form" parent="purchase.menu_purchase_config_purchase" />
+        
+        <record id="purchase_order_line_master_form" model="ir.ui.view">
+            <field name="name">purchase_order_line_master_form</field>
+            <field name="model">purchase.order.line.master</field>
+            <field name="arch" type="xml">
+                <form string="Master order line">
+                    <field name="product_id" on_change="onchange_product_id(parent.pricelist_id,product_id,product_qty,product_uom,parent.partner_id, parent.date_order,parent.fiscal_position,date_planned,name,price_unit,context)" required="1"/>
+                    <field name="product_qty" on_change="onchange_product_id(parent.pricelist_id,product_id,product_qty,product_uom,parent.partner_id,parent.date_order,parent.fiscal_position,date_planned,name,price_unit,context)"/>
+                    <field name="product_uom" on_change="onchange_product_uom(parent.pricelist_id,product_id,product_qty,product_uom,parent.partner_id, parent.date_order,parent.fiscal_position,date_planned,name,price_unit,context)"/>
+                    <newline></newline>
+                    <field name="name" colspan="4"/>
+                    <field name="date_planned" widget="date"/>
+                    <field name="price_unit" />
+                    <field name="delivery_term_id" />
+                    <separator colspan="4" string="Taxes"/>
+                    <field colspan="4" nolabel="1" name="taxes_id"
+                    domain="[('parent_id','=',False),('type_tax_use','!=','sale')]"/>
+                </form>
+            </field>
+        </record>
+        <record id="purchase_order_line_master_tree" model="ir.ui.view">
+            <field name="name">purchase_order_line_master_tree</field>
+            <field name="model">purchase.order.line.master</field>
+            <field name="arch" type="xml">
+                <tree string="Master order lines">
+                    <field name="date_planned" />
+                    <field name="name" />
+                    <field name="price_unit" />
+                    <field name="product_qty" />
+                    <field name="product_uom" />
+                    <field name="price_subtotal" />
+                    <field name="delivery_term_id" />
+                </tree>
+            </field>
+        </record>
+        
+        <record id="purchase_order_form" model="ir.ui.view">
+            <field name="name">purchase.order.form</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"></field>
+            <field name="arch" type="xml">
+                <field name="order_line" position="before">
+                    <field colspan="4" name="master_order_line" nolabel="1"></field>
+                    <button name="generate_detailed_lines" string="Generate detailed lines" icon="gtk-go-forward" type="object" colspan="2"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>
