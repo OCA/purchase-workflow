@@ -53,7 +53,7 @@ class purchase_delivery_term_line(orm.Model):
     _name = 'purchase.delivery.term.line'
     _rec_name = 'term_id'
     _columns = {
-        'term_id': fields.many2one('purchase.delivery.term', 'Term'),
+        'term_id': fields.many2one('purchase.delivery.term', 'Term', ondelete='cascade'),
         'quantity_perc': fields.float('Quantity percentage',
             required=True, help="For 20% set '0.2'"),
         'delay': fields.float('Delivery Lead Time', required=True,
@@ -92,7 +92,7 @@ class purchase_order_line_master(orm.Model):
         'order_id': fields.many2one('purchase.order', 'Order Reference',
             select=True, required=True, ondelete='cascade'),
         'delivery_term_id': fields.many2one('purchase.delivery.term',
-            'Delivery term', required=True),
+            'Delivery term', required=True, ondelete='restrict'),
         'name': fields.char('Description', size=256, required=True),
         'product_id': fields.many2one('product.product', 'Product',
             domain=[('purchase_ok','=',True)], change_default=True),
