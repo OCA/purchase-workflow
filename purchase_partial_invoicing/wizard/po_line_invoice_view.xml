@@ -10,7 +10,14 @@
                 <xpath expr="/form/group/label" position="after">
                     <newline></newline>
                     <field name="partial_invoice"></field>
-                    <field name="line_ids" attrs="{'invisible': [('partial_invoice','=',False)]}" nolabel="1" colspan="4"></field>
+                    <field name="line_ids" attrs="{'invisible': [('partial_invoice','=',False)]}" nolabel="1" colspan="4">
+                        <tree editable="bottom">
+                            <field name="po_line_id"></field>
+                            <field name="product_qty"></field>
+                            <field name="price_unit"></field>
+                            <field name="percentage"></field>
+                        </tree>
+                    </field>
                 </xpath>
             </field>
         </record>
