@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_purchase_line_invoice" model="ir.ui.view">
+            <field name="name">Create invoices</field>
+            <field name="model">purchase.order.line_invoice</field>
+            <field name="inherit_id" ref="purchase.view_purchase_line_invoice"></field>
+            <field name="arch" type="xml">
+                <xpath expr="/form/group/label" position="after">
+                    <newline></newline>
+                    <field name="partial_invoice"></field>
+                    <field name="line_ids" attrs="{'invisible': [('partial_invoice','=',False)]}" nolabel="1" colspan="4"></field>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
