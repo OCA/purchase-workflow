@@ -21,6 +21,7 @@
 
 from openerp.osv import fields, orm
 from openerp.tools.translate import _
+import openerp.addons.decimal_precision as dp
 
 
 class purchase_line_invoice(orm.TransientModel):
@@ -38,8 +39,9 @@ class purchase_line_invoice(orm.TransientModel):
         for po_line in po_line_obj.browse(cr, uid, context.get('active_ids',[]), context):
             lines.append({
                 'po_line_id': po_line.id,
-                'product_qty': po_line.product_qty,
+                'product_qty': po_line.product_qty - po_line.invoiced_qty,
                 'price_unit': po_line.price_unit,
+                'percentage': 100.0,
                 })
         defaults = super(purchase_line_invoice,self).default_get(
             cr, uid, fields, context=context)
@@ -47,7 +49,30 @@ class purchase_line_invoice(orm.TransientModel):
         return defaults
         
     def makeInvoices(self, cr, uid, ids, context=None):
-        res=super(purchase_line_invoice,self).makeInvoices(cr, uid, ids, context=context)
+        if context is None:
+            context={}
+        wizard = self.browse(cr, uid, ids[0], context)
+        if wizard.partial_invoice:
+            purchase_line_obj=self.pool.get('purchase.order.line')
+            changed_lines = {}
+            context['active_ids'] = []
+            for line in wizard.line_ids:
+                context['active_ids'].append(line.po_line_id.id)
+                changed_lines[line.po_line_id.id] = line.po_line_id.product_qty
+                invoiced_qty= line.product_qty * (line.percentage / 100.0)
+                line.po_line_id.write({
+                    'product_qty': invoiced_qty,
+                    })
+            res = super(purchase_line_invoice,self).makeInvoices(cr, uid, ids, context=context)
+            for po_line_id in changed_lines:
+                po_line = purchase_line_obj.browse(cr, uid, po_line_id, context)
+                purchase_line_obj.write(cr, uid, [po_line_id], {
+                    'product_qty': changed_lines[po_line_id],
+                    }, context=context)
+                if po_line.invoiced_qty != po_line.product_qty:
+                    po_line.write({'invoiced': False})
+            return res
+        return super(purchase_line_invoice,self).makeInvoices(cr, uid, ids, context=context)
 
 class purchase_line_invoice_line(orm.TransientModel):
 
@@ -56,10 +81,10 @@ class purchase_line_invoice_line(orm.TransientModel):
     _columns = {
         'po_line_id': fields.many2one('purchase.order.line',
             'Purchase order line', readonly=True),
-        'product_qty': fields.related('po_line_id', 'product_qty', type='float',
-            string='Quantity', readonly=True),
+        'product_qty': fields.float('Quantity', digits_compute=dp.get_precision(
+            'Product Unit of Measure'), readonly=True),
         'price_unit': fields.related('po_line_id', 'price_unit', type='float',
             string='Unit Price', readonly=True),
-        'percentage': fields.float('Percentage'),
+        'percentage': fields.float('Percentage', help="Expressed from 0 to 100"),
         'wizard_id': fields.many2one('purchase.order.line_invoice','Wizard'),
         }
