@@ -7,17 +7,20 @@
             <field name="model">purchase.order.line_invoice</field>
             <field name="inherit_id" ref="purchase.view_purchase_line_invoice"></field>
             <field name="arch" type="xml">
-                <xpath expr="/form/group/label" position="after">
-                    <newline></newline>
-                    <field name="partial_invoice"></field>
-                    <field name="line_ids" attrs="{'invisible': [('partial_invoice','=',False)]}" nolabel="1" colspan="4">
-                        <tree editable="bottom">
-                            <field name="po_line_id"></field>
-                            <field name="product_qty"></field>
-                            <field name="price_unit"></field>
-                            <field name="percentage"></field>
-                        </tree>
-                    </field>
+                <xpath expr="/form/group" position="after">
+                    <group>
+                        <field name="partial_invoice"></field>
+                    </group>
+                    <group>
+                        <field name="line_ids" attrs="{'invisible': [('partial_invoice','=',False)]}" nolabel="1" colspan="4">
+                            <tree editable="bottom">
+                                <field name="po_line_id"></field>
+                                <field name="product_qty"></field>
+                                <field name="price_unit"></field>
+                                <field name="percentage"></field>
+                            </tree>
+                        </field>
+                    </group>
                 </xpath>
             </field>
         </record>
