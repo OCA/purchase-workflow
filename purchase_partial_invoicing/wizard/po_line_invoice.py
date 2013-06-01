@@ -19,6 +19,7 @@
 #
 ##############################################################################
 
+from __future__ import division
 from openerp.osv import fields, orm
 from openerp.tools.translate import _
 import openerp.addons.decimal_precision as dp
@@ -40,8 +41,9 @@ class purchase_line_invoice(orm.TransientModel):
             lines.append({
                 'po_line_id': po_line.id,
                 'product_qty': po_line.product_qty - po_line.invoiced_qty,
+                'invoiced_qty': po_line.product_qty - po_line.invoiced_qty,
                 'price_unit': po_line.price_unit,
-                'percentage': 100.0,
+                'percentage': 100,
                 })
         defaults = super(purchase_line_invoice, self).default_get(
             cr, uid, fields, context=context)
@@ -49,6 +51,7 @@ class purchase_line_invoice(orm.TransientModel):
         return defaults
 
     def makeInvoices(self, cr, uid, ids, context=None):
+        import pdb; pdb.set_trace()
         if context is None:
             context = {}
         if ids:
@@ -60,9 +63,8 @@ class purchase_line_invoice(orm.TransientModel):
                 for line in wizard.line_ids:
                     context['active_ids'].append(line.po_line_id.id)
                     changed_lines[line.po_line_id.id] = line.po_line_id.product_qty
-                    invoiced_qty= line.product_qty * (line.percentage / 100.0)
                     line.po_line_id.write({
-                        'product_qty': invoiced_qty,
+                        'product_qty': line.invoiced_qty,
                         })
                 res = super(purchase_line_invoice,self).makeInvoices(cr, uid, ids, context=context)
                 for po_line_id in changed_lines:
@@ -87,5 +89,21 @@ class purchase_line_invoice_line(orm.TransientModel):
         'price_unit': fields.related('po_line_id', 'price_unit', type='float',
             string='Unit Price', readonly=True),
         'percentage': fields.float('Percentage', help="Expressed from 0 to 100"),
+        'invoiced_qty': fields.float('Quantity to invoice', digits_compute=dp.get_precision(
+            'Product Unit of Measure')),
         'wizard_id': fields.many2one('purchase.order.line_invoice','Wizard'),
         }
+
+    def on_percentage_changed(self, cr, uid, ids, product_qty=0,
+        percentage=0, context=None):
+        return {
+            'value':{'invoiced_qty': product_qty * (percentage / 100)}
+            }
+
+    def on_invoiced_qty_changed(self, cr, uid, ids, product_qty=0,
+        invoiced_qty=0, context=None):
+        if product_qty:
+            return {
+                'value':{'percentage': (invoiced_qty / product_qty) * 100}
+                }
+        return {}
