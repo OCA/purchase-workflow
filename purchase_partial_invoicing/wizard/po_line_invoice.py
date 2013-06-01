@@ -43,14 +43,14 @@ class purchase_line_invoice(orm.TransientModel):
                 'price_unit': po_line.price_unit,
                 'percentage': 100.0,
                 })
-        defaults = super(purchase_line_invoice,self).default_get(
+        defaults = super(purchase_line_invoice, self).default_get(
             cr, uid, fields, context=context)
         defaults['line_ids'] = lines
         return defaults
-        
+
     def makeInvoices(self, cr, uid, ids, context=None):
         if context is None:
-            context={}
+            context = {}
         wizard = self.browse(cr, uid, ids[0], context)
         if wizard.partial_invoice:
             purchase_line_obj=self.pool.get('purchase.order.line')
