@@ -18,9 +18,6 @@
                                 <field name="product_qty"></field>
                                 <field name="price_unit"></field>
                                 <field name="invoiced_qty" ></field>
-                                <!-- disabling
-                                <field name="percentage" on_change="on_percentage_changed(product_qty, percentage)"></field>
-                                -->
                             </tree>
                         </field>
                     </group>

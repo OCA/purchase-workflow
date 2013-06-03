@@ -25,7 +25,7 @@
     'category': 'Purchase Management',
     'description': """
 This module allows to partially invoice purchase order lines.
-The 'Create invoices' from PO lines wizard allows to specify, for each line, the quantity's percentage to use to invoice.
+The 'Create invoices' from PO lines wizard allows to specify, for each line, the quantity to invoice.
 """,
     'author': 'Agile Business Group',
     'website': 'http://www.agilebg.com',
