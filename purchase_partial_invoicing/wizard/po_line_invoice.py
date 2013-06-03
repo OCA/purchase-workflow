@@ -51,7 +51,6 @@ class purchase_line_invoice(orm.TransientModel):
         return defaults
 
     def makeInvoices(self, cr, uid, ids, context=None):
-        import pdb; pdb.set_trace()
         if context is None:
             context = {}
         if ids:
