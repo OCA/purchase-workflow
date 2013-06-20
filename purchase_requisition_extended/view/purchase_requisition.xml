@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="view_purchase_requisition_form">
+            <field name="name">purchase.requisition.form.inherit</field>
+            <field name="model">purchase.requisition</field>
+            <field name="inherit_id" ref="purchase_requisition.view_purchase_requisition_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@string='Products']" position="after">
+                    <page string="Options">
+                        <group>
+                            <group>
+                                <field name="req_validity" attrs="{'readonly': [('state','not in',('draft'))]}"/>
+                                <field name="req_incoterm_id" attrs="{'readonly': [('state','not in',('draft'))]}"/>
+                                <field name="req_incoterm_address" attrs="{'readonly': [('state','not in',('draft'))]}"/>
+                                <field name="req_payment_term_id" attrs="{'readonly': [('state','not in',('draft'))]}"/>
+                            </group>
+                            <group>
+                                <field name="bid_receipt_mode" attrs="{'readonly': [('state','not in',('draft'))]}"/>
+                                <field name="bid_tendering_mode" attrs="{'readonly': [('state','not in',('draft'))]}"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+                <xpath expr="//button[@name='purchase_cancel']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//button[@name='purchase_confirm']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//button[@name='purchase_approve']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//button[@name='wkf_send_rfq']" position="attributes">
+                    <attribute name="icon">gtk-apply</attribute>
+                </xpath>
+                <xpath expr="//field[@name='exclusive']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <field name="warehouse_id" position="before">
+                    <field name="consignee_id" attrs="{'readonly': [('state','not in',('draft'))]}"/>
+                    <field name="dest_address_id" on_change="onchange_dest_address_id(dest_address_id, warehouse_id)" attrs="{'readonly': [('state','not in',('draft'))]}"/>
+                </field>
+                <field name="warehouse_id" position="replace">
+                    <field name="warehouse_id" on_change="onchange_warehouse_id(warehouse_id)" attrs="{'readonly': [('state','not in',('draft'))]}"/>
+                </field>
+            </field>
+        </record>
+     </data>
+</openerp>
