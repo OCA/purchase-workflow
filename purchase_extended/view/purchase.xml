@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="view_purchase_order_form">
+            <field name="name">purchase.order.form.inherit</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='incoterm_id']" position="after">
+                    <field name="incoterm_address"/>
+                </xpath>
+                <xpath expr="//field[@name='dest_address_id']" position="replace"/>
+                <field name="warehouse_id" position="replace">
+                    <field name="dest_address_id" on_change="onchange_dest_address_id_mod(dest_address_id, warehouse_id)" string="Delivery Address"/>
+                    <field name="warehouse_id" on_change="onchange_warehouse_id(warehouse_id)" widget="selection" groups="stock.group_locations"/>
+                </field>
+            </field>
+        </record>
+     </data>
+</openerp>
