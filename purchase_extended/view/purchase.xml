@@ -10,9 +10,11 @@
                     <field name="incoterm_address"/>
                 </xpath>
                 <xpath expr="//field[@name='dest_address_id']" position="replace"/>
-                <field name="warehouse_id" position="replace">
+                <field name="warehouse_id" position="before">
                     <field name="dest_address_id" on_change="onchange_dest_address_id_mod(dest_address_id, warehouse_id)" string="Delivery Address"/>
-                    <field name="warehouse_id" on_change="onchange_warehouse_id(warehouse_id)" widget="selection" groups="stock.group_locations"/>
+                </field>
+                <field name="warehouse_id" position="attributes">
+                    <attribute name="on_change">onchange_warehouse_id(warehouse_id)</attribute>
                 </field>
             </field>
         </record>
