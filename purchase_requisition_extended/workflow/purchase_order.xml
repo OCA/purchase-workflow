@@ -14,7 +14,7 @@
             <field name="act_to" ref="act_draft_po"/>
             <field name="signal">draft_po</field>
         </record>
-
+        
         <record id="trans_drafpo_confirmed" model="workflow.transition">
             <field name="act_from" ref="act_draft_po"/>
             <field name="act_to" ref="purchase.act_confirmed"/>
