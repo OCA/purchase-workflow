@@ -111,14 +111,14 @@ class PurchaseRequisition(orm.Model):
 
     def tender_cancel(self, cr, uid, ids, context=None):
         po_obj = self.pool.get('purchase.order')
-        #try to set all associated quotations to cancel state
+        # try to set all associated quotations to cancel state
         for purchase in self.browse(cr, uid, ids, context=context):
             for purchase_id in purchase.purchase_ids:
                 if (purchase_id.state in ('draft', 'sent')):
                     po_obj.action_cancel(cr, uid, [purchase_id.id])
                     po_obj.message_post(cr, uid,
                                         [purchase_id.id],
-                                        body=_('This quotation has been cancelled.'),
+                                        body=_('This quotation has been canceled.'),
                                         subtype="mail.mt_comment",
                                         context=context)
                 else:
