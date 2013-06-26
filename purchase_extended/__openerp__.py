@@ -22,7 +22,7 @@
  "version": "0.1",
  "author": "Camptocamp",
  "category": "Purchase Management",
- "license": "AGPL-3,
+ "license": "AGPL-3",
  'complexity': "normal",
  "images": [],
  "description": """
