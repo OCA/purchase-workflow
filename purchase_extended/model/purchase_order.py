@@ -23,13 +23,11 @@ class PurchaseOrder(orm.Model):
                                         [('partner_id', '=', dest_address_id)],
                                         context=context)
         if dest_ids:
-            warehouse_id_ret = dest_ids[0]
-            for wh in dest_ids:
-                if wh == warehouse_id:
-                    warehouse_id_ret = wh
+            if warehouse_id not in dest_ids:
+                warehouse_id = dest_ids[0]
         else:
-            warehouse_id_ret = False
-        value['value']['warehouse_id'] = warehouse_id_ret
+            warehouse_id = False
+        value['value']['warehouse_id'] = warehouse_id
         return value
 
     def onchange_dest_address_id(self, cr, uid, ids, dest_address_id):
