@@ -87,6 +87,7 @@ class PurchaseRequisition(orm.Model):
         wf_service.trg_validate(uid, 'purchase.order', po_id, 'draft_po', cr)
         po_obj = self.pool.get('purchase.order')
         po_obj.write(cr, uid, po_id, {'bid_partial': False}, context=context)
+        return True
 
     def check_valid_quotation(self, cr, uid, quotation, context=None):
         return False
@@ -102,7 +103,8 @@ class PurchaseRequisition(orm.Model):
                              po_line.order_id.id,
                              {'bid_partial': True},
                              context=context)
-        super(PurchaseRequisition,self).generate_po(cr, uid, ids, context=context)
+        return super(PurchaseRequisition, self).generate_po(cr, uid, ids,
+                                                           context=context)
 
     def tender_cancel(self, cr, uid, ids, context=None):
         po_obj = self.pool.get('purchase.order')
@@ -127,7 +129,7 @@ class PurchaseRequisition(orm.Model):
                                      requisition_line, purchase_id,
                                      supplier, context=None):
         vals = super(PurchaseRequisition, self)._prepare_purchase_order_line(
-                cr, uid, requisition, requisition_line, purchase_id, supplier, context)
+            cr, uid, requisition, requisition_line, purchase_id, supplier, context)
         vals['price_unit'] = 0
         return vals
 
