@@ -66,18 +66,12 @@ class PurchaseRequisition(orm.Model):
         dest_ids = warehouse_obj.search(cr, uid,
                                         [('partner_id', '=', dest_address_id)],
                                         context=context)
-        if len(dest_ids) >= 1:
-            warehouse_id_ret = dest_ids[0]
-            for wh in dest_ids:
-                if wh == warehouse_id:
-                    warehouse_id_ret = wh
+        if dest_ids:
+            if warehouse_id not in dest_ids:
+                warehouse_id = dest_ids[0]
         else:
-            warehouse_id_ret = False
-        return {
-            'value': {
-                'warehouse_id': warehouse_id_ret,
-            }
-        }
+            warehouse_id = False
+        return {'value': {'warehouse_id': warehouse_id}}
 
     def onchange_warehouse_id(self, cr, uid, ids, warehouse_id, context=None):
         if warehouse_id:
