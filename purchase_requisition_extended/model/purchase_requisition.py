@@ -93,7 +93,10 @@ class PurchaseRequisition(orm.Model):
         return False
 
     def generate_po(self, cr, uid, ids, context=None):
-        tender = self.browse(cr, uid, ids, context=context)[0]
+        if isinstance(ids, (list, tuple)):
+            assert len(ids) == 1, "Only 1 ID expected"
+            ids = ids[0]
+        tender = self.browse(cr, uid, ids, context=context)
         po_obj = self.pool.get('purchase.order')
         for po_line in tender.po_line_ids:
             # set bid selected boolean to true on RFQ containing confirmed lines
@@ -103,8 +106,8 @@ class PurchaseRequisition(orm.Model):
                              po_line.order_id.id,
                              {'bid_partial': True},
                              context=context)
-        return super(PurchaseRequisition, self).generate_po(cr, uid, ids,
-                                                           context=context)
+        return super(PurchaseRequisition, self).generate_po(cr, uid, [ids],
+                                                            context=context)
 
     def tender_cancel(self, cr, uid, ids, context=None):
         po_obj = self.pool.get('purchase.order')
