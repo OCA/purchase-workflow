@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
-from openerp.osv import fields, osv
+from openerp.orm import fields, orm
 from openerp.tools.translate import _
 from openerp import netsvc
 
-class PurchaseRequisition(osv.Model):
+class PurchaseRequisition(orm.Model):
     _inherit = "purchase.requisition"
     _columns = {
         'req_validity': fields.date('Requested Bid\'s End of Validity', help="Default value requested to the supplier."),
@@ -93,7 +93,7 @@ class PurchaseRequisition(osv.Model):
                     purchase_order_obj.action_cancel(cr,uid,[purchase_id.id])
                     purchase_order_obj.message_post(cr, uid, [purchase_id.id], body=_('This quotation has been cancelled.'), subtype="mail.mt_comment", context=context)
                 else:
-                    raise osv.except_osv(_('Warning!'), _('You cannot cancel a tender which has already received bids.'))
+                    raise orm.except_orm(_('Warning!'), _('You cannot cancel a tender which has already received bids.'))
         return self.write(cr, uid, ids, {'state': 'cancel'})
 
     def _prepare_purchase_order_line(self, cr, uid, requisition, requisition_line, purchase_id, supplier, context=None):
@@ -101,7 +101,7 @@ class PurchaseRequisition(osv.Model):
         vals['price_unit'] = 0
         return vals
 
-class PurchaseRequisitionLine(osv.Model):
+class PurchaseRequisitionLine(orm.Model):
     _inherit = "purchase.requisition.line"
     _columns = {
         'remark': fields.text('Remark'),

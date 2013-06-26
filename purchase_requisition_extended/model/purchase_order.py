@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 
-from openerp.osv import fields, osv
+from openerp.osv import fields, orm
 from openerp.tools.translate import _
 from openerp import netsvc
 
-class purchase_order(osv.osv):
+
+class purchase_order(orm.Model):
     _inherit = 'purchase.order'
 
     STATE_SELECTION = [
@@ -64,7 +65,7 @@ class purchase_order(osv.osv):
     def wkf_draft_po(self, cr, uid, ids, context=None):
         for element in self.browse(cr, uid, ids, context=context):
             if not element.bid_encoded and element.state not in ('draft','draftpo'):
-                raise osv.except_osv(_('Warning!'), _('You cannot convert a RFQ to a PO while bid has not been encoded.'))
+                raise orm.except_orm(_('Warning!'), _('You cannot convert a RFQ to a PO while bid has not been encoded.'))
         return self.write(cr, uid, ids, {'state': 'draftpo'}, context=context)
 
     def _prepare_purchase_order(self, cr, uid, requisition, supplier, context=None):
@@ -78,7 +79,7 @@ class purchase_order(osv.osv):
         })
         return d
 
-class purchase_order_line(osv.osv):
+class purchase_order_line(orm.Model):
     _inherit = 'purchase.order.line'
 
     def onchange_product_id(self, cr, uid, ids, pricelist_id, product_id, qty, uom_id,
