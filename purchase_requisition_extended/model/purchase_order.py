@@ -129,5 +129,5 @@ class purchase_order_line(orm.Model):
             # need to add an argument which is the state of po,
             # otherwise impossible to know if we need to return price_unit
             # of zero or not
-            res['value'].update({'price_unit': 0})
+            res['value']['price_unit'] = 0
         return res
