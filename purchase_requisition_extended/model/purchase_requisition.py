@@ -74,17 +74,13 @@ class PurchaseRequisition(orm.Model):
         return {'value': {'warehouse_id': warehouse_id}}
 
     def onchange_warehouse_id(self, cr, uid, ids, warehouse_id, context=None):
-        if warehouse_id:
-            warehouse_obj = self.pool.get('stock.warehouse')
-            warehouse = warehouse_obj.browse(cr, uid, warehouse_id,
-                                             context=context)
-            dest_id = warehouse.partner_id.id
-            return {
-                'value': {
-                    'dest_address_id': dest_id,
-                }
-            }
-        return False
+        if not warehouse_id:
+            return {}
+        warehouse_obj = self.pool.get('stock.warehouse')
+        warehouse = warehouse_obj.browse(cr, uid,
+                                         warehouse_id, context=context)
+        dest_id = warehouse.partner_id.id
+        return {'value': {'dest_address_id': dest_id}}
 
     def trigger_validate_po(self, cr, uid, po_id, context=None):
         wf_service = netsvc.LocalService("workflow")
