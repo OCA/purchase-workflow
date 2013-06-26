@@ -37,10 +37,10 @@ class PurchaseOrder(orm.Model):
     def onchange_warehouse_id(self, cr, uid, ids, warehouse_id, context=None):
         value = super(PurchaseOrder, self).onchange_warehouse_id(
             cr, uid, ids, warehouse_id)
-        if warehouse_id:
-            warehouse_obj = self.pool.get('stock.warehouse')
-            dest_id = warehouse_obj.browse(cr, uid, warehouse_id,
-                                           context=context).partner_id.id
-            value['value']['dest_address_id'] = dest_id
-            return value
-        return {}
+        if not warehouse_id:
+            return {}
+        warehouse_obj = self.pool.get('stock.warehouse')
+        dest_id = warehouse_obj.browse(cr, uid, warehouse_id,
+                                       context=context).partner_id.id
+        value['value']['dest_address_id'] = dest_id
+        return value
