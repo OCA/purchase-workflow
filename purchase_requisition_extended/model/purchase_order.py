@@ -59,17 +59,34 @@ class purchase_order(orm.Model):
     }
 
     def _get_tender(self, cr, uid, ids, fields, args, context=None):
+        # when _classic_write load is used, the many2one are only the
+        # ids instead of the tuples (id, name_get)
+        purch_req_obj = self.pool.get('purchase.requisition')
         orders = self.read(cr, uid, ids, ['requisition_id'],
                            context=context, load='_classic_write')
-        # TODO rewrite
-        requisition_ids = list(set(filter(None, [x['requisition_id'] for x in orders])))
-        requisitions = requisition_ids and self.pool.get('purchase.requisition').read(cr, uid, requisition_ids,
-                        [x[len('tender_'):] for x in fields],
-                        context=context, load='_classic_write')
-        requisitions = dict([(x['id'], dict([('tender_' + k,v) for k,v in x.iteritems() if 'tender_' + k in fields])) for x in requisitions])
+        req_ids = list(set(order['requisition_id'] for order in orders
+                           if order['requisition_id']))
+        # we'll read the fields without the 'tender_' prefix
+        # and copy their value in the fields with the prefix
+        read_fields = [x[len('tender_'):] for x in fields]
+        requisitions = purch_req_obj.read(cr, uid,
+                                          req_ids,
+                                          read_fields,
+                                          context=context,
+                                          load='_classic_write')
+        # copy the dict but rename the fields with 'tender_' prefix
+        tender_reqs = {}
+        for req in requisitions:
+            tender_reqs[req['id']] = dict(('tender_' + field, value)
+                                          for field, value
+                                          in req.iteritems()
+                                          if 'tender_' + field in fields)
         res = {}
         for po in orders:
-            res[po['id']] = po['requisition_id'] and requisitions[po['requisition_id']] or dict([(x, False) for x in fields])
+            if po['requisition_id']:
+                res[po['id']] = tender_reqs[po['requisition_id']]
+            else:
+                res[po['id']] = {}.fromkeys(fields, False)
         return res
 
     def create(self, cr, uid, vals, context=None):
