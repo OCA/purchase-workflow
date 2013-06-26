@@ -22,7 +22,7 @@ class PurchaseOrder(orm.Model):
         dest_ids = warehouse_obj.search(cr, uid,
                                         [('partner_id', '=', dest_address_id)],
                                         context=context)
-        if len(dest_ids) >= 1:
+        if dest_ids:
             warehouse_id_ret = dest_ids[0]
             for wh in dest_ids:
                 if wh == warehouse_id:
