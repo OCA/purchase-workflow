@@ -80,12 +80,12 @@ class purchase_order_line(osv.osv):
     def _landing_cost_order(self, cr, uid, ids, name, args, context):
         if not ids : return {}
         result = {}
-        # landed costss for the line
+        # landed costs for the line
         for line in self.browse(cr, uid, ids):
             landed_costs = 0.0
-            # distrubution of landed costs of PO
+            # distribution of landed costs of PO
             if line.order_id.landed_cost_line_ids:
-               landed_costs += line.order_id.landed_cost_base_value / line.order_id.amount_total * line.price_subtotal + \
+                landed_costs += line.order_id.landed_cost_base_value / line.order_id.amount_total * line.price_subtotal + \
                         line.order_id.landed_cost_base_quantity / line.order_id.quantity_total * line.product_qty
             result[line.id] = landed_costs
 
@@ -124,7 +124,7 @@ class purchase_order(osv.osv):
         for line in self.browse(cr, uid, ids):
             if line.landed_cost_line_ids:
                 for costs in line.landed_cost_line_ids:
-                    if costs.product_id.landed_cost_type == 'value':
+                    if costs.price_type == 'value':
                         landed_costs_base_value += costs.amount
             result[line.id] = landed_costs_base_value
         return result
@@ -136,7 +136,7 @@ class purchase_order(osv.osv):
         for line in self.browse(cr, uid, ids):
             if line.landed_cost_line_ids:
                 for costs in line.landed_cost_line_ids:
-                    if costs.product_id.landed_cost_type == 'per_unit':
+                    if costs.price_type == 'per_unit':
                          landed_costs_base_quantity += costs.amount
             result[line.id] = landed_costs_base_quantity
         return result
