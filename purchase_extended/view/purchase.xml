@@ -6,17 +6,45 @@
             <field name="model">purchase.order</field>
             <field name="inherit_id" ref="purchase.purchase_order_form"/>
             <field name="arch" type="xml">
+                <xpath expr="//field[@name='state']" position="attributes">
+                    <attribute name="statusbar_visible">draft,sent,bid,draftpo,approved,done</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_cancel_draft']" position="attributes">
+                    <attribute name="states">cancel,draftpo</attribute>
+                </xpath>
+                <xpath expr="//button[@name='bid_received']" position="attributes">
+                    <attribute name="string">Bid Encoded</attribute>
+                    <attribute name="type">object</attribute>
+                </xpath>
+                <xpath expr="//button[@id='bid_confirm']" position="attributes">
+                    <attribute name="states">draftpo</attribute>
+                </xpath>
+                <xpath expr="//button[@id='draft_confirm']" position="attributes">
+                    <attribute name="states">draftpo</attribute>
+                    <attribute name="invisible">1</attribute>
+                </xpath>
                 <xpath expr="//field[@name='incoterm_id']" position="after">
                     <field name="incoterm_address"/>
                 </xpath>
                 <xpath expr="//field[@name='dest_address_id']" position="replace"/>
                 <field name="warehouse_id" position="before">
+                    <field name="consignee_id"/>
                     <field name="dest_address_id" on_change="onchange_dest_address_id_mod(dest_address_id, warehouse_id)" string="Delivery Address"/>
                 </field>
                 <field name="warehouse_id" position="attributes">
                     <attribute name="on_change">onchange_warehouse_id(warehouse_id)</attribute>
                 </field>
+                <button name="action_cancel" position="attributes">
+                    <attribute name="states">approved,draftpo,except_picking,except_invoice</attribute>
+                </button>
+                <xpath expr="//button[@name='purchase_confirm']" position="after">
+                    <button name="draft_po" states="draft" string="Convert to PO" attrs="{'invisible': ['|', ('requisition_id','!=',False)]}"/>
+                    <button name="draft_po" states="bid" string="Convert to PO" class="oe_highlight" attrs="{'invisible': ['|', ('requisition_id','!=',False)]}"/>
+                </xpath>
             </field>
         </record>
-     </data>
+        <record id="purchase.purchase_form_action" model="ir.actions.act_window">
+                <field name="context">{'draft_po':True}</field>
+        </record>
+    </data>
 </openerp>
