@@ -109,18 +109,24 @@ class PurchaseRequisition(orm.Model):
         return super(PurchaseRequisition, self).generate_po(cr, uid, [ids],
                                                             context=context)
 
+    def tender_open(self, cr, uid, ids, context=None):
+        # Cancel all RFQs that have not been sent
+        purchase_order_obj = self.pool.get('purchase.order')
+        for callforbids in self.browse(cr, uid, ids, context=context):
+            for purchase in callforbids.purchase_ids:
+                if purchase.state == 'draft':
+                    purchase_order_obj.action_cancel(cr,uid,[purchase.id])
+                    #purchase_order_obj.message_post(cr, uid, [purchase.id], body=_('This RFQ has been cancelled.'), subtype="mail.mt_comment", context=context)
+        return super(PurchaseRequisition,self).tender_open(cr, uid, ids, context=context)
+
     def tender_cancel(self, cr, uid, ids, context=None):
-        po_obj = self.pool.get('purchase.order')
-        # try to set all associated quotations to cancel state
-        for purchase in self.browse(cr, uid, ids, context=context):
-            for purchase_id in purchase.purchase_ids:
-                if (purchase_id.state in ('draft', 'sent')):
-                    po_obj.action_cancel(cr, uid, [purchase_id.id])
-                    po_obj.message_post(cr, uid,
-                                        [purchase_id.id],
-                                        body=_('This quotation has been canceled.'),
-                                        subtype="mail.mt_comment",
-                                        context=context)
+        # Try to cancell all RFQs
+        purchase_order_obj = self.pool.get('purchase.order')
+        for callforbids in self.browse(cr, uid, ids, context=context):
+            for purchase in callforbids.purchase_ids:
+                if (purchase.state in ('draft', 'sent')):
+                    purchase_order_obj.action_cancel(cr,uid,[purchase.id])
+                    #purchase_order_obj.message_post(cr, uid, [purchase.id], body=_('This RFQ has been cancelled.'), subtype="mail.mt_comment", context=context)
                 else:
                     raise orm.except_orm(
                         _('Warning'),

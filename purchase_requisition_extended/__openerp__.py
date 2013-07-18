@@ -40,8 +40,8 @@ IFRC specific.
  "demo": [],
  "data": ["view/purchase_requisition.xml",
           "view/purchase_order.xml",
-          "workflow/purchase_order.xml",
           ],
+>>>>>>> MERGE-SOURCE
  "auto_install": False,
  "test": [],
  "installable": True,
