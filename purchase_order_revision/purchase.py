@@ -38,7 +38,29 @@ class purchase_order(orm.Model):
         new_seq = self.pool.get('ir.sequence').get(cr, uid, 'purchase.order') or '/'
         old_seq = po.name
         po.write({'name': new_seq}, context=context)
-        new_id = self.copy(cr, uid, po.id, default={'name': old_seq}, context=None)
-        self.write(cr, uid, [new_id], {'current_revision_id': po.id}, context=context)
+        new_id = orm.Model.copy(self, cr, uid, po.id, default={
+            'name': old_seq,
+            'state':'cancel',
+            'shipped':False,
+            'invoiced':False,
+            'invoice_ids': [],
+            'picking_ids': [],
+            'old_revision_ids': [],
+            'current_revision_id':po.id,
+            }, context=None)
         self.action_cancel_draft(cr, uid, [po.id], context=context)
+        #self.action_cancel(cr, uid, [new_id], context=context)
         return True
+
+    def copy(self, cr, uid, id, default=None, context=None):
+        if not default:
+            default = {}
+        default.update({
+            'state':'draft',
+            'shipped':False,
+            'invoiced':False,
+            'invoice_ids': [],
+            'picking_ids': [],
+            'name': self.pool.get('ir.sequence').get(cr, uid, 'purchase.order'),
+        })
+        return super(purchase_order, self).copy(cr, uid, id, default, context)
