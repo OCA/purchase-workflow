@@ -24,6 +24,5 @@
 -
    !python {model: purchase.order}: |
      action = self.new_revision(cr, uid, [ref('purchase_order_1')])
-     old_po = self.browse(cr, uid, ref('purchase_order_1'))
-     new_po = self.browse(cr, uid, action['res_id'])
-     assert new_po.old_revision_ids[0].id == old_po.id, "Old revision not set"
+     new_po = self.browse(cr, uid, ref('purchase_order_1'))
+     assert new_po.old_revision_ids, "Old revisions not set"
