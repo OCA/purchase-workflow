@@ -8,7 +8,7 @@
             <field name="inherit_id" ref="purchase.purchase_order_form"></field>
             <field name="arch" type="xml">
                 <button name="action_cancel_draft" position="replace" >
-                    <button name="new_revision" states="cancel" string="New revision" type="object" attrs="{'invisible': ['|',('state', '!=', 'cancel'),('current_revision_id','!=', False)]}"/>
+                    <button name="new_revision" string="New revision" type="object" attrs="{'invisible': ['|',('state', '!=', 'cancel'),('current_revision_id','!=', False)]}"/>
                 </button>
                 <notebook position="inside">
                     <page string="Revisions">
