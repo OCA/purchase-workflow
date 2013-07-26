@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 
-from openerp.osv import fields, orm
+from openerp.osv import fields, osv
 import openerp.osv.expression as expression
 from openerp.tools.safe_eval import safe_eval as eval
 from openerp.tools.translate import _
 from openerp import netsvc
 
 
-class PurchaseRequisition(orm.Model):
+class PurchaseRequisition(osv.Model):
     _inherit = "purchase.requisition"
     _columns = {
         # modified
@@ -163,7 +163,7 @@ class PurchaseRequisition(orm.Model):
                     purchase_order_obj.action_cancel(cr,uid,[purchase.id])
                     #purchase_order_obj.message_post(cr, uid, [purchase.id], body=_('This RFQ has been cancelled.'), subtype="mail.mt_comment", context=context)
                 else:
-                    raise orm.except_orm(
+                    raise osv.except_osv(
                         _('Warning'),
                         _('You cannot cancel a tender which has '
                           'already received bids.'))
@@ -192,7 +192,7 @@ class PurchaseRequisition(orm.Model):
         res['domain'] = expression.AND([eval(res.get('domain',[])),[('requisition_id','in', ids)]])
         return res
 
-class PurchaseRequisitionLine(orm.Model):
+class PurchaseRequisitionLine(osv.Model):
     _inherit = "purchase.requisition.line"
     _columns = {
         'remark': fields.text('Remark'),

@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 
-from openerp.osv import fields, orm
+from openerp.osv import fields, osv
 from openerp.tools.translate import _
 from openerp import netsvc
 
 
-class purchase_order(orm.Model):
+class purchase_order(osv.Model):
     _inherit = 'purchase.order'
     _columns = {
         'bid_partial': fields.boolean(
@@ -65,7 +65,7 @@ class purchase_order(orm.Model):
         })
         return values
 
-class purchase_order_line(osv.osv):
+class purchase_order_line(osv.Model):
     _inherit = 'purchase.order.line'
     _columns = {
         'requisition_line_id': fields.many2one('purchase.requisition.line','Call for Bid Line', readonly=True),
