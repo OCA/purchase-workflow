@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from openerp.osv import fields, orm
+import openerp.osv.expression as expression
+from openerp.tools.safe_eval import safe_eval as eval
 from openerp.tools.translate import _
 from openerp import netsvc
 
@@ -8,6 +10,18 @@ from openerp import netsvc
 class PurchaseRequisition(orm.Model):
     _inherit = "purchase.requisition"
     _columns = {
+        # modified
+        'state': fields.selection([('draft','Draft'),
+                                   ('in_progress','Confirmed'),
+                                   ('open','Bids Selection'),
+                                   ('closed','Bids Selected'),
+                                   ('done','PO Created'),
+                                   ('cancel','Cancelled')],
+                                  'Status', track_visibility='onchange', required=True),
+        'purchase_ids' : fields.one2many('purchase.order','requisition_id','Purchase Orders',
+                                         states={'done': [('readonly', True)]},
+                                         domain=[('type','=','rfq')]),
+        # new
         'req_validity': fields.date("Requested Bid's End of Validity",
                                     help="Default value requested to "
                                          "the supplier."),
@@ -30,8 +44,6 @@ class PurchaseRequisition(orm.Model):
             help="Default value requested to the supplier. "
                  "International Commercial Terms are a series of predefined "
                  "commercial terms used in international transactions."),
-        'state': fields.selection([('draft','Draft'),('in_progress','Confirmed'),('open','Bids Selection'),('closed','Bids Selected'),('done','PO Created'),('cancel','Cancelled')],
-            'Status', track_visibility='onchange', required=True),
         'req_incoterm_address': fields.char(
             'Requested Incoterm Place',
             help="Incoterm Place of Delivery. "
@@ -42,7 +54,6 @@ class PurchaseRequisition(orm.Model):
             'account.payment.term',
             'Requested Payment Term',
             help="Default value requested to the supplier."),
-
     }
     _defaults = {
         'bid_receipt_mode': 'open',
@@ -150,6 +161,25 @@ class PurchaseRequisition(orm.Model):
     def tender_close(self, cr, uid, ids, context=None):
         return self.write(cr, uid, ids, {'state':'closed'} ,context=context)
 
+    def open_rfq(self, cr, uid, ids, context=None):
+        """
+        This opens rfq view to view all generated rfq/bids associated to the call for bids
+        """
+        if context is None:
+            context = {}
+        res = self.pool.get('ir.actions.act_window').for_xml_id(cr, uid ,'purchase','purchase_rfq', context=context)
+        res['domain'] = expression.AND([eval(res.get('domain',[])),[('requisition_id','in', ids)]])
+        return res
+
+    def open_po(self, cr, uid, ids, context=None):
+        """
+        This opens po view to view all generated po associated to the call for bids
+        """
+        if context is None:
+            context = {}
+        res = self.pool.get('ir.actions.act_window').for_xml_id(cr, uid ,'purchase','purchase_form_action', context=context)
+        res['domain'] = expression.AND([eval(res.get('domain',[])),[('requisition_id','in', ids)]])
+        return res
 
 class PurchaseRequisitionLine(orm.Model):
     _inherit = "purchase.requisition.line"

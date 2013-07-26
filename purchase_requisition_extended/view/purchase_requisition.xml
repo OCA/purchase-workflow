@@ -12,6 +12,9 @@
                 <xpath expr="//header/button[@name='generate_po']" position="attributes">
                     <attribute name="states">closed</attribute>
                 </xpath>
+                <xpath expr="//sheet//button[@name='open_product_line']" position="after">
+                    <button name="open_po" type="object" string="View Generated PO" states="open,closed,done"/>
+                </xpath>
                 <xpath expr="//page[@string='Products']" position="after">
                     <page string="Options">
                         <group>
