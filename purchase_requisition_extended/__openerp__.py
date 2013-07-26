@@ -40,8 +40,12 @@ IFRC specific.
  "demo": [],
  "data": ["view/purchase_requisition.xml",
           "view/purchase_order.xml",
+          "workflow/purchase_requisition.xml",
+          "wizard/modal.xml",
           ],
->>>>>>> MERGE-SOURCE
+ "js": [
+        "static/src/js/web_addons.js",
+        ],
  "auto_install": False,
  "test": [],
  "installable": True,

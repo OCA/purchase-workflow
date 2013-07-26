@@ -30,6 +30,8 @@ class PurchaseRequisition(orm.Model):
             help="Default value requested to the supplier. "
                  "International Commercial Terms are a series of predefined "
                  "commercial terms used in international transactions."),
+        'state': fields.selection([('draft','Draft'),('in_progress','Confirmed'),('open','Bids Selection'),('closed','Bids Selected'),('done','PO Created'),('cancel','Cancelled')],
+            'Status', track_visibility='onchange', required=True),
         'req_incoterm_address': fields.char(
             'Requested Incoterm Place',
             help="Incoterm Place of Delivery. "
@@ -59,6 +61,15 @@ class PurchaseRequisition(orm.Model):
             'incoterm_address': requisition.req_incoterm_address,
         })
         return values
+
+    def _prepare_purchase_order_line(self, cr, uid, requisition,
+                                     requisition_line, purchase_id,
+                                     supplier, context=None):
+        vals = super(PurchaseRequisition, self)._prepare_purchase_order_line(
+            cr, uid, requisition, requisition_line, purchase_id, supplier, context)
+        vals['price_unit'] = 0
+        vals['requisition_line_id'] = requisition_line.id
+        return vals
 
     def onchange_dest_address_id(self, cr, uid, ids, dest_address_id,
                                  warehouse_id, context=None):
@@ -120,7 +131,9 @@ class PurchaseRequisition(orm.Model):
         return super(PurchaseRequisition,self).tender_open(cr, uid, ids, context=context)
 
     def tender_cancel(self, cr, uid, ids, context=None):
-        # Try to cancell all RFQs
+        """
+        Try to cancell all RFQs
+        """
         purchase_order_obj = self.pool.get('purchase.order')
         for callforbids in self.browse(cr, uid, ids, context=context):
             for purchase in callforbids.purchase_ids:
@@ -134,17 +147,14 @@ class PurchaseRequisition(orm.Model):
                           'already received bids.'))
         return self.write(cr, uid, ids, {'state': 'cancel'})
 
-    def _prepare_purchase_order_line(self, cr, uid, requisition,
-                                     requisition_line, purchase_id,
-                                     supplier, context=None):
-        vals = super(PurchaseRequisition, self)._prepare_purchase_order_line(
-            cr, uid, requisition, requisition_line, purchase_id, supplier, context)
-        vals['price_unit'] = 0
-        return vals
+    def tender_close(self, cr, uid, ids, context=None):
+        return self.write(cr, uid, ids, {'state':'closed'} ,context=context)
 
 
 class PurchaseRequisitionLine(orm.Model):
     _inherit = "purchase.requisition.line"
     _columns = {
         'remark': fields.text('Remark'),
+        'purchase_line_ids' : fields.one2many('purchase.order.line','requisition_line_id','Bids Lines', readonly=True),
     }
+

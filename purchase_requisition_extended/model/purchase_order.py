@@ -20,6 +20,7 @@ class purchase_order(orm.Model):
             selection=[('open', 'Open'), ('sealed', 'Sealed')],
             string='Bid Receipt Mode'),
     }
+    #TODO: lines should not be deleted or created if linked to a callforbids
 
     def _get_tender(self, cr, uid, ids, fields, args, context=None):
         # when _classic_write load is used, the many2one are only the
@@ -63,3 +64,43 @@ class purchase_order(orm.Model):
             'transport_mode_id': requisition.req_transport_mode_id,
         })
         return values
+
+class purchase_order_line(osv.osv):
+    _inherit = 'purchase.order.line'
+    _columns = {
+        'requisition_line_id': fields.many2one('purchase.requisition.line','Call for Bid Line', readonly=True),
+    }
+
+    def close_callforbids(self, cr, uid, active_id, context=None):
+        """
+        Check all quantities have been sourced
+        """
+        purchase_requisition_obj = self.pool.get('purchase.requisition')
+        valid = True
+        callforbids = purchase_requisition_obj.browse(cr, uid, active_id, context=context)
+        for line in callforbids.line_ids:
+            qty = line.product_qty
+            for pol in line.purchase_line_ids:
+                qty -= pol.qantity_bid  # FIXME: float rounding issue
+            if qty != 0:
+                valid = False
+        if valid:
+            return self.close_callforbids_ok(cr, id, ids, context=context)
+        context['action'] = 'close_callforbids_ok'
+        context['active_model'] = self._name
+        view_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'purchase_requisition_extended', 'action_modal_close_callforbids')[1]
+        return {
+            'type': 'ir.actions.act_window',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'purchase.action_modal',
+            'view_id': view_id,
+            'views': [(view_id, 'form')],
+            'target': 'new',
+            'context': context,
+        }
+    def close_callforbids_ok(self, cr, uid, ids, context=None):
+        wf_service = netsvc.LocalService("workflow")
+        for id in ids:
+            wf_service.trg_validate(uid, 'purchase.requisition', id, 'close_bid', cr)
+        return {}

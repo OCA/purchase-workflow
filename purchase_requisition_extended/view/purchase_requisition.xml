@@ -6,6 +6,12 @@
             <field name="model">purchase.requisition</field>
             <field name="inherit_id" ref="purchase_requisition.view_purchase_requisition_form"/>
             <field name="arch" type="xml">
+                <xpath expr="//header/field[@name='state']" position="attributes">
+                    <attribute name="statusbar_visible">draft,in_progress,open,closed,done</attribute>
+                </xpath>
+                <xpath expr="//header/button[@name='generate_po']" position="attributes">
+                    <attribute name="states">closed</attribute>
+                </xpath>
                 <xpath expr="//page[@string='Products']" position="after">
                     <page string="Options">
                         <group>
@@ -22,16 +28,20 @@
                         </group>
                     </page>
                 </xpath>
-                <xpath expr="//button[@name='purchase_cancel']" position="attributes">
+                <button name="open_bid" position="after">
+                    <!--<button name="close_bid" states="open" string="Close Bids Selection" class="oe_highlight" type="object"/>-->
+                    <button name="reopen_bid" states="closed" string="Re-Open Bids Selection"/>
+                </button>
+                <xpath expr="//field[@name='purchase_ids']//button[@name='purchase_cancel']" position="attributes">
                     <attribute name="invisible">1</attribute>
                 </xpath>
-                <xpath expr="//button[@name='purchase_confirm']" position="attributes">
+                <xpath expr="//field[@name='purchase_ids']//button[@name='purchase_confirm']" position="attributes">
                     <attribute name="invisible">1</attribute>
                 </xpath>
-                <xpath expr="//button[@name='purchase_approve']" position="attributes">
+                <xpath expr="//field[@name='purchase_ids']//button[@name='purchase_approve']" position="attributes">
                     <attribute name="invisible">1</attribute>
                 </xpath>
-                <xpath expr="//button[@name='wkf_send_rfq']" position="attributes">
+                <xpath expr="//field[@name='purchase_ids']//button[@name='wkf_send_rfq']" position="attributes">
                     <attribute name="icon">gtk-apply</attribute>
                 </xpath>
                 <xpath expr="//field[@name='exclusive']" position="attributes">
