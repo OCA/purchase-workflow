@@ -43,8 +43,12 @@
                 </xpath>
             </field>
         </record>
+        <record id="purchase.purchase_rfq" model="ir.actions.act_window">
+            <field name="domain">[('type','=','rfq')]</field>
+        </record>
         <record id="purchase.purchase_form_action" model="ir.actions.act_window">
-                <field name="context">{'draft_po':True}</field>
+            <field name="context">{'draft_po':True}</field>
+            <field name="domain">[('type','=','purchase')]</field>
         </record>
     </data>
 </openerp>

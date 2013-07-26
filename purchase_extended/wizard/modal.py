@@ -1,10 +1,8 @@
 from osv import fields,osv
 
-class action_modal_datetime(osv.osv_memory):
-    _name = "purchase.action_modal_datetime"
-    _columns = {
-        'datetime': fields.datetime('Date'),
-    }
+class action_modal_datetime(osv.TransientModel):
+    _name = "purchase.action_modal"
+    _columns = {}
     def action(self, cr, uid, ids, context):
         for e in ('active_model','active_ids','action'):
             if e not in context:
@@ -16,3 +14,10 @@ class action_modal_datetime(osv.osv_memory):
         if isinstance(res,dict):
             return res
         return {'type': 'ir.actions.act_window_close'}
+
+class action_modal_datetime(osv.TransientModel):
+    _name = "purchase.action_modal_datetime"
+    _inherit = "purchase.action_modal"
+    _columns = {
+        'datetime': fields.datetime('Date'),
+    }
