@@ -128,8 +128,19 @@ class PurchaseRequisition(orm.Model):
                              po_line.order_id.id,
                              {'bid_partial': True},
                              context=context)
-        return super(PurchaseRequisition, self).generate_po(cr, uid, [ids],
-                                                            context=context)
+        return super(PurchaseRequisition, self).generate_po(cr, uid, [ids], context=context)
+
+    def cancel_quotation(self, cr, uid, tender, context=None):
+        """
+        Called from generate_po. Cancell only draft and sent rfq
+        """
+        po = self.pool.get('purchase.order')
+        wf_service = netsvc.LocalService("workflow")
+        for quotation in tender.purchase_ids:
+            if quotation.state in ['draft', 'sent']:
+                wf_service.trg_validate(uid, 'purchase.order', quotation.id, 'purchase_cancel', cr)
+                po.message_post(cr, uid, [quotation.id], body=_('Cancelled by the call for bids associated to this request for quotation.'), context=context)
+        return True
 
     def tender_open(self, cr, uid, ids, context=None):
         # Cancel all RFQs that have not been sent
