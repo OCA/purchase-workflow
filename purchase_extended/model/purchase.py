@@ -10,8 +10,8 @@ class PurchaseOrder(osv.Model):
     STATE_SELECTION = [
         ('draft', 'Draft RFQ'),
         ('sent', 'RFQ Sent'),
-        ('bid', 'Bid Encoded'),
-        ('draftpo', 'Draft PO'),
+        ('bid', 'Bid Encoded'),  # Bid Received renamed into Bid Encoded
+        ('draftpo', 'Draft PO'),  # added
         ('confirmed', 'Waiting Approval'),
         ('approved', 'Purchase Confirmed'),
         ('except_picking', 'Shipping Exception'),
@@ -23,11 +23,10 @@ class PurchaseOrder(osv.Model):
     _columns = {
         'state': fields.selection(STATE_SELECTION, 'Status', readonly=True, help="The status of the purchase order or the quotation request. A quotation is a purchase order in a 'Draft' status. Then the order has to be confirmed by the user, the status switch to 'Confirmed'. Then the supplier must confirm the order to change the status to 'Approved'. When the purchase order is paid and received, the status becomes 'Done'. If a cancel action occurs in the invoice or in the reception of goods, the status becomes in exception.", select=True),
         'type': fields.selection([('rfq','RFQ'),('purchase','Purchase Order')], readonly=True),
-    #    'bid_encoded': fields.boolean('Bid encoded', help="True if the bid has been encoded"),
-        'consignee_id': fields.many2one('res.partner', 'Consignee', help="Person responsible of delivery"),
+        'consignee_id': fields.many2one('res.partner', 'Consignee', help="the person to whom the shipment is to be delivered"),
         'incoterm_address': fields.char(
-            'Incoterm Place',
-            help="Incoterm Place of Delivery. "
+            'Incoterms Place',
+            help="Incoterms Place of Delivery. "
                  "International Commercial Terms are a series of "
                  "predefined commercial terms used in "
                  "international transactions."),
@@ -144,9 +143,8 @@ class PurchaseOrder(osv.Model):
         value['value']['warehouse_id'] = warehouse_id
         return value
 
-    def onchange_dest_address_id(self, cr, uid, ids, dest_address_id):
-        return super(PurchaseOrder, self).onchange_dest_address_id(
-            cr, uid, ids, dest_address_id)
+    #def onchange_dest_address_id(self, cr, uid, ids, dest_address_id):
+    #    return super(PurchaseOrder, self).onchange_dest_address_id(cr, uid, ids, dest_address_id)
 
     def onchange_warehouse_id(self, cr, uid, ids, warehouse_id, context=None):
         value = super(PurchaseOrder, self).onchange_warehouse_id(cr, uid, ids, warehouse_id)
