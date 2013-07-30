@@ -192,10 +192,30 @@ class PurchaseRequisition(osv.Model):
         res['domain'] = expression.AND([eval(res.get('domain',[])),[('requisition_id','in', ids)]])
         return res
 
+    def open_product_line(self, cr, uid, ids, context=None):
+        """ Filter to show only lines from bids received. Group by requisition line instead of product for unicity
+        """
+        res = super(PurchaseRequisition,self).open_product_line(cr, uid, ids, context=context)
+        ctx = res.setdefault('context',{})
+        if 'search_default_groupby_product' in ctx:
+            del ctx['search_default_groupby_product']
+        if 'search_default_hide_cancelled' in ctx:
+            del ctx['search_default_hide_cancelled']
+        ctx['search_default_groupby_requisitionline'] = True
+        ctx['search_default_showbids'] = True
+        return res
+
+
 class PurchaseRequisitionLine(osv.Model):
     _inherit = "purchase.requisition.line"
     _columns = {
         'remark': fields.text('Remark'),
         'purchase_line_ids' : fields.one2many('purchase.order.line','requisition_line_id','Bids Lines', readonly=True),
     }
+
+    def name_get(self, cr, uid, ids, context=None):
+        lines = self.read(cr, uid, ids, ['product_id','product_qty','schedule_date'],context=context)
+        return [(e['id'],'%s %s %s'%(e['schedule_date'],e['product_qty'],e['product_id'][1])) for e in lines]
+
+
 
