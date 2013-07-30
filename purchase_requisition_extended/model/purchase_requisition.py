@@ -14,7 +14,7 @@ class PurchaseRequisition(osv.Model):
         'state': fields.selection([('draft','Draft'),
                                    ('in_progress','Confirmed'),
                                    ('open','Bids Selection'),
-                                   ('closed','Bids Selected'),
+                                   ('closed','Bids Selected'),  # added
                                    ('done','PO Created'),
                                    ('cancel','Cancelled')],
                                   'Status', track_visibility='onchange', required=True),
@@ -40,12 +40,12 @@ class PurchaseRequisition(osv.Model):
                                            'Delivery Address'),
         'req_incoterm_id': fields.many2one(
             'stock.incoterms',
-            'Requested Incoterm',
+            'Requested Incoterms',
             help="Default value requested to the supplier. "
                  "International Commercial Terms are a series of predefined "
                  "commercial terms used in international transactions."),
         'req_incoterm_address': fields.char(
-            'Requested Incoterm Place',
+            'Requested Incoterms Place',
             help="Incoterm Place of Delivery. "
                  "International Commercial Terms are a series of "
                  "predefined commercial terms used in "
