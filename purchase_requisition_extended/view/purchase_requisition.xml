@@ -13,6 +13,9 @@
                     <attribute name="states">closed</attribute>
                     <attribute name="string">Generate PO</attribute>
                 </xpath>
+                <xpath expr="//sheet//button[@name='open_product_line']" position="attributes">
+                    <attribute name="attrs">{'invisible': ['|', ('state', 'not in', ('open','closed','done')), ('exclusive', '=', 'exclusive')]}</attribute>
+                </xpath>
                 <xpath expr="//sheet//button[@name='open_product_line']" position="after">
                     <button name="open_po" type="object" string="View Generated PO" states="open,closed,done"/>
                 </xpath>

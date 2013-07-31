@@ -65,6 +65,7 @@ bid lines and group then properly.
           "view/purchase_order.xml",
           "workflow/purchase_requisition.xml",
           "wizard/modal.xml",
+          "data/purchase.cancelreason.csv",
           ],
  "js": [
         "static/src/js/web_addons.js",

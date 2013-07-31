@@ -81,7 +81,7 @@ class purchase_order_line(osv.Model):
         for line in callforbids.line_ids:
             qty = line.product_qty
             for pol in line.purchase_line_ids:
-                qty -= pol.qantity_bid  # FIXME: float rounding issue
+                qty -= pol.quantity_bid  # FIXME: float rounding issue
             if qty != 0:
                 valid = False
         if valid:

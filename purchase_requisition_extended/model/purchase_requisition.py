@@ -132,7 +132,7 @@ class PurchaseRequisition(osv.Model):
 
     def cancel_quotation(self, cr, uid, tender, context=None):
         """
-        Called from generate_po. Cancell only draft and sent rfq
+        Called from generate_po. Cancel only draft and sent rfq
         """
         po = self.pool.get('purchase.order')
         wf_service = netsvc.LocalService("workflow")
@@ -143,30 +143,46 @@ class PurchaseRequisition(osv.Model):
         return True
 
     def tender_open(self, cr, uid, ids, context=None):
-        # Cancel all RFQs that have not been sent
-        purchase_order_obj = self.pool.get('purchase.order')
+        """
+        Cancel RFQ that have not been sent. Ensure that there are RFQs."
+        """
+        cancel_ids = []
+        rfq_valid = False
         for callforbids in self.browse(cr, uid, ids, context=context):
             for purchase in callforbids.purchase_ids:
                 if purchase.state == 'draft':
-                    purchase_order_obj.action_cancel(cr,uid,[purchase.id])
-                    #purchase_order_obj.message_post(cr, uid, [purchase.id], body=_('This RFQ has been cancelled.'), subtype="mail.mt_comment", context=context)
+                    cancel_ids.append(purchase.id)
+                elif purchase.state != 'cancel':
+                    rfq_valid = True
+        if cancel_ids:
+            reason_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'purchase_extended', 'purchase_cancelreason_rfq_cancelled')[1]
+            purchase_order_obj = self.pool.get('purchase.order')
+            purchase_order_obj.write(cr, uid, cancel_ids, {'cancel_reason':reason_id}, context=context)
+            purchase_order_obj.action_cancel(cr,uid,cancel_ids,context=context)
+        if not rfq_valid:
+            raise osv.except_osv(
+                        _('Error'),
+                        _('You do not have valid sent RFQs.'))
         return super(PurchaseRequisition,self).tender_open(cr, uid, ids, context=context)
 
     def tender_cancel(self, cr, uid, ids, context=None):
         """
-        Try to cancell all RFQs
+        Try to cancel all RFQs
         """
-        purchase_order_obj = self.pool.get('purchase.order')
+        cancel_ids = []
         for callforbids in self.browse(cr, uid, ids, context=context):
             for purchase in callforbids.purchase_ids:
                 if (purchase.state in ('draft', 'sent')):
-                    purchase_order_obj.action_cancel(cr,uid,[purchase.id])
-                    #purchase_order_obj.message_post(cr, uid, [purchase.id], body=_('This RFQ has been cancelled.'), subtype="mail.mt_comment", context=context)
+                    cancel_ids.append(purchase.id)
                 else:
                     raise osv.except_osv(
-                        _('Warning'),
-                        _('You cannot cancel a tender which has '
-                          'already received bids.'))
+                        _('Error'),
+                        _('You cannot cancel a call for bids which has already received bids.'))
+        if cancel_ids:
+            reason_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'purchase_requisition', 'purchase_cancelreason_callforbids_cancelled')[1]
+            purchase_order_obj = self.pool.get('purchase.order')
+            purchase_order_obj.write(cr, uid, cancel_ids, {'cancel_reason':reason_id}, context=context)
+            purchase_order_obj.action_cancel(cr,uid,[purchase.id])
         return self.write(cr, uid, ids, {'state': 'cancel'})
 
     def tender_close(self, cr, uid, ids, context=None):
