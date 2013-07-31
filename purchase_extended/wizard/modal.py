@@ -1,6 +1,6 @@
 from osv import fields,osv
 
-class action_modal_datetime(osv.TransientModel):
+class action_modal(osv.TransientModel):
     _name = "purchase.action_modal"
     _columns = {}
     def action(self, cr, uid, ids, context):

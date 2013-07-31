@@ -1,0 +1,7 @@
+id,type,name,nounlink
+purchase_cancelreason_rfq_cancelled,rfq,RFQ cancelled,1
+purchase_cancelreason_bid_regretfromsupplier,rfq,Regret from supplier,0
+purchase_cancelreason_bid_noreply,rfq,No reply,0
+purchase_cancelreason_bid_latereply,rfq,Late reply,0
+purchase_cancelreason_bid_bidnotselected,rfq,Bid not selected,0
+purchase_cancelreason_purchase_cancelled,purchase,PO cancelled,1

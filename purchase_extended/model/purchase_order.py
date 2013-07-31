@@ -31,21 +31,21 @@ class PurchaseOrder(osv.Model):
                  "International Commercial Terms are a series of "
                  "predefined commercial terms used in "
                  "international transactions."),
-        'cancel_reason': fields.many2one('purchase.cancelreason', 'Reason for Cancellation', readonly=True),
+        'cancel_reason_id': fields.many2one('purchase.cancelreason', 'Reason for Cancellation', readonly=True),
     }
     _defaults = {
         'state': lambda self, cr, uid, context: 'draftpo' if context.get('draft_po') else 'draft',
         'type': lambda self, cr, uid, context: 'purchase' if context.get('draft_po') else 'rfq',
     }
 
-    def create(self, cr, user, vals, context=None):
+    def create(self, cr, uid, vals, context=None):
         # Document can be created as Draft RFQ or Draft PO. We need to log the right message.
         if context is None:
             context={}
         description = self._description
         if not context.get('draft_po'):
             self._description = 'Request for Quotation'
-        id = super(PurchaseOrder,self).create(cr, user, vals, context=context)
+        id = super(PurchaseOrder,self).create(cr, uid, vals, context=context)
         self._description = description
         if context.get('draft_po'):
             wf_service = netsvc.LocalService("workflow")
@@ -53,18 +53,35 @@ class PurchaseOrder(osv.Model):
         return id
     #TODO: copy : reset price to 0
 
-    #def encode_bid(self, cr, uid, ids, context=None):
-    #    return self.write(cr, uid, ids, {'bid_encoded': True}, context=context)
-    #def action_cancel_draft(self, cr, uid, ids, context=None):
-    #    super(purchase_order,self).action_cancel_draft(cr, uid, ids, context=context)
-    #    return self.write(cr, uid, ids, {'bid_encoded': False}, context=context)
-
     def wkf_draft_po(self, cr, uid, ids, context=None):
         #for element in self.browse(cr, uid, ids, context=context):
         #    if not element.state not in ('draft','draftpo'):
         #        raise osv.except_osv(_('Warning!'), _('You cannot convert a RFQ to a PO while bid has not been encoded.'))
         self.message_post(cr, uid, ids, body=_("Converted to draft Purchase Order"), subtype="mail.mt_comment", context=context)
         return self.write(cr, uid, ids, {'state': 'draftpo', 'type': 'purchase'}, context=context)
+
+    def action_cancel(self, cr, uid, ids, context=None):
+        """ Ask a cancel reason
+        """
+        if context is None:
+            context = {}
+        context['action'] = 'action_cancel_ok'
+        view_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'purchase_extended', 'action_modal_cancel_reason')[1]
+        #TODO: filter based on po type
+        return {
+            'type': 'ir.actions.act_window',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'purchase.action_modal_cancelreason',
+            'view_id': view_id,
+            'views': [(view_id, 'form')],
+            'target': 'new',
+            'context': context,
+        }
+    def action_cancel_ok(self, cr, uid, ids, context=None):
+        reason_id = self.pool.get('purchase.action_modal_cancelreason').read(cr, uid, context['active_id'], ['reason_id'], context=context, load='_classic_write')['reason_id']
+        self.write(cr, uid, ids, {'cancel_reason_id':reason_id}, context=context)
+        return super(PurchaseOrder,self).action_cancel(cr, uid, ids, context=context)
 
     def purchase_cancel(self, cr, uid, ids, context=None):
         """ Ask a cancel reason
@@ -86,7 +103,7 @@ class PurchaseOrder(osv.Model):
         }
     def purchase_cancel_ok(self, cr, uid, ids, context=None):
         reason_id = self.pool.get('purchase.action_modal_cancelreason').read(cr, uid, context['active_id'], ['reason_id'], context=context, load='_classic_write')['reason_id']
-        self.write(cr, uid, ids, {'cancel_reason':reason_id}, context=context)
+        self.write(cr, uid, ids, {'cancel_reason_id':reason_id}, context=context)
         for id in ids:
             wf_service = netsvc.LocalService("workflow")
             wf_service.trg_validate(uid, 'purchase.order', id, 'purchase_cancel', cr)
