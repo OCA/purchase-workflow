@@ -56,7 +56,7 @@ class purchase_delivery_term_line(orm.Model):
         'term_id': fields.many2one('purchase.delivery.term', 'Term'),
         'quantity_perc': fields.float('Quantity percentage',
             required=True, help="For 20% set '0.2'",
-            digits_compute=dp.get_precision('Payment Term')),
+            digits_compute=dp.get_precision('Purchase Delivery Term')),
         'delay': fields.float('Delivery Lead Time', required=True,
             help="Number of days between the order confirmation and the shipping of the products from the supplier"),
         }
