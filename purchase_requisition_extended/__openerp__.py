@@ -35,9 +35,9 @@ First, a list of products is established. The call for bid is then confirmed
 and RFQs can be generated. They are in the state 'Draft RFQ' until it is send
 to the supplier and marked as 'RFQ Sent'. The bids has to be encoded and moved
 to state 'Bid Encoded'. When closing the call for bids in order to start the
-bids selection, all RFQ that have not been sent will be cancelled. However,
+bids selection, all RFQ that have not been sent will be canceled. However,
 send RFQs can still be encoded. Bids that are not received will remain in state
-'RFQ Sent' and can be manually cancelled.
+'RFQ Sent' and can be manually canceled.
 
 Afterwards, the bids selection can be started by choosing product lines. The
 workflow has been modified to allow to mark that the selection of bids has

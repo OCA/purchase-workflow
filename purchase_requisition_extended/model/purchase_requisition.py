@@ -17,7 +17,7 @@ class PurchaseRequisition(osv.Model):
                                    ('open','Bids Selection'),
                                    ('closed','Bids Selected'),  # added
                                    ('done','PO Created'),
-                                   ('cancel','Cancelled')],
+                                   ('cancel','Canceled')],
                                   'Status', track_visibility='onchange', required=True),
         'purchase_ids' : fields.one2many('purchase.order','requisition_id','Purchase Orders',
                                          states={'done': [('readonly', True)]},
@@ -152,7 +152,7 @@ class PurchaseRequisition(osv.Model):
         for quotation in tender.purchase_ids:
             if quotation.state in ['draft', 'sent']:
                 wf_service.trg_validate(uid, 'purchase.order', quotation.id, 'purchase_cancel', cr)
-                po.message_post(cr, uid, [quotation.id], body=_('Cancelled by the call for bids associated to this request for quotation.'), context=context)
+                po.message_post(cr, uid, [quotation.id], body=_('Canceled by the call for bids associated to this request for quotation.'), context=context)
         return True
 
     def tender_open(self, cr, uid, ids, context=None):
@@ -168,7 +168,7 @@ class PurchaseRequisition(osv.Model):
                 elif purchase.state != 'cancel':
                     rfq_valid = True
         if cancel_ids:
-            reason_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'purchase_extended', 'purchase_cancelreason_rfq_cancelled')[1]
+            reason_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'purchase_extended', 'purchase_cancelreason_rfq_canceled')[1]
             purchase_order_obj = self.pool.get('purchase.order')
             purchase_order_obj.write(cr, uid, cancel_ids, {'cancel_reason':reason_id}, context=context)
             purchase_order_obj.action_cancel(cr,uid,cancel_ids,context=context)
@@ -192,7 +192,7 @@ class PurchaseRequisition(osv.Model):
                         _('Error'),
                         _('You cannot cancel a call for bids which has already received bids.'))
         if cancel_ids:
-            reason_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'purchase_requisition', 'purchase_cancelreason_callforbids_cancelled')[1]
+            reason_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'purchase_requisition', 'purchase_cancelreason_callforbids_canceled')[1]
             purchase_order_obj = self.pool.get('purchase.order')
             purchase_order_obj.write(cr, uid, cancel_ids, {'cancel_reason':reason_id}, context=context)
             purchase_order_obj.action_cancel(cr,uid,[purchase.id])
