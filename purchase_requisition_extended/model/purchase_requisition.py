@@ -249,5 +249,11 @@ class PurchaseRequisitionLine(osv.Model):
     }
 
     def name_get(self, cr, uid, ids, context=None):
-        lines = self.read(cr, uid, ids, ['product_id', 'product_qty', 'schedule_date'], context=context)
-        return [(e['id'], '%s %s %s' % (e['schedule_date'], e['product_qty'], e['product_id'][1])) for e in lines]
+        res = []
+        for line in self.read(cr, uid, ids, ['product_id', 'product_qty', 'schedule_date'], context=context):
+            name = ""
+            if line['schedule_date']:
+                name += '%s ' % line['schedule_date']
+            name += '%s %s' % (line['product_qty'], line['product_id'][1])
+            res.append((line['id'], name))
+        return res
