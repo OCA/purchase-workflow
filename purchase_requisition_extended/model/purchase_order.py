@@ -65,10 +65,11 @@ class purchase_order(osv.Model):
         })
         return values
 
+
 class purchase_order_line(osv.Model):
     _inherit = 'purchase.order.line'
     _columns = {
-        'requisition_line_id': fields.many2one('purchase.requisition.line','Call for Bid Line', readonly=True),
+        'requisition_line_id': fields.many2one('purchase.requisition.line', 'Call for Bid Line', readonly=True),
     }
 
     def close_callforbids(self, cr, uid, active_id, context=None):
@@ -88,7 +89,8 @@ class purchase_order_line(osv.Model):
             return self.close_callforbids_ok(cr, id, ids, context=context)
         context['action'] = 'close_callforbids_ok'
         context['active_model'] = self._name
-        view_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'purchase_requisition_extended', 'action_modal_close_callforbids')[1]
+        view_id = self.pool.get('ir.model.data').get_object_reference(cr, uid,
+                    'purchase_requisition_extended', 'action_modal_close_callforbids')[1]
         return {
             'type': 'ir.actions.act_window',
             'view_type': 'form',
@@ -99,6 +101,7 @@ class purchase_order_line(osv.Model):
             'target': 'new',
             'context': context,
         }
+
     def close_callforbids_ok(self, cr, uid, ids, context=None):
         wf_service = netsvc.LocalService("workflow")
         for id in ids:

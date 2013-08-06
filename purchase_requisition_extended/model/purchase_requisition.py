@@ -12,16 +12,16 @@ class PurchaseRequisition(osv.Model):
     _description = "Call for Bids"
     _columns = {
         # modified
-        'state': fields.selection([('draft','Draft'),
-                                   ('in_progress','Confirmed'),
-                                   ('open','Bids Selection'),
-                                   ('closed','Bids Selected'),  # added
-                                   ('done','PO Created'),
-                                   ('cancel','Canceled')],
+        'state': fields.selection([('draft', 'Draft'),
+                                   ('in_progress', 'Confirmed'),
+                                   ('open', 'Bids Selection'),
+                                   ('closed', 'Bids Selected'),  # added
+                                   ('done', 'PO Created'),
+                                   ('cancel', 'Canceled')],
                                   'Status', track_visibility='onchange', required=True),
-        'purchase_ids' : fields.one2many('purchase.order','requisition_id','Purchase Orders',
+        'purchase_ids': fields.one2many('purchase.order', 'requisition_id', 'Purchase Orders',
                                          states={'done': [('readonly', True)]},
-                                         domain=[('type','in',('rfq','bid'))]),
+                                         domain=[('type', 'in', ('rfq', 'bid'))]),
         # new
         'req_validity': fields.date("Requested Bid's End of Validity",
                                     help="Default value requested to "
@@ -152,7 +152,10 @@ class PurchaseRequisition(osv.Model):
         for quotation in tender.purchase_ids:
             if quotation.state in ['draft', 'sent']:
                 wf_service.trg_validate(uid, 'purchase.order', quotation.id, 'purchase_cancel', cr)
-                po.message_post(cr, uid, [quotation.id], body=_('Canceled by the call for bids associated to this request for quotation.'), context=context)
+                po.message_post(cr, uid, [quotation.id],
+                        body=_('Canceled by the call for bids associated to this request for quotation.'),
+                        context=context)
+
         return True
 
     def tender_open(self, cr, uid, ids, context=None):
@@ -168,15 +171,16 @@ class PurchaseRequisition(osv.Model):
                 elif purchase.state != 'cancel':
                     rfq_valid = True
         if cancel_ids:
-            reason_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'purchase_extended', 'purchase_cancelreason_rfq_canceled')[1]
+            reason_id = self.pool.get('ir.model.data').get_object_reference(cr, uid,
+                            'purchase_extended', 'purchase_cancelreason_rfq_canceled')[1]
             purchase_order_obj = self.pool.get('purchase.order')
-            purchase_order_obj.write(cr, uid, cancel_ids, {'cancel_reason':reason_id}, context=context)
-            purchase_order_obj.action_cancel(cr,uid,cancel_ids,context=context)
+            purchase_order_obj.write(cr, uid, cancel_ids, {'cancel_reason': reason_id}, context=context)
+            purchase_order_obj.action_cancel(cr, uid, cancel_ids, context=context)
         if not rfq_valid:
             raise orm.except_orm(
                         _('Error'),
                         _('You do not have valid sent RFQs.'))
-        return super(PurchaseRequisition,self).tender_open(cr, uid, ids, context=context)
+        return super(PurchaseRequisition, self).tender_open(cr, uid, ids, context=context)
 
     def tender_cancel(self, cr, uid, ids, context=None):
         """
@@ -192,14 +196,16 @@ class PurchaseRequisition(osv.Model):
                         _('Error'),
                         _('You cannot cancel a call for bids which has already received bids.'))
         if cancel_ids:
-            reason_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'purchase_requisition', 'purchase_cancelreason_callforbids_canceled')[1]
+            reason_id = self.pool.get('ir.model.data').get_object_reference(cr, uid,
+                            'purchase_requisition', 'purchase_cancelreason_callforbids_canceled')[1]
+
             purchase_order_obj = self.pool.get('purchase.order')
-            purchase_order_obj.write(cr, uid, cancel_ids, {'cancel_reason':reason_id}, context=context)
-            purchase_order_obj.action_cancel(cr,uid,[purchase.id])
+            purchase_order_obj.write(cr, uid, cancel_ids, {'cancel_reason': reason_id}, context=context)
+            purchase_order_obj.action_cancel(cr, uid, [purchase.id])
         return self.write(cr, uid, ids, {'state': 'cancel'})
 
     def tender_close(self, cr, uid, ids, context=None):
-        return self.write(cr, uid, ids, {'state':'closed'} ,context=context)
+        return self.write(cr, uid, ids, {'state': 'closed'}, context=context)
 
     def open_rfq(self, cr, uid, ids, context=None):
         """
@@ -207,8 +213,8 @@ class PurchaseRequisition(osv.Model):
         """
         if context is None:
             context = {}
-        res = self.pool.get('ir.actions.act_window').for_xml_id(cr, uid ,'purchase','purchase_rfq', context=context)
-        res['domain'] = expression.AND([eval(res.get('domain',[])),[('requisition_id','in', ids)]])
+        res = self.pool.get('ir.actions.act_window').for_xml_id(cr, uid, 'purchase', 'purchase_rfq', context=context)
+        res['domain'] = expression.AND([eval(res.get('domain', [])), [('requisition_id', 'in', ids)]])
         return res
 
     def open_po(self, cr, uid, ids, context=None):
@@ -217,15 +223,15 @@ class PurchaseRequisition(osv.Model):
         """
         if context is None:
             context = {}
-        res = self.pool.get('ir.actions.act_window').for_xml_id(cr, uid ,'purchase','purchase_form_action', context=context)
-        res['domain'] = expression.AND([eval(res.get('domain',[])),[('requisition_id','in', ids)]])
+        res = self.pool.get('ir.actions.act_window').for_xml_id(cr, uid, 'purchase', 'purchase_form_action', context=context)
+        res['domain'] = expression.AND([eval(res.get('domain', [])), [('requisition_id', 'in', ids)]])
         return res
 
     def open_product_line(self, cr, uid, ids, context=None):
         """ Filter to show only lines from bids received. Group by requisition line instead of product for unicity
         """
-        res = super(PurchaseRequisition,self).open_product_line(cr, uid, ids, context=context)
-        ctx = res.setdefault('context',{})
+        res = super(PurchaseRequisition, self).open_product_line(cr, uid, ids, context=context)
+        ctx = res.setdefault('context', {})
         if 'search_default_groupby_product' in ctx:
             del ctx['search_default_groupby_product']
         if 'search_default_hide_cancelled' in ctx:
@@ -239,12 +245,9 @@ class PurchaseRequisitionLine(osv.Model):
     _inherit = "purchase.requisition.line"
     _columns = {
         'remark': fields.text('Remark'),
-        'purchase_line_ids' : fields.one2many('purchase.order.line','requisition_line_id','Bids Lines', readonly=True),
+        'purchase_line_ids': fields.one2many('purchase.order.line', 'requisition_line_id', 'Bids Lines', readonly=True),
     }
 
     def name_get(self, cr, uid, ids, context=None):
-        lines = self.read(cr, uid, ids, ['product_id','product_qty','schedule_date'],context=context)
-        return [(e['id'],'%s %s %s'%(e['schedule_date'],e['product_qty'],e['product_id'][1])) for e in lines]
-
-
-
+        lines = self.read(cr, uid, ids, ['product_id', 'product_qty', 'schedule_date'], context=context)
+        return [(e['id'], '%s %s %s' % (e['schedule_date'], e['product_qty'], e['product_id'][1])) for e in lines]
