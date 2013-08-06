@@ -19,7 +19,7 @@ class PurchaseOrder(osv.Model):
         ('except_picking', 'Shipping Exception'),
         ('except_invoice', 'Invoice Exception'),
         ('done', 'Done'),
-        ('cancel', 'Cancelled')
+        ('cancel', 'Canceled')
     ]
 
     _columns = {
@@ -124,7 +124,7 @@ class PurchaseOrder(osv.Model):
                 message = _("Bid")
             else:
                 message = self._description
-            message += " " + _("cancelled")
+            message += " " + _("canceled")
             self.message_post(cr, uid, [element.id], body=message, subtype="mail.mt_comment", context=context)
         return super(PurchaseOrder,self).wkf_action_cancel(cr, uid, ids, context=context)
     def bid_received(self, cr, uid, ids, context=None):

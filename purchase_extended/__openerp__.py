@@ -32,7 +32,7 @@ In standard, RFQs, Bids and PO are all the same object.  The purchase workflow
 has been improved with a new 'Draft PO' state to clearly differentiate the
 RFQ->Bid workflow and the PO workflow. A type field has also been added to
 identify if a document is of type 'rfq' or 'purchase'. This is particularly
-usefull for cancelled state and for datawarehouse.
+usefull for canceled state and for datawarehouse.
 
 The 'Requests for Quotation' menu entry shows only documents of type 'rfq' and
 the new documents are created in state 'Draft RFQ'. Those documents have lines
