@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from openerp.osv import fields, osv
+from openerp.osv import fields, osv, orm
 import openerp.osv.expression as expression
 from openerp.tools.safe_eval import safe_eval as eval
 from openerp.tools.translate import _
@@ -68,7 +68,7 @@ class PurchaseRequisition(osv.Model):
         """
         for callforbids in self.browse(cr, uid, ids, context=context):
             if not callforbids.line_ids:
-                raise osv.except_osv(
+                raise orm.except_orm(
                         _('Error!'),
                         _('You have to define some products before confirming the call for bids.'))
         return True
@@ -173,7 +173,7 @@ class PurchaseRequisition(osv.Model):
             purchase_order_obj.write(cr, uid, cancel_ids, {'cancel_reason':reason_id}, context=context)
             purchase_order_obj.action_cancel(cr,uid,cancel_ids,context=context)
         if not rfq_valid:
-            raise osv.except_osv(
+            raise orm.except_orm(
                         _('Error'),
                         _('You do not have valid sent RFQs.'))
         return super(PurchaseRequisition,self).tender_open(cr, uid, ids, context=context)
@@ -188,7 +188,7 @@ class PurchaseRequisition(osv.Model):
                 if (purchase.state in ('draft', 'sent')):
                     cancel_ids.append(purchase.id)
                 else:
-                    raise osv.except_osv(
+                    raise orm.except_orm(
                         _('Error'),
                         _('You cannot cancel a call for bids which has already received bids.'))
         if cancel_ids:
