@@ -19,5 +19,5 @@ class purchase_cancel(osv.Model):
             if not value['nounlink']:
                 unlink_ids.append(value['id'])
         if unlink_ids:
-            return super(purchase_cancel,self).unlink(cr, uid, ids, context=context)
+            return super(purchase_cancel,self).unlink(cr, uid, unlink_ids, context=context)
         return True
