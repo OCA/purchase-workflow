@@ -11,6 +11,7 @@ class PurchaseOrder(osv.Model):
     STATE_SELECTION = [
         ('draft', 'Draft RFQ'),
         ('sent', 'RFQ Sent'),
+        ('draftbid', 'Draft Bid'),  # added
         ('bid', 'Bid Encoded'),  # Bid Received renamed into Bid Encoded
         ('draftpo', 'Draft PO'),  # added
         ('confirmed', 'Waiting Approval'),
@@ -23,7 +24,7 @@ class PurchaseOrder(osv.Model):
 
     _columns = {
         'state': fields.selection(STATE_SELECTION, 'Status', readonly=True, help="The status of the purchase order or the quotation request. A quotation is a purchase order in a 'Draft' status. Then the order has to be confirmed by the user, the status switch to 'Confirmed'. Then the supplier must confirm the order to change the status to 'Approved'. When the purchase order is paid and received, the status becomes 'Done'. If a cancel action occurs in the invoice or in the reception of goods, the status becomes in exception.", select=True),
-        'type': fields.selection([('rfq','RFQ/Bid'),('purchase','Purchase Order')], required=True, readonly=True),
+        'type': fields.selection([('rfq','Request for Quotation'),('bid','Bid'),('purchase','Purchase Order')], 'Type', required=True, readonly=True),
         'consignee_id': fields.many2one('res.partner', 'Consignee', help="the person to whom the shipment is to be delivered"),
         'incoterm_address': fields.char(
             'Incoterms Place',
@@ -35,7 +36,9 @@ class PurchaseOrder(osv.Model):
     }
     _defaults = {
         'state': lambda self, cr, uid, context: 'draftpo' if context.get('draft_po') else 'draft',
-        'type': lambda self, cr, uid, context: 'purchase' if context.get('draft_po') else 'rfq',
+        'type': lambda self, cr, uid, context: 'purchase' if context.get('draft_po')
+                                          else 'bid' if context.get('draft_bid')
+                                          else 'rfq',
     }
 
     def create(self, cr, uid, vals, context=None):
@@ -43,10 +46,15 @@ class PurchaseOrder(osv.Model):
         if context is None:
             context={}
         description = self._description
-        if not context.get('draft_po'):
+        if context.get('draft_bid'):
+            self._description = 'Draft Bid'
+        elif not context.get('draft_po'):
             self._description = 'Request for Quotation'
         id = super(PurchaseOrder,self).create(cr, uid, vals, context=context)
         self._description = description
+        if context.get('draft_bid'):
+            wf_service = netsvc.LocalService("workflow")
+            wf_service.trg_validate(uid, 'purchase.order', id, 'draft_bid', cr)
         if context.get('draft_po'):
             wf_service = netsvc.LocalService("workflow")
             wf_service.trg_validate(uid, 'purchase.order', id, 'draft_po', cr)
@@ -143,14 +151,13 @@ class PurchaseOrder(osv.Model):
         # TODO: send warning if not all lines have a price
         value = self.pool.get('purchase.action_modal_datetime').read(cr, uid, context['active_id'], ['datetime'], context=context)['datetime']
         self.write(cr, uid, ids, {'bid_date':value}, context=context)
-        self.message_post(cr, uid, [id], body=_("Bid received and encoded"), subtype="mail.mt_comment", context=context)
+        self.message_post(cr, uid, ids, body=_("Bid received and encoded"), subtype="mail.mt_comment", context=context)
         for id in ids:
             wf_service = netsvc.LocalService("workflow")
             wf_service.trg_validate(uid, 'purchase.order', id, 'bid_received', cr)
         return {}
     def wkf_bid_received(self, cr, uid, ids, context=None):
-        return self.write(cr, uid, ids, {'state':'bid'}, context=context)
-
+        return self.write(cr, uid, ids, {'state':'bid','type':'bid'}, context=context)
 
     def _has_lines(self, cr, uid, ids, context=None):
         for rfq in self.browse(cr, uid, ids, context=context):

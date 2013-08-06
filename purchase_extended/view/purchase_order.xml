@@ -6,6 +6,12 @@
             <field name="model">purchase.order</field>
             <field name="inherit_id" ref="purchase.purchase_order_form"/>
             <field name="arch" type="xml">
+                <xpath expr="//sheet/div[@class='oe_title']/h1/label[@string='Request for Quotation ']" position="replace"/>
+                <xpath expr="//sheet/div[@class='oe_title']/h1/label[@string='Purchase Order ']" position="replace"/>
+                <xpath expr="//sheet/div[@class='oe_title']/h1/field[@name='name']" position="before">
+                    <field name="type" nolabel="1" class="oe_inline"/>
+                    <label string=" "/>
+                </xpath>
                 <xpath expr="//sheet/div[@class='oe_title']/h1" position="after">
                     <h2 attrs="{'invisible': [('state', '!=', 'cancel')]}">
                         <label for="cancel_reason_id" string="Reason for Cancellation:"/>
@@ -21,6 +27,7 @@
                 <xpath expr="//button[@name='bid_received']" position="attributes">
                     <attribute name="string">Bid Encoded</attribute>
                     <attribute name="type">object</attribute>
+                    <attribute name="states">sent,draftbid</attribute>
                 </xpath>
                 <xpath expr="//button[@id='bid_confirm']" position="attributes">
                     <attribute name="states">draftpo</attribute>
@@ -42,9 +49,7 @@
                 </field>
                 <button name="purchase_cancel" position="attributes">
                     <attribute name="type">object</attribute>
-                </button>
-                <button name="action_cancel" position="attributes">
-                    <attribute name="states">approved,draftpo,except_picking,except_invoice</attribute>
+                    <attribute name="states">draft,sent,draftbid,bid,draftpo,confirmed</attribute>
                 </button>
                 <xpath expr="//button[@name='purchase_confirm']" position="after">
                     <button name="draft_po" states="draft" string="Convert to PO" attrs="{'invisible': ['|', ('requisition_id','!=',False)]}"/>
@@ -53,7 +58,7 @@
             </field>
         </record>
         <record id="purchase.purchase_rfq" model="ir.actions.act_window">
-            <field name="domain">[('type','=','rfq')]</field>
+            <field name="domain">[('type','in',('rfq','bid'))]</field>
         </record>
         <record id="purchase.purchase_form_action" model="ir.actions.act_window">
             <field name="context">{'draft_po':True}</field>
