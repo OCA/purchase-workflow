@@ -1,4 +1,5 @@
-from osv import fields,osv
+from osv import fields, osv
+
 
 class action_modal_cancelreason(osv.TransientModel):
     _name = "purchase.action_modal_cancelreason"
