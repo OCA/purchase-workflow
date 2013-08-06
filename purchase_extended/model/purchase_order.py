@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from openerp.osv import fields, osv
+from openerp.osv import fields, osv, orm
 from openerp import netsvc
 from openerp.tools.translate import _
 
@@ -62,9 +62,6 @@ class PurchaseOrder(osv.Model):
     #TODO: copy : reset price to 0
 
     def wkf_draft_po(self, cr, uid, ids, context=None):
-        #for element in self.browse(cr, uid, ids, context=context):
-        #    if not element.state not in ('draft','draftpo'):
-        #        raise osv.except_osv(_('Warning!'), _('You cannot convert a RFQ to a PO while bid has not been encoded.'))
         self.message_post(cr, uid, ids, body=_("Converted to draft Purchase Order"), subtype="mail.mt_comment", context=context)
         return self.write(cr, uid, ids, {'state': 'draftpo', 'type': 'purchase'}, context=context)
 
@@ -166,11 +163,11 @@ class PurchaseOrder(osv.Model):
         return True
     def wkf_send_rfq(self, cr, uid, ids, context=None):
         if not self._has_lines(cr, uid, ids, context=context):
-            raise osv.except_osv(_('Error!'),_('You cannot send a Request for Quotation without any product line.'))
+            raise orm.except_orm(_('Error!'),_('You cannot send a Request for Quotation without any product line.'))
         return super(PurchaseOrder,self).wkf_send_rfq(cr, uid, ids, context=context)
     def print_quotation(self, cr, uid, ids, context=None):
         if not self._has_lines(cr, uid, ids, context=context):
-            raise osv.except_osv(_('Error!'),_('You cannot print a Request for Quotation without any product line.'))
+            raise orm.except_orm(_('Error!'),_('You cannot print a Request for Quotation without any product line.'))
         self.message_post(cr, uid, ids, body=_("Request for Quotation printed"), subtype="mail.mt_comment", context=context)
         return super(PurchaseOrder,self).print_quotation(cr, uid, ids, context=context)
 
@@ -201,7 +198,7 @@ class PurchaseOrder(osv.Model):
         value['value']['dest_address_id'] = dest_id
         return value
 
-class purchase_order_line(osv.osv):
+class purchase_order_line(osv.Model):
     _inherit = 'purchase.order.line'
 
     def onchange_product_id(self, cr, uid, ids, pricelist_id, product_id, qty, uom_id,
