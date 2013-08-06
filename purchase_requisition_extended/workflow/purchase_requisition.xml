@@ -21,5 +21,10 @@
             <field name="act_to" ref="purchase_requisition.act_open"/>
             <field name="signal">reopen_bid</field>
         </record>
+
+        <!-- Check there are product lines when confirming the Call for Bids -->
+        <record id="purchase_requisition.trans_draft_sent" model="workflow.transition">
+            <field name="condition">_has_product_lines()</field>
+        </record>
     </data>
 </openerp>

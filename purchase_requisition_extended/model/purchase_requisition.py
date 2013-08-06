@@ -9,6 +9,7 @@ from openerp import netsvc
 
 class PurchaseRequisition(osv.Model):
     _inherit = "purchase.requisition"
+    _description = "Call for Bids"
     _columns = {
         # modified
         'state': fields.selection([('draft','Draft'),
@@ -20,7 +21,7 @@ class PurchaseRequisition(osv.Model):
                                   'Status', track_visibility='onchange', required=True),
         'purchase_ids' : fields.one2many('purchase.order','requisition_id','Purchase Orders',
                                          states={'done': [('readonly', True)]},
-                                         domain=[('type','=','rfq')]),
+                                         domain=[('type','in',('rfq','bid'))]),
         # new
         'req_validity': fields.date("Requested Bid's End of Validity",
                                     help="Default value requested to "
@@ -59,6 +60,18 @@ class PurchaseRequisition(osv.Model):
         'bid_receipt_mode': 'open',
         'bid_tendering_mode': 'open',
     }
+
+    def _has_product_lines(self, cr, uid, ids, context=None):
+        """
+        Check there are products lines when confirming Call for Bids.
+        Called from workflow transition draft->sent.
+        """
+        for callforbids in self.browse(cr, uid, ids, context=context):
+            if not callforbids.line_ids:
+                raise osv.except_osv(
+                        _('Error!'),
+                        _('You have to define some products before confirming the call for bids.'))
+        return True
 
     def _prepare_purchase_order(self, cr, uid, requisition, supplier, context=None):
         values = super(PurchaseRequisition, self)._prepare_purchase_order(

@@ -61,10 +61,11 @@ bid lines and group then properly.
              "purchase_extended",  # for field incoterms place
              ],
  "demo": [],
- "data": ["view/purchase_requisition.xml",
+ "data": ["wizard/modal.xml",
+          "wizard/purchase_requisition_partner_view.xml",
+          "view/purchase_requisition.xml",
           "view/purchase_order.xml",
           "workflow/purchase_requisition.xml",
-          "wizard/modal.xml",
           "data/purchase.cancelreason.csv",
           ],
  "js": [

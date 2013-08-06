@@ -19,6 +19,17 @@
                 <xpath expr="//sheet//button[@name='open_product_line']" position="after">
                     <button name="open_po" type="object" string="View Generated PO" states="open,closed,done"/>
                 </xpath>
+                <xpath expr="//field[@name='user_id']" position="after">
+                    <field name="bid_tendering_mode" attrs="{'readonly': [('state','not in',('draft'))]}"/>
+                </xpath>
+                <separator string="Requests for Quotation" position="attributes">
+                    <attribute name="string">Requests for Quotation / Bids</attribute>
+                </separator>
+                <xpath expr="//page[@string='Products']//button[@name='%(purchase_requisition.action_purchase_requisition_partner)d']" position="after">
+                    <button name="%(action_purchase_requisition_partner_draftbid)d" type="action"
+                        string="Encode a Bid" icon="gtk-execute"
+                        attrs="{'invisible': ['|','|',('bid_tendering_mode','=','restricted'),('line_ids','=',[]),('state','!=','in_progress')]}"/>
+                </xpath>
                 <xpath expr="//page[@string='Products']" position="after">
                     <page string="Options">
                         <group>
@@ -30,7 +41,6 @@
                             </group>
                             <group>
                                 <field name="bid_receipt_mode" attrs="{'readonly': [('state','not in',('draft'))]}"/>
-                                <field name="bid_tendering_mode" attrs="{'readonly': [('state','not in',('draft'))]}"/>
                             </group>
                         </group>
                     </page>
