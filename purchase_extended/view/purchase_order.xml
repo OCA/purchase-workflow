@@ -23,6 +23,7 @@
                 </xpath>
                 <xpath expr="//button[@name='action_cancel_draft']" position="attributes">
                     <attribute name="states">cancel,draftpo</attribute>
+                    <attribute name="string">Reset to Draft RFQ</attribute>
                 </xpath>
                 <xpath expr="//button[@name='bid_received']" position="attributes">
                     <attribute name="string">Bid Encoded</attribute>
@@ -52,8 +53,8 @@
                     <attribute name="states">draft,sent,draftbid,bid,draftpo,confirmed</attribute>
                 </button>
                 <xpath expr="//button[@name='purchase_confirm']" position="after">
-                    <button name="draft_po" states="draft" string="Convert to PO" attrs="{'invisible': ['|', ('requisition_id','!=',False)]}"/>
-                    <button name="draft_po" states="bid" string="Convert to PO" class="oe_highlight" attrs="{'invisible': ['|', ('requisition_id','!=',False)]}"/>
+                    <button name="draft_po" states="draft" string="Convert to PO"/>
+                    <button name="draft_po" states="bid" string="Convert to PO" class="oe_highlight"/>
                 </xpath>
             </field>
         </record>

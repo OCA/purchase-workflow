@@ -37,7 +37,7 @@
             <field name="wkf_id" ref="purchase.purchase_order"/>
             <field name="name">draft Bid</field>
             <field name="kind">function</field>
-            <field name="action">write({'state':'draftbid'})</field>
+            <field name="action">write({'state': 'draftbid','type': 'bid'})</field>
         </record>
         <record id="trans_draft_draftbid" model="workflow.transition">
             <field name="act_from" ref="purchase.act_draft"/>

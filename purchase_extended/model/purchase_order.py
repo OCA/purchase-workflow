@@ -3,6 +3,7 @@
 from openerp.osv import fields, osv, orm
 from openerp import netsvc
 from openerp.tools.translate import _
+from openerp import SUPERUSER_ID
 
 
 class PurchaseOrder(osv.Model):
@@ -44,7 +45,9 @@ class PurchaseOrder(osv.Model):
         'cancel_reason_id': fields.many2one('purchase.cancelreason', 'Reason for Cancellation', readonly=True),
     }
     _defaults = {
-        'state': lambda self, cr, uid, context: 'draftpo' if context.get('draft_po') else 'draft',
+        'state': lambda self, cr, uid, context: 'draftpo' if context.get('draft_po')
+                                          else 'draftbid' if context.get('draft_bid')
+                                          else 'draft',
         'type': lambda self, cr, uid, context: 'purchase' if context.get('draft_po')
                                           else 'bid' if context.get('draft_bid')
                                           else 'rfq',
@@ -69,7 +72,12 @@ class PurchaseOrder(osv.Model):
             wf_service.trg_validate(uid, 'purchase.order', id, 'draft_po', cr)
         return id
 
-    #TODO: copy : reset price to 0
+    def copy(self, cr, uid, id, default=None, context=None):
+        newid = super(PurchaseOrder, self).copy(cr, uid, id, default=default, context=context)
+        po = self.read(cr, SUPERUSER_ID, newid, ['type','order_line'], context=context, load='_classic_write')
+        if po['type'] == 'rfq' and po['order_line']:
+            self.pool.get('purchase.order.line').write(cr, SUPERUSER_ID, po['order_line'], {'price_unit': 0}, context=context)
+        return newid
 
     def wkf_draft_po(self, cr, uid, ids, context=None):
         self.message_post(cr, uid, ids, body=_("Converted to draft Purchase Order"), subtype="mail.mt_comment", context=context)
@@ -81,7 +89,7 @@ class PurchaseOrder(osv.Model):
         if context is None:
             context = {}
         context['action'] = 'action_cancel_ok'
-        view_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'purchase_extended', 'action_modal_cancel_reason')[1]
+        view_id = self.pool.get('ir.model.data').get_object_reference(cr, SUPERUSER_ID, 'purchase_extended', 'action_modal_cancel_reason')[1]
         #TODO: filter based on po type
         return {
             'type': 'ir.actions.act_window',
@@ -107,7 +115,7 @@ class PurchaseOrder(osv.Model):
         if context is None:
             context = {}
         context['action'] = 'purchase_cancel_ok'
-        view_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'purchase_extended', 'action_modal_cancel_reason')[1]
+        view_id = self.pool.get('ir.model.data').get_object_reference(cr, SUPERUSER_ID, 'purchase_extended', 'action_modal_cancel_reason')[1]
         #TODO: filter based on po type
         return {
             'type': 'ir.actions.act_window',
@@ -151,7 +159,7 @@ class PurchaseOrder(osv.Model):
             'action': 'bid_received_ok',
             'default_datetime': order['bid_date'] or fields.date.context_today(self, cr, uid, context=context),
         })
-        view_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'purchase_extended', 'action_modal_bid_date')[1]
+        view_id = self.pool.get('ir.model.data').get_object_reference(cr, SUPERUSER_ID, 'purchase_extended', 'action_modal_bid_date')[1]
         return {
             'type': 'ir.actions.act_window',
             'view_type': 'form',
@@ -208,9 +216,6 @@ class PurchaseOrder(osv.Model):
         value['value']['warehouse_id'] = warehouse_id
         return value
 
-    #def onchange_dest_address_id(self, cr, uid, ids, dest_address_id):
-    #    return super(PurchaseOrder, self).onchange_dest_address_id(cr, uid, ids, dest_address_id)
-
     def onchange_warehouse_id(self, cr, uid, ids, warehouse_id, context=None):
         value = super(PurchaseOrder, self).onchange_warehouse_id(cr, uid, ids, warehouse_id)
         if not warehouse_id:
@@ -231,7 +236,5 @@ class purchase_order_line(osv.Model):
                 pricelist_id, product_id, qty, uom_id, partner_id, date_order,
                 fiscal_position_id, date_planned, name, price_unit, state, context)
         if state in ('draft', 'sent'):
-            # need to add an argument which is the state of po, otherwise
-            # impossible to know if we need to return price_unit of zero or not
             res['value'].update({'price_unit': 0})
         return res

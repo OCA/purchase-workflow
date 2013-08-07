@@ -18,7 +18,7 @@
 #
 ##############################################################################
 
-{"name": "IFRC Purchase",
+{"name": "Purchase Extended",
  "version": "0.1",
  "author": "Camptocamp",
  "category": "Purchase Management",
@@ -69,7 +69,11 @@ TODO: describe onchange warehouse
              "security/ir.model.access.csv",
              ],
     "auto_install": False,
-    "test": [],
+    "test": ["test/process/rfq2order.yml",
+             "test/process/bid2order.yml",
+             "test/process/po2order.yml",
+             "test/process/rfq2cancel.yml",
+             ],
     "installable": True,
     "certificate": "",
  }
