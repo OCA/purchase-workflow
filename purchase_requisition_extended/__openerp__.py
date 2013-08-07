@@ -18,7 +18,7 @@
 #
 ##############################################################################
 
-{"name": "IFRC Purchase Requisition",
+{"name": "Purchase Requisition Extended",
  "version": "0.1",
  "author": "Camptocamp",
  "license": "AGPL-3",

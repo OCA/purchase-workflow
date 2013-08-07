@@ -4,6 +4,16 @@
     <record model="ir.ui.view" id="view_purchase_order_form">
         <field name="name">purchase.order.inherit</field>
         <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase_extended.view_purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='draft_po']" position="attributes">
+                <attribute name="attrs">{'invisible': ['|', ('requisition_id','!=',False)]}</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_purchase_order_form2">
+        <field name="name">purchase.order.inherit</field>
+        <field name="model">purchase.order</field>
         <field name="inherit_id" ref="purchase_requisition.purchase_order_form_inherit"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='bid_validity']" position="after">
