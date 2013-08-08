@@ -66,7 +66,7 @@ bid lines and group then properly.
           "view/purchase_requisition.xml",
           "view/purchase_order.xml",
           "workflow/purchase_requisition.xml",
-          "data/purchase.cancelreason.csv",
+          "data/purchase.cancelreason.yml",
           ],
  "js": [
         "static/src/js/web_addons.js",
