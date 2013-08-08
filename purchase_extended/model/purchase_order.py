@@ -115,6 +115,9 @@ class PurchaseOrder(osv.Model):
         if context is None:
             context = {}
         context['action'] = 'purchase_cancel_ok'
+        for e in ('active_model', 'active_ids', 'active_id'):  # those will be set by the web layer unless they are already defined
+            if e in context:
+                del context[e]
         view_id = self.pool.get('ir.model.data').get_object_reference(cr, SUPERUSER_ID, 'purchase_extended', 'action_modal_cancel_reason')[1]
         #TODO: filter based on po type
         return {
@@ -159,6 +162,9 @@ class PurchaseOrder(osv.Model):
             'action': 'bid_received_ok',
             'default_datetime': order['bid_date'] or fields.date.context_today(self, cr, uid, context=context),
         })
+        for e in ('active_model', 'active_ids', 'active_id'):  # those will be set by the web layer unless they are already defined
+            if e in context:
+                del context[e]
         view_id = self.pool.get('ir.model.data').get_object_reference(cr, SUPERUSER_ID, 'purchase_extended', 'action_modal_bid_date')[1]
         return {
             'type': 'ir.actions.act_window',
