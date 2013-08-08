@@ -1,0 +1,30 @@
+-
+  !context {noupdate: True}
+-
+  Creating the cancel reasons
+-
+  !record {model: purchase.cancelreason, id: purchase_cancelreason_rfq_canceled}:
+    name: RFQ canceled
+    type: rfq
+    nounlink: 1
+-
+  !record {model: purchase.cancelreason, id: purchase_cancelreason_bid_regretfromsupplier}:
+    name: Regret from supplier
+    type: rfq
+-
+  !record {model: purchase.cancelreason, id: purchase_cancelreason_bid_noreply}:
+    name: No reply
+    type: rfq
+-
+  !record {model: purchase.cancelreason, id: purchase_cancelreason_bid_latereply}:
+    name: Late reply
+    type: rfq
+-
+  !record {model: purchase.cancelreason, id: purchase_cancelreason_bid_bidnotselected}:
+    name: Bid not selected
+    type: rfq
+-
+  !record {model: purchase.cancelreason, id: purchase_cancelreason_purchase_canceled}:
+    name: PO canceled
+    type: purchase
+    nounlink: 1

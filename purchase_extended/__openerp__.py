@@ -62,7 +62,7 @@ TODO: describe onchange warehouse
     "data": ["view/purchase_order.xml",
              "view/purchase_cancel.xml",
              "data/purchase_order.xml",
-             "data/purchase.cancelreason.csv",
+             "data/purchase.cancelreason.yml",
              "workflow/purchase_order.xml",
              "wizard/modal.xml",
              "wizard/action_cancel_reason.xml",
