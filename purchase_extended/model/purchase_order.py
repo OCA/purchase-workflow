@@ -241,6 +241,9 @@ class purchase_order_line(osv.Model):
         res = super(purchase_order_line, self).onchange_product_id(cr, uid, ids,
                 pricelist_id, product_id, qty, uom_id, partner_id, date_order,
                 fiscal_position_id, date_planned, name, price_unit, state, context)
-        if state in ('draft', 'sent'):
+        if state == 'draft':
             res['value'].update({'price_unit': 0})
+        elif state in ('sent','bid'):
+            if 'price_unit' in res['value']:
+                del res['value']['price_unit']
         return res
