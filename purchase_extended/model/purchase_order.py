@@ -74,7 +74,7 @@ class PurchaseOrder(osv.Model):
 
     def copy(self, cr, uid, id, default=None, context=None):
         newid = super(PurchaseOrder, self).copy(cr, uid, id, default=default, context=context)
-        po = self.read(cr, SUPERUSER_ID, newid, ['type','order_line'], context=context, load='_classic_write')
+        po = self.read(cr, SUPERUSER_ID, newid, ['type', 'order_line'], context=context, load='_classic_write')
         if po['type'] == 'rfq' and po['order_line']:
             self.pool.get('purchase.order.line').write(cr, SUPERUSER_ID, po['order_line'], {'price_unit': 0}, context=context)
         return newid
@@ -114,10 +114,11 @@ class PurchaseOrder(osv.Model):
         """
         if context is None:
             context = {}
-        context['action'] = 'purchase_cancel_ok'
+        ctx = context.copy()
+        ctx['action'] = 'purchase_cancel_ok'
         for e in ('active_model', 'active_ids', 'active_id'):  # those will be set by the web layer unless they are already defined
-            if e in context:
-                del context[e]
+            if e in ctx:
+                del ctx[e]
         view_id = self.pool.get('ir.model.data').get_object_reference(cr, SUPERUSER_ID, 'purchase_extended', 'action_modal_cancel_reason')[1]
         #TODO: filter based on po type
         return {
@@ -128,7 +129,7 @@ class PurchaseOrder(osv.Model):
             'view_id': view_id,
             'views': [(view_id, 'form')],
             'target': 'new',
-            'context': context,
+            'context': ctx,
         }
 
     def purchase_cancel_ok(self, cr, uid, ids, context=None):
@@ -154,17 +155,18 @@ class PurchaseOrder(osv.Model):
         return super(PurchaseOrder, self).wkf_action_cancel(cr, uid, ids, context=context)
 
     def bid_received(self, cr, uid, ids, context=None):
-        assert len(ids) == 1, 'This option should only be used for a single id at a time'
+        assert len(ids) == 1, 'This action should only be used for a single id at a time'
         if context is None:
             context = {}
         order = self.read(cr, uid, ids[0], ['bid_date'], context=context)
-        context.update({
+        ctx = context.copy()
+        ctx.update({
             'action': 'bid_received_ok',
             'default_datetime': order['bid_date'] or fields.date.context_today(self, cr, uid, context=context),
         })
         for e in ('active_model', 'active_ids', 'active_id'):  # those will be set by the web layer unless they are already defined
-            if e in context:
-                del context[e]
+            if e in ctx:
+                del ctx[e]
         view_id = self.pool.get('ir.model.data').get_object_reference(cr, SUPERUSER_ID, 'purchase_extended', 'action_modal_bid_date')[1]
         return {
             'type': 'ir.actions.act_window',
@@ -174,7 +176,7 @@ class PurchaseOrder(osv.Model):
             'view_id': view_id,
             'views': [(view_id, 'form')],
             'target': 'new',
-            'context': context,
+            'context': ctx,
         }
 
     def bid_received_ok(self, cr, uid, ids, context=None):
@@ -243,7 +245,7 @@ class purchase_order_line(osv.Model):
                 fiscal_position_id, date_planned, name, price_unit, state, context)
         if state == 'draft':
             res['value'].update({'price_unit': 0})
-        elif state in ('sent','bid'):
+        elif state in ('sent', 'bid'):
             if 'price_unit' in res['value']:
                 del res['value']['price_unit']
         return res

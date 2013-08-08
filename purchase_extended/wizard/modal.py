@@ -9,10 +9,10 @@ class action_modal(osv.TransientModel):
         for e in ('active_model', 'active_ids', 'action'):
             if e not in context:
                 return False
-        ids2 = context['active_ids']
-        context['active_ids'] = ids
-        context['active_id'] = ids[0]
-        res = getattr(self.pool.get(context['active_model']), context['action'])(cr, uid, ids2, context=context)
+        ctx = context.copy()
+        ctx['active_ids'] = ids
+        ctx['active_id'] = ids[0]
+        res = getattr(self.pool.get(context['active_model']), context['action'])(cr, uid, context['active_ids'], context=ctx)
         if isinstance(res, dict):
             return res
         return {'type': 'ir.actions.act_window_close'}
