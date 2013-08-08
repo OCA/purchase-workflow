@@ -25,6 +25,12 @@
                 <separator string="Requests for Quotation" position="attributes">
                     <attribute name="string">Requests for Quotation / Bids</attribute>
                 </separator>
+                <xpath expr="//page[@string='Products']//button[@name='%(purchase_requisition.action_purchase_requisition_partner)d']" position="attributes">
+                    <attribute name="attrs">{'invisible': ['|','|',('bid_tendering_mode','=','open'),('line_ids','=',[]),('state','!=','in_progress')]}</attribute>
+                </xpath>
+                <xpath expr="//page[@string='Products']//button[@name='open_rfq']" position="attributes">
+                    <attribute name="attrs">{'invisible': ['|',('purchase_ids','=',[]),('state', 'in', ('draft'))]}</attribute>
+                </xpath>
                 <xpath expr="//page[@string='Products']//button[@name='%(purchase_requisition.action_purchase_requisition_partner)d']" position="after">
                     <button name="%(action_purchase_requisition_partner_draftbid)d" type="action"
                         string="Encode a Bid" icon="gtk-execute"

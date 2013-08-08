@@ -6,7 +6,10 @@
         <field name="model">purchase.order</field>
         <field name="inherit_id" ref="purchase_extended.view_purchase_order_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//button[@name='draft_po']" position="attributes">
+            <xpath expr="//button[@name='draft_po'][1]" position="attributes">
+                <attribute name="attrs">{'invisible': ['|', ('requisition_id','!=',False)]}</attribute>
+            </xpath>
+            <xpath expr="//button[@name='draft_po'][2]" position="attributes">
                 <attribute name="attrs">{'invisible': ['|', ('requisition_id','!=',False)]}</attribute>
             </xpath>
         </field>

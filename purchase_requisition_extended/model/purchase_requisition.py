@@ -213,6 +213,7 @@ class PurchaseRequisition(osv.Model):
             context = {}
         res = self.pool.get('ir.actions.act_window').for_xml_id(cr, uid, 'purchase', 'purchase_rfq', context=context)
         res['domain'] = expression.AND([eval(res.get('domain', [])), [('requisition_id', 'in', ids)]])
+        # FIXME: need to disable create - temporarily set as invisible in view
         return res
 
     def open_po(self, cr, uid, ids, context=None):
