@@ -3,6 +3,9 @@
 from openerp.osv import fields, osv
 from openerp.tools.translate import _
 from openerp import netsvc
+from openerp.tools.float_utils import float_is_zero
+import openerp.addons.decimal_precision as dp
+from openerp import SUPERUSER_ID
 
 
 class purchase_order(osv.Model):
@@ -82,8 +85,9 @@ class purchase_order_line(osv.Model):
         for line in callforbids.line_ids:
             qty = line.product_qty
             for pol in line.purchase_line_ids:
-                qty -= pol.quantity_bid  # FIXME: float rounding issue
-            if qty != 0:
+                qty -= pol.quantity_bid
+            precision = self.pool.get('decimal.precision').precision_get(cr, SUPERUSER_ID, 'Product Unit of Measure')
+            if not float_is_zero(qty,precision):
                 valid = False
         if valid:
             return self.close_callforbids_ok(cr, uid, [active_id], context=context)
