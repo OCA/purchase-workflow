@@ -28,8 +28,7 @@ class PurchaseRequisition(osv.Model):
                                          "the supplier."),
         'bid_tendering_mode': fields.selection([('open', 'Open'),
                                                 ('restricted', 'Restricted')],
-                                               'Call for Bids Mode',
-                                               required=True),
+                                               'Call for Bids Mode'),
         'bid_receipt_mode': fields.selection([('open', 'Open'),
                                               ('sealed', 'Sealed')],
                                              'Bid Receipt Mode',
@@ -58,7 +57,6 @@ class PurchaseRequisition(osv.Model):
     }
     _defaults = {
         'bid_receipt_mode': 'open',
-        'bid_tendering_mode': 'open',
     }
 
     def _has_product_lines(self, cr, uid, ids, context=None):

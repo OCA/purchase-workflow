@@ -20,7 +20,7 @@
                     <button name="open_po" type="object" string="View Generated PO" states="open,closed,done"/>
                 </xpath>
                 <xpath expr="//field[@name='user_id']" position="after">
-                    <field name="bid_tendering_mode" attrs="{'readonly': [('state','not in',('draft'))]}"/>
+                    <field name="bid_tendering_mode" attrs="{'readonly': [('state','not in',('draft'))]}" required="1"/>
                 </xpath>
                 <separator string="Requests for Quotation" position="attributes">
                     <attribute name="string">Requests for Quotation / Bids</attribute>
