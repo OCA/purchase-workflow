@@ -86,7 +86,7 @@ class purchase_order_line(osv.Model):
             if qty != 0:
                 valid = False
         if valid:
-            return self.close_callforbids_ok(cr, id, ids, context=context)
+            return self.close_callforbids_ok(cr, uid, [active_id], context=context)
         context['action'] = 'close_callforbids_ok'
         context['active_model'] = self._name
         view_id = self.pool.get('ir.model.data').get_object_reference(cr, uid,
@@ -106,4 +106,4 @@ class purchase_order_line(osv.Model):
         wf_service = netsvc.LocalService("workflow")
         for id in ids:
             wf_service.trg_validate(uid, 'purchase.requisition', id, 'close_bid', cr)
-        return {}
+        return False
