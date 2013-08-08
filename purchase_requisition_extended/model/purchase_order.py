@@ -91,8 +91,9 @@ class purchase_order_line(osv.Model):
                 valid = False
         if valid:
             return self.close_callforbids_ok(cr, uid, [active_id], context=context)
-        context['action'] = 'close_callforbids_ok'
-        context['active_model'] = self._name
+        ctx = context.copy()
+        ctx['action'] = 'close_callforbids_ok'
+        ctx['active_model'] = self._name
         view_id = self.pool.get('ir.model.data').get_object_reference(cr, uid,
                     'purchase_requisition_extended', 'action_modal_close_callforbids')[1]
         return {
@@ -103,7 +104,7 @@ class purchase_order_line(osv.Model):
             'view_id': view_id,
             'views': [(view_id, 'form')],
             'target': 'new',
-            'context': context,
+            'context': ctx,
         }
 
     def close_callforbids_ok(self, cr, uid, ids, context=None):
