@@ -72,8 +72,7 @@ bid lines and group then properly.
         "static/src/js/web_addons.js",
         ],
  "auto_install": False,
- "test": ["test/process/restricted.yml",
-          ],
+ "test": [],
  "installable": True,
  "certificate": "",
  }

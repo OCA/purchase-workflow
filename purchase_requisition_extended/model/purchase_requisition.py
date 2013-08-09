@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
-from openerp.osv import fields, orm
+from openerp.osv import fields, osv, orm
 import openerp.osv.expression as expression
 from openerp.tools.safe_eval import safe_eval as eval
 from openerp.tools.translate import _
 from openerp import netsvc
-from openerp.tools.float_utils import float_compare
 
 
-class PurchaseRequisition(orm.Model):
+class PurchaseRequisition(osv.Model):
     _inherit = "purchase.requisition"
     _description = "Call for Bids"
     _columns = {
@@ -196,7 +195,7 @@ class PurchaseRequisition(orm.Model):
                         _('You cannot cancel a call for bids which has already received bids.'))
         if cancel_ids:
             reason_id = self.pool.get('ir.model.data').get_object_reference(cr, uid,
-                            'purchase_requisition_extended', 'purchase_cancelreason_callforbids_canceled')[1]
+                            'purchase_requisition', 'purchase_cancelreason_callforbids_canceled')[1]
             purchase_order_obj = self.pool.get('purchase.order')
             purchase_order_obj.write(cr, uid, cancel_ids, {'cancel_reason': reason_id}, context=context)
             purchase_order_obj.action_cancel(cr, uid, [purchase.id])
@@ -239,82 +238,8 @@ class PurchaseRequisition(orm.Model):
         ctx['search_default_showbids'] = True
         return res
 
-    def close_callforbids(self, cr, uid, ids, context=None):
-        """
-        Check all quantities have been sourced
-        """
-        # this method is called from a special JS event and ids is
-        # inferred from 'active_ids', in some cases, the webclient send
-        # no ids, so we prevent a crash
-        if not ids:
-            raise orm.except_orm(
-                _('Error'),
-                _('Impossible to proceed due to an error of the system.\n'
-                  'Please reopen the purchase requisition and try again '))
-        if isinstance(ids, (tuple, list)):
-            assert len(ids) == 1, "Only 1 ID expected, got %s" % ids
-            ids = ids[0]
-        purch_req = self.browse(cr, uid, ids, context=context)
-        dp_obj = self.pool.get('decimal.precision')
-        precision = dp_obj.precision_get(cr, uid, 'Product Unit of Measure')
-        too_much = False
-        too_few = False
-        nothing = False
-        for line in purch_req.line_ids:
-            qty = line.product_qty
-            for pol in line.purchase_line_ids:
-                if pol.state == 'confirmed':
-                    qty -= pol.quantity_bid
-            if qty == line.product_qty:
-                nothing = True
-                break
-            compare = float_compare(qty, 0, precision_digits=precision)
-            if compare < 0:
-                too_much = True
-                break
-            elif compare > 0:
-                too_few = True
-                # do not break, maybe a line has too much qty
-                # and should be blocked
 
-        if nothing:
-            raise orm.except_orm(
-                _('Error'),
-                _('Nothing has been selected.'))
-        elif too_much or too_few:
-            # open a dialog to confirm that we want more qty
-            ctx = context.copy()
-            ctx['action'] = 'close_callforbids_ok'
-            ctx['active_model'] = self._name
-
-            get_ref = self.pool.get('ir.model.data').get_object_reference
-            if too_much:
-                view_xmlid = 'action_modal_close_callforbids_too_much'
-            elif too_few:
-                view_xmlid = 'action_modal_close_callforbids_too_few'
-            view_id = get_ref(cr, uid, 'purchase_requisition_extended',
-                              view_xmlid)[1]
-            return {
-                'type': 'ir.actions.act_window',
-                'view_type': 'form',
-                'view_mode': 'form',
-                'res_model': 'purchase.action_modal',
-                'view_id': view_id,
-                'views': [(view_id, 'form')],
-                'target': 'new',
-                'context': ctx,
-            }
-        return self.close_callforbids_ok(cr, uid, [ids], context=context)
-
-    def close_callforbids_ok(self, cr, uid, ids, context=None):
-        wf_service = netsvc.LocalService("workflow")
-        for id in ids:
-            wf_service.trg_validate(uid, 'purchase.requisition',
-                                    id, 'close_bid', cr)
-        return False
-
-
-class PurchaseRequisitionLine(orm.Model):
+class PurchaseRequisitionLine(osv.Model):
     _inherit = "purchase.requisition.line"
     _columns = {
         'remark': fields.text('Remark'),
