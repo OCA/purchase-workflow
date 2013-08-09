@@ -2,8 +2,11 @@
   Standard flow from a new draft PO to a PO.
 -
   Create draft PO
+-  
+  !python {model: purchase.order}: |
+    context.update({'draft_po': 1})
 -
-  !record {model: purchase.order, id: purchase_order_ext_po2order1, context: '{"draft_po": 1}'}:
+  !record {model: purchase.order, id: purchase_order_ext_po2order1}:
     partner_id: base.res_partner_1
     invoice_method: order
     date_order: '2013-08-02'
