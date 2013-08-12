@@ -78,15 +78,29 @@ class purchase_order_line(osv.osv):
         return result
 
     def _landing_cost_order(self, cr, uid, ids, name, args, context):
-        if not ids : return {}
+        if not ids:
+            return {}
+
         result = {}
-        # landed costs for the line
-        for line in self.browse(cr, uid, ids):
+
+        lines = self.browse(cr, uid, ids)
+
+        # Pre-compute total number of pallets
+        pallets_total = 0.0
+        for line in lines:
+            if line.order_id.landed_cost_line_ids:
+                pallets_total += line.nb_pallets
+
+        # Landed costs line by line
+        for line in lines:
             landed_costs = 0.0
             # distribution of landed costs of PO
             if line.order_id.landed_cost_line_ids:
-                landed_costs += line.order_id.landed_cost_base_value / line.order_id.amount_total * line.price_subtotal + \
-                        line.order_id.landed_cost_base_quantity / line.order_id.quantity_total * line.product_qty
+                # Base value (Absolute Value)
+                landed_costs += line.order_id.landed_cost_base_value / line.order_id.amount_total * line.price_subtotal
+
+                # Base quantity (Per Quantity)
+                landed_costs += line.order_id.landed_cost_base_quantity / line.order_id.quantity_total * line.product_qty
             result[line.id] = landed_costs
 
         return result
@@ -183,7 +197,6 @@ class purchase_order(osv.osv):
                          landed_cost_lines += pol.landing_costs
             result[line.id] = landed_cost_lines
         return result
-
 
     _columns = \
         {
