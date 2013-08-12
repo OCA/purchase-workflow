@@ -44,7 +44,6 @@
     'depends': ['purchase' ],
     'update_xml': ['security/ir.model.access.csv',
                    'purchase_view.xml',
-                   'stock_view.xml',
                    ],
     'demo_xml': [],
     'installable': True,

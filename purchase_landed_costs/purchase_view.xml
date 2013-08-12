@@ -61,7 +61,6 @@
       <field name="name">c2c_purchase.order.landed.cost.form.view</field>
       <field name="model">purchase.order</field>
       <field name="inherit_id" ref="purchase.purchase_order_form"/>
-      <field name="type">form</field>
       <field name="arch" type="xml">
        <data>
 <!--
@@ -75,10 +74,10 @@
             </field> 
         <notebook position="inside">
           <page string="Landing Costs" attrs="{'readonly':[('state','=','done')]}">
-            <group colspan="2" col="2"> 
+              <group>
              <field name="quantity_total"/>
-             <field name="landed_cost_base_quantity"/>
-             <field name="landed_cost_base_value"/>
+             <field name="landed_cost_base_quantity" />
+             <field name="landed_cost_base_value" />
            </group>
            <group colspan="2" col="2"> 
               
