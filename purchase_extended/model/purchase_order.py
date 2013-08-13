@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 
-from openerp.osv import fields, osv, orm
+from openerp.osv import fields, orm
 from openerp import netsvc
 from openerp.tools.translate import _
 from openerp import SUPERUSER_ID
 
 
-class PurchaseOrder(osv.Model):
+class PurchaseOrder(orm.Model):
     _inherit = "purchase.order"
 
     STATE_SELECTION = [
@@ -22,6 +22,11 @@ class PurchaseOrder(osv.Model):
         ('done', 'Done'),
         ('cancel', 'Canceled')
     ]
+    TYPE_SELECTION = [
+        ('rfq', 'Request for Quotation'),
+        ('bid', 'Bid'),
+        ('purchase', 'Purchase Order')
+    ]
 
     _columns = {
         'state': fields.selection(STATE_SELECTION, 'Status', readonly=True, select=True,
@@ -32,9 +37,7 @@ class PurchaseOrder(osv.Model):
                  "'Approved'. When the purchase order is paid and received, the "
                  "status becomes 'Done'. If a cancel action occurs in the invoice or "
                  "in the reception of goods, the status becomes in exception."),
-
-        'type': fields.selection([('rfq', 'Request for Quotation'), ('bid', 'Bid'), ('purchase', 'Purchase Order')],
-                                 'Type', required=True, readonly=True),
+        'type': fields.selection(TYPE_SELECTION, 'Type', required=True, readonly=True),
         'consignee_id': fields.many2one('res.partner', 'Consignee', help="the person to whom the shipment is to be delivered"),
         'incoterm_address': fields.char(
             'Incoterms Place',
@@ -234,7 +237,7 @@ class PurchaseOrder(osv.Model):
         return value
 
 
-class purchase_order_line(osv.Model):
+class purchase_order_line(orm.Model):
     _inherit = 'purchase.order.line'
 
     def onchange_product_id(self, cr, uid, ids, pricelist_id, product_id, qty, uom_id,
