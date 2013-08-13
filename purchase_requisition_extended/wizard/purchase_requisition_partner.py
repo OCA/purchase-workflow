@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-from openerp.osv import fields, osv
+from openerp.osv import fields, orm
 from openerp.tools.translate import _
 
 
-class purchase_requisition_partner(osv.TransientModel):
+class purchase_requisition_partner(orm.TransientModel):
     _inherit = "purchase.requisition.partner"
 
     def create_order(self, cr, uid, ids, context=None):
