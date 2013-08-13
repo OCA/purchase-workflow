@@ -112,3 +112,15 @@ class purchase_order_line(osv.Model):
         for id in ids:
             wf_service.trg_validate(uid, 'purchase.requisition', id, 'close_bid', cr)
         return False
+
+    def read_group(self, cr, uid, domain, fields, groupby, offset=0, limit=None, context=None, orderby=False):
+        """Do not aggregate price and qty. We need to do it this way as there
+        is no group_operator that can be set to prevent aggregating float"""
+        result = super(purchase_order_line, self).read_group(cr, uid, domain, fields, groupby,
+                        offset=offset, limit=limit, context=context, orderby=orderby)
+        for res in result:
+            if 'price_unit' in res:
+                del res['price_unit']
+            if 'product_qty' in res:
+                del res['product_qty']
+        return result
