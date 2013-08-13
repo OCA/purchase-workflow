@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from openerp.osv import fields, osv
+from openerp.osv import fields, orm
 from openerp.tools.translate import _
 from openerp import netsvc
 from openerp.tools.float_utils import float_is_zero
@@ -8,7 +8,7 @@ import openerp.addons.decimal_precision as dp
 from openerp import SUPERUSER_ID
 
 
-class purchase_order(osv.Model):
+class purchase_order(orm.Model):
     _inherit = 'purchase.order'
     _columns = {
         'bid_partial': fields.boolean(
@@ -69,7 +69,7 @@ class purchase_order(osv.Model):
         return values
 
 
-class purchase_order_line(osv.Model):
+class purchase_order_line(orm.Model):
     _inherit = 'purchase.order.line'
     _columns = {
         'requisition_line_id': fields.many2one('purchase.requisition.line', 'Call for Bid Line', readonly=True),

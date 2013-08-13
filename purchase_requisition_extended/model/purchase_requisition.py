@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 
-from openerp.osv import fields, osv, orm
+from openerp.osv import fields, orm
 import openerp.osv.expression as expression
 from openerp.tools.safe_eval import safe_eval as eval
 from openerp.tools.translate import _
 from openerp import netsvc
 
 
-class PurchaseRequisition(osv.Model):
+class PurchaseRequisition(orm.Model):
     _inherit = "purchase.requisition"
     _description = "Call for Bids"
     _columns = {
@@ -239,7 +239,7 @@ class PurchaseRequisition(osv.Model):
         return res
 
 
-class PurchaseRequisitionLine(osv.Model):
+class PurchaseRequisitionLine(orm.Model):
     _inherit = "purchase.requisition.line"
     _columns = {
         'remark': fields.text('Remark'),
