@@ -123,6 +123,4 @@ class purchase_order_line(orm.Model):
                 del res['price_unit']
             if 'product_qty' in res:
                 del res['product_qty']
-            if 'lead_time' in res:
-                del res['lead_time']
         return result
