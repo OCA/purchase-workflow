@@ -22,6 +22,11 @@ class PurchaseOrder(osv.Model):
         ('done', 'Done'),
         ('cancel', 'Canceled')
     ]
+    TYPE_SELECTION = [
+        ('rfq', 'Request for Quotation'),
+        ('bid', 'Bid'),
+        ('purchase', 'Purchase Order')
+    ]
 
     _columns = {
         'state': fields.selection(STATE_SELECTION, 'Status', readonly=True, select=True,
@@ -32,9 +37,7 @@ class PurchaseOrder(osv.Model):
                  "'Approved'. When the purchase order is paid and received, the "
                  "status becomes 'Done'. If a cancel action occurs in the invoice or "
                  "in the reception of goods, the status becomes in exception."),
-
-        'type': fields.selection([('rfq', 'Request for Quotation'), ('bid', 'Bid'), ('purchase', 'Purchase Order')],
-                                 'Type', required=True, readonly=True),
+        'type': fields.selection(TYPE_SELECTION, 'Type', required=True, readonly=True),
         'consignee_id': fields.many2one('res.partner', 'Consignee', help="the person to whom the shipment is to be delivered"),
         'incoterm_address': fields.char(
             'Incoterms Place',

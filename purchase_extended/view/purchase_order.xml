@@ -65,5 +65,16 @@
             <field name="context">{'draft_po':True}</field>
             <field name="domain">[('type','=','purchase')]</field>
         </record>
+
+        <record model="ir.ui.view" id="view_purchase_order_invoice_form">
+            <field name="name">purchase.order.form.invoice.inherit</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_2_stock_picking"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='invoice_open']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('state', 'in', ['draft','draftbid','draftpo'])]}</attribute>
+                </xpath>
+            </field>
+        </record>
     </data>
 </openerp>
