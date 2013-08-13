@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
-from openerp.osv import fields, osv
+from openerp.osv import fields, orm
 from openerp.tools.translate import _
 
 
-class purchase_cancel(osv.Model):
+class purchase_cancel(orm.Model):
     _name = "purchase.cancelreason"
     _columns = {
         'name': fields.char('Reason', size=64, required=True, translate=True),

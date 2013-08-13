@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 
-from openerp.osv import fields, osv, orm
+from openerp.osv import fields, orm
 from openerp import netsvc
 from openerp.tools.translate import _
 from openerp import SUPERUSER_ID
 
 
-class PurchaseOrder(osv.Model):
+class PurchaseOrder(orm.Model):
     _inherit = "purchase.order"
 
     STATE_SELECTION = [
@@ -237,7 +237,7 @@ class PurchaseOrder(osv.Model):
         return value
 
 
-class purchase_order_line(osv.Model):
+class purchase_order_line(orm.Model):
     _inherit = 'purchase.order.line'
 
     def onchange_product_id(self, cr, uid, ids, pricelist_id, product_id, qty, uom_id,
