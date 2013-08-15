@@ -3,7 +3,7 @@
 from openerp.osv import fields, orm
 from openerp.tools.translate import _
 from openerp import netsvc
-from openerp.tools.float_utils import float_is_zero
+from openerp.tools.float_utils import float_compare
 import openerp.addons.decimal_precision as dp
 from openerp import SUPERUSER_ID
 
@@ -79,33 +79,59 @@ class purchase_order_line(orm.Model):
         """
         Check all quantities have been sourced
         """
-        purchase_requisition_obj = self.pool.get('purchase.requisition')
-        valid = True
-        callforbids = purchase_requisition_obj.browse(cr, uid, active_id, context=context)
-        for line in callforbids.line_ids:
+        purch_req_obj = self.pool.get('purchase.requisition')
+        purch_req = purch_req_obj.browse(cr, uid, active_id, context=context)
+        dp_obj = self.pool.get('decimal.precision')
+        precision = dp_obj.precision_get(cr, SUPERUSER_ID,
+                                         'Product Unit of Measure')
+        too_much = False
+        too_few = False
+        nothing = False
+        for line in purch_req.line_ids:
             qty = line.product_qty
             for pol in line.purchase_line_ids:
-                qty -= pol.quantity_bid
-            precision = self.pool.get('decimal.precision').precision_get(cr, SUPERUSER_ID, 'Product Unit of Measure')
-            if not float_is_zero(qty,precision):
-                valid = False
-        if valid:
-            return self.close_callforbids_ok(cr, uid, [active_id], context=context)
-        ctx = context.copy()
-        ctx['action'] = 'close_callforbids_ok'
-        ctx['active_model'] = self._name
-        view_id = self.pool.get('ir.model.data').get_object_reference(cr, uid,
-                    'purchase_requisition_extended', 'action_modal_close_callforbids')[1]
-        return {
-            'type': 'ir.actions.act_window',
-            'view_type': 'form',
-            'view_mode': 'form',
-            'res_model': 'purchase.action_modal',
-            'view_id': view_id,
-            'views': [(view_id, 'form')],
-            'target': 'new',
-            'context': ctx,
-        }
+                if pol.state == 'confirmed':
+                    qty -= pol.quantity_bid
+            if qty == line.product_qty:
+                nothing = True
+                break
+            compare = float_compare(qty, 0, precision_digits=precision)
+            if compare < 0:
+                too_much = True
+                break
+            elif compare > 0:
+                too_few = True
+                # do not break, maybe a line has too much qty
+                # and should be blocked
+
+        if nothing:
+            raise orm.except_orm(
+                _('Error'),
+                _('Nothing has been selected.'))
+        elif too_much:
+            raise orm.except_orm(
+                _('Error'),
+                _('The selected quantity cannot be greater than the '
+                  'requested quantity'))
+        elif too_few:
+            # open a dialog to confirm that we want less qty
+            ctx = context.copy()
+            ctx['action'] = 'close_callforbids_ok'
+            ctx['active_model'] = self._name
+            get_ref = self.pool.get('ir.model.data').get_object_reference
+            view_id = get_ref(cr, uid, 'purchase_requisition_extended',
+                              'action_modal_close_callforbids')[1]
+            return {
+                'type': 'ir.actions.act_window',
+                'view_type': 'form',
+                'view_mode': 'form',
+                'res_model': 'purchase.action_modal',
+                'view_id': view_id,
+                'views': [(view_id, 'form')],
+                'target': 'new',
+                'context': ctx,
+            }
+        return self.close_callforbids_ok(cr, uid, [active_id], context=context)
 
     def close_callforbids_ok(self, cr, uid, ids, context=None):
         wf_service = netsvc.LocalService("workflow")
