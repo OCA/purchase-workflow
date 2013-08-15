@@ -196,7 +196,7 @@ class PurchaseRequisition(orm.Model):
                         _('You cannot cancel a call for bids which has already received bids.'))
         if cancel_ids:
             reason_id = self.pool.get('ir.model.data').get_object_reference(cr, uid,
-                            'purchase_requisition', 'purchase_cancelreason_callforbids_canceled')[1]
+                            'purchase_requisition_extended', 'purchase_cancelreason_callforbids_canceled')[1]
             purchase_order_obj = self.pool.get('purchase.order')
             purchase_order_obj.write(cr, uid, cancel_ids, {'cancel_reason': reason_id}, context=context)
             purchase_order_obj.action_cancel(cr, uid, [purchase.id])
