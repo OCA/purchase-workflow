@@ -5,6 +5,7 @@ import openerp.osv.expression as expression
 from openerp.tools.safe_eval import safe_eval as eval
 from openerp.tools.translate import _
 from openerp import netsvc
+from openerp.tools.float_utils import float_compare
 
 
 class PurchaseRequisition(orm.Model):
@@ -237,6 +238,76 @@ class PurchaseRequisition(orm.Model):
         ctx['search_default_groupby_requisitionline'] = True
         ctx['search_default_showbids'] = True
         return res
+
+    def close_callforbids(self, cr, uid, ids, context=None):
+        """
+        Check all quantities have been sourced
+        """
+        if not ids:
+            raise orm.except_orm(
+                _('Error'),
+                _('No purchase requisition selected.'))
+        if isinstance(ids, (tuple, list)):
+            assert len(ids) == 1, "Only 1 ID expected, got %s" % ids
+            ids = ids[0]
+        purch_req = self.browse(cr, uid, ids, context=context)
+        dp_obj = self.pool.get('decimal.precision')
+        precision = dp_obj.precision_get(cr, uid, 'Product Unit of Measure')
+        too_much = False
+        too_few = False
+        nothing = False
+        for line in purch_req.line_ids:
+            qty = line.product_qty
+            for pol in line.purchase_line_ids:
+                if pol.state == 'confirmed':
+                    qty -= pol.quantity_bid
+            if qty == line.product_qty:
+                nothing = True
+                break
+            compare = float_compare(qty, 0, precision_digits=precision)
+            if compare < 0:
+                too_much = True
+                break
+            elif compare > 0:
+                too_few = True
+                # do not break, maybe a line has too much qty
+                # and should be blocked
+
+        if nothing:
+            raise orm.except_orm(
+                _('Error'),
+                _('Nothing has been selected.'))
+        elif too_much:
+            raise orm.except_orm(
+                _('Error'),
+                _('The selected quantity cannot be greater than the '
+                  'requested quantity'))
+        elif too_few:
+            # open a dialog to confirm that we want less qty
+            ctx = context.copy()
+            ctx['action'] = 'close_callforbids_ok'
+            ctx['active_model'] = self._name
+            get_ref = self.pool.get('ir.model.data').get_object_reference
+            view_id = get_ref(cr, uid, 'purchase_requisition_extended',
+                              'action_modal_close_callforbids')[1]
+            return {
+                'type': 'ir.actions.act_window',
+                'view_type': 'form',
+                'view_mode': 'form',
+                'res_model': 'purchase.action_modal',
+                'view_id': view_id,
+                'views': [(view_id, 'form')],
+                'target': 'new',
+                'context': ctx,
+            }
+        return self.close_callforbids_ok(cr, uid, [ids], context=context)
+
+    def close_callforbids_ok(self, cr, uid, ids, context=None):
+        wf_service = netsvc.LocalService("workflow")
+        for id in ids:
+            wf_service.trg_validate(uid, 'purchase.requisition',
+                                    id, 'close_bid', cr)
+        return False
 
 
 class PurchaseRequisitionLine(orm.Model):
