@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="view_product_supplierinfo_search" model="ir.ui.view">
+            <field name="name">product.supplierinfo.search</field>
+            <field name="model">product.supplierinfo</field>
+            <field name="arch" type="xml">
+                <search string="Product Supplier Info">
+                	<field name="name" string="Supplier"/>
+                	<field name="product_code" string="Supplier Product Code"/>
+                    <field name="product_name" string="Supplier Product Code"/>
+                    <field name="product_id" />
+                    <group  expand='1' string='Group by...' groups="base.group_extended">
+                       <filter string='Product Code' name='supplier_code' icon="terp-stock_symbol-selection" domain="[]" context="{'group_by' : 'product_code'}" />
+                       <filter string='Product' name='product' icon="terp-stock_symbol-selection" domain="[]" context="{'group_by' : 'product_id'}" />
+                       <filter string='Supplier' name='supplier' icon="terp-stock_symbol-selection" domain="[]" context="{'group_by' : 'name'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+        
+        <record id="view_product_supplierinfo_tree1" model="ir.ui.view">
+            <field name="name">product.supplierinfo.tree1</field>
+            <field name="model">product.supplierinfo</field>
+            <field name="arch" type="xml">
+            	<tree string="Supplier Information" editable="top">
+                    <field name="sequence" widget="handle"/>
+                    <field name="product_code" string="Supplier Product Code"/>
+                    <field name="product_id" string="Product Name"/>
+                    <field name="product_name" string="Supplier Product Name"/>
+                    <field name="name"/>
+                    <field name="delay"/>
+                    <field name="qty_available"/>
+                    <field name="virtual_available"/>
+                    <field name="min_qty"/>
+                    <field name="company_id" groups="base.group_multi_company" widget="selection"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_product_supplierinfo_from1" model="ir.ui.view">
+            <field name="name">product.supplierinfo.from1</field>
+            <field name="model">product.supplierinfo</field>
+            <field name="inherit_id" ref="product.product_supplierinfo_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='sequence']" position="before">
+                    <field name="product_id"/>
+                </xpath>
+            </field>
+        </record>
+        
+
+        <record id="action_product_supplier_info" model="ir.actions.act_window">
+            <field name="name">Product Supplier Info</field>
+            <field name="res_model">product.supplierinfo</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_product_supplierinfo_tree1"/>
+            <field name="search_view_id" ref="view_product_supplierinfo_search"/>
+            <field name="context">{'search_default_supplier':1,'group_by':[]}</field>
+        </record>
+
+	    <menuitem
+	        id="menu_product_supplier_info"
+	        name="Product Suppliers"
+	        sequence="15"
+	        action="action_product_supplier_info"
+	        parent="purchase.menu_procurement_management_product"/>
+    </data>
+</openerp>
