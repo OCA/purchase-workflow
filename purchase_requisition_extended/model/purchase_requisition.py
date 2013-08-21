@@ -243,10 +243,14 @@ class PurchaseRequisition(orm.Model):
         """
         Check all quantities have been sourced
         """
+        # this method is called from a special JS event and ids is
+        # inferred from 'active_ids', in some cases, the webclient send
+        # no ids, so we prevent a crash
         if not ids:
             raise orm.except_orm(
                 _('Error'),
-                _('No purchase requisition selected.'))
+                _('Impossible to proceed due to an error of the system.\n'
+                  'Please reopen the purchase requisition and try again '))
         if isinstance(ids, (tuple, list)):
             assert len(ids) == 1, "Only 1 ID expected, got %s" % ids
             ids = ids[0]
