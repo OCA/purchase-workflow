@@ -23,6 +23,7 @@
     'name': "Purchase delivery terms",
     'version': '0.2',
     'category': 'Purchase Management',
+    'summary': "Delivery term for purchase orders",
     'description': """
 Delivery term for purchase orders.
 You can configure delivery terms specifying the quantity percentage and the delay for every term line.

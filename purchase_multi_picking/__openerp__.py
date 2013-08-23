@@ -20,9 +20,10 @@
 #
 ##############################################################################
 {
-    'name': "Multi Pickings from Purchase Orders",
+    'name': "Purchase multi picking",
     'version': '0.2',
     'category': 'Purchase Management',
+    'summary': "Multi Pickings from Purchase Orders",
     'description': """
 This module allows to generate several pickings from the same purchase order.
 You just have to indicate which order lines have to be grouped in the same picking. When confirming the order, for each group a picking is generated.
