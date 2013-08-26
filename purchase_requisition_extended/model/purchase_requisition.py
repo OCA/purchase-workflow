@@ -281,19 +281,19 @@ class PurchaseRequisition(orm.Model):
             raise orm.except_orm(
                 _('Error'),
                 _('Nothing has been selected.'))
-        elif too_much:
-            raise orm.except_orm(
-                _('Error'),
-                _('The selected quantity cannot be greater than the '
-                  'requested quantity'))
-        elif too_few:
-            # open a dialog to confirm that we want less qty
+        elif too_much or too_few:
+            # open a dialog to confirm that we want more qty
             ctx = context.copy()
             ctx['action'] = 'close_callforbids_ok'
             ctx['active_model'] = self._name
+
             get_ref = self.pool.get('ir.model.data').get_object_reference
+            if too_much:
+                view_xmlid = 'action_modal_close_callforbids_too_much'
+            elif too_few:
+                view_xmlid = 'action_modal_close_callforbids_too_few'
             view_id = get_ref(cr, uid, 'purchase_requisition_extended',
-                              'action_modal_close_callforbids')[1]
+                              view_xmlid)[1]
             return {
                 'type': 'ir.actions.act_window',
                 'view_type': 'form',

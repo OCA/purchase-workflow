@@ -1,13 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-        <record id="action_modal_close_callforbids" model="ir.ui.view">
-            <field name="name">action.modal</field>
+        <record id="action_modal_close_callforbids_too_few" model="ir.ui.view">
+            <field name="name">action.modal.too_few</field>
             <field name="model">purchase.action_modal</field>
             <field name="arch" type="xml">
                 <form string="Warning" version="7.0">
                     <p>
                         The selected quantity is lower than the requested quantity.
+                        Please confirm the operation.
+                    </p>
+                    <footer>
+                        <button string="Confirm" class="oe_highlight" type="object" name="action"/>
+                        or
+                        <button special="cancel" string="Cancel" class="oe_link"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_modal_close_callforbids_too_much" model="ir.ui.view">
+            <field name="name">action.modal.too_much</field>
+            <field name="model">purchase.action_modal</field>
+            <field name="arch" type="xml">
+                <form string="Warning" version="7.0">
+                    <p>
+                        The selected quantity is greater than the requested quantity.
                         Please confirm the operation.
                     </p>
                     <footer>
