@@ -248,7 +248,7 @@ class purchase_order_line(orm.Model):
                 fiscal_position_id, date_planned, name, price_unit, state, context)
         if state == 'draft':
             res['value'].update({'price_unit': 0})
-        elif state in ('sent', 'draftbid', 'bid'):
+        elif state in ('sent', 'bid'):
             if 'price_unit' in res['value']:
                 del res['value']['price_unit']
         return res
