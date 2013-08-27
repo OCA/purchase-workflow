@@ -1,0 +1,194 @@
+-
+  Standard flow of a Call for Bids in mode restricted
+-
+  Create Call for Bids
+-
+  !record {model: purchase.requisition, id: purchase_requisition_ext_restricted1}:
+    date_start: '2013-08-02 00:00:00'
+    date_end: '2013-08-30 00:00:00'
+    bid_tendering_mode: 'restricted'
+    schedule_date: '2013-09-30'
+    req_validity: '2013-09-10'
+    line_ids:
+      - product_id: product.product_product_15
+        product_qty: 15.0
+      - product_id: product.product_product_25
+        product_qty: 5.0
+      - product_id: product.product_product_27
+        product_qty: 40.0
+-
+  Confirm Call
+-
+  !python {model: purchase.requisition}: |
+    import netsvc
+    wf_service = netsvc.LocalService("workflow")
+    wf_service.trg_validate(uid, 'purchase.requisition', ref("purchase_requisition_ext_restricted1"), 'sent_suppliers', cr)
+-
+  Create RFQ1. I run the 'Request a quotation' wizard. I fill the supplier.
+-
+  !record {model: purchase.requisition.partner, id: purchase_requisition_ext_restricted1_partner1_create}:
+    partner_id: base.res_partner_2
+-
+  Create RFQ1. I confirm the wizard.
+-
+  !python {model: purchase.requisition.partner}: |
+    self.create_order(cr, uid, [ref("purchase_requisition_ext_restricted1_partner1_create")],{
+        'active_model': 'purchase.requisition',
+        'active_id': ref("purchase_requisition_ext_restricted1"),
+        'active_ids': [ref("purchase_requisition_ext_restricted1")],
+        })
+-
+  Create RFQ2. I run the 'Request a quotation' wizard. I fill the supplier.
+-
+  !record {model: purchase.requisition.partner, id: purchase_requisition_ext_restricted1_partner2_create}:
+    partner_id: base.res_partner_3
+-
+  Create RFQ2. I confirm the wizard.
+-
+  !python {model: purchase.requisition.partner}: |
+    self.create_order(cr, uid, [ref("purchase_requisition_ext_restricted1_partner2_create")],{
+        'active_model': 'purchase.requisition',
+        'active_id': ref("purchase_requisition_ext_restricted1"),
+        'active_ids': [ref("purchase_requisition_ext_restricted1")],
+        })
+-
+  Check the RFQs. Type must be 'rfq', state 'draft', all prices 0 and the total untaxed amount 0.
+-
+  !python {model: purchase.requisition}: |
+    purchase_req = self.browse(cr, uid, ref("purchase_requisition_ext_restricted1"))
+    assert len(purchase_req.purchase_ids) == 2, "There must be 2 RFQs linked to this Call for bids"
+    for rfq in purchase_req.purchase_ids:
+        assert rfq.type == 'rfq', "The type must be rfq"
+        for line in rfq.order_line:
+            assert line.price_subtotal == 0, "The price must be 0 in the RFQ"
+        assert rfq.state == 'draft', "The state must be draft"
+        assert rfq.amount_untaxed == 0
+-
+  I send the RFQs. For this, I print the RFQ.
+-
+  !python {model: purchase.requisition}: |
+    purchase_req = self.browse(cr, uid, ref("purchase_requisition_ext_restricted1"))
+    for rfq in purchase_req.purchase_ids:
+        self.pool.get('purchase.order').print_quotation(cr, uid, [rfq.id])
+-
+  I check the RFQs are in "RFQ sent" state.
+-
+  !python {model: purchase.requisition}: |
+    purchase_req = self.browse(cr, uid, ref("purchase_requisition_ext_restricted1"))
+    assert len(purchase_req.purchase_ids) == 2, "There must be 2 RFQs linked to this Call for bids"
+    for rfq in purchase_req.purchase_ids:
+        assert rfq.type == 'rfq', "The type must be rfq"
+        for line in rfq.order_line:
+            assert line.price_subtotal == 0, "The price must be 0 in the RFQ line"
+        assert rfq.state == 'sent', "The state must be sent"
+        assert rfq.amount_untaxed == 0, "The total must be 0 in the RFQ"
+-
+  I encode the bids. I set a price on the lines.
+-
+  !python {model: purchase.requisition}: |
+    purchase_req = self.browse(cr, uid, ref("purchase_requisition_ext_restricted1"))
+    assert len(purchase_req.purchase_ids) == 2, "There must be 2 RFQs linked to this Call for bids"
+    price = 30
+    for rfq in purchase_req.purchase_ids:
+        for line in rfq.order_line:
+            self.pool.get('purchase.order.line').write(cr, uid, [line.id], {'price_unit': price})
+            price += 5
+-
+  I run the 'Bid encoded' wizard of bid1. I fill the date.
+-
+  !record {model: purchase.action_modal_datetime, id: purchase_requisition_ext_restricted1_bid1_bidencoded}:
+    datetime: '2013-08-13 00:00:00'
+-
+  I run the 'Bid encoded' wizard of bid1. I confirm the wizard.
+-
+  !python {model: purchase.requisition}: |
+    purchase_req = self.browse(cr, uid, ref("purchase_requisition_ext_restricted1"))
+    assert len(purchase_req.purchase_ids) == 2, "There must be 2 RFQs linked to this Call for bids"
+    for rfq in purchase_req.purchase_ids:
+        self.pool.get('purchase.order').bid_received_ok(cr, uid,
+            [rfq.id],
+            {'active_id': ref("purchase_requisition_ext_restricted1_bid1_bidencoded")
+             })
+-
+  I run the 'Bid encoded' wizard of bid2. I fill the date.
+-
+  !record {model: purchase.action_modal_datetime, id: purchase_requisition_ext_restricted1_bid2_bidencoded}:
+    datetime: '2013-08-13 00:10:00'
+-
+  I run the 'Bid encoded' wizard of bid2. I confirm the wizard.
+-
+  !python {model: purchase.requisition}: |
+    purchase_req = self.browse(cr, uid, ref("purchase_requisition_ext_restricted1"))
+    assert len(purchase_req.purchase_ids) == 2, "There must be 2 RFQs linked to this Call for bids"
+    for rfq in purchase_req.purchase_ids:
+        self.pool.get('purchase.order').bid_received_ok(cr, uid,
+            [rfq.id],
+            {'active_id': ref("purchase_requisition_ext_restricted1_bid2_bidencoded")
+             })
+-
+  I check the "Bid Encoded" status.
+-
+  !python {model: purchase.requisition}: |
+    purchase_req = self.browse(cr, uid, ref("purchase_requisition_ext_restricted1"))
+    assert len(purchase_req.purchase_ids) == 2, "There must be 2 bids linked to this Call for bids"
+    for rfq in purchase_req.purchase_ids:
+        assert rfq.type == 'bid', "The type must be bid"
+        for line in rfq.order_line:
+            assert line.price_subtotal != 0, "The price must not be 0 in the bid line"
+        assert rfq.state == 'bid', "The state must be bid"
+        assert rfq.amount_untaxed != 0, "The total amount must not be 0 in the bid"
+-
+  I close the Call for bids and move to bids selection
+-
+  !python {model: purchase.requisition}: |
+    import netsvc
+    wf_service = netsvc.LocalService("workflow")
+    wf_service.trg_validate(uid, 'purchase.requisition', ref("purchase_requisition_ext_restricted1"), 'open_bid', cr)
+-
+  In the bids selection, I confirm line 1 of bid 1 and line 2 of bid 2. For line 3, I select quantity 10 of bid 1 and confirm. I confirm line 3 of bid 2 for remaining quantity.
+-
+  !python {model: purchase.requisition}: |
+    purchase_req = self.browse(cr, uid, ref("purchase_requisition_ext_restricted1"))
+    assert len(purchase_req.purchase_ids) == 2, "There must be 2 bids linked to this Call for bids"
+    self.pool.get('purchase.order.line').action_confirm(cr, uid, [purchase_req.purchase_ids[0].order_line[0].id])
+    self.pool.get('purchase.order.line').action_confirm(cr, uid, [purchase_req.purchase_ids[1].order_line[1].id])
+    qtywiz = self.pool.get('bid.line.qty').create(cr, uid, {'qty': 5})
+    self.pool.get('bid.line.qty').change_qty(cr, uid, [qtywiz], {
+        'active_mode': 'purchase.order.line',
+        'active_id': purchase_req.purchase_ids[0].order_line[2].id,
+        'active_ids': [purchase_req.purchase_ids[0].order_line[2].id],
+        })
+    self.pool.get('purchase.order.line').action_confirm(cr, uid, [purchase_req.purchase_ids[1].order_line[2].id])
+-
+  For each call for bid lines, I check that the confirmed selection match the requested qty
+-
+  !python {model: purchase.requisition}: |
+    from openerp.tools.float_utils import float_is_zero
+    purchase_req = self.browse(cr, uid, ref("purchase_requisition_ext_restricted1"))
+    precision = self.pool.get('decimal.precision').precision_get(cr, 1, 'Product Unit of Measure')
+    for line in purchase_req.line_ids:
+        qty = line.product_qty
+        for pol in line.purchase_line_ids:
+            if pol.state == 'confirmed':
+                qty -= pol.quantity_bid
+        assert float_is_zero(qty,precision), "The confirmed amount is different from the requested amount"
+-
+  I close the call for bids
+-
+  !python {model: purchase.requisition}: |
+    self.close_callforbids(cr, uid, [ref("purchase_requisition_ext_restricted1")])
+-
+  I generate the POs
+-
+  !python {model: purchase.requisition}: |
+    self.generate_po(cr, uid, [ref("purchase_requisition_ext_restricted1")])
+-
+  I check the POs
+-
+  !python {model: purchase.requisition}: |
+    purchase_req = self.browse(cr, uid, ref("purchase_requisition_ext_restricted1"))
+    assert len(purchase_req.purchase_ids) == 2, "There must be 2 bids linked to this Call for bids"
+
+
+
+
