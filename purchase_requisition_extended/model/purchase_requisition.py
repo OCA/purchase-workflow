@@ -257,9 +257,7 @@ class PurchaseRequisition(orm.Model):
         purch_req = self.browse(cr, uid, ids, context=context)
         dp_obj = self.pool.get('decimal.precision')
         precision = dp_obj.precision_get(cr, uid, 'Product Unit of Measure')
-        too_much = False
-        too_few = False
-        nothing = False
+        nothing = too_few = too_much = False
         for line in purch_req.line_ids:
             qty = line.product_qty
             for pol in line.purchase_line_ids:
@@ -267,44 +265,39 @@ class PurchaseRequisition(orm.Model):
                     qty -= pol.quantity_bid
             if qty == line.product_qty:
                 nothing = True
-                break
             compare = float_compare(qty, 0, precision_digits=precision)
             if compare < 0:
                 too_much = True
-                break
             elif compare > 0:
                 too_few = True
-                # do not break, maybe a line has too much qty
-                # and should be blocked
 
+        if not (nothing or too_few or too_much):
+            return self.close_callforbids_ok(cr, uid, [ids], context=context)
+
+        # open a dialog to confirm that we want more / less or no qty
+        ctx = context.copy()
+        ctx['action'] = 'close_callforbids_ok'
+        ctx['active_model'] = self._name
+
+        get_ref = self.pool.get('ir.model.data').get_object_reference
         if nothing:
-            raise orm.except_orm(
-                _('Error'),
-                _('Nothing has been selected.'))
-        elif too_much or too_few:
-            # open a dialog to confirm that we want more qty
-            ctx = context.copy()
-            ctx['action'] = 'close_callforbids_ok'
-            ctx['active_model'] = self._name
-
-            get_ref = self.pool.get('ir.model.data').get_object_reference
-            if too_much:
-                view_xmlid = 'action_modal_close_callforbids_too_much'
-            elif too_few:
-                view_xmlid = 'action_modal_close_callforbids_too_few'
-            view_id = get_ref(cr, uid, 'purchase_requisition_extended',
-                              view_xmlid)[1]
-            return {
-                'type': 'ir.actions.act_window',
-                'view_type': 'form',
-                'view_mode': 'form',
-                'res_model': 'purchase.action_modal',
-                'view_id': view_id,
-                'views': [(view_id, 'form')],
-                'target': 'new',
-                'context': ctx,
-            }
-        return self.close_callforbids_ok(cr, uid, [ids], context=context)
+            view_xmlid = 'action_modal_close_callforbids_nothing'
+        elif too_much:
+            view_xmlid = 'action_modal_close_callforbids_too_much'
+        elif too_few:
+            view_xmlid = 'action_modal_close_callforbids_too_few'
+        view_id = get_ref(cr, uid, 'purchase_requisition_extended',
+                          view_xmlid)[1]
+        return {
+            'type': 'ir.actions.act_window',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'purchase.action_modal',
+            'view_id': view_id,
+            'views': [(view_id, 'form')],
+            'target': 'new',
+            'context': ctx,
+        }
 
     def close_callforbids_ok(self, cr, uid, ids, context=None):
         wf_service = netsvc.LocalService("workflow")
