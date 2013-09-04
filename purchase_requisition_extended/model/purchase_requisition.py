@@ -257,21 +257,17 @@ class PurchaseRequisition(orm.Model):
         purch_req = self.browse(cr, uid, ids, context=context)
         dp_obj = self.pool.get('decimal.precision')
         precision = dp_obj.precision_get(cr, uid, 'Product Unit of Measure')
-        nothing = too_few = too_much = False
         for line in purch_req.line_ids:
             qty = line.product_qty
             for pol in line.purchase_line_ids:
                 if pol.state == 'confirmed':
                     qty -= pol.quantity_bid
             if qty == line.product_qty:
-                nothing = True
+                break  # nothing selected
             compare = float_compare(qty, 0, precision_digits=precision)
-            if compare < 0:
-                too_much = True
-            elif compare > 0:
-                too_few = True
-
-        if not (nothing or too_few or too_much):
+            if compare != 0:
+                break  # too much or too few selected
+        else:
             return self.close_callforbids_ok(cr, uid, [ids], context=context)
 
         # open a dialog to confirm that we want more / less or no qty
@@ -280,14 +276,8 @@ class PurchaseRequisition(orm.Model):
         ctx['active_model'] = self._name
 
         get_ref = self.pool.get('ir.model.data').get_object_reference
-        if nothing:
-            view_xmlid = 'action_modal_close_callforbids_nothing'
-        elif too_much:
-            view_xmlid = 'action_modal_close_callforbids_too_much'
-        elif too_few:
-            view_xmlid = 'action_modal_close_callforbids_too_few'
         view_id = get_ref(cr, uid, 'purchase_requisition_extended',
-                          view_xmlid)[1]
+                          'action_modal_close_callforbids')[1]
         return {
             'type': 'ir.actions.act_window',
             'view_type': 'form',
