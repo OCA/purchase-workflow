@@ -20,12 +20,12 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp.osv import orm, fields
 from openerp import tools
 from tools.translate import _
 import openerp.addons.decimal_precision as dp
 
-class product_supplierinfo(osv.osv):
+class product_supplierinfo(orm.Model):
     _inherit = 'product.supplierinfo'
     
     def _product_available(self, cr, uid, ids, field_names=None, arg=False, context=None):
@@ -34,21 +34,21 @@ class product_supplierinfo(osv.osv):
         if context is None:
             context = {}
         res = {}
-        for id in ids:
-            res[id] = {}.fromkeys(field_names, 0.0)
-            supplier_info = self.browse(cr, uid, id)
+        for record in self.browse(cr, uid, ids, context=context):
+            res[record.id] = {}.fromkeys(field_names, 0.0)
             for f in field_names:
                 if f == 'qty_available':
-                    res[id][f] = supplier_info.product_id.qty_available
+                    res[record.id][f] = record.product_id.qty_available
                 if f == 'virtual_available':
-                    res[id][f] = supplier_info.product_id.virtual_available
+                    res[record.id][f] = record.product_id.virtual_available
         return res
     
     _columns={
         'product_id' : fields.many2one('product.product', 'Product', select=1, ondelete='cascade', required=True),
-        'qty_available' : fields.function(_product_available,multi='qty_available',type='float',digits_compute=dp.get_precision('Product Unit of Measure'),string="Quantity On Hand"),
-        'virtual_available' : fields.function(_product_available,multi='qty_available',type='float', digits_compute=dp.get_precision('Product Unit of Measure'),string="Forecasted Quantity"),
+        'qty_available' : fields.function(_product_available,multi='qty_available',type='float',
+                    digits_compute=dp.get_precision('Product Unit of Measure'),string="Quantity On Hand"),
+        'virtual_available' : fields.function(_product_available,multi='qty_available',type='float',
+                    digits_compute=dp.get_precision('Product Unit of Measure'),string="Forecasted Quantity"),
     }
-product_supplierinfo()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
