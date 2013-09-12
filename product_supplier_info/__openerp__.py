@@ -27,8 +27,10 @@
     'sequence': 19,
     'summary': 'Product Supplier Info',
     'description': """
-Add a specific View for Supplier 
-==================================================
+This module categorizes each product item by supplier.
+======================================================
+* It allows for users to be able to view a compiled list of products supplied by the supplier.
+* Users can also directly add new products to the supplier's list.
     """,
     'author': 'Elico Corp',
     'website': 'http://www.elico-corp.com',
