@@ -29,13 +29,14 @@
     'description': """
 This module categorizes each product item by supplier.
 ======================================================
-* It allows for users to be able to view a compiled list of products supplied by the supplier.
+* It allows for users to be able to view a compiled list of products supplied \
+by the supplier.
 * Users can also directly add new products to the supplier's list.
     """,
     'author': 'Elico Corp',
     'website': 'http://www.elico-corp.com',
-    'images' : [],
-    'depends': ['product','stock'],#TO REMOVE joomlaconnector for standard
+    'images': [],
+    'depends': ['product', 'stock'],
     'data': [
         'product_view.xml',
     ],
