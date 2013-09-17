@@ -11,9 +11,12 @@
                     <field name="product_name" string="Supplier Product Code"/>
                     <field name="product_id" />
                     <group  expand='1' string='Group by...' groups="base.group_extended">
-                       <filter string='Product Code' name='supplier_code' icon="terp-stock_symbol-selection" domain="[]" context="{'group_by' : 'product_code'}" />
-                       <filter string='Product' name='product' icon="terp-stock_symbol-selection" domain="[]" context="{'group_by' : 'product_id'}" />
-                       <filter string='Supplier' name='supplier' icon="terp-stock_symbol-selection" domain="[]" context="{'group_by' : 'name'}" />
+                       <filter string='Product Code' name='supplier_code' icon="terp-stock_symbol-selection" 
+                            domain="[]" context="{'group_by' : 'product_code'}" />
+                       <filter string='Product' name='product' icon="terp-stock_symbol-selection" domain="[]" 
+                            context="{'group_by' : 'product_id'}" />
+                       <filter string='Supplier' name='supplier' icon="terp-stock_symbol-selection" domain="[]"
+                            context="{'group_by' : 'name'}" />
                     </group>
                 </search>
             </field>
@@ -22,12 +25,13 @@
         <record id="view_product_supplierinfo_tree1" model="ir.ui.view">
             <field name="name">product.supplierinfo.tree1</field>
             <field name="model">product.supplierinfo</field>
+            <field name="priority">90</field>
             <field name="arch" type="xml">
             	<tree string="Supplier Information" editable="top">
                     <field name="sequence" widget="handle"/>
                     <field name="product_code" string="Supplier Product Code"/>
-                    <field name="product_id" string="Product Name"/>
                     <field name="product_name" string="Supplier Product Name"/>
+                    <field name="product_id" string="Product"/>
                     <field name="name"/>
                     <field name="delay"/>
                     <field name="qty_available"/>
@@ -60,11 +64,11 @@
             <field name="context">{'search_default_supplier':1,'group_by':[]}</field>
         </record>
 
-	    <menuitem
-	        id="menu_product_supplier_info"
-	        name="Product by Suppliers"
-	        sequence="15"
-	        action="action_product_supplier_info"
-	        parent="purchase.menu_procurement_management_product"/>
+        <menuitem
+            id="menu_product_supplier_info"
+            name="Product by Suppliers"
+            sequence="15"
+            action="action_product_supplier_info"
+            parent="purchase.menu_procurement_management_product"/>
     </data>
 </openerp>
