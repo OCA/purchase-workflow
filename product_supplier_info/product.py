@@ -19,7 +19,6 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
 from openerp.osv import orm, fields
 import openerp.addons.decimal_precision as dp
 
@@ -29,33 +28,29 @@ class product_supplierinfo(orm.Model):
 
     def _product_available(
             self, cr, uid, ids, field_names=None, arg=False, context=None):
-        if not field_names:
-            field_names = []
-        if context is None:
-            context = {}
+        context = context or {}
         res = {}
+        product_obj = self.pool.get('product.product')
         for record in self.browse(cr, uid, ids, context=context):
-            res[record.id] = {}.fromkeys(field_names, 0.0)
-            for f in field_names:
-                if f == 'qty_available':
-                    res[record.id][f] = record.product_id.qty_available
-                if f == 'virtual_available':
-                    res[record.id][f] = record.product_id.virtual_available
+            res[record.id] = {}
+            product = product_obj.browse(cr, uid, record.product_id.id)
+            res[record.id]['qty_available'] = product.qty_available
+            res[record.id]['virtual_available'] = product.virtual_available
         return res
 
     _columns = {
-        'product_id': fields.many2one(
-            'product.product',
-            'Product', select=1,
-            ondelete='cascade', required=True),
+        # It cannot be done with related fields because product_id points to
+        # product.template, not product.product
         'qty_available': fields.function(
             _product_available, multi='qty_available', type='float',
-            digits_compute=dp.get_precision('Product Unit of Measure'),
             string="Quantity On Hand"),
         'virtual_available': fields.function(
-            _product_available, multi='qty_available', type='float',
-            digits_compute=dp.get_precision('Product Unit of Measure'),
+            _product_available, multi='virtual_available', type='float',
             string="Forecasted Quantity"),
+        'delay' : fields.integer('Delivery Lead Time', required=True,
+                                 group_operator="avg",
+                                 help="Lead time in days between the confirmation of the purchase order and the reception of the products in your warehouse. Used by the scheduler for automatic computation of the purchase order planning."
+                                 ),
     }
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

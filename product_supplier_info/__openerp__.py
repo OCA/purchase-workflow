@@ -35,7 +35,9 @@ by the supplier.
     """,
     'author': 'Elico Corp',
     'website': 'http://www.elico-corp.com',
-    'images': [],
+    'images': [
+               'static/images/product_supplier_info.png'
+               ],
     'depends': ['product', 'stock'],
     'data': [
         'product_view.xml',
