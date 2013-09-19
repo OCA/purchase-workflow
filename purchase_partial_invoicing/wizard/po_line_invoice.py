@@ -21,7 +21,6 @@
 
 from __future__ import division
 from openerp.osv import fields, orm
-from openerp.tools.translate import _
 import openerp.addons.decimal_precision as dp
 
 
@@ -37,7 +36,7 @@ class purchase_line_invoice(orm.TransientModel):
     def default_get(self, cr, uid, fields, context=None):
         po_line_obj = self.pool.get('purchase.order.line')
         lines = []
-        for po_line in po_line_obj.browse(cr, uid, context.get('active_ids',[]), context):
+        for po_line in po_line_obj.browse(cr, uid, context.get('active_ids',[]), context=context):
             lines.append({
                 'po_line_id': po_line.id,
                 'product_qty': po_line.product_qty - po_line.invoiced_qty,
@@ -53,7 +52,7 @@ class purchase_line_invoice(orm.TransientModel):
         if context is None:
             context = {}
         if ids:
-            wizard = self.browse(cr, uid, ids[0], context)
+            wizard = self.browse(cr, uid, ids[0], context=context)
             if wizard.partial_invoice:
                 purchase_line_obj=self.pool.get('purchase.order.line')
                 changed_lines = {}
@@ -66,7 +65,7 @@ class purchase_line_invoice(orm.TransientModel):
                         })
                 res = super(purchase_line_invoice,self).makeInvoices(cr, uid, ids, context=context)
                 for po_line_id in changed_lines:
-                    po_line = purchase_line_obj.browse(cr, uid, po_line_id, context)
+                    po_line = purchase_line_obj.browse(cr, uid, po_line_id, context=context)
                     purchase_line_obj.write(cr, uid, [po_line_id], {
                         'product_qty': changed_lines[po_line_id],
                         }, context=context)
