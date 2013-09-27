@@ -1,0 +1,85 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* purchase_partial_invoicing
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-09-27 13:42+0000\n"
+"PO-Revision-Date: 2013-09-27 13:42+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_partial_invoicing
+#: model:ir.model,name:purchase_partial_invoicing.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr ""
+
+#. module: purchase_partial_invoicing
+#: field:purchase.order.line_invoice,partial_invoice:0
+msgid "Partial invoicing"
+msgstr ""
+
+#. module: purchase_partial_invoicing
+#: model:ir.model,name:purchase_partial_invoicing.model_purchase_order_line_invoice_line
+msgid "purchase.order.line_invoice.line"
+msgstr ""
+
+#. module: purchase_partial_invoicing
+#: field:purchase.order.line_invoice.line,wizard_id:0
+msgid "Wizard"
+msgstr ""
+
+#. module: purchase_partial_invoicing
+#: field:purchase.order.line_invoice,line_ids:0
+msgid "Lines"
+msgstr ""
+
+#. module: purchase_partial_invoicing
+#: field:purchase.order.line_invoice.line,po_line_id:0
+msgid "Purchase order line"
+msgstr ""
+
+#. module: purchase_partial_invoicing
+#: code:addons/purchase_partial_invoicing/wizard/po_line_invoice.py:68
+#, python-format
+msgid "Quantity to invoice is greater\n"
+"                            than available quantity"
+msgstr ""
+
+#. module: purchase_partial_invoicing
+#: field:purchase.order.line_invoice.line,price_unit:0
+msgid "Unit Price"
+msgstr ""
+
+#. module: purchase_partial_invoicing
+#: model:ir.model,name:purchase_partial_invoicing.model_purchase_order_line_invoice
+msgid "Purchase Order Line Make Invoice"
+msgstr ""
+
+#. module: purchase_partial_invoicing
+#: code:addons/purchase_partial_invoicing/wizard/po_line_invoice.py:67
+#, python-format
+msgid "Error"
+msgstr ""
+
+#. module: purchase_partial_invoicing
+#: field:purchase.order.line_invoice.line,invoiced_qty:0
+msgid "Quantity to invoice"
+msgstr ""
+
+#. module: purchase_partial_invoicing
+#: field:purchase.order.line,invoiced_qty:0
+msgid "Invoiced quantity"
+msgstr ""
+
+#. module: purchase_partial_invoicing
+#: field:purchase.order.line_invoice.line,product_qty:0
+msgid "Quantity"
+msgstr ""
+
