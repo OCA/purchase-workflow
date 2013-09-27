@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#    
+#
 #    Copyright (C) 2013 Agile Business Group sagl
 #    (<http://www.agilebg.com>)
 #
@@ -20,10 +20,10 @@
 ##############################################################################
 
 from openerp.osv import fields, orm
-from openerp.tools.translate import _
+
 
 class purchase_order_line(orm.Model):
-    
+
     def _invoiced_qty(self, cursor, user, ids, name, arg, context=None):
         res = {}
         for line in self.browse(cursor, user, ids, context=context):
@@ -32,9 +32,10 @@ class purchase_order_line(orm.Model):
                 invoiced_qty += invoice_line.quantity
             res[line.id] = invoiced_qty
         return res
-    
+
     _inherit = 'purchase.order.line'
 
     _columns = {
-        'invoiced_qty': fields.function(_invoiced_qty, string='Invoiced quantity', type='float'),
-        }
+        'invoiced_qty': fields.function(_invoiced_qty,
+        string='Invoiced quantity', type='float'),
+    }
