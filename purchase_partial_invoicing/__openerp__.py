@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#    
+#
 #    Copyright (C) 2013 Agile Business Group sagl
 #    (<http://www.agilebg.com>)
 #
@@ -25,16 +25,17 @@
     'category': 'Purchase Management',
     'description': """
 This module allows to partially invoice purchase order lines.
-The 'Create invoices' from PO lines wizard allows to specify, for each line, the quantity to invoice.
+The 'Create invoices' from PO lines wizard allows to specify,
+for each line, the quantity to invoice.
 """,
     'author': 'Agile Business Group',
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
-    "depends" : ['purchase'],
-    "data" : [
+    "depends": ['purchase'],
+    "data": [
         'wizard/po_line_invoice_view.xml',
-        ],
-    "demo" : [],
+    ],
+    "demo": [],
     "active": False,
     "installable": True
 }
