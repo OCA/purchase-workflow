@@ -22,6 +22,7 @@
 from __future__ import division
 from openerp.osv import fields, orm
 import openerp.addons.decimal_precision as dp
+from openerp.tools.translate import _
 
 
 class purchase_line_invoice(orm.TransientModel):
@@ -61,6 +62,12 @@ class purchase_line_invoice(orm.TransientModel):
                 changed_lines = {}
                 context['active_ids'] = []
                 for line in wizard.line_ids:
+                    if line.invoiced_qty > line.product_qty:
+                        raise orm.except_orm(
+                            _('Error'),
+                            _("""Quantity to invoice is greater
+                            than available quantity""")
+                        )
                     context['active_ids'].append(line.po_line_id.id)
                     changed_lines[
                         line.po_line_id.id
