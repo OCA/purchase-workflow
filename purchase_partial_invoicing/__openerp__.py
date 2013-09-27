@@ -34,6 +34,7 @@ for each line, the quantity to invoice.
     "depends": ['purchase'],
     "data": [
         'wizard/po_line_invoice_view.xml',
+        'purchase_view.xml',
     ],
     "demo": [],
     "active": False,
