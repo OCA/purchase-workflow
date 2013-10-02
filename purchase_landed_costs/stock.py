@@ -2,8 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
-#    Copyright (C) 2010-2012 Camptocamp Austria (<http://www.camptocamp.at>)
+#    Copyright (C) 2010-2013 Camptocamp (<http://www.camptocamp.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -49,14 +48,16 @@ class stock_move(osv.osv):
         landed_costs = 0.0
         # landed costss for the line
         for line in self.browse(cr, uid, ids):
+            picking = line.picking_id
             # distrubution of landed costs of PO
-            if line.picking_id.landed_cost_line_ids:
-               if line.picking_id.total_amount and line.picking_id.total_amount > 0.0:
-                   landed_costs += line.picking_id.landed_cost_base_value / line.picking_id.total_amount * line.price_unit * line.product_qty 
-               if line.picking_id.quantity_total and line.picking_id.quantity_total >0.0:
-                   landed_costs +=  line.picking_id.landed_cost_base_quantity / line.picking_id.quantity_total * line.product_qty
+            if picking.landed_cost_line_ids:
+               if picking.total_amount and picking.total_amount > 0.0:
+                   landed_costs += (picking.landed_cost_base_value / picking.total_amount * 
+                                    line.price_unit * line.product_qty)
+               if picking.quantity_total and picking.quantity_total >0.0:
+                   landed_costs +=  (picking.landed_cost_base_quantity / picking.quantity_total * 
+                                    line.product_qty)
             result[line.id] = landed_costs
-
         return result
 
     def _landed_cost(self, cr, uid, ids, name, args, context):
@@ -67,7 +68,6 @@ class stock_move(osv.osv):
         for line in self.browse(cr, uid, ids):
             landed_costs +=  line.product_qty * line.price_unit
             result[line.id] = landed_costs
-
         return result
 
     def _sub_total(self, cr, uid, ids, name, args, context):
@@ -77,20 +77,34 @@ class stock_move(osv.osv):
         for line in self.browse(cr, uid, ids):
             sub_total += line.product_qty * line.price_unit_net or 0.0
             result[line.id] = sub_total
-
         return result
 
-
     _columns = { 
-         'landed_cost_line_ids': fields.one2many('landed.cost.position', 'move_line_id', 'Landed Costs Positions'),
-         'landing_costs' : fields.function(_landing_cost, digits_compute=dp.get_precision('Account'), string='Line Landing Costs'),
-         'landing_costs_picking' : fields.function(_landing_cost_order, digits_compute=dp.get_precision('Account'), string='Landing Costs from Picking'),
-         'landed_cost' : fields.function(_landed_cost, digits_compute=dp.get_precision('Account'), string='Landed Costs'),
-         'sub_total' : fields.function(_sub_total, digits_compute=dp.get_precision('Account'), string='Line Sub Total'),
-         'price_unit_net' : fields.float('Purchase Price', digits_compute=dp.get_precision('Account'), ),
+         'landed_cost_line_ids': fields.one2many(
+            'landed.cost.position',
+            'move_line_id',
+            'Landed Costs Positions'),
+         'landing_costs' : fields.function(
+            _landing_cost,
+            digits_compute=dp.get_precision('Account'),
+            string='Line Landing Costs'),
+         'landing_costs_picking' : fields.function(
+            _landing_cost_order,
+            digits_compute=dp.get_precision('Account'),
+            string='Landing Costs from Picking'),
+         'landed_cost' : fields.function(
+            _landed_cost,
+            digits_compute=dp.get_precision('Account'),
+            string='Landed Costs'),
+         'sub_total' : fields.function(
+            _sub_total,
+            digits_compute=dp.get_precision('Account'),
+            string='Line Sub Total'),
+         'price_unit_net' : fields.float(
+            'Purchase Price',
+            digits_compute=dp.get_precision('Account')),
     }
 
-stock_move()
 
 #----------------------------------------------------------
 # Stock Picking
@@ -132,7 +146,6 @@ class stock_picking(osv.osv):
                 for ml in line.move_lines:
                     landed_costs += ml.landed_cost 
             result[line.id] = landed_costs
-
         return result
 
     def _landing_cost_lines(self, cr, uid, ids, name, args, context):
@@ -171,18 +184,37 @@ class stock_picking(osv.osv):
             result[line.id] = amount_total
         return result
 
-
     _columns = { 
-         'landed_cost_line_ids': fields.one2many('landed.cost.position', 'picking_id', 'Landed Costs Positions'),
-         'landed_cost_base_value' : fields.function(_landed_cost_base_value, digits_compute=dp.get_precision('Account'), string='Landed Costs Base Value'),
-         'landed_cost_base_quantity' : fields.function(_landed_cost_base_quantity, digits_compute=dp.get_precision('Account'), string='Landed Costs Base Quantity'),
-         'landing_cost_lines' : fields.function(_landing_cost_lines, digits_compute=dp.get_precision('Account'), string='Landing Cost Lines'),
-         'landed_cost' : fields.function(_landed_cost, digits_compute=dp.get_precision('Account'), string='Landed Costs Total Untaxed'),
-         'total_amount' : fields.function(_amount_total, digits_compute=dp.get_precision('Account'), string='Total Product Price'),
-         'quantity_total' : fields.function(_quantity_total, digits_compute=dp.get_precision('Product UoM'), string='Total Quantity'),
+         'landed_cost_line_ids': fields.one2many(
+            'landed.cost.position',
+            'picking_id',
+            'Landed Costs Positions'),
+         'landed_cost_base_value' : fields.function(
+            _landed_cost_base_value,
+            digits_compute=dp.get_precision('Account'),
+            string='Landed Costs Base Value'),
+         'landed_cost_base_quantity' : fields.function(
+            _landed_cost_base_quantity,
+            digits_compute=dp.get_precision('Account'),
+            string='Landed Costs Base Quantity'),
+         'landing_cost_lines' : fields.function(
+            _landing_cost_lines,
+            digits_compute=dp.get_precision('Account'),
+            string='Landing Cost Lines'),
+         'landed_cost' : fields.function(
+            _landed_cost,
+            digits_compute=dp.get_precision('Account'),
+            string='Landed Costs Total Untaxed'),
+         'total_amount' : fields.function(
+            _amount_total,
+            digits_compute=dp.get_precision('Account'),
+            string='Total Product Price'),
+         'quantity_total' : fields.function(
+            _quantity_total,
+            digits_compute=dp.get_precision('Product UoM'),
+            string='Total Quantity'),
     }
 
-stock_picking()
 
 class stock_partial_picking(osv.osv_memory):
     _inherit = "stock.partial.picking"
@@ -195,4 +227,3 @@ class stock_partial_picking(osv.osv_memory):
        self._logger.debug('res stock_partial_picking `%s`', res)
        return res
 
-stock_partial_picking()

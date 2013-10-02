@@ -2,8 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
-#    Copyright (C) 2010-2012 Camptocamp Austria (<http://www.camptocamp.at>)
+#    Copyright (C) 2010-2013 Camptocamp (<http://www.camptocamp.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -31,24 +30,33 @@ class product_template(osv.osv):
     _inherit = "product.template"
 
     _columns = {
-        'landed_cost_type': fields.selection( [('value','Value'), ('per_unit','Quantity'), ('none','None')], 'Distribution Type',  \
-                  help="Used if this product is landed costs: If landed costs are defined for purchase orders or pickings, this indicates how the costs are distributed to the lines"),
-        'landed_cost'    :fields.boolean('Calculate Landed Costs', help="Check this if you want to use landed cost calculation for average price for this product"), 
+        'landed_cost_type': fields.selection(
+            [('value','Value'),
+             ('per_unit','Quantity'),
+             ('none','None')],
+            'Distribution Type',
+            help="Used if this product is landed costs: "
+                 "If landed costs are defined for purchase orders or pickings, "
+                 "this indicates how the costs are distributed to the lines"),
+        'landed_cost': fields.boolean(
+            'Calculate Landed Costs',
+            help="Check this if you want to use landed cost calculation "
+                 "for average price for this product"), 
     }
 
     _defaults = {
         'landed_cost_type': lambda self, cr, uid, context: 
             context['landed_cost_type'] if 'landed_cost_type'\
                 in context else None
-        
     }
 
-product_template()
 
 class product_category(osv.osv):
     _inherit = 'product.category'
     _columns = {
-        'landed_cost'    :fields.boolean('Calculate Landed Costs', help="Check this if you want to use landed cost calculation for average price for this catgory"),
+        'landed_cost': fields.boolean(
+            'Calculate Landed Costs',
+            help="Check this if you want to use landed cost calculation for "
+                 "average price for this catgory"),
     }
-product_category()
 

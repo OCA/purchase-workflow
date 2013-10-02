@@ -2,8 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
-#    Copyright (C) 2010-2012 Camptocamp Austria (<http://www.camptocamp.at>)
+#    Copyright (C) 2010-2013 Camptocamp (<http://www.camptocamp.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -25,22 +24,44 @@ import decimal_precision as dp
 from tools.translate import _
 import logging
 
+
 class landed_cost_position(osv.osv):
     _name = "landed.cost.position"
 
-    _columns = \
-      { 'product_id' : fields.many2one('product.product','Landed Cost Name', required=True, domain=[('landed_cost_type','!=', False)]),
-        'amount'      : fields.float
-            ( 'Amount'
-            , required=True
-            , digits_compute=dp.get_precision('Purchase Price')
-            , help="""Landed cost for stock valuation. It will be added to the price of the supplier price."""),
-        'amount_currency': fields.float('Amount Currency', help="The amount expressed in an optional other currency."),
-        'currency_id': fields.many2one('res.currency', 'Secondary Currency', help="Optional other currency."),
-        'partner_id': fields.many2one('res.partner', 'Partner', help="The supplier of this cost component.", required="True"),
-        'price_type': fields.selection( [('per_unit','Per Quantity'), ('value','Absolute Value')], 'Amount Type', required=True,  \
-                  help="Defines if the amount is to be calculated for each quantity or an absolute value"),
-        'purchase_order_line_id': fields.many2one('purchase.order.line', 'Purchase Order Line'),
+    _columns = {
+        'product_id': fields.many2one(
+            'product.product',
+            'Landed Cost Name',
+            required=True, 
+            domain=[('landed_cost_type','!=', False)]),
+        'amount': fields.float
+            ( 'Amount',
+            required=True,
+            digits_compute=dp.get_precision('Purchase Price'),
+            help="Landed cost for stock valuation. It will be added to the price "
+                 "of the supplier price."),
+        'amount_currency': fields.float(
+            'Amount Currency',
+            help="The amount expressed in an optional other currency."),
+        'currency_id': fields.many2one(
+            'res.currency',
+            'Secondary Currency',
+            help="Optional other currency."),
+        'partner_id': fields.many2one(
+            'res.partner',
+            'Partner',
+            help="The supplier of this cost component.",
+            required=True),
+        'price_type': fields.selection(
+            [('per_unit','Per Quantity'),
+             ('value','Absolute Value')],
+            'Amount Type',
+            required=True,
+            help="Defines if the amount is to be calculated for each quantity "
+                 "or an absolute value"),
+        'purchase_order_line_id': fields.many2one(
+            'purchase.order.line',
+            'Purchase Order Line'),
         'purchase_order_id': fields.many2one('purchase.order', 'Purchase Order'),
         'move_line_id': fields.many2one('stock.move', 'Picking Line'),
         'picking_id': fields.many2one('stock.picking', 'Picking'),
@@ -54,7 +75,6 @@ class landed_cost_position(osv.osv):
             return {'value': v}
         return {}
 
-landed_cost_position()
 
 #----------------------------------------------------------
 # Purchase Line INHERIT
@@ -80,23 +100,21 @@ class purchase_order_line(osv.osv):
     def _landing_cost_order(self, cr, uid, ids, name, args, context):
         if not ids:
             return {}
-
         result = {}
-
         lines = self.browse(cr, uid, ids)
-
         # Landed costs line by line
         for line in lines:
             landed_costs = 0.0
+            order = line.order_id
             # distribution of landed costs of PO
-            if line.order_id.landed_cost_line_ids:
+            if order.landed_cost_line_ids:
                 # Base value (Absolute Value)
-                landed_costs += line.order_id.landed_cost_base_value / line.order_id.amount_total * line.price_subtotal
-
+                landed_costs += (order.landed_cost_base_value / 
+                                 order.amount_total * line.price_subtotal)
                 # Base quantity (Per Quantity)
-                landed_costs += line.order_id.landed_cost_base_quantity / line.order_id.quantity_total * line.product_qty
+                landed_costs += (order.landed_cost_base_quantity / 
+                                 order.quantity_total * line.product_qty)
             result[line.id] = landed_costs
-
         return result
 
     def _landing_cost_factor(self, cr, uid, ids, name, args, context):
@@ -107,27 +125,36 @@ class purchase_order_line(osv.osv):
             if line.landed_cost_line_ids:
                 pass
 
-
     def _landed_cost(self, cr, uid, ids, name, args, context):
         if not ids : return {}
         result = {}
         # landed costss for the line
         for line in self.browse(cr, uid, ids):
             landed_costs = 0.0
-            landed_costs += line.price_subtotal + line.landing_costs +  line.landing_costs_order
+            landed_costs += (line.price_subtotal + 
+                             line.landing_costs +  line.landing_costs_order)
             result[line.id] = landed_costs
-
         return result
         
-    _columns = \
-       {
-         'landed_cost_line_ids': fields.one2many('landed.cost.position', 'purchase_order_line_id', 'Landed Costs Positions'),
-         'landing_costs' : fields.function(_landing_cost, digits_compute=dp.get_precision('Account'), string='Landing Costs'),
-         'landing_costs_order' : fields.function(_landing_cost_order, digits_compute=dp.get_precision('Account'), string='Landing Costs from Order'),
-         'landed_costs' : fields.function(_landed_cost, digits_compute=dp.get_precision('Account'), string='Landed Costs'),
+    _columns = {
+         'landed_cost_line_ids': fields.one2many(
+            'landed.cost.position',
+            'purchase_order_line_id',
+            'Landed Costs Positions'),
+         'landing_costs': fields.function(
+            _landing_cost,
+            digits_compute=dp.get_precision('Account'),
+            string='Landing Costs'),
+         'landing_costs_order': fields.function(
+            _landing_cost_order,
+            digits_compute=dp.get_precision('Account'),
+            string='Landing Costs from Order'),
+         'landed_costs': fields.function(
+            _landed_cost,
+            digits_compute=dp.get_precision('Account'),
+            string='Landed Costs'),
     }
 
-purchase_order_line()
 
 class purchase_order(osv.osv):
     _inherit = "purchase.order"
@@ -175,9 +202,9 @@ class purchase_order(osv.osv):
         landed_costs = 0.0
         # landed costss for the line
         for line in self.browse(cr, uid, ids):
-            landed_costs += line.landing_cost_lines + line.landed_cost_base_value + line.landed_cost_base_quantity + line.amount_untaxed
+            landed_costs += (line.landing_cost_lines + line.landed_cost_base_value + 
+                             line.landed_cost_base_quantity + line.amount_untaxed)
             result[line.id] = landed_costs
-
         return result
 
     def _landing_cost_lines(self, cr, uid, ids, name, args, context):
@@ -192,14 +219,31 @@ class purchase_order(osv.osv):
             result[line.id] = landed_cost_lines
         return result
 
-    _columns = \
-        {
-         'landed_cost_line_ids': fields.one2many('landed.cost.position', 'purchase_order_id', 'Landed Costs'),
-         'landed_cost_base_value' : fields.function(_landed_cost_base_value, digits_compute=dp.get_precision('Account'), string='Landed Costs Base Value'),
-         'landed_cost_base_quantity' : fields.function(_landed_cost_base_quantity, digits_compute=dp.get_precision('Account'), string='Landed Costs Base Quantity'),
-         'landing_cost_lines' : fields.function(_landing_cost_lines, digits_compute=dp.get_precision('Account'), string='Landing Cost Lines'),
-         'landed_cost' : fields.function(_landed_cost, digits_compute=dp.get_precision('Account'), string='Landed Costs Total Untaxed'),
-         'quantity_total' : fields.function(_quantity_total, digits_compute=dp.get_precision('Product UoM'), string='Total Quantity'),
+    _columns = {
+         'landed_cost_line_ids': fields.one2many(
+            'landed.cost.position',
+            'purchase_order_id',
+            'Landed Costs'),
+         'landed_cost_base_value': fields.function(
+            _landed_cost_base_value,
+            digits_compute=dp.get_precision('Account'), 
+            string='Landed Costs Base Value'),
+         'landed_cost_base_quantity': fields.function(
+            _landed_cost_base_quantity,
+            digits_compute=dp.get_precision('Account'),
+            string='Landed Costs Base Quantity'),
+         'landing_cost_lines': fields.function(
+            _landing_cost_lines,
+            digits_compute=dp.get_precision('Account'),
+            string='Landing Cost Lines'),
+         'landed_cost': fields.function(
+            _landed_cost,
+            digits_compute=dp.get_precision('Account'),
+            string='Landed Costs Total Untaxed'),
+         'quantity_total': fields.function(
+            _quantity_total,
+            digits_compute=dp.get_precision('Product UoM'),
+            string='Total Quantity'),
     }
 
     def _prepare_order_line_move(self, cr, uid, order, order_line, picking_id, context=None):
@@ -210,7 +254,6 @@ class purchase_order(osv.osv):
 
     def _prepare_order_picking(self, cr, uid, order, context=None):
         res = super(purchase_order,self)._prepare_order_picking( cr, uid, order, context)
-
         return res
 
     def _get_product_account_expense_id(self, product):
@@ -221,7 +264,6 @@ class purchase_order(osv.osv):
         if product.property_account_expense.id:
             return product.property_account_expense.id
         return product.categ_id.property_account_expense_categ.id
-            
 
     def _create_pickings(self, cr, uid, order, order_lines, picking_id=False, context=None): 
         res =  super(purchase_order,self)._create_pickings(cr, uid, order, order_lines, picking_id, context)
@@ -237,10 +279,10 @@ class purchase_order(osv.osv):
             'partner_id' : order_cost.partner_id.id
            #,'amount' : order_cost.amount
            #,'amount_currency' : order_cost.amount_currency
-           ,'currency_id' : order_cost.currency_id.id or order.company_id.currency_id.id
-           ,'account_id' : order_cost.partner_id.property_account_payable.id
-           ,'type' : 'in_invoice'
-           ,'origin' : order.name
+           ,'currency_id': order_cost.currency_id.id or order.company_id.currency_id.id
+           ,'account_id': order_cost.partner_id.property_account_payable.id
+           ,'type': 'in_invoice'
+           ,'origin': order.name
            ,'fiscal_position':  order.partner_id.property_account_position and order.partner_id.property_account_position.id or False
            ,'company_id': order.company_id.id
            ,'journal_id': len(journal_ids) and journal_ids[0] or False
@@ -255,17 +297,15 @@ class purchase_order(osv.osv):
            #,'amount' : order_cost.amount
            #,'amount_currency' : order_cost.amount_currency
            #,'picking_id' : pick_id
-           ,'account_id' : self._get_product_account_expense_id(order_cost.product_id)
-           ,'partner_id' : order_cost.partner_id.id
-           ,'invoice_id' : inv_id
-           ,'price_unit' : order_cost.amount
+           ,'account_id': self._get_product_account_expense_id(order_cost.product_id)
+           ,'partner_id': order_cost.partner_id.id
+           ,'invoice_id': inv_id
+           ,'price_unit': order_cost.amount
            ,'invoice_line_tax_id': [(6, 0, [x.id for x in order_cost.product_id.supplier_taxes_id])],
 
                 }
             self._logger.debug('vals line `%s`', vals_line)
             inv_line_id = invoice_line_obj.create(cr, uid, vals_line, context=None) 
-            
-
         #self.pool.get('landed.cost.position').create(cr, uid, cost_lines, context=None) 
         # landing costs for PICK Lines from PO   
         #pick_obj = self.pool.get('stock.picking')
@@ -285,7 +325,5 @@ class purchase_order(osv.osv):
         #    self._logger.debug('vals `%s`', vals)
         #    cost_obj.create(cr, uid, vals, context=None) 
         #self._logger.debug('cost created')
-           
         return res
 
-purchase_order()
