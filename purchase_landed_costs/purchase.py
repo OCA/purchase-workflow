@@ -31,15 +31,19 @@ class landed_cost_position(osv.osv):
     original supplier, like transport. Cost will be re-affected to each PO line
     in respect of the distribution method selected. The average price computation for 
     the product will take those direct costs into account."""
-    
+
     _name = "landed.cost.position"
 
     _columns = {
         'product_id': fields.many2one(
             'product.product',
             'Landed Cost Name',
-            required=True, 
+            required=True,
             domain=[('landed_cost_type','!=', False)]),
+        'account_id': fields.many2one(
+            'account.account',
+            'Fiscal Account',
+            required=True,),
         'amount': fields.float
             ( 'Amount',
             required=True,
@@ -73,13 +77,23 @@ class landed_cost_position(osv.osv):
         'picking_id': fields.many2one('stock.picking', 'Picking'),
       }
 
-    def onchange_product_id(self, cr, uid, ids, product_id, context=None):
+    def onchange_product_id(self, cr, uid, ids, product_id, purchase_order_id=False, context=None):
+        res = {}
+        fiscal_position = False
         if product_id:
-            prod_obj=self.pool.get('product.product')
-            prod=prod_obj.browse(cr,uid,[product_id])[0]
-            v = {'price_type':prod.landed_cost_type}
-            return {'value': v}
-        return {}
+            prod_obj = self.pool.get('product.product')
+            prod = prod_obj.browse(cr,uid,[product_id],context=context)[0]
+            if purchase_order_id:
+                po_obj = self.pool.get('purchase.order')
+                po = po_obj.browse(cr,uid,[purchase_order_id],context=context)[0]
+                fiscal_position = po.fiscal_position or False
+            account_id = prod_obj._choose_exp_account_from(
+                            cr,uid,prod,fiscal_position=fiscal_position,context=context)
+            value = {
+                'price_type': prod.landed_cost_type,
+                'account_id': account_id.id}
+            res = {'value': value}
+        return res
 
 
 #----------------------------------------------------------
@@ -267,6 +281,7 @@ class purchase_order(osv.osv):
         Returns the product's account expense id if present
         or it's parent categories account expense id otherwise
         """
+        #TOFIX Use this method from product.py: _choose_exp_account_from
         if product.property_account_expense.id:
             return product.property_account_expense.id
         return product.categ_id.property_account_expense_categ.id

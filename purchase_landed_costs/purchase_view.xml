@@ -10,6 +10,7 @@
       <field name="arch" type="xml">
         <tree string="Landing Costs" editable="bottom">
               <field name="product_id" context="{'landed_cost_type':'per_unit'}" on_change="onchange_product_id(product_id)"/>
+              <field name="account_id" invisible="1"/>
               <field name="partner_id"/>
               <field name="amount"/>
               <field name="price_type"/>
@@ -27,6 +28,7 @@
       <field name="arch" type="xml">
         <form string="Landing Costs">
               <field name="product_id" on_change="onchange_product_id(product_id)"/>
+              <field name="account_id" invisible="1"/>
               <field name="partner_id"/>
               <field name="amount"/>
               <field name="price_type"/>
@@ -84,7 +86,17 @@
              <field name="landing_cost_lines"/>
              <field name="landed_cost"/>
            </group>
-             <field name="landed_cost_line_ids" colspan="4" nolabel="1"  widget="one2many_list"/>
+             <field name="landed_cost_line_ids" colspan="4" nolabel="1"  widget="one2many_list">
+              <tree string="Landing Costs" editable="bottom">
+                  <field name="product_id" context="{'landed_cost_type':'per_unit'}" on_change="onchange_product_id(product_id,parent.purchase_order_id)"/>
+                  <field name="account_id" invisible="1"/>
+                  <field name="partner_id"/>
+                  <field name="amount"/>
+                  <field name="price_type"/>
+                  <field name="amount_currency"/>
+                  <field name="currency_id"/>
+              </tree>
+            </field>
           </page>
         </notebook>
         </data>

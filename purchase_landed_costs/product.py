@@ -50,6 +50,23 @@ class product_template(osv.osv):
                 in context else None
     }
 
+    def _choose_exp_account_from(self, cr, uid, product, fiscal_position=False, context=None):
+        """Method to compute the expense account to chose based on product and 
+        fiscal position. Used in invoice creation and on_change of landed costs.
+        Taken from method : _choose_account_from_po_line of purchase.py in purchase module."""
+        fiscal_obj = self.pool.get('account.fiscal.position')
+        property_obj = self.pool.get('ir.property')
+        if product:
+            acc_id = product.property_account_expense.id
+            if not acc_id:
+                acc_id = product.categ_id.property_account_expense_categ.id
+            if not acc_id:
+                raise osv.except_osv(
+                    _('Error!'),
+                    _('Define expense account for this company: "%s" (id:%d).') % (product.name, product.id,))
+        else:
+            acc_id = property_obj.get(cr, uid, 'property_account_expense_categ', 'product.category').id
+        return fiscal_obj.map_account(cr, uid, fiscal_position, acc_id)
 
 class product_category(osv.osv):
     _inherit = 'product.category'
