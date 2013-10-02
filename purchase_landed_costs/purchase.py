@@ -26,6 +26,12 @@ import logging
 
 
 class landed_cost_position(osv.osv):
+    """The landed cost position represent a direct cost for the delivery 
+    of the goods puchased. It can be from a different partner than the 
+    original supplier, like transport. Cost will be re-affected to each PO line
+    in respect of the distribution method selected. The average price computation for 
+    the product will take those direct costs into account."""
+    
     _name = "landed.cost.position"
 
     _columns = {

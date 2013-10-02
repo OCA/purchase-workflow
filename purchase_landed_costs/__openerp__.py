@@ -21,7 +21,7 @@
 
 
 {
-    'name': 'Landed Costs',
+    'name': 'Purchase Landed Costs',
     'version': '0.8.1',
     'category': 'Warehouse Management',
     'description': """
@@ -42,7 +42,7 @@
     """,
     'author': 'Camptocamp',
     'depends': ['purchase' ],
-    'update_xml': ['security/ir.model.access.csv',
+    'data_xml': ['security/ir.model.access.csv',
                    'purchase_view.xml',
                    ],
     'demo_xml': [],
