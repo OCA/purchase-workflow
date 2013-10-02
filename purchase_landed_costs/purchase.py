@@ -85,12 +85,6 @@ class purchase_order_line(osv.osv):
 
         lines = self.browse(cr, uid, ids)
 
-        # Pre-compute total number of pallets
-        pallets_total = 0.0
-        for line in lines:
-            if line.order_id.landed_cost_line_ids:
-                pallets_total += line.nb_pallets
-
         # Landed costs line by line
         for line in lines:
             landed_costs = 0.0
