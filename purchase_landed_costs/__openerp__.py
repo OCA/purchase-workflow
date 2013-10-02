@@ -2,8 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
-#    Copyright (C) 2010-2012 Camptocamp Austria (<http://www.camptocamp.at>)
+#    Copyright (C) 2010-2013 Camptocamp (<http://www.camptocamp.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -23,13 +22,13 @@
 
 {
     'name': 'Landed Costs',
-    'version': '0.8',
+    'version': '0.8.1',
     'category': 'Warehouse Management',
     'description': """
+
     This module add the possibility to include landed costs in the average price computation.
     The landed costs can be defined for 
     * purchase orders
-    * purchase order lines (disabled in v7 due to o2m restrictions)
     costs defined for purchase orders and pickings will be distributed according to the distribution type
     defined in landed cost category
     * value - example custom fees
@@ -39,8 +38,9 @@
     ** "Value" (for customs) or 
     ** "Quantity" (for freight)
 
+    Thanks to Savoir Faire Linux for their contributions on that module !
     """,
-    'author': 'Camptocamp Austria',
+    'author': 'Camptocamp',
     'depends': ['purchase' ],
     'update_xml': ['security/ir.model.access.csv',
                    'purchase_view.xml',
