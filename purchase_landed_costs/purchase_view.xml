@@ -9,6 +9,7 @@
       <field name="type">tree</field>
       <field name="arch" type="xml">
         <tree string="Landing Costs" editable="bottom">
+              <field name="generate_invoice"/>
               <field name="product_id" context="{'landed_cost_type':'per_unit'}" on_change="onchange_product_id(product_id)"/>
               <field name="account_id" invisible="1"/>
               <field name="partner_id"/>
@@ -27,6 +28,7 @@
       <field name="type">form</field>
       <field name="arch" type="xml">
         <form string="Landing Costs">
+              <field name="generate_invoice"/>
               <field name="product_id" on_change="onchange_product_id(product_id)"/>
               <field name="account_id" invisible="1"/>
               <field name="partner_id"/>
@@ -88,6 +90,7 @@
            </group>
              <field name="landed_cost_line_ids" colspan="4" nolabel="1"  widget="one2many_list">
               <tree string="Landing Costs" editable="bottom">
+                  <field name="generate_invoice"/>
                   <field name="product_id" context="{'landed_cost_type':'per_unit'}" on_change="onchange_product_id(product_id,parent.purchase_order_id)"/>
                   <field name="account_id" invisible="1"/>
                   <field name="partner_id"/>

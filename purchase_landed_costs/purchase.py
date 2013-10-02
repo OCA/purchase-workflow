@@ -75,7 +75,17 @@ class landed_cost_position(osv.osv):
         'purchase_order_id': fields.many2one('purchase.order', 'Purchase Order'),
         'move_line_id': fields.many2one('stock.move', 'Picking Line'),
         'picking_id': fields.many2one('stock.picking', 'Picking'),
+        'generate_invoice': fields.boolean(
+            'Generate Invoice',
+            help="If ticked, this will generate a draft invoice at the picking creation "
+                 "for this landed cost position from the related partner. If not, no "
+                 "invoice will be generated, but the cost will be included for the average "
+                 "price computation."),
       }
+
+    _default = {
+        'generate_invoice': False,
+    }
 
     def onchange_product_id(self, cr, uid, ids, product_id, purchase_order_id=False, context=None):
         res = {}
@@ -296,37 +306,38 @@ class purchase_order(osv.osv):
         journal_obj = self.pool.get('account.journal')
         journal_ids = journal_obj.search(cr, uid, [('type', '=','purchase'),('company_id', '=', order.company_id.id)], limit=1)
         for order_cost in order.landed_cost_line_ids:
-            vals_inv = {
-            'partner_id' : order_cost.partner_id.id
-           #,'amount' : order_cost.amount
-           #,'amount_currency' : order_cost.amount_currency
-           ,'currency_id': order_cost.currency_id.id or order.company_id.currency_id.id
-           ,'account_id': order_cost.partner_id.property_account_payable.id
-           ,'type': 'in_invoice'
-           ,'origin': order.name
-           ,'fiscal_position':  order.partner_id.property_account_position and order.partner_id.property_account_position.id or False
-           ,'company_id': order.company_id.id
-           ,'journal_id': len(journal_ids) and journal_ids[0] or False
+            if order_cost.generate_invoice:
+                vals_inv = {
+                'partner_id' : order_cost.partner_id.id
+               #,'amount' : order_cost.amount
+               #,'amount_currency' : order_cost.amount_currency
+               ,'currency_id': order_cost.currency_id.id or order.company_id.currency_id.id
+               ,'account_id': order_cost.partner_id.property_account_payable.id
+               ,'type': 'in_invoice'
+               ,'origin': order.name
+               ,'fiscal_position':  order.partner_id.property_account_position and order.partner_id.property_account_position.id or False
+               ,'company_id': order.company_id.id
+               ,'journal_id': len(journal_ids) and journal_ids[0] or False
 
-                }
-            self._logger.debug('vals inv`%s`', vals_inv)
-            #cost_obj.create(cr, uid, vals, context=None) 
-            inv_id = invoice_obj.create(cr, uid, vals_inv, context=None) 
-            vals_line = {
-            'product_id' : order_cost.product_id.id
-           ,'name' : order_cost.product_id.name
-           #,'amount' : order_cost.amount
-           #,'amount_currency' : order_cost.amount_currency
-           #,'picking_id' : pick_id
-           ,'account_id': self._get_product_account_expense_id(order_cost.product_id)
-           ,'partner_id': order_cost.partner_id.id
-           ,'invoice_id': inv_id
-           ,'price_unit': order_cost.amount
-           ,'invoice_line_tax_id': [(6, 0, [x.id for x in order_cost.product_id.supplier_taxes_id])],
+                    }
+                self._logger.debug('vals inv`%s`', vals_inv)
+                #cost_obj.create(cr, uid, vals, context=None) 
+                inv_id = invoice_obj.create(cr, uid, vals_inv, context=None) 
+                vals_line = {
+                'product_id' : order_cost.product_id.id
+               ,'name' : order_cost.product_id.name
+               #,'amount' : order_cost.amount
+               #,'amount_currency' : order_cost.amount_currency
+               #,'picking_id' : pick_id
+               ,'account_id': self._get_product_account_expense_id(order_cost.product_id)
+               ,'partner_id': order_cost.partner_id.id
+               ,'invoice_id': inv_id
+               ,'price_unit': order_cost.amount
+               ,'invoice_line_tax_id': [(6, 0, [x.id for x in order_cost.product_id.supplier_taxes_id])],
 
-                }
-            self._logger.debug('vals line `%s`', vals_line)
-            inv_line_id = invoice_line_obj.create(cr, uid, vals_line, context=None) 
+                    }
+                self._logger.debug('vals line `%s`', vals_line)
+                inv_line_id = invoice_line_obj.create(cr, uid, vals_line, context=None) 
         #self.pool.get('landed.cost.position').create(cr, uid, cost_lines, context=None) 
         # landing costs for PICK Lines from PO   
         #pick_obj = self.pool.get('stock.picking')
