@@ -42,11 +42,16 @@
     """,
     'author': 'Camptocamp',
     'depends': ['purchase' ],
+    'website': 'http://www.camptocamp.com',
     'data': ['security/ir.model.access.csv',
              'purchase_view.xml',
              'stock_view.xml',
             ],
-    'demo_xml': [],
+    'test': [
+        'test/landed_costs_based_on_quantity.yml',
+        'test/landed_costs_based_on_value.yml'
+    ],
+    'demo': [],
     'installable': True,
     'active': False,
 }
