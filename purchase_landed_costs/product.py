@@ -23,9 +23,6 @@ from osv import osv, fields
 from tools.translate import _
         
 
-#----------------------------------------------------------
-# Product INHERIT
-#----------------------------------------------------------
 class product_template(osv.osv):
     _inherit = "product.template"
 
@@ -48,12 +45,18 @@ class product_template(osv.osv):
         'landed_cost_type': lambda self, cr, uid, context: 
             context['landed_cost_type'] if 'landed_cost_type'\
                 in context else None
-    }
+    } 
 
-    def _choose_exp_account_from(self, cr, uid, product, fiscal_position=False, context=None):
+
+class product_product(osv.osv):
+    _inherit = "product.product"
+
+    def _choose_exp_account_from(self, cr, uid, product, fiscal_position=False,
+             context=None):
         """Method to compute the expense account to chose based on product and 
         fiscal position. Used in invoice creation and on_change of landed costs.
-        Taken from method : _choose_account_from_po_line of purchase.py in purchase module."""
+        Taken from method : _choose_account_from_po_line of purchase.py in 
+        purchase module."""
         fiscal_obj = self.pool.get('account.fiscal.position')
         property_obj = self.pool.get('ir.property')
         if product:
@@ -63,9 +66,11 @@ class product_template(osv.osv):
             if not acc_id:
                 raise osv.except_osv(
                     _('Error!'),
-                    _('Define expense account for this company: "%s" (id:%d).') % (product.name, product.id,))
+                    _('Define expense account for this company: "%s" (id:%d).') 
+                        % (product.name, product.id,))
         else:
-            acc_id = property_obj.get(cr, uid, 'property_account_expense_categ', 'product.category').id
+            acc_id = property_obj.get(cr, uid, 
+                'property_account_expense_categ', 'product.category').id
         return fiscal_obj.map_account(cr, uid, fiscal_position, acc_id)
 
 class product_category(osv.osv):
