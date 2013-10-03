@@ -27,23 +27,25 @@
     'description': """
 
     This module add the possibility to include landed costs in the average price computation.
-    The landed costs can be defined for 
-    * purchase orders
-    costs defined for purchase orders and pickings will be distributed according to the distribution type
-    defined in landed cost category
+    The landed costs can be defined for purchase orders or picking. Those costs 
+    will be distributed according to the distribution type defined in landed cost category:
+
     * value - example custom fees
     * quantity - example freight
-    for each landed cost position a draft invoice can be created in validation of purchase order 
-    (an option need to be checked).
-    The products used to define landed cost must be classified "Distribution Type" as 
-    ** "Value" (for customs) or 
-    ** "Quantity" (for freight)
+    
+    For each landed cost position define in a PO a draft invoice can be created in 
+    validation of purchase order (an option need to be checked).
+    The products used to define landed cost must be classified "Distribution Type" as :
+
+    * "Value" (for customs) or 
+    * "Quantity" (for freight)
     """,
     'author': 'Camptocamp',
     'depends': ['purchase' ],
-    'data_xml': ['security/ir.model.access.csv',
-                   'purchase_view.xml',
-                   ],
+    'data': ['security/ir.model.access.csv',
+             'purchase_view.xml',
+             'stock_view.xml',
+            ],
     'demo_xml': [],
     'installable': True,
     'active': False,

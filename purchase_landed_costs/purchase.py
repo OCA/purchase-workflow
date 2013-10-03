@@ -45,7 +45,7 @@ class landed_cost_position(osv.osv):
             'Fiscal Account',
             required=True,),
         'amount': fields.float
-            ( 'Amount',
+            ('Amount',
             required=True,
             digits_compute=dp.get_precision('Purchase Price'),
             help="Landed cost for stock valuation. It will be added to the price "
@@ -102,14 +102,11 @@ class landed_cost_position(osv.osv):
                 fiscal_position=fiscal_position, context=context)
             value = {
                 'price_type': prod.landed_cost_type,
-                'account_id': account_id.id}
+                'account_id': account_id}
             res = {'value': value}
         return res
 
 
-#----------------------------------------------------------
-# Purchase Line INHERIT
-#----------------------------------------------------------
 class purchase_order_line(osv.osv):
     _inherit = "purchase.order.line"
 
@@ -140,10 +137,12 @@ class purchase_order_line(osv.osv):
             # distribution of landed costs of PO
             if order.landed_cost_line_ids:
                 # Base value (Absolute Value)
-                landed_costs += (order.landed_cost_base_value / 
+                if order.landed_cost_base_value:
+                    landed_costs += (order.landed_cost_base_value / 
                                  order.amount_total * line.price_subtotal)
                 # Base quantity (Per Quantity)
-                landed_costs += (order.landed_cost_base_quantity / 
+                if order.landed_cost_base_quantity:
+                    landed_costs += (order.landed_cost_base_quantity / 
                                  order.quantity_total * line.product_qty)
             result[line.id] = landed_costs
         return result
@@ -304,7 +303,7 @@ class purchase_order(osv.osv):
         return {
             'name': landed_cost.product_id.name,
             'account_id': account_id,
-            'invoice_id' : inv_id
+            'invoice_id' : inv_id,
             'price_unit': landed_cost.amount or 0.0,
             'quantity': 1.0,
             'product_id': landed_cost.product_id.id or False,
@@ -368,7 +367,7 @@ class purchase_order(osv.osv):
                         exp_account_id, inv_id, order_cost, context=context)
                     self._logger.debug('vals line `%s`', vals_line)
                     inv_line_id = invoice_line_obj.create(cr, uid, vals_line,
-                        context=context))
+                        context=context)
                     invoice_ids.append(inv_id)
             # Link this new invoice to related purchase order
             # 4 in that list is "Add" mode in a many2many used here because

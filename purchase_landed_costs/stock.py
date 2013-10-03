@@ -21,9 +21,8 @@
 from osv import osv, fields
 import decimal_precision as dp
 import logging
-#----------------------------------------------------------
-#  Stock Move
-#----------------------------------------------------------
+
+
 class stock_move(osv.osv):
     _inherit = "stock.move"
     
@@ -106,9 +105,6 @@ class stock_move(osv.osv):
     }
 
 
-#----------------------------------------------------------
-# Stock Picking
-#----------------------------------------------------------
 class stock_picking(osv.osv):
     _inherit = "stock.picking"
 
