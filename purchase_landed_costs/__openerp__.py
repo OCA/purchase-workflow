@@ -33,12 +33,11 @@
     defined in landed cost category
     * value - example custom fees
     * quantity - example freight
-    for each landed cost position a draft invoice is created in validation of purchase order
-    the products used to define landed cost must be classified "Distribution Type" as 
+    for each landed cost position a draft invoice can be created in validation of purchase order 
+    (an option need to be checked).
+    The products used to define landed cost must be classified "Distribution Type" as 
     ** "Value" (for customs) or 
     ** "Quantity" (for freight)
-
-    Thanks to Savoir Faire Linux for their contributions on that module !
     """,
     'author': 'Camptocamp',
     'depends': ['purchase' ],
