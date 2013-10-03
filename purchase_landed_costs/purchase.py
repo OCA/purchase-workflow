@@ -77,7 +77,7 @@ class landed_cost_position(osv.osv):
         'picking_id': fields.many2one('stock.picking', 'Picking'),
         'generate_invoice': fields.boolean(
             'Generate Invoice',
-            help="If ticked, this will generate a draft invoice at the picking creation "
+            help="If ticked, this will generate a draft invoice at the PO confirmation "
                  "for this landed cost position from the related partner. If not, no "
                  "invoice will be generated, but the cost will be included for the average "
                  "price computation."),
@@ -139,7 +139,7 @@ class purchase_order_line(osv.osv):
                 # Base value (Absolute Value)
                 if order.landed_cost_base_value:
                     landed_costs += (order.landed_cost_base_value / 
-                                 order.amount_total * line.price_subtotal)
+                                 order.amount_total * line.price_subtotal   )
                 # Base quantity (Per Quantity)
                 if order.landed_cost_base_quantity:
                     landed_costs += (order.landed_cost_base_quantity / 
@@ -323,12 +323,13 @@ class purchase_order(osv.osv):
         fiscal_position = landed_cost.purchase_order_id.fiscal_position or False
         journal_obj = self.pool.get('account.journal')
         journal_ids = journal_obj.search(cr, uid, [('type', '=','purchase'),
-            ('company_id', '=', order.company_id.id)], limit=1)
+            ('company_id', '=', landed_cost.purchase_order_id.company_id.id)], limit=1)
         if not journal_ids:
             raise osv.except_osv(
                 _('Error!'),
                 _('Define purchase journal for this company: "%s" (id:%d).') 
-                    % (order.company_id.name, order.company_id.id))
+                    % (landed_cost.purchase_order_id.company_id.name, 
+                        landed_cost.purchase_order_id.company_id.id))
         return {
             'partner_id' : landed_cost.partner_id.id,
             'currency_id': currency_id,
@@ -340,11 +341,11 @@ class purchase_order(osv.osv):
             'journal_id': len(journal_ids) and journal_ids[0] or False,
         }
 
-    def action_invoice_create(self, cr, uid, ids, context=None):
-        """On invoices creation of the PO, generate as well all invoices
+    def wkf_approve_order(self, cr, uid, ids, context=None):
+        """On PO approval, generate all invoices
         for all landed cost position. Remember that only landed cost position with
         the checkbox generate_invoice ticked are generated."""
-        res =  super(purchase_order,self).action_invoice_create(cr, uid, ids,
+        res = super(purchase_order,self).wkf_approve_order(cr, uid, ids,
             context=context)
         invoice_obj = self.pool.get('account.invoice')
         prod_obj = self.pool.get('product.product')
@@ -359,7 +360,7 @@ class purchase_order(osv.osv):
                     inv_id = invoice_obj.create(cr, uid, vals_inv, context=context)
                     fiscal_position = (order_cost.purchase_order_id.fiscal_position 
                         or False)
-                    exp_account_id = self._choose_exp_account_from(cr, uid,
+                    exp_account_id = prod_obj._choose_exp_account_from(cr, uid,
                             order_cost.product_id,
                             fiscal_position=fiscal_position,
                             context=context)
@@ -376,3 +377,4 @@ class purchase_order(osv.osv):
                 commands = [(4, invoice_id) for invoice_id in invoice_ids]
                 order.write({'invoice_ids': commands}, context=context)
         return res
+
