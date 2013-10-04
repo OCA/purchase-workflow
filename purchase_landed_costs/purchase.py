@@ -34,6 +34,27 @@ class landed_cost_position(osv.osv):
 
     _name = "landed.cost.position"
 
+
+    def _amount_total(self, cr, uid, ids, name, args, context):
+
+    # TODO: We should have a field that is the computed value
+    # e.g. if it's related to a line and per_unit => I want for the reporting
+    # the total line landed cost. Name the field amount_total and show this 
+    # one in analysius view. This field is computed with:
+    # if purchase_order_line_id and per_unit = amount * purchase_order_line_id.product_qty
+    # else = amount
+
+        if not ids : return {}
+        result = {}
+        # landed costss for the line
+        for line in self.browse(cr, uid, ids):
+            if line.purchase_order_line_id and line.price_type == 'per_unit':
+                result[line.id] = (line.amount * 
+                    line.purchase_order_line_id.product_qty)
+            else:
+                result[line.id] = line.amount
+        return result
+
     _columns = {
         'product_id': fields.many2one(
             'product.product',
@@ -79,6 +100,14 @@ class landed_cost_position(osv.osv):
                  "for this landed cost position from the related partner. If not, no "
                  "invoice will be generated, but the cost will be included for the average "
                  "price computation."),
+        'amount_total': fields.function(
+            _amount_total,
+            digits_compute=dp.get_precision('Account'),
+            string='Amount Total',
+            help="This field represent the total amount of this position "
+                 "regarding a whole order. By summing it, you'll have the total "
+                 "landed cost for the order",
+            store=True),
       }
 
     _default = {

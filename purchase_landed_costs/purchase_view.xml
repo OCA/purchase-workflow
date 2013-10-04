@@ -143,7 +143,7 @@
                 <field name="product_id"/>
                 <field name="account_id" />
                 <field name="partner_id"/>
-                <field name="amount" sum="Total amount"/>
+                <field name="amount_total" sum="Total amount"/>
                 <field name="price_type"/>
                 <field name="amount_currency"/>
                 <field name="currency_id"/>
