@@ -110,20 +110,20 @@ class landed_cost_position(osv.osv):
 class purchase_order_line(osv.osv):
     _inherit = "purchase.order.line"
 
-    # def _landing_cost(self, cr, uid, ids, name, args, context):
-    #     if not ids : return {}
-    #     result = {}
-    #     # landed costss for the line
-    #     for line in self.browse(cr, uid, ids):
-    #         landed_costs = 0.0
-    #         if line.landed_cost_line_ids:
-    #             for costs in line.landed_cost_line_ids:
-    #                 if costs.price_type == 'value':
-    #                     landed_costs += costs.amount
-    #                 else:       
-    #                     landed_costs += costs.amount * line.product_qty
-    #         result[line.id] = landed_costs
-    #     return result
+    def _landing_cost(self, cr, uid, ids, name, args, context):
+        if not ids : return {}
+        result = {}
+        # landed costss for the line
+        for line in self.browse(cr, uid, ids):
+            landed_costs = 0.0
+            if line.landed_cost_line_ids:
+                for costs in line.landed_cost_line_ids:
+                    if costs.price_type == 'value':
+                        landed_costs += costs.amount
+                    else:       
+                        landed_costs += costs.amount * line.product_qty
+            result[line.id] = landed_costs
+        return result
 
     def _landing_cost_order(self, cr, uid, ids, name, args, context):
         if not ids:
@@ -153,21 +153,20 @@ class purchase_order_line(osv.osv):
         # landed costss for the line
         for line in self.browse(cr, uid, ids):
             landed_costs = 0.0
-            landed_costs += (line.price_subtotal + line.landing_costs_order)
-            # landed_costs += (line.price_subtotal + 
-            #                  line.landing_costs +  line.landing_costs_order)
+            landed_costs += (line.price_subtotal + 
+                             line.landing_costs +  line.landing_costs_order)
             result[line.id] = landed_costs
         return result
         
     _columns = {
-         # 'landed_cost_line_ids': fields.one2many(
-         #    'landed.cost.position',
-         #    'purchase_order_line_id',
-         #    'Landed Costs Positions'),
-         # 'landing_costs': fields.function(
-         #    _landing_cost,
-         #    digits_compute=dp.get_precision('Account'),
-         #    string='Landing Costs'),
+         'landed_cost_line_ids': fields.one2many(
+            'landed.cost.position',
+            'purchase_order_line_id',
+            'Landed Costs Positions'),
+         'landing_costs': fields.function(
+            _landing_cost,
+            digits_compute=dp.get_precision('Account'),
+            string='Landing Costs'),
          'landing_costs_order': fields.function(
             _landing_cost_order,
             digits_compute=dp.get_precision('Account'),
@@ -225,24 +224,22 @@ class purchase_order(osv.osv):
         landed_costs = 0.0
         # landed costss for the line
         for line in self.browse(cr, uid, ids):
-            landed_costs += (line.landed_cost_base_value + 
+            landed_costs += (line.landing_cost_lines + line.landed_cost_base_value + 
                              line.landed_cost_base_quantity + line.amount_untaxed)
-            # landed_costs += (line.landing_cost_lines + line.landed_cost_base_value + 
-            #                  line.landed_cost_base_quantity + line.amount_untaxed)
             result[line.id] = landed_costs
         return result
 
-    # def _landing_cost_lines(self, cr, uid, ids, name, args, context):
-    #     if not ids : return {}
-    #     result = {}
-    #     landed_cost_lines = 0.0
-    #     for line in self.browse(cr, uid, ids):
-    #         if line.order_line:
-    #             for pol in line.order_line:
-    #                 if pol.product_qty > 0.0:
-    #                      landed_cost_lines += pol.landing_costs
-    #         result[line.id] = landed_cost_lines
-    #     return result
+    def _landing_cost_lines(self, cr, uid, ids, name, args, context):
+        if not ids : return {}
+        result = {}
+        landed_cost_lines = 0.0
+        for line in self.browse(cr, uid, ids):
+            if line.order_line:
+                for pol in line.order_line:
+                    if pol.product_qty > 0.0:
+                         landed_cost_lines += pol.landing_costs
+            result[line.id] = landed_cost_lines
+        return result
 
     _columns = {
          'landed_cost_line_ids': fields.one2many(
@@ -257,10 +254,10 @@ class purchase_order(osv.osv):
             _landed_cost_base_quantity,
             digits_compute=dp.get_precision('Account'),
             string='Landed Costs Base Quantity'),
-         # 'landing_cost_lines': fields.function(
-         #    _landing_cost_lines,
-         #    digits_compute=dp.get_precision('Account'),
-         #    string='Landing Cost Lines'),
+         'landing_cost_lines': fields.function(
+            _landing_cost_lines,
+            digits_compute=dp.get_precision('Account'),
+            string='Landing Cost Lines'),
          'landed_cost': fields.function(
             _landed_cost,
             digits_compute=dp.get_precision('Account'),
@@ -305,33 +302,61 @@ class purchase_order(osv.osv):
 
     def _prepare_landed_cost_inv(self, cr, uid, landed_cost, context=None):
         """Collects require data from landed cost position that is used to
-        create invoice for that particular position
+        create invoice for that particular position. Note that _landed
+        can come from a line or at whole PO level.
         :param browse_record landed_cost: Landed cost position browse record
         :return: Value for fields of invoice.
         :rtype: dict
         """
+        po = (landed_cost.purchase_order_id or
+            landed_cost.purchase_order_line_id.order_id)
         currency_id = (landed_cost.currency_id.id or 
-                landed_cost.purchase_order_id.company_id.currency_id.id)
-        fiscal_position = landed_cost.purchase_order_id.fiscal_position or False
+                po.company_id.currency_id.id)
+        fiscal_position = po.fiscal_position or False
         journal_obj = self.pool.get('account.journal')
         journal_ids = journal_obj.search(cr, uid, [('type', '=','purchase'),
-            ('company_id', '=', landed_cost.purchase_order_id.company_id.id)], limit=1)
+            ('company_id', '=', po.company_id.id)], limit=1)
         if not journal_ids:
             raise osv.except_osv(
                 _('Error!'),
                 _('Define purchase journal for this company: "%s" (id:%d).') 
-                    % (landed_cost.purchase_order_id.company_id.name, 
-                        landed_cost.purchase_order_id.company_id.id))
+                    % (po.company_id.name, 
+                        po.company_id.id))
         return {
             'partner_id' : landed_cost.partner_id.id,
             'currency_id': currency_id,
             'account_id': landed_cost.partner_id.property_account_payable.id,
             'type': 'in_invoice',
-            'origin': landed_cost.purchase_order_id.name,
+            'origin': po.name,
             'fiscal_position':  fiscal_position,
-            'company_id': landed_cost.purchase_order_id.company_id.id,
+            'company_id': po.company_id.id,
             'journal_id': len(journal_ids) and journal_ids[0] or False,
         }
+
+    def _generate_invoice_from_landed_cost(self, cr, uid, landed_cost, 
+            context=None):
+        """Generate an invoice from order landed costs (means generic 
+            costs to a whole PO) or from a line landed costs."""
+        invoice_obj = self.pool.get('account.invoice')
+        invoice_line_obj = self.pool.get('account.invoice.line')
+        prod_obj = self.pool.get('product.product')
+        po = (landed_cost.purchase_order_id or
+            landed_cost.purchase_order_line_id.order_id)
+        vals_inv = self._prepare_landed_cost_inv(cr, uid, 
+            landed_cost, context=context)
+        self._logger.debug('vals inv`%s`', vals_inv)
+        inv_id = invoice_obj.create(cr, uid, vals_inv, context=context)
+        fiscal_position = (po.fiscal_position or False)
+        exp_account_id = prod_obj._choose_exp_account_from(cr, uid,
+                landed_cost.product_id,
+                fiscal_position=fiscal_position,
+                context=context)
+        vals_line = self._prepare_landed_cost_inv_line(cr, uid,
+            exp_account_id, inv_id, landed_cost, context=context)
+        self._logger.debug('vals line `%s`', vals_line)
+        inv_line_id = invoice_line_obj.create(cr, uid, vals_line,
+            context=context)
+        return inv_id
 
     def wkf_approve_order(self, cr, uid, ids, context=None):
         """On PO approval, generate all invoices
@@ -339,28 +364,17 @@ class purchase_order(osv.osv):
         the checkbox generate_invoice ticked are generated."""
         res = super(purchase_order,self).wkf_approve_order(cr, uid, ids,
             context=context)
-        invoice_obj = self.pool.get('account.invoice')
-        prod_obj = self.pool.get('product.product')
-        invoice_line_obj = self.pool.get('account.invoice.line')
         for order in self.browse(cr, uid, ids, context=context):
             invoice_ids = []
             for order_cost in order.landed_cost_line_ids:
                 if order_cost.generate_invoice:
-                    vals_inv = self._prepare_landed_cost_inv(cr, uid, 
+                    inv_id = self._generate_invoice_from_landed_cost(cr, uid, 
                         order_cost, context=context)
-                    self._logger.debug('vals inv`%s`', vals_inv)
-                    inv_id = invoice_obj.create(cr, uid, vals_inv, context=context)
-                    fiscal_position = (order_cost.purchase_order_id.fiscal_position 
-                        or False)
-                    exp_account_id = prod_obj._choose_exp_account_from(cr, uid,
-                            order_cost.product_id,
-                            fiscal_position=fiscal_position,
-                            context=context)
-                    vals_line = self._prepare_landed_cost_inv_line(cr, uid,
-                        exp_account_id, inv_id, order_cost, context=context)
-                    self._logger.debug('vals line `%s`', vals_line)
-                    inv_line_id = invoice_line_obj.create(cr, uid, vals_line,
-                        context=context)
+                    invoice_ids.append(inv_id)
+            for po_line in order.order_line:
+                for line_cost in po_line.landed_cost_line_ids:
+                    inv_id = self._generate_invoice_from_landed_cost(cr, uid, 
+                        line_cost, context=context)
                     invoice_ids.append(inv_id)
             # Link this new invoice to related purchase order
             # 4 in that list is "Add" mode in a many2many used here because

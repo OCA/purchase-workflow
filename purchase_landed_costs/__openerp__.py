@@ -39,6 +39,17 @@
 
     * "Value" (for customs) or 
     * "Quantity" (for freight)
+
+    Warning: Average price will be computed based on the estimation made on the PO, not from
+    real cost. This is due to the way OpenERP compute average stock : it stores the updated
+    value at every input, no history, so no way to redefine the value afterwards. e.g.
+        - incomming 01: 100 product A at 50.- AVG = 50.-, stock = 100
+        - incomming 02: 100 product A at 60.- AVG = 55.-, stock = 200
+        - delivery 01: 50 product A AVG = 55.-, stock = 150
+        - Receive the real landed cost of 10.- for incomming 01 => cannot compute back because
+        no historical price was store for every transaction. Moreover, in OpenERP I can even set another
+        average price for a product using the update wizard.
+
     """,
     'author': 'Camptocamp',
     'depends': ['purchase' ],
@@ -49,7 +60,8 @@
             ],
     'test': [
         'test/landed_costs_based_on_quantity.yml',
-        'test/landed_costs_based_on_value.yml'
+        'test/landed_costs_based_on_value.yml',
+        'test/landed_costs_on qty_by_line_and_order.yml',
     ],
     'demo': [],
     'installable': True,
