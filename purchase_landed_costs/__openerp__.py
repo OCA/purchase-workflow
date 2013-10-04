@@ -26,21 +26,29 @@
     'category': 'Warehouse Management',
     'description': """
 
-    This module add the possibility to include landed costs in the average price computation.
-    The landed costs can be defined for purchase orders or picking. Those costs 
-    will be distributed according to the distribution type defined in landed cost category:
+    This module add the possibility to include estimated landed costs in the average price computation.
+    The landed costs can be defined in purchase orders. Those costs will be distributed according to the
+    distribution type defined in landed cost:
 
     * value - example custom fees
     * quantity - example freight
     
-    For each landed cost position define in a PO a draft invoice can be created in 
+    For each landed cost position define in a PO, a draft invoice can be created in 
     validation of purchase order (an option need to be checked).
     The products used to define landed cost must be classified "Distribution Type" as :
 
     * "Value" (for customs) or 
     * "Quantity" (for freight)
 
-    Warning: Average price will be computed based on the estimation made on the PO, not from
+    You can define landed cost relative to a whole PO or by line (or both) and the system will distribute
+    them to each line according to the chosen distribution type.
+
+    Find all landed cost here : Reporting -> Purchase -> Landed costs
+
+    Warning: 
+    --------
+
+    Average price will be computed based on the estimation made on the PO, not from
     real cost. This is due to the way OpenERP compute average stock : it stores the updated
     value at every input, no history, so no way to redefine the value afterwards. e.g.
         - incomming 01: 100 product A at 50.- AVG = 50.-, stock = 100
@@ -49,6 +57,17 @@
         - Receive the real landed cost of 10.- for incomming 01 => cannot compute back because
         no historical price was store for every transaction. Moreover, in OpenERP I can even set another
         average price for a product using the update wizard.
+
+    As the Average price is also used for the stock valuation and because the computation is based on estimation
+    of landed cost in the PO (done at incomming shippment reception), you will have a little difference between
+    accounting and stock valuation that will need to be corrected when making the stock accounting entry. To 
+    correct that amount, make a sum of estimated landed cost (landed cost position) by account and compare with 
+    the real account chart value. You can acces those informations through this menu: Reporting -> Purchase -> Landed costs
+
+    TODO:
+    A analysis View to provide in Reporting -> Purchase -> Landed costs to have a sum by account of all landed cost
+    position. Need a view instead of directly the oject landed cost position (as it include both line and order landed 
+    cost)
 
     """,
     'author': 'Camptocamp',
