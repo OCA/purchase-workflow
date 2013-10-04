@@ -30,7 +30,7 @@ class stock_move(osv.osv):
         if not ids : return {}
         result = {}
         landed_costs = 0.0
-        # landed costss for the line
+        # landed costs for the line
         for line in self.browse(cr, uid, ids):
             if line.landed_cost_line_ids:
                 for costs in line.landed_cost_line_ids:
@@ -101,7 +101,9 @@ class stock_move(osv.osv):
             string='Line Sub Total'),
          'price_unit_net' : fields.float(
             'Purchase Price',
-            digits_compute=dp.get_precision('Account')),
+            digits_compute=dp.get_precision('Account'),
+            help="This is the net purchase price, without landed cost "
+                  "as the price include landed price has been stored in"),
     }
 
 
@@ -136,7 +138,7 @@ class stock_picking(osv.osv):
         if not ids : return {}
         result = {}
         landed_costs = 0.0
-        # landed costss for the line
+        # landed costs for the line
         for line in self.browse(cr, uid, ids):
             if line.move_lines:
                 for ml in line.move_lines:
@@ -219,7 +221,7 @@ class stock_partial_picking(osv.osv_memory):
     def _product_cost_for_average_update(self, cr, uid, move):
        res = super(stock_partial_picking, self)._product_cost_for_average_update(cr, uid, move)
        self._logger.debug('res stock_partial_picking `%s`', res)
-       res['cost'] = move.landed_cost / move.product_qty
+       # Re-take the cost from the PO line landed_costs field
+       res['cost'] = move.purchase_line_id.landed_costs / move.purchase_line_id.product_qty
        self._logger.debug('res stock_partial_picking `%s`', res)
        return res
-

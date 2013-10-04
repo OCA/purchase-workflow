@@ -54,7 +54,7 @@
         <field name="description" position="before">
            <group>
              <field name="landed_cost_type"/>
-             <field name="landed_cost"/>
+             <!-- <field name="landed_cost"/> -->
            </group>
         </field>
       </field>
