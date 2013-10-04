@@ -73,8 +73,6 @@ class landed_cost_position(osv.osv):
             'purchase.order.line',
             'Purchase Order Line'),
         'purchase_order_id': fields.many2one('purchase.order', 'Purchase Order'),
-        'move_line_id': fields.many2one('stock.move', 'Picking Line'),
-        'picking_id': fields.many2one('stock.picking', 'Picking'),
         'generate_invoice': fields.boolean(
             'Generate Invoice',
             help="If ticked, this will generate a draft invoice at the PO confirmation "
