@@ -111,7 +111,6 @@
               </xpath>
           </field>
       </record>   
-
         
     <!-- Landed costs Purchase Line Form-->
     <record model="ir.ui.view" id="purchase_oder_line_landed_cost_view">
@@ -170,8 +169,8 @@
                 <newline/>
                 <group expand="1" string="Group By...">
                     <filter string="Supplier" name="group_partner_id" icon="terp-personal" context="{'group_by':'partner_id'}"/>
-                    <filter string="Product" name="group_product_id" icon="terp-accessories-archiver" context="{'group_by':'product_id'}"/>
                     <filter string="Account" name="group_account_id" icon="terp-stock_symbol-selection" context="{'group_by':'account_id'}"/>
+                    <filter string="Product" name="group_product_id" icon="terp-accessories-archiver" context="{'group_by':'product_id'}"/>
                     <filter string="Purchase" icon="terp-stock_effects-object-colorize" context="{'group_by':'purchase_order_id'}"/>
                     <filter string="Purchase Line" icon="terp-stock_effects-object-colorize" context="{'group_by':'purchase_order_line_id'}"/>
                 </group>

@@ -68,10 +68,15 @@
     correct that amount, make a sum of estimated landed cost (landed cost position) by account and compare with 
     the real account chart value. You can acces those informations through this menu: Reporting -> Purchase -> Landed costs
 
+    As the price type of OpenERP is not really well handled, we need to be sure that price type of cost price in product form
+    is the same as the company one. Otherwise, when computing the AVG price, it make the convertion in company currency
+    from the price type currency. This is not related to this module, but from the core of OpenERP.
+
     TODO:
     A analysis View to provide in Reporting -> Purchase -> Landed costs to have a sum by account of all landed cost
     position. Need a view instead of directly the oject landed cost position (as it include both line and order landed 
     cost)
+
 
     """,
     'author': 'Camptocamp',
