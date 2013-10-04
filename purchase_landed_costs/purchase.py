@@ -328,19 +328,25 @@ class purchase_order(osv.osv):
     def _prepare_landed_cost_inv_line(self, cr, uid, account_id, inv_id, 
             landed_cost, context=None):
         """Collects require data from landed cost position that is used to 
-        create invoice line for that particular position
+        create invoice line for that particular position.
+        If it comes from a PO line and Distribution type is per unit
+        the quantity of the invoice is the PO line quantity
         :param account_id: Expense account.
         :param inv_id: Related invoice.
         :param browse_record landed_cost: Landed cost position browse record
         :return: Value for fields of invoice lines.
         :rtype: dict
         """
+        qty = 1.0
+        if (landed_cost.purchase_order_line_id and 
+            landed_cost.price_type == 'per_unit'):
+            qty = landed_cost.purchase_order_line_id.product_qty
         return {
             'name': landed_cost.product_id.name,
             'account_id': account_id,
             'invoice_id' : inv_id,
             'price_unit': landed_cost.amount or 0.0,
-            'quantity': 1.0,
+            'quantity': qty,
             'product_id': landed_cost.product_id.id or False,
             'invoice_line_tax_id': [(6, 0, [x.id for x in 
                 landed_cost.product_id.supplier_taxes_id])],
