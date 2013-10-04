@@ -41,9 +41,22 @@ class stock_partial_picking(osv.osv_memory):
     _logger = logging.getLogger(__name__)
 
     def _product_cost_for_average_update(self, cr, uid, move):
-       res = super(stock_partial_picking, self)._product_cost_for_average_update(cr, uid, move)
-       self._logger.debug('res stock_partial_picking `%s`', res)
-       # Re-take the cost from the PO line landed_costs field
-       res['cost'] = move.purchase_line_id.landed_costs / move.purchase_line_id.product_qty
-       self._logger.debug('res stock_partial_picking `%s`', res)
-       return res
+        # Be aware of an OpenERP Bug !! If your price_type
+        # IS NOT in your comapny currency, AVG price is wrong.
+        # Currently, the cost on the product form is supposed to be expressed in the currency
+        # of the company owning the product. OpenERP read the average price
+        # from price_get method, which convert the price to company currency. 
+        # So, in case you have:
+        #   Rate from CHF to EUR 1.2
+        #   Company in CHF
+        #   Price type in EUR
+        #   Product AVG price = 10.-
+        #   Reception new product with cost 15.- (in CHF in price_unit of moves)
+        #   The price_get will return the current average price in CHF of 12.- but the new cost is still
+        #   in CHF...
+        res = super(stock_partial_picking, self)._product_cost_for_average_update(cr, uid, move)
+        self._logger.debug('res stock_partial_picking `%s`', res)
+        # Re-take the cost from the PO line landed_costs field
+        res['cost'] = move.purchase_line_id.landed_costs / move.purchase_line_id.product_qty
+        self._logger.debug('res stock_partial_picking `%s`', res)
+        return res
