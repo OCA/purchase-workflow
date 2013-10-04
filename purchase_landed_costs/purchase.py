@@ -85,6 +85,24 @@ class landed_cost_position(osv.osv):
         'generate_invoice': False,
     }
 
+    def write(self, cr, uid, ids, vals, context=None):
+        """Add the purchase_order_id if only linked to a line"""
+        if vals.get('purchase_order_line_id'):
+            po = self.pool.get('purchase.order.line').browse(cr, uid, 
+                vals['purchase_order_line_id'], context=context).order_id
+            vals['purchase_order_id'] = po.id
+        return super(landed_cost_position, self).write(cr, uid, ids, 
+            vals, context=context)
+
+    def create(self, cr, uid, vals, context=None):
+        """Add the purchase_order_id if only linked to a line"""
+        if vals.get('purchase_order_line_id'):
+            po = self.pool.get('purchase.order.line').browse(cr, uid, 
+                vals['purchase_order_line_id'], context=context).order_id
+            vals['purchase_order_id'] = po.id
+        return super(landed_cost_position, self).create(cr, uid, vals, 
+            context=context)
+
     def onchange_product_id(self, cr, uid, ids, product_id, 
             purchase_order_id=False, context=None):
         res = {}
@@ -243,7 +261,8 @@ class purchase_order(osv.osv):
          'landed_cost_line_ids': fields.one2many(
             'landed.cost.position',
             'purchase_order_id',
-            'Landed Costs'),
+            'Landed Costs',
+            domain=[('purchase_order_line_id','=',False)]),
          'landed_cost_base_value': fields.function(
             _landed_cost_base_value,
             digits_compute=dp.get_precision('Account'), 
