@@ -26,7 +26,11 @@
     'category': 'Warehouse Management',
     'description': """
 
-    This module add the possibility to include estimated landed costs in the average price computation.
+    This module add the possibility to include estimated landed costs in the average price computation. To
+    define those landed costs, create product and affect them a distribution type. Don't forget to as well
+    assign them a specific financial account (identified as a landed cost one) in order to compare at the
+    end of the year the estimation with real accounting entries (see Warning).
+
     The landed costs can be defined in purchase orders. Those costs will be distributed according to the
     distribution type defined in landed cost:
 
@@ -75,7 +79,6 @@
     'website': 'http://www.camptocamp.com',
     'data': ['security/ir.model.access.csv',
              'purchase_view.xml',
-             'stock_view.xml',
             ],
     'test': [
         'test/landed_costs_based_on_quantity.yml',
