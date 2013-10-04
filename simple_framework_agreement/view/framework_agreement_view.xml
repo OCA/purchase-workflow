@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <record id="framework_agreement_list_view" model="ir.ui.view">
+      <field name="name">framework agreement list view</field>
+      <field name="model">framework.agreement</field>
+      <field name="arch" type="xml">
+        <tree version="7.0" string="Framework Agreement (LTA)"> <!-- editable="bottom" -->
+          <field name="name" />
+          <field name="company_id" groups="base.group_multi_company" widget="selection"/>
+          <field name="product_id"/>
+          <field name="supplier_id"/>
+          <field name="delay"/>
+          <field name="quantity"/>
+          <field name="consumed_quantity"/>
+          <field name="start_date"/>
+          <field name="end_date"/>
+          <field name="state"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="framework_agreement_form_view" model="ir.ui.view">
+      <field name="name">framework agreement form</field>
+      <field name="model">framework.agreement</field>
+      <field name="arch" type="xml">
+        <form version="7.0" string="Framework Agreement">
+          <header>
+            <field name="state"
+                   widget="statusbar"
+                   nolabel="1"
+                   statusbar_visible="future,running,consumed,closed"
+                   statusbar_colors='{"future": "blue", "closed": "blue", "running": "green", "consumed": "red"}'/>
+          </header>
+          <sheet>
+            <group>
+              <field name="name" />
+            </group>
+            <group>
+              <group>
+                <field name="company_id" groups="base.group_multi_company" widget="selection"/>
+                <field name="supplier_id"/>
+                <field name="product_id"/>
+              </group>
+              <group>
+                <field name="delay"/>
+                <field name="quantity"/>
+                <field name="consumed_quantity"/>
+              </group>
+            </group>
+
+            <group string="dates">
+              <field name="start_date"/>
+              <field name="end_date"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="action_framework_agreement">
+      <field name="name">Framework Agreement</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">framework.agreement</field>
+      <field name="domain"></field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="framework_agreement_list_view"/>
+    </record>
+
+
+    <menuitem
+        name="Framework Agreement"
+        parent="purchase.menu_purchase_config_pricelist"
+        action="action_framework_agreement"
+        id="action_framework_agreement_menu"/>
+
+  </data>
+</openerp>

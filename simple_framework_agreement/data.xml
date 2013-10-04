@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+            <record id="framework_agreement_sequence_type" model="ir.sequence.type">
+            <field name="name">Framework Agreement</field>
+            <field name="code">framework.agreement</field>
+        </record>
+        <record id="seq_mrp_repair" model="ir.sequence">
+            <field name="name">framework.agreement</field>
+            <field name="code">framework.agreement</field>
+            <field name="prefix">LTA</field>
+        </record>
+
+  </data>
+</openerp>
