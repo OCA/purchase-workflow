@@ -103,7 +103,8 @@ class stock_move(osv.osv):
             'Purchase Price',
             digits_compute=dp.get_precision('Account'),
             help="This is the net purchase price, without landed cost "
-                  "as the price include landed price has been stored in"),
+                  "as the price include landed price has been stored in "
+                  "price_unit field"),
     }
 
 
