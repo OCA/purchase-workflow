@@ -66,12 +66,8 @@
       <field name="inherit_id" ref="purchase.purchase_order_form"/>
       <field name="arch" type="xml">
        <data>
-<!--
-        <xpath expr="/sheet/notebook/page[@string='Purchase Order']/field[@name='order_line']/tree/field[@name='price_subtotal'" position="after">
---> 
-        
              <field name="price_subtotal" position="after">
-                <!-- <field name="landing_costs" invisible="1"/> -->
+                <field name="landing_costs" invisible="1"/>
                 <field name="landing_costs_order"/>
                 <field name="landed_costs"/>
             </field> 
@@ -83,8 +79,7 @@
              <field name="landed_cost_base_value" />
            </group>
            <group colspan="2" col="2"> 
-              
-             <!-- <field name="landing_cost_lines"/> -->
+             <field name="landing_cost_lines"/>
              <field name="landed_cost"/>
            </group>
              <field name="landed_cost_line_ids" colspan="4" nolabel="1"  widget="one2many_list">
@@ -104,7 +99,20 @@
         </data>
       </field>
     </record>
-    
+
+     <!-- inherited view to make the order lines list in the form non-editable-->
+      <record id="view_order_form_editable_list" model="ir.ui.view">
+          <field name="name">purchase.order.landed.cost.form.view.form</field>
+          <field name="model">purchase.order</field>
+          <field name="inherit_id" ref="purchase.purchase_order_form"/>
+          <field name="arch" type="xml">
+              <xpath expr="//field[@name='order_line']/tree" position="attributes">
+                  <attribute name="editable"/>
+              </xpath>
+          </field>
+      </record>   
+
+        
     <!-- Landed costs Purchase Line Form-->
     <record model="ir.ui.view" id="purchase_oder_line_landed_cost_view">
       <field name="name">purchase.oder.line.landed.cost.view</field>
@@ -115,10 +123,10 @@
         <notebook position="inside">
              <page string="Landing Costs" >
                 <group colspan="2" col="2"> 
-                  <!-- <field name="landing_costs"/> -->
+                  <field name="landing_costs"/>
                   <field name="landing_costs_order"/>
                   <field name="landed_costs"/>
-                  <!-- <field name="landed_cost_line_ids" colspan="4" nolabel="1"  widget="one2many_list"/> -->
+                  <field name="landed_cost_line_ids" colspan="4" nolabel="1"  widget="one2many_list"/>
                 </group>  
              </page>     
         </notebook>

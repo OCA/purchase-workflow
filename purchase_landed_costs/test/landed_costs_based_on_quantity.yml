@@ -69,7 +69,7 @@
     landed_cost_line_ids:
       - product_id: product_product_lcost_01
         amount: 50
-        partner_id: res_partner_supplier_01
+        partner_id: res_partner_supplier_02
         generate_invoice: 1
         price_type: per_unit
 -
