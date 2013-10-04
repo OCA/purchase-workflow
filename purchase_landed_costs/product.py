@@ -35,10 +35,6 @@ class product_template(osv.osv):
             help="Used if this product is landed costs: "
                  "If landed costs are defined for purchase orders or pickings, "
                  "this indicates how the costs are distributed to the lines"),
-        'landed_cost': fields.boolean(
-            'Calculate Landed Costs',
-            help="Check this if you want to use landed cost calculation "
-                 "for average price for this product"), 
     }
 
     _defaults = {
@@ -73,12 +69,4 @@ class product_product(osv.osv):
                 'property_account_expense_categ', 'product.category').id
         return fiscal_obj.map_account(cr, uid, fiscal_position, acc_id)
 
-class product_category(osv.osv):
-    _inherit = 'product.category'
-    _columns = {
-        'landed_cost': fields.boolean(
-            'Calculate Landed Costs',
-            help="Check this if you want to use landed cost calculation for "
-                 "average price for this catgory"),
-    }
 

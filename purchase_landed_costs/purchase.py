@@ -279,15 +279,13 @@ class purchase_order(osv.osv):
 
     def _prepare_order_line_move(self, cr, uid, order, order_line, picking_id,
             context=None):
+        """Here, the technical price_unit field will store the purchase price + 
+        landed cost. The original purchase price is stored in price_unit_net new
+        field to keep record of it."""
         res = super(purchase_order,self)._prepare_order_line_move(cr, uid, order, 
             order_line, picking_id, context=context)
         res['price_unit_net'] =  res['price_unit']
         res['price_unit'] = order_line.landed_costs / order_line.product_qty        
-        return res
-
-    def _prepare_order_picking(self, cr, uid, order, context=None):
-        res = super(purchase_order,self)._prepare_order_picking( cr, uid,
-            order, context)
         return res
 
     def _prepare_landed_cost_inv_line(self, cr, uid, account_id, inv_id, 
