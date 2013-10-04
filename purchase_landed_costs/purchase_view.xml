@@ -54,7 +54,6 @@
         <field name="description" position="before">
            <group>
              <field name="landed_cost_type"/>
-             <!-- <field name="landed_cost"/> -->
            </group>
         </field>
       </field>
@@ -72,7 +71,7 @@
 --> 
         
              <field name="price_subtotal" position="after">
-                <field name="landing_costs" invisible="1"/>
+                <!-- <field name="landing_costs" invisible="1"/> -->
                 <field name="landing_costs_order"/>
                 <field name="landed_costs"/>
             </field> 
@@ -85,7 +84,7 @@
            </group>
            <group colspan="2" col="2"> 
               
-             <field name="landing_cost_lines"/>
+             <!-- <field name="landing_cost_lines"/> -->
              <field name="landed_cost"/>
            </group>
              <field name="landed_cost_line_ids" colspan="4" nolabel="1"  widget="one2many_list">
@@ -116,10 +115,10 @@
         <notebook position="inside">
              <page string="Landing Costs" >
                 <group colspan="2" col="2"> 
-                  <field name="landing_costs"/>
+                  <!-- <field name="landing_costs"/> -->
                   <field name="landing_costs_order"/>
                   <field name="landed_costs"/>
-                  <field name="landed_cost_line_ids" colspan="4" nolabel="1"  widget="one2many_list"/>
+                  <!-- <field name="landed_cost_line_ids" colspan="4" nolabel="1"  widget="one2many_list"/> -->
                 </group>  
              </page>     
         </notebook>

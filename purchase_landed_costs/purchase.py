@@ -65,7 +65,7 @@ class landed_cost_position(osv.osv):
         'price_type': fields.selection(
             [('per_unit','Per Quantity'),
              ('value','Absolute Value')],
-            'Amount Type',
+            'Distribution Type',
             required=True,
             help="Defines if the amount is to be calculated for each quantity "
                  "or an absolute value"),
@@ -110,20 +110,20 @@ class landed_cost_position(osv.osv):
 class purchase_order_line(osv.osv):
     _inherit = "purchase.order.line"
 
-    def _landing_cost(self, cr, uid, ids, name, args, context):
-        if not ids : return {}
-        result = {}
-        # landed costss for the line
-        for line in self.browse(cr, uid, ids):
-            landed_costs = 0.0
-            if line.landed_cost_line_ids:
-                for costs in line.landed_cost_line_ids:
-                    if costs.price_type == 'value':
-                        landed_costs += costs.amount
-                    else:       
-                        landed_costs += costs.amount * line.product_qty
-            result[line.id] = landed_costs
-        return result
+    # def _landing_cost(self, cr, uid, ids, name, args, context):
+    #     if not ids : return {}
+    #     result = {}
+    #     # landed costss for the line
+    #     for line in self.browse(cr, uid, ids):
+    #         landed_costs = 0.0
+    #         if line.landed_cost_line_ids:
+    #             for costs in line.landed_cost_line_ids:
+    #                 if costs.price_type == 'value':
+    #                     landed_costs += costs.amount
+    #                 else:       
+    #                     landed_costs += costs.amount * line.product_qty
+    #         result[line.id] = landed_costs
+    #     return result
 
     def _landing_cost_order(self, cr, uid, ids, name, args, context):
         if not ids:
@@ -139,7 +139,7 @@ class purchase_order_line(osv.osv):
                 # Base value (Absolute Value)
                 if order.landed_cost_base_value:
                     landed_costs += (order.landed_cost_base_value / 
-                                 order.amount_total * line.price_subtotal   )
+                                 order.amount_untaxed * line.price_subtotal)
                 # Base quantity (Per Quantity)
                 if order.landed_cost_base_quantity:
                     landed_costs += (order.landed_cost_base_quantity / 
@@ -147,35 +147,27 @@ class purchase_order_line(osv.osv):
             result[line.id] = landed_costs
         return result
 
-    def _landing_cost_factor(self, cr, uid, ids, name, args, context):
-        """
-        Calculates the percentage of landing costs that should be put on 
-        this order line
-        """
-        for line in self.browse(cr, uid, ids):
-            if line.landed_cost_line_ids:
-                pass
-
     def _landed_cost(self, cr, uid, ids, name, args, context):
         if not ids : return {}
         result = {}
         # landed costss for the line
         for line in self.browse(cr, uid, ids):
             landed_costs = 0.0
-            landed_costs += (line.price_subtotal + 
-                             line.landing_costs +  line.landing_costs_order)
+            landed_costs += (line.price_subtotal + line.landing_costs_order)
+            # landed_costs += (line.price_subtotal + 
+            #                  line.landing_costs +  line.landing_costs_order)
             result[line.id] = landed_costs
         return result
         
     _columns = {
-         'landed_cost_line_ids': fields.one2many(
-            'landed.cost.position',
-            'purchase_order_line_id',
-            'Landed Costs Positions'),
-         'landing_costs': fields.function(
-            _landing_cost,
-            digits_compute=dp.get_precision('Account'),
-            string='Landing Costs'),
+         # 'landed_cost_line_ids': fields.one2many(
+         #    'landed.cost.position',
+         #    'purchase_order_line_id',
+         #    'Landed Costs Positions'),
+         # 'landing_costs': fields.function(
+         #    _landing_cost,
+         #    digits_compute=dp.get_precision('Account'),
+         #    string='Landing Costs'),
          'landing_costs_order': fields.function(
             _landing_cost_order,
             digits_compute=dp.get_precision('Account'),
@@ -233,22 +225,24 @@ class purchase_order(osv.osv):
         landed_costs = 0.0
         # landed costss for the line
         for line in self.browse(cr, uid, ids):
-            landed_costs += (line.landing_cost_lines + line.landed_cost_base_value + 
+            landed_costs += (line.landed_cost_base_value + 
                              line.landed_cost_base_quantity + line.amount_untaxed)
+            # landed_costs += (line.landing_cost_lines + line.landed_cost_base_value + 
+            #                  line.landed_cost_base_quantity + line.amount_untaxed)
             result[line.id] = landed_costs
         return result
 
-    def _landing_cost_lines(self, cr, uid, ids, name, args, context):
-        if not ids : return {}
-        result = {}
-        landed_cost_lines = 0.0
-        for line in self.browse(cr, uid, ids):
-            if line.order_line:
-                for pol in line.order_line:
-                    if pol.product_qty > 0.0:
-                         landed_cost_lines += pol.landing_costs
-            result[line.id] = landed_cost_lines
-        return result
+    # def _landing_cost_lines(self, cr, uid, ids, name, args, context):
+    #     if not ids : return {}
+    #     result = {}
+    #     landed_cost_lines = 0.0
+    #     for line in self.browse(cr, uid, ids):
+    #         if line.order_line:
+    #             for pol in line.order_line:
+    #                 if pol.product_qty > 0.0:
+    #                      landed_cost_lines += pol.landing_costs
+    #         result[line.id] = landed_cost_lines
+    #     return result
 
     _columns = {
          'landed_cost_line_ids': fields.one2many(
@@ -263,10 +257,10 @@ class purchase_order(osv.osv):
             _landed_cost_base_quantity,
             digits_compute=dp.get_precision('Account'),
             string='Landed Costs Base Quantity'),
-         'landing_cost_lines': fields.function(
-            _landing_cost_lines,
-            digits_compute=dp.get_precision('Account'),
-            string='Landing Cost Lines'),
+         # 'landing_cost_lines': fields.function(
+         #    _landing_cost_lines,
+         #    digits_compute=dp.get_precision('Account'),
+         #    string='Landing Cost Lines'),
          'landed_cost': fields.function(
             _landed_cost,
             digits_compute=dp.get_precision('Account'),
