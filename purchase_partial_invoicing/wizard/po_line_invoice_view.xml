@@ -9,10 +9,7 @@
             <field name="arch" type="xml">
                 <xpath expr="/form/group" position="after">
                     <group>
-                        <field name="partial_invoice"></field>
-                    </group>
-                    <group>
-                        <field name="line_ids" attrs="{'invisible': [('partial_invoice','=',False)]}" nolabel="1" colspan="4">
+                        <field name="line_ids" nolabel="1" colspan="4">
                             <tree editable="bottom">
                                 <field name="po_line_id"></field>
                                 <field name="product_qty"></field>
