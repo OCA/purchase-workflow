@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data noupdate="1">
+    <record model="ir.rule" id="framework_agreement_mc_rule">
+      <field name="name">Framework Agreement company rule</field>
+      <field name="model_id" ref="model_framework_agreement"/>
+      <field name="global" eval="True"/>
+      <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+    </record>
+  </data>
+</openerp>
