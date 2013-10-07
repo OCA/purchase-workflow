@@ -28,6 +28,7 @@
  'description': """Simple implementation of Long Term Agreement on price with supplier""",
  'website': 'http://www.camptocamp.com',
  'data': ['data.xml',
+          'security/multicompany.xml',
           'view/product_view.xml',
           'view/framework_agreement_view.xml'],
  'demo': [],
