@@ -34,7 +34,7 @@ class framework_agreement(orm.Model):
         :param agreement: an agreement browse record
         :returns: a string - "running" if now is between,
                            - "future" if agreement is in future,
-                           - "past" if agreement is outdated
+                           - "closed" if agreement is outdated
         """
         now = datetime.strptime(fields.datetime.now(),
                                 DEFAULT_SERVER_DATETIME_FORMAT)
@@ -45,7 +45,7 @@ class framework_agreement(orm.Model):
         if start > now:
             return 'future'
         elif end < now:
-            return 'past'
+            return 'closed'
         elif now >= start and now <= end:
             return 'running'
         else:
@@ -136,4 +136,30 @@ class framework_agreement(orm.Model):
     def _sequence_get(self, cr, uid, context=None):
         return self.pool['ir.sequence'].get(cr, uid, 'framework.agreement')
 
+    def check_overlap(self, cr, uid, ids, context=None):
+        for agreement in self.browse(cr, uid, ids, context=context):
+            # we do not add current id in domain for readability reasons
+            overlap = self.search(cr, uid, ['|', '&',
+                                            ('start_date', '>=', agreement.start_date),
+                                            ('start_date', '<=', agreement.end_date),
+                                            '&',
+                                            ('end_date', '>=', agreement.start_date),
+                                            ('end_date', '<=', agreement.end_date)])
+            # we also look for the one that include current offer
+            overlap += self.search(cr, uid, [('start_date', '<=', agreement.start_date),
+                                             ('end_date', '>=', agreement.end_date),
+                                             ('id', '!=', agreement.id)])
+            overlap = [x for x in overlap if x != agreement.id]
+            if overlap:
+                return False
+        return True
+
     _defaults = {'name': _sequence_get}
+
+    _sql_constraints = [('date_priority',
+                         'check(start_date < end_date)',
+                         'Start/end date inversion')]
+
+    _constraints = [(check_overlap,
+                     "You can not have overlapping dates for same supplier and product",
+                     ('start_date', 'end_date'))]
