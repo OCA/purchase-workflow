@@ -50,7 +50,6 @@
     Find all landed cost here : Reporting -> Purchase -> Landed costs
 
     Warning: 
-    --------
 
     Average price will be computed based on the estimation made on the PO, not from
     real cost. This is due to the way OpenERP compute average stock : it stores the updated

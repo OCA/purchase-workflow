@@ -2,7 +2,16 @@
 <openerp>
   <data>
 
-     <record model="ir.ui.view" id="c2c_landed_cost_tree">
+      <record id="act_po_2_landed_costs" model="ir.actions.act_window">
+          <field name="name">Related Landed Costs</field>
+          <field name="res_model">landed.cost.position</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">tree,form</field>
+          <field name="context">{'search_default_purchase_order_id': active_id}</field>          
+          <field name="view_id" ref="c2c_landed_cost_tree_stat"></field>
+      </record>
+
+    <record model="ir.ui.view" id="c2c_landed_cost_tree">
       <field name="name">c2clanded.cost.tree</field>
       <field name="model">landed.cost.position</field>
       <field name="priority">1</field>
@@ -82,6 +91,10 @@
              <field name="landing_cost_lines"/>
              <field name="landed_cost"/>
            </group>
+           <group colspan="2" col="2"> 
+             <button name="%(act_po_2_landed_costs)d" type="action"
+                        string="Open All Landed costs"/>
+           </group>
              <field name="landed_cost_line_ids" colspan="4" nolabel="1"  widget="one2many_list">
               <tree string="Landing Costs" editable="bottom">
                   <field name="generate_invoice"/>
@@ -140,6 +153,7 @@
         <field name="type">tree</field>
         <field name="arch" type="xml">
           <tree string="Landing Costs" editable="bottom">
+                <field name="date_po"/>
                 <field name="product_id"/>
                 <field name="account_id" />
                 <field name="partner_id"/>
@@ -158,16 +172,16 @@
         <field name="model">landed.cost.position</field>
         <field name="arch" type="xml">
             <search string="Purchase Orders">
+                <field name="date_po"/>
                 <field name="partner_id"/>
                 <field name="account_id"/>
                 <field name="product_id"/>
                 <field name="price_type"/>
-                <group expand="0" string="Extended Filters...">
-                    <field name="purchase_order_id"/>
-                    <field name="purchase_order_line_id"/>
-                </group>
+                <field name="purchase_order_id"/>
+                <field name="purchase_order_line_id"/>
                 <newline/>
                 <group expand="1" string="Group By...">
+                    <filter string="Date" name="group_date_po" icon="terp-personal" context="{'group_by':'date_po'}"/>
                     <filter string="Supplier" name="group_partner_id" icon="terp-personal" context="{'group_by':'partner_id'}"/>
                     <filter string="Account" name="group_account_id" icon="terp-stock_symbol-selection" context="{'group_by':'account_id'}"/>
                     <filter string="Product" name="group_product_id" icon="terp-accessories-archiver" context="{'group_by':'product_id'}"/>
