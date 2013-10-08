@@ -108,6 +108,11 @@ class landed_cost_position(osv.osv):
                  "regarding a whole order. By summing it, you'll have the total "
                  "landed cost for the order",
             store=True),
+        'date_po': fields.related('purchase_order_id', 'date_order', type='date',
+                                     string='Date',
+                                     store=True,
+                                     readonly=True,
+                                     help="Date of the related PO"),
       }
 
     _default = {
