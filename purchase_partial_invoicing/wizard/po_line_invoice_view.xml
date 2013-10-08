@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_purchase_line_invoice" model="ir.ui.view">
+            <field name="name">Create invoices</field>
+            <field name="model">purchase.order.line_invoice</field>
+            <field name="inherit_id" ref="purchase.view_purchase_line_invoice"></field>
+            <field name="arch" type="xml">
+                <xpath expr="/form/group" position="after">
+                    <group>
+                        <field name="line_ids" nolabel="1" colspan="4">
+                            <tree editable="bottom">
+                                <field name="po_line_id"></field>
+                                <field name="product_qty"></field>
+                                <field name="price_unit"></field>
+                                <field name="invoiced_qty" ></field>
+                            </tree>
+                        </field>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
