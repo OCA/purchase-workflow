@@ -69,8 +69,6 @@
                 <field name="partner_id"/>
                 <field name="amount_total" sum="Total amount"/>
                 <field name="price_type"/>
-                <field name="amount_currency"/>
-                <field name="currency_id"/>
                 <field name="purchase_order_id"/>
                 <field name="purchase_order_line_id"/>
           </tree>
@@ -161,31 +159,7 @@
       </field>
     </record>
 
-    <!-- Analysis -->
-<<<<<<< TREE
-      <record model="ir.ui.view" id="c2c_landed_cost_tree_stat">
-        <field name="name">c2clanded.cost.tree</field>
-        <field name="model">landed.cost.position</field>
-        <field name="priority">20</field>
-        <field name="type">tree</field>
-        <field name="arch" type="xml">
-          <tree string="Landing Costs" editable="bottom">
-                <field name="date_po"/>
-                <field name="product_id"/>
-                <field name="account_id" />
-                <field name="partner_id"/>
-                <field name="amount_total" sum="Total amount"/>
-                <field name="price_type"/>
-                <field name="purchase_order_id"/>
-                <field name="purchase_order_line_id"/>
-          </tree>
-        </field>
-      </record>
-=======
-
->>>>>>> MERGE-SOURCE
-
-        <record id="view_landed_cost_search" model="ir.ui.view">
+    <record id="view_landed_cost_search" model="ir.ui.view">
         <field name="name">landed.cost.position.search</field>
         <field name="model">landed.cost.position</field>
         <field name="arch" type="xml">
