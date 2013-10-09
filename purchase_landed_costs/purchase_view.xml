@@ -2,15 +2,6 @@
 <openerp>
   <data>
 
-      <record id="act_po_2_landed_costs" model="ir.actions.act_window">
-          <field name="name">Related Landed Costs</field>
-          <field name="res_model">landed.cost.position</field>
-          <field name="view_type">form</field>
-          <field name="view_mode">tree,form</field>
-          <field name="context">{'search_default_purchase_order_id': active_id}</field>          
-          <field name="view_id" ref="c2c_landed_cost_tree_stat"></field>
-      </record>
-
     <record model="ir.ui.view" id="c2c_landed_cost_tree">
       <field name="name">c2clanded.cost.tree</field>
       <field name="model">landed.cost.position</field>
@@ -67,7 +58,38 @@
         </field>
       </field>
     </record>
-    
+
+    <!-- Analysis (placed before the view due to the action in c2c_purchase_order_landed_cost_view -->
+      <record model="ir.ui.view" id="c2c_landed_cost_tree_stat">
+        <field name="name">c2clanded.cost.tree</field>
+        <field name="model">landed.cost.position</field>
+        <field name="priority">20</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+          <tree string="Landing Costs" editable="bottom">
+                <field name="date_po"/>
+                <field name="product_id"/>
+                <field name="account_id" />
+                <field name="partner_id"/>
+                <field name="amount_total" sum="Total amount"/>
+                <field name="price_type"/>
+                <field name="amount_currency"/>
+                <field name="currency_id"/>
+                <field name="purchase_order_id"/>
+                <field name="purchase_order_line_id"/>
+          </tree>
+        </field>
+      </record>
+
+    <record id="act_po_2_landed_costs" model="ir.actions.act_window">
+        <field name="name">Related Landed Costs</field>
+        <field name="res_model">landed.cost.position</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_purchase_order_id': active_id}</field>          
+        <field name="view_id" ref="c2c_landed_cost_tree_stat"></field>
+    </record>
+
     <!-- Landed costs Purchase Form-->
     <record model="ir.ui.view" id="c2c_purchase_order_landed_cost_view">
       <field name="name">c2c_purchase.order.landed.cost.form.view</field>
@@ -146,26 +168,7 @@
     </record>
 
     <!-- Analysis -->
-      <record model="ir.ui.view" id="c2c_landed_cost_tree_stat">
-        <field name="name">c2clanded.cost.tree</field>
-        <field name="model">landed.cost.position</field>
-        <field name="priority">20</field>
-        <field name="type">tree</field>
-        <field name="arch" type="xml">
-          <tree string="Landing Costs" editable="bottom">
-                <field name="date_po"/>
-                <field name="product_id"/>
-                <field name="account_id" />
-                <field name="partner_id"/>
-                <field name="amount_total" sum="Total amount"/>
-                <field name="price_type"/>
-                <field name="amount_currency"/>
-                <field name="currency_id"/>
-                <field name="purchase_order_id"/>
-                <field name="purchase_order_line_id"/>
-          </tree>
-        </field>
-      </record>
+
 
         <record id="view_landed_cost_search" model="ir.ui.view">
         <field name="name">landed.cost.position.search</field>
