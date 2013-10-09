@@ -20,13 +20,13 @@
 #
 ##############################################################################
 
-from osv import osv, fields
-import decimal_precision as dp
+from openerp.osv import orm, fields
+import openerp.addons.decimal_precision as dp
 from tools.translate import _
 import logging
 
 
-class landed_cost_position(osv.osv):
+class landed_cost_position(orm.Model):
     """The landed cost position represent a direct cost for the delivery 
     of the goods puchased. It can be from a different partner than the 
     original supplier, like transport. Cost will be re-affected to each PO line
@@ -150,7 +150,7 @@ class landed_cost_position(osv.osv):
         return res
 
 
-class purchase_order_line(osv.osv):
+class purchase_order_line(orm.Model):
     _inherit = "purchase.order.line"
 
     def _landing_cost(self, cr, uid, ids, name, args, context):
@@ -221,7 +221,7 @@ class purchase_order_line(osv.osv):
     }
 
 
-class purchase_order(osv.osv):
+class purchase_order(orm.Model):
     _inherit = "purchase.order"
     _logger = logging.getLogger(__name__)
 

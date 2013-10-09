@@ -20,11 +20,11 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp.osv import orm, fields
 from tools.translate import _
         
 
-class product_template(osv.osv):
+class product_template(orm.Model):
     _inherit = "product.template"
 
     _columns = {
@@ -45,7 +45,7 @@ class product_template(osv.osv):
     } 
 
 
-class product_product(osv.osv):
+class product_product(orm.Model):
     _inherit = "product.product"
 
     def _choose_exp_account_from(self, cr, uid, product, fiscal_position=False,
