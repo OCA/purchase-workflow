@@ -98,19 +98,19 @@
             </field> 
         <notebook position="inside">
           <page string="Landing Costs" attrs="{'readonly':[('state','=','done')]}">
+            <group>
               <group>
-             <field name="quantity_total"/>
-             <field name="landed_cost_base_quantity" />
-             <field name="landed_cost_base_value" />
-           </group>
-           <group colspan="2" col="2"> 
-             <field name="landing_cost_lines"/>
-             <field name="landed_cost"/>
-           </group>
-           <group colspan="2" col="2"> 
-             <button name="%(act_po_2_landed_costs)d" type="action"
-                        string="Open All Landed costs"/>
-           </group>
+                <field name="quantity_total"/>
+                <field name="landed_cost_base_quantity" />
+                <field name="landed_cost_base_value" />
+              </group>
+              <group> 
+                <field name="landing_cost_lines"/>
+                <field name="landed_cost"/>
+                <button name="%(act_po_2_landed_costs)d" type="action"
+                          string="Open All Landed costs"/>
+              </group>
+             </group>
              <field name="landed_cost_line_ids" colspan="4" nolabel="1"  widget="one2many_list">
               <tree string="Landing Costs" editable="bottom">
                   <field name="generate_invoice"/>

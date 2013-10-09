@@ -36,12 +36,9 @@ class landed_cost_position(osv.osv):
     _name = "landed.cost.position"
 
     def _amount_total(self, cr, uid, ids, name, args, context):
-    # TODO: We should have a field that is the computed value
+    # We should have a field that is the computed value (total costs that land)
     # e.g. if it's related to a line and per_unit => I want for the reporting
-    # the total line landed cost. Name the field amount_total and show this 
-    # one in analysis view. This field is computed with:
-    # if purchase_order_line_id and per_unit = amount * purchase_order_line_id.product_qty
-    # else = amount
+    # the total line landed cost.
         if not ids : return {}
         result = {}
         # landed costss for the line
