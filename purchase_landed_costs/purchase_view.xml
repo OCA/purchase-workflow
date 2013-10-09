@@ -15,8 +15,6 @@
               <field name="partner_id"/>
               <field name="amount"/>
               <field name="price_type"/>
-              <field name="amount_currency"/>
-              <field name="currency_id"/>
         </tree>
       </field>
     </record>
@@ -34,8 +32,6 @@
               <field name="partner_id"/>
               <field name="amount"/>
               <field name="price_type"/>
-              <field name="amount_currency"/>
-              <field name="currency_id"/>
         </form>
       </field>
     </record>
@@ -73,8 +69,6 @@
                 <field name="partner_id"/>
                 <field name="amount_total" sum="Total amount"/>
                 <field name="price_type"/>
-                <field name="amount_currency"/>
-                <field name="currency_id"/>
                 <field name="purchase_order_id"/>
                 <field name="purchase_order_line_id"/>
           </tree>
@@ -125,8 +119,6 @@
                   <field name="partner_id"/>
                   <field name="amount"/>
                   <field name="price_type"/>
-                  <field name="amount_currency"/>
-                  <field name="currency_id"/>
               </tree>
             </field>
           </page>
