@@ -184,6 +184,18 @@
         </field>
     </record>
 
+    <record model="ir.ui.view" id="landed_cost_position_graph">
+        <field name="name">landed.cost.position.graph</field>
+        <field name="model">landed.cost.position</field>
+        <field name="type">graph</field>
+        <field name="arch" type="xml">
+            <graph string="Landed Costs" type="bar">
+                <field name="account_id"/>
+                <field name="amount_total" operator="+"/>
+            </graph>
+        </field>
+    </record>
+
     <record id="action_landed_cost_report_all" model="ir.actions.act_window">
         <field name="name">Landed Costs Analysis</field>
         <field name="res_model">landed.cost.position</field>
