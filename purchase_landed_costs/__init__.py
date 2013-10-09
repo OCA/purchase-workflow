@@ -3,6 +3,7 @@
 #    
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2010-2013 Camptocamp (<http://www.camptocamp.com>)
+#    Authors: Ferdinand Gasauer, Joel Grand-Guillaume
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as

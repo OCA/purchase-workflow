@@ -3,6 +3,7 @@
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2010-2013 Camptocamp (<http://www.camptocamp.com>)
+#    Authors: Ferdinand Gasauer, Joel Grand-Guillaume
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -34,16 +35,13 @@ class landed_cost_position(osv.osv):
 
     _name = "landed.cost.position"
 
-
     def _amount_total(self, cr, uid, ids, name, args, context):
-
     # TODO: We should have a field that is the computed value
     # e.g. if it's related to a line and per_unit => I want for the reporting
     # the total line landed cost. Name the field amount_total and show this 
-    # one in analysius view. This field is computed with:
+    # one in analysis view. This field is computed with:
     # if purchase_order_line_id and per_unit = amount * purchase_order_line_id.product_qty
     # else = amount
-
         if not ids : return {}
         result = {}
         # landed costss for the line
@@ -69,15 +67,8 @@ class landed_cost_position(osv.osv):
             ('Amount',
             required=True,
             digits_compute=dp.get_precision('Purchase Price'),
-            help="Landed cost for stock valuation. It will be added to the price "
-                 "of the supplier price."),
-        'amount_currency': fields.float(
-            'Amount Currency',
-            help="The amount expressed in an optional other currency."),
-        'currency_id': fields.many2one(
-            'res.currency',
-            'Secondary Currency',
-            help="Optional other currency."),
+            help="Landed cost for stock valuation (expressed in company default currency). "
+                 "It will be added to the price of the supplier price."),
         'partner_id': fields.many2one(
             'res.partner',
             'Partner',
@@ -109,14 +100,19 @@ class landed_cost_position(osv.osv):
                  "landed cost for the order",
             store=True),
         'date_po': fields.related('purchase_order_id', 'date_order', type='date',
-                                     string='Date',
-                                     store=True,
-                                     readonly=True,
-                                     help="Date of the related PO"),
+            string='Date',
+            store=True,
+            readonly=True,
+            help="Date of the related PO"),
+        'company_id': fields.many2one('res.company','Company',
+            required=True,
+            select=1,),
       }
 
     _default = {
         'generate_invoice': False,
+        'company_id': lambda self,cr,uid,c: self.pool.get('res.company')._company_default_get(
+            cr, uid, 'purchase.order', context=c),
     }
 
     def write(self, cr, uid, ids, vals, context=None):
