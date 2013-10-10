@@ -36,6 +36,7 @@ You can then associate the term to the 'main' order line and generate the 'detai
     "data" : [
         'purchase_view.xml',
         'security/ir.model.access.csv',
+        'purchase_data.xml',
         ],
     "demo" : [],
     "active": False,
