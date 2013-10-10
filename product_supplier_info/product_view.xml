@@ -6,11 +6,11 @@
             <field name="model">product.supplierinfo</field>
             <field name="arch" type="xml">
                 <search string="Product Supplier Info">
-                	<field name="name" string="Supplier"/>
-                	<field name="product_code" string="Supplier Product Code"/>
+                    <field name="name" string="Supplier"/>
+                    <field name="product_code" string="Supplier Product Code"/>
                     <field name="product_name" string="Supplier Product Code"/>
                     <field name="product_id" />
-                    <group  expand='1' string='Group by...' groups="base.group_extended">
+                    <group expand='1' string='Group by...' groups="base.group_extended">
                        <filter string='Product Code' name='supplier_code' icon="terp-stock_symbol-selection" 
                             domain="[]" context="{'group_by' : 'product_code'}" />
                        <filter string='Product' name='product' icon="terp-stock_symbol-selection" domain="[]" 
@@ -21,13 +21,13 @@
                 </search>
             </field>
         </record>
-        
+
         <record id="view_product_supplierinfo_tree1" model="ir.ui.view">
             <field name="name">product.supplierinfo.tree1</field>
             <field name="model">product.supplierinfo</field>
             <field name="priority">90</field>
             <field name="arch" type="xml">
-            	<tree string="Supplier Information" editable="top">
+                <tree string="Supplier Information" editable="top">
                     <field name="sequence" widget="handle"/>
                     <field name="product_code" string="Supplier Product Code"/>
                     <field name="product_name" string="Supplier Product Name"/>
@@ -41,17 +41,18 @@
                 </tree>
             </field>
         </record>
-        <record id="view_product_supplierinfo_from1" model="ir.ui.view">
-            <field name="name">product.supplierinfo.from1</field>
+
+        <record id="view_product_supplierinfo_form1" model="ir.ui.view">
+            <field name="name">product.supplierinfo.form1</field>
             <field name="model">product.supplierinfo</field>
             <field name="inherit_id" ref="product.product_supplierinfo_form_view"/>
+            <field name="priority">99</field>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='sequence']" position="before">
                     <field name="product_id"/>
                 </xpath>
             </field>
         </record>
-        
 
         <record id="action_product_supplier_info" model="ir.actions.act_window">
             <field name="name">Product Supplier Info</field>
