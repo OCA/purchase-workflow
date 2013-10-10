@@ -1,4 +1,10 @@
 -
+  Create a stock location for the test
+-
+ !record {model: stock.location, id: location_stock_01}:
+    name: Stock for PO
+    usage: internal
+-
   Create a Supplier for PO
 -
   !record {model: res.partner, id: res_partner_supplier_01}:
@@ -59,6 +65,7 @@
   !record {model: purchase.order, id: purchase_order_lcost_01}:
     partner_id: res_partner_supplier_01
     invoice_method: order
+    location_id: location_stock_01
     order_line:
       - product_id: product_product_a_avg_01
         price_unit: 100

@@ -360,8 +360,6 @@ class purchase_order(orm.Model):
         """
         po = (landed_cost.purchase_order_id or
             landed_cost.purchase_order_line_id.order_id)
-        currency_id = (landed_cost.currency_id.id or 
-                po.company_id.currency_id.id)
         fiscal_position = po.fiscal_position or False
         journal_obj = self.pool.get('account.journal')
         journal_ids = journal_obj.search(cr, uid, [('type', '=','purchase'),
@@ -374,7 +372,6 @@ class purchase_order(orm.Model):
                         po.company_id.id))
         return {
             'partner_id' : landed_cost.partner_id.id,
-            'currency_id': currency_id,
             'account_id': landed_cost.partner_id.property_account_payable.id,
             'type': 'in_invoice',
             'origin': po.name,

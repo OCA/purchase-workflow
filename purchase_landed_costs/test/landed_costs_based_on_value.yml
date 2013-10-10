@@ -59,6 +59,7 @@
   !record {model: purchase.order, id: purchase_order_lcost_02}:
     partner_id: res_partner_supplier_03
     invoice_method: order
+    location_id: location_stock_01
     order_line:
       - product_id: product_product_c_avg_01
         price_unit: 100
