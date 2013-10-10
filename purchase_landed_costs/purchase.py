@@ -35,20 +35,67 @@ class landed_cost_position(orm.Model):
 
     _name = "landed.cost.position"
 
-    def _amount_total(self, cr, uid, ids, name, args, context):
-    # We should have a field that is the computed value (total costs that land)
-    # e.g. if it's related to a line and per_unit => I want for the reporting
-    # the total line landed cost.
-        if not ids : return {}
-        result = {}
-        # landed costss for the line
-        for line in self.browse(cr, uid, ids):
-            if line.purchase_order_line_id and line.price_type == 'per_unit':
-                result[line.id] = (line.amount * 
-                    line.purchase_order_line_id.product_qty)
-            else:
-                result[line.id] = line.amount
+    def _get_company_currency_from_landed_cost(self, cr, uid, 
+            landed_cost, amount, context=None):
+        """Return the amount in company currency by looking at the po. always
+        return a value, even if company currency = PO one.
+        :param browse_record landed_cost: Landed cost position browse record
+        :param float value to convert
+        :return: Float value amount in company currency converted at po date"""
+        cur_obj = self.pool.get('res.currency')
+        cmp_cur_id = landed_cost.purchase_order_id.company_id.currency_id.id
+        po_cur_id = landed_cost.purchase_order_id.pricelist_id.currency_id.id
+        result = 0.0
+        # Always provide the amount in currency
+        if cmp_cur_id == po_cur_id:
+            result = amount
+        else:
+            ctx = context.copy()
+            ctx['date'] = landed_cost.date_po or False
+            result = cur_obj.compute(cr, uid,
+                                     po_cur_id,
+                                     cmp_cur_id,
+                                     amount,
+                                     context=ctx)
         return result
+
+    def _get_total_amount(self, cr, uid, landed_cost, context=None):
+        """We should have a field that is the computed value (total costs that land)
+        e.g. if it's related to a line and per_unit => I want for the reporting
+        the total line landed cost and multiply the quantity by given amount.
+        :param browse_record landed_cost: Landed cost position browse record
+        :return total value of this landed cost position"""
+        vals_po_currency = 0.0
+        if landed_cost.purchase_order_line_id and landed_cost.price_type == 'per_unit':
+            vals_po_currency = (landed_cost.amount * 
+                landed_cost.purchase_order_line_id.product_qty)
+        else:
+            vals_po_currency = landed_cost.amount
+        return vals_po_currency
+
+    def _get_amounts(self, cr, uid, ids, field_name, arg, context=None):
+        if not ids : return {}
+        if context is None:
+            context = {}
+        result = {}
+        for landed_cost in self.browse(cr, uid, ids, context=context):
+            val_comp_currency = self._get_company_currency_from_landed_cost(cr, uid, 
+                        landed_cost, landed_cost.amount, context=context)
+            val_total = self._get_total_amount(cr, uid, landed_cost, 
+                context=context)
+            val_total_comp_currency = self._get_company_currency_from_landed_cost(cr, uid, 
+                        landed_cost, val_total, context=context)
+            amounts = {'amount_company_currency': val_comp_currency,
+                'amount_total': val_total,
+                'amount_total_comp_currency': val_total_comp_currency}
+            result[landed_cost.id] = amounts
+        return result
+
+    def _get_po(self, cr, uid, ids, context=None):
+        landed_obj = self.pool.get('landed.cost.position')
+        return landed_obj.search(cr, uid,
+                                  [('purchase_order_id', 'in', ids)],
+                                  context=context)
 
     _columns = {
         'product_id': fields.many2one(
@@ -60,12 +107,6 @@ class landed_cost_position(orm.Model):
             'account.account',
             'Fiscal Account',
             required=True,),
-        'amount': fields.float
-            ('Amount',
-            required=True,
-            digits_compute=dp.get_precision('Purchase Price'),
-            help="Landed cost for stock valuation (expressed in company default currency). "
-                 "It will be added to the price of the supplier price."),
         'partner_id': fields.many2one(
             'res.partner',
             'Partner',
@@ -88,14 +129,56 @@ class landed_cost_position(orm.Model):
                  "for this landed cost position from the related partner. If not, no "
                  "invoice will be generated, but the cost will be included for the average "
                  "price computation."),
-        'amount_total': fields.function(
-            _amount_total,
+        'amount': fields.float
+            ('Amount',
+            required=True,
+            digits_compute=dp.get_precision('Purchase Price'),
+            help="Landed cost expressed in PO currency used to fullfil landed cost."),
+        'amount_company_currency': fields.function(
+            _get_amounts,
+            type="float",
+            multi='compute_amounts',
+            string='Amount Company Currency',
+            # Use Account as it's for comparison with financial accounting
             digits_compute=dp.get_precision('Account'),
+            store={
+                'purchase_order': (_get_po,
+                                   ['pricelist_id', 'company_id'], 50),
+                'landed.cost.position': (lambda self, cr, uid, ids, c=None: ids,
+                                          ['amount',], 10),
+            },
+            help="Landed cost for stock valuation (expressed in company currency). "
+                 "It will be added to the price of the supplier price."),
+        'amount_total': fields.function(
+            _get_amounts,
+            type="float",
+            multi='compute_amounts',
+            digits_compute=dp.get_precision('Purchase Price'),
             string='Amount Total',
             help="This field represent the total amount of this position "
                  "regarding a whole order. By summing it, you'll have the total "
-                 "landed cost for the order",
-            store=True),
+                 "landed cost for the order (in his currency)",
+            store={
+                'purchase_order': (_get_po,
+                                   ['pricelist_id', 'company_id'], 50),
+                'landed.cost.position': (lambda self, cr, uid, ids, c=None: ids,
+                                          ['amount',], 10),},
+            ),
+        'amount_total_comp_currency': fields.function(
+            _get_amounts,
+            type="float",
+            multi='compute_amounts',
+            digits_compute=dp.get_precision('Account'),
+            string='Amount Total Company Currency',
+            help="This field represent the total amount of this position "
+                 "regarding a whole order. By summing it, you'll have the total "
+                 "landed cost for the order (in company reference currency).",
+            store={
+                'purchase_order': (_get_po,
+                                   ['pricelist_id', 'company_id'], 50),
+                'landed.cost.position': (lambda self, cr, uid, ids, c=None: ids,
+                                          ['amount',], 10),},
+            ),
         'date_po': fields.related('purchase_order_id', 'date_order', type='date',
             string='Date',
             store=True,
@@ -360,6 +443,7 @@ class purchase_order(orm.Model):
         """
         po = (landed_cost.purchase_order_id or
             landed_cost.purchase_order_line_id.order_id)
+        currency_id = landed_cost.purchase_order_id.pricelist_id.currency_id.id
         fiscal_position = po.fiscal_position or False
         journal_obj = self.pool.get('account.journal')
         journal_ids = journal_obj.search(cr, uid, [('type', '=','purchase'),
@@ -371,7 +455,8 @@ class purchase_order(orm.Model):
                     % (po.company_id.name, 
                         po.company_id.id))
         return {
-            'partner_id' : landed_cost.partner_id.id,
+            'currency_id': currency_id,
+            'partner_id': landed_cost.partner_id.id,
             'account_id': landed_cost.partner_id.property_account_payable.id,
             'type': 'in_invoice',
             'origin': po.name,

@@ -91,7 +91,13 @@ TODO/Ideas:
     'test': [
         'test/landed_costs_based_on_quantity.yml',
         'test/landed_costs_based_on_value.yml',
-        'test/landed_costs_on qty_by_line_and_order.yml',
+        'test/landed_costs_on_qty_by_line_and_order.yml',
+        'test/landed_costs_multicurrency_pricelist.yml',
+        # those 2 tests here fails because of the bug regarding the price_type
+        # and average price computation in OpenERP. I'll keep them because
+        # they should be sovled by a way or another.
+        'test/landed_costs_multicurrency_company.yml',
+        'test/landed_costs_multicurrency_pricetype.yml',
     ],
     'demo': [],
     'installable': True,

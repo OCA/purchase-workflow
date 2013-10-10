@@ -1,4 +1,20 @@
 -
+  Ensure main company, price_type of standard_price and pricelist are in EUR
+-
+ !record {model: res.company, id: base.main_company}:
+    currency_id: base.EUR
+-
+ !record {model: product.price.type, id: product.standard_price}:
+    currency_id: base.EUR
+-
+ !record {model: product.pricelist, id: purchase.list0}:
+    currency_id: base.EUR 
+-
+  Affect the admin user to the main company
+-
+ !record {model: res.users, id: base.user_root}:
+    company_id: base.main_company 
+-
   Create a product with landed type for lines
 -
   !record {model: product.product, id: product_product_lcost_03}:
@@ -36,6 +52,7 @@
     partner_id: res_partner_supplier_01
     invoice_method: order
     location_id: location_stock_01
+    pricelist_id: purchase.list0
     order_line:
       - product_id: product_product_e_avg_01
         price_unit: 100

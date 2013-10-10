@@ -68,6 +68,7 @@
                 <field name="account_id" />
                 <field name="partner_id"/>
                 <field name="amount_total" sum="Total amount"/>
+                <field name="amount_total_comp_currency" sum="Total amount"/>
                 <field name="price_type"/>
                 <field name="purchase_order_id"/>
                 <field name="purchase_order_line_id"/>
@@ -176,7 +177,7 @@
                     <filter string="Date" name="group_date_po" icon="terp-personal" context="{'group_by':'date_po'}"/>
                     <filter string="Supplier" name="group_partner_id" icon="terp-personal" context="{'group_by':'partner_id'}"/>
                     <filter string="Account" name="group_account_id" icon="terp-stock_symbol-selection" context="{'group_by':'account_id'}"/>
-                    <filter string="Product" name="group_product_id" icon="terp-accessories-archiver" context="{'group_by':'product_id'}"/>
+                    <filter string="Landed Cost Name" name="group_product_id" icon="terp-accessories-archiver" context="{'group_by':'product_id'}"/>
                     <filter string="Purchase" icon="terp-stock_effects-object-colorize" context="{'group_by':'purchase_order_id'}"/>
                     <filter string="Purchase Line" icon="terp-stock_effects-object-colorize" context="{'group_by':'purchase_order_line_id'}"/>
                 </group>
@@ -191,7 +192,7 @@
         <field name="arch" type="xml">
             <graph string="Landed Costs" type="bar">
                 <field name="account_id"/>
-                <field name="amount_total" operator="+"/>
+                <field name="amount_total_comp_currency" operator="+"/>
             </graph>
         </field>
     </record>
