@@ -142,10 +142,10 @@ class landed_cost_position(orm.Model):
             # Use Account as it's for comparison with financial accounting
             digits_compute=dp.get_precision('Account'),
             store={
-                'purchase_order': (_get_po,
+                'purchase.order': (_get_po,
                                    ['pricelist_id', 'company_id'], 50),
                 'landed.cost.position': (lambda self, cr, uid, ids, c=None: ids,
-                                          ['amount',], 10),
+                                          ['amount','purchase_order_id'], 10),
             },
             help="Landed cost for stock valuation (expressed in company currency). "
                  "It will be added to the price of the supplier price."),
@@ -159,10 +159,10 @@ class landed_cost_position(orm.Model):
                  "regarding a whole order. By summing it, you'll have the total "
                  "landed cost for the order (in his currency)",
             store={
-                'purchase_order': (_get_po,
+                'purchase.order': (_get_po,
                                    ['pricelist_id', 'company_id'], 50),
                 'landed.cost.position': (lambda self, cr, uid, ids, c=None: ids,
-                                          ['amount',], 10),},
+                                          ['amount','purchase_order_id'], 10),},
             ),
         'amount_total_comp_currency': fields.function(
             _get_amounts,
@@ -174,10 +174,10 @@ class landed_cost_position(orm.Model):
                  "regarding a whole order. By summing it, you'll have the total "
                  "landed cost for the order (in company reference currency).",
             store={
-                'purchase_order': (_get_po,
+                'purchase.order': (_get_po,
                                    ['pricelist_id', 'company_id'], 50),
                 'landed.cost.position': (lambda self, cr, uid, ids, c=None: ids,
-                                          ['amount',], 10),},
+                                          ['amount','purchase_order_id'], 10),},
             ),
         'date_po': fields.related('purchase_order_id', 'date_order', type='date',
             string='Date',
