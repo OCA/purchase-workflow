@@ -210,13 +210,10 @@
      # Value in stock in EUR
      value_a = round(102.5 / xchg_rate_chf, 2)
      value_b = round(202.5 / xchg_rate_chf, 2)
-     # Due to rounding of OpenERP we must round intermediate value as well
-     new_ratio_a = round(200 / xchg_rate_chf, 2)
-     new_ratio_b = round(400 / xchg_rate_chf, 2)
      # computed as : (value_a * 15 + (200 / xchg_rate_chf) * 15) / 30
-     value_abis = round((value_a * 15 + (new_ratio_a) * 15) / 30, 2) #152.84
+     value_abis = round((value_a * 15 + (200 / xchg_rate_chf) * 15) / 30, 2) #152.84
      # computed as : (value_b * 5 + (400 / xchg_rate_chf) * 5) / 10
-     value_bbis = round((value_b * 5 + (new_ratio_b) * 5) / 10, 2)
+     value_bbis = round((value_b * 5 + (400 / xchg_rate_chf) * 5) / 10, 2)
 
      print "computed"
      print value_abis
