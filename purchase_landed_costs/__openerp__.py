@@ -75,7 +75,7 @@ Warning:
    is the same as the company one. Otherwise, when computing the AVG price, it make the convertion in company currency
    from the price type currency. This is not related to this module, but from the core of OpenERP.
    If you use this module in multi-company and different currency between company, you'll have to not share the product 
-   between them, even if product are the same.
+   between them, even if product are the same (bug: https://bugs.launchpad.net/ocb-addons/+bug/1238525).
 
 
 TODO/Ideas:
@@ -96,14 +96,16 @@ TODO/Ideas:
         'test/landed_costs_based_on_value.yml',
         'test/landed_costs_on_qty_by_line_and_order.yml',
         'test/landed_costs_multicurrency_pricelist.yml',
+
         # those 2 tests here fails because of the bug regarding the price_type
-        # and average price computation in OpenERP. I'll keep them because
+        # (https://bugs.launchpad.net/ocb-addons/+bug/1238525) and average price
+        # computation in OpenERP. I'll keep them because
         # The bug is happening when the company has a different currency that 
         # the price_type of the standard_price field
         # Unless you didn't have to do that, everything work fine.
         # they should be sovled by a way or another.
-        #'test/landed_costs_multicurrency_company.yml',
-        #'test/landed_costs_multicurrency_pricetype.yml',
+        'test/landed_costs_multicurrency_company.yml',
+        'test/landed_costs_multicurrency_pricetype.yml',
     ],
     'demo': [],
     'installable': True,

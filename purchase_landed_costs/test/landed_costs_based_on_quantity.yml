@@ -21,6 +21,15 @@
     name: Stock for PO
     usage: internal
 -
+  Create a warehouse for the test
+-
+ !record {model: stock.warehouse, id: wh_stock_01}:
+    name: Warehouse for PO
+    lot_output_id: location_stock_01
+    lot_stock_id: location_stock_01
+    lot_input_id: location_stock_01
+    company_id: base.main_company
+-
   Create a Supplier for PO
 -
   !record {model: res.partner, id: res_partner_supplier_01}:

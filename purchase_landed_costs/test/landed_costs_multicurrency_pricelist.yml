@@ -31,6 +31,15 @@
     name: Stock for PO
     usage: internal
 -
+  Create a warehouse for the test
+-
+ !record {model: stock.warehouse, id: wh_stock_01}:
+    name: Warehouse for PO
+    lot_output_id: location_stock_01
+    lot_stock_id: location_stock_01
+    lot_input_id: location_stock_01
+    company_id: base.main_company
+-
   Create a Supplier for PO
 -
   !record {model: res.partner, id: res_partner_supplier_01}:
@@ -156,3 +165,65 @@
      value_b = round(202.5 / xchg_rate_chf, 2)
      assert self.browse(cr, uid, ref("product_product_f_avg_01")).standard_price == value_a,"Avg price for product Wine F is wrongly computed"
      assert self.browse(cr, uid, ref("product_product_g_avg_01")).standard_price == value_b,"Avg price for product Wine G is wrongly computed"
+-
+  Create a purchase order with two lines
+-
+  !record {model: purchase.order, id: purchase_order_lcost_04bis}:
+    partner_id: res_partner_supplier_01
+    invoice_method: order
+    location_id: location_stock_01
+    pricelist_id: purchase.list0
+    order_line:
+      - product_id: product_product_f_avg_01
+        price_unit: 200
+        product_qty: 15.0
+      - product_id: product_product_g_avg_01
+        price_unit: 400
+        product_qty: 5.0
+-
+ I confirm the order where invoice control is 'Bases on order'.
+-
+  !workflow {model: purchase.order, action: purchase_confirm, ref: purchase_order_lcost_04bis}
+-
+  Reception is ready for process, make it and check moves value
+-
+  !python {model: stock.partial.picking}: |
+    pick_ids = self.pool.get('purchase.order').browse(cr, uid, ref("purchase_order_lcost_04bis")).picking_ids
+    partial_id = self.create(cr, uid, {},context={'active_model': 'stock.picking','active_ids': [pick_ids[0].id]})
+    self.do_partial(cr, uid, [partial_id])
+    picking = self.pool.get('stock.picking').browse(cr, uid, [pick_ids[0].id])[0]
+    for move in picking.move_lines:
+      if move.product_id.name == 'Wine A':
+        assert move.price_unit == 200.0,"Technical field price_unit of Wine F stock move should record the purchase price"
+      elif move.product_id.name == 'Wine B':
+        assert move.price_unit == 400.0,"Technical field price_unit_net of Wine G stock move should record the purchase price"
+-
+  I check that purchase order is shipped.
+-
+  !python {model: purchase.order}: |
+     assert self.browse(cr, uid, ref("purchase_order_lcost_04bis")).shipped == True,"Purchase order should be delivered"
+-
+  I check that avg price of products is computed correctly
+-
+  !python {model: product.product}: |
+     xchg_rate_chf = 1.3086
+     # Value in stock in EUR
+     value_a = round(102.5 / xchg_rate_chf, 2)
+     value_b = round(202.5 / xchg_rate_chf, 2)
+     # Due to rounding of OpenERP we must round intermediate value as well
+     new_ratio_a = round(200 / xchg_rate_chf, 2)
+     new_ratio_b = round(400 / xchg_rate_chf, 2)
+     # computed as : (value_a * 15 + (200 / xchg_rate_chf) * 15) / 30
+     value_abis = round((value_a * 15 + (new_ratio_a) * 15) / 30, 2) #152.84
+     # computed as : (value_b * 5 + (400 / xchg_rate_chf) * 5) / 10
+     value_bbis = round((value_b * 5 + (new_ratio_b) * 5) / 10, 2)
+
+     print "computed"
+     print value_abis
+     print value_bbis
+     print "found"
+     print self.browse(cr, uid, ref("product_product_f_avg_01")).standard_price
+     print self.browse(cr, uid, ref("product_product_g_avg_01")).standard_price
+
+     assert self.browse(cr, uid, ref("product_product_f_avg_01")).standard_price == value_abis,"Avg price for product Wine F is wrongly computed"
+     assert self.browse(cr, uid, ref("product_product_g_avg_01")).standard_price == value_bbis,"Avg price for product Wine G is wrongly computed"
