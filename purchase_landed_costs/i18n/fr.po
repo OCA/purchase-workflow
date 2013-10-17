@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-10 07:46+0000\n"
-"PO-Revision-Date: 2013-10-10 07:46+0000\n"
+"POT-Creation-Date: 2013-10-17 09:50+0000\n"
+"PO-Revision-Date: 2013-10-17 09:50+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -23,15 +23,10 @@ msgid "Purchase Order Line"
 msgstr "Ligne de commande d'achat"
 
 #. module: purchase_landed_costs
-#: selection:landed.cost.position,price_type:0
-msgid "Per Quantity"
-msgstr "Par Quantité"
-
-#. module: purchase_landed_costs
-#: model:ir.model.fields,field_description:purchase_landed_costs.field_stock_move_price_unit_net
-#: field:stock.move,price_unit_net:0
-msgid "Purchase Price"
-msgstr "Prix d'achat"
+#: model:ir.model.fields,field_description:purchase_landed_costs.field_landed_cost_position_amount_company_currency
+#: field:landed.cost.position,amount_company_currency:0
+msgid "Amount Company Currency"
+msgstr "Amount Company Currency"
 
 #. module: purchase_landed_costs
 #: selection:product.template,landed_cost_type:0
@@ -76,9 +71,14 @@ msgid "The supplier of this cost component."
 msgstr "Fournisseur lié à ce coût d'acquisition"
 
 #. module: purchase_landed_costs
-#: selection:landed.cost.position,price_type:0
-msgid "Absolute Value"
-msgstr "Valeur"
+#: help:landed.cost.position,amount_total:0
+msgid "This field represent the total amount of this position regarding a whole order. By summing it, you'll have the total landed cost for the order (in his currency)"
+msgstr "This field represent the total amount of this position regarding a whole order. By summing it, you'll have the total landed cost for the order (in his currency)"
+
+#. module: purchase_landed_costs
+#: model:ir.model,name:purchase_landed_costs.model_product_product
+msgid "Product"
+msgstr "Article"
 
 #. module: purchase_landed_costs
 #: code:addons/purchase_landed_costs/product.py:66
@@ -87,7 +87,7 @@ msgid "Define expense account for this company: \"%s\" (id:%d)."
 msgstr "Define expense account for this company: \"%s\" (id:%d)."
 
 #. module: purchase_landed_costs
-#: code:addons/purchase_landed_costs/purchase.py:372
+#: code:addons/purchase_landed_costs/purchase.py:493
 #, python-format
 msgid "Define purchase journal for this company: \"%s\" (id:%d)."
 msgstr "Definit un journal d'achat pour cette société: \"%s\" (id:%d)."
@@ -102,15 +102,40 @@ msgid "Landed Costs"
 msgstr "Coûts d'acquisition"
 
 #. module: purchase_landed_costs
+#: help:landed.cost.position,amount_company_currency:0
+msgid "Landed cost for stock valuation (expressed in company currency). It will be added to the price of the supplier price."
+msgstr "Landed cost for stock valuation (expressed in company currency). It will be added to the price of the supplier price."
+
+#. module: purchase_landed_costs
 #: model:ir.model.fields,field_description:purchase_landed_costs.field_landed_cost_position_company_id
 #: field:landed.cost.position,company_id:0
 msgid "Company"
 msgstr "Société"
 
 #. module: purchase_landed_costs
+#: help:landed.cost.position,amount:0
+msgid "Landed cost expressed in PO currency used to fullfil landed cost."
+msgstr "Landed cost expressed in PO currency used to fullfil landed cost."
+
+#. module: purchase_landed_costs
+#: selection:landed.cost.distribution.type,apply_on:0
+msgid "Order"
+msgstr "Order"
+
+#. module: purchase_landed_costs
+#: model:ir.model,name:purchase_landed_costs.model_landed_cost_distribution_type
+msgid "landed.cost.distribution.type"
+msgstr "landed.cost.distribution.type"
+
+#. module: purchase_landed_costs
 #: model:ir.actions.act_window,name:purchase_landed_costs.act_po_2_landed_costs
 msgid "Related Landed Costs"
 msgstr "Coûts d'acquisition liés"
+
+#. module: purchase_landed_costs
+#: help:landed.cost.distribution.type,apply_on:0
+msgid "Defines if this distribution type Applied on order or line level."
+msgstr "Defines if this distribution type Applied on order or line level."
 
 #. module: purchase_landed_costs
 #: model:ir.model.fields,field_description:purchase_landed_costs.field_landed_cost_position_date_po
@@ -124,6 +149,17 @@ msgstr "Date"
 #: field:purchase.order,landed_cost_base_value:0
 msgid "Landed Costs Base Value"
 msgstr "Coûts d'acquisition valeur de base"
+
+#. module: purchase_landed_costs
+#: selection:landed.cost.distribution.type,apply_on:0
+msgid "Line"
+msgstr "Line"
+
+#. module: purchase_landed_costs
+#: model:ir.model.fields,field_description:purchase_landed_costs.field_stock_move_price_unit_net
+#: field:stock.move,price_unit_net:0
+msgid "Purchase Price"
+msgstr "Prix d'achat"
 
 #. module: purchase_landed_costs
 #: model:ir.model.fields,field_description:purchase_landed_costs.field_purchase_order_landing_cost_lines
@@ -142,17 +178,15 @@ msgid "Account"
 msgstr "Compte"
 
 #. module: purchase_landed_costs
-#: model:ir.model.fields,field_description:purchase_landed_costs.field_landed_cost_position_price_type
+#: model:ir.model.fields,field_description:purchase_landed_costs.field_landed_cost_distribution_type_name
+#: model:ir.model.fields,field_description:purchase_landed_costs.field_landed_cost_position_distribution_type_id
 #: model:ir.model.fields,field_description:purchase_landed_costs.field_product_template_landed_cost_type
-#: field:landed.cost.position,price_type:0
+#: field:landed.cost.distribution.type,name:0
+#: view:landed.cost.position:0
+#: field:landed.cost.position,distribution_type_id:0
 #: field:product.template,landed_cost_type:0
 msgid "Distribution Type"
 msgstr "Type de Distribution"
-
-#. module: purchase_landed_costs
-#: help:landed.cost.position,amount:0
-msgid "Landed cost for stock valuation (expressed in company default currency). It will be added to the price of the supplier price."
-msgstr "Coût d'acquisition pour la valorisation des stocks (exprimés en devise de la société). S'ajoutera au coût de revient (prix moyen ou Standard)."
 
 #. module: purchase_landed_costs
 #: view:landed.cost.position:0
@@ -165,15 +199,21 @@ msgid "Landed cost Analysis allows you to easily check and analyse your estimate
 msgstr "L'analyse des coûts d'acquisition permet de contrôler les estimations de coût d'acquisition des commandes d'achat."
 
 #. module: purchase_landed_costs
-#: model:ir.model,name:purchase_landed_costs.model_product_product
-#: view:landed.cost.position:0
-msgid "Product"
-msgstr "Produit"
-
-#. module: purchase_landed_costs
+#: selection:landed.cost.distribution.type,landed_cost_type:0
 #: selection:product.template,landed_cost_type:0
 msgid "Value"
 msgstr "Valeur"
+
+#. module: purchase_landed_costs
+#: view:landed.cost.position:0
+msgid "Purchase Line"
+msgstr "Ligne d'achat"
+
+#. module: purchase_landed_costs
+#: model:ir.model.fields,field_description:purchase_landed_costs.field_landed_cost_distribution_type_landed_cost_type
+#: field:landed.cost.distribution.type,landed_cost_type:0
+msgid "Product Landed Cost Type"
+msgstr "Product Landed Cost Type"
 
 #. module: purchase_landed_costs
 #: model:ir.model,name:purchase_landed_costs.model_purchase_order
@@ -190,7 +230,7 @@ msgstr "Positions de coûts d'acquisition"
 
 #. module: purchase_landed_costs
 #: code:addons/purchase_landed_costs/product.py:65
-#: code:addons/purchase_landed_costs/purchase.py:371
+#: code:addons/purchase_landed_costs/purchase.py:492
 #, python-format
 msgid "Error!"
 msgstr "Erreur!"
@@ -208,9 +248,10 @@ msgid "Total Quantity"
 msgstr "Quantité totale"
 
 #. module: purchase_landed_costs
-#: help:landed.cost.position,amount_total:0
-msgid "This field represent the total amount of this position regarding a whole order. By summing it, you'll have the total landed cost for the order"
-msgstr "Ce champs représente de montant total de cette position par rapport à l'ensemble du bon de commande. En l'additionnant, vous obtiendrez le total des coûts d'acquisition pour ce bon de commande."
+#: model:ir.model.fields,field_description:purchase_landed_costs.field_landed_cost_position_amount_total_comp_currency
+#: field:landed.cost.position,amount_total_comp_currency:0
+msgid "Amount Total Company Currency"
+msgstr "Amount Total Company Currency"
 
 #. module: purchase_landed_costs
 #: model:ir.model,name:purchase_landed_costs.model_stock_partial_picking
@@ -228,9 +269,9 @@ msgid "If ticked, this will generate a draft invoice at the PO confirmation for 
 msgstr "Si coché, une facture brouillon (donc modifiable) sera pré-générée lors de la confirmation du bon de commande pour cette position de coût d'acquisition graĉe au fournisseur lié. Si non cochée, aucune facture ne sera pré-générée mais le coût de revient sera calculé en tenant compte des coûts d'acquisiton tout de même."
 
 #. module: purchase_landed_costs
-#: help:landed.cost.position,price_type:0
+#: help:landed.cost.position,distribution_type_id:0
 msgid "Defines if the amount is to be calculated for each quantity or an absolute value"
-msgstr "Definit si le montant du coût d'acquisition est réparti selon les quantités ou les valeurs."
+msgstr "Defines if the amount is to be calculated for each quantity or an absolute value"
 
 #. module: purchase_landed_costs
 #: model:ir.actions.act_window,name:purchase_landed_costs.action_landed_cost_report_all
@@ -239,12 +280,14 @@ msgid "Landed Costs Analysis"
 msgstr "Analyse des coûts d'acquisiton"
 
 #. module: purchase_landed_costs
+#: selection:landed.cost.distribution.type,landed_cost_type:0
 #: selection:product.template,landed_cost_type:0
 msgid "Quantity"
 msgstr "Quantité"
 
 #. module: purchase_landed_costs
 #: model:ir.model.fields,field_description:purchase_landed_costs.field_landed_cost_position_product_id
+#: view:landed.cost.position:0
 #: field:landed.cost.position,product_id:0
 msgid "Landed Cost Name"
 msgstr "Nom du coût d'acquisiton"
@@ -272,14 +315,25 @@ msgid "Product Template"
 msgstr "Modèle d'article"
 
 #. module: purchase_landed_costs
+#: help:landed.cost.distribution.type,landed_cost_type:0
+msgid "Refer to the product landed cost type."
+msgstr "Refer to the product landed cost type."
+
+#. module: purchase_landed_costs
 #: help:stock.move,price_unit_net:0
 msgid "This is the net purchase price, without landed cost as the price include landed price has been stored in price_unit field"
 msgstr "Il s'agit du prix d'achat net (sans coûts d'acquisiton). Le coût de revient (avec coûts d'acquisiton) est stocké dans le champs Prix Unitaire "
 
 #. module: purchase_landed_costs
-#: view:landed.cost.position:0
-msgid "Purchase Line"
-msgstr "Ligne d'achat"
+#: help:landed.cost.position,amount_total_comp_currency:0
+msgid "This field represent the total amount of this position regarding a whole order. By summing it, you'll have the total landed cost for the order (in company reference currency)."
+msgstr "This field represent the total amount of this position regarding a whole order. By summing it, you'll have the total landed cost for the order (in company reference currency)."
+
+#. module: purchase_landed_costs
+#: model:ir.model.fields,field_description:purchase_landed_costs.field_landed_cost_distribution_type_apply_on
+#: field:landed.cost.distribution.type,apply_on:0
+msgid "Applied on"
+msgstr "Applied on"
 
 #. module: purchase_landed_costs
 #: model:ir.model.fields,field_description:purchase_landed_costs.field_landed_cost_position_partner_id
