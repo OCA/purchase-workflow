@@ -260,10 +260,10 @@ class landed_cost_position(orm.Model):
                 fiscal_position=fiscal_position, context=context)
             if prod.landed_cost_type in ('per_unit', 'value'):
                 landed_cost_type = dist_type_obj.search(cr, uid, 
-                    [('code','=',apply_on),('landed_cost_type','=',prod.landed_cost_type)], 
+                    [('apply_on','=',apply_on),('landed_cost_type','=',prod.landed_cost_type)], 
                     context=context)
             value = {
-                'landed_cost_type': landed_cost_type,
+                'distribution_type_id': landed_cost_type,
                 'account_id': account_id}
             res = {'value': value}
         return res
