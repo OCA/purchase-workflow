@@ -62,7 +62,7 @@
             amount: 20
             partner_id: res_partner_supplier_02
             generate_invoice: 1
-            price_type: per_unit
+            distribution_type_id: per_unit
       - product_id: product_product_b_avg_01
         price_unit: 200
         product_qty: 5.0
@@ -71,7 +71,7 @@
         amount: 50
         partner_id: res_partner_supplier_02
         generate_invoice: 1
-        price_type: per_unit
+        distribution_type_id: dist_unit
 -
   Test the landed costs computation for whole order
 -

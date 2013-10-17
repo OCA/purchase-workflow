@@ -14,7 +14,7 @@
               <field name="account_id" invisible="1"/>
               <field name="partner_id"/>
               <field name="amount"/>
-              <field name="price_type"/>
+              <field name="distribution_type_id" domain="[('apply_on','=','line')]"  widget="selection"/>
         </tree>
       </field>
     </record>
@@ -31,11 +31,10 @@
               <field name="account_id" invisible="1"/>
               <field name="partner_id"/>
               <field name="amount"/>
-              <field name="price_type"/>
+              <field name="distribution_type_id" domain="[('apply_on','=','line')]"  widget="selection"/>
         </form>
       </field>
     </record>
-    
 
               
         <!-- ******************
@@ -62,14 +61,14 @@
         <field name="priority">20</field>
         <field name="type">tree</field>
         <field name="arch" type="xml">
-          <tree string="Landing Costs" editable="bottom">
+          <tree string="Landing Costs" create="false">
                 <field name="date_po"/>
                 <field name="product_id"/>
                 <field name="account_id" />
                 <field name="partner_id"/>
                 <field name="amount_total" sum="Total amount"/>
                 <field name="amount_total_comp_currency" sum="Total amount"/>
-                <field name="price_type"/>
+                <field name="distribution_type_id"  widget="selection"/>
                 <field name="purchase_order_id"/>
                 <field name="purchase_order_line_id"/>
           </tree>
@@ -119,7 +118,7 @@
                   <field name="account_id" invisible="1"/>
                   <field name="partner_id"/>
                   <field name="amount"/>
-                  <field name="price_type"/>
+                  <field name="distribution_type_id" domain="[('apply_on','=','order')]" widget="selection"/>
               </tree>
             </field>
           </page>
@@ -169,7 +168,7 @@
                 <field name="partner_id"/>
                 <field name="account_id"/>
                 <field name="product_id"/>
-                <field name="price_type"/>
+                <field name="distribution_type_id"/>
                 <field name="purchase_order_id"/>
                 <field name="purchase_order_line_id"/>
                 <newline/>
@@ -178,6 +177,7 @@
                     <filter string="Supplier" name="group_partner_id" icon="terp-personal" context="{'group_by':'partner_id'}"/>
                     <filter string="Account" name="group_account_id" icon="terp-stock_symbol-selection" context="{'group_by':'account_id'}"/>
                     <filter string="Landed Cost Name" name="group_product_id" icon="terp-accessories-archiver" context="{'group_by':'product_id'}"/>
+                    <filter string="Distribution Type" name="distribution_type_id" icon="terp-accessories-archiver" context="{'group_by':'distribution_type_id'}"/>
                     <filter string="Purchase" icon="terp-stock_effects-object-colorize" context="{'group_by':'purchase_order_id'}"/>
                     <filter string="Purchase Line" icon="terp-stock_effects-object-colorize" context="{'group_by':'purchase_order_line_id'}"/>
                 </group>

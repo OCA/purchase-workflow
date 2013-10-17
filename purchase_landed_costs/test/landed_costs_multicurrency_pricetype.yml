@@ -114,7 +114,7 @@
         amount: 50
         partner_id: res_partner_supplier_02
         generate_invoice: 1
-        price_type: per_unit
+        distribution_type_id: dist_unit
 -
   Test the landed costs computation by lines
 -
@@ -163,8 +163,6 @@
      value_a = round(102.5 * xchg_rate_chf, 2)
      # computed as : ((5/20) * 50 + 200 * 5) / 5
      value_b = round(202.5 * xchg_rate_chf, 2)
-     print self.browse(cr, uid, ref("product_product_j_avg_01")).standard_price
-     print self.browse(cr, uid, ref("product_product_k_avg_01")).standard_price
      assert self.browse(cr, uid, ref("product_product_j_avg_01")).standard_price == value_a,"Avg price for product Wine J is wrongly computed"
      assert self.browse(cr, uid, ref("product_product_k_avg_01")).standard_price == value_b,"Avg price for product Wine K is wrongly computed"
 -
@@ -216,13 +214,6 @@
      value_abis = round((value_a * 15 + (200 * xchg_rate_chf) * 15) / 30, 2)
      # computed as : (value_b * 5 + (400 * xchg_rate_chf) * 5) / 10
      value_bbis = round((value_b * 5 + (400 * xchg_rate_chf) * 5) / 10, 2)
-
-     print "computed"
-     print value_abis
-     print value_bbis
-     print "found"
-     print self.browse(cr, uid, ref("product_product_j_avg_01")).standard_price
-     print self.browse(cr, uid, ref("product_product_k_avg_01")).standard_price
 
      assert self.browse(cr, uid, ref("product_product_j_avg_01")).standard_price == value_abis,"Avg price for product Wine J is wrongly computed"
      assert self.browse(cr, uid, ref("product_product_k_avg_01")).standard_price == value_bbis,"Avg price for product Wine K is wrongly computed"

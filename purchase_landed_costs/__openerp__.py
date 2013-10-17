@@ -90,6 +90,7 @@ TODO/Ideas:
     'data': ['security/ir.model.access.csv',
              'security/landed_cost_security.xml',
              'purchase_view.xml',
+             'purchase_landed_costs_data.yml',
             ],
     'test': [
         'test/landed_costs_based_on_quantity.yml',

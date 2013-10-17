@@ -89,7 +89,7 @@
         amount: 50
         partner_id: res_partner_supplier_04
         generate_invoice: 1
-        price_type: value
+        distribution_type_id: dist_value
 -
   Test the landed costs computation by lines
 -

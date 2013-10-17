@@ -26,6 +26,30 @@ from tools.translate import _
 import logging
 
 
+class landed_cost_distribution_type(orm.Model):
+    """This is a model to give how we should distribute the amount givenfor 
+    a landed costs. At the begining we use a selection field, but it was impossible
+    to filter it depending on the context (in a line or on order). So we replaced it
+    by this object, adding is_* method to deal with. Base distribution are defined 
+    in YML file."""
+
+    _name = "landed.cost.distribution.type"
+
+    _columns = {
+        'name': fields.char('Distribution Type', required=True),
+        'apply_on': fields.selection(
+            [('line','Line'),('order','Order')],
+            'Applied on',
+            required=True,
+            help="Defines if this distribution type Applied on order or line level."),
+        'landed_cost_type': fields.selection(
+            [('value','Value'),
+             ('per_unit','Quantity')],
+            'Product Landed Cost Type',
+            help="Refer to the product landed cost type."),
+    }
+
+
 class landed_cost_position(orm.Model):
     """The landed cost position represent a direct cost for the delivery 
     of the goods puchased. It can be from a different partner than the 
@@ -66,7 +90,8 @@ class landed_cost_position(orm.Model):
         :param browse_record landed_cost: Landed cost position browse record
         :return total value of this landed cost position"""
         vals_po_currency = 0.0
-        if landed_cost.purchase_order_line_id and landed_cost.price_type == 'per_unit':
+        if (landed_cost.purchase_order_line_id and 
+                landed_cost.distribution_type_id.landed_cost_type == 'per_unit'):
             vals_po_currency = (landed_cost.amount * 
                 landed_cost.purchase_order_line_id.product_qty)
         else:
@@ -96,7 +121,7 @@ class landed_cost_position(orm.Model):
         return landed_obj.search(cr, uid,
                                   [('purchase_order_id', 'in', ids)],
                                   context=context)
-
+    
     _columns = {
         'product_id': fields.many2one(
             'product.product',
@@ -112,9 +137,8 @@ class landed_cost_position(orm.Model):
             'Partner',
             help="The supplier of this cost component.",
             required=True),
-        'price_type': fields.selection(
-            [('per_unit','Per Quantity'),
-             ('value','Absolute Value')],
+        'distribution_type_id': fields.many2one(
+            'landed.cost.distribution.type',
             'Distribution Type',
             required=True,
             help="Defines if the amount is to be calculated for each quantity "
@@ -215,19 +239,31 @@ class landed_cost_position(orm.Model):
 
     def onchange_product_id(self, cr, uid, ids, product_id, 
             purchase_order_id=False, context=None):
+        """Give the default value for the distribution type depending on the setting of
+         the product and the use case: line or order position."""
+        if context is None:
+            context = {}
         res = {}
         fiscal_position = False
+        landed_cost_type = False
+        apply_on = 'line'
         if product_id:
             prod_obj = self.pool.get('product.product')
+            dist_type_obj = self.pool.get('landed.cost.distribution.type')
             prod = prod_obj.browse(cr, uid, [product_id], context=context)[0]
+            # It's a landed cost relativ to an order
             if purchase_order_id:
                 po_obj = self.pool.get('purchase.order')
                 po = po_obj.browse(cr, uid, [purchase_order_id], context=context)[0]
                 fiscal_position = po.fiscal_position or False
             account_id = prod_obj._choose_exp_account_from(cr, uid, prod, 
                 fiscal_position=fiscal_position, context=context)
+            if prod.landed_cost_type in ('per_unit', 'value'):
+                landed_cost_type = dist_type_obj.search(cr, uid, 
+                    [('code','=',apply_on),('landed_cost_type','=',prod.landed_cost_type)], 
+                    context=context)
             value = {
-                'price_type': prod.landed_cost_type,
+                'landed_cost_type': landed_cost_type,
                 'account_id': account_id}
             res = {'value': value}
         return res
@@ -239,12 +275,13 @@ class purchase_order_line(orm.Model):
     def _landing_cost(self, cr, uid, ids, name, args, context):
         if not ids : return {}
         result = {}
-        # landed costss for the line
+        # landed costs for the line
         for line in self.browse(cr, uid, ids):
             landed_costs = 0.0
             if line.landed_cost_line_ids:
                 for costs in line.landed_cost_line_ids:
-                    if costs.price_type == 'value':
+                    if (costs.distribution_type_id.landed_cost_type == 'value' and
+                        costs.distribution_type_id.apply_on == 'line'):
                         landed_costs += costs.amount
                     else:       
                         landed_costs += costs.amount * line.product_qty
@@ -315,7 +352,8 @@ class purchase_order(orm.Model):
         for line in self.browse(cr, uid, ids):
             if line.landed_cost_line_ids:
                 for costs in line.landed_cost_line_ids:
-                    if costs.price_type == 'value':
+                    if (costs.distribution_type_id.landed_cost_type == 'value' and
+                        costs.distribution_type_id.apply_on == 'order'):
                         landed_costs_base_value += costs.amount
             result[line.id] = landed_costs_base_value
         return result
@@ -327,7 +365,8 @@ class purchase_order(orm.Model):
         for line in self.browse(cr, uid, ids):
             if line.landed_cost_line_ids:
                 for costs in line.landed_cost_line_ids:
-                    if costs.price_type == 'per_unit':
+                    if (costs.distribution_type_id.landed_cost_type == 'per_unit' and
+                        costs.distribution_type_id.apply_on == 'order'):
                          landed_costs_base_quantity += costs.amount
             result[line.id] = landed_costs_base_quantity
         return result
@@ -420,7 +459,7 @@ class purchase_order(orm.Model):
         """
         qty = 1.0
         if (landed_cost.purchase_order_line_id and 
-            landed_cost.price_type == 'per_unit'):
+                landed_cost.distribution_type_id.landed_cost_type == 'per_unit'):
             qty = landed_cost.purchase_order_line_id.product_qty
         return {
             'name': landed_cost.product_id.name,
