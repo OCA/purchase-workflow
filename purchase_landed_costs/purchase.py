@@ -184,15 +184,15 @@ class landed_cost_position(orm.Model):
             store=True,
             readonly=True,
             help="Date of the related PO"),
-        'company_id': fields.many2one('res.company','Company',
-            required=True,
-            select=1,),
+        'company_id': fields.related('purchase_order_id', 'company_id', type='many2one',
+            relation='res.company', 
+            string='Company',
+            store=True,
+            readonly=True),
       }
 
     _default = {
         'generate_invoice': False,
-        'company_id': lambda self,cr,uid,c: self.pool.get('res.company')._company_default_get(
-            cr, uid, 'purchase.order', context=c),
     }
 
     def write(self, cr, uid, ids, vals, context=None):
