@@ -57,6 +57,7 @@ class TestAgreementState(BaseAgreementTest):
                                               'product_id': self.product_id,
                                               'start_date': start_date,
                                               'end_date': end_date,
+                                              'price': 77,
                                               'delay': 5,
                                               'quantity': 20})
         agreement = self.agreement_model.browse(cr, uid, agr_id)
@@ -75,7 +76,9 @@ class TestAgreementState(BaseAgreementTest):
                                               'product_id': self.product_id,
                                               'start_date': start_date,
                                               'end_date': end_date,
+                                              'price': 77,
                                               'delay': 5,
+                                              'available_quantity': 20,
                                               'quantity': 20})
         agreement = self.agreement_model.browse(cr, uid, agr_id)
         self.assertEqual(agreement.state, 'closed')
@@ -93,7 +96,9 @@ class TestAgreementState(BaseAgreementTest):
                                               'product_id': self.product_id,
                                               'start_date': start_date,
                                               'end_date': end_date,
+                                              'price': 77,
                                               'delay': 5,
+                                              'available_quantity': 20,
                                               'quantity': 20})
         agreement = self.agreement_model.browse(cr, uid, agr_id)
         self.assertEqual(agreement.state, 'running')
@@ -111,7 +116,9 @@ class TestAgreementState(BaseAgreementTest):
                                          'product_id': self.product_id,
                                          'start_date': end_date,
                                          'end_date': start_date,
+                                         'price': 77,
                                          'delay': 5,
+                                         'available_quantity': 20,
                                          'quantity': 20})
 
     def test_04_test_overlapp(self):
@@ -126,7 +133,9 @@ class TestAgreementState(BaseAgreementTest):
                                      'product_id': self.product_id,
                                      'start_date': start_date,
                                      'end_date': end_date,
+                                     'price': 77,
                                      'delay': 5,
+                                     'available_quantity': 20,
                                      'quantity': 20})
         start_date = self.now - timedelta(days=2)
         start_date = start_date.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
@@ -138,5 +147,7 @@ class TestAgreementState(BaseAgreementTest):
                                          'product_id': self.product_id,
                                          'start_date': start_date,
                                          'end_date': end_date,
+                                         'price': 77,
                                          'delay': 5,
+                                         'available_quantity': 20,
                                          'quantity': 20})
