@@ -15,7 +15,8 @@
                 <field name="supplier_id"/>
                 <field name="delay"/>
                 <field name="quantity"/>
-                <field name="consumed_quantity"/>
+                <field name="price"/>
+                <field name="available_quantity"/>
                 <field name="start_date"/>
                 <field name="end_date"/>
                 <field name="state"/>
@@ -40,7 +41,8 @@
                     <group>
                       <field name="delay"/>
                       <field name="quantity"/>
-                      <field name="consumed_quantity"/>
+                      <field name="price"/>
+                      <field name="available_quantity"/>
                     </group>
                   </group>
 
