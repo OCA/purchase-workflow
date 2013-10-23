@@ -52,11 +52,11 @@ class product_pricelist(orm.Model):
 
             now = fields.datetime.now()
             date = context.get('date') or context.get('date_order') or now
-            price = agreement_obj.get_product_agreement_price(cr, uid, prod_id,
-                                                              partner, date,
-                                                              qty=qty, context=context)
-            print price, ' A'
-            if price is not None:
-                res[pricelist_id] = price
+            agreement = agreement_obj.get_product_agreement(cr, uid, prod_id,
+                                                      partner, date,
+                                                      qty=qty, context=context)
+
+            if agreement is not None:
+                res[pricelist_id] = agr.price
         print res
         return res

@@ -184,7 +184,8 @@ class framework_agreement(orm.Model):
         :param product_id: product id of the product
         :param supplier_id: supplier to look for agreement
         :param lookup_dt: datetime string of the lookup date
-        :param qty: quantity that should be available
+        :param qty: quantity that should be available if parameter is
+        passed and qty is insuffisant no aggrement would be returned
         :returns: a corresponding agreement or None"""
         search_args = [('product_id', '=', product_id),
                        ('supplier_id', '=', supplier_id),
