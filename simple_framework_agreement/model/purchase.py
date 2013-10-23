@@ -29,18 +29,19 @@ class purchase_order(orm.Model):
     _inherit = "purchase.order.line"
 
     def onchange_price(self, cr, uid, ids, price, date, supplier_id, product_id, context=None):
+        """Raise a warning if a agreed price is changed"""
         if context is None:
             context = {}
         if not supplier_id or not ids:
             return {}
         agreement_obj = self.pool['framework.agreement']
-        ag_price = agreement_obj.get_product_agreement_price(cr, uid, product_id,
-                                                             supplier_id, date,
-                                                             context=context)
-        if ag_price is not None and ag_price != price:
+        agreement = agreement_obj.get_product_agreement_price(cr, uid, product_id,
+                                                       supplier_id, date,
+                                                       context=context)
+        if ag_price is not None and agreement.price != price:
             msg = _("You have set the price to %s \n"
                     " but there is a running agreement"
-                    " with price %s") % (price, ag_price)
+                    " with price %s") % (agreement.price, ag_price)
             return {'warning': {'title': _('Agreement Warning!'),
                                 'message': msg}}
         return {}
