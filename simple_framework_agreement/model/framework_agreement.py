@@ -177,14 +177,15 @@ class framework_agreement(orm.Model):
                      "You can not have overlapping dates for same supplier and product",
                      ('start_date', 'end_date'))]
 
-    def get_product_agreement_price(self, cr, uid, product_id, supplier_id,
+
+    def get_product_agreement(self, cr, uid, product_id, supplier_id,
                                     lookup_dt, qty=None, context=None):
         """ get the agreement price of a given product at a given date
         :param product_id: product id of the product
         :param supplier_id: supplier to look for agreement
         :param lookup_dt: datetime string of the lookup date
         :param qty: quantity that should be available
-        :returns: a corresponding float price or None"""
+        :returns: a corresponding agreement or None"""
         search_args = [('product_id', '=', product_id),
                        ('supplier_id', '=', supplier_id),
                        ('start_date', '<=', lookup_dt),
@@ -198,5 +199,5 @@ class framework_agreement(orm.Model):
                              _('Please contact your ERP administrator'))
         if agreement_ids:
             agreement = self.browse(cr, uid, agreement_ids[0], context=context)
-            return agreement.price
+            return agreement
         return None
