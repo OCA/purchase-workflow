@@ -157,7 +157,7 @@ class framework_agreement(orm.Model):
                                             ('end_date', '>=', agreement.start_date),
                                             ('end_date', '<=', agreement.end_date)])
             # we also look for the one that include current offer
-            overlap += self.search(cr, uid, [('start_date', '<=', agreemment.start_date),
+            overlap += self.search(cr, uid, [('start_date', '<=', agreement.start_date),
                                              ('end_date', '>=', agreement.end_date),
                                              ('id', '!=', agreement.id),
                                              ('product_id', '=', agreement.product_id.id),
