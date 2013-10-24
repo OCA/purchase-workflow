@@ -97,7 +97,7 @@ class framework_agreement(orm.Model):
             elif operator == 'not in'and isinstance(value, list):
                 found_ids += [frm['id'] for frm in res if frm['state'] not in value]
             else:
-                raise NotImplementedError('Search operator % not implemented for value %s'
+                raise NotImplementedError('Search operator %s not implemented for value %s'
                                           % (operator, value))
         to_return = set(found_ids)
         return [('id', 'in', [x['id'] for x in to_return])]
