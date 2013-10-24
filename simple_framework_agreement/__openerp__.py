@@ -25,7 +25,20 @@
  'category': 'Purchase',
  'complexity': 'normal',
  'depends': ['stock', 'purchase'],
- 'description': """Simple implementation of Long Term Agreement on price with supplier""",
+ 'description': """Simple implementation of Long Term Agreement
+(or Framework Agreement) on price with supplier.
+
+
+An agreement is set on product or via a menu in product config.
+An agreement is defined by a product, a date range , a supplier, a price, a lead time
+and agreed quantity.
+
+There can be only one agreement for the same supplier prodcut at the same time, even
+If we may have different price dependeing on leadtime/qty.
+
+If an agreement is running his price will be autmatically used in PO.
+Warning will be raised in case of exhaustion of override of agreement price.
+""",
  'website': 'http://www.camptocamp.com',
  'data': ['data.xml',
           'security/multicompany.xml',
