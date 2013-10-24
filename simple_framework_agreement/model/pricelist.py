@@ -57,6 +57,6 @@ class product_pricelist(orm.Model):
                                                       qty=qty, context=context)
 
             if agreement is not None:
-                res[pricelist_id] = agr.price
+                res[pricelist_id] = agreement.price
         print res
         return res
