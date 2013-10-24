@@ -49,7 +49,7 @@ class framework_agreement(orm.Model):
             return 'future'
         elif end < now:
             return 'closed'
-        elif now >= start and now <= end:
+        elif start <= now <= end:
             return 'running'
         else:
             raise ValueError('Agreement start/end dates are incorrect')
