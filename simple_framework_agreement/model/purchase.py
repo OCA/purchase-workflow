@@ -23,7 +23,7 @@ from openerp.tools.translate import _
 
 
 class purchase_order_line(orm.Model):
-    """Add on chnage on price to raise a warning if line is subject to
+    """Add on change on price to raise a warning if line is subject to
     an agreement"""
 
     _inherit = "purchase.order.line"
@@ -74,7 +74,7 @@ class purchase_order_line(orm.Model):
                                                         supplier_id, date,
                                                         context=context)
         if agreement is not None and agreement.available_quantity < qty:
-            msg = _("You have ask for a quantitiy of %s \n"
+            msg = _("You have ask for a quantity of %s \n"
                     " but there is only %s available"
                     " for current agreement") % (qty, agreement.available_quantity)
             return {'warning': {'title': _('Agreement Warning!'),
