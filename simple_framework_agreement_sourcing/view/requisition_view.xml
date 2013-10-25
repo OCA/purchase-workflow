@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <record id="add_supplier_and_agreement_on_source_line" model="ir.ui.view">
+      <field name="name">add supplier and agrement on source line</field>
+      <field name="model">logistic.requisition.source</field>
+      <field name="inherit_id" ref="logistic_requisition.view_logistic_requisition_source_form"/>
+      <field name="arch" type="xml">
+        <field name="unit_cost" position="before">
+          <field name="agreement_id_dummy" readonly="1"/>
+          <field name="agreement_id" invisible="1"/>
+          <field name="supplier_id" invisible="1"/>
+        </field>
+      </field>
+    </record>
+
+    <record id="addd_agreement_source_line_onchange" model="ir.ui.view">
+      <field name="name">addd agreement source line onchange</field>
+      <field name="model">logistic.requisition.source</field>
+      <field name="inherit_id" ref="logistic_requisition.view_logistic_requisition_source_form"/>
+      <field name="arch" type="xml">
+        <data>
+          <field name="procurement_method"
+                 position="attributes">
+            <attribute name="on_change">onchange_sourcing_method(procurement_method, proposed_product_id, proposed_qty)</attribute>
+          </field>
+
+          <field name="unit_cost"
+                 position="attributes">
+            <attribute name="on_change">onchange_price(procurement_method, unit_cost, supplier_id, proposed_product_id)</attribute>
+          </field>
+
+          <field name="proposed_qty"
+                 position="attributes">
+            <attribute name="on_change">onchange_quantity(procurement_method, unit_cost, supplier_id, proposed_product_id)</attribute>
+          </field>
+          <field name="proposed_product_id"
+                 position="attributes">
+            <attribute name="on_change">onchange_product_id(procurement_method, proposed_product_id, proposed_qty)</attribute>
+          </field>
+
+        </data>
+      </field>
+    </record>
+
+
+    <!-- <record id="add_supplier_and_agreement_on_source_line_embeeded" model="ir.ui.view"> -->
+    <!--      <field name="name">add supplier and agrement on source line</field> -->
+    <!--      <field name="model">logistic.requisition.line</field> -->
+    <!--      <field name="inherit_id" ref="logistic_requisition.view_logistic_requisition_line_form"/> -->
+    <!--      <field name="arch" type="xml"> -->
+    <!--        <field name="proposed_qty" position="after"> -->
+    <!--          <div> -->
+    <!--            <field name="agreement_id_dummy" readonly="1"/> -->
+    <!--            <field name="agreement_id" invisible="1"/> -->
+    <!--            <field name="supplier_id" invisible="1"/> -->
+    <!--            </div> -->
+    <!--        </field> -->
+    <!--      </field> -->
+    <!--    </record> -->
+
+    <!-- <record id="addd_agreement_source_line_onchange_embeeded" model="ir.ui.view"> -->
+    <!--   <field name="name">addd agreement source line onchange</field> -->
+    <!--   <field name="model">logistic.requisition.line</field> -->
+    <!--   <field name="inherit_id" ref="logistic_requisition.view_logistic_requisition_line_form"/> -->
+    <!--   <field name="arch" type="xml"> -->
+    <!--     <data> -->
+    <!--       <field name="procurement_method" -->
+    <!--              onchange="onchange_sourcing_method(procurement_method, proposed_product_id, proposed_qty)"> -->
+    <!--       </field> -->
+
+    <!--       <field name="unit_cost" -->
+    <!--              onchange="onchange_price(procurement_method, unit_cost, proposed_product_id, supplier_id, proposed_qty)"> -->
+    <!--       </field> -->
+
+    <!--       <field name="proposed_product_id" -->
+    <!--              onchange="onchange_product_id(procurement_method, unit_cost, proposed_product_id, proposed_qty)"> -->
+    <!--       </field> -->
+    <!--       <field name="proposed_qty" -->
+    <!--              onchange="onchange_product_id(procurement_method, proposed_qty, supplier_id, proposed_product_id)"> -->
+    <!--       </field> -->
+
+    <!--     </data> -->
+    <!--   </field> -->
+    <!-- </record> -->
+
+
+  </data>
+</openerp>
