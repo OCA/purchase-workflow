@@ -39,7 +39,8 @@ class product_pricelist(orm.Model):
         """Override of price retrival function in order to support framework agreement.
         If it is a supplier price list lta will be taken in account and take the price of the
         agreement if required if there is not enought available qty on lta
-        standard price will be used"""
+        standard price will be used. This is mabye a faulty design and we should
+        use on change override"""
         agreement_obj = self.pool['framework.agreement']
         res = super(product_pricelist, self).price_get(cr, uid, ids, prod_id, qty,
                                                        partner=partner, context=context)
@@ -58,5 +59,4 @@ class product_pricelist(orm.Model):
 
             if agreement is not None:
                 res[pricelist_id] = agreement.price
-        print res
         return res

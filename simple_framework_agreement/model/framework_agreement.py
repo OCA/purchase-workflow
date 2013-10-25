@@ -18,6 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from operator import attrgetter
 from datetime import datetime
 from openerp.osv import orm, fields
 from openerp.osv.orm import except_orm
@@ -143,8 +144,7 @@ class framework_agreement(orm.Model):
         return self.pool['ir.sequence'].get(cr, uid, 'framework.agreement')
 
     def check_overlap(self, cr, uid, ids, context=None):
-        """ Constraint to check that no agreements for same product
-        and supplier overlap"""
+        """ Constraint to check that no agreements for same product overlap"""
         for agreement in self.browse(cr, uid, ids, context=context):
             # we do not add current id in domain for readability reasons
             overlap = self.search(cr, uid, ['&', '&',
@@ -160,8 +160,9 @@ class framework_agreement(orm.Model):
             overlap += self.search(cr, uid, [('start_date', '<=', agreement.start_date),
                                              ('end_date', '>=', agreement.end_date),
                                              ('id', '!=', agreement.id),
-                                             ('product_id', '=', agreement.product_id.id),
-                                             ('supplier_id', '=', agreement.supplier_id.id),])
+                                             ('product_id', '=', agreement.product_id.id)])
+            # Gain has a special need they can not negotiate LTA for many supplier
+                                             # ('supplier_id', '=', agreement.supplier_id.id),])
             overlap = [x for x in overlap if x != agreement.id]
             if overlap:
                 return False
@@ -177,9 +178,50 @@ class framework_agreement(orm.Model):
                      "You can not have overlapping dates for same supplier and product",
                      ('start_date', 'end_date'))]
 
+    def get_all_product_agreements(self, cr, uid, product_id, lookup_dt, qty=None, context=None):
+        """ get the all the active agreement of a given product at a given date
+        :param product_id: product id of the product
+        :param lookup_dt: datetime string of the lookup date
+        :param qty: quantity that should be available if parameter is
+        passed and qty is insuffisant no aggrement would be returned
+        :returns: a list of corresponding agreements or None"""
+        search_args = [('product_id', '=', product_id),
+                       ('start_date', '<=', lookup_dt),
+                       ('end_date', '>=', lookup_dt)]
+        if qty:
+            search_args.append(('available_quantity', '>=', qty))
+        agreement_ids = self.search(cr, uid, search_args)
+        if agreement_ids:
+            return self.browse(cr, uid, agreement_ids, context=context)
+        return None
+
+    def get_cheapest_agreement_for_qty(self, cr, uid, product_id, date, qty, context=None):
+        """
+        Return the cheapest agreement that has enought available qty else
+        fallback on the cheapest
+        :param product_id:
+        :param date:
+        :param qty:
+        returns (cheapest, enough qty)
+        """
+        agreements = self.get_all_product_agreements(cr, uid, product_id,
+                                                     date, qty, context=context)
+        if not agreements:
+            return (None, None)
+        agreements.sort(key=attrgetter('price'))
+        enough = True
+        cheapest_agreement = None
+        for agr in agreements:
+            if agr.available_quantity >= qty:
+                cheapest_agreement = agr
+                break
+        if not cheapest_agreement:
+            cheapest_agreement = agreements[0]
+            enough = False
+        return (cheapest_agreement, enough)
 
     def get_product_agreement(self, cr, uid, product_id, supplier_id,
-                                    lookup_dt, qty=None, context=None):
+                              lookup_dt, qty=None, context=None):
         """ get the agreement price of a given product at a given date
         :param product_id: product id of the product
         :param supplier_id: supplier to look for agreement
@@ -202,3 +244,81 @@ class framework_agreement(orm.Model):
             agreement = self.browse(cr, uid, agreement_ids[0], context=context)
             return agreement
         return None
+
+
+class FrameworkAgreementObservable(object):
+    """Pose base function for obect that have to be (pseudo) observable
+    by framework agreement using OpenERP on change mechanism"""
+
+    def onchange_price_obs(self, cr, uid, ids, price, date,
+                           supplier_id, product_id, context=None):
+        """Raise a warning if a agreed price is changed on observed object"""
+        if context is None:
+            context = {}
+        if not supplier_id or not ids:
+            return {}
+        agreement_obj = self.pool['framework.agreement']
+        agreement = agreement_obj.get_product_agreement(cr, uid, product_id,
+                                                        supplier_id, date,
+                                                        context=context)
+        if agreement is not None and agreement.price != price:
+            msg = _("You have set the price to %s \n"
+                    " but there is a running agreement"
+                    " with price %s") % (price, agreement.price)
+            return {'warning': {'title': _('Agreement Warning!'),
+                                'message': msg}}
+        return {}
+
+    def onchange_quantity_obs(self, cr, uid, ids, qty, date,
+                              supplier_id, product_id, context=None):
+        """Raise a warning if agreed qty is not sufficient when changed on observed object"""
+        res = {}
+        if not supplier_id or not ids:
+            return res
+        agrement, status = self._get_agreement_and_qty_status(cr, uid, ids, qty, date,
+                                                              supplier_id, product_id,
+                                                              context=context)
+        if status:
+            res['warning'] = {'title': _('Agreement Warning!'),
+                              'message': status}
+        return res
+
+    def _get_agreement_and_qty_status(self, cr, uid, ids, qty, date,
+                                      supplier_id, product_id, context=None):
+        """Lookup for agreement and return (matching_agreement, status)
+        or aggrement or status can be None"""
+        agreement_obj = self.pool['framework.agreement']
+        agreement = agreement_obj.get_product_agreement(cr, uid, product_id,
+                                                        supplier_id, date,
+                                                        context=context)
+        if agreement is None:
+            return (None, None)
+        msg = None
+        if agreement.available_quantity < qty:
+            msg = _("You have ask for a quantity of %s \n"
+                    " but there is only %s available"
+                    " for current agreement") % (qty, agreement.available_quantity)
+        return (agreement, msg)
+
+    def onchange_product_id_obs(self, cr, uid, ids, qty, date,
+                                supplier_id, product_id, price_field='price',
+                                context=None):
+        """
+        Lookup for agreement corresponding to product or return None.
+        It will raise a warning if not enough available qty.
+        :param product_id:
+        :param qty:
+        :param lookup_dt:
+        """
+        res = {}
+        if not supplier_id or not ids:
+            return res
+        agreement, status = self._get_agreement_and_qty_status(cr, uid, ids, qty, date,
+                                                               supplier_id, product_id,
+                                                               context=context)
+        if agreement:
+            res['value'] = {price_field: agreement.price}
+        if status:
+            res['warning'] = {'title': _('Agreement Warning!'),
+                              'message': status}
+        return res

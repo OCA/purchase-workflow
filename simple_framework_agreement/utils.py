@@ -18,5 +18,11 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from . import model
-from . import utils
+def id_boilerplate(fun):
+    def wrapper(*args, **kwargs):
+        if isinstance(args[3], (list, tuple)):
+            args = list(args)
+            args[3] = args[3][0]
+            args = tuple(args)
+        return fun(*args, **kwargs)
+    return wrapper
