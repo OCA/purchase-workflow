@@ -31,27 +31,34 @@ class logistic_requisition_line(orm.Model):
 
     _inherit = "logistic.requisition.line"
 
-    def _get_data_using_agreement(self, cr, uid, line_br, agreement, qty, context=None):
-        """Prepare data dict for source line using agreement as source"""
+    def _get_data_using_agreement(self, cr, uid, Line, agreement, qty, context=None):
+        """Prepare data dict for source line using agreement as source
+        :params Line: browse record of origin requistion.line
+        :params Line: browse record of origin agreement
+        :params qty: quantity to be set on source line
+        :returns: dict to be used by Model.create"""
         res = {}
-        if not agreement.product_id.id == line_br.product_id.id:
+        if not agreement.product_id.id == Line.product_id.id:
             raise ValueError("Product mismatch for agreement and requisition line")
         res['unit_cost'] = agreement.price
         res['proposed_qty'] = qty
         res['agreement_id'] = agreement.id
-        res['proposed_product_id'] = line_br.product_id.id
-        res['requisition_line_id'] = line_br.id
+        res['proposed_product_id'] = Line.product_id.id
+        res['requisition_line_id'] = Line.id
         res['procurement_method'] = 'fw_agreement'
         return res
 
-    def _get_data_using_tender(self, cr, uid, line_br, qty, context=None):
-        """Prepare data dict to generate source line using requisiton as source"""
+    def _get_data_using_tender(self, cr, uid, line, qty, context=None):
+        """Prepare data dict to generate source line using requisiton as source
+        :params line: browse record of origin requistion.line
+        :params qty: quantity to be set on source line
+        :returns: dict to be used by Model.create"""
         res = {}
         res['unit_cost'] = 0.0
         res['proposed_qty'] = qty
         res['agreement_id'] = False
-        res['proposed_product_id'] = line_br.product_id.id
-        res['requisition_line_id'] = line_br.id
+        res['proposed_product_id'] = line.product_id.id
+        res['requisition_line_id'] = line.id
         res['procurement_method'] = 'procurement'
         return res
 
@@ -62,7 +69,7 @@ class logistic_requisition_line(orm.Model):
         Then if no more quantity are available and there is still remaining needs
         we look for next cheapest agreement or we create
         a tender source line
-        :param container: iterator of agreements browser
+        :param container: iterator of agreements browse
         :param qty: quantity to be sourced
         :param line: origin requisition line
         :returns: remaining quantity to source
@@ -74,7 +81,7 @@ class logistic_requisition_line(orm.Model):
         src_obj = self.pool['logistic.requisition.source']
         avail = current_agr.available_quantity
         avail_sold = avail - qty
-        to_consume = qty if avail_sold >= 0 else qty - avail_sold
+        to_consume = qty if avail_sold >= 0 else avail
         data = self._get_data_using_agreement(cr, uid, line, current_agr,
                                               to_consume, context)
         container.append(src_obj.create(cr, uid, data))
@@ -100,7 +107,11 @@ class logistic_requisition_line(orm.Model):
         return (generated, remaining_qty)
 
     def _source_line_for_tender(self, cr, uid, line, force_qty=None, context=None):
-        """Generate a source line for a tender from a requisition line"""
+        """Generate a source line for a tender from a requisition line
+        :param line: browse record of origin logistic.request
+        :param force_qty: if set this quantity will be used instead
+        of requested quantity
+        :returns: id of generated source line"""
         qty = force_qty if force_qty else line.requested_qty
         src_obj = self.pool['logistic.requisition.source']
         data = self._get_data_using_tender(cr, uid, line, qty, context)
@@ -110,7 +121,9 @@ class logistic_requisition_line(orm.Model):
         """Generate one or n source line(s) per requisition line
         depending on the available resources. If there is framework agreement(s)
         running we generate one or n source line using agreements otherwise we generate one
-        source line using tender process"""
+        source line using tender process
+        :param line: browse record of origin logistic.request
+        :returns: list of generated source line ids"""
         if line.source_ids:
             return None
         agr_obj = self.pool['framework.agreement']
@@ -157,6 +170,11 @@ class logistic_requisition_source(orm.Model, FrameworkAgreementObservable):
                                               string='Agreement Supplier')}
 
     def _get_date(self, cr, uid, source_id, context=None):
+        """helper to retrive date to be used by framework agreement
+        when in source line context
+        :param source_id: requisition.line.source id that should
+        provide date
+        :returns: date/datetime string"""
         current = self.browse(cr, uid, source_id, context=context)
         now = fields.datetime.now()
         return current.requisition_id.date or now
@@ -167,10 +185,10 @@ class logistic_requisition_source(orm.Model, FrameworkAgreementObservable):
     def onchange_sourcing_method(self, cr, uid, source_id, method, proposed_product_id,
                                  proposed_qty=0, context=None):
         """
-
-        :param method:
-        :param proposed_product_id:
-        :param proposed_qty:
+        Call when source method is set on a source line.
+        If sourcing method is framework agreement
+        it will set price, agreement and supplier if possible
+        and raise quantity warning.
         """
         res = {'value': {'agreement_id': False,
                          'agreement_id_dummy': False}}
@@ -222,7 +240,10 @@ class logistic_requisition_source(orm.Model, FrameworkAgreementObservable):
     @id_boilerplate
     def onchange_product_id(self, cr, uid, source_id, method,
                             proposed_product_id, proposed_qty, context=None):
-        """Raise a warning if a agreed price is changed"""
+        """Call when product is set on a source line.
+        If sourcing method is framework agreement
+        it will set price, agreement and supplier if possible
+        and raise quantity warning."""
         if (method != 'fw_agreement' or not proposed_product_id or not source_id):
             return {}
         return self.onchange_sourcing_method(cr, uid, source_id, method, proposed_product_id,
