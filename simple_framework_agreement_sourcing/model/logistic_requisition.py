@@ -29,24 +29,28 @@ class logistic_requisition_line(orm.Model, BrowseAdapterSourceMixin):
 
     _inherit = "logistic.requisition.line"
 
-    def _map_agr_requisiton_to_source(self, cr, uid, Line, context=None,
+    def _map_agr_requisiton_to_source(self, cr, uid, line, context=None,
                                       qty=0, agreement=None, **kwargs):
         """Prepare data dict for source line using agreement as source
-        :params Line: browse record of origin requistion.line
-        :params Line: browse record of origin agreement
+        :params line: browse record of origin requistion.line
+        :params agreement: browse record of origin agreement
         :params qty: quantity to be set on source line
         :returns: dict to be used by Model.create"""
         res = {}
+        direct_map = {
+            'proposed_product_id': 'product_id',
+            'requisition_line_id': 'id',
+            'proposed_uom_id': 'requested_uom_id'}
+
         if not agreement:
             raise ValueError("Missing agreement")
-        if not agreement.product_id.id == Line.product_id.id:
+        if not agreement.product_id.id == line.product_id.id:
             raise ValueError("Product mismatch for agreement and requisition line")
         res['unit_cost'] = agreement.price
         res['proposed_qty'] = qty
         res['agreement_id'] = agreement.id
-        res['proposed_product_id'] = Line.product_id.id
-        res['requisition_line_id'] = Line.id
         res['procurement_method'] = AGR_PROC
+        res.update(self._direct_map(line, direct_map))
         return res
 
     def _map_requisition_to_source(self, cr, uid, line, context=None,
@@ -56,12 +60,13 @@ class logistic_requisition_line(orm.Model, BrowseAdapterSourceMixin):
         :params qty: quantity to be set on source line
         :returns: dict to be used by Model.create"""
         res = {}
+        direct_map = {'proposed_product_id': 'product_id',
+                      'requisition_line_id': 'id'}
         res['unit_cost'] = 0.0
         res['proposed_qty'] = qty
         res['agreement_id'] = False
-        res['proposed_product_id'] = line.product_id.id
-        res['requisition_line_id'] = line.id
         res['procurement_method'] = 'procurement'
+        res.update(self._direct_map(line, direct_map))
         return res
 
     def _generate_lines_from_agreements(self, cr, uid, container, line,
