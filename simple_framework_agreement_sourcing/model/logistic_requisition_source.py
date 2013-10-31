@@ -120,6 +120,13 @@ class logistic_requisition_source(orm.Model, BrowseAdapterMixin,
                     })
         return res
 
+    def _is_sourced_fw_agreement(self, cr, uid, source, context=None):
+        po_line_obj = self.pool['purchase.order.line']
+        sources_ids = po_line_obj.search(cr, uid, [('lr_source_line_id', '=', source.id)],
+                                         context=context)
+        # predicate
+        return bool(sources_ids)
+
     #---------------------- provide adapter middleware -------------------------
 
     def _make_source_line_from_origin(self, cr, uid, origin, map_fun,
