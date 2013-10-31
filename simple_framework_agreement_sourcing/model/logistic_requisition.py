@@ -61,7 +61,8 @@ class logistic_requisition_line(orm.Model, BrowseAdapterSourceMixin):
         :returns: dict to be used by Model.create"""
         res = {}
         direct_map = {'proposed_product_id': 'product_id',
-                      'requisition_line_id': 'id'}
+                      'requisition_line_id': 'id',
+                      'proposed_uom_id': 'requested_uom_id'}
         res['unit_cost'] = 0.0
         res['proposed_qty'] = qty
         res['agreement_id'] = False
@@ -96,7 +97,7 @@ class logistic_requisition_line(orm.Model, BrowseAdapterSourceMixin):
         difference = qty - to_consume
         if difference:
             return self._generate_lines_from_agreements(cr, uid, container, line,
-                                                        agreements, difference)
+                                                        agreements, difference, context=context)
         else:
             return 0
 
