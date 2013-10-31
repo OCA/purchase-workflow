@@ -46,6 +46,12 @@ class logistic_requisition_source(orm.Model, BrowseAdapterMixin,
                                               type='many2one',  relation='res.partner',
                                               string='Agreement Supplier')}
 
+    def _get_procur_method_hook(self, cr, uid, context=None):
+        res = super(logistic_requisition_source, self)._get_procur_method_hook(cr, uid,
+                                                                               context=context)
+        res.append((AGR_PROC, 'Framework agreement'))
+        return res
+
     #------------------ adapting source line to po -----------------------------
 
     def _map_source_to_po(self, cr, uid, line, context=None, **kwargs):
@@ -57,18 +63,22 @@ class logistic_requisition_source(orm.Model, BrowseAdapterMixin,
         term = term.id if term else False
         position = supplier.property_account_position
         position = position.id if position else False
-
+        requisition = line.requisition_id
         data = {}
         data['partner_id'] = supplier.id
         data['company_id'] = self._company(cr, uid, context)
         data['pricelist_id'] = supplier.property_product_pricelist_purchase.id
         data['address_id'] = add.id
+        data['dest_address_id'] = requisition.consignee_shipping_id.id
         data['location_id'] = add.property_stock_customer.id
         data['payment_term_id'] = term
         data['fiscal_position'] = position
-        data['origin'] = line.requisition_id.name
-        data['date_order'] = line.requisition_id.date
-        data['name'] = line.requisition_id.name
+        data['origin'] = requisition.name
+        data['date_order'] = requisition.date
+        data['name'] = requisition.name
+        data['consignee_id'] = requisition.consignee_id.id
+        data['incoterm_id'] = requisition.incoterm_id.id
+        data['incoterm_address'] = requisition.incoterm_address
         return data
 
     def _map_source_to_po_line(self, cr, uid, line, context=None, **kwargs):
@@ -88,7 +98,7 @@ class logistic_requisition_source(orm.Model, BrowseAdapterMixin,
                       'lr_source_line_id': 'id'}
 
         data.update(self._direct_map(line, direct_map))
-        data['name'] = line.proposed_product_id.id
+        data['name'] = line.proposed_product_id.name
         data['date_planned'] = line.requisition_id.date_delivery
         data['taxes_id'] = [(6, 0, taxes)]
         return data

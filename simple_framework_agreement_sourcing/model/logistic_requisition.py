@@ -85,16 +85,20 @@ class logistic_requisition_line(orm.Model, BrowseAdapterSourceMixin):
         except StopIteration:
             return qty
         avail = current_agr.available_quantity
+        if not avail:
+            return qty
         avail_sold = avail - qty
         to_consume = qty if avail_sold >= 0 else avail
+
         source_id = self.make_source_line(cr, uid, line, force_qty=to_consume,
                                           agreement=current_agr, context=context)
         container.append(source_id)
         difference = qty - to_consume
-        if not difference:
+        if difference:
+            return self._generate_lines_from_agreements(cr, uid, container, line,
+                                                        agreements, difference)
+        else:
             return 0
-        return self._generate_lines_from_agreements(cr, uid, container, line,
-                                                    agreements, difference)
 
     def _source_lines_for_agreements(self, cr, uid, line, agreements):
         """Generate source lines for one requisition line using
@@ -109,6 +113,7 @@ class logistic_requisition_line(orm.Model, BrowseAdapterSourceMixin):
         generated = []
         remaining_qty = self._generate_lines_from_agreements(cr, uid, generated,
                                                              line, agr_iter, qty)
+        import pdb; pdb.set_trace()
         return (generated, remaining_qty)
 
     def make_source_line(self, cr, uid, line, force_qty=None, agreement=None, context=None):
