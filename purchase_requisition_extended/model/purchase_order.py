@@ -1,11 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from openerp.osv import fields, orm
-from openerp.tools.translate import _
-from openerp import netsvc
-from openerp.tools.float_utils import float_is_zero
-import openerp.addons.decimal_precision as dp
-from openerp import SUPERUSER_ID
 
 
 class purchase_order(orm.Model):
@@ -57,7 +52,7 @@ class purchase_order(orm.Model):
         return res
 
     def _prepare_purchase_order(self, cr, uid, requisition, supplier, context=None):
-        values = super(PurchaseRequisition, self)._prepare_purchase_order(
+        values = super(purchase_order, self)._prepare_purchase_order(
             cr, uid, requisition, supplier, context=context)
         values.update({
             'bid_validity': requisition.req_validity,
@@ -74,44 +69,6 @@ class purchase_order_line(orm.Model):
     _columns = {
         'requisition_line_id': fields.many2one('purchase.requisition.line', 'Call for Bid Line', readonly=True),
     }
-
-    def close_callforbids(self, cr, uid, active_id, context=None):
-        """
-        Check all quantities have been sourced
-        """
-        purchase_requisition_obj = self.pool.get('purchase.requisition')
-        valid = True
-        callforbids = purchase_requisition_obj.browse(cr, uid, active_id, context=context)
-        for line in callforbids.line_ids:
-            qty = line.product_qty
-            for pol in line.purchase_line_ids:
-                qty -= pol.quantity_bid
-            precision = self.pool.get('decimal.precision').precision_get(cr, SUPERUSER_ID, 'Product Unit of Measure')
-            if not float_is_zero(qty,precision):
-                valid = False
-        if valid:
-            return self.close_callforbids_ok(cr, uid, [active_id], context=context)
-        ctx = context.copy()
-        ctx['action'] = 'close_callforbids_ok'
-        ctx['active_model'] = self._name
-        view_id = self.pool.get('ir.model.data').get_object_reference(cr, uid,
-                    'purchase_requisition_extended', 'action_modal_close_callforbids')[1]
-        return {
-            'type': 'ir.actions.act_window',
-            'view_type': 'form',
-            'view_mode': 'form',
-            'res_model': 'purchase.action_modal',
-            'view_id': view_id,
-            'views': [(view_id, 'form')],
-            'target': 'new',
-            'context': ctx,
-        }
-
-    def close_callforbids_ok(self, cr, uid, ids, context=None):
-        wf_service = netsvc.LocalService("workflow")
-        for id in ids:
-            wf_service.trg_validate(uid, 'purchase.requisition', id, 'close_bid', cr)
-        return False
 
     def read_group(self, cr, uid, domain, fields, groupby, offset=0, limit=None, context=None, orderby=False):
         """Do not aggregate price and qty. We need to do it this way as there
