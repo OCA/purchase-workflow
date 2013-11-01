@@ -20,7 +20,7 @@
 ##############################################################################
 from openerp.osv import orm
 from openerp.tools.translate import _
-from openerp.addons.simple_framework_agreement.model.framework_agreement import FrameworkAgreementObservable
+from openerp.addons.framework_agreement.model.framework_agreement import FrameworkAgreementObservable
 
 class purchase_order_line(orm.Model, FrameworkAgreementObservable):
     """Add on change on price to raise a warning if line is subject to

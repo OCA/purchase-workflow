@@ -20,9 +20,9 @@
 ##############################################################################
 from openerp.osv import orm, fields
 from openerp.tools.translate import _
-from openerp.addons.simple_framework_agreement.model.framework_agreement import\
+from openerp.addons.framework_agreement.model.framework_agreement import\
     FrameworkAgreementObservable
-from openerp.addons.simple_framework_agreement.utils import id_boilerplate
+from openerp.addons.framework_agreement.utils import id_boilerplate
 
 from .adapter_util import BrowseAdapterMixin, BrowseAdapterSourceMixin
 
@@ -31,7 +31,7 @@ AGR_PROC = 'fw_agreement'
 
 class logistic_requisition_source(orm.Model, BrowseAdapterMixin,
                                   BrowseAdapterSourceMixin, FrameworkAgreementObservable):
-    """Add support of simple framework agreement"""
+    """Add support of framework agreement"""
 
     _inherit = "logistic.requisition.source"
 

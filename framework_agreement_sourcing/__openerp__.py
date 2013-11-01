@@ -24,8 +24,8 @@
  'maintainer': 'Camptocamp',
  'category': 'NGO',
  'complexity': 'normal',
- 'depends': ['simple_framework_agreement', 'logistic_requisition'],
- 'description': """Add the possibitliy to have a simple framework aggrement as a source.
+ 'depends': ['framework_agreement', 'logistic_requisition'],
+ 'description': """Add the possibitliy to have a framework aggrement as a source.
 it will do auto completion and warning and create PO from source line""",
  'website': 'http://www.camptocamp.com',
  'data': ['view/requisition_view.xml'],
