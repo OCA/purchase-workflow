@@ -210,8 +210,8 @@ class logistic_requisition_source(orm.Model, BrowseAdapterMixin,
             return res
         res['value'] = {'agreement_id': agreement.id,
                         'agreement_id_dummy': agreement.id,
-                        'unit_cost': agreement.price,
-                        'total_cost': agreement.price * proposed_qty,
+                        'unit_cost': agreement.get_price(proposed_qty),
+                        'total_cost': get_price(proposed_qty) * proposed_qty,
                         'supplier_id': agreement.supplier_id.id}
         if not enough_qty:
             msg = _("You have ask for a quantity of %s \n"

@@ -46,7 +46,7 @@ class logistic_requisition_line(orm.Model, BrowseAdapterSourceMixin):
             raise ValueError("Missing agreement")
         if not agreement.product_id.id == line.product_id.id:
             raise ValueError("Product mismatch for agreement and requisition line")
-        res['unit_cost'] = agreement.price
+        res['unit_cost'] = agreement.get_price(qty)
         res['proposed_qty'] = qty
         res['agreement_id'] = agreement.id
         res['procurement_method'] = AGR_PROC
@@ -81,10 +81,10 @@ class logistic_requisition_line(orm.Model, BrowseAdapterSourceMixin):
         :param line: origin requisition line
         :returns: remaining quantity to source
         """
-        try:
-            current_agr = agreements.next()
-        except StopIteration:
+        if not agreements:
             return qty
+        agreements.sort(key=lambda x : x.get_price(qty))
+        current_agr = agreements.pop(0)0
         avail = current_agr.available_quantity
         if not avail:
             return qty
@@ -108,9 +108,7 @@ class logistic_requisition_line(orm.Model, BrowseAdapterSourceMixin):
         we look for next cheapest agreement or we create
         a tender source line
         """
-        agreements.sort(key=attrgetter('price'))
         qty = line.requested_qty
-        agr_iter = iter(agreements)
         generated = []
         remaining_qty = self._generate_lines_from_agreements(cr, uid, generated,
                                                              line, agr_iter, qty)

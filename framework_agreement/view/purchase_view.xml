@@ -8,8 +8,7 @@
       <field name="arch" type="xml">
         <field name="price_unit" position="replace">
           <field name="price_unit"
-                 on_change="onchange_price(price_unit, parent.date_order, parent.partner_id, product_id, context)"/>
-
+                 on_change="onchange_price(price_unit, parent.date_order, parent.partner_id, product_id, product_qty, context)"/>
         </field>
       </field>
     </record>

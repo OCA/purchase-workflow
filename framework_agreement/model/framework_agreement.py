@@ -123,9 +123,10 @@ class framework_agreement(orm.Model):
                 'delay': fields.integer('Lead time in days'),
                 'quantity': fields.integer('Negociated quantity',
                                            required=True),
-                'price': fields.float('Price', 'Negociated price',
-                                      required=True,
-                                      digits_compute=dp.get_precision('Product Price')),
+                'framework_agreement_line_ids': fields.one2many('framework.agreement.line',
+                                                                'framework_agreement_id',
+                                                                'Price lines',
+                                                                required=True),
                 'available_quantity': fields.integer('Available quantity'), # To be transformer in function field
                 'state': fields.function(_get_state,
                                          fnct_search=_search_state,
@@ -245,13 +246,48 @@ class framework_agreement(orm.Model):
             return agreement
         return None
 
+    def get_price(self, cr, uid, agreement_id, qty=0, context=0):
+        """Return price negociated for quantity
+
+        :returns: price float
+
+        """
+        if isinstance(agreement_id, list):
+            assert len(agreement_id) == 1
+            agreement_id = agreement_id[0]
+        current = self.browse(cr, uid, agreement_id, context=context)
+        lines = current.framework_agreement_line_ids
+        lines.sort(key=attrgetter('quantity', reverse=True))
+        for line in lines:
+            if qty >= line.qty:
+                return line.price
+        return lines[-1:]
+
+
+class framework_agreement_line(orm.Model):
+    """ price list line of framework agreement
+    that contains price and qty"""
+
+    _name = 'framework.agreement.line'
+
+    _order = "quantity"
+
+    _columns = {'framework_agreement_id': fields.many2one('framework.agreement',
+                                                          'Agreement',
+                                                          required=True),
+                'quantity': fields.integer('Quantity',
+                                           required=True),
+                'price': fields.float('Price', 'Negociated price',
+                                      required=True,
+                                      digits_compute=dp.get_precision('Product Price'))}
+
 
 class FrameworkAgreementObservable(object):
-    """Pose base function for obect that have to be (pseudo) observable
+    """Base function for obect that have to be (pseudo) observable
     by framework agreement using OpenERP on change mechanism"""
 
     def onchange_price_obs(self, cr, uid, ids, price, date,
-                           supplier_id, product_id, context=None):
+                           supplier_id, product_id, qty=0, context=None):
         """Raise a warning if a agreed price is changed on observed object"""
         if context is None:
             context = {}
@@ -261,10 +297,10 @@ class FrameworkAgreementObservable(object):
         agreement = agreement_obj.get_product_agreement(cr, uid, product_id,
                                                         supplier_id, date,
                                                         context=context)
-        if agreement is not None and agreement.price != price:
+        if agreement is not None and agreement.get_price(qty) != price:
             msg = _("You have set the price to %s \n"
                     " but there is a running agreement"
-                    " with price %s") % (price, agreement.price)
+                    " with price %s") % (price, agreement.get_price(qty))
             return {'warning': {'title': _('Agreement Warning!'),
                                 'message': msg}}
         return {}
@@ -286,7 +322,10 @@ class FrameworkAgreementObservable(object):
     def _get_agreement_and_qty_status(self, cr, uid, ids, qty, date,
                                       supplier_id, product_id, context=None):
         """Lookup for agreement and return (matching_agreement, status)
-        or aggrement or status can be None"""
+
+        Aggrement or status can be None
+
+        """
         agreement_obj = self.pool['framework.agreement']
         agreement = agreement_obj.get_product_agreement(cr, uid, product_id,
                                                         supplier_id, date,
@@ -317,7 +356,7 @@ class FrameworkAgreementObservable(object):
                                                                supplier_id, product_id,
                                                                context=context)
         if agreement:
-            res['value'] = {price_field: agreement.price}
+            res['value'] = {price_field: agreement.get_price(qty)}
         if status:
             res['warning'] = {'title': _('Agreement Warning!'),
                               'message': status}

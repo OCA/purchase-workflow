@@ -28,10 +28,10 @@ class purchase_order_line(orm.Model, FrameworkAgreementObservable):
 
     _inherit = "purchase.order.line"
 
-    def onchange_price(self, cr, uid, ids, price, date, supplier_id, product_id, context=None):
+    def onchange_price(self, cr, uid, ids, price, date, supplier_id, product_id, qty, context=None):
         """Raise a warning if a agreed price is changed"""
         return self.onchange_price_obs(cr, uid, ids, price, date, supplier_id,
-                                       product_id, context=None)
+                                       product_id, qty, context=None)
 
     def onchange_product_id(self, cr, uid, ids, pricelist_id, product_id, qty, uom_id,
                             partner_id, date_order=False, fiscal_position_id=False,
