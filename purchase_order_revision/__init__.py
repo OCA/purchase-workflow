@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#    
+#
 #    Copyright (C) 2013 Agile Business Group sagl (<http://www.agilebg.com>)
 #    @author Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 #
