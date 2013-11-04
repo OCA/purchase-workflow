@@ -32,10 +32,13 @@ class logistic_requisition_line(orm.Model, BrowseAdapterSourceMixin):
     def _map_agr_requisiton_to_source(self, cr, uid, line, context=None,
                                       qty=0, agreement=None, **kwargs):
         """Prepare data dict for source line using agreement as source
+
         :params line: browse record of origin requistion.line
         :params agreement: browse record of origin agreement
         :params qty: quantity to be set on source line
-        :returns: dict to be used by Model.create"""
+        :returns: dict to be used by Model.create
+
+        """
         res = {}
         direct_map = {
             'proposed_product_id': 'product_id',
@@ -56,9 +59,12 @@ class logistic_requisition_line(orm.Model, BrowseAdapterSourceMixin):
     def _map_requisition_to_source(self, cr, uid, line, context=None,
                                    qty=0, **kwargs):
         """Prepare data dict to generate source line using requisition as source
+
         :params line: browse record of origin requistion.line
         :params qty: quantity to be set on source line
-        :returns: dict to be used by Model.create"""
+        :returns: dict to be used by Model.create
+
+        """
         res = {}
         direct_map = {'proposed_product_id': 'product_id',
                       'requisition_line_id': 'id',
@@ -72,14 +78,18 @@ class logistic_requisition_line(orm.Model, BrowseAdapterSourceMixin):
 
     def _generate_lines_from_agreements(self, cr, uid, container, line,
                                         agreements, qty, context=None):
-        """Generate source lines for one requisition line using
-        available agreements. We first look for cheapeast agreement.
+        """Generate 1/n source line(s) for one requisition line.
+
+        This is done using available agreements.
+        We first look for cheapeast agreement.
         Then if no more quantity are available and there is still remaining needs
         we look for next cheapest agreement or return remianing qty
+
         :param container: iterator of agreements browse
         :param qty: quantity to be sourced
         :param line: origin requisition line
         :returns: remaining quantity to source
+
         """
         if not agreements:
             return qty
@@ -102,11 +112,16 @@ class logistic_requisition_line(orm.Model, BrowseAdapterSourceMixin):
             return 0
 
     def _source_lines_for_agreements(self, cr, uid, line, agreements):
-        """Generate source lines for one requisition line using
-        available agreements. We first look for cheapeast agreement.
+        """Generate 1/n source line(s) for one requisition line
+
+        This is done using available agreements.
+        We first look for cheapeast agreement.
         Then if no more quantity are available and there is still remaining needs
-        we look for next cheapest agreement or we create
-        a tender source line
+        we look for next cheapest agreement or we create a tender source line
+
+        :param line: requisition line browse record
+        :returns: (generated line ids, remaining qty not covered by agreement)
+
         """
         qty = line.requested_qty
         generated = []
@@ -116,10 +131,13 @@ class logistic_requisition_line(orm.Model, BrowseAdapterSourceMixin):
 
     def make_source_line(self, cr, uid, line, force_qty=None, agreement=None, context=None):
         """Generate a source line for a tender from a requisition line
+
         :param line: browse record of origin logistic.request
         :param force_qty: if set this quantity will be used instead
         of requested quantity
-        :returns: id of generated source line"""
+        :returns: id of generated source line
+
+        """
         qty = force_qty if force_qty else line.requested_qty
         src_obj = self.pool['logistic.requisition.source']
         if agreement:
@@ -133,12 +151,16 @@ class logistic_requisition_line(orm.Model, BrowseAdapterSourceMixin):
                                                          context=context, qty=qty)
 
     def _generate_source_line(self, cr, uid, line, context=None):
-        """Generate one or n source line(s) per requisition line
-        depending on the available resources. If there is framework agreement(s)
+        """Generate one or n source line(s) per requisition line.
+
+        Depending on the available resources. If there is framework agreement(s)
         running we generate one or n source line using agreements otherwise we generate one
         source line using tender process
+
         :param line: browse record of origin logistic.request
-        :returns: list of generated source line ids"""
+        :returns: list of generated source line ids
+
+        """
         if line.source_ids:
             return None
         agr_obj = self.pool['framework.agreement']
@@ -160,7 +182,10 @@ class logistic_requisition_line(orm.Model, BrowseAdapterSourceMixin):
 
     def _do_confirm(self, cr, uid, ids, context=None):
         """Override to generate source lines from requision line.
-        Please refer to _generate_source_line documentation"""
+
+        Please refer to _generate_source_line documentation
+
+        """
         res = super(logistic_requisition_line, self)._do_confirm(cr, uid, ids,
                                                                  context=context)
         for line_br in self.browse(cr, uid, ids, context=context):
