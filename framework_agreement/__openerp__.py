@@ -24,7 +24,7 @@
  'maintainer': 'Camptocamp',
  'category': 'Purchase Management',
  'complexity': 'normal',
- 'depends': ['stock', 'purchase'],
+ 'depends': ['stock', 'procurement', 'purchase'],
  'description': """Simple implementation of Long Term Agreement
 (or Framework Agreement) on price with supplier.
 
@@ -44,7 +44,8 @@ A warning will be raised in case of exhaustion of override of agreement price.
           'security/multicompany.xml',
           'view/product_view.xml',
           'view/framework_agreement_view.xml',
-          'view/purchase_view.xml'],
+          'view/purchase_view.xml',
+          'view/company_view.xml'],
  'demo': [],
  'test': [],
  'installable': True,

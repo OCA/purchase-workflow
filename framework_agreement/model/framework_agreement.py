@@ -26,6 +26,9 @@ from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
 from openerp.tools.translate import _
 import openerp.addons.decimal_precision as dp
 
+AGR_PO_STATE = ('confirmed', 'approved',
+                'done', 'except_picking', 'except_invoice')
+
 
 class framework_agreement(orm.Model):
     """Long term agreement on product price with a supplier"""
@@ -103,6 +106,27 @@ class framework_agreement(orm.Model):
         to_return = set(found_ids)
         return [('id', 'in', [x['id'] for x in to_return])]
 
+    def _compute_available_qty(self, cr, uid, ids, field_name, arg, context=None):
+        res = {}
+        for agreement in self.browse(cr, uid, ids, context=context):
+            sql = """SELECT SUM(po_line.product_qty) FROM purchase_order_line AS po_line
+            LEFT JOIN purchase_order AS po ON po_line.order_id = po.id
+            WHERE date_order BETWEEN DATE(%s) and DATE(%s)
+            AND po.partner_id = %s
+            AND po.state IN %s"""
+            cr.execute(sql, (agreement.start_date, agreement.end_date,
+                             agreement.supplier_id.id, AGR_PO_STATE))
+            amount = cr.fetchone()[0]
+            if amount:
+                amount = amount
+                res[agreement.id] = agreement.quantity - amount
+            else:
+                res[agreement.id] = agreement.quantity
+        return res
+
+    def _get_available_qty(self, cr, uid, ids, field_name, arg, context=None):
+        return self._compute_available_qty(cr, uid, ids, field_name, arg, context=context)
+
     def _get_state(self, cr, uid, ids, field_name, arg, context=None):
         """Return current state of agreement"""
         return self._compute_state(cr, uid, ids, field_name, arg, context=context)
@@ -127,7 +151,10 @@ class framework_agreement(orm.Model):
                                                                 'framework_agreement_id',
                                                                 'Price lines',
                                                                 required=True),
-                'available_quantity': fields.integer('Available quantity'), # To be transformer in function field
+                'available_quantity': fields.function(_get_available_qty,
+                                                      type='integer',
+                                                      string='Available quantity',
+                                                      readonly=True),
                 'state': fields.function(_get_state,
                                          fnct_search=_search_state,
                                          string='state',
@@ -144,13 +171,22 @@ class framework_agreement(orm.Model):
     def _sequence_get(self, cr, uid, context=None):
         return self.pool['ir.sequence'].get(cr, uid, 'framework.agreement')
 
-    def check_overlap(self, cr, uid, ids, context=None):
+    def _company_get(self, cr, uid, context=None):
+        return self.pool['res.company']._company_default_get(cr, uid,
+                                                             'framework.agreement',
+                                                             context=context)
+
+    def _check_overlap(self, cr, uid, ids, context=None):
         """ Constraint to check that no agreements for same product overlap"""
+        comp_obj = self.pool['res.company']
+        company_id = self._company_get(cr, uid, context=context)
+        strict = comp_obj.read(cr, uid, company_id,
+                               ['one_agreement_per_product'],
+                               context=context)['one_agreement_per_product']
         for agreement in self.browse(cr, uid, ids, context=context):
             # we do not add current id in domain for readability reasons
-            overlap = self.search(cr, uid, ['&', '&',
+            overlap = self.search(cr, uid, ['&',
                                             ('product_id', '=', agreement.product_id.id),
-                                            ('supplier_id', '=', agreement.supplier_id.id),
                                             '|', '&',
                                             ('start_date', '>=', agreement.start_date),
                                             ('start_date', '<=', agreement.end_date),
@@ -162,14 +198,24 @@ class framework_agreement(orm.Model):
                                              ('end_date', '>=', agreement.end_date),
                                              ('id', '!=', agreement.id),
                                              ('product_id', '=', agreement.product_id.id)])
-            # Gain has a special need they can not negotiate LTA for many supplier
-                                             # ('supplier_id', '=', agreement.supplier_id.id),])
-            overlap = [x for x in overlap if x != agreement.id]
-            if overlap:
+            overlap = self.browse(cr, uid,
+                                  [x for x in overlap if x != agreement.id],
+                                  context=context)
+            # We ensure that there is not many agreement for same supplier at same time
+            if [x for x in overlap if x.supplier_id.id == agreement.supplier_id.id]:
+                return False
+            # we ensure that there is only one agreement at time per product
+            # if strict agreement is set on company
+            if strict and overlap:
                 return False
         return True
 
-    _defaults = {'name': _sequence_get}
+    def check_overlap(self, cr, uid, ids, context):
+        """ Constraint to check that no agreements for same product overlap"""
+        return self._check_overlap(cr, uid, ids, context=context)
+
+    _defaults = {'name': _sequence_get,
+                 'company_id': _company_get}
 
     _sql_constraints = [('date_priority',
                          'check(start_date < end_date)',
