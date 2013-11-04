@@ -50,11 +50,14 @@ class purchase_order_line(orm.Model, FrameworkAgreementObservable):
         )
         if qty:
             warning = self.onchange_quantity_obs(cr, uid, ids, qty, date_order, partner_id,
-                                                 product_id, context)
+                                                 product_id, price_field='price_unit',
+                                                 context=context)
             res.update(warning)
         return res
 
     def onchange_quantity(self, cr, uid, ids, qty, date, supplier_id, product_id, context=None):
         """Raise a warning if agreed qty is not sufficient"""
         return self.onchange_quantity_obs(cr, uid, ids, qty, date,
-                                          supplier_id, product_id, context=context)
+                                          supplier_id, product_id,
+                                          price_field='price_unit',
+                                          context=context)

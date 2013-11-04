@@ -306,14 +306,17 @@ class FrameworkAgreementObservable(object):
         return {}
 
     def onchange_quantity_obs(self, cr, uid, ids, qty, date,
-                              supplier_id, product_id, context=None):
+                              supplier_id, product_id, price_field="price",
+                              context=None):
         """Raise a warning if agreed qty is not sufficient when changed on observed object"""
         res = {}
         if not supplier_id:
             return res
-        agrement, status = self._get_agreement_and_qty_status(cr, uid, ids, qty, date,
-                                                              supplier_id, product_id,
-                                                              context=context)
+        agreement, status = self._get_agreement_and_qty_status(cr, uid, ids, qty, date,
+                                                               supplier_id, product_id,
+                                                               context=context)
+        if agreement:
+            res['value'] = {price_field: agreement.get_price(qty)}
         if status:
             res['warning'] = {'title': _('Agreement Warning!'),
                               'message': status}

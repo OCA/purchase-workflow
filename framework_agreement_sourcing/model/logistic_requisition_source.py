@@ -240,6 +240,7 @@ class logistic_requisition_source(orm.Model, BrowseAdapterMixin,
         date = self._get_date(cr, uid, source_id, context=context)
         return self.onchange_quantity_obs(cr, uid, source_id, qty, date,
                                           supplier_id, proposed_product_id,
+                                          price_field = 'unit_cost',
                                           context=context)
 
     @id_boilerplate
