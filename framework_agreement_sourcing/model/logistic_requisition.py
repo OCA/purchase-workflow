@@ -111,7 +111,7 @@ class logistic_requisition_line(orm.Model, BrowseAdapterSourceMixin):
         qty = line.requested_qty
         generated = []
         remaining_qty = self._generate_lines_from_agreements(cr, uid, generated,
-                                                             line, agr_iter, qty)
+                                                             line, agreements, qty)
         return (generated, remaining_qty)
 
     def make_source_line(self, cr, uid, line, force_qty=None, agreement=None, context=None):
