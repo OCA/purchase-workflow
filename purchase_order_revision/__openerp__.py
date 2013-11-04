@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#    
+#
 #    Copyright (C) 2013 Agile Business Group sagl (<http://www.agilebg.com>)
 #    @author Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 #
@@ -22,22 +22,25 @@
 {
     'name': "Purchase order revisions",
     'version': '0.1',
-    'category' : 'Purchase Management',
+    'category': 'Purchase Management',
     'description': """
 Revisions for purchase orders (and requests for quotation)
 ==========================================================
 
-On canceled orders, you can click on 'new revision' and the 'old revisions' tab of the just created request for quotation will contain all the old (canceled orders) revisions.
-So that you can track every change you made to your requests for quotation and purchase orders.
+On canceled orders, you can click on 'new revision' and the 'old revisions'
+tab of the just created request for quotation will contain all the old
+(canceled orders) revisions.
+So that you can track every change you made to your requests for quotation and
+purchase orders.
 """,
     'author': 'Agile Business Group',
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
-    "depends" : ['purchase'],
-    "data" : [
+    "depends": ['purchase'],
+    "data": [
         'purchase_view.xml',
         ],
-    "demo" : [],
+    "demo": [],
     "test": [
         'test/purchase_order.yml',
         ],

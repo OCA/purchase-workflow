@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#    
+#
 #    Copyright (C) 2013 Agile Business Group sagl (<http://www.agilebg.com>)
 #    @author Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 #
@@ -20,47 +20,53 @@
 ##############################################################################
 
 from openerp.osv import fields, orm
+from openerp.tools.translate import _
+
 
 class purchase_order(orm.Model):
 
     _inherit = "purchase.order"
-    
+
     _columns = {
-        'current_revision_id': fields.many2one('purchase.order','Current revision', readonly=True),
-        'old_revision_ids': fields.one2many('purchase.order','current_revision_id',
+        'current_revision_id': fields.many2one(
+            'purchase.order', 'Current revision', readonly=True),
+        'old_revision_ids': fields.one2many(
+            'purchase.order', 'current_revision_id',
             'Old revisions', readonly=True),
         }
-    
+
     def new_revision(self, cr, uid, ids, context=None):
         if len(ids) > 1:
-            raise orm.except_orm(_('Error'), _('This only works for 1 PO at a time'))
+            raise orm.except_orm(
+                _('Error'), _('This only works for 1 PO at a time'))
         po = self.browse(cr, uid, ids[0], context)
-        new_seq = self.pool.get('ir.sequence').get(cr, uid, 'purchase.order') or '/'
+        new_seq = self.pool.get('ir.sequence').get(
+            cr, uid, 'purchase.order') or '/'
         old_seq = po.name
         po.write({'name': new_seq}, context=context)
-        new_id = orm.Model.copy(self, cr, uid, po.id, default={
+        orm.Model.copy(self, cr, uid, po.id, default={
             'name': old_seq,
-            'state':'cancel',
-            'shipped':False,
-            'invoiced':False,
+            'state': 'cancel',
+            'shipped': False,
+            'invoiced': False,
             'invoice_ids': [],
             'picking_ids': [],
             'old_revision_ids': [],
-            'current_revision_id':po.id,
+            'current_revision_id': po.id,
             }, context=None)
         self.action_cancel_draft(cr, uid, [po.id], context=context)
-        #self.action_cancel(cr, uid, [new_id], context=context)
         return True
 
     def copy(self, cr, uid, id, default=None, context=None):
         if not default:
             default = {}
         default.update({
-            'state':'draft',
-            'shipped':False,
-            'invoiced':False,
+            'state': 'draft',
+            'shipped': False,
+            'invoiced': False,
             'invoice_ids': [],
             'picking_ids': [],
-            'name': self.pool.get('ir.sequence').get(cr, uid, 'purchase.order'),
+            'name': self.pool.get('ir.sequence').get(
+                cr, uid, 'purchase.order'),
         })
         return super(purchase_order, self).copy(cr, uid, id, default, context)
