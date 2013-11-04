@@ -222,14 +222,14 @@ class logistic_requisition_source(orm.Model, BrowseAdapterMixin,
 
     @id_boilerplate
     def onchange_price(self, cr, uid, source_id, method, price, supplier_id,
-                       proposed_product_id, context=None):
+                       proposed_product_id, qty=0, context=None):
         """Raise a warning if a agreed price is changed"""
         if (method != AGR_PROC or False in [proposed_product_id,
                                             supplier_id, source_id]):
             return {}
         date = self._get_date(cr, uid, source_id, context=context)
         return self.onchange_price_obs(cr, uid, source_id, price, date, supplier_id,
-                                       proposed_product_id, context=None)
+                                       proposed_product_id, qty=0, context=None)
 
     @id_boilerplate
     def onchange_quantity(self, cr, uid, source_id, method, qty, supplier_id,

@@ -209,7 +209,7 @@ class framework_agreement(orm.Model):
                                                      date, qty, context=context)
         if not agreements:
             return (None, None)
-        agreements.sort(key=attrgetter('price'))
+        agreements.sort(key=lambda x: x.get_price(qty))
         enough = True
         cheapest_agreement = None
         for agr in agreements:
@@ -257,9 +257,9 @@ class framework_agreement(orm.Model):
             agreement_id = agreement_id[0]
         current = self.browse(cr, uid, agreement_id, context=context)
         lines = current.framework_agreement_line_ids
-        lines.sort(key=attrgetter('quantity', reverse=True))
+        lines.sort(key=attrgetter('quantity'), reverse=True)
         for line in lines:
-            if qty >= line.qty:
+            if qty >= line.quantity:
                 return line.price
         return lines[-1:]
 
@@ -309,7 +309,7 @@ class FrameworkAgreementObservable(object):
                               supplier_id, product_id, context=None):
         """Raise a warning if agreed qty is not sufficient when changed on observed object"""
         res = {}
-        if not supplier_id or not ids:
+        if not supplier_id:
             return res
         agrement, status = self._get_agreement_and_qty_status(cr, uid, ids, qty, date,
                                                               supplier_id, product_id,
@@ -350,7 +350,7 @@ class FrameworkAgreementObservable(object):
         :param lookup_dt:
         """
         res = {}
-        if not supplier_id or not ids:
+        if not supplier_id:
             return res
         agreement, status = self._get_agreement_and_qty_status(cr, uid, ids, qty, date,
                                                                supplier_id, product_id,

@@ -12,7 +12,6 @@
           <field name="supplier_id"/>
           <field name="delay"/>
           <field name="quantity"/>
-          <field name="price"/>
           <field name="available_quantity"/>
           <field name="start_date"/>
           <field name="end_date"/>
@@ -46,7 +45,6 @@
               <group>
                 <field name="delay"/>
                 <field name="quantity"/>
-                <field name="price"/>
                 <field name="available_quantity"/>
               </group>
             </group>
@@ -55,6 +53,16 @@
               <field name="start_date"/>
               <field name="end_date"/>
             </group>
+            <notebook>
+              <page string="Price List" colspan="4">
+                <field name="framework_agreement_line_ids">
+                  <tree type="7.0" string="Price list" editable="top">
+                    <field name="quantity"/>
+                    <field name="price"/>
+                  </tree>
+                </field>
+              </page>
+            </notebook>
           </sheet>
         </form>
       </field>

@@ -83,8 +83,8 @@ class logistic_requisition_line(orm.Model, BrowseAdapterSourceMixin):
         """
         if not agreements:
             return qty
-        agreements.sort(key=lambda x : x.get_price(qty))
-        current_agr = agreements.pop(0)0
+        agreements.sort(key=lambda x: x.get_price(qty))
+        current_agr = agreements.pop(0)
         avail = current_agr.available_quantity
         if not avail:
             return qty

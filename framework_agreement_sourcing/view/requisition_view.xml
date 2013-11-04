@@ -61,7 +61,7 @@
 
           <field name="unit_cost"
                  position="attributes">
-            <attribute name="on_change">onchange_price(procurement_method, unit_cost, supplier_id, proposed_product_id)</attribute>
+            <attribute name="on_change">onchange_price(procurement_method, unit_cost, supplier_id, proposed_product_id, proposed_qty)</attribute>
           </field>
 
           <field name="proposed_qty"
