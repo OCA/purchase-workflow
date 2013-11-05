@@ -22,7 +22,9 @@ from . import common
 from . import test_framework_agreement_dates_and_constraints
 from . import test_framework_agreement_consumed_qty
 from . import test_framework_agreement_on_change
+from . import test_framework_agreement_price_list
 
 checks = [test_framework_agreement_dates_and_constraints,
           test_framework_agreement_consumed_qty,
-          test_framework_agreement_on_change]
+          test_framework_agreement_on_change,
+          test_framework_agreement_price_list]
