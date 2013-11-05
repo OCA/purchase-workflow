@@ -18,31 +18,17 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from datetime import datetime, timedelta
-import openerp.tests.common as test_common
-from openerp.osv import fields
+from datetime import timedelta
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
+import openerp.tests.common as test_common
+from .common import BaseAgreementTestMixin
 
 
-class BaseAgreementTest(test_common.TransactionCase):
+class TestAgreementState(test_common.TransactionCase, BaseAgreementTestMixin):
 
     def setUp(self):
-        super(BaseAgreementTest, self).setUp()
-        cr, uid = self.cr, self.uid
-        self.agreement_model = self.registry('framework.agreement')
-        self.now = datetime.strptime(fields.datetime.now(),
-                                     DEFAULT_SERVER_DATETIME_FORMAT)
-        self.product_id = self.registry('product.product').create(cr, uid,
-                                                                  {'name': 'test_1',
-                                                                   'list_price': 10.00})
-        self.supplier_id = self.registry('res.partner').create(cr, uid, {'name': 'toto',
-                                                                         'supplier': 'True'})
-
-    def tearDown(self):
-        super(BaseAgreementTest, self).tearDown()
-
-
-class TestAgreementState(BaseAgreementTest):
+        super(TestAgreementState, self).setUp()
+        self.commonsetUp()
 
     def test_00_future(self):
         """Test state of a future agreement"""
@@ -78,7 +64,6 @@ class TestAgreementState(BaseAgreementTest):
                                               'end_date': end_date,
                                               'price': 77,
                                               'delay': 5,
-                                              'available_quantity': 20,
                                               'quantity': 20})
         agreement = self.agreement_model.browse(cr, uid, agr_id)
         self.assertEqual(agreement.state, 'closed')
@@ -98,7 +83,6 @@ class TestAgreementState(BaseAgreementTest):
                                               'end_date': end_date,
                                               'price': 77,
                                               'delay': 5,
-                                              'available_quantity': 20,
                                               'quantity': 20})
         agreement = self.agreement_model.browse(cr, uid, agr_id)
         self.assertEqual(agreement.state, 'running')
@@ -118,7 +102,6 @@ class TestAgreementState(BaseAgreementTest):
                                          'end_date': start_date,
                                          'price': 77,
                                          'delay': 5,
-                                         'available_quantity': 20,
                                          'quantity': 20})
 
     def test_04_test_overlapp(self):
@@ -135,7 +118,6 @@ class TestAgreementState(BaseAgreementTest):
                                      'end_date': end_date,
                                      'price': 77,
                                      'delay': 5,
-                                     'available_quantity': 20,
                                      'quantity': 20})
         start_date = self.now - timedelta(days=2)
         start_date = start_date.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
@@ -149,5 +131,4 @@ class TestAgreementState(BaseAgreementTest):
                                          'end_date': end_date,
                                          'price': 77,
                                          'delay': 5,
-                                         'available_quantity': 20,
                                          'quantity': 20})
