@@ -115,7 +115,7 @@ class logistic_requisition_source(orm.Model, BrowseAdapterMixin,
         taxes = acc_pos_obj.map_tax(cr, uid, supplier.property_account_position,
                                     taxes_ids)
         data = {}
-        direct_map = {'qty': 'proposed_qty',
+        direct_map = {'product_qty': 'proposed_qty',
                       'product_id': 'proposed_product_id',
                       'product_uom': 'proposed_uom_id',
                       'price_unit': 'unit_cost',
