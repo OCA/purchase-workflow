@@ -337,7 +337,7 @@ class FrameworkAgreementObservable(object):
         """Raise a warning if a agreed price is changed on observed object"""
         if context is None:
             context = {}
-        if not supplier_id or not ids:
+        if not supplier_id:
             return {}
         agreement_obj = self.pool['framework.agreement']
         agreement = agreement_obj.get_product_agreement(cr, uid, product_id,
