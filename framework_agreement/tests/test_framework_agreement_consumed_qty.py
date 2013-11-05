@@ -55,12 +55,12 @@ class TestAvailabeQty(test_common.TransactionCase, BaseAgreementTestMixin):
 
 
     def test_00_noting_consumed(self):
-        """Test non consuption"""
+        """Test non consumption"""
         self.assertEqual(self.agreement.available_quantity, 200)
 
 
     def test_01_150_consumed(self):
-        """ test consuption of 150 units"""
+        """ test consumption of 150 units"""
         cr, uid = self.cr, self.uid
         po = self.make_po_from_agreement(self.agreement, qty=150, delta_days=5)
         wf_service = netsvc.LocalService("workflow")
