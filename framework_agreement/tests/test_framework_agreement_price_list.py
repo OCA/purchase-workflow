@@ -48,7 +48,7 @@ class TestAgreementPriceList(test_common.TransactionCase, BaseAgreementTestMixin
         self.agreement = self.agreement_model.browse(cr, uid, agr_id)
 
     def test_00_test_qty(self):
-        """Test if barem retrival is correct"""
+        """Test if barem retrieval is correct"""
         self.assertEqual(self.agreement.get_price(0), 70.0)
         self.assertEqual(self.agreement.get_price(100), 70.0)
         self.assertEqual(self.agreement.get_price(200), 60.0)
