@@ -38,9 +38,13 @@ class purchase_order_line(orm.Model, FrameworkAgreementObservable):
                             date_planned=False, name=False, price_unit=False,
                             state='draft', context=None):
         """ We override this function to check qty change (I know...)
+
         The price retrieval is managed by the override of product.pricelist.price_get
-        that is overiden to support agreement. We do thios to avoid touble with chained
-        triggered on change... and ensure Make Po use LTA this is mabye a faulty design"""
+        that is overiden to support agreement. We do this to avoid touble with chained
+        triggered on change and ensure Make PO use LTA
+        This is mabye a faulty design as it as a low level impact
+
+        """
         # rock n'roll
         res = super(purchase_order_line, self).onchange_product_id(
                 cr, uid, ids, pricelist_id, product_id, qty, uom_id,
@@ -54,10 +58,3 @@ class purchase_order_line(orm.Model, FrameworkAgreementObservable):
                                                  context=context)
             res.update(warning)
         return res
-
-    def onchange_quantity(self, cr, uid, ids, qty, date, supplier_id, product_id, context=None):
-        """Raise a warning if agreed qty is not sufficient"""
-        return self.onchange_quantity_obs(cr, uid, ids, qty, date,
-                                          supplier_id, product_id,
-                                          price_field='price_unit',
-                                          context=context)
