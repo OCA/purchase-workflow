@@ -26,12 +26,12 @@ from .common import BaseAgreementTestMixin
 from ..model.framework_agreement import AGR_PO_STATE
 
 
-class TestavailabeQty(test_common.TransactionCase, BaseAgreementTestMixin):
+class TestAvailabeQty(test_common.TransactionCase, BaseAgreementTestMixin):
     """Test the function fields available_quantity"""
 
     def setUp(self):
         """ Create a default agreement"""
-        super(TestavailabeQty, self).setUp()
+        super(TestAvailabeQty, self).setUp()
         self.commonsetUp()
         cr, uid = self.cr, self.uid
         start_date = self.now + timedelta(days=10)
