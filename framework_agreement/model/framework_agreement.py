@@ -210,7 +210,7 @@ class framework_agreement(orm.Model):
                 return False
         return True
 
-    def check_overlap(self, cr, uid, ids, context):
+    def check_overlap(self, cr, uid, ids, context=None):
         """ Constraint to check that no agreements for same product overlap"""
         return self._check_overlap(cr, uid, ids, context=context)
 
