@@ -28,6 +28,7 @@ class BaseAgreementTestMixin(object):
     def commonsetUp(self):
         cr, uid = self.cr, self.uid
         self.agreement_model = self.registry('framework.agreement')
+        self.agreement_line_model = self.registry('framework.agreement.line')
         self.now = datetime.strptime(fields.datetime.now(),
                                      DEFAULT_SERVER_DATETIME_FORMAT)
         self.product_id = self.registry('product.product').create(cr, uid,
