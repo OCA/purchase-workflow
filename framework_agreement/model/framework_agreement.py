@@ -292,7 +292,7 @@ class framework_agreement(orm.Model):
             return agreement
         return None
 
-    def get_price(self, cr, uid, agreement_id, qty=0, context=0):
+    def get_price(self, cr, uid, agreement_id, qty=0, context=None):
         """Return price negociated for quantity
 
         :returns: price float
@@ -307,7 +307,7 @@ class framework_agreement(orm.Model):
         for line in lines:
             if qty >= line.quantity:
                 return line.price
-        return lines[-1:]
+        return lines[-1].price
 
 
 class framework_agreement_line(orm.Model):
