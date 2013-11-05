@@ -47,6 +47,10 @@ class TestavailabeQty(test_common.TransactionCase, BaseAgreementTestMixin):
                                               'price': 77,
                                               'delay': 5,
                                               'quantity': 200})
+        self.agreement_line_model.create(cr, uid,
+                                         {'framework_agreement_id': agr_id,
+                                          'quantity': 0,
+                                          'price': 77.0})
         self.agreement = self.agreement_model.browse(cr, uid, agr_id)
 
 

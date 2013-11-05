@@ -19,11 +19,9 @@
 #
 ##############################################################################
 from datetime import timedelta
-from openerp import netsvc
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
 import openerp.tests.common as test_common
 from .common import BaseAgreementTestMixin
-from ..model.framework_agreement import AGR_PO_STATE
 from ..model.framework_agreement import FrameworkAgreementObservable
 
 
