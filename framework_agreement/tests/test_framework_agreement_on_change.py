@@ -158,3 +158,4 @@ class TestAgreementOnChange(test_common.TransactionCase, BaseAgreementTestMixin)
                                                      self.agreement.product_id.uom_id.id,
                                                      self.agreement.supplier_id.id,
                                                      date_order=self.agreement.start_date[0:10])
+        self.assertFalse(res.get('warning'))
