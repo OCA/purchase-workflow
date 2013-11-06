@@ -18,6 +18,8 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from . import test_logistic_order_line_to_source_line
 from . import common
-checks = [test_logistic_order_line_to_source_line]
+from . import test_logistic_order_line_to_source_line
+from . import test_agreement_souce_line_to_po
+checks = [test_logistic_order_line_to_source_line,
+          test_agreement_souce_line_to_po]
