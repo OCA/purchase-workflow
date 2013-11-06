@@ -186,6 +186,10 @@ class logistic_requisition_line(orm.Model, BrowseAdapterSourceMixin):
         Please refer to _generate_source_line documentation
 
         """
+        # TODO refactor
+        # this should probably be in logistic_requisition module
+        # providing a mechanism to allow each type of sourcing method
+        # to generate source line
         res = super(logistic_requisition_line, self)._do_confirm(cr, uid, ids,
                                                                  context=context)
         for line_br in self.browse(cr, uid, ids, context=context):

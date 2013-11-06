@@ -24,6 +24,12 @@ from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 
 class BaseAgreementTestMixin(object):
+    """Class that contain common behavior for all agreement related unit test classes.
+
+    We use Mixin because we want to have those behaviors on the various
+    unit test subclasses provided by OpenERP in test common.
+
+    """
 
     def commonsetUp(self):
         cr, uid = self.cr, self.uid
