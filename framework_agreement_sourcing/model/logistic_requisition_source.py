@@ -92,8 +92,7 @@ class logistic_requisition_source(orm.Model, BrowseAdapterMixin,
         data['partner_id'] = supplier.id
         data['company_id'] = self._company(cr, uid, context)
         data['pricelist_id'] = supplier.property_product_pricelist_purchase.id
-        data['address_id'] = add.id
-        data['dest_address_id'] = requisition.consignee_shipping_id.id
+        data['dest_address_id'] = add.id
         data['location_id'] = add.property_stock_customer.id
         data['payment_term_id'] = term
         data['fiscal_position'] = position
