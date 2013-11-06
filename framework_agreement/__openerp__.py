@@ -25,19 +25,30 @@
  'category': 'Purchase Management',
  'complexity': 'normal',
  'depends': ['stock', 'procurement', 'purchase'],
- 'description': """Simple implementation of Long Term Agreement
-(or Framework Agreement) on price with supplier.
+ 'description': """Long Term Agreement (or Framework Agreement) on price.
+======================================================
 
-
-An agreement is set on a product or via a menu in the product configuration.
-An agreement is defined by a product, a date range , a supplier, a price, a lead time
+Agreements are defined by a product, a date range , a supplier, a price, a lead time
 and agreed quantity.
 
-There can be only one agreement for the same supplier product at the same time, even
+Agreements are set on a product view or using a menu in the product configuration.
+
+There can be only one agreement for the same supplier and product at the same time, even
 if we may have different prices depending on lead time/qty.
+
+There is an option on company to restrict one agreement per product at same time.
 
 If an agreement is running its price will be automatically used in PO.
 A warning will be raised in case of exhaustion of override of agreement price.
+
+**Technical aspect**
+
+The module provide an observale mixin to have generic on change management on various model
+related to agreement.
+
+The framework agreement is by default related to purchase order but the addon
+provide a library to integrate it with any other model easily
+""",
 """,
  'website': 'http://www.camptocamp.com',
  'data': ['data.xml',
