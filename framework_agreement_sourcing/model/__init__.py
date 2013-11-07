@@ -22,3 +22,4 @@ from . import logistic_requisition
 from . import logistic_requisition_source
 from . import purchase
 from . import adapter_util
+from . import sale_order
