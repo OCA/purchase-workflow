@@ -25,7 +25,7 @@ from .logistic_requisition_source import AGR_PROC
 
 
 class logistic_requisition_line(orm.Model, BrowseAdapterSourceMixin):
-    """Override to enabale to generation of source line"""
+    """Override to enable generation of source line"""
 
     _inherit = "logistic.requisition.line"
 
@@ -83,7 +83,7 @@ class logistic_requisition_line(orm.Model, BrowseAdapterSourceMixin):
         This is done using available agreements.
         We first look for cheapeast agreement.
         Then if no more quantity are available and there is still remaining needs
-        we look for next cheapest agreement or return remianing qty
+        we look for next cheapest agreement or return remaining qty
 
         :param container: iterator of agreements browse
         :param qty: quantity to be sourced
