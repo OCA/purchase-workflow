@@ -18,7 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-"""Provides bacis mechanism to unify the way records are transformated into
+"""Provides basic mechanism to unify the way records are transformed into
 other records
 
 """
@@ -39,7 +39,7 @@ class BrowseAdapterSourceMixin(object):
                                                              context=context)
 
     def _direct_map(self, line, mapping, context=None):
-        """Take a dic of left key right key and make direct mapping
+        """Take a dict of left key right key and make direct mapping
         into the model
 
         :returns: data dict ready to be used
@@ -62,7 +62,7 @@ class BrowseAdapterMixin(object):
 
     def _do_checks(self, cr, uid, model, data, context=None):
         """Perform validation check of adapted data.
-        Useful whwen devlopping all missing fields pop in one time
+        Useful when developing all missing fields pop in one time
 
         :returns: array of exceptions
 
@@ -81,8 +81,8 @@ class BrowseAdapterMixin(object):
 
     def _validate_adapted_data(self, cr, uid, model, data, context=None):
         """Perform validation check of adapted data.
-        Useful whwen devlopping all missing fields pop in one time
-
+        Useful when developing all missing fields pop in one time
+        
         :returns: validated data or raise Value error
 
         """
@@ -94,7 +94,7 @@ class BrowseAdapterMixin(object):
 
     def _adapt_origin(self, cr, uid, model, origin,
                       map_fun, post_fun=None, context=None, **kwargs):
-        """Do transfomration of source data to dest data using transforms function.
+        """Do transformation of source data to dest data using transforms function.
 
         :param origin: source record
         :param map_fun: transform function
@@ -103,7 +103,7 @@ class BrowseAdapterMixin(object):
         :returns: transformed data
 
         """
-        if not (callable(map_fun)):
+        if not callable(map_fun):
             raise ValueError('Mapping function is not callable')
         if post_fun and not callable(post_fun):
             raise ValueError('Post hook function is not callable')

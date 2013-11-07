@@ -45,9 +45,9 @@ class product_pricelist(orm.Model):
         If it is a supplier price list agrreement will be taken in account
         and use the price of the agreement if required.
 
-        If there is not enought available qty on agreemen standard price will be used.
+        If there is not enough available qty on agreement, standard price will be used.
 
-        This is mabye a faulty design and we should use on change override$
+        This is mabye a faulty design and we should use on_change override
 
         """
         agreement_obj = self.pool['framework.agreement']

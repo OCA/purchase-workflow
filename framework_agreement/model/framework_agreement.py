@@ -387,7 +387,7 @@ class framework_agreement_line(orm.Model):
 
 class FrameworkAgreementObservable(object):
     """Base functions for model that have to be (pseudo) observable
-    by framework agreement using OpenERP on change mechanism"""
+    by framework agreement using OpenERP on_change mechanism"""
 
     def onchange_price_obs(self, cr, uid, ids, price, date,
                            supplier_id, product_id, qty=0, context=None):
