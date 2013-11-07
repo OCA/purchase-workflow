@@ -320,7 +320,7 @@ class framework_agreement(orm.Model):
 
     def get_product_agreement(self, cr, uid, product_id, supplier_id,
                               lookup_dt, qty=None, context=None):
-        """Get the matchning agreement for a given product/supplier at a given date
+        """Get the matching agreement for a given product/supplier at a given date
 
         :param product_id: product id of the product
         :param supplier_id: supplier to look for agreement
