@@ -62,7 +62,8 @@ class BrowseAdapterMixin(object):
 
     def _do_checks(self, cr, uid, model, data, context=None):
         """Perform validation check of adapted data.
-        Useful when developing all missing fields pop in one time
+
+        All missing or incorrect values are return at once.
 
         :returns: array of exceptions
 
@@ -81,8 +82,9 @@ class BrowseAdapterMixin(object):
 
     def _validate_adapted_data(self, cr, uid, model, data, context=None):
         """Perform validation check of adapted data.
-        Useful when developing all missing fields pop in one time
-        
+
+        All missing or incorrect values are return at once.
+
         :returns: validated data or raise Value error
 
         """
