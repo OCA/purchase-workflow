@@ -290,7 +290,7 @@ class framework_agreement(orm.Model):
         return None
 
     def get_cheapest_agreement_for_qty(self, cr, uid, product_id, date, qty, context=None):
-        """Return the cheapest agreement that has enought available qty.
+        """Return the cheapest agreement that has enough available qty.
 
         If not enough quantity fallback on the cheapest agreement available
         for quantity.
