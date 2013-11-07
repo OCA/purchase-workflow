@@ -129,15 +129,18 @@ class framework_agreement(orm.Model):
         Please refer to function field documentation for more details.
 
         """
+        company_id = self._company_get(cr, uid, context=None)
         res = {}
         for agreement in self.browse(cr, uid, ids, context=context):
             sql = """SELECT SUM(po_line.product_qty) FROM purchase_order_line AS po_line
             LEFT JOIN purchase_order AS po ON po_line.order_id = po.id
             WHERE date_order BETWEEN DATE(%s) and DATE(%s)
             AND po.partner_id = %s
-            AND po.state IN %s"""
+            AND po.state IN %s
+            AND po.company_id = %s"""
             cr.execute(sql, (agreement.start_date, agreement.end_date,
-                             agreement.supplier_id.id, AGR_PO_STATE))
+                             agreement.supplier_id.id, AGR_PO_STATE,
+                             company_id))
             amount = cr.fetchone()[0]
             if amount is None:
                 amount = 0
