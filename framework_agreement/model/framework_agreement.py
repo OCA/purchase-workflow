@@ -139,11 +139,9 @@ class framework_agreement(orm.Model):
             cr.execute(sql, (agreement.start_date, agreement.end_date,
                              agreement.supplier_id.id, AGR_PO_STATE))
             amount = cr.fetchone()[0]
-            if amount:
-                amount = amount
-                res[agreement.id] = agreement.quantity - amount
-            else:
-                res[agreement.id] = agreement.quantity
+            if amount is None:
+                amount = 0
+            res[agreement.id] = agreement.quantity - amount
         return res
 
     def _get_available_qty(self, cr, uid, ids, field_name, arg, context=None):
