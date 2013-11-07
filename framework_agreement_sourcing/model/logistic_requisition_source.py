@@ -108,6 +108,7 @@ class logistic_requisition_source(orm.Model, BrowseAdapterMixin,
         data['consignee_id'] = requisition.consignee_id.id
         data['incoterm_id'] = requisition.incoterm_id.id
         data['incoterm_address'] = requisition.incoterm_address
+        data['type'] = 'purchase'
         return data
 
     def _map_source_to_po_line(self, cr, uid, line, context=None, **kwargs):
