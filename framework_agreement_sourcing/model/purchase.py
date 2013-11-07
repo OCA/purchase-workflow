@@ -23,19 +23,19 @@ from . adapter_util import BrowseAdapterMixin
 
 
 class purchase_order(orm.Model, BrowseAdapterMixin):
-    """Add fuction to create PO from source line.
-    It maybe goes against you ain't going to need it principe.
-    The idea would be to popose a small design proposition
-    to be taken back into purchase_requistion_extended module
-    or an other base module.
+    """Add function to create PO from source line.
+    It maybe goes against YAGNI principle.
+    The idea would be to propose a small design
+    to be ported back into purchase_requisition_extended module
+    or an other base modules.
 
-    Then we should extented it to propose an API
+    Then we should extend it to propose an API
     to generate PO from various sources
     """
 
     _inherit = "purchase.order"
 
-    #------ PO adapter middleware maybe to put in a aside class but not easy in OpenERP context ----
+    #------ PO adapter middleware maybe to put in aside class but not easy in OpenERP context ----
     def _make_purchase_order_from_origin(self, cr, uid, origin, map_fun, map_line_fun,
                                          post_fun=None, post_line_fun=None, context=None):
         """Create a PO browse record from any other record
