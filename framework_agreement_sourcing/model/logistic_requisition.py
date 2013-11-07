@@ -36,6 +36,7 @@ class logistic_requisition_line(orm.Model, BrowseAdapterSourceMixin):
         :params line: browse record of origin requistion.line
         :params agreement: browse record of origin agreement
         :params qty: quantity to be set on source line
+
         :returns: dict to be used by Model.create
 
         """
@@ -62,6 +63,7 @@ class logistic_requisition_line(orm.Model, BrowseAdapterSourceMixin):
 
         :params line: browse record of origin requistion.line
         :params qty: quantity to be set on source line
+
         :returns: dict to be used by Model.create
 
         """
@@ -88,6 +90,7 @@ class logistic_requisition_line(orm.Model, BrowseAdapterSourceMixin):
         :param container: iterator of agreements browse
         :param qty: quantity to be sourced
         :param line: origin requisition line
+
         :returns: remaining quantity to source
 
         """
@@ -158,6 +161,7 @@ class logistic_requisition_line(orm.Model, BrowseAdapterSourceMixin):
         source line using tender process
 
         :param line: browse record of origin logistic.request
+
         :returns: list of generated source line ids
 
         """
