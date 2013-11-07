@@ -222,15 +222,18 @@ class framework_agreement(orm.Model):
                                context=context)['one_agreement_per_product']
         for agreement in self.browse(cr, uid, ids, context=context):
             # we do not add current id in domain for readability reasons
-            overlap = self.search(cr, uid, ['&',
-                                            ('product_id', '=', agreement.product_id.id),
-                                            '|', '&',
+            overlap = self.search(cr, uid,
+                                  ['&',
+                                      ('product_id', '=', agreement.product_id.id),
+                                      '|',
+                                         '&',
                                             ('start_date', '>=', agreement.start_date),
                                             ('start_date', '<=', agreement.end_date),
-                                            '&',
+                                         '&',
                                             ('end_date', '>=', agreement.start_date),
-                                            ('end_date', '<=', agreement.end_date)])
-            # we also look for the one that include current offer
+                                            ('end_date', '<=', agreement.end_date),
+                                   ])
+            # we also look for the one that includes current offer
             overlap += self.search(cr, uid, [('start_date', '<=', agreement.start_date),
                                              ('end_date', '>=', agreement.end_date),
                                              ('id', '!=', agreement.id),
@@ -238,12 +241,12 @@ class framework_agreement(orm.Model):
             overlap = self.browse(cr, uid,
                                   [x for x in overlap if x != agreement.id],
                                   context=context)
-            # We ensure that there is not many agreement for same supplier at same time
-            if [x for x in overlap if x.supplier_id.id == agreement.supplier_id.id]:
-                return False
             # we ensure that there is only one agreement at time per product
             # if strict agreement is set on company
             if strict and overlap:
+                return False
+            # We ensure that there are not multiple agreements for same supplier at same time
+            if any((x.supplier_id.id == agreement.supplier_id.id) for x in overlap):
                 return False
         return True
 
