@@ -34,14 +34,19 @@ class framework_agreement(orm.Model):
     """Long term agreement on product price with a supplier"""
 
     _name = 'framework.agreement'
+    _description = 'Agreement on price'
 
     def _check_running_date(self, cr, agreement, context=None):
-        """ Validate that the current agreement is actually active
-        using date only
+        """ Retruns agreement state based on date.
+
+        Available qty is ignored in this method
+
         :param agreement: an agreement browse record
+
         :returns: a string - "running" if now is between,
                            - "future" if agreement is in future,
                            - "closed" if agreement is outdated
+
         """
         now = datetime.strptime(fields.datetime.now(),
                                 DEFAULT_SERVER_DATETIME_FORMAT)
@@ -59,12 +64,19 @@ class framework_agreement(orm.Model):
             raise ValueError('Agreement start/end dates are incorrect')
 
     def _get_self(self, cr, uid, ids, context=None):
-        """ Store field function to get current ids"""
+        """ Store field function to get current ids
+
+        :returns: list of current ids
+
+        """
         return ids
 
     def _compute_state(self, cr, uid, ids, field_name, arg, context=None):
-        """ Compute current state of agreement based on date and consumed
-        amount"""
+        """ Compute current state of agreement based on date and consumption
+
+        Please refer to function field documentation for more details.
+
+        """
         res = {}
         for agreement in self.browse(cr, uid, ids, context=context):
             dates_state = self._check_running_date(cr, agreement, context=context)
@@ -78,9 +90,13 @@ class framework_agreement(orm.Model):
         return res
 
     def _search_state(self, cr, uid, obj, name, args, context=None):
-        """Implement serach on field in "and" mode only.
+        """Implement search on state function field.
+
+        Only support "and" mode.
         supported opperators are =, in, not in, <>.
-        For more information please refer to fnct_search OpenERP documentation"""
+        For more information please refer to fnct_search OpenERP documentation.
+
+        """
         if not args:
             return []
         ids = self.search(cr, uid, [], context=context)
@@ -107,6 +123,12 @@ class framework_agreement(orm.Model):
         return [('id', 'in', [x['id'] for x in to_return])]
 
     def _compute_available_qty(self, cr, uid, ids, field_name, arg, context=None):
+        """Compute available qty of current agreements.
+
+        Consumption is based on confirmed po lines.
+        Please refer to function field documentation for more details.
+
+        """
         res = {}
         for agreement in self.browse(cr, uid, ids, context=context):
             sql = """SELECT SUM(po_line.product_qty) FROM purchase_order_line AS po_line
@@ -125,10 +147,20 @@ class framework_agreement(orm.Model):
         return res
 
     def _get_available_qty(self, cr, uid, ids, field_name, arg, context=None):
+        """Compute available qty of current agreements.
+
+        Consumption is based on confirmed po lines.
+        Please refer to function field documentation for more details.
+
+        """
         return self._compute_available_qty(cr, uid, ids, field_name, arg, context=context)
 
     def _get_state(self, cr, uid, ids, field_name, arg, context=None):
-        """Return current state of agreement"""
+        """ Compute current state of agreement based on date and consumption
+
+        Please refer to function field documentation for more details.
+
+        """
         return self._compute_state(cr, uid, ids, field_name, arg, context=context)
 
     _columns = {'name': fields.char('Number',
@@ -177,7 +209,12 @@ class framework_agreement(orm.Model):
                                                              context=context)
 
     def _check_overlap(self, cr, uid, ids, context=None):
-        """ Constraint to check that no agreements for same product overlap"""
+        """Constraint to check that no agreements for same product/supplier overlap.
+
+        One agreement per product limit is checked if one_agreement_per_product
+        is set to True on company
+
+        """
         comp_obj = self.pool['res.company']
         company_id = self._company_get(cr, uid, context=context)
         strict = comp_obj.read(cr, uid, company_id,
@@ -211,7 +248,12 @@ class framework_agreement(orm.Model):
         return True
 
     def check_overlap(self, cr, uid, ids, context=None):
-        """ Constraint to check that no agreements for same product overlap"""
+        """Constraint to check that no agreements for same product/supplier overlap.
+
+        One agreement per product limit is checked if one_agreement_per_product
+        is set to True on company
+
+        """
         return self._check_overlap(cr, uid, ids, context=context)
 
     _defaults = {'name': _sequence_get,
@@ -226,12 +268,16 @@ class framework_agreement(orm.Model):
                      ('start_date', 'end_date'))]
 
     def get_all_product_agreements(self, cr, uid, product_id, lookup_dt, qty=None, context=None):
-        """ get the all the active agreement of a given product at a given date
+        """Get the all the active agreement of a given product at a given date
+
         :param product_id: product id of the product
         :param lookup_dt: datetime string of the lookup date
         :param qty: quantity that should be available if parameter is
-        passed and qty is insuffisant no aggrement would be returned
-        :returns: a list of corresponding agreements or None"""
+                    passed and qty is insuffisant no aggrement would be returned
+
+        :returns: a list of corresponding agreements or None
+
+        """
         search_args = [('product_id', '=', product_id),
                        ('start_date', '<=', lookup_dt),
                        ('end_date', '>=', lookup_dt)]
@@ -243,13 +289,17 @@ class framework_agreement(orm.Model):
         return None
 
     def get_cheapest_agreement_for_qty(self, cr, uid, product_id, date, qty, context=None):
-        """
-        Return the cheapest agreement that has enought available qty else
-        fallback on the cheapest
+        """Return the cheapest agreement that has enought available qty.
+
+        If not enough quantity fallback on the cheapest agreement available
+        for quantity.
+
         :param product_id:
         :param date:
         :param qty:
-        returns (cheapest, enough qty)
+
+        returns (cheapest agreement, enough qty)
+
         """
         agreements = self.get_all_product_agreements(cr, uid, product_id,
                                                      date, qty, context=context)
@@ -269,13 +319,17 @@ class framework_agreement(orm.Model):
 
     def get_product_agreement(self, cr, uid, product_id, supplier_id,
                               lookup_dt, qty=None, context=None):
-        """ get the agreement price of a given product at a given date
+        """Get the matchning agreement for a given product/supplier at a given date
+
         :param product_id: product id of the product
         :param supplier_id: supplier to look for agreement
         :param lookup_dt: datetime string of the lookup date
         :param qty: quantity that should be available if parameter is
         passed and qty is insuffisant no aggrement would be returned
-        :returns: a corresponding agreement or None"""
+
+        :returns: a corresponding agreement or None
+
+        """
         search_args = [('product_id', '=', product_id),
                        ('supplier_id', '=', supplier_id),
                        ('start_date', '<=', lookup_dt),
@@ -311,10 +365,11 @@ class framework_agreement(orm.Model):
 
 
 class framework_agreement_line(orm.Model):
-    """ price list line of framework agreement
+    """Price list line of framework agreement
     that contains price and qty"""
 
     _name = 'framework.agreement.line'
+    _description = 'Framework agreement line'
 
     _order = "quantity"
 
@@ -323,13 +378,14 @@ class framework_agreement_line(orm.Model):
                                                           required=True),
                 'quantity': fields.integer('Quantity',
                                            required=True),
+
                 'price': fields.float('Price', 'Negociated price',
                                       required=True,
                                       digits_compute=dp.get_precision('Product Price'))}
 
 
 class FrameworkAgreementObservable(object):
-    """Base function for obect that have to be (pseudo) observable
+    """Base functions for model that have to be (pseudo) observable
     by framework agreement using OpenERP on change mechanism"""
 
     def onchange_price_obs(self, cr, uid, ids, price, date,
@@ -354,7 +410,17 @@ class FrameworkAgreementObservable(object):
     def onchange_quantity_obs(self, cr, uid, ids, qty, date,
                               supplier_id, product_id, price_field="price",
                               context=None):
-        """Raise a warning if agreed qty is not sufficient when changed on observed object"""
+        """Raise a warning if agreed qty is not sufficient when changed on observed object
+
+        :param qty: requested quantity
+        :param date: date to look for agreement
+        :param: supplier id who has signed an agreement
+        :param: product id to look for an agreement
+        :param price field: key on wich we should return price
+
+        :returns: on change dict
+
+        """
         res = {}
         if not supplier_id:
             return res
@@ -372,7 +438,14 @@ class FrameworkAgreementObservable(object):
                                       supplier_id, product_id, context=None):
         """Lookup for agreement and return (matching_agreement, status)
 
-        Aggrement or status can be None
+        Agreement or status can be None.
+
+        :param qty: requested quantity
+        :param date: date to look for agreement
+        :param: supplier id who has signed an agreement
+        :param: product id to look for an agreement
+
+        :returns: (agrrement record, status)
 
         """
         agreement_obj = self.pool['framework.agreement']
@@ -393,10 +466,17 @@ class FrameworkAgreementObservable(object):
                                 context=None):
         """
         Lookup for agreement corresponding to product or return None.
+
         It will raise a warning if not enough available qty.
-        :param product_id:
-        :param qty:
-        :param lookup_dt:
+
+        :param qty: requested quantity
+        :param date: date to look for agreement
+        :param: supplier id who has signed an agreement
+        :param: product id to look for an agreement
+        :param price field: key on wich we should return price
+
+        :returns: on change dict
+
         """
         res = {}
         if not supplier_id:

@@ -25,7 +25,8 @@
  'category': 'Purchase Management',
  'complexity': 'normal',
  'depends': ['stock', 'procurement', 'purchase'],
- 'description': """Long Term Agreement (or Framework Agreement) on price.
+ 'description': """
+Long Term Agreement (or Framework Agreement) on price.
 ======================================================
 
 Agreements are defined by a product, a date range , a supplier, a price, a lead time
@@ -48,7 +49,6 @@ related to agreement.
 
 The framework agreement is by default related to purchase order but the addon
 provide a library to integrate it with any other model easily
-""",
 """,
  'website': 'http://www.camptocamp.com',
  'data': ['data.xml',

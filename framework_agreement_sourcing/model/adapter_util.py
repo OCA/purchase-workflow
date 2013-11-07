@@ -18,16 +18,32 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+"""Provides bacis mechanism to unify the way records are transformated into
+other records
+
+"""
+
 from openerp.osv import orm
 
 
 class BrowseAdapterSourceMixin(object):
+    """Mixin class used by Model that are transformation sources"""
 
     def _company(self, cr, uid, context):
+        """Return company id
+
+        :returns: company id
+
+        """
         return self.pool['res.company']._company_default_get(cr, uid, 'purchase.order',
                                                              context=context)
 
     def _direct_map(self, line, mapping, context=None):
+        """Take a dic of left key right key and make direct mapping
+        into the model
+
+        :returns: data dict ready to be used
+        """
         data = {}
         for po_key, source_key in mapping.iteritems():
             value = line[source_key]
@@ -45,6 +61,12 @@ class BrowseAdapterSourceMixin(object):
 class BrowseAdapterMixin(object):
 
     def _do_checks(self, cr, uid, model, data, context=None):
+        """Perform validation check of adapted data.
+        Useful whwen devlopping all missing fields pop in one time
+
+        :returns: array of exceptions
+
+        """
         required_keys = set(k for k, v in model._columns.iteritems()
                                 if v.required and not getattr(v, '_fnct', False))
         empty_required = set(x for x in data
@@ -58,6 +80,12 @@ class BrowseAdapterMixin(object):
         return []
 
     def _validate_adapted_data(self, cr, uid, model, data, context=None):
+        """Perform validation check of adapted data.
+        Useful whwen devlopping all missing fields pop in one time
+
+        :returns: validated data or raise Value error
+
+        """
         errors = self._do_checks(cr, uid, model, data, context=context)
         if errors:
             raise ValueError('Data are invalid for following reason %s' %
@@ -66,7 +94,15 @@ class BrowseAdapterMixin(object):
 
     def _adapt_origin(self, cr, uid, model, origin,
                       map_fun, post_fun=None, context=None, **kwargs):
+        """Do transfomration of source data to dest data using transforms function.
 
+        :param origin: source record
+        :param map_fun: transform function
+        :param post_fun: post transformation hook function
+
+        :returns: transformed data
+
+        """
         if not (callable(map_fun)):
             raise ValueError('Mapping function is not callable')
         if post_fun and not callable(post_fun):

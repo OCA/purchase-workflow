@@ -27,9 +27,13 @@ class product_pricelist(orm.Model):
     _inherit = "product.pricelist"
 
     def _plist_is_agreement(self, cr, uid, pricelist_id, context=None):
-        """Check that a price list can be subject to LTA
+        """Check that a price list can be subject to agreement.
+
         :param pricelist_id: the price list to be validated
-        :returns: a boolean (True if aggrement is applicable)"""
+
+        :returns: a boolean (True if aggrement is applicable)
+
+        """
         p_list = self.browse(cr, uid, pricelist_id, context=context)
         if p_list.type == 'purchase':
             return True
@@ -37,10 +41,15 @@ class product_pricelist(orm.Model):
 
     def price_get(self, cr, uid, ids, prod_id, qty, partner=None, context=None):
         """Override of price retrival function in order to support framework agreement.
-        If it is a supplier price list lta will be taken in account and take the price of the
-        agreement if required if there is not enought available qty on lta
-        standard price will be used. This is mabye a faulty design and we should
-        use on change override"""
+
+        If it is a supplier price list agrreement will be taken in account
+        and use the price of the agreement if required.
+
+        If there is not enought available qty on agreemen standard price will be used.
+
+        This is mabye a faulty design and we should use on change override$
+
+        """
         agreement_obj = self.pool['framework.agreement']
         res = super(product_pricelist, self).price_get(cr, uid, ids, prod_id, qty,
                                                        partner=partner, context=context)

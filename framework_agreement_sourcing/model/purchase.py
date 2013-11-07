@@ -38,6 +38,11 @@ class purchase_order(orm.Model, BrowseAdapterMixin):
     #------ PO adapter middleware maybe to put in a aside class but not easy in OpenERP context ----
     def _make_purchase_order_from_origin(self, cr, uid, origin, map_fun, map_line_fun,
                                          post_fun=None, post_line_fun=None, context=None):
+        """Create a PO browse record from any other record
+
+        :returns: created record ids
+
+        """
         po_id = self._adapt_origin_to_po(cr, uid, origin, map_fun,
                                          post_fun=post_fun, context=context)
         self._adapt_origin_to_po_line(cr, uid, po_id, origin, map_line_fun,
@@ -47,6 +52,11 @@ class purchase_order(orm.Model, BrowseAdapterMixin):
 
     def _adapt_origin_to_po(self, cr, uid, origin, map_fun,
                             post_fun=None, context=None):
+        """PO adapter function
+
+        :returns: created PO id
+
+        """
         model = self.pool['purchase.order']
         data = self._adapt_origin(cr, uid, model, origin, map_fun,
                                   post_fun=post_fun, context=context)
@@ -58,6 +68,11 @@ class purchase_order(orm.Model, BrowseAdapterMixin):
 
     def _adapt_origin_to_po_line(self, cr, uid, po_id, origin, map_fun,
                                  post_fun=None, context=None):
+        """PO line adapter
+
+        :returns: created PO line id
+
+        """
         model = self.pool['purchase.order.line']
         data = self._adapt_origin(cr, uid, model, origin, map_fun,
                                   post_fun=post_fun, context=context)

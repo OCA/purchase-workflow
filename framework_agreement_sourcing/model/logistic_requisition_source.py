@@ -31,7 +31,7 @@ AGR_PROC = 'fw_agreement'
 
 class logistic_requisition_source(orm.Model, BrowseAdapterMixin,
                                   BrowseAdapterSourceMixin, FrameworkAgreementObservable):
-    """Add support of framework agreement"""
+    """Adds support of framework agreement to source line"""
 
     _inherit = "logistic.requisition.source"
 
@@ -47,14 +47,17 @@ class logistic_requisition_source(orm.Model, BrowseAdapterMixin,
                                               string='Agreement Supplier')}
 
     def _get_procur_method_hook(self, cr, uid, context=None):
+        """Adds framework agreement as a procurment method in selection field"""
         res = super(logistic_requisition_source, self)._get_procur_method_hook(cr, uid,
                                                                                context=context)
         res.append((AGR_PROC, 'Framework agreement'))
         return res
 
     def _get_purchase_line_id(self, cr, uid, ids, field_name, arg, context=None):
-        """ For each line, returns the generated purchase line from the
-        purchase requisition.
+        """For each source line, get the related purchase order line
+
+        For more detail please refer to function fields documentation
+
         """
         po_line_model = self.pool['purchase.order.line']
         res = super(logistic_requisition_source, self)._get_purchase_line_id(cr, uid, ids,
@@ -79,8 +82,11 @@ class logistic_requisition_source(orm.Model, BrowseAdapterMixin,
     #------------------ adapting source line to po -----------------------------
 
     def _map_source_to_po(self, cr, uid, line, context=None, **kwargs):
-        """Map source line to dict to be used by PO create
-        defaults are optional"""
+        """Map source line to dict to be used by PO create defaults are optional
+
+        :returns: data dict to be used by adapter
+
+        """
         supplier = line.agreement_id.supplier_id
         add = line.requisition_id.consignee_shipping_id
         term = supplier.property_supplier_payment_term
@@ -107,7 +113,11 @@ class logistic_requisition_source(orm.Model, BrowseAdapterMixin,
     def _map_source_to_po_line(self, cr, uid, line, context=None, **kwargs):
         """Map source line to dict to be used by PO line create
         Map source line to dict to be used by PO create
-        defaults are optional"""
+        defaults are optional
+
+        :returns: data dict to be used by adapter
+
+        """
         acc_pos_obj = self.pool['account.fiscal.position']
         supplier = line.agreement_id.supplier_id
         taxes_ids = line.proposed_product_id.supplier_taxes_id
@@ -127,6 +137,12 @@ class logistic_requisition_source(orm.Model, BrowseAdapterMixin,
         return data
 
     def _make_po_from_source_line(self, cr, uid, source_line, context=None):
+        """adapt a source line to purchase order
+
+        :returns: generated PO id
+
+        """
+
         po_obj = self.pool['purchase.order']
         pid = po_obj._make_purchase_order_from_origin(cr, uid, source_line,
                                                       self._map_source_to_po,
@@ -135,6 +151,11 @@ class logistic_requisition_source(orm.Model, BrowseAdapterMixin,
         return pid
 
     def make_purchase_order(self, cr, uid, ids, context=None):
+        """ adapt each source line to purchase order
+
+        :returns: generated PO ids
+
+        """
         po_ids = []
         for source_line in self.browse(cr, uid, ids, context=context):
             po_id = self._make_po_from_source_line(cr, uid, source_line, context=None)
@@ -142,6 +163,7 @@ class logistic_requisition_source(orm.Model, BrowseAdapterMixin,
         return po_ids
 
     def action_create_agreement_po_requisition(self, cr, uid, ids, context=None):
+        """ Implement buttons that create PO from selected source lines"""
         # We force empty context
         act_obj = self.pool.get('ir.actions.act_window')
         po_ids = self.make_purchase_order(cr, uid, ids, context=context)
@@ -154,6 +176,11 @@ class logistic_requisition_source(orm.Model, BrowseAdapterMixin,
         return res
 
     def _is_sourced_fw_agreement(self, cr, uid, source, context=None):
+        """Predicate that tell is source line of type agrrement are sourced
+
+        :retuns: boolean True if sourced
+
+        """
         po_line_obj = self.pool['purchase.order.line']
         sources_ids = po_line_obj.search(cr, uid, [('lr_source_line_id', '=', source.id)],
                                          context=context)
@@ -178,9 +205,13 @@ class logistic_requisition_source(orm.Model, BrowseAdapterMixin,
     def _get_date(self, cr, uid, source_id, context=None):
         """helper to retrive date to be used by framework agreement
         when in source line context
+
         :param source_id: requisition.line.source id that should
-        provide date
-        :returns: date/datetime string"""
+            provide date
+
+        :returns: date/datetime string
+
+        """
         current = self.browse(cr, uid, source_id, context=context)
         now = fields.datetime.now()
         return current.requisition_id.date or now
@@ -189,10 +220,12 @@ class logistic_requisition_source(orm.Model, BrowseAdapterMixin,
     def onchange_sourcing_method(self, cr, uid, source_id, method, proposed_product_id,
                                  proposed_qty=0, context=None):
         """
-        Call when source method is set on a source line.
+        Called when source method is set on a source line.
+
         If sourcing method is framework agreement
         it will set price, agreement and supplier if possible
         and raise quantity warning.
+
         """
         res = {'value': {'agreement_id': False,
                          'agreement_id_dummy': False}}
@@ -246,9 +279,12 @@ class logistic_requisition_source(orm.Model, BrowseAdapterMixin,
     def onchange_product_id(self, cr, uid, source_id, method,
                             proposed_product_id, proposed_qty, context=None):
         """Call when product is set on a source line.
+
         If sourcing method is framework agreement
         it will set price, agreement and supplier if possible
-        and raise quantity warning."""
+        and raise quantity warning.
+
+        """
         if (method != AGR_PROC or not proposed_product_id or not source_id):
             return {}
         return self.onchange_sourcing_method(cr, uid, source_id, method, proposed_product_id,
