@@ -80,6 +80,7 @@ class BaseAgreementTestMixin(object):
         :param agreement: origin agreement browse record
         :param qty: qty to be used on po line
         :delta days: set date of po to agreement start date + delta
+
         :returns: purchase order browse record
 
         """

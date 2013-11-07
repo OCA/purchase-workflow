@@ -119,7 +119,7 @@ class logistic_requisition_source(orm.Model, BrowseAdapterMixin,
         :returns: data dict to be used by adapter
 
         """
-s        acc_pos_obj = self.pool['account.fiscal.position']
+        acc_pos_obj = self.pool['account.fiscal.position']
         supplier = line.agreement_id.supplier_id
         taxes_ids = line.proposed_product_id.supplier_taxes_id
         taxes = acc_pos_obj.map_tax(cr, uid, supplier.property_account_position,
