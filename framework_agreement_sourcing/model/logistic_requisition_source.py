@@ -37,7 +37,7 @@ class logistic_requisition_source(orm.Model, BrowseAdapterMixin,
 
     _columns = {'agreement_id': fields.many2one('framework.agreement',
                                                 'Agreement'),
-                # stupid trick to by pass onchange limitation on readonly
+                # stupid trick to bypass on_change limitation on readonly
                 'agreement_id_dummy': fields.related('agreement_id',
                                                      relation='framework.agreement',
                                                      type='many2one',
@@ -47,7 +47,7 @@ class logistic_requisition_source(orm.Model, BrowseAdapterMixin,
                                               string='Agreement Supplier')}
 
     def _get_procur_method_hook(self, cr, uid, context=None):
-        """Adds framework agreement as a procurment method in selection field"""
+        """Adds framework agreement as a procurement method in selection field"""
         res = super(logistic_requisition_source, self)._get_procur_method_hook(cr, uid,
                                                                                context=context)
         res.append((AGR_PROC, 'Framework agreement'))
@@ -72,8 +72,8 @@ class logistic_requisition_source(orm.Model, BrowseAdapterMixin,
                                                 context=context)
                 if po_l_ids:
                     if len(po_l_ids) > 1:
-                        raise orm.except_orm(_('Many Purchase order line found for %s') % line.name,
-                                             _('Please cancel uneded one'))
+                        raise orm.except_orm(_('Many Purchase order lines found for %s') % line.name,
+                                             _('Please cancel uneeded one'))
                     res[line.id] = po_l_ids[0]
                 else:
                     res[line.id] = False
@@ -119,7 +119,7 @@ class logistic_requisition_source(orm.Model, BrowseAdapterMixin,
         :returns: data dict to be used by adapter
 
         """
-        acc_pos_obj = self.pool['account.fiscal.position']
+s        acc_pos_obj = self.pool['account.fiscal.position']
         supplier = line.agreement_id.supplier_id
         taxes_ids = line.proposed_product_id.supplier_taxes_id
         taxes = acc_pos_obj.map_tax(cr, uid, supplier.property_account_position,
@@ -177,7 +177,7 @@ class logistic_requisition_source(orm.Model, BrowseAdapterMixin,
         return res
 
     def _is_sourced_fw_agreement(self, cr, uid, source, context=None):
-        """Predicate that tell is source line of type agrrement are sourced
+        """Predicate that tells if source line of type agreement are sourced
 
         :retuns: boolean True if sourced
 

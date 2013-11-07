@@ -40,9 +40,9 @@ class purchase_order_line(orm.Model, FrameworkAgreementObservable):
         """ We override this function to check qty change (I know...)
 
         The price retrieval is managed by the override of product.pricelist.price_get
-        that is overiden to support agreement. We do this to avoid touble with chained
-        triggered on change and ensure Make PO use LTA
-        This is mabye a faulty design as it as a low level impact
+        that is overidden to support agreement. We do this to avoid trouble with chained
+        triggered on_change and ensure Make PO uses LTA
+        This is mabye a faulty design as it has a low level impact
 
         """
         # rock n'roll
