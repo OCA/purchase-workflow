@@ -19,6 +19,7 @@
 #
 ##############################################################################
 def id_boilerplate(fun):
+    """Ensure that id agrument passed to on change is not a list"""
     def wrapper(*args, **kwargs):
         if isinstance(args[3], (list, tuple)):
             args = list(args)
