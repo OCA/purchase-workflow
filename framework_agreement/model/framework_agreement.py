@@ -37,7 +37,7 @@ class framework_agreement(orm.Model):
     _description = 'Agreement on price'
 
     def _check_running_date(self, cr, agreement, context=None):
-        """ Retruns agreement state based on date.
+        """ Returns agreement state based on date.
 
         Available qty is ignored in this method
 
