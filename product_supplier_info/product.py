@@ -33,7 +33,7 @@ class product_supplierinfo(orm.Model):
         product_obj = self.pool.get('product.product')
         for record in self.browse(cr, uid, ids, context=context):
             res[record.id] = {}
-            product = product_obj.browse(cr, uid, record.product_id.id)
+            product = product_obj.browse(cr, uid, record.product_id.id, context=context)
             res[record.id]['qty_available'] = product.qty_available
             res[record.id]['virtual_available'] = product.virtual_available
         return res
