@@ -50,6 +50,8 @@ class product_pricelist(orm.Model):
         This is mabye a faulty design and we should use on_change override
 
         """
+        if context is None:
+            context = {}
         agreement_obj = self.pool['framework.agreement']
         res = super(product_pricelist, self).price_get(cr, uid, ids, prod_id, qty,
                                                        partner=partner, context=context)
@@ -59,13 +61,17 @@ class product_pricelist(orm.Model):
             if (pricelist_id == 'item_id' or not
                     self._plist_is_agreement(cr, uid, pricelist_id, context=context)):
                 continue
-
             now = fields.datetime.now()
             date = context.get('date') or context.get('date_order') or now
-            agreement = agreement_obj.get_product_agreement(cr, uid, prod_id,
-                                                      partner, date,
-                                                      qty=qty, context=context)
-
+            if context.get('from_agreement_id'):
+                aggrement = aggrement_obj.browse(cr, uid, context['from_agreement_id'],
+                                                 context=context)
+            else:
+                agreement = agreement_obj.get_product_agreement(cr, uid, prod_id,
+                                                                partner, date,
+                                                                qty=qty, context=context)
             if agreement is not None:
-                res[pricelist_id] = agreement.get_price(qty)
+                currency = agreement_obj._get_currency(cr, uid, partner, pricelist_id,
+                                                       context=context)
+                res[pricelist_id] = agreement.get_price(qty, currency=currency)
         return res

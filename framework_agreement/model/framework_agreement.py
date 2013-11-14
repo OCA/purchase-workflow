@@ -19,6 +19,7 @@
 #
 ##############################################################################
 from operator import attrgetter
+from collections import namedtuple
 from datetime import datetime
 from openerp.osv import orm, fields
 from openerp.osv.orm import except_orm
@@ -184,6 +185,10 @@ class framework_agreement(orm.Model):
                                                                 'framework_agreement_id',
                                                                 'Price lines',
                                                                 required=True),
+                'currency_rate_line_ids': fields.one2many('res.currency.rate',
+                                                          'framework_agreement_id',
+                                                          'Negociated rates'),
+
                 'available_quantity': fields.function(_get_available_qty,
                                                       type='integer',
                                                       string='Available quantity',
@@ -292,7 +297,7 @@ class framework_agreement(orm.Model):
             return self.browse(cr, uid, agreement_ids, context=context)
         return None
 
-    def get_cheapest_agreement_for_qty(self, cr, uid, product_id, date, qty, context=None):
+    def get_cheapest_agreement_for_qty(self, cr, uid, product_id, date, qty, currency=None, context=None):
         """Return the cheapest agreement that has enough available qty.
 
         If not enough quantity fallback on the cheapest agreement available
@@ -301,15 +306,17 @@ class framework_agreement(orm.Model):
         :param product_id:
         :param date:
         :param qty:
+        :param currency: currency record to make price convertion
 
         returns (cheapest agreement, enough qty)
 
         """
+        Cheapest = namedtuple('Cheapest', ['cheapest_agreement', 'enough'])
         agreements = self.get_all_product_agreements(cr, uid, product_id,
                                                      date, qty, context=context)
         if not agreements:
             return (None, None)
-        agreements.sort(key=lambda x: x.get_price(qty))
+        agreements.sort(key=lambda x: x.get_price(qty, currency=currency))
         enough = True
         cheapest_agreement = None
         for agr in agreements:
@@ -319,7 +326,7 @@ class framework_agreement(orm.Model):
         if not cheapest_agreement:
             cheapest_agreement = agreements[0]
             enough = False
-        return (cheapest_agreement, enough)
+        return Cheapest(cheapest_agreement, enough)
 
     def get_product_agreement(self, cr, uid, product_id, supplier_id,
                               lookup_dt, qty=None, context=None):
@@ -350,7 +357,27 @@ class framework_agreement(orm.Model):
             return agreement
         return None
 
-    def get_price(self, cr, uid, agreement_id, qty=0, context=None):
+    def _convert_price(self, cr, uid, agreement_id, currency, price, context=None):
+        """Compute price converion for an agreement price list entree
+        :param agreement_id: id of current agreement
+        :param currency: destination currency to convert price record
+        :param price: price in company currency
+
+        :returns: price converted in curreny parameter
+
+        """
+        currency_obj = self.pool['res.currency']
+        comp_obj = self.pool['res.company']
+        company_id = self._company_get(cr, uid, context=context)
+        comp_currency_id = comp_obj.browse(cr, uid, company_id, context=context).currency_id.id
+        if currency.id == comp_currency_id:
+            return price
+        ctx = context.copy() if context else {}
+        ctx['from_agreement_id'] = agreement_id
+        return currency_obj.compute(cr, uid, comp_currency_id, currency.id, price, context=ctx)
+
+    def get_price(self, cr, uid, agreement_id, qty=0,
+                  currency=None, context=None):
         """Return price negociated for quantity
 
         :returns: price float
@@ -362,10 +389,40 @@ class framework_agreement(orm.Model):
         current = self.browse(cr, uid, agreement_id, context=context)
         lines = current.framework_agreement_line_ids
         lines.sort(key=attrgetter('quantity'), reverse=True)
+        price = False
         for line in lines:
             if qty >= line.quantity:
-                return line.price
-        return lines[-1].price
+                price = line.price
+                break
+        if not price:
+            price = lines[-1].price
+        if currency:
+            price = self._convert_price(cr, uid, agreement_id, currency, price, context=context)
+        return price
+
+    def _get_currency(self, cr, uid, supplier_id, pricelist_id, context=None):
+        """Helper to retrieve correct currency.
+
+        It will look for currency on supplied pricelist if avaiable
+        else it will look for partner pricelist currency
+
+        :param supplier_id: supplier of agreement
+        :param pricelist_id: primary price list
+
+        :returns: currency browse record
+
+        """
+
+        plist_obj = self.pool['product.pricelist']
+        partner_obj = self.pool['res.partner']
+        if pricelist_id:
+            plist = plist_obj.browse(cr, uid, pricelist_id, context=context)
+            return plist.currency_id
+        partner = partner_obj.browse(cr, uid, supplier_id, context=context)
+        if not partner.property_product_pricelist_purchase:
+            raise orm.except_orm(_('No pricelist found'),
+                                 _('Please set a pricelist on PO or supplier %s') % partner.name)
+        return partner.property_product_pricelist_purchase.currency_id
 
 
 class framework_agreement_line(orm.Model):
@@ -392,70 +449,85 @@ class FrameworkAgreementObservable(object):
     """Base functions for model that have to be (pseudo) observable
     by framework agreement using OpenERP on_change mechanism"""
 
-    def onchange_price_obs(self, cr, uid, ids, price, date,
-                           supplier_id, product_id, qty=0, context=None):
+    def _currency_get(self, cr, uid, pricelist_id, context=None):
+        return self.pool['product.pricelist'].browse(cr, uid,
+                                                     pricelist_id,
+                                                     context=context).currency_id
+
+    def onchange_price_obs(self, cr, uid, ids, price, agreement_id,
+                           currency=None, qty=0, context=None):
         """Raise a warning if a agreed price is changed on observed object"""
         if context is None:
             context = {}
-        if not supplier_id:
+        if not agreement_id or context.get('no_chained'):
             return {}
-        agreement_obj = self.pool['framework.agreement']
-        agreement = agreement_obj.get_product_agreement(cr, uid, product_id,
-                                                        supplier_id, date,
-                                                        context=context)
-        if agreement is not None and agreement.get_price(qty) != price:
+        agr_obj = self.pool['framework.agreement']
+        agreement = agr_obj.browse(cr, uid, agreement_id, context=context)
+        if agreement.get_price(qty, currency=currency) != price:
             msg = _("You have set the price to %s \n"
                     " but there is a running agreement"
-                    " with price %s") % (price, agreement.get_price(qty))
+                    " with price %s") % (price, agreement.get_price(qty, currency=currency))
             return {'warning': {'title': _('Agreement Warning!'),
                                 'message': msg}}
         return {}
 
     def onchange_quantity_obs(self, cr, uid, ids, qty, date,
-                              supplier_id, product_id, price_field="price",
-                              context=None):
+                              product_id, currency=None,
+                              supplier_id=None,
+                              price_field='price', context=None):
         """Raise a warning if agreed qty is not sufficient when changed on observed object
 
         :param qty: requested quantity
-        :param date: date to look for agreement
-        :param: supplier id who has signed an agreement
-        :param: product id to look for an agreement
+        :param currency: currency to get price
         :param price field: key on wich we should return price
 
         :returns: on change dict
 
         """
-        res = {}
-        if not supplier_id:
-            return res
+        res = {'value': {'framework_agreement_id': False}}
         agreement, status = self._get_agreement_and_qty_status(cr, uid, ids, qty, date,
-                                                               supplier_id, product_id,
+                                                               product_id,
+                                                               supplier_id=supplier_id,
+                                                               currency=currency,
                                                                context=context)
         if agreement:
-            res['value'] = {price_field: agreement.get_price(qty)}
+            res['value'] = {price_field: agreement.get_price(qty, currency=currency),
+                            'framework_agreement_id': agreement.id}
         if status:
             res['warning'] = {'title': _('Agreement Warning!'),
                               'message': status}
         return res
 
     def _get_agreement_and_qty_status(self, cr, uid, ids, qty, date,
-                                      supplier_id, product_id, context=None):
+                                      product_id, supplier_id,
+                                      currency=None, context=None):
         """Lookup for agreement and return (matching_agreement, status)
 
         Agreement or status can be None.
 
         :param qty: requested quantity
         :param date: date to look for agreement
-        :param: supplier id who has signed an agreement
-        :param: product id to look for an agreement
+        :param supplier_id: supplier id who has signed an agreement
+        :param product_id: product id to look for an agreement
+        :param price field: key on wich we should return price
 
-        :returns: (agrrement record, status)
+        :returns: (agreement record, status)
 
         """
+        FoundAgreement = namedtuple('FoundAgreement', ['Agreement', 'message'])
         agreement_obj = self.pool['framework.agreement']
-        agreement = agreement_obj.get_product_agreement(cr, uid, product_id,
-                                                        supplier_id, date,
-                                                        context=context)
+        if supplier_id:
+            agreement = agreement_obj.get_product_agreement(cr, uid, product_id,
+                                                            supplier_id, date,
+                                                            context=context)
+        else:
+            agreement, enough = agreement_obj.get_cheapest_agreement_for_qty(cr,
+                                                                             uid,
+                                                                             product_id,
+                                                                             date,
+                                                                             qty,
+                                                                             currency=currency,
+                                                                             context=context)
         if agreement is None:
             return (None, None)
         msg = None
@@ -463,11 +535,11 @@ class FrameworkAgreementObservable(object):
             msg = _("You have ask for a quantity of %s \n"
                     " but there is only %s available"
                     " for current agreement") % (qty, agreement.available_quantity)
-        return (agreement, msg)
+        return FoundAgreement(agreement, msg)
 
     def onchange_product_id_obs(self, cr, uid, ids, qty, date,
-                                supplier_id, product_id, price_field='price',
-                                context=None):
+                                supplier_id, product_id, pricelist_id=None,
+                                currency=None, price_field='price', context=None):
         """
         Lookup for agreement corresponding to product or return None.
 
@@ -475,22 +547,57 @@ class FrameworkAgreementObservable(object):
 
         :param qty: requested quantity
         :param date: date to look for agreement
-        :param: supplier id who has signed an agreement
-        :param: product id to look for an agreement
+        :param supplier_id: supplier id who has signed an agreement
+        :param pricelist_id: if of prefered pricelist
+        :param product_id: product id to look for an agreement
         :param price field: key on wich we should return price
 
         :returns: on change dict
 
         """
-        res = {}
-        if not supplier_id:
+        if context is None:
+            context = {}
+        res = {'value': {'framework_agreement_id': False}}
+        if not supplier_id or product_id:
             return res
         agreement, status = self._get_agreement_and_qty_status(cr, uid, ids, qty, date,
-                                                               supplier_id, product_id,
+                                                               product_id,
+                                                               supplier_id=supplier_id,
+                                                               currency=currency,
                                                                context=context)
+        # agr_obj = self.pool['framework.agreement']
+        # currency = agr_obj._get_currency(cr, uid, supplier_id,
+        #                                  pricelist_id, context=context)
         if agreement:
-            res['value'] = {price_field: agreement.get_price(qty)}
+            res['value'] = {price_field: agreement.get_price(qty, currency=currency),
+                            'framework_agreement_id': agreement.id}
         if status:
             res['warning'] = {'title': _('Agreement Warning!'),
                               'message': status}
+        if not agreement:
+            context['no_chained'] = True
+        print product_id, context
+        return res
+
+    def onchange_agreement_obs(self, cr, uid, ids, agreement_id, qty, date, product_id,
+                               supplier_id=None, currency=None, price_field='price',
+                               context=None):
+        res = {}
+        if not agreement_id or product_id:
+            return res
+        agr_obj = self.pool['framework.agreement']
+        agreement = agr_obj.browse(cr, uid, agreement_id, context=context)
+        if agreement.product_id.id != product_id:
+            raise orm.except_orm(_('User Error'),
+                                 _('Wrong product for choosen agreement'))
+        if supplier_id and agreement.supplier_id.id != supplier_id:
+            raise orm.except_orm(_('User Error'),
+                                 _('Wrong supplier for choosen agreement'))
+        res['value'] = {price_field: agreement.get_price(qty, currency=currency)}
+        if agreement.available_quantity < qty:
+            msg = _("You have ask for a quantity of %s \n"
+                    " but there is only %s available"
+                    " for current agreement") % (qty, agreement.available_quantity)
+            res['warning'] = {'title': _('Agreement Warning!'),
+                              'message': msg}
         return res

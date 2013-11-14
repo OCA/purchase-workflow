@@ -43,7 +43,6 @@
                       <field name="available_quantity"/>
                     </group>
                   </group>
-
                   <group string="dates">
                     <field name="start_date"/>
                     <field name="end_date"/>
@@ -54,6 +53,17 @@
                         <tree type="7.0" string="Price list" editable="top">
                           <field name="quantity"/>
                           <field name="price"/>
+                        </tree>
+                      </field>
+                    </page>
+                    <page string="Negociated Rates">
+                      <field name="currency_rate_line_ids">
+                        <tree type="7.0" string="Negociated Rate" editable="top">
+                          <field name="currency_id" readonly="0"/>
+                          <field name="rate"/>
+                          <field name="currency_rate_type_id"
+                                 domain="[('name', '=', 'Framework Agreement')]"
+                                 required="1"/>
                         </tree>
                       </field>
                     </page>

@@ -23,7 +23,7 @@ def id_boilerplate(fun):
     def wrapper(*args, **kwargs):
         if isinstance(args[3], (list, tuple)):
             args = list(args)
-            args[3] = args[3][0]
+            args[3] = args[3][0] if args[3] else False
             args = tuple(args)
         return fun(*args, **kwargs)
     return wrapper
