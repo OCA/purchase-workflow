@@ -47,7 +47,7 @@ class TestSourceToPo(CommonSourcingSetUp):
         po_id = self.source_line_model._make_po_from_source_line(cr, uid,
                                                                  self.source_line)
         self.assertTrue(po_id)
-        supplier = self.source_line.agreement_id.supplier_id
+        supplier = self.source_line.framework_agreement_id.supplier_id
         add = self.source_line.requisition_id.consignee_shipping_id
         consignee = self.source_line.requisition_id.consignee_id
         po = self.registry('purchase.order').browse(cr, uid, po_id)

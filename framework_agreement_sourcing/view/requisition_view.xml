@@ -7,8 +7,9 @@
       <field name="inherit_id" ref="logistic_requisition.view_logistic_requisition_source_form"/>
       <field name="arch" type="xml">
         <field name="unit_cost" position="before">
-          <field name="agreement_id_dummy" readonly="1"/>
-          <field name="agreement_id" invisible="1"/>
+          <field name="framework_agreement_id"
+                 onchange="onchange_agreement(framework_agreement_id, proposed_qty, proposed_product_id, pricelist_id, context)"/>
+          <field name="pricelist_id"/>
           <field name="supplier_id" invisible="1"/>
         </field>
       </field>
@@ -56,21 +57,21 @@
         <data>
           <field name="procurement_method"
                  position="attributes">
-            <attribute name="on_change">onchange_sourcing_method(procurement_method, proposed_product_id, proposed_qty)</attribute>
+            <attribute name="on_change">onchange_sourcing_method(procurement_method, proposed_product_id, pricelist_id, proposed_qty)</attribute>
           </field>
 
           <field name="unit_cost"
                  position="attributes">
-            <attribute name="on_change">onchange_price(procurement_method, unit_cost, supplier_id, proposed_product_id, proposed_qty)</attribute>
+            <attribute name="on_change">onchange_price(procurement_method, unit_cost, framework_agreement_id, pricelist_id, proposed_qty)</attribute>
           </field>
 
           <field name="proposed_qty"
                  position="attributes">
-            <attribute name="on_change">onchange_quantity(procurement_method, unit_cost, supplier_id, proposed_product_id)</attribute>
+            <attribute name="on_change">onchange_quantity(procurement_method, proposed_qty, proposed_product_id, pricelist_id)</attribute>
           </field>
           <field name="proposed_product_id"
                  position="attributes">
-            <attribute name="on_change">onchange_product_id(procurement_method, proposed_product_id, proposed_qty)</attribute>
+            <attribute name="on_change">onchange_product_id(procurement_method, proposed_product_id, proposed_qty, pricelist_id)</attribute>
           </field>
 
         </data>
@@ -85,8 +86,8 @@
     <!--      <field name="arch" type="xml"> -->
     <!--        <field name="proposed_qty" position="after"> -->
     <!--          <div> -->
-    <!--            <field name="agreement_id_dummy" readonly="1"/> -->
-    <!--            <field name="agreement_id" invisible="1"/> -->
+    <!--            <field name="framework_agreement_id_dummy" readonly="1"/> -->
+    <!--            <field name="framework_agreement_id" invisible="1"/> -->
     <!--            <field name="supplier_id" invisible="1"/> -->
     <!--            </div> -->
     <!--        </field> -->
