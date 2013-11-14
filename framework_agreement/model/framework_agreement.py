@@ -181,14 +181,10 @@ class framework_agreement(orm.Model):
                 'delay': fields.integer('Lead time in days'),
                 'quantity': fields.integer('Negociated quantity',
                                            required=True),
-                'framework_agreement_line_ids': fields.one2many('framework.agreement.line',
-                                                                'framework_agreement_id',
-                                                                'Price lines',
-                                                                required=True),
-                'currency_rate_line_ids': fields.one2many('res.currency.rate',
-                                                          'framework_agreement_id',
-                                                          'Negociated rates'),
-
+                'framework_agreement_pricelist_ids': fields.one2many('framework.agreement.pricelist',
+                                                                     'framework_agreement_id',
+                                                                     'Price lists',
+                                                                     required=True),
                 'available_quantity': fields.function(_get_available_qty,
                                                       type='integer',
                                                       string='Available quantity',
@@ -282,7 +278,7 @@ class framework_agreement(orm.Model):
         :param product_id: product id of the product
         :param lookup_dt: datetime string of the lookup date
         :param qty: quantity that should be available if parameter is
-                    passed and qty is insuffisant no aggrement would be returned
+                    passed and qty is insuffisant no agreement would be returned
 
         :returns: a list of corresponding agreements or None
 
@@ -357,24 +353,15 @@ class framework_agreement(orm.Model):
             return agreement
         return None
 
-    def _convert_price(self, cr, uid, agreement_id, currency, price, context=None):
-        """Compute price converion for an agreement price list entree
-        :param agreement_id: id of current agreement
-        :param currency: destination currency to convert price record
-        :param price: price in company currency
-
-        :returns: price converted in curreny parameter
-
-        """
-        currency_obj = self.pool['res.currency']
-        comp_obj = self.pool['res.company']
-        company_id = self._company_get(cr, uid, context=context)
-        comp_currency_id = comp_obj.browse(cr, uid, company_id, context=context).currency_id.id
-        if currency.id == comp_currency_id:
-            return price
-        ctx = context.copy() if context else {}
-        ctx['from_agreement_id'] = agreement_id
-        return currency_obj.compute(cr, uid, comp_currency_id, currency.id, price, context=ctx)
+    def _get_pricelist_lines(self, cr, uid, agreement,
+                             currency, context=None):
+        plists = agreement.framework_agreement_pricelist_ids
+        plist = next((x for x in plists if x.currency_id == currency), None)
+        if not plist:
+            raise orm.except_orm(_('Missing Agreement price list'),
+                                 _('Please set a price list in currency %s for agreement %s') %
+                                 (currency.name, agreement.name))
+        return plist.framework_agreement_line_ids
 
     def get_price(self, cr, uid, agreement_id, qty=0,
                   currency=None, context=None):
@@ -387,18 +374,13 @@ class framework_agreement(orm.Model):
             assert len(agreement_id) == 1
             agreement_id = agreement_id[0]
         current = self.browse(cr, uid, agreement_id, context=context)
-        lines = current.framework_agreement_line_ids
+        lines = self._get_pricelist_lines(cr, uid, current, currency,
+                                          context=context)
         lines.sort(key=attrgetter('quantity'), reverse=True)
-        price = False
         for line in lines:
             if qty >= line.quantity:
-                price = line.price
-                break
-        if not price:
-            price = lines[-1].price
-        if currency:
-            price = self._convert_price(cr, uid, agreement_id, currency, price, context=context)
-        return price
+                return line.price
+        return lines[-1].price
 
     def _get_currency(self, cr, uid, supplier_id, pricelist_id, context=None):
         """Helper to retrieve correct currency.
@@ -425,18 +407,35 @@ class framework_agreement(orm.Model):
         return partner.property_product_pricelist_purchase.currency_id
 
 
+class Framework_Agreement_pricelist(orm.Model):
+    """Price list container"""
+
+    _name = "framework.agreement.pricelist"
+    _rec_name = 'currency_id'
+    _columns = {'framework_agreement_id': fields.many2one('framework.agreement',
+                                                          'Agreement',
+                                                          required=True),
+                'currency_id': fields.many2one('res.currency',
+                                               'Currency',
+                                               required=True),
+                'framework_agreement_line_ids': fields.one2many('framework.agreement.line',
+                                                                'framework_agreement_pricelist_id',
+                                                                'Price lines',
+                                                                required=True)}
+
+
 class framework_agreement_line(orm.Model):
     """Price list line of framework agreement
     that contains price and qty"""
 
     _name = 'framework.agreement.line'
     _description = 'Framework agreement line'
-
+    _rec_name = "quantity"
     _order = "quantity"
 
-    _columns = {'framework_agreement_id': fields.many2one('framework.agreement',
-                                                          'Agreement',
-                                                          required=True),
+    _columns = {'framework_agreement_pricelist_id': fields.many2one('framework.agreement.pricelist',
+                                                                    'Price list',
+                                                                    required=True),
                 'quantity': fields.integer('Quantity',
                                            required=True),
 

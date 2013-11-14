@@ -49,10 +49,11 @@ class res_currency_rate(orm.Model):
                                  for x in agreement.currency_rate_line_ids)
         for c_id in ids:
             rate_id = currency_rate_map.get(c_id)
-            if not rate_id:
+            if not rate_id and context.get('agreement_rais_on_no_rate'):
                 currency = self.pool['res.currency'].browse(cr, uid, c_id)
                 raise orm.except_orm(_('Agreement rate is missing'),
                                      _("You have no entries for currency"
                                        " in agreement %s") % (currency.name, agreement.name))
-            res[c_id] = rate_id
+            else:
+                res[c_id] = rate_id
         return res

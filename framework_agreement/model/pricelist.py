@@ -31,7 +31,7 @@ class product_pricelist(orm.Model):
 
         :param pricelist_id: the price list to be validated
 
-        :returns: a boolean (True if aggrement is applicable)
+        :returns: a boolean (True if agreement is applicable)
 
         """
         p_list = self.browse(cr, uid, pricelist_id, context=context)
@@ -64,7 +64,7 @@ class product_pricelist(orm.Model):
             now = fields.datetime.now()
             date = context.get('date') or context.get('date_order') or now
             if context.get('from_agreement_id'):
-                aggrement = aggrement_obj.browse(cr, uid, context['from_agreement_id'],
+                agreement = agreement_obj.browse(cr, uid, context['from_agreement_id'],
                                                  context=context)
             else:
                 agreement = agreement_obj.get_product_agreement(cr, uid, prod_id,

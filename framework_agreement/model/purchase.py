@@ -19,6 +19,7 @@
 #
 ##############################################################################
 from openerp.osv import orm, fields
+from openerp.tools.translate import _
 from openerp.addons.framework_agreement.model.framework_agreement import FrameworkAgreementObservable
 
 
@@ -71,4 +72,22 @@ class purchase_order_line(orm.Model, FrameworkAgreementObservable):
         res['value'].update(vals.get('value', {}))
         if vals.get('warning'):
             res['warning'] = vals['warning']
+        return res
+
+
+class purchase_order(orm.Model):
+    """Oveeride on change to raise warning"""
+
+    _inherit = "purchase.order"
+
+    def onchange_pricelist(self, cr, uid, ids, pricelist_id, context=None):
+        res = super(purchase_order, self).onchange_pricelist(cr, uid, ids, pricelist_id,
+                                                             context=context)
+        if not pricelist_id:
+            return res
+        warning = {'title': _('Pricelist Warning!'),
+                   'message': _('If you change the pricelist of this order'
+                                ' (and eventually the currency),'
+                                ' prices of existing order lines will not be updated.')}
+        res['warning'] = warning
         return res
