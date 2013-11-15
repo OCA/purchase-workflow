@@ -48,7 +48,7 @@
       <field name="arch" type="xml">
         <field name="description" position="before">
            <group>
-             <field name="landed_cost_type"/>
+             <field name="landed_cost_type" groups="purchase.group_purchase_user"/>
            </group>
         </field>
       </field>
