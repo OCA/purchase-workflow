@@ -103,6 +103,7 @@ class logistic_requisition_source(orm.Model, BrowseAdapterMixin,
         position = position.id if position else False
         requisition = line.requisition_id
         data = {}
+        data['framework_agreement_id'] = line.framework_agreement_id.id
         data['partner_id'] = supplier.id
         data['company_id'] = self._company(cr, uid, context)
         data['pricelist_id'] = line.purchase_pricelist_id.id
@@ -145,7 +146,6 @@ class logistic_requisition_source(orm.Model, BrowseAdapterMixin,
         data['name'] = line.proposed_product_id.name
         data['date_planned'] = line.requisition_id.date_delivery
         data['taxes_id'] = [(6, 0, taxes)]
-        data['framework_agreement_id'] = line.framework_agreement_id.id
         return data
 
     def _make_po_from_source_line(self, cr, uid, source_line, context=None):
