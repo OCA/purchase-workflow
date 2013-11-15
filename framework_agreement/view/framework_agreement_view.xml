@@ -54,19 +54,23 @@
               <field name="end_date"/>
             </group>
             <notebook>
-              <page string="Negociated price Lists" colspan="4">
+              <page string="Negociated price lists" colspan="4">
                 <field name="framework_agreement_pricelist_ids">
                   <tree type="7.0" string="Price list">
                     <field name="currency_id"/>
                   </tree>
                   <form type="7.0" string="Price list">
-                    <field name="currency_id"/>
+                    <group>
+                      <field name="currency_id"/>
+                    </group>
+                    <newline/>
                     <notebook>
-                      <page string="Price lines">
+                      <page string="Price lines" colspan="4">
                         <field name="framework_agreement_line_ids"
-                               editable="top"
-                               colspan="4">
-                          <tree type="7.0" string="Price line">
+                               nolabel="1">
+                          <tree type="7.0"
+                                string="Price line"
+                                editable="top">
                             <field name="quantity"/>
                             <field name="price"/>
                           </tree>
