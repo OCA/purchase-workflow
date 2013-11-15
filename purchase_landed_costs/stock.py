@@ -63,6 +63,7 @@ class stock_partial_picking(orm.TransientModel):
         res = super(stock_partial_picking, self)._product_cost_for_average_update(cr, uid, move)
         self._logger.debug('res stock_partial_picking `%s`', res)
         # Re-take the cost from the PO line landed_costs field
-        res['cost'] = move.purchase_line_id.landed_costs / move.purchase_line_id.product_qty
+        if move.purchase_line_id:
+            res['cost'] = move.purchase_line_id.landed_costs / move.purchase_line_id.product_qty
         self._logger.debug('res stock_partial_picking `%s`', res)
         return res
