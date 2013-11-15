@@ -217,21 +217,18 @@ class logistic_requisition_source(orm.Model, BrowseAdapterMixin,
         if not agreement:
             raise ValueError('No framework agreement on source line %s' %
                              current.name)
-        line_id = po_l_obj.search(cr, uid,
-                                  [('framework_agreement_id', '=', agreement.id),
-                                   ('lr_source_line_id', '=', current.id),
-                                   ('product_id', '=', agreement.product_id.id),
-                                   ('order_id.partner_id', '=', agreement.supplier_id.id)],
-                                  context=context)
-        if not line_id or len(line_id) != 1:
-            raise orm.except_orm(_('No agreement PO line found'),
-                                 _('Please confirm or create a PO related to'
-                                   ' source line %s') % current.name)
-        line = po_l_obj.browse(cr, uid, line_id[0], context=context)
-        price = line.price_unit
-        from_curr = line.order_id.pricelist_id.currency_id.id
-        to_curr = current.pricelist_id.currency_id.id
-        price = currency_obj.compute(cr, uid, from_curr, to_curr, price, False)
+        line_ids = po_l_obj.search(cr, uid,
+                                   [('order_id.framework_agreement_id', '=', agreement.id),
+                                    ('lr_source_line_id', '=', current.id),
+                                    ('order_id.partner_id', '=', agreement.supplier_id.id)],
+                                   context=context)
+        price = 0.0
+        lines = po_l_obj.browse(cr, uid, line_ids, context=context)
+        if lines:
+            price = sum(x.price_unit for x in lines)
+            from_curr = lines[0].order_id.pricelist_id.currency_id.id
+            to_curr = current.pricelist_id.currency_id.id
+            price = currency_obj.compute(cr, uid, from_curr, to_curr, price, False)
         return price
 
     #---------------------- provide adapter middleware -------------------------
