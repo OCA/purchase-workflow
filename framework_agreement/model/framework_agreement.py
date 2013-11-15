@@ -293,7 +293,8 @@ class framework_agreement(orm.Model):
             return self.browse(cr, uid, agreement_ids, context=context)
         return None
 
-    def get_cheapest_agreement_for_qty(self, cr, uid, product_id, date, qty, currency=None, context=None):
+    def get_cheapest_agreement_for_qty(self, cr, uid, product_id, date, qty,
+                                       currency=None, context=None):
         """Return the cheapest agreement that has enough available qty.
 
         If not enough quantity fallback on the cheapest agreement available
@@ -311,7 +312,7 @@ class framework_agreement(orm.Model):
         agreements = self.get_all_product_agreements(cr, uid, product_id,
                                                      date, qty, context=context)
         if not agreements:
-            return (None, None)
+            return Cheapest(None, None)
         agreements.sort(key=lambda x: x.get_price(qty, currency=currency))
         enough = True
         cheapest_agreement = None
@@ -353,9 +354,24 @@ class framework_agreement(orm.Model):
             return agreement
         return None
 
+    def has_currency(self, cr, uid, agr_id, currency, context=None):
+        """Predicate that check that agrrement has a given currency pricelist
+
+        :returns: boolean (True if a price list in given currency is present)
+
+        """
+        if isinstance(agr_id, (list, tuple)):
+            assert len(agr_id) == 1
+            agr_id = agr_id[0]
+        agreement = self.browse(cr, uid, agr_id, context=context)
+        plists = agreement.framework_agreement_pricelist_ids
+        return any(x for x in plists if x.currency_id == currency)
+
     def _get_pricelist_lines(self, cr, uid, agreement,
                              currency, context=None):
         plists = agreement.framework_agreement_pricelist_ids
+        # we do not use has_agreement for performance reason
+        # Python cookbook idiom
         plist = next((x for x in plists if x.currency_id == currency), None)
         if not plist:
             raise orm.except_orm(_('Missing Agreement price list'),
@@ -528,7 +544,7 @@ class FrameworkAgreementObservable(object):
                                                                              currency=currency,
                                                                              context=context)
         if agreement is None:
-            return (None, None)
+            return FoundAgreement(None, None)
         msg = None
         if agreement.available_quantity < qty:
             msg = _("You have ask for a quantity of %s \n"
@@ -582,7 +598,7 @@ class FrameworkAgreementObservable(object):
                                supplier_id=None, currency=None, price_field='price',
                                context=None):
         res = {}
-        if not agreement_id or product_id:
+        if not agreement_id or not product_id:
             return res
         agr_obj = self.pool['framework.agreement']
         agreement = agr_obj.browse(cr, uid, agreement_id, context=context)
