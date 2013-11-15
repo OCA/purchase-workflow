@@ -225,7 +225,7 @@ class logistic_requisition_source(orm.Model, BrowseAdapterMixin,
         price = 0.0
         lines = po_l_obj.browse(cr, uid, line_ids, context=context)
         if lines:
-            price = sum(x.price_unit for x in lines)
+            price = sum(x.amount_total for x in lines) # To avoid rounding problems
             from_curr = lines[0].order_id.pricelist_id.currency_id.id
             to_curr = current.pricelist_id.currency_id.id
             price = currency_obj.compute(cr, uid, from_curr, to_curr, price, False)
