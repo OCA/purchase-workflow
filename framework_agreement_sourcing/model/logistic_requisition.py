@@ -51,7 +51,7 @@ class logistic_requisition_line(orm.Model, BrowseAdapterSourceMixin):
             raise ValueError("Missing agreement")
         if not agreement.product_id.id == line.product_id.id:
             raise ValueError("Product mismatch for agreement and requisition line")
-        currency = self._get_source_currency(cr, uid, line, context=context)
+        # currency = self._get_source_currency(cr, uid, line, context=context)
         res['unit_cost'] = 0.0
         res['proposed_qty'] = qty
         res['framework_agreement_id'] = agreement.id
