@@ -18,7 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from operator import attrgetter
+from collections import namedtuple
 from openerp.tools.translate import _
 from openerp.osv import orm
 from .adapter_util import BrowseAdapterSourceMixin
@@ -51,7 +51,8 @@ class logistic_requisition_line(orm.Model, BrowseAdapterSourceMixin):
             raise ValueError("Missing agreement")
         if not agreement.product_id.id == line.product_id.id:
             raise ValueError("Product mismatch for agreement and requisition line")
-        res['unit_cost'] = agreement.get_price(qty)
+        currency = self._get_source_currency(cr, uid, line, context=context)
+        res['unit_cost'] = 0.0
         res['proposed_qty'] = qty
         res['framework_agreement_id'] = agreement.id
         res['procurement_method'] = AGR_PROC
@@ -95,13 +96,12 @@ class logistic_requisition_line(orm.Model, BrowseAdapterSourceMixin):
         :returns: remaining quantity to source
 
         """
-        agreements = agreements if agreements is None else []
-        # if there is a currency only agreement with currency may respond
+        agreements = agreements if agreements is not None else []
         if currency:
-            aggrements = [x for x in agreements if x.has_currency(currency)]
-        agreements.sort(key=lambda x: x.get_price(qty, currency=currency))
+            agreements = [x for x in agreements if x.has_currency(currency)]
         if not agreements:
             return qty
+        agreements.sort(key=lambda x: x.get_price(qty, currency=currency))
         current_agr = agreements.pop(0)
         avail = current_agr.available_quantity
         if not avail:
@@ -131,12 +131,13 @@ class logistic_requisition_line(orm.Model, BrowseAdapterSourceMixin):
         :returns: (generated line ids, remaining qty not covered by agreement)
 
         """
+        Sourced = namedtuple('Sourced', ['generated', 'remaining'])
         qty = line.requested_qty
         generated = []
         remaining_qty = self._generate_lines_from_agreements(cr, uid, generated,
                                                              line, agreements, qty,
                                                              currency=currency, context=context)
-        return (generated, remaining_qty)
+        return Sourced(generated, remaining_qty)
 
     def make_source_line(self, cr, uid, line, force_qty=None, agreement=None, context=None):
         """Generate a source line for a tender from a requisition line
@@ -160,13 +161,14 @@ class logistic_requisition_line(orm.Model, BrowseAdapterSourceMixin):
                                                          context=context, qty=qty)
 
     def _get_source_currency(self, cr, uid, line, context=None):
-        currency = line.requisiton_id.get_pricelist().currency_id
+        agr_obj = self.pool['framework.agreement']
+        comp_obj = self.pool['res.company']
+        currency = line.requisition_id.get_pricelist().currency_id
         company_id = agr_obj._company_get(cr, uid, context=context)
         comp_currency = comp_obj.browse(cr, uid, company_id, context=context).currency_id
         if currency == comp_currency:
             return None
         return currency
-
 
     def _generate_source_line(self, cr, uid, line, context=None):
         """Generate one or n source line(s) per requisition line.
@@ -218,19 +220,24 @@ class logistic_requisition_line(orm.Model, BrowseAdapterSourceMixin):
         return res
 
 
-    def get_pricelist(cr, uid, requisiton_id, context=None):
+class logistic_requisition(orm.Model):
+    """Add get pricelist function"""
+
+    _inherit = "logistic.requisition"
+
+    def get_pricelist(self, cr, uid, requisition_id, context=None):
         """Retrive pricelist id to use in sourcing by agreement process
 
         :returns: pricelist record
 
         """
-        if isinstance(requisiton_id, (list, tuple)):
-            assert len(requisiton_id) == 1
-            requisiton_id = requisiton_id[0]
-        requisiton = self.browse(cr, uid, requisiton_id, context=context)
-        plist = requisiton.consignee_id.property_product_pricelist
+        if isinstance(requisition_id, (list, tuple)):
+            assert len(requisition_id) == 1
+            requisition_id = requisition_id[0]
+        requisiton = self.browse(cr, uid, requisition_id, context=context)
+        plist = requisiton.partner_id.property_product_pricelist
         if not plist:
-            raise orm.except_orm(_('No price list on consignee'),
+            raise orm.except_orm(_('No price list on customer'),
                                  _('Please set sale price list on %s partner') %
-                                 current.consignee_id.name)
+                                 requisiton.partner_id.name)
         return plist

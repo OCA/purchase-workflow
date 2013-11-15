@@ -6,12 +6,43 @@
       <field name="model">logistic.requisition.source</field>
       <field name="inherit_id" ref="logistic_requisition.view_logistic_requisition_source_form"/>
       <field name="arch" type="xml">
-        <field name="unit_cost" position="before">
+        <field name="unit_cost"
+               position="before">
           <field name="framework_agreement_id"
-                 onchange="onchange_agreement(framework_agreement_id, proposed_qty, proposed_product_id, pricelist_id, context)"/>
-          <field name="pricelist_id"/>
-          <field name="supplier_id" invisible="1"/>
+                 attrs="{'required': [('procurement_method', '=', 'fw_agreement')],
+                        'invisible': [('procurement_method', '!=', 'fw_agreement')]}"
+                 on_change="onchange_agreement(framework_agreement_id, requisition_line_id, proposed_qty, proposed_product_id, purchase_pricelist_id, context)"/>/>
+          <field name="pricelist_id"
+                 invisible="1"/>
+          <field name="purchase_pricelist_id"
+                 attrs="{'required': [('procurement_method', '=', 'fw_agreement')],
+                        'invisible': [('procurement_method', '!=', 'fw_agreement')]}"
+                 on_change="onchange_pricelist(framework_agreement_id, requisition_line_id, proposed_qty, proposed_product_id, purchase_pricelist_id, context)"
+                 domain="[('type', '=', 'purchase')]"/>
+
+          <field name="supplier_id"
+                 invisible="1"/>
         </field>
+        <field name="proposed_uom_id"
+               position="attributes">
+            <attribute name="attrs">{'invisible': [('procurement_method', '=', 'fw_agreement')]}</attribute>
+          </field>
+          <field name="unit_cost"
+               position="attributes">
+            <attribute name="attrs">{'invisible': [('procurement_method', '=', 'fw_agreement')]}</attribute>
+          </field>
+          <field name="total_cost"
+               position="attributes">
+            <attribute name="attrs">{'invisible': [('procurement_method', '=', 'fw_agreement')]}</attribute>
+          </field>
+          <field name="price_is"
+               position="attributes">
+            <attribute name="attrs">{'invisible': [('procurement_method', '=', 'fw_agreement')]}</attribute>
+          </field>
+          <field name="transport_applicable"
+               position="attributes">
+            <attribute name="attrs">{'invisible': [('procurement_method', '=', 'fw_agreement')]}</attribute>
+          </field>
       </field>
     </record>
 
@@ -57,21 +88,16 @@
         <data>
           <field name="procurement_method"
                  position="attributes">
-            <attribute name="on_change">onchange_sourcing_method(procurement_method, proposed_product_id, pricelist_id, proposed_qty)</attribute>
-          </field>
-
-          <field name="unit_cost"
-                 position="attributes">
-            <attribute name="on_change">onchange_price(procurement_method, unit_cost, framework_agreement_id, pricelist_id, proposed_qty)</attribute>
+            <attribute name="on_change">onchange_sourcing_method(procurement_method, requisition_line_id, proposed_product_id, purchase_pricelist_id, proposed_qty)</attribute>
           </field>
 
           <field name="proposed_qty"
                  position="attributes">
-            <attribute name="on_change">onchange_quantity(procurement_method, proposed_qty, proposed_product_id, pricelist_id)</attribute>
+            <attribute name="on_change">onchange_quantity(procurement_method, requisition_line_id, proposed_qty, proposed_product_id, purchase_pricelist_id)</attribute>
           </field>
           <field name="proposed_product_id"
                  position="attributes">
-            <attribute name="on_change">onchange_product_id(procurement_method, proposed_product_id, proposed_qty, pricelist_id)</attribute>
+            <attribute name="on_change">onchange_product_id(procurement_method, requisition_line_id, proposed_product_id, proposed_qty, purchase_pricelist_id)</attribute>
           </field>
 
         </data>

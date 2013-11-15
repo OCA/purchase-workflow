@@ -38,6 +38,10 @@ class logistic_requisition_source(orm.Model, BrowseAdapterMixin,
     _columns = {'framework_agreement_id': fields.many2one('framework.agreement',
                                                           'Agreement'),
 
+                'purchase_pricelist_id': fields.many2one('product.pricelist',
+                                                         'Purchase (PO) Pricelist',
+                                                         help="This pricelist will be used"
+                                                              " when generating PO"),
                 'pricelist_id': fields.related('requisition_line_id', 'requisition_id',
                                                'partner_id',
                                                'property_product_pricelist',
@@ -101,7 +105,7 @@ class logistic_requisition_source(orm.Model, BrowseAdapterMixin,
         data = {}
         data['partner_id'] = supplier.id
         data['company_id'] = self._company(cr, uid, context)
-        data['pricelist_id'] = supplier.property_product_pricelist_purchase.id
+        data['pricelist_id'] = line.purchase_pricelist_id.id
         data['dest_address_id'] = add.id
         data['location_id'] = add.property_stock_customer.id
         data['payment_term_id'] = term
@@ -128,17 +132,20 @@ class logistic_requisition_source(orm.Model, BrowseAdapterMixin,
         taxes_ids = line.proposed_product_id.supplier_taxes_id
         taxes = acc_pos_obj.map_tax(cr, uid, supplier.property_account_position,
                                     taxes_ids)
+        currency = line.purchase_pricelist_id.currency_id
+        price = line.framework_agreement_id.get_price(line.proposed_qty, currency=currency)
         data = {}
         direct_map = {'product_qty': 'proposed_qty',
                       'product_id': 'proposed_product_id',
                       'product_uom': 'proposed_uom_id',
-                      'price_unit': 'unit_cost',
                       'lr_source_line_id': 'id'}
 
         data.update(self._direct_map(line, direct_map))
+        data['price_unit'] = price
         data['name'] = line.proposed_product_id.name
         data['date_planned'] = line.requisition_id.date_delivery
         data['taxes_id'] = [(6, 0, taxes)]
+        data['framework_agreement_id'] = line.framework_agreement_id.id
         return data
 
     def _make_po_from_source_line(self, cr, uid, source_line, context=None):
@@ -207,7 +214,7 @@ class logistic_requisition_source(orm.Model, BrowseAdapterMixin,
 
     #---------------OpenERP tedious onchange management ------------------------
 
-    def _get_date(self, cr, uid, source_id, context=None):
+    def _get_date(self, cr, uid, requision_line_id, context=None):
         """helper to retrive date to be used by framework agreement
         when in source line context
 
@@ -217,12 +224,13 @@ class logistic_requisition_source(orm.Model, BrowseAdapterMixin,
         :returns: date/datetime string
 
         """
-        current = self.browse(cr, uid, source_id, context=context)
+        req_obj = self.pool['logistic.requisition.line']
+        current = req_obj.browse(cr, uid, requision_line_id, context=context)
         now = fields.datetime.now()
         return current.requisition_id.date or now
 
     @id_boilerplate
-    def onchange_sourcing_method(self, cr, uid, source_id, method, proposed_product_id,
+    def onchange_sourcing_method(self, cr, uid, source_id, method, req_line_id, proposed_product_id,
                                  pricelist_id, proposed_qty=0, context=None):
         """
         Called when source method is set on a source line.
@@ -233,11 +241,11 @@ class logistic_requisition_source(orm.Model, BrowseAdapterMixin,
 
         """
         res = {'value': {'framework_agreement_id': False}}
-        if (method != AGR_PROC or not proposed_product_id or not source_id):
+        if (method != AGR_PROC or not proposed_product_id or not pricelist_id):
             return res
         currency = self._currency_get(cr, uid, pricelist_id, context=context)
         agreement_obj = self.pool['framework.agreement']
-        date = self._get_date(cr, uid, source_id, context=context)
+        date = self._get_date(cr, uid, req_line_id, context=context)
         agreement, enough_qty = agreement_obj.get_cheapest_agreement_for_qty(cr, uid,
                                                                              proposed_product_id,
                                                                              date,
@@ -259,32 +267,41 @@ class logistic_requisition_source(orm.Model, BrowseAdapterMixin,
         return res
 
     @id_boilerplate
-    def onchange_price(self, cr, uid, source_id, method, price, agreement_id,
-                       pricelist_id, qty=0, context=None):
-        """Raise a warning if a agreed price is changed"""
-        if (method != AGR_PROC or False in [agreement_id, source_id]):
-            return {}
-        currency = self._currency_get(cr, uid, pricelist_id, context=context)
+    def onchange_pricelist(self, cr, uid, source_id, method, req_line_id,
+                           proposed_product_id, proposed_qty,
+                           pricelist_id, context=None):
+        """Call when pricelist is set on a source line.
 
-        return self.onchange_price_obs(cr, uid, source_id, price, agreement_id, currency=currency,
-                                       qty=qty, context=None)
+        If sourcing method is framework agreement
+        it will set price, agreement and supplier if possible
+        and raise quantity warning.
+
+        """
+        res = {}
+        if (method != AGR_PROC or not proposed_product_id or not pricelist_id):
+            return res
+
+        return self.onchange_sourcing_method(cr, uid, source_id, method, req_line_id,
+                                             proposed_product_id, pricelist_id,
+                                             proposed_qty=proposed_qty,
+                                             context=context)
 
     @id_boilerplate
-    def onchange_quantity(self, cr, uid, source_id, method, qty,
+    def onchange_quantity(self, cr, uid, source_id, method, req_line_id, qty,
                           proposed_product_id, pricelist_id, context=None):
         """Raise a warning if agreed qty is not sufficient"""
-        if (method != AGR_PROC or not proposed_product_id or not source_id):
+        if (method != AGR_PROC or not proposed_product_id):
             return {}
         currency = self._currency_get(cr, uid, pricelist_id, context=context)
-        date = self._get_date(cr, uid, source_id, context=context)
+        date = self._get_date(cr, uid, req_line_id, context=context)
         return self.onchange_quantity_obs(cr, uid, source_id, qty, date,
                                           proposed_product_id,
                                           currency=currency,
-                                          price_field='unit_cost',
+                                          price_field='dummy',
                                           context=context)
 
     @id_boilerplate
-    def onchange_product_id(self, cr, uid, source_id, method,
+    def onchange_product_id(self, cr, uid, source_id, method, req_line_id,
                             proposed_product_id, proposed_qty,
                             pricelist_id, context=None):
         """Call when product is set on a source line.
@@ -294,20 +311,20 @@ class logistic_requisition_source(orm.Model, BrowseAdapterMixin,
         and raise quantity warning.
 
         """
-        if (method != AGR_PROC or not proposed_product_id or not source_id):
+        if (method != AGR_PROC or not proposed_product_id):
             return {}
 
-        return self.onchange_sourcing_method(cr, uid, source_id, method,
+        return self.onchange_sourcing_method(cr, uid, source_id, method, req_line_id,
                                              proposed_product_id, pricelist_id,
                                              proposed_qty=proposed_qty,
                                              context=context)
 
     @id_boilerplate
-    def onchange_agreement(self, cr, uid, source_id, agreement_id, qty,
+    def onchange_agreement(self, cr, uid, source_id, agreement_id, req_line_id, qty,
                            proposed_product_id, pricelist_id, context=None):
 
         currency = self._currency_get(cr, uid, pricelist_id, context=context)
-        date = self._get_date(cr, uid, source_id, context=context)
+        date = self._get_date(cr, uid, req_line_id, context=context)
         return self.onchange_agreement_obs(cr, uid, source_id, agreement_id, qty,
                                            date, proposed_product_id,
-                                           currency=currency, price_field='cost_price')
+                                           currency=currency, price_field='dummy')
