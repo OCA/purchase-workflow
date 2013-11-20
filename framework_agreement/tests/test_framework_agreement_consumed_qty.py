@@ -47,17 +47,19 @@ class TestAvailabeQty(test_common.TransactionCase, BaseAgreementTestMixin):
                                               'price': 77,
                                               'delay': 5,
                                               'quantity': 200})
+        pl_id = self.agreement_pl_model.create(cr, uid,
+                                               {'framework_agreement_id': agr_id,
+                                                'currency_id': self.ref('base.EUR')})
+
         self.agreement_line_model.create(cr, uid,
-                                         {'framework_agreement_id': agr_id,
+                                         {'framework_agreement_pricelist_id': pl_id,
                                           'quantity': 0,
                                           'price': 77.0})
         self.agreement = self.agreement_model.browse(cr, uid, agr_id)
 
-
     def test_00_noting_consumed(self):
         """Test non consumption"""
         self.assertEqual(self.agreement.available_quantity, 200)
-
 
     def test_01_150_consumed(self):
         """ test consumption of 150 units"""

@@ -34,6 +34,7 @@ class BaseAgreementTestMixin(object):
     def commonsetUp(self):
         cr, uid = self.cr, self.uid
         self.agreement_model = self.registry('framework.agreement')
+        self.agreement_pl_model = self.registry('framework.agreement.pricelist')
         self.agreement_line_model = self.registry('framework.agreement.line')
         self.now = datetime.strptime(fields.datetime.now(),
                                      DEFAULT_SERVER_DATETIME_FORMAT)
@@ -60,15 +61,18 @@ class BaseAgreementTestMixin(object):
         data['origin'] = agreement.name
         data['date_order'] = date.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
         data['name'] = agreement.name
+        data['framework_agreement_id'] = agreement.id
         return data
 
     def _map_agreement_to_po_line(self, agreement, qty, order_id):
         """Map agreement to dict to be used by PO line create"""
         data = {}
+        supplier = agreement.supplier_id
         data['product_qty'] = qty
         data['product_id'] = agreement.product_id.id
         data['product_uom'] = agreement.product_id.uom_id.id
-        data['price_unit'] = agreement.get_price(qty)
+        currency = supplier.property_product_pricelist_purchase.currency_id
+        data['price_unit'] = agreement.get_price(qty, currency=currency)
         data['name'] = agreement.product_id.name
         data['order_id'] = order_id
         data['date_planned'] = self.now
