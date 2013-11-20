@@ -48,12 +48,15 @@ class TestAgreementOnChange(test_common.TransactionCase, BaseAgreementTestMixin)
                                               'end_date': end_date,
                                               'delay': 5,
                                               'quantity': 1500})
+        pl_id = self.agreement_pl_model.create(cr, uid,
+                                               {'framework_agreement_id': agr_id,
+                                                'currency_id': self.ref('base.EUR')})
         self.agreement_line_model.create(cr, uid,
-                                         {'framework_agreement_id': agr_id,
+                                         {'framework_agreement_pricelist_id': pl_id,
                                           'quantity': 0,
                                           'price': 70})
         self.agreement_line_model.create(cr, uid,
-                                         {'framework_agreement_id': agr_id,
+                                         {'framework_agreement_pricelist_id': pl_id,
                                           'quantity': 200,
                                           'price': 60})
         self.agreement = self.agreement_model.browse(cr, uid, agr_id)
@@ -69,49 +72,45 @@ class TestAgreementOnChange(test_common.TransactionCase, BaseAgreementTestMixin)
         """
         cr, uid = self.cr, self.uid
         res = self.po_line_model.onchange_price_obs(cr, uid, False, 20.0,
-                                                    self.agreement.start_date,
-                                                    self.agreement.supplier_id.id,
-                                                    self.agreement.product_id.id,
+                                                    self.agreement.id,
+                                                    currency=self.browse_ref('base.EUR'),
                                                     qty=100)
         self.assertTrue(res.get('warning'))
-        res = self.po_line_model.onchange_price_obs(cr, uid, False, 20.0,
-                                                    self.now.strftime(DEFAULT_SERVER_DATETIME_FORMAT),
-                                                    self.agreement.supplier_id.id,
-                                                    self.agreement.product_id.id,
-                                                    qty=100)
-        self.assertFalse(res.get('warning'))
 
     def test_01_onchange_quantity_obs(self):
         """Ensure that on change quantity will raise warning or return price"""
         cr, uid = self.cr, self.uid
         res = self.po_line_model.onchange_quantity_obs(cr, uid, False, 200.0,
                                                        self.agreement.start_date,
-                                                       self.agreement.supplier_id.id,
-                                                       self.agreement.product_id.id)
+                                                       self.agreement.product_id.id,
+                                                       supplier_id=self.agreement.supplier_id.id,
+                                                       currency=self.browse_ref('base.EUR'))
         self.assertFalse(res.get('warning'))
         self.assertEqual(res.get('value', {}).get('price'), 60)
         # test there is a warning if agreement has not enought quantity
         res = self.po_line_model.onchange_quantity_obs(cr, uid, False, 20000.0,
                                                        self.agreement.start_date,
-                                                       self.agreement.supplier_id.id,
-                                                       self.agreement.product_id.id)
+                                                       self.agreement.product_id.id,
+                                                       supplier_id=self.agreement.supplier_id.id,
+                                                       currency=self.browse_ref('base.EUR'))
         self.assertTrue(res.get('warning'))
 
         res = self.po_line_model.onchange_quantity_obs(cr, uid, False, 20000.0,
                                                        self.now.strftime(DEFAULT_SERVER_DATETIME_FORMAT),
-                                                       self.agreement.supplier_id.id,
-                                                       self.agreement.product_id.id)
+                                                       self.agreement.product_id.id,
+                                                       supplier_id=self.agreement.supplier_id.id,
+                                                       currency=self.browse_ref('base.EUR'))
         self.assertFalse(res.get('warning'))
 
     def test_02_onchange_product_obs(self):
         """Check that change of product has correct behavior"""
         cr, uid = self.cr, self.uid
-        res = self.po_line_model.onchange_product_id_obs(cr, uid, False, 200.0,
+        res = self.po_line_model.onchange_product_id_obs(cr, uid, False, 180.0,
                                                          self.agreement.start_date,
                                                          self.agreement.supplier_id.id,
                                                          self.agreement.product_id.id)
         self.assertFalse(res.get('warning'))
-        self.assertEqual(res.get('value', {}).get('price'), 60)
+        self.assertEqual(res.get('value', {}).get('price'), 70)
 
         res = self.po_line_model.onchange_product_id_obs(cr, uid, False, 20000.0,
                                                          self.agreement.start_date,
@@ -132,16 +131,16 @@ class TestAgreementOnChange(test_common.TransactionCase, BaseAgreementTestMixin)
                                                          self.agreement.start_date,
                                                          self.ref('product.product_product_33'),
                                                          self.agreement.product_id.id)
-        self.assertEqual(res, {})
+        self.assertEqual(res, {'value': {'framework_agreement_id': False}})
 
     def test_03_price_observer_bindings(self):
         """Check that change of price has correct behavior"""
         cr, uid = self.cr, self.uid
-        res = self.po_line_model.onchange_price(cr, uid, False, 200.0,
-                                                self.agreement.start_date,
-                                                self.agreement.supplier_id.id,
-                                                self.agreement.product_id.id,
-                                                200)
+        plist = self.agreement.supplier_id.property_product_pricelist_purchase
+        res = self.po_line_model.onchange_price(cr, uid, False, 20.0,
+                                                self.agreement.id,
+                                                200,
+                                                plist.id)
         self.assertTrue(res.get('warning'))
 
     def test_04_product_observer_bindings(self):
