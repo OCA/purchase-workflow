@@ -391,6 +391,10 @@ class framework_agreement(orm.Model):
             assert len(agreement_id) == 1
             agreement_id = agreement_id[0]
         current = self.browse(cr, uid, agreement_id, context=context)
+        if not currency:
+            comp_obj = self.pool['res.company']
+            comp_id = self._company_get(cr, uid, context=context)
+            currency = comp_obj.browse(cr, uid, comp_id, context=context).currency_id
         lines = self._get_pricelist_lines(cr, uid, current, currency,
                                           context=context)
         lines.sort(key=attrgetter('quantity'), reverse=True)
