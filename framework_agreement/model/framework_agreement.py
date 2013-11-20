@@ -578,7 +578,7 @@ class FrameworkAgreementObservable(object):
         if context is None:
             context = {}
         res = {'value': {'framework_agreement_id': False}}
-        if not supplier_id or product_id:
+        if not supplier_id or not product_id:
             return res
         agreement, status = self._get_agreement_and_qty_status(cr, uid, ids, qty, date,
                                                                product_id,
@@ -596,7 +596,6 @@ class FrameworkAgreementObservable(object):
                               'message': status}
         if not agreement:
             context['no_chained'] = True
-        print product_id, context
         return res
 
     def onchange_agreement_obs(self, cr, uid, ids, agreement_id, qty, date, product_id,
