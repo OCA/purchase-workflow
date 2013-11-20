@@ -43,7 +43,10 @@ class TestSourceToPo(CommonSourcingSetUp):
     def test_01_transform_source_to_agreement(self):
         """Test transformation of an agreement source line into PO"""
         cr, uid = self.cr, self.uid
-
+        self.assertTrue(self.source_line)
+        plist = self.source_line.framework_agreement_id.supplier_id.property_product_pricelist_purchase
+        self.source_line.write({'purchase_pricelist_id': plist.id})
+        self.source_line.refresh()
         po_id = self.source_line_model._make_po_from_source_line(cr, uid,
                                                                  self.source_line)
         self.assertTrue(po_id)
@@ -65,6 +68,6 @@ class TestSourceToPo(CommonSourcingSetUp):
         self.assertEqual(po_line.product_id, self.source_line.proposed_product_id)
         self.assertEqual(po_line.product_qty, self.source_line.proposed_qty)
         self.assertEqual(po_line.product_uom, self.source_line.proposed_uom_id)
-        self.assertEqual(po_line.price_unit, self.source_line.unit_cost)
+        self.assertEqual(po_line.price_unit, 50.0)
         self.assertEqual(po_line.lr_source_line_id, self.source_line)
         self.assertEqual(po_line.date_planned, date_delivery)

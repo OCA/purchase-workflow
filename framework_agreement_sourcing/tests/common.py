@@ -101,13 +101,17 @@ class CommonSourcingSetUp(test_common.TransactionCase, BaseAgreementTestMixin):
                                               'end_date': end_date,
                                               'delay': 5,
                                               'quantity': 2000})
+
+        pl_id = self.agreement_pl_model.create(cr, uid,
+                                               {'framework_agreement_id': agr_id,
+                                                'currency_id': self.ref('base.EUR')})
         self.agreement_line_model.create(cr, uid,
-                                         {'framework_agreement_id': agr_id,
+                                         {'framework_agreement_pricelist_id': pl_id,
                                           'quantity': 0,
                                           'price': 77.0})
 
         self.agreement_line_model.create(cr, uid,
-                                         {'framework_agreement_id': agr_id,
+                                         {'framework_agreement_pricelist_id': pl_id,
                                           'quantity': 1000,
                                           'price': 30.0})
 
@@ -121,12 +125,17 @@ class CommonSourcingSetUp(test_common.TransactionCase, BaseAgreementTestMixin):
                                               'end_date': end_date,
                                               'delay': 5,
                                               'quantity': 1200})
+
+        pl_id = self.agreement_pl_model.create(cr, uid,
+                                               {'framework_agreement_id': agr_id,
+                                                'currency_id': self.ref('base.EUR')})
+
         self.agreement_line_model.create(cr, uid,
-                                         {'framework_agreement_id': agr_id,
+                                         {'framework_agreement_pricelist_id': pl_id,
                                           'quantity': 0,
                                           'price': 50.0})
         self.agreement_line_model.create(cr, uid,
-                                         {'framework_agreement_id': agr_id,
+                                         {'framework_agreement_pricelist_id': pl_id,
                                           'quantity': 1000,
                                           'price': 45.0})
         self.cheap_on_low_agreement = self.agreement_model.browse(cr, uid, agr_id)
