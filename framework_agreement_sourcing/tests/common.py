@@ -19,7 +19,7 @@
 #
 ##############################################################################
 from datetime import timedelta
-from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
+from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
 import openerp.tests.common as test_common
 from openerp.addons.logistic_requisition.tests import logistic_requisition
 from openerp.addons.framework_agreement.tests.common import BaseAgreementTestMixin
@@ -42,7 +42,7 @@ class CommonSourcingSetUp(test_common.TransactionCase, BaseAgreementTestMixin):
     def make_common_requisition(self):
         """Create a standard logistic requisition"""
         start_date = self.now + timedelta(days=12)
-        start_date = start_date.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+        start_date = start_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
         req = {
             'partner_id': self.ref('base.res_partner_1'),
             'consignee_id': self.ref('base.res_partner_3'),
@@ -56,14 +56,14 @@ class CommonSourcingSetUp(test_common.TransactionCase, BaseAgreementTestMixin):
             'product_id': self.product_id,
             'requested_qty': 100,
             'requested_uom_id': self.ref('product.product_uom_unit'),
-            'date_delivery': self.now.strftime(DEFAULT_SERVER_DATETIME_FORMAT),
+            'date_delivery': self.now.strftime(DEFAULT_SERVER_DATE_FORMAT),
             'budget_tot_price': 100000000,
         }
         other_line = {
             'product_id': self.ref('product.product_product_7'),
             'requested_qty': 10,
             'requested_uom_id': self.ref('product.product_uom_unit'),
-            'date_delivery': self.now.strftime(DEFAULT_SERVER_DATETIME_FORMAT),
+            'date_delivery': self.now.strftime(DEFAULT_SERVER_DATE_FORMAT),
             'budget_tot_price': 100000000,
         }
 
@@ -90,9 +90,9 @@ class CommonSourcingSetUp(test_common.TransactionCase, BaseAgreementTestMixin):
 
         cr, uid = self.cr, self.uid
         start_date = self.now + timedelta(days=10)
-        start_date = start_date.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+        start_date = start_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
         end_date = self.now + timedelta(days=20)
-        end_date = end_date.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+        end_date = end_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
         # Agreement 1
         agr_id = self.agreement_model.create(cr, uid,
                                              {'supplier_id': self.supplier_id,

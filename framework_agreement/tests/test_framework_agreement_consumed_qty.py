@@ -20,7 +20,7 @@
 ##############################################################################
 from datetime import timedelta
 from openerp import netsvc
-from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
+from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
 import openerp.tests.common as test_common
 from .common import BaseAgreementTestMixin
 from ..model.framework_agreement import AGR_PO_STATE
@@ -35,9 +35,9 @@ class TestAvailabeQty(test_common.TransactionCase, BaseAgreementTestMixin):
         self.commonsetUp()
         cr, uid = self.cr, self.uid
         start_date = self.now + timedelta(days=10)
-        start_date = start_date.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+        start_date = start_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
         end_date = self.now + timedelta(days=20)
-        end_date = end_date.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+        end_date = end_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
 
         agr_id = self.agreement_model.create(cr, uid,
                                              {'supplier_id': self.supplier_id,

@@ -19,7 +19,7 @@
 #
 ##############################################################################
 from datetime import timedelta
-from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
+from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
 import openerp.tests.common as test_common
 from .common import BaseAgreementTestMixin
 from ..model.framework_agreement import FrameworkAgreementObservable
@@ -38,9 +38,9 @@ class TestAgreementOnChange(test_common.TransactionCase, BaseAgreementTestMixin)
         self.commonsetUp()
         cr, uid = self.cr, self.uid
         start_date = self.now + timedelta(days=10)
-        start_date = start_date.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+        start_date = start_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
         end_date = self.now + timedelta(days=20)
-        end_date = end_date.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+        end_date = end_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
         agr_id = self.agreement_model.create(cr, uid,
                                              {'supplier_id': self.supplier_id,
                                               'product_id': self.product_id,
@@ -96,7 +96,7 @@ class TestAgreementOnChange(test_common.TransactionCase, BaseAgreementTestMixin)
         self.assertTrue(res.get('warning'))
 
         res = self.po_line_model.onchange_quantity_obs(cr, uid, False, 20000.0,
-                                                       self.now.strftime(DEFAULT_SERVER_DATETIME_FORMAT),
+                                                       self.now.strftime(DEFAULT_SERVER_DATE_FORMAT),
                                                        self.agreement.product_id.id,
                                                        supplier_id=self.agreement.supplier_id.id,
                                                        currency=self.browse_ref('base.EUR'))
@@ -120,7 +120,7 @@ class TestAgreementOnChange(test_common.TransactionCase, BaseAgreementTestMixin)
         self.assertEqual(res.get('value', {}).get('price'), 60)
 
         res = self.po_line_model.onchange_product_id_obs(cr, uid, False, 20000.0,
-                                                         self.now.strftime(DEFAULT_SERVER_DATETIME_FORMAT),
+                                                         self.now.strftime(DEFAULT_SERVER_DATE_FORMAT),
                                                          self.agreement.supplier_id.id,
                                                          self.agreement.product_id.id)
         self.assertFalse(res.get('warning'))

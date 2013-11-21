@@ -19,7 +19,7 @@
 #
 ##############################################################################
 from datetime import timedelta
-from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
+from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
 import openerp.tests.common as test_common
 from .common import BaseAgreementTestMixin
 
@@ -34,9 +34,9 @@ class TestAgreementState(test_common.TransactionCase, BaseAgreementTestMixin):
         """Test state of a future agreement"""
         cr, uid = self.cr, self.uid
         start_date = self.now + timedelta(days=10)
-        start_date = start_date.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+        start_date = start_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
         end_date = self.now + timedelta(days=20)
-        end_date = end_date.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+        end_date = end_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
 
         agr_id = self.agreement_model.create(cr, uid,
                                              {'supplier_id': self.supplier_id,
@@ -53,9 +53,9 @@ class TestAgreementState(test_common.TransactionCase, BaseAgreementTestMixin):
         """Test state of a past agreement"""
         cr, uid = self.cr, self.uid
         start_date = self.now - timedelta(days=20)
-        start_date = start_date.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+        start_date = start_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
         end_date = self.now - timedelta(days=10)
-        end_date = end_date.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+        end_date = end_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
 
         agr_id = self.agreement_model.create(cr, uid,
                                              {'supplier_id': self.supplier_id,
@@ -71,9 +71,9 @@ class TestAgreementState(test_common.TransactionCase, BaseAgreementTestMixin):
         """Test state of a running agreement"""
         cr, uid = self.cr, self.uid
         start_date = self.now - timedelta(days=2)
-        start_date = start_date.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+        start_date = start_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
         end_date = self.now + timedelta(days=2)
-        end_date = end_date.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+        end_date = end_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
 
         agr_id = self.agreement_model.create(cr, uid,
                                              {'supplier_id': self.supplier_id,
@@ -89,9 +89,9 @@ class TestAgreementState(test_common.TransactionCase, BaseAgreementTestMixin):
         """Test that date order is checked"""
         cr, uid = self.cr, self.uid
         start_date = self.now - timedelta(days=40)
-        start_date = start_date.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+        start_date = start_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
         end_date = self.now + timedelta(days=30)
-        end_date = end_date.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+        end_date = end_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
         with self.assertRaises(Exception) as constraint:
             self.agreement_model.create(cr, uid,
                                         {'supplier_id': self.supplier_id,
@@ -105,9 +105,9 @@ class TestAgreementState(test_common.TransactionCase, BaseAgreementTestMixin):
         """Test overlapping agreement for same supplier constraint"""
         cr, uid = self.cr, self.uid
         start_date = self.now - timedelta(days=10)
-        start_date = start_date.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+        start_date = start_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
         end_date = self.now + timedelta(days=10)
-        end_date = end_date.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+        end_date = end_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
         self.agreement_model.create(cr, uid,
                                     {'supplier_id': self.supplier_id,
                                      'product_id': self.product_id,
@@ -116,9 +116,9 @@ class TestAgreementState(test_common.TransactionCase, BaseAgreementTestMixin):
                                      'delay': 5,
                                      'quantity': 20})
         start_date = self.now - timedelta(days=2)
-        start_date = start_date.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+        start_date = start_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
         end_date = self.now + timedelta(days=2)
-        end_date = end_date.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+        end_date = end_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
         with self.assertRaises(Exception) as constraint:
             self.agreement_model.create(cr, uid,
                                         {'supplier_id': self.supplier_id,

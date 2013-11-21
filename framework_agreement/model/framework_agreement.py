@@ -23,7 +23,7 @@ from collections import namedtuple
 from datetime import datetime
 from openerp.osv import orm, fields
 from openerp.osv.orm import except_orm
-from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
+from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
 from openerp.tools.translate import _
 import openerp.addons.decimal_precision as dp
 
@@ -42,19 +42,14 @@ class framework_agreement(orm.Model):
 
         Available qty is ignored in this method
 
-        :param agreement: an agreement browse record
+        :param agreement: an agreement record
 
         :returns: a string - "running" if now is between,
                            - "future" if agreement is in future,
                            - "closed" if agreement is outdated
 
         """
-        now = datetime.strptime(fields.datetime.now(),
-                                DEFAULT_SERVER_DATETIME_FORMAT)
-        start = datetime.strptime(agreement.start_date,
-                                  DEFAULT_SERVER_DATETIME_FORMAT)
-        end = datetime.strptime(agreement.end_date,
-                                DEFAULT_SERVER_DATETIME_FORMAT)
+        now, start, end = self._get_dates(agreement, context=context)
         if start > now:
             return 'future'
         elif end < now:
@@ -63,6 +58,43 @@ class framework_agreement(orm.Model):
             return 'running'
         else:
             raise ValueError('Agreement start/end dates are incorrect')
+
+    def _get_dates(self, agreement, context=None):
+        """Return curent time start datetime and end statime of agreement
+
+        Boiler plate as or returns string instead of date/time objects...
+
+        :param agreement: agreement record
+
+        :retruns: (now, start, end)
+
+        """
+        AGDates = namedtuple('AGDates', ['now', 'start', 'end'])
+        now = datetime.strptime(fields.date.today(),
+                                DEFAULT_SERVER_DATE_FORMAT)
+        start = datetime.strptime(agreement.start_date,
+                                  DEFAULT_SERVER_DATE_FORMAT)
+        end = datetime.strptime(agreement.end_date,
+                                DEFAULT_SERVER_DATE_FORMAT)
+        return AGDates(now, start, end)
+
+    def date_valid(self, cr, uid, agreement_id, date, context=None):
+        """Predicate that checks that date is in agreement
+
+        :param date: date to validate
+
+        :returns: True if date is valid
+
+        """
+
+        if isinstance(agreement_id, (list, tuple)):
+            assert len(agreement_id) == 1
+            agreement_id = agreement_id[0]
+        current = self.browse(cr, uid, agreement_id, context=context)
+        now, start, end = self._get_dates(current, context=context)
+        pdate = datetime.strptime(date,
+                                  DEFAULT_SERVER_DATE_FORMAT)
+        return start <= pdate <= end
 
     def _get_self(self, cr, uid, ids, context=None):
         """ Store field function to get current ids
@@ -166,6 +198,26 @@ class framework_agreement(orm.Model):
         """
         return self._compute_state(cr, uid, ids, field_name, arg, context=context)
 
+    def _get_po_store(self, cursor, uid, ids, context):
+        res = set()
+        po_obj = self.pool.get('purchase.order')
+        for agr_id in ids:
+            po_ids = po_obj.search(cursor, uid, [('framework_agreement_id', '=', agr_id)])
+            res.update(po_ids)
+        return res
+
+    def _get_po_line_store(self, cursor, uid, ids, context):
+        res = set()
+        pol_obj = self.pool.get('purchase.order.line')
+        for agr_id in ids:
+            pol_ids = pol_obj.search(cursor, uid, [('framework_agreement_id', '=', agr_id)])
+            res.update(pol_ids)
+        return res
+
+    _store_tuple = (lambda self, cr, uid, ids, c={}: ids, ['quantity'], 10)
+    _po_store_tuple = (_get_po_store, ['framework_agreement_id', 'state'], 20)
+    _po_line_store_tuple = (_get_po_line_store, [], 20)
+
     _columns = {'name': fields.char('Number',
                                     required=True,
                                     readonly=True),
@@ -175,10 +227,10 @@ class framework_agreement(orm.Model):
                 'product_id': fields.many2one('product.product',
                                               'Product',
                                               required=True),
-                'start_date': fields.datetime('Begin of Agreement',
-                                              required=True),
-                'end_date': fields.datetime('End of Agreement',
-                                            required=True),
+                'start_date': fields.date('Begin of Agreement',
+                                          required=True),
+                'end_date': fields.date('End of Agreement',
+                                        required=True),
                 'delay': fields.integer('Lead time in days'),
                 'quantity': fields.integer('Negociated quantity',
                                            required=True),
@@ -189,7 +241,9 @@ class framework_agreement(orm.Model):
                 'available_quantity': fields.function(_get_available_qty,
                                                       type='integer',
                                                       string='Available quantity',
-                                                      readonly=True),
+                                                      readonly=True,
+                                                      store={'framework.agreement': _store_tuple,
+                                                             'purchase.order': _po_store_tuple}),
                 'state': fields.function(_get_state,
                                          fnct_search=_search_state,
                                          string='state',
@@ -277,7 +331,7 @@ class framework_agreement(orm.Model):
         """Get the all the active agreement of a given product at a given date
 
         :param product_id: product id of the product
-        :param lookup_dt: datetime string of the lookup date
+        :param lookup_dt: date string of the lookup date
         :param qty: quantity that should be available if parameter is
                     passed and qty is insuffisant no agreement would be returned
 
@@ -332,7 +386,7 @@ class framework_agreement(orm.Model):
 
         :param product_id: product id of the product
         :param supplier_id: supplier to look for agreement
-        :param lookup_dt: datetime string of the lookup date
+        :param lookup_dt: date string of the lookup date
         :param qty: quantity that should be available if parameter is
         passed and qty is insuffisant no aggrement would be returned
 
@@ -606,6 +660,9 @@ class FrameworkAgreementObservable(object):
             return res
         agr_obj = self.pool['framework.agreement']
         agreement = agr_obj.browse(cr, uid, agreement_id, context=context)
+        if not agreement.date_valid(date, context=context):
+            raise orm.except_orm(_('Invalid date'),
+                                 _('Agreement and purchase date does not match'))
         if agreement.product_id.id != product_id:
             raise orm.except_orm(_('User Error'),
                                  _('Wrong product for choosen agreement'))
@@ -613,7 +670,7 @@ class FrameworkAgreementObservable(object):
             raise orm.except_orm(_('User Error'),
                                  _('Wrong supplier for choosen agreement'))
         res['value'] = {price_field: agreement.get_price(qty, currency=currency)}
-        if agreement.available_quantity < qty:
+        if qty and agreement.available_quantity < qty:
             msg = _("You have ask for a quantity of %s \n"
                     " but there is only %s available"
                     " for current agreement") % (qty, agreement.available_quantity)
