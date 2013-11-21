@@ -80,9 +80,19 @@ class purchase_order(orm.Model):
     _columns = {'framework_agreement_id': fields.many2one('framework.agreement',
                                                           'Agreement')}
 
-    def onchange_agreement(self, cr, uid, ids, agreement_id, context=None):
+    def onchange_agreement(self, cr, uid, ids, agreement_id, partner_id, date, context=None):
         res = {}
-        warning = {'title': _('Agreemnt Warning!'),
+        agr_obj = self.pool['framework.agreement']
+        if agreement_id:
+            agreement = agr_obj.browse(cr, uid, agreement_id, context=context)
+            if not agreement.date_valid(date, context=context):
+                raise orm.except_orm(_('Invalid date'),
+                                     _('Agreement and purchase date does not match'))
+            if agreement.supplier_id.id != partner_id:
+                raise orm.except_orm(_('Invalid agreement'),
+                                     _('Agreement and supplier does not match'))
+
+        warning = {'title': _('Agreement Warning!'),
                    'message': _('If you change the agreement of this order'
                                 ' (and eventually the currency),'
                                 ' existing order lines will not be updated.')}
@@ -101,4 +111,25 @@ class purchase_order(orm.Model):
                                 ' (and eventually the currency),'
                                 ' prices of existing order lines will not be updated.')}
         res['warning'] = warning
+        return res
+
+    def _date_valid(self, cr, uid, agreement_id, date, context=None):
+        """predicate that check that date of invoice is in agreement"""
+        agr_model = self.pool['framework.agreement']
+        return agr_model.date_valid(cr, uid, agreement_id, date, context=context)
+
+    def onchange_date(self, cr, uid, ids, agreement_id, date, context=None):
+        """Check that date is in agreement"""
+        if agreement_id and not self._date_valid(cr, uid, agreement_id, date, context=context):
+            raise orm.except_orm(_('Invalid date'),
+                                 _('Agreement and purchase date does not match'))
+        return {}
+
+    # no context in original def...
+    def onchange_partner_id(self, cr, uid, ids, partner_id, agreement_id):
+        """Override to ensure that partner can not be changed if agreement"""
+        res = super(purchase_order, self).onchange_partner_id(cr, uid, ids, partner_id)
+        if agreement_id:
+            raise orm.except_orm(_('You can not change supplier'),
+                                 _('PO is linked to an agreement'))
         return res

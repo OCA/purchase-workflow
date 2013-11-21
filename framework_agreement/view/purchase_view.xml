@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
   <data>
-    <record id="add_onchange_on_pruchase_order_lin_form" model="ir.ui.view">
-      <field name="name">add onchange on pruchase line form</field>
+    <record id="add_onchange_on_pruchase_order_form" model="ir.ui.view">
+      <field name="name">add onchange on pruchase form</field>
       <field name="model">purchase.order</field>
       <field name="inherit_id" ref="purchase.purchase_order_form" />
       <field name="arch" type="xml">
-        <field name="price_unit" position="replace">
-          <field name="price_unit"
-                 on_change="onchange_price(price_unit, parent.framework_agreement_id, product_qty, parent.pricelist_id)"/>
+        <field name="price_unit" position="attributes">
+          <attribute name="on_change">onchange_price(price_unit, parent.framework_agreement_id, product_qty, parent.pricelist_id)</attribute>
         </field>
-          <field name="pricelist_id" position="after">
-            <field name="framework_agreement_id"
-                   on_change="onchange_agreement(framework_agreement_id)"/>
+        <field name="pricelist_id" position="after">
+          <field name="framework_agreement_id"
+                 on_change="onchange_agreement(framework_agreement_id, partner_id, date_order)"/>
+        </field>
+        <field name="date_order"
+               position="attributes">
+          <attribute name="on_change">onchange_date(framework_agreement_id, date_order)</attribute>
         </field>
       </field>
     </record>
@@ -22,12 +25,10 @@
       <field name="model">purchase.order.line</field>
       <field name="inherit_id" ref="purchase.purchase_order_line_form" />
       <field name="arch" type="xml">
-        <field name="price_unit" position="replace">
-          <field name="price_unit"
-                 on_change="onchange_price(price_unit, parent.framework_agreement_id, product_qty, parent.pricelist_id)"/>
+        <field name="price_unit" position="attributes">
+          <attribute name="on_change">on_change="onchange_price(price_unit, parent.framework_agreement_id, product_qty, parent.pricelist_id)</attribute>
         </field>
       </field>
     </record>
-
   </data>
 </openerp>

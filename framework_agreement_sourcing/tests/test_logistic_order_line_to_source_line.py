@@ -18,7 +18,6 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
 from ..model.logistic_requisition_source import AGR_PROC
 from .common import CommonSourcingSetUp
 
@@ -95,7 +94,6 @@ class TestTransformation(CommonSourcingSetUp):
         self.assertEqual(low_line.procurement_method, AGR_PROC)
         self.assertEqual(low_line.proposed_qty, 400)
         self.assertEqual(low_line.unit_cost, 0.0)
-
 
     def test_03_not_enough_qty_on_all_agreemenst(self):
         """Test that we """
