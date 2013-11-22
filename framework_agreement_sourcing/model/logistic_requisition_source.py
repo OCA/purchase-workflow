@@ -354,7 +354,8 @@ class logistic_requisition_source(orm.Model, BrowseAdapterMixin,
     @id_boilerplate
     def onchange_agreement(self, cr, uid, source_id, agreement_id, req_line_id, qty,
                            proposed_product_id, pricelist_id, context=None):
-
+        if not proposed_product_id or not pricelist_id or not agreement_id:
+            return {}
         currency = self._currency_get(cr, uid, pricelist_id, context=context)
         date = self._get_date(cr, uid, req_line_id, context=context)
         return self.onchange_agreement_obs(cr, uid, source_id, agreement_id, qty,
