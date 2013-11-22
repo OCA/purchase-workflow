@@ -39,10 +39,6 @@
                position="attributes">
             <attribute name="attrs">{'invisible': [('procurement_method', '=', 'fw_agreement')]}</attribute>
           </field>
-          <field name="transport_applicable"
-               position="attributes">
-            <attribute name="attrs">{'invisible': [('procurement_method', '=', 'fw_agreement')]}</attribute>
-          </field>
       </field>
     </record>
 
