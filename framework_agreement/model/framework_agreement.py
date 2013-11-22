@@ -66,7 +66,7 @@ class framework_agreement(orm.Model):
 
         :param agreement: agreement record
 
-        :retruns: (now, start, end)
+        :returns: (now, start, end)
 
         """
         AGDates = namedtuple('AGDates', ['now', 'start', 'end'])
