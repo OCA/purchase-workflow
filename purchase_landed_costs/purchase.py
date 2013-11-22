@@ -27,7 +27,7 @@ import logging
 
 
 class landed_cost_distribution_type(orm.Model):
-    """This is a model to give how we should distribute the amount givenfor 
+    """This is a model to give how we should distribute the amount given for 
     a landed costs. At the begining we use a selection field, but it was impossible
     to filter it depending on the context (in a line or on order). So we replaced it
     by this object, adding is_* method to deal with. Base distribution are defined 
@@ -249,25 +249,28 @@ class landed_cost_position(orm.Model):
         res = {}
         fiscal_position = False
         landed_cost_type = False
-        apply_on = 'line'
+        # order or line depending on which view we are
+        if purchase_order_id:
+            apply_on = 'order'
+            po_obj = self.pool.get('purchase.order')
+            po = po_obj.browse(cr, uid, [purchase_order_id], context=context)[0]
+            fiscal_position = po.fiscal_position or False
+        else:
+            apply_on = 'line'
         if product_id:
             prod_obj = self.pool.get('product.product')
             dist_type_obj = self.pool.get('landed.cost.distribution.type')
             prod = prod_obj.browse(cr, uid, [product_id], context=context)[0]
-            # It's a landed cost relativ to an order
-            if purchase_order_id:
-                po_obj = self.pool.get('purchase.order')
-                po = po_obj.browse(cr, uid, [purchase_order_id], context=context)[0]
-                fiscal_position = po.fiscal_position or False
             account_id = prod_obj._choose_exp_account_from(cr, uid, prod, 
                 fiscal_position=fiscal_position, context=context)
             if prod.landed_cost_type in ('per_unit', 'value'):
                 landed_cost_type = dist_type_obj.search(cr, uid, 
                     [('apply_on','=',apply_on),('landed_cost_type','=',prod.landed_cost_type)], 
-                    context=context)
+                    context=context)[0]
             value = {
                 'distribution_type_id': landed_cost_type,
-                'account_id': account_id}
+                'account_id': account_id,
+                'partner_id': prod.seller_id and prod.seller_id.id or False}
             res = {'value': value}
         return res
 
