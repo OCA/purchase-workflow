@@ -482,7 +482,7 @@ class framework_agreement(orm.Model):
         return partner.property_product_pricelist_purchase.currency_id
 
 
-class Framework_Agreement_pricelist(orm.Model):
+class framework_agreement_pricelist(orm.Model):
     """Price list container"""
 
     _name = "framework.agreement.pricelist"
