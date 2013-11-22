@@ -67,20 +67,23 @@ class landed_cost_position(orm.Model):
         :param float value to convert
         :return: Float value amount in company currency converted at po date"""
         cur_obj = self.pool.get('res.currency')
-        cmp_cur_id = landed_cost.purchase_order_id.company_id.currency_id.id
-        po_cur_id = landed_cost.purchase_order_id.pricelist_id.currency_id.id
-        result = 0.0
-        # Always provide the amount in currency
-        if cmp_cur_id == po_cur_id:
-            result = amount
+        result = amount
+        # In some cases, po is not set, we must take it back from po_line
+        if landed_cost.purchase_order_id:
+            po = landed_cost.purchase_order_id
         else:
-            ctx = context.copy()
-            ctx['date'] = landed_cost.date_po or False
-            result = cur_obj.compute(cr, uid,
-                                     po_cur_id,
-                                     cmp_cur_id,
-                                     amount,
-                                     context=ctx)
+            po = landed_cost.purchase_order_line_id.order_id
+        if po:
+            cmp_cur_id = po.company_id.currency_id.id
+            po_cur_id = po.pricelist_id.currency_id.id
+            if cmp_cur_id != po_cur_id:
+                ctx = context.copy()
+                ctx['date'] = landed_cost.date_po or False
+                result = cur_obj.compute(cr, uid,
+                                         po_cur_id,
+                                         cmp_cur_id,
+                                         amount,
+                                         context=ctx)
         return result
 
     def _get_total_amount(self, cr, uid, landed_cost, context=None):
@@ -301,12 +304,22 @@ class purchase_order_line(orm.Model):
             if order.landed_cost_line_ids:
                 # Base value (Absolute Value)
                 if order.landed_cost_base_value:
-                    landed_costs += (order.landed_cost_base_value / 
+                    try:
+                        landed_costs += (order.landed_cost_base_value / 
                                  order.amount_untaxed * line.price_subtotal)
+                    # We ignore the zero division error and doensn't sum
+                    # matter of function filed computation order
+                    except ZeroDivisionError:
+                        pass
                 # Base quantity (Per Quantity)
                 if order.landed_cost_base_quantity:
-                    landed_costs += (order.landed_cost_base_quantity / 
+                    try:
+                        landed_costs += (order.landed_cost_base_quantity / 
                                  order.quantity_total * line.product_qty)
+                    # We ignore the zero division error and doensn't sum
+                    # matter of function filed computation order
+                    except ZeroDivisionError:
+                        pass
             result[line.id] = landed_costs
         return result
 
@@ -442,7 +455,10 @@ class purchase_order(orm.Model):
         res = super(purchase_order,self)._prepare_order_line_move(cr, uid, order, 
             order_line, picking_id, context=context)
         res['price_unit_net'] =  res['price_unit']
-        res['price_unit'] = order_line.landed_costs / order_line.product_qty        
+        try:
+            res['price_unit'] = order_line.landed_costs / order_line.product_qty
+        except ZeroDivisionError:
+            pass
         return res
 
     def _prepare_landed_cost_inv_line(self, cr, uid, account_id, inv_id, 
