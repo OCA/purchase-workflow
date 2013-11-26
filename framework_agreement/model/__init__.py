@@ -23,4 +23,3 @@ from . import product
 from . import framework_agreement
 from . import purchase
 from . import company
-from . import res_currency
