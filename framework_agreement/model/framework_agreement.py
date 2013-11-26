@@ -60,9 +60,9 @@ class framework_agreement(orm.Model):
             raise ValueError('Agreement start/end dates are incorrect')
 
     def _get_dates(self, agreement, context=None):
-        """Return curent time start datetime and end statime of agreement
+        """Return current time, start date and end date of agreement
 
-        Boiler plate as or returns string instead of date/time objects...
+        Boiler plate as OpenERP returns string instead of date/time objects...
 
         :param agreement: agreement record
 
@@ -410,7 +410,7 @@ class framework_agreement(orm.Model):
         return None
 
     def has_currency(self, cr, uid, agr_id, currency, context=None):
-        """Predicate that check that agrrement has a given currency pricelist
+        """Predicate that check that agreement has a given currency pricelist
 
         :returns: boolean (True if a price list in given currency is present)
 
@@ -460,7 +460,7 @@ class framework_agreement(orm.Model):
     def _get_currency(self, cr, uid, supplier_id, pricelist_id, context=None):
         """Helper to retrieve correct currency.
 
-        It will look for currency on supplied pricelist if avaiable
+        It will look for currency on supplied pricelist if availwichable
         else it will look for partner pricelist currency
 
         :param supplier_id: supplier of agreement
@@ -553,7 +553,7 @@ class FrameworkAgreementObservable(object):
 
         :param qty: requested quantity
         :param currency: currency to get price
-        :param price field: key on wich we should return price
+        :param price field: key on which we should return price
 
         :returns: on change dict
 
@@ -583,7 +583,7 @@ class FrameworkAgreementObservable(object):
         :param date: date to look for agreement
         :param supplier_id: supplier id who has signed an agreement
         :param product_id: product id to look for an agreement
-        :param price field: key on wich we should return price
+        :param price field: key on which we should return price
 
         :returns: (agreement record, status)
 
@@ -624,7 +624,7 @@ class FrameworkAgreementObservable(object):
         :param supplier_id: supplier id who has signed an agreement
         :param pricelist_id: if of prefered pricelist
         :param product_id: product id to look for an agreement
-        :param price field: key on wich we should return price
+        :param price field: key on which we should return price
 
         :returns: on change dict
 
