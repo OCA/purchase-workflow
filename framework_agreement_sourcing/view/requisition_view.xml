@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <record id="add_supplier_and_agreement_on_source_line" model="ir.ui.view">
+      <field name="name">add supplier and agrement on source line</field>
+      <field name="model">logistic.requisition.source</field>
+      <field name="inherit_id" ref="logistic_requisition.view_logistic_requisition_source_form"/>
+      <field name="arch" type="xml">
+        <field name="unit_cost"
+               position="before">
+          <field name="framework_agreement_id"
+                 attrs="{'required': [('procurement_method', '=', 'fw_agreement')],
+                        'invisible': [('procurement_method', '!=', 'fw_agreement')]}"
+                 on_change="onchange_agreement(framework_agreement_id, requisition_line_id, proposed_qty, proposed_product_id, purchase_pricelist_id, context)"/>/>
+          <field name="pricelist_id"
+                 invisible="1"/>
+          <field name="purchase_pricelist_id"
+                 attrs="{'required': [('procurement_method', '=', 'fw_agreement')],
+                        'invisible': [('procurement_method', '!=', 'fw_agreement')]}"
+                 on_change="onchange_pricelist(framework_agreement_id, requisition_line_id, proposed_qty, proposed_product_id, purchase_pricelist_id, context)"
+                 domain="[('type', '=', 'purchase')]"/>
+
+          <field name="supplier_id"
+                 invisible="1"/>
+        </field>
+        <field name="proposed_uom_id"
+               position="attributes">
+            <attribute name="attrs">{'invisible': [('procurement_method', '=', 'fw_agreement')]}</attribute>
+          </field>
+          <field name="unit_cost"
+               position="attributes">
+            <attribute name="attrs">{'invisible': [('procurement_method', '=', 'fw_agreement')]}</attribute>
+          </field>
+          <field name="total_cost"
+               position="attributes">
+            <attribute name="attrs">{'invisible': [('procurement_method', '=', 'fw_agreement')]}</attribute>
+          </field>
+          <field name="price_is"
+               position="attributes">
+            <attribute name="attrs">{'invisible': [('procurement_method', '=', 'fw_agreement')]}</attribute>
+          </field>
+      </field>
+    </record>
+
+    <record id="add_hide_button_create_bids" model="ir.ui.view">
+      <field name="name">hidde button</field>
+      <field name="model">logistic.requisition.source</field>
+      <field name="inherit_id" ref="logistic_requisition.view_logistic_requisition_source_form"/>
+      <field name="priority" eval="10"/>
+      <field name="arch" type="xml">
+          <button position="replace">
+          </button>
+      </field>
+    </record>
+
+
+    <record id="add_create_po_button" model="ir.ui.view">
+      <field name="name">add create po button</field>
+      <field name="model">logistic.requisition.source</field>
+      <field name="inherit_id" ref="logistic_requisition.view_logistic_requisition_source_form"/>
+      <field name="arch" type="xml">
+        <sheet position="before">
+          <header>
+          <button name="action_create_agreement_po_requisition"
+                  context="{}"
+                  string="Create Draft PO"
+                  type="object"
+                  attrs="{'invisible': [('procurement_method', '!=', 'fw_agreement')]}"/>
+          <button name="action_create_po_requisition"
+                  string="Call for Bids"
+                  type="object"
+                  attrs="{'invisible': ['|', ('po_requisition_id', '!=', False), ('procurement_method', '!=', 'procurement')]}"
+                  />
+          </header>
+        </sheet>
+      </field>
+    </record>
+
+    <record id="addd_agreement_source_line_onchange" model="ir.ui.view">
+      <field name="name">addd agreement source line onchange</field>
+      <field name="model">logistic.requisition.source</field>
+      <field name="inherit_id" ref="logistic_requisition.view_logistic_requisition_source_form"/>
+      <field name="arch" type="xml">
+        <data>
+          <field name="procurement_method"
+                 position="attributes">
+            <attribute name="on_change">onchange_sourcing_method(procurement_method, requisition_line_id, proposed_product_id, purchase_pricelist_id, proposed_qty)</attribute>
+          </field>
+
+          <field name="proposed_qty"
+                 position="attributes">
+            <attribute name="on_change">onchange_quantity(procurement_method, requisition_line_id, proposed_qty, proposed_product_id, purchase_pricelist_id)</attribute>
+          </field>
+          <field name="proposed_product_id"
+                 position="attributes">
+            <attribute name="on_change">onchange_product_id(procurement_method, requisition_line_id, proposed_product_id, proposed_qty, purchase_pricelist_id)</attribute>
+          </field>
+
+        </data>
+      </field>
+    </record>
+
+
+    <!-- <record id="add_supplier_and_agreement_on_source_line_embeeded" model="ir.ui.view"> -->
+    <!--      <field name="name">add supplier and agrement on source line</field> -->
+    <!--      <field name="model">logistic.requisition.line</field> -->
+    <!--      <field name="inherit_id" ref="logistic_requisition.view_logistic_requisition_line_form"/> -->
+    <!--      <field name="arch" type="xml"> -->
+    <!--        <field name="proposed_qty" position="after"> -->
+    <!--          <div> -->
+    <!--            <field name="framework_agreement_id_dummy" readonly="1"/> -->
+    <!--            <field name="framework_agreement_id" invisible="1"/> -->
+    <!--            <field name="supplier_id" invisible="1"/> -->
+    <!--            </div> -->
+    <!--        </field> -->
+    <!--      </field> -->
+    <!--    </record> -->
+
+    <!-- <record id="addd_agreement_source_line_onchange_embeeded" model="ir.ui.view"> -->
+    <!--   <field name="name">addd agreement source line onchange</field> -->
+    <!--   <field name="model">logistic.requisition.line</field> -->
+    <!--   <field name="inherit_id" ref="logistic_requisition.view_logistic_requisition_line_form"/> -->
+    <!--   <field name="arch" type="xml"> -->
+    <!--     <data> -->
+    <!--       <field name="procurement_method" -->
+    <!--              onchange="onchange_sourcing_method(procurement_method, proposed_product_id, proposed_qty)"> -->
+    <!--       </field> -->
+
+    <!--       <field name="unit_cost" -->
+    <!--              onchange="onchange_price(procurement_method, unit_cost, proposed_product_id, supplier_id, proposed_qty)"> -->
+    <!--       </field> -->
+
+    <!--       <field name="proposed_product_id" -->
+    <!--              onchange="onchange_product_id(procurement_method, unit_cost, proposed_product_id, proposed_qty)"> -->
+    <!--       </field> -->
+    <!--       <field name="proposed_qty" -->
+    <!--              onchange="onchange_product_id(procurement_method, proposed_qty, supplier_id, proposed_product_id)"> -->
+    <!--       </field> -->
+
+    <!--     </data> -->
+    <!--   </field> -->
+    <!-- </record> -->
+
+
+  </data>
+</openerp>

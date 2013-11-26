@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <record id="agreement in product view" model="ir.ui.view">
+      <field name="name">agreement in product view</field>
+      <field name="model">product.product</field>
+      <field name="inherit_id" ref="product.product_normal_form_view"/>
+      <field name="arch" type="xml">
+        <group string="Purchase" position="after">
+          <group string="Framework agreements (LTA)" colspan="4">
+            <field name="framework_agreement_ids" nolabel="1">
+              <form version="7.0" string="Framework Agreement">
+                <header>
+                  <field name="state"
+                         widget="statusbar"
+                         nolabel="1"
+                         statusbar_visible="future,running,consumed,closed"
+                         statusbar_colors='{"future": "blue", "closed": "blue", "running": "green", "consumed": "red"}'/>
+                </header>
+                <sheet>
+                  <group>
+                    <field name="name" />
+                  </group>
+                  <group>
+                    <group>
+                      <field name="company_id" groups="base.group_multi_company" widget="selection"/>
+                      <field name="supplier_id"/>
+                    </group>
+                    <group>
+                      <field name="delay"/>
+                      <field name="quantity"/>
+                      <field name="available_quantity"/>
+                    </group>
+                  </group>
+
+                  <group string="Dates">
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                  </group>
+                  <notebook>
+                    <page string="Negociated price lists" colspan="4">
+                      <field name="framework_agreement_pricelist_ids">
+                        <tree type="7.0" string="Price list">
+                          <field name="currency_id"/>
+                        </tree>
+                        <form type="7.0" string="Price list">
+                          <group>
+                            <field name="currency_id"/>
+                          </group>
+                          <newline/>
+                          <notebook>
+                            <page string="Price lines" colspan="4">
+                              <field name="framework_agreement_line_ids"
+                                     nolabel="1">
+                                <tree type="7.0"
+                                      string="Price line"
+                                      editable="top">
+                                  <field name="quantity"/>
+                                  <field name="price"/>
+                                </tree>
+                              </field>
+                            </page>
+                          </notebook>
+                        </form>
+                      </field>
+                    </page>
+                  </notebook>
+                </sheet>
+              </form>
+            </field>
+          </group>
+        </group>
+      </field>
+    </record>
+  </data>
+</openerp>
