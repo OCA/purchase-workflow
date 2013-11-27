@@ -46,7 +46,7 @@ class purchase_order_line(orm.Model, FrameworkAgreementObservable):
     def onchange_product_id(self, cr, uid, ids, pricelist_id, product_id, qty, uom_id,
                             partner_id, date_order=False, fiscal_position_id=False,
                             date_planned=False, name=False, price_unit=False,
-                            context=None, **kwargs):
+                            context=None, agreement_id=False, **kwargs):
         """ We override this function to check qty change (I know...)
 
         The price retrieval is managed by the override of product.pricelist.price_get
@@ -55,11 +55,14 @@ class purchase_order_line(orm.Model, FrameworkAgreementObservable):
 
         """
         # rock n'roll
-
+        if agreement_id:
+            context['from_agreement_id'] = agreement_id
         res = super(purchase_order_line, self).onchange_product_id(
                 cr, uid, ids, pricelist_id, product_id, qty, uom_id,
                 partner_id, date_order=date_order, fiscal_position_id=fiscal_position_id,
                 date_planned=date_planned, name=name, price_unit=price_unit, context=context, **kwargs)
+        if not product_id or not agreement_id:
+            return res
         product = self.pool['product.product'].browse(cr, uid, product_id, context=context)
         if product.type == 'product' and agreement_id:
             agreement = self.pool['framework.agreement'].browse(cr, uid,
