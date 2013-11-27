@@ -18,6 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from datetime import datetime
 from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
 from openerp.osv import orm, fields
 
@@ -62,7 +63,7 @@ class product_pricelist(orm.Model):
             if (pricelist_id == 'item_id' or not
                     self._plist_is_agreement(cr, uid, pricelist_id, context=context)):
                 continue
-            now = datetime.strptime(fields.datetime.now(),
+            now = datetime.strptime(fields.date.today(),
                                     DEFAULT_SERVER_DATE_FORMAT)
             date = context.get('date') or context.get('date_order') or now
             if context.get('from_agreement_id'):
