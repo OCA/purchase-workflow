@@ -37,9 +37,15 @@ class purchase_order_line(orm.Model, FrameworkAgreementObservable):
                                                          relation='framework.agreement',
                                                          string='Agreement')}
 
-    def onchange_price(self, cr, uid, ids, price, agreement_id, qty, pricelist_id, context=None):
+    def onchange_price(self, cr, uid, ids, price, agreement_id, qty, pricelist_id,
+                       product_id, context=None):
         """Raise a warning if a agreed price is changed"""
+        if not product_id or not agreement_id:
+            return {}
         currency = self._currency_get(cr, uid, pricelist_id, context=context)
+        product = self.pool['product.product'].browse(cr, uid, product_id, context=context)
+        if product.type != 'product':
+            return {}
         return self.onchange_price_obs(cr, uid, ids, price, agreement_id, currency=currency,
                                        qty=qty, context=None)
 
