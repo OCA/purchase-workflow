@@ -61,6 +61,8 @@ class purchase_order_line(orm.Model, FrameworkAgreementObservable):
 
         """
         # rock n'roll
+        if context is None:
+            context = {}
         if agreement_id:
             context['from_agreement_id'] = agreement_id
         res = super(purchase_order_line, self).onchange_product_id(
