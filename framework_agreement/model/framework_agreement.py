@@ -198,20 +198,21 @@ class framework_agreement(orm.Model):
         """
         return self._compute_state(cr, uid, ids, field_name, arg, context=context)
 
-    def _get_po_store(self, cursor, uid, ids, context):
+    def _get_po_store(self, cr, uid, ids, context=None):
         res = set()
         po_obj = self.pool.get('purchase.order')
-        for agr_id in ids:
-            po_ids = po_obj.search(cursor, uid, [('framework_agreement_id', '=', agr_id)])
-            res.update(po_ids)
+        for row in po_obj.browse(cr, uid, ids, context=context):
+            if row.framework_agreement_id:
+                res.update([row.framework_agreement_id.id])
         return res
 
-    def _get_po_line_store(self, cursor, uid, ids, context):
+    def _get_po_line_store(self, cr, uid, ids, context=None):
+        # TODO DRY with _get_po_store
         res = set()
         pol_obj = self.pool.get('purchase.order.line')
-        for agr_id in ids:
-            pol_ids = pol_obj.search(cursor, uid, [('framework_agreement_id', '=', agr_id)])
-            res.update(pol_ids)
+        for row in pol_obj.browse(cr, uid, ids, context=context):
+            if row.framework_agreement_id:
+                res.update([row.framework_agreement_id.id])
         return res
 
     _store_tuple = (lambda self, cr, uid, ids, c={}: ids, ['quantity'], 10)
@@ -243,7 +244,8 @@ class framework_agreement(orm.Model):
                                                       string='Available quantity',
                                                       readonly=True,
                                                       store={'framework.agreement': _store_tuple,
-                                                             'purchase.order': _po_store_tuple}),
+                                                             'purchase.order': _po_store_tuple,
+                                                             'purchase.order.line': _po_line_store_tuple}),
                 'state': fields.function(_get_state,
                                          fnct_search=_search_state,
                                          string='state',
