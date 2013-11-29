@@ -29,6 +29,7 @@ class TestAgreementPriceList(test_common.TransactionCase, BaseAgreementTestMixin
                                               'start_date': start_date,
                                               'end_date': end_date,
                                               'delay': 5,
+                                              'draft': False,
                                               'quantity': 1500})
 
         pl_id = self.agreement_pl_model.create(cr, uid,
