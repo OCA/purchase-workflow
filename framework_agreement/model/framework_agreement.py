@@ -112,7 +112,12 @@ class framework_agreement(orm.Model):
         """
         res = {}
         for agreement in self.browse(cr, uid, ids, context=context):
-            dates_state = self._check_running_date(cr, agreement, context=context)
+            if (agreement.draft or not agreement.start_date or
+                    not agreement.end_date):
+                res[agreement.id] = 'draft'
+                continue
+            dates_state = self._check_running_date(cr, agreement,
+                                                   context=context)
             if dates_state == 'running':
                 if agreement.available_quantity <= 0:
                     res[agreement.id] = 'consumed'
@@ -150,12 +155,14 @@ class framework_agreement(orm.Model):
             elif operator == 'not in'and isinstance(value, list):
                 found_ids += [frm['id'] for frm in res if frm['state'] not in value]
             else:
-                raise NotImplementedError('Search operator %s not implemented for value %s'
+                raise NotImplementedError('Search operator %s not implemented'
+                                          ' for value %s'
                                           % (operator, value))
         to_return = set(found_ids)
         return [('id', 'in', [x['id'] for x in to_return])]
 
-    def _compute_available_qty(self, cr, uid, ids, field_name, arg, context=None):
+    def _compute_available_qty(self, cr, uid, ids, field_name, arg,
+                               context=None):
         """Compute available qty of current agreements.
 
         Consumption is based on confirmed po lines.
@@ -188,7 +195,8 @@ class framework_agreement(orm.Model):
         Please refer to function field documentation for more details.
 
         """
-        return self._compute_available_qty(cr, uid, ids, field_name, arg, context=context)
+        return self._compute_available_qty(cr, uid, ids, field_name, arg,
+                                           context=context)
 
     def _get_state(self, cr, uid, ids, field_name, arg, context=None):
         """ Compute current state of agreement based on date and consumption
@@ -196,7 +204,27 @@ class framework_agreement(orm.Model):
         Please refer to function field documentation for more details.
 
         """
-        return self._compute_state(cr, uid, ids, field_name, arg, context=context)
+        return self._compute_state(cr, uid, ids, field_name, arg,
+                                   context=context)
+
+    def open_agreement(self, cr, uid, ids, context=None):
+        """Open agreement
+
+        Agreement goes from state draft to X
+
+        """
+        if isinstance(ids, (int, long)):
+            ids = [ids]
+            import pdb; pdb.set_trace()
+            for agr in self.browse(cr, uid, ids, context=context):
+                mandatory = [agr.start_date,
+                             agr.end_date,
+                             agr.framework_agreement_pricelist_id]
+                if not all(mandatory):
+                    raise orm.except_orm(_('Data are missing'),
+                                         _('Please enter dates'
+                                           ' and price informations'))
+        self.write(cr, uid, ids, {'draft': False}, context=context)
 
     def _get_po_store(self, cr, uid, ids, context=None):
         res = set()
@@ -228,17 +256,14 @@ class framework_agreement(orm.Model):
                 'product_id': fields.many2one('product.product',
                                               'Product',
                                               required=True),
-                'start_date': fields.date('Begin of Agreement',
-                                          required=True),
-                'end_date': fields.date('End of Agreement',
-                                        required=True),
+                'start_date': fields.date('Begin of Agreement'),
+                'end_date': fields.date('End of Agreement'),
                 'delay': fields.integer('Lead time in days'),
                 'quantity': fields.integer('Negociated quantity',
                                            required=True),
                 'framework_agreement_pricelist_ids': fields.one2many('framework.agreement.pricelist',
                                                                      'framework_agreement_id',
-                                                                     'Price lists',
-                                                                     required=True),
+                                                                     'Price lists'),
                 'available_quantity': fields.function(_get_available_qty,
                                                       type='integer',
                                                       string='Available quantity',
@@ -250,13 +275,15 @@ class framework_agreement(orm.Model):
                                          fnct_search=_search_state,
                                          string='state',
                                          type='selection',
-                                         selection=[('future', 'Future'),
+                                         selection=[('draft', 'Draft'),
+                                                    ('future', 'Future'),
                                                     ('running', 'Running'),
                                                     ('consumed', 'Consumed'),
                                                     ('closed', 'Closed')],
                                          readonly=True),
                 'company_id': fields.many2one('res.company',
-                                              'Company')
+                                              'Company'),
+                'draft': fields.boolean('Is draft'),
                 }
 
     def _sequence_get(self, cr, uid, context=None):
@@ -283,6 +310,7 @@ class framework_agreement(orm.Model):
             # we do not add current id in domain for readability reasons
             overlap = self.search(cr, uid,
                                   ['&',
+                                      ('draft', '=', False),
                                       ('product_id', '=', agreement.product_id.id),
                                       '|',
                                          '&',
@@ -319,7 +347,8 @@ class framework_agreement(orm.Model):
         return self._check_overlap(cr, uid, ids, context=context)
 
     _defaults = {'name': _sequence_get,
-                 'company_id': _company_get}
+                 'company_id': _company_get,
+                 'draft': True}
 
     _sql_constraints = [('date_priority',
                          'check(start_date < end_date)',
@@ -342,7 +371,8 @@ class framework_agreement(orm.Model):
         """
         search_args = [('product_id', '=', product_id),
                        ('start_date', '<=', lookup_dt),
-                       ('end_date', '>=', lookup_dt)]
+                       ('end_date', '>=', lookup_dt),
+                       ('draft', '=', False)]
         if qty:
             search_args.append(('available_quantity', '>=', qty))
         agreement_ids = self.search(cr, uid, search_args)
@@ -384,8 +414,7 @@ class framework_agreement(orm.Model):
 
     def get_product_agreement(self, cr, uid, product_id, supplier_id,
                               lookup_dt, qty=None, context=None):
-        """Get the matching agreement for a given product/supplier at a given date
-
+        """Get the matching agreement for a given product/supplier at date
         :param product_id: product id of the product
         :param supplier_id: supplier to look for agreement
         :param lookup_dt: date string of the lookup date
@@ -398,7 +427,8 @@ class framework_agreement(orm.Model):
         search_args = [('product_id', '=', product_id),
                        ('supplier_id', '=', supplier_id),
                        ('start_date', '<=', lookup_dt),
-                       ('end_date', '>=', lookup_dt)]
+                       ('end_date', '>=', lookup_dt),
+                       ('draft', '=', False)]
         if qty:
             search_args.append(('available_quantity', '>=', qty))
         agreement_ids = self.search(cr, uid, search_args)

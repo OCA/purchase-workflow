@@ -76,10 +76,10 @@ class purchase_order_line(orm.Model, FrameworkAgreementObservable):
             agreement = self.pool['framework.agreement'].browse(cr, uid,
                                                                 agreement_id,
                                                                 context=context)
-            if agreement.product_id != product_id:
-                return {'warning':  _('Non service Product not in agreement')}
+            if agreement.product_id.id != product_id:
+                return {'warning':  _('Product not in agreement')}
             currency = self._currency_get(cr, uid, pricelist_id, context=context)
-            res['value']['price_unit'] = agreement.price_get(qty, currency=currency)
+            res['value']['price_unit'] = agreement.get_price(qty, currency=currency)
         return res
 
 

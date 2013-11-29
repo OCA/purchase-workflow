@@ -47,6 +47,7 @@ class TestAgreementOnChange(test_common.TransactionCase, BaseAgreementTestMixin)
                                               'start_date': start_date,
                                               'end_date': end_date,
                                               'delay': 5,
+                                              'draft': False,
                                               'quantity': 1500})
         pl_id = self.agreement_pl_model.create(cr, uid,
                                                {'framework_agreement_id': agr_id,
@@ -140,7 +141,7 @@ class TestAgreementOnChange(test_common.TransactionCase, BaseAgreementTestMixin)
         res = self.po_line_model.onchange_price(cr, uid, False, 20.0,
                                                 self.agreement.id,
                                                 200,
-                                                plist.id
+                                                plist.id,
                                                 self.agreement.product_id.id)
         self.assertTrue(res.get('warning'))
 
@@ -155,7 +156,7 @@ class TestAgreementOnChange(test_common.TransactionCase, BaseAgreementTestMixin)
                                                      200,
                                                      self.agreement.product_id.uom_id.id,
                                                      self.agreement.supplier_id.id,
-                                                     date_order=self.agreement.start_date[0:10]
+                                                     date_order=self.agreement.start_date[0:10],
                                                      fiscal_position_id=False,
                                                      date_planned=False,
                                                      name=False,

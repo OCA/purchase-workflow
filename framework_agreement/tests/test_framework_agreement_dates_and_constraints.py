@@ -47,6 +47,7 @@ class TestAgreementState(test_common.TransactionCase, BaseAgreementTestMixin):
                                               'quantity': 20})
 
         agreement = self.agreement_model.browse(cr, uid, agr_id)
+        agreement.open_agreement()
         self.assertEqual(agreement.state, 'future')
 
     def test_01_past(self):
@@ -65,6 +66,7 @@ class TestAgreementState(test_common.TransactionCase, BaseAgreementTestMixin):
                                               'delay': 5,
                                               'quantity': 20})
         agreement = self.agreement_model.browse(cr, uid, agr_id)
+        agreement.open_agreement()
         self.assertEqual(agreement.state, 'closed')
 
     def test_02_running(self):
@@ -83,6 +85,7 @@ class TestAgreementState(test_common.TransactionCase, BaseAgreementTestMixin):
                                               'delay': 5,
                                               'quantity': 20})
         agreement = self.agreement_model.browse(cr, uid, agr_id)
+        agreement.open_agreement()
         self.assertEqual(agreement.state, 'running')
 
     def test_03_date_orderconstraint(self):
@@ -98,6 +101,7 @@ class TestAgreementState(test_common.TransactionCase, BaseAgreementTestMixin):
                                          'product_id': self.product_id,
                                          'start_date': end_date,
                                          'end_date': start_date,
+                                         'draft': False,
                                          'delay': 5,
                                          'quantity': 20})
 
@@ -113,6 +117,7 @@ class TestAgreementState(test_common.TransactionCase, BaseAgreementTestMixin):
                                      'product_id': self.product_id,
                                      'start_date': start_date,
                                      'end_date': end_date,
+                                     'draft': False,
                                      'delay': 5,
                                      'quantity': 20})
         start_date = self.now - timedelta(days=2)
@@ -125,5 +130,6 @@ class TestAgreementState(test_common.TransactionCase, BaseAgreementTestMixin):
                                          'product_id': self.product_id,
                                          'start_date': start_date,
                                          'end_date': end_date,
+                                         'draft': False,
                                          'delay': 5,
                                          'quantity': 20})

@@ -56,6 +56,7 @@ class TestAvailabeQty(test_common.TransactionCase, BaseAgreementTestMixin):
                                           'quantity': 0,
                                           'price': 77.0})
         self.agreement = self.agreement_model.browse(cr, uid, agr_id)
+        self.agreement.open_agreement()
 
     def test_00_noting_consumed(self):
         """Test non consumption"""

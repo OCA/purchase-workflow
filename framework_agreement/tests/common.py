@@ -40,6 +40,7 @@ class BaseAgreementTestMixin(object):
                                      DEFAULT_SERVER_DATE_FORMAT)
         self.product_id = self.registry('product.product').create(cr, uid,
                                                                   {'name': 'test_1',
+                                                                   'type': 'product',
                                                                    'list_price': 10.00})
         self.supplier_id = self.registry('res.partner').create(cr, uid, {'name': 'toto',
                                                                          'supplier': 'True'})

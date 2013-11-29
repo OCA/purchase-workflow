@@ -11,6 +11,7 @@
         </field>
         <field name="pricelist_id" position="after">
           <field name="framework_agreement_id"
+                 domain="[('draft', '=', False)]"
                  on_change="onchange_agreement(framework_agreement_id, partner_id, date_order)"/>
         </field>
         <field name="date_order"
