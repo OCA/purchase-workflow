@@ -39,9 +39,7 @@ class product_template(orm.Model):
     }
 
     _defaults = {
-        'landed_cost_type': lambda self, cr, uid, context: 
-            context['landed_cost_type'] if 'landed_cost_type'\
-                in context else None
+        'landed_cost_type': lambda self, cr, uid, context: context.get('landed_cost_type')
     } 
 
 
