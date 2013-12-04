@@ -256,6 +256,7 @@ class framework_agreement(orm.Model):
                 'product_id': fields.many2one('product.product',
                                               'Product',
                                               required=True),
+                'origin': fields.char('Origin'),
                 'start_date': fields.date('Begin of Agreement'),
                 'end_date': fields.date('End of Agreement'),
                 'delay': fields.integer('Lead time in days'),

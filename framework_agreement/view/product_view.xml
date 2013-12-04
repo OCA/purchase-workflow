@@ -26,6 +26,7 @@
                   <group>
                     <field name="name"/>
                     <field name="draft" invisible="1"/>
+                    <field name="origin"/>
                   </group>
                   <group>
                     <group>

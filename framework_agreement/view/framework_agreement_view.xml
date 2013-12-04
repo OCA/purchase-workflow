@@ -40,6 +40,7 @@
           <sheet>
             <group>
               <field name="name"/>
+              <field name="origin"/>
               <field name="draft" invisible="1"/>
             </group>
             <group>
