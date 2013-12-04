@@ -29,3 +29,12 @@ class product_product(orm.Model):
                                                            'product_id',
                                                            'Framework Agreements (LTA)')
                 }
+
+    def copy(self, cr, uid, id, default=None, context=None):
+        """Override of copy in order not to copy agreements"""
+        if not default:
+            default = {}
+        default['framework_agreement_ids'] = False
+        return super(product_product, self).copy(cr, uid, id,
+                                                 default=default,
+                                                 context=context)
