@@ -142,14 +142,17 @@ class PurchaseRequisition(orm.Model):
                              context=context)
         return super(PurchaseRequisition, self).generate_po(cr, uid, [ids], context=context)
 
+
+
     def cancel_quotation(self, cr, uid, tender, context=None):
         """
         Called from generate_po. Cancel only draft and sent rfq
         """
         po = self.pool.get('purchase.order')
         wf_service = netsvc.LocalService("workflow")
+        tender.refresh()
         for quotation in tender.purchase_ids:
-            if quotation.state in ['draft', 'sent']:
+            if quotation.state in ['draft', 'sent', 'bid']:
                 wf_service.trg_validate(uid, 'purchase.order', quotation.id, 'purchase_cancel', cr)
                 po.message_post(cr, uid, [quotation.id],
                         body=_('Canceled by the call for bids associated to this request for quotation.'),
