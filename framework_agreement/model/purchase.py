@@ -44,7 +44,7 @@ class purchase_order_line(orm.Model, FrameworkAgreementObservable):
             return {}
         currency = self._currency_get(cr, uid, pricelist_id, context=context)
         product = self.pool['product.product'].browse(cr, uid, product_id, context=context)
-        if product.type != 'product':
+        if product.type == 'service':
             return {}
         return self.onchange_price_obs(cr, uid, ids, price, agreement_id, currency=currency,
                                        qty=qty, context=None)
@@ -72,7 +72,7 @@ class purchase_order_line(orm.Model, FrameworkAgreementObservable):
         if not product_id or not agreement_id:
             return res
         product = self.pool['product.product'].browse(cr, uid, product_id, context=context)
-        if product.type == 'product' and agreement_id:
+        if product.type != 'service' and agreement_id:
             agreement = self.pool['framework.agreement'].browse(cr, uid,
                                                                 agreement_id,
                                                                 context=context)
@@ -110,10 +110,10 @@ class purchase_order(orm.Model):
         res['warning'] = warning
         return res
 
-    def onchange_pricelist(self, cr, uid, ids, pricelist_id, context=None):
+    def onchange_pricelist(self, cr, uid, ids, pricelist_id, line_ids, context=None):
         res = super(purchase_order, self).onchange_pricelist(cr, uid, ids, pricelist_id,
                                                              context=context)
-        if not pricelist_id:
+        if not pricelist_id or not line_ids:
             return res
 
 
