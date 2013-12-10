@@ -288,7 +288,7 @@ class framework_agreement(orm.Model):
                 }
 
     def _sequence_get(self, cr, uid, context=None):
-        return self.pool['ir.sequence'].get(cr, uid, 'framework.agreement')
+        return self.pool['ir.sequence'].next_by_code(cr, uid, 'framework.agreement')
 
     def _company_get(self, cr, uid, context=None):
         return self.pool['res.company']._company_default_get(cr, uid,
