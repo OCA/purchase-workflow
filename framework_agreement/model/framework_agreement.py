@@ -215,7 +215,6 @@ class framework_agreement(orm.Model):
         """
         if isinstance(ids, (int, long)):
             ids = [ids]
-            import pdb; pdb.set_trace()
             for agr in self.browse(cr, uid, ids, context=context):
                 mandatory = [agr.start_date,
                              agr.end_date,
