@@ -83,6 +83,13 @@ TODO/Ideas:
  * Manage multi-currencies landed costs in PO
  * Have the shipped date in landed cost instead of PO date for a better analysis
  * Compute a average purchase price per products while keep cost price as it is now
+
+ Contributors:
+ -------------
+
+  * Joël Grand-Guillaume <joel.grand-guillaume@camptocamp.com>
+  * Ferdinand Gasauer <ferdinand.gasauer@camptocamp.com>
+
 """,
     'author': 'Camptocamp',
     'depends': ['purchase' ],
