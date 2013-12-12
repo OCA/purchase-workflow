@@ -23,6 +23,8 @@ from openerp.osv import orm, fields
 import openerp.addons.decimal_precision as dp
 import logging
 
+_logger = logging.getLogger(__name__)
+
 
 class stock_move(orm.Model):
     _inherit = "stock.move"
@@ -39,7 +41,6 @@ class stock_move(orm.Model):
 
 class stock_partial_picking(orm.TransientModel):
     _inherit = "stock.partial.picking"
-    _logger = logging.getLogger(__name__)
 
     def _product_cost_for_average_update(self, cr, uid, move):
         # Be aware of an OpenERP Bug !! If your price_type
@@ -64,6 +65,7 @@ class stock_partial_picking(orm.TransientModel):
         self._logger.debug('res stock_partial_picking `%s`', res)
         # Re-take the cost from the PO line landed_costs field
         if move.purchase_line_id:
-            res['cost'] = move.purchase_line_id.landed_costs / move.purchase_line_id.product_qty
+            res['cost'] = (move.purchase_line_id.landed_costs /
+                           move.purchase_line_id.product_qty)
         self._logger.debug('res stock_partial_picking `%s`', res)
         return res
