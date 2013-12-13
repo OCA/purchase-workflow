@@ -1,0 +1,20 @@
+-
+  !record {model: landed.cost.distribution.type, id: dist_unit}:
+    name: Distributed by Quantity
+    landed_cost_type: per_unit
+    apply_on: order
+-
+  !record {model: landed.cost.distribution.type, id: dist_value}:
+    name: Distributed by Value
+    landed_cost_type: value
+    apply_on: order
+-
+  !record {model: landed.cost.distribution.type, id: per_unit}:
+    name: Multiplied by Quantity
+    landed_cost_type: per_unit
+    apply_on: line
+-
+  !record {model: landed.cost.distribution.type, id: value}:
+    name: Simple Value
+    landed_cost_type: value
+    apply_on: line

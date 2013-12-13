@@ -1,0 +1,5 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+access_landed_cost,landed.cost.position,model_landed_cost_position,purchase.group_purchase_user,1,1,1,1
+access_landed_cost_manager,landed.cost.position,model_landed_cost_position,purchase.group_purchase_manager,1,1,1,1
+access_landed_cost_distribution_type_user,landed.cost.distribution user,model_landed_cost_distribution_type,purchase.group_purchase_user,1,0,0,0
+access_landed_cost_distribution_type_manager,landed.cost.distribution manager.type,model_landed_cost_distribution_type,purchase.group_purchase_manager,1,1,1,1

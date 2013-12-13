@@ -1,0 +1,144 @@
+-
+  Ensure main company, price_type of standard_price and pricelist are in EUR
+-
+ !record {model: res.company, id: base.main_company}:
+    currency_id: base.EUR
+-
+ !record {model: product.price.type, id: product.standard_price}:
+    currency_id: base.EUR
+-
+ !record {model: product.pricelist, id: purchase.list0}:
+    currency_id: base.EUR 
+-
+  Affect the admin user to the main company
+-
+ !record {model: res.users, id: base.user_root}:
+    company_id: base.main_company 
+-
+  Create a product with landed type for lines
+-
+  !record {model: product.product, id: product_product_lcost_03}:
+    categ_id: product.product_category_1
+    cost_method: standard
+    landed_cost_type: per_unit
+    name: Line fees
+    standard_price: 20.0
+    list_price: 20.0
+    type: service
+    uom_id: product.product_uom_unit
+    uom_po_id: product.product_uom_unit
+    volume: 0.0
+    warranty: 0.0
+    weight: 0.0
+    weight_net: 0.0
+-
+  Create a wine product E with an avg price of 100
+-
+  !record {model: product.product, id: product_product_e_avg_01}:
+    categ_id: product.product_category_1
+    cost_method: standard
+    name: Wine E
+    standard_price: 100.0
+    list_price: 150.0
+    type: product
+    cost_method: average
+    uom_id: product.product_uom_unit
+    uom_po_id: product.product_uom_unit
+-
+  Create a purchase order with two lines and one landed cost based on quantity
+  And one landed cost for the first line
+-
+  !record {model: purchase.order, id: purchase_order_lcost_03}:
+    partner_id: res_partner_supplier_01
+    invoice_method: order
+    location_id: location_stock_01
+    pricelist_id: purchase.list0
+    order_line:
+      - product_id: product_product_e_avg_01
+        price_unit: 100
+        product_qty: 15.0
+        landed_cost_line_ids:
+          - product_id: product_product_lcost_03
+            amount: 20
+            partner_id: res_partner_supplier_02
+            generate_invoice: 1
+            distribution_type_id: per_unit
+      - product_id: product_product_b_avg_01
+        price_unit: 200
+        product_qty: 5.0
+    landed_cost_line_ids:
+      - product_id: product_product_lcost_01
+        amount: 50
+        partner_id: res_partner_supplier_02
+        generate_invoice: 1
+        distribution_type_id: dist_unit
+-
+  Test the landed costs computation for whole order
+-
+  !python {model: purchase.order}: |
+    po = self.browse(cr, uid, ref('purchase_order_lcost_03'))
+    for line in po.order_line:
+      # Compute pro-rata of quantity for line
+      value = (line.product_qty / (15+5)) * 50
+      assert line.landing_costs_order == value, "The landing cost based on quantity has not been computed correctly"
+-
+  Test the landed costs computation of the lines
+-
+  !python {model: purchase.order}: |
+    po = self.browse(cr, uid, ref('purchase_order_lcost_03'))
+    for line in po.order_line:
+      if line.product_id.name == 'Wine E':
+        # Value for the first line should be equal to landed cost of the line * qty
+        value_landing = 20 * line.product_qty
+        # value is landing value + landing cost order + price_subtotal of po line
+        value_landed = value_landing + (line.product_qty / (15+5)) * 50 + line.price_subtotal
+        assert line.landing_costs == value_landing, "The landing cost of the line has not been computed correctly"
+        assert line.landed_costs == value_landed, "The landed costs of the line has not been computed correctly"
+      elif line.product_id.name == 'Wine B':
+        # Value for the first line should be equal to landed cost of the line * qty
+        value_landing = 0 * line.product_qty
+        # value is landing value + landing cost order + price_subtotal of po line
+        value_landed = value_landing + (line.product_qty / (15+5)) * 50 + line.price_subtotal
+        assert line.landing_costs == value_landing, "The landing cost of the line has not been computed correctly"
+        assert line.landed_costs == value_landed, "The landed costs of the line has not been computed correctly"
+-
+  I confirm the order where invoice control is 'Bases on order'.
+-
+  !workflow {model: purchase.order, action: purchase_confirm, ref: purchase_order_lcost_03}
+-
+  I check that the landed cost invoice and PO one is generated from PO confirmation
+-
+  !python {model: purchase.order}: |
+    purchase_order = self.browse(cr, uid, ref("purchase_order_lcost_03"))
+    assert len(purchase_order.invoice_ids) == 3, "3 invoices (PO + landed cost) should have been generated on order confirmation."
+-
+  Reception is ready for process, make it and check moves value
+-
+  !python {model: stock.partial.picking}: |
+    pick_ids = self.pool.get('purchase.order').browse(cr, uid, ref("purchase_order_lcost_03")).picking_ids
+    partial_id = self.create(cr, uid, {},context={'active_model': 'stock.picking','active_ids': [pick_ids[0].id]})
+    self.do_partial(cr, uid, [partial_id])
+    picking = self.pool.get('stock.picking').browse(cr, uid, [pick_ids[0].id])[0]
+    for move in picking.move_lines:
+      if move.product_id.name == 'Wine E':
+        assert move.price_unit == 122.5,"Technical field price_unit of Wine E stock move should record the landed_costs, not purchase price"
+        assert move.price_unit_net == 100.0,"Technical field price_unit of Wine E stock move should record the purchase price"
+      elif move.product_id.name == 'Wine B':
+        assert move.price_unit == 202.5,"Technical field price_unit of Wine B stock move should record the landed_costs, not purchase price"
+        assert move.price_unit_net == 200.0,"Technical field price_unit_net of Wine B stock move should record the purchase price"
+-
+  I check that purchase order is shipped.
+-
+  !python {model: purchase.order}: |
+     assert self.browse(cr, uid, ref("purchase_order_lcost_03")).shipped == True,"Purchase order should be delivered"
+-
+  I check that avg price of products is computed with landed costs
+-
+  !python {model: product.product}: |
+     # computed as : ((15/20) * 50 + 100 * 15) / 15
+     value_a = 122.5
+     # Here this scenario : landed_costs_based_on_quantity set the AVG price to 202.5; 5 PCE in stock
+     # computed as : ((5 * 202.5) + ( 5 * 202.5)) / 10
+     value_b = 202.5
+     assert self.browse(cr, uid, ref("product_product_e_avg_01")).standard_price == value_a,"Avg price for product Wine E is wrongly computed"
+     assert self.browse(cr, uid, ref("product_product_b_avg_01")).standard_price == value_b,"Avg price for product Wine B is wrongly computed"

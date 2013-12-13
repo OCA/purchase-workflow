@@ -1,0 +1,219 @@
+-
+  Setup the pricelist as CHF (rate 1.3086) while keeping company and price_type as EUR
+-
+ !record {model: res.currency.rate, id: base.rateCHF}:
+    rate: 1.3086
+    currency_id: base.CHF
+    name: !eval time.strftime('%Y-01-01')
+-
+ !record {model: res.currency.rate, id: base.rateEUR}:
+    rate: 1.0
+    currency_id: base.EUR
+    name: !eval time.strftime('%Y-01-01')
+-
+ !record {model: res.company, id: base.main_company}:
+    currency_id: base.EUR
+-
+ !record {model: product.price.type, id: product.standard_price}:
+    currency_id: base.EUR
+-
+ !record {model: product.pricelist, id: purchase.list0}:
+    currency_id: base.CHF 
+-
+  Affect the admin user to the main company
+-
+ !record {model: res.users, id: base.user_root}:
+    company_id: base.main_company 
+-
+  Create a stock location for the test
+-
+ !record {model: stock.location, id: location_stock_01}:
+    name: Stock for PO
+    usage: internal
+-
+  Create a warehouse for the test
+-
+ !record {model: stock.warehouse, id: wh_stock_01}:
+    name: Warehouse for PO
+    lot_output_id: location_stock_01
+    lot_stock_id: location_stock_01
+    lot_input_id: location_stock_01
+    company_id: base.main_company
+-
+  Create a Supplier for PO
+-
+  !record {model: res.partner, id: res_partner_supplier_01}:
+    name: Supplier 1
+    supplier: 1
+-
+  Create a Supplier for landed cost
+-
+  !record {model: res.partner, id: res_partner_supplier_02}:
+    name: Supplier 2
+    supplier: 1
+-
+  Create a product with landed type Quantity
+-
+  !record {model: product.product, id: product_product_lcost_01}:
+    categ_id: product.product_category_1
+    cost_method: standard
+    landed_cost_type: per_unit
+    name: Transport Poste Express Quantity
+    standard_price: 50.0
+    list_price: 75.0
+    type: service
+    uom_id: product.product_uom_unit
+    uom_po_id: product.product_uom_unit
+    volume: 0.0
+    warranty: 0.0
+    weight: 0.0
+    weight_net: 0.0
+-
+  Create a wine product F with an avg price of 100
+-
+  !record {model: product.product, id: product_product_f_avg_01}:
+    categ_id: product.product_category_1
+    cost_method: standard
+    name: Wine F
+    standard_price: 100.0
+    list_price: 150.0
+    type: product
+    cost_method: average
+    uom_id: product.product_uom_unit
+    uom_po_id: product.product_uom_unit
+-
+  Create a wine product G with an avg price of 200
+-
+  !record {model: product.product, id: product_product_g_avg_01}:
+    categ_id: product.product_category_1
+    cost_method: standard
+    name: Wine G
+    standard_price: 200.0
+    list_price: 250.0
+    type: product
+    cost_method: average
+    uom_id: product.product_uom_unit
+    uom_po_id: product.product_uom_unit
+-
+  Create a purchase order with two lines and one landed cost based on quantity
+-
+  !record {model: purchase.order, id: purchase_order_lcost_04}:
+    partner_id: res_partner_supplier_01
+    invoice_method: order
+    location_id: location_stock_01
+    pricelist_id: purchase.list0
+    order_line:
+      - product_id: product_product_f_avg_01
+        price_unit: 100
+        product_qty: 15.0
+      - product_id: product_product_g_avg_01
+        price_unit: 200
+        product_qty: 5.0
+    landed_cost_line_ids:
+      - product_id: product_product_lcost_01
+        amount: 50
+        partner_id: res_partner_supplier_02
+        generate_invoice: 1
+        distribution_type_id: dist_unit
+-
+  Test the landed costs computation by lines
+-
+  !python {model: purchase.order}: |
+    po = self.browse(cr, uid, ref('purchase_order_lcost_04'))
+    for line in po.order_line:
+      # Compute pro-rata of quantity for line
+      value = (line.product_qty / (15+5)) * 50
+      assert line.landing_costs_order == value, "The landing cost based on quantity has not been computed correctly"
+-
+ I confirm the order where invoice control is 'Bases on order'.
+-
+  !workflow {model: purchase.order, action: purchase_confirm, ref: purchase_order_lcost_04}
+-
+  I check that the landed cost invoice and PO one is generated from PO confirmation
+-
+  !python {model: purchase.order}: |
+    purchase_order = self.browse(cr, uid, ref("purchase_order_lcost_04"))
+    assert len(purchase_order.invoice_ids) == 2, "2 invoices (PO + landed cost) should have been generated on order confirmation."
+-
+  Reception is ready for process, make it and check moves value
+-
+  !python {model: stock.partial.picking}: |
+    pick_ids = self.pool.get('purchase.order').browse(cr, uid, ref("purchase_order_lcost_04")).picking_ids
+    partial_id = self.create(cr, uid, {},context={'active_model': 'stock.picking','active_ids': [pick_ids[0].id]})
+    self.do_partial(cr, uid, [partial_id])
+    picking = self.pool.get('stock.picking').browse(cr, uid, [pick_ids[0].id])[0]
+    for move in picking.move_lines:
+      if move.product_id.name == 'Wine A':
+        assert move.price_unit == 102.5,"Technical field price_unit of Wine F stock move should record the landed_costs, not purchase price"
+        assert move.price_unit_net == 100.0,"Technical field price_unit of Wine F stock move should record the purchase price"
+      elif move.product_id.name == 'Wine B':
+        assert move.price_unit == 202.5,"Technical field price_unit of Wine G stock move should record the landed_costs, not purchase price"
+        assert move.price_unit_net == 200.0,"Technical field price_unit_net of Wine G stock move should record the purchase price"
+-
+  I check that purchase order is shipped.
+-
+  !python {model: purchase.order}: |
+     assert self.browse(cr, uid, ref("purchase_order_lcost_04")).shipped == True,"Purchase order should be delivered"
+-
+  I check that avg price of products is computed with landed costs
+-
+  !python {model: product.product}: |
+     xchg_rate_chf = 1.3086
+     # computed as : ((15/20) * 50 + 100 * 15) / 15
+     value_a = round(102.5 / xchg_rate_chf, 2)
+     # computed as : ((5/20) * 50 + 200 * 5) / 5
+     value_b = round(202.5 / xchg_rate_chf, 2)
+     assert self.browse(cr, uid, ref("product_product_f_avg_01")).standard_price == value_a,"Avg price for product Wine F is wrongly computed"
+     assert self.browse(cr, uid, ref("product_product_g_avg_01")).standard_price == value_b,"Avg price for product Wine G is wrongly computed"
+-
+  Create a purchase order with two lines
+-
+  !record {model: purchase.order, id: purchase_order_lcost_04bis}:
+    partner_id: res_partner_supplier_01
+    invoice_method: order
+    location_id: location_stock_01
+    pricelist_id: purchase.list0
+    order_line:
+      - product_id: product_product_f_avg_01
+        price_unit: 200
+        product_qty: 15.0
+      - product_id: product_product_g_avg_01
+        price_unit: 400
+        product_qty: 5.0
+-
+ I confirm the order where invoice control is 'Bases on order'.
+-
+  !workflow {model: purchase.order, action: purchase_confirm, ref: purchase_order_lcost_04bis}
+-
+  Reception is ready for process, make it and check moves value
+-
+  !python {model: stock.partial.picking}: |
+    pick_ids = self.pool.get('purchase.order').browse(cr, uid, ref("purchase_order_lcost_04bis")).picking_ids
+    partial_id = self.create(cr, uid, {},context={'active_model': 'stock.picking','active_ids': [pick_ids[0].id]})
+    self.do_partial(cr, uid, [partial_id])
+    picking = self.pool.get('stock.picking').browse(cr, uid, [pick_ids[0].id])[0]
+    for move in picking.move_lines:
+      if move.product_id.name == 'Wine A':
+        assert move.price_unit == 200.0,"Technical field price_unit of Wine F stock move should record the purchase price"
+      elif move.product_id.name == 'Wine B':
+        assert move.price_unit == 400.0,"Technical field price_unit_net of Wine G stock move should record the purchase price"
+-
+  I check that purchase order is shipped.
+-
+  !python {model: purchase.order}: |
+     assert self.browse(cr, uid, ref("purchase_order_lcost_04bis")).shipped == True,"Purchase order should be delivered"
+-
+  I check that avg price of products is computed correctly
+-
+  !python {model: product.product}: |
+     xchg_rate_chf = 1.3086
+     # Value in stock in EUR
+     value_a = round(102.5 / xchg_rate_chf, 2)
+     value_b = round(202.5 / xchg_rate_chf, 2)
+     # computed as : (value_a * 15 + (200 / xchg_rate_chf) * 15) / 30
+     value_abis = round((value_a * 15 + (200 / xchg_rate_chf) * 15) / 30, 2) #152.84
+     # computed as : (value_b * 5 + (400 / xchg_rate_chf) * 5) / 10
+     value_bbis = round((value_b * 5 + (400 / xchg_rate_chf) * 5) / 10, 2)
+
+     assert self.browse(cr, uid, ref("product_product_f_avg_01")).standard_price == value_abis,"Avg price for product Wine F is wrongly computed"
+     assert self.browse(cr, uid, ref("product_product_g_avg_01")).standard_price == value_bbis,"Avg price for product Wine G is wrongly computed"
