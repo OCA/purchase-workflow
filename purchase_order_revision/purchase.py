@@ -44,6 +44,8 @@ class purchase_order(orm.Model):
             cr, uid, 'purchase.order') or '/'
         old_seq = po.name
         po.write({'name': new_seq}, context=context)
+        # 'orm.Model.copy' is called instead of 'self.copy' in order to avoid
+        # 'purchase.order' copy to overwrite our values, like name
         orm.Model.copy(self, cr, uid, po.id, default={
             'name': old_seq,
             'state': 'cancel',
