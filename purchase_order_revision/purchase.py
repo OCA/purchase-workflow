@@ -45,7 +45,7 @@ class purchase_order(orm.Model):
         old_seq = po.name
         po.write({'name': new_seq}, context=context)
         # 'orm.Model.copy' is called instead of 'self.copy' in order to avoid
-        # 'purchase.order' copy to overwrite our values, like name
+        # 'purchase.order' method to overwrite our values, like name
         orm.Model.copy(self, cr, uid, po.id, default={
             'name': old_seq,
             'state': 'cancel',
@@ -63,12 +63,6 @@ class purchase_order(orm.Model):
         if not default:
             default = {}
         default.update({
-            'state': 'draft',
-            'shipped': False,
-            'invoiced': False,
-            'invoice_ids': [],
-            'picking_ids': [],
-            'name': self.pool.get('ir.sequence').get(
-                cr, uid, 'purchase.order'),
+            'old_revision_ids': [],
         })
         return super(purchase_order, self).copy(cr, uid, id, default, context)
