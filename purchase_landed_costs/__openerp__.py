@@ -3,7 +3,7 @@
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
-#    Copyright (C) 2010-2012 Camptocamp Austria (<http://www.camptocamp.at>)
+#    Copyright (C) 2010-2012 Camptocamp (<http://www.camptocamp.at>)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -23,10 +23,10 @@
 
 {
     'name': 'Landed Costs',
-    'version': '0.7',
+    'version': '0.8',
     'category': 'Warehouse Management',
     'description': """
-    This module add the possibility to iclude landed costs in the average price computation.
+    This module add the possibility to include landed costs in the average price computation.
     The landed costs can be defined for 
     * purchase orders
     * purchase order lines
@@ -37,7 +37,8 @@
     * value - example custom fees
     * quantity - example freight
     """,
-    'author': 'Camptocamp Austria',
+    'author': 'Camptocamp',
+    'contributors': 'Mikel Martin <mikel@zhenit.com>',
     'depends': ['purchase' ],
     'update_xml': ['security/ir.model.access.csv',
                    'purchase_view.xml',
