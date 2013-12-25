@@ -195,6 +195,16 @@ class stock_picking(orm.Model):
             result[line.id] = amount_total
         return result
 
+    def _get_price_unit_invoice(self, cursor, user, move_line,
+                                type):
+        if move_line.purchase_line_id:
+            if move_line.purchase_line_id.order_id.invoice_method == 'picking':
+                return move_line.price_unit_net
+            else:
+                return move_line.purchase_line_id.price_unit
+        return super(stock_picking, self)._get_price_unit_invoice(cursor,
+                                                        user, move_line, type)
+
     _columns = {
          'landed_cost_line_ids': fields.one2many('landed.cost.position',
                                                  'picking_id',
