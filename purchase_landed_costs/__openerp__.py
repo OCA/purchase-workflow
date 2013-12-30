@@ -26,20 +26,22 @@
     'version': '0.8',
     'category': 'Warehouse Management',
     'description': """
-    This module add the possibility to include landed costs in the average price computation.
-    The landed costs can be defined for 
+    This module add the possibility to include landed costs in the average
+    price computation.
+    The landed costs can be defined for:
     * purchase orders
     * purchase order lines
     * pickings
     * picking lines (stock moves)
-    costs defined for purchase orders and pickings will be distributed according to the distribution type
+    costs defined for purchase orders and pickings will be distributed
+    according to the distribution type
     defined in landed cost category
     * value - example custom fees
     * quantity - example freight
     """,
     'author': 'Camptocamp',
     'contributors': 'Mikel Martin <mikel@zhenit.com>',
-    'depends': ['purchase' ],
+    'depends': ['purchase'],
     'update_xml': ['security/ir.model.access.csv',
                    'purchase_view.xml',
                    'stock_view.xml',

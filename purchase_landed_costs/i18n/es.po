@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: c2c-rd-addons\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-02-12 08:57+0000\n"
-"PO-Revision-Date: 2013-12-15 03:19+0000\n"
-"Last-Translator: Marcelo Zunino <Unknown>\n"
+"PO-Revision-Date: 2013-12-30 01:40+0100\n"
+"Last-Translator: Mikel Martin <mikel@ZhenIT.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2013-12-16 05:26+0000\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Poedit 1.5.4\n"
 
 #. module: purchase_landed_costs
 #: field:product.category,landed_cost:0 field:product.template,landed_cost:0
@@ -124,8 +124,7 @@ msgstr "Está intentando asignar un lote que no es del mismo producto"
 #. module: purchase_landed_costs
 #: constraint:stock.move:0
 msgid "You can not move products from or to a location of the type view."
-msgstr ""
-"No puede mover producto desde o hacia una localización de tipo vista."
+msgstr "No puede mover producto desde o hacia una localización de tipo vista."
 
 #. module: purchase_landed_costs
 #: view:landed.cost.position:0 view:purchase.order:0
@@ -163,7 +162,7 @@ msgstr "Albarán"
 #. module: purchase_landed_costs
 #: field:stock.picking,total_amount:0
 msgid "Total Product Price"
-msgstr "Precio total del producto"
+msgstr "Precio total de productos"
 
 #. module: purchase_landed_costs
 #: field:stock.move,price_unit_net:0

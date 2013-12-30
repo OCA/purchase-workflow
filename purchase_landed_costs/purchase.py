@@ -5,46 +5,55 @@ import logging
 
 
 class landed_cost_position(orm.Model):
-
     _name = "landed.cost.position"
-    _columns = \
-      {'product_id': fields.many2one('product.product', 'Landed Cost Name',
-                                     required=True,
-                                     domain=[('landed_cost_type', '!=', False)]
-                                    ),
-        'amount': fields.float
-            ('Amount',
-             required=True,
+    _columns = {
+        'product_id': fields.many2one(
+            'product.product',
+            'Landed Cost Name',
+            required=True,
+            domain=[('landed_cost_type', '!=', False)]
+        ),
+        'amount': fields.float(
+            'Amount',
+            required=True,
             digits_compute=dp.get_precision('Purchase Price'),
             help="Landed cost for stock valuation. It will be added to the \
-                    price of the supplier price."),
-        'amount_currency': fields.float('Amount Currency', help="The amount \
-            expressed in an optional other currency."),
+                   price of the supplier price."
+        ),
+        'amount_currency': fields.float(
+            'Amount Currency',
+            help="The amount expressed in an optional other currency."
+        ),
         'currency_id': fields.many2one('res.currency', 'Secondary Currency',
-                          help="Optional other currency."),
-        'partner_id': fields.many2one('res.partner', 'Partner',
-                          help="The supplier of this cost component."),
-        'price_type': fields.selection([('per_unit', 'Per Quantity'),
-                          ('value', 'Absolute Value')], 'Amount Type',
-                          required=True, help="Defines if the amount is to be \
-                          calculated for each quantity or an absolute value"),
+                                        help="Optional other currency."),
+        'partner_id': fields.many2one(
+            'res.partner',
+            'Partner',
+             help="The supplier of this cost component."
+        ),
+        'price_type': fields.selection(
+            [('per_unit', 'Per Quantity'), ('value', 'Absolute Value')],
+            'Amount Type',
+            required=True,
+            help="Defines if the amount is to be calculated for each quantity \
+            or an absolute value"
+        ),
         'purchase_order_line_id': fields.many2one('purchase.order.line',
-                                      'Purchase Order Line'),
+                                                   'Purchase Order Line'),
         'purchase_order_id': fields.many2one('purchase.order',
-                                             'Purchase Order'),
+                                              'Purchase Order'),
         'move_line_id': fields.many2one('stock.move', 'Picking Line'),
-        'picking_id': fields.many2one('stock.picking', 'Picking'),
-      }
+        'picking_id': fields.many2one('stock.picking', 'Picking')
+    }
 
     def onchange_product_id(self, cr, uid, ids, product_id, context=None):
-        if context is None:
-            context = dict()
         if product_id:
             prod_obj = self.pool.get('product.product')
             prod = prod_obj.browse(cr, uid, [product_id], context=context)[0]
             v = {'price_type': prod.landed_cost_type}
             return {'value': v}
         return {}
+
 
 landed_cost_position()
 
@@ -57,10 +66,6 @@ class purchase_order_line(orm.Model):
     _inherit = "purchase.order.line"
 
     def _landing_cost(self, cr, uid, ids, name, args, context=None):
-        if context is None:
-            context = dict()
-        if context is None:
-            context = dict()
         if not ids:
             return {}
         result = {}
@@ -77,10 +82,6 @@ class purchase_order_line(orm.Model):
         return result
 
     def _landing_cost_order(self, cr, uid, ids, name, args, context=None):
-        if context is None:
-            context = dict()
-        if context is None:
-            context = dict()
         if not ids:
             return {}
         result = {}
@@ -92,7 +93,7 @@ class purchase_order_line(orm.Model):
             if line.order_id.landed_cost_line_ids:
                 # Base value (Absolute Value)
                 landed_costs += line.order_id.landed_cost_base_value \
-                    / line.order_id.amount_total * line.price_subtotal
+                    / line.order_id.amount_untaxed * line.price_subtotal
 
                 # Base quantity (Per Quantity)
                 landed_costs += line.order_id.landed_cost_base_quantity \
@@ -102,8 +103,6 @@ class purchase_order_line(orm.Model):
         return result
 
     def _landed_cost(self, cr, uid, ids, name, args, context=None):
-        if context is None:
-            context = dict()
         if not ids:
             return {}
         result = {}
@@ -114,21 +113,26 @@ class purchase_order_line(orm.Model):
 
         return result
 
-    _columns = \
-       {
-         'landed_cost_line_ids': fields.one2many('landed.cost.position',
-                                                 'purchase_order_line_id',
-                                                 'Landed Costs Positions'),
-         'landing_costs': fields.function(_landing_cost,
-                                digits_compute=dp.get_precision('Account'),
-                                string='Landing Costs'),
-         'landing_costs_order': fields.function(_landing_cost_order,
-                                digits_compute=dp.get_precision('Account'),
-                                string='Landing Costs from Order'),
-         'landed_costs': fields.function(_landed_cost,
-                                digits_compute=dp.get_precision('Account'),
-                                string='Landed Costs'),
+    _columns = {
+        'landed_cost_line_ids': fields.one2many('landed.cost.position',
+                                                'purchase_order_line_id',
+                                                'Landed Costs Positions'),
+        'landing_costs': fields.function(
+            _landing_cost,
+            digits_compute=dp.get_precision('Account'),
+            string='Landing Costs'
+        ),
+        'landing_costs_order': fields.function(
+            _landing_cost_order,
+            digits_compute=dp.get_precision('Account'),
+            string='Landing Costs from Order'
+        ),
+        'landed_costs': fields.function(_landed_cost,
+            digits_compute=dp.get_precision('Account'),
+            string='Landed Costs'
+        )
     }
+
 
 purchase_order_line()
 
@@ -138,8 +142,6 @@ class purchase_order(orm.Model):
     _logger = logging.getLogger(__name__)
 
     def _landed_cost_base_value(self, cr, uid, ids, name, args, context=None):
-        if context is None:
-            context = dict()
         if not ids:
             return {}
         result = {}
@@ -155,8 +157,6 @@ class purchase_order(orm.Model):
 
     def _landed_cost_base_quantity(self, cr, uid, ids, name, args,
                                    context=None):
-        if context is None:
-            context = dict()
         if not ids:
             return {}
         result = {}
@@ -171,8 +171,6 @@ class purchase_order(orm.Model):
         return result
 
     def _quantity_total(self, cr, uid, ids, name, args, context):
-        if context is None:
-            context = dict()
         if not ids:
             return {}
         result = {}
@@ -187,8 +185,6 @@ class purchase_order(orm.Model):
         return result
 
     def _landed_cost(self, cr, uid, ids, name, args, context=None):
-        if context is None:
-            context = dict()
         if not ids:
             return {}
         result = {}
@@ -200,8 +196,6 @@ class purchase_order(orm.Model):
         return result
 
     def _landing_cost_lines(self, cr, uid, ids, name, args, context=None):
-        if context is None:
-            context = dict()
         if not ids:
             return {}
         result = {}
@@ -215,51 +209,54 @@ class purchase_order(orm.Model):
         return result
 
     _columns = {
-         'landed_cost_line_ids': fields.one2many('landed.cost.position',
-                                                 'purchase_order_id',
-                                                 'Landed Costs'),
-         'landed_cost_base_value': fields.function(_landed_cost_base_value,
+        'landed_cost_line_ids': fields.one2many('landed.cost.position',
+                                                'purchase_order_id',
+                                                'Landed Costs'),
+        'landed_cost_base_value': fields.function(
+            _landed_cost_base_value,
             digits_compute=dp.get_precision('Account'),
-            string='Landed Costs Base Value'),
-         'landed_cost_base_quantity':
-            fields.function(_landed_cost_base_quantity,
+            string='Landed Costs Base Value'
+        ),
+        'landed_cost_base_quantity': fields.function(
+            _landed_cost_base_quantity,
             digits_compute=dp.get_precision('Account'),
-            string='Landed Costs Base Quantity'),
-         'landing_cost_lines': fields.function(_landing_cost_lines,
+            string='Landed Costs Base Quantity'
+        ),
+        'landing_cost_lines': fields.function(
+            _landing_cost_lines,
             digits_compute=dp.get_precision('Account'),
-            string='Landing Cost Lines'),
-         'landed_cost': fields.function(_landed_cost,
+            string='Landing Cost Lines'
+        ),
+        'landed_cost': fields.function(
+            _landed_cost,
             digits_compute=dp.get_precision('Account'),
-            string='Landed Costs Total Untaxed'),
-         'quantity_total': fields.function(_quantity_total,
+            string='Landed Costs Total Untaxed'
+        ),
+        'quantity_total': fields.function(
+            _quantity_total,
             digits_compute=dp.get_precision('Product UoM'),
             string='Total Quantity')
     }
 
     def _prepare_order_line_move(self, cr, uid, order, order_line, picking_id,
                                  context=None):
-        if context is None:
-            context = dict()
         res = super(purchase_order, self)._prepare_order_line_move(
-                        cr, uid, order, order_line, picking_id, context)
-        res['price_unit_net'] = res['price_unit']
+            cr, uid, order, order_line, picking_id, context
+        )
+        res['price_unit_net'] = order_line.price_subtotal / order_line.product_qty
         res['price_unit'] = order_line.landed_costs / order_line.product_qty
         return res
 
     def _prepare_order_picking(self, cr, uid, order, context=None):
-        if context is None:
-            context = dict()
         res = super(purchase_order, self)._prepare_order_picking(
-                        cr, uid, order, context)
-
+            cr, uid, order, context
+        )
         return res
 
     def _create_pickings(self, cr, uid, order, order_lines, picking_id=False,
                          context=None):
-        if context is None:
-            context = dict()
         res = super(purchase_order, self)._create_pickings(
-                        cr, uid, order, order_lines, picking_id, context)
+            cr, uid, order, order_lines, picking_id, context)
         pick_id = int(res[0])
         # landing costs for PICK from PO
         cost_obj = self.pool.get('landed.cost.position')
@@ -273,11 +270,11 @@ class purchase_order(orm.Model):
             vals['price_type'] = order_cost.price_type
             vals['picking_id'] = pick_id
             self._logger.debug('vals `%s`', vals)
-            cost_obj.create(cr, uid, vals, context=None)
+            cost_obj.create(cr, uid, vals, context=context)
 
         # landing costs for PICK Lines from PO
         pick_obj = self.pool.get('stock.picking')
-        for pick in pick_obj.browse(cr, uid, [pick_id], context=None):
+        for pick in pick_obj.browse(cr, uid, [pick_id], context=context):
             self._logger.debug('pick `%s`', pick)
             for line in pick.move_lines:
                 self._logger.debug('line `%s`', line)
@@ -291,9 +288,10 @@ class purchase_order(orm.Model):
                     vals['price_type'] = order_cost.price_type
                     vals['move_line_id'] = line.id
                     self._logger.debug('vals `%s`', vals)
-                    cost_obj.create(cr, uid, vals, context=None)
+                    cost_obj.create(cr, uid, vals, context=context)
         self._logger.debug('cost created')
 
         return res
+
 
 purchase_order()
