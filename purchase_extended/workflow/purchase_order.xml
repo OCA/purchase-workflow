@@ -55,6 +55,20 @@
             <field name="signal">purchase_cancel</field>
         </record>
 
+        <record id="act_po_requisition_selected" model="workflow.activity">
+          <field name="wkf_id" ref="purchase.purchase_order"/>
+          <field name="name">Bid selected</field>
+          <field name="kind">function</field>
+          <field name="action">po_tender_requisition_selected()</field>
+          <field name="flow_stop">True</field>
+        </record>
+        <record id="trans_po_requisition_selected" model="workflow.transition">
+          <field name="act_from" ref="purchase.act_bid"/>
+          <field name="act_to" ref="act_po_requisition_selected"/>
+          <field name="signal">select_requisition</field>
+        </record>
+
+
         <!-- Rename some activities to make the workflow clear -->
         <record id="purchase.act_draft" model="workflow.activity">
             <field name="name">draft RFQ</field>

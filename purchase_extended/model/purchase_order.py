@@ -14,6 +14,7 @@ class PurchaseOrder(orm.Model):
         ('sent', 'RFQ Sent'),
         ('draftbid', 'Draft Bid'),  # added
         ('bid', 'Bid Encoded'),  # Bid Received renamed into Bid Encoded
+        ('bid_selected', 'Bid selected'), # added
         ('draftpo', 'Draft PO'),  # added
         ('confirmed', 'Waiting Approval'),
         ('approved', 'Purchase Confirmed'),
@@ -235,6 +236,11 @@ class PurchaseOrder(orm.Model):
         dest_id = warehouse_obj.browse(cr, uid, warehouse_id, context=context).partner_id.id
         value['value']['dest_address_id'] = dest_id
         return value
+
+    def po_tender_requisition_selected(self, cr, uid, ids, context=None):
+        """Workflow function that write state 'bid selected'"""
+        return self.write(cr, uid, ids, {'state': 'bid_selected'},
+                          context=context)
 
 
 class purchase_order_line(orm.Model):
