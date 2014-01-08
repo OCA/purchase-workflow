@@ -39,12 +39,12 @@ class stock_move(orm.Model):
                 if line.picking_id.total_amount \
                         and line.picking_id.total_amount > 0.0:
                     landed_costs += line.picking_id.landed_cost_base_value \
-                            / line.picking_id.total_amount \
-                            * line.sub_total
+                        / line.picking_id.total_amount \
+                        * line.sub_total
                 if line.picking_id.quantity_total  \
                         and line.picking_id.quantity_total > 0.0:
                     landed_costs += line.picking_id.landed_cost_base_quantity \
-                            / line.picking_id.quantity_total * line.product_qty
+                        / line.picking_id.quantity_total * line.product_qty
             result[line.id] = landed_costs
 
         return result
@@ -69,22 +69,33 @@ class stock_move(orm.Model):
         return result
 
     _columns = {
-         'landed_cost_line_ids': fields.one2many('landed.cost.position',
-                 'move_line_id', 'Landed Costs Positions'),
-         'landing_costs': fields.function(_landing_cost,
-                 digits_compute=dp.get_precision('Account'),
-                 string='Line Landing Costs'),
-         'landing_costs_picking': fields.function(_landing_cost_order,
-                 digits_compute=dp.get_precision('Account'),
-                 string='Landing Costs from Picking'),
-         'landed_cost': fields.function(_landed_cost,
-                 digits_compute=dp.get_precision('Account'),
-                 string='Landed Costs'),
-         'sub_total': fields.function(_sub_total,
-                 digits_compute=dp.get_precision('Account'),
-                 string='Line Sub Total'),
-         'price_unit_net': fields.float('Purchase Price',
-                 digits_compute=dp.get_precision('Account'))
+        'landed_cost_line_ids': fields.one2many('landed.cost.position',
+                                                'move_line_id',
+                                                'Landed Costs Positions'),
+        'landing_costs': fields.function(
+            _landing_cost,
+            digits_compute=dp.get_precision('Account'),
+            string='Line Landing Costs'
+        ),
+        'landing_costs_picking': fields.function(
+            _landing_cost_order,
+            digits_compute=dp.get_precision('Account'),
+            string='Landing Costs from Picking'
+        ),
+        'landed_cost': fields.function(
+            _landed_cost,
+            digits_compute=dp.get_precision('Account'),
+            string='Landed Costs'
+        ),
+        'sub_total': fields.function(
+            _sub_total,
+            digits_compute=dp.get_precision('Account'),
+            string='Line Sub Total'
+        ),
+        'price_unit_net': fields.float(
+            'Purchase Price',
+            digits_compute=dp.get_precision('Account')
+        )
     }
 
 stock_move()
@@ -147,8 +158,8 @@ class stock_picking(orm.Model):
             if picking.move_lines:
                 for ml in picking.move_lines:
                     if ml.product_qty > 0.0:
-                        landed_cost_lines += ml.landing_costs \
-                                + ml.landing_costs_picking
+                        landed_cost_lines += ml.landing_costs + \
+                            ml.landing_costs_picking
             result[picking.id] = landed_cost_lines
         return result
 
@@ -182,12 +193,10 @@ class stock_picking(orm.Model):
     def _get_price_unit_invoice(self, cursor, user, move_line,
                                 type):
         if move_line.purchase_line_id:
-            if move_line.purchase_line_id.order_id.invoice_method == 'picking':
-                return move_line.price_unit_net
-            else:
-                return move_line.purchase_line_id.price_unit
-        return super(stock_picking, self)._get_price_unit_invoice(cursor,
-                                                        user, move_line, type)
+            return move_line.purchase_line_id.price_unit
+        return super(stock_picking, self)._get_price_unit_invoice(
+            cursor, user, move_line, type
+        )
 
     def write(self, cr, uid, ids, values, context=None):
         if 'landed_cost_line_ids' in values:
@@ -196,9 +205,9 @@ class stock_picking(orm.Model):
             for picking in sps:
                 old_picking[picking.id] = {
                     'landed_cost_base_value':
-                        picking.landed_cost_base_value or 0.0,
+                    picking.landed_cost_base_value or 0.0,
                     'landed_cost_base_quantity':
-                        picking.landed_cost_base_quantity or 0.0
+                    picking.landed_cost_base_quantity or 0.0
                 }
 
         ml_obj = self.pool.get('stock.move')
@@ -211,20 +220,20 @@ class stock_picking(orm.Model):
                 new_picking = nsp[0]
                 prev = old_picking[picking.id]
                 chg_landed_cost_base_quantity = \
-                    new_picking.landed_cost_base_quantity \
-                    - prev['landed_cost_base_quantity']
+                    new_picking.landed_cost_base_quantity - \
+                    prev['landed_cost_base_quantity']
                 chg_landed_cost_base_value = \
-                    new_picking.landed_cost_base_value \
-                    - prev['landed_cost_base_value']
+                    new_picking.landed_cost_base_value - \
+                    prev['landed_cost_base_value']
                 if picking.move_lines:
                     for ml in picking.move_lines:
                         qty_ratio = ml.product_qty / \
-                                    new_picking.quantity_total
+                            new_picking.quantity_total
                         value_ratio = ml.sub_total / \
-                                    new_picking.total_amount
+                            new_picking.total_amount
                         price_unit = (
-                            ml.landed_cost + \
-                            qty_ratio * chg_landed_cost_base_quantity + \
+                            ml.landed_cost +
+                            qty_ratio * chg_landed_cost_base_quantity +
                             value_ratio * chg_landed_cost_base_value
                         ) / ml.product_qty
                         ml_obj.write(
@@ -235,28 +244,39 @@ class stock_picking(orm.Model):
         return res
 
     _columns = {
-         'landed_cost_line_ids': fields.one2many('landed.cost.position',
-                                                 'picking_id',
-                                                 'Landed Costs Positions'),
-         'landed_cost_base_value': fields.function(_landed_cost_base_value,
-             digits_compute=dp.get_precision('Account'),
-             string='Landed Costs Base Value'),
-         'landed_cost_base_quantity': fields.function(
+        'landed_cost_line_ids': fields.one2many('landed.cost.position',
+                                                'picking_id',
+                                                'Landed Costs Positions'),
+        'landed_cost_base_value': fields.function(
+            _landed_cost_base_value,
+            digits_compute=dp.get_precision('Account'),
+            string='Landed Costs Base Value'
+        ),
+        'landed_cost_base_quantity': fields.function(
             _landed_cost_base_quantity,
             digits_compute=dp.get_precision('Account'),
-            string='Landed Costs Base Quantity'),
-         'landing_cost_lines': fields.function(_landing_cost_lines,
+            string='Landed Costs Base Quantity'
+        ),
+        'landing_cost_lines': fields.function(
+            _landing_cost_lines,
             digits_compute=dp.get_precision('Account'),
-            string='Landing Cost Lines'),
-         'landed_cost': fields.function(_landed_cost,
+            string='Landing Cost Lines'
+        ),
+        'landed_cost': fields.function(
+            _landed_cost,
             digits_compute=dp.get_precision('Account'),
-            string='Landed Costs Total Untaxed'),
-         'total_amount': fields.function(_amount_total,
+            string='Landed Costs Total Untaxed'
+        ),
+        'total_amount': fields.function(
+            _amount_total,
             digits_compute=dp.get_precision('Account'),
-            string='Total Product Price'),
-         'quantity_total': fields.function(_quantity_total,
+            string='Total Product Price'
+        ),
+        'quantity_total': fields.function(
+            _quantity_total,
             digits_compute=dp.get_precision('Product UoM'),
-            string='Total Quantity')
+            string='Total Quantity'
+        )
     }
 
 stock_picking()

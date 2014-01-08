@@ -25,11 +25,11 @@ class landed_cost_position(orm.Model):
             help="The amount expressed in an optional other currency."
         ),
         'currency_id': fields.many2one('res.currency', 'Secondary Currency',
-                                        help="Optional other currency."),
+                                       help="Optional other currency."),
         'partner_id': fields.many2one(
             'res.partner',
             'Partner',
-             help="The supplier of this cost component."
+            help="The supplier of this cost component."
         ),
         'price_type': fields.selection(
             [('per_unit', 'Per Quantity'), ('value', 'Absolute Value')],
@@ -39,9 +39,9 @@ class landed_cost_position(orm.Model):
             or an absolute value"
         ),
         'purchase_order_line_id': fields.many2one('purchase.order.line',
-                                                   'Purchase Order Line'),
+                                                  'Purchase Order Line'),
         'purchase_order_id': fields.many2one('purchase.order',
-                                              'Purchase Order'),
+                                             'Purchase Order'),
         'move_line_id': fields.many2one('stock.move', 'Picking Line'),
         'picking_id': fields.many2one('stock.picking', 'Picking')
     }
@@ -109,7 +109,7 @@ class purchase_order_line(orm.Model):
         # landed costs for the line
         for line in self.browse(cr, uid, ids, context=context):
             result[line.id] = line.price_subtotal + line.landing_costs + \
-                              line.landing_costs_order
+                line.landing_costs_order
 
         return result
 
@@ -127,7 +127,8 @@ class purchase_order_line(orm.Model):
             digits_compute=dp.get_precision('Account'),
             string='Landing Costs from Order'
         ),
-        'landed_costs': fields.function(_landed_cost,
+        'landed_costs': fields.function(
+            _landed_cost,
             digits_compute=dp.get_precision('Account'),
             string='Landed Costs'
         )
