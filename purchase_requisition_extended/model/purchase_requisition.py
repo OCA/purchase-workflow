@@ -142,7 +142,15 @@ class PurchaseRequisition(orm.Model):
                              context=context)
         return super(PurchaseRequisition, self).generate_po(cr, uid, [ids], context=context)
 
+    def quotation_selected(self, cr, uid, quotation, context=None):
+        """Predicate that checks if a quotation has at least one line chosen
+        :param quotation: record of 'purchase.order'
 
+        :returns: True if one line has been chosen
+
+        """
+        # This topic is subject to changes
+        return quotation.bid_partial
 
     def cancel_quotation(self, cr, uid, tender, context=None):
         """
@@ -153,10 +161,15 @@ class PurchaseRequisition(orm.Model):
         tender.refresh()
         for quotation in tender.purchase_ids:
             if quotation.state in ['draft', 'sent', 'bid']:
-                wf_service.trg_validate(uid, 'purchase.order', quotation.id, 'purchase_cancel', cr)
-                po.message_post(cr, uid, [quotation.id],
-                        body=_('Canceled by the call for bids associated to this request for quotation.'),
-                        context=context)
+                if self.quotation_selected(cr, uid, quotation, context=context):
+                    wf_service.trg_validate(uid, 'purchase.order', quotation.id,
+                                            'select_requisition', cr)
+                else:
+                    wf_service.trg_validate(uid, 'purchase.order', quotation.id, 'purchase_cancel', cr)
+                    po.message_post(cr, uid, [quotation.id],
+                                    body=_('Canceled by the call for bids associated'
+                                           ' to this request for quotation.'),
+                                    context=context)
 
         return True
 
@@ -229,19 +242,6 @@ class PurchaseRequisition(orm.Model):
         res['domain'] = expression.AND([eval(res.get('domain', [])), [('requisition_id', 'in', ids)]])
         return res
 
-    def open_product_line(self, cr, uid, ids, context=None):
-        """ Filter to show only lines from bids received. Group by requisition line instead of product for unicity
-        """
-        res = super(PurchaseRequisition, self).open_product_line(cr, uid, ids, context=context)
-        ctx = res.setdefault('context', {})
-        if 'search_default_groupby_product' in ctx:
-            del ctx['search_default_groupby_product']
-        if 'search_default_hide_cancelled' in ctx:
-            del ctx['search_default_hide_cancelled']
-        ctx['search_default_groupby_requisitionline'] = True
-        ctx['search_default_showbids'] = True
-        return res
-
     def close_callforbids(self, cr, uid, ids, context=None):
         """
         Check all quantities have been sourced
@@ -291,6 +291,19 @@ class PurchaseRequisition(orm.Model):
             'target': 'new',
             'context': ctx,
         }
+
+    def open_product_line(self, cr, uid, ids, context=None):
+        """ Filter to show only lines from bids received. Group by requisition line instead of product for unicity
+        """
+        res = super(PurchaseRequisition, self).open_product_line(cr, uid, ids, context=context)
+        ctx = res.setdefault('context', {})
+        if 'search_default_groupby_product' in ctx:
+            del ctx['search_default_groupby_product']
+        if 'search_default_hide_cancelled' in ctx:
+            del ctx['search_default_hide_cancelled']
+        ctx['search_default_groupby_requisitionline'] = True
+        ctx['search_default_showbids'] = True
+        return res
 
     def close_callforbids_ok(self, cr, uid, ids, context=None):
         wf_service = netsvc.LocalService("workflow")
