@@ -22,11 +22,16 @@
         date_planned: '2013-08-30'
         price_unit: 52.53
 -
-  Type must be 'bid' and the total untaxed amount of the RFQ must be computed.
+  I print the RFQ.
+-
+  !python {model: purchase.order}: |
+    self.print_quotation(cr, uid, [ref("purchase_order_ext_bid2order1")])
+-
+  Type must be 'rfq' and the total untaxed amount of the RFQ must be computed.
 -
   !assert {model: purchase.order, id: purchase_order_ext_bid2order1, string: The amount of RFQ is not correctly computed}:
-    - type == 'bid'
-    - state == 'draftbid'
+    - type == 'rfq'
+    - state == 'sent'
     - round(sum([l.price_subtotal for l in order_line]), 2) == round(amount_untaxed, 2)
 -
   I run the 'Bid encoded' wizard. I fill the date.
