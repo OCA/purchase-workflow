@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from openerp.osv import fields, orm
+from openerp import SUPERUSER_ID
 
 
 class purchase_order(orm.Model):
@@ -62,6 +63,17 @@ class purchase_order(orm.Model):
             'transport_mode_id': requisition.req_transport_mode_id,
         })
         return values
+
+    def copy(self, cr, uid, id, default=None, context=None):
+        """ Need to set origin after copy because original copy clears origin """
+        origin = ''
+        if 'requisition_id' in default:
+            origin = default['origin']
+        newid = super(purchase_order, self).copy(cr, uid, id, default=default,
+                                                 context=context)
+        if origin:
+            self.write(cr, SUPERUSER_ID, [newid], {'origin': origin}, context=context)
+        return newid
 
 
 class purchase_order_line(orm.Model):
