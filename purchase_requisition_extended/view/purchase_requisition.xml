@@ -21,6 +21,7 @@
                 </xpath>
                 <xpath expr="//field[@name='user_id']" position="after">
                     <field name="bid_tendering_mode" attrs="{'readonly': [('state','not in',('draft'))]}" required="1"/>
+                    <field name="pricelist_id" attrs="{'readonly': [('state','not in',('draft'))]}"/>
                 </xpath>
                 <separator string="Requests for Quotation" position="attributes">
                     <attribute name="string">Requests for Quotation / Bids</attribute>

@@ -55,6 +55,10 @@ class PurchaseRequisition(orm.Model):
             'account.payment.term',
             'Requested Payment Term',
             help="Default value requested to the supplier."),
+        'pricelist_id': fields.many2one('product.pricelist', 
+            'Pricelist',
+            help="If set that pricelist will be used to generate the RFQ."
+            "Mostely used to ask a requisition in a given currency."),
     }
     _defaults = {
         'bid_receipt_mode': 'open',
@@ -83,6 +87,8 @@ class PurchaseRequisition(orm.Model):
             'incoterm_id': requisition.req_incoterm_id.id,
             'incoterm_address': requisition.req_incoterm_address,
         })
+        if requisition.pricelist_id:
+            values.update({'pricelist_id': requisition.pricelist_id.id})
         return values
 
     def _prepare_purchase_order_line(self, cr, uid, requisition,
