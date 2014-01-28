@@ -66,12 +66,12 @@ class purchase_order(orm.Model):
 
     def copy(self, cr, uid, id, default=None, context=None):
         """ Need to set origin after copy because original copy clears origin """
-        origin = ''
-        if 'requisition_id' in default:
-            origin = default['origin']
+        if default is None:
+            default = {}
+        initial_origin = default.get('origin')
         newid = super(purchase_order, self).copy(cr, uid, id, default=default,
                                                  context=context)
-        if origin:
+        if initial_origin:
             self.write(cr, SUPERUSER_ID, [newid], {'origin': origin}, context=context)
         return newid
 
