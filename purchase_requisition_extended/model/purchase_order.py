@@ -62,6 +62,8 @@ class purchase_order(orm.Model):
             'incoterm_address': requisition.req_incoterm_address,
             'transport_mode_id': requisition.req_transport_mode_id,
         })
+        if requisition.pricelist_id:
+            values.update({'pricelist_id': requisition.pricelist_id.id})
         return values
 
     def copy(self, cr, uid, id, default=None, context=None):
