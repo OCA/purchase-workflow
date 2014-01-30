@@ -25,15 +25,33 @@ class PurchaseRequisition(orm.Model):
                                          domain=[('type', 'in', ('rfq', 'bid'))]),
         # new
         'req_validity': fields.date("Requested Bid's End of Validity",
-                                    help="Default value requested to "
-                                         "the supplier."),
+                                    help="Requested validity period requested to the bidder, "
+                                         "i.e. please send bids that stay valid until that "
+                                         "date.\n The bidder is allowed to send a bid with "
+                                         "another validity end date that gets encoded in the "
+                                         "bid."),
         'bid_tendering_mode': fields.selection([('open', 'Open'),
                                                 ('restricted', 'Restricted')],
                                                'Call for Bids Mode'),
+                                               help="- Restricted : you select yourself the "
+                                                    "bidders and generate a RFQ for each of "
+                                                    "those. \n"
+                                                    "- Open : anybody can bid (you have to "
+                                                    "advertise the call for bids) and you "
+                                                    "directly encode the bids you received. "
+                                                    "You are still able to generate RFQ if "
+                                                    "you want to contact usual bidders."),
         'bid_receipt_mode': fields.selection([('open', 'Open'),
                                               ('sealed', 'Sealed')],
                                              'Bid Receipt Mode',
                                              required=True),
+                                             help="- Open : The bids can be opened when "
+                                                  "received and encoded. \n"
+                                                  "- Closed : The bids can be marked as "
+                                                  "received but they have to be opened \n"
+                                                  "all at the same time after an opening "
+                                                  "ceremony (probably specific to public "
+                                                  "sector)."),
         'consignee_id': fields.many2one('res.partner',
                                         'Consignee',
                                         help="Person responsible of delivery"),
@@ -59,6 +77,9 @@ class PurchaseRequisition(orm.Model):
             'Pricelist',
             help="If set that pricelist will be used to generate the RFQ."
             "Mostely used to ask a requisition in a given currency."),
+        'date_end': fields.datetime('Bid Submission Deadline', 
+                                    help="All bids received after that date won't be valid "
+                                         " (probably specific to public sector)."),
     }
     _defaults = {
         'bid_receipt_mode': 'open',
