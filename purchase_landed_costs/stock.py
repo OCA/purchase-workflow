@@ -62,10 +62,10 @@ class stock_partial_picking(orm.TransientModel):
         #   standard_price instead of converting the result in EUR
         # Reference : https://bugs.launchpad.net/ocb-addons/+bug/1238525
         res = super(stock_partial_picking, self)._product_cost_for_average_update(cr, uid, move)
-        self._logger.debug('res stock_partial_picking `%s`', res)
+        _logger.debug('Before res stock_partial_picking `%s`', res)
         # Re-take the cost from the PO line landed_costs field
         if move.purchase_line_id:
             res['cost'] = (move.purchase_line_id.landed_costs /
                            move.purchase_line_id.product_qty)
-        self._logger.debug('res stock_partial_picking `%s`', res)
+        _logger.debug('After res stock_partial_picking `%s`', res)
         return res
