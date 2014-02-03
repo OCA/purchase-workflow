@@ -470,6 +470,10 @@ class framework_agreement(orm.Model):
                   currency=None, context=None):
         """Return price negociated for quantity
 
+        :param currency: currency record
+        :param qty: qty to lookup
+
+
         :returns: price float
 
         """
