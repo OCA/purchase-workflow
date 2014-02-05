@@ -258,7 +258,6 @@ class framework_agreement(orm.Model):
     _po_line_store_tuple = (_get_po_line_store, [], 20)
 
     _columns = {'name': fields.char('Number',
-                                    required=True,
                                     readonly=True),
                 'supplier_id': fields.many2one('res.partner',
                                                'Supplier',
@@ -297,13 +296,22 @@ class framework_agreement(orm.Model):
                 'draft': fields.boolean('Is draft'),
                 }
 
-    def _sequence_get(self, cr, uid, context=None):
-        return self.pool['ir.sequence'].next_by_code(cr, uid, 'framework.agreement')
-
     def _company_get(self, cr, uid, context=None):
         return self.pool['res.company']._company_default_get(cr, uid,
                                                              'framework.agreement',
                                                              context=context)
+
+    def create(self, cr, uid, vals, context=None):
+        """We want to have increment sequence only at creation
+
+        When set by a default in a o2m form default consume sequence.
+        But we do not want to use no_gap sequence
+
+        """
+        vals['name'] = self.pool['ir.sequence'].next_by_code(cr, uid,
+                                                             'framework.agreement')
+        return super(framework_agreement, self).create(cr, uid, vals,
+                                                       context=context)
 
     def _check_overlap(self, cr, uid, ids, context=None):
         """Constraint to check that no agreements for same product/supplier overlap.
@@ -319,6 +327,7 @@ class framework_agreement(orm.Model):
                                context=context)['one_agreement_per_product']
         for agreement in self.browse(cr, uid, ids, context=context):
             # we do not add current id in domain for readability reasons
+            # indent is not PEP8 compliant but more readable.
             overlap = self.search(cr, uid,
                                   ['&',
                                       ('draft', '=', False),
@@ -357,8 +366,7 @@ class framework_agreement(orm.Model):
         """
         return self._check_overlap(cr, uid, ids, context=context)
 
-    _defaults = {'name': _sequence_get,
-                 'company_id': _company_get,
+    _defaults = {'company_id': _company_get,
                  'draft': True}
 
     _sql_constraints = [('date_priority',
