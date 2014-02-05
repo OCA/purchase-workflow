@@ -175,10 +175,12 @@ class framework_agreement(orm.Model):
             sql = """SELECT SUM(po_line.product_qty) FROM purchase_order_line AS po_line
             LEFT JOIN purchase_order AS po ON po_line.order_id = po.id
             WHERE po_line.framework_agreement_id = %s
+            AND po_line.product_id = %s
             AND po.partner_id = %s
             AND po.state IN %s
             AND po.company_id = %s"""
             cr.execute(sql, (agreement.id,
+                             agreement.product_id.id,
                              agreement.supplier_id.id,
                              AGR_PO_STATE,
                              company_id))
@@ -227,10 +229,19 @@ class framework_agreement(orm.Model):
 
     def _get_po_store(self, cr, uid, ids, context=None):
         res = set()
-        po_obj = self.pool.get('purchase.order')
+        agr_obj = self.pool['framework.agreement']
+        po_obj = self.pool['purchase.order']
         for row in po_obj.browse(cr, uid, ids, context=context):
             if row.framework_agreement_id:
                 res.update([row.framework_agreement_id.id])
+            else:
+                product_ids = [x.product_id.id for x in row.order_line
+                               if x.product_id]
+                f_ids = agr_obj.search(cr, uid,
+                                       [('product_id', 'in', product_ids)],
+                                       context=context)
+                res.update(f_ids)
+
         return res
 
     def _get_po_line_store(self, cr, uid, ids, context=None):

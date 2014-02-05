@@ -29,11 +29,20 @@ class purchase_order_line(orm.Model, FrameworkAgreementObservable):
 
     _inherit = "purchase.order.line"
 
+    def _get_po_store(self, cr, uid, ids, context=None):
+        res = set()
+        po_obj = self.pool.get('purchase.order')
+        for row in po_obj.browse(cr, uid, ids, context=context):
+            res.update([x.id for x in row.order_line])
+        return res
+
+    _store_tuple = (_get_po_store, ['framework_agreement_id'], 20)
+
     _columns = {'framework_agreement_id': fields.related('order_id',
                                                          'framework_agreement_id',
                                                          type='many2one',
                                                          readonly=True,
-                                                         store=True,
+                                                         store={'purchase.order': _store_tuple},
                                                          relation='framework.agreement',
                                                          string='Agreement')}
 
