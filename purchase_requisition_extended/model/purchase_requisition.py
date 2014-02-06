@@ -109,7 +109,7 @@ class PurchaseRequisition(orm.Model):
             'incoterm_address': requisition.req_incoterm_address,
         })
         if requisition.pricelist_id:
-            values.update({'pricelist_id': requisition.pricelist_id.id})
+            values['pricelist_id'] = requisition.pricelist_id.id
         return values
 
     def _prepare_purchase_order_line(self, cr, uid, requisition,
