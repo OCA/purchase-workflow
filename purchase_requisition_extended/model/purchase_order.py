@@ -74,7 +74,7 @@ class purchase_order(orm.Model):
         newid = super(purchase_order, self).copy(cr, uid, id, default=default,
                                                  context=context)
         if initial_origin and 'requisition_id' in default:
-            self.write(cr, SUPERUSER_ID, [newid], {'origin': origin}, context=context)
+            self.write(cr, SUPERUSER_ID, [newid], {'origin': initial_origin}, context=context)
         return newid
 
 
