@@ -15,7 +15,7 @@
                           context="{}"
                           string="Open Agreement"
                           type="object"
-                          attrs="{'invisible': ['|', ('draft', '=', False), '|', ('start_date', '=', False), '|', ('end_date', '=', False), '|', ('framework_agreement_pricelist_ids', '=', False)]}"/>
+                          attrs="{'invisible': ['|', ('draft', '=', False), '|', ('start_date', '=', False), '|', ('end_date', '=', False), '|', ('framework_agreement_pricelist_ids', '=', [])]}"/>
                   <field name="state"
                          widget="statusbar"
                          nolabel="1"
