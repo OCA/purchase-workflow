@@ -19,10 +19,12 @@ class PurchaseRequisition(orm.Model):
                                    ('closed', 'Bids Selected'),  # added
                                    ('done', 'PO Created'),
                                    ('cancel', 'Canceled')],
-                                  'Status', track_visibility='onchange', required=True),
-        'purchase_ids': fields.one2many('purchase.order', 'requisition_id', 'Purchase Orders',
-                                         states={'done': [('readonly', True)]},
-                                         domain=[('type', 'in', ('rfq', 'bid'))]),
+                                  'Status', track_visibility='onchange',
+                                  required=True),
+        'purchase_ids': fields.one2many('purchase.order', 'requisition_id',
+                                        'Purchase Orders',
+                                        states={'done': [('readonly', True)]},
+                                        domain=[('type', 'in', ('rfq', 'bid'))]),
         # new
         'req_validity': fields.date("Requested Bid's End of Validity",
                                     help="Requested validity period requested to the bidder, "
@@ -32,7 +34,7 @@ class PurchaseRequisition(orm.Model):
                                          "bid."),
         'bid_tendering_mode': fields.selection([('open', 'Open'),
                                                 ('restricted', 'Restricted')],
-                                               'Call for Bids Mode'),
+                                               'Call for Bids Mode',
                                                help="- Restricted : you select yourself the "
                                                     "bidders and generate a RFQ for each of "
                                                     "those. \n"
@@ -44,7 +46,7 @@ class PurchaseRequisition(orm.Model):
         'bid_receipt_mode': fields.selection([('open', 'Open'),
                                               ('sealed', 'Sealed')],
                                              'Bid Receipt Mode',
-                                             required=True),
+                                             required=True,
                                              help="- Open : The bids can be opened when "
                                                   "received and encoded. \n"
                                                   "- Closed : The bids can be marked as "
@@ -62,7 +64,8 @@ class PurchaseRequisition(orm.Model):
             'Requested Incoterms',
             help="Default value requested to the supplier. "
                  "International Commercial Terms are a series of predefined "
-                 "commercial terms used in international transactions."),
+                 "commercial terms used in international transactions."
+        ),
         'req_incoterm_address': fields.char(
             'Requested Incoterms Place',
             help="Incoterm Place of Delivery. "
@@ -72,12 +75,15 @@ class PurchaseRequisition(orm.Model):
         'req_payment_term_id': fields.many2one(
             'account.payment.term',
             'Requested Payment Term',
-            help="Default value requested to the supplier."),
-        'pricelist_id': fields.many2one('product.pricelist', 
+            help="Default value requested to the supplier."
+        ),
+        'pricelist_id': fields.many2one(
+            'product.pricelist',
             'Pricelist',
             help="If set that pricelist will be used to generate the RFQ."
-            "Mostely used to ask a requisition in a given currency."),
-        'date_end': fields.datetime('Bid Submission Deadline', 
+            "Mostely used to ask a requisition in a given currency."
+        ),
+        'date_end': fields.datetime('Bid Submission Deadline',
                                     help="All bids received after that date won't be valid "
                                          " (probably specific to public sector)."),
     }
@@ -340,16 +346,21 @@ class PurchaseRequisition(orm.Model):
         return False
 
 
-class PurchaseRequisitionLine(orm.Model):
+class purchase_requisition_line(orm.Model):
     _inherit = "purchase.requisition.line"
     _columns = {
         'remark': fields.text('Remark'),
-        'purchase_line_ids': fields.one2many('purchase.order.line', 'requisition_line_id', 'Bids Lines', readonly=True),
+        'purchase_line_ids': fields.one2many('purchase.order.line',
+                                             'requisition_line_id',
+                                             'Bids Lines',
+                                             readonly=True),
     }
 
     def name_get(self, cr, uid, ids, context=None):
         res = []
-        for line in self.read(cr, uid, ids, ['product_id', 'product_qty', 'schedule_date'], context=context):
+        for line in self.read(cr, uid, ids,
+                              ['product_id', 'product_qty', 'schedule_date'],
+                              context=context):
             name = ""
             if line['schedule_date']:
                 name += '%s ' % line['schedule_date']
