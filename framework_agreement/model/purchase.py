@@ -36,13 +36,19 @@ class purchase_order_line(orm.Model, FrameworkAgreementObservable):
             res.update([x.id for x in row.order_line])
         return res
 
+    def _get_po_line_store(self, cr, uid, ids, context=None):
+        return ids
+
+
     _store_tuple = (_get_po_store, ['framework_agreement_id'], 20)
+    _line_store_tuple = (_get_po_line_store, [], 20)
 
     _columns = {'framework_agreement_id': fields.related('order_id',
                                                          'framework_agreement_id',
                                                          type='many2one',
                                                          readonly=True,
-                                                         store={'purchase.order': _store_tuple},
+                                                         store={'purchase.order': _store_tuple,
+                                                                'purchase.order.line': _line_store_tuple},
                                                          relation='framework.agreement',
                                                          string='Agreement')}
 
