@@ -80,6 +80,7 @@ class PurchaseRequisition(orm.Model):
         'pricelist_id': fields.many2one(
             'product.pricelist',
             'Pricelist',
+            domain=[('type', '=', 'purchase')],
             help="If set that pricelist will be used to generate the RFQ."
             "Mostely used to ask a requisition in a given currency."
         ),
