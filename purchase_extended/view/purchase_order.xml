@@ -25,8 +25,8 @@
                     <attribute name="states">cancel,draftpo</attribute>
                     <attribute name="string">Reset to Draft RFQ</attribute>
                 </xpath>
-                <xpath expr="//button[@string='Send PO by Email']" position="attributes">
-                    <attribute name="states">draftpo,approved</attribute>
+                <xpath expr="//button[@string='Send PO by Email']" position="after">
+                    <button name="wkf_send_rfq" states="draftpo" string="Send PO by Email" type="object" context="{'send_rfq':True}"/>
                 </xpath>
                 <xpath expr="//button[@name='bid_received']" position="attributes">
                     <attribute name="string">Bid Encoded</attribute>
