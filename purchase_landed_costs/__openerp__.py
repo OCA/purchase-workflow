@@ -23,7 +23,7 @@
 
 {
     'name': 'Purchase Landed Costs',
-    'version': '1.0',
+    'version': '1.0.1',
     'category': 'Warehouse Management',
     'description': """
 Purchase Landed Costs
