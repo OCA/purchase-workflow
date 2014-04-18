@@ -46,6 +46,10 @@ class PurchaseOrder(Model):
         return key_list
 
     @staticmethod
+    def _can_merge(order):
+        return order.state == 'draft'
+
+    @staticmethod
     def _group_orders(input_orders):
         """Return a dictionary where each element is in the form:
 
@@ -99,8 +103,8 @@ class PurchaseOrder(Model):
 
         """
         input_orders = self.browse(cr, uid, input_order_ids, context=context)
-
-        grouped_orders = self._group_orders(input_orders)
+        mergeable_orders = filter(self._can_merge, input_orders)
+        grouped_orders = self._group_orders(mergeable_orders)
 
         new_old_rel = self._create_new_orders(cr, uid, grouped_orders, context=context)
         self._fix_workflow(new_old_rel)
