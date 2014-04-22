@@ -67,9 +67,14 @@ class PurchaseOrder(Model):
         return tuple(key_list)
 
     def _can_merge(self, order):
+        """Can the order be considered for merging with others?
+
+        This method can be surcharged in other modules.
+        """
         return order.state == 'draft'
 
     def _initial_merged_order_data(self, order):
+        """Build the initial values of a merged order."""
         return {
             'origin': order.origin,
             'date_order': order.date_order,
