@@ -21,6 +21,7 @@
 
 from openerp.osv.orm import Model
 from openerp import netsvc
+from openerp.osv.orm import browse_record, browse_null
 
 
 class PurchaseOrder(Model):
@@ -43,20 +44,81 @@ class PurchaseOrder(Model):
         If two orders have the same key, they can be merged.
         """
         key_list = [getattr(order, field) for field in fields]
-        return key_list
+        key_list = []
+        for field in fields:
+            field_value = getattr(order, field)
+
+            if isinstance(field_value, browse_record):
+                field_value = field_value.id
+            elif isinstance(field_value, browse_null):
+                field_value = False
+            elif isinstance(field_value, list):
+                field_value = ((6, 0, tuple([v.id for v in field_value])),)
+            key_list.append((field, field_value))
+
+        return tuple(key_list)
 
     @staticmethod
     def _can_merge(order):
         return order.state == 'draft'
 
     @staticmethod
-    def _group_orders(input_orders):
+    def _initial_merged_order_data(order):
+        return {
+            'origin': order.origin,
+            'date_order': order.date_order,
+            'partner_id': order.partner_id.id,
+            'dest_address_id': order.dest_address_id.id,
+            'warehouse_id': order.warehouse_id.id,
+            'location_id': order.location_id.id,
+            'pricelist_id': order.pricelist_id.id,
+            'state': 'draft',
+            'order_line': {},
+            'notes': '%s' % (order.notes or '',),
+            'fiscal_position': (
+                order.fiscal_position and order.fiscal_position.id or False
+            ),
+        }
+
+    @staticmethod
+    def _update_merged_order_data(merged_data, order):
+        if order.date_order < merged_data['date_order']:
+            merged_data['date_order'] = order.date_order
+        if order.notes:
+            merged_data['notes'] = (
+                (merged_data['notes'] or '') + ('\n%s' % (order.notes,))
+            )
+        if order.origin:
+            if (
+                order.origin not in merged_data['origin']
+                and merged_data['origin'] not in order.origin
+            ):
+                merged_data['origin'] = (
+                    (merged_data['origin'] or '') + ' ' + order.origin
+                )
+
+    def _group_orders(self, input_orders):
         """Return a dictionary where each element is in the form:
 
-        key_tuple: (new_order_data_dictionary, list_of_old_order_ids)
+        tuple_key: (dict_of_new_order_data, list_of_old_order_ids)
 
         """
-        return {}
+        key_fields = self._key_fields_for_grouping()
+        grouped_orders = {}
+
+        if len(input_orders) < 2:
+            return {}
+
+        for input_order in input_orders:
+            key = self._make_key_for_grouping(input_order, key_fields)
+            if key in grouped_orders:
+                grouped_orders[key][1].append(input_order.id)
+            else:
+                grouped_orders[key] = (
+                    self._initial_merged_order_data(input_order),
+                    [input_order.id]
+                )
+        return grouped_orders
 
     def _create_new_orders(self, cr, uid, grouped_orders, context=None):
         """Create the new merged orders in the database.
@@ -74,8 +136,7 @@ class PurchaseOrder(Model):
             new_old_rel[new_id] = old_order_ids
         return new_old_rel
 
-    @staticmethod
-    def _fix_workflow(new_old_rel):
+    def _fix_workflow(self, cr, uid, new_old_rel):
         """Fix the workflow of the old and new orders.
 
         Specifically, cancel the old ones and assign workflows to the new ones.
@@ -85,8 +146,10 @@ class PurchaseOrder(Model):
         for new_order_id in new_old_rel:
             old_order_ids = new_old_rel[new_order_id]
             for old_id in old_order_ids:
-                wf_service.trg_redirect(uid, 'purchase.order', old_id, neworder_id, cr)
-                wf_service.trg_validate(uid, 'purchase.order', old_id, 'purchase_cancel', cr)
+                wf_service.trg_redirect(uid, 'purchase.order', old_id,
+                                        new_order_id, cr)
+                wf_service.trg_validate(uid, 'purchase.order', old_id,
+                                        'purchase_cancel', cr)
 
     def do_merge(self, cr, uid, input_order_ids, context=None):
         """Merge Purchase Orders.
@@ -106,6 +169,7 @@ class PurchaseOrder(Model):
         mergeable_orders = filter(self._can_merge, input_orders)
         grouped_orders = self._group_orders(mergeable_orders)
 
-        new_old_rel = self._create_new_orders(cr, uid, grouped_orders, context=context)
-        self._fix_workflow(new_old_rel)
+        new_old_rel = self._create_new_orders(cr, uid, grouped_orders,
+                                              context=context)
+        self._fix_workflow(cr, uid, new_old_rel)
         return new_old_rel
