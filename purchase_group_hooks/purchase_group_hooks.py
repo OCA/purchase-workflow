@@ -130,8 +130,12 @@ class PurchaseOrder(Model):
                     [input_order.id]
                 )
             grouped_order_data = grouped_orders[key][0]
-            for input_line in input_order.order_lines:
-                line_key = self._key_fields_for_grouping_lines()
+
+            for input_line in input_order.order_line:
+                line_key = self._make_key_for_grouping(
+                    input_line,
+                    self._key_fields_for_grouping_lines()
+                )
                 o_line = grouped_order_data['order_line'].setdefault(
                     line_key, {}
                 )
@@ -154,6 +158,18 @@ class PurchaseOrder(Model):
                         and input_line.product_uom.factor
                         or 1.0)
 
+        return self._cleanup_merged_line_data(grouped_orders)
+
+    def _cleanup_merged_line_data(self, grouped_orders):
+
+        for order_key, (order_data, old_ids) in grouped_orders.iteritems():
+            for key, value in order_data['order_line'].iteritems():
+                del value['uom_factor']
+                value.update(dict(key))
+            order_data['order_line'] = [
+                (0, 0, value)
+                for value in order_data['order_line'].itervalues()
+            ]
         return grouped_orders
 
     def _create_new_orders(self, cr, uid, grouped_orders, context=None):

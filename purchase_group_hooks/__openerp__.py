@@ -42,5 +42,6 @@
  'installable': True,
  'auto_install': False,
  'license': 'AGPL-3',
- 'application': False
+ 'application': False,
+ 'test': ['test/merge_order.yml'],
  }

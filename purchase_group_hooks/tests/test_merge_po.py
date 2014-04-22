@@ -36,7 +36,7 @@ class TestGroupOrders(BaseCase):
             spec=browse_record, id=2)
         self.order1.pricelist_id = self.order2.pricelist_id = Mock(
             spec=browse_record, id=3)
-        self.order1.order_lines = self.order2.order_lines = []
+        self.order1.order_line = self.order2.order_line = []
 
         self.order1.id = 51
         self.order2.id = 52
