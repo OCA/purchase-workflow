@@ -27,8 +27,7 @@ from openerp.osv.orm import browse_record, browse_null
 class PurchaseOrder(Model):
     _inherit = 'purchase.order'
 
-    @staticmethod
-    def _key_fields_for_grouping():
+    def _key_fields_for_grouping(self):
         """Return a list of fields used to identify orders that can be merged.
 
         Orders that have this fields equal can be merged.
@@ -37,8 +36,7 @@ class PurchaseOrder(Model):
         """
         return ['partner_id', 'location_id', 'pricelist_id']
 
-    @staticmethod
-    def _key_fields_for_grouping_lines():
+    def _key_fields_for_grouping_lines(self):
         """Return a list of fields used to identify order lines that can be
         merged.
 
@@ -49,8 +47,7 @@ class PurchaseOrder(Model):
         return ('name', 'date_planned', 'taxes_id', 'price_unit', 'product_id',
                 'move_dest_id', 'account_analytic_id')
 
-    @staticmethod
-    def _make_key_for_grouping(order, fields):
+    def _make_key_for_grouping(self, order, fields):
         """From an order, return a tuple to be used as a key.
 
         If two orders have the same key, they can be merged.
@@ -69,12 +66,10 @@ class PurchaseOrder(Model):
         key_list.sort()
         return tuple(key_list)
 
-    @staticmethod
-    def _can_merge(order):
+    def _can_merge(self, order):
         return order.state == 'draft'
 
-    @staticmethod
-    def _initial_merged_order_data(order):
+    def _initial_merged_order_data(self, order):
         return {
             'origin': order.origin,
             'date_order': order.date_order,
@@ -91,8 +86,7 @@ class PurchaseOrder(Model):
             ),
         }
 
-    @staticmethod
-    def _update_merged_order_data(merged_data, order):
+    def _update_merged_order_data(self, merged_data, order):
         if order.date_order < merged_data['date_order']:
             merged_data['date_order'] = order.date_order
         if order.notes:
