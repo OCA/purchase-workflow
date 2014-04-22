@@ -38,12 +38,23 @@ class PurchaseOrder(Model):
         return ['partner_id', 'location_id', 'pricelist_id']
 
     @staticmethod
+    def _key_fields_for_grouping_lines():
+        """Return a list of fields used to identify order lines that can be
+        merged.
+
+        Lines that have this fields equal can be merged.
+
+        This function can be extended by other modules to modify the list.
+        """
+        return ('name', 'date_planned', 'taxes_id', 'price_unit', 'product_id',
+                'move_dest_id', 'account_analytic_id')
+
+    @staticmethod
     def _make_key_for_grouping(order, fields):
         """From an order, return a tuple to be used as a key.
 
         If two orders have the same key, they can be merged.
         """
-        key_list = [getattr(order, field) for field in fields]
         key_list = []
         for field in fields:
             field_value = getattr(order, field)
@@ -55,7 +66,7 @@ class PurchaseOrder(Model):
             elif isinstance(field_value, list):
                 field_value = ((6, 0, tuple([v.id for v in field_value])),)
             key_list.append((field, field_value))
-
+        key_list.sort()
         return tuple(key_list)
 
     @staticmethod
@@ -118,6 +129,31 @@ class PurchaseOrder(Model):
                     self._initial_merged_order_data(input_order),
                     [input_order.id]
                 )
+            grouped_order_data = grouped_orders[key][0]
+            for input_line in input_order.order_lines:
+                line_key = self._key_fields_for_grouping_lines()
+                o_line = grouped_order_data['order_line'].setdefault(
+                    line_key, {}
+                )
+                if o_line:
+                    # merge the line with an existing line
+                    o_line['product_qty'] += (
+                        input_line.product_qty
+                        * input_line.product_uom.factor
+                        / o_line['uom_factor']
+                    )
+                else:
+                    # append a new "standalone" line
+                    for field in ('product_qty', 'product_uom'):
+                        field_val = getattr(input_line, field)
+                        if isinstance(field_val, browse_record):
+                            field_val = field_val.id
+                        o_line[field] = field_val
+                    o_line['uom_factor'] = (
+                        input_line.product_uom
+                        and input_line.product_uom.factor
+                        or 1.0)
+
         return grouped_orders
 
     def _create_new_orders(self, cr, uid, grouped_orders, context=None):
@@ -154,7 +190,7 @@ class PurchaseOrder(Model):
     def do_merge(self, cr, uid, input_order_ids, context=None):
         """Merge Purchase Orders.
 
-        This method replace the original one in the purchase module because
+        This method replaces the original one in the purchase module because
         it did not provide any hooks for customization.
 
         Receive a list of order ids, and return a dictionary where each

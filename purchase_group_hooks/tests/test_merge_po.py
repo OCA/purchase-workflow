@@ -26,19 +26,23 @@ class TestGroupOrders(BaseCase):
         self.assertEquals(grouped, {})
 
     def test_two_similar_orders(self):
-        """Two orders with the right conditions can be merged."""
+        """Two orders with the right conditions can be merged.
+
+        We do not care about the order lines here.
+        """
         self.order1.partner_id = self.order2.partner_id = Mock(
             spec=browse_record, id=1)
         self.order1.location_id = self.order2.location_id = Mock(
             spec=browse_record, id=2)
         self.order1.pricelist_id = self.order2.pricelist_id = Mock(
             spec=browse_record, id=3)
+        self.order1.order_lines = self.order2.order_lines = []
 
         self.order1.id = 51
         self.order2.id = 52
 
         grouped = self.po._group_orders([self.order1, self.order2])
-        expected_key = (('partner_id', 1), ('location_id', 2),
+        expected_key = (('location_id', 2), ('partner_id', 1),
                         ('pricelist_id', 3))
         self.assertEquals(grouped.keys(), [expected_key])
         self.assertEquals(grouped[expected_key][1], [51, 52])
