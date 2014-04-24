@@ -37,6 +37,7 @@
     "demo": [],
     "data": [
         "purchase_discount_view.xml",
+        "account_invoice_view.xml",
         "report/purchase_discount_report.xml",
     ],
     "active": False,
