@@ -70,6 +70,6 @@
             name="Product by Suppliers"
             sequence="15"
             action="action_product_supplier_info"
-            parent="purchase.menu_procurement_management_product"/>
+            parent="stock.menu_stock_product"/>
     </data>
 </openerp>
