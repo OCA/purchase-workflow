@@ -20,7 +20,6 @@
 #
 ##############################################################################
 from openerp.osv import orm, fields
-import openerp.addons.decimal_precision as dp
 
 
 class product_supplierinfo(orm.Model):
@@ -33,7 +32,8 @@ class product_supplierinfo(orm.Model):
         product_obj = self.pool.get('product.product')
         for record in self.browse(cr, uid, ids, context=context):
             res[record.id] = {}
-            product = product_obj.browse(cr, uid, record.product_id.id, context=context)
+            product = product_obj.browse(
+                cr, uid, record.product_id.id, context=context)
             res[record.id]['qty_available'] = product.qty_available
             res[record.id]['virtual_available'] = product.virtual_available
         return res
@@ -47,10 +47,14 @@ class product_supplierinfo(orm.Model):
         'virtual_available': fields.function(
             _product_available, multi='virtual_available', type='float',
             string="Forecasted Quantity"),
-        'delay' : fields.integer('Delivery Lead Time', required=True,
-                                 group_operator="avg",
-                                 help="Lead time in days between the confirmation of the purchase order and the reception of the products in your warehouse. Used by the scheduler for automatic computation of the purchase order planning."
-                                 ),
+        'delay': fields.integer(
+            'Delivery Lead Time', required=True, group_operator="avg",
+            help="""
+            Lead time in days between the confirmation of the purchase order
+            and the reception of the products in your warehouse. Used by the
+            scheduler for automatic computation of the purchase order planning
+            """
+        ),
     }
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

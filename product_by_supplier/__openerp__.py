@@ -24,21 +24,27 @@
     'name': 'Product by supplier info',
     'version': '1.0',
     'category': 'purchase',
-    'sequence': 19,
     'summary': 'Show products grouped by suppliers',
     'description': """
+Product Supplier Info
+==================================================
 This module categorizes each product item by supplier.
-======================================================
-* It allows for users to be able to view a compiled list of products supplied \
-by the supplier.
-* Users can also directly add new products to the supplier's list.
-    """,
+It allows for users to be able to view a compiled list
+of products supplied by the supplier.
+
+Users can also directly add new products to the supplier's list.
+
+Contributors
+------------
+
+* Alex Comba <alex.comba@agilebg.com>
+""",
     'author': 'Elico Corp',
     'website': 'http://www.elico-corp.com',
-    'images': [
-               'static/images/product_supplier_info.png'
-               ],
-    'depends': ['product', 'stock'],
+    'license': 'AGPL-3',
+    'depends': [
+        'product', 'stock'
+    ],
     'data': [
         'product_view.xml',
     ],
