@@ -49,11 +49,10 @@ class product_supplierinfo(orm.Model):
             string="Forecasted Quantity"),
         'delay': fields.integer(
             'Delivery Lead Time', required=True, group_operator="avg",
-            help="""
-            Lead time in days between the confirmation of the purchase order
-            and the reception of the products in your warehouse. Used by the
-            scheduler for automatic computation of the purchase order planning
-            """
+            help="Lead time in days between the confirmation of the"
+            " purchase order and the reception of the products in your"
+            " warehouse. Used by the scheduler for automatic computation of"
+            " the purchase order planning."
         ),
     }
 
