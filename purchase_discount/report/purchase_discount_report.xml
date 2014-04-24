@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <report id="purchase.report_purchase_order"
+            name="purchase.order"
+            string="Print Orders"
+            model="purchase.order"
+            rml="purchase_discount/report/order.rml"
+            />
+    </data>
+</openerp>
