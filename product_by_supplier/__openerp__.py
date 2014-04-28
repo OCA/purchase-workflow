@@ -43,7 +43,9 @@ Contributors
     'website': 'http://www.elico-corp.com',
     'license': 'AGPL-3',
     'depends': [
-        'product', 'stock'
+        'product',
+        'stock',
+        'purchase',
     ],
     'data': [
         'product_view.xml',
