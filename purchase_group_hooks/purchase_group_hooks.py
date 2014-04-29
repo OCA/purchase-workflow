@@ -106,6 +106,7 @@ class PurchaseOrder(Model):
                 merged_data['origin'] = (
                     (merged_data['origin'] or '') + ' ' + order.origin
                 )
+        return merged_data
 
     def _group_orders(self, input_orders):
         """Return a dictionary where each element is in the form:
@@ -122,7 +123,13 @@ class PurchaseOrder(Model):
         for input_order in input_orders:
             key = self._make_key_for_grouping(input_order, key_fields)
             if key in grouped_orders:
-                grouped_orders[key][1].append(input_order.id)
+                grouped_orders[key] = (
+                    self._update_merged_order_data(
+                        grouped_orders[key][0],
+                        input_order
+                    ),
+                    grouped_orders[key][1] + [input_order.id]
+                )
             else:
                 grouped_orders[key] = (
                     self._initial_merged_order_data(input_order),
