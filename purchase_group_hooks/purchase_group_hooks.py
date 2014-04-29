@@ -34,7 +34,7 @@ class PurchaseOrder(Model):
 
         This function can be extended by other modules to modify the list.
         """
-        return ['partner_id', 'location_id', 'pricelist_id']
+        return ('partner_id', 'location_id', 'pricelist_id')
 
     def _key_fields_for_grouping_lines(self):
         """Return a list of fields used to identify order lines that can be
