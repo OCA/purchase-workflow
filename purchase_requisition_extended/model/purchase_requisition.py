@@ -231,28 +231,76 @@ class PurchaseRequisition(orm.Model):
                         _('You do not have valid sent RFQs.'))
         return super(PurchaseRequisition, self).tender_open(cr, uid, ids, context=context)
 
+    def _get_po_to_cancel(self, cr, uid, callforbids, context=None):
+        """Get the list of PO/RFQ that can be canceled on RFQ
+
+        :param callforbids: `purchase.requisition` record
+
+        :returns: List of candidate PO/RFQ record
+
+        """
+        res = []
+        for purchase in callforbids.purchase_ids:
+            if (purchase.state in ('draft', 'sent')):
+                res.append(purchase)
+        return res
+
+    def _check_can_be_canceled(self, callforbids, context=None):
+        """Raise an exception if callforbids can not be cancelled
+        :param callforbids: `purchase.requisition` record
+
+        :returns: True or raise exception
+
+        """
+        for purchase in callforbids.purchase_ids:
+            if (purchase.state not in ('draft', 'sent')):
+                raise orm.except_orm(
+                    _('Error'),
+                    _('You cannot cancel a call for bids which '
+                      'has already received bids.'))
+        return True
+
+    def _cancel_po_with_reason(self, cr, uid, po_list, reason_id, context=None):
+        """Cancel purchase order of a tender, using given reasons
+        :param po_list: list of po record to cancel
+        :param reason_id: reason id of cancelation
+
+        :returns: cancel po record list
+
+        """
+        purchase_order_obj = self.pool.get('purchase.order')
+        purchase_order_obj.write(cr, uid,
+                                 [x.id for x in po_list],
+                                 {'cancel_reason': reason_id},
+                                 context=context)
+        for order in po_list:
+            # passing full list raises assert error
+            purchase_order_obj.action_cancel_no_reason(cr, uid, [order.id],
+                                                       context=context)
+        return po_list
+
+    def _get_default_reason(self, cr, uid, context=None):
+        """Return default cancel reason"""
+        reason = self.pool.get('ir.model.data').get_object_reference(
+            cr,
+            uid,
+            'purchase_requisition_extended',
+            'purchase_cancelreason_callforbids_canceled'
+        )
+        return reason[1]
+
     def tender_cancel(self, cr, uid, ids, context=None):
         """
-        Try to cancel all RFQs
+        Cancel call for bids and try to cancelrelated  RFQs/PO
+
         """
-        cancel_ids = []
+        reason_id = self._get_default_reason(cr, uid, context=context)
         for callforbids in self.browse(cr, uid, ids, context=context):
-            for purchase in callforbids.purchase_ids:
-                if (purchase.state in ('draft', 'sent')):
-                    cancel_ids.append(purchase.id)
-                else:
-                    raise orm.except_orm(
-                        _('Error'),
-                        _('You cannot cancel a call for bids which has already received bids.'))
-        if cancel_ids:
-            reason_id = self.pool.get('ir.model.data').get_object_reference(cr, uid,
-                            'purchase_requisition_extended', 'purchase_cancelreason_callforbids_canceled')[1]
-            purchase_order_obj = self.pool.get('purchase.order')
-            purchase_order_obj.write(cr, uid, cancel_ids, {'cancel_reason': reason_id}, context=context)
-            for po_id in cancel_ids:
-                # passing full list raise assert error
-                purchase_order_obj.action_cancel_no_reason(cr, uid, [po_id],
-                                                           context=context)
+            self._check_can_be_canceled(callforbids, context=context)
+            po_to_cancel = self._get_po_to_cancel(cr, uid, callforbids, context=context)
+            if po_to_cancel:
+                self._cancel_po_with_reason(cr, uid, po_to_cancel, reason_id,
+                                            context=context)
         return self.write(cr, uid, ids, {'state': 'cancel'})
 
     def tender_close(self, cr, uid, ids, context=None):
