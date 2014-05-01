@@ -106,6 +106,10 @@ class PurchaseOrder(orm.Model):
             'context': context,
         }
 
+    def action_cancel_no_reason(self, cr, uid, ids, context=None):
+        return super(PurchaseOrder, self).action_cancel(cr, uid, ids,
+                                                        context=context)
+
     def action_cancel_ok(self, cr, uid, ids, context=None):
         reason_id = self.pool.get('purchase.action_modal_cancelreason').read(cr, uid,
                                 context['active_id'], ['reason_id'], context=context,
