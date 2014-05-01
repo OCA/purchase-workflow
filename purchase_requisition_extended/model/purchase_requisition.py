@@ -249,7 +249,10 @@ class PurchaseRequisition(orm.Model):
                             'purchase_requisition_extended', 'purchase_cancelreason_callforbids_canceled')[1]
             purchase_order_obj = self.pool.get('purchase.order')
             purchase_order_obj.write(cr, uid, cancel_ids, {'cancel_reason': reason_id}, context=context)
-            purchase_order_obj.action_cancel(cr, uid, [purchase.id])
+            for po_id in cancel_ids:
+                # passing full list raise assert error
+                purchase_order_obj.action_cancel_no_reason(cr, uid, [po_id],
+                                                           context=context)
         return self.write(cr, uid, ids, {'state': 'cancel'})
 
     def tender_close(self, cr, uid, ids, context=None):
