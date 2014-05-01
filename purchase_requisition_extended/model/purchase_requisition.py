@@ -241,7 +241,7 @@ class PurchaseRequisition(orm.Model):
         """
         res = []
         for purchase in callforbids.purchase_ids:
-            if (purchase.state in ('draft', 'sent')):
+            if purchase.state in ('draft', 'sent'):
                 res.append(purchase)
         return res
 
@@ -253,7 +253,7 @@ class PurchaseRequisition(orm.Model):
 
         """
         for purchase in callforbids.purchase_ids:
-            if (purchase.state not in ('draft', 'sent')):
+            if purchase.state not in ('draft', 'sent'):
                 raise orm.except_orm(
                     _('Error'),
                     _('You cannot cancel a call for bids which '
