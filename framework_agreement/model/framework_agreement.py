@@ -249,8 +249,8 @@ class framework_agreement(orm.Model):
         res = set()
         pol_obj = self.pool.get('purchase.order.line')
         for row in pol_obj.browse(cr, uid, ids, context=context):
-            if row.framework_agreement_id:
-                res.update([row.framework_agreement_id.id])
+            if row.order_id.framework_agreement_id:
+                res.update([row.order_id.framework_agreement_id.id])
         return res
 
     _store_tuple = (lambda self, cr, uid, ids, c={}: ids, ['quantity'], 10)

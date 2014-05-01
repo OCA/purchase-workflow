@@ -19,7 +19,7 @@
 #
 ##############################################################################
 {'name': 'Simple Framework Agreement',
- 'version': '0.1',
+ 'version': '0.1.1',
  'author': 'Camptocamp',
  'maintainer': 'Camptocamp',
  'category': 'Purchase Management',
