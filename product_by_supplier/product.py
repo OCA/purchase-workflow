@@ -2,6 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
+#    Copyright (C) 2004-2009 Tiny SPRL (<http://tiny.be>).
 #    Copyright (c) 2010-2013 Elico Corp. All Rights Reserved.
 #    Author: Yannick Gouin <yannick.gouin@elico-corp.com>
 #
@@ -53,4 +54,46 @@ class product_supplierinfo(orm.Model):
                                  ),
     }
 
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+
+class product_product(orm.Model):
+    _inherit = 'product.product'
+
+    def _partner_ref2(self, cr, user, ids, name, arg, context=None):
+        res = {}
+        for product in self.browse(cr, user, ids, context=context):
+            res[product.id] = '\n'.join(
+                [x.product_code for x in product.seller_ids if x.product_code]
+                ) or ''
+        return res
+
+    def _partner_ref2_search(self, cr, user, obj, name, args, context={}):
+        supplierinfo_obj = self.pool.get('product.supplierinfo')
+        args = args[:]
+        i = 0
+        while i < len(args):
+            args[i] = ('product_code', args[i][1], args[i][2])
+            i += 1
+        supplierinfo_ids = supplierinfo_obj.search(cr, user, args)
+        product_ids = [x.product_id.id for x in supplierinfo_obj.browse(
+            cr, user,
+            supplierinfo_ids) if x.product_id]
+        return [('id', 'in', product_ids)]
+
+    _columns = {
+        'partner_ref2': fields.function(
+            _partner_ref2, method=True,
+            type='char', string='Supplier codes',
+            fnct_search=_partner_ref2_search),
+    }
+
+    def name_search(
+            self, cr, user, name='', args=None, operator='ilike',
+            context=None, limit=80):
+        ids = self.search(
+            cr, user, [('partner_ref2', '=', name)] + args,
+            limit=limit, context=context)
+        if ids:
+            return self.name_get(cr, user, ids, context=context)
+        return super(product_product, self).name_search(
+            cr, user, name=name, args=args,
+            operator=operator, context=context, limit=limit)

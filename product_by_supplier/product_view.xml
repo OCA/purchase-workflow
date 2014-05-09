@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data>
+        
+        <!-- Supplier info -->
+        
         <record id="view_product_supplierinfo_search" model="ir.ui.view">
             <field name="name">product.supplierinfo.search</field>
             <field name="model">product.supplierinfo</field>
@@ -71,5 +74,30 @@
             sequence="15"
             action="action_product_supplier_info"
             parent="purchase.menu_procurement_management_product"/>
+        
+        <!-- Product -->
+
+        <record model="ir.ui.view" id="product_product_tree_view_inherit">
+            <field name="name">product.product.tree.inherit</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_product_tree_view"/>
+            <field name="arch" type="xml">
+                <field name="state" position="before">
+                    <field name="partner_ref2"/>
+                </field>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="product_search_form_view">
+            <field name="name">product_search_form_view</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_search_form_view"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="partner_ref2"/>
+                </field>
+            </field>
+        </record>
+        
     </data>
 </openerp>
