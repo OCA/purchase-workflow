@@ -21,9 +21,11 @@
 {
     "name": "Purchase order lines with discounts",
     "author": "Tiny, Acysos S.L.",
-    "description": """
-    It allows to define a discount per line in the purchase orders. This
-    discount can be also negative, interpreting it as an increment.
+    "description": """It allows to define a discount per line in the purchase
+orders. This discount can be also negative, interpreting it as an increment.
+
+**Contributors**:
+ * Pedro Manuel Baeza <pedro.baeza@serviciosbaeza.com>
     """,
     "version": "1.0",
     "contributors": [
@@ -40,7 +42,7 @@
         "account_invoice_view.xml",
         "report/purchase_discount_report.xml",
     ],
-    "active": False,
+    "license": 'AGPL-3',
     "installable": True
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
