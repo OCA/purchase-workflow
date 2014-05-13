@@ -25,11 +25,11 @@ import openerp.addons.decimal_precision as dp
 class purchase_order_line(orm.Model):
     _inherit = "purchase.order.line"
 
-    def _amount_line(self, cr, uid, ids, prop, unknow_none, unknow_dict):
+    def _amount_line(self, cr, uid, ids, field_name, arg, context=None):
         res = {}
-        cur_obj = self.pool.get('res.currency')
-        tax_obj = self.pool.get('account.tax')
-        for line in self.browse(cr, uid, ids):
+        cur_obj = self.pool['res.currency']
+        tax_obj = self.pool['account.tax']
+        for line in self.browse(cr, uid, ids, context=context):
             discount = line.discount or 0.0
             new_price_unit = line.price_unit * (1 - discount / 100.0)
             taxes = tax_obj.compute_all(cr, uid, line.taxes_id, new_price_unit,
@@ -61,8 +61,8 @@ class purchase_order(orm.Model):
 
     def _amount_all(self, cr, uid, ids, field_name, arg, context=None):
         res = {}
-        cur_obj = self.pool.get('res.currency')
-        tax_obj = self.pool.get('account.tax')
+        cur_obj = self.pool['res.currency']
+        tax_obj = self.pool['account.tax']
         for order in self.browse(cr, uid, ids, context=context):
             val = {}
             amount_taxed = amount_untaxed = 0.0
@@ -94,11 +94,11 @@ class purchase_order(orm.Model):
         return result
 
     def _get_order(self, cr, uid, ids, context=None):
-        result = {}
-        for line in self.pool.get('purchase.order.line').browse(cr, uid, ids,
-                                                                context):
-            result[line.order_id.id] = True
-        return result.keys()
+        result = set()
+        po_line_obj = self.pool['purchase.order.line']
+        for line in po_line_obj.browse(cr, uid, ids, context=context):
+            result.add(line.order_id.id)
+        return list(result)
 
     _columns = {
         'amount_untaxed': fields.function(
@@ -120,27 +120,6 @@ class purchase_order(orm.Model):
             store={
                 'purchase.order.line': (_get_order, None, 10),
             }, multi="sums", help="The total amount"),
-        'amount_untaxed': fields.function(
-            _amount_all,
-            digits_compute=dp.get_precision('Account'),
-            string='Untaxed Amount',
-            store={
-                'purchase.order.line': (_get_order, None, 10),
-            }, multi="sums", help="The amount without tax",
-            track_visibility='always'),
-        'amount_tax': fields.function(
-            _amount_all,
-            digits_compute=dp.get_precision('Account'), string='Taxes',
-            store={
-                'purchase.order.line': (_get_order, None, 10),
-            }, multi="sums", help="The tax amount"),
-        'amount_total': fields.function(
-            _amount_all,
-            digits_compute=dp.get_precision('Account'), string='Total',
-            store={
-                'purchase.order.line': (_get_order, None, 10),
-            }, multi="sums", help="The total amount"),
-
     }
 
 
@@ -150,12 +129,9 @@ class stock_picking(orm.Model):
     def _invoice_line_hook(self, cr, uid, move_line, invoice_line_id):
         if move_line.purchase_line_id:
             line = {'discount': move_line.purchase_line_id.discount}
-            self.pool.get('account.invoice.line').write(cr,
-                                                        uid,
-                                                        [invoice_line_id],
-                                                        line)
-        return super(stock_picking, self)._invoice_line_hook(cr,
-                                                             uid,
+            self.pool['account.invoice.line'].write(cr, uid,
+                                                    [invoice_line_id], line)
+        return super(stock_picking, self)._invoice_line_hook(cr, uid,
                                                              move_line,
                                                              invoice_line_id)
 
