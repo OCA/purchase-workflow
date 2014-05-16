@@ -1,0 +1,74 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* purchase_budget_limit
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-07-02 13:00+0000\n"
+"PO-Revision-Date: 2014-07-02 13:00+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_budget_limit
+#: view:purchase.budget.wizard:0
+msgid "Block Purchase Order"
+msgstr ""
+
+#. module: purchase_budget_limit
+#: field:purchase.budget.wizard,budget_line_ids:0
+msgid "Budget Lines"
+msgstr ""
+
+#. module: purchase_budget_limit
+#: code:addons/purchase_budget_limit/purchase.py:105
+#: view:purchase.budget.wizard:0
+#, python-format
+msgid "Budget warning"
+msgstr ""
+
+#. module: purchase_budget_limit
+#: view:purchase.order:0
+msgid "Cancel Order"
+msgstr ""
+
+#. module: purchase_budget_limit
+#: view:purchase.budget.wizard:0
+#: view:purchase.order:0
+msgid "Override Budgets"
+msgstr ""
+
+#. module: purchase_budget_limit
+#: code:_description:0
+#: model:ir.model,name:purchase_budget_limit.model_purchase_order
+#, python-format
+msgid "Purchase Order"
+msgstr ""
+
+#. module: purchase_budget_limit
+#: view:purchase.budget.wizard:0
+msgid "The following Budget Lines will be exhausted if you confirm the Purchase Order: you may have dificulties paying the Supplier Invoice."
+msgstr ""
+
+#. module: purchase_budget_limit
+#: view:purchase.order:0
+msgid "button_confirm"
+msgstr ""
+
+#. module: purchase_budget_limit
+#: view:purchase.order:0
+msgid "object"
+msgstr ""
+
+#. module: purchase_budget_limit
+#: code:_description:0
+#: model:ir.model,name:purchase_budget_limit.model_purchase_budget_wizard
+#, python-format
+msgid "purchase.budget.wizard"
+msgstr ""
+

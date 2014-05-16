@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="purchase_budget_wizard_form" model="ir.ui.view">
+            <field name="name">purchase.budget.wizard.form</field>
+            <field name="model">purchase.budget.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Budget warning" version="7.0">
+                    <label string="The following Budget Lines will be exhausted if you confirm the Purchase Order: you may have dificulties paying the Supplier Invoice."/>
+                    <field name="budget_line_ids" nolabel="1"/>
+                    <footer>
+                        <button special="cancel" string="Block Purchase Order" class="oe_highlight"/>
+                        <button name="override_budget" string="Override Budgets" type="object"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</openerp>
