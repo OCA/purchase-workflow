@@ -89,11 +89,15 @@ class product_product(orm.Model):
     def name_search(
             self, cr, user, name='', args=None, operator='ilike',
             context=None, limit=80):
+        main_results = super(product_product, self).name_search(
+            cr, user, name=name, args=args,
+            operator=operator, context=context, limit=limit)
         ids = self.search(
             cr, user, [('partner_ref2', '=', name)] + args,
             limit=limit, context=context)
         if ids:
-            return self.name_get(cr, user, ids, context=context)
-        return super(product_product, self).name_search(
-            cr, user, name=name, args=args,
-            operator=operator, context=context, limit=limit)
+            supplier_results = self.name_get(cr, user, ids, context=context)
+            for supplier_result in supplier_results:
+                if supplier_result not in main_results:
+                    main_results.append(supplier_result)
+        return main_results
