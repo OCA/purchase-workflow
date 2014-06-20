@@ -263,7 +263,7 @@
             <para style="terp_default_Right_9">[[ formatLang(line.price_unit, digits=get_digits(dp='Account') ) ]]</para>
           </td>
           <td>
-            <para style="terp_default_Right_9">[[ '%.2f'%line.discount ]]</para>
+            <para style="terp_default_Right_9">[[ formatLang(line.discount, digits=get_digits(dp='Discount')) ]]</para>
           </td>
           <td>
             <para style="terp_default_Right_9">[[ formatLang(line.price_subtotal, digits=get_digits(dp='Account') ) ]] [[ o.pricelist_id.currency_id.symbol ]]</para>
