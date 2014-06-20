@@ -21,8 +21,12 @@
 {
     "name": "Purchase order lines with discounts",
     "author": "Tiny, Acysos S.L.",
-    "description": """It allows to define a discount per line in the purchase
+    "description": """
+It allows to define a discount per line in the purchase
 orders. This discount can be also negative, interpreting it as an increment.
+
+**REMARK**: This module can be incompatible with other modules that modify
+purchase prices, because it overwrites computation methods.
 
 **Contributors**:
  * Pedro Manuel Baeza <pedro.baeza@serviciosbaeza.com>
