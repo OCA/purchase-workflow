@@ -1,16 +1,16 @@
-# Spanish translation for c2c-rd-addons
-# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
-# This file is distributed under the same license as the c2c-rd-addons package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+# French translation for purchase-wkfl
+# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
+# This file is distributed under the same license as the purchase-wkfl package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: c2c-rd-addons\n"
+"Project-Id-Version: purchase-wkfl\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-02-12 08:57+0000\n"
-"PO-Revision-Date: 2014-06-21 01:03+0000\n"
-"Last-Translator: Mikel Martin <Unknown>\n"
-"Language-Team: Spanish <es@li.org>\n"
+"PO-Revision-Date: 2014-06-20 14:20+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,51 +20,49 @@ msgstr ""
 #. module: purchase_landed_costs
 #: field:product.category,landed_cost:0 field:product.template,landed_cost:0
 msgid "Calculate Landed Costs"
-msgstr "Costos de importación"
+msgstr ""
 
 #. module: purchase_landed_costs
 #: sql_constraint:purchase.order:0
 msgid "Order Reference must be unique per Company!"
-msgstr "Orden de referencia debe ser única por Empresa!"
+msgstr ""
 
 #. module: purchase_landed_costs
 #: model:ir.model,name:purchase_landed_costs.model_purchase_order_line
 #: field:landed.cost.position,purchase_order_line_id:0
 msgid "Purchase Order Line"
-msgstr "Líneas de pedido de compra"
+msgstr "Ligne de commande d'achat"
 
 #. module: purchase_landed_costs
 #: field:landed.cost.position,move_line_id:0
 msgid "Picking Line"
-msgstr "Línea de movimiento"
+msgstr ""
 
 #. module: purchase_landed_costs
 #: field:stock.move,sub_total:0
 msgid "Line Sub Total"
-msgstr "Subtotal de línea"
+msgstr ""
 
 #. module: purchase_landed_costs
 #: help:landed.cost.position,partner_id:0
 msgid "The supplier of this cost component ."
-msgstr "Proveedor de componente de costos"
+msgstr ""
 
 #. module: purchase_landed_costs
 #: constraint:product.template:0
 msgid ""
 "Error: The default UOM and the purchase UOM must be in the same category."
 msgstr ""
-"Error: La UdM por defecto y la UdM de compra deben estar en la misma "
-"categoría."
 
 #. module: purchase_landed_costs
 #: constraint:stock.move:0
 msgid "You must assign a production lot for this product"
-msgstr "Debe asignar un lote de producción para este producto"
+msgstr ""
 
 #. module: purchase_landed_costs
 #: help:landed.cost.position,amount_currency:0
 msgid "The amount expressed in an optional other currency."
-msgstr "Importe expresado en otra divisa. Opcional."
+msgstr ""
 
 #. module: purchase_landed_costs
 #: help:product.template,landed_cost_type:0
@@ -73,18 +71,19 @@ msgid ""
 "purchase orders or pickings, this indicates how the costs are distributed to "
 "the lines"
 msgstr ""
-"Usado si el producto es un costo de importación. Indica como se distribuye "
-"el costo de importación en la orden de compra o de movimiento interno."
+"Utilisé si ce produit est un coût d'acquisition: Si des coûts d'acquisition "
+"sont définis sur les commandes d'achat ou les bons de livraison, ceci "
+"indique la répartion de ces coûts sur les lignes"
 
 #. module: purchase_landed_costs
 #: selection:landed.cost.position,price_type:0
 msgid "Per Unit"
-msgstr "Unidad"
+msgstr ""
 
 #. module: purchase_landed_costs
 #: model:ir.model,name:purchase_landed_costs.model_stock_picking
 msgid "Picking List"
-msgstr "Lista de Envios"
+msgstr ""
 
 #. module: purchase_landed_costs
 #: model:ir.model,name:purchase_landed_costs.model_landed_cost_position
@@ -94,12 +93,12 @@ msgstr "landed.cost.position"
 #. module: purchase_landed_costs
 #: field:stock.move,landing_costs_picking:0
 msgid "Landing Costs from Picking"
-msgstr "Costos de entrega de Envios"
+msgstr ""
 
 #. module: purchase_landed_costs
 #: selection:landed.cost.position,price_type:0
 msgid "Absolute Value"
-msgstr "Valor absoluto"
+msgstr ""
 
 #. module: purchase_landed_costs
 #: help:product.template,landed_cost:0
@@ -107,74 +106,71 @@ msgid ""
 "Checck this if you want to use landed cost calculation for average price for "
 "this product"
 msgstr ""
-"Marcar para definir el precio promedio del producto/servicio en el cálculo "
-"del costo de importación."
 
 #. module: purchase_landed_costs
 #: field:purchase.order,landed_cost_line_ids:0
 #: field:purchase.order.line,landed_costs:0 field:stock.move,landed_cost:0
 msgid "Landed Costs"
-msgstr "Costos de importación"
+msgstr "Coûts d'acquisition"
 
 #. module: purchase_landed_costs
 #: constraint:stock.move:0
 msgid "You try to assign a lot which is not from the same product"
-msgstr "Está intentando asignar un lote que no es del mismo producto"
+msgstr ""
 
 #. module: purchase_landed_costs
 #: constraint:stock.move:0
 msgid "You can not move products from or to a location of the type view."
 msgstr ""
-"No puede mover producto desde o hacia una localización de tipo vista."
 
 #. module: purchase_landed_costs
 #: view:landed.cost.position:0 view:purchase.order:0
 #: view:purchase.order.line:0 field:purchase.order.line,landing_costs:0
 #: view:stock.picking:0
 msgid "Landing Costs"
-msgstr "Costos de importación"
+msgstr "Coûts d'acquisiton"
 
 #. module: purchase_landed_costs
 #: model:ir.model,name:purchase_landed_costs.model_stock_partial_picking_line
 msgid "stock.partial.picking.line"
-msgstr "Línea de entrega parcial"
+msgstr ""
 
 #. module: purchase_landed_costs
 #: field:purchase.order,quantity_total:0 field:stock.picking,quantity_total:0
 msgid "Total Quantity"
-msgstr "Cantidad total"
+msgstr "Quantité totale"
 
 #. module: purchase_landed_costs
 #: help:landed.cost.position,currency_id:0
 msgid "Optional other currency."
-msgstr "Otra divisa opcional"
+msgstr ""
 
 #. module: purchase_landed_costs
 #: field:purchase.order,landed_cost_base_value:0
 #: field:stock.picking,landed_cost_base_value:0
 msgid "Landed Costs Base Value"
-msgstr "Valor base de costo de Importación"
+msgstr "Coûts d'acquisition valeur de base"
 
 #. module: purchase_landed_costs
 #: field:landed.cost.position,picking_id:0
 msgid "Picking"
-msgstr "Albarán"
+msgstr ""
 
 #. module: purchase_landed_costs
 #: field:stock.picking,total_amount:0
 msgid "Total Product Price"
-msgstr "Precio total de productos"
+msgstr ""
 
 #. module: purchase_landed_costs
 #: field:stock.move,price_unit_net:0
 msgid "Purchase Price"
-msgstr "Precio de compra"
+msgstr "Prix d'achat"
 
 #. module: purchase_landed_costs
 #: field:purchase.order,landing_cost_lines:0
 #: field:stock.picking,landing_cost_lines:0
 msgid "Landing Cost Lines"
-msgstr "Lineas de costos de importación"
+msgstr "Lignes de coût d'acquisition"
 
 #. module: purchase_landed_costs
 #: constraint:stock.move:0
@@ -182,76 +178,74 @@ msgid ""
 "Error: Negative quantities for location and/or lots are not allowed for this "
 "product or product category"
 msgstr ""
-"Error: No se permiten cantidades negativas para la ubicación y/o lotes no "
-"están permitidas para este producto o categoría de producto."
 
 #. module: purchase_landed_costs
 #: selection:product.template,landed_cost_type:0
 msgid "None"
-msgstr "Ninguno"
+msgstr "Aucun"
 
 #. module: purchase_landed_costs
 #: field:product.template,landed_cost_type:0
 msgid "Distribution Type"
-msgstr "Tipo de distribución"
+msgstr "Type de Distribution"
 
 #. module: purchase_landed_costs
 #: model:ir.model,name:purchase_landed_costs.model_stock_partial_move
 msgid "Partial Move Processing Wizard"
-msgstr "Asistente para procesado de movimientos parciales"
+msgstr ""
 
 #. module: purchase_landed_costs
 #: view:stock.picking:0
 msgid "Notes"
-msgstr "Notas:"
+msgstr ""
 
 #. module: purchase_landed_costs
 #: field:landed.cost.position,currency_id:0
 msgid "Secondary Currency"
-msgstr "Divisa secundaria"
+msgstr ""
 
 #. module: purchase_landed_costs
 #: selection:product.template,landed_cost_type:0
 msgid "Value"
-msgstr "Valor"
+msgstr "Valeur"
 
 #. module: purchase_landed_costs
 #: model:ir.model,name:purchase_landed_costs.model_purchase_order
 #: field:landed.cost.position,purchase_order_id:0
 msgid "Purchase Order"
-msgstr "Orden de Compra"
+msgstr "Bon de commande"
 
 #. module: purchase_landed_costs
 #: field:purchase.order.line,landed_cost_line_ids:0
 #: field:stock.move,landed_cost_line_ids:0
 #: field:stock.picking,landed_cost_line_ids:0
 msgid "Landed Costs Positions"
-msgstr "Posicion de costos de importación"
+msgstr "Poste de coûts d'acquisition"
 
 #. module: purchase_landed_costs
 #: field:purchase.order.line,landing_costs_order:0
 msgid "Landing Costs from Order"
-msgstr "Costos de importación desde la orden"
+msgstr "Coûts d'acquisiton de la commande"
 
 #. module: purchase_landed_costs
 #: field:landed.cost.position,amount:0
 msgid "Amount"
-msgstr "Monto"
+msgstr "Montant"
 
 #. module: purchase_landed_costs
 #: model:ir.model,name:purchase_landed_costs.model_product_category
 msgid "Product Category"
-msgstr "Categoría de producto"
+msgstr ""
 
 #. module: purchase_landed_costs
 #: sql_constraint:stock.picking:0
 msgid "Reference must be unique per Company!"
-msgstr "Referencia debe ser única por compañía!"
+msgstr ""
 
 #. module: purchase_landed_costs
 #: model:ir.model,name:purchase_landed_costs.model_stock_partial_picking
 msgid "Partial Picking Processing Wizard"
-msgstr "Asistente Procesamiento Parcial de un Albaran"
+msgstr "Assistant de livraison partielle"
 
 #. module: purchase_landed_costs
 #: help:landed.cost.position,price_type:0
@@ -259,25 +253,24 @@ msgid ""
 "Defines if the amount is to be calculated for each quantity or an absolute "
 "value"
 msgstr ""
-"Defines if the amount is to be calculated for each quantity or an absolute "
-"value\r\n"
-"Define si el monto debe calcularse para cada cantidad o un valor absoluto"
+"Détermine si le montant du coût d'acquisition se calcule par quantité ou si "
+"il s'agit d'une simple valeur à ajouter"
 
 #. module: purchase_landed_costs
 #: selection:product.template,landed_cost_type:0
 msgid "Quantity"
-msgstr "Cantidad"
+msgstr "Quantité"
 
 #. module: purchase_landed_costs
 #: field:landed.cost.position,product_id:0
 msgid "Landed Cost Name"
-msgstr "Nombre del costo de importación"
+msgstr "Nom du coût d'acquisiton"
 
 #. module: purchase_landed_costs
 #: field:purchase.order,landed_cost_base_quantity:0
 #: field:stock.picking,landed_cost_base_quantity:0
 msgid "Landed Costs Base Quantity"
-msgstr "Cantidad básica par el costo de importación"
+msgstr "Quantité de base du coûts d'acquisiton"
 
 #. module: purchase_landed_costs
 #: help:product.category,landed_cost:0
@@ -285,33 +278,31 @@ msgid ""
 "Checck this if you want to use landed cost calculation for average price for "
 "this catgory"
 msgstr ""
-"Marcar para calcular el costo de importación por precio promedio para la "
-"categoría"
 
 #. module: purchase_landed_costs
 #: model:ir.model,name:purchase_landed_costs.model_product_template
 msgid "Product Template"
-msgstr "Plantilla de producto"
+msgstr "Modèle d'article"
 
 #. module: purchase_landed_costs
 #: model:ir.model,name:purchase_landed_costs.model_stock_move
 msgid "Stock Move"
-msgstr "Movimiento stock"
+msgstr "Mouvement de stock"
 
 #. module: purchase_landed_costs
 #: constraint:product.category:0
 msgid "Error ! You cannot create recursive categories."
-msgstr "¡Error! No puede crear categorías recursivas"
+msgstr ""
 
 #. module: purchase_landed_costs
 #: field:landed.cost.position,amount_currency:0
 msgid "Amount Currency"
-msgstr "Importe divisa"
+msgstr ""
 
 #. module: purchase_landed_costs
 #: field:stock.move,landing_costs:0
 msgid "Line Landing Costs"
-msgstr "Línea de costos de importación"
+msgstr ""
 
 #. module: purchase_landed_costs
 #: help:landed.cost.position,amount:0
@@ -319,20 +310,18 @@ msgid ""
 "Landed cost for stock valuation. It will be added to the price of the "
 "supplier price."
 msgstr ""
-"Costos de importación para stock valorado. Será agregado al precio del "
-"proveedor."
 
 #. module: purchase_landed_costs
 #: field:landed.cost.position,partner_id:0
 msgid "Partner"
-msgstr "Partner"
+msgstr "Partenaire"
 
 #. module: purchase_landed_costs
 #: field:purchase.order,landed_cost:0 field:stock.picking,landed_cost:0
 msgid "Landed Costs Total Untaxed"
-msgstr "Costos de importación sin impuestos"
+msgstr "Coûts d'acquisiton H.T total"
 
 #. module: purchase_landed_costs
 #: field:landed.cost.position,price_type:0
 msgid "Amount Type"
-msgstr "Tipo de importe"
+msgstr ""
