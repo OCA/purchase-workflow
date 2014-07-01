@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
+# -*- encoding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (c) 2010-2013 Elico Corp. All Rights Reserved.
-#    Author: LIN Yu <lin.yu@elico-corp.com>
+#    Copyright (C) 2004-2009 Tiny SPRL (<http://tiny.be>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -19,42 +18,35 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
 {
-    'name': 'Product by supplier info',
-    'version': '1.0.1',
-    'category': 'purchase',
-    'summary': 'Show products grouped by suppliers',
-    'description': """
-Product Supplier Info
-==================================================
-This module categorizes each product item by supplier.
-It allows for users to be able to view a compiled list
-of products supplied by the supplier.
+    "name": "Purchase order lines with discounts",
+    "author": "Tiny, Acysos S.L.",
+    "description": """
+It allows to define a discount per line in the purchase
+orders. This discount can be also negative, interpreting it as an increment.
 
-Users can also directly add new products to the supplier's list.
+**REMARK**: This module can be incompatible with other modules that modify
+purchase prices, because it overwrites computation methods.
 
-Contributors
-------------
-
-* Alex Comba <alex.comba@agilebg.com>
-""",
-    'author': 'Elico Corp',
-    'website': 'http://www.elico-corp.com',
-    'license': 'AGPL-3',
-    'depends': [
-        'product',
-        'stock',
-        'purchase',
+**Contributors**:
+ * Pedro Manuel Baeza <pedro.baeza@serviciosbaeza.com>
+    """,
+    "version": "1.0",
+    "contributors": [
+        'Pedro M. Baeza',
     ],
-    'data': [
-        'product_view.xml',
+    "category": "Generic Modules/Sales & Purchases",
+    "depends": [
+        "stock",
+        "purchase",
     ],
-    'test': [],
-    'demo': [],
-    'installable': True,
-    'auto_install': False,
-    'application': False,
+    "demo": [],
+    "data": [
+        "purchase_discount_view.xml",
+        "account_invoice_view.xml",
+        "report/purchase_discount_report.xml",
+    ],
+    "license": 'AGPL-3',
+    "installable": True
 }
-
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
