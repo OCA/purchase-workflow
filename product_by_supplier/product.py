@@ -78,10 +78,14 @@ class product_product(orm.Model):
             args[i] = ('product_code', args[i][1], args[i][2])
             i += 1
         supplierinfo_ids = supplierinfo_obj.search(cr, user, args)
-        product_template_ids = [x.product_id.id for x in supplierinfo_obj.browse(
-            cr, user,
-            supplierinfo_ids) if x.product_id]
-        product_ids = self.search(cr, user, [('product_tmpl_id', 'in', product_template_ids)], context=context)
+        product_template_ids = [
+            x.product_id.id for x in supplierinfo_obj.browse(
+                cr, user,
+                supplierinfo_ids
+            ) if x.product_id]
+        product_ids = self.search(
+            cr, user, [('product_tmpl_id', 'in', product_template_ids)],
+            context=context)
         return [('id', 'in', product_ids)]
 
     _columns = {
