@@ -5,6 +5,7 @@
 #    Copyright (C) 2004-2009 Tiny SPRL (<http://tiny.be>).
 #    Copyright (c) 2010-2013 Elico Corp. All Rights Reserved.
 #    Author: Yannick Gouin <yannick.gouin@elico-corp.com>
+#    Copyright (c) 2014 Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -77,9 +78,10 @@ class product_product(orm.Model):
             args[i] = ('product_code', args[i][1], args[i][2])
             i += 1
         supplierinfo_ids = supplierinfo_obj.search(cr, user, args)
-        product_ids = [x.product_id.id for x in supplierinfo_obj.browse(
+        product_template_ids = [x.product_id.id for x in supplierinfo_obj.browse(
             cr, user,
             supplierinfo_ids) if x.product_id]
+        product_ids = self.search(cr, user, [('product_tmpl_id', 'in', product_template_ids)], context=context)
         return [('id', 'in', product_ids)]
 
     _columns = {
