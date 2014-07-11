@@ -40,7 +40,7 @@ class PurchaseOrderLine(orm.Model):
         return res
 
     _columns = {
-        'discount': fields.float('Discount (%)', dp.get_precision('Discount'),
+        'discount': fields.float('Discount (%)', dp.get_precision('Discount')),
         'price_subtotal': fields.function(
             _amount_line, string='Subtotal',
             digits_compute=dp.get_precision('Account')),
