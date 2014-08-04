@@ -3,7 +3,7 @@
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (c) 2010-2013 Elico Corp.
-#    Author: LIN Yu <lin.yu@elico-corp.com>
+#    Author: Yannick Gouin <yannick.gouin@elico-corp.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -19,24 +19,4 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-{
-    'name': 'Product by supplier info',
-    'version': '8.0.1.0',
-    'category': 'purchase',
-    'summary': 'Show products grouped by suppliers',
-    'author': "Elico Corp,"
-              "Odoo Community Association (OCA)",
-    'website': 'http://www.elico-corp.com, ',
-    'license': 'AGPL-3',
-    'depends': [
-        'product',
-        'purchase',
-    ],
-    'data': [
-        'views/product_supplierinfo_view.xml',
-    ],
-    'installable': True,
-    'auto_install': False,
-    'application': False,
-}
+from . import models
