@@ -31,7 +31,7 @@ class product_supplierinfo(orm.Model):
             self, cr, uid, ids, field_names=None, arg=False, context=None):
         context = context or {}
         res = {}
-        product_obj = self.pool.get('product.product')
+        product_obj = self.pool.['product.product']
         for record in self.browse(cr, uid, ids, context=context):
             res[record.id] = {}
             product = product_obj.browse(
@@ -65,13 +65,13 @@ class product_product(orm.Model):
     def _partner_ref2(self, cr, user, ids, name, arg, context=None):
         res = {}
         for product in self.browse(cr, user, ids, context=context):
-            res[product.id] = '\n'.join(
+            res[product.id] = u'\n'.join(
                 [x.product_code for x in product.seller_ids if x.product_code]
                 ) or ''
         return res
 
-    def _partner_ref2_search(self, cr, user, obj, name, args, context={}):
-        supplierinfo_obj = self.pool.get('product.supplierinfo')
+    def _partner_ref2_search(self, cr, user, obj, name, args, context=None):
+        supplierinfo_obj = self.pool.['product.supplierinfo']
         args = args[:]
         i = 0
         while i < len(args):
