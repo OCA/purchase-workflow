@@ -25,4 +25,4 @@ class ActionModalCancelReason(models.TransientModel):
     _inherit = 'purchase.action_modal'
 
     reason_id = fields.Many2one(
-        'purchase.cancel.reason', 'Reason for Cancellation', required=True)
+        'purchase.cancel_reason', 'Reason for Cancellation', required=True)

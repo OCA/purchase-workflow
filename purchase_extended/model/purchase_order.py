@@ -73,7 +73,7 @@ class PurchaseOrder(models.Model):
              "predefined commercial terms used in "
              "international transactions.")
     cancel_reason_id = fields.Many2one(
-        'purchase.cancelreason', 'Reason for Cancellation', readonly=True),
+        'purchase.cancel_reason', 'Reason for Cancellation', readonly=True)
 
     @api.model
     def create(self, values):
@@ -123,7 +123,7 @@ class PurchaseOrder(models.Model):
             'type': 'ir.actions.act_window',
             'view_type': 'form',
             'view_mode': 'form',
-            'res_model': 'purchase.action_modal_cancelreason',
+            'res_model': 'purchase.action_modal.cancel_reason',
             'view_id': view_id,
             'views': [(view_id, 'form')],
             'target': 'new',
@@ -136,7 +136,7 @@ class PurchaseOrder(models.Model):
 
     @api.multi
     def action_cancel_ok(self):
-        act_modal_cancel_obj = self.env['purchase.action_modal_cancelreason']
+        act_modal_cancel_obj = self.env['purchase.action_modal.cancel_reason']
         assert self._context.get('active_id')
         action_modal = act_modal_cancel_obj.browse(self._context['active_id'])
         self.cancel_reason_id = action_modal.reason_id
@@ -165,7 +165,7 @@ class PurchaseOrder(models.Model):
             'type': 'ir.actions.act_window',
             'view_type': 'form',
             'view_mode': 'form',
-            'res_model': 'purchase.action_modal_cancelreason',
+            'res_model': 'purchase.action_modal.cancel_reason',
             'view_id': view_id,
             'views': [(view_id, 'form')],
             'target': 'new',
@@ -174,7 +174,7 @@ class PurchaseOrder(models.Model):
 
     @api.multi
     def purchase_cancel_ok(self):
-        act_modal_cancel_obj = self.env['purchase.action_modal_cancelreason']
+        act_modal_cancel_obj = self.env['purchase.action_modal.cancel_reason']
         assert self._context.get('active_id')
         action_modal = act_modal_cancel_obj.browse(self._context['active_id'])
         self.cancel_reason_id = action_modal.reason_id

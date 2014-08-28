@@ -3,7 +3,7 @@
     <data>
         <record id="action_modal_cancel_reason" model="ir.ui.view">
             <field name="name">action.modal</field>
-            <field name="model">purchase.action_modal_cancelreason</field>
+            <field name="model">purchase.action_modal.cancel_reason</field>
             <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Confirm" version="7.0">

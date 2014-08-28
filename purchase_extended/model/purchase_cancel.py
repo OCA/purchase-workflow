@@ -21,7 +21,7 @@ from openerp import api, models, fields
 
 
 class PurchaseCancelReason(models.Model):
-    _name = "purchase.cancel.reason"
+    _name = "purchase.cancel_reason"
 
     name = fields.Char('Reason', size=64, required=True, translate=True)
     type = fields.Selection(

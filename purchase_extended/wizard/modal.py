@@ -42,7 +42,7 @@ class action_modal(models.TransientModel):
 
 
 class action_modal_datetime(models.TransientModel):
-    _name = 'purchase.action_modal_datetime'
+    _name = 'purchase.action_modal.datetime'
     _inherit = 'purchase.action_modal'
 
     datetime = fields.Datetime('Date')

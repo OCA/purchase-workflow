@@ -3,7 +3,7 @@
     <data>
         <record id="action_modal_bid_date" model="ir.ui.view">
             <field name="name">action.modal</field>
-            <field name="model">purchase.action_modal_datetime</field>
+            <field name="model">purchase.action_modal.datetime</field>
             <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Confirm" version="7.0">
