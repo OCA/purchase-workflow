@@ -17,25 +17,25 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.osv import fields, orm
-from openerp.tools.translate import _
+from openerp import api, models, fields
 
 
-class purchase_cancel(orm.Model):
-    _name = "purchase.cancelreason"
-    _columns = {
-        'name': fields.char('Reason', size=64, required=True, translate=True),
-        'type': fields.selection([('rfq', 'RFQ/Bid'), ('purchase', 'Purchase Order')], 'Type', required=True),
-        'nounlink': fields.boolean('No unlink'),
-    }
+class PurchaseCancelReason(models.Model):
+    _name = "purchase.cancel.reason"
 
-    def unlink(self, cr, uid, ids, context=None):
+    name = fields.Char('Reason', size=64, required=True, translate=True)
+    type = fields.Selection(
+        [('rfq', 'RFQ/Bid'),
+         ('purchase', 'Purchase Order')],
+        'Type', required=True)
+    nounlink = fields.Boolean('No unlink')
+
+    @api.multi
+    def unlink(self):
         """ Prevent to unlink records that are used in the code
         """
-        unlink_ids = []
-        for value in self.read(cr, uid, ids, ['nounlink'], context=context):
-            if not value['nounlink']:
-                unlink_ids.append(value['id'])
-        if unlink_ids:
-            return super(purchase_cancel, self).unlink(cr, uid, unlink_ids, context=context)
+        unlink_recs = [rec for rec in self if not rec.nounlink]
+        if unlink_recs:
+            #TODO
+            return super(PurchaseCancelReason, unlink_recs).unlink()
         return True

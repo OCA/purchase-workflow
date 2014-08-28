@@ -17,12 +17,12 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from osv import fields, osv
+from openerp import models, fields
 
 
-class action_modal_cancelreason(osv.TransientModel):
-    _name = "purchase.action_modal_cancelreason"
-    _inherit = "purchase.action_modal"
-    _columns = {
-        'reason_id': fields.many2one('purchase.cancelreason', 'Reason for Cancellation', required=True),
-    }
+class ActionModalCancelReason(models.TransientModel):
+    _name = 'purchase.action_modal.cancel_reason'
+    _inherit = 'purchase.action_modal'
+
+    reason_id = fields.Many2one(
+        'purchase.cancel.reason', 'Reason for Cancellation', required=True)

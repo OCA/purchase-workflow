@@ -17,29 +17,32 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from osv import fields, osv
+from openerp import models, fields, api
 
 
-class action_modal(osv.TransientModel):
-    _name = "purchase.action_modal"
-    _columns = {}
+class action_modal(models.TransientModel):
+    _name = 'purchase.action_modal'
 
-    def action(self, cr, uid, ids, context):
+    @api.multi
+    def action(self):
+        cr = self._cr
+        uid = self._uid
         for e in ('active_model', 'active_ids', 'action'):
-            if e not in context:
+            if e not in self._context:
                 return False
-        ctx = context.copy()
-        ctx['active_ids'] = ids
-        ctx['active_id'] = ids[0]
-        res = getattr(self.pool.get(context['active_model']), context['action'])(cr, uid, context['active_ids'], context=ctx)
+        ctx = {'active_ids': self._ids,
+               'active_id': self._ids[0]}
+        model = self.env[self._context['active_model']]
+        rec = model.browse(self._context['active_ids'])
+        res = getattr(rec.with_context(ctx),
+                      self._context['action'])()
         if isinstance(res, dict):
             return res
         return {'type': 'ir.actions.act_window_close'}
 
 
-class action_modal_datetime(osv.TransientModel):
-    _name = "purchase.action_modal_datetime"
-    _inherit = "purchase.action_modal"
-    _columns = {
-        'datetime': fields.datetime('Date'),
-    }
+class action_modal_datetime(models.TransientModel):
+    _name = 'purchase.action_modal_datetime'
+    _inherit = 'purchase.action_modal'
+
+    datetime = fields.Datetime('Date')
