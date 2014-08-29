@@ -6,7 +6,7 @@
   !record {model: purchase.order, id: purchase_order_ext_rfq2order1}:
     partner_id: base.res_partner_1
     invoice_method: order
-    date_order: '2013-08-02'
+    date_order: '2013-08-02 00:00:00'
     bid_validity: '2013-08-15'
     order_line:
       - product_id: product.product_product_15
