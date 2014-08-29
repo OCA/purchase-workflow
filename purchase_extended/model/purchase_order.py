@@ -178,7 +178,7 @@ class PurchaseOrder(models.Model):
         assert self._context.get('active_id')
         action_modal = act_modal_cancel_obj.browse(self._context['active_id'])
         self.cancel_reason_id = action_modal.reason_id
-        self.signal_workflow('purchase_cancel')
+        return super(PurchaseOrder, self).action_cancel()
         return {}
 
     @api.multi
