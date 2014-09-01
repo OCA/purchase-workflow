@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data noupdate="0">
+    <record id="purchase_order_form" model="ir.ui.view">
+      <field name="name">purchase.order.form</field>
+      <field name="model">purchase.order</field>
+      <field name="inherit_id" ref="purchase.purchase_order_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="/form/sheet/group/group/field[@name='pricelist_id']" position="after">
+          <field name="account_analytic_id"
+            groups="purchase.group_analytic_accounting"
+            on_change="onchange_default_analytic_id(account_analytic_id, order_line)"
+            domain="[('type','not in',('view','template'))]"
+            />
+        </xpath>
+        <field name="order_line" position="attributes">
+          <attribute name="context">{'default_account_analytic_id': account_analytic_id}</attribute>
+        </field>
+      </field>
+    </record>
+
+  </data>
+</openerp>
