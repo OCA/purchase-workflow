@@ -140,7 +140,7 @@ class PurchaseOrder(models.Model):
         assert self._context.get('active_id')
         action_modal = act_modal_cancel_obj.browse(self._context['active_id'])
         self.cancel_reason_id = action_modal.reason_id
-        return super(PurchaseOrder, self).action_cancel()
+        return self.wkf_action_cancel()
 
     @api.multi
     def purchase_cancel(self):
@@ -178,9 +178,11 @@ class PurchaseOrder(models.Model):
         assert self._context.get('active_id')
         action_modal = act_modal_cancel_obj.browse(self._context['active_id'])
         self.cancel_reason_id = action_modal.reason_id
-        return super(PurchaseOrder, self).action_cancel()
+        self.order_line.state = 'cancel'
+        self.state = 'cancel'
         return {}
 
+    # XXX to fix wkf_action_cancel does not exist anymore
     @api.multi
     def wkf_action_cancel(self):
         for element in self:
@@ -192,17 +194,16 @@ class PurchaseOrder(models.Model):
                 message = self._description
             message += " " + _("canceled")
             element.message_post(body=message, subtype="mail.mt_comment")
-        return super(PurchaseOrder, self).wkf_action_cancel()
+        return super(PurchaseOrder, self).action_cancel()
 
     @api.one
     def bid_received(self):
         model_obj = self.env['ir.model.data']
-        order = self.bid_date
         ctx = self._context.copy()
         ctx.update({
             'action': 'bid_received_ok',
-            'default_datetime': (order['bid_date']
-                                 or fields.Date.context_today()),
+            'default_datetime': (self.bid_date
+                                 or fields.Date.context_today(self)),
         })
         # those will be set by the web layer unless they are already defined
         view_id = (model_obj
