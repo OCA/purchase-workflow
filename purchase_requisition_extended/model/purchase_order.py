@@ -36,6 +36,18 @@ class PurchaseOrder(models.Model):
         selection=[('open', 'Open'), ('sealed', 'Sealed')],
         string='Bid Receipt Mode')
 
+    @api.model
+    def _get_tender_fields(self):
+        """ Return list of field with prefix 'tender_' """
+        return [fname for fname in self._fields.keys()
+                if fname.startswith('tender_')]
+    @api.model
+    def _get_fields_to_copy(self):
+        """ Return list of field that have an existing field with prefix
+        'tender_'
+        """
+        return [fname[len('tender_'):] for fname in self._get_tender_fields()]
+
     #TODO: lines should not be deleted or created if linked to a callforbids
 
     @api.multi
@@ -44,23 +56,22 @@ class PurchaseOrder(models.Model):
                         if order.requisition_id]
         # we'll read the fields without the 'tender_' prefix
         # and copy their value in the fields with the prefix
-        # XXX to fix fields does not exists
-        tender_fields = [x[len('tender_'):] for x in fields]
-        requisitions = requisitions.read(tender_fields,
-                                         load='_classic_write')
+        fields_to_copy = self._get_tender_fields()
+        tender_vals = requisitions.read(fields_to_copy,
+                                        load='_classic_write')
         # copy the dict but rename the fields with 'tender_' prefix
         tender_reqs = {}
-        for req in requisitions:
+        for req in tender_vals:
             tender_reqs[req['id']] = dict(('tender_' + field, value)
                                           for field, value
                                           in req.iteritems()
-                                          if 'tender_' + field in fields)
+                                          if field in fields_to_copy)
         res = {}
         for order in self:
-            if order['requisition_id']:
-                res[order['id']] = tender_reqs[order['requisition_id']]
+            if order.requisition_id:
+                res[order.id] = tender_reqs[order.requisition_id.id]
             else:
-                res[order['id']] = {}.fromkeys(fields, False)
+                res[order.id] = {}.fromkeys(fields_to_copy, False)
         return res
 
     @api.model
