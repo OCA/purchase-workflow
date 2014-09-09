@@ -17,25 +17,22 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-from openerp.osv import fields, orm
-from openerp.tools.translate import _
+from openerp import models, api
 
 
-class purchase_requisition_partner(orm.TransientModel):
+class PurchaseRequisitionPartner(models.TransientModel):
     _inherit = "purchase.requisition.partner"
 
-    def create_order(self, cr, uid, ids, context=None):
-        if context is None:
-            context = {}
-        active_id = context and context.get('active_id', [])
-        data = self.browse(cr, uid, ids, context=context)[0]
-        po_id = self.pool.get('purchase.requisition').make_purchase_order(cr,
-                    uid, [active_id], data.partner_id.id,
-                    context=context)[active_id]
-        if not context.get('draft_bid', False):
+    @api.multi
+    def create_order(self):
+        ActWindow = self.env['ir.actions.act_window']
+        PurchaseRequisition = self.env['purchase.requisition']
+        active_id = self.env.context and self.env.context.get('active_id', [])
+        po_id = PurchaseRequisition.make_purchase_order(
+                [active_id], self.partner_id.id)[active_id]
+        if not self.env.context.get('draft_bid', False):
             return {'type': 'ir.actions.act_window_close'}
-        res = self.pool.get('ir.actions.act_window').for_xml_id(cr, uid,
-                    'purchase', 'purchase_rfq', context=context)
+        res = ActWindow.for_xml_id('purchase', 'purchase_rfq')
         res.update({'res_id': po_id,
                     'views': [(False, 'form')],
                     })

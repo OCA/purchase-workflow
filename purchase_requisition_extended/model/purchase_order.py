@@ -18,43 +18,36 @@
 #
 #
 
-from openerp.osv import fields, orm
-from openerp import SUPERUSER_ID
+from openerp.osv import models, fields, api
 
 
-class purchase_order(orm.Model):
+class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
-    _columns = {
-        'bid_partial': fields.boolean(
-            'Bid partially selected',
-            readonly=True,
-            help="True if the bid has been partially selected"),
-        'tender_bid_receipt_mode': fields.function(
-            lambda self, *args, **kwargs: self._get_tender(*args, **kwargs),
-            multi="callforbids",
-            readonly=True,
-            type='selection',
-            selection=[('open', 'Open'), ('sealed', 'Sealed')],
-            string='Bid Receipt Mode'),
-    }
+
+    bid_partial = fields.Boolean(
+        'Bid partially selected',
+        readonly=True,
+        help="True if the bid has been partially selected")
+    tender_bid_receipt_mode = fields.Selection(
+        compute='_get_tender',
+        multi="callforbids",
+        readonly=True,
+        type='selection',
+        selection=[('open', 'Open'), ('sealed', 'Sealed')],
+        string='Bid Receipt Mode')
+
     #TODO: lines should not be deleted or created if linked to a callforbids
 
-    def _get_tender(self, cr, uid, ids, fields, args, context=None):
-        # when _classic_write load is used, the many2one are only the
-        # ids instead of the tuples (id, name_get)
-        purch_req_obj = self.pool.get('purchase.requisition')
-        orders = self.read(cr, uid, ids, ['requisition_id'],
-                           context=context, load='_classic_write')
-        req_ids = list(set(order['requisition_id'] for order in orders
-                           if order['requisition_id']))
+    @api.multi
+    def _get_tender(self):
+        requisitions = [order.requisition_id for order in self
+                        if order.requisition_id]
         # we'll read the fields without the 'tender_' prefix
         # and copy their value in the fields with the prefix
-        read_fields = [x[len('tender_'):] for x in fields]
-        requisitions = purch_req_obj.read(cr, uid,
-                                          req_ids,
-                                          read_fields,
-                                          context=context,
-                                          load='_classic_write')
+        # XXX to fix fields does not exists
+        tender_fields = [x[len('tender_'):] for x in fields]
+        requisitions = requisitions.read(tender_fields,
+                                         load='_classic_write')
         # copy the dict but rename the fields with 'tender_' prefix
         tender_reqs = {}
         for req in requisitions:
@@ -63,16 +56,17 @@ class purchase_order(orm.Model):
                                           in req.iteritems()
                                           if 'tender_' + field in fields)
         res = {}
-        for po in orders:
-            if po['requisition_id']:
-                res[po['id']] = tender_reqs[po['requisition_id']]
+        for order in self:
+            if order['requisition_id']:
+                res[order['id']] = tender_reqs[order['requisition_id']]
             else:
-                res[po['id']] = {}.fromkeys(fields, False)
+                res[order['id']] = {}.fromkeys(fields, False)
         return res
 
-    def _prepare_purchase_order(self, cr, uid, requisition, supplier, context=None):
-        values = super(purchase_order, self)._prepare_purchase_order(
-            cr, uid, requisition, supplier, context=context)
+    @api.model
+    def _prepare_purchase_order(self, requisition, supplier):
+        values = super(PurchaseOrder, self
+                       )._prepare_purchase_order(requisition, supplier)
         values.update({
             'bid_validity': requisition.req_validity,
             'payment_term_id': requisition.req_payment_term_id,
@@ -84,29 +78,35 @@ class purchase_order(orm.Model):
             values.update({'pricelist_id': requisition.pricelist_id.id})
         return values
 
-    def copy(self, cr, uid, id, default=None, context=None):
-        """ Need to set origin after copy because original copy clears origin """
+    @api.one
+    def copy(self, default=None):
+        """ Need to set origin after copy because original copy clears origin
+
+        """
         if default is None:
             default = {}
         initial_origin = default.get('origin')
-        newid = super(purchase_order, self).copy(cr, uid, id, default=default,
-                                                 context=context)
+        newid = super(PurchaseOrder, self).copy(default=default)
         if initial_origin and 'requisition_id' in default:
-            self.write(cr, SUPERUSER_ID, [newid], {'origin': initial_origin}, context=context)
+            self.sudo().write([newid], {'origin': initial_origin})
         return newid
 
 
-class purchase_order_line(orm.Model):
+class PurchaseOrderLine(models.Model):
     _inherit = 'purchase.order.line'
-    _columns = {
-        'requisition_line_id': fields.many2one('purchase.requisition.line', 'Call for Bid Line', readonly=True),
-    }
 
-    def read_group(self, cr, uid, domain, fields, groupby, offset=0, limit=None, context=None, orderby=False):
+    requisition_line_id = fields.Many2one(
+        'purchase.requisition.line', 'Call for Bid Line', readonly=True),
+
+    @api.model
+    def read_group(self, domain, fields, groupby, offset=0,
+                   limit=None, orderby=False):
         """Do not aggregate price and qty. We need to do it this way as there
         is no group_operator that can be set to prevent aggregating float"""
-        result = super(purchase_order_line, self).read_group(cr, uid, domain, fields, groupby,
-                        offset=offset, limit=limit, context=context, orderby=orderby)
+        result = super(PurchaseOrderLine, self
+                       ).read_group(domain, fields, groupby,
+                                    offset=offset, limit=limit,
+                                    orderby=orderby)
         for res in result:
             if 'price_unit' in res:
                 del res['price_unit']
