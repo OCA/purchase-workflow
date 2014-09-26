@@ -72,5 +72,3 @@ class product_product(orm.Model):
                                       'property_account_expense_categ',
                                       'product.category').id
         return fiscal_obj.map_account(cr, uid, fiscal_position, acc_id)
-
-

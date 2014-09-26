@@ -30,12 +30,12 @@ class stock_move(orm.Model):
     _inherit = "stock.move"
 
     _columns = {
-         'price_unit_net' : fields.float(
+        'price_unit_net': fields.float(
             'Purchase Price',
             digits_compute=dp.get_precision('Account'),
             help="This is the net purchase price, without landed cost "
-                  "as the price include landed price has been stored in "
-                  "price_unit field"),
+            "as the price include landed price has been stored in "
+            "price_unit field"),
     }
 
 
@@ -46,22 +46,23 @@ class stock_partial_picking(orm.TransientModel):
         # Be aware of an OpenERP Bug !! If your price_type
         # IS NOT in your comapny currency, AVG price is wrong.
         # Currently, the cost on the product form is supposed to be expressed
-        # in the currency of the company owning the product. OpenERP 
-        # read the average price from price_get method, which 
-        # convert the price to company currency. 
+        # in the currency of the company owning the product. OpenERP
+        # read the average price from price_get method, which
+        # convert the price to company currency.
         # So, in case you have:
         #   Rate from CHF to EUR 1.2
         #   Company in CHF
         #   Price type in EUR
         #   Product AVG price = 10.-
-        #   Reception new product with cost 15.- (in CHF in price_unit 
+        #   Reception new product with cost 15.- (in CHF in price_unit
         #   of moves)
-        #   The price_get will return the current average price in CHF of 12.- 
+        #   The price_get will return the current average price in CHF of 12.-
         #   The price computed will be =(12 * qty + 15 * qty') / (qty + qty')
-        #   in CHF. The new cost will be store as is in the procuct 
+        #   in CHF. The new cost will be store as is in the procuct
         #   standard_price instead of converting the result in EUR
         # Reference : https://bugs.launchpad.net/ocb-addons/+bug/1238525
-        res = super(stock_partial_picking, self)._product_cost_for_average_update(cr, uid, move)
+        res = super(stock_partial_picking, self)._product_cost_for_average_update(
+            cr, uid, move)
         _logger.debug('Before res stock_partial_picking `%s`', res)
         # Re-take the cost from the PO line landed_costs field
         if move.purchase_line_id:

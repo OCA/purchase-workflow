@@ -22,6 +22,7 @@ from openerp.osv import orm, fields
 
 
 class product_product(orm.Model):
+
     """Add relation to framework agreement"""
 
     _inherit = "product.product"

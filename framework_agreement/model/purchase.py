@@ -24,6 +24,7 @@ from openerp.addons.framework_agreement.model.framework_agreement import Framewo
 
 
 class purchase_order_line(orm.Model, FrameworkAgreementObservable):
+
     """Add on change on price to raise a warning if line is subject to
     an agreement"""
 
@@ -38,7 +39,6 @@ class purchase_order_line(orm.Model, FrameworkAgreementObservable):
 
     def _get_po_line_store(self, cr, uid, ids, context=None):
         return ids
-
 
     _store_tuple = (_get_po_store, ['framework_agreement_id'], 20)
     _line_store_tuple = (_get_po_line_store, [], 20)
@@ -58,7 +58,8 @@ class purchase_order_line(orm.Model, FrameworkAgreementObservable):
         if not product_id or not agreement_id:
             return {}
         currency = self._currency_get(cr, uid, pricelist_id, context=context)
-        product = self.pool['product.product'].browse(cr, uid, product_id, context=context)
+        product = self.pool['product.product'].browse(
+            cr, uid, product_id, context=context)
         if product.type == 'service':
             return {}
         return self.onchange_price_obs(cr, uid, ids, price, agreement_id, currency=currency,
@@ -81,24 +82,28 @@ class purchase_order_line(orm.Model, FrameworkAgreementObservable):
         if agreement_id:
             context['from_agreement_id'] = agreement_id
         res = super(purchase_order_line, self).onchange_product_id(
-                cr, uid, ids, pricelist_id, product_id, qty, uom_id,
-                partner_id, date_order=date_order, fiscal_position_id=fiscal_position_id,
-                date_planned=date_planned, name=name, price_unit=price_unit, context=context, **kwargs)
+            cr, uid, ids, pricelist_id, product_id, qty, uom_id,
+            partner_id, date_order=date_order, fiscal_position_id=fiscal_position_id,
+            date_planned=date_planned, name=name, price_unit=price_unit, context=context, **kwargs)
         if not product_id or not agreement_id:
             return res
-        product = self.pool['product.product'].browse(cr, uid, product_id, context=context)
+        product = self.pool['product.product'].browse(
+            cr, uid, product_id, context=context)
         if product.type != 'service' and agreement_id:
             agreement = self.pool['framework.agreement'].browse(cr, uid,
                                                                 agreement_id,
                                                                 context=context)
             if agreement.product_id.id != product_id:
                 return {'warning':  _('Product not in agreement')}
-            currency = self._currency_get(cr, uid, pricelist_id, context=context)
-            res['value']['price_unit'] = agreement.get_price(qty, currency=currency)
+            currency = self._currency_get(
+                cr, uid, pricelist_id, context=context)
+            res['value']['price_unit'] = agreement.get_price(
+                qty, currency=currency)
         return res
 
 
 class purchase_order(orm.Model):
+
     """Oveeride on change to raise warning"""
 
     _inherit = "purchase.order"
@@ -131,7 +136,6 @@ class purchase_order(orm.Model):
         if not pricelist_id or not line_ids:
             return res
 
-
         warning = {'title': _('Pricelist Warning!'),
                    'message': _('If you change the pricelist of this order'
                                 ' (and eventually the currency),'
@@ -154,7 +158,8 @@ class purchase_order(orm.Model):
     # no context in original def...
     def onchange_partner_id(self, cr, uid, ids, partner_id, agreement_id):
         """Override to ensure that partner can not be changed if agreement"""
-        res = super(purchase_order, self).onchange_partner_id(cr, uid, ids, partner_id)
+        res = super(purchase_order, self).onchange_partner_id(
+            cr, uid, ids, partner_id)
         if agreement_id:
             raise orm.except_orm(_('You can not change supplier'),
                                  _('PO is linked to an agreement'))

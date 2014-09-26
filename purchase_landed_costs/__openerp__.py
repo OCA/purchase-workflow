@@ -92,13 +92,13 @@ TODO/Ideas:
 
 """,
     'author': 'Camptocamp',
-    'depends': ['purchase' ],
+    'depends': ['purchase'],
     'website': 'http://www.camptocamp.com',
     'data': ['security/ir.model.access.csv',
              'security/landed_cost_security.xml',
              'purchase_view.xml',
              'purchase_landed_costs_data.yml',
-            ],
+             ],
     'test': [
         'test/landed_costs_based_on_quantity.yml',
         'test/landed_costs_based_on_value.yml',
@@ -108,7 +108,7 @@ TODO/Ideas:
         # those 2 tests here fails because of the bug regarding the price_type
         # (https://bugs.launchpad.net/ocb-addons/+bug/1238525) and average price
         # computation in OpenERP. I'll keep them because
-        # The bug is happening when the company has a different currency that 
+        # The bug is happening when the company has a different currency that
         # the price_type of the standard_price field
         # Unless you didn't have to do that, everything work fine.
         # they should be sovled by a way or another.

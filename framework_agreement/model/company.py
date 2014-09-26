@@ -22,6 +22,7 @@ from openerp.osv import orm, fields
 
 
 class res_Company(orm.Model):
+
     """Add a field on company"""
 
     _inherit = "res.company"

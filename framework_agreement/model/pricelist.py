@@ -24,6 +24,7 @@ from openerp.osv import orm, fields
 
 
 class product_pricelist(orm.Model):
+
     """Add framework agreement behavior on pricelist"""
 
     _inherit = "product.pricelist"

@@ -32,6 +32,7 @@ AGR_PO_STATE = ('confirmed', 'approved',
 
 
 class framework_agreement(orm.Model):
+
     """Long term agreement on product price with a supplier"""
 
     _name = 'framework.agreement'
@@ -147,13 +148,17 @@ class framework_agreement(orm.Model):
         for field, operator, value in args:
             assert field == name
             if operator == '=':
-                found_ids += [frm['id'] for frm in res if frm['state'] in value]
+                found_ids += [frm['id']
+                              for frm in res if frm['state'] in value]
             elif operator == 'in' and isinstance(value, list):
-                found_ids += [frm['id'] for frm in res if frm['state'] in value]
+                found_ids += [frm['id']
+                              for frm in res if frm['state'] in value]
             elif operator in ("!=", "<>"):
-                found_ids += [frm['id'] for frm in res if frm['state'] != value]
+                found_ids += [frm['id']
+                              for frm in res if frm['state'] != value]
             elif operator == 'not in'and isinstance(value, list):
-                found_ids += [frm['id'] for frm in res if frm['state'] not in value]
+                found_ids += [frm['id']
+                              for frm in res if frm['state'] not in value]
             else:
                 raise NotImplementedError('Search operator %s not implemented'
                                           ' for value %s'
@@ -331,7 +336,8 @@ class framework_agreement(orm.Model):
             overlap = self.search(cr, uid,
                                   ['&',
                                       ('draft', '=', False),
-                                      ('product_id', '=', agreement.product_id.id),
+                                      ('product_id', '=',
+                                       agreement.product_id.id),
                                       '|',
                                          '&',
                                             ('start_date', '>=', agreement.start_date),
@@ -342,7 +348,8 @@ class framework_agreement(orm.Model):
                                    ])
             # we also look for the one that includes current offer
             overlap += self.search(cr, uid, [('start_date', '<=', agreement.start_date),
-                                             ('end_date', '>=', agreement.end_date),
+                                             ('end_date', '>=',
+                                              agreement.end_date),
                                              ('id', '!=', agreement.id),
                                              ('product_id', '=', agreement.product_id.id)])
             overlap = self.browse(cr, uid,
@@ -352,7 +359,8 @@ class framework_agreement(orm.Model):
             # if strict agreement is set on company
             if strict and overlap:
                 return False
-            # We ensure that there are not multiple agreements for same supplier at same time
+            # We ensure that there are not multiple agreements for same
+            # supplier at same time
             if any((x.supplier_id.id == agreement.supplier_id.id) for x in overlap):
                 return False
         return True
@@ -503,7 +511,8 @@ class framework_agreement(orm.Model):
         if not currency:
             comp_obj = self.pool['res.company']
             comp_id = self._company_get(cr, uid, context=context)
-            currency = comp_obj.browse(cr, uid, comp_id, context=context).currency_id
+            currency = comp_obj.browse(
+                cr, uid, comp_id, context=context).currency_id
         lines = self._get_pricelist_lines(cr, uid, current, currency,
                                           context=context)
         lines.sort(key=attrgetter('quantity'), reverse=True)
@@ -538,6 +547,7 @@ class framework_agreement(orm.Model):
 
 
 class framework_agreement_pricelist(orm.Model):
+
     """Price list container"""
 
     _name = "framework.agreement.pricelist"
@@ -555,6 +565,7 @@ class framework_agreement_pricelist(orm.Model):
 
 
 class framework_agreement_line(orm.Model):
+
     """Price list line of framework agreement
     that contains price and qty"""
 
@@ -575,6 +586,7 @@ class framework_agreement_line(orm.Model):
 
 
 class FrameworkAgreementObservable(object):
+
     """Base functions for model that have to be (pseudo) observable
     by framework agreement using OpenERP on_change mechanism"""
 
@@ -724,7 +736,8 @@ class FrameworkAgreementObservable(object):
         if supplier_id and agreement.supplier_id.id != supplier_id:
             raise orm.except_orm(_('User Error'),
                                  _('Wrong supplier for choosen agreement'))
-        res['value'] = {price_field: agreement.get_price(qty, currency=currency)}
+        res['value'] = {
+            price_field: agreement.get_price(qty, currency=currency)}
         if qty and agreement.available_quantity < qty:
             msg = _("You have ask for a quantity of %s \n"
                     " but there is only %s available"

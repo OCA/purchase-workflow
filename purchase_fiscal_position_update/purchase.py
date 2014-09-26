@@ -80,5 +80,5 @@ class purchase_order(orm.Model):
                     "to the new Fiscal Position because they don't have a "
                     "Product:\n %s\nYou should update the "
                     "Taxes of these Purchase Order Lines manually."
-                    ) % display_line_names,
+                ) % display_line_names,
         return res

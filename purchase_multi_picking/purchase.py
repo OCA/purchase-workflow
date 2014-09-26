@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#    
+#
 #    Copyright (C) 2012-2013 Agile Business Group sagl
 #    (<http://www.agilebg.com>)
 #    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
@@ -22,14 +22,15 @@
 
 from openerp.osv import fields, orm
 
+
 class purchase_order_line_group(orm.Model):
     _name = 'purchase.order.line.group'
     _columns = {
         'name': fields.char('Group', size=64, required=True),
-        'company_id': fields.many2one('res.company','Company',required=True,select=1),
-        }
+        'company_id': fields.many2one('res.company', 'Company', required=True, select=1),
+    }
     _defaults = {
-        'company_id': lambda self,cr,uid,c: self.pool.get(
+        'company_id': lambda self, cr, uid, c: self.pool.get(
             'res.company')._company_default_get(cr, uid, 'purchase.order.line.group', context=c),
     }
 
@@ -57,9 +58,10 @@ class purchase_order(orm.Model):
                 if not group:
                     picking_id = None
                 else:
-                    picking_vals = super(purchase_order, self)._prepare_order_picking(cr, uid, order, context=context)
-                    picking_id = picking_pool.create(cr, uid, picking_vals, context=context)
+                    picking_vals = super(purchase_order, self)._prepare_order_picking(
+                        cr, uid, order, context=context)
+                    picking_id = picking_pool.create(
+                        cr, uid, picking_vals, context=context)
                 picking_ids.extend(super(purchase_order, self)._create_pickings(
                     cr, uid, order, lines_by_group[group], picking_id, context=context))
-        return picking_ids[0] if picking_ids else False # ?
-        
+        return picking_ids[0] if picking_ids else False  # ?

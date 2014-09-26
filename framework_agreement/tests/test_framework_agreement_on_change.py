@@ -26,6 +26,7 @@ from ..model.framework_agreement import FrameworkAgreementObservable
 
 
 class TestAgreementOnChange(test_common.TransactionCase, BaseAgreementTestMixin):
+
     """Test observer on change and purchase order on chnage"""
 
     def setUp(self):
@@ -74,7 +75,8 @@ class TestAgreementOnChange(test_common.TransactionCase, BaseAgreementTestMixin)
         cr, uid = self.cr, self.uid
         res = self.po_line_model.onchange_price_obs(cr, uid, False, 20.0,
                                                     self.agreement.id,
-                                                    currency=self.browse_ref('base.EUR'),
+                                                    currency=self.browse_ref(
+                                                        'base.EUR'),
                                                     qty=100)
         self.assertTrue(res.get('warning'))
 
@@ -97,7 +99,8 @@ class TestAgreementOnChange(test_common.TransactionCase, BaseAgreementTestMixin)
         self.assertTrue(res.get('warning'))
 
         res = self.po_line_model.onchange_quantity_obs(cr, uid, False, 20000.0,
-                                                       self.now.strftime(DEFAULT_SERVER_DATE_FORMAT),
+                                                       self.now.strftime(
+                                                           DEFAULT_SERVER_DATE_FORMAT),
                                                        self.agreement.product_id.id,
                                                        supplier_id=self.agreement.supplier_id.id,
                                                        currency=self.browse_ref('base.EUR'))
@@ -121,7 +124,8 @@ class TestAgreementOnChange(test_common.TransactionCase, BaseAgreementTestMixin)
         self.assertEqual(res.get('value', {}).get('price'), 60)
 
         res = self.po_line_model.onchange_product_id_obs(cr, uid, False, 20000.0,
-                                                         self.now.strftime(DEFAULT_SERVER_DATE_FORMAT),
+                                                         self.now.strftime(
+                                                             DEFAULT_SERVER_DATE_FORMAT),
                                                          self.agreement.supplier_id.id,
                                                          self.agreement.product_id.id)
         self.assertFalse(res.get('warning'))
@@ -130,7 +134,8 @@ class TestAgreementOnChange(test_common.TransactionCase, BaseAgreementTestMixin)
 
         res = self.po_line_model.onchange_product_id_obs(cr, uid, False, 20000.0,
                                                          self.agreement.start_date,
-                                                         self.ref('product.product_product_33'),
+                                                         self.ref(
+                                                             'product.product_product_33'),
                                                          self.agreement.product_id.id)
         self.assertEqual(res, {'value': {'framework_agreement_id': False}})
 
@@ -156,7 +161,8 @@ class TestAgreementOnChange(test_common.TransactionCase, BaseAgreementTestMixin)
                                                      200,
                                                      self.agreement.product_id.uom_id.id,
                                                      self.agreement.supplier_id.id,
-                                                     date_order=self.agreement.start_date[0:10],
+                                                     date_order=self.agreement.start_date[
+                                                         0:10],
                                                      fiscal_position_id=False,
                                                      date_planned=False,
                                                      name=False,

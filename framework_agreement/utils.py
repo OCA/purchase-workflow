@@ -18,6 +18,8 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+
+
 def id_boilerplate(fun):
     """Ensure that id agrument passed to on change is not a list"""
     def wrapper(*args, **kwargs):

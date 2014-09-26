@@ -29,6 +29,7 @@ _logger = logging.getLogger(__name__)
 
 
 class landed_cost_distribution_type(orm.Model):
+
     """ This is a model to give how we should distribute the amount given
     for a landed costs. At the begining we use a selection field, but it
     was impossible to filter it depending on the context (in a line or
@@ -57,6 +58,7 @@ class landed_cost_distribution_type(orm.Model):
 
 
 class landed_cost_position(orm.Model):
+
     """ The landed cost position represent a direct cost for the delivery
     of the goods puchased. It can be from a different partner than the
     original supplier, like transport. Cost will be re-affected to each
@@ -192,7 +194,7 @@ class landed_cost_position(orm.Model):
                 'purchase.order': (_get_po,
                                    ['pricelist_id', 'company_id'], 50),
                 'landed.cost.position': (lambda self, cr, uid, ids, c=None: ids,
-                                          ['amount', 'purchase_order_id'], 10),
+                                         ['amount', 'purchase_order_id'], 10),
             },
             help="Landed cost for stock valuation (expressed in company currency). "
                  "It will be added to the price of the supplier price."),
@@ -209,7 +211,7 @@ class landed_cost_position(orm.Model):
                 'purchase.order': (_get_po,
                                    ['pricelist_id', 'company_id'], 50),
                 'landed.cost.position': (lambda self, cr, uid, ids, c=None: ids,
-                                          ['amount', 'purchase_order_id'], 10)
+                                         ['amount', 'purchase_order_id'], 10)
             }),
         'amount_total_comp_currency': fields.function(
             _get_amounts,
@@ -224,7 +226,7 @@ class landed_cost_position(orm.Model):
                 'purchase.order': (_get_po,
                                    ['pricelist_id', 'company_id'], 50),
                 'landed.cost.position': (lambda self, cr, uid, ids, c=None: ids,
-                                          ['amount', 'purchase_order_id'], 10)
+                                         ['amount', 'purchase_order_id'], 10)
             }),
         'date_po': fields.related(
             'purchase_order_id', 'date_order',
@@ -240,7 +242,7 @@ class landed_cost_position(orm.Model):
             string='Company',
             store=True,
             readonly=True),
-      }
+    }
 
     _default = {
         'generate_invoice': False,
@@ -361,7 +363,8 @@ class purchase_order_line(orm.Model):
         return result
 
     def _landed_cost(self, cr, uid, ids, name, args, context=None):
-        if not ids : return {}
+        if not ids:
+            return {}
         result = {}
         # landed costs for the line
         for line in self.browse(cr, uid, ids, context=context):
@@ -418,7 +421,7 @@ class purchase_order(orm.Model):
                 for costs in line.landed_cost_line_ids:
                     if (costs.distribution_type_id.landed_cost_type == 'per_unit' and
                             costs.distribution_type_id.apply_on == 'order'):
-                         landed_costs_base_quantity += costs.amount
+                        landed_costs_base_quantity += costs.amount
             result[line.id] = landed_costs_base_quantity
         return result
 
@@ -431,7 +434,7 @@ class purchase_order(orm.Model):
             if line.order_line:
                 for pol in line.order_line:
                     if pol.product_qty > 0.0:
-                         quantity_total += pol.product_qty
+                        quantity_total += pol.product_qty
             result[line.id] = quantity_total
         return result
 
@@ -458,7 +461,7 @@ class purchase_order(orm.Model):
             if line.order_line:
                 for pol in line.order_line:
                     if pol.product_qty > 0.0:
-                         landed_cost_lines += pol.landing_costs
+                        landed_cost_lines += pol.landing_costs
             result[line.id] = landed_cost_lines
         return result
 
@@ -529,7 +532,7 @@ class purchase_order(orm.Model):
         return {
             'name': landed_cost.product_id.name,
             'account_id': account_id,
-            'invoice_id' : inv_id,
+            'invoice_id': inv_id,
             'price_unit': landed_cost.amount or 0.0,
             'quantity': qty,
             'product_id': landed_cost.product_id.id or False,
@@ -609,8 +612,8 @@ class purchase_order(orm.Model):
         generate_invoice ticked are generated.
 
         """
-        res = super(purchase_order,self).wkf_approve_order(cr, uid, ids,
-                                                           context=context)
+        res = super(purchase_order, self).wkf_approve_order(cr, uid, ids,
+                                                            context=context)
         for order in self.browse(cr, uid, ids, context=context):
             invoice_ids = []
             for order_cost in order.landed_cost_line_ids:

@@ -31,7 +31,7 @@ class purchase_line_invoice(orm.TransientModel):
 
     _columns = {
         'line_ids': fields.one2many('purchase.order.line_invoice.line',
-        'wizard_id', 'Lines'),
+                                    'wizard_id', 'Lines'),
     }
 
     def default_get(self, cr, uid, fields, context=None):
@@ -96,13 +96,13 @@ class purchase_line_invoice_line(orm.TransientModel):
         ),
         'product_qty': fields.float(
             'Quantity', digits_compute=dp.get_precision(
-            'Product Unit of Measure'), readonly=True
+                'Product Unit of Measure'), readonly=True
         ),
         'price_unit': fields.related(
             'po_line_id', 'price_unit', type='float',
             string='Unit Price', readonly=True),
         'invoiced_qty': fields.float(
             'Quantity to invoice', digits_compute=dp.get_precision(
-            'Product Unit of Measure')),
+                'Product Unit of Measure')),
         'wizard_id': fields.many2one('purchase.order.line_invoice', 'Wizard'),
     }

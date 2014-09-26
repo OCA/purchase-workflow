@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#    
+#
 #    Copyright (C) 2012-2013 Agile Business Group sagl
 #    (<http://www.agilebg.com>)
 #    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
@@ -31,12 +31,12 @@ You just have to indicate which order lines have to be grouped in the same picki
     'author': 'Agile Business Group',
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
-    "depends" : ['purchase', 'stock'],
-    "data" : [
+    "depends": ['purchase', 'stock'],
+    "data": [
         'purchase_view.xml',
         'security/ir.model.access.csv',
-        ],
-    "demo" : [],
+    ],
+    "demo": [],
     "active": False,
     "installable": True
 }

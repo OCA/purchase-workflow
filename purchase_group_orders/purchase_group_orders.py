@@ -24,6 +24,7 @@ from openerp.osv.orm import Model, browse_record, browse_null
 from openerp.osv import fields
 from openerp import netsvc
 
+
 class procurement_order(Model):
     _inherit = 'procurement.order'
 
@@ -33,6 +34,7 @@ class procurement_order(Model):
                                       help="Reference of the document that created this Procurement.\n"
                                       "This is automatically completed by OpenERP."),
                 }
+
     def create_procurement_purchase_order(self, cr, uid, procurement, po_vals, line_vals, context=None):
         """Create the purchase order from the procurement, using
            the provided field values, after adding the given purchase
@@ -47,13 +49,14 @@ class procurement_order(Model):
            :return: id of the newly created purchase order
            :rtype: int
         """
-        po_vals.update({'order_line': [(0,0,line_vals)]})
+        po_vals.update({'order_line': [(0, 0, line_vals)]})
         if procurement.sale_id:
             sale = procurement.sale_id
             update = {'shop_id': sale.shop_id.id,
                       'carrier_id': sale.carrier_id.id}
             po_vals.update(update)
         return self.pool.get('purchase.order').create(cr, uid, po_vals, context=context)
+
 
 class sale_order(Model):
     _inherit = 'sale.order'
@@ -64,6 +67,7 @@ class sale_order(Model):
                                                                             context)
         proc_data['sale_id'] = order.id
         return proc_data
+
 
 class purchase_order(Model):
     _inherit = 'purchase.order'
@@ -82,7 +86,8 @@ class purchase_order(Model):
         'origin': fields.char('Source Document', size=512,
                               help="Reference of the document that generated this purchase order request."),
 
-        }
+    }
+
     def do_merge(self, cr, uid, ids, context=None):
         """
         To merge similar type of purchase orders.
@@ -94,8 +99,9 @@ class purchase_order(Model):
         Lines will only be merged if:
         * Order lines are exactly the same except for the quantity and unit
         """
-        #TOFIX: merged order line should be unlink
+        # TOFIX: merged order line should be unlink
         wf_service = netsvc.LocalService("workflow")
+
         def make_key(br, fields):
             list_key = []
             for field in fields:
@@ -117,7 +123,7 @@ class purchase_order(Model):
         new_orders = {}
         for porder in [order for order in self.browse(cr, uid, ids, context=context) if order.state == 'draft']:
             order_key = make_key(porder, ('partner_id', 'location_id', 'pricelist_id',
-                                          'shop_id', 'carrier_id')) # added line
+                                          'shop_id', 'carrier_id'))  # added line
             new_order = new_orders.setdefault(order_key, ({}, []))
             new_order[1].append(porder.id)
             order_infos = new_order[0]
@@ -135,16 +141,20 @@ class purchase_order(Model):
                     'order_line': {},
                     'notes': '%s' % (porder.notes or '',),
                     'fiscal_position': porder.fiscal_position and porder.fiscal_position.id or False,
-                    'shop_id': porder.shop_id and porder.shop_id.id, # added line
-                    'carrier_id': porder.carrier_id and porder.carrier_id.id, # added line
+                    # added line
+                    'shop_id': porder.shop_id and porder.shop_id.id,
+                    # added line
+                    'carrier_id': porder.carrier_id and porder.carrier_id.id,
                 })
             else:
                 if porder.date_order < order_infos['date_order']:
                     order_infos['date_order'] = porder.date_order
                 if porder.notes:
-                    order_infos['notes'] = (order_infos['notes'] or '') + ('\n%s' % (porder.notes,))
+                    order_infos['notes'] = (
+                        order_infos['notes'] or '') + ('\n%s' % (porder.notes,))
                 if porder.origin:
-                    order_infos['origin'] = (order_infos['origin'] or '') + ' ' + porder.origin
+                    order_infos['origin'] = (
+                        order_infos['origin'] or '') + ' ' + porder.origin
 
             for order_line in porder.order_line:
                 line_key = make_key(order_line, ('name', 'date_planned', 'taxes_id', 'price_unit', 'notes', 'product_id', 'move_dest_id', 'account_analytic_id'))
@@ -183,6 +193,8 @@ class purchase_order(Model):
 
             # make triggers pointing to the old orders point to the new order
             for old_id in old_ids:
-                wf_service.trg_redirect(uid, 'purchase.order', old_id, neworder_id, cr)
-                wf_service.trg_validate(uid, 'purchase.order', old_id, 'purchase_cancel', cr)
+                wf_service.trg_redirect(
+                    uid, 'purchase.order', old_id, neworder_id, cr)
+                wf_service.trg_validate(
+                    uid, 'purchase.order', old_id, 'purchase_cancel', cr)
         return orders_info
