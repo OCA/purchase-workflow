@@ -25,7 +25,8 @@ from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
 
 class BaseAgreementTestMixin(object):
 
-    """Class that contain common behavior for all agreement related unit test classes.
+    """Class that contain common behavior for all agreement related unit test
+    classes.
 
     We use Mixin because we want to have those behaviors on the various
     unit test subclasses provided by OpenERP in test common.
@@ -40,12 +41,13 @@ class BaseAgreementTestMixin(object):
         self.agreement_line_model = self.registry('framework.agreement.line')
         self.now = datetime.strptime(fields.date.today(),
                                      DEFAULT_SERVER_DATE_FORMAT)
-        self.product_id = self.registry('product.product').create(cr, uid,
-                                                                  {'name': 'test_1',
-                                                                   'type': 'product',
-                                                                   'list_price': 10.00})
-        self.supplier_id = self.registry('res.partner').create(cr, uid, {'name': 'toto',
-                                                                         'supplier': 'True'})
+        self.product_id = self.registry('product.product').create(cr, uid, {
+            'name': 'test_1',
+            'type': 'product',
+            'list_price': 10.00})
+        self.supplier_id = self.registry('res.partner').create(cr, uid, {
+            'name': 'toto',
+            'supplier': 'True'})
 
     def _map_agreement_to_po(self, agreement, delta_days):
         """Map agreement to dict to be used by PO create"""

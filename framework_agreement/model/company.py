@@ -26,8 +26,10 @@ class res_Company(orm.Model):
     """Add a field on company"""
 
     _inherit = "res.company"
-    _columns = {'one_agreement_per_product': fields.boolean('One agreement per product',
-                                                            help='If checked you can have only'
-                                                                 ' one framework agreement '
-                                                                 ' per product at the same time')}
+    _columns = {
+        'one_agreement_per_product': fields.boolean(
+            'One agreement per product',
+            help='If checked you can have only'
+            ' one framework agreement '
+            ' per product at the same time')}
     # TODO add check on activation deactivation of check box

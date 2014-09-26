@@ -24,8 +24,10 @@
     'version': '0.1',
     'category': 'Purchase Management',
     'summary': "Force purchase orders numeration",
-    'description': """This simple module allows to specify the number to use when creating purchase orders.
-If user does not change the default value ('/'), the standard sequence is used.""",
+    'description': """
+This simple module allows to specify the number to use when creating purchase
+orders. If user does not change the default value ('/'), the standard sequence
+is used.""",
     'author': 'Agile Business Group',
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',

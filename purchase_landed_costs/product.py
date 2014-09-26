@@ -34,12 +34,13 @@ class product_template(orm.Model):
              ('none', 'None')],
             'Distribution Type',
             help="Used if this product is landed costs: "
-                 "If landed costs are defined for purchase orders or pickings, "
-                 "this indicates how the costs are distributed to the lines"),
+            "If landed costs are defined for purchase orders or pickings, "
+            "this indicates how the costs are distributed to the lines"),
     }
 
     _defaults = {
-        'landed_cost_type': lambda self, cr, uid, context: context.get('landed_cost_type')
+        'landed_cost_type':
+        lambda self, cr, uid, context: context.get('landed_cost_type')
     }
 
 
@@ -48,7 +49,7 @@ class product_product(orm.Model):
 
     def _choose_exp_account_from(self, cr, uid, product, fiscal_position=False,
                                  context=None):
-        """ Method to compute the expense account to chose based on product and 
+        """ Method to compute the expense account to chose based on product and
         fiscal position.
 
         Used in invoice creation and on_change of landed costs.

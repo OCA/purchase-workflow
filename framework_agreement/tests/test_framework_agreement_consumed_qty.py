@@ -48,14 +48,14 @@ class TestAvailabeQty(test_common.TransactionCase, BaseAgreementTestMixin):
                                               'price': 77,
                                               'delay': 5,
                                               'quantity': 200})
-        pl_id = self.agreement_pl_model.create(cr, uid,
-                                               {'framework_agreement_id': agr_id,
-                                                'currency_id': self.ref('base.EUR')})
+        pl_id = self.agreement_pl_model.create(cr, uid, {
+            'framework_agreement_id': agr_id,
+            'currency_id': self.ref('base.EUR')})
 
-        self.agreement_line_model.create(cr, uid,
-                                         {'framework_agreement_pricelist_id': pl_id,
-                                          'quantity': 0,
-                                          'price': 77.0})
+        self.agreement_line_model.create(cr, uid, {
+            'framework_agreement_pricelist_id': pl_id,
+            'quantity': 0,
+            'price': 77.0})
         self.agreement = self.agreement_model.browse(cr, uid, agr_id)
         self.agreement.open_agreement()
 

@@ -61,8 +61,9 @@ class stock_partial_picking(orm.TransientModel):
         #   in CHF. The new cost will be store as is in the procuct
         #   standard_price instead of converting the result in EUR
         # Reference : https://bugs.launchpad.net/ocb-addons/+bug/1238525
-        res = super(stock_partial_picking, self)._product_cost_for_average_update(
-            cr, uid, move)
+        res = super(
+            stock_partial_picking, self)._product_cost_for_average_update(
+                cr, uid, move)
         _logger.debug('Before res stock_partial_picking `%s`', res)
         # Re-take the cost from the PO line landed_costs field
         if move.purchase_line_id:

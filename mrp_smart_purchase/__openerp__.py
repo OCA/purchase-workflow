@@ -25,7 +25,8 @@
  'category': 'version',
  'complexity': "normal",  # easy, normal, expert
  'depends': ['mrp', 'product', 'purchase'],
- 'description': """This Module will try to get the lower price for given quantity in PO""",
+ 'description': """This Module will try to get the lower price for given
+ quantity in PO""",
  'website': 'http://www.camptocamp.com',
  'init_xml': [],
  'update_xml': [],

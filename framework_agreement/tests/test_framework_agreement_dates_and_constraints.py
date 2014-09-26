@@ -95,7 +95,7 @@ class TestAgreementState(test_common.TransactionCase, BaseAgreementTestMixin):
         start_date = start_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
         end_date = self.now + timedelta(days=30)
         end_date = end_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
-        with self.assertRaises(Exception) as constraint:
+        with self.assertRaises(Exception):
             self.agreement_model.create(cr, uid,
                                         {'supplier_id': self.supplier_id,
                                          'product_id': self.product_id,
@@ -124,7 +124,7 @@ class TestAgreementState(test_common.TransactionCase, BaseAgreementTestMixin):
         start_date = start_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
         end_date = self.now + timedelta(days=2)
         end_date = end_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
-        with self.assertRaises(Exception) as constraint:
+        with self.assertRaises(Exception):
             self.agreement_model.create(cr, uid,
                                         {'supplier_id': self.supplier_id,
                                          'product_id': self.product_id,

@@ -26,8 +26,11 @@
     'summary': "Delivery term for purchase orders",
     'description': """
 Delivery term for purchase orders.
-You can configure delivery terms specifying the quantity percentage and the delay for every term line.
-You can then associate the term to the 'main' order line and generate the 'detailed' order lines which in turn will generate several pickings according to delivery term (thanks to 'purchase_multi_picking' module).
+You can configure delivery terms specifying the quantity percentage and the
+delay for every term line.  You can then associate the term to the 'main'
+order line and generate the 'detailed' order lines which in turn will
+generate several pickings according to delivery term (thanks to
+'purchase_multi_picking' module).
 """,
     'author': 'Agile Business Group',
     'website': 'http://www.agilebg.com',

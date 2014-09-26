@@ -26,7 +26,8 @@
     'summary': "Multi Pickings from Purchase Orders",
     'description': """
 This module allows to generate several pickings from the same purchase order.
-You just have to indicate which order lines have to be grouped in the same picking. When confirming the order, for each group a picking is generated.
+You just have to indicate which order lines have to be grouped in the same
+picking. When confirming the order, for each group a picking is generated.
 """,
     'author': 'Agile Business Group',
     'website': 'http://www.agilebg.com',

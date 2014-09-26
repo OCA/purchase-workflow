@@ -42,13 +42,15 @@ class product_pricelist(orm.Model):
             return True
         return False
 
-    def price_get(self, cr, uid, ids, prod_id, qty, partner=None, context=None):
+    def price_get(self, cr, uid, ids, prod_id, qty, partner=None,
+                  context=None):
         """Override of price retrival function in order to support framework agreement.
 
         If it is a supplier price list agrreement will be taken in account
         and use the price of the agreement if required.
 
-        If there is not enough available qty on agreement, standard price will be used.
+        If there is not enough available qty on agreement, standard price will
+        be used.
 
         This is mabye a faulty design and we should use on_change override
 
@@ -56,26 +58,31 @@ class product_pricelist(orm.Model):
         if context is None:
             context = {}
         agreement_obj = self.pool['framework.agreement']
-        res = super(product_pricelist, self).price_get(cr, uid, ids, prod_id, qty,
-                                                       partner=partner, context=context)
+        res = super(product_pricelist, self).price_get(cr, uid, ids, prod_id,
+                                                       qty, partner=partner,
+                                                       context=context)
         if not partner:
             return res
         for pricelist_id in res:
             if (pricelist_id == 'item_id' or not
-                    self._plist_is_agreement(cr, uid, pricelist_id, context=context)):
+                    self._plist_is_agreement(cr, uid, pricelist_id,
+                                             context=context)):
                 continue
             now = datetime.strptime(fields.date.today(),
                                     DEFAULT_SERVER_DATE_FORMAT)
             date = context.get('date') or context.get('date_order') or now
             if context.get('from_agreement_id'):
-                agreement = agreement_obj.browse(cr, uid, context['from_agreement_id'],
+                agreement = agreement_obj.browse(cr, uid,
+                                                 context['from_agreement_id'],
                                                  context=context)
             else:
-                agreement = agreement_obj.get_product_agreement(cr, uid, prod_id,
-                                                                partner, date,
-                                                                qty=qty, context=context)
+                agreement = agreement_obj.get_product_agreement(
+                    cr, uid, prod_id,
+                    partner, date,
+                    qty=qty, context=context)
             if agreement is not None:
-                currency = agreement_obj._get_currency(cr, uid, partner, pricelist_id,
+                currency = agreement_obj._get_currency(cr, uid, partner,
+                                                       pricelist_id,
                                                        context=context)
                 res[pricelist_id] = agreement.get_price(qty, currency=currency)
         return res

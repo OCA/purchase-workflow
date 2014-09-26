@@ -23,9 +23,10 @@ from openerp.osv.orm import Model
 
 class MrpProcurement(Model):
 
-    """Mrp Procurement we override action_po assing to get the cheapest supplier,
-     if you want to change priority parameters just change the  _supplier_to_tuple function
-    TODO remove hack if merge proposal accepted look in action_po_assing for details"""
+    """Mrp Procurement we override action_po assing to get the cheapest
+    supplier, if you want to change priority parameters just change the
+    _supplier_to_tuple function TODO remove hack if merge proposal accepted
+    look in action_po_assing for details"""
 
     _inherit = "procurement.order"
 
@@ -34,8 +35,8 @@ class MrpProcurement(Model):
         # stack is prduct id : qty
         # this is a hack beacause make_po hase no function
         # get supplier so I pass requiered data in context
-        # I know that sucks but OpenEPR wont change this function in stable relase
-        # Merge proposal for trunkis running
+        # I know that sucks but OpenEPR wont change this function in stable
+        # relase Merge proposal for trunkis running
         context['smart_mrp_stack'] = {}
         for proc in self.browse(cursor, uid, ids, context):
             context['smart_mrp_stack'][proc.product_id.id] = proc.product_qty
@@ -58,8 +59,9 @@ class ProductTemplate(Model):
         # the faster solution will be to populate a mapping hash in
         # _get_main_product_supplier
         info_obj = self.pool.get('product.supplierinfo')
-        info_id = info_obj.search(cursor, uid, [('product_id', '=', product_id),
-                                                ('name', '=', supplier_id)], order='sequence')[0]
+        info_id = info_obj.search(
+            cursor, uid, [('product_id', '=', product_id),
+                          ('name', '=', supplier_id)], order='sequence')[0]
         info = info_obj.browse(cursor, uid, info_id)
         res_tuple = (price, info.delay, info.sequence or 10000, info.id)
         return res_tuple
@@ -76,15 +78,18 @@ class ProductTemplate(Model):
             sellers = product.seller_ids
             supplier_ids = [x.name.id for x in sellers]
             qty = smart_mrp_stack.get(product.id, 1)
-            best_prices_persupplier = info_obj.price_get(cursor, uid, supplier_ids,
-                                                         product.id, qty, context=context)
+            best_prices_persupplier = info_obj.price_get(
+                cursor, uid, supplier_ids,
+                product.id, qty, context=context)
             # Assmuption to sort price is more important than delay
             final_choice = []
             for supp, price in best_prices_persupplier.items():
                 final_choice.append(
-                    self._supplier_to_tuple(cursor, uid, supp, price, product.id))
+                    self._supplier_to_tuple(cursor, uid, supp, price,
+                                            product.id))
             final_choice.sort()
             return info_obj.browse(cursor, uid, final_choice[0][3])
         else:
-            return super(ProductTemplate, self)._get_main_product_supplier(cursor, uid, product, context)
+            return super(ProductTemplate, self)._get_main_product_supplier(
+                cursor, uid, product, context)
         return False
