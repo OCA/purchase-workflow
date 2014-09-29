@@ -52,8 +52,7 @@
                 <!--<field name="warehouse_id" position="attributes">-->
                     <!--<attribute name="on_change">onchange_warehouse_id(warehouse_id)</attribute>-->
                 <!--</field>-->
-                <button name="purchase_cancel" position="attributes">
-                    <attribute name="type">object</attribute>
+                <button name="action_cancel" position="attributes">
                     <attribute name="states">draft,sent,draftbid,bid,draftpo,confirmed</attribute>
                 </button>
                 <xpath expr="//button[@name='purchase_confirm']" position="after">
