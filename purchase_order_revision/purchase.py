@@ -33,7 +33,7 @@ class purchase_order(orm.Model):
         'old_revision_ids': fields.one2many(
             'purchase.order', 'current_revision_id',
             'Old revisions', readonly=True),
-        }
+    }
 
     def new_revision(self, cr, uid, ids, context=None):
         if len(ids) > 1:
@@ -55,7 +55,7 @@ class purchase_order(orm.Model):
             'picking_ids': [],
             'old_revision_ids': [],
             'current_revision_id': po.id,
-            }, context=None)
+        }, context=None)
         self.action_cancel_draft(cr, uid, [po.id], context=context)
         return True
 

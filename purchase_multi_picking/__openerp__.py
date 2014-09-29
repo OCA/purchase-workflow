@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#    
+#
 #    Copyright (C) 2012-2013 Agile Business Group sagl
 #    (<http://www.agilebg.com>)
 #    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
@@ -26,17 +26,18 @@
     'summary': "Multi Pickings from Purchase Orders",
     'description': """
 This module allows to generate several pickings from the same purchase order.
-You just have to indicate which order lines have to be grouped in the same picking. When confirming the order, for each group a picking is generated.
+You just have to indicate which order lines have to be grouped in the same
+picking. When confirming the order, for each group a picking is generated.
 """,
     'author': 'Agile Business Group',
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
-    "depends" : ['purchase', 'stock'],
-    "data" : [
+    "depends": ['purchase', 'stock'],
+    "data": [
         'purchase_view.xml',
         'security/ir.model.access.csv',
-        ],
-    "demo" : [],
+    ],
+    "demo": [],
     "active": False,
     "installable": True
 }

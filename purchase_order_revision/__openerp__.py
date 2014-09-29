@@ -39,11 +39,11 @@ purchase orders.
     "depends": ['purchase'],
     "data": [
         'purchase_view.xml',
-        ],
+    ],
     "demo": [],
     "test": [
         'test/purchase_order.yml',
-        ],
+    ],
     "active": False,
     "installable": True
 }

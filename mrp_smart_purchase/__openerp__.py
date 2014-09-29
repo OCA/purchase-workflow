@@ -18,14 +18,15 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{'name' : 'Smart MRP Purchase based on supplier price',
- 'version' : '0.2',
- 'author' : 'Camptocamp',
+{'name': 'Smart MRP Purchase based on supplier price',
+ 'version': '0.2',
+ 'author': 'Camptocamp',
  'maintainer': 'Camptocamp',
  'category': 'version',
  'complexity': "normal",  # easy, normal, expert
- 'depends' : ['mrp', 'product', 'purchase'],
- 'description': """This Module will try to get the lower price for given quantity in PO""",
+ 'depends': ['mrp', 'product', 'purchase'],
+ 'description': """This Module will try to get the lower price for given
+ quantity in PO""",
  'website': 'http://www.camptocamp.com',
  'init_xml': [],
  'update_xml': [],
@@ -35,4 +36,3 @@
  'auto_install': False,
  'license': 'AGPL-3',
  'application': True}
-

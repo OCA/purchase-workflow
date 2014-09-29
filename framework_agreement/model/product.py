@@ -22,13 +22,15 @@ from openerp.osv import orm, fields
 
 
 class product_product(orm.Model):
+
     """Add relation to framework agreement"""
 
     _inherit = "product.product"
-    _columns = {'framework_agreement_ids': fields.one2many('framework.agreement',
-                                                           'product_id',
-                                                           'Framework Agreements (LTA)')
-                }
+    _columns = {'framework_agreement_ids': fields.one2many(
+        'framework.agreement',
+        'product_id',
+        'Framework Agreements (LTA)')
+    }
 
     def copy(self, cr, uid, id, default=None, context=None):
         """Override of copy in order not to copy agreements"""

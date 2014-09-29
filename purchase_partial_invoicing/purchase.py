@@ -36,6 +36,8 @@ class purchase_order_line(orm.Model):
     _inherit = 'purchase.order.line'
 
     _columns = {
-        'invoiced_qty': fields.function(_invoiced_qty,
-        string='Invoiced quantity', type='float'),
+        'invoiced_qty': fields.function(
+            _invoiced_qty,
+            string='Invoiced quantity',
+            type='float'),
     }
