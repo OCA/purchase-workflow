@@ -43,15 +43,20 @@
                 <xpath expr="//field[@name='incoterm_id']" position="after">
                     <field name="incoterm_address"/>
                 </xpath>
+
+                <field name="dest_address_id" position="attributes">
+                    <attribute name="on_change">onchange_dest_address_id_mod(dest_address_id, warehouse_id)</attribute>
+                </field>
+
                 <xpath expr="//field[@name='dest_address_id']" position="replace"/>
-                <!--XXX warehouse_id not found -->
-                <!--<field name="warehouse_id" position="before">-->
-                    <!--<field name="consignee_id"/>-->
-                    <!--<field name="dest_address_id" on_change="onchange_dest_address_id_mod(dest_address_id, warehouse_id)" string="Delivery Address"/>-->
-                <!--</field>-->
-                <!--<field name="warehouse_id" position="attributes">-->
-                    <!--<attribute name="on_change">onchange_warehouse_id(warehouse_id)</attribute>-->
-                <!--</field>-->
+                <field name="picking_type_id" position="before">
+                    <field name="consignee_id"/>
+                </field>
+
+                <field name="picking_type_id" position="attributes">
+                    <attribute name="on_change">onchange_picking_type_id(picking_type_id)</attribute>
+                </field>
+
                 <button name="action_cancel" position="attributes">
                     <attribute name="states">draft,sent,draftbid,bid,draftpo,confirmed</attribute>
                 </button>

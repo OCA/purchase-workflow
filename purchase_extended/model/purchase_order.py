@@ -285,7 +285,8 @@ class PurchaseOrder(models.Model):
         # value['value']['warehouse_id'] = warehouse_id
         # return value
 
-    # XXX: port onchange
+    # XXX: change that to onchange_picking_type to get dest_address_id
+    # from picking_type.warehouse_id.partner_id
     # def onchange_warehouse_id(self, cr, uid, ids, warehouse_id,
     #                           context=None):
         # value = super(PurchaseOrder, self).onchange_warehouse_id(cr, uid,
