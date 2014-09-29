@@ -222,14 +222,14 @@ class framework_agreement(orm.Model):
         """
         if isinstance(ids, (int, long)):
             ids = [ids]
-            for agr in self.browse(cr, uid, ids, context=context):
-                mandatory = [agr.start_date,
-                             agr.end_date,
-                             agr.framework_agreement_pricelist_id]
-                if not all(mandatory):
-                    raise orm.except_orm(_('Data are missing'),
-                                         _('Please enter dates'
-                                           ' and price informations'))
+        for agr in self.browse(cr, uid, ids, context=context):
+            mandatory = [agr.start_date,
+                         agr.end_date,
+                         agr.framework_agreement_pricelist_id]
+            if not all(mandatory):
+                raise orm.except_orm(_('Data are missing'),
+                                     _('Please enter dates'
+                                       ' and price informations'))
         self.write(cr, uid, ids, {'draft': False}, context=context)
 
     def _get_po_store(self, cr, uid, ids, context=None):
