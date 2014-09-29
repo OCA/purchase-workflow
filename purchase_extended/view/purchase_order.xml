@@ -1,108 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
-    <data>
-        <record model="ir.ui.view" id="view_purchase_order_form">
-            <field name="name">purchase.order.form.inherit</field>
-            <field name="model">purchase.order</field>
-            <field name="inherit_id" ref="purchase.purchase_order_form"/>
-            <field name="arch" type="xml">
-                <xpath expr="//sheet/div[@class='oe_title']/h1/label[@string='Request for Quotation ']" position="replace"/>
-                <xpath expr="//sheet/div[@class='oe_title']/h1/label[@string='Purchase Order ']" position="replace"/>
-                <xpath expr="//sheet/div[@class='oe_title']/h1/field[@name='name']" position="before">
-                    <field name="type" nolabel="1" class="oe_inline"/>
-                    <label string=" "/>
-                </xpath>
-                <xpath expr="//sheet/div[@class='oe_title']/h1" position="after">
-                    <h2 attrs="{'invisible': [('state', '!=', 'cancel')]}">
-                        <label for="cancel_reason_id" string="Reason for Cancellation:"/>
-                        <field name="cancel_reason_id" class="oe_inline" />
-                    </h2>
-                </xpath>
-                <xpath expr="//field[@name='state']" position="attributes">
-                    <attribute name="statusbar_visible">draft,sent,bid,draftpo,approved,done</attribute>
-                </xpath>
-                <xpath expr="//button[@name='action_cancel_draft']" position="attributes">
-                    <attribute name="states">cancel,draftpo</attribute>
-                    <attribute name="string">Reset to Draft RFQ</attribute>
-                </xpath>
-                <xpath expr="//button[@string='Send PO by Email']" position="after">
-                    <button name="wkf_send_rfq" states="draftpo" string="Send Draft PO by Email" type="object" context="{'send_rfq':True}"/>
-                </xpath>
-                <xpath expr="//button[@name='bid_received']" position="attributes">
-                    <attribute name="string">Bid Encoded</attribute>
-                    <attribute name="type">object</attribute>
-                    <attribute name="states">sent,draftbid</attribute>
-                </xpath>
-                <xpath expr="//button[@id='bid_confirm']" position="attributes">
-                    <attribute name="states">draftpo</attribute>
-                </xpath>
-                <xpath expr="//button[@id='draft_confirm']" position="attributes">
-                    <attribute name="states">draftpo</attribute>
-                    <attribute name="invisible">1</attribute>
-                </xpath>
-                <xpath expr="//field[@name='incoterm_id']" position="after">
-                    <field name="incoterm_address"/>
-                </xpath>
+  <data>
 
-                <field name="dest_address_id" position="attributes">
-                    <attribute name="on_change">onchange_dest_address_id_mod(dest_address_id, warehouse_id)</attribute>
-                </field>
+    <record model="ir.ui.view" id="view_purchase_order_form">
+      <field name="name">purchase.order.form.inherit</field>
+      <field name="model">purchase.order</field>
+      <field name="inherit_id" ref="purchase.purchase_order_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//sheet/div[@class='oe_title']/h1/label[@string='Request for Quotation ']" position="replace"/>
+        <xpath expr="//sheet/div[@class='oe_title']/h1/label[@string='Purchase Order ']" position="replace"/>
+        <xpath expr="//sheet/div[@class='oe_title']/h1/field[@name='name']" position="before">
+          <field name="type" nolabel="1" class="oe_inline"/>
+          <label string=" "/>
+        </xpath>
+        <xpath expr="//sheet/div[@class='oe_title']/h1" position="after">
+          <h2 attrs="{'invisible': [('state', '!=', 'cancel')]}">
+            <label for="cancel_reason_id" string="Reason for Cancellation:"/>
+            <field name="cancel_reason_id" class="oe_inline" />
+          </h2>
+        </xpath>
+        <xpath expr="//field[@name='state']" position="attributes">
+          <attribute name="statusbar_visible">draft,sent,bid,draftpo,approved,done</attribute>
+        </xpath>
+        <xpath expr="//button[@name='action_cancel_draft']" position="attributes">
+          <attribute name="states">cancel,draftpo</attribute>
+          <attribute name="string">Reset to Draft RFQ</attribute>
+        </xpath>
+        <xpath expr="//button[@string='Send PO by Email']" position="after">
+          <button name="wkf_send_rfq" states="draftpo" string="Send Draft PO by Email" type="object" context="{'send_rfq':True}"/>
+        </xpath>
+        <xpath expr="//button[@name='bid_received']" position="attributes">
+          <attribute name="string">Bid Encoded</attribute>
+          <attribute name="type">object</attribute>
+          <attribute name="states">sent,draftbid</attribute>
+        </xpath>
+        <xpath expr="//button[@id='bid_confirm']" position="attributes">
+          <attribute name="states">draftpo</attribute>
+        </xpath>
+        <xpath expr="//button[@id='draft_confirm']" position="attributes">
+          <attribute name="states">draftpo</attribute>
+          <attribute name="invisible">1</attribute>
+        </xpath>
+        <xpath expr="//field[@name='incoterm_id']" position="after">
+          <field name="incoterm_address"/>
+        </xpath>
 
-                <xpath expr="//field[@name='dest_address_id']" position="replace"/>
-                <field name="picking_type_id" position="before">
-                    <field name="consignee_id"/>
-                </field>
+        <field name="dest_address_id" position="attributes">
+          <attribute name="on_change">onchange_dest_address_id_mod(dest_address_id, warehouse_id)</attribute>
+        </field>
 
-                <field name="picking_type_id" position="attributes">
-                    <attribute name="on_change">onchange_picking_type_id(picking_type_id)</attribute>
-                </field>
+        <xpath expr="//field[@name='dest_address_id']" position="replace"/>
+        <field name="picking_type_id" position="before">
+          <field name="consignee_id"/>
+        </field>
 
-                <button name="action_cancel" position="attributes">
-                    <attribute name="states">draft,sent,draftbid,bid,draftpo,confirmed</attribute>
-                </button>
-                <xpath expr="//button[@name='purchase_confirm']" position="after">
-                    <button name="draft_po" states="draft" string="Convert to PO"/>
-                    <button name="draft_po" states="bid" string="Convert to PO" class="oe_highlight"/>
-                </xpath>
-                <!--<field name="product_id" position="replace">-->
-                    <!--<field name="product_id" on_change="onchange_product_id(parent.pricelist_id,product_id,0,product_uom,parent.partner_id, parent.date_order,parent.fiscal_position,date_planned,name,price_unit,context,parent.state,parent.type)"/>-->
-                <!--</field>-->
-                <!--<field name="product_qty" position="replace">-->
-                    <!--<field name="product_qty" on_change="onchange_product_id(parent.pricelist_id,product_id,product_qty,product_uom,parent.partner_id,parent.date_order,parent.fiscal_position,date_planned,name,price_unit,context,parent.state,parent.type)"/>-->
-                <!--</field>-->
-            </field>
-        </record>
-        <record id="purchase.purchase_rfq" model="ir.actions.act_window">
-            <field name="domain">[('type','in',('rfq','bid'))]</field>
-        </record>
-        <record id="purchase.purchase_form_action" model="ir.actions.act_window">
-            <field name="context">{'draft_po':True}</field>
-            <field name="domain">[('type','=','purchase')]</field>
-        </record>
+        <field name="picking_type_id" position="attributes">
+          <attribute name="on_change">onchange_picking_type_id(picking_type_id)</attribute>
+        </field>
 
-        <record model="ir.ui.view" id="view_purchase_order_invoice_form">
-            <field name="name">purchase.order.form.invoice.inherit</field>
-            <field name="model">purchase.order</field>
-            <field name="inherit_id" ref="purchase.purchase_order_2_stock_picking"/>
-            <field name="arch" type="xml">
-                <xpath expr="//button[@name='invoice_open']" position="attributes">
-                    <attribute name="attrs">{'invisible': [('state', 'in', ['draft','draftbid','draftpo'])]}</attribute>
-                </xpath>
-            </field>
-        </record>
+        <button name="action_cancel" position="attributes">
+          <attribute name="states">draft,sent,draftbid,bid,draftpo,confirmed</attribute>
+        </button>
+        <xpath expr="//button[@name='purchase_confirm']" position="after">
+          <button name="draft_po" states="draft" string="Convert to PO"/>
+          <button name="draft_po" states="bid" string="Convert to PO" class="oe_highlight"/>
+        </xpath>
 
-        <!--<record id="on_change_on_po_line_form" model="ir.ui.view">-->
-          <!--<field name="name">on change on po line form</field>-->
-          <!--<field name="model">purchase.order.line</field>-->
-          <!--<field name="inherit_id" ref="purchase.purchase_order_line_form" />-->
-          <!--<field name="arch" type="xml">-->
-              <!--<field name="product_id" position="replace">-->
-                  <!--<field name="product_id" on_change="onchange_product_id(parent.pricelist_id,product_id,0,product_uom,parent.partner_id, parent.date_order,parent.fiscal_position,date_planned,name,price_unit,context,parent.state,parent.type)"/>-->
-              <!--</field>-->
-              <!--<field name="product_qty" position="replace">-->
-                  <!--<field name="product_qty" on_change="onchange_product_id(parent.pricelist_id,product_id,product_qty,product_uom,parent.partner_id,parent.date_order,parent.fiscal_position,date_planned,name,price_unit,context,parent.state,parent.type)"/>-->
-              <!--</field>-->
-          <!--</field>-->
-        <!--</record>-->
-    </data>
+        <field name="product_id" position="attributes">
+          <attribute name="context_extended">{'order_type': parent.type}</attribute>
+        </field>
+
+        <field name="product_qty" position="attributes">
+          <attribute name="context_extended">{'order_type': parent.type}</attribute>
+        </field>
+
+      </field>
+    </record>
+
+    <record id="purchase.purchase_rfq" model="ir.actions.act_window">
+      <field name="domain">[('type','in',('rfq','bid'))]</field>
+    </record>
+
+    <record id="purchase.purchase_form_action" model="ir.actions.act_window">
+      <field name="context">{'draft_po':True}</field>
+      <field name="domain">[('type','=','purchase')]</field>
+    </record>
+
+    <record model="ir.ui.view" id="view_purchase_order_invoice_form">
+      <field name="name">purchase.order.form.invoice.inherit</field>
+      <field name="model">purchase.order</field>
+      <field name="inherit_id" ref="purchase.purchase_order_2_stock_picking"/>
+      <field name="arch" type="xml">
+        <xpath expr="//button[@name='invoice_open']" position="attributes">
+          <attribute name="attrs">{'invisible': [('state', 'in', ['draft','draftbid','draftpo'])]}</attribute>
+        </xpath>
+      </field>
+    </record>
+
+    <record id="po_line_onchange_form" model="ir.ui.view">
+      <field name="model">purchase.order.line</field>
+      <field name="inherit_id" ref="purchase.purchase_order_line_form" />
+      <field name="arch" type="xml">
+
+        <field name="product_id" position="attributes">
+          <attribute name="context_extended">{'order_type': parent.type}</attribute>
+        </field>
+
+        <field name="product_qty" position="attributes">
+          <attribute name="context_extended">{'order_type': parent.type}</attribute>
+        </field>
+
+      </field>
+    </record>
+  </data>
 </openerp>

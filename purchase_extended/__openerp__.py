@@ -57,6 +57,7 @@ In the scope of internation transactions, some fields have been added:
 TODO: describe onchange warehouse
 """,
  "depends": ["purchase",
+             "web_context_tunnel",
              ],
     "demo": [],
     "data": ["view/purchase_order.xml",

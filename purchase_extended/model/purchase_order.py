@@ -309,19 +309,24 @@ class PurchaseOrder(models.Model):
 class PurchaseOrderLine(models.Model):
     _inherit = 'purchase.order.line'
 
-    # XXX: port onchange
-    # def onchange_product_id(self, cr, uid, ids, pricelist_id, product_id,
-    # qty, uom_id,
-    # partner_id, date_order=False, fiscal_position_id=False,
-    # date_planned=False,
-    # name=False, price_unit=False, context=None, state='draftpo',
-    # type='purchase', **kwargs):
-    # res = super(PurchaseOrderLine, self).onchange_product_id(cr, uid, ids,
-    # pricelist_id, product_id, qty, uom_id, partner_id, date_order,
-    # fiscal_position_id, date_planned, name, price_unit, context)
-    # if state == 'draft' and type == 'rfq':
-    # res['value'].update({'price_unit': 0})
-    # elif state in ('sent', 'draftbid', 'bid'):
-    # if 'price_unit' in res['value']:
-    #  del res['value']['price_unit']
-    # return res
+    def onchange_product_id(self, cr, uid, ids, pricelist_id, product_id, qty,
+                            uom_id, partner_id, date_order=False,
+                            fiscal_position_id=False, date_planned=False,
+                            name=False, price_unit=False, state='draftpo',
+                            context=None):
+
+        order_type = context.get('order_type') or 'rfq'
+
+        res = super(PurchaseOrderLine, self).onchange_product_id(
+            cr, uid, ids, pricelist_id, product_id, qty, uom_id, partner_id,
+            date_order, fiscal_position_id, date_planned, name, price_unit,
+            context=context)
+
+        if state == 'draft' and order_type == 'rfq':
+            res['value'].update({'price_unit': 0.0})
+
+        elif state in ('sent', 'draftbid', 'bid'):
+            if 'price_unit' in res['value']:
+                del res['value']['price_unit']
+
+        return res
