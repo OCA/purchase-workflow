@@ -25,8 +25,6 @@ class action_modal(models.TransientModel):
 
     @api.multi
     def action(self):
-        cr = self._cr
-        uid = self._uid
         for e in ('active_model', 'active_ids', 'action'):
             if e not in self._context:
                 return False
