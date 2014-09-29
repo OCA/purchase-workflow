@@ -67,11 +67,8 @@
 -
   I convert to PO
 -
-  !python {model: purchase.order}: |
-    import netsvc
-    purchase_order = self.browse(cr, uid, ref("purchase_order_ext_rfq2order1"))
-    wf_service = netsvc.LocalService("workflow")
-    wf_service.trg_validate(uid, 'purchase.order', purchase_order.id, 'draft_po', cr)
+  !python {model: purchase.order, id: purchase_order_ext_rfq2order1}: |
+    self.signal_workflow('draft_po')
 -
   I check the "Draft PO" status.
 -
@@ -81,11 +78,8 @@
 -
   I confirm the draft PO.
 -
-  !python {model: purchase.order}: |
-    import netsvc
-    purchase_order = self.browse(cr, uid, ref("purchase_order_ext_rfq2order1"))
-    wf_service = netsvc.LocalService("workflow")
-    wf_service.trg_validate(uid, 'purchase.order', purchase_order.id, 'purchase_confirm', cr)
+  !python {model: purchase.order, id: purchase_order_ext_rfq2order1}: |
+    self.signal_workflow('purchase_confirm')
 -
   I check the "Approved" status.
 -
