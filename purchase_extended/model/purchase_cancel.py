@@ -36,6 +36,6 @@ class PurchaseCancelReason(models.Model):
         """
         unlink_recs = [rec for rec in self if not rec.nounlink]
         if unlink_recs:
-            #TODO
+            # TODO
             return super(PurchaseCancelReason, unlink_recs).unlink()
         return True

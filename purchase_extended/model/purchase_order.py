@@ -118,7 +118,7 @@ class PurchaseOrder(models.Model):
                                          'action_modal_cancel_reason'))[1]
         ctx = self._context.copy()
         ctx['action'] = 'action_cancel_ok'
-        #TODO: filter based on po type
+        # TODO: filter based on po type
         return {
             'type': 'ir.actions.act_window',
             'view_type': 'form',
@@ -160,7 +160,7 @@ class PurchaseOrder(models.Model):
         for e in ('active_model', 'active_ids', 'active_id'):
             if e in ctx:
                 del ctx[e]
-        #TODO: filter based on po type
+        # TODO: filter based on po type
         return {
             'type': 'ir.actions.act_window',
             'view_type': 'form',
@@ -270,31 +270,31 @@ class PurchaseOrder(models.Model):
         return super(PurchaseOrder, self).print_quotation()
 
     # XXX: port onchange
-    #def onchange_dest_address_id_mod(self, cr, uid, ids, dest_address_id,
-                                     #warehouse_id, context=None):
+    # def onchange_dest_address_id_mod(self, cr, uid, ids, dest_address_id,
+        # warehouse_id, context=None):
         #value = self.onchange_dest_address_id(cr, uid, ids, dest_address_id)
         #warehouse_obj = self.pool.get('stock.warehouse')
-        #dest_ids = warehouse_obj.search(cr, uid,
-                                        #[('partner_id', '=', dest_address_id)],
-                                        #context=context)
-        #if dest_ids:
-            #if warehouse_id not in dest_ids:
-                #warehouse_id = dest_ids[0]
-        #else:
-            #warehouse_id = False
+        # dest_ids = warehouse_obj.search(cr, uid,
+        #[('partner_id', '=', dest_address_id)],
+        # context=context)
+        # if dest_ids:
+        # if warehouse_id not in dest_ids:
+        #warehouse_id = dest_ids[0]
+        # else:
+        #warehouse_id = False
         #value['value']['warehouse_id'] = warehouse_id
-        #return value
+        # return value
 
     # XXX: port onchange
-    #def onchange_warehouse_id(self, cr, uid, ids, warehouse_id, context=None):
-        #value = super(PurchaseOrder, self).onchange_warehouse_id(cr, uid, ids,
-                                                                 #warehouse_id)
-        #if not warehouse_id:
-            #return {}
+    # def onchange_warehouse_id(self, cr, uid, ids, warehouse_id, context=None):
+        # value = super(PurchaseOrder, self).onchange_warehouse_id(cr, uid, ids,
+        # warehouse_id)
+        # if not warehouse_id:
+        # return {}
         #warehouse_obj = self.pool.get('stock.warehouse')
         #dest_id = warehouse_obj.browse(cr, uid, warehouse_id, context=context).partner_id.id
         #value['value']['dest_address_id'] = dest_id
-        #return value
+        # return value
 
     @api.multi
     def po_tender_requisition_selected(self):
@@ -306,18 +306,18 @@ class PurchaseOrderLine(models.Model):
     _inherit = 'purchase.order.line'
 
     # XXX: port onchange
-    #def onchange_product_id(self, cr, uid, ids, pricelist_id, product_id,
-            #qty, uom_id,
-            #partner_id, date_order=False, fiscal_position_id=False,
-            #date_planned=False,
-            #name=False, price_unit=False, context=None, state='draftpo',
-            #type='purchase', **kwargs):
-        #res = super(PurchaseOrderLine, self).onchange_product_id(cr, uid, ids,
-                #pricelist_id, product_id, qty, uom_id, partner_id, date_order,
-                #fiscal_position_id, date_planned, name, price_unit, context)
-        #if state == 'draft' and type == 'rfq':
-            #res['value'].update({'price_unit': 0})
-        #elif state in ('sent', 'draftbid', 'bid'):
-            #if 'price_unit' in res['value']:
-                #del res['value']['price_unit']
-        #return res
+    # def onchange_product_id(self, cr, uid, ids, pricelist_id, product_id,
+    #qty, uom_id,
+    #partner_id, date_order=False, fiscal_position_id=False,
+    # date_planned=False,
+    # name=False, price_unit=False, context=None, state='draftpo',
+    # type='purchase', **kwargs):
+    # res = super(PurchaseOrderLine, self).onchange_product_id(cr, uid, ids,
+    #pricelist_id, product_id, qty, uom_id, partner_id, date_order,
+    # fiscal_position_id, date_planned, name, price_unit, context)
+    # if state == 'draft' and type == 'rfq':
+    #res['value'].update({'price_unit': 0})
+    # elif state in ('sent', 'draftbid', 'bid'):
+    # if 'price_unit' in res['value']:
+    #del res['value']['price_unit']
+    # return res
