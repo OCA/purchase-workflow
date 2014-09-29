@@ -19,10 +19,11 @@
 -
   All prices must be 0.
 -
-  !python {model: purchase.order}: |
-    purchase_order = self.browse(cr, uid, ref("purchase_order_ext_rfq2order1"))
-    for line in purchase_order.order_line:
-      assert line.price_subtotal == 0, "The price must be 0 in the RFQ"
+  !python {model: purchase.order, id: purchase_order_ext_rfq2order1}: |
+    from nose.tools import *
+
+    for line in self.order_line:
+      assert_equal(line.price_subtotal, 0)
 -
   Type must be 'rfq' and the total untaxed amount of the RFQ is 0.
 -
