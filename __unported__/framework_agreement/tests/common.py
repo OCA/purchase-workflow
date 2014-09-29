@@ -24,7 +24,9 @@ from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
 
 
 class BaseAgreementTestMixin(object):
-    """Class that contain common behavior for all agreement related unit test classes.
+
+    """Class that contain common behavior for all agreement related unit test
+    classes.
 
     We use Mixin because we want to have those behaviors on the various
     unit test subclasses provided by OpenERP in test common.
@@ -34,16 +36,18 @@ class BaseAgreementTestMixin(object):
     def commonsetUp(self):
         cr, uid = self.cr, self.uid
         self.agreement_model = self.registry('framework.agreement')
-        self.agreement_pl_model = self.registry('framework.agreement.pricelist')
+        self.agreement_pl_model = self.registry(
+            'framework.agreement.pricelist')
         self.agreement_line_model = self.registry('framework.agreement.line')
         self.now = datetime.strptime(fields.date.today(),
                                      DEFAULT_SERVER_DATE_FORMAT)
-        self.product_id = self.registry('product.product').create(cr, uid,
-                                                                  {'name': 'test_1',
-                                                                   'type': 'product',
-                                                                   'list_price': 10.00})
-        self.supplier_id = self.registry('res.partner').create(cr, uid, {'name': 'toto',
-                                                                         'supplier': 'True'})
+        self.product_id = self.registry('product.product').create(cr, uid, {
+            'name': 'test_1',
+            'type': 'product',
+            'list_price': 10.00})
+        self.supplier_id = self.registry('res.partner').create(cr, uid, {
+            'name': 'toto',
+            'supplier': 'True'})
 
     def _map_agreement_to_po(self, agreement, delta_days):
         """Map agreement to dict to be used by PO create"""
@@ -51,7 +55,8 @@ class BaseAgreementTestMixin(object):
         add = self.browse_ref('base.res_partner_3')
         term = supplier.property_supplier_payment_term
         term = term.id if term else False
-        start_date = datetime.strptime(agreement.start_date, DEFAULT_SERVER_DATE_FORMAT)
+        start_date = datetime.strptime(
+            agreement.start_date, DEFAULT_SERVER_DATE_FORMAT)
         date = start_date + timedelta(days=delta_days)
         data = {}
         data['partner_id'] = supplier.id
@@ -92,6 +97,8 @@ class BaseAgreementTestMixin(object):
         cr, uid = self.cr, self.uid
         po_model = self.registry('purchase.order')
         po_line_model = self.registry('purchase.order.line')
-        po_id = po_model.create(cr, uid, self._map_agreement_to_po(agreement, delta_days))
-        po_line_model.create(cr, uid, self._map_agreement_to_po_line(agreement, qty, po_id))
+        po_id = po_model.create(
+            cr, uid, self._map_agreement_to_po(agreement, delta_days))
+        po_line_model.create(
+            cr, uid, self._map_agreement_to_po_line(agreement, qty, po_id))
         return po_model.browse(cr, uid, po_id)

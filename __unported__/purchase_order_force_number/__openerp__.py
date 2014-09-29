@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#    
+#
 #    Copyright (C) 2013 Agile Business Group sagl
 #    (<http://www.agilebg.com>)
 #
@@ -24,16 +24,18 @@
     'version': '0.1',
     'category': 'Purchase Management',
     'summary': "Force purchase orders numeration",
-    'description': """This simple module allows to specify the number to use when creating purchase orders.
-If user does not change the default value ('/'), the standard sequence is used.""",
+    'description': """
+This simple module allows to specify the number to use when creating purchase
+orders. If user does not change the default value ('/'), the standard sequence
+is used.""",
     'author': 'Agile Business Group',
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
-    "depends" : ['purchase'],
-    "data" : [
+    "depends": ['purchase'],
+    "data": [
         'purchase_view.xml',
-        ],
-    "demo" : [],
+    ],
+    "demo": [],
     "active": False,
     "installable": True
 }

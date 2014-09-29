@@ -18,14 +18,14 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{'name' : 'Purchase Group Orders by Shop and Carrier',
- 'version' : '0.4',
- 'author' : 'Camptocamp',
+{'name': 'Purchase Group Orders by Shop and Carrier',
+ 'version': '0.4',
+ 'author': 'Camptocamp',
  'maintainer': 'Camptocamp',
  'category': 'Purchase Management',
  'complexity': "normal",  # easy, normal, expert
- 'depends' : ['delivery', 'sale', 'purchase',
-              ],
+ 'depends': ['delivery', 'sale', 'purchase',
+             ],
  'description': """Only merge PO with the same shop and carrier.
 
  This eases the warehouse managements as the incoming pickings are grouped

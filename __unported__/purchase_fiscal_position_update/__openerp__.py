@@ -25,12 +25,16 @@
     'version': '1.0',
     'category': 'Purchase Management',
     'license': 'AGPL-3',
-    'summary': 'Changing the fiscal position of a purchase order will auto-update purchase order lines',
+    'summary': 'Changing the fiscal position of a purchase order will '
+    'auto-update purchase order lines',
     'description': """
 Purchase Fiscal Position Update
 ===============================
 
-With this module, when a user changes the fiscal position of a purchase order, the taxes on all the purchase order lines which have a product are automatically updated. The purchase order lines without a product are not updated and a warning is displayed to the user in this case.
+With this module, when a user changes the fiscal position of a purchase order,
+the taxes on all the purchase order lines which have a product are
+automatically updated. The purchase order lines without a product are not
+updated and a warning is displayed to the user in this case.
 """,
     'author': 'Julius Network Solutions, Akretion',
     'depends': ['purchase'],

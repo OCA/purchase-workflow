@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#    
+#
 #    Copyright (C) 2012-2013 Agile Business Group sagl
 #    (<http://www.agilebg.com>)
 #    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
@@ -26,19 +26,22 @@
     'summary': "Delivery term for purchase orders",
     'description': """
 Delivery term for purchase orders.
-You can configure delivery terms specifying the quantity percentage and the delay for every term line.
-You can then associate the term to the 'main' order line and generate the 'detailed' order lines which in turn will generate several pickings according to delivery term (thanks to 'purchase_multi_picking' module).
+You can configure delivery terms specifying the quantity percentage and the
+delay for every term line.  You can then associate the term to the 'main'
+order line and generate the 'detailed' order lines which in turn will
+generate several pickings according to delivery term (thanks to
+'purchase_multi_picking' module).
 """,
     'author': 'Agile Business Group',
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
-    "depends" : ['purchase_multi_picking'],
-    "data" : [
+    "depends": ['purchase_multi_picking'],
+    "data": [
         'purchase_view.xml',
         'security/ir.model.access.csv',
         'purchase_data.xml',
-        ],
-    "demo" : [],
+    ],
+    "demo": [],
     "active": False,
     "installable": True
 }

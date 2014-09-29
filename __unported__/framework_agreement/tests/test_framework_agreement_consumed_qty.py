@@ -27,6 +27,7 @@ from ..model.framework_agreement import AGR_PO_STATE
 
 
 class TestAvailabeQty(test_common.TransactionCase, BaseAgreementTestMixin):
+
     """Test the function fields available_quantity"""
 
     def setUp(self):
@@ -47,14 +48,14 @@ class TestAvailabeQty(test_common.TransactionCase, BaseAgreementTestMixin):
                                               'price': 77,
                                               'delay': 5,
                                               'quantity': 200})
-        pl_id = self.agreement_pl_model.create(cr, uid,
-                                               {'framework_agreement_id': agr_id,
-                                                'currency_id': self.ref('base.EUR')})
+        pl_id = self.agreement_pl_model.create(cr, uid, {
+            'framework_agreement_id': agr_id,
+            'currency_id': self.ref('base.EUR')})
 
-        self.agreement_line_model.create(cr, uid,
-                                         {'framework_agreement_pricelist_id': pl_id,
-                                          'quantity': 0,
-                                          'price': 77.0})
+        self.agreement_line_model.create(cr, uid, {
+            'framework_agreement_pricelist_id': pl_id,
+            'quantity': 0,
+            'price': 77.0})
         self.agreement = self.agreement_model.browse(cr, uid, agr_id)
         self.agreement.open_agreement()
 
@@ -67,7 +68,8 @@ class TestAvailabeQty(test_common.TransactionCase, BaseAgreementTestMixin):
         cr, uid = self.cr, self.uid
         po = self.make_po_from_agreement(self.agreement, qty=150, delta_days=5)
         wf_service = netsvc.LocalService("workflow")
-        wf_service.trg_validate(uid, 'purchase.order', po.id, 'purchase_confirm', cr)
+        wf_service.trg_validate(
+            uid, 'purchase.order', po.id, 'purchase_confirm', cr)
         po.refresh()
         self.assertIn(po.state, AGR_PO_STATE)
         self.agreement.refresh()
