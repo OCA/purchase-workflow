@@ -228,9 +228,12 @@ class PurchaseOrder(models.Model):
     @api.multi
     def bid_received_ok(self):
         # TODO: send warning if not all lines have a price
-        act_modal_datetime = self.env['purchase.action_modal.datetime']
+        Wizard = self.env['purchase.action_modal.datetime']
         assert self._context.get('active_id')
-        self.bid_date = act_modal_datetime.browse(self._context['active_id'])
+        wizard = Wizard.browse(self._context['active_id'])
+
+        self.bid_date = wizard.datetime
+
         self.message_post(body=_("Bid received and encoded"),
                           subtype="mail.mt_comment")
         self.signal_workflow('bid_received')
