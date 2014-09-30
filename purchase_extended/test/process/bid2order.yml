@@ -6,7 +6,7 @@
   !record {model: purchase.order, id: purchase_order_ext_bid2order1}:
     partner_id: base.res_partner_1
     invoice_method: order
-    date_order: '2013-08-02'
+    date_order: '2013-08-02 00:00:00'
     bid_validity: '2013-08-15'
     order_line:
       - product_id: product.product_product_15
@@ -36,7 +36,7 @@
 -
   I run the 'Bid encoded' wizard. I fill the date.
 -
-  !record {model: purchase.action_modal_datetime, id: purchase_order_ext_bid2order1_bidencoded}:
+  !record {model: purchase.action_modal.datetime, id: purchase_order_ext_bid2order1_bidencoded}:
     datetime: '2013-08-10 00:00:00'
 -
   I run the 'Bid encoded' wizard. I confirm the wizard.
@@ -52,11 +52,8 @@
 -
   I convert to PO
 -
-  !python {model: purchase.order}: |
-    import netsvc
-    purchase_order = self.browse(cr, uid, ref("purchase_order_ext_bid2order1"))
-    wf_service = netsvc.LocalService("workflow")
-    wf_service.trg_validate(uid, 'purchase.order', purchase_order.id, 'draft_po', cr)
+  !python {model: purchase.order, id: purchase_order_ext_bid2order1}: |
+    self.signal_workflow('draft_po')
 -
   I check the "Draft PO" status.
 -
@@ -66,11 +63,8 @@
 -
   I confirm the draft PO.
 -
-  !python {model: purchase.order}: |
-    import netsvc
-    purchase_order = self.browse(cr, uid, ref("purchase_order_ext_bid2order1"))
-    wf_service = netsvc.LocalService("workflow")
-    wf_service.trg_validate(uid, 'purchase.order', purchase_order.id, 'purchase_confirm', cr)
+  !python {model: purchase.order, id: purchase_order_ext_bid2order1}: |
+    self.signal_workflow('purchase_confirm')
 -
   I check the "Approved" status.
 -
