@@ -33,7 +33,6 @@
                   attrs="{'invisible': ['|', ('draft', '=', False), '|', ('start_date', '=', False), '|', ('end_date', '=', False), ('framework_agreement_pricelist_ids', '=', [])]}"/>
             <field name="state"
                    widget="statusbar"
-                   nolabel="1"
                    statusbar_visible="draft,future,running,consumed,closed"
                    statusbar_colors='{"draft":"blue","future": "blue", "closed": "blue", "running": "green", "consumed": "red"}'/>
           </header>
@@ -101,7 +100,6 @@
       <field name="name">Framework Agreement</field>
       <field name="type">ir.actions.act_window</field>
       <field name="res_model">framework.agreement</field>
-      <field name="domain"></field>
       <field name="view_type">form</field>
       <field name="view_mode">tree,form</field>
       <field name="view_id" ref="framework_agreement_list_view"/>
