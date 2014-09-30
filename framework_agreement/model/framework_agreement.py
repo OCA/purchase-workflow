@@ -225,7 +225,7 @@ class framework_agreement(orm.Model):
         for agr in self.browse(cr, uid, ids, context=context):
             mandatory = [agr.start_date,
                          agr.end_date,
-                         agr.framework_agreement_pricelist_id]
+                         agr.framework_agreement_pricelist_ids]
             if not all(mandatory):
                 raise orm.except_orm(_('Data are missing'),
                                      _('Please enter dates'
