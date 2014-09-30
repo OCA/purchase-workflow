@@ -3,10 +3,13 @@
 -
   Create draft PO
 -
-  !record {model: purchase.order, id: purchase_order_ext_po2order1, context: {"draft_po": 1}}:
+  !context
+    'draft_po': 1
+-
+  !record {model: purchase.order, id: purchase_order_ext_po2order1, context: {'draft_po': 1}}:
     partner_id: base.res_partner_1
     invoice_method: order
-    date_order: '2013-08-02'
+    date_order: '2013-08-02 00:00:00'
     order_line:
       - product_id: product.product_product_15
         product_qty: 15.0
@@ -30,11 +33,8 @@
 -
   I confirm the draft PO.
 -
-  !python {model: purchase.order}: |
-    import netsvc
-    purchase_order = self.browse(cr, uid, ref("purchase_order_ext_po2order1"))
-    wf_service = netsvc.LocalService("workflow")
-    wf_service.trg_validate(uid, 'purchase.order', purchase_order.id, 'purchase_confirm', cr)
+  !python {model: purchase.order, id: purchase_order_ext_po2order1}: |
+    self.signal_workflow('purchase_confirm')
 -
   I check the "Approved" status.
 -

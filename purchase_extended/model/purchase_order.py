@@ -77,11 +77,20 @@ class PurchaseOrderClassic(osv.orm.Model):
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
+    def _default_type(self):
+        if self._context.get('draft_po'):
+            return 'purchase'
+        elif self._context.get('draft_bid'):
+            return 'bid'
+        else:
+            return 'rfq'
+
     type = fields.Selection(
-        TYPE_SELECTION, 'Type', required=True, readonly=True,
-        default=lambda self: ('purchase' if self._context.get('draft_po')
-                              else 'bid' if self._context.get('draft_bid')
-                              else 'rfq'))
+        TYPE_SELECTION,
+        'Type',
+        required=True,
+        readonly=True,
+        default=_default_type)
     consignee_id = fields.Many2one(
         'res.partner', 'Consignee',
         help="The person to whom the shipment is to be delivered.")
@@ -103,13 +112,13 @@ class PurchaseOrder(models.Model):
             self._description = 'Draft Bid'
         elif not self._context.get('draft_po'):
             self._description = 'Request for Quotation'
-        id = super(PurchaseOrder, self).create(values)
+        order = super(PurchaseOrder, self).create(values)
         self._description = description
         if self._context.get('draft_bid'):
-            self.signal_workflow('draft_bid')
+            order.signal_workflow('draft_bid')
         if self._context.get('draft_po'):
-            self.signal_workflow('draft_po')
-        return id
+            order.signal_workflow('draft_po')
+        return order
 
     @api.one
     def copy(self, default=None):
