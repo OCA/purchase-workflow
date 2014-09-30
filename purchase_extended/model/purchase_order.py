@@ -17,7 +17,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, fields, api, exceptions
+from openerp import models, fields, api, exceptions, osv
 from openerp.tools.translate import _
 
 STATE_SELECTION = [
@@ -41,23 +41,30 @@ TYPE_SELECTION = [
 ]
 
 
+class PurchaseOrderClassic(osv.orm.Model):
+    _inherit = "purchase.order"
+
+    _columns = {
+        'state': osv.fields.selection(
+            STATE_SELECTION,
+            'Status',
+            readonly=True,
+            help="The status of the purchase order or the quotation request. "
+            "A quotation is a purchase order in a 'Draft' status. Then the "
+            "order has to be confirmed by the user, the status switch to "
+            "'Confirmed'. Then the supplier must confirm the order to change "
+            "the status to 'Approved'. When the purchase order is paid and "
+            "received, the status becomes 'Done'. If a cancel action occurs "
+            "in the invoice or in the reception of goods, the status becomes "
+            "in exception.",
+            select=True,
+            copy=False),
+    }
+
+
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
-    state = fields.Selection(
-        STATE_SELECTION, 'Status', readonly=True, select=True,
-        help="The status of the purchase order or the quotation request. A "
-             "quotation is a purchase order in a 'Draft' status. Then the "
-             "order has to be confirmed by the user, the status switch to "
-             "'Confirmed'. Then the supplier must confirm the order to change "
-             "the status to 'Approved'. When the purchase order is paid and "
-             "received, the status becomes 'Done'. If a cancel action occurs "
-             "in the invoice or in the reception of goods, the status becomes "
-             "in exception.",
-        default=lambda self: ('draftpo' if self._context.get('draft_po')
-                              else 'draftbid' if (self._context
-                                                  .get('draft_bid'))
-                              else 'draft'))
     type = fields.Selection(
         TYPE_SELECTION, 'Type', required=True, readonly=True,
         default=lambda self: ('purchase' if self._context.get('draft_po')
