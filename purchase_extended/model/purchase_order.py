@@ -61,6 +61,18 @@ class PurchaseOrderClassic(osv.orm.Model):
             copy=False),
     }
 
+    def _default_state(self, cr, uid, context=None):
+        if context and context.get('draft_po'):
+            return 'draftpo'
+        elif context and context.get('draft_bid'):
+            return 'draftbid'
+        else:
+            return 'draft'
+
+    _defaults = {
+        'state': _default_state,
+    }
+
 
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
