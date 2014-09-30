@@ -20,29 +20,29 @@
 from openerp import models, fields, api, exceptions
 from openerp.tools.translate import _
 
+STATE_SELECTION = [
+    ('draft', 'Draft RFQ'),
+    ('sent', 'RFQ Sent'),
+    ('draftbid', 'Draft Bid'),  # added
+    ('bid', 'Bid Encoded'),  # Bid Received renamed into Bid Encoded
+    ('bid_selected', 'Bid selected'),  # added
+    ('draftpo', 'Draft PO'),  # added
+    ('confirmed', 'Waiting Approval'),
+    ('approved', 'Purchase Confirmed'),
+    ('except_picking', 'Shipping Exception'),
+    ('except_invoice', 'Invoice Exception'),
+    ('done', 'Done'),
+    ('cancel', 'Canceled')
+]
+TYPE_SELECTION = [
+    ('rfq', 'Request for Quotation'),
+    ('bid', 'Bid'),
+    ('purchase', 'Purchase Order')
+]
+
 
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
-
-    STATE_SELECTION = [
-        ('draft', 'Draft RFQ'),
-        ('sent', 'RFQ Sent'),
-        ('draftbid', 'Draft Bid'),  # added
-        ('bid', 'Bid Encoded'),  # Bid Received renamed into Bid Encoded
-        ('bid_selected', 'Bid selected'),  # added
-        ('draftpo', 'Draft PO'),  # added
-        ('confirmed', 'Waiting Approval'),
-        ('approved', 'Purchase Confirmed'),
-        ('except_picking', 'Shipping Exception'),
-        ('except_invoice', 'Invoice Exception'),
-        ('done', 'Done'),
-        ('cancel', 'Canceled')
-    ]
-    TYPE_SELECTION = [
-        ('rfq', 'Request for Quotation'),
-        ('bid', 'Bid'),
-        ('purchase', 'Purchase Order')
-    ]
 
     state = fields.Selection(
         STATE_SELECTION, 'Status', readonly=True, select=True,
