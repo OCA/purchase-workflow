@@ -30,12 +30,11 @@ class PurchaseCancelReason(models.Model):
         'Type', required=True)
     nounlink = fields.Boolean('No unlink')
 
-    @api.multi
+    @api.one
     def unlink(self):
         """ Prevent to unlink records that are used in the code
         """
-        unlink_recs = [rec for rec in self if not rec.nounlink]
-        if unlink_recs:
-            # TODO
-            return super(PurchaseCancelReason, unlink_recs).unlink()
-        return True
+        if self.nounlink:
+            return True
+        else:
+            return super(PurchaseCancelReason, self).unlink()
