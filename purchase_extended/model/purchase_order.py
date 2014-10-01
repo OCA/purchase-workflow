@@ -162,10 +162,6 @@ class PurchaseOrder(models.Model):
         }
 
     @api.multi
-    def action_cancel_no_reason(self):
-        return super(PurchaseOrder, self).action_cancel()
-
-    @api.multi
     def action_cancel_ok(self):
         act_modal_cancel_obj = self.env['purchase.action_modal.cancel_reason']
         assert self._context.get('active_id')
