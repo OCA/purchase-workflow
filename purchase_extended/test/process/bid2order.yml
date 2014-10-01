@@ -34,6 +34,16 @@
     - state == 'sent'
     - round(sum([l.price_subtotal for l in order_line]), 2) == round(amount_untaxed, 2)
 -
+  I hit 'Bid encoded'. I should get a wizard with the correct action.
+-
+  !python {model: purchase.order, id: purchase_order_ext_bid2order1}: |
+    from nose.tools import *
+
+    result = self.bid_received()
+    assert_is(type(result), dict)
+
+    assert_equal(result['context']['action'], 'bid_received_ok')
+-
   I run the 'Bid encoded' wizard. I fill the date.
 -
   !record {model: purchase.action_modal.datetime, id: purchase_order_ext_bid2order1_bidencoded}:

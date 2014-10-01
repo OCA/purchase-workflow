@@ -183,21 +183,17 @@ class PurchaseOrder(models.Model):
             element.message_post(body=message, subtype="mail.mt_comment")
         return super(PurchaseOrder, self).wkf_action_cancel()
 
-    @api.one
+    @api.multi
     def bid_received(self):
-        model_obj = self.env['ir.model.data']
         ctx = self._context.copy()
         ctx.update({
             'action': 'bid_received_ok',
             'default_datetime': (self.bid_date
                                  or fields.Date.context_today(self)),
         })
-        # those will be set by the web layer unless they are already defined
-        view_id = (model_obj
-                   .sudo()
-                   .get_object_reference('purchase_extended',
-                                         'action_modal_bid_date'))[1]
+        view = self.env.ref('purchase_extended.action_modal_bid_date')
 
+        # those will be set by the web layer unless they are already defined
         for e in ('active_model', 'active_ids', 'active_id'):
             if e in ctx:
                 del ctx[e]
@@ -205,9 +201,9 @@ class PurchaseOrder(models.Model):
             'type': 'ir.actions.act_window',
             'view_type': 'form',
             'view_mode': 'form',
-            'res_model': 'purchase.action_modal_datetime',
-            'view_id': view_id,
-            'views': [(view_id, 'form')],
+            'res_model': 'purchase.action_modal.datetime',
+            'view_id': view.id,
+            'views': [(view.id, 'form')],
             'target': 'new',
             'context': ctx,
         }
