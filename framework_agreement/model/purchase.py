@@ -19,15 +19,17 @@
 #
 ##############################################################################
 from openerp.osv import orm, fields
-from openerp.tools.translate import _
-from openerp.addons.framework_agreement.model.framework_agreement \
-    import FrameworkAgreementObservable
+from openerp import models, fields as nfields, api
+from openerp import exceptions, _
 
 
-class purchase_order_line(orm.Model, FrameworkAgreementObservable):
-
+class purchase_order_line(orm.Model):
     """Add on change on price to raise a warning if line is subject to
-    an agreement"""
+    an agreement
+
+    There is too munch conflict when overriding on change defined on old API
+    With new API classes. This does not work
+    """
 
     _inherit = "purchase.order.line"
 
@@ -53,10 +55,38 @@ class purchase_order_line(orm.Model, FrameworkAgreementObservable):
             store={'purchase.order': _store_tuple,
                    'purchase.order.line': _line_store_tuple},
             relation='framework.agreement',
-            string='Agreement')}
+            string='Agreement'
+        )
+    }
 
-    def onchange_price(self, cr, uid, ids, price, agreement_id, qty,
-                       pricelist_id, product_id, context=None):
+    def _currency_get(self, cr, uid, pricelist_id, context=None):
+        """Retrieve pricelist currency"""
+        return self.pool['product.pricelist'].browse(
+            cr, uid,
+            pricelist_id,
+            context=context).currency_id
+
+    def _onchange_price(self, cr, uid, ids, price, agreement_id,
+                        currency=None, qty=0, context=None):
+        """Raise a warning if a agreed price is changed on observed object"""
+        if context is None:
+            context = {}
+        if not agreement_id or context.get('no_chained'):
+            return {}
+        agr_obj = self.pool['framework.agreement']
+        agreement = agr_obj.browse(cr, uid, agreement_id, context=context)
+        if agreement.get_price(qty, currency=currency) != price:
+            msg = _(
+                "You have set the price to %s \n"
+                " but there is a running agreement"
+                " with price %s") % (
+                    price, agreement.get_price(qty, currency=currency)
+                )
+            raise exceptions.Warning(msg)
+        return {}
+
+    def onchange_price(self, cr, uid, ids, price, agreement_id,
+                       qty, pricelist_id, product_id, context=None):
         """Raise a warning if a agreed price is changed"""
         if not product_id or not agreement_id:
             return {}
@@ -65,27 +95,26 @@ class purchase_order_line(orm.Model, FrameworkAgreementObservable):
             cr, uid, product_id, context=context)
         if product.type == 'service':
             return {}
-        return self.onchange_price_obs(cr, uid, ids, price, agreement_id,
-                                       currency=currency, qty=qty,
-                                       context=None)
+        return self._onchange_price(cr, uid, ids, price,
+                                    agreement_id, currency=currency,
+                                    qty=qty, context=None)
 
-    def onchange_product_id(self, cr, uid, ids, pricelist_id, product_id, qty,
-                            uom_id, partner_id, date_order=False,
-                            fiscal_position_id=False, date_planned=False,
-                            name=False, price_unit=False, context=None,
-                            agreement_id=False, **kwargs):
+    def onchange_product_id(self, cr, uid, ids, pricelist_id, product_id,
+                            qty, uom_id, partner_id, date_order=False,
+                            fiscal_position_id=False,
+                            date_planned=False, name=False,
+                            price_unit=False, state='draft',
+                            agreement_id=False, context=None):
         """ We override this function to check qty change (I know...)
 
-        The price retrieval is managed by the override of
-        product.pricelist.price_get that is overidden to support agreement.
+        The price retrieval is managed by
+        the override of product.pricelist.price_get
+
+        that is overidden to support agreement.
         This is mabye a faulty design as it has a low level impact
 
         """
         # rock n'roll
-        if context is None:
-            context = {}
-        if agreement_id:
-            context['from_agreement_id'] = agreement_id
         res = super(purchase_order_line, self).onchange_product_id(
             cr,
             uid,
@@ -100,96 +129,120 @@ class purchase_order_line(orm.Model, FrameworkAgreementObservable):
             date_planned=date_planned,
             name=name,
             price_unit=price_unit,
-            context=context,
-            **kwargs)
+            context=context
+        )
         if not product_id or not agreement_id:
             return res
         product = self.pool['product.product'].browse(
-            cr, uid, product_id, context=context)
+            cr, uid,
+            product_id,
+            context=context
+        )
         if product.type != 'service' and agreement_id:
             agreement = self.pool['framework.agreement'].browse(
                 cr, uid,
                 agreement_id,
-                context=context)
-            if agreement.product_id.id != product_id:
-                return {'warning':  _('Product not in agreement')}
+                context=context
+            )
+            if agreement.product_id.id != product_id.product_tmpl_id.id:
+                raise exceptions.Warning(_('Product not in agreement'))
             currency = self._currency_get(
-                cr, uid, pricelist_id, context=context)
+                cr, uid,
+                pricelist_id,
+                context=context
+            )
             res['value']['price_unit'] = agreement.get_price(
-                qty, currency=currency)
+                qty,
+                currency=currency
+            )
         return res
 
 
-class purchase_order(orm.Model):
-
-    """Oveeride on change to raise warning"""
+class purchase_order(models.Model):
+    """Add on change to raise warning
+    and add a relation to framework agreement"""
 
     _inherit = "purchase.order"
 
-    _columns = {
-        'framework_agreement_id': fields.many2one('framework.agreement',
-                                                  'Agreement')}
+    framework_agreement_id = nfields.Many2one(
+        'framework.agreement',
+        'Agreement'
+    )
 
-    def onchange_agreement(self, cr, uid, ids, agreement_id, partner_id, date,
-                           context=None):
+    @api.model
+    def _currency_get(self, pricelist_id):
+        """Get a currency from a pricelist"""
+        return self.env['product.pricelist'].browse(
+            pricelist_id).currency_id
+
+    @api.onchange('framework_agreement_id')
+    def onchange_agreement(self):
         res = {}
-        agr_obj = self.pool['framework.agreement']
-        if agreement_id:
-            agreement = agr_obj.browse(cr, uid, agreement_id, context=context)
-            if not agreement.date_valid(date, context=context):
-                raise orm.except_orm(
-                    _('Invalid date'),
-                    _('Agreement and purchase date does not match'))
-            if agreement.supplier_id.id != partner_id:
-                raise orm.except_orm(
-                    _('Invalid agreement'),
-                    _('Agreement and supplier does not match'))
+        if isinstance(self.id, models.NewId):
+            return res
+        if self.framework_agreement_id:
+            agreement = self.framework_agreement_id
+            if not agreement.date_valid(self.date_order):
+                raise exceptions.Warning(
+                    _('Invalid date '
+                      'Agreement and purchase date does not match')
+                )
+            if agreement.supplier_id.id != self.partner_id:
+                raise exceptions.Warning(
+                    _('Invalid agreement '
+                      'Agreement and supplier does not match')
+                )
 
-        warning = {'title': _('Agreement Warning!'),
-                   'message': _('If you change the agreement of this order'
-                                ' (and eventually the currency),'
-                                ' existing order lines will not be updated.')}
-        res['warning'] = warning
+            raise exceptions.Warning(
+                _('Agreement Warning! '
+                  'If you change the agreement of this order'
+                  ' (and eventually the currency),'
+                  ' existing order lines will not be updated.')
+            )
         return res
 
-    def onchange_pricelist(self, cr, uid, ids, pricelist_id, line_ids,
-                           context=None):
-        res = super(purchase_order, self).onchange_pricelist(cr, uid, ids,
-                                                             pricelist_id,
-                                                             context=context)
+    @api.multi
+    def onchange_pricelist(self, pricelist_id, line_ids):
+        res = super(purchase_order, self).onchange_pricelist(
+            pricelist_id,
+        )
         if not pricelist_id or not line_ids:
             return res
-
-        warning = {
-            'title': _('Pricelist Warning!'),
-            'message': _(
-                'If you change the pricelist of this order'
-                ' (and eventually the currency),'
-                ' prices of existing order lines will not be updated.')}
-        res['warning'] = warning
+        if self.framework_agreement_id:
+            raise exceptions.Warning(
+                _('If you change the pricelist of this order'
+                  ' (and eventually the currency),'
+                  ' prices of existing order lines will not be updated.')
+            )
         return res
 
-    def _date_valid(self, cr, uid, agreement_id, date, context=None):
+    @api.model
+    def _date_valid(self):
         """predicate that check that date of invoice is in agreement"""
-        agr_model = self.pool['framework.agreement']
-        return agr_model.date_valid(cr, uid, agreement_id, date,
-                                    context=context)
+        return self.framework_agreement_id.date_valid(self.date_order)
 
-    def onchange_date(self, cr, uid, ids, agreement_id, date, context=None):
-        """Check that date is in agreement"""
-        if agreement_id and not self._date_valid(cr, uid, agreement_id, date,
-                                                 context=context):
-            raise orm.except_orm(
-                _('Invalid date'),
-                _('Agreement and purchase date does not match'))
+    @api.onchange('date_order')
+    def onchange_date(self):
+        """Check that date is in agreement bound"""
+        if not self.framework_agreement_id:
+            return {}
+        if not self._date_valid(self.framework_agreement_id,
+                                self.date_order):
+            raise exceptions.Warning(
+                _('Invalid date '
+                  'Agreement and purchase date does not match')
+            )
         return {}
 
-    # no context in original def...
-    def onchange_partner_id(self, cr, uid, ids, partner_id, agreement_id):
+    @api.multi
+    def onchange_partner_id(self, partner_id, agreement_id):
         """Override to ensure that partner can not be changed if agreement"""
         res = super(purchase_order, self).onchange_partner_id(
-            cr, uid, ids, partner_id)
+            partner_id
+        )
         if agreement_id:
-            raise orm.except_orm(_('You can not change supplier'),
-                                 _('PO is linked to an agreement'))
+            raise exceptions.Warning(
+                _('You can not change supplier'
+                  'PO is linked to an agreement')
+            )
         return res

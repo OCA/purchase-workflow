@@ -53,7 +53,7 @@ class framework_agreement(models.Model):
         required=True
     )
     product_id = fields.Many2one(
-        'product.product',
+        'product.template',
         'Product',
         required=True
     )
@@ -75,16 +75,9 @@ class framework_agreement(models.Model):
         string='Available quantity',
         readonly=True,
         store=True,
+        default=0,
     )
-    # store={'framework.agreement': _store_tuple,
-    #        'purchase.order': _po_store_tuple,
-    #        'purchase.order.line': _po_line_store_tuple}),
-    # state = fields.Char(
-    #     compute='_get_state',
-    #     fnct_search='_search_state',
-    #     string='state',
-    #     readonly=True
-    # )
+
     state = fields.Selection(
         selection=[('draft', 'Draft'),
                    ('future', 'Future'),
@@ -229,16 +222,18 @@ class framework_agreement(models.Model):
             if isinstance(agreement.id, models.NewId):
                 agreement.available_quantity = 0
                 continue
+            variant_ids = tuple(x.id for x
+                                in agreement.product_id.product_variant_ids)
             sql = """SELECT SUM(po_line.product_qty)
                FROM purchase_order_line AS po_line
             LEFT JOIN purchase_order AS po ON po_line.order_id = po.id
             WHERE po_line.framework_agreement_id = %s
-            AND po_line.product_id = %s
+            AND po_line.product_id in %s
             AND po.partner_id = %s
             AND po.state IN %s
             AND po.company_id = %s"""
             self.env.cr.execute(sql, (agreement.id,
-                                      agreement.product_id.id,
+                                      variant_ids,
                                       agreement.supplier_id.id,
                                       AGR_PO_STATE,
                                       company_id))
@@ -301,7 +296,7 @@ class framework_agreement(models.Model):
         self._compute_state()
 
     @api.multi
-    def open_agreement(self):
+    def open_agreement(self, strict=True):
         """Open agreement
 
         Agreement goes from state draft to X
@@ -310,8 +305,8 @@ class framework_agreement(models.Model):
         for agr in self:
             mandatory = [agr.start_date,
                          agr.end_date,
-                         agr.framework_agreement_pricelist_id]
-            if not all(mandatory):
+                         agr.framework_agreement_pricelist_ids]
+            if not all(mandatory) and strict:
                 raise exceptions.Warning(_('Data are missing'
                                            'Please enter dates'
                                            ' and price informations'))
@@ -388,7 +383,7 @@ class framework_agreement(models.Model):
     # 'supplier_id', 'product_id',
     # 'start_date', 'end_date' may be only watch
     @api.multi
-    @api.constrains()
+    @api.constrains('supplier_id', 'product_id', 'start_date', 'end_date')
     def check_overlap(self):
         """Constraint to check that no agreements for same product/supplier overlap.
 
@@ -434,9 +429,9 @@ class framework_agreement(models.Model):
         If not enough quantity fallback on the cheapest agreement available
         for quantity.
 
-        :param product_id:
-        :param date:
-        :param qty:
+        :param product_id: product template id
+        :param date: lookup date
+        :param qty: lookup qty
         :param currency: currency record to make price convertion
 
         :return: cheapest agreement and qty state
@@ -465,7 +460,7 @@ class framework_agreement(models.Model):
     def get_product_agreement(self, product_id, supplier_id,
                               lookup_dt, qty=None):
         """Get the matching agreement for a given product/supplier at date
-        :param product_id: product id of the product
+        :param product_id: product template id of the product
         :param supplier_id: supplier to look for agreement
         :param lookup_dt: date string of the lookup date
         :param qty: quantity that should be available if parameter is
@@ -516,7 +511,7 @@ class framework_agreement(models.Model):
             )
         return plist.framework_agreement_line_ids
 
-    @api.one
+    @api.model
     @api.noguess
     def get_price(self,  qty=0, currency=None):
         """Return price negociated for quantity
@@ -528,12 +523,14 @@ class framework_agreement(models.Model):
         :returns: price float
 
         """
-        current = self
+        self.ensure_one()
+        current = self[0]
         if not currency:
-            comp_obj = self.pool['res.company']
+            comp_obj = self.env['res.company']
             comp_id = self._company_get()
             currency = comp_obj.browse(comp_id).currency_id
         lines = self._get_pricelist_lines(current, currency)
+        lines = [x for x in lines]
         lines.sort(key=attrgetter('quantity'), reverse=True)
         for line in lines:
             if qty >= line.quantity:
@@ -616,178 +613,3 @@ class framework_agreement_line(models.Model):
         required=True,
         digits=dp.get_precision('Product Price'),
     )
-
-
-class FrameworkAgreementObservable(object):
-
-    """Base functions for model that have to be (pseudo) observable
-    by framework agreement using OpenERP on_change mechanism"""
-
-    @api.model
-    def _currency_get(self, pricelist_id, context=None):
-        return self.env['product.pricelist'].browse(
-            pricelist_id).currency_id
-
-    @api.model
-    def onchange_price_obs(self, price, agreement_id,
-                           currency=None, qty=0):
-        """Raise a warning if a agreed price is changed on observed object"""
-        if not agreement_id or self.env.context.get('no_chained'):
-            return {}
-        agr_obj = self.env['framework.agreement']
-        agreement = agr_obj.browse(agreement_id)
-        if agreement.get_price(qty, currency=currency) != price:
-            msg = (_("You have set the price to %s \n"
-                     " but there is a running agreement"
-                     " with price %s") %
-                   (price, agreement.get_price(qty, currency=currency)))
-            return {'warning': {'title': _('Agreement Warning!'),
-                                'message': msg}}
-        return {}
-
-    @api.model
-    def onchange_quantity_obs(self, qty, date,
-                              product_id, currency=None,
-                              supplier_id=None,
-                              price_field='price'):
-        """Raise a warning if agreed qty
-        is not sufficient when changed on observed object
-
-        :param qty: requested quantity
-        :param currency: currency to get price
-        :param price field: key on which we should return price
-
-        :returns: on change dict
-
-        """
-        res = {'value': {'framework_agreement_id': False}}
-        agreement, status = self._get_agreement_and_qty_status(
-            qty,
-            date,
-            product_id,
-            supplier_id=supplier_id,
-            currency=currency,
-        )
-        if agreement:
-            res['value'] = {
-                price_field: agreement.get_price(qty, currency=currency),
-                'framework_agreement_id': agreement.id
-            }
-        if status:
-            res['warning'] = {'title': _('Agreement Warning!'),
-                              'message': status}
-        return res
-
-    def _get_agreement_and_qty_status(self, qty, date,
-                                      product_id, supplier_id,
-                                      currency=None):
-        """Lookup for agreement and return (matching_agreement, status)
-
-        Agreement or status can be None.
-
-        :param qty: requested quantity
-        :param date: date to look for agreement
-        :param supplier_id: supplier id who has signed an agreement
-        :param product_id: product id to look for an agreement
-        :param price field: key on which we should return price
-
-        :returns: (agreement record, status)
-
-        """
-        FoundAgreement = namedtuple('FoundAgreement', ['Agreement', 'message'])
-        agreement_obj = self.pool['framework.agreement']
-        if supplier_id:
-            agreement = agreement_obj.get_product_agreement(
-                product_id,
-                supplier_id,
-                date,
-            )
-        else:
-            agreement, enough = agreement_obj.get_cheapest_agreement_for_qty(product_id,
-                                                                             date,
-                                                                             qty,
-                                                                             currency=currency)
-        if agreement is None:
-            return FoundAgreement(None, None)
-        msg = None
-        if agreement.available_quantity < qty:
-            msg = _(
-                "You have ask for a quantity of %s \n"
-                " but there is only %s available"
-                " for current agreement"
-            ) % (qty, agreement.available_quantity)
-        return FoundAgreement(agreement, msg)
-
-    @api.model
-    def onchange_product_id_obs(self, qty, date,
-                                supplier_id, product_id, pricelist_id=None,
-                                currency=None, price_field='price'):
-        """
-        Lookup for agreement corresponding to product or return None.
-
-        It will raise a warning if not enough available qty.
-
-        :param qty: requested quantity
-        :param date: date to look for agreement
-        :param supplier_id: supplier id who has signed an agreement
-        :param pricelist_id: if of prefered pricelist
-        :param product_id: product id to look for an agreement
-        :param price field: key on which we should return price
-
-        :returns: on change dict
-
-        """
-        res = {'value': {'framework_agreement_id': False}}
-        if not supplier_id or not product_id:
-            return res
-        agreement, status = self._get_agreement_and_qty_status(
-            qty,
-            date,
-            product_id,
-            supplier_id=supplier_id,
-            currency=currency
-        )
-        if agreement:
-            res['value'] = {
-                price_field: agreement.get_price(qty, currency=currency),
-                'framework_agreement_id': agreement.id}
-        if status:
-            res['warning'] = {'title': _('Agreement Warning!'),
-                              'message': status}
-        return res
-
-    @api.model
-    def onchange_agreement_obs(self, agreement_id, qty, date, product_id,
-                               supplier_id=None, currency=None,
-                               price_field='price'):
-        res = {}
-        if not agreement_id or not product_id:
-            return res
-        agr_obj = self.pool['framework.agreement']
-        agreement = agr_obj.browse(agreement_id)
-        if not agreement.date_valid(date):
-            raise exceptions.Warning(
-                _('Invalid date'
-                  'Agreement and purchase date does not match')
-            )
-        if agreement.product_id.id != product_id:
-            raise exceptions.Warning(
-                _('User Error '
-                  'Wrong product for choosen agreement')
-            )
-        if supplier_id and agreement.supplier_id.id != supplier_id:
-            raise exceptions.Warning(
-                _('User Error '
-                  'Wrong supplier for choosen agreement')
-            )
-        res['value'] = {
-            price_field: agreement.get_price(qty, currency=currency)
-        }
-        if qty and agreement.available_quantity < qty:
-            msg = _(
-                "You have ask for a quantity of %s \n"
-                " but there is only %s available"
-                " for current agreement") % (qty, agreement.available_quantity)
-            res['warning'] = {'title': _('Agreement Warning!'),
-                              'message': msg}
-        return res

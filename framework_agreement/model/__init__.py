@@ -19,7 +19,7 @@
 #
 ##############################################################################
 from . import pricelist
-from . import product
 from . import framework_agreement
+from . import product
 from . import purchase
 from . import company

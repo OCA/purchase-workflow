@@ -18,25 +18,16 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.osv import orm, fields
+from openerp import models, fields
 
 
-class product_product(orm.Model):
-
+class product_product(models.Model):
     """Add relation to framework agreement"""
 
-    _inherit = "product.product"
-    _columns = {'framework_agreement_ids': fields.one2many(
-        'framework.agreement',
-        'product_id',
-        'Framework Agreements (LTA)')
-    }
-
-    def copy(self, cr, uid, id, default=None, context=None):
-        """Override of copy in order not to copy agreements"""
-        if not default:
-            default = {}
-        default['framework_agreement_ids'] = False
-        return super(product_product, self).copy(cr, uid, id,
-                                                 default=default,
-                                                 context=context)
+    _inherit = "product.template"
+    framework_agreement_ids = fields.One2many(
+        comodel_name='framework.agreement',
+        inverse_name='product_id',
+        string='Framework Agreements (LTA)',
+        copyable=False,
+    )

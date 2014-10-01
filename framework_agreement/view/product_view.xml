@@ -6,7 +6,7 @@
       <field name="model">product.product</field>
       <field name="inherit_id" ref="product.product_normal_form_view"/>
       <field name="arch" type="xml">
-        <group string="Purchase" position="after">
+        <field name="seller_ids" position="after">
           <group string="Framework agreements (LTA)" colspan="4">
             <field name="framework_agreement_ids" nolabel="1">
               <form version="7.0" string="Framework Agreement">
@@ -79,8 +79,91 @@
               </form>
             </field>
           </group>
-        </group>
+        </field>
       </field>
     </record>
+
+    <record id="agreement in product template view" model="ir.ui.view">
+      <field name="name">agreement in product template view</field>
+      <field name="model">product.template</field>
+      <field name="inherit_id" ref="product.product_template_only_form_view"/>
+      <field name="arch" type="xml">
+        <field name="seller_ids" position="after">
+          <group string="Framework agreements (LTA)" colspan="4">
+            <field name="framework_agreement_ids" nolabel="1">
+              <form version="7.0" string="Framework Agreement">
+                <header>
+                  <button name="open_agreement"
+                          context="{}"
+                          string="Open Agreement"
+                          type="object"
+                          attrs="{'invisible': ['|', ('draft', '=', False), '|', ('start_date', '=', False), '|', ('end_date', '=', False), ('framework_agreement_pricelist_ids', '=', [])]}"/>
+                  <field name="state"
+                         widget="statusbar"
+                         nolabel="1"
+                         statusbar_visible="draft,future,running,consumed,closed"
+                         statusbar_colors='{"draft":"blue","future": "blue", "closed": "blue", "running": "green", "consumed": "red"}'/>
+                </header>
+                <sheet>
+                  <group>
+                    <field name="name"/>
+                    <field name="draft" invisible="1"/>
+                    <field name="origin"/>
+                  </group>
+                  <group>
+                    <group>
+                      <field name="company_id" groups="base.group_multi_company" widget="selection"/>
+                      <field name="supplier_id" context="{'default_supplier': True, 'default_customer': False}"/>
+                    </group>
+                    <group>
+                      <field name="delay"/>
+                      <field name="quantity"/>
+                      <field name="available_quantity"/>
+                    </group>
+                  </group>
+
+                  <group string="Dates">
+                    <field name="start_date"
+                           required="1"/>
+                    <field name="end_date"
+                           required="1"/>
+                  </group>
+                  <notebook>
+                    <page string="Negociated price lists" colspan="4">
+                      <field name="framework_agreement_pricelist_ids"
+                             attrs="{'required': [('draft', '=', False)]}">
+                        <tree type="7.0" string="Price list">
+                          <field name="currency_id"/>
+                        </tree>
+                        <form type="7.0" string="Price list">
+                          <group>
+                            <field name="currency_id"/>
+                          </group>
+                          <newline/>
+                          <notebook>
+                            <page string="Price lines" colspan="4">
+                              <field name="framework_agreement_line_ids"
+                                     nolabel="1">
+                                <tree type="7.0"
+                                      string="Price line"
+                                      editable="top">
+                                  <field name="quantity"/>
+                                  <field name="price"/>
+                                </tree>
+                              </field>
+                            </page>
+                          </notebook>
+                        </form>
+                      </field>
+                    </page>
+                  </notebook>
+                </sheet>
+              </form>
+            </field>
+          </group>
+        </field>
+      </field>
+    </record>
+
   </data>
 </openerp>
