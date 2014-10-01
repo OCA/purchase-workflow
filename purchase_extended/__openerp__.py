@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright 2013 Camptocamp SA
+#    Copyright 2013-2014 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -19,7 +19,7 @@
 ##############################################################################
 
 {"name": "Purchase Extended",
- "version": "0.1",
+ "version": "0.2",
  "author": "Camptocamp",
  "category": "Purchase Management",
  "license": "AGPL-3",
