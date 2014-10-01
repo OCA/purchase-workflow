@@ -74,6 +74,7 @@ TODO: describe onchange warehouse
              "test/process/bid2order.yml",
              "test/process/po2order.yml",
              "test/process/rfq2cancel.yml",
+             "test/process/bid2cancel.yml",
              ],
     "installable": True,
     "certificate": "",
