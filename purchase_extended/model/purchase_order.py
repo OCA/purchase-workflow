@@ -124,12 +124,13 @@ class PurchaseOrder(models.Model):
 
     @api.one
     def copy(self, default=None):
-        newid = super(PurchaseOrder, self).copy(default=default)
-        po = self.sudo().browse(newid)
+        newpo = super(PurchaseOrder, self).copy(default=default)
 
-        if po.type == 'rfq' and po.order_line:
-            po.order_lines.sudo().write({'price_unit': 0})
-        return newid
+        if newpo.type == 'rfq':
+            for line in newpo.order_line:
+                line.price_unit = 0.0
+
+        return newpo
 
     @api.multi
     def wkf_draft_po(self):

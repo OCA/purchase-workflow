@@ -33,3 +33,12 @@
     - type == 'rfq'
     - state == 'cancel'
     - cancel_reason_id.id == ref("purchase_cancel_reason_rfq_canceled")
+-
+  I make a copy of the rfq and check that the amounts are zero
+-
+  !python {model: purchase.order, id: purchase_order_ext_rfq2cancel1}: |
+    from nose.tools import *
+
+    new_po = self.copy()
+    for line in new_po.order_line:
+        assert_equal(line.price_unit, 0.0)

@@ -55,6 +55,9 @@ In the scope of internation transactions, some fields have been added:
    available
 
 TODO: describe onchange warehouse
+
+Note: for running the tests, the python package nose is required. It is not
+listed as an external dependency because it is not needed in production.
 """,
  "depends": ["purchase",
              "web_context_tunnel",
