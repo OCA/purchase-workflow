@@ -18,7 +18,7 @@
 #
 #
 
-from openerp.osv import models, fields, api
+from openerp import models, fields, api
 
 
 class PurchaseOrder(models.Model):
