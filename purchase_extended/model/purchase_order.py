@@ -62,9 +62,11 @@ class PurchaseOrderClassic(osv.orm.Model):
     }
 
     def _default_state(self, cr, uid, context=None):
-        if context and context.get('draft_po'):
+        if not context:
+            return 'draft'
+        elif context.get('draft_po'):
             return 'draftpo'
-        elif context and context.get('draft_bid'):
+        elif context.get('draft_bid'):
             return 'draftbid'
         else:
             return 'draft'
@@ -155,7 +157,7 @@ class PurchaseOrder(models.Model):
             'view_id': view_id,
             'views': [(view_id, 'form')],
             'target': 'new',
-            'context': self._context,
+            'context': ctx,
         }
 
     @api.multi
@@ -168,49 +170,9 @@ class PurchaseOrder(models.Model):
         assert self._context.get('active_id')
         action_modal = act_modal_cancel_obj.browse(self._context['active_id'])
         self.cancel_reason_id = action_modal.reason_id
-        return self.wkf_action_cancel()
 
-    @api.multi
-    def purchase_cancel(self):
-        """ Ask a cancel reason
-        """
-        model_obj = self.env['ir.model.data']
+        self.signal_workflow('purchase_cancel')
 
-        view_id = (model_obj
-                   .sudo()
-                   .get_object_reference('purchase_extended',
-                                         'action_modal_cancel_reason'))[1]
-
-        ctx = self._context.copy()
-        ctx['action'] = 'purchase_cancel_ok'
-
-        # those will be set by the web layer unless they are already defined
-        for e in ('active_model', 'active_ids', 'active_id'):
-            if e in ctx:
-                del ctx[e]
-        # TODO: filter based on po type
-        return {
-            'type': 'ir.actions.act_window',
-            'view_type': 'form',
-            'view_mode': 'form',
-            'res_model': 'purchase.action_modal.cancel_reason',
-            'view_id': view_id,
-            'views': [(view_id, 'form')],
-            'target': 'new',
-            'context': ctx,
-        }
-
-    @api.multi
-    def purchase_cancel_ok(self):
-        act_modal_cancel_obj = self.env['purchase.action_modal.cancel_reason']
-        assert self._context.get('active_id')
-        action_modal = act_modal_cancel_obj.browse(self._context['active_id'])
-        self.cancel_reason_id = action_modal.reason_id
-        self.order_line.state = 'cancel'
-        self.state = 'cancel'
-        return {}
-
-    # XXX to fix wkf_action_cancel does not exist anymore
     @api.multi
     def wkf_action_cancel(self):
         for element in self:
@@ -222,7 +184,7 @@ class PurchaseOrder(models.Model):
                 message = self._description
             message += " " + _("canceled")
             element.message_post(body=message, subtype="mail.mt_comment")
-        return super(PurchaseOrder, self).action_cancel()
+        return super(PurchaseOrder, self).wkf_action_cancel()
 
     @api.one
     def bid_received(self):
