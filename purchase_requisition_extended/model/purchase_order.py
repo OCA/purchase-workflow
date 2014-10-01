@@ -107,7 +107,7 @@ class PurchaseOrderLine(models.Model):
     _inherit = 'purchase.order.line'
 
     requisition_line_id = fields.Many2one(
-        'purchase.requisition.line', 'Call for Bid Line', readonly=True),
+        'purchase.requisition.line', 'Call for Bid Line', readonly=True)
 
     @api.model
     def read_group(self, domain, fields, groupby, offset=0,
