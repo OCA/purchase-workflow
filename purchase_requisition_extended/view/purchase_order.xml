@@ -1,61 +1,78 @@
 <?xml version="1.0"?>
 <openerp>
-<data>
+  <data>
+
     <record model="ir.ui.view" id="view_purchase_order_form">
-        <field name="name">purchase.order.inherit</field>
-        <field name="model">purchase.order</field>
-        <field name="inherit_id" ref="purchase_extended.view_purchase_order_form"/>
-        <field name="arch" type="xml">
-            <xpath expr="//button[@name='draft_po'][1]" position="attributes">
-                <attribute name="attrs">{'invisible': ['|', ('requisition_id','!=',False)]}</attribute>
-            </xpath>
-            <xpath expr="//button[@name='draft_po'][2]" position="attributes">
-                <attribute name="attrs">{'invisible': ['|', ('requisition_id','!=',False)]}</attribute>
-            </xpath>
-        </field>
+      <field name="name">purchase.order.inherit</field>
+      <field name="model">purchase.order</field>
+      <field name="inherit_id" ref="purchase_extended.view_purchase_order_form"/>
+      <field name="arch" type="xml">
+
+        <xpath expr="//button[@name='draft_po'][1]" position="attributes">
+          <attribute name="attrs">{'invisible': ['|', ('requisition_id','!=',False)]}</attribute>
+        </xpath>
+
+        <xpath expr="//button[@name='draft_po'][2]" position="attributes">
+          <attribute name="attrs">{'invisible': ['|', ('requisition_id','!=',False)]}</attribute>
+        </xpath>
+
+      </field>
     </record>
+
     <record model="ir.ui.view" id="view_purchase_order_form2">
-        <field name="name">purchase.order.inherit</field>
-        <field name="model">purchase.order</field>
-        <field name="inherit_id" ref="purchase_requisition.purchase_order_form_inherit"/>
-        <field name="arch" type="xml">
-            <xpath expr="//field[@name='bid_validity']" position="after">
-                <field name="bid_partial"/>
-            </xpath>
-            <xpath expr="//field[@name='requisition_id']" position="after">
-                <field name="tender_bid_receipt_mode"/>
-            </xpath>
-        </field>
+      <field name="name">purchase.order.inherit</field>
+      <field name="model">purchase.order</field>
+      <field name="inherit_id" ref="purchase_requisition.purchase_order_form_inherit"/>
+      <field name="arch" type="xml">
+
+        <xpath expr="//field[@name='bid_validity']" position="after">
+          <field name="bid_partial"/>
+        </xpath>
+
+        <xpath expr="//field[@name='requisition_id']" position="after">
+          <field name="tender_bid_receipt_mode"/>
+        </xpath>
+      </field>
     </record>
 
     <record model="ir.ui.view" id="view_purchase_order_line_search">
-        <field name="name">purchase.order.line.inherit</field>
-        <field name="model">purchase.order.line</field>
-        <field name="inherit_id" ref="purchase.purchase_order_line_search"/>
-        <field name="arch" type="xml">
-            <xpath expr="//filter[@name='hide_cancelled']" position="before">
-                <filter name="showbids" string="Bids encoded" domain="[('order_id.state', '=', 'bid')]"/>
-            </xpath>
-            <xpath expr="//filter[@name='groupby_product']" position="after">
-                <filter name="groupby_requisitionline" string="Call for Bids line" domain="[]" context="{'group_by' : 'requisition_line_id'}" />
-            </xpath>
-        </field>
+      <field name="name">purchase.order.line.inherit</field>
+      <field name="model">purchase.order.line</field>
+      <field name="inherit_id" ref="purchase.purchase_order_line_search"/>
+      <field name="arch" type="xml">
+
+        <xpath expr="//filter[@name='hide_cancelled']" position="before">
+          <filter name="showbids" string="Bids encoded" domain="[('order_id.state', '=', 'bid')]"/>
+        </xpath>
+
+        <xpath expr="//filter[@name='groupby_product']" position="after">
+          <filter name="groupby_requisitionline" string="Call for Bids line" domain="[]" context="{'group_by' : 'requisition_line_id'}" />
+        </xpath>
+
+      </field>
     </record>
+
     <record model="ir.ui.view" id="view_purchase_order_line_tree">
-        <field name="name">purchase.order.line.inherit</field>
-        <field name="model">purchase.order.line</field>
-        <field name="inherit_id" ref="purchase_requisition.purchase_order_line_tree_tender"/>
-        <field name="arch" type="xml">
-            <xpath expr="//field[@name='name']" position="before">
-                <field name="requisition_line_id" invisible="1"/>
-            </xpath>
-            <xpath expr="//field[@name='lead_time']" position="before">
-                <field name="date_planned"/>
-            </xpath>
-            <xpath expr="//field[@name='product_id']" position="attributes">
-                <attribute name="invisible">1</attribute>
-            </xpath>
-        </field>
+      <field name="name">purchase.order.line.inherit</field>
+      <field name="model">purchase.order.line</field>
+      <field name="inherit_id" ref="purchase_requisition.purchase_order_line_tree_tender"/>
+      <field name="arch" type="xml">
+
+        <xpath expr="//field[@name='name']" position="before">
+          <field name="requisition_line_id" invisible="1"/>
+        </xpath>
+
+        <!-- FIXME
+        <xpath expr="//field[@name='lead_time']" position="before">
+          <field name="date_planned"/>
+        </xpath>
+        -->
+
+        <xpath expr="//field[@name='product_id']" position="attributes">
+          <attribute name="invisible">1</attribute>
+        </xpath>
+
+      </field>
     </record>
-</data>
+  </data>
 </openerp>
