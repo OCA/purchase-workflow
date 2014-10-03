@@ -51,7 +51,7 @@
           <page string="Options">
             <group>
               <group>
-                <!-- FIXME <field name="req_validity" attrs="{'readonly': [('state','not in',('draft'))]}"/> -->
+                <field name="req_validity" attrs="{'readonly': [('state','not in',('draft'))]}"/>
                 <field name="req_incoterm_id" attrs="{'readonly': [('state','not in',('draft'))]}"/>
                 <field name="req_incoterm_address" attrs="{'readonly': [('state','not in',('draft'))]}"/>
                 <field name="req_payment_term_id" attrs="{'readonly': [('state','not in',('draft'))]}"/>
