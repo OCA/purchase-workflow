@@ -180,10 +180,7 @@
 -
   I check the POs
 -
-  !python {model: purchase.requisition}: |
-    purchase_req = self.browse(cr, uid, ref("purchase_requisition_ext_restricted1"))
-    assert len(purchase_req.purchase_ids) == 2, "There must be 2 bids linked to this Call for bids"
+  !python {model: purchase.requisition, id: purchase_requisition_ext_restricted1}: |
+    from nose.tools import *
 
-
-
-
+    assert_equal(len(self.purchase_ids), 2)

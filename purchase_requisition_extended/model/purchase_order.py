@@ -97,10 +97,11 @@ class PurchaseOrder(models.Model):
         if default is None:
             default = {}
         initial_origin = default.get('origin')
-        newid = super(PurchaseOrder, self).copy(default=default)
+        newpo = super(PurchaseOrder, self).copy(default=default)
+
         if initial_origin and 'requisition_id' in default:
-            self.sudo().write([newid], {'origin': initial_origin})
-        return newid
+            newpo.sudo().origin == initial_origin
+        return newpo
 
 
 class PurchaseOrderLine(models.Model):

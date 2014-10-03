@@ -54,6 +54,8 @@ prefill fields of the generated RFQs.
 A link has been added between a call for bids line and the corresponding line
 of each generated RFQ. This is used for the bids comparison in order to compare
 bid lines and group then properly.
+
+For running the tests the nose python package is required.
 """,
  "depends": ["purchase_requisition",
              "stock",  # For incoterms
