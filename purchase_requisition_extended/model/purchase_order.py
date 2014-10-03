@@ -18,7 +18,20 @@
 #
 #
 
-from openerp import models, fields, api
+from openerp import models, fields, api, osv
+
+
+class PurchaseOrderClassic(osv.orm.Model):
+    _inherit = "purchase.order"
+
+    _columns = {
+        'tender_bid_receipt_mode': osv.fields.related(
+            'requisition_id',
+            'bid_receipt_mode',
+            type='selection',
+            selection=[('open', 'Open'), ('sealed', 'Sealed')],
+            string='Bid Receipt Mode'),
+    }
 
 
 class PurchaseOrder(models.Model):
@@ -28,51 +41,6 @@ class PurchaseOrder(models.Model):
         'Bid partially selected',
         readonly=True,
         help="True if the bid has been partially selected")
-    tender_bid_receipt_mode = fields.Selection(
-        compute='_get_tender',
-        multi="callforbids",
-        readonly=True,
-        type='selection',
-        selection=[('open', 'Open'), ('sealed', 'Sealed')],
-        string='Bid Receipt Mode')
-
-    @api.model
-    def _get_tender_fields(self):
-        """ Return list of field with prefix 'tender_' """
-        return [fname for fname in self._fields.keys()
-                if fname.startswith('tender_')]
-    @api.model
-    def _get_fields_to_copy(self):
-        """ Return list of field that have an existing field with prefix
-        'tender_'
-        """
-        return [fname[len('tender_'):] for fname in self._get_tender_fields()]
-
-    #TODO: lines should not be deleted or created if linked to a callforbids
-
-    @api.multi
-    def _get_tender(self):
-        requisitions = [order.requisition_id for order in self
-                        if order.requisition_id]
-        # we'll read the fields without the 'tender_' prefix
-        # and copy their value in the fields with the prefix
-        fields_to_copy = self._get_tender_fields()
-        tender_vals = requisitions.read(fields_to_copy,
-                                        load='_classic_write')
-        # copy the dict but rename the fields with 'tender_' prefix
-        tender_reqs = {}
-        for req in tender_vals:
-            tender_reqs[req['id']] = dict(('tender_' + field, value)
-                                          for field, value
-                                          in req.iteritems()
-                                          if field in fields_to_copy)
-        res = {}
-        for order in self:
-            if order.requisition_id:
-                res[order.id] = tender_reqs[order.requisition_id.id]
-            else:
-                res[order.id] = {}.fromkeys(fields_to_copy, False)
-        return res
 
     @api.model
     def _prepare_purchase_order(self, requisition, supplier):
