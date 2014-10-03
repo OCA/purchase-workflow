@@ -168,7 +168,6 @@ class framework_agreement(models.Model):
                       DeprecationWarning)
         return self.ids
 
-    # TOMIGRATE
     def _search_state(self, cr, uid, obj, name, args, context=None):
         """Implement search on state function field.
 
@@ -190,17 +189,17 @@ class framework_agreement(models.Model):
         for field, operator, value in args:
             assert field == name
             if operator == '=':
-                found_ids += [frm['id']
-                              for frm in res if frm['state'] in value]
+                found_ids += [frm['id'] for frm in res
+                              if frm['state'] in value]
             elif operator == 'in' and isinstance(value, list):
-                found_ids += [frm['id']
-                              for frm in res if frm['state'] in value]
+                found_ids += [frm['id'] for frm in res
+                              if frm['state'] in value]
             elif operator in ("!=", "<>"):
-                found_ids += [frm['id']
-                              for frm in res if frm['state'] != value]
+                found_ids += [frm['id'] for frm in res
+                              if frm['state'] != value]
             elif operator == 'not in'and isinstance(value, list):
-                found_ids += [frm['id']
-                              for frm in res if frm['state'] not in value]
+                found_ids += [frm['id'] for frm in res
+                              if frm['state'] not in value]
             else:
                 raise NotImplementedError('Search operator %s not implemented'
                                           ' for value %s'
@@ -365,7 +364,7 @@ class framework_agreement(models.Model):
             # if strict agreement is set on company
             if strict and overlap:
                 raise exceptions.Warning(
-                    _('There allready is a running agreement for'
+                    _('There allready is a running agreement for '
                       'product %s')) % agreement.product_id.name
             # We ensure that there are not multiple agreements
             # for same supplier at same time
@@ -375,7 +374,7 @@ class framework_agreement(models.Model):
                 None)
             if supplier:
                 raise exceptions.Warning(
-                    _('There can not be multiple agreement'
+                    _('There can not be multiple agreement '
                       'for supplier %s') % supplier.name
                 )
         return True
