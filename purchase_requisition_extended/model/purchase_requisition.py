@@ -18,7 +18,7 @@
 #
 #
 
-from openerp import models, fields, api
+from openerp import models, fields, api, osv
 from openerp.exceptions import except_orm
 import openerp.osv.expression as expression
 from openerp.tools.safe_eval import safe_eval as eval
@@ -27,20 +27,34 @@ from openerp import netsvc
 from openerp.tools.float_utils import float_compare
 
 
+class PurchaseRequisitionClassic(osv.orm.Model):
+    _inherit = "purchase.requisition"
+
+    _columns = {
+        'req_validity': osv.fields.date(
+            "Requested Bid's End of Validity",
+            help="Requested validity period requested to the bidder, i.e. "
+            "please send bids that stay valid until that date.\n The "
+            "bidder is allowed to send a bid with another validity end "
+            "date that gets encoded in the bid."),
+        'state': osv.fields.selection(
+            [('draft', 'Draft'),
+             ('in_progress', 'Confirmed'),
+             ('open', 'Bids Selection'),
+             ('closed', 'Bids Selected'),  # added
+             ('done', 'PO Created'),
+             ('cancel', 'Canceled')],
+            'Status',
+            track_visibility='onchange',
+            required=True)
+    }
+
+
 class PurchaseRequisition(models.Model):
     _inherit = "purchase.requisition"
     _description = "Call for Bids"
 
     # modified fields
-    state = fields.Selection(
-        [('draft', 'Draft'),
-         ('in_progress', 'Confirmed'),
-         ('open', 'Bids Selection'),
-         ('closed', 'Bids Selected'),  # added
-         ('done', 'PO Created'),
-         ('cancel', 'Canceled')],
-        'Status', track_visibility='onchange',
-        required=True)
     purchase_ids = fields.One2many(
         'purchase.order', 'requisition_id',
         'Purchase Orders',
@@ -184,14 +198,14 @@ class PurchaseRequisition(models.Model):
     @api.multi
     def generate_po(self):
         assert len(self.ids) == 1, "Only 1 ID expected"
-        po_obj = self.pool.get('purchase.order')
+
         for po_line in self.po_line_ids:
             # set bid selected boolean to true on RFQ containing confirmed
             # lines
             if (po_line.state == 'confirmed' and
                     not po_line.order_id.bid_partial):
-                po_obj.write(po_line.order_id.id,
-                             {'bid_partial': True})
+                po_line.order_id.bid_partial = True
+
         return super(PurchaseRequisition, self).generate_po()
 
     @api.model
