@@ -135,3 +135,24 @@ class TestAgreementState(test_common.TransactionCase, BaseAgreementTestMixin):
                      'delay': 5,
                      'quantity': 20}
                 )
+
+    def test_05_search_on_state(self):
+        start_date = self.now - timedelta(days=2)
+        start_date = start_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
+        end_date = self.now + timedelta(days=2)
+        end_date = end_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
+
+        agreement = self.agreement_model.create(
+            {'supplier_id': self.supplier_id,
+             'product_id': self.product_id,
+             'start_date': start_date,
+             'end_date': end_date,
+             'delay': 5,
+             'quantity': 20}
+        )
+        agreement.open_agreement(strict=False)
+        self.assertEqual(agreement.state, 'running')
+        self.assertTrue(
+            self.agreement_model.search([('state', '=', 'running')]),
+            msg='Search function seems broken'
+        )
