@@ -62,12 +62,6 @@ class PurchaseRequisition(models.Model):
         domain=[('type', 'in', ('rfq', 'bid'))])
 
     # new fields
-    req_validity = fields.Date(
-        "Requested Bid's End of Validity",
-        help="Requested validity period requested to the bidder, i.e. "
-             "please send bids that stay valid until that date.\n The "
-             "bidder is allowed to send a bid with another validity end "
-             "date that gets encoded in the bid."),
     bid_tendering_mode = fields.Selection(
         [('open', 'Open'),
          ('restricted', 'Restricted')],
