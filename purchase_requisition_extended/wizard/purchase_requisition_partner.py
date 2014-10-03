@@ -26,10 +26,13 @@ class PurchaseRequisitionPartner(models.TransientModel):
     @api.multi
     def create_order(self):
         ActWindow = self.env['ir.actions.act_window']
-        PurchaseRequisition = self.env['purchase.requisition']
+        Requisition = self.env['purchase.requisition']
         active_id = self.env.context and self.env.context.get('active_id', [])
-        po_id = PurchaseRequisition.make_purchase_order(
-                [active_id], self.partner_id.id)[active_id]
+
+        requisition = Requisition.browse(active_id)
+
+        po_id = requisition.make_purchase_order(self.partner_id.id)[active_id]
+
         if not self.env.context.get('draft_bid', False):
             return {'type': 'ir.actions.act_window_close'}
         res = ActWindow.for_xml_id('purchase', 'purchase_rfq')
