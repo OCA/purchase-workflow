@@ -2,8 +2,10 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
+#    Copyright (C) 2004-2009 Tiny SPRL (<http://tiny.be>).
 #    Copyright (c) 2010-2013 Elico Corp. All Rights Reserved.
 #    Author: Yannick Gouin <yannick.gouin@elico-corp.com>
+#    Copyright (c) 2014 Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -29,7 +31,7 @@ class product_supplierinfo(orm.Model):
             self, cr, uid, ids, field_names=None, arg=False, context=None):
         context = context or {}
         res = {}
-        product_obj = self.pool.get('product.product')
+        product_obj = self.pool['product.product']
         for record in self.browse(cr, uid, ids, context=context):
             res[record.id] = {}
             product = product_obj.browse(
@@ -56,4 +58,55 @@ class product_supplierinfo(orm.Model):
         ),
     }
 
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+
+class product_product(orm.Model):
+    _inherit = 'product.product'
+
+    def _partner_ref2(self, cr, user, ids, name, arg, context=None):
+        res = {}
+        for product in self.browse(cr, user, ids, context=context):
+            res[product.id] = u'\n'.join(
+                [x.product_code for x in product.seller_ids if x.product_code]
+                ) or ''
+        return res
+
+    def _partner_ref2_search(self, cr, user, obj, name, args, context=None):
+        supplierinfo_obj = self.pool['product.supplierinfo']
+        args = args[:]
+        i = 0
+        while i < len(args):
+            args[i] = ('product_code', args[i][1], args[i][2])
+            i += 1
+        supplierinfo_ids = supplierinfo_obj.search(cr, user, args)
+        product_template_ids = [
+            x.product_id.id for x in supplierinfo_obj.browse(
+                cr, user,
+                supplierinfo_ids
+            ) if x.product_id]
+        product_ids = self.search(
+            cr, user, [('product_tmpl_id', 'in', product_template_ids)],
+            context=context)
+        return [('id', 'in', product_ids)]
+
+    _columns = {
+        'partner_ref2': fields.function(
+            _partner_ref2, method=True,
+            type='char', string='Supplier codes',
+            fnct_search=_partner_ref2_search),
+    }
+
+    def name_search(
+            self, cr, user, name='', args=None, operator='ilike',
+            context=None, limit=80):
+        main_results = super(product_product, self).name_search(
+            cr, user, name=name, args=args,
+            operator=operator, context=context, limit=limit)
+        ids = self.search(
+            cr, user, [('partner_ref2', '=', name)] + args,
+            limit=limit, context=context)
+        if ids:
+            supplier_results = self.name_get(cr, user, ids, context=context)
+            for supplier_result in supplier_results:
+                if supplier_result not in main_results:
+                    main_results.append(supplier_result)
+        return main_results
