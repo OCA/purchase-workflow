@@ -46,20 +46,19 @@ class PurchaseRequisitionClassic(osv.orm.Model):
              ('cancel', 'Canceled')],
             'Status',
             track_visibility='onchange',
-            required=True)
+            required=True),
+        'purchase_ids': osv.fields.one2many(
+            'purchase.order',
+            'requisition_id',
+            'Purchase Orders',
+            states={'done': [('readonly', True)]},
+            domain=[('type', 'in', ('rfq', 'bid'))]),
     }
 
 
 class PurchaseRequisition(models.Model):
     _inherit = "purchase.requisition"
     _description = "Call for Bids"
-
-    # modified fields
-    purchase_ids = fields.One2many(
-        'purchase.order', 'requisition_id',
-        'Purchase Orders',
-        states={'done': [('readonly', True)]},
-        domain=[('type', 'in', ('rfq', 'bid'))])
 
     # new fields
     bid_tendering_mode = fields.Selection(
