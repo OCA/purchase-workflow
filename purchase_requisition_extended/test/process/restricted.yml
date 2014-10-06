@@ -51,15 +51,18 @@
 -
   Check the RFQs. Type must be 'rfq', state 'draft', all prices 0 and the total untaxed amount 0.
 -
-  !python {model: purchase.requisition}: |
-    purchase_req = self.browse(cr, uid, ref("purchase_requisition_ext_restricted1"))
-    assert len(purchase_req.purchase_ids) == 2, "There must be 2 RFQs linked to this Call for bids"
-    for rfq in purchase_req.purchase_ids:
-        assert rfq.type == 'rfq', "The type must be rfq"
+  !python {model: purchase.requisition, id: purchase_requisition_ext_restricted1}: |
+    from nose.tools import *
+
+    assert_equal(len(self.purchase_ids), 2)
+
+    for rfq in self.purchase_ids:
+        assert_equal(rfq.type, 'rfq')
+        assert_equal(rfq.state, 'draft')
+        assert_equal(rfq.amount_untaxed, 0.0)
+
         for line in rfq.order_line:
-            assert line.price_subtotal == 0, "The price must be 0 in the RFQ"
-        assert rfq.state == 'draft', "The state must be draft"
-        assert rfq.amount_untaxed == 0
+            assert_equal(line.price_subtotal, 0.0)
 -
   I send the RFQs. For this, I print the RFQ.
 -
@@ -70,26 +73,30 @@
 -
   I check the RFQs are in "RFQ sent" state.
 -
-  !python {model: purchase.requisition}: |
-    purchase_req = self.browse(cr, uid, ref("purchase_requisition_ext_restricted1"))
-    assert len(purchase_req.purchase_ids) == 2, "There must be 2 RFQs linked to this Call for bids"
-    for rfq in purchase_req.purchase_ids:
-        assert rfq.type == 'rfq', "The type must be rfq"
+  !python {model: purchase.requisition, id: purchase_requisition_ext_restricted1}: |
+    from nose.tools import *
+
+    assert_equal(len(self.purchase_ids), 2)
+
+    for rfq in self.purchase_ids:
+        assert_equal(rfq.type, 'rfq')
+        assert_equal(rfq.state, 'sent')
+        assert_equal(rfq.amount_untaxed, 0.0)
+
         for line in rfq.order_line:
-            assert line.price_subtotal == 0, "The price must be 0 in the RFQ line"
-        assert rfq.state == 'sent', "The state must be sent"
-        assert rfq.amount_untaxed == 0, "The total must be 0 in the RFQ"
+            assert_equal(line.price_subtotal, 0.0)
 -
   I encode the bids. I set a price on the lines.
 -
-  !python {model: purchase.requisition}: |
-    purchase_req = self.browse(cr, uid, ref("purchase_requisition_ext_restricted1"))
-    assert len(purchase_req.purchase_ids) == 2, "There must be 2 RFQs linked to this Call for bids"
-    price = 30
-    for rfq in purchase_req.purchase_ids:
+  !python {model: purchase.requisition, id: purchase_requisition_ext_restricted1}: |
+
+    assert_equal(len(self.purchase_ids), 2)
+    price = 30.0
+
+    for rfq in self.purchase_ids:
         for line in rfq.order_line:
-            self.pool.get('purchase.order.line').write(cr, uid, [line.id], {'price_unit': price})
-            price += 5
+            line.price_unit = price
+            price += 5.0
 -
   I run the 'Bid encoded' wizard of bid1. I fill the date.
 -
