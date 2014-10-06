@@ -89,6 +89,7 @@
   I encode the bids. I set a price on the lines.
 -
   !python {model: purchase.requisition, id: req1}: |
+    from nose.tools import *
 
     assert_equal(len(self.purchase_ids), 2)
     price = 30.0
@@ -132,15 +133,18 @@
 -
   I check the "Bid Encoded" status.
 -
-  !python {model: purchase.requisition}: |
-    purchase_req = self.browse(cr, uid, ref("req1"))
-    assert len(purchase_req.purchase_ids) == 2, "There must be 2 bids linked to this Call for bids"
-    for rfq in purchase_req.purchase_ids:
-        assert rfq.type == 'bid', "The type must be bid"
+  !python {model: purchase.requisition, id: req1}: |
+    from nose.tools import *
+
+    assert_equal(len(self.purchase_ids), 2)
+
+    for rfq in self.purchase_ids:
+        assert_equal(rfq.type, 'bid')
+        assert_equal(rfq.state, 'bid')
+        assert_not_equal(rfq.amount_untaxed, 0.0)
+
         for line in rfq.order_line:
-            assert line.price_subtotal != 0, "The price must not be 0 in the bid line"
-        assert rfq.state == 'bid', "The state must be bid"
-        assert rfq.amount_untaxed != 0, "The total amount must not be 0 in the bid"
+            assert_not_equal(line.price_subtotal, 0.0)
 -
   I close the Call for bids and move to bids selection
 -
@@ -149,31 +153,37 @@
 -
   In the bids selection, I confirm line 1 of bid 1 and line 2 of bid 2. For line 3, I select quantity 10 of bid 1 and confirm. I confirm line 3 of bid 2 for remaining quantity.
 -
-  !python {model: purchase.requisition}: |
-    purchase_req = self.browse(cr, uid, ref("req1"))
-    assert len(purchase_req.purchase_ids) == 2, "There must be 2 bids linked to this Call for bids"
-    self.pool.get('purchase.order.line').action_confirm(cr, uid, [purchase_req.purchase_ids[0].order_line[0].id])
-    self.pool.get('purchase.order.line').action_confirm(cr, uid, [purchase_req.purchase_ids[1].order_line[1].id])
-    qtywiz = self.pool.get('bid.line.qty').create(cr, uid, {'qty': 5})
-    self.pool.get('bid.line.qty').change_qty(cr, uid, [qtywiz], {
+  !python {model: purchase.requisition, id: req1}: |
+    from nose.tools import *
+    assert_equal(len(self.purchase_ids), 2)
+
+    self.purchase_ids[0].order_line[0].action_confirm()
+    self.purchase_ids[1].order_line[1].action_confirm()
+
+    QuantityWizard = self.env['bid.line.qty']
+    quantity_wizard = QuantityWizard.create({'qty': 5})
+
+    quantity_wizard.with_context({
         'active_mode': 'purchase.order.line',
-        'active_id': purchase_req.purchase_ids[0].order_line[2].id,
-        'active_ids': [purchase_req.purchase_ids[0].order_line[2].id],
-        })
-    self.pool.get('purchase.order.line').action_confirm(cr, uid, [purchase_req.purchase_ids[1].order_line[2].id])
+        'active_id': self.purchase_ids[0].order_line[2].id,
+        'active_ids': [self.purchase_ids[0].order_line[2].id],
+    }).change_qty()
+    self.purchase_ids[1].order_line[2].action_confirm()
 -
-  For each call for bid lines, I check that the confirmed selection match the requested qty
+  For each call for bid lines, I check that the confirmed selection match the
+  requested qty
 -
-  !python {model: purchase.requisition}: |
-    from openerp.tools.float_utils import float_is_zero
-    purchase_req = self.browse(cr, uid, ref("req1"))
-    precision = self.pool.get('decimal.precision').precision_get(cr, 1, 'Product Unit of Measure')
-    for line in purchase_req.line_ids:
-        qty = line.product_qty
-        for pol in line.purchase_line_ids:
+  !python {model: purchase.requisition, id: req1}: |
+    from nose.tools import *
+    for req_line in self.line_ids:
+        req_qty = req_line.product_qty
+        confirmed_qty = 0.0
+
+        for pol in req_line.purchase_line_ids:
             if pol.state == 'confirmed':
-                qty -= pol.quantity_bid
-        assert float_is_zero(qty,precision), "The confirmed amount is different from the requested amount"
+                confirmed_qty += pol.quantity_bid
+
+        assert_almost_equal(confirmed_qty, req_qty)
 -
   I close the call for bids
 -
@@ -189,5 +199,4 @@
 -
   !python {model: purchase.requisition, id: req1}: |
     from nose.tools import *
-
     assert_equal(len(self.purchase_ids), 2)
