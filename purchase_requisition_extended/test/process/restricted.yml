@@ -24,7 +24,7 @@
   Create RFQ1. I run the 'Request a quotation' wizard. I fill the supplier.
 -
   !record {model: purchase.requisition.partner, id: purchase_requisition_ext_restricted1_partner1_create}:
-    partner_id: base.res_partner_2
+    partner_id: base.res_partner_1
 -
   Create RFQ1. I confirm the wizard.
 -
