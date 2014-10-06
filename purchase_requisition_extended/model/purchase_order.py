@@ -72,23 +72,16 @@ class PurchaseOrder(models.Model):
         return newpo
 
 
-class PurchaseOrderLine(models.Model):
-    _inherit = 'purchase.order.line'
+class PurchaseOrderLineClassic(osv.orm.Model):
+    _inherit = "purchase.order.line"
 
-    requisition_line_id = fields.Many2one(
-        'purchase.requisition.line',
-        'Call for Bid Line',
-        readonly=True)
-
-    @api.model
-    def read_group(self, domain, fields, groupby, offset=0,
-                   limit=None, orderby=False):
+    def read_group(self, *args, **kwargs):
         """Do not aggregate price and qty. We need to do it this way as there
         is no group_operator that can be set to prevent aggregating float"""
-        result = super(PurchaseOrderLine, self
-                       ).read_group(domain, fields, groupby,
-                                    offset=offset, limit=limit,
-                                    orderby=orderby)
+
+        result = super(PurchaseOrderLineClassic, self).read_group(*args,
+                                                                  **kwargs)
+
         for res in result:
             if 'price_unit' in res:
                 del res['price_unit']
@@ -97,3 +90,12 @@ class PurchaseOrderLine(models.Model):
             if 'lead_time' in res:
                 del res['lead_time']
         return result
+
+
+class PurchaseOrderLine(models.Model):
+    _inherit = 'purchase.order.line'
+
+    requisition_line_id = fields.Many2one(
+        'purchase.requisition.line',
+        'Call for Bid Line',
+        readonly=True)

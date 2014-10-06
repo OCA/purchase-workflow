@@ -404,13 +404,12 @@ class PurchaseRequisition(models.Model):
             'context': ctx,
         }
 
-    @api.multi
-    def open_product_line(self):
-        """ Filter to show only lines from bids received. Group by requisition
-        line instead of product for unicity
+    def open_product_line(self, cr, uid, ids, context=None):
+        """ Filter to show only lines from bids received.
+        Group by requisition line instead of product for unicity.
         """
-        res = super(PurchaseRequisition, self
-                    ).open_product_line()
+        res = super(PurchaseRequisition, self).open_product_line(
+            cr, uid, ids, context=context)
         ctx = res.setdefault('context', {})
         if 'search_default_groupby_product' in ctx:
             del ctx['search_default_groupby_product']
