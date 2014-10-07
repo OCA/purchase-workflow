@@ -255,36 +255,23 @@ class PurchaseOrder(models.Model):
                           subtype="mail.mt_comment")
         return super(PurchaseOrder, self).print_quotation()
 
-    # XXX: port onchange
-    # def onchange_dest_address_id_mod(self, cr, uid, ids, dest_address_id,
-        # warehouse_id, context=None):
-        # value = self.onchange_dest_address_id(cr, uid, ids, dest_address_id)
-        # warehouse_obj = self.pool.get('stock.warehouse')
-        # dest_ids = warehouse_obj.search(cr, uid,
-        # [('partner_id', '=', dest_address_id)],
-        # context=context)
-        # if dest_ids:
-        # if warehouse_id not in dest_ids:
-        # warehouse_id = dest_ids[0]
-        # else:
-        # warehouse_id = False
-        # value['value']['warehouse_id'] = warehouse_id
-        # return value
+    def onchange_picking_type_id(self, cr, uid, ids, picking_type_id,
+                                 context=None):
+        PickType = self.pool['stock.picking.type']
 
-    # XXX: change that to onchange_picking_type to get dest_address_id
-    # from picking_type.warehouse_id.partner_id
-    # def onchange_warehouse_id(self, cr, uid, ids, warehouse_id,
-    #                           context=None):
-        # value = super(PurchaseOrder, self).onchange_warehouse_id(cr, uid,
-        # ids,
-        # warehouse_id)
-        # if not warehouse_id:
-        # return {}
-        # warehouse_obj = self.pool.get('stock.warehouse')
-        # dest_id = warehouse_obj.browse(
-        #     cr, uid, warehouse_id, context=context).partner_id.id
-        # value['value']['dest_address_id'] = dest_id
-        # return value
+        result = super(PurchaseOrder, self).onchange_picking_type_id(
+            cr, uid, ids, picking_type_id, context)
+
+        if picking_type_id:
+            pick_type = PickType.browse(cr, uid, picking_type_id,
+                                        context=context)
+
+            if pick_type.warehouse_id and pick_type.warehouse_id.partner_id:
+                dest_address_id = pick_type.warehouse_id.partner_id.id
+
+                result['value']['dest_address_id'] = dest_address_id
+
+        return result
 
     @api.multi
     def po_tender_requisition_selected(self):

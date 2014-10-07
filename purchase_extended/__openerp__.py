@@ -54,7 +54,7 @@ In the scope of internation transactions, some fields have been added:
    that applies. This field allows to name the place where the goods will be
    available
 
-TODO: describe onchange warehouse
+TODO: describe onchange picking type.
 
 Note: for running the tests, the python package nose is required. It is not
 listed as an external dependency because it is not needed in production.
