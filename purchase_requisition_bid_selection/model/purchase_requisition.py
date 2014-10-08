@@ -188,6 +188,16 @@ class PurchaseRequisition(models.Model):
     def check_valid_quotation(self, quotation):
         return False
 
+    def _prepare_po_from_tender(self, cr, uid, tender, context=None):
+        """Give the generated PO the correct type and state"""
+        result = super(PurchaseRequisition, self)._prepare_po_from_tender(
+            cr, uid, tender, context)
+        result.update({
+                'type': 'purchase',
+                'state': 'draftpo',
+        })
+        return result
+
     @api.multi
     def generate_po(self):
         assert len(self.ids) == 1, "Only 1 ID expected"
