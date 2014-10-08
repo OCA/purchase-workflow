@@ -193,8 +193,8 @@ class PurchaseRequisition(models.Model):
         result = super(PurchaseRequisition, self)._prepare_po_from_tender(
             cr, uid, tender, context)
         result.update({
-                'type': 'purchase',
-                'state': 'draftpo',
+            'type': 'purchase',
+            'state': 'draftpo',
         })
         return result
 
