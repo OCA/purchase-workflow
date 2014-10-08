@@ -18,7 +18,7 @@
 #
 #
 
-{"name": "Purchase Requisition Extended",
+{"name": "Purchase Requisition Bid Selection",
  "version": "0.1",
  "author": "Camptocamp",
  "license": "AGPL-3",
@@ -26,8 +26,8 @@
  "complexity": "normal",
  "images": [],
  "description": """
-Purchase Requisition improvements
-=================================
+Purchase Requisition Bid Selection
+==================================
 
 This module allows to make calls for bids by generating an RFQ for selected
 suppliers, encode the bids, compare and select bids, generate draft POs.

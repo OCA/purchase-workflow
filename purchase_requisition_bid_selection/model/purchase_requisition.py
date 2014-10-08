@@ -305,7 +305,7 @@ class PurchaseRequisition(models.Model):
     def _get_default_reason(self):
         """Return default cancel reason"""
         IrModelData = self.env['ir.model.data']
-        ref = ('purchase_requisition_extended'
+        ref = ('purchase_requisition_bid_selection'
                '.purchase_cancelreason_rfq_canceled')
         reason_id = IrModelData.xmlid_to_res_id(ref)
         return reason_id
@@ -390,7 +390,9 @@ class PurchaseRequisition(models.Model):
             'active_model': self._name,
             })
         IrModelData = self.env['ir.model.data']
-        ref = 'purchase_requisition_extended.action_modal_close_callforbids'
+        ref = (
+            'purchase_requisition_bid_selection.action_modal_close_callforbids'
+        )
         view_id = IrModelData.xmlid_to_res_id(ref)
 
         return {

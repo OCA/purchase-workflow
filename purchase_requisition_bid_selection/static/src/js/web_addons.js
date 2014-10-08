@@ -1,4 +1,4 @@
-openerp.purchase_requisition_extended = function(instance) {
+openerp.purchase_requisition_bid_selection = function(instance) {
     var QWeb = instance.web.qweb,
         _t = instance.web._t;
 
