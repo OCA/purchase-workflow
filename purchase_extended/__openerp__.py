@@ -32,7 +32,7 @@ In standard, RFQs, Bids and PO are all the same object.  The purchase workflow
 has been improved with a new 'Draft PO' state to clearly differentiate the
 RFQ->Bid workflow and the PO workflow. A type field has also been added to
 identify if a document is of type 'rfq' or 'purchase'. This is particularly
-usefull for canceled state and for datawarehouse.
+useful for canceled state and for datawarehouse.
 
 The 'Requests for Quotation' menu entry shows only documents of type 'rfq' and
 the new documents are created in state 'Draft RFQ'. Those documents have lines
@@ -48,7 +48,7 @@ The logged messages have been improved to notify users at the state changes and
 with the right naming.
 
 
-In the scope of internation transactions, some fields have been added:
+In the scope of international transactions, some fields have been added:
  - Consignee: the person to whom the shipment is to be delivered
  - Incoterms Place: the standard incoterms field specifies the incoterms rule
    that applies. This field allows to name the place where the goods will be
