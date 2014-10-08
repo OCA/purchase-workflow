@@ -1,0 +1,45 @@
+-
+  Standard flow from a new draft PO to a PO.
+-
+  Set a context that will be passed to default methods but not to create() (WAT)
+-
+  !context
+    'draft_po': 1
+-
+  Create draft PO. That context will be passed to create() but not to default methods. (WAT)
+-
+  !record {model: purchase.order, id: purchase_order_ext_po2order1, context: {'draft_po': 1}}:
+    partner_id: base.res_partner_1
+    invoice_method: order
+    date_order: '2013-08-02 00:00:00'
+    order_line:
+      - product_id: product.product_product_15
+        product_qty: 15.0
+        date_planned: '2013-08-30'
+        price_unit: 43.35
+      - product_id: product.product_product_25
+        product_qty: 5.0
+        date_planned: '2013-08-30'
+        price_unit: 63.12
+      - product_id: product.product_product_27
+        product_qty: 4.0
+        date_planned: '2013-08-30'
+        price_unit: 52.53
+-
+  Type must be 'purchase' and the total untaxed amount of the PO must be computed.
+-
+  !assert {model: purchase.order, id: purchase_order_ext_po2order1, string: The amount of RFQ is not correctly computed}:
+    - type == 'purchase'
+    - state == 'draftpo'
+    - round(sum([l.price_subtotal for l in order_line]), 2) == round(amount_untaxed, 2)
+-
+  I confirm the draft PO.
+-
+  !python {model: purchase.order, id: purchase_order_ext_po2order1}: |
+    self.signal_workflow('purchase_confirm')
+-
+  I check the "Approved" status.
+-
+  !assert {model: purchase.order, id: purchase_order_ext_po2order1}:
+    - type == 'purchase'
+    - state == 'approved'

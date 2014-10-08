@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Prevent to send a RFQ without any line -->
+         <record id="purchase.trans_draft_sent" model="workflow.transition">
+            <field name="condition">_has_lines()</field>
+        </record>
+
+        <!-- Differenciate draft RFQ and draft PO. Add a state draft PO and adapt workflow -->
+        <record id="act_draft_po" model="workflow.activity">
+            <field name="wkf_id" ref="purchase.purchase_order"/>
+            <field name="name">draft PO</field>
+            <field name="kind">function</field>
+            <field name="action">wkf_draft_po()</field>
+        </record>
+        <record id="trans_draft_draftpo" model="workflow.transition">
+            <field name="act_from" ref="purchase.act_draft"/>
+            <field name="act_to" ref="act_draft_po"/>
+            <field name="signal">draft_po</field>
+        </record>
+        <record id="purchase.trans_draft_confirmed" model="workflow.transition">
+            <field name="act_from" ref="act_draft_po"/>
+        </record>
+        <record id="trans_bid_draftpo" model="workflow.transition">
+            <field name="act_from" ref="purchase.act_bid"/>
+            <field name="act_to" ref="act_draft_po"/>
+            <field name="signal">draft_po</field>
+        </record>
+        <record id="trans_draftpo_cancel" model="workflow.transition">
+            <field name="act_from" ref="act_draft_po"/>
+            <field name="act_to" ref="purchase.act_cancel"/>
+            <field name="signal">purchase_cancel</field>
+        </record>
+
+        <!-- Allow to create directly a draft Bid -->
+        <record id="act_draftbid" model="workflow.activity">
+            <field name="wkf_id" ref="purchase.purchase_order"/>
+            <field name="name">draft Bid</field>
+            <field name="kind">function</field>
+            <field name="action">write({'state': 'draftbid','type': 'bid'})</field>
+        </record>
+        <record id="trans_draft_draftbid" model="workflow.transition">
+            <field name="act_from" ref="purchase.act_draft"/>
+            <field name="act_to" ref="act_draftbid"/>
+            <field name="signal">draft_bid</field>
+        </record>
+        <record id="trans_draftbid_bid" model="workflow.transition">
+            <field name="act_from" ref="act_draftbid"/>
+            <field name="act_to" ref="purchase.act_bid"/>
+            <field name="signal">bid_received</field>
+        </record>
+        <record id="trans_draftbid_cancel" model="workflow.transition">
+            <field name="act_from" ref="act_draftbid"/>
+            <field name="act_to" ref="purchase.act_cancel"/>
+            <field name="signal">purchase_cancel</field>
+        </record>
+
+        <record id="act_po_requisition_selected" model="workflow.activity">
+          <field name="wkf_id" ref="purchase.purchase_order"/>
+          <field name="name">Bid selected</field>
+          <field name="kind">function</field>
+          <field name="action">po_tender_requisition_selected()</field>
+          <field name="flow_stop">True</field>
+        </record>
+        <record id="trans_po_requisition_selected" model="workflow.transition">
+          <field name="act_from" ref="purchase.act_bid"/>
+          <field name="act_to" ref="act_po_requisition_selected"/>
+          <field name="signal">select_requisition</field>
+        </record>
+
+
+        <!-- Rename some activities to make the workflow clear -->
+        <record id="purchase.act_draft" model="workflow.activity">
+            <field name="name">draft RFQ</field>
+        </record>
+        <record id="purchase.act_sent" model="workflow.activity">
+            <field name="name">RFQ sent</field>
+        </record>
+        <record id="purchase.act_bid" model="workflow.activity">
+            <field name="name">Bid encoded</field>
+        </record>
+
+    </data>
+</openerp>

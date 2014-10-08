@@ -1,0 +1,54 @@
+-
+  Cancel a new RFQ.
+-
+  Create RFQ
+-
+  !record {model: purchase.order, id: purchase_order_ext_rfq2cancel1}:
+    partner_id: base.res_partner_1
+    invoice_method: order
+    date_order: '2013-08-02 00:00:00'
+    bid_validity: '2013-08-15'
+    order_line:
+      - product_id: product.product_product_15
+        product_qty: 15.0
+        date_planned: '2013-08-30'
+      - product_id: product.product_product_25
+        product_qty: 5.0
+      - product_id: product.product_product_27
+        product_qty: 4.0
+-
+  I hit 'Cancel'. I should get a wizard with the correct action.
+-
+  !python {model: purchase.order, id: purchase_order_ext_rfq2cancel1}: |
+    from nose.tools import *
+
+    result = self.action_cancel()
+    assert_is(type(result), dict)
+
+    assert_equal(result['context']['action'], 'action_cancel_ok')
+-
+  I run the 'Cancel' wizard. I fill the reason.
+-
+  !record {model: purchase.action_modal.cancel_reason, id: purchase_order_ext_rfq2cancel1_cancel_reason}:
+    reason_id: purchase_cancel_reason_rfq_canceled
+-
+  I run the 'Cancel' wizard. I confirm the wizard.
+-
+  !python {model: purchase.order, id: purchase_order_ext_rfq2cancel1}: |
+    self.with_context({'active_id': ref("purchase_order_ext_rfq2cancel1_cancel_reason")}).action_cancel_ok()
+-
+  I check the "Canceled" status.
+-
+  !assert {model: purchase.order, id: purchase_order_ext_rfq2cancel1}:
+    - type == 'rfq'
+    - state == 'cancel'
+    - cancel_reason_id.id == ref("purchase_cancel_reason_rfq_canceled")
+-
+  I make a copy of the rfq and check that the amounts are zero
+-
+  !python {model: purchase.order, id: purchase_order_ext_rfq2cancel1}: |
+    from nose.tools import *
+
+    new_po = self.copy()
+    for line in new_po.order_line:
+        assert_equal(line.price_unit, 0.0)

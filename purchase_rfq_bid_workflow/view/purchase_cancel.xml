@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="view_purchase_cancel_reason_form">
+            <field name="name">Purchase Cancel Reason</field>
+            <field name="model">purchase.cancel_reason</field>
+            <field name="arch" type="xml">
+                <form string="Purchase Cancel Reason">
+                    <field name="name"/>
+                    <field name="type"/>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="view_purchase_cancel_reason_tree">
+            <field name="name">Purchase Cancel Reasons</field>
+            <field name="model">purchase.cancel_reason</field>
+            <field name="arch" type="xml">
+                <tree string="Purchase Cancel Reasons">
+                    <field name="name"/>
+                    <field name="type"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="action_purchase_cancel_reason">
+            <field name="name">Purchase Cancel Reasons</field>
+            <field name="res_model">purchase.cancel_reason</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="menu_purchase_config_cancel_reason" parent="purchase.menu_purchase_config_purchase" name="Purchase Cancel Reasons" action="action_purchase_cancel_reason" sequence="150" groups="purchase.group_purchase_manager"/>
+    </data>
+</openerp>

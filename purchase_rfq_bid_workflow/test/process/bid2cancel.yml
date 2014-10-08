@@ -1,0 +1,43 @@
+-
+  Cancel a new Bid.
+-
+  Set a context that will be passed to default methods but not to create() (WAT)
+-
+  !context
+    'draft_bid': 1
+-
+  Create a Bid. That context will be passed to create() but not to default methods. (WAT)
+-
+  !record {model: purchase.order, id: purchase_order_ext_bid2cancel2, context: {"draft_bid": 1}}:
+    partner_id: base.res_partner_1
+    invoice_method: order
+    date_order: '2013-08-02 00:00:00'
+    bid_validity: '2013-08-15'
+    order_line:
+      - product_id: product.product_product_15
+        product_qty: 15.0
+        date_planned: '2013-08-30'
+        price_unit: 43.35
+      - product_id: product.product_product_25
+        product_qty: 5.0
+        price_unit: 43.35
+      - product_id: product.product_product_27
+        product_qty: 4.0
+        price_unit: 43.35
+-
+  I run the 'Cancel' wizard. I fill the reason.
+-
+  !record {model: purchase.action_modal.cancel_reason, id: purchase_order_ext_bid2cancel2_cancel_reason}:
+    reason_id: purchase_cancel_reason_rfq_canceled
+-
+  I run the 'Cancel' wizard. I confirm the wizard.
+-
+  !python {model: purchase.order, id: purchase_order_ext_bid2cancel2}: |
+    self.with_context({'active_id': ref("purchase_order_ext_bid2cancel2_cancel_reason")}).action_cancel_ok()
+-
+  I check the "Canceled" status.
+-
+  !assert {model: purchase.order, id: purchase_order_ext_bid2cancel2}:
+    - type == 'bid'
+    - state == 'cancel'
+    - cancel_reason_id.id == ref("purchase_cancel_reason_rfq_canceled")

@@ -1,0 +1,83 @@
+-
+  Standard flow from a new Bid to a PO.
+-
+  Create Bid
+-
+  !record {model: purchase.order, id: purchase_order_ext_bid2order1}:
+    partner_id: base.res_partner_1
+    invoice_method: order
+    date_order: '2013-08-02 00:00:00'
+    bid_validity: '2013-08-15'
+    order_line:
+      - product_id: product.product_product_15
+        product_qty: 15.0
+        date_planned: '2013-08-30'
+        price_unit: 43.35
+      - product_id: product.product_product_25
+        product_qty: 5.0
+        date_planned: '2013-08-30'
+        price_unit: 63.12
+      - product_id: product.product_product_27
+        product_qty: 4.0
+        date_planned: '2013-08-30'
+        price_unit: 52.53
+-
+  I print the RFQ.
+-
+  !python {model: purchase.order}: |
+    self.print_quotation(cr, uid, [ref("purchase_order_ext_bid2order1")])
+-
+  Type must be 'rfq' and the total untaxed amount of the RFQ must be computed.
+-
+  !assert {model: purchase.order, id: purchase_order_ext_bid2order1, string: The amount of RFQ is not correctly computed}:
+    - type == 'rfq'
+    - state == 'sent'
+    - round(sum([l.price_subtotal for l in order_line]), 2) == round(amount_untaxed, 2)
+-
+  I hit 'Bid encoded'. I should get a wizard with the correct action.
+-
+  !python {model: purchase.order, id: purchase_order_ext_bid2order1}: |
+    from nose.tools import *
+
+    result = self.bid_received()
+    assert_is(type(result), dict)
+
+    assert_equal(result['context']['action'], 'bid_received_ok')
+-
+  I run the 'Bid encoded' wizard. I fill the date.
+-
+  !record {model: purchase.action_modal.datetime, id: purchase_order_ext_bid2order1_bidencoded}:
+    datetime: '2013-08-10 00:00:00'
+-
+  I run the 'Bid encoded' wizard. I confirm the wizard.
+-
+  !python {model: purchase.order}: |
+    self.bid_received_ok(cr, uid, [ref("purchase_order_ext_bid2order1")],{'active_id':ref("purchase_order_ext_bid2order1_bidencoded")})
+-
+  I check the "Bid Encoded" status.
+-
+  !assert {model: purchase.order, id: purchase_order_ext_bid2order1}:
+    - type == 'bid'
+    - state == 'bid'
+-
+  I convert to PO
+-
+  !python {model: purchase.order, id: purchase_order_ext_bid2order1}: |
+    self.signal_workflow('draft_po')
+-
+  I check the "Draft PO" status.
+-
+  !assert {model: purchase.order, id: purchase_order_ext_bid2order1}:
+    - type == 'purchase'
+    - state == 'draftpo'
+-
+  I confirm the draft PO.
+-
+  !python {model: purchase.order, id: purchase_order_ext_bid2order1}: |
+    self.signal_workflow('purchase_confirm')
+-
+  I check the "Approved" status.
+-
+  !assert {model: purchase.order, id: purchase_order_ext_bid2order1}:
+    - type == 'purchase'
+    - state == 'approved'
