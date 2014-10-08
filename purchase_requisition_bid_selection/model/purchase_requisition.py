@@ -173,7 +173,7 @@ class PurchaseRequisition(models.Model):
                                  context=None):
         PickType = self.pool['stock.picking.type']
 
-        result = {}
+        dest_address_id = False
 
         if picking_type_id:
             pick_type = PickType.browse(cr, uid, picking_type_id,
@@ -182,9 +182,7 @@ class PurchaseRequisition(models.Model):
             if pick_type.warehouse_id and pick_type.warehouse_id.partner_id:
                 dest_address_id = pick_type.warehouse_id.partner_id.id
 
-                result['value']['dest_address_id'] = dest_address_id
-
-        return result
+        return {'value': {'dest_address_id': dest_address_id}}
 
     def trigger_validate_po(self, cr, uid, po_id, context=None):
         wf_service = netsvc.LocalService("workflow")
