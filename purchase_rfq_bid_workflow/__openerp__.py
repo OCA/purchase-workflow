@@ -19,6 +19,7 @@
 ##############################################################################
 
 {"name": "Purchase RFQ Bid workflow",
+ "summary": "Improve the purchase workflow to manage RFQ, Bids, and Orders",
  "version": "0.2",
  "author": "Camptocamp",
  "category": "Purchase Management",
