@@ -18,7 +18,7 @@
 #
 ##############################################################################
 
-{"name": "Purchase Extended",
+{"name": "Purchase RFQ Bid workflow",
  "version": "0.2",
  "author": "Camptocamp",
  "category": "Purchase Management",

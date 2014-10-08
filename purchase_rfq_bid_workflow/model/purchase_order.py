@@ -145,7 +145,7 @@ class PurchaseOrder(models.Model):
         model_obj = self.env['ir.model.data']
         view_id = (model_obj
                    .sudo()
-                   .get_object_reference('purchase_extended',
+                   .get_object_reference('purchase_rfq_bid_workflow',
                                          'action_modal_cancel_reason'))[1]
         ctx = self._context.copy()
         ctx['action'] = 'action_cancel_ok'
@@ -191,7 +191,7 @@ class PurchaseOrder(models.Model):
             'default_datetime': (self.bid_date
                                  or fields.Date.context_today(self)),
         })
-        view = self.env.ref('purchase_extended.action_modal_bid_date')
+        view = self.env.ref('purchase_rfq_bid_workflow.action_modal_bid_date')
 
         # those will be set by the web layer unless they are already defined
         for e in ('active_model', 'active_ids', 'active_id'):
