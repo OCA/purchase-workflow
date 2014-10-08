@@ -156,26 +156,35 @@ class PurchaseRequisition(models.Model):
         return vals
 
     def onchange_dest_address_id(self, cr, uid, ids, dest_address_id,
-                                 warehouse_id, context=None):
-        warehouse_obj = self.pool.get('stock.warehouse')
-        dest_ids = warehouse_obj.search(cr, uid,
-                                        [('partner_id', '=', dest_address_id)],
-                                        context=context)
-        if dest_ids:
-            if warehouse_id not in dest_ids:
-                warehouse_id = dest_ids[0]
-        else:
-            warehouse_id = False
-        return {'value': {'warehouse_id': warehouse_id}}
+                                 picking_type_id, context=None):
+        PickType = self.pool['stock.picking.type']
+        type_ids = PickType.search(cr, uid, [
+            ('warehouse_id.partner_id', '=', dest_address_id)
+        ], context=context)
 
-    def onchange_warehouse_id(self, cr, uid, ids, warehouse_id, context=None):
-        if not warehouse_id:
-            return {}
-        warehouse_obj = self.pool.get('stock.warehouse')
-        warehouse = warehouse_obj.browse(cr, uid,
-                                         warehouse_id, context=context)
-        dest_id = warehouse.partner_id.id
-        return {'value': {'dest_address_id': dest_id}}
+        if type_ids:
+            if picking_type_id not in type_ids:
+                picking_type_id = type_ids[0]
+        else:
+            picking_type_id = False
+        return {'value': {'picking_type_id': picking_type_id}}
+
+    def onchange_picking_type_id(self, cr, uid, ids, picking_type_id,
+                                 context=None):
+        PickType = self.pool['stock.picking.type']
+
+        result = {}
+
+        if picking_type_id:
+            pick_type = PickType.browse(cr, uid, picking_type_id,
+                                        context=context)
+
+            if pick_type.warehouse_id and pick_type.warehouse_id.partner_id:
+                dest_address_id = pick_type.warehouse_id.partner_id.id
+
+                result['value']['dest_address_id'] = dest_address_id
+
+        return result
 
     def trigger_validate_po(self, cr, uid, po_id, context=None):
         wf_service = netsvc.LocalService("workflow")
