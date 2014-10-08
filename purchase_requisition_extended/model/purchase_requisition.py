@@ -245,7 +245,8 @@ class PurchaseRequisition(models.Model):
                     rfq_valid = True
         if cancel_ids:
             reason_id = self.pool.get('ir.model.data').get_object_reference(
-                'purchase_extended', 'purchase_cancelreason_rfq_canceled')[1]
+                'purchase_rfq_bid_selection',
+                'purchase_cancelreason_rfq_canceled')[1]
             purchase_order_obj = self.pool.get('purchase.order')
             purchase_order_obj.write(cancel_ids, {'cancel_reason': reason_id})
             purchase_order_obj.action_cancel(cancel_ids)

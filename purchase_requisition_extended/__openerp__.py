@@ -46,7 +46,7 @@ occurred but without having to generate the POs yet. Those can be created at a
 new later state called 'Bids Selected'.
 
 When generating POs, they are created in the state 'Draft PO' introduced by the
-module purchase_extended.
+module purchase_rfq_bid_workflow.
 
 Some fields have been added to specify with more details the call for bids and
 prefill fields of the generated RFQs.
@@ -59,7 +59,7 @@ For running the tests the nose python package is required.
 """,
  "depends": ["purchase_requisition",
              "stock",  # For incoterms
-             "purchase_extended",  # for field incoterms place
+             "purchase_rfq_bid_workflow",  # for field incoterms place
              ],
  "demo": [],
  "data": ["wizard/modal.xml",

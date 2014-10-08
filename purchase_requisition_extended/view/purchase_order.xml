@@ -5,7 +5,7 @@
     <record model="ir.ui.view" id="view_purchase_order_form">
       <field name="name">purchase.order.inherit</field>
       <field name="model">purchase.order</field>
-      <field name="inherit_id" ref="purchase_extended.view_purchase_order_form"/>
+      <field name="inherit_id" ref="purchase_rfq_bid_workflow.view_purchase_order_form"/>
       <field name="arch" type="xml">
 
         <xpath expr="//button[@name='draft_po'][1]" position="attributes">
