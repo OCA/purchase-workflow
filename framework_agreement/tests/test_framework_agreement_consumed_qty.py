@@ -44,7 +44,6 @@ class TestAvailabeQty(test_common.TransactionCase, BaseAgreementTestMixin):
              'product_id': self.product_id,
              'start_date': start_date,
              'end_date': end_date,
-             'price': 77,
              'delay': 5,
              'quantity': 200}
         )
