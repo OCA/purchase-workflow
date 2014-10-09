@@ -170,6 +170,8 @@ class framework_agreement(models.Model):
         return self.ids
 
     def _search_state(self, operator, value):
+        """Search on the state field by evaluating on all records"""
+
         agreements = self.search([])
 
         if operator == '=':
