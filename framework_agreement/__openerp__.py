@@ -46,8 +46,8 @@ warning will be raised in case of exhaustion of override of agreement price.
 
 **Technical aspect**
 
-The module provide an observalbe mixin to enable generic on_change management
-on various model related to agreements.
+The module provide an observable mixin to enable generic on_change management
+on various models related to agreements.
 
 The framework agreement is by default related to purchase order but the addon
 provides a library to integrate it with any other model easily
