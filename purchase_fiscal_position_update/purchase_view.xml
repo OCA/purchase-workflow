@@ -14,7 +14,7 @@
     <field name="inherit_id" ref="purchase.purchase_order_form"/>
     <field name="arch" type="xml">
         <field name="fiscal_position" position="attributes">
-            <attribute name="on_change">fiscal_position_change(fiscal_position, order_line, context)</attribute>
+            <attribute name="on_change">fiscal_position_change(fiscal_position, order_line)</attribute>
         </field>
     </field>
 </record>

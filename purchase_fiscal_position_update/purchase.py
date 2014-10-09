@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #############################################################################
 #
-#    Purchase Fiscal Position Update module for OpenERP
+#    Purchase Fiscal Position Update module for Odoo
 #    Copyright (C) 2011-2014 Julius Network Solutions SARL <contact@julius.fr>
 #    Copyright (C) 2014 Akretion (http://www.akretion.com)
 #    @author Mathieu Vatel <mathieu _at_ julius.fr>
@@ -22,26 +22,22 @@
 #
 ##############################################################################
 
-from openerp.osv import orm
-from openerp.tools.translate import _
+from openerp import models, api, _
 
 
-class purchase_order(orm.Model):
+class purchase_order(models.Model):
     _inherit = "purchase.order"
 
-    def fiscal_position_change(
-            self, cr, uid, ids, fiscal_position, order_line,
-            context=None):
+    @api.multi
+    def fiscal_position_change(self, fiscal_position_id, order_line):
         '''Function executed by the on_change on the fiscal_position field
         of a purchase order ; it updates taxes on all order lines'''
-        assert len(ids) in (0, 1), 'One ID max'
-        fp_obj = self.pool['account.fiscal.position']
-        res = {}
-        line_dict = self.resolve_2many_commands(
-            cr, uid, 'order_line', order_line, context=context)
+        fp_obj = self.env['account.fiscal.position']
+        res = {'value': {}}
+        line_dict = self.resolve_2many_commands('order_line', order_line)
         lines_without_product = []
-        if fiscal_position:
-            fp = fp_obj.browse(cr, uid, fiscal_position, context=context)
+        if fiscal_position_id:
+            fp = fp_obj.browse(fiscal_position_id)
         else:
             fp = False
         for line in line_dict:
@@ -51,16 +47,14 @@ class purchase_order(orm.Model):
                 if isinstance(value, tuple) and len(value) == 2:
                     line[key] = value[0]
             if line.get('product_id'):
-                product = self.pool['product.product'].browse(
-                    cr, uid, line.get('product_id'), context=context)
+                product = self.env['product.product'].browse(
+                    line.get('product_id'))
                 taxes = product.supplier_taxes_id
-                tax_ids = fp_obj.map_tax(
-                    cr, uid, fp, taxes, context=context)
-
-                line['taxes_id'] = [(6, 0, tax_ids)]
+                if fp:
+                    taxes = fp.map_tax(taxes)
+                line['taxes_id'] = [(6, 0, [tax.id for tax in taxes])]
             else:
                 lines_without_product.append(line.get('name'))
-        res['value'] = {}
         res['value']['order_line'] = line_dict
 
         if lines_without_product:
@@ -72,13 +66,10 @@ class purchase_order(orm.Model):
                     "You should update the Taxes of each "
                     "Purchase Order Line manually.")
             else:
-                display_line_names = ''
-                for name in lines_without_product:
-                    display_line_names += "- %s\n" % name
                 res['warning']['message'] = _(
                     "The following Purchase Order Lines were not updated "
                     "to the new Fiscal Position because they don't have a "
-                    "Product:\n %s\nYou should update the "
+                    "Product:\n- %s\nYou should update the "
                     "Taxes of these Purchase Order Lines manually."
-                ) % display_line_names,
+                    ) % ('\n- '.join(lines_without_product))
         return res
