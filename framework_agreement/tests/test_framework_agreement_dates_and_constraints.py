@@ -22,7 +22,6 @@ from datetime import timedelta
 from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
 from openerp.tools import mute_logger
 import openerp.tests.common as test_common
-from openerp import exceptions
 from .common import BaseAgreementTestMixin
 
 
