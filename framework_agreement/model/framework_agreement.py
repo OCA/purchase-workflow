@@ -85,7 +85,8 @@ class framework_agreement(models.Model):
                    ('consumed', 'Consumed'),
                    ('closed', 'Closed')],
         string='State',
-        compute='_get_state'
+        compute='_get_state',
+        search='_search_state',
     )
     company_id = fields.Many2one(
         'res.company',
@@ -168,44 +169,23 @@ class framework_agreement(models.Model):
                       DeprecationWarning)
         return self.ids
 
-    def _search_state(self, cr, uid, obj, name, args, context=None):
-        """Implement search on state function field.
+    def _search_state(self, operator, value):
+        agreements = self.search([])
 
-        Only support "and" mode.
-        supported opperators are =, in, not in, <>.
-        For more information please refer to fnct_search OpenERP documentation.
-
-        """
-        return []
-        if not args:
-            return []
-        ids = self.search(cr, uid, [], context=context)
-        # this can be problematic in term of performace but the
-        # state field can be changed by values and time evolution
-        # In a business point of view there should be around 30 yearly LTA
-
-        found_ids = []
-        res = self.read(cr, uid, ids, ['state'], context=context)
-        for field, operator, value in args:
-            assert field == name
-            if operator == '=':
-                found_ids += [frm['id'] for frm in res
-                              if frm['state'] in value]
-            elif operator == 'in' and isinstance(value, list):
-                found_ids += [frm['id'] for frm in res
-                              if frm['state'] in value]
-            elif operator in ("!=", "<>"):
-                found_ids += [frm['id'] for frm in res
-                              if frm['state'] != value]
-            elif operator == 'not in'and isinstance(value, list):
-                found_ids += [frm['id'] for frm in res
-                              if frm['state'] not in value]
-            else:
-                raise NotImplementedError('Search operator %s not implemented'
-                                          ' for value %s'
-                                          % (operator, value))
-        to_return = set(found_ids)
-        return [('id', 'in', [x['id'] for x in to_return])]
+        if operator == '=':
+            found_ids = [a.id for a in agreements if a.state == value]
+        elif operator == 'in' and isinstance(value, list):
+            found_ids = [a.id for a in agreements if a.state in value]
+        elif operator in ("!=", "<>"):
+            found_ids = [a.id for a in agreements if a.state != value]
+        elif operator == 'not in'and isinstance(value, list):
+            found_ids = [a.id for a in agreements if a.state not in value]
+        else:
+            raise NotImplementedError(
+                'Search operator %s not implemented for value %s'
+                % (operator, value)
+            )
+        return [('id', 'in', found_ids)]
 
     @api.multi
     def _compute_available_qty(self):
