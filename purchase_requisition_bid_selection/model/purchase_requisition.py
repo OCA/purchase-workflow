@@ -252,21 +252,19 @@ class PurchaseRequisition(models.Model):
         """
         Cancel RFQ that have not been sent. Ensure that there are RFQs."
         """
-        cancel_ids = []
+        pos_to_cancel = self.env['purchase.order']
         rfq_valid = False
         for callforbids in self:
             for purchase in callforbids.purchase_ids:
                 if purchase.state == 'draft':
-                    cancel_ids.append(purchase.id)
+                    pos_to_cancel |= purchase
                 elif purchase.state != 'cancel':
                     rfq_valid = True
-        if cancel_ids:
-            reason_id = self.pool.get('ir.model.data').get_object_reference(
-                'purchase_rfq_bid_selection',
-                'purchase_cancelreason_rfq_canceled')[1]
-            purchase_order_obj = self.pool.get('purchase.order')
-            purchase_order_obj.write(cancel_ids, {'cancel_reason': reason_id})
-            purchase_order_obj.action_cancel(cancel_ids)
+        if pos_to_cancel:
+            reason_id = self.env['ir.model.data'].xmlid_to_res_id(
+                'purchase_extended.purchase_cancelreason_rfq_canceled')
+            pos_to_cancel.write({'cancel_reason': reason_id})
+            pos_to_cancel.action_cancel()
         if not rfq_valid:
             raise except_orm(
                 _('Error'), _('You do not have valid sent RFQs.'))
