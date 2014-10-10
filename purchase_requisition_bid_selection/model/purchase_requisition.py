@@ -207,7 +207,7 @@ class PurchaseRequisition(models.Model):
 
     @api.multi
     def generate_po(self):
-        assert len(self.ids) == 1, "Only 1 ID expected"
+        self.ensure_one()
 
         for po_line in self.po_line_ids:
             # set bid selected boolean to true on RFQ containing confirmed
