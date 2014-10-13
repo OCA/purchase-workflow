@@ -18,7 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{'name': 'Simple Framework Agreement',
+{'name': 'Framework Agreement',
  'version': '1.0',
  'author': 'Camptocamp',
  'maintainer': 'Camptocamp',
