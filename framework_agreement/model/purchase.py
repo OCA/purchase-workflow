@@ -103,17 +103,19 @@ class purchase_order_line(orm.Model):
                             qty, uom_id, partner_id, date_order=False,
                             fiscal_position_id=False,
                             date_planned=False, name=False,
-                            price_unit=False, state='draft',
-                            agreement_id=False, context=None):
+                            price_unit=False, state='draft', context=None):
         """ We override this function to check qty change (I know...)
 
         The price retrieval is managed by
         the override of product.pricelist.price_get
 
         that is overidden to support agreement.
-        This is mabye a faulty design as it has a low level impact
+        This is maybe a faulty design as it has a low level impact
+
+        We use web_context_tunnel to keep the original signature.
 
         """
+        agreement_id = context.get('agreement_id')
         # rock n'roll
         res = super(purchase_order_line, self).onchange_product_id(
             cr,
