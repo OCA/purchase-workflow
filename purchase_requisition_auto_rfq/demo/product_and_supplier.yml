@@ -1,0 +1,28 @@
+-
+ Kitchen set is sold by Agrolait and China Export
+-
+ !record {model: product.product, id: kitchenset}:
+   name: Kitchen Set
+   type: product
+   seller_ids:
+     - name: base.res_partner_2
+       sequence: 1
+     - name: base.res_partner_3
+       sequence: 2
+-
+ Blanket is sold by China Export and Mediapole
+-
+ !record {model: product.product, id: blankets}:
+   name: Blankets
+   type: product
+   seller_ids:
+     - name: base.res_partner_3
+       sequence: 1
+     - name: base.res_partner_4
+       sequence: 2
+-
+ Tarpaulins have no suppliers
+-
+ !record {model: product.product, id: tarpaulin}:
+   name: Tarpaulin
+   type: product
