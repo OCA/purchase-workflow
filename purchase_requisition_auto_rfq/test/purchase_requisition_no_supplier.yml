@@ -1,0 +1,34 @@
+-
+ Create a purchase requisition for blankets and tarpaulins
+-
+ !record {model: purchase.requisition, id: requisition2}:
+   name: PR02
+   line_ids:
+    - product_id: tarpaulin
+      product_qty: 10
+    - product_id: blankets
+      product_qty: 100
+-
+ I generate the RFQ
+-
+ !python {model: purchase.requisition}: |
+    from collections import defaultdict
+    ids = self.auto_rfq_from_suppliers(cr, uid, [ref('requisition2')], context=context)
+    assert len(set(ids)) == 2, "expected 2 distinct rfq, got %r" % ids
+    rfq_obj = self.pool['purchase.order']
+    supplier_products = defaultdict(list)
+    for rfq in rfq_obj.browse(cr, uid, ids, context=context):
+      for line in rfq.order_line:
+        supplier_products[rfq.partner_id.id].append(line.product_id.id)
+    expected = {ref('base.res_partner_3'): [ref('blankets')],
+                ref('base.res_partner_4'): [ref('blankets')],
+                }
+    assert expected == supplier_products
+    requisition = self.browse(cr, uid, ref('requisition2'), context=context)
+    assert len(requisition.message_ids) == 3
+    found = False
+    for msg in requisition.message_ids:
+      if msg.body and u'RFQ generation' in msg.body:
+        assert 'Tarpaulin' in msg.body
+        found = True
+    assert found, "no message about missing supplier found"
