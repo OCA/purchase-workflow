@@ -202,11 +202,12 @@ class purchase_order(models.Model):
         return res
 
     @api.multi
-    def onchange_pricelist(self, pricelist_id, line_ids):
+    def onchange_pricelist(self, pricelist_id):
+        """We use web_context_tunnel to keep the original signature"""
         res = super(purchase_order, self).onchange_pricelist(
             pricelist_id,
         )
-        if not pricelist_id or not line_ids:
+        if not pricelist_id or not self._context.get('order_line_ids'):
             return res
         if self.framework_agreement_id:
             raise exceptions.Warning(

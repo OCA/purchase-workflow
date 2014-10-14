@@ -24,7 +24,7 @@
  'maintainer': 'Camptocamp',
  'category': 'Purchase Management',
  'complexity': 'normal',
- 'depends': ['stock', 'procurement', 'purchase'],
+ 'depends': ['stock', 'procurement', 'purchase', 'web_context_tunnel'],
  'description': """
 Long Term Agreement (or Framework Agreement) on price.
 ======================================================
