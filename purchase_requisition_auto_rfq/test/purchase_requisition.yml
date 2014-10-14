@@ -1,0 +1,40 @@
+-
+ I make a tender for 100 blanket and 10 kitchen set.
+
+    Kitchen set are ordered from Supplie A and Supplier B (in supplier info)
+    Blanket are ordered from Supplier B and Supplier C
+
+ I then click a button that will create RFQ based on supplier info, I expect to have 3 RFQ
+
+ 1) Supplier A for 10 kitchen sets
+ 2) Supplier B for 10 kitchen sets and 1000 blanket
+ 3) Supplier C for 100 blanket
+-
+ Create a purchase requisition for blankets and kitchen sets
+-
+ !record {model: purchase.requisition, id: requisition1}:
+   name: PR01
+   line_ids:
+    - product_id: kitchenset
+      product_qty: 10
+    - product_id: blankets
+      product_qty: 100
+-
+ I generate the RFQ
+-
+ !python {model: purchase.requisition}: |
+    from collections import defaultdict
+    ids = self.auto_rfq_from_suppliers(cr, uid, [ref('requisition1')], context=context)
+    assert len(set(ids)) == 3, "expected 3 distinct rfq, got %r" % ids
+    rfq_obj = self.pool['purchase.order']
+    supplier_products = defaultdict(list)
+    for rfq in rfq_obj.browse(cr, uid, ids, context=context):
+      for line in rfq.order_line:
+        supplier_products[rfq.partner_id.id].append(line.product_id.id)
+    expected = {ref('base.res_partner_3'): [ref('kitchenset'), ref('blankets')],
+                ref('base.res_partner_2'): [ref('kitchenset')],
+                ref('base.res_partner_4'): [ref('blankets')],
+                }
+    assert expected == supplier_products
+    requisition = self.browse(cr, uid, ref('requisition1'), context=context)
+    assert len(requisition.message_ids) == 2, "nb messages: %d" % len(requisition.message_ids)

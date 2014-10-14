@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <record model="ir.ui.view" id="purchase_requisition_form_inherit">
+      <field name="name">purchase.requisition.form</field>
+      <field name="model">purchase.requisition</field>
+      <field name="inherit_id" ref="purchase_requisition.view_purchase_requisition_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//button[@string='Request a Quotation']" position="before">
+          <button name="auto_rfq_from_suppliers" type="object" string="Generate RFQs from suppliers"
+                  attrs="{'invisible': ['|',('line_ids','=',[]),('state','!=','in_progress')]}"
+                  />
+        </xpath>
+      </field>
+    </record>
+  </data>
+</openerp>
