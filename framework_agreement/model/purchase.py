@@ -236,14 +236,18 @@ class purchase_order(models.Model):
         return {}
 
     @api.multi
-    def onchange_partner_id(self, partner_id, agreement_id):
-        """Override to ensure that partner can not be changed if agreement"""
+    def onchange_partner_id(self, partner_id):
+        """Override to ensure that partner can not be changed if agreement.
+
+        We use web_context_tunnel in order to keep the original signature.
+
+        """
         res = super(purchase_order, self).onchange_partner_id(
             partner_id
         )
-        if agreement_id:
+        if self._context.get('agreement_id'):
             raise exceptions.Warning(
-                _('You can not change supplier'
-                  'PO is linked to an agreement')
+                _('You cannot change the supplier: '
+                  'the PO is linked to an agreement')
             )
         return res
