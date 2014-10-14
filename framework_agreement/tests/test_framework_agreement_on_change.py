@@ -106,7 +106,10 @@ class TestAgreementOnChange(test_common.TransactionCase,
     def test_04_product_observer_bindings(self):
         """Check that change of product has correct behavior"""
         pl = self.agreement.supplier_id.property_product_pricelist_purchase.id
-        self.po_line_model.onchange_product_id(
+        LineContext = self.po_line_model.with_context(
+            {'agreement_id': self.agreement.id}
+        )
+        LineContext.onchange_product_id(
             pl,
             self.agreement.product_id.product_variant_ids[0].id,
             200,
@@ -118,5 +121,4 @@ class TestAgreementOnChange(test_common.TransactionCase,
             name=False,
             price_unit=False,
             state='draft',
-            agreement_id=self.agreement.id,
         )
