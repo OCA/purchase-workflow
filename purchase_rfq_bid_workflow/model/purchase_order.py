@@ -124,6 +124,10 @@ class PurchaseOrder(models.Model):
 
     @api.one
     def copy(self, default=None):
+
+        if default.get('type') == 'purchase':
+            self = self.with_context(draft_po=True)
+
         newpo = super(PurchaseOrder, self).copy(default=default)
 
         if newpo.type == 'rfq':
