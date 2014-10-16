@@ -9,7 +9,8 @@
     - product_id: blankets
       product_qty: 100
 -
- I generate the RFQ
+ I generate the RFQ and check that I have two RFQ for the blankets. I also
+ check that I got an error message for the tarpaulins.
 -
  !python {model: purchase.requisition}: |
     from collections import defaultdict
