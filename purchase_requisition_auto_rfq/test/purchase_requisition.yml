@@ -1,14 +1,16 @@
 -
  I make a tender for 100 blanket and 10 kitchen set.
 
-    Kitchen set are ordered from Supplie A and Supplier B (in supplier info)
-    Blanket are ordered from Supplier B and Supplier C
+    Kitchen set are ordered from Supplier A and Supplier B (in supplier info)
+    Blankets are ordered from Supplier B and Supplier C
 
- I then click a button that will create RFQ based on supplier info, I expect to have 3 RFQ
+ I then click a button that will create RFQ based on supplier info.
+
+ I expect to have 3 RFQ
 
  1) Supplier A for 10 kitchen sets
- 2) Supplier B for 10 kitchen sets and 1000 blanket
- 3) Supplier C for 100 blanket
+ 2) Supplier B for 10 kitchen sets and 100 blankets
+ 3) Supplier C for 100 blankets
 -
  Create a purchase requisition for blankets and kitchen sets
 -
@@ -20,7 +22,8 @@
     - product_id: blankets
       product_qty: 100
 -
- I generate the RFQ
+ I generate the RFQ and check that I get three rfq with the correct partners
+ and products. I also check that the requisition has two messages.
 -
  !python {model: purchase.requisition}: |
     from collections import defaultdict
