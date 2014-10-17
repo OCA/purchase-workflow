@@ -392,10 +392,9 @@ class PurchaseRequisition(models.Model):
         # open a dialog to confirm that we want more / less or no qty
         ctx = self.env.context.copy()
 
-        ctx.update({
-            'action': 'close_callforbids_ok',
-            'active_model': self._name,
-            })
+        ctx.update({'action': 'close_callforbids_ok',
+                    'active_model': self._name,
+                    })
         IrModelData = self.env['ir.model.data']
         ref = (
             'purchase_requisition_bid_selection.action_modal_close_callforbids'
