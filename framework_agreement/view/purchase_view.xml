@@ -25,6 +25,9 @@
           <attribute name="context_agreement">{'agreement_id': parent.framework_agreement_id}</attribute>
         </field>
 
+        <field name="price_unit" position="attributes">
+          <attribute name="on_change">onchange_price(price_unit, parent.framework_agreement_id, product_qty, parent.pricelist_id, product_id)</attribute>
+        </field>
       </field>
 
     </record>
@@ -34,7 +37,7 @@
       <field name="inherit_id" ref="purchase.purchase_order_line_form" />
       <field name="arch" type="xml">
         <field name="price_unit" position="attributes">
-          <attribute name="on_change">on_change="onchange_price(price_unit, parent.framework_agreement_id, product_qty, parent.pricelist_id)</attribute>
+          <attribute name="on_change">onchange_price(price_unit, parent.framework_agreement_id, product_qty, parent.pricelist_id, product_id)</attribute>
         </field>
       </field>
     </record>
