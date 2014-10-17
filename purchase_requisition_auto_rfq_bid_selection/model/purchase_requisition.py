@@ -31,14 +31,18 @@ class PurchaseRequisition(models.Model):
         """
         Depending on bid_tendering_mode, generate bids or rfq
         """
+        if 'draft_bid' in self.env.context:
+            return super(PurchaseRequisition, self).make_purchase_order(seller_id)
         res = {}
+        requisitions_draft_bid = self.with_context(draft_bid=1).browse()
+        requisitions_draft_rfq = self.with_context(draft_bid=0).browse()
         for requisition in self:
             if requisition.bid_tendering_mode == 'open':
-                draft_bid = 1
+                requisitions_draft_bid |= requisition
             else:
-                draft_bid = 0
-            _super = super(PurchaseRequisition, requisition)
-            _super = _super.with_context(draft_bid=draft_bid)
-            res.update(_super.make_purchase_order(seller_id))
+                requisitions_draft_rfq |= requisition
+        for requisitions in (requisitions_draft_bid, requisitions_draft_rfq):
+            po_info = requisitions.make_purchase_order(seller_id)
+            res.update(po_info)
         return res
 
