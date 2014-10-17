@@ -7,7 +7,7 @@ from .common import BaseAgreementTestMixin
 
 class TestAgreementPriceList(test_common.TransactionCase,
                              BaseAgreementTestMixin):
-    """Test observer on change and purchase order on chnage"""
+    """Test observer on_change and purchase order on_change"""
 
     def setUp(self):
         """ Create a default agreement

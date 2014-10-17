@@ -40,21 +40,19 @@ class product_pricelist(orm.Model):
 
         """
         p_list = self.browse(cr, uid, pricelist_id, context=context)
-        if p_list.type == 'purchase':
-            return True
-        return False
+        return p_list.type == 'purchase'
 
     def price_get(self, cr, uid, ids, prod_id, qty,
                   partner=None, context=None):
         """Override of price retrival function in order to support framework agreement.
 
-        If it is a supplier price list agrreement will be taken in account
+        If it is a supplier price list agreement will be taken in account
         and use the price of the agreement if required.
 
         If there is not enough available qty on agreement,
         standard price will be used.
 
-        This is mabye a faulty design and we should use on_change override
+        This is maybe a faulty design and we should use on_change override
 
         """
         if context is None:

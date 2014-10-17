@@ -168,7 +168,7 @@ class framework_agreement(models.Model):
             found_ids = [a.id for a in agreements if a.state in value]
         elif operator in ("!=", "<>"):
             found_ids = [a.id for a in agreements if a.state != value]
-        elif operator == 'not in'and isinstance(value, list):
+        elif operator == 'not in' and isinstance(value, list):
             found_ids = [a.id for a in agreements if a.state not in value]
         else:
             raise NotImplementedError(
@@ -276,9 +276,9 @@ class framework_agreement(models.Model):
                          agr.end_date,
                          agr.framework_agreement_pricelist_ids]
             if not all(mandatory) and strict:
-                raise exceptions.Warning(_('Data are missing'
-                                           'Please enter dates'
-                                           ' and price informations'))
+                raise exceptions.Warning(_(
+                    'Data are missing. Please enter dates and prices'
+                ))
         self.write({'draft': False})
 
     @api.model
@@ -334,7 +334,7 @@ class framework_agreement(models.Model):
             # if strict agreement is set on company
             if strict and overlap:
                 raise exceptions.Warning(
-                    _('There allready is a running agreement for '
+                    _('There is already is a running agreement for '
                       'product %s')) % agreement.product_id.name
             # We ensure that there are not multiple agreements
             # for same supplier at same time
