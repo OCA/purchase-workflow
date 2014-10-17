@@ -17,7 +17,6 @@ install:
   - git clone https://github.com/OCA/server-tools -b ${VERSION} $HOME/server-tools
 
 script:
-  - travis_run_flake8
   - travis_run_tests
 
 after_success:
