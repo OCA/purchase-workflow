@@ -18,7 +18,6 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-import warnings
 from operator import attrgetter
 from collections import namedtuple
 from datetime import datetime
@@ -157,17 +156,6 @@ class framework_agreement(models.Model):
         pdate = datetime.strptime(date,
                                   DEFAULT_SERVER_DATE_FORMAT)
         return start <= pdate <= end
-
-    @api.model
-    def _get_self(self):
-        """ Store field function to get current ids
-        Deprecated from version 8.0
-        :returns: list of current ids
-
-        """
-        warnings.warn('_get_self is deprecated use recordser.ids instead',
-                      DeprecationWarning)
-        return self.ids
 
     def _search_state(self, operator, value):
         """Search on the state field by evaluating on all records"""
