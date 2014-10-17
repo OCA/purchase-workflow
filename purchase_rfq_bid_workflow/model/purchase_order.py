@@ -124,7 +124,8 @@ class PurchaseOrder(models.Model):
 
     @api.one
     def copy(self, default=None):
-
+        if default is None:
+            default = {}
         if default.get('type') == 'purchase':
             self = self.with_context(draft_po=True)
 
