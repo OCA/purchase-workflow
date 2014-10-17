@@ -81,7 +81,7 @@ class purchase_order_line(orm.Model):
                 " but there is a running agreement"
                 " with price %s") % (
                     price, agreement.get_price(qty, currency=currency)
-                )
+            )
             raise exceptions.Warning(msg)
         return {}
 

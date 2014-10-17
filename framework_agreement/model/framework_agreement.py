@@ -482,7 +482,7 @@ class framework_agreement(models.Model):
 
     @api.model
     @api.noguess
-    def get_price(self,  qty=0, currency=None):
+    def get_price(self, qty=0, currency=None):
         """Return price negociated for quantity
 
         :param currency: currency record
