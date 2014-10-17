@@ -69,7 +69,6 @@ For running the tests the nose python package is required.
           "workflow/purchase_requisition.xml",
           "data/purchase.cancelreason.yml",
           ],
- "js": ["static/src/js/web_addons.js"],
  "auto_install": False,
  "test": ["test/process/restricted.yml",
           ],
