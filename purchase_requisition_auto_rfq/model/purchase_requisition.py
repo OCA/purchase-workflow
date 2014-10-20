@@ -36,7 +36,6 @@ class PurchaseRequisition(models.Model):
         """
         po_obj = self.env['purchase.order']
         po_line_obj = self.env['purchase.order.line']
-        rfq_ids = []
         seller_products = defaultdict(set)
         for requisition in self:
             products_without_supplier = []
@@ -66,6 +65,5 @@ class PurchaseRequisition(models.Model):
                 for line in purchase.order_line:
                     if line.product_id.id not in sold_products:
                         lines_to_remove |= line
-            rfq_ids += po_ids
         lines_to_remove.unlink()
-        return rfq_ids
+        return True
