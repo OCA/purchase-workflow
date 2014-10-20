@@ -15,10 +15,9 @@
  !python { model: purchase.requisition, id: requisition2 }: |
     from nose.tools import *
     from collections import defaultdict
-    RFQ = self.env['purchase.order']
 
-    rfq_ids = self.auto_rfq_from_suppliers()
-    rfqs = RFQ.browse(rfq_ids)
+    self.auto_rfq_from_suppliers()
+    rfqs = self.purchase_ids
     assert_equal(len(rfqs), 2)
 
     supplier_products = defaultdict(list)
