@@ -1,0 +1,9 @@
+-
+  !context {noupdate: True}
+-
+  Creating the cancel reasons
+-
+  !record {model: purchase.cancel_reason, id: purchase_cancelreason_callforbids_canceled}:
+    name: Call for bids canceled
+    type: rfq
+    nounlink: 1

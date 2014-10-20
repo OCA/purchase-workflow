@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Add intermediate activity 'closed' between 'open' and 'done' -->
+        <record id="act_closed" model="workflow.activity">
+            <field name="wkf_id" ref="purchase_requisition.purchase_requisition_workflow"/>
+            <field name="name">Bids selected</field>
+            <field name="kind">function</field>
+            <field name="action">tender_close()</field>
+        </record>
+        <record id="purchase_requisition.trans_open_done" model="workflow.transition">
+            <field name="act_from" ref="act_closed"/>
+        </record>
+        <record id="trans_open_closed" model="workflow.transition">
+            <field name="act_from" ref="purchase_requisition.act_open"/>
+            <field name="act_to" ref="act_closed"/>
+            <field name="signal">close_bid</field>
+        </record>
+        <record id="trans_closed_open" model="workflow.transition">
+            <field name="act_from" ref="act_closed"/>
+            <field name="act_to" ref="purchase_requisition.act_open"/>
+            <field name="signal">reopen_bid</field>
+        </record>
+
+        <!-- Check there are product lines when confirming the Call for Bids -->
+        <record id="purchase_requisition.trans_draft_sent" model="workflow.transition">
+            <field name="condition">_has_product_lines()</field>
+        </record>
+    </data>
+</openerp>
