@@ -1,0 +1,58 @@
+-
+ I make a tender for 100 blanket and 10 kitchen set.
+
+    Kitchen set are ordered from Supplier A and Supplier B (in supplier info)
+    Blankets are ordered from Supplier B and Supplier C
+
+ I then click a button that will create RFQ based on supplier info.
+
+ I expect to have 3 RFQ
+
+ 1) Supplier A for 10 kitchen sets
+ 2) Supplier B for 10 kitchen sets and 100 blankets
+ 3) Supplier C for 100 blankets
+-
+ Create a purchase requisition for blankets and kitchen sets
+-
+ !record {model: purchase.requisition, id: requisition1}:
+   name: PR01
+   line_ids:
+    - product_id: kitchenset
+      product_qty: 10
+    - product_id: blankets
+      product_qty: 100
+-
+ I generate the RFQ and check that I get three rfq with the correct partners
+ and products. I also check that the requisition has two messages.
+-
+ !python { model: purchase.requisition, id: requisition1 }: |
+    from nose.tools import *
+    from collections import defaultdict
+
+    self.auto_rfq_from_suppliers()
+    rfqs = self.purchase_ids
+    assert_equal(len(rfqs), 3)
+
+    supplier_products = defaultdict(list)
+    for rfq in rfqs:
+        for line in rfq.order_line:
+            supplier_products[rfq.partner_id.id].append((
+                line.product_id.id,
+                line.product_qty,
+            ))
+
+    expected = {
+        ref('base.res_partner_3'): [
+            (ref('kitchenset'), 10.0),
+            (ref('blankets'), 100.0)
+        ],
+        ref('base.res_partner_2'): [
+            (ref('kitchenset'), 10.0)
+        ],
+        ref('base.res_partner_4'): [
+            (ref('blankets'), 100.0)
+        ],
+    }
+
+    assert_equal(expected, dict(supplier_products))
+    assert_equal(len(self.message_ids), 2)

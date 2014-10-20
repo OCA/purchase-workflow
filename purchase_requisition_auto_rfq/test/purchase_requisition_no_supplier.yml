@@ -1,0 +1,48 @@
+-
+ Create a purchase requisition for blankets and tarpaulins
+-
+ !record {model: purchase.requisition, id: requisition2}:
+   name: PR02
+   line_ids:
+    - product_id: tarpaulin
+      product_qty: 10
+    - product_id: blankets
+      product_qty: 100
+-
+ I generate the RFQ and check that I have two RFQ for the blankets. I also
+ check that I got an error message for the tarpaulins.
+-
+ !python { model: purchase.requisition, id: requisition2 }: |
+    from nose.tools import *
+    from collections import defaultdict
+
+    self.auto_rfq_from_suppliers()
+    rfqs = self.purchase_ids
+    assert_equal(len(rfqs), 2)
+
+    supplier_products = defaultdict(list)
+    for rfq in rfqs:
+        for line in rfq.order_line:
+            supplier_products[rfq.partner_id.id].append((
+                line.product_id.id,
+                line.product_qty,
+            ))
+
+    expected = {
+        ref('base.res_partner_3'): [
+            (ref('blankets'), 100.0)
+        ],
+        ref('base.res_partner_4'): [
+            (ref('blankets'), 100.0)
+        ],
+    }
+
+    assert_equal(expected, dict(supplier_products))
+    assert_equal(len(self.message_ids), 3)
+
+    found = False
+    for msg in self.message_ids:
+        if msg.body and u'RFQ generation' in msg.body:
+            assert_in('Tarpaulin', msg.body)
+            found = True
+    assert_true(found, "no message about missing supplier found")
