@@ -25,19 +25,24 @@
  I generate the RFQ and check that I get three rfq with the correct partners
  and products. I also check that the requisition has two messages.
 -
- !python {model: purchase.requisition}: |
+ !python { model: purchase.requisition, id: requisition1 }: |
+    from nose.tools import *
     from collections import defaultdict
-    ids = self.auto_rfq_from_suppliers(cr, uid, [ref('requisition1')], context=context)
-    assert len(set(ids)) == 3, "expected 3 distinct rfq, got %r" % ids
-    rfq_obj = self.pool['purchase.order']
+    RFQ = self.env['purchase.order']
+
+    rfq_ids = self.auto_rfq_from_suppliers()
+    rfqs = RFQ.browse(rfq_ids)
+    assert_equal(len(rfqs), 3)
+
     supplier_products = defaultdict(list)
-    for rfq in rfq_obj.browse(cr, uid, ids, context=context):
+    for rfq in rfqs:
       for line in rfq.order_line:
         supplier_products[rfq.partner_id.id].append(line.product_id.id)
+
     expected = {ref('base.res_partner_3'): [ref('kitchenset'), ref('blankets')],
                 ref('base.res_partner_2'): [ref('kitchenset')],
                 ref('base.res_partner_4'): [ref('blankets')],
                 }
-    assert expected == supplier_products
-    requisition = self.browse(cr, uid, ref('requisition1'), context=context)
-    assert len(requisition.message_ids) == 2, "nb messages: %d" % len(requisition.message_ids)
+
+    assert_equal(expected, supplier_products)
+    assert_equal(len(self.message_ids), 2)
