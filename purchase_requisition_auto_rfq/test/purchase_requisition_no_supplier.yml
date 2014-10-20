@@ -29,7 +29,7 @@
                 ref('base.res_partner_4'): [ref('blankets')],
                 }
 
-    assert_equal(expected, supplier_products)
+    assert_equal(expected, dict(supplier_products))
     assert_equal(len(self.message_ids), 3)
 
     found = False
