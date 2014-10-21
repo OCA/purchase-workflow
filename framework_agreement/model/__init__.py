@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    Author: Nicolas Bessi
-#    Copyright 2013 Camptocamp SA
+#    Copyright 2013, 2014 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -18,13 +18,8 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from . import common
-from . import test_framework_agreement_dates_and_constraints
-from . import test_framework_agreement_consumed_qty
-from . import test_framework_agreement_on_change
-from . import test_framework_agreement_price_list
-
-checks = [test_framework_agreement_dates_and_constraints,
-          test_framework_agreement_consumed_qty,
-          test_framework_agreement_on_change,
-          test_framework_agreement_price_list]
+from . import pricelist
+from . import framework_agreement
+from . import product
+from . import purchase
+from . import company

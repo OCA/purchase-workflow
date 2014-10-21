@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    Author: Nicolas Bessi
-#    Copyright 2013 Camptocamp SA
+#    Copyright 2013, 2014 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -23,6 +23,8 @@ from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
 from openerp.osv import orm, fields
 
 
+# Using new API seem to have side effect on
+# other official addons
 class product_pricelist(orm.Model):
 
     """Add framework agreement behavior on pricelist"""
@@ -38,51 +40,50 @@ class product_pricelist(orm.Model):
 
         """
         p_list = self.browse(cr, uid, pricelist_id, context=context)
-        if p_list.type == 'purchase':
-            return True
-        return False
+        return p_list.type == 'purchase'
 
-    def price_get(self, cr, uid, ids, prod_id, qty, partner=None,
-                  context=None):
+    def price_get(self, cr, uid, ids, prod_id, qty,
+                  partner=None, context=None):
         """Override of price retrival function in order to support framework agreement.
 
-        If it is a supplier price list agrreement will be taken in account
+        If it is a supplier price list agreement will be taken in account
         and use the price of the agreement if required.
 
-        If there is not enough available qty on agreement, standard price will
-        be used.
+        If there is not enough available qty on agreement,
+        standard price will be used.
 
-        This is mabye a faulty design and we should use on_change override
+        This is maybe a faulty design and we should use on_change override
 
         """
         if context is None:
             context = {}
         agreement_obj = self.pool['framework.agreement']
-        res = super(product_pricelist, self).price_get(cr, uid, ids, prod_id,
-                                                       qty, partner=partner,
-                                                       context=context)
+        res = super(product_pricelist, self).price_get(
+            cr, uid, ids, prod_id, qty, partner=partner, context=context)
         if not partner:
             return res
         for pricelist_id in res:
             if (pricelist_id == 'item_id' or not
-                    self._plist_is_agreement(cr, uid, pricelist_id,
-                                             context=context)):
+                    self._plist_is_agreement(cr, uid,
+                                             pricelist_id, context=context)):
                 continue
             now = datetime.strptime(fields.date.today(),
                                     DEFAULT_SERVER_DATE_FORMAT)
             date = context.get('date') or context.get('date_order') or now
-            if context.get('from_agreement_id'):
-                agreement = agreement_obj.browse(cr, uid,
-                                                 context['from_agreement_id'],
-                                                 context=context)
-            else:
-                agreement = agreement_obj.get_product_agreement(
-                    cr, uid, prod_id,
-                    partner, date,
-                    qty=qty, context=context)
-            if agreement is not None:
-                currency = agreement_obj._get_currency(cr, uid, partner,
-                                                       pricelist_id,
+            prod = self.pool['product.product'].browse(cr, uid, prod_id,
                                                        context=context)
+            agreement = agreement_obj.get_product_agreement(
+                cr, uid,
+                prod.product_tmpl_id.id,
+                partner,
+                date,
+                qty=qty,
+                context=context
+            )
+            if agreement is not None:
+                currency = agreement_obj._get_currency(
+                    cr, uid, partner, pricelist_id,
+                    context=context
+                )
                 res[pricelist_id] = agreement.get_price(qty, currency=currency)
         return res

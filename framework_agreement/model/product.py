@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    Author: Nicolas Bessi
-#    Copyright 2013 Camptocamp SA
+#    Copyright 2013, 2014 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -18,14 +18,16 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from openerp import models, fields
 
 
-def id_boilerplate(fun):
-    """Ensure that id agrument passed to on change is not a list"""
-    def wrapper(*args, **kwargs):
-        if isinstance(args[3], (list, tuple)):
-            args = list(args)
-            args[3] = args[3][0] if args[3] else False
-            args = tuple(args)
-        return fun(*args, **kwargs)
-    return wrapper
+class product_product(models.Model):
+    """Add relation to framework agreement"""
+
+    _inherit = "product.template"
+    framework_agreement_ids = fields.One2many(
+        comodel_name='framework.agreement',
+        inverse_name='product_id',
+        string='Framework Agreements (LTA)',
+        copyable=False,
+    )

@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    Author: Nicolas Bessi
-#    Copyright 2013 Camptocamp SA
+#    Copyright 2013, 2014 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -18,18 +18,17 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.osv import orm, fields
+from openerp import models, fields
 
 
-class res_Company(orm.Model):
-
-    """Add a field on company"""
+class res_Company(models.Model):
+    """Adds one_agreement_per_product field on company"""
 
     _inherit = "res.company"
-    _columns = {
-        'one_agreement_per_product': fields.boolean(
-            'One agreement per product',
-            help='If checked you can have only'
-            ' one framework agreement '
-            ' per product at the same time')}
-    # TODO add check on activation deactivation of check box
+
+    one_agreement_per_product = fields.Boolean(
+        'One agreement per product',
+        help='If checked you can have only'
+        ' one framework agreement '
+        ' per product at the same time'
+    )

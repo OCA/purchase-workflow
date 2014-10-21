@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    Author: Nicolas Bessi
-#    Copyright 2013 Camptocamp SA
+#    Copyright 2013, 2014 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -34,30 +34,30 @@ class TestAvailabeQty(test_common.TransactionCase, BaseAgreementTestMixin):
         """ Create a default agreement"""
         super(TestAvailabeQty, self).setUp()
         self.commonsetUp()
-        cr, uid = self.cr, self.uid
         start_date = self.now + timedelta(days=10)
         start_date = start_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
         end_date = self.now + timedelta(days=20)
         end_date = end_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
 
-        agr_id = self.agreement_model.create(cr, uid,
-                                             {'supplier_id': self.supplier_id,
-                                              'product_id': self.product_id,
-                                              'start_date': start_date,
-                                              'end_date': end_date,
-                                              'price': 77,
-                                              'delay': 5,
-                                              'quantity': 200})
-        pl_id = self.agreement_pl_model.create(cr, uid, {
-            'framework_agreement_id': agr_id,
-            'currency_id': self.ref('base.EUR')})
+        self.agreement = self.agreement_model.create(
+            {'supplier_id': self.supplier_id,
+             'product_id': self.product_id,
+             'start_date': start_date,
+             'end_date': end_date,
+             'delay': 5,
+             'quantity': 200}
+        )
+        pl = self.agreement_pl_model.create(
+            {'framework_agreement_id': self.agreement.id,
+             'currency_id': self.ref('base.EUR')}
+        )
 
-        self.agreement_line_model.create(cr, uid, {
-            'framework_agreement_pricelist_id': pl_id,
-            'quantity': 0,
-            'price': 77.0})
-        self.agreement = self.agreement_model.browse(cr, uid, agr_id)
-        self.agreement.open_agreement()
+        self.agreement_line_model.create(
+            {'framework_agreement_pricelist_id': pl.id,
+             'quantity': 0,
+             'price': 77.0}
+        )
+        self.agreement.open_agreement(strict=False)
 
     def test_00_noting_consumed(self):
         """Test non consumption"""
@@ -65,11 +65,15 @@ class TestAvailabeQty(test_common.TransactionCase, BaseAgreementTestMixin):
 
     def test_01_150_consumed(self):
         """ test consumption of 150 units"""
-        cr, uid = self.cr, self.uid
         po = self.make_po_from_agreement(self.agreement, qty=150, delta_days=5)
         wf_service = netsvc.LocalService("workflow")
         wf_service.trg_validate(
-            uid, 'purchase.order', po.id, 'purchase_confirm', cr)
+            self.env.uid,
+            'purchase.order',
+            po.id,
+            'purchase_confirm',
+            self.env.cr
+        )
         po.refresh()
         self.assertIn(po.state, AGR_PO_STATE)
         self.agreement.refresh()

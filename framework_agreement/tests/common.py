@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    Author: Nicolas Bessi
-#    Copyright 2013 Camptocamp SA
+#    Copyright 2013, 2014 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -24,9 +24,7 @@ from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
 
 
 class BaseAgreementTestMixin(object):
-
-    """Class that contain common behavior for all agreement related unit test
-    classes.
+    """Class that contain common behavior for all agreement unit test classes.
 
     We use Mixin because we want to have those behaviors on the various
     unit test subclasses provided by OpenERP in test common.
@@ -34,20 +32,20 @@ class BaseAgreementTestMixin(object):
     """
 
     def commonsetUp(self):
-        cr, uid = self.cr, self.uid
-        self.agreement_model = self.registry('framework.agreement')
-        self.agreement_pl_model = self.registry(
-            'framework.agreement.pricelist')
-        self.agreement_line_model = self.registry('framework.agreement.line')
+        self.agreement_model = self.env['framework.agreement']
+        self.agreement_pl_model = self.env['framework.agreement.pricelist']
+        self.agreement_line_model = self.env['framework.agreement.line']
         self.now = datetime.strptime(fields.date.today(),
                                      DEFAULT_SERVER_DATE_FORMAT)
-        self.product_id = self.registry('product.product').create(cr, uid, {
-            'name': 'test_1',
-            'type': 'product',
-            'list_price': 10.00})
-        self.supplier_id = self.registry('res.partner').create(cr, uid, {
-            'name': 'toto',
-            'supplier': 'True'})
+        self.product_id = self.env['product.template'].create(
+            {'name': 'test_1',
+             'type': 'product',
+             'list_price': 10.00}
+        ).id
+        self.supplier_id = self.env['res.partner'].create(
+            {'name': 'toto',
+             'supplier': 'True'}
+        ).id
 
     def _map_agreement_to_po(self, agreement, delta_days):
         """Map agreement to dict to be used by PO create"""
@@ -56,7 +54,9 @@ class BaseAgreementTestMixin(object):
         term = supplier.property_supplier_payment_term
         term = term.id if term else False
         start_date = datetime.strptime(
-            agreement.start_date, DEFAULT_SERVER_DATE_FORMAT)
+            agreement.start_date,
+            DEFAULT_SERVER_DATE_FORMAT
+        )
         date = start_date + timedelta(days=delta_days)
         data = {}
         data['partner_id'] = supplier.id
@@ -75,7 +75,7 @@ class BaseAgreementTestMixin(object):
         data = {}
         supplier = agreement.supplier_id
         data['product_qty'] = qty
-        data['product_id'] = agreement.product_id.id
+        data['product_id'] = agreement.product_id.product_variant_ids[0].id
         data['product_uom'] = agreement.product_id.uom_id.id
         currency = supplier.property_product_pricelist_purchase.currency_id
         data['price_unit'] = agreement.get_price(qty, currency=currency)
@@ -94,11 +94,10 @@ class BaseAgreementTestMixin(object):
         :returns: purchase order browse record
 
         """
-        cr, uid = self.cr, self.uid
-        po_model = self.registry('purchase.order')
-        po_line_model = self.registry('purchase.order.line')
-        po_id = po_model.create(
-            cr, uid, self._map_agreement_to_po(agreement, delta_days))
-        po_line_model.create(
-            cr, uid, self._map_agreement_to_po_line(agreement, qty, po_id))
-        return po_model.browse(cr, uid, po_id)
+        po_model = self.env['purchase.order']
+        po_line_model = self.env['purchase.order.line']
+        po = po_model.create(self._map_agreement_to_po(agreement,
+                                                       delta_days))
+        po_line_model.create(self._map_agreement_to_po_line(agreement,
+                                                            qty, po.id))
+        return po_model.browse(po.id)
