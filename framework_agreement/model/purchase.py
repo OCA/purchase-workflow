@@ -146,7 +146,7 @@ class purchase_order_line(orm.Model):
                 agreement_id,
                 context=context
             )
-            if agreement.product_id.id != product.product_tmpl_id.id:
+            if agreement.product_id != product:
                 raise exceptions.Warning(_('Product not in agreement'))
             currency = self._currency_get(
                 cr, uid,

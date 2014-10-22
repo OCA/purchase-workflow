@@ -37,7 +37,7 @@ class BaseAgreementTestMixin(object):
         self.agreement_line_model = self.env['framework.agreement.line']
         self.now = datetime.strptime(fields.date.today(),
                                      DEFAULT_SERVER_DATE_FORMAT)
-        self.product_id = self.env['product.template'].create(
+        self.product_id = self.env['product.product'].create(
             {'name': 'test_1',
              'type': 'product',
              'list_price': 10.00}

@@ -52,7 +52,7 @@ class framework_agreement(models.Model):
         required=True
     )
     product_id = fields.Many2one(
-        'product.template',
+        'product.product',
         'Product',
         required=True
     )
@@ -398,7 +398,7 @@ class framework_agreement(models.Model):
         If not enough quantity fallback on the cheapest agreement available
         for quantity.
 
-        :param product_id: product template id
+        :param product_id: id of the product
         :param date: lookup date
         :param qty: lookup qty
         :param currency: currency record to make price convertion
@@ -429,7 +429,7 @@ class framework_agreement(models.Model):
     def get_product_agreement(self, product_id, supplier_id,
                               lookup_dt, qty=None):
         """Get the matching agreement for a given product/supplier at date
-        :param product_id: product template id of the product
+        :param product_id: id of the product
         :param supplier_id: supplier to look for agreement
         :param lookup_dt: date string of the lookup date
         :param qty: quantity that should be available if parameter is
