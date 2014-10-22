@@ -52,7 +52,7 @@ class purchase_order(models.Model):
                 taxes = product.supplier_taxes_id
                 if fp:
                     taxes = fp.map_tax(taxes)
-                line['taxes_id'] = [(6, 0, [tax.id for tax in taxes])]
+                line['taxes_id'] = [(6, 0, taxes.ids)]
             else:
                 lines_without_product.append(line.get('name'))
         res['value']['order_line'] = line_dict
