@@ -17,10 +17,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from collections import defaultdict
-
 from openerp import models, api
-from openerp.tools.translate import _
 
 
 class PurchaseRequisition(models.Model):
@@ -32,7 +29,8 @@ class PurchaseRequisition(models.Model):
         Depending on bid_tendering_mode, generate bids or rfq
         """
         if 'draft_bid' in self.env.context:
-            return super(PurchaseRequisition, self).make_purchase_order(seller_id)
+            _super = super(PurchaseRequisition, self)
+            return _super.make_purchase_order(seller_id)
         res = {}
         requisitions_draft_bid = self.with_context(draft_bid=1).browse()
         requisitions_draft_rfq = self.with_context(draft_bid=0).browse()
@@ -45,4 +43,3 @@ class PurchaseRequisition(models.Model):
             po_info = requisitions.make_purchase_order(seller_id)
             res.update(po_info)
         return res
-
