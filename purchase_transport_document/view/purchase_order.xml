@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record model="ir.ui.view" id="purchase_order_form">
+      <field name="name">purchase_order_form</field>
+      <field name="model">purchase.order</field>
+      <field name="inherit_id" ref="purchase.purchase_order_form"/>
+      <field name="arch" type="xml">
+
+        <notebook position="inside">
+          <page string="Transport Documents">
+            <field name="transport_document_ids"/>
+          </page>
+        </notebook>
+
+      </field>
+    </record>
+  </data>
+</openerp>
