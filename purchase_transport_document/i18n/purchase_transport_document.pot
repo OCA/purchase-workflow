@@ -21,8 +21,8 @@ msgid "Air Waybill"
 msgstr ""
 
 #. module: purchase_transport_document
-#: model:transport.document,name:purchase_transport_document.bill_of_landing
-msgid "Bill of Landing"
+#: model:transport.document,name:purchase_transport_document.bill_of_lading
+msgid "Bill of Lading"
 msgstr ""
 
 #. module: purchase_transport_document
@@ -66,8 +66,8 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: purchase_transport_document
-#: model:transport.document,name:purchase_transport_document.multimodal_bill_of_landing
-msgid "Multimodal Bill of Landing"
+#: model:transport.document,name:purchase_transport_document.multimodal_bill_of_lading
+msgid "Multimodal Bill of Lading"
 msgstr ""
 
 #. module: purchase_transport_document

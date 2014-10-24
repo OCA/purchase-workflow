@@ -6,16 +6,16 @@
       <field name="name">CMR</field>
     </record>
 
-    <record model="transport.document" id="bill_of_landing">
-      <field name="name">Bill of Landing</field>
+    <record model="transport.document" id="bill_of_lading">
+      <field name="name">Bill of Lading</field>
     </record>
 
     <record model="transport.document" id="air_waybill">
       <field name="name">Air Waybill</field>
     </record>
 
-    <record model="transport.document" id="multimodal_bill_of_landing">
-      <field name="name">Multimodal Bill of Landing</field>
+    <record model="transport.document" id="multimodal_bill_of_lading">
+      <field name="name">Multimodal Bill of Lading</field>
     </record>
 
     <record model="transport.document" id="cargo_insurance_certificate">
