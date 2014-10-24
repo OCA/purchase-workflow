@@ -38,6 +38,6 @@ updated and a warning is displayed to the user in this case.
 """,
     'author': 'Julius Network Solutions, Akretion',
     'depends': ['purchase'],
-    'data': ['purchase_view.xml'],
+    'data': [],
     'installable': True,
 }
