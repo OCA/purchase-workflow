@@ -21,7 +21,7 @@ class TestPropagateDocuments(TransactionCase):
 
         self.assertFalse(order_data.get('transport_document_ids'))
 
-    def test_it_propagates_one_documents(self):
+    def test_it_propagates_one_document(self):
 
         self.requisition.transport_document_ids = self.doc1
 
@@ -31,4 +31,16 @@ class TestPropagateDocuments(TransactionCase):
         self.assertEqual(
             order_data['transport_document_ids'],
             [(4, self.doc1.id)]
+        )
+
+    def test_it_propagates_two_documents(self):
+
+        self.requisition.transport_document_ids = self.doc1 | self.doc2
+
+        order_data = self.Requisition._prepare_purchase_order(self.requisition,
+                                                              self.supplier)
+
+        self.assertEqual(
+            order_data['transport_document_ids'],
+            [(4, self.doc1.id), (4, self.doc2.id)]
         )
