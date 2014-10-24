@@ -24,4 +24,4 @@ from openerp import models, fields
 class TransportDocument(models.Model):
     _name = "transport.document"
 
-    name = fields.Char('Name')
+    name = fields.Char('Name', translate=True)
