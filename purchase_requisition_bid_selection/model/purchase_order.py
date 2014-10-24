@@ -41,6 +41,7 @@ class PurchaseOrder(models.Model):
         'Bid partially selected',
         readonly=True,
         help="True if the bid has been partially selected")
+    delivery_remark = fields.Text('Delivery Remarks')
 
     @api.model
     def _prepare_purchase_order(self, requisition, supplier):
@@ -95,6 +96,7 @@ class PurchaseOrderLineClassic(osv.orm.Model):
 class PurchaseOrderLine(models.Model):
     _inherit = 'purchase.order.line'
 
+    remark = fields.Text('Remarks / Conditions')
     requisition_line_id = fields.Many2one(
         'purchase.requisition.line',
         'Call for Bid Line',
