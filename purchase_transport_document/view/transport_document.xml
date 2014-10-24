@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record model="ir.ui.view" id="view_transport_document_form">
+      <field name="name">view_transport_document_form</field>
+      <field name="model">transport.document</field>
+      <field name="arch" type="xml">
+        <form>
+          <group string="Transport Document">
+            <field name="name"/>
+          </group>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_transport_document_tree">
+      <field name="name">view_transport_document_tree</field>
+      <field name="model">transport.document</field>
+      <field name="arch" type="xml">
+        <tree string="Transport Documents">
+          <field name="name"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_transport_document">
+      <field name="name">Transport Documents</field>
+      <field name="res_model">transport.document</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+      name="Transport Documents"
+      parent="purchase.menu_purchase_config_purchase"
+      action="action_transport_document"
+      id="menu_transport_document"/>
+
+  </data>
+</openerp>

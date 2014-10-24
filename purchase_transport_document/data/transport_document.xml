@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data noupdate="1">
+
+    <record model="transport.document" id="CMR">
+      <field name="name">CMR</field>
+    </record>
+
+    <record model="transport.document" id="bill_of_lading">
+      <field name="name">Bill of Lading</field>
+    </record>
+
+    <record model="transport.document" id="air_waybill">
+      <field name="name">Air Waybill</field>
+    </record>
+
+    <record model="transport.document" id="multimodal_bill_of_lading">
+      <field name="name">Multimodal Bill of Lading</field>
+    </record>
+
+    <record model="transport.document" id="cargo_insurance_certificate">
+      <field name="name">Cargo Insurance Certificate</field>
+    </record>
+
+    <record model="transport.document" id="packing_list">
+      <field name="name">Packing list</field>
+    </record>
+
+    <record model="transport.document" id="delivery_note">
+      <field name="name">Delivery Note</field>
+    </record>
+
+  </data>
+</openerp>
