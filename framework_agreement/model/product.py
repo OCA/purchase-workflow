@@ -24,7 +24,7 @@ from openerp import models, fields
 class product_product(models.Model):
     """Add relation to framework agreement"""
 
-    _inherit = "product.template"
+    _inherit = "product.product"
     framework_agreement_ids = fields.One2many(
         comodel_name='framework.agreement',
         inverse_name='product_id',
