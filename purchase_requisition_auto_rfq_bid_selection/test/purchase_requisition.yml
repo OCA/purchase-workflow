@@ -16,9 +16,9 @@
    name: PR01
    bid_tendering_mode: restricted
    line_ids:
-    - product_id: kitchenset
+    - product_id: purchase_requisition_auto_rfq.kitchenset
       product_qty: 10
-    - product_id: blankets
+    - product_id: purchase_requisition_auto_rfq.blankets
       product_qty: 100
 -
  I generate the Bids
@@ -33,9 +33,9 @@
       assert rfq.state == 'draftbid', 'Expected a Draft Bid, got a %s' % rfq.state
       for line in bid.order_line:
         supplier_products[rfq.partner_id.id].append(line.product_id.id)
-    expected = {ref('base.res_partner_3'): [ref('kitchenset'), ref('blankets')],
-                ref('base.res_partner_2'): [ref('kitchenset')],
-                ref('base.res_partner_4'): [ref('blankets')],
+    expected = {ref('base.res_partner_3'): [ref('purchase_requisition_auto_rfq.kitchenset'), ref('blankets')],
+                ref('base.res_partner_2'): [ref('purchase_requisition_auto_rfq.kitchenset')],
+                ref('base.res_partner_4'): [ref('purchase_requisition_auto_rfq.blankets')],
                 }
     assert expected == supplier_products
     requisition = self.browse(cr, uid, ref('requisition1'), context=context)
