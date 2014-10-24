@@ -42,7 +42,7 @@ demo data.
  "data": ["view/purchase_order.xml",
           "view/transport_document.xml",
           "security/ir.model.access.csv",
+          "data/transport_document.xml",
           ],
- "demo": ["demo.xml"],
  "installable": True,
  }
