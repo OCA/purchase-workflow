@@ -112,6 +112,7 @@ class PurchaseRequisition(models.Model):
         'Bid Submission Deadline',
         help="All bids received after that date won't be valid (probably "
              "specific to public sector).")
+    delivery_remark = fields.Text('Delivery Remarks')
 
     @api.multi
     def _has_product_lines(self):
@@ -138,6 +139,7 @@ class PurchaseRequisition(models.Model):
             'payment_term_id': requisition.req_payment_term_id.id,
             'incoterm_id': requisition.req_incoterm_id.id,
             'incoterm_address': requisition.req_incoterm_address,
+            'delivery_remark': requisition.delivery_remark,
         })
         if requisition.pricelist_id:
             values['pricelist_id'] = requisition.pricelist_id.id
@@ -151,8 +153,11 @@ class PurchaseRequisition(models.Model):
                                                     requisition_line,
                                                     purchase_id,
                                                     supplier)
-        vals['price_unit'] = 0
-        vals['requisition_line_id'] = requisition_line.id
+        vals.update(
+            price_unit=0,
+            requisition_line_id=requisition_line.id,
+            remark=requisition_line.remark,
+        )
         return vals
 
     def onchange_dest_address_id(self, cr, uid, ids, dest_address_id,
@@ -196,7 +201,8 @@ class PurchaseRequisition(models.Model):
         return False
 
     def _prepare_po_from_tender(self, cr, uid, tender, context=None):
-        """Give the generated PO the correct type and state"""
+        """Give the generated PO the correct type and state
+        and propagate the Delivery Remarks from tender"""
         result = super(PurchaseRequisition, self)._prepare_po_from_tender(
             cr, uid, tender, context)
         result.update({
@@ -436,7 +442,7 @@ class PurchaseRequisition(models.Model):
 class PurchaseRequisitionLine(models.Model):
     _inherit = "purchase.requisition.line"
 
-    remark = fields.Text('Remark')
+    remark = fields.Text('Remarks / Conditions')
     purchase_line_ids = fields.One2many(
         'purchase.order.line',
         'requisition_line_id',
