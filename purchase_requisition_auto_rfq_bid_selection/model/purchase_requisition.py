@@ -35,7 +35,7 @@ class PurchaseRequisition(models.Model):
         requisitions_draft_bid = self.with_context(draft_bid=1).browse()
         requisitions_draft_rfq = self.with_context(draft_bid=0).browse()
         for requisition in self:
-            if requisition.bid_tendering_mode == 'open':
+            if requisition.bid_tendering_mode == 'restricted':
                 requisitions_draft_bid |= requisition
             else:
                 requisitions_draft_rfq |= requisition

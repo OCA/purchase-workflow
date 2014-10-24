@@ -23,21 +23,22 @@
 -
  I generate the Bids
 -
- !python {model: purchase.requisition}: |
+ !python {model: purchase.requisition, id: requisition1}: |
     from collections import defaultdict
-    ids = self.auto_rfq_from_suppliers(cr, uid, [ref('requisition1')], context=context)
-    assert len(set(ids)) == 3, "expected 3 distinct rfq, got %r" % ids
-    bid_obj = self.pool['purchase.order']
+    self.auto_rfq_from_suppliers()
+    bids = self.purchase_ids
+    assert len(set(bids)) == 3, "expected 3 distinct bid, got %r" % bids
     supplier_products = defaultdict(list)
-    for bid in bid_obj.browse(cr, uid, ids, context=context):
-      assert rfq.state == 'draftbid', 'Expected a Draft Bid, got a %s' % rfq.state
+    for bid in bids:
+      assert bid.state == 'draftbid', 'Expected a Draft Bid, got a %s' % bid.state
       for line in bid.order_line:
-        supplier_products[rfq.partner_id.id].append(line.product_id.id)
-    expected = {ref('base.res_partner_3'): [ref('purchase_requisition_auto_rfq.kitchenset'), ref('blankets')],
-                ref('base.res_partner_2'): [ref('purchase_requisition_auto_rfq.kitchenset')],
-                ref('base.res_partner_4'): [ref('purchase_requisition_auto_rfq.blankets')],
-                }
+        supplier_products[bid.partner_id.id].append(line.product_id.id)
+    expected = {
+       ref('base.res_partner_3'): [ref('purchase_requisition_auto_rfq.kitchenset'),
+                                   ref('purchase_requisition_auto_rfq.blankets')],
+       ref('base.res_partner_2'): [ref('purchase_requisition_auto_rfq.kitchenset')],
+       ref('base.res_partner_4'): [ref('purchase_requisition_auto_rfq.blankets')],
+       }
     assert expected == supplier_products
-    requisition = self.browse(cr, uid, ref('requisition1'), context=context)
-    assert len(requisition.message_ids) == 2, "nb messages: %d" % len(requisition.message_ids)
+    assert len(self.message_ids) == 2, "nb messages: %d" % len(requisition.message_ids)
 
