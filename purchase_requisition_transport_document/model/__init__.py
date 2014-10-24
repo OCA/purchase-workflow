@@ -1,2 +1,2 @@
 # -*- coding: utf-8 -*-
-import purchase_requisition
+from . import purchase_requisition
