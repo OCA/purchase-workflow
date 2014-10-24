@@ -34,7 +34,7 @@ Documents in Purchase Orders. Other modules can depend on this simple one to
 use the same documents.
 
 This way it is possible to specify which documents have to be supplied with the
-purchase. Possible examples (CMR, Bill of Langand and others) are provided as
+purchase. Possible examples (CMR, Bill of Landing and others) are provided as
 demo data.
 """,
  "depends": ["purchase",
