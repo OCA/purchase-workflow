@@ -59,6 +59,7 @@ provides a library to integrate it with any other model easily
           'view/purchase_view.xml',
           'view/company_view.xml',
           'security/multicompany.xml',
+          'security/groups.xml',
           'security/ir.model.access.csv'],
  'demo': [],
  'test': [],
