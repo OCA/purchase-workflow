@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Purchase Fiscal Position Update module for OpenERP
+#    Purchase Fiscal Position Update module for Odoo
 #    Copyright (C) 2011-2014 Julius Network Solutions SARL <contact@julius.fr>
 #    Copyright (C) 2014 Akretion (http://www.akretion.com)
 #
@@ -38,7 +38,6 @@ updated and a warning is displayed to the user in this case.
 """,
     'author': 'Julius Network Solutions, Akretion',
     'depends': ['purchase'],
-    'data': ['purchase_view.xml'],
+    'data': [],
     'installable': True,
-    'active': False,
 }
