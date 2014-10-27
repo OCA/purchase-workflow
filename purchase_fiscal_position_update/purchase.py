@@ -28,7 +28,7 @@ from openerp import models, api, _
 class purchase_order(models.Model):
     _inherit = "purchase.order"
 
-    @api.onchange('fiscal_position', 'order_line')
+    @api.onchange('fiscal_position')
     def fiscal_position_change(self):
         '''Function executed by the on_change on the fiscal_position field
         of a purchase order ; it updates taxes on all order lines'''
