@@ -124,7 +124,7 @@ class purchase_order_line_master(orm.Model):
             digits_compute=dp.get_precision('Product Price')),
         'product_qty': fields.float(
             'Quantity',
-            digits_compute=dp.get_precision('Product UoM'),
+            digits_compute=dp.get_precision('Product Unit of Measure'),
             required=True),
         'product_uom': fields.many2one(
             'product.uom', 'Product UOM', required=True),
