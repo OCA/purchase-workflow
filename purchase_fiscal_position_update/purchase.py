@@ -28,38 +28,26 @@ from openerp import models, api, _
 class purchase_order(models.Model):
     _inherit = "purchase.order"
 
-    @api.multi
-    def fiscal_position_change(self, fiscal_position_id, order_line):
+    @api.onchange('fiscal_position', 'order_line')
+    def fiscal_position_change(self):
         '''Function executed by the on_change on the fiscal_position field
         of a purchase order ; it updates taxes on all order lines'''
-        fp_obj = self.env['account.fiscal.position']
         res = {'value': {}}
-        line_dict = self.resolve_2many_commands('order_line', order_line)
         lines_without_product = []
-        if fiscal_position_id:
-            fp = fp_obj.browse(fiscal_position_id)
-        else:
-            fp = False
-        for line in line_dict:
-            # Reformat line_dict so as to be compatible with what is
-            # accepted in res['value']
-            for key, value in line.iteritems():
-                if isinstance(value, tuple) and len(value) == 2:
-                    line[key] = value[0]
-            if line.get('product_id'):
-                product = self.env['product.product'].browse(
-                    line.get('product_id'))
-                taxes = product.supplier_taxes_id
-                if fp:
-                    taxes = fp.map_tax(taxes)
-                line['taxes_id'] = [(6, 0, taxes.ids)]
-            else:
-                lines_without_product.append(line.get('name'))
-        res['value']['order_line'] = line_dict
+        if self.order_line:
+            for line in self.order_line:
+                fp = self.fiscal_position
+                if line.product_id:
+                    taxes = line.product_id.supplier_taxes_id
+                    if fp:
+                        taxes = fp.map_tax(taxes)
+                    line.taxes_id = [(6, 0, taxes.ids)]
+                else:
+                    lines_without_product.append(line.name)
 
         if lines_without_product:
             res['warning'] = {'title': _('Warning')}
-            if len(lines_without_product) == len(line_dict):
+            if len(lines_without_product) == len(self.order_line):
                 res['warning']['message'] = _(
                     "The Purchase Order Lines were not updated to the new "
                     "Fiscal Position because they don't have Products.\n"
