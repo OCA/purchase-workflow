@@ -1,0 +1,44 @@
+-
+ I make a tender for 100 blanket and 10 kitchen set.
+
+    Kitchen set are ordered from Supplie A and Supplier B (in supplier info)
+    Blanket are ordered from Supplier B and Supplier C
+
+ I then click a button that will create RFQ based on supplier info, I expect to have 3 RFQ
+
+ 1) Supplier A for 10 kitchen sets
+ 2) Supplier B for 10 kitchen sets and 1000 blanket
+ 3) Supplier C for 100 blanket
+-
+ Create a purchase requisition for blankets and kitchen sets
+-
+ !record {model: purchase.requisition, id: requisition1}:
+   name: PR01
+   bid_tendering_mode: restricted
+   line_ids:
+    - product_id: purchase_requisition_auto_rfq.kitchenset
+      product_qty: 10
+    - product_id: purchase_requisition_auto_rfq.blankets
+      product_qty: 100
+-
+ I generate the Bids
+-
+ !python {model: purchase.requisition, id: requisition1}: |
+    from collections import defaultdict
+    self.auto_rfq_from_suppliers()
+    bids = self.purchase_ids
+    assert len(set(bids)) == 3, "expected 3 distinct bid, got %r" % bids
+    supplier_products = defaultdict(list)
+    for bid in bids:
+      assert bid.state == 'draftbid', 'Expected a Draft Bid, got a %s' % bid.state
+      for line in bid.order_line:
+        supplier_products[bid.partner_id.id].append(line.product_id.id)
+    expected = {
+       ref('base.res_partner_3'): [ref('purchase_requisition_auto_rfq.kitchenset'),
+                                   ref('purchase_requisition_auto_rfq.blankets')],
+       ref('base.res_partner_2'): [ref('purchase_requisition_auto_rfq.kitchenset')],
+       ref('base.res_partner_4'): [ref('purchase_requisition_auto_rfq.blankets')],
+       }
+    assert expected == supplier_products
+    assert len(self.message_ids) == 2, "nb messages: %d" % len(requisition.message_ids)
+

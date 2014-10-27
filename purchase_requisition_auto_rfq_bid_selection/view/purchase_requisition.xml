@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <record model="ir.ui.view" id="purchase_requisition_form_inherit">
+      <field name="name">purchase.requisition.form</field>
+      <field name="model">purchase.requisition</field>
+      <field name="inherit_id" ref="purchase_requisition_auto_rfq.purchase_requisition_form_inherit"/>
+      <field name="arch" type="xml">
+        <xpath expr="//button[@name='auto_rfq_from_suppliers']"
+               position="attributes">
+          <attribute name="string">Generate Bids from suppliers</attribute>
+          <attribute name="attrs">{'invisible': ['|','|',('bid_tendering_mode', '=', 'open'),('line_ids','=',[]),('state','!=','in_progress')]}</attribute>
+        </xpath>
+      </field>
+    </record>
+  </data>
+</openerp>
