@@ -26,9 +26,6 @@
  "license": "AGPL-3",
  'complexity': "normal",
  "images": [],
- "description": """Compatibility module for purchase_requisition_auto_rfq and
-    purchase_requisition_bid_selection.
- """,
  "depends": ["purchase_requisition_auto_rfq",
              "purchase_requisition_bid_selection",
              ],
