@@ -55,6 +55,7 @@
                 <field name="delay"/>
                 <field name="quantity"/>
                 <field name="available_quantity"/>
+                <field name="shipment_origin_id"/>
               </group>
             </group>
 
@@ -93,6 +94,9 @@
                 </field>
                 <div class="oe_clear"/>
                 <field name="delivery_remarks" class="oe_inline" placeholder="Delivery Remarks"/>
+              </page>
+              <page string="Clauses">
+                <field name="clauses" nolabel="1" placeholder="Clauses"/>
               </page>
             </notebook>
           </sheet>

@@ -111,6 +111,10 @@ class framework_agreement(models.Model):
 
     delivery_remarks = fields.Text('Delivery Remarks')
 
+    clauses = fields.Html('Clauses')
+
+    shipment_origin_id = fields.Many2one('res.partner', 'Shipment Origin')
+
     @api.model
     def _check_running_date(self, agreement):
         """ Returns agreement state based on date.
