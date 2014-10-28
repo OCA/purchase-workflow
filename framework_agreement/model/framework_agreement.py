@@ -99,6 +99,8 @@ class framework_agreement(models.Model):
         inverse_name='framework_agreement_id'
     )
 
+    payment_term_id = fields.Many2one('account.payment.term', 'Payment Term')
+
     @api.model
     def _check_running_date(self, agreement):
         """ Returns agreement state based on date.
