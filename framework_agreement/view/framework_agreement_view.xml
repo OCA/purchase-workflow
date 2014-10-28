@@ -47,6 +47,8 @@
                 <field name="company_id" groups="base.group_multi_company" widget="selection"/>
                 <field name="supplier_id" context="{'search_default_supplier': True, 'default_supplier': True, 'default_customer': False}" domain="[('supplier','=',True)]"/>
                 <field name="payment_term_id" options="{'no_open': True, 'no_create': True}"/>
+                <field name="incoterm_id" widget="selection" groups="base.group_user"/>
+                <field name="incoterm_address"/>
                 <field name="product_id"/>
               </group>
               <group>
@@ -89,6 +91,8 @@
                     </notebook>
                   </form>
                 </field>
+                <div class="oe_clear"/>
+                <field name="delivery_remarks" class="oe_inline" placeholder="Delivery Remarks"/>
               </page>
             </notebook>
           </sheet>
