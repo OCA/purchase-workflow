@@ -93,7 +93,7 @@
                   </form>
                 </field>
                 <div class="oe_clear"/>
-                <field name="delivery_remarks" class="oe_inline" placeholder="Delivery Remarks"/>
+                <field name="delivery_remark" class="oe_inline" placeholder="Delivery Remarks"/>
               </page>
               <page string="Clauses">
                 <field name="clauses" nolabel="1" placeholder="Clauses"/>

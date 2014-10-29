@@ -109,7 +109,7 @@ class framework_agreement(models.Model):
 
     incoterm_address = fields.Char('Incoterm Address')
 
-    delivery_remarks = fields.Text('Delivery Remarks')
+    delivery_remark = fields.Text('Delivery Remarks')
 
     clauses = fields.Html('Clauses')
 
