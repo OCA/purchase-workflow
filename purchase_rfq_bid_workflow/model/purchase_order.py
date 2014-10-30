@@ -94,9 +94,6 @@ class PurchaseOrder(models.Model):
         required=True,
         readonly=True,
         default=_default_type)
-    consignee_id = fields.Many2one(
-        'res.partner', 'Consignee',
-        help="The person to whom the shipment is to be delivered.")
     incoterm_address = fields.Char(
         'Incoterms Place',
         help="Incoterms Place of Delivery. "
