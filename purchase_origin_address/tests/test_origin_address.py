@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 #
-#    Author: Yannick Vaucher
+#    Author: Yannick Vaucher, Leonardo Pistone
 #    Copyright 2014 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -27,27 +27,36 @@ class TestOriginAddress(common.TransactionCase):
     """
 
     def setUp(self):
+        """This setup is repeated on a new transaction for every test.
+        No need to duplicate test data then.
+        """
         super(TestOriginAddress, self).setUp()
 
         model_data = self.env['ir.model.data']
-        self.ref = model_data.xmlid_to_res_id
-        self.part1_id = self.ref('base.res_partner_1')
-        self.part12_id = self.ref('base.res_partner_12')
-        self.order1_vals = {
-            'partner_id': self.part1_id,
-            'location_id': self.ref('stock.stock_location_stock')
-            }
+        ref = model_data.xmlid_to_res_id
+        self.part1_id = ref('base.res_partner_1')
+        self.part12_id = ref('base.res_partner_12')
+        PO = self.env['purchase.order']
+        POL = self.env['purchase.order.line']
 
-        self.order_line1_vals = {
-            'product_id': self.ref('product.product_product_33'),
+        po_vals = {
+            'partner_id': self.part1_id,
+            'location_id': ref('stock.stock_location_stock')
+        }
+
+        res = PO.onchange_partner_id(self.part1_id)
+        po_vals.update(res['value'])
+        self.po = PO.create(po_vals)
+
+        POL.create({
+            'order_id': self.po.id,
+            'product_id': ref('product.product_product_33'),
             'name': "[HEAD-USB] Headset USB",
             'product_qty': 24,
-            'product_uom': self.ref('product.product_uom_unit'),
+            'product_uom': ref('product.product_uom_unit'),
             'date_planned': fields.Datetime.now(),
             'price_unit': 65,
-            }
-
-        self.PurchaseOrder = self.env['purchase.order']
+        })
 
     def test_create_picking_with_default_origin(self):
         """Create a picking in from purchase order and check
@@ -55,20 +64,9 @@ class TestOriginAddress(common.TransactionCase):
 
         """
 
-        po_vals = self.order1_vals.copy()
-        res = self.PurchaseOrder.onchange_partner_id(self.part1_id)
-        po_vals.update(res['value'])
-
-        po1 = self.PurchaseOrder.create(po_vals)
-
-        pol_vals = self.order_line1_vals.copy()
-        pol_vals['order_id'] = po1.id
-        self.env['purchase.order.line'].create(pol_vals)
-
-        po1.signal_workflow('purchase_confirm')
-
-        self.assertEquals(po1.picking_ids.origin_address_id,
-                          po1.origin_address_id)
+        self.po.signal_workflow('purchase_confirm')
+        self.assertEquals(self.po.picking_ids.origin_address_id,
+                          self.po.origin_address_id)
 
     def test_create_picking_without_origin(self):
         """Create a picking in from purchase order
@@ -77,21 +75,9 @@ class TestOriginAddress(common.TransactionCase):
 
         """
 
-        po_vals = self.order1_vals.copy()
-        res = self.PurchaseOrder.onchange_partner_id(self.part1_id)
-        po_vals.update(res['value'])
-
-        po2 = self.PurchaseOrder.create(po_vals)
-
-        po2.origin_address_id = False
-
-        pol_vals = self.order_line1_vals.copy()
-        pol_vals['order_id'] = po2.id
-        self.env['purchase.order.line'].create(pol_vals)
-
-        po2.signal_workflow('purchase_confirm')
-
-        self.assertFalse(po2.picking_ids.origin_address_id.id)
+        self.po.origin_address_id = False
+        self.po.signal_workflow('purchase_confirm')
+        self.assertFalse(self.po.picking_ids.origin_address_id.id)
 
     def test_create_picking_with_other_origin(self):
         """Create a picking in from purchase order and check
@@ -100,19 +86,7 @@ class TestOriginAddress(common.TransactionCase):
 
         """
 
-        po_vals = self.order1_vals.copy()
-        res = self.PurchaseOrder.onchange_partner_id(self.part1_id)
-        po_vals.update(res['value'])
-
-        po3 = self.PurchaseOrder.create(po_vals)
-
-        po3.origin_address_id = self.part12_id
-
-        pol_vals = self.order_line1_vals.copy()
-        pol_vals['order_id'] = po3.id
-        self.env['purchase.order.line'].create(pol_vals)
-
-        po3.signal_workflow('purchase_confirm')
-
-        self.assertEquals(po3.picking_ids.origin_address_id,
-                          po3.origin_address_id)
+        self.po.origin_address_id = self.part12_id
+        self.po.signal_workflow('purchase_confirm')
+        self.assertEquals(self.po.picking_ids.origin_address_id,
+                          self.po.origin_address_id)
