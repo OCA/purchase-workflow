@@ -65,6 +65,8 @@ class PurchaseRequisition(models.Model):
         [('open', 'Open'),
          ('restricted', 'Restricted')],
         'Call for Bids Mode',
+        required=True,
+        default='open',
         help="- Restricted : you select yourself the bidders and generate a "
              "RFQ for each of those. \n- Open : anybody can bid (you have to "
              "advertise the call for bids) and you directly encode the bids "
