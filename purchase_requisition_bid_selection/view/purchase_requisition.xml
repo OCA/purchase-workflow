@@ -95,7 +95,6 @@
         </xpath>
 
         <field name="picking_type_id" position="before">
-          <field name="consignee_id" attrs="{'readonly': [('state','not in',('draft'))]}"/>
           <field name="dest_address_id" on_change="onchange_dest_address_id(dest_address_id, picking_type_id)" attrs="{'readonly': [('state','not in',('draft'))]}"/>
         </field>
 
