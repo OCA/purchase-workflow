@@ -82,10 +82,6 @@ class PurchaseRequisition(models.Model):
              "be opened \nall at the same time after an opening ceremony "
              "(probably specific to public sector).",
         default='open')
-    consignee_id = fields.Many2one(
-        'res.partner',
-        'Consignee',
-        help="Person responsible of delivery")
     dest_address_id = fields.Many2one(
         'res.partner',
         'Delivery Address')
@@ -136,7 +132,6 @@ class PurchaseRequisition(models.Model):
                        )._prepare_purchase_order(requisition, supplier)
         values.update({
             'dest_address_id': requisition.dest_address_id.id,
-            'consignee_id': requisition.consignee_id.id,
             'bid_validity': requisition.req_validity,
             'payment_term_id': requisition.req_payment_term_id.id,
             'incoterm_id': requisition.req_incoterm_id.id,

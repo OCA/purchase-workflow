@@ -56,10 +56,6 @@
           <field name="incoterm_address"/>
         </xpath>
 
-        <field name="picking_type_id" position="before">
-          <field name="consignee_id"/>
-        </field>
-
         <field name="picking_type_id" position="attributes">
           <attribute name="on_change">onchange_picking_type_id(picking_type_id)</attribute>
         </field>
