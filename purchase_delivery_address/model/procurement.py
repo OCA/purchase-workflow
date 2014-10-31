@@ -14,27 +14,20 @@
 #
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-{'name': 'Purchase Delivery Address',
- 'summary': 'Allows to manage the delivery address on a purchase',
- 'version': '1.0',
- 'author': 'Camptocamp',
- 'category': 'Purchase Management',
- 'license': 'AGPL-3',
- 'complexity': 'easy',
- 'images': [],
- 'depends': ['purchase',
-             'sale_stock',
-             ],
- 'demo': [],
- 'data': ['view/purchase_order.xml',
-          'view/stock_picking.xml',
-          ],
- 'auto_install': False,
- 'test': [
-     'test/setup_user.yml',
-     'test/setup_product.yml',
-     'test/setup_dropshipping.xml',
-     'test/test_propagate_address.yml',
- ],
- 'installable': True,
- }
+
+
+from openerp import models, api
+
+
+class ProcurementOrder(models.Model):
+    _inherit = 'procurement.order'
+
+    def is_dropship(self):
+        return self.purchase_id.location_id.usage == 'customer'
+
+    @api.multi
+    def make_po(self):
+        res = super(ProcurementOrder, self).make_po()
+        if self.is_dropship:
+            self.purchase_id.delivery_address_id = self.partner_dest_id
+        return res
