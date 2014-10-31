@@ -177,9 +177,25 @@ class purchase_order(models.Model):
         return self.env['product.pricelist'].browse(
             pricelist_id).currency_id
 
+    @api.multi
+    def _propagate_fields(self):
+        agreement = self.framework_agreement_id
+
+        if agreement.payment_term_id:
+            self.payment_term_id = agreement.payment_term_id
+
+        if agreement.incoterm_id:
+            self.incoterm_id = agreement.incoterm_id
+
+        if agreement.incoterm_address:
+            self.incoterm_address = agreement.incoterm_address
+
     @api.onchange('framework_agreement_id')
     def onchange_agreement(self):
         res = {}
+
+        self._propagate_fields()
+
         if isinstance(self.id, models.NewId):
             return res
         if self.framework_agreement_id:

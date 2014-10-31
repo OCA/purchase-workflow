@@ -99,6 +99,22 @@ class framework_agreement(models.Model):
         inverse_name='framework_agreement_id'
     )
 
+    payment_term_id = fields.Many2one('account.payment.term', 'Payment Term')
+
+    incoterm_id = fields.Many2one(
+        'stock.incoterms',
+        'Incoterm',
+        help="International Commercial Terms are a series of predefined "
+        "commercial terms used in international transactions.")
+
+    incoterm_address = fields.Char('Incoterm Address')
+
+    delivery_remark = fields.Text('Delivery Remarks')
+
+    clauses = fields.Html('Clauses')
+
+    shipment_origin_id = fields.Many2one('res.partner', 'Shipment Origin')
+
     @api.model
     def _check_running_date(self, agreement):
         """ Returns agreement state based on date.

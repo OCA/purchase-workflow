@@ -46,12 +46,16 @@
               <group>
                 <field name="company_id" groups="base.group_multi_company" widget="selection"/>
                 <field name="supplier_id" context="{'search_default_supplier': True, 'default_supplier': True, 'default_customer': False}" domain="[('supplier','=',True)]"/>
+                <field name="payment_term_id" options="{'no_open': True, 'no_create': True}"/>
+                <field name="incoterm_id" widget="selection" groups="base.group_user"/>
+                <field name="incoterm_address"/>
                 <field name="product_id"/>
               </group>
               <group>
                 <field name="delay"/>
                 <field name="quantity"/>
                 <field name="available_quantity"/>
+                <field name="shipment_origin_id"/>
               </group>
             </group>
 
@@ -88,6 +92,11 @@
                     </notebook>
                   </form>
                 </field>
+                <div class="oe_clear"/>
+                <field name="delivery_remark" class="oe_inline" placeholder="Delivery Remarks"/>
+              </page>
+              <page string="Clauses">
+                <field name="clauses" nolabel="1" placeholder="Clauses"/>
               </page>
             </notebook>
           </sheet>

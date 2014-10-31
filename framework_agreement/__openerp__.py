@@ -19,7 +19,7 @@
 #
 ##############################################################################
 {'name': 'Framework Agreement',
- 'version': '1.0',
+ 'version': '1.1',
  'author': 'Camptocamp',
  'maintainer': 'Camptocamp',
  'category': 'Purchase Management',
@@ -59,6 +59,7 @@ provides a library to integrate it with any other model easily
           'view/purchase_view.xml',
           'view/company_view.xml',
           'security/multicompany.xml',
+          'security/groups.xml',
           'security/ir.model.access.csv'],
  'demo': [],
  'test': [],
