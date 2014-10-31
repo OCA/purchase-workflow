@@ -20,7 +20,3 @@
 #
 
 from . import test_origin_address
-
-checks = [
-    test_origin_address,
-]
