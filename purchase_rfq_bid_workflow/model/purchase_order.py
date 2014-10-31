@@ -54,6 +54,11 @@ class PurchaseOrderClassic(osv.orm.Model):
             "in exception.",
             select=True,
             copy=False),
+        # Adds track_visibility
+        'bid_validity': osv.fields.date(
+            'Bid Valid Until',
+            track_visibility='always',
+            help="Date on which the bid expired"),
     }
 
     def _default_state(self, cr, uid, context=None):

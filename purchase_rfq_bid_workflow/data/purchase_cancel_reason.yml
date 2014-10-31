@@ -24,6 +24,10 @@
     name: Bid not selected
     type: rfq
 -
+  !record {model: purchase.cancel_reason, id: purchase_cancel_reason_bid_validity_expired}:
+    name: Bid validity date expired
+    type: rfq
+-
   !record {model: purchase.cancel_reason, id: purchase_cancel_reason_purchase_canceled}:
     name: PO canceled
     type: purchase
