@@ -94,14 +94,6 @@
           <attribute name="invisible">1</attribute>
         </xpath>
 
-        <field name="picking_type_id" position="before">
-          <field name="dest_address_id" on_change="onchange_dest_address_id(dest_address_id, picking_type_id)" attrs="{'readonly': [('state','not in',('draft'))]}"/>
-        </field>
-
-        <field name="picking_type_id" position="attributes">
-          <attribute name="on_change">onchange_picking_type_id(picking_type_id)</attribute>
-        </field>
-
         <separator string="Terms and Conditions" position="replace"/>
 
         <field name="description" position="replace"/>
