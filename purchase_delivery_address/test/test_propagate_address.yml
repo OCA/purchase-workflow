@@ -24,6 +24,6 @@
     self.env['procurement.order'].run_scheduler()
     proc = self.order_line[0].procurement_ids
     assert_equal(
-        proc.purchase_id.delivery_address_id.id,
+        proc.purchase_id.dest_address_id.id,
         ref('base.res_partner_3'),
     )

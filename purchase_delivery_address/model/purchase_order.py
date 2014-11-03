@@ -15,32 +15,34 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from openerp import models, fields, api
+from openerp import models, api
 
 
 class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
 
-    delivery_address_id = fields.Many2one('res.partner', 'Delivery Address')
-
-    @api.onchange('delivery_address_id')
-    def _onchange_delivery_address(self):
+    @api.multi
+    def onchange_dest_address_id(self, dest_address_id):
         """If we enter a delivery address, normally it is a dropshipping-like
         situation, so we choose an appropriate picking type.
 
         """
-        if self.delivery_address_id:
+        res = super(PurchaseOrder, self).onchange_dest_address_id(
+            dest_address_id)
+        if dest_address_id:
             new_picktype = self.env['stock.picking.type'].search([
                 ('default_location_src_id.usage', '=', 'supplier'),
                 ('default_location_dest_id.usage', '=', 'customer'),
             ], limit=1)
 
             if new_picktype:
-                self.picking_type_id = new_picktype
+                res['value']['picking_type_id'] = new_picktype.id
+
+        return res
 
     def action_picking_create(self):
         res = super(PurchaseOrder, self).action_picking_create()
         for order in self:
             order.picking_ids.write(
-                {'delivery_address_id': order.delivery_address_id.id})
+                {'delivery_address_id': order.dest_address_id.id})
         return res
