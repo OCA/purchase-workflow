@@ -4,12 +4,14 @@ python:
   - "2.7"
 
 env:
+    - VERSION="8.0" ODOO_REPO="odoo/odoo" INCLUDE="purchase_delivery_address"
+    - VERSION="8.0" ODOO_REPO="OCA/OCB" INCLUDE="purchase_delivery_address"
     - VERSION="8.0" ODOO_REPO="odoo/odoo" INCLUDE="framework_agreement"
     - VERSION="8.0" ODOO_REPO="OCA/OCB" INCLUDE="framework_agreement"
     - VERSION="8.0" ODOO_REPO="odoo/odoo" INCLUDE="purchase_rfq_bid_workflow,purchase_requisition_bid_selection,purchase_requisition_auto_rfq,purchase_requisition_auto_rfq_bid_selection"
     - VERSION="8.0" ODOO_REPO="OCA/OCB" INCLUDE="purchase_rfq_bid_workflow,purchase_requisition_bid_selection,purchase_requisition_auto_rfq,purchase_requisition_auto_rfq_bid_selection"
-    - VERSION="8.0" ODOO_REPO="odoo/odoo" EXCLUDE="framework_agreement,purchase_rfq_bid_workflow,purchase_requisition_bid_selection,purchase_requisition_auto_rfq,purchase_requisition_auto_rfq_bid_selection"
-    - VERSION="8.0" ODOO_REPO="OCA/OCB" EXCLUDE="framework_agreement,purchase_rfq_bid_workflow,purchase_requisition_bid_selection,purchase_requisition_auto_rfq,purchase_requisition_auto_rfq_bid_selection"
+    - VERSION="8.0" ODOO_REPO="odoo/odoo" EXCLUDE="purchase_delivery_address,framework_agreement,purchase_rfq_bid_workflow,purchase_requisition_bid_selection,purchase_requisition_auto_rfq,purchase_requisition_auto_rfq_bid_selection"
+    - VERSION="8.0" ODOO_REPO="OCA/OCB" EXCLUDE="purchase_delivery_address,framework_agreement,purchase_rfq_bid_workflow,purchase_requisition_bid_selection,purchase_requisition_auto_rfq,purchase_requisition_auto_rfq_bid_selection"
 
 virtualenv:
   system_site_packages: true
