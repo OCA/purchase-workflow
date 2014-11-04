@@ -102,6 +102,17 @@
           <attribute name="on_change">onchange_picking_type_id(picking_type_id)</attribute>
         </field>
 
+        <notebook position="inside">
+          <page string="Deliveries">
+            <separator string="Delivery Remarks"/>
+            <field name="delivery_remark"/>
+          </page>
+        </notebook>
+
+        <xpath expr="//field[@name='line_ids']/form//field[@name='company_id']" position="after">
+          <field name="remark"/>
+        </xpath>
+
       </field>
     </record>
   </data>
