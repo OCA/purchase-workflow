@@ -24,7 +24,7 @@
  'author': "Camptocamp",
  'category': "Purchase Management",
  'license': "AGPL-3",
- 'complexity': "normal",
+ 'complexity': "easy",
  'images': [],
  'depends': ['purchase_requisition',
              ],
