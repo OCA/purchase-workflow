@@ -54,8 +54,10 @@ class TestDeliveryAddress(common.TransactionCase):
         self.po.signal_workflow('purchase_confirm')
         self.assertFalse(self.po.picking_ids.delivery_address_id.id)
 
-    def test_propagate_chosen_address_to_picking(self):
+    def test_propagate_supplier_and_chosen_address_to_picking(self):
         self.po.dest_address_id = self.part12_id
         self.po.signal_workflow('purchase_confirm')
         self.assertEquals(self.po.picking_ids.delivery_address_id,
                           self.po.dest_address_id)
+        self.assertEquals(self.po.picking_ids.partner_id,
+                          self.po.partner_id)

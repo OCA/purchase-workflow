@@ -43,6 +43,8 @@ class PurchaseOrder(models.Model):
     def action_picking_create(self):
         res = super(PurchaseOrder, self).action_picking_create()
         for order in self:
-            order.picking_ids.write(
-                {'delivery_address_id': order.dest_address_id.id})
+            order.picking_ids.write({
+                'partner_id': order.partner_id.id,
+                'delivery_address_id': order.dest_address_id.id
+            })
         return res

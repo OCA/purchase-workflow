@@ -5,17 +5,24 @@ This module adds a delivery address to the purchase order, which is
 automatically propagated to a corresponding field in the generated picking.
 
 Some of this logic was present in the core, but is not functioning properly.
-In any case, this module makes the existing field in the purchase order
-visible, adding some functionality and tests. The destination address on the
-Picking is new.
+More specifically, in the core, a dropshipping purchase order has two fields:
+partner_id is used for the supplier, and dest_address_id contains the address
+of the customer. This works, except that the address is not visible because of
+odoo/odoo#2950).
 
-Moreover, when a sale order generates a purchase in drop shipping mode, the
-generated purchase has the delivery address set.
+On the other hand, the picking has only one field: the partner_id. By default,
+it takes the delivery address of the PO if there is one, or else the supplier.
+The stock.move also has a partner_id field that is filled with the same
+partner.  To make things even more confusing, in v7 the partner_id of the move
+is the supplier, while the partner_id of the picking is the customer address.
 
-The idea is that this way dropshipping pickings have a trace of the desired
-delivery address. The partner_id field of the picking is already used for the
-supplier.
+This means that in v8 with core modules, we do not clearly see the supplier and
+the customer address of a picking. Those two fields are important to handle
+dropshipping.
 
+With this module, in dropshipping mode the generated picking will have the
+supplier in the partner_id field, and the customer address in the new
+delivery_address_id field.
 
 Contributors
 ------------
