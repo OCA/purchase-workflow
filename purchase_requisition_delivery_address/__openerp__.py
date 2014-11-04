@@ -27,7 +27,6 @@
  'complexity': "normal",
  'images': [],
  'depends': ['purchase_requisition',
-             'purchase_delivery_address',
              ],
  'demo': [],
  'data': ['view/purchase_requisition.xml'],
