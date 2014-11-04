@@ -45,6 +45,11 @@ class PurchaseRequisition(models.Model):
             if self.picking_type_id in types:
                 return
             picking_type_id = types[0].id
+        elif self.dest_address_id.customer:
+            # if destination is not for a warehouse address,
+            # we set dropshipping picking type
+            ref = 'stock_dropshipping.picking_type_dropship'
+            picking_type_id = self.env['ir.model.data'].xmlid_to_res_id(ref)
         else:
             raise exceptions.Warning(
                 'No picking types were fourd on warehouse. Please verify you '

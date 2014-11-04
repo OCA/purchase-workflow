@@ -27,6 +27,7 @@
  'complexity': "easy",
  'images': [],
  'depends': ['purchase_requisition',
+             'stock_dropshipping',
              ],
  'demo': [],
  'data': ['view/purchase_requisition.xml'],
