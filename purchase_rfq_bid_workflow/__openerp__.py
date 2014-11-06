@@ -20,7 +20,8 @@
 
 {"name": "Purchase RFQ Bid workflow",
  "summary": "Improve the purchase workflow to manage RFQ, Bids, and Orders",
- "version": "0.2",
+ "post_init_hook": 'fix_inconsistent_initial_types',
+ "version": "0.3",
  "author": "Camptocamp",
  "category": "Purchase Management",
  "license": "AGPL-3",
