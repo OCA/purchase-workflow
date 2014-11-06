@@ -11,18 +11,18 @@
 from osv import orm, fields
 
 
-class SaleOrder(orm.Model):
+class PurchaseOrder(orm.Model):
     _inherit = 'purchase.order'
 
     def _prepare_order_line_move(self, cr, uid, order, order_line, picking_id,
                                  context=None):
-        res = super(SaleOrder, self)._prepare_order_line_move(
+        res = super(PurchaseOrder, self)._prepare_order_line_move(
             self, cr, uid, order, order_line, picking_id, context=None)
         res['prodlot_id'] = order_line.prodlot_id.id
         return res
 
 
-class SaleOrderLine(orm.Model):
+class PurchaseOrderLine(orm.Model):
     _inherit = 'purchase.order.line'
 
     _columns = {
