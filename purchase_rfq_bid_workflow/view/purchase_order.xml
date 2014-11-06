@@ -56,10 +56,6 @@
           <field name="incoterm_address"/>
         </xpath>
 
-        <field name="picking_type_id" position="attributes">
-          <attribute name="on_change">onchange_picking_type_id(picking_type_id)</attribute>
-        </field>
-
         <button name="action_cancel" position="attributes">
           <!-- approved,except_picking,except_invoice removed -->
           <!-- draftbid,draftpo added -->
