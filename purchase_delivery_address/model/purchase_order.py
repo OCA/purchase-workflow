@@ -29,10 +29,14 @@ class PurchaseOrder(models.Model):
         """
         res = super(PurchaseOrder, self).onchange_dest_address_id(
             dest_address_id)
+        my_company = self.env['res.users'].browse(self.env.uid).company_id
         if dest_address_id:
             new_picktype = self.env['stock.picking.type'].search([
                 ('default_location_src_id.usage', '=', 'supplier'),
                 ('default_location_dest_id.usage', '=', 'customer'),
+                '|',
+                ('warehouse_id.company_id', '=', my_company.id),
+                ('warehouse_id.company_id', '=', False),
             ], limit=1)
 
             if new_picktype:
