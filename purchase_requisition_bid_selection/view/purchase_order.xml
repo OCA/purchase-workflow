@@ -21,6 +21,14 @@
           <field name="delivery_remark"/>
         </xpath>
 
+        <field name="notes" position="replace"/>
+
+        <notebook position="inside">
+          <page string="Terms and Conditions">
+            <field name="notes" placeholder="Terms and conditions..."/>
+          </page>
+        </notebook>
+
       </field>
     </record>
 
