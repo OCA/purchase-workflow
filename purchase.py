@@ -17,7 +17,7 @@ class PurchaseOrder(orm.Model):
     def _prepare_order_line_move(self, cr, uid, order, order_line, picking_id,
                                  context=None):
         res = super(PurchaseOrder, self)._prepare_order_line_move(
-            self, cr, uid, order, order_line, picking_id, context=None)
+            cr, uid, order, order_line, picking_id, context=context)
         res['prodlot_id'] = order_line.prodlot_id.id
         return res
 

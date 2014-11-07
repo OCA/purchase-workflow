@@ -34,6 +34,7 @@
         'stock',
         'sale_embed_configuration'],
     'data': [
+        'purchase_view.xml',
         ],
     'installable': True,
     'auto_install': False,
