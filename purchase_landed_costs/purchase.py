@@ -502,7 +502,7 @@ class purchase_order(orm.Model):
             string='Landed Costs Total Untaxed'),
         'quantity_total': fields.function(
             _quantity_total,
-            digits_compute=dp.get_precision('Product UoM'),
+            digits_compute=dp.get_precision('Product Unit of Measure'),
             string='Total Quantity'),
     }
 
