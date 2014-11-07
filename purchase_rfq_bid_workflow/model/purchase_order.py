@@ -263,24 +263,6 @@ class PurchaseOrder(models.Model):
                           subtype="mail.mt_comment")
         return super(PurchaseOrder, self).print_quotation()
 
-    def onchange_picking_type_id(self, cr, uid, ids, picking_type_id,
-                                 context=None):
-        PickType = self.pool['stock.picking.type']
-
-        result = super(PurchaseOrder, self).onchange_picking_type_id(
-            cr, uid, ids, picking_type_id, context)
-
-        if picking_type_id:
-            pick_type = PickType.browse(cr, uid, picking_type_id,
-                                        context=context)
-
-            if pick_type.warehouse_id and pick_type.warehouse_id.partner_id:
-                dest_address_id = pick_type.warehouse_id.partner_id.id
-
-                result['value']['dest_address_id'] = dest_address_id
-
-        return result
-
     @api.multi
     def po_tender_requisition_selected(self):
         """Workflow function that write state 'bid selected'"""
