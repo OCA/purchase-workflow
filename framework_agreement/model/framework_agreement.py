@@ -401,10 +401,7 @@ class framework_agreement(models.Model):
                        ('draft', '=', False)]
         if qty:
             search_args.append(('available_quantity', '>=', qty))
-        agreement_ids = self.search(search_args)
-        if agreement_ids:
-            return agreement_ids
-        return None
+        return self.search(search_args)
 
     @api.model
     def get_cheapest_agreement_for_qty(self, product_id, date, qty,
@@ -429,7 +426,8 @@ class framework_agreement(models.Model):
                                                      qty)
         if not agreements:
             return Cheapest(None, None)
-        agreements.sort(key=lambda x: x.get_price(qty, currency=currency))
+        agreements = sorted(agreements,
+                            key=lambda x: x.get_price(qty, currency=currency))
         enough = True
         cheapest_agreement = None
         for agr in agreements:
