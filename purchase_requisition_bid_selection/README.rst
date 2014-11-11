@@ -28,3 +28,8 @@ of each generated RFQ. This is used for the bids comparison in order to compare
 bid lines and group then properly.
 
 For running the tests the nose python package is required.
+
+.. warning::
+   Version prior to 0.4 was defining a `dest_address_id` field on Purchase
+   Requisition. This field has been extracted in module
+   `purchase_requisition_delivery_address`
