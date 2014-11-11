@@ -102,10 +102,17 @@
           <attribute name="on_change">onchange_picking_type_id(picking_type_id)</attribute>
         </field>
 
+        <separator string="Terms and Conditions" position="replace"/>
+
+        <field name="description" position="replace"/>
+
         <notebook position="inside">
           <page string="Deliveries">
             <separator string="Delivery Remarks"/>
             <field name="delivery_remark"/>
+          </page>
+          <page string="Terms and Conditions">
+            <field name="description" attrs="{'readonly': [('state','not in',('draft'))]}" placeholder="Terms and Conditions..."/>
           </page>
         </notebook>
 

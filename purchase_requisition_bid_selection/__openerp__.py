@@ -19,7 +19,7 @@
 #
 
 {"name": "Purchase Requisition Bid Selection",
- "version": "0.2",
+ "version": "0.3",
  "author": "Camptocamp",
  "license": "AGPL-3",
  "category": "Purchase Management",
