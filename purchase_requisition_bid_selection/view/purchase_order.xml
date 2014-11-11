@@ -54,7 +54,7 @@
       <field name="inherit_id" ref="purchase.purchase_order_line_form"/>
       <field name="arch" type="xml">
         <field name="name" position="after">
-          <separator string="Remarks"/>
+          <separator string="Remarks / Conditions"/>
           <field name="remark"/>
         </field>
       </field>
