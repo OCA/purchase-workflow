@@ -36,9 +36,9 @@ class PurchaseRequisition(models.Model):
         requisitions_draft_rfq = self.with_context(draft_bid=0).browse()
         for requisition in self:
             if requisition.bid_tendering_mode == 'restricted':
-                requisitions_draft_bid |= requisition
-            else:
                 requisitions_draft_rfq |= requisition
+            else:
+                requisitions_draft_bid |= requisition
         for requisitions in (requisitions_draft_bid, requisitions_draft_rfq):
             po_info = requisitions.make_purchase_order(seller_id)
             res.update(po_info)
