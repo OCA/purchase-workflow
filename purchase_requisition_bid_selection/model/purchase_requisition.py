@@ -82,9 +82,6 @@ class PurchaseRequisition(models.Model):
              "be opened \nall at the same time after an opening ceremony "
              "(probably specific to public sector).",
         default='open')
-    dest_address_id = fields.Many2one(
-        'res.partner',
-        'Delivery Address')
     req_incoterm_id = fields.Many2one(
         'stock.incoterms',
         'Requested Incoterms',
@@ -131,7 +128,6 @@ class PurchaseRequisition(models.Model):
         values = super(PurchaseRequisition, self
                        )._prepare_purchase_order(requisition, supplier)
         values.update({
-            'dest_address_id': requisition.dest_address_id.id,
             'bid_validity': requisition.req_validity,
             'payment_term_id': requisition.req_payment_term_id.id,
             'incoterm_id': requisition.req_incoterm_id.id,
@@ -156,35 +152,6 @@ class PurchaseRequisition(models.Model):
             remark=requisition_line.remark,
         )
         return vals
-
-    def onchange_dest_address_id(self, cr, uid, ids, dest_address_id,
-                                 picking_type_id, context=None):
-        PickType = self.pool['stock.picking.type']
-        type_ids = PickType.search(cr, uid, [
-            ('warehouse_id.partner_id', '=', dest_address_id)
-        ], context=context)
-
-        if type_ids:
-            if picking_type_id not in type_ids:
-                picking_type_id = type_ids[0]
-        else:
-            picking_type_id = False
-        return {'value': {'picking_type_id': picking_type_id}}
-
-    def onchange_picking_type_id(self, cr, uid, ids, picking_type_id,
-                                 context=None):
-        PickType = self.pool['stock.picking.type']
-
-        dest_address_id = False
-
-        if picking_type_id:
-            pick_type = PickType.browse(cr, uid, picking_type_id,
-                                        context=context)
-
-            if pick_type.warehouse_id and pick_type.warehouse_id.partner_id:
-                dest_address_id = pick_type.warehouse_id.partner_id.id
-
-        return {'value': {'dest_address_id': dest_address_id}}
 
     def trigger_validate_po(self, cr, uid, po_id, context=None):
         wf_service = netsvc.LocalService("workflow")
