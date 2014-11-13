@@ -22,7 +22,7 @@
         </xpath>
 
         <xpath expr="//sheet//button[@name='open_product_line']" position="attributes">
-          <!-- add the state 'done' -->
+          <!-- add the state 'closed' -->
           <attribute name="attrs">{'invisible': ['|', ('state', 'not in', ('open','closed','done')), ('exclusive', '=', 'exclusive')]}</attribute>
         </xpath>
 
