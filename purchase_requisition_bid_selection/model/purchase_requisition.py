@@ -21,7 +21,7 @@
 from openerp import models, fields, api, osv
 from openerp.exceptions import except_orm
 import openerp.osv.expression as expression
-from openerp.tools.safe_eval import safe_eval as eval
+from openerp.tools.safe_eval import safe_eval
 from openerp.tools.translate import _
 from openerp import netsvc
 from openerp.tools.float_utils import float_compare
@@ -321,7 +321,7 @@ class PurchaseRequisition(models.Model):
         """
         ActWindow = self.env['ir.actions.act_window']
         res = ActWindow.for_xml_id('purchase', 'purchase_rfq')
-        res['domain'] = expression.AND([eval(res.get('domain', [])),
+        res['domain'] = expression.AND([safe_eval(res.get('domain', [])),
                                        [('requisition_id', 'in', self.ids)]])
         # FIXME: need to disable create - temporarily set as invisible in view
         return res
@@ -334,7 +334,7 @@ class PurchaseRequisition(models.Model):
         """
         ActWindow = self.env['ir.actions.act_window']
         res = ActWindow.for_xml_id('purchase', 'purchase_form_action')
-        res['domain'] = expression.AND([eval(res.get('domain', [])),
+        res['domain'] = expression.AND([safe_eval(res.get('domain', [])),
                                        [('requisition_id', 'in', self.ids)]])
         return res
 
