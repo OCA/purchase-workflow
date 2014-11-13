@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
-import transport_document
-import purchase_order
+from . import transport_document
+from . import purchase_order

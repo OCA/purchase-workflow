@@ -1,2 +1,2 @@
 # -*- coding: utf-8 -*-
-import purchase_requisition_partner
+from . import purchase_requisition_partner
