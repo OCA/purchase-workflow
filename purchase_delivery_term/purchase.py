@@ -252,7 +252,7 @@ class purchase_order(orm.Model):
             'purchase.order.line.master', 'order_id', 'Master Order Lines',
             readonly=True,
             states={'draft': [('readonly', False)]}),
-        }
+    }
 
     def copy(self, cr, uid, id, default=None, context=None):
         if not default:
