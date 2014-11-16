@@ -2,7 +2,7 @@ This module manages your purchase expenses
 ==========================================
 
 The functionality of this module is to provide a way to manage your purchase
-costs more easily than the official module (stock_landed_cost) and allow to
+costs more easily than the official module (*stock_landed_cost*) and allow to
 distribute them with a lot of methods.
 
 Main features:
@@ -23,8 +23,8 @@ To-do:
 
 Contributors:
 -------------
-Joaquín Gutierrez <joaquing.pedrosa@gmail.com>
-Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
+* Joaquín Gutierrez <joaquing.pedrosa@gmail.com>
+* Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 
 Icon:
 -----
