@@ -28,35 +28,6 @@
     'category': 'Purchase Management',
     'website': 'http://www.gutierrezweb.es,http://www.odoomrp.com',
     'summary': 'Purchase cost distribution',
-    'description': """
-This module manages your purchase expenses
-==========================================
-
-The functionality of this module is to provide a way to manage your purchase
-costs more easily than the official module (stock_landed_cost) and allow to
-distribute them with a lot of methods.
-
-Main features:
---------------
-* Possibility to assign landed cost afterwards in a separate screen.
-* Management of expense types with preconfigured calculation methods.
-* Distribution of costs based on weight, volume, product price, etc.
-* Types marked as default are automatically added to each new purchase
-  distribution.
-* Management orders shopping expenses associated with one or more entry slips.
-* Upgrade cost price of products based on the costs.
-* Currently only one type of upgrade cost is available: direct upgrade.
-
-To-do:
-------
-* Ability to add expenses in multi currency.
-* Purchase distribution report.
-
-Icon:
------
-Thanks to Visual Pharm http://icons8.com
-""",
-
     'depends': [
         'stock',
         'purchase',
