@@ -20,18 +20,17 @@
 #
 ##############################################################################
 
-from openerp.osv import orm
+from openerp import models, api
 
 
-class PurchaseOrder(orm.Model):
+class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
 
-    def onchange_partner_id(self, cr, uid, ids, partner_id, context=None):
-        res = super(PurchaseOrder, self).onchange_partner_id(
-            cr, uid, ids, partner_id, context=context)
+    @api.multi
+    def onchange_partner_id(self, partner_id):
+        res = super(PurchaseOrder, self).onchange_partner_id(partner_id)
         if partner_id:
-            partner = self.pool['res.partner'].browse(
-                cr, uid, partner_id, context=context)
+            partner = self.env['res.partner'].browse(partner_id)
             if partner.supplier_invoice_method:
                 res['value']['invoice_method'] = \
                     partner.supplier_invoice_method
