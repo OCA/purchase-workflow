@@ -304,13 +304,25 @@ class PurchaseCostDistributionLine(models.Model):
             self.move_id.picking_id.name, self.move_id.product_id.display_name,
             self.move_id.product_qty)
 
+    @api.one
+    @api.depends('move_id', 'move_id.product_id')
+    def _get_product_id(self):
+        # Cannot be done via related field due to strange bug in update chain
+        self.product_id = self.move_id.product_id.id
+
+    @api.one
+    @api.depends('move_id', 'move_id.product_qty')
+    def _get_product_qty(self):
+        # Cannot be done via related field due to strange bug in update chain
+        self.product_qty = self.move_id.product_qty
+
     name = fields.Char(
         string='Name', compute='_compute_display_name')
     distribution = fields.Many2one(
         comodel_name='purchase.cost.distribution', string='Cost distribution',
         ondelete='cascade')
     move_id = fields.Many2one(
-        comodel_name='stock.move', string='Picking line', ondelete="set null")
+        comodel_name='stock.move', string='Picking line', ondelete="restrict")
     purchase_line_id = fields.Many2one(
         comodel_name='purchase.order.line', string='Purchase order line',
         related='move_id.purchase_line_id')
@@ -324,9 +336,9 @@ class PurchaseCostDistributionLine(models.Model):
         'stock.picking', string='Picking', related='move_id.picking_id')
     product_id = fields.Many2one(
         comodel_name='product.product', string='Product', store=True,
-        related='move_id.product_id', readonly=True)
+        compute='_get_product_id')
     product_qty = fields.Float(
-        string='Quantity', related='move_id.product_qty', store=True)
+        string='Quantity', compute='_get_product_qty', store=True)
     product_uom = fields.Many2one(
         comodel_name='product.uom', string='Unit of measure',
         related='move_id.product_uom')
