@@ -67,7 +67,7 @@ class product_product(orm.Model):
         for product in self.browse(cr, user, ids, context=context):
             res[product.id] = u'\n'.join(
                 [x.product_code for x in product.seller_ids if x.product_code]
-                ) or ''
+            ) or ''
         return res
 
     def _partner_ref2_search(self, cr, user, obj, name, args, context=None):

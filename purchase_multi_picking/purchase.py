@@ -47,7 +47,7 @@ class purchase_order_line(orm.Model):
             'Group',
             help="This is used by 'multi-picking' to group order lines in one "
             "picking"),
-        }
+    }
 
 
 class purchase_order(orm.Model):
