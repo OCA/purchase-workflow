@@ -27,7 +27,7 @@
  "images": [],
  "depends": ["purchase_requisition",
              "stock",  # For incoterms
-             "purchase_rfq_bid_workflow",  # for field incoterms place
+             "purchase_rfq_bid_workflow",
              ],
  "demo": [],
  "data": ["wizard/modal.xml",
