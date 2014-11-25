@@ -50,9 +50,15 @@ class PurchaseRequisitionClassic(osv.orm.Model):
         'purchase_ids': osv.fields.one2many(
             'purchase.order',
             'requisition_id',
-            'Purchase Orders',
+            'RFQs and Bids',
             states={'done': [('readonly', True)]},
             domain=[('type', 'in', ('rfq', 'bid'))]),
+        'generated_order_ids': osv.fields.one2many(
+            'purchase.order',
+            'requisition_id',
+            'Generated Purchase Orders',
+            states={'done': [('readonly', True)]},
+            domain=[('type', '=', 'purchase')]),
     }
 
 
