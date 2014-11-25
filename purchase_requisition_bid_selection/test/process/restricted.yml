@@ -205,7 +205,8 @@
         assert_equal('cancel', bid.state)
         assert_equal('bid', bid.type)
 -
-  And I should see 2 generated purchase orders in draft
+  And I should see 2 generated purchase orders in draft that can be validated
+  manually.
 -
   !python {model: purchase.requisition, id: req1}: |
     from nose.tools import *
@@ -214,3 +215,4 @@
     for po in self.generated_order_ids:
         assert_equal('draftpo', po.state)
         assert_equal('purchase', po.type)
+        assert_is(False, po.keep_in_draft)
