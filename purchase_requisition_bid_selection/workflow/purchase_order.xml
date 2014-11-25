@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record id="purchase.trans_draft_confirmed" model="workflow.transition">
+      <field name="condition">not keep_in_draft</field>
+    </record>
+
+  </data>
+</openerp>

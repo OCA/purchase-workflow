@@ -41,6 +41,11 @@ class PurchaseOrder(models.Model):
         'Bid partially selected',
         readonly=True,
         help="True if the bid has been partially selected")
+    keep_in_draft = fields.Boolean(
+        'Prevent validation of purchase order.',
+        help="Technical field used to prevent the PO that is automatically "
+        "generated from a Tender to be validated. It is checked on the "
+        "workflow transition.")
     delivery_remark = fields.Text('Delivery Remarks')
 
     @api.model

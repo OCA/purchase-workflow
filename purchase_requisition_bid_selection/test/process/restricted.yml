@@ -195,8 +195,22 @@
   !python {model: purchase.requisition}: |
     self.generate_po(cr, uid, [ref("req1")])
 -
-  I check the POs
+  Then I should see 2 cancelled bids
 -
   !python {model: purchase.requisition, id: req1}: |
     from nose.tools import *
-    assert_equal(len(self.purchase_ids), 2)
+
+    assert_equal(2, len(self.purchase_ids))
+    for bid in self.purchase_ids:
+        assert_equal('cancel', bid.state)
+        assert_equal('bid', bid.type)
+-
+  And I should see 2 generated purchase orders in draft
+-
+  !python {model: purchase.requisition, id: req1}: |
+    from nose.tools import *
+
+    assert_equal(2, len(self.generated_order_ids))
+    for po in self.generated_order_ids:
+        assert_equal('draftpo', po.state)
+        assert_equal('purchase', po.type)

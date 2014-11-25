@@ -178,6 +178,7 @@ class PurchaseRequisition(models.Model):
         result.update({
             'type': 'purchase',
             'state': 'draftpo',
+            'keep_in_draft': True,
         })
         return result
 
@@ -192,7 +193,9 @@ class PurchaseRequisition(models.Model):
                     not po_line.order_id.bid_partial):
                 po_line.order_id.bid_partial = True
 
-        return super(PurchaseRequisition, self).generate_po()
+        result = super(PurchaseRequisition, self).generate_po()
+        self.generated_order_ids.write({'keep_in_draft': False})
+        return result
 
     @api.model
     def quotation_selected(self, quotation):

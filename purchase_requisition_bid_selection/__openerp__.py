@@ -34,6 +34,7 @@
           "wizard/purchase_requisition_partner_view.xml",
           "view/purchase_requisition.xml",
           "view/purchase_order.xml",
+          "workflow/purchase_order.xml",
           "workflow/purchase_requisition.xml",
           "data/purchase.cancelreason.yml",
           ],
