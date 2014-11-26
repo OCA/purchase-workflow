@@ -50,9 +50,15 @@ class PurchaseRequisitionClassic(osv.orm.Model):
         'purchase_ids': osv.fields.one2many(
             'purchase.order',
             'requisition_id',
-            'Purchase Orders',
+            'RFQs and Bids',
             states={'done': [('readonly', True)]},
             domain=[('type', 'in', ('rfq', 'bid'))]),
+        'generated_order_ids': osv.fields.one2many(
+            'purchase.order',
+            'requisition_id',
+            'Generated Purchase Orders',
+            states={'done': [('readonly', True)]},
+            domain=[('type', '=', 'purchase')]),
     }
 
 
@@ -172,6 +178,7 @@ class PurchaseRequisition(models.Model):
         result.update({
             'type': 'purchase',
             'state': 'draftpo',
+            'keep_in_draft': True,
         })
         return result
 
@@ -186,7 +193,9 @@ class PurchaseRequisition(models.Model):
                     not po_line.order_id.bid_partial):
                 po_line.order_id.bid_partial = True
 
-        return super(PurchaseRequisition, self).generate_po()
+        result = super(PurchaseRequisition, self).generate_po()
+        self.generated_order_ids.write({'keep_in_draft': False})
+        return result
 
     @api.model
     def quotation_selected(self, quotation):
@@ -242,7 +251,7 @@ class PurchaseRequisition(models.Model):
 
     @api.one
     def _get_po_to_cancel(self):
-        """Get the list of PO/RFQ that can be canceled on RFQ
+        """Get the list of PO/RFQ that can be cancelled on RFQ
 
         :param callforbids: `purchase.requisition` record
 
@@ -298,7 +307,7 @@ class PurchaseRequisition(models.Model):
     @api.multi
     def tender_cancel(self):
         """
-        Cancel call for bids and try to cancelrelated  RFQs/PO
+        Cancel call for bids and try to cancel related RFQs/PO
 
         """
         reason_id = self._get_default_reason()

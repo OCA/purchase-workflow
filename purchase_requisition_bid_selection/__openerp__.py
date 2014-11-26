@@ -19,7 +19,7 @@
 #
 
 {"name": "Purchase Requisition Bid Selection",
- "version": "0.4",
+ "version": "0.5",
  "author": "Camptocamp",
  "license": "AGPL-3",
  "category": "Purchase Management",
@@ -27,13 +27,14 @@
  "images": [],
  "depends": ["purchase_requisition",
              "stock",  # For incoterms
-             "purchase_rfq_bid_workflow",  # for field incoterms place
+             "purchase_rfq_bid_workflow",
              ],
  "demo": [],
  "data": ["wizard/modal.xml",
           "wizard/purchase_requisition_partner_view.xml",
           "view/purchase_requisition.xml",
           "view/purchase_order.xml",
+          "workflow/purchase_order.xml",
           "workflow/purchase_requisition.xml",
           "data/purchase.cancelreason.yml",
           ],
