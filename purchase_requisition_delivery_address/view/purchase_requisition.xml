@@ -12,6 +12,10 @@
           <field name="dest_address_id" attrs="{'readonly': [('state','not in',('draft'))]}"/>
         </field>
 
+        <field name="picking_type_id" position="attributes">
+          <attribute name="string">Deliver To</attribute>
+        </field>
+
       </field>
     </record>
   </data>
