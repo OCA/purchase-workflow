@@ -58,12 +58,14 @@ class PurchaseRequisition(models.Model):
 
     @api.onchange('picking_type_id')
     def onchange_picking_type_id(self):
-        dest_address_id = False
+        """If the picking type has an address, use it.
 
+        We cannot empty the address if one is not found, because that gives a
+        short circuit with the onchange of the address.
+
+        """
         if self.picking_type_id:
             pick_type = self.picking_type_id
 
             if pick_type.warehouse_id.partner_id:
-                dest_address_id = pick_type.warehouse_id.partner_id.id
-
-        self.dest_address_id = dest_address_id
+                self.dest_address_id = pick_type.warehouse_id.partner_id.id
