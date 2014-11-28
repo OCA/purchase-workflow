@@ -9,6 +9,7 @@
       <field name="arch" type="xml">
 
         <field name="dest_address_id" position="attributes">
+          <attribute name="string">Delivery Address</attribute>
           <!-- clear attrs and required to workaround odoo/odoo#2950 -->
           <attribute name="attrs">{}</attribute>
           <attribute name="required">{}</attribute>
