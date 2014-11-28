@@ -52,7 +52,7 @@ class PurchaseRequisition(models.Model):
             picking_type_id = self.env['ir.model.data'].xmlid_to_res_id(ref)
         else:
             raise exceptions.Warning(
-                'No picking types were fourd on warehouse. Please verify you '
+                'No picking types were found on warehouse. Please verify you '
                 'have set an address on warehouse.')
         self.picking_type_id = picking_type_id
 
