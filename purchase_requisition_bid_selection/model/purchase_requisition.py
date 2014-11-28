@@ -295,7 +295,7 @@ class PurchaseRequisition(models.Model):
         """Return default cancel reason"""
         IrModelData = self.env['ir.model.data']
         ref = ('purchase_requisition_bid_selection'
-               '.purchase_cancelreason_rfq_canceled')
+               '.purchase_cancelreason_callforbids_canceled')
         reason_id = IrModelData.xmlid_to_res_id(ref)
         return reason_id
 
