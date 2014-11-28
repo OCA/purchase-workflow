@@ -16,7 +16,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 {'name': 'Purchase Delivery Address',
  'summary': 'Allows to manage the delivery address on a purchase',
- 'version': '1.0',
+ 'version': '1.1',
  'author': 'Camptocamp',
  'category': 'Purchase Management',
  'license': 'AGPL-3',

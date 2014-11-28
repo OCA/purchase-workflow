@@ -20,7 +20,7 @@
 #
 {'name': "Purchase Requisition - Delivery Address",
  'summary': "Adds delivery address on Purchase requisition",
- 'version': "0.1",
+ 'version': "0.2",
  'author': "Camptocamp",
  'category': "Purchase Management",
  'license': "AGPL-3",
