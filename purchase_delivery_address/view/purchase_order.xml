@@ -9,9 +9,16 @@
       <field name="arch" type="xml">
 
         <field name="dest_address_id" position="attributes">
-          <!-- workaround odoo/odoo#2950 -->
+          <!-- clear attrs and required to workaround odoo/odoo#2950 -->
           <attribute name="attrs">{}</attribute>
           <attribute name="required">{}</attribute>
+          <!-- the "1" means: ignore old-api onchange, use the new-api one -->
+          <attribute name="on_change" eval="1"/>
+        </field>
+
+        <field name="picking_type_id" position="attributes">
+          <!-- the "1" means: ignore old-api onchange, use the new-api one -->
+          <attribute name="on_change" eval="1"/>
         </field>
 
       </field>

@@ -15,34 +15,59 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from openerp import models, api
+from openerp import models, api, exceptions
 
 
 class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
 
-    @api.multi
-    def onchange_dest_address_id(self, dest_address_id):
-        """If we enter a delivery address, normally it is a dropshipping-like
-        situation, so we choose an appropriate picking type.
+    @api.onchange('dest_address_id')
+    def new_onchange_dest_address_id(self):
+        """Find a picking type from the address
+
+        If the address can be an internal warehouse or a customer, the picking
+        type is changed accordingly. This intentionally overrides the original
+        without super, and should be consistent with the module
+        purchase_requisition_delivery_address.
 
         """
-        res = super(PurchaseOrder, self).onchange_dest_address_id(
-            dest_address_id)
-        my_company = self.env['res.users'].browse(self.env.uid).company_id
-        if dest_address_id:
-            new_picktype = self.env['stock.picking.type'].search([
-                ('default_location_src_id.usage', '=', 'supplier'),
-                ('default_location_dest_id.usage', '=', 'customer'),
-                '|',
-                ('warehouse_id.company_id', '=', my_company.id),
-                ('warehouse_id.company_id', '=', False),
-            ], limit=1)
+        PickType = self.env['stock.picking.type']
+        types = PickType.search([
+            ('warehouse_id.partner_id', '=', self.dest_address_id.id)])
 
-            if new_picktype:
-                res['value']['picking_type_id'] = new_picktype.id
+        if types:
+            if self.picking_type_id in types:
+                return
+            picking_type_id = types[0].id
+        elif self.dest_address_id.customer:
+            # if destination is not for a warehouse address,
+            # we set dropshipping picking type
+            ref = 'stock_dropshipping.picking_type_dropship'
+            picking_type_id = self.env['ir.model.data'].xmlid_to_res_id(ref)
+        else:
+            raise exceptions.Warning(
+                'No picking types were found on warehouse. Please verify you '
+                'have set an address on warehouse.')
+        self.picking_type_id = picking_type_id
 
-        return res
+    @api.onchange('picking_type_id')
+    def onchange_picking_type_id(self):
+        """If the picking type has an address, use it.
+
+        We cannot empty the address if one is not found, because that gives a
+        short circuit with the onchange of the address.
+
+        """
+
+        if self.picking_type_id:
+            pick_type = self.picking_type_id
+
+            if pick_type.warehouse_id.partner_id:
+                self.dest_address_id = pick_type.warehouse_id.partner_id.id
+
+            if pick_type.default_location_dest_id:
+                self.location_id = pick_type.default_location_dest_id
+                self.related_location_id = pick_type.default_location_dest_id
 
     def action_picking_create(self):
         res = super(PurchaseOrder, self).action_picking_create()
