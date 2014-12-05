@@ -7,7 +7,7 @@
             <field name="inherit_id" ref="purchase.purchase_order_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='order_line']/tree/field[@name='name']" position="after">
-                    <field name="prodlot_id"/>
+                    <field name="lot_id"/>
                 </xpath>
             </field>
         </record>
@@ -17,7 +17,7 @@
             <field name="inherit_id" ref="purchase.purchase_order_line_form2"/>
                 <field name="arch" type="xml">
                     <xpath expr="//field[@name='product_id']" position="after">
-                    <field name="prodlot_id"/>
+                    <field name="lot_id"/>
                 </xpath>
             </field>
         </record>
@@ -27,7 +27,7 @@
             <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='name']" position="after">
-                    <field name="order_line" string="Serial Number" filter_domain="[('order_line.prodlot_id.name','ilike',self)]"/>
+                    <field name="order_line" string="Serial Number" filter_domain="[('order_line.lot_id.name','ilike',self)]"/>
                 </xpath>
             </field>
         </record>

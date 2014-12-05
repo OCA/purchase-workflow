@@ -18,7 +18,7 @@ class PurchaseOrder(orm.Model):
                                  context=None):
         res = super(PurchaseOrder, self)._prepare_order_line_move(
             cr, uid, order, order_line, picking_id, context=context)
-        res['prodlot_id'] = order_line.prodlot_id.id
+        res['lot_id'] = order_line.lot_id.id
         return res
 
 
@@ -26,8 +26,9 @@ class PurchaseOrderLine(orm.Model):
     _inherit = 'purchase.order.line'
 
     _columns = {
-        'prodlot_id': fields.many2one(
+        'lot_id': fields.many2one(
             'stock.production.lot',
+            oldname='prodlot_id',
             string='Serial Number',
             readonly=True
         )
@@ -42,6 +43,6 @@ class ProcurementOrder(orm.Model):
         """ method comes from purchase/purchase.py
         """
         if procurement.product_id.track_from_sale:
-            line_vals['prodlot_id'] = procurement.move_id.prodlot_id.id
+            line_vals['lot_id'] = procurement.move_id.lot_id.id
         return super(ProcurementOrder, self).create_procurement_purchase_order(
             cr, uid, procurement, po_vals, line_vals, context=context)
