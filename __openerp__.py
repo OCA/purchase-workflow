@@ -32,7 +32,7 @@
     'depends': [
         'purchase',
         'stock',
-        'sale_embed_configuration'],
+        'sale_embedded_configuration'],
     'data': [
         'purchase_view.xml',
         ],
