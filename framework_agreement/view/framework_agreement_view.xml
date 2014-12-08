@@ -20,6 +20,28 @@
       </field>
     </record>
 
+    <record id="framework_agreement_search_view" model="ir.ui.view">
+      <field name="name">framework_agreement_search_view</field>
+      <field name="model">framework.agreement</field>
+      <field name="arch" type="xml">
+        <search string="Framework Agreement (LTA)">
+          <field name="name" />
+          <field name="product_id"/>
+          <field name="supplier_id"/>
+          <filter name="draft" string="Draft" domain="[('state', '=', 'draft')]"/>
+          <filter name="future" string="Future" domain="[('state', '=', 'future')]"/>
+          <filter name="running" string="Running" domain="[('state', '=', 'running')]"/>
+          <filter name="consumed" string="Consumed" domain="[('state', '=', 'consumed')]"/>
+          <filter name="closed" string="Closed" domain="[('state', '=', 'closed')]"/>
+          <separator/>
+          <group expand="0" string="Group By">
+            <filter string="Supplier" domain="[]" context="{'group_by': 'supplier_id'}"/>
+            <filter string="Product" domain="[]" context="{'group_by': 'product_id'}"/>
+          </group>
+        </search>
+      </field>
+    </record>
+
     <record id="framework_agreement_form_view" model="ir.ui.view">
       <field name="name">framework agreement form</field>
       <field name="model">framework.agreement</field>
