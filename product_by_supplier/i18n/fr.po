@@ -18,12 +18,12 @@ msgstr ""
 #. module: product_by_supplier
 #: field:product.supplierinfo,virtual_available:0
 msgid "Forecasted Quantity"
-msgstr "Quantité Prévue"
+msgstr "Quantité prévue"
 
 #. module: product_by_supplier
 #: view:product.supplierinfo:0
 msgid "Group by..."
-msgstr "Grouper Par ..."
+msgstr "Grouper par ..."
 
 #. module: product_by_supplier
 #: code:_description:0
@@ -55,7 +55,7 @@ msgstr "Référence interne"
 #: model:ir.ui.menu,name:product_by_supplier.menu_product_supplier_info
 #: view:product.supplierinfo:0
 msgid "Product by Suppliers"
-msgstr "Articles par Fournisseurs"
+msgstr "Articles par fournisseurs"
 
 #. module: product_by_supplier
 #: field:product.supplierinfo,qty_available:0
@@ -85,7 +85,7 @@ msgstr "Nom de l'article chez le fournisseur"
 #. module: product_by_supplier
 #: field:product.product,partner_ref2:0
 msgid "Supplier codes"
-msgstr "Codes Fournisseurs"
+msgstr "Codes fournisseurs"
 
 #. module: product_by_supplier
 #: view:product.supplierinfo:0
