@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="res_partner_with_calendar_view_form">
+            <field name="name">res.partner.with.calendar.view.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="priority" eval="16"/>
+            <field name="arch" type="xml">
+                <field name="ref" position="after">
+                    <field name="resource_id" attrs="{'invisible': [('supplier','=',False)]}"/>
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="stock_warehouse_with_calendar_view_form">
+            <field name="name">stock.warehouse.with.calendar.view.form</field>
+            <field name="model">stock.warehouse</field>
+            <field name="inherit_id" ref="stock.view_warehouse"/>
+            <field name="priority" eval="16"/>
+            <field name="arch" type="xml">
+                <field name="partner_id" position="after">
+                    <field name="resource_id"/>
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="res_company_with_calendar_view_form">
+            <field name="name">res.company.with.calendar.view.form</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="procurement.mrp_company"/>
+            <field name="priority" eval="16"/>
+            <field name="arch" type="xml">
+                <group name="logistics_grp" position="inside">
+                    <field name="calendar_id"/>
+                </group>
+            </field>
+        </record>
+
+    </data>
+</openerp>

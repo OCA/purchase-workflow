@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="resource.calendar" id="default_calendar">
+            <field name="name">Default Calendar</field>
+        </record>
+
+        <record model="resource.calendar.attendance" id="default_calendar_monday">
+            <field name="name">Monday</field>
+            <field name="dayofweek">0</field>
+            <field name="hour_from" eval="8"/>
+            <field name="hour_to" eval="18"/>
+            <field name="calendar_id" ref="default_calendar"/>
+        </record>
+
+        <record model="resource.calendar.attendance" id="default_calendar_tuesday">
+            <field name="name">Tuesday</field>
+            <field name="dayofweek">1</field>
+            <field name="hour_from" eval="8"/>
+            <field name="hour_to" eval="18"/>
+            <field name="calendar_id" ref="default_calendar"/>
+        </record>
+
+        <record model="resource.calendar.attendance" id="default_calendar_wednesday">
+            <field name="name">Wednesday</field>
+            <field name="dayofweek">2</field>
+            <field name="hour_from" eval="8"/>
+            <field name="hour_to" eval="18"/>
+            <field name="calendar_id" ref="default_calendar"/>
+        </record>
+
+        <record model="resource.calendar.attendance" id="default_calendar_thursday">
+            <field name="name">Thursday</field>
+            <field name="dayofweek">3</field>
+            <field name="hour_from" eval="8"/>
+            <field name="hour_to" eval="18"/>
+            <field name="calendar_id" ref="default_calendar"/>
+        </record>
+
+        <record model="resource.calendar.attendance" id="default_calendar_friday">
+            <field name="name">Friday</field>
+            <field name="dayofweek">4</field>
+            <field name="hour_from" eval="8"/>
+            <field name="hour_to" eval="18"/>
+            <field name="calendar_id" ref="default_calendar"/>
+        </record>
+
+    </data>
+</openerp>
