@@ -37,6 +37,9 @@ class PurchaseRequisition(models.Model):
 
     @api.onchange('dest_address_id')
     def onchange_dest_address_id(self):
+        if not self.dest_address_id:
+            return
+
         PickType = self.env['stock.picking.type']
         types = PickType.search([
             ('warehouse_id.partner_id', '=', self.dest_address_id.id)])
