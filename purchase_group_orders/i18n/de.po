@@ -1,0 +1,111 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* purchase_group_orders
+#
+# Rudolf Schnapka <schnapkar@golive-saar.de>, 2015.
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-25 07:26+0000\n"
+"PO-Revision-Date: 2015-01-03 13:13+0100\n"
+"Last-Translator: Rudolf Schnapka <schnapkar@golive-saar.de>\n"
+"Language-Team: German <kde-i18n-de@kde.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+"Language: de\n"
+"X-Generator: Lokalize 1.5\n"
+
+#. module: purchase_group_orders
+#: sql_constraint:purchase.order:0
+#: sql_constraint:sale.order:0
+msgid "Order Reference must be unique per Company!"
+msgstr "Auftragsnummer muss im Unternehmen eindeutig sein!"
+
+#. module: purchase_group_orders
+#: field:purchase.order,shop_id:0
+msgid "Shop"
+msgstr "Filiale"
+
+#. module: purchase_group_orders
+#: help:procurement.order,sale_id:0
+msgid "the sale order which generated the procurement"
+msgstr "der Verkaufsauftrag, welcher diese Beschaffung zur Folge hat"
+
+#. module: purchase_group_orders
+#: help:purchase.order,carrier_partner_id:0
+msgid "Name of the carrier partner"
+msgstr "Name des Partner-Spediteurs"
+
+#. module: purchase_group_orders
+#: field:purchase.order,carrier_partner_id:0
+msgid "Carrier Name"
+msgstr "Name des Spediteurs"
+
+#. module: purchase_group_orders
+#: field:procurement.order,sale_id:0
+msgid "Sale Order"
+msgstr "Verkaufsauftrag"
+
+#. module: purchase_group_orders
+#: model:ir.model,name:purchase_group_orders.model_purchase_order
+msgid "Purchase Order"
+msgstr "Bestellauftrag"
+
+#. module: purchase_group_orders
+#: model:ir.model,name:purchase_group_orders.model_procurement_order
+msgid "Procurement"
+msgstr "Beschaffung"
+
+#. module: purchase_group_orders
+#: field:purchase.order,carrier_id:0
+msgid "Carrier"
+msgstr "Spediteur"
+
+#. module: purchase_group_orders
+#: help:purchase.order,carrier_id:0
+msgid "the carrier in charge for delivering the related sale order"
+msgstr "Der mit der Auslieferung des Verkaufsauftrags beauftragte Spediteur"
+
+#. module: purchase_group_orders
+#: help:purchase.order,shop_id:0
+msgid "the shop which generated the sale which triggered the PO"
+msgstr "Die Filiale, die den Verkauf und den Verkaufsauftrag ausgelöst hat"
+
+#. module: purchase_group_orders
+#: model:ir.model,name:purchase_group_orders.model_sale_order
+msgid "Sales Order"
+msgstr "Verkaufsauftrag"
+
+#. module: purchase_group_orders
+#: view:purchase.order.group:0
+msgid ""
+" Please note that: \n"
+" \n"
+" Orders will only be merged if: \n"
+"  * Purchase Orders are in draft \n"
+"  * Purchase Orders belong to the same supplier \n"
+"  * Purchase Orders are have same stock location, same pricelist \n"
+"  * Purchase Orders have been generated from Sale Orders issued by the same "
+"Shop, and having the same Carrier \n"
+" \n"
+" Lines will only be merged if: \n"
+"  * Order lines are exactly the same except for the product,quantity and unit "
+"\n"
+" "
+msgstr ""
+"Bitte nehmen Sie zur Kenntnis:\n"
+"\n"
+"Aufträge werden nur zusammengeführt, wenn: \n"
+" * Bestellungen liegen im Entwurf vor \n"
+" * Bestellungen sind an den gleichen Lieferanten \n"
+" * Bestellungen mit dem gleichen Ziellager und der gleichen Preisliste\n"
+" * Bestellungen aus Verkaufsaufträgen der gleichen Filiale und dem gleichen "
+"Spediteur\n"
+"\n"
+"Positionszeilen werden nur zusammengeführt, wenn: \n"
+" * Bestellpositionen, bis auf Menge und Einheit, identisch sind\n"
+
+

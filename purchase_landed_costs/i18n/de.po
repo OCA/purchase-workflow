@@ -1,21 +1,24 @@
 # German translation for purchase-wkfl
 # Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
 # This file is distributed under the same license as the purchase-wkfl package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
 #
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
+# Rudolf Schnapka <schnapkar@golive-saar.de>, 2015.
 msgid ""
 msgstr ""
 "Project-Id-Version: purchase-wkfl\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-10-17 09:49+0000\n"
-"PO-Revision-Date: 2014-06-21 00:59+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: German <de@li.org>\n"
+"PO-Revision-Date: 2015-01-03 14:11+0100\n"
+"Last-Translator: Rudolf Schnapka <schnapkar@golive-saar.de>\n"
+"Language-Team: German <kde-i18n-de@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2014-06-22 05:57+0000\n"
-"X-Generator: Launchpad (build 17058)\n"
+"X-Generator: Lokalize 1.5\n"
+"Language: de\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: purchase_landed_costs
 #: model:ir.model,name:purchase_landed_costs.model_purchase_order_line
@@ -27,7 +30,7 @@ msgstr "Einkaufspositionen"
 #: model:ir.model.fields,field_description:purchase_landed_costs.field_landed_cost_position_amount_company_currency
 #: field:landed.cost.position,amount_company_currency:0
 msgid "Amount Company Currency"
-msgstr ""
+msgstr "Betrag in Hauswährung"
 
 #. module: purchase_landed_costs
 #: selection:product.template,landed_cost_type:0
@@ -37,7 +40,7 @@ msgstr "Keine"
 #. module: purchase_landed_costs
 #: view:landed.cost.position:0
 msgid "Group By..."
-msgstr ""
+msgstr "Gruppieren nach..."
 
 #. module: purchase_landed_costs
 #: help:product.template,landed_cost_type:0
@@ -46,21 +49,21 @@ msgid ""
 "purchase orders or pickings, this indicates how the costs are distributed to "
 "the lines"
 msgstr ""
-"Aktivieren, wenn dieses Produkt als Bestellnebenkosten für die "
-"Durschnittspreisberechung verfügbar sein soll. Wenn die Nebenkosten für den "
-"Lieferschein definiert sind, gibt dies an, welcher Schüssel (Mengen, Wert) "
-"für die Verteilung verwendet werden soll."
+"Aktivieren, wenn dieses Produkt als Bezugsnebenkosten in die Berechnung des "
+"Durchschnittspreis eingehen soll. Wenn die Nebenkosten im Bestellauftrag oder "
+"Kommissionierschein festgelegt sind, geben diese an, wie die Kosten (Menge, "
+"Wert) auf die Positionen verteilt werden sollen."
 
 #. module: purchase_landed_costs
 #: view:landed.cost.position:0
 msgid "Supplier"
-msgstr ""
+msgstr "Lieferant"
 
 #. module: purchase_landed_costs
 #: model:ir.model.fields,field_description:purchase_landed_costs.field_landed_cost_position_generate_invoice
 #: field:landed.cost.position,generate_invoice:0
 msgid "Generate Invoice"
-msgstr ""
+msgstr "Rechnung anlegen"
 
 #. module: purchase_landed_costs
 #: model:ir.model,name:purchase_landed_costs.model_landed_cost_position
@@ -71,12 +74,12 @@ msgstr "landed.cost.position"
 #: model:ir.model.fields,field_description:purchase_landed_costs.field_landed_cost_position_account_id
 #: field:landed.cost.position,account_id:0
 msgid "Fiscal Account"
-msgstr ""
+msgstr "Bilanzkonto"
 
 #. module: purchase_landed_costs
 #: help:landed.cost.position,partner_id:0
 msgid "The supplier of this cost component."
-msgstr ""
+msgstr "Der Lieferant zu diesem Kostenanteil"
 
 #. module: purchase_landed_costs
 #: help:landed.cost.position,amount_total:0
@@ -85,29 +88,35 @@ msgid ""
 "order. By summing it, you'll have the total landed cost for the order (in "
 "his currency)"
 msgstr ""
+"Dieses Feld stellt den Positionsbetrag in Bezug auf den Gesamtauftrag dar. "
+"Durch Summenbildung erhalten Sie die gesamten Bezugsnebenkosten dieses "
+"Auftrags (in Auftragswährung)"
 
 #. module: purchase_landed_costs
 #: model:ir.model,name:purchase_landed_costs.model_product_product
 msgid "Product"
-msgstr ""
+msgstr "Produkt"
 
 #. module: purchase_landed_costs
 #: code:addons/purchase_landed_costs/product.py:66
 #, python-format
 msgid "Define expense account for this company: \"%s\" (id:%d)."
 msgstr ""
+"Legen Sie das Konto für Bezugsnebenkosten dieses Unternehmens '%s' (id: %d) "
+"fest."
 
 #. module: purchase_landed_costs
 #: code:addons/purchase_landed_costs/purchase.py:493
 #, python-format
 msgid "Define purchase journal for this company: \"%s\" (id:%d)."
 msgstr ""
+"Legen Sie das Beschaffungs-Journal dieses Unternehmens '%s' (id: %d) fest."
 
 #. module: purchase_landed_costs
 #: field:purchase.order,landed_cost_line_ids:0
 #: field:purchase.order.line,landed_costs:0 field:stock.move,landed_cost:0
 msgid "Landed Costs"
-msgstr "Einstandskosten"
+msgstr "Bezugsnebenkosten"
 
 #. module: purchase_landed_costs
 #: help:landed.cost.position,amount_company_currency:0
@@ -115,55 +124,61 @@ msgid ""
 "Landed cost for stock valuation (expressed in company currency). It will be "
 "added to the price of the supplier price."
 msgstr ""
+"Bezugsnebenkosten zur Bestandsbewertung (ausgedrückt in Hauswährung). Diese "
+"werden zum Lieferantenpreis addiert."
 
 #. module: purchase_landed_costs
 #: model:ir.model.fields,field_description:purchase_landed_costs.field_landed_cost_position_company_id
 #: field:landed.cost.position,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Unternehmen"
 
 #. module: purchase_landed_costs
 #: help:landed.cost.position,amount:0
 msgid "Landed cost expressed in PO currency used to fullfil landed cost."
 msgstr ""
+"Bezugsnebenkosten, ausgedrückt in Auftragswährung, verwendet um "
+"Bezugsnebenkosten einzurechnen."
 
 #. module: purchase_landed_costs
 #: selection:landed.cost.distribution.type,apply_on:0
 msgid "Order"
-msgstr ""
+msgstr "Auftrag"
 
 #. module: purchase_landed_costs
 #: model:ir.model,name:purchase_landed_costs.model_landed_cost_distribution_type
 msgid "landed.cost.distribution.type"
-msgstr ""
+msgstr "landed.cost.distribution.type"
 
 #. module: purchase_landed_costs
 #: model:ir.actions.act_window,name:purchase_landed_costs.act_po_2_landed_costs
 msgid "Related Landed Costs"
-msgstr ""
+msgstr "Auftragsbezogene Bezugsnebenkosten"
 
 #. module: purchase_landed_costs
 #: help:landed.cost.distribution.type,apply_on:0
 msgid "Defines if this distribution type Applied on order or line level."
 msgstr ""
+"Legt fest, ob diese Verteilungsart auf Auftrags- oder Positionsebene "
+"angewendet wird."
 
 #. module: purchase_landed_costs
 #: model:ir.model.fields,field_description:purchase_landed_costs.field_landed_cost_position_date_po
 #: view:landed.cost.position:0
 #: field:landed.cost.position,date_po:0
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 #. module: purchase_landed_costs
 #: field:purchase.order,landed_cost_base_value:0
 #: field:stock.picking,landed_cost_base_value:0
 msgid "Landed Costs Base Value"
-msgstr "Einstandskosten Basis Wert"
+msgstr "Bezugsnebenkosten Grundbetrag"
 
 #. module: purchase_landed_costs
 #: selection:landed.cost.distribution.type,apply_on:0
 msgid "Line"
-msgstr ""
+msgstr "Position"
 
 #. module: purchase_landed_costs
 #: field:stock.move,price_unit_net:0
@@ -174,17 +189,17 @@ msgstr "Kaufpreis"
 #: field:purchase.order,landing_cost_lines:0
 #: field:stock.picking,landing_cost_lines:0
 msgid "Landing Cost Lines"
-msgstr "Einstandsnebenkostenzeilen"
+msgstr "Bezugsnebenkostenpositionen"
 
 #. module: purchase_landed_costs
 #: view:landed.cost.position:0
 msgid "Purchase"
-msgstr ""
+msgstr "Erwerb"
 
 #. module: purchase_landed_costs
 #: view:landed.cost.position:0
 msgid "Account"
-msgstr ""
+msgstr "Konto"
 
 #. module: purchase_landed_costs
 #: field:product.template,landed_cost_type:0
@@ -194,7 +209,7 @@ msgstr "Verteilungsart"
 #. module: purchase_landed_costs
 #: view:landed.cost.position:0
 msgid "Total amount"
-msgstr ""
+msgstr "Gesamtbetrag"
 
 #. module: purchase_landed_costs
 #: model:ir.actions.act_window,help:purchase_landed_costs.action_landed_cost_report_all
@@ -202,6 +217,8 @@ msgid ""
 "Landed cost Analysis allows you to easily check and analyse your estimated "
 "landed costs."
 msgstr ""
+"Analyse der Bezugsnebenkosten erlaubt es Ihnen leicht und schnell Ihre "
+"Bezugsnebenkosten abzuschätzen."
 
 #. module: purchase_landed_costs
 #: selection:product.template,landed_cost_type:0
@@ -211,33 +228,33 @@ msgstr "Betrag"
 #. module: purchase_landed_costs
 #: view:landed.cost.position:0
 msgid "Purchase Line"
-msgstr ""
+msgstr "Bestellposition"
 
 #. module: purchase_landed_costs
 #: model:ir.model.fields,field_description:purchase_landed_costs.field_landed_cost_distribution_type_landed_cost_type
 #: field:landed.cost.distribution.type,landed_cost_type:0
 msgid "Product Landed Cost Type"
-msgstr ""
+msgstr "Bezugskostenart"
 
 #. module: purchase_landed_costs
 #: model:ir.model,name:purchase_landed_costs.model_purchase_order
 #: field:landed.cost.position,purchase_order_id:0
 msgid "Purchase Order"
-msgstr "Einkaufsauftrag"
+msgstr "Bestellauftrag"
 
 #. module: purchase_landed_costs
 #: field:purchase.order.line,landed_cost_line_ids:0
 #: field:stock.move,landed_cost_line_ids:0
 #: field:stock.picking,landed_cost_line_ids:0
 msgid "Landed Costs Positions"
-msgstr "Nebenkostenpositionen"
+msgstr "Bezugskostenpositionen"
 
 #. module: purchase_landed_costs
 #: code:addons/purchase_landed_costs/product.py:65
 #: code:addons/purchase_landed_costs/purchase.py:492
 #, python-format
 msgid "Error!"
-msgstr ""
+msgstr "Fehler!"
 
 #. module: purchase_landed_costs
 #: field:landed.cost.position,amount:0
@@ -253,7 +270,7 @@ msgstr "Gesamtmenge"
 #: model:ir.model.fields,field_description:purchase_landed_costs.field_landed_cost_position_amount_total_comp_currency
 #: field:landed.cost.position,amount_total_comp_currency:0
 msgid "Amount Total Company Currency"
-msgstr ""
+msgstr "Gesamtbetrag in Hauswährung"
 
 #. module: purchase_landed_costs
 #: model:ir.model,name:purchase_landed_costs.model_stock_partial_picking
@@ -263,7 +280,7 @@ msgstr "Teillieferungsassistent"
 #. module: purchase_landed_costs
 #: help:landed.cost.position,date_po:0
 msgid "Date of the related PO"
-msgstr ""
+msgstr "Datum des entsprechenden Auftrags"
 
 #. module: purchase_landed_costs
 #: help:landed.cost.position,generate_invoice:0
@@ -273,6 +290,10 @@ msgid ""
 "be generated, but the cost will be included for the average price "
 "computation."
 msgstr ""
+"Wenn angewählt, wird bei Auftragsbestätigung für die Bezugskostenposition "
+"beim zugehörigen Lieferanten ein Rechnungsentwurf angelegt. Wenn nicht, wird "
+"keine Rechnung angelegt, die Kosten jedoch in die "
+"Durchschnittspreiskalkulation einbezogen."
 
 #. module: purchase_landed_costs
 #: help:landed.cost.position,price_type:0
@@ -280,13 +301,13 @@ msgid ""
 "Defines if the amount is to be calculated for each quantity or an absolute "
 "value"
 msgstr ""
-"Definiert, ob der Wert je Mengeneinheit oder absolut gerechnet werden muss"
+"Legt fest, ob der Wert je Mengeneinheit oder absolut gerechnet werden muss"
 
 #. module: purchase_landed_costs
 #: model:ir.actions.act_window,name:purchase_landed_costs.action_landed_cost_report_all
 #: model:ir.ui.menu,name:purchase_landed_costs.menu_action_landed_cost_report_all
 msgid "Landed Costs Analysis"
-msgstr ""
+msgstr "Bezugskostenanalyse"
 
 #. module: purchase_landed_costs
 #: selection:product.template,landed_cost_type:0
@@ -296,18 +317,18 @@ msgstr "Menge"
 #. module: purchase_landed_costs
 #: field:landed.cost.position,product_id:0
 msgid "Landed Cost Name"
-msgstr "Nebenkosten Bezeichnung"
+msgstr "Nebenkostenbezeichnung"
 
 #. module: purchase_landed_costs
 #: field:purchase.order,landed_cost_base_quantity:0
 #: field:stock.picking,landed_cost_base_quantity:0
 msgid "Landed Costs Base Quantity"
-msgstr "Nebenkosten - Megnenbasis"
+msgstr "Mengenbasis der Nebenkosten"
 
 #. module: purchase_landed_costs
 #: field:purchase.order.line,landing_costs_order:0
 msgid "Landing Costs from Order"
-msgstr "Nebenkosten vom Einkaufsauftrag"
+msgstr "Nebenkosten zum Bestellauftrag"
 
 #. module: purchase_landed_costs
 #: model:ir.model,name:purchase_landed_costs.model_stock_move
@@ -322,7 +343,7 @@ msgstr "Produktvorlage"
 #. module: purchase_landed_costs
 #: help:landed.cost.distribution.type,landed_cost_type:0
 msgid "Refer to the product landed cost type."
-msgstr ""
+msgstr "Bezug auf produktspezifische Bezugskostenart"
 
 #. module: purchase_landed_costs
 #: help:stock.move,price_unit_net:0
@@ -330,6 +351,8 @@ msgid ""
 "This is the net purchase price, without landed cost as the price include "
 "landed price has been stored in price_unit field"
 msgstr ""
+"Dies ist der Netto-Einkaufspreis ohne Bezugskosten, da der Einstandspreis "
+"(inkl. Bezugskosten) im Einzelpreis des Produkts eingetragen ist."
 
 #. module: purchase_landed_costs
 #: help:landed.cost.position,amount_total_comp_currency:0
@@ -338,12 +361,15 @@ msgid ""
 "order. By summing it, you'll have the total landed cost for the order (in "
 "company reference currency)."
 msgstr ""
+"Dieses Feld stellt den Positionsbetrag in Bezug auf den Gesamtauftrag dar. "
+"Durch Summenbildung erhalten Sie die gesamten Bezugsnebenkosten dieses "
+"Auftrags (in Auftragswährung)."
 
 #. module: purchase_landed_costs
 #: model:ir.model.fields,field_description:purchase_landed_costs.field_landed_cost_distribution_type_apply_on
 #: field:landed.cost.distribution.type,apply_on:0
 msgid "Applied on"
-msgstr ""
+msgstr "Angewandt auf"
 
 #. module: purchase_landed_costs
 #: field:landed.cost.position,partner_id:0
@@ -353,27 +379,28 @@ msgstr "Partner"
 #. module: purchase_landed_costs
 #: field:purchase.order,landed_cost:0 field:stock.picking,landed_cost:0
 msgid "Landed Costs Total Untaxed"
-msgstr "EInstandspreise ohne Umsatzsteuer"
+msgstr "Netto-Bezugskosten"
 
 #. module: purchase_landed_costs
 #: view:purchase.order:0
 msgid "Open All Landed costs"
-msgstr ""
+msgstr "Alle Bezugsnebenkosten öffnen"
 
 #. module: purchase_landed_costs
 #: view:landed.cost.position:0 view:purchase.order:0
 #: view:purchase.order.line:0 field:purchase.order.line,landing_costs:0
 #: view:stock.picking:0
 msgid "Landing Costs"
-msgstr "Einstandsnebenkosten"
+msgstr "Bezugsnebenkosten"
 
 #. module: purchase_landed_costs
 #: model:ir.model.fields,field_description:purchase_landed_costs.field_landed_cost_position_amount_total
 #: field:landed.cost.position,amount_total:0
 msgid "Amount Total"
-msgstr ""
+msgstr "Gesamtbetrag"
 
 #. module: purchase_landed_costs
 #: view:landed.cost.position:0
 msgid "Purchase Orders"
-msgstr ""
+msgstr "Bestellauftrag"
+
