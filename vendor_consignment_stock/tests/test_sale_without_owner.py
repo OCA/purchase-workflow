@@ -39,6 +39,19 @@ class TestSaleWithoutOwner(TransactionCase):
     def test_sale_vci_generates_procurements_and_special_po(self):
         self.product.route_ids = self.mto_route | self.vci_route
 
+        self.so.action_button_confirm()
+        self.Procurement.run_scheduler()
+
+        proc1 = self.sol.procurement_ids
+        self.assertEqual(1, len(proc1))
+        self.assertEqual("move", proc1.rule_id.action)
+        self.assertEqual("make_to_order", proc1.rule_id.procure_method)
+        self.assertFalse(proc1.purchase_id)
+
+        proc2 = proc1.group_id.procurement_ids - proc1
+        self.assertEqual(1, len(proc2))
+        self.assertEqual("buy_vci", proc2.rule_id.action)
+
     def XXX_PENDING_test_special_po_makes_delivery_available(self):
         raise
 
