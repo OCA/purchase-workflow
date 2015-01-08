@@ -21,6 +21,8 @@
  'category': 'Purchase Management',
  'license': 'AGPL-3',
  'depends': ['stock_ownership_availability_rules',
+             'sale_stock',
+             'purchase',
              ],
  'demo': [],
  'data': [
