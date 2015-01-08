@@ -20,11 +20,16 @@ class TestSaleWithoutOwner(TransactionCase):
 
     def test_sale_mto_buy_creates_procurements(self):
         self.so.action_button_confirm()
+        self.Procurement.run_scheduler()
 
         proc1 = self.sol.procurement_ids
         self.assertEqual(1, len(proc1))
         self.assertEqual("move", proc1.rule_id.action)
+        self.assertEqual("make_to_order", proc1.rule_id.procure_method)
 
+        proc2 = proc1.group_id.procurement_ids - proc1
+        self.assertEqual(1, len(proc2))
+        self.assertEqual("buy", proc2.rule_id.action)
 
     def XXX_PENDING_test_sale_vci_generates_special_po(self):
         raise
@@ -41,6 +46,7 @@ class TestSaleWithoutOwner(TransactionCase):
 
         customer = self.env.ref('base.res_partner_2')
         self.product = self.env.ref('product.product_product_36')
+        self.product.route_ids |= self.env.ref('stock.route_warehouse0_mto')
 
         self.Quant.create({
             'qty': 5000,
