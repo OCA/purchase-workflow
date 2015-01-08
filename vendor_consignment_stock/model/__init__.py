@@ -2,3 +2,4 @@
 
 from . import quant
 from . import purchase_order
+from . import rule

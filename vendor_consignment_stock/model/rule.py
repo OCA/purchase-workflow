@@ -14,20 +14,13 @@
 #
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-{'name': 'Vendor Consignment Stock',
- 'summary': 'Manage stock in our warehouse that is owned by a vendor',
- 'version': '0.1',
- 'author': 'Camptocamp',
- 'category': 'Purchase Management',
- 'license': 'AGPL-3',
- 'depends': ['stock_ownership_availability_rules',
-             'sale_stock',
-             'purchase',
-             ],
- 'demo': [],
- 'data': [
-     'data.xml',
- ],
- 'auto_install': False,
- 'installable': True,
- }
+from openerp import models, api
+from openerp.tools.translate import _
+
+
+class Rule(models.Model):
+    _inherit = 'procurement.rule'
+
+    @api.model
+    def _get_action(self):
+        return [('buy_vci', _('Buy VCI'))] + super(Rule, self)._get_action()
