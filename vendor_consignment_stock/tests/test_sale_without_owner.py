@@ -51,6 +51,7 @@ class TestSaleWithoutOwner(TransactionCase):
         proc2 = proc1.group_id.procurement_ids - proc1
         self.assertEqual(1, len(proc2))
         self.assertEqual("buy_vci", proc2.rule_id.action)
+        self.assertTrue(proc2.purchase_id)
 
     def XXX_PENDING_test_special_po_makes_delivery_available(self):
         raise

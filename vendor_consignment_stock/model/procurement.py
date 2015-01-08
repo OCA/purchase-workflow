@@ -23,9 +23,19 @@ class Procurement(models.Model):
     @api.model
     def _run(self, procurement):
         if procurement.rule_id and procurement.rule_id.action == 'buy_vci':
-            return self.make_vci_po()
+            return procurement.make_vci_po()
         return super(Procurement, self)._run(procurement)
 
-    @api.one
+    @api.multi
     def make_vci_po(self):
-        pass
+        """Returns a dict {procurement_id: generated_purchase_line_id}."""
+        line_model = self.env['purchase.order.line']
+
+        result = self.make_po()
+        for proc in self:
+            if proc.id in result:
+                order_line = line_model.browse(result[proc.id])
+
+                order_line.order_id.is_vci = True
+
+        return result
