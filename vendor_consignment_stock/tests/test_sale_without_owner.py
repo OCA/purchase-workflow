@@ -43,7 +43,25 @@ class TestSaleWithoutOwner(TransactionCase):
         po.signal_workflow('purchase_confirm')
         self.assertEqual(1, len(po.picking_ids))
 
+    def test_customer_is_owner_reserves_without_po(self):
+        self.sol.stock_owner_id = self.customer
+
+        self.so.action_button_confirm()
+        self.Procurement.run_scheduler()
+        delivery = self.so.picking_ids
+        self.assertEqual(1, len(delivery))
+        delivery.action_assign()
+        self.assertEqual('assigned', delivery.state)
+
+        proc1 = self.sol.procurement_ids
+        self.assertEqual(1, len(proc1))
+        self.assertEqual("move", proc1.rule_id.action)
+        self.assertEqual("make_to_stock", proc1.rule_id.procure_method)
+        self.assertFalse(proc1.purchase_id)
+        self.assertEqual(1, len(proc1.group_id.procurement_ids))
+
     def test_sale_vci_generates_procurements_and_special_po(self):
+        self.sol.stock_owner_id = self.supplier
         self.product.route_ids = self.mto_route | self.vci_route
 
         self.so.action_button_confirm()
@@ -71,9 +89,6 @@ class TestSaleWithoutOwner(TransactionCase):
         self.Procurement.run_scheduler()
         self.assertEqual('assigned', delivery.state)
 
-    def XXX_PENDING_test_special_po_makes_delivery_available(self):
-        raise
-
     def setUp(self):
         super(TestSaleWithoutOwner, self).setUp()
         self.SO = self.env['sale.order']
@@ -82,7 +97,8 @@ class TestSaleWithoutOwner(TransactionCase):
         self.Procurement = self.env['procurement.order']
         self.Rule = self.env['procurement.rule']
 
-        customer = self.env.ref('base.res_partner_2')
+        self.supplier = self.env.ref('base.res_partner_1')
+        self.customer = self.env.ref('base.res_partner_2')
         self.product = self.env.ref('product.product_product_36')
         self.warehouse = self.env.ref('stock.warehouse0')
 
@@ -101,14 +117,20 @@ class TestSaleWithoutOwner(TransactionCase):
             'warehouse_id': self.warehouse.id,
         })
 
-        self.Quant.create({
+        our_quant = self.Quant.create({
             'qty': 5000,
             'location_id': self.env.ref('stock.stock_location_stock').id,
             'product_id': self.product.id,
         })
+        our_quant.copy({
+            'owner_id': self.supplier.id,
+        })
+        our_quant.copy({
+            'owner_id': self.customer.id,
+        })
 
         self.so = self.SO.create({
-            'partner_id': customer.id,
+            'partner_id': self.customer.id,
             'picking_policy': 'direct',
         })
         self.sol = self.SOL.create({
