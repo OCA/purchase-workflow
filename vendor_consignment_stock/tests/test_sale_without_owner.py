@@ -33,14 +33,21 @@ class TestSaleWithoutOwner(TransactionCase):
         proc2 = proc1.group_id.procurement_ids - proc1
         self.assertEqual(1, len(proc2))
         self.assertEqual("buy", proc2.rule_id.action)
-        self.assertTrue(proc2.purchase_id)
-        self.assertFalse(proc2.purchase_id.is_vci)
+
+        po = proc2.purchase_id
+        self.assertTrue(po)
+        self.assertIs(False, po.is_vci)
+        po.signal_workflow('purchase_confirm')
+        self.assertEqual(1, len(po.picking_ids))
 
     def test_sale_vci_generates_procurements_and_special_po(self):
         self.product.route_ids = self.mto_route | self.vci_route
 
         self.so.action_button_confirm()
         self.Procurement.run_scheduler()
+        delivery = self.so.picking_ids
+        self.assertEqual(1, len(delivery))
+        self.assertEqual('waiting', delivery.state)
 
         proc1 = self.sol.procurement_ids
         self.assertEqual(1, len(proc1))
@@ -51,7 +58,16 @@ class TestSaleWithoutOwner(TransactionCase):
         proc2 = proc1.group_id.procurement_ids - proc1
         self.assertEqual(1, len(proc2))
         self.assertEqual("buy_vci", proc2.rule_id.action)
-        self.assertTrue(proc2.purchase_id)
+
+        po = proc2.purchase_id
+        self.assertTrue(po)
+        self.assertIs(True, po.is_vci)
+        po.signal_workflow('purchase_confirm')
+        self.assertEqual(0, len(po.picking_ids))
+
+        self.Procurement.run_scheduler()
+        # TODO
+        # self.assertEqual('assigned', delivery.state)
 
     def XXX_PENDING_test_special_po_makes_delivery_available(self):
         raise

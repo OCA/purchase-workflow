@@ -39,3 +39,11 @@ class Procurement(models.Model):
                 order_line.order_id.is_vci = True
 
         return result
+
+    @api.model
+    def _check(self, procurement):
+        if procurement.rule_id and procurement.rule_id.action == 'buy_vci':
+            purchase = procurement.purchase_id
+            return purchase and purchase.state in ['approved', 'done']
+        else:
+            return super(Procurement, self)._check(procurement)

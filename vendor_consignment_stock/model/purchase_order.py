@@ -14,10 +14,18 @@
 #
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-from openerp import models, fields
+from openerp import models, fields, api
 
 
 class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
 
     is_vci = fields.Boolean('Vendor Consignment Inventory')
+
+    @api.multi
+    def has_stockable_product(self):
+        self.ensure_one()
+        if self.is_vci:
+            return False
+        else:
+            return super(PurchaseOrder, self).has_stockable_product()
