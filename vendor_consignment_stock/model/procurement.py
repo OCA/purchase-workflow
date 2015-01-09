@@ -44,6 +44,11 @@ class Procurement(models.Model):
     def _check(self, procurement):
         if procurement.rule_id and procurement.rule_id.action == 'buy_vci':
             purchase = procurement.purchase_id
-            return purchase and purchase.state in ['approved', 'done']
+            if purchase and purchase.state in ['approved', 'done']:
+                procurement.move_dest_id.state = 'confirmed'
+                procurement.move_dest_id.action_assign()
+                return True
+            else:
+                return False
         else:
             return super(Procurement, self)._check(procurement)

@@ -23,6 +23,9 @@ class TestSaleWithoutOwner(TransactionCase):
 
         self.so.action_button_confirm()
         self.Procurement.run_scheduler()
+        delivery = self.so.picking_ids
+        self.assertEqual(1, len(delivery))
+        self.assertEqual('waiting', delivery.state)
 
         proc1 = self.sol.procurement_ids
         self.assertEqual(1, len(proc1))
@@ -66,8 +69,7 @@ class TestSaleWithoutOwner(TransactionCase):
         self.assertEqual(0, len(po.picking_ids))
 
         self.Procurement.run_scheduler()
-        # TODO
-        # self.assertEqual('assigned', delivery.state)
+        self.assertEqual('assigned', delivery.state)
 
     def XXX_PENDING_test_special_po_makes_delivery_available(self):
         raise
