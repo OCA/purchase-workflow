@@ -62,7 +62,6 @@ class TestSaleWithoutOwner(TransactionCase):
 
     def test_sale_vci_generates_procurements_and_special_po(self):
         self.sol.stock_owner_id = self.supplier
-        self.product.route_ids = self.mto_route | self.vci_route
 
         self.so.action_button_confirm()
         self.Procurement.run_scheduler()
