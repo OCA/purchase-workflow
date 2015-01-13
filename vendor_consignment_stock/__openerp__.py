@@ -27,6 +27,7 @@
  'demo': [],
  'data': [
      'data.xml',
+     'view/warehouse.xml',
  ],
  'auto_install': False,
  'installable': True,

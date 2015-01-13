@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record id="view_warehouse_inherited" model="ir.ui.view">
+      <field name="name">view_warehouse_inherited</field>
+      <field name="model">stock.warehouse</field>
+      <field name="inherit_id" ref="purchase.view_warehouse_inherited"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='buy_to_resupply']" position="after">
+          <field name="buy_vci_to_resupply" />
+        </xpath>
+      </field>
+    </record>
+
+  </data>
+</openerp>

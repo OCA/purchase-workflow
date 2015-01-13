@@ -99,22 +99,12 @@ class TestSaleWithoutOwner(TransactionCase):
         self.supplier = self.env.ref('base.res_partner_1')
         self.customer = self.env.ref('base.res_partner_2')
         self.product = self.env.ref('product.product_product_36')
-        self.warehouse = self.env.ref('stock.warehouse0')
+        self.env.ref('stock.warehouse0').buy_vci_to_resupply = True
 
         self.vci_route = self.env.ref(
             'vendor_consignment_stock.route_warehouse0_buy_vci')
         self.mto_route = self.env.ref('stock.route_warehouse0_mto')
         self.buy_route = self.env.ref('purchase.route_warehouse0_buy')
-
-        # XXX create rules in production code
-        self.vci_rule = self.Rule.create({
-            'action': 'buy_vci',
-            'name': 'YourCompany: Buy VCI',
-            'location_id': self.warehouse.lot_stock_id.id,
-            'route_id': self.vci_route.id,
-            'picking_type_id': self.warehouse.int_type_id.id,
-            'warehouse_id': self.warehouse.id,
-        })
 
         our_quant = self.Quant.create({
             'qty': 5000,
