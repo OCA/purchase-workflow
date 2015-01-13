@@ -18,23 +18,13 @@ from openerp.tests.common import TransactionCase
 
 class TestDeliveryWithoutOwner(TransactionCase):
 
-    def XXX_test_it_still_fully_reserves_my_stock(self):
+    def test_it_still_fully_reserves_my_stock(self):
         self.own_quant.qty = 12
         self.vendor_quant.qty = 100
         self.move.product_uom_qty = 10
 
         self.picking.action_assign()
         self.assertEqual('assigned', self.picking.state)
-
-    def XXX_PROBABLY_NOT_PENDING_test_it_reserves_vendor_stock_and_waits(self):
-        self.own_quant.qty = 2
-        self.vendor_quant.qty = 100
-        self.move.product_uom_qty = 10
-
-        self.picking.action_assign()
-        self.assertEqual('confirmed', self.picking.state)
-        self.assertEqual(1, len(self.move.reserved_quant_ids))
-        self.assertAlmostEqual(10, self.move.reserved_quant_ids)
 
     def setUp(self):
         super(TestDeliveryWithoutOwner, self).setUp()
