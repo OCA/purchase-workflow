@@ -24,9 +24,8 @@
              'sale_stock',
              'purchase',
              ],
- 'demo': [],
  'data': [
-     'data.xml',
+     'data/route.xml',
      'view/warehouse.xml',
  ],
  'auto_install': False,
