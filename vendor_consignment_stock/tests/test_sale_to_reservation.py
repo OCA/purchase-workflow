@@ -16,7 +16,7 @@
 from openerp.tests.common import TransactionCase
 
 
-class TestSaleWithoutOwner(TransactionCase):
+class TestSaleToReservation(TransactionCase):
 
     def test_sale_mto_buy_creates_procurements_and_normal_po(self):
         self.product.route_ids = self.mto_route | self.buy_route
@@ -89,7 +89,7 @@ class TestSaleWithoutOwner(TransactionCase):
         self.assertEqual('assigned', delivery.state)
 
     def setUp(self):
-        super(TestSaleWithoutOwner, self).setUp()
+        super(TestSaleToReservation, self).setUp()
         self.SO = self.env['sale.order']
         self.SOL = self.env['sale.order.line']
         self.Quant = self.env['stock.quant']
