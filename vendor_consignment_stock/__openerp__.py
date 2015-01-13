@@ -27,6 +27,7 @@
  'data': [
      'data/route.xml',
      'view/warehouse.xml',
+     'view/purchase_order.xml',
  ],
  'auto_install': False,
  'installable': True,
