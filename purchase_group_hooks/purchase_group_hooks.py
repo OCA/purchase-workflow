@@ -98,7 +98,9 @@ class PurchaseOrder(Model):
             merged_data['notes'] = (
                 (merged_data['notes'] or '') + ('\n%s' % (order.notes,))
             )
-        if order.origin:
+        if not merged_data['origin']:
+            merged_data['origin'] = order.origin
+        elif order.origin:
             if (
                 order.origin not in merged_data['origin']
                 and merged_data['origin'] not in order.origin

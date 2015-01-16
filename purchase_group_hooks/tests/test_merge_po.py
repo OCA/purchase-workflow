@@ -15,6 +15,13 @@ class TestGroupOrders(BaseCase):
         self.order1.origin = self.order2.origin = ''
         self.order1.notes = self.order2.notes = ''
 
+        self.order1.partner_id = self.order2.partner_id = Mock(
+            spec=browse_record, id=1)
+        self.order1.location_id = self.order2.location_id = Mock(
+            spec=browse_record, id=2)
+        self.order1.pricelist_id = self.order2.pricelist_id = Mock(
+            spec=browse_record, id=3)
+
         # I have to use the registry to get an instance of a model. I cannot
         # use the class constructor because that is modified to return nothing.
         self.po = self.registry('purchase.order')
@@ -35,17 +42,11 @@ class TestGroupOrders(BaseCase):
 
         We do not care about the order lines here.
         """
-        self.order1.partner_id = self.order2.partner_id = Mock(
-            spec=browse_record, id=1)
-        self.order1.location_id = self.order2.location_id = Mock(
-            spec=browse_record, id=2)
-        self.order1.pricelist_id = self.order2.pricelist_id = Mock(
-            spec=browse_record, id=3)
-
         self.order1.id = 51
         self.order2.id = 52
 
         grouped = self.po._group_orders([self.order1, self.order2])
+
         expected_key = (('location_id', 2), ('partner_id', 1),
                         ('pricelist_id', 3))
         self.assertEquals(grouped.keys(), [expected_key])
@@ -58,13 +59,6 @@ class TestGroupOrders(BaseCase):
         self.order1.notes = 'Notes1'
         self.order2.notes = 'Notes2'
 
-        self.order1.partner_id = self.order2.partner_id = Mock(
-            spec=browse_record, id=1)
-        self.order1.location_id = self.order2.location_id = Mock(
-            spec=browse_record, id=2)
-        self.order1.pricelist_id = self.order2.pricelist_id = Mock(
-            spec=browse_record, id=3)
-
         grouped = self.po._group_orders([self.order1, self.order2])
 
         expected_key = (('location_id', 2), ('partner_id', 1),
@@ -74,3 +68,16 @@ class TestGroupOrders(BaseCase):
 
         self.assertEquals(merged_data['origin'], 'ORIGIN1 ORIGIN2')
         self.assertEquals(merged_data['notes'], 'Notes1\nNotes2')
+
+    def test_merge_with_empty_origin(self):
+        self.order1.origin = False
+        self.order2.origin = 'ORIGIN2'
+
+        grouped = self.po._group_orders([self.order1, self.order2])
+
+        expected_key = (('location_id', 2), ('partner_id', 1),
+                        ('pricelist_id', 3))
+
+        merged_data = grouped[expected_key][0]
+
+        self.assertEquals(merged_data['origin'], 'ORIGIN2')
