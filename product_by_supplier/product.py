@@ -101,8 +101,11 @@ class product_product(orm.Model):
         main_results = super(product_product, self).name_search(
             cr, user, name=name, args=args,
             operator=operator, context=context, limit=limit)
+        domain = [('partner_ref2', '=', name)]
+        if args is not None:
+            domain += args
         ids = self.search(
-            cr, user, [('partner_ref2', '=', name)] + args,
+            cr, user, domain,
             limit=limit, context=context)
         if ids:
             supplier_results = self.name_get(cr, user, ids, context=context)
