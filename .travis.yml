@@ -24,6 +24,7 @@ install:
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - travis_install_nightly
   - git clone https://github.com/OCA/server-tools -b ${VERSION} $HOME/server-tools
+  - git clone https://github.com/OCA/stock-logistics-workflow -b ${VERSION} $HOME/stock-logistics-workflow
 
 script:
   - travis_run_tests
