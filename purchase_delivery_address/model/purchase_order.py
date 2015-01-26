@@ -38,17 +38,17 @@ class PurchaseOrder(models.Model):
         if types:
             if self.picking_type_id in types:
                 return
-            picking_type_id = types[0].id
+            picking_type = types[0]
         elif self.dest_address_id.customer:
             # if destination is not for a warehouse address,
             # we set dropshipping picking type
             ref = 'stock_dropshipping.picking_type_dropship'
-            picking_type_id = self.env.ref(ref)
+            picking_type = self.env.ref(ref)
         else:
             raise exceptions.Warning(
                 'No picking types were found on warehouse. Please verify you '
                 'have set an address on warehouse.')
-        self.picking_type_id = picking_type_id
+        self.picking_type_id = picking_type
 
     @api.onchange('picking_type_id')
     def onchange_picking_type_id(self):
