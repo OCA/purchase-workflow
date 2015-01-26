@@ -24,7 +24,8 @@ class Warehouse(models.Model):
     buy_vci_to_resupply = fields.Boolean(
         'Purchase from VCI to resupply this warehouse',
         help="This warehouse can contain Vendor-Supplied-Inventory (VCI) that "
-        "have to be bought before being sold.", default=True)
+             "have to be bought before being sold.",
+        default=True)
     buy_vci_pull_id = fields.Many2one('procurement.rule', 'BUY VCI rule')
 
     @api.model
