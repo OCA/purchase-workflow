@@ -43,7 +43,7 @@ class PurchaseOrder(models.Model):
             # if destination is not for a warehouse address,
             # we set dropshipping picking type
             ref = 'stock_dropshipping.picking_type_dropship'
-            picking_type_id = self.env['ir.model.data'].xmlid_to_res_id(ref)
+            picking_type_id = self.env.ref(ref)
         else:
             raise exceptions.Warning(
                 'No picking types were found on warehouse. Please verify you '
