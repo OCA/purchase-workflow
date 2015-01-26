@@ -43,7 +43,7 @@ class Warehouse(models.Model):
                 'Can\'t find any generic Buy VCI route.'))
 
         return {
-            'name': self._format_routename(warehouse, _(' Buy VCI')),
+            'name': self._format_routename(warehouse, _('Buy VCI')),
             'location_id': warehouse.int_type_id.default_location_dest_id.id,
             'route_id': buy_vci_route.id,
             'action': 'buy_vci',
