@@ -84,7 +84,6 @@ class Warehouse(models.Model):
         all_routes = super(Warehouse, self).get_all_routes_for_wh(warehouse)
         if (
             warehouse.buy_vci_to_resupply and
-            warehouse.buy_vci_pull_id and
             warehouse.buy_vci_pull_id.route_id
         ):
             all_routes += [warehouse.buy_vci_pull_id.route_id.id]
@@ -93,7 +92,7 @@ class Warehouse(models.Model):
     @api.model
     def _get_all_products_to_resupply(self, warehouse):
         res = super(Warehouse, self)._get_all_products_to_resupply(warehouse)
-        if warehouse.buy_vci_pull_id and warehouse.buy_vci_pull_id.route_id:
+        if warehouse.buy_vci_pull_id.route_id:
             product_model = self.env['product.product']
             for product_id in res:
                 for route in product_model.browse(product_id).route_ids:
