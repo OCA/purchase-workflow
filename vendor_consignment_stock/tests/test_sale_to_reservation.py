@@ -40,6 +40,7 @@ class TestSaleToReservation(TransactionCase):
         po = proc2.purchase_id
         self.assertTrue(po)
         self.assertIs(True, po.is_vci)
+        self.assertEqual(self.supplier, po.partner_id)
         po.signal_workflow('purchase_confirm')
         self.assertEqual(0, len(po.picking_ids))
 

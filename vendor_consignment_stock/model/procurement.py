@@ -43,6 +43,14 @@ class Procurement(models.Model):
         return result
 
     @api.model
+    def _get_product_supplier(self, procurement):
+        """In the VCI case, choose the owner in the sale line as supplier."""
+        if procurement.rule_id.action == 'buy_vci':
+            return procurement.move_dest_id.restrict_partner_id
+        else:
+            return super(Procurement, self)._get_product_supplier(procurement)
+
+    @api.model
     def _check(self, procurement):
         if procurement.rule_id and procurement.rule_id.action == 'buy_vci':
             purchase = procurement.purchase_id

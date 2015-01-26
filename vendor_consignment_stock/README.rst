@@ -20,10 +20,17 @@ cases are possible depending on the owner specified in the sale order line.
 3. If the owner specified in the sale order line is not he customer of the
    order, that means that we are dealing with "Vendor Consignment Stock". Even
    though the goods are already in our warehouse, we need to purchase them from
-   the vendor. In that case, on validation of the sale, a special purchase order will be
-   generated. This purchase, once validated, will not generate a picking since
-   we already have the goods. Instead, validation of the purchase will make the
-   delivery available.
+   the vendor. In that case, on validation of the sale, a special Request for
+   Quotation will be generated, with the following characteristics:
+
+   - It is marked as "VCI", and can be easily found with a "VCI" filter that
+     has been added to the search view.
+   - The supplier is not the one configured in the product as in the case for
+     normal purchases. It is instead the owner that has been specified in the
+     sale line.
+   - Once validated, this purchase will not generate a picking since we already
+     have the goods in stock. Instead, validation of the purchase will make the
+     delivery to the customer available.
 
 Note that the VCI flow (3) is of the "Make to order" kind. That means that the
 purchase order will always be for the quantity sold, even if a small quantity
