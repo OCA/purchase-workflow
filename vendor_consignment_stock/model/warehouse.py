@@ -91,15 +91,15 @@ class Warehouse(models.Model):
 
     @api.model
     def _get_all_products_to_resupply(self, warehouse):
-        res = super(Warehouse, self)._get_all_products_to_resupply(warehouse)
+        product_ids = super(Warehouse, self)._get_all_products_to_resupply(
+            warehouse)
         if warehouse.buy_vci_pull_id.route_id:
-            product_model = self.env['product.product']
-            for product_id in res:
-                for route in product_model.browse(product_id).route_ids:
+            for product in self.env['product.product'].browse(product_ids):
+                for route in product.route_ids:
                     if route == warehouse.buy_vci_pull_id.route_id:
-                        res.remove(product_id)
+                        product_ids.remove(product.id)
                         break
-        return res
+        return product_ids
 
     @api.model
     def _handle_renaming(self, warehouse, name, code):
