@@ -47,7 +47,19 @@ rules are generated and updated automatically for all warehouses. A flag
 labeled "Purchase from VCI to resupply this warehouse" has been added to choose
 if we want this to happen.
 
+Credits
+=======
+
 Contributors
 ------------
 
 * Leonardo Pistone <leonardo.pistone@camptocamp.com>
+
+Maintainer
+----------
+
+.. image:: http://odoo-community.org/logo.png
+   :alt: Odoo Community Association
+   :target: http://odoo-community.org
+
+This module is maintained by the OCA.
