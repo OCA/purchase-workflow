@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record id="purchase_order_form" model="ir.ui.view">
+      <field name="name">purchase_order_form</field>
+      <field name="model">purchase.order</field>
+      <field name="inherit_id" ref="purchase.purchase_order_form"/>
+      <field name="arch" type="xml">
+        <field name="partner_id" position="after">
+          <field name="is_vci" />
+        </field>
+      </field>
+    </record>
+
+    <record id="view_purchase_order_filter" model="ir.ui.view">
+      <field name="name">view_purchase_order_filter</field>
+      <field name="model">purchase.order</field>
+      <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+      <field name="arch" type="xml">
+        <filter name="draft" position="after">
+          <filter name="is_vci" string="VCI" domain="[('is_vci', '=', True)]"/>
+        </filter>
+      </field>
+    </record>
+
+  </data>
+</openerp>
