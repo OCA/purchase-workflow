@@ -93,6 +93,14 @@ class PurchaseOrder(models.Model):
         ('purchase', 'Purchase Order')
     ]
 
+    STATES = {
+        'draft': [('readonly', False)],
+        'sent': [('readonly', False)],
+        'draftbid': [('readonly', False)],
+        'bid': [('readonly', False)],
+        'draftpo': [('readonly', False)],
+    }
+
     type = fields.Selection(
         TYPE_SELECTION,
         'Type',
@@ -107,6 +115,23 @@ class PurchaseOrder(models.Model):
              "international transactions.")
     cancel_reason_id = fields.Many2one(
         'purchase.cancel_reason', 'Reason for Cancellation', readonly=True)
+
+    # in pricelist_id and currency_id we change readonly and states
+    pricelist_id = fields.Many2one(
+        'product.pricelist',
+        'Pricelist',
+        readonly=True,
+        required=True,
+        states=STATES,
+        help="The pricelist sets the currency used for this purchase order. "
+             "It also computes the supplier price for the selected "
+             "products/quantities.")
+    currency_id = fields.Many2one(
+        'res.currency',
+        'Currency',
+        readonly=True,
+        required=True,
+        states=STATES)
 
     @api.model
     def create(self, values):
