@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (C) 2014-2015 Akretion (http://www.akretion.com/)
+    @author: Alexis de Lattre <alexis.delattre@akretion.com>
+    The licence is in the file __openerp__.py
+-->
+
+<openerp>
+<data>
+
+<record id="procurement_batch_generator_form" model="ir.ui.view">
+    <field name="name">procurement.batch.generator.form</field>
+    <field name="model">procurement.batch.generator</field>
+    <field name="arch" type="xml">
+        <form string="Request Procurements">
+            <group name="main">
+                <field name="line_ids" nolabel="1" colspan="2">
+                    <tree editable="bottom">
+                        <field name="product_id"/>
+                        <field name="partner_id" required="1"/>
+                        <field name="qty_available"/>
+                        <field name="outgoing_qty"/>
+                        <field name="incoming_qty"/>
+                        <field name="uom_id" groups="product.group_uom"/>
+                        <field name="procurement_qty"/>
+                        <field name="warehouse_id"/>
+                        <field name="date_planned"/>
+                    </tree>
+                </field>
+            </group>
+            <footer>
+                <button type="object" name="validate"
+                    string="Validate" class="oe_highlight"/>
+                <button special="cancel" string="Cancel" class="oe_link"/>
+            </footer>
+        </form>
+    </field>
+</record>
+
+<act_window id="procurement_batch_generator_tree_action"
+            multi="True"
+            key2="client_action_multi"
+            name="Request Procurements"
+            res_model="procurement.batch.generator"
+            src_model="product.product"
+            view_mode="form"
+            target="new" />
+
+</data>
+</openerp>
