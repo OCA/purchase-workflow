@@ -25,7 +25,7 @@ import openerp.addons.decimal_precision as dp
 from openerp.exceptions import Warning
 
 
-class ProcurementBathGenerator(models.TransientModel):
+class ProcurementBatchGenerator(models.TransientModel):
     _name = 'procurement.batch.generator'
     _description = 'Wizard to create procurements from product tree'
 

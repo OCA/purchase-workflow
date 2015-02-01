@@ -30,13 +30,13 @@ msgstr "Annuler"
 #: field:procurement.batch.generator,create_uid:0
 #: field:procurement.batch.generator.line,create_uid:0
 msgid "Created by"
-msgstr "Created by"
+msgstr "Créé par"
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator,create_date:0
 #: field:procurement.batch.generator.line,create_date:0
 msgid "Created on"
-msgstr "Created on"
+msgstr "Créé le"
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator,id:0
@@ -53,18 +53,18 @@ msgstr "Quantité entrante"
 #: field:procurement.batch.generator,write_uid:0
 #: field:procurement.batch.generator.line,write_uid:0
 msgid "Last Updated by"
-msgstr "Last Updated by"
+msgstr "Dernière modification par"
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator,write_date:0
 #: field:procurement.batch.generator.line,write_date:0
 msgid "Last Updated on"
-msgstr "Last Updated on"
+msgstr "Dernière modification le"
 
 #. module: procurement_batch_generator
 #: model:ir.model,name:procurement_batch_generator.model_procurement_batch_generator_line
 msgid "Lines of the wizard to create procurements from product tree"
-msgstr "Lines of the wizard to create procurements from product tree"
+msgstr "Lignes de l'assistant pour créer des approvisionnements depuis la liste des produits"
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator.line,outgoing_qty:0
