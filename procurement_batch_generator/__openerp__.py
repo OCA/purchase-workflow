@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Purchase from product tree module for Odoo
-#    Copyright (C) 2014 Akretion (http://www.akretion.com)
+#    Procurement Batch Generator module for Odoo
+#    Copyright (C) 2014-2015 Akretion (http://www.akretion.com)
 #    @author Alexis de Lattre <alexis.delattre@akretion.com>
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -22,25 +22,15 @@
 
 
 {
-    'name': 'Purchase from Product tree',
+    'name': 'Procurement Batch Generator',
     'version': '0.1',
-    'category': 'Purchase Management',
+    'category': 'Warehouse Management',
     'license': 'AGPL-3',
-    'summary': 'Wizard to create purchase orders from product variants',
-    'description': """
-This module adds a wizard on the product variants tree view to create
-new purchase orders. Some companies don't want to use the re-ordering
-rules to create purchase orders for some reasons (complexity, fast
-changes in demand, etc...). Some companies may prefer to look at their
-stock level and, from this analysis, decide which product variants they
-need to re-order. This module implements this scenario.
-
-This module has been written by Alexis de Lattre from Akretion
-<alexis.delattre@akretion.com>.
-    """,
+    'summary': 'Wizard to create procurements from product variants',
     'author': 'Akretion',
     'website': 'http://www.akretion.com',
-    'depends': ['purchase'],
-    'data': ['wizard/purchase_from_product_view.xml'],
+    'depends': ['stock'],
+    'data': ['wizard/procurement_batch_generator_view.xml'],
+    'test': ['test/procurement_batch_generator.yml'],
     'installable': True,
 }
