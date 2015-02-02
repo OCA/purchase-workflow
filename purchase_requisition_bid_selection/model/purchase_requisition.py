@@ -209,7 +209,7 @@ class PurchaseRequisition(models.Model):
         return quotation.bid_partial
 
     @api.model
-    def cancel_quotation(self, tender):
+    def cancel_unconfirmed_quotations(self, tender):
         """
         Called from generate_po. Cancel only draft and sent rfq
         """
