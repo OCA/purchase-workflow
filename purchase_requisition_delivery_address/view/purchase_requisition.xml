@@ -8,8 +8,15 @@
       <field name="inherit_id" ref="purchase_requisition.view_purchase_requisition_form"/>
       <field name="arch" type="xml">
 
-        <field name="picking_type_id" position="before">
+        <field name="picking_type_id" position="after">
           <field name="dest_address_id" attrs="{'readonly': [('state','not in',('draft'))]}"/>
+        </field>
+
+        <field name="picking_type_id" position="attributes">
+          <!-- make this field consistent with the same field on the purchase order -->
+          <attribute name="string">Deliver To</attribute>
+          <attribute name="domain">[('code','=','incoming')]</attribute>
+          <attribute name="context">{'special_shortened_wh_name': True}</attribute>
         </field>
 
       </field>
