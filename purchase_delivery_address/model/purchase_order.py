@@ -16,6 +16,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from openerp import models, api, exceptions
+from openerp.tools.translate import _
 
 
 class PurchaseOrder(models.Model):
@@ -45,9 +46,9 @@ class PurchaseOrder(models.Model):
             ref = 'stock_dropshipping.picking_type_dropship'
             picking_type = self.env.ref(ref)
         else:
-            raise exceptions.Warning(
+            raise exceptions.Warning(_(
                 'No picking types were found on warehouse. Please verify you '
-                'have set an address on warehouse.')
+                'have set an address on warehouse.'))
         self.picking_type_id = picking_type
 
     @api.onchange('picking_type_id')
