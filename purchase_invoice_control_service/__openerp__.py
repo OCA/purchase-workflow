@@ -20,13 +20,13 @@
 #
 ##############################################################################
 {
-    'name': "Purchase for services check",
+    'name': "Purchase invoice control service",
     'version': '0.1',
     'category': 'Purchase Management',
     'summary': "Restricts the Invoicing Control for PO with services",
     'description': """
-Purchase for services checks
-============================
+Purchase invoice control service
+================================
 Currently a user can create a PO containing services and set the invoice
 control 'Based on incoming shipments', and the application does not prevent
 the user from doing that.
