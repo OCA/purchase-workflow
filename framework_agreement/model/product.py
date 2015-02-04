@@ -29,5 +29,5 @@ class product_product(models.Model):
         comodel_name='framework.agreement',
         inverse_name='product_id',
         string='Framework Agreements (LTA)',
-        copyable=False,
+        copy=False,
     )
