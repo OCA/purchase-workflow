@@ -116,7 +116,11 @@ class PurchaseOrder(models.Model):
     cancel_reason_id = fields.Many2one(
         'purchase.cancel_reason', 'Reason for Cancellation', readonly=True)
 
-    # in pricelist_id and currency_id we change readonly and states
+    # in pricelist_id and currency_id we change readonly and states to make
+    # them identical and avoid problems where the onchange from pricelist to
+    # currency is reverted in save. However, the user can still set a currency
+    # different from the currency of the pricelist, which is undesirable. See:
+    # https://github.com/odoo/odoo/issues/4598
     pricelist_id = fields.Many2one(
         'product.pricelist',
         'Pricelist',
