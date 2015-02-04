@@ -20,16 +20,29 @@
 #
 ##############################################################################
 {
-    'name': "Purchase cancel services",
+    'name': "Purchase for services check",
     'version': '0.1',
     'category': 'Purchase Management',
-    'summary': "Cancel confirmed purchase orders containing services "
-               "and wrong invoicing control set.",
+    'summary': "Restricts the Invoicing Control for PO with services",
     'description': """
-Purchase cancel services
-========================
-Cancel confirmed purchase orders containing services but set
-with invoicing control Based on Incoming Shipments.
+Purchase for services checks
+============================
+Currently a user can create a PO containing services and set the invoice
+control 'Based on incoming shipments', and the application does not prevent
+the user from doing that.
+
+Then, the user has no option in the 'Invoice Control' menu to invoice that
+line, and can only invoice based on a list of PO lines.
+
+This modules introduces the following features:
+
+Prevents a user from being able to confirm a Purchase Order with invoice
+control 'Based on incoming shipments' that contains services.
+
+Makes it possible to cancel a Purchase Order in which the user created the
+PO containing services, with invoice control 'Based on incoming shipments'
+(in order to correct the PO's that were created incorrectly before this
+module was used).
 """,
     'author': 'Eficent',
     'website': 'http://www.eficent.com',
