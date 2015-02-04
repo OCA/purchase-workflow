@@ -34,9 +34,13 @@ class purchase_order(orm.Model):
             for order_line in order.order_line:
                 if order_line.invoiced:
                     return False
-                if (order_line.product_id
-                    and order_line.product_id.type == 'service') \
-                        or not order_line.product_id:
+                if (
+                    not order_line.product_id
+                    or
+                    order_line.product_id
+                    and order_line.product_id.type not in ('product',
+                                                           'consu')
+                ):
                     res = True
         return res
 
@@ -47,5 +51,24 @@ class purchase_order(orm.Model):
                     raise orm.except_orm(
                         _('Unable to cancel this purchase order.'),
                         _('Invoices have already been created.'))
-        super(purchase_order, self).action_cancel(cr, uid, ids,
-                                                  context=context)
+        return super(purchase_order, self).action_cancel(cr, uid, ids,
+                                                         context=context)
+
+    def wkf_confirm_order(self, cr, uid, ids, context=None):
+        for order in self.browse(cr, uid, ids, context=context):
+            if order.invoice_method == 'picking':
+                for order_line in order.order_line:
+                    if (
+                        not order_line.product_id
+                        or
+                        order_line.product_id
+                        and order_line.product_id.type not in ('product',
+                                                               'consu')
+                    ):
+                        raise orm.except_orm(
+                            _('Error!'),
+                            _("You cannot confirm a purchase order "
+                              "with Invoice Control Method 'Based on incoming "
+                              "shipments' that contains non-stockable items."))
+        return super(purchase_order, self).wkf_confirm_order(cr, uid, ids,
+                                                             context=context)
