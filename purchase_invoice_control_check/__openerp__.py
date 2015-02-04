@@ -20,16 +20,20 @@
 #
 ##############################################################################
 {
-    'name': "Purchase invoice control service",
+    'name': "Purchase invoice control check",
     'version': '0.1',
     'category': 'Purchase Management',
-    'summary': "Restricts the Invoicing Control for PO with services",
+    'summary': "Checks Invoicing Control in Purchase Orders "
+               "during confirmation",
     'description': """
 Purchase invoice control service
 ================================
-Currently a user can create a PO containing services and set the invoice
-control 'Based on incoming shipments', and the application does not prevent
-the user from doing that.
+This module aims to introduce checks that prevent users from confirming
+purchase orders using a wrong Invoicing Control.
+
+For example, currently a user can create a PO containing services and
+set the invoice control 'Based on incoming shipments', and the application
+does not prevent the user from doing that.
 
 Then, the user has no option in the 'Invoice Control' menu to invoice that
 line, and can only invoice based on a list of PO lines.
