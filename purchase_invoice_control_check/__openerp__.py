@@ -26,8 +26,8 @@
     'summary': "Checks Invoicing Control in Purchase Orders "
                "during confirmation",
     'description': """
-Purchase invoice control service
-================================
+Purchase invoice control check
+==============================
 This module aims to introduce checks that prevent users from confirming
 purchase orders using a wrong Invoicing Control.
 

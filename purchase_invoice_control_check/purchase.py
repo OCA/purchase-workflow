@@ -18,7 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.osv import orm
+from openerp.osv import fields, orm
 from openerp.tools.translate import _
 
 
@@ -26,14 +26,10 @@ class purchase_order(orm.Model):
 
     _inherit = 'purchase.order'
 
-    def has_services(self, cr, uid, ids, *args):
-        res = False
+    def _has_non_stockable(self, cr, uid, ids, *args):
+        res = dict.fromkeys(ids, False)
         for order in self.browse(cr, uid, ids):
-            if order.invoice_method != 'picking':
-                return False
             for order_line in order.order_line:
-                if order_line.invoiced:
-                    return False
                 if (
                     not order_line.product_id
                     or
@@ -41,8 +37,20 @@ class purchase_order(orm.Model):
                     and order_line.product_id.type not in ('product',
                                                            'consu')
                 ):
-                    res = True
+                    res[order.id] = True
         return res
+
+    _columns = {
+        'has_non_stockable': fields.function(
+            _has_non_stockable, method=True, type='boolean',
+            string='Contains non-stockable items'),
+    }
+
+    def check_has_non_stockable(self, cr, uid, ids, context=None):
+        for order in self.browse(cr, uid, ids, context=context):
+            if order.has_non_stockable:
+                return True
+        return False
 
     def action_cancel(self, cr, uid, ids, context=None):
         for purchase in self.browse(cr, uid, ids, context=context):
@@ -56,19 +64,11 @@ class purchase_order(orm.Model):
 
     def wkf_confirm_order(self, cr, uid, ids, context=None):
         for order in self.browse(cr, uid, ids, context=context):
-            if order.invoice_method == 'picking':
-                for order_line in order.order_line:
-                    if (
-                        not order_line.product_id
-                        or
-                        order_line.product_id
-                        and order_line.product_id.type not in ('product',
-                                                               'consu')
-                    ):
-                        raise orm.except_orm(
-                            _('Error!'),
-                            _("You cannot confirm a purchase order "
-                              "with Invoice Control Method 'Based on incoming "
-                              "shipments' that contains non-stockable items."))
+            if order.invoice_method == 'picking' and order.has_non_stockable is True:
+                raise orm.except_orm(
+                    _('Error!'),
+                    _("You cannot confirm a purchase order "
+                      "with Invoice Control Method 'Based on incoming "
+                      "shipments' that contains non-stockable items."))
         return super(purchase_order, self).wkf_confirm_order(cr, uid, ids,
                                                              context=context)

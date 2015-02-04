@@ -5,7 +5,7 @@
             <field name="act_from" ref="purchase.act_invoice_end"/>
             <field name="act_to" ref="purchase.act_cancel"/>
             <field name="signal">purchase_cancel</field>
-            <field name="condition">has_services()</field>
+            <field name="condition">check_has_non_stockable()</field>
         </record>
     </data>
 </openerp>
