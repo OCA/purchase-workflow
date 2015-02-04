@@ -31,12 +31,16 @@ Purchase invoice control service
 This module aims to introduce checks that prevent users from confirming
 purchase orders using a wrong Invoicing Control.
 
-For example, currently a user can create a PO containing services and
-set the invoice control 'Based on incoming shipments', and the application
-does not prevent the user from doing that.
+For example, currently a user can create a PO not containing stockable items
+and then set the invoice control 'Based on incoming shipments'.
+The application does not prevent the user from doing that.
 
-Then, the user has no option in the 'Invoice Control' menu to invoice that
-line, and can only invoice based on a list of PO lines.
+Then, the user has no option in the 'Invoice Control' menu to invoice the
+lines that are not stockable items, and can only invoice then based on a
+list of PO lines.
+
+Furthermore, when the user attempts to cancel the PO the application cancels
+the PO line, but the PO remains confirmed, leaving it inconsistent.
 
 This modules introduces the following features:
 
