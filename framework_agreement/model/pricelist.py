@@ -44,9 +44,10 @@ class product_pricelist(orm.Model):
 
     def price_get(self, cr, uid, ids, prod_id, qty,
                   partner=None, context=None):
-        """Override of price retrival function in order to support framework agreement.
+        """Override of price retrieval function in order to support framework
+        agreement.
 
-        If it is a supplier price list agreement will be taken in account
+        If it is a supplier price list, agreement will be taken in account
         and use the price of the agreement if required.
 
         If there is not enough available qty on agreement,

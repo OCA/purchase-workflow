@@ -30,5 +30,5 @@ class res_Company(models.Model):
         'One agreement per product',
         help='If checked you can have only'
         ' one framework agreement '
-        ' per product at the same time'
+        ' per product at the same time.'
     )
