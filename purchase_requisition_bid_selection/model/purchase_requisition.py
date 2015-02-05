@@ -240,9 +240,9 @@ class PurchaseRequisition(models.Model):
                 elif purchase.state != 'cancel':
                     rfq_valid = True
         if pos_to_cancel:
-            reason_id = self.env['ir.model.data'].xmlid_to_res_id(
+            reason = self.env.ref(
                 'purchase_extended.purchase_cancelreason_rfq_canceled')
-            pos_to_cancel.write({'cancel_reason': reason_id})
+            pos_to_cancel.write({'cancel_reason': reason.id})
             pos_to_cancel.action_cancel()
         if not rfq_valid:
             raise except_orm(
@@ -290,11 +290,9 @@ class PurchaseRequisition(models.Model):
     @api.model
     def _get_default_reason(self):
         """Return default cancel reason"""
-        IrModelData = self.env['ir.model.data']
-        ref = ('purchase_requisition_bid_selection'
-               '.purchase_cancelreason_callforbids_canceled')
-        reason_id = IrModelData.xmlid_to_res_id(ref)
-        return reason_id
+        reason = self.env.ref('purchase_requisition_bid_selection'
+                              '.purchase_cancelreason_callforbids_canceled')
+        return reason.id
 
     @api.multi
     def tender_cancel(self):
@@ -366,19 +364,15 @@ class PurchaseRequisition(models.Model):
         ctx.update({'action': 'close_callforbids_ok',
                     'active_model': self._name,
                     })
-        IrModelData = self.env['ir.model.data']
-        ref = (
-            'purchase_requisition_bid_selection.action_modal_close_callforbids'
-        )
-        view_id = IrModelData.xmlid_to_res_id(ref)
-
+        view = self.env.ref('purchase_requisition_bid_selection'
+                            '.action_modal_close_callforbids')
         return {
             'type': 'ir.actions.act_window',
             'view_type': 'form',
             'view_mode': 'form',
             'res_model': 'purchase.action_modal',
-            'view_id': view_id,
-            'views': [(view_id, 'form')],
+            'view_id': view.id,
+            'views': [(view.id, 'form')],
             'target': 'new',
             'context': ctx,
         }
