@@ -36,20 +36,18 @@ class purchase_order_line(orm.Model):
     def _fully_invoiced(self, cursor, user, ids, name, arg, context=None):
         res = {}
         for line in self.browse(cursor, user, ids, context=context):
-            res[line.id] = False
-            if line.invoiced_qty == line.product_qty:
-                res[line.id] = True
+            res[line.id] = line.invoiced_qty == line.product_qty
         return res
 
     def _all_invoices_approved(self, cursor, user, ids, name, arg, context=None):
         res = {}
         for line in self.browse(cursor, user, ids, context=context):
-            res[line.id] = False
-            if line.fully_invoiced:
-                for invoice_line in line.invoice_lines:
-                    if invoice_line.invoice_id.state not in ['draft',
-                                                             'cancel']:
-                        res[line.id] = True
+            if line.invoice_lines:
+                res[line.id] = not any(inv_line.invoice_id.state
+                                       in ['draft', 'cancel']
+                                       for inv_line in line.invoice_lines)
+            else:
+                res[line.id] = False
         return res
 
     _inherit = 'purchase.order.line'
