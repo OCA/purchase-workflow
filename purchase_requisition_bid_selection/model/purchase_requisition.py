@@ -23,7 +23,6 @@ from openerp.exceptions import except_orm
 import openerp.osv.expression as expression
 from openerp.tools.safe_eval import safe_eval
 from openerp.tools.translate import _
-from openerp import netsvc
 from openerp.tools.float_utils import float_compare
 
 
@@ -158,13 +157,6 @@ class PurchaseRequisition(models.Model):
             remark=requisition_line.remark,
         )
         return vals
-
-    def trigger_validate_po(self, cr, uid, po_id, context=None):
-        wf_service = netsvc.LocalService("workflow")
-        wf_service.trg_validate(uid, 'purchase.order', po_id, 'draft_po', cr)
-        po_obj = self.pool.get('purchase.order')
-        po_obj.write(cr, uid, po_id, {'bid_partial': False}, context=context)
-        return True
 
     @api.model
     def check_valid_quotation(self, quotation):
