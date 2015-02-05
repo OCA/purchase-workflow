@@ -249,25 +249,19 @@ class PurchaseRequisition(models.Model):
                 _('Error'), _('You do not have valid sent RFQs.'))
         return super(PurchaseRequisition, self).tender_open()
 
-    @api.one
+    @api.multi
     def _get_po_to_cancel(self):
         """Get the list of PO/RFQ that can be cancelled on RFQ
-
-        :param callforbids: `purchase.requisition` record
 
         :returns: List of candidate PO/RFQ record
 
         """
-        orders = []
-        for purchase in self.purchase_ids:
-            if purchase.state in ('draft', 'sent'):
-                orders.append(purchase)
-        return orders
+        purchases = self.mapped('purchase_ids')
+        return purchases.filtered(lambda rec: rec.state in ('draft', 'sent'))
 
     @api.one
     def _check_can_be_canceled(self):
         """Raise an exception if callforbids can not be cancelled
-        :param callforbids: `purchase.requisition` record
 
         :returns: True or raise exception
 
@@ -289,10 +283,8 @@ class PurchaseRequisition(models.Model):
         :returns: cancel po record list
 
         """
-        for order in po_list:
-            order.cancel_reason = reason_id
-            # passing full list raises assert error
-            order.action_cancel_no_reason()
+        po_list.write({'cancel_reason': reason_id})
+        po_list.signal_workflow('purchase_cancel')
         return po_list
 
     @api.model
@@ -300,7 +292,7 @@ class PurchaseRequisition(models.Model):
         """Return default cancel reason"""
         IrModelData = self.env['ir.model.data']
         ref = ('purchase_requisition_bid_selection'
-               '.purchase_cancelreason_rfq_canceled')
+               '.purchase_cancelreason_callforbids_canceled')
         reason_id = IrModelData.xmlid_to_res_id(ref)
         return reason_id
 
@@ -313,9 +305,9 @@ class PurchaseRequisition(models.Model):
         reason_id = self._get_default_reason()
         for callforbid in self:
             callforbid._check_can_be_canceled()
-            po_to_cancel = self._get_po_to_cancel()
-            if po_to_cancel:
-                self._cancel_po_with_reason(po_to_cancel, reason_id)
+        po_to_cancel = self._get_po_to_cancel()
+        if po_to_cancel:
+            self._cancel_po_with_reason(po_to_cancel, reason_id)
         self.state = 'cancel'
 
     @api.multi
