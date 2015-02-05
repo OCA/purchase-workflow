@@ -253,8 +253,6 @@ class PurchaseRequisition(models.Model):
     def _get_po_to_cancel(self):
         """Get the list of PO/RFQ that can be cancelled on RFQ
 
-        :param callforbids: `purchase.requisition` record
-
         :returns: List of candidate PO/RFQ record
 
         """
@@ -264,7 +262,6 @@ class PurchaseRequisition(models.Model):
     @api.one
     def _check_can_be_canceled(self):
         """Raise an exception if callforbids can not be cancelled
-        :param callforbids: `purchase.requisition` record
 
         :returns: True or raise exception
 
