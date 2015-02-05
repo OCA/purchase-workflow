@@ -29,8 +29,7 @@ class purchase_order_line(orm.Model):
         for line in self.browse(cursor, user, ids, context=context):
             invoiced_qty = 0.0
             for invoice_line in line.invoice_lines:
-                if invoice_line.invoice_id.state != 'cancel':
-                    invoiced_qty += invoice_line.quantity
+                invoiced_qty += invoice_line.quantity
             res[line.id] = invoiced_qty
         return res
 
