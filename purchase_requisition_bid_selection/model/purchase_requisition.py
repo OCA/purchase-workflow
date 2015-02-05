@@ -207,7 +207,7 @@ class PurchaseRequisition(models.Model):
         """
         tender.refresh()
         for quotation in tender.purchase_ids:
-            if quotation.state in ['draft', 'sent', 'bid']:
+            if quotation.state in ['draft', 'sent', 'draftbid', 'bid']:
                 if self.quotation_selected(quotation):
                     quotation.signal_workflow('select_requisition')
                 else:
