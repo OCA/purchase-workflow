@@ -129,7 +129,7 @@ msgstr ""
 
 #. module: framework_agreement
 #: help:res.company,one_agreement_per_product:0
-msgid "If checked you can have only one framework agreement  per product at the same time"
+msgid "If checked you can have only one framework agreement per product at the same time."
 msgstr ""
 
 #. module: framework_agreement

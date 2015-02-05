@@ -29,6 +29,6 @@ class res_Company(models.Model):
     one_agreement_per_product = fields.Boolean(
         'One agreement per product',
         help='If checked you can have only'
-        ' one framework agreement '
-        ' per product at the same time'
+        ' one framework agreement'
+        ' per product at the same time.'
     )

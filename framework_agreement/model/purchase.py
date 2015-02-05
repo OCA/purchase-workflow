@@ -25,10 +25,10 @@ from openerp import exceptions, _
 
 class purchase_order_line(orm.Model):
     """Add on change on price to raise a warning if line is subject to
-    an agreement
+    an agreement.
 
-    There is too munch conflict when overriding on change defined on old API
-    With new API classes. This does not work
+    There is too much conflict when overriding on change defined on old API
+    with new API classes. This does not work
     """
 
     _inherit = "purchase.order.line"
@@ -113,7 +113,6 @@ class purchase_order_line(orm.Model):
         This is maybe a faulty design as it has a low level impact
 
         We use web_context_tunnel to keep the original signature.
-
         """
         agreement_id = context.get('agreement_id')
         # rock n'roll
@@ -237,7 +236,7 @@ class purchase_order(models.Model):
 
     @api.model
     def _date_valid(self):
-        """predicate that check that date of invoice is in agreement"""
+        """check that date of invoice is in agreement"""
         return self.framework_agreement_id.date_valid(self.date_order)
 
     @api.onchange('date_order')
@@ -258,7 +257,6 @@ class purchase_order(models.Model):
         """Override to ensure that partner can not be changed if agreement.
 
         We use web_context_tunnel in order to keep the original signature.
-
         """
         res = super(purchase_order, self).onchange_partner_id(
             partner_id
