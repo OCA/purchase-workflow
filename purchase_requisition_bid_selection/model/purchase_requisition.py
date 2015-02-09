@@ -407,6 +407,6 @@ class PurchaseRequisitionLine(models.Model):
             name = ""
             if line.schedule_date:
                 name += '%s ' % line.schedule_date
-            name += '%s %s' % (line.product_qty, line.product_id)
+            name += '%s %s' % (line.product_qty, line.product_id.name)
             res.append((line.id, name))
         return res
