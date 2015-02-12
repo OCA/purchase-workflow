@@ -8,7 +8,7 @@
       <field name="inherit_id" ref="purchase.purchase_order_2_stock_picking"/>
       <field name="arch" type="xml">
 
-        <button name="view_picking" position="after">
+        <button name="invoice_open" position="before">
           <button type="object"
             name="view_all_picking"
             class="oe_stat_button"
@@ -17,6 +17,11 @@
             <field name="all_shipment_count" widget="statinfo" string="All Shipments" help="All Shipments, including chained"/>
           </button>
         </button>
+
+        <!-- xpath needed because of odoo/odoo#5247 -->
+        <xpath expr="//div[@name='buttons']/button[@name='view_picking']" position="attributes">
+          <attribute name="invisible">1</attribute>
+        </xpath>
 
       </field>
     </record>
