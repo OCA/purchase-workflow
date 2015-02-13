@@ -56,6 +56,6 @@ class PurchaseOrder(models.Model):
 
     all_picking_ids = fields.One2many('stock.picking',
                                       string='All Shipments',
-                                      compute=_all_pickings)
+                                      compute='_all_pickings')
     all_shipment_count = fields.Integer('All Shipments',
-                                        compute=_all_shipment_count)
+                                        compute='_all_shipment_count')
