@@ -39,7 +39,8 @@ class purchase_order_line(orm.Model):
             res[line.id] = line.invoiced_qty == line.product_qty
         return res
 
-    def _all_invoices_approved(self, cursor, user, ids, name, arg, context=None):
+    def _all_invoices_approved(self, cursor, user, ids, name, arg,
+                               context=None):
         res = {}
         for line in self.browse(cursor, user, ids, context=context):
             if line.invoice_lines:
@@ -75,7 +76,8 @@ class purchase_order(orm.Model):
     def _invoiced(self, cursor, user, ids, name, arg, context=None):
         res = {}
         for purchase in self.browse(cursor, user, ids, context=context):
-            res[purchase.id] = all(line.all_invoices_approved for line in purchase.order_line)
+            res[purchase.id] = all(line.all_invoices_approved
+                                   for line in purchase.order_line)
         return res
 
     _columns = {
@@ -90,11 +92,13 @@ class account_invoice(orm.Model):
     _inherit = 'account.invoice'
 
     def invoice_validate(self, cr, uid, ids, context=None):
-        res = super(account_invoice, self).invoice_validate(cr, uid, ids, context=context)
+        res = super(account_invoice, self).invoice_validate(cr, uid, ids,
+                                                            context=context)
         purchase_order_obj = self.pool.get('purchase.order')
         po_ids = purchase_order_obj.search(
             cr, uid, [('invoice_ids', 'in', ids)], context=context)
-        for purchase_order in purchase_order_obj.browse(cr, uid, po_ids, context=context):
+        for purchase_order in purchase_order_obj.browse(cr, uid, po_ids,
+                                                        context=context):
             for po_line in purchase_order.order_line:
                 if po_line.invoiced_qty != po_line.product_qty:
                     po_line.write({'invoiced': False})
