@@ -22,7 +22,6 @@ from datetime import timedelta, date
 from openerp import fields
 import openerp.tests.common as test_common
 from .common import BaseAgreementTestMixin
-from ..model.framework_agreement import AGR_PO_STATE
 
 
 class TestAvailabeQty(test_common.TransactionCase, BaseAgreementTestMixin):
@@ -62,7 +61,44 @@ class TestAvailabeQty(test_common.TransactionCase, BaseAgreementTestMixin):
 
     def test_01_150_consumed(self):
         """ test consumption of 150 units"""
-        po = self.make_po_from_agreement(self.agreement, qty=150, delta_days=5)
+        po = self.env['purchase.order'].create(
+            self._map_agreement_to_po(self.agreement, delta_days=5))
+        self.env['purchase.order.line'].create(
+            self._map_agreement_to_po_line(self.agreement, qty=150, po=po))
+
         po.signal_workflow('purchase_confirm')
-        self.assertIn(po.state, AGR_PO_STATE)
+        self.assertIn(po.state, 'approved')
         self.assertEqual(self.agreement.available_quantity, 50)
+
+    def _map_agreement_to_po(self, agreement, delta_days):
+        """Map agreement to dict to be used by PO create"""
+        supplier = agreement.supplier_id
+        address = self.env.ref('base.res_partner_3')
+        start_date = fields.Date.from_string(agreement.start_date)
+        date_order = start_date + timedelta(days=delta_days)
+
+        return {
+            'partner_id': supplier.id,
+            'pricelist_id': supplier.property_product_pricelist_purchase.id,
+            'dest_address_id': address.id,
+            'location_id': address.property_stock_customer.id,
+            'payment_term_id': supplier.property_supplier_payment_term.id,
+            'origin': agreement.name,
+            'date_order': fields.Date.to_string(date_order),
+            'name': agreement.name,
+            'framework_agreement_id': agreement.id,
+        }
+
+    def _map_agreement_to_po_line(self, agreement, qty, po):
+        """Map agreement to dict to be used by PO line create"""
+        supplier = agreement.supplier_id
+        currency = supplier.property_product_pricelist_purchase.currency_id
+        return {
+            'product_qty': qty,
+            'product_id': agreement.product_id.product_variant_ids[0].id,
+            'product_uom': agreement.product_id.uom_id.id,
+            'price_unit': agreement.get_price(qty, currency=currency),
+            'name': agreement.product_id.name,
+            'order_id': po.id,
+            'date_planned': fields.Date.today(),
+        }
