@@ -22,6 +22,3 @@ from . import test_framework_agreement_dates_and_constraints
 from . import test_framework_agreement_consumed_qty
 from . import test_framework_agreement_on_change
 from . import test_framework_agreement_price_list
-
-# XXX One test in test_framework_greement_dates_and_constraints is disabled
-# because of odoo/odoo#3056

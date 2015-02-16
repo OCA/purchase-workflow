@@ -85,8 +85,6 @@ class TestAgreementState(test_common.TransactionCase, BaseAgreementTestMixin):
         start_date = date.today() - timedelta(days=40)
         end_date = date.today() + timedelta(days=30)
 
-        # XXX for some reason this is assertRaises is not affected by
-        # odoo/odoo#3056. The next one in this file is.
         with mute_logger('openerp.sql_db'):
             with self.assertRaises(Exception):
                 self.agreement_model.create(
@@ -117,19 +115,17 @@ class TestAgreementState(test_common.TransactionCase, BaseAgreementTestMixin):
         start_date = date.today() - timedelta(days=2)
         end_date = date.today() + timedelta(days=2)
 
-        # XXX disable this test to work around odoo/odoo#3056
-        if False:
-            with mute_logger():
-                with self.assertRaises(Exception):
-                    self.agreement_model.create(
-                        {'supplier_id': self.supplier.id,
-                         'product_id': self.product.id,
-                         'start_date': fields.Date.to_string(start_date),
-                         'end_date': fields.Date.to_string(end_date),
-                         'draft': False,
-                         'delay': 5,
-                         'quantity': 20}
-                    )
+        with mute_logger():
+            with self.assertRaises(Exception):
+                self.agreement_model.create(
+                    {'supplier_id': self.supplier.id,
+                     'product_id': self.product.id,
+                     'start_date': fields.Date.to_string(start_date),
+                     'end_date': fields.Date.to_string(end_date),
+                     'draft': False,
+                     'delay': 5,
+                     'quantity': 20}
+                )
 
     def test_05_search_on_state(self):
         start_date = date.today() - timedelta(days=2)
