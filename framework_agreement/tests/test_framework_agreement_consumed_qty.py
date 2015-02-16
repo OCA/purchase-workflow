@@ -19,7 +19,6 @@
 #
 ##############################################################################
 from datetime import timedelta
-from openerp import netsvc
 from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
 import openerp.tests.common as test_common
 from .common import BaseAgreementTestMixin
@@ -66,15 +65,6 @@ class TestAvailabeQty(test_common.TransactionCase, BaseAgreementTestMixin):
     def test_01_150_consumed(self):
         """ test consumption of 150 units"""
         po = self.make_po_from_agreement(self.agreement, qty=150, delta_days=5)
-        wf_service = netsvc.LocalService("workflow")
-        wf_service.trg_validate(
-            self.env.uid,
-            'purchase.order',
-            po.id,
-            'purchase_confirm',
-            self.env.cr
-        )
-        po.refresh()
+        po.signal_workflow('purchase_confirm')
         self.assertIn(po.state, AGR_PO_STATE)
-        self.agreement.refresh()
         self.assertEqual(self.agreement.available_quantity, 50)
