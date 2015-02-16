@@ -328,8 +328,9 @@ class purchase_order_line(orm.Model):
             landed_costs = 0.0
             if line.landed_cost_line_ids:
                 for costs in line.landed_cost_line_ids:
-                    if (costs.distribution_type_id.landed_cost_type == 'value'
-                            and costs.distribution_type_id.apply_on == 'line'):
+                    dist_type = costs.distribution_type_id
+                    if (dist_type.landed_cost_type == 'value' and
+                            dist_type.apply_on == 'line'):
                         landed_costs += costs.amount
                     else:
                         landed_costs += costs.amount * line.product_qty
@@ -413,9 +414,9 @@ class purchase_order(orm.Model):
         for line in self.browse(cr, uid, ids, context=context):
             if line.landed_cost_line_ids:
                 for costs in line.landed_cost_line_ids:
-                    if (costs.distribution_type_id.landed_cost_type == 'value'
-                            and
-                            costs.distribution_type_id.apply_on == 'order'):
+                    dist_type = costs.distribution_type_id
+                    if (dist_type.landed_cost_type == 'value' and
+                            dist_type.apply_on == 'order'):
                         landed_costs_base_value += costs.amount
             result[line.id] = landed_costs_base_value
         return result
