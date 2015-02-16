@@ -1,6 +1,5 @@
-from datetime import timedelta
-from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
-from openerp import exceptions
+from datetime import timedelta, date
+from openerp import exceptions, fields
 import openerp.tests.common as test_common
 from .common import BaseAgreementTestMixin
 
@@ -19,15 +18,13 @@ class TestAgreementPriceList(test_common.TransactionCase,
         """
         super(TestAgreementPriceList, self).setUp()
         self.commonsetUp()
-        start_date = self.now + timedelta(days=10)
-        start_date = start_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
-        end_date = self.now + timedelta(days=20)
-        end_date = end_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
+        start_date = date.today() + timedelta(days=10)
+        end_date = date.today() + timedelta(days=20)
         self.agreement = self.agreement_model.create(
-            {'supplier_id': self.supplier_id,
-             'product_id': self.product_id,
-             'start_date': start_date,
-             'end_date': end_date,
+            {'supplier_id': self.supplier.id,
+             'product_id': self.product.id,
+             'start_date': fields.Date.to_string(start_date),
+             'end_date': fields.Date.to_string(end_date),
              'delay': 5,
              'draft': False,
              'quantity': 1500}

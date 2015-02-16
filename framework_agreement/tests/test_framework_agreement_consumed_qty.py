@@ -18,8 +18,8 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from datetime import timedelta
-from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
+from datetime import timedelta, date
+from openerp import fields
 import openerp.tests.common as test_common
 from .common import BaseAgreementTestMixin
 from ..model.framework_agreement import AGR_PO_STATE
@@ -33,16 +33,14 @@ class TestAvailabeQty(test_common.TransactionCase, BaseAgreementTestMixin):
         """ Create a default agreement"""
         super(TestAvailabeQty, self).setUp()
         self.commonsetUp()
-        start_date = self.now + timedelta(days=10)
-        start_date = start_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
-        end_date = self.now + timedelta(days=20)
-        end_date = end_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
+        start_date = date.today() + timedelta(days=10)
+        end_date = date.today() + timedelta(days=20)
 
         self.agreement = self.agreement_model.create(
-            {'supplier_id': self.supplier_id,
-             'product_id': self.product_id,
-             'start_date': start_date,
-             'end_date': end_date,
+            {'supplier_id': self.supplier.id,
+             'product_id': self.product.id,
+             'start_date': fields.Date.to_string(start_date),
+             'end_date': fields.Date.to_string(end_date),
              'delay': 5,
              'quantity': 200}
         )

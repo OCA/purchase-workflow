@@ -19,7 +19,7 @@
 #
 ##############################################################################
 from datetime import datetime, timedelta
-from openerp.osv import fields
+from openerp import fields
 from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
 
 
@@ -35,40 +35,33 @@ class BaseAgreementTestMixin(object):
         self.agreement_model = self.env['framework.agreement']
         self.agreement_pl_model = self.env['framework.agreement.pricelist']
         self.agreement_line_model = self.env['framework.agreement.line']
-        self.now = datetime.strptime(fields.date.today(),
-                                     DEFAULT_SERVER_DATE_FORMAT)
-        self.product_id = self.env['product.product'].create(
-            {'name': 'test_1',
-             'type': 'product',
-             'list_price': 10.00}
-        ).id
-        self.supplier_id = self.env['res.partner'].create(
-            {'name': 'toto',
-             'supplier': 'True'}
-        ).id
+        self.product = self.env['product.product'].create({
+            'name': 'test_1',
+            'type': 'product',
+            'list_price': 10.00
+        })
+        self.supplier = self.env.ref('base.res_partner_1')
 
     def _map_agreement_to_po(self, agreement, delta_days):
         """Map agreement to dict to be used by PO create"""
         supplier = agreement.supplier_id
-        add = self.browse_ref('base.res_partner_3')
+        address = self.env.ref('base.res_partner_3')
         term = supplier.property_supplier_payment_term
         term = term.id if term else False
-        start_date = datetime.strptime(
-            agreement.start_date,
-            DEFAULT_SERVER_DATE_FORMAT
-        )
-        date = start_date + timedelta(days=delta_days)
-        data = {}
-        data['partner_id'] = supplier.id
-        data['pricelist_id'] = supplier.property_product_pricelist_purchase.id
-        data['dest_address_id'] = add.id
-        data['location_id'] = add.property_stock_customer.id
-        data['payment_term_id'] = term
-        data['origin'] = agreement.name
-        data['date_order'] = date.strftime(DEFAULT_SERVER_DATE_FORMAT)
-        data['name'] = agreement.name
-        data['framework_agreement_id'] = agreement.id
-        return data
+        start_date = fields.Date.from_string(agreement.start_date)
+        date_order = start_date + timedelta(days=delta_days)
+
+        return {
+            'partner_id': supplier.id,
+            'pricelist_id': supplier.property_product_pricelist_purchase.id,
+            'dest_address_id': address.id,
+            'location_id': address.property_stock_customer.id,
+            'payment_term_id': term,
+            'origin': agreement.name,
+            'date_order': fields.Date.to_string(date_order),
+            'name': agreement.name,
+            'framework_agreement_id': agreement.id,
+        }
 
     def _map_agreement_to_po_line(self, agreement, qty, order_id):
         """Map agreement to dict to be used by PO line create"""
@@ -81,7 +74,7 @@ class BaseAgreementTestMixin(object):
         data['price_unit'] = agreement.get_price(qty, currency=currency)
         data['name'] = agreement.product_id.name
         data['order_id'] = order_id
-        data['date_planned'] = self.now
+        data['date_planned'] = fields.date.today()
         return data
 
     def make_po_from_agreement(self, agreement, qty=0, delta_days=1):

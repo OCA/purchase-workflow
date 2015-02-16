@@ -18,8 +18,8 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from datetime import timedelta
-from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
+from datetime import timedelta, date
+from openerp import fields
 from openerp.tools import mute_logger
 import openerp.tests.common as test_common
 from .common import BaseAgreementTestMixin
@@ -33,16 +33,14 @@ class TestAgreementState(test_common.TransactionCase, BaseAgreementTestMixin):
 
     def test_00_future(self):
         """Test state of a future agreement"""
-        start_date = self.now + timedelta(days=10)
-        start_date = start_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
-        end_date = self.now + timedelta(days=20)
-        end_date = end_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
+        start_date = date.today() + timedelta(days=10)
+        end_date = date.today() + timedelta(days=20)
 
         agreement = self.agreement_model.create(
-            {'supplier_id': self.supplier_id,
-             'product_id': self.product_id,
-             'start_date': start_date,
-             'end_date': end_date,
+            {'supplier_id': self.supplier.id,
+             'product_id': self.product.id,
+             'start_date': fields.Date.to_string(start_date),
+             'end_date': fields.Date.to_string(end_date),
              'delay': 5,
              'quantity': 20}
         )
@@ -52,16 +50,14 @@ class TestAgreementState(test_common.TransactionCase, BaseAgreementTestMixin):
 
     def test_01_past(self):
         """Test state of a past agreement"""
-        start_date = self.now - timedelta(days=20)
-        start_date = start_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
-        end_date = self.now - timedelta(days=10)
-        end_date = end_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
+        start_date = date.today() - timedelta(days=20)
+        end_date = date.today() - timedelta(days=10)
 
         agreement = self.agreement_model.create(
-            {'supplier_id': self.supplier_id,
-             'product_id': self.product_id,
-             'start_date': start_date,
-             'end_date': end_date,
+            {'supplier_id': self.supplier.id,
+             'product_id': self.product.id,
+             'start_date': fields.Date.to_string(start_date),
+             'end_date': fields.Date.to_string(end_date),
              'delay': 5,
              'quantity': 20}
         )
@@ -70,16 +66,14 @@ class TestAgreementState(test_common.TransactionCase, BaseAgreementTestMixin):
 
     def test_02_running(self):
         """Test state of a running agreement"""
-        start_date = self.now - timedelta(days=2)
-        start_date = start_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
-        end_date = self.now + timedelta(days=2)
-        end_date = end_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
+        start_date = date.today() - timedelta(days=2)
+        end_date = date.today() + timedelta(days=2)
 
         agreement = self.agreement_model.create(
-            {'supplier_id': self.supplier_id,
-             'product_id': self.product_id,
-             'start_date': start_date,
-             'end_date': end_date,
+            {'supplier_id': self.supplier.id,
+             'product_id': self.product.id,
+             'start_date': fields.Date.to_string(start_date),
+             'end_date': fields.Date.to_string(end_date),
              'delay': 5,
              'quantity': 20}
         )
@@ -88,18 +82,18 @@ class TestAgreementState(test_common.TransactionCase, BaseAgreementTestMixin):
 
     def test_03_date_orderconstraint(self):
         """Test that date order is checked"""
-        start_date = self.now - timedelta(days=40)
-        start_date = start_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
-        end_date = self.now + timedelta(days=30)
-        end_date = end_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
+        start_date = date.today() - timedelta(days=40)
+        end_date = date.today() + timedelta(days=30)
 
         # XXX for some reason this is assertRaises is not affected by
         # odoo/odoo#3056. The next one in this file is.
         with mute_logger('openerp.sql_db'):
             with self.assertRaises(Exception):
                 self.agreement_model.create(
-                    {'supplier_id': self.supplier_id,
-                     'product_id': self.product_id,
+                    {'supplier_id': self.supplier.id,
+                     'product_id': self.product.id,
+                     'start_date': fields.Date.to_string(start_date),
+                     'end_date': fields.Date.to_string(end_date),
                      'start_date': end_date,
                      'end_date': start_date,
                      'draft': False,
@@ -109,49 +103,43 @@ class TestAgreementState(test_common.TransactionCase, BaseAgreementTestMixin):
 
     def test_04_test_overlapp(self):
         """Test overlapping agreement for same supplier constraint"""
-        start_date = self.now - timedelta(days=10)
-        start_date = start_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
-        end_date = self.now + timedelta(days=10)
-        end_date = end_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
+        start_date = date.today() - timedelta(days=10)
+        end_date = date.today() + timedelta(days=10)
         self.agreement_model.create(
-            {'supplier_id': self.supplier_id,
-             'product_id': self.product_id,
-             'start_date': start_date,
-             'end_date': end_date,
+            {'supplier_id': self.supplier.id,
+             'product_id': self.product.id,
+             'start_date': fields.Date.to_string(start_date),
+             'end_date': fields.Date.to_string(end_date),
              'draft': False,
              'delay': 5,
              'quantity': 20}
         )
-        start_date = self.now - timedelta(days=2)
-        start_date = start_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
-        end_date = self.now + timedelta(days=2)
-        end_date = end_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
+        start_date = date.today() - timedelta(days=2)
+        end_date = date.today() + timedelta(days=2)
 
         # XXX disable this test to work around odoo/odoo#3056
         if False:
             with mute_logger():
                 with self.assertRaises(Exception):
                     self.agreement_model.create(
-                        {'supplier_id': self.supplier_id,
-                         'product_id': self.product_id,
-                         'start_date': start_date,
-                         'end_date': end_date,
+                        {'supplier_id': self.supplier.id,
+                         'product_id': self.product.id,
+                         'start_date': fields.Date.to_string(start_date),
+                         'end_date': fields.Date.to_string(end_date),
                          'draft': False,
                          'delay': 5,
                          'quantity': 20}
                     )
 
     def test_05_search_on_state(self):
-        start_date = self.now - timedelta(days=2)
-        start_date = start_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
-        end_date = self.now + timedelta(days=2)
-        end_date = end_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
+        start_date = date.today() - timedelta(days=2)
+        end_date = date.today() + timedelta(days=2)
 
         agreement = self.agreement_model.create(
-            {'supplier_id': self.supplier_id,
-             'product_id': self.product_id,
-             'start_date': start_date,
-             'end_date': end_date,
+            {'supplier_id': self.supplier.id,
+             'product_id': self.product.id,
+             'start_date': fields.Date.to_string(start_date),
+             'end_date': fields.Date.to_string(end_date),
              'delay': 5,
              'quantity': 20}
         )
