@@ -225,8 +225,8 @@ class PurchaseOrder(models.Model):
         ctx = self._context.copy()
         ctx.update({
             'action': 'bid_received_ok',
-            'default_datetime': (self.bid_date
-                                 or fields.Date.context_today(self)),
+            'default_datetime': (self.bid_date or
+                                 fields.Date.context_today(self)),
         })
         view = self.env.ref('purchase_rfq_bid_workflow.action_modal_bid_date')
 

@@ -100,8 +100,8 @@ class PurchaseOrder(Model):
             )
         if order.origin:
             if (
-                order.origin not in merged_data['origin']
-                and merged_data['origin'] not in order.origin
+                order.origin not in merged_data['origin'] and
+                merged_data['origin'] not in order.origin
             ):
                 merged_data['origin'] = (
                     (merged_data['origin'] or '') + ' ' + order.origin
@@ -148,9 +148,9 @@ class PurchaseOrder(Model):
                 if o_line:
                     # merge the line with an existing line
                     o_line['product_qty'] += (
-                        input_line.product_qty
-                        * input_line.product_uom.factor
-                        / o_line['uom_factor']
+                        input_line.product_qty *
+                        input_line.product_uom.factor /
+                        o_line['uom_factor']
                     )
                 else:
                     # append a new "standalone" line
@@ -160,9 +160,9 @@ class PurchaseOrder(Model):
                             field_val = field_val.id
                         o_line[field] = field_val
                     o_line['uom_factor'] = (
-                        input_line.product_uom
-                        and input_line.product_uom.factor
-                        or 1.0)
+                        input_line.product_uom.factor
+                        if input_line.product_uom
+                        else 1.0)
 
         return self._cleanup_merged_line_data(grouped_orders)
 

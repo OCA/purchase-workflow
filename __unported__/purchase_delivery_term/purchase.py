@@ -168,8 +168,9 @@ class purchase_order_line_master(orm.Model):
             'price_unit': master_line.price_unit,
             'product_qty': product_qty,
             'product_uom': master_line.product_uom.id,
-            'product_id': master_line.product_id and master_line.product_id.id
-            or False,
+            'product_id': master_line.product_id.id
+            if master_line.product_id
+            else False,
             'master_line_id': master_line.id,
             'date_planned': date_planned,
             'picking_group_id': group_ids[group_index],
