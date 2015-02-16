@@ -199,11 +199,6 @@ class purchase_order(models.Model):
             return res
         if self.framework_agreement_id:
             agreement = self.framework_agreement_id
-            if not agreement.date_valid(self.date_order):
-                raise exceptions.Warning(
-                    _('Invalid date '
-                      'Agreement and purchase date does not match')
-                )
             if agreement.supplier_id.id != self.partner_id:
                 raise exceptions.Warning(
                     _('Invalid agreement '
@@ -233,24 +228,6 @@ class purchase_order(models.Model):
                   ' prices of existing order lines will not be updated.')
             )
         return res
-
-    @api.model
-    def _date_valid(self):
-        """check that date of invoice is in agreement"""
-        return self.framework_agreement_id.date_valid(self.date_order)
-
-    @api.onchange('date_order')
-    def onchange_date(self):
-        """Check that date is in agreement bound"""
-        if not self.framework_agreement_id:
-            return {}
-        if not self._date_valid(self.framework_agreement_id,
-                                self.date_order):
-            raise exceptions.Warning(
-                _('Invalid date '
-                  'Agreement and purchase date does not match')
-            )
-        return {}
 
     @api.multi
     def onchange_partner_id(self, partner_id):

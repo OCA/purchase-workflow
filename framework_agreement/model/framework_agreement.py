@@ -157,22 +157,6 @@ class framework_agreement(models.Model):
                                 DEFAULT_SERVER_DATE_FORMAT)
         return AGDates(now, start.date(), end.date())
 
-    @api.one
-    def date_valid(self, date):
-        """Predicate that checks that date is in agreement
-
-        :param date: date to validate
-        :type date: Odoo datestring
-
-        :return: True if date is valid
-        :type: bool
-        """
-        current = self
-        now, start, end = self._get_dates(current)
-        pdate = datetime.strptime(date,
-                                  DEFAULT_SERVER_DATE_FORMAT)
-        return start <= pdate <= end
-
     def _search_state(self, operator, value):
         """Search on the state field by evaluating on all records"""
 
