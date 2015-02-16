@@ -18,7 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from . import test_framework_agreement_dates_and_constraints
-from . import test_framework_agreement_consumed_qty
-from . import test_framework_agreement_on_change
-from . import test_framework_agreement_price_list
+from . import test_dates_and_constraints
+from . import test_consumed_qty
+from . import test_on_change
+from . import test_price_list
