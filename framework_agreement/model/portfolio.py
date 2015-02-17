@@ -22,7 +22,8 @@ class Portfolio(models.Model):
     _description = 'Agreement Portfolio'
 
     def _company_get(self):
-        return self.env['res.company']._company_default_get(self._name)
+        company_id = self.env['res.company']._company_default_get(self._name)
+        return self.env['res.company'].browse(company_id)
 
     name = fields.Char('Name', required=True)
     supplier_id = fields.Many2one('res.partner', 'Supplier', required=True)

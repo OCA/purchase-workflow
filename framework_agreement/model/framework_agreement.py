@@ -36,12 +36,6 @@ class framework_agreement(models.Model):
     _name = 'framework.agreement'
     _description = 'Agreement on price'
 
-    @api.model
-    def _company_get(self):
-        return self.env['res.company']._company_default_get(
-            object='framework.agreement'
-        )
-
     name = fields.Char(
         'Number',
         readonly=True
@@ -50,6 +44,7 @@ class framework_agreement(models.Model):
         'res.partner',
         'Supplier',
         related='portfolio_id.supplier_id',
+        readonly=True,
     )
     portfolio_id = fields.Many2one(
         'framework.agreement.portfolio',
@@ -95,6 +90,7 @@ class framework_agreement(models.Model):
         'res.company',
         'Company',
         related='portfolio_id.company_id',
+        readonly=True,
     )
     draft = fields.Boolean('Is draft')
 
@@ -189,9 +185,8 @@ class framework_agreement(models.Model):
         Please refer to function field documentation for more details.
 
         """
-        company_id = self._company_get()
         for agreement in self:
-
+            company = agreement.portfolio_id._company_get()
             if isinstance(agreement.id, models.NewId):
                 agreement.available_quantity = 0
                 continue
@@ -209,7 +204,7 @@ class framework_agreement(models.Model):
                                       variant_ids,
                                       agreement.supplier_id.id,
                                       AGR_PO_STATE,
-                                      company_id))
+                                      company.id))
             amount = self.env.cr.fetchone()[0]
             if amount is None:
                 amount = 0
@@ -307,12 +302,11 @@ class framework_agreement(models.Model):
         is set to True on company
 
         """
-        comp_obj = self.env['res.company']
-        company_id = self._company_get()
-        strict = comp_obj.browse(company_id).one_agreement_per_product
         for agreement in self:
+            company = agreement.portfolio_id._company_get()
+            strict = company.one_agreement_per_product
+
             # we do not add current id in domain for readability reasons
-            # indent is not PEP8 compliant but more readable.
             overlap = self.search(
                 ['&',
                  ('draft', '=', False),
@@ -482,8 +476,7 @@ class framework_agreement(models.Model):
             )
         return plist.framework_agreement_line_ids
 
-    @api.model
-    @api.noguess
+    @api.multi
     def get_price(self, qty=0, currency=None):
         """Return price negociated for quantity
 
@@ -495,12 +488,9 @@ class framework_agreement(models.Model):
 
         """
         self.ensure_one()
-        current = self[0]
         if not currency:
-            comp_obj = self.env['res.company']
-            comp_id = self._company_get()
-            currency = comp_obj.browse(comp_id).currency_id
-        lines = self._get_pricelist_lines(current, currency)
+            currency = self.company_id.currency_id
+        lines = self._get_pricelist_lines(self, currency)
         lines = [x for x in lines]
         lines.sort(key=attrgetter('quantity'), reverse=True)
         for line in lines:
