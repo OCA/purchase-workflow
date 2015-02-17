@@ -38,6 +38,14 @@ class PurchaseOrderLine(models.Model):
     framework_agreement_id = fields.Many2one(
         'framework.agreement',
         'Agreement',
+        domain=[('portfolio_id', '=', 'order_id.portfolio_id')],
+    )
+
+    portfolio_id = fields.Many2one(
+        'framework.agreement.portfolio',
+        'Portfolio',
+        readonly=True,
+        related='order_id.portfolio_id',
     )
 
     @api.onchange('price_unit')
