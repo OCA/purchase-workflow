@@ -320,12 +320,13 @@ class framework_agreement(models.Model):
                  ('end_date', '<=', agreement.end_date)]
             )
             # we also look for the one that includes current offer
-            overlap += self.search(
-                [('start_date', '<=', agreement.start_date),
-                 ('end_date', '>=', agreement.end_date),
-                 ('id', '!=', agreement.id),
-                 ('product_id', '=', agreement.product_id.id)]
-            )
+            overlap += self.search([
+                ('draft', '=', False),
+                ('start_date', '<=', agreement.start_date),
+                ('end_date', '>=', agreement.end_date),
+                ('id', '!=', agreement.id),
+                ('product_id', '=', agreement.product_id.id),
+            ])
             overlap = self.browse([x.id for x in overlap
                                    if x.id != agreement.id])
             # we ensure that there is only one agreement at time per product
