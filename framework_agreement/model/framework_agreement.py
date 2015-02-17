@@ -294,68 +294,57 @@ class framework_agreement(models.Model):
         )
         return super(framework_agreement, self).create(vals)
 
-    @api.multi
-    def _check_overlap(self):
-        """Constraint to check that no agreements for same product/supplier overlap.
-
-        One agreement per product limit is checked if one_agreement_per_product
-        is set to True on company
-
-        """
-        for agreement in self:
-
-            # we do not add current id in domain for readability reasons
-            overlap = self.search(
-                ['&',
-                 ('draft', '=', False),
-                 ('product_id', '=', agreement.product_id.id),
-                 '|',
-                 '&',
-                 ('start_date', '>=', agreement.start_date),
-                 ('start_date', '<=', agreement.end_date),
-                 '&',
-                 ('end_date', '>=', agreement.start_date),
-                 ('end_date', '<=', agreement.end_date)]
-            )
-            # we also look for the one that includes current offer
-            overlap += self.search([
-                ('draft', '=', False),
-                ('start_date', '<=', agreement.start_date),
-                ('end_date', '>=', agreement.end_date),
-                ('id', '!=', agreement.id),
-                ('product_id', '=', agreement.product_id.id),
-            ])
-            overlap = self.browse([x.id for x in overlap
-                                   if x.id != agreement.id])
-            company = agreement.portfolio_id._company_get()
-
-            if company.one_agreement_per_product:
-                # in stict mode, any overlap is bad
-                if overlap:
-                    raise exceptions.Warning(
-                        _('There is already is a running agreement for '
-                        'product %s')) % agreement.product_id.name
-            else:
-                # in non-strict mode, same-supplier overlap is bad
-                if any(o.supplier_id == agreement.supplier_id for o in overlap):
-                    raise exceptions.Warning(
-                        _('There can not be multiple agreement '
-                        'for supplier %s') % agreement.supplier_id.name
-                    )
-        return True
-
-    # 'supplier_id', 'product_id',
-    # 'start_date', 'end_date' may be only watch
-    @api.multi
-    @api.constrains('supplier_id', 'product_id', 'start_date', 'end_date')
+    @api.one
+    @api.constrains('supplier_id', 'product_id', 'start_date', 'end_date',
+                    'company_id', 'incoterm_id', 'incoterm_address')
     def check_overlap(self):
-        """Constraint to check that no agreements for same product/supplier overlap.
+        """Check that there are no similar agreements at the same time.
 
-        One agreement per product limit is checked if one_agreement_per_product
-        is set to True on company
+        Depending on the  one_agreement_per_product flag on the company,
+        agreements from different companies are tolerated or not.
 
         """
-        return self._check_overlap()
+        date_domain = [
+            '|',
+            '|',
+            '&',
+            # start date in between
+            ('start_date', '>=', self.start_date),
+            ('start_date', '<=', self.end_date),
+            '&',
+            # end date in between
+            ('end_date', '>=', self.start_date),
+            ('end_date', '<=', self.end_date),
+            '&',
+            # includes the current self
+            ('start_date', '<=', self.start_date),
+            ('end_date', '>=', self.end_date),
+        ]
+
+        overlap = self.search(
+            date_domain +
+            [
+                ('draft', '=', False),
+                ('product_id', '=', self.product_id.id),
+                ('incoterm_id', '=', self.incoterm_id.id),
+                ('incoterm_address', '=', self.incoterm_address),
+                ('id', '!=', self.id),
+            ]
+        )
+
+        if self.company_id.one_agreement_per_product:
+            # in stict mode, any overlap is bad
+            if overlap:
+                raise exceptions.ValidationError(
+                    _('There is already is a running agreement for '
+                      'product %s')) % self.product_id.name
+        else:
+            # in non-strict mode, same-supplier overlap is bad
+            if any(o.supplier_id == self.supplier_id for o in overlap):
+                raise exceptions.ValidationError(
+                    _('There can not be multiple agreement '
+                      'for supplier %s') % self.supplier_id.name
+                )
 
     _sql_constraints = [('date_priority',
                          'check(start_date < end_date)',
