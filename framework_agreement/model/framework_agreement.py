@@ -303,8 +303,6 @@ class framework_agreement(models.Model):
 
         """
         for agreement in self:
-            company = agreement.portfolio_id._company_get()
-            strict = company.one_agreement_per_product
 
             # we do not add current id in domain for readability reasons
             overlap = self.search(
@@ -329,23 +327,21 @@ class framework_agreement(models.Model):
             ])
             overlap = self.browse([x.id for x in overlap
                                    if x.id != agreement.id])
-            # we ensure that there is only one agreement at time per product
-            # if strict agreement is set on company
-            if strict and overlap:
-                raise exceptions.Warning(
-                    _('There is already is a running agreement for '
-                      'product %s')) % agreement.product_id.name
-            # We ensure that there are not multiple agreements
-            # for same supplier at same time
-            supplier = next(
-                (x for x in overlap
-                 if x.supplier_id.id == agreement.supplier_id.id),
-                None)
-            if supplier:
-                raise exceptions.Warning(
-                    _('There can not be multiple agreement '
-                      'for supplier %s') % supplier.name
-                )
+            company = agreement.portfolio_id._company_get()
+
+            if company.one_agreement_per_product:
+                # in stict mode, any overlap is bad
+                if overlap:
+                    raise exceptions.Warning(
+                        _('There is already is a running agreement for '
+                        'product %s')) % agreement.product_id.name
+            else:
+                # in non-strict mode, same-supplier overlap is bad
+                if any(o.supplier_id == agreement.supplier_id for o in overlap):
+                    raise exceptions.Warning(
+                        _('There can not be multiple agreement '
+                        'for supplier %s') % agreement.supplier_id.name
+                    )
         return True
 
     # 'supplier_id', 'product_id',
