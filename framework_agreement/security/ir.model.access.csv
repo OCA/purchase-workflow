@@ -3,3 +3,4 @@ access_agreement,framework.agreement.user,model_framework_agreement,purchase.gro
 access_agreement,framework.agreement.user,model_framework_agreement,purchase.group_purchase_manager,1,1,1,1
 access_framework_agreement_pricelist,access_framework_agreement_pricelist,model_framework_agreement_pricelist,purchase.group_purchase_manager,1,1,1,1
 access_framework_agreement_line,access_framework_agreement_line,model_framework_agreement_line,purchase.group_purchase_manager,1,1,1,1
+access_portfolio,access_portfolio,model_framework_agreement_portfolio,purchase.group_purchase_manager,1,1,1,1

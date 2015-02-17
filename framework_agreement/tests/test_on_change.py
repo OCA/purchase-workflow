@@ -38,14 +38,15 @@ class TestAgreementOnChange(test_common.TransactionCase,
         self.commonsetUp()
         start_date = date.today() + timedelta(days=10)
         end_date = date.today() + timedelta(days=20)
-        self.agreement = self.agreement_model.create(
-            {'supplier_id': self.supplier.id,
-             'product_id': self.product.id,
-             'start_date': fields.Date.to_string(start_date),
-             'end_date': fields.Date.to_string(end_date),
-             'delay': 5,
-             'draft': False,
-             'quantity': 1500})
+        self.agreement = self.agreement_model.create({
+            'portfolio_id': self.portfolio.id,
+            'product_id': self.product.id,
+            'start_date': fields.Date.to_string(start_date),
+            'end_date': fields.Date.to_string(end_date),
+            'delay': 5,
+            'draft': False,
+            'quantity': 1500,
+        })
         self.pl = self.agreement_pl_model.create(
             {'framework_agreement_id': self.agreement.id,
              'currency_id': self.ref('base.EUR')}

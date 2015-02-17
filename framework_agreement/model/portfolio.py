@@ -14,8 +14,19 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from openerp import models
+from openerp import models, fields
 
 
 class Portfolio(models.Model):
     _name = 'framework.agreement.portfolio'
+    _description = 'Agreement Portfolio'
+
+    def _company_get(self):
+        return self.env['res.company']._company_default_get(self._name)
+
+    name = fields.Char('Name', required=True)
+    supplier_id = fields.Many2one('res.partner', 'Supplier', required=True)
+    company_id = fields.Many2one('res.company', 'Company',
+                                 default=_company_get)
+    agreement_ids = fields.One2many('framework.agreement', 'portfolio_id',
+                                    'Agreements')

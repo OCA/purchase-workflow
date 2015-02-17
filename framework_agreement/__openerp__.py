@@ -56,6 +56,7 @@ provides a library to integrate it with any other model easily
  'data': ['data.xml',
           'view/product_view.xml',
           'view/framework_agreement_view.xml',
+          'view/portfolio.xml',
           'view/purchase_view.xml',
           'view/company_view.xml',
           'security/multicompany.xml',

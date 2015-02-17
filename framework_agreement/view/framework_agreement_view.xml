@@ -7,8 +7,9 @@
       <field name="arch" type="xml">
         <tree string="Framework Agreement (LTA)">
           <field name="name" />
-          <field name="company_id" groups="base.group_multi_company" widget="selection"/>
+          <field name="company_id" groups="base.group_multi_company" />
           <field name="product_id"/>
+          <field name="portfolio_id"/>
           <field name="supplier_id"/>
           <field name="delay"/>
           <field name="quantity"/>
@@ -27,6 +28,7 @@
         <search string="Framework Agreement (LTA)">
           <field name="name" />
           <field name="product_id"/>
+          <field name="portfolio_id"/>
           <field name="supplier_id"/>
           <filter name="draft" string="Draft" domain="[('state', '=', 'draft')]"/>
           <filter name="future" string="Future" domain="[('state', '=', 'future')]"/>
@@ -67,6 +69,7 @@
             <group>
               <group>
                 <field name="company_id" groups="base.group_multi_company" widget="selection"/>
+                <field name="portfolio_id"/>
                 <field name="supplier_id" context="{'search_default_supplier': True, 'default_supplier': True, 'default_customer': False}" domain="[('supplier','=',True)]"/>
                 <field name="payment_term_id" options="{'no_open': True, 'no_create': True}"/>
                 <field name="incoterm_id" widget="selection" groups="base.group_user"/>
@@ -103,7 +106,7 @@
                       <page string="Price lines" colspan="4">
                         <field name="framework_agreement_line_ids"
                           nolabel="1">
-                          <tree type="7.0"
+                          <tree
                             string="Price line"
                             editable="top">
                             <field name="quantity"/>

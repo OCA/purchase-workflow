@@ -36,14 +36,14 @@ class TestAgreementState(test_common.TransactionCase, BaseAgreementTestMixin):
         start_date = date.today() + timedelta(days=10)
         end_date = date.today() + timedelta(days=20)
 
-        agreement = self.agreement_model.create(
-            {'supplier_id': self.supplier.id,
-             'product_id': self.product.id,
-             'start_date': fields.Date.to_string(start_date),
-             'end_date': fields.Date.to_string(end_date),
-             'delay': 5,
-             'quantity': 20}
-        )
+        agreement = self.agreement_model.create({
+            'portfolio_id': self.portfolio.id,
+            'product_id': self.product.id,
+            'start_date': fields.Date.to_string(start_date),
+            'end_date': fields.Date.to_string(end_date),
+            'delay': 5,
+            'quantity': 20,
+        })
 
         agreement.open_agreement(strict=False)
         self.assertEqual(agreement.state, 'future')
@@ -53,14 +53,14 @@ class TestAgreementState(test_common.TransactionCase, BaseAgreementTestMixin):
         start_date = date.today() - timedelta(days=20)
         end_date = date.today() - timedelta(days=10)
 
-        agreement = self.agreement_model.create(
-            {'supplier_id': self.supplier.id,
-             'product_id': self.product.id,
-             'start_date': fields.Date.to_string(start_date),
-             'end_date': fields.Date.to_string(end_date),
-             'delay': 5,
-             'quantity': 20}
-        )
+        agreement = self.agreement_model.create({
+            'portfolio_id': self.portfolio.id,
+            'product_id': self.product.id,
+            'start_date': fields.Date.to_string(start_date),
+            'end_date': fields.Date.to_string(end_date),
+            'delay': 5,
+            'quantity': 20,
+        })
         agreement.open_agreement(strict=False)
         self.assertEqual(agreement.state, 'closed')
 
@@ -69,14 +69,14 @@ class TestAgreementState(test_common.TransactionCase, BaseAgreementTestMixin):
         start_date = date.today() - timedelta(days=2)
         end_date = date.today() + timedelta(days=2)
 
-        agreement = self.agreement_model.create(
-            {'supplier_id': self.supplier.id,
-             'product_id': self.product.id,
-             'start_date': fields.Date.to_string(start_date),
-             'end_date': fields.Date.to_string(end_date),
-             'delay': 5,
-             'quantity': 20}
-        )
+        agreement = self.agreement_model.create({
+            'portfolio_id': self.portfolio.id,
+            'product_id': self.product.id,
+            'start_date': fields.Date.to_string(start_date),
+            'end_date': fields.Date.to_string(end_date),
+            'delay': 5,
+            'quantity': 20,
+        })
         agreement.open_agreement(strict=False)
         self.assertEqual(agreement.state, 'running')
 
@@ -87,58 +87,55 @@ class TestAgreementState(test_common.TransactionCase, BaseAgreementTestMixin):
 
         with mute_logger('openerp.sql_db'):
             with self.assertRaises(Exception):
-                self.agreement_model.create(
-                    {'supplier_id': self.supplier.id,
-                     'product_id': self.product.id,
-                     'start_date': fields.Date.to_string(start_date),
-                     'end_date': fields.Date.to_string(end_date),
-                     'start_date': end_date,
-                     'end_date': start_date,
-                     'draft': False,
-                     'delay': 5,
-                     'quantity': 20}
-                )
+                self.agreement_model.create({
+                    'portfolio_id': self.portfolio.id,
+                    'product_id': self.product.id,
+                    'start_date': end_date,
+                    'end_date': start_date,
+                    'draft': False,
+                    'delay': 5,
+                    'quantity': 20,
+                })
 
-    def test_04_test_overlapp(self):
-        """Test overlapping agreement for same supplier constraint"""
+    def test_04_test_overlap(self):
         start_date = date.today() - timedelta(days=10)
         end_date = date.today() + timedelta(days=10)
-        self.agreement_model.create(
-            {'supplier_id': self.supplier.id,
-             'product_id': self.product.id,
-             'start_date': fields.Date.to_string(start_date),
-             'end_date': fields.Date.to_string(end_date),
-             'draft': False,
-             'delay': 5,
-             'quantity': 20}
-        )
+        self.agreement_model.create({
+            'portfolio_id': self.portfolio.id,
+            'product_id': self.product.id,
+            'start_date': fields.Date.to_string(start_date),
+            'end_date': fields.Date.to_string(end_date),
+            'draft': False,
+            'delay': 5,
+            'quantity': 20,
+        })
         start_date = date.today() - timedelta(days=2)
         end_date = date.today() + timedelta(days=2)
 
         with mute_logger():
             with self.assertRaises(Exception):
-                self.agreement_model.create(
-                    {'supplier_id': self.supplier.id,
-                     'product_id': self.product.id,
-                     'start_date': fields.Date.to_string(start_date),
-                     'end_date': fields.Date.to_string(end_date),
-                     'draft': False,
-                     'delay': 5,
-                     'quantity': 20}
-                )
+                self.agreement_model.create({
+                    'portfolio_id': self.portfolio.id,
+                    'product_id': self.product.id,
+                    'start_date': fields.Date.to_string(start_date),
+                    'end_date': fields.Date.to_string(end_date),
+                    'draft': False,
+                    'delay': 5,
+                    'quantity': 20,
+                })
 
     def test_05_search_on_state(self):
         start_date = date.today() - timedelta(days=2)
         end_date = date.today() + timedelta(days=2)
 
-        agreement = self.agreement_model.create(
-            {'supplier_id': self.supplier.id,
-             'product_id': self.product.id,
-             'start_date': fields.Date.to_string(start_date),
-             'end_date': fields.Date.to_string(end_date),
-             'delay': 5,
-             'quantity': 20}
-        )
+        agreement = self.agreement_model.create({
+            'portfolio_id': self.portfolio.id,
+            'product_id': self.product.id,
+            'start_date': fields.Date.to_string(start_date),
+            'end_date': fields.Date.to_string(end_date),
+            'delay': 5,
+            'quantity': 20,
+        })
         agreement.open_agreement(strict=False)
         self.assertEqual(agreement.state, 'running')
         self.assertTrue(

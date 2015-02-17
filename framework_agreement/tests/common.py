@@ -40,3 +40,7 @@ class BaseAgreementTestMixin(object):
             'list_price': 10.00
         })
         self.supplier = self.env.ref('base.res_partner_1')
+        self.portfolio = self.env['framework.agreement.portfolio'].create({
+            'name': '/',
+            'supplier_id': self.supplier.id,
+        })

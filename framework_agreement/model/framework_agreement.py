@@ -49,7 +49,11 @@ class framework_agreement(models.Model):
     supplier_id = fields.Many2one(
         'res.partner',
         'Supplier',
-        required=True
+        related='portfolio_id.supplier_id',
+    )
+    portfolio_id = fields.Many2one(
+        'framework.agreement.portfolio',
+        'Portfolio',
     )
     product_id = fields.Many2one(
         'product.product',
@@ -90,7 +94,7 @@ class framework_agreement(models.Model):
     company_id = fields.Many2one(
         'res.company',
         'Company',
-        default=_company_get
+        related='portfolio_id.company_id',
     )
     draft = fields.Boolean('Is draft')
 
