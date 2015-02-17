@@ -86,7 +86,6 @@ class TestAvailabeQty(test_common.TransactionCase, BaseAgreementTestMixin):
             'origin': agreement.name,
             'date_order': fields.Date.to_string(date_order),
             'name': agreement.name,
-            'framework_agreement_id': agreement.id,
         }
 
     def _map_agreement_to_po_line(self, agreement, qty, po):
@@ -101,4 +100,5 @@ class TestAvailabeQty(test_common.TransactionCase, BaseAgreementTestMixin):
             'name': agreement.product_id.name,
             'order_id': po.id,
             'date_planned': fields.Date.today(),
+            'framework_agreement_id': agreement.id,
         }

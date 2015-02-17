@@ -94,8 +94,8 @@ class framework_agreement(models.Model):
     )
     draft = fields.Boolean('Is draft')
 
-    purchase_order_ids = fields.One2many(
-        comodel_name='purchase.order',
+    purchase_line_ids = fields.One2many(
+        comodel_name='purchase.order.line',
         inverse_name='framework_agreement_id'
     )
 
@@ -212,10 +212,10 @@ class framework_agreement(models.Model):
             agreement.available_quantity = agreement.quantity - amount
 
     @api.depends('quantity',
-                 'purchase_order_ids.framework_agreement_id',
-                 'purchase_order_ids.state',
-                 'purchase_order_ids.order_line',
-                 'purchase_order_ids.order_line.product_qty')
+                 'purchase_line_ids.framework_agreement_id',
+                 'purchase_line_ids.order_id.state',
+                 'purchase_line_ids',
+                 'purchase_line_ids.product_qty')
     @api.multi
     def _get_available_qty(self):
         """Compute available qty of current agreements.
@@ -252,10 +252,10 @@ class framework_agreement(models.Model):
 
     @api.multi
     @api.depends('quantity',
-                 'purchase_order_ids.framework_agreement_id',
-                 'purchase_order_ids.state',
-                 'purchase_order_ids.order_line',
-                 'purchase_order_ids.order_line.product_qty')
+                 'purchase_line_ids.framework_agreement_id',
+                 'purchase_line_ids.order_id.state',
+                 'purchase_line_ids',
+                 'purchase_line_ids.product_qty')
     def _get_state(self):
         """ Compute current state of agreement based on date and consumption
 
