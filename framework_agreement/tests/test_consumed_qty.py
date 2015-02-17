@@ -24,13 +24,13 @@ import openerp.tests.common as test_common
 from .common import BaseAgreementTestMixin
 
 
-class TestAvailabeQty(test_common.TransactionCase, BaseAgreementTestMixin):
+class TestAvailableQty(test_common.TransactionCase, BaseAgreementTestMixin):
 
     """Test the function fields available_quantity"""
 
     def setUp(self):
         """ Create a default agreement"""
-        super(TestAvailabeQty, self).setUp()
+        super(TestAvailableQty, self).setUp()
         self.commonsetUp()
         start_date = date.today() + timedelta(days=10)
         end_date = date.today() + timedelta(days=20)
