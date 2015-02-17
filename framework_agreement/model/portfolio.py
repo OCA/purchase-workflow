@@ -30,3 +30,9 @@ class Portfolio(models.Model):
                                  default=_company_get)
     agreement_ids = fields.One2many('framework.agreement', 'portfolio_id',
                                     'Agreements')
+
+    _sql_constraints = [
+        ('uniq_portfolio',
+         'unique(supplier_id, company_id)',
+         'There can be only one portfolio per supplier and company.'),
+    ]
