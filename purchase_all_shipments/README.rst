@@ -9,7 +9,8 @@ shows the original picking, and all others that are grouped with it. This
 should include pickings associated to the procurements that generated the
 purchase, and also pickings that have been chained with push rules.
 
-This in consistent with the "sale" module, where from the sale order the user can access the generated delivery and all chained ones.
+This is consistent with the "sale" module, where from the sale order the user
+can access the generated delivery and all chained ones.
 
 The implementation uses the procurement group of the moves in the generated
 picking. The procurement group is always present in purchases, also when there
