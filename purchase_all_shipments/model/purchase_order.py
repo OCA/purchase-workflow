@@ -23,10 +23,7 @@ class PurchaseOrder(models.Model):
         self.all_shipment_count = len(self.all_picking_ids)
 
     def _all_pickings(self):
-        groups = self.env['procurement.group']
-        for pick in self.picking_ids:
-            for move in pick.move_lines:
-                groups |= move.group_id
+        groups = self.mapped('picking_ids.move_lines.group_id')
 
         all_moves = self.env['stock.move'].search(
             [('group_id', 'in', groups.mapped('id'))]
