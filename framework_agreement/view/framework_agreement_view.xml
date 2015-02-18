@@ -70,7 +70,6 @@
               <group>
                 <field name="company_id" groups="base.group_multi_company" widget="selection"/>
                 <field name="portfolio_id"/>
-                <field name="supplier_id" context="{'search_default_supplier': True, 'default_supplier': True, 'default_customer': False}" domain="[('supplier','=',True)]"/>
                 <field name="payment_term_id" options="{'no_open': True, 'no_create': True}"/>
                 <field name="incoterm_id" widget="selection" groups="base.group_user"/>
                 <field name="incoterm_address"/>
@@ -129,6 +128,89 @@
       </field>
     </record>
 
+    <record id="agreement_in_portfolio_form_view" model="ir.ui.view">
+      <field name="name">agreement_in_portfolio_form_view</field>
+      <field name="model">framework.agreement</field>
+      <field name="priority" eval="20" />
+      <field name="arch" type="xml">
+        <form string="Framework Agreement">
+          <header>
+            <button name="open_agreement"
+              context="{}"
+              string="Open Agreement"
+              type="object"
+              attrs="{'invisible': ['|', ('draft', '=', False), '|', ('start_date', '=', False), '|', ('end_date', '=', False), ('framework_agreement_pricelist_ids', '=', [])]}"/>
+            <field name="state"
+              widget="statusbar"
+              statusbar_visible="draft,future,running,consumed,closed"
+              statusbar_colors='{"draft":"blue","future": "blue", "closed": "blue", "running": "green", "consumed": "red"}'/>
+          </header>
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="origin"/>
+              <field name="draft" invisible="1"/>
+            </group>
+            <group>
+              <group>
+                <field name="company_id" groups="base.group_multi_company" widget="selection"/>
+                <field name="payment_term_id" options="{'no_open': True, 'no_create': True}"/>
+                <field name="incoterm_id" widget="selection" groups="base.group_user"/>
+                <field name="incoterm_address"/>
+                <field name="product_id"/>
+              </group>
+              <group>
+                <field name="delay"/>
+                <field name="quantity"/>
+                <field name="available_quantity"/>
+                <field name="shipment_origin_id"/>
+              </group>
+            </group>
+
+            <group string="Dates">
+              <field name="start_date"
+                required="1"/>
+              <field name="end_date"
+                required="1"/>
+            </group>
+            <notebook>
+              <page string="Negociated price lists" colspan="4">
+                <field name="framework_agreement_pricelist_ids"
+                  required="1">
+                  <tree type="7.0" string="Price list">
+                    <field name="currency_id"/>
+                  </tree>
+                  <form type="7.0" string="Price list">
+                    <group>
+                      <field name="currency_id"/>
+                    </group>
+                    <newline/>
+                    <notebook>
+                      <page string="Price lines" colspan="4">
+                        <field name="framework_agreement_line_ids"
+                          nolabel="1">
+                          <tree
+                            string="Price line"
+                            editable="top">
+                            <field name="quantity"/>
+                            <field name="price"/>
+                          </tree>
+                        </field>
+                      </page>
+                    </notebook>
+                  </form>
+                </field>
+                <div class="oe_clear"/>
+                <field name="delivery_remark" class="oe_inline" placeholder="Delivery Remarks"/>
+              </page>
+              <page string="Clauses">
+                <field name="clauses" nolabel="1" placeholder="Clauses"/>
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
 
     <record model="ir.actions.act_window" id="action_framework_agreement">
       <field name="name">Framework Agreement</field>

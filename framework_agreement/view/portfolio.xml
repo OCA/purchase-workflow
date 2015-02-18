@@ -40,7 +40,7 @@
               <field name="company_id" groups="base.group_multi_company" widget="selection"/>
               <field name="supplier_id" context="{'search_default_supplier': True, 'default_supplier': True, 'default_customer': False}" domain="[('supplier','=',True)]"/>
               <separator string="Agreements"/>
-              <field name="agreement_ids" nolabel="1" colspan="2"/>
+              <field name="agreement_ids" nolabel="1" colspan="2" context="{'form_view_ref': 'framework_agreement.agreement_in_portfolio_form_view'}"/>
             </group>
           </sheet>
         </form>

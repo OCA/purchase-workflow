@@ -24,7 +24,8 @@ class PurchaseOrder(models.Model):
 
     portfolio_id = fields.Many2one(
         'framework.agreement.portfolio',
-        'Portfolio'
+        'Portfolio',
+        domain="[('supplier_id', '=', partner_id)]",
     )
 
 
@@ -48,20 +49,104 @@ class PurchaseOrderLine(models.Model):
         related='order_id.portfolio_id',
     )
 
+    @api.multi
+    def onchange_product_id(self, pricelist_id, product_id, qty, uom_id,
+                            partner_id, date_order=False,
+                            fiscal_position_id=False, date_planned=False,
+                            name=False, price_unit=False, state='draft'):
+        res = super(PurchaseOrderLine, self).onchange_product_id(
+            pricelist_id,
+            product_id,
+            qty,
+            uom_id,
+            partner_id,
+            date_order=date_order,
+            fiscal_position_id=fiscal_position_id,
+            date_planned=date_planned,
+            name=name,
+            price_unit=price_unit,
+        )
+        context = self.env.context
+        if 'domain' not in res:
+            res['domain'] = {}
+
+        if not context.get('portfolio_id') or not product_id:
+            res['domain']['framework_agreement_id'] = [('id', '=', 0)]
+            res['value']['framework_agreement_id'] = False
+            return res
+
+        currency = self.env['res.currency'].browse(context.get('currency_id'))
+
+        ag_domain = [
+            ('draft', '=', False),
+            ('product_id', '=', product_id),
+            ('available_quantity', '>=', qty or 0.0),
+            ('portfolio_id', '=', context['portfolio_id']),
+        ]
+        if date_planned:
+            ag_domain += [
+                ('start_date', '<=', date_planned),
+                ('end_date', '>=', date_planned),
+            ]
+        if context.get('incoterm_id'):
+            ag_domain += [('incoterm_id', '=', context['incoterm_id'])]
+        res['domain']['framework_agreement_id'] = ag_domain
+
+        Agreement = self.env['framework.agreement']
+        agreement = Agreement.browse(context.get('agreement_id'))
+        good_agreements = Agreement.search(ag_domain).filtered(
+            lambda a: a.has_currency(currency))
+
+        if agreement and agreement in good_agreements:
+            pass  # it's good! let's keep it!
+        else:
+            if len(good_agreements) == 1:
+                cheapest = good_agreements.get_cheapest_in_set(qty, currency)
+                agreement = cheapest
+            else:
+                agreement = Agreement
+
+        if agreement:
+            res['value']['price_unit'] = agreement.get_price(qty, currency)
+        res['value']['framework_agreement_id'] = agreement.id
+        return res
+
+    @api.multi
+    def get_agreement_domain(self):
+        self.ensure_one()
+        domain = [
+            ('draft', '=', False),
+            ('available_quantity', '>=', self.product_qty),
+        ]
+
+        if self.order_id.date_order:
+            domain += [
+                ('start_date', '<=', self.order_id.date_order),
+                ('end_date', '>=', self.order_id.date_order),
+            ]
+        if self.product_id:
+            domain += [('product_id', '=', self.product_id.id)]
+        if self.order_id.incoterm_id:
+            domain += [('incoterm_id', '=', self.order_id.incoterm_id.id)]
+        if self.order_id.portfolio_id:
+            domain += [('portfolio_id', '=', self.order_id.portfolio_id.id)]
+
+        return domain
+
     @api.onchange('price_unit')
     def onchange_price_unit(self):
-        agreement_price = self.framework_agreement_id.get_price(
-            self.product_qty,
-            currency=self.order_id.pricelist_id.currency_id)
-        if agreement_price != self.price_unit:
-            msg = _(
-                "You have set the price to %s \n"
-                " but there is a running agreement"
-                " with price %s") % (
-                    self.price_unit, agreement_price
-            )
-            raise exceptions.Warning(msg)
-        return {}
+        if self.framework_agreement_id:
+            agreement_price = self.framework_agreement_id.get_price(
+                self.product_qty,
+                currency=self.order_id.pricelist_id.currency_id)
+            if agreement_price != self.price_unit:
+                msg = _(
+                    "You have set the price to %s \n"
+                    " but there is a running agreement"
+                    " with price %s") % (
+                        self.price_unit, agreement_price
+                )
+                raise exceptions.Warning(msg)
 
     @api.multi
     def _propagate_fields(self):

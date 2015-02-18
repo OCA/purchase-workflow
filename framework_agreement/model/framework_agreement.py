@@ -46,6 +46,7 @@ class framework_agreement(models.Model):
     portfolio_id = fields.Many2one(
         'framework.agreement.portfolio',
         'Portfolio',
+        required=True,
     )
     product_id = fields.Many2one(
         'product.product',
@@ -199,7 +200,7 @@ class framework_agreement(models.Model):
             AND po.company_id = %s"""
             self.env.cr.execute(sql, (agreement.id,
                                       variant_ids,
-                                      agreement.supplier_id.id,
+                                      agreement.portfolio_id.supplier_id.id,
                                       AGR_PO_STATE,
                                       company.id))
             amount = self.env.cr.fetchone()[0]
@@ -368,6 +369,11 @@ class framework_agreement(models.Model):
             search_args.append(('available_quantity', '>=', qty))
         return self.search(search_args)
 
+    @api.multi
+    def get_cheapest_in_set(self, qty, currency):
+        """Return the cheapest agreement of a recordset."""
+        return self.sorted(key=lambda x: x.get_price(qty, currency))[0]
+
     @api.model
     def get_cheapest_agreement_for_qty(self, product_id, date, qty,
                                        currency=None):
@@ -441,8 +447,7 @@ class framework_agreement(models.Model):
         :returns: boolean (True if a price list in given currency is present)
 
         """
-        agreement = self
-        plists = agreement.framework_agreement_pricelist_ids
+        plists = self.framework_agreement_pricelist_ids
         return any(x for x in plists if x.currency_id == currency)
 
     @api.model
