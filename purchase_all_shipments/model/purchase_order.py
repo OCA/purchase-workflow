@@ -37,9 +37,7 @@ class PurchaseOrder(models.Model):
     def view_all_picking(self):
         """Similar to the view_picking method in the purchase module"""
         action_data = self.env.ref('stock.action_picking_tree').read()[0]
-        pickings = self.env['stock.picking']
-        for po in self:
-            pickings |= po.all_picking_ids
+        pickings = self.mapped('all_picking_ids')
 
         # override the context to get rid of the default filtering on
         # picking type
