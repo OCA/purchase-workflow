@@ -15,9 +15,6 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from datetime import datetime, timedelta
-from openerp import fields
-
 
 class BaseAgreementTestMixin(object):
     """Class that contain common behavior for all agreement unit test classes.
