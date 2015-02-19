@@ -26,7 +26,7 @@ class PurchaseOrder(models.Model):
         groups = self.mapped('picking_ids.move_lines.group_id')
 
         all_moves = self.env['stock.move'].search(
-            [('group_id', 'in', groups.mapped('id'))]
+            [('group_id', 'in', groups.ids)]
         )
         self.all_picking_ids = all_moves.mapped('picking_id')
 
@@ -42,7 +42,7 @@ class PurchaseOrder(models.Model):
 
         # choose the view_mode accordingly
         if len(pickings) > 1:
-            action_data['domain'] = [('id', 'in', pickings.mapped('id'))]
+            action_data['domain'] = [('id', 'in', pickings.ids)]
         else:
             form_view = self.env.ref('stock.view_picking_form')
             action_data['views'] = [(form_view.id, 'form')]
