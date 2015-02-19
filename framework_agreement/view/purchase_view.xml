@@ -17,7 +17,8 @@
         </field>
 
         <field name="product_qty" position="after">
-          <field name="framework_agreement_id" attrs="{'readonly': [('parent.portfolio_id', '!=', False)]}" />
+          <field name="portfolio_id" invisible="1"/> <!-- used by attrs below -->
+          <field name="framework_agreement_id" attrs="{'required': [('portfolio_id', '!=', False)], 'readonly': [('portfolio_id', '=', False)]}" />
         </field>
 
       </field>
