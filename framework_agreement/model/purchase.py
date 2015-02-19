@@ -28,6 +28,20 @@ class PurchaseOrder(models.Model):
         domain="[('supplier_id', '=', partner_id)]",
     )
 
+    @api.multi
+    def onchange_partner_id(self, partner_id):
+        """Override to ensure that partner can not be changed if agreement.
+
+        We use web_context_tunnel in order to keep the original signature.
+        """
+        res = super(PurchaseOrder, self).onchange_partner_id(partner_id)
+        if self.env.context.get('portfolio_id'):
+            raise exceptions.Warning(
+                _('You cannot change the supplier: '
+                  'the PO is linked to an agreement portfolio.')
+            )
+        return res
+
 
 class PurchaseOrderLine(models.Model):
     """Add on change on price to raise a warning if line is subject to
