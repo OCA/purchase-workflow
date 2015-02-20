@@ -43,7 +43,7 @@ class PurchaseOrder(models.Model):
     def update_agreements_in_lines(self):
         Agreement = self.env['framework.agreement']
         for line in self.order_line:
-            ag_domain = line.get_agreement_domain(
+            ag_domain = Agreement.get_agreement_domain(
                 line.product_id.id,
                 line.product_qty,
                 self.portfolio_id.id,
@@ -130,7 +130,7 @@ class PurchaseOrderLine(models.Model):
         Agreement = self.env['framework.agreement']
         agreement = Agreement.browse(context.get('agreement_id'))
 
-        ag_domain = self.get_agreement_domain(
+        ag_domain = Agreement.get_agreement_domain(
             product_id,
             qty,
             context['portfolio_id'],
@@ -154,25 +154,6 @@ class PurchaseOrderLine(models.Model):
             res['value']['price_unit'] = agreement.get_price(qty, currency)
         res['value']['framework_agreement_id'] = agreement.id
         return res
-
-    @api.multi
-    def get_agreement_domain(self, product_id, qty, portfolio_id, date_planned,
-                             incoterm_id):
-        ag_domain = [
-            ('draft', '=', False),
-            ('product_id', '=', product_id),
-            ('available_quantity', '>=', qty or 0.0),
-            ('portfolio_id', '=', portfolio_id),
-        ]
-        if date_planned:
-            ag_domain += [
-                ('start_date', '<=', date_planned),
-                ('end_date', '>=', date_planned),
-            ]
-        if incoterm_id:
-            ag_domain += [('incoterm_id', '=', incoterm_id)]
-
-        return ag_domain
 
     @api.onchange('price_unit')
     def onchange_price_unit(self):

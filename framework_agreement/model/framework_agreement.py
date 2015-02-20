@@ -114,6 +114,25 @@ class framework_agreement(models.Model):
     shipment_origin_id = fields.Many2one('res.partner', 'Shipment Origin')
 
     @api.model
+    def get_agreement_domain(self, product_id, qty, portfolio_id, date_planned,
+                             incoterm_id):
+        ag_domain = [
+            ('draft', '=', False),
+            ('product_id', '=', product_id),
+            ('available_quantity', '>=', qty or 0.0),
+            ('portfolio_id', '=', portfolio_id),
+        ]
+        if date_planned:
+            ag_domain += [
+                ('start_date', '<=', date_planned),
+                ('end_date', '>=', date_planned),
+            ]
+        if incoterm_id:
+            ag_domain += [('incoterm_id', '=', incoterm_id)]
+
+        return ag_domain
+
+    @api.model
     def _check_running_date(self, agreement):
         """ Returns agreement state based on date.
 
