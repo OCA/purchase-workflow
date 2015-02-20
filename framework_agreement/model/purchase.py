@@ -28,9 +28,20 @@ class PurchaseOrder(models.Model):
         domain="[('supplier_id', '=', partner_id)]",
     )
 
+    @api.onchange('pricelist_id')
+    def api_onchange_pricelist(self):
+        print "api.onchange pricelist"
+        self.currency_id = self.pricelist_id.currency_id
+
+    @api.onchange('portfolio_id')
+    def api_onchange_portfolio(self):
+        print "api.onchange"
+        for line in self.order_line:
+            pass
+
     @api.multi
     def onchange_partner_id(self, partner_id):
-        """Override to ensure that partner can not be changed if agreement.
+        """Prevent changes to the supplier if the portfolio is set.
 
         We use web_context_tunnel in order to keep the original signature.
         """
@@ -90,33 +101,26 @@ class PurchaseOrderLine(models.Model):
             return res
 
         currency = self.env['res.currency'].browse(context.get('currency_id'))
-
-        ag_domain = [
-            ('draft', '=', False),
-            ('product_id', '=', product_id),
-            ('available_quantity', '>=', qty or 0.0),
-            ('portfolio_id', '=', context['portfolio_id']),
-        ]
-        if date_planned:
-            ag_domain += [
-                ('start_date', '<=', date_planned),
-                ('end_date', '>=', date_planned),
-            ]
-        if context.get('incoterm_id'):
-            ag_domain += [('incoterm_id', '=', context['incoterm_id'])]
-        res['domain']['framework_agreement_id'] = ag_domain
-
         Agreement = self.env['framework.agreement']
         agreement = Agreement.browse(context.get('agreement_id'))
+
+        ag_domain = self.get_agreement_domain(
+            product_id,
+            qty,
+            context['portfolio_id'],
+            date_planned,
+            context.get('incoterm_id'),
+        )
+        res['domain']['framework_agreement_id'] = ag_domain
+
         good_agreements = Agreement.search(ag_domain).filtered(
             lambda a: a.has_currency(currency))
 
-        if agreement and agreement in good_agreements:
+        if agreement in good_agreements:
             pass  # it's good! let's keep it!
         else:
             if len(good_agreements) == 1:
-                cheapest = good_agreements.get_cheapest_in_set(qty, currency)
-                agreement = cheapest
+                agreement = good_agreements
             else:
                 agreement = Agreement
 
@@ -126,26 +130,23 @@ class PurchaseOrderLine(models.Model):
         return res
 
     @api.multi
-    def get_agreement_domain(self):
-        self.ensure_one()
-        domain = [
+    def get_agreement_domain(self, product_id, qty, portfolio_id, date_planned,
+                             incoterm_id):
+        ag_domain = [
             ('draft', '=', False),
-            ('available_quantity', '>=', self.product_qty),
+            ('product_id', '=', product_id),
+            ('available_quantity', '>=', qty or 0.0),
+            ('portfolio_id', '=', portfolio_id),
         ]
-
-        if self.order_id.date_order:
-            domain += [
-                ('start_date', '<=', self.order_id.date_order),
-                ('end_date', '>=', self.order_id.date_order),
+        if date_planned:
+            ag_domain += [
+                ('start_date', '<=', date_planned),
+                ('end_date', '>=', date_planned),
             ]
-        if self.product_id:
-            domain += [('product_id', '=', self.product_id.id)]
-        if self.order_id.incoterm_id:
-            domain += [('incoterm_id', '=', self.order_id.incoterm_id.id)]
-        if self.order_id.portfolio_id:
-            domain += [('portfolio_id', '=', self.order_id.portfolio_id.id)]
+        if incoterm_id:
+            ag_domain += [('incoterm_id', '=', incoterm_id)]
 
-        return domain
+        return ag_domain
 
     @api.onchange('price_unit')
     def onchange_price_unit(self):

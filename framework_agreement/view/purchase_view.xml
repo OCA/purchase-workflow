@@ -12,6 +12,12 @@
           <field name="portfolio_id" />
         </field>
 
+        <field name="pricelist_id" position="attributes">
+          <attribute name="context_agreement">{'order_line_ids': order_line}</attribute>
+          <!-- <attribute name="on_change">onchange_pricelist(pricelist_id, context)</attribute> -->
+          <attribute name="on_change">1</attribute>
+        </field>
+
         <field name="partner_id" position="attributes">
           <attribute name="context_agreement">{'portfolio_id': portfolio_id}</attribute>
         </field>
