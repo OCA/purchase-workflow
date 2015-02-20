@@ -29,15 +29,41 @@ class PurchaseOrder(models.Model):
     )
 
     @api.onchange('pricelist_id')
-    def api_onchange_pricelist(self):
-        print "api.onchange pricelist"
+    def update_currency_from_pricelist(self):
+        """Reproduce the old_api onchange_pricelist from the purchase module.
+
+        We need new-style onchanges to be able to modify agreements on order
+        lines, and we cannot have new-style and old-style onchanges at the same
+        time.
+
+        """
         self.currency_id = self.pricelist_id.currency_id
 
-    @api.onchange('portfolio_id')
-    def api_onchange_portfolio(self):
-        print "api.onchange"
+    @api.onchange('portfolio_id', 'pricelist_id', 'date_order', 'incoterm_id')
+    def update_agreements_in_lines(self):
+        Agreement = self.env['framework.agreement']
         for line in self.order_line:
-            pass
+            ag_domain = line.get_agreement_domain(
+                line.product_id.id,
+                line.product_qty,
+                self.portfolio_id.id,
+                self.date_order,
+                self.incoterm_id.id,
+            )
+            good_agreements = Agreement.search(ag_domain).filtered(
+                lambda a: a.has_currency(self.currency_id))
+
+            if line.framework_agreement_id in good_agreements:
+                pass  # it's good! let's keep it!
+            else:
+                if len(good_agreements) == 1:
+                    line.framework_agreement_id = good_agreements
+                else:
+                    line.framework_agreement_id = Agreement
+
+            if line.framework_agreement_id:
+                line.price_unit = line.framework_agreement_id.get_price(
+                    line.product_qty, self.currency_id)
 
     @api.multi
     def onchange_partner_id(self, partner_id):
