@@ -68,7 +68,8 @@ class TestAgreementOnChange(test_common.TransactionCase,
 
         """
         order = self.env['purchase.order'].create({
-            'pricelist_id': self.supplier.property_product_pricelist_purchase.id,
+            'pricelist_id':
+            self.supplier.property_product_pricelist_purchase.id,
             'partner_id': self.supplier.id,
             'location_id': self.supplier.property_stock_customer.id,
         })
@@ -89,7 +90,8 @@ class TestAgreementOnChange(test_common.TransactionCase,
     def test_01_price_change_bindings(self):
         """Check that change of price has correct behavior"""
         order = self.env['purchase.order'].create({
-            'pricelist_id': self.supplier.property_product_pricelist_purchase.id,
+            'pricelist_id':
+            self.supplier.property_product_pricelist_purchase.id,
             'partner_id': self.supplier.id,
             'location_id': self.supplier.property_stock_customer.id,
         })
