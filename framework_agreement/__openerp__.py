@@ -27,7 +27,7 @@
 Long Term Agreement (or Framework Agreement) on price.
 ======================================================
 
-Agreements are defined by a product, a date range , a supplier, a price, a lead
+Agreements are defined by a product, a date range, a supplier, a price, a lead
 time and agreed quantity.
 
 Agreements are set on a product view or using a menu in the product
@@ -44,11 +44,8 @@ warning will be raised in case of exhaustion of override of agreement price.
 
 **Technical aspect**
 
-The module provide an observable mixin to enable generic on_change management
-on various models related to agreements.
-
 The framework agreement is by default related to purchase order but the addon
-provides a library to integrate it with any other model easily
+provides a library to integrate it with any other model easily.
 """,
  'website': 'http://www.camptocamp.com',
  'data': ['data.xml',
