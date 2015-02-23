@@ -114,14 +114,16 @@ class framework_agreement(models.Model):
     shipment_origin_id = fields.Many2one('res.partner', 'Shipment Origin')
 
     @api.model
-    def get_agreement_domain(self, product_id, qty, portfolio_id, date_planned,
-                             incoterm_id):
+    def get_agreement_domain(self, product_id, qty, portfolio_id=None,
+                             date_planned=None, incoterm_id=None,
+                             incoterm_address=None):
         ag_domain = [
             ('draft', '=', False),
             ('product_id', '=', product_id),
             ('available_quantity', '>=', qty or 0.0),
-            ('portfolio_id', '=', portfolio_id),
         ]
+        if portfolio_id:
+            ag_domain += [('portfolio_id', '=', portfolio_id)]
         if date_planned:
             ag_domain += [
                 ('start_date', '<=', date_planned),
@@ -129,6 +131,8 @@ class framework_agreement(models.Model):
             ]
         if incoterm_id:
             ag_domain += [('incoterm_id', '=', incoterm_id)]
+        if incoterm_address:
+            ag_domain += [('incoterm_address', '=', incoterm_address)]
 
         return ag_domain
 
