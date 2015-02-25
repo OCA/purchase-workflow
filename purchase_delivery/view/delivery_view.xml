@@ -69,7 +69,8 @@
                                 class="oe_edit_only"
                                 attrs="{'invisible':['|',('carrier_id','=',False),('state','not in',('draft','sent'))]}"/>
                             <br/>
-                            <label string="If you don't 'Add in Quote', the exact price will be computed when invoicing based on delivery order(s)."
+                            <label
+                                    string="If you don't 'Add in Quote', the exact price will be computed when invoicing based on incoming shipment(s)."
                                 class="oe_edit_only"
                                 attrs="{'invisible':['|',('carrier_id','=',False),('state','not in',('draft','sent'))]}"/>
                         </div>
