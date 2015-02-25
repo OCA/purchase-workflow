@@ -1,0 +1,95 @@
+<openerp>
+    <data>
+
+        <record id="view_delivery_carrier_form" model="ir.ui.view">
+            <field name="name">delivery.carrier.form</field>
+            <field name="model">delivery.carrier</field>
+            <field name="inherit_id" ref="delivery.view_delivery_carrier_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='pricelist_ids']/form/notebook"
+                       position="inside">
+                    <page string="Origin">
+                        <group>
+                            <group>
+                                <field name="src_country_ids"
+                                       widget="many2many_tags"/>
+                                <field name="src_state_ids"
+                                       widget="many2many_tags"/>
+                            </group>
+                            <group>
+                                <label for="src_zip_from" string="Zip"/>
+                                <div>
+                                    <field name="src_zip_from"
+                                           class="oe_inline"/>
+                                    -
+                                    <field name="src_zip_to"
+                                           class="oe_inline"/>
+                                </div>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="view_delivery_grid_form" model="ir.ui.view">
+            <field name="name">delivery.grid.form</field>
+            <field name="model">delivery.grid</field>
+            <field name="inherit_id" ref="delivery.view_delivery_grid_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/notebook" position="inside">
+                    <page string="Origin">
+                        <group string="Countries">
+                            <field name="src_country_ids"/>
+                        </group>
+                        <group string="States">
+                            <field colspan="2" name="src_state_ids"
+                                   nolabel="1"/>
+                            <field name="src_zip_from"/>
+                            <field name="src_zip_to"/>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_order_withcarrier_form" model="ir.ui.view">
+            <field name="name">delivery.purchase.order_withcarrier.form
+                .view</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@string='Incoming Shipments &amp; Invoices']" position="inside">
+                    <group style="width: 65%%">
+                        <label for="carrier_id"/>
+                        <div>
+                            <field name="carrier_id" context="{'order_id':active_id or False}" class="oe_inline"/>
+                            <button name="delivery_set" string="Add in Quote" type="object"
+                                class="oe_edit_only"
+                                attrs="{'invisible':['|',('carrier_id','=',False),('state','not in',('draft','sent'))]}"/>
+                            <br/>
+                            <label string="If you don't 'Add in Quote', the exact price will be computed when invoicing based on delivery order(s)."
+                                class="oe_edit_only"
+                                attrs="{'invisible':['|',('carrier_id','=',False),('state','not in',('draft','sent'))]}"/>
+                        </div>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_picking_withcarrier_in_form" model="ir.ui.view">
+            <field name="name">delivery.stock.picking_withcarrier.in.form.view</field>
+            <field name="model">stock.picking.in</field>
+            <field name="inherit_id"
+                   ref="delivery.view_picking_withcarrier_in_form"/>
+            <field name="arch" type="xml">
+                <field name="min_date" position="after">
+                    <field name="carrier_id"/>
+                    <field name="carrier_tracking_ref"/>
+                    <field name="number_of_packages"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>
