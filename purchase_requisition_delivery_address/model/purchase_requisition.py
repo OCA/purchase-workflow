@@ -37,12 +37,22 @@ class PurchaseRequisition(models.Model):
 
     @api.onchange('dest_address_id')
     def onchange_dest_address_id(self):
+        """Find a picking type from the address.
+
+        There is a similar onchange in the module
+        purchase_requisition_delivery_address.  A similar logic to choose the
+        picking type is used in the module framework_agreement_sourcing in
+        github.com/OCA/vertical-ngo.
+
+        """
         if not self.dest_address_id:
             return
 
         PickType = self.env['stock.picking.type']
         types = PickType.search([
-            ('warehouse_id.partner_id', '=', self.dest_address_id.id)])
+            ('warehouse_id.partner_id', '=', self.dest_address_id.id),
+            ('code', '=', 'incoming'),
+        ])
 
         if types:
             if self.picking_type_id in types:

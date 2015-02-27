@@ -31,10 +31,15 @@ class PurchaseOrder(models.Model):
         without super, and should be consistent with the module
         purchase_requisition_delivery_address.
 
+        A similar logic to choose the picking type is used in the module
+        framework_agreement_sourcing in github.com/OCA/vertical-ngo.
+
         """
         PickType = self.env['stock.picking.type']
         types = PickType.search([
-            ('warehouse_id.partner_id', '=', self.dest_address_id.id)])
+            ('warehouse_id.partner_id', '=', self.dest_address_id.id),
+            ('code', '=', 'incoming'),
+        ])
 
         if types:
             if self.picking_type_id in types:
