@@ -34,7 +34,9 @@ class PurchaseOrder(models.Model):
         """
         PickType = self.env['stock.picking.type']
         types = PickType.search([
-            ('warehouse_id.partner_id', '=', self.dest_address_id.id)])
+            ('warehouse_id.partner_id', '=', self.dest_address_id.id),
+            ('code', '=', 'incoming'),
+        ])
 
         if types:
             if self.picking_type_id in types:
