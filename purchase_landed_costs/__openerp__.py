@@ -39,7 +39,7 @@
     * value - example custom fees
     * quantity - example freight
     """,
-    'author': 'Camptocamp',
+    'author': "Camptocamp,Odoo Community Association (OCA)",
     'contributors': 'Mikel Martin <mikel@zhenit.com>',
     'depends': ['purchase'],
     'update_xml': ['security/ir.model.access.csv',
