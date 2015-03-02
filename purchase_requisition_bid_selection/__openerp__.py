@@ -20,7 +20,7 @@
 
 {"name": "Purchase Requisition Bid Selection",
  "version": "0.6.1",
- "author": "Camptocamp",
+ "author": "Camptocamp,Odoo Community Association (OCA)",
  "license": "AGPL-3",
  "category": "Purchase Management",
  "complexity": "normal",

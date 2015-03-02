@@ -17,7 +17,7 @@
 {'name': 'Vendor Consignment Stock',
  'summary': 'Manage stock in our warehouse that is owned by a vendor',
  'version': '0.2',
- 'author': 'Camptocamp',
+ 'author': "Camptocamp,Odoo Community Association (OCA)",
  'category': 'Purchase Management',
  'license': 'AGPL-3',
  'depends': ['stock_ownership_availability_rules',

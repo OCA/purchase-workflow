@@ -21,7 +21,7 @@
 {'name': "Purchase Requisition - Delivery Address",
  'summary': "Adds delivery address on Purchase requisition",
  'version': "0.2",
- 'author': "Camptocamp",
+ 'author': "Camptocamp,Odoo Community Association (OCA)",
  'category': "Purchase Management",
  'license': "AGPL-3",
  'complexity': "easy",

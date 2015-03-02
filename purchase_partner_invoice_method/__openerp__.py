@@ -34,7 +34,7 @@ create a new Purchase Order with this partner as supplier.
 This module has been written by Alexis de Lattre
 <alexis.delattre@akretion.com>
     """,
-    'author': 'Akretion',
+    'author': "Akretion,Odoo Community Association (OCA)",
     'website': 'http://www.akretion.com',
     'depends': ['purchase'],
     'data': ['partner_view.xml'],

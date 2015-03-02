@@ -20,7 +20,7 @@
 ##############################################################################
 {'name': 'Purchase Group Orders by Shop and Carrier',
  'version': '0.4',
- 'author': 'Camptocamp',
+ 'author': "Camptocamp,Odoo Community Association (OCA)",
  'maintainer': 'Camptocamp',
  'category': 'Purchase Management',
  'complexity': "normal",  # easy, normal, expert

@@ -20,7 +20,7 @@
 ##############################################################################
 {'name': 'Smart MRP Purchase based on supplier price',
  'version': '0.2',
- 'author': 'Camptocamp',
+ 'author': "Camptocamp,Odoo Community Association (OCA)",
  'maintainer': 'Camptocamp',
  'category': 'version',
  'complexity': "normal",  # easy, normal, expert

@@ -17,7 +17,7 @@
 {'name': 'Purchase Delivery Address',
  'summary': 'Allows to manage the delivery address on a purchase',
  'version': '1.1',
- 'author': 'Camptocamp',
+ 'author': "Camptocamp,Odoo Community Association (OCA)",
  'category': 'Purchase Management',
  'license': 'AGPL-3',
  'complexity': 'easy',

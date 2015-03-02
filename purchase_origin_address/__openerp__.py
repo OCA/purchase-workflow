@@ -21,7 +21,7 @@
 {'name': 'Purchase Origin Address',
  'summary': 'Allows to manage origin address on purchase',
  'version': '1.0',
- 'author': 'Camptocamp',
+ 'author': "Camptocamp,Odoo Community Association (OCA)",
  'category': 'Purchase Management',
  'license': 'AGPL-3',
  'complexity': 'normal',

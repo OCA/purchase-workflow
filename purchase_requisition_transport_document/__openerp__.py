@@ -22,7 +22,7 @@
 {"name": "Purchase Requisition Transport Document",
  "summary": "Add Transport Documents to Purchase Requisitions",
  "version": "0.1",
- "author": "Camptocamp",
+ "author": "Camptocamp,Odoo Community Association (OCA)",
  "category": "Purchase Management",
  "license": "AGPL-3",
  'complexity': "easy",

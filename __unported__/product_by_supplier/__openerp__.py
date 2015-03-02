@@ -39,7 +39,7 @@ Contributors
 
 * Alex Comba <alex.comba@agilebg.com>
 """,
-    'author': 'Elico Corp',
+    'author': "Elico Corp,Odoo Community Association (OCA)",
     'website': 'http://www.elico-corp.com',
     'license': 'AGPL-3',
     'depends': [

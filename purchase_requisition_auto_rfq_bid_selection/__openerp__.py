@@ -21,7 +21,7 @@
 {"name": "Purchase Requisition Auto RFQ / Bid Selection bridge",
  "summary": "Bridge module for PR Auto RFQ / Bid Selection",
  "version": "0.1",
- "author": "Camptocamp",
+ "author": "Camptocamp,Odoo Community Association (OCA)",
  "category": "Purchase Management",
  "license": "AGPL-3",
  'complexity': "normal",
