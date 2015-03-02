@@ -108,7 +108,7 @@ TODO/Ideas:
   * Ferdinand Gasauer <ferdinand.gasauer@camptocamp.com>
 
 """,
-    'author': 'Camptocamp',
+    'author': "Camptocamp,Odoo Community Association (OCA)",
     'depends': ['purchase'],
     'website': 'http://www.camptocamp.com',
     'data': ['security/ir.model.access.csv',

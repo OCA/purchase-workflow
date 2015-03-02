@@ -28,7 +28,7 @@ This module allows to partially invoice purchase order lines.
 The 'Create invoices' from PO lines wizard allows to specify,
 for each line, the quantity to invoice.
 """,
-    'author': 'Agile Business Group',
+    'author': "Agile Business Group,Odoo Community Association (OCA)",
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
     "depends": ['purchase'],

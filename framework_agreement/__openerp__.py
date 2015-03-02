@@ -20,7 +20,7 @@
 ##############################################################################
 {'name': 'Simple Framework Agreement',
  'version': '0.1.1',
- 'author': 'Camptocamp',
+ 'author': "Camptocamp,Odoo Community Association (OCA)",
  'maintainer': 'Camptocamp',
  'category': 'Purchase Management',
  'complexity': 'normal',
