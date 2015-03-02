@@ -20,7 +20,7 @@
 ##############################################################################
 {
     "name": "Purchase order lines with discounts",
-    "author": "Tiny, Acysos S.L.",
+    "author": "Tiny, Acysos S.L.,Odoo Community Association (OCA)",
     "description": """
 It allows to define a discount per line in the purchase
 orders. This discount can be also negative, interpreting it as an increment.
