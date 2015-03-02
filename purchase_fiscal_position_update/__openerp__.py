@@ -36,7 +36,9 @@ the taxes on all the purchase order lines which have a product are
 automatically updated. The purchase order lines without a product are not
 updated and a warning is displayed to the user in this case.
 """,
-    'author': 'Julius Network Solutions, Akretion',
+    'author': "Julius Network Solutions,"
+              "Akretion,"
+              "Odoo Community Association (OCA)",
     'depends': ['purchase'],
     'data': [],
     'installable': True,
