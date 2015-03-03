@@ -354,7 +354,7 @@ class framework_agreement(models.Model):
         )
 
         if self.company_id.one_agreement_per_product:
-            # in stict mode, any overlap is bad
+            # in strict mode, any overlap is bad
             if overlap:
                 raise exceptions.ValidationError(
                     _('There is already is a running agreement for '
