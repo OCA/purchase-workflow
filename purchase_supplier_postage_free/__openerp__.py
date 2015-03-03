@@ -41,6 +41,7 @@ Purchase Supplier Postage Free
  """,
  'website': 'http://www.camptocamp.com',
  'data': ['view/res_partner_view.xml',
+          'view/purchase_order_view.xml',
           ],
  'test': [],
  'installable': True,
