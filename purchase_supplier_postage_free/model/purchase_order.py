@@ -28,13 +28,22 @@ class purchase_order(orm.Model):
 
     def _compute_free_postage(self, cr, uid, ids, prop, arg, context=None):
         res = {}
+        currency_model = self.pool['res.currency']
         for order in self.browse(cr, uid, ids, context=context):
             supplier = order.partner_id
             order_currency = order.pricelist_id.currency_id
             amount = self._get_free_postage_amount(cr, uid, supplier,
                                                    order_currency,
                                                    context=context)
-            res[order.id] = amount
+            cmp_result = currency_model.compare_amounts(
+                cr, uid, order_currency,
+                order.amount_untaxed,
+                amount)
+            amount_reached = cmp_result != -1
+
+            res[order.id] = {}
+            res[order.id]['free_postage'] = amount
+            res[order.id]['free_postage_reached'] = amount_reached
         return res
 
     _columns = {
@@ -42,8 +51,16 @@ class purchase_order(orm.Model):
             _compute_free_postage,
             string='Free Postage',
             digits_compute=dp.get_precision('Account'),
+            type='float',
+            multi='free_postage',
             help="Amount above which the supplier offers postage fees in the "
-                 "currency of the purchase order,"
+                 "currency of the purchase order.",
+        ),
+        'free_postage_reached': fields.function(
+            _compute_free_postage,
+            string='Free Postage Reached',
+            type='boolean',
+            multi='free_postage',
         ),
     }
 
