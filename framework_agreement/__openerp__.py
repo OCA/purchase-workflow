@@ -17,36 +17,13 @@
 #
 ##############################################################################
 {'name': 'Framework Agreement',
+ 'summary': 'Long Term Agreement (or Framework Agreement) for purchases',
  'version': '2.0',
  'author': "Camptocamp,Odoo Community Association (OCA)",
  'maintainer': 'Camptocamp',
  'category': 'Purchase Management',
  'complexity': 'normal',
  'depends': ['stock', 'procurement', 'purchase', 'web_context_tunnel'],
- 'description': """
-Long Term Agreement (or Framework Agreement) on price.
-======================================================
-
-Agreements are defined by a product, a date range, a supplier, a price, a lead
-time and agreed quantity.
-
-Agreements are set on a product view or using a menu in the product
-configuration.
-
-There can be only one agreement for the same supplier and product at the same
-time, even if we may have different prices depending on lead time/qty.
-
-There is an option on company to restrict one agreement per product at same
-time.
-
-If an agreement is running its price will be automatically used in PO.  A
-warning will be raised in case of exhaustion of override of agreement price.
-
-**Technical aspect**
-
-The framework agreement is by default related to purchase order but the addon
-provides a library to integrate it with any other model easily.
-""",
  'website': 'http://www.camptocamp.com',
  'data': ['data.xml',
           'view/product_view.xml',
