@@ -8,6 +8,7 @@
       <field name="arch" type="xml">
         <field name="pricelist_id" position="after">
           <field name="free_postage"/>
+          <field name="free_postage_reached"/>
         </field>
         <field name="pricelist_id" position="attributes">
           <attribute name="context_partner_id">{'partner_id': partner_id}</attribute>
@@ -15,6 +16,28 @@
         <field name="partner_id" position="attributes">
           <attribute name="on_change">onchange_partner_id(partner_id, pricelist_id, context)</attribute>
         </field>
+      </field>
+    </record>
+
+    <record id="view_request_for_quotation_filter" model="ir.ui.view">
+      <field name="name">request.quotation.select</field>
+      <field name="model">purchase.order</field>
+      <field name="inherit_id" ref="purchase.view_request_for_quotation_filter"/>
+      <field name="arch" type="xml">
+        <filter name="not_invoiced" position="after">
+          <filter name="free_postage_reached" string="Free Postage Reached" domain="[('free_postage_reached', '=', True)]" help="Purchase orders having an untaxed amount greater than the Free Postage threshold."/>
+        </filter>
+      </field>
+    </record>
+
+    <record id="view_purchase_order_filter" model="ir.ui.view">
+      <field name="name">purchase.order.list.select</field>
+      <field name="model">purchase.order</field>
+      <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+      <field name="arch" type="xml">
+        <filter name="not_invoiced" position="after">
+          <filter name="free_postage_reached" string="Free Postage Reached" domain="[('free_postage_reached', '=', True)]" help="Purchase orders having an untaxed amount greater than the Free Postage threshold."/>
+        </filter>
       </field>
     </record>
 
