@@ -29,6 +29,10 @@
           <field name="framework_agreement_id" attrs="{'required': [('portfolio_id', '!=', False)], 'readonly': [('portfolio_id', '=', False)]}" />
         </field>
 
+        <field name="product_qty" position="attributes">
+          <attribute name="context_agreement">{'agreement_id': framework_agreement_id, 'incoterm_id': parent.incoterm_id, 'currency_id': parent.currency_id, 'portfolio_id': parent.portfolio_id}</attribute>
+        </field>
+
       </field>
     </record>
 
