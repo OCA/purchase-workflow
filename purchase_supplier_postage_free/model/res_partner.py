@@ -31,7 +31,7 @@ class res_partner(orm.Model):
         'free_postage': fields.float(
             string='Purchase Free Postage',
             digits_compute=dp.get_precision('Account'),
-            help="Expressed in the currency of the supplier's purchase"
+            help="Expressed in the currency of the supplier's purchase "
                  "pricelist.  This is the amount above which the supplier "
                  "offers postage fees. 0 means no postage fees."),
     }
