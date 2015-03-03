@@ -19,30 +19,24 @@
 #
 ##############################################################################
 
-{'name': 'Purchase Supplier Postage Free',
- 'version': '1.0',
- 'author': 'Camptocamp',
- 'maintainer': 'Camptocamp',
- 'license': 'AGPL-3',
- 'category': 'Purchase Management',
- 'depends': ['purchase',
-             ],
- 'description': """
-Purchase Supplier Postage Free
-==============================
 
-* Add a field "Postage free above amount" on the suppliers, which is an
-  optional amount above which the supplier does not charge the shipping
-  fees.
-* Display this amount on the purchase orders as an indication
-* Add a filter on the purchase orders showing the ones which have reached
-  the postage free amount.
+import openerp.addons.decimal_precision as dp
+from openerp.osv import orm, fields
 
- """,
- 'website': 'http://www.camptocamp.com',
- 'data': ['view/res_partner_view.xml',
-          ],
- 'test': [],
- 'installable': True,
- 'auto_install': False,
- }
+
+class res_partner(orm.Model):
+    _inherit = 'res.partner'
+
+    _columns = {
+        'free_postage': fields.float(
+            string='Purchase Free Postage',
+            digits_compute=dp.get_precision('Account'),
+            help="Expressed in the currency of the supplier's purchase"
+                 "pricelist.  This is the amount above which the supplier "
+                 "offers postage fees. 0 means no postage fees."),
+    }
+
+    def _commercial_fields(self, cr, uid, context=None):
+        _super = super(res_partner, self)
+        com_fields = _super._commercial_fields(cr, uid, context=context)
+        return com_fields + ['free_postage']
