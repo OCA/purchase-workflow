@@ -32,18 +32,21 @@ class purchase_order(orm.Model):
         for order in self.browse(cr, uid, ids, context=context):
             supplier = order.partner_id
             order_currency = order.pricelist_id.currency_id
-            amount = self._get_free_postage_amount(cr, uid, supplier,
-                                                   order_currency,
-                                                   context=context)
-            cmp_result = currency_model.compare_amounts(
-                cr, uid, order_currency,
-                order.amount_untaxed,
-                amount)
-            amount_reached = cmp_result != -1
+            threshold = self._get_free_postage_amount(cr, uid, supplier,
+                                                      order_currency,
+                                                      context=context)
+            if threshold:
+                cmp_result = currency_model.compare_amounts(
+                    cr, uid, order_currency,
+                    order.amount_untaxed,
+                    threshold)
+                threshold_reached = cmp_result != -1
+            else:
+                threshold_reached = False
 
             res[order.id] = {}
-            res[order.id]['free_postage'] = amount
-            res[order.id]['free_postage_reached'] = amount_reached
+            res[order.id]['free_postage'] = threshold
+            res[order.id]['free_postage_reached'] = threshold_reached
         return res
 
     def _get_order_from_lines(self, cr, uid, ids, context=None):
