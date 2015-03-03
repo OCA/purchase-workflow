@@ -392,12 +392,6 @@ class framework_agreement(models.Model):
             search_args.append(('available_quantity', '>=', qty))
         return self.search(search_args)
 
-    # probably unused
-    # @api.multi
-    # def get_cheapest_in_set(self, qty, currency):
-    #     """Return the cheapest agreement of a recordset."""
-    #     return self.sorted(key=lambda x: x.get_price(qty, currency))[0]
-
     @api.model
     def get_cheapest_agreement_for_qty(self, product_id, date, qty,
                                        currency=None):
