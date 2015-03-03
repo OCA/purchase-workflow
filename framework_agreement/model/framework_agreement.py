@@ -276,6 +276,7 @@ class framework_agreement(models.Model):
                  'purchase_line_ids.order_id.state',
                  'purchase_line_ids',
                  'purchase_line_ids.product_qty')
+    # same dependencies as available_quantity
     def _get_state(self):
         """ Compute current state of agreement based on date and consumption
 
