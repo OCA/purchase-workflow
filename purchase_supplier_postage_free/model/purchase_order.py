@@ -55,6 +55,22 @@ class purchase_order(orm.Model):
                   in line_model.browse(cr, uid, ids, context=context)}
         return list(result)
 
+    def _get_order_from_partner(self, cr, uid, ids, context=None):
+        order_model = self.pool['purchase.order']
+        order_ids = order_model.search(
+            cr, uid,
+            [('partner_id', 'in', ids)],
+            context=context)
+        return order_ids
+
+    def _get_order_from_pricelist(self, cr, uid, ids, context=None):
+        order_model = self.pool['purchase.order']
+        order_ids = order_model.search(
+            cr, uid,
+            [('pricelist_id', 'in', ids)],
+            context=context)
+        return order_ids
+
     _columns = {
         'free_postage': fields.function(
             _compute_free_postage,
@@ -75,6 +91,9 @@ class purchase_order(orm.Model):
                            ['amount_untaxed', 'partner_id', 'pricelist_id'],
                            30),
                 'purchase.order.line': (_get_order_from_lines, None, 20),
+                'res.partner': (_get_order_from_partner, ['free_postage'], 20),
+                'product.pricelist': (_get_order_from_pricelist,
+                                      ['currency_id'], 20),
             },
             help="If the free postage amount is reached or not. This field "
                  "is refreshed when the purchase order is saved.",
