@@ -195,7 +195,7 @@ class PurchaseOrderLine(models.Model):
             return
         if self.framework_agreement_id:
             agreement = self.framework_agreement_id
-            if agreement.supplier_id.id != self.order_id.partner_id:
+            if agreement.supplier_id != self.order_id.partner_id:
                 raise exceptions.Warning(
                     _('Invalid agreement '
                       'Agreement and supplier does not match')
