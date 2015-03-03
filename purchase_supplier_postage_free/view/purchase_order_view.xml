@@ -9,6 +9,12 @@
         <field name="pricelist_id" position="after">
           <field name="free_postage"/>
         </field>
+        <field name="pricelist_id" position="attributes">
+          <attribute name="context_partner_id">{'partner_id': partner_id}</attribute>
+        </field>
+        <field name="partner_id" position="attributes">
+          <attribute name="on_change">onchange_partner_id(partner_id, pricelist_id, context)</attribute>
+        </field>
       </field>
     </record>
 

@@ -26,6 +26,7 @@
  'license': 'AGPL-3',
  'category': 'Purchase Management',
  'depends': ['purchase',
+             'web_context_tunnel',
              ],
  'description': """
 Purchase Supplier Postage Free
