@@ -8,7 +8,8 @@
       <field name="arch" type="xml">
         <field name="pricelist_id" position="after">
           <field name="framework_agreement_id"
-                 domain="[('draft', '=', False)]"/>
+                 domain="[('draft', '=', False),
+                          ('supplier_id', '=', partner_id)]"/>
         </field>
         <field name="pricelist_id" position="attributes">
           <attribute name="context_agreement">{'order_line_ids': order_line}</attribute>
