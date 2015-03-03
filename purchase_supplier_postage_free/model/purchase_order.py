@@ -75,7 +75,9 @@ class purchase_order(orm.Model):
                            ['amount_untaxed', 'partner_id', 'pricelist_id'],
                            30),
                 'purchase.order.line': (_get_order_from_lines, None, 20),
-            }
+            },
+            help="If the free postage amount is reached or not. This field "
+                 "is refreshed when the purchase order is saved.",
         ),
     }
 
