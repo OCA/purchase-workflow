@@ -46,6 +46,12 @@ class purchase_order(orm.Model):
             res[order.id]['free_postage_reached'] = amount_reached
         return res
 
+    def _get_order_from_lines(self, cr, uid, ids, context=None):
+        line_model = self.pool['purchase.order.line']
+        result = {line.order_id.id for line
+                  in line_model.browse(cr, uid, ids, context=context)}
+        return list(result)
+
     _columns = {
         'free_postage': fields.function(
             _compute_free_postage,
@@ -61,6 +67,12 @@ class purchase_order(orm.Model):
             string='Free Postage Reached',
             type='boolean',
             multi='free_postage',
+            store={
+                _inherit: (lambda self, cr, uid, ids, c=None: ids,
+                           ['amount_untaxed', 'partner_id', 'pricelist_id'],
+                           30),
+                'purchase.order.line': (_get_order_from_lines, None, 20),
+            }
         ),
     }
 
