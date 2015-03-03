@@ -1,0 +1,81 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* purchase_supplier_postage_free
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-03-03 12:59+0000\n"
+"PO-Revision-Date: 2015-03-03 12:59+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_supplier_postage_free
+#: help:purchase.order,free_postage:0
+msgid "Amount above which the supplier offers postage fees in the currency of the purchase order."
+msgstr ""
+
+#. module: purchase_supplier_postage_free
+#: help:res.partner,free_postage:0
+msgid "Expressed in the currency of the supplier's purchase pricelist.  This is the amount above which the supplier offers postage fees. 0 means no postage fees."
+msgstr ""
+
+#. module: purchase_supplier_postage_free
+#: field:purchase.order,free_postage:0
+msgid "Free Postage"
+msgstr ""
+
+#. module: purchase_supplier_postage_free
+#: view:purchase.order:0
+#: field:purchase.order,free_postage_reached:0
+msgid "Free Postage Reached"
+msgstr ""
+
+#. module: purchase_supplier_postage_free
+#: help:purchase.order,free_postage_reached:0
+msgid "If the free postage amount is reached or not. This field is refreshed when the purchase order is saved."
+msgstr ""
+
+#. module: purchase_supplier_postage_free
+#: code:_description:0
+#: model:ir.model,name:purchase_supplier_postage_free.model_res_partner
+#, python-format
+msgid "Partner"
+msgstr ""
+
+#. module: purchase_supplier_postage_free
+#: field:res.partner,free_postage:0
+msgid "Purchase Free Postage"
+msgstr ""
+
+#. module: purchase_supplier_postage_free
+#: code:_description:0
+#, python-format
+msgid "Purchase Order"
+msgstr ""
+
+#. module: purchase_supplier_postage_free
+#: model:ir.model,name:purchase_supplier_postage_free.model_purchase_order
+msgid "Purchase order"
+msgstr ""
+
+#. module: purchase_supplier_postage_free
+#: view:purchase.order:0
+msgid "Purchase orders having an untaxed amount greater than the Free Postage threshold."
+msgstr ""
+
+#. module: purchase_supplier_postage_free
+#: view:purchase.order:0
+msgid "onchange_partner_id(partner_id, pricelist_id, context)"
+msgstr ""
+
+#. module: purchase_supplier_postage_free
+#: view:purchase.order:0
+msgid "{'partner_id': partner_id}"
+msgstr ""
+
