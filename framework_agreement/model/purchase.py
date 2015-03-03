@@ -42,28 +42,31 @@ class PurchaseOrder(models.Model):
     @api.onchange('portfolio_id', 'pricelist_id', 'date_order', 'incoterm_id')
     def update_agreements_in_lines(self):
         Agreement = self.env['framework.agreement']
-        for line in self.order_line:
-            ag_domain = Agreement.get_agreement_domain(
-                line.product_id.id,
-                line.product_qty,
-                self.portfolio_id.id,
-                self.date_order,
-                self.incoterm_id.id,
-            )
-            good_agreements = Agreement.search(ag_domain).filtered(
-                lambda a: a.has_currency(self.currency_id))
+        if self.portfolio_id:
+            for line in self.order_line:
+                ag_domain = Agreement.get_agreement_domain(
+                    line.product_id.id,
+                    line.product_qty,
+                    self.portfolio_id.id,
+                    self.date_order,
+                    self.incoterm_id.id,
+                )
+                good_agreements = Agreement.search(ag_domain).filtered(
+                    lambda a: a.has_currency(self.currency_id))
 
-            if line.framework_agreement_id in good_agreements:
-                pass  # it's good! let's keep it!
-            else:
-                if len(good_agreements) == 1:
-                    line.framework_agreement_id = good_agreements
+                if line.framework_agreement_id in good_agreements:
+                    pass  # it's good! let's keep it!
                 else:
-                    line.framework_agreement_id = Agreement
+                    if len(good_agreements) == 1:
+                        line.framework_agreement_id = good_agreements
+                    else:
+                        line.framework_agreement_id = Agreement
 
-            if line.framework_agreement_id:
-                line.price_unit = line.framework_agreement_id.get_price(
-                    line.product_qty, self.currency_id)
+                if line.framework_agreement_id:
+                    line.price_unit = line.framework_agreement_id.get_price(
+                        line.product_qty, self.currency_id)
+            else:
+                self.order_line.write({'framework_agreement_id': False})
 
     @api.multi
     def onchange_partner_id(self, partner_id):
