@@ -321,7 +321,7 @@ class framework_agreement(models.Model):
     def check_overlap(self):
         """Check that there are no similar agreements at the same time.
 
-        Depending on the  one_agreement_per_product flag on the company,
+        Depending on the one_agreement_per_product flag on the company,
         agreements from different companies are tolerated or not.
 
         """
