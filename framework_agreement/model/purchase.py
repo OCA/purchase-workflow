@@ -199,8 +199,5 @@ class PurchaseOrderLine(models.Model):
                       'Agreement and supplier does not match')
                 )
 
-            raise exceptions.Warning(
-                _('Agreement Warning! '
-                  'If you change the agreement of this line'
-                  ' prices will not be updated.')
-            )
+            self.price_unit = agreement.get_price(self.product_qty,
+                                                  self.order_id.currency_id)
