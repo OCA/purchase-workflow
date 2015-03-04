@@ -457,8 +457,7 @@ class framework_agreement(models.Model):
             return agreement_ids[0]
         return None
 
-    @api.one
-    @api.noguess
+    @api.multi
     def has_currency(self, currency):
         """Predicate that check that agreement has a given currency pricelist
 
