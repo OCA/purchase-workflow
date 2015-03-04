@@ -65,8 +65,8 @@ class PurchaseOrder(models.Model):
                 if line.framework_agreement_id:
                     line.price_unit = line.framework_agreement_id.get_price(
                         line.product_qty, self.currency_id)
-            else:
-                self.order_line.write({'framework_agreement_id': False})
+        else:
+            self.order_line.write({'framework_agreement_id': False})
 
     @api.multi
     def onchange_partner_id(self, partner_id):
