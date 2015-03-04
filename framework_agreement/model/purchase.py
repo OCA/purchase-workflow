@@ -191,8 +191,6 @@ class PurchaseOrderLine(models.Model):
     def onchange_agreement(self):
         self._propagate_fields()
 
-        if isinstance(self.id, models.NewId):
-            return
         if self.framework_agreement_id:
             agreement = self.framework_agreement_id
             if agreement.supplier_id != self.order_id.partner_id:
