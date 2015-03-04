@@ -364,9 +364,8 @@ class framework_agreement(models.Model):
             # in non-strict mode, same-supplier overlap is bad
             if any(o.supplier_id == self.supplier_id for o in overlap):
                 raise exceptions.ValidationError(
-                    _('There can not be multiple agreement '
-                      'for supplier %s') % self.supplier_id.name
-                )
+                    _('There can only be one agreement for every combination '
+                      'of supplier, incoterm and incoterm address'))
 
     _sql_constraints = [('date_priority',
                          'check(start_date < end_date)',
