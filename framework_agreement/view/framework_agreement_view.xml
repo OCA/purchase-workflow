@@ -70,6 +70,7 @@
               <group>
                 <field name="company_id" groups="base.group_multi_company" widget="selection"/>
                 <field name="portfolio_id"/>
+                <field name="supplier_id"/>
                 <field name="payment_term_id" options="{'no_open': True, 'no_create': True}"/>
                 <field name="incoterm_id" widget="selection" groups="base.group_user"/>
                 <field name="incoterm_address"/>
