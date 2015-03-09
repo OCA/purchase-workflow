@@ -21,6 +21,10 @@
           <field name="delivery_remark"/>
         </xpath>
 
+        <field name="payment_term_id" position="after">
+          <field name="terms_of_payment"/>
+        </field>
+
         <field name="notes" position="replace"/>
 
         <notebook position="inside">
@@ -40,6 +44,11 @@
 
         <xpath expr="//field[@name='bid_validity']" position="after">
           <field name="bid_partial"/>
+          <field name="country_of_origin"/>
+          <field name="meets_specifications"/>
+          <field name="bid_eligible"/>
+          <field name="volume_estimated"/>
+          <field name="weight_estimated"/>
         </xpath>
 
         <xpath expr="//field[@name='requisition_id']" position="after">
@@ -68,10 +77,13 @@
 
         <xpath expr="//filter[@name='hide_cancelled']" position="before">
           <filter name="showbids" string="Bids encoded" domain="[('order_id.state', '=', 'bid')]"/>
+          <filter name="meets_specifications" string="Meets Specifications" domain="[('order_id.meets_specifications', '=', True)]"/>
+          <filter name="bid_eligible" string="Eligible" domain="[('order_id.bid_eligible', '=', True)]"/>
         </xpath>
 
         <xpath expr="//filter[@name='groupby_product']" position="after">
           <filter name="groupby_requisitionline" string="Call for Bids line" domain="[]" context="{'group_by' : 'requisition_line_id'}" />
+          <filter name="groupby_incoterm" string="Incoterm" context="{'group_by' : 'incoterm_id'}" />
         </xpath>
 
       </field>
