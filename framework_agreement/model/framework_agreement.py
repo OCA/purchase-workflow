@@ -327,20 +327,8 @@ class framework_agreement(models.Model):
 
         """
         date_domain = [
-            '|',
-            '|',
-            '&',
-            # start date in between
-            ('start_date', '>=', self.start_date),
             ('start_date', '<=', self.end_date),
-            '&',
-            # end date in between
             ('end_date', '>=', self.start_date),
-            ('end_date', '<=', self.end_date),
-            '&',
-            # includes the current self
-            ('start_date', '<=', self.start_date),
-            ('end_date', '>=', self.end_date),
         ]
 
         overlap = self.search(
