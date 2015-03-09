@@ -14,7 +14,7 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from openerp import models, fields
+from openerp import models, fields, api
 
 
 class Portfolio(models.Model):
@@ -24,6 +24,16 @@ class Portfolio(models.Model):
     def _company_get(self):
         company_id = self.env['res.company']._company_default_get(self._name)
         return self.env['res.company'].browse(company_id)
+
+    @api.returns('self')
+    @api.model
+    def get_from_supplier(self, supplier):
+        existing_portfolios = self.search([('supplier_id', '=', supplier.id)])
+        if existing_portfolios:
+            return existing_portfolios[0]
+        else:
+            return self.create({'supplier_id': supplier.id,
+                                'name': supplier.name})
 
     name = fields.Char('Name', required=True)
     supplier_id = fields.Many2one('res.partner', 'Supplier', required=True)
