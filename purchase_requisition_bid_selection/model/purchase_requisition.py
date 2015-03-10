@@ -114,6 +114,7 @@ class PurchaseRequisition(models.Model):
         help="All bids received after that date won't be valid (probably "
              "specific to public sector).")
     delivery_remark = fields.Text('Delivery Remarks')
+    budget = fields.Float()
 
     @api.multi
     def _has_product_lines(self):
