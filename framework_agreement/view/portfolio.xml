@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record id="portfolio_tree_view" model="ir.ui.view">
+      <field name="name">portfolio_tree_view</field>
+      <field name="model">framework.agreement.portfolio</field>
+      <field name="arch" type="xml">
+        <tree string="Agreement Portfolios">
+          <field name="name" />
+          <field name="company_id" groups="base.group_multi_company" widget="selection"/>
+          <field name="supplier_id"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="portfolio_search_view" model="ir.ui.view">
+      <field name="name">portfolio_search_view</field>
+      <field name="model">framework.agreement.portfolio</field>
+      <field name="arch" type="xml">
+        <search string="Agreement Portfolios">
+          <field name="name" />
+          <field name="company_id" groups="base.group_multi_company"/>
+          <field name="supplier_id"/>
+          <group expand="0" string="Group By">
+            <filter string="Supplier" domain="[]" context="{'group_by': 'supplier_id'}"/>
+          </group>
+        </search>
+      </field>
+    </record>
+
+    <record id="portfolio_form_view" model="ir.ui.view">
+      <field name="name">portfolio_form_view</field>
+      <field name="model">framework.agreement.portfolio</field>
+      <field name="arch" type="xml">
+        <form string="Agreement Portfolio">
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="company_id" groups="base.group_multi_company" widget="selection"/>
+              <field name="supplier_id" context="{'search_default_supplier': True, 'default_supplier': True, 'default_customer': False}" domain="[('supplier','=',True)]"/>
+              <separator string="Agreements"/>
+              <field name="agreement_ids" nolabel="1" colspan="2" context="{'form_view_ref': 'framework_agreement.agreement_in_portfolio_form_view'}"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="portfolio_action">
+      <field name="name">Agreement Portfolios</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">framework.agreement.portfolio</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="portfolio_tree_view"/>
+    </record>
+
+    <menuitem
+      name="Agreement Portfolios"
+      parent="purchase.menu_purchase_config_pricelist"
+      action="portfolio_action"
+      id="portfolio_menu"/>
+
+  </data>
+</openerp>

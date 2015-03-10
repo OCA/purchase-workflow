@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Author: Nicolas Bessi
-#    Copyright 2013, 2014 Camptocamp SA
+#    Author: Nicolas Bessi, Leonardo Pistone
+#    Copyright 2013-2015 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -16,12 +14,10 @@
 #
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-from datetime import timedelta
-from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
+
+from datetime import timedelta, date
 import openerp.tests.common as test_common
-from openerp import exceptions
+from openerp import exceptions, fields
 from .common import BaseAgreementTestMixin
 
 
@@ -37,30 +33,29 @@ class TestAgreementOnChange(test_common.TransactionCase,
         """
         super(TestAgreementOnChange, self).setUp()
         self.commonsetUp()
-        start_date = self.now + timedelta(days=10)
-        start_date = start_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
-        end_date = self.now + timedelta(days=20)
-        end_date = end_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
-        self.agreement = self.agreement_model.create(
-            {'supplier_id': self.supplier_id,
-             'product_id': self.product_id,
-             'start_date': start_date,
-             'end_date': end_date,
-             'delay': 5,
-             'draft': False,
-             'quantity': 1500})
-        pl = self.agreement_pl_model.create(
+        start_date = date.today() + timedelta(days=10)
+        end_date = date.today() + timedelta(days=20)
+        self.agreement = self.agreement_model.create({
+            'portfolio_id': self.portfolio.id,
+            'product_id': self.product.id,
+            'start_date': fields.Date.to_string(start_date),
+            'end_date': fields.Date.to_string(end_date),
+            'delay': 5,
+            'draft': False,
+            'quantity': 1500,
+        })
+        self.pl = self.agreement_pl_model.create(
             {'framework_agreement_id': self.agreement.id,
              'currency_id': self.ref('base.EUR')}
         )
         self.agreement_line_model.create(
-            {'framework_agreement_pricelist_id': pl.id,
+            {'framework_agreement_pricelist_id': self.pl.id,
              'quantity': 0,
              'price': 70}
         )
         self.agreement_line_model.create(
 
-            {'framework_agreement_pricelist_id': pl.id,
+            {'framework_agreement_pricelist_id': self.pl.id,
              'quantity': 200,
              'price': 60}
         )
@@ -72,14 +67,20 @@ class TestAgreementOnChange(test_common.TransactionCase,
         Warning must be risen if there is a running price agreement
 
         """
-
+        order = self.env['purchase.order'].create({
+            'pricelist_id':
+            self.supplier.property_product_pricelist_purchase.id,
+            'partner_id': self.supplier.id,
+            'location_id': self.supplier.property_stock_customer.id,
+        })
+        order_line = self.po_line_model.new({
+            'framework_agreement_id': self.agreement.id,
+            'price_unit': 20.0,
+            'product_qty': 100,
+            'order_id': order.id,
+        })
         with self.assertRaises(exceptions.Warning) as exc:
-            self.po_line_model._onchange_price(
-                20.0,
-                self.agreement.id,
-                currency=self.browse_ref('base.EUR'),
-                qty=100
-            )
+            order_line.onchange_price_unit()
         self.assertEqual(
             exc.exception.message,
             'You have set the price to 20.0'
@@ -88,15 +89,21 @@ class TestAgreementOnChange(test_common.TransactionCase,
 
     def test_01_price_change_bindings(self):
         """Check that change of price has correct behavior"""
-        pl = self.agreement.supplier_id.property_product_pricelist_purchase.id
-        with self.assertRaises(Exception) as exc:
-            self.po_line_model.onchange_price(
-                20.0,
-                self.agreement.id,
-                200,
-                pl,
-                self.agreement.product_id.product_variant_ids[0].id
-            )
+        order = self.env['purchase.order'].create({
+            'pricelist_id':
+            self.supplier.property_product_pricelist_purchase.id,
+            'partner_id': self.supplier.id,
+            'location_id': self.supplier.property_stock_customer.id,
+        })
+        order_line = self.po_line_model.new({
+            'framework_agreement_id': self.agreement.id,
+            'price_unit': 20.0,
+            'product_qty': 200,
+            'order_id': order.id,
+        })
+
+        with self.assertRaises(exceptions.Warning) as exc:
+            order_line.onchange_price_unit()
         self.assertEqual(
             exc.exception.message,
             'You have set the price to 20.0 \n '

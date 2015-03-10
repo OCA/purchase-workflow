@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Author: Nicolas Bessi
-#    Copyright 2013, 2014 Camptocamp SA
+#    Author: Nicolas Bessi, Leonardo Pistone
+#    Copyright 2013-2015 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -16,12 +14,8 @@
 #
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-from . import test_framework_agreement_dates_and_constraints
-from . import test_framework_agreement_consumed_qty
-from . import test_framework_agreement_on_change
-from . import test_framework_agreement_price_list
 
-# XXX One test in test_framework_greement_dates_and_constraints is disabled
-# because of odoo/odoo#3056
+from . import test_dates_and_constraints
+from . import test_consumed_qty
+from . import test_on_change
+from . import test_price_list

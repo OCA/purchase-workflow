@@ -3,7 +3,7 @@
   <data>
 
     <record id="base.group_user" model="res.groups">
-      <field name="implied_ids" eval="[(4, ref('product.group_purchase_pricelist'))]"/>
+      <field name="implied_ids" eval="[(4, ref('product.group_purchase_pricelist')), (4, ref('base.group_multi_currency'))]"/>
     </record>
 
   </data>
