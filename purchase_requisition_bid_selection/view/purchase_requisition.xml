@@ -61,6 +61,7 @@
                 <field name="req_incoterm_id" attrs="{'readonly': [('state','not in',('draft'))]}"/>
                 <field name="req_incoterm_address" attrs="{'readonly': [('state','not in',('draft'))]}"/>
                 <field name="req_payment_term_id" attrs="{'readonly': [('state','not in',('draft'))]}"/>
+                <field name="req_terms_of_payment" attrs="{'readonly': [('state','not in',('draft'))]}"/>
               </group>
               <group>
                 <field name="bid_receipt_mode" attrs="{'readonly': [('state','not in',('draft'))]}"/>

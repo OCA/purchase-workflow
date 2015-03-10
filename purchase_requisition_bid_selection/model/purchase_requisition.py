@@ -102,6 +102,7 @@ class PurchaseRequisition(models.Model):
         'account.payment.term',
         'Requested Payment Term',
         help="Default value requested to the supplier.")
+    req_terms_of_payment = fields.Char('Requested Terms of Payment')
     pricelist_id = fields.Many2one(
         'product.pricelist',
         'Pricelist',
