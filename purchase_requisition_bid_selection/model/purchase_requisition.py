@@ -40,7 +40,8 @@ class PurchaseRequisitionClassic(osv.orm.Model):
             [('draft', 'Draft'),
              ('in_progress', 'Confirmed'),
              ('open', 'Bids Selection'),
-             ('closed', 'Bids Selected'),  # added
+             ('selected', 'Bids Selected'),  # added
+             ('closed', 'Selection Closed'),  # added
              ('done', 'PO Created'),
              ('cancel', 'Canceled')],
             'Status',
@@ -235,7 +236,8 @@ class PurchaseRequisition(models.Model):
                     rfq_valid = True
         if pos_to_cancel:
             reason = self.env.ref(
-                'purchase_extended.purchase_cancelreason_rfq_canceled')
+                'purchase_rfq_bid_workflow.'
+                'purchase_cancel_reason_rfq_canceled')
             pos_to_cancel.write({'cancel_reason': reason.id})
             pos_to_cancel.action_cancel()
         if not rfq_valid:
@@ -303,7 +305,11 @@ class PurchaseRequisition(models.Model):
         self.state = 'cancel'
 
     @api.multi
-    def tender_close(self):
+    def tender_selected(self):
+        self.state = 'selected'
+
+    @api.multi
+    def tender_closed(self):
         self.state = 'closed'
 
     @api.multi
@@ -332,7 +338,7 @@ class PurchaseRequisition(models.Model):
         return res
 
     @api.multi
-    def close_callforbids(self):
+    def confirm_selection(self):
         """
         Check all quantities have been sourced
         """
@@ -350,17 +356,17 @@ class PurchaseRequisition(models.Model):
             if compare != 0:
                 break  # too much or too few selected
         else:
-            return self.close_callforbids_ok()
+            return self.confirm_selection_ok()
 
         # open a dialog to confirm that we want more / less or no qty
         ctx = self.env.context.copy()
 
-        ctx.update({'action': 'close_callforbids_ok',
+        ctx.update({'action': 'confirm_selection_ok',
                     'active_model': self._name,
                     'active_ids': self._ids,
                     })
         view = self.env.ref('purchase_requisition_bid_selection'
-                            '.action_modal_close_callforbids')
+                            '.action_modal_confirm_different_quantity')
         return {
             'type': 'ir.actions.act_window',
             'view_type': 'form',
@@ -388,8 +394,8 @@ class PurchaseRequisition(models.Model):
         return res
 
     @api.multi
-    def close_callforbids_ok(self):
-        self.signal_workflow('close_bid')
+    def confirm_selection_ok(self):
+        self.signal_workflow('bid_selected')
         return False
 
 

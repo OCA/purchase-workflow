@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-        <record id="action_modal_close_callforbids" model="ir.ui.view">
+        <record id="action_modal_confirm_different_quantity" model="ir.ui.view">
             <field name="name">action.modal</field>
             <field name="model">purchase.action_modal</field>
             <field name="arch" type="xml">
-                <form string="Warning" version="7.0">
+                <form string="Warning">
                     <p>
                         For some lines, the selected quantity does not match the requested quantity.
                         Please confirm the operation.
