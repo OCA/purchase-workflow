@@ -357,6 +357,7 @@ class PurchaseRequisition(models.Model):
 
         ctx.update({'action': 'close_callforbids_ok',
                     'active_model': self._name,
+                    'active_ids': self._ids,
                     })
         view = self.env.ref('purchase_requisition_bid_selection'
                             '.action_modal_close_callforbids')
