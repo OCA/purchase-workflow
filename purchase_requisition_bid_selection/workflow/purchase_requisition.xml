@@ -22,6 +22,7 @@
             <field name="act_from" ref="purchase_requisition.act_open"/>
             <field name="act_to" ref="act_selected"/>
             <field name="signal">bid_selected</field>
+            <field name="group_id" ref="purchase.group_purchase_user"/>
         </record>
         <record id="trans_selected_open" model="workflow.transition">
             <field name="act_from" ref="act_selected"/>
@@ -32,6 +33,7 @@
             <field name="act_from" ref="act_selected"/>
             <field name="act_to" ref="act_closed"/>
             <field name="signal">close_bid</field>
+            <field name="group_id" ref="purchase.group_purchase_manager"/>
         </record>
 
         <!-- Check there are product lines when confirming the Call for Bids -->
