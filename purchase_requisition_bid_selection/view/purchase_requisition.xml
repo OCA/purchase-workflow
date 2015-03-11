@@ -78,7 +78,7 @@
         </xpath>
 
         <button name="open_bid" position="after">
-          <button name="close_bid" states="selected" string="Close Bids Selection" class="oe_highlight"/>
+          <button type="object" name="ask_confirmation_to_close_selection" states="selected" string="Accept selection" class="oe_highlight"/>
           <button name="reopen_bid" states="selected" string="Re-Open Bids Selection"/>
         </button>
 

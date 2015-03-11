@@ -379,6 +379,27 @@ class PurchaseRequisition(models.Model):
             'context': ctx,
         }
 
+    @api.multi
+    def ask_confirmation_to_close_selection(self):
+        ctx = self.env.context.copy()
+
+        ctx.update({'action': 'tender_closed',
+                    'active_model': self._name,
+                    'active_ids': self._ids,
+                    })
+        view = self.env.ref('purchase_requisition_bid_selection'
+                            '.modal_confirm_close_selection')
+        return {
+            'type': 'ir.actions.act_window',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'purchase.action_modal',
+            'view_id': view.id,
+            'views': [(view.id, 'form')],
+            'target': 'new',
+            'context': ctx,
+        }
+
     def open_product_line(self, cr, uid, ids, context=None):
         """ Filter to show only lines from bids received.
         Group by requisition line instead of product for unicity.
