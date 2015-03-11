@@ -306,6 +306,15 @@ class PurchaseRequisition(models.Model):
         self.state = 'cancel'
 
     @api.multi
+    def update_selection_reasons(self):
+        wizard = self.env['purchase.action_modal.'
+                          'ask_selection_reasons'].browse(
+            self.env.context['active_id']
+        )
+        self.selection_reasons = wizard.selection_reasons
+        self.signal_workflow('bid_selected')
+
+    @api.multi
     def tender_selected(self):
         self.state = 'selected'
 
@@ -357,12 +366,12 @@ class PurchaseRequisition(models.Model):
             if compare != 0:
                 break  # too much or too few selected
         else:
-            return self.confirm_selection_ok()
+            return self.ask_selection_reasons()
 
         # open a dialog to confirm that we want more / less or no qty
         ctx = self.env.context.copy()
 
-        ctx.update({'action': 'confirm_selection_ok',
+        ctx.update({'action': 'ask_selection_reasons',
                     'active_model': self._name,
                     'active_ids': self._ids,
                     })
@@ -416,9 +425,27 @@ class PurchaseRequisition(models.Model):
         return res
 
     @api.multi
-    def confirm_selection_ok(self):
-        self.signal_workflow('bid_selected')
-        return False
+    def ask_selection_reasons(self):
+        ctx = self._context.copy()
+        ctx.update({
+            'action': 'update_selection_reasons',
+            'active_model': self._name,
+            'active_ids': self._ids,
+            'default_selection_reasons': self.selection_reasons,
+        })
+        view = self.env.ref('purchase_requisition_bid_selection.'
+                            'ask_selection_reasons')
+
+        return {
+            'type': 'ir.actions.act_window',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'purchase.action_modal.ask_selection_reasons',
+            'view_id': view.id,
+            'views': [(view.id, 'form')],
+            'target': 'new',
+            'context': ctx,
+        }
 
 
 class PurchaseRequisitionLine(models.Model):
