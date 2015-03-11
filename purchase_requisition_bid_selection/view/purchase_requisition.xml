@@ -40,6 +40,12 @@
           <attribute name="string">Requests for Quotation / Bids</attribute>
         </separator>
 
+        <xpath expr="//field[@name='purchase_ids']" position="after">
+          <group string="Selection reasons" attrs="{'invisible': [('state','not in',('open', 'selected', 'closed', 'done', 'cancel'))], 'readonly': [('state','in',('closed', 'done'))]}">
+            <field name="selection_reasons" nolabel="1"/>
+          </group>
+        </xpath>
+
         <xpath expr="//page[@string='Products']//button[@name='%(purchase_requisition.action_purchase_requisition_partner)d']" position="attributes">
           <attribute name="attrs">{'invisible': ['|','|',('bid_tendering_mode','=','open'),('line_ids','=',[]),('state','!=','in_progress')]}</attribute>
         </xpath>

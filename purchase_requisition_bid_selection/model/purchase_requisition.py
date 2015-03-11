@@ -116,6 +116,7 @@ class PurchaseRequisition(models.Model):
              "specific to public sector).")
     delivery_remark = fields.Text('Delivery Remarks')
     budget = fields.Float()
+    selection_reasons = fields.Text()
 
     @api.multi
     def _has_product_lines(self):
