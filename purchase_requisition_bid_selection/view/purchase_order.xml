@@ -77,8 +77,8 @@
 
         <xpath expr="//filter[@name='hide_cancelled']" position="before">
           <filter name="showbids" string="Bids encoded" domain="[('order_id.state', '=', 'bid')]"/>
-          <filter name="meets_specifications" string="Meets Specifications" domain="[('order_id.meets_specifications', '=', True)]"/>
-          <filter name="bid_eligible" string="Eligible" domain="[('order_id.bid_eligible', '=', True)]"/>
+          <filter name="meets_specifications" string="Meets Specifications" domain="[('meets_specifications', '=', True)]"/>
+          <filter name="bid_eligible" string="Eligible" domain="[('bid_eligible', '=', True)]"/>
         </xpath>
 
         <xpath expr="//filter[@name='groupby_product']" position="after">

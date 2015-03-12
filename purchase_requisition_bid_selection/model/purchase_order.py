@@ -122,7 +122,9 @@ class PurchaseOrderLine(models.Model):
                                    related='order_id.incoterm_address')
     terms_of_payment = fields.Char(related='order_id.terms_of_payment')
     meets_specifications = fields.Boolean(
-        related='order_id.meets_specifications')
+        related='order_id.meets_specifications',
+        store=True)
     payment_term_id = fields.Many2one('account.payment.term',
                                       related='order_id.payment_term_id')
-    bid_eligible = fields.Boolean(related='order_id.bid_eligible')
+    bid_eligible = fields.Boolean(related='order_id.bid_eligible',
+                                  store=True)
