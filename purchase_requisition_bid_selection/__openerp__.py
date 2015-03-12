@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-#
-#
-#    Copyright 2013, 2014 Camptocamp SA
+#    Copyright 2013-2015 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -15,11 +13,9 @@
 #
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-#
 
 {"name": "Purchase Requisition Bid Selection",
- "version": "0.6.1",
+ "version": "2.0",
  "author": "Camptocamp,Odoo Community Association (OCA)",
  "license": "AGPL-3",
  "category": "Purchase Management",
