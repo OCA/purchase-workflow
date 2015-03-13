@@ -40,6 +40,11 @@
           <attribute name="string">Requests for Quotation / Bids</attribute>
         </separator>
 
+        <xpath expr="//field[@name='purchase_ids']//field[@name='state']" position="after">
+          <field name="bid_selection_remark"/>
+          <button name="%(action_update_bid_selection_remark)d" type="action" string="Update selection remark" icon="gtk-ok"/>
+        </xpath>
+
         <xpath expr="//field[@name='purchase_ids']" position="after">
           <group string="Selection reasons" attrs="{'invisible': [('state','not in',('open', 'selected', 'closed', 'done', 'cancel'))], 'readonly': [('state','in',('closed', 'done'))]}">
             <field name="selection_reasons" nolabel="1"/>

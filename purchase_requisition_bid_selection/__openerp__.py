@@ -28,6 +28,7 @@
  "demo": [],
  "data": ["wizard/modal.xml",
           "wizard/purchase_requisition_partner_view.xml",
+          "wizard/update_bid_selection_remark.xml",
           "view/purchase_requisition.xml",
           "view/purchase_order.xml",
           "workflow/purchase_order.xml",
