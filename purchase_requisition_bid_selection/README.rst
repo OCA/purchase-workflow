@@ -14,8 +14,9 @@ Sent' and can be manually canceled.
 
 Afterwards, the bids selection can be started by choosing product lines. The
 workflow has been modified to allow to mark that the selection of bids has
-occurred but without having to generate the POs yet. Those can be created at a
-new later state called 'Bids Selected'.
+occurred but without having to generate the POs yet (Bids selected). Then an
+approval of the selection is required and POs can be created at a new later
+state called 'Selection closed'.
 
 When generating POs, they are created in the state 'Draft PO' introduced by the
 module purchase_rfq_bid_workflow.
