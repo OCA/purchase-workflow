@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#    Author: Leonardo Pistone
+#    Author: Leonardo Pistone, Yannick Vaucher
 #    Copyright 2014 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -15,12 +15,16 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from openerp import models, api, exceptions
+from openerp import models, fields, api, exceptions
 from openerp.tools.translate import _
 
 
 class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
+
+   origin_address_id = fields.Many2one(
+        'res.partner',
+        'Origin Address')
 
     @api.onchange('dest_address_id')
     def new_onchange_dest_address_id(self):
@@ -75,11 +79,19 @@ class PurchaseOrder(models.Model):
                 self.location_id = pick_type.default_location_dest_id
                 self.related_location_id = pick_type.default_location_dest_id
 
+    @api.multi
+    def onchange_partner_id(self, partner_id):
+        res = super(PurchaseOrder, self).onchange_partner_id(partner_id)
+        res['value']['origin_address_id'] = partner_id
+        return res
+
+    @api.multi
     def action_picking_create(self):
         res = super(PurchaseOrder, self).action_picking_create()
         for order in self:
             order.picking_ids.write({
                 'partner_id': order.partner_id.id,
-                'delivery_address_id': order.dest_address_id.id
+                'delivery_address_id': order.dest_address_id.id,
+                'origin_address_id': order.origin_address_id.id,
             })
         return res

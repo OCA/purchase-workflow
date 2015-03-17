@@ -7,6 +7,10 @@
       <field name="inherit_id" ref="purchase.purchase_order_form"/>
       <field name="arch" type="xml">
 
+        <field name="partner_id" position="after">
+          <field name="origin_address_id"/>
+        </field>
+
         <field name="dest_address_id" position="attributes">
           <attribute name="string">Delivery Address</attribute>
           <!-- the "1" means: ignore old-api onchange, use the new-api one -->
