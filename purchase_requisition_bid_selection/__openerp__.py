@@ -24,6 +24,7 @@
  "depends": ["purchase_requisition",
              "stock",  # For incoterms
              "purchase_rfq_bid_workflow",
+             "purchase_requisition_multicurrency",
              ],
  "demo": [],
  "data": ["wizard/modal.xml",
@@ -31,6 +32,8 @@
           "wizard/update_bid_selection_remark.xml",
           "view/purchase_requisition.xml",
           "view/purchase_order.xml",
+          "view/report_purchaserequisition.xml",
+          "report.xml",
           "workflow/purchase_order.xml",
           "workflow/purchase_requisition.xml",
           "data/purchase.cancelreason.yml",
