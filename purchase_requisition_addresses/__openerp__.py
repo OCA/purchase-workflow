@@ -20,7 +20,8 @@
 #
 
 {'name': 'Purchase Requisition Addresses',
- 'summary': 'Manage origin / destination / consignee addresses on purchase requisitions',
+ 'summary': 'Manage origin / destination / consignee addresses '
+            'on purchase requisitions',
  'version': '1.0',
  'author': "Camptocamp,Odoo Community Association (OCA)",
  'category': 'Warehouse',

@@ -27,12 +27,17 @@ class PurchaseRequisition(models.Model):
     dest_address_id = fields.Many2one(
         'res.partner',
         'Delivery Address')
+    consignee_id = fields.Many2one(
+        'res.partner',
+        'Consignee',
+        help="The person to whom the shipment is to be delivered.")
 
     @api.model
     def _prepare_purchase_order(self, requisition, supplier):
         values = super(PurchaseRequisition, self
                        )._prepare_purchase_order(requisition, supplier)
         values['dest_address_id'] = requisition.dest_address_id.id
+        values['consignee_id'] = requisition.consignee_id.id
         return values
 
     @api.onchange('dest_address_id')

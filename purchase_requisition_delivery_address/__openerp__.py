@@ -18,19 +18,18 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-{'name': "Purchase Requisition - Delivery Address",
- 'summary': "Adds delivery address on Purchase requisition",
+{'name': "Purchase Requisition - Delivery Address [DEPRECATED]",
+ 'summary': "Deprecated: install purchase_requisition_addresses instead",
  'version': "0.2",
  'author': "Camptocamp,Odoo Community Association (OCA)",
  'category': "Purchase Management",
  'license': "AGPL-3",
  'complexity': "easy",
  'images': [],
- 'depends': ['purchase_requisition',
-             'stock_dropshipping',
+ 'depends': ['purchase_requisition_addresses',
              ],
  'demo': [],
- 'data': ['view/purchase_requisition.xml'],
+ 'data': [],
  'test': [],
  'installable': True,
  'auto_install': False,
