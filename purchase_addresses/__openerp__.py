@@ -34,6 +34,11 @@
  'demo': [],
  'data': ['view/purchase.xml',
           ],
+ 'test': ['setup_user.yml',
+          'setup_product.yml',
+          'setup_dropshipping.xml',
+          'test_propagate_address.yml',
+          ],
  'auto_install': False,
  'installable': True,
  }

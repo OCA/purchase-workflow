@@ -14,27 +14,19 @@
 #
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-{'name': 'Purchase Delivery Address',
- 'summary': 'Allows to manage the delivery address on a purchase',
+{'name': 'Purchase Delivery Address [DEPRECATED]',
+ 'summary': 'Deprecated: install purchase_addresses instead',
  'version': '1.1',
  'author': "Camptocamp,Odoo Community Association (OCA)",
  'category': 'Purchase Management',
  'license': 'AGPL-3',
  'complexity': 'easy',
  'images': [],
- 'depends': ['purchase',
-             'sale_stock',
+ 'depends': ['purchase_addresses',
              ],
  'demo': [],
- 'data': ['view/purchase_order.xml',
-          'view/stock_picking.xml',
-          ],
+ 'data': [],
  'auto_install': False,
- 'test': [
-     'test/setup_user.yml',
-     'test/setup_product.yml',
-     'test/setup_dropshipping.xml',
-     'test/test_propagate_address.yml',
- ],
+ 'test': [],
  'installable': True,
  }
