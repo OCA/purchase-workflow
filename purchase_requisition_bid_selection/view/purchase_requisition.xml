@@ -13,7 +13,7 @@
       <field name="arch" type="xml">
 
         <xpath expr="//header/field[@name='state']" position="attributes">
-          <attribute name="statusbar_visible">draft,in_progress,open,closed,done</attribute>
+          <attribute name="statusbar_visible">draft,in_progress,open,selected,closed,done</attribute>
         </xpath>
 
         <xpath expr="//header/button[@name='generate_po']" position="attributes">
@@ -23,21 +23,33 @@
 
         <xpath expr="//sheet//button[@name='open_product_line']" position="attributes">
           <!-- add the state 'closed' -->
-          <attribute name="attrs">{'invisible': ['|', ('state', 'not in', ('open','closed','done')), ('exclusive', '=', 'exclusive')]}</attribute>
+          <attribute name="attrs">{'invisible': ['|', ('state', 'not in', ('open','selected','closed','done')), ('exclusive', '=', 'exclusive')]}</attribute>
         </xpath>
 
         <xpath expr="//sheet//button[@name='open_product_line']" position="after">
-          <button name="open_po" type="object" string="View Generated PO" states="open,closed,done"/>
+          <button name="open_po" type="object" string="View Generated PO" states="open,selected,closed,done"/>
         </xpath>
 
         <xpath expr="//field[@name='user_id']" position="after">
           <field name="bid_tendering_mode" attrs="{'readonly': [('state','not in',('draft'))]}" />
           <field name="pricelist_id" attrs="{'readonly': [('state','not in',('draft'))]}"/>
+          <field name="budget"/>
         </xpath>
 
         <separator string="Requests for Quotation" position="attributes">
           <attribute name="string">Requests for Quotation / Bids</attribute>
         </separator>
+
+        <xpath expr="//field[@name='purchase_ids']//field[@name='state']" position="after">
+          <field name="bid_selection_remark"/>
+          <button name="%(action_update_bid_selection_remark)d" type="action" string="Update selection remark" icon="gtk-ok"/>
+        </xpath>
+
+        <xpath expr="//field[@name='purchase_ids']" position="after">
+          <group string="Selection reasons" attrs="{'invisible': [('state','not in',('open', 'selected', 'closed', 'done', 'cancel'))], 'readonly': [('state','in',('closed', 'done'))]}">
+            <field name="selection_reasons" nolabel="1"/>
+          </group>
+        </xpath>
 
         <xpath expr="//page[@string='Products']//button[@name='%(purchase_requisition.action_purchase_requisition_partner)d']" position="attributes">
           <attribute name="attrs">{'invisible': ['|','|',('bid_tendering_mode','=','open'),('line_ids','=',[]),('state','!=','in_progress')]}</attribute>
@@ -61,6 +73,7 @@
                 <field name="req_incoterm_id" attrs="{'readonly': [('state','not in',('draft'))]}"/>
                 <field name="req_incoterm_address" attrs="{'readonly': [('state','not in',('draft'))]}"/>
                 <field name="req_payment_term_id" attrs="{'readonly': [('state','not in',('draft'))]}"/>
+                <field name="req_terms_of_payment" attrs="{'readonly': [('state','not in',('draft'))]}"/>
               </group>
               <group>
                 <field name="bid_receipt_mode" attrs="{'readonly': [('state','not in',('draft'))]}"/>
@@ -70,8 +83,8 @@
         </xpath>
 
         <button name="open_bid" position="after">
-          <!--<button name="close_bid" states="open" string="Close Bids Selection" class="oe_highlight" type="object"/>-->
-          <button name="reopen_bid" states="closed" string="Re-Open Bids Selection"/>
+          <button type="object" name="ask_confirmation_to_close_selection" states="selected" string="Accept selection" class="oe_highlight"/>
+          <button name="reopen_bid" states="selected" string="Re-Open Bids Selection"/>
         </button>
 
         <xpath expr="//field[@name='purchase_ids']//button[@name='purchase_cancel']" position="attributes">

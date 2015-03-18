@@ -20,7 +20,7 @@ openerp.purchase_requisition_bid_selection = function(instance) {
         },
         close_bids_selection: function () {
             var self = this;
-            new instance.web.Model('purchase.requisition').call("close_callforbids",[self.dataset.context.tender_id,self.dataset.context]).then(function(result) {
+            new instance.web.Model('purchase.requisition').call("confirm_selection",[self.dataset.context.tender_id,self.dataset.context]).then(function(result) {
                 self.do_action(result,{on_close:function(){self.do_action('history_back')}});
             });
         },

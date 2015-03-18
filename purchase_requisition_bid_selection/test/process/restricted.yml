@@ -185,10 +185,15 @@
 
         assert_almost_equal(confirmed_qty, req_qty)
 -
-  I close the call for bids
+  I mark the tender as selected
 -
-  !python {model: purchase.requisition}: |
-    self.close_callforbids(cr, uid, [ref("req1")])
+  !python {model: purchase.requisition, id: req1}: |
+    self.signal_workflow('bid_selected')
+-
+  I mark the tender as selection closed
+-
+  !python {model: purchase.requisition, id: req1}: |
+    self.signal_workflow('close_bid')
 -
   I generate the POs
 -
