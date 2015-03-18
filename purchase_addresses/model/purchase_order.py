@@ -22,9 +22,12 @@ from openerp.tools.translate import _
 class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
 
-   origin_address_id = fields.Many2one(
+    origin_address_id = fields.Many2one(
         'res.partner',
         'Origin Address')
+    consignee_id = fields.Many2one(
+        'res.partner', 'Consignee',
+        help="The person to whom the shipment is to be delivered.")
 
     @api.onchange('dest_address_id')
     def new_onchange_dest_address_id(self):
@@ -93,5 +96,6 @@ class PurchaseOrder(models.Model):
                 'partner_id': order.partner_id.id,
                 'delivery_address_id': order.dest_address_id.id,
                 'origin_address_id': order.origin_address_id.id,
+                'consignee_id': order.consignee_id.id,
             })
         return res

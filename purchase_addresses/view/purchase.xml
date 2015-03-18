@@ -8,6 +8,7 @@
       <field name="arch" type="xml">
 
         <field name="partner_id" position="after">
+          <field name="consignee_id"/>
           <field name="origin_address_id"/>
         </field>
 
