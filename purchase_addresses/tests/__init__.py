@@ -1,4 +1,4 @@
 # -*- coding: utf-8 -*-
 
-from . import test_delivery_address
-from . import test_origin_address
+from . import test_addresses
+from . import test_consignee_purchase_order

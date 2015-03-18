@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-#    Author: Leonardo Pistone
-#    Copyright 2014 Camptocamp SA
+#    Author: Yannick Vaucher, Leonardo Pistone
+#    Copyright 2014-2015 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -19,10 +19,10 @@ from openerp.tests import common
 from openerp import fields
 
 
-class TestDeliveryAddress(common.TransactionCase):
+class TestAddresses(common.TransactionCase):
 
     def setUp(self):
-        super(TestDeliveryAddress, self).setUp()
+        super(TestAddresses, self).setUp()
 
         model_data = self.env['ir.model.data']
         ref = model_data.xmlid_to_res_id
@@ -61,3 +61,37 @@ class TestDeliveryAddress(common.TransactionCase):
                           self.po.dest_address_id)
         self.assertEquals(self.po.picking_ids.partner_id,
                           self.po.partner_id)
+
+    def test_create_picking_with_default_origin(self):
+        """Create a picking in from purchase order and check
+        origin address is copied
+
+        """
+
+        self.po.signal_workflow('purchase_confirm')
+        self.assertTrue(self.po.origin_address_id)
+        self.assertEquals(self.po.picking_ids.origin_address_id,
+                          self.po.origin_address_id)
+
+    def test_create_picking_without_origin(self):
+        """Create a picking in from purchase order
+        remove origin address and check
+        origin address is false on picking
+
+        """
+
+        self.po.origin_address_id = False
+        self.po.signal_workflow('purchase_confirm')
+        self.assertFalse(self.po.picking_ids.origin_address_id.id)
+
+    def test_create_picking_with_other_origin(self):
+        """Create a picking in from purchase order and check
+        origin address is copied and is the same as on the purchase
+        order
+
+        """
+
+        self.po.origin_address_id = self.part12_id
+        self.po.signal_workflow('purchase_confirm')
+        self.assertEquals(self.po.picking_ids.origin_address_id,
+                          self.po.origin_address_id)
