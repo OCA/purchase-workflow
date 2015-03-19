@@ -99,3 +99,25 @@ class PurchaseOrder(models.Model):
                 'consignee_id': order.consignee_id.id,
             })
         return res
+
+    @api.model
+    def _prepare_order_line_move(self,
+                                 order,
+                                 order_line,
+                                 picking_id,
+                                 group_id):
+        """modify the group to add the addresses"""
+        group = self.env['procurement.group'].browse(group_id)
+        fields = {}
+        if not group.consignee_id:
+            fields['consignee_id'] = order.consignee_id.id
+        if not group.delivery_address_id:
+            fields['delivery_address_id'] = order.dest_address_id.id
+        if not group.origin_address_id:
+            fields['origin_address_id'] = order.origin_address_id.id
+        if fields:
+            group.write(fields)
+        return super(PurchaseOrder, self)._prepare_order_line_move(order,
+                                                                   order_line,
+                                                                   picking_id,
+                                                                   group_id)
