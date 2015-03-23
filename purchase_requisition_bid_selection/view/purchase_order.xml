@@ -76,9 +76,13 @@
       <field name="arch" type="xml">
 
         <xpath expr="//filter[@name='hide_cancelled']" position="before">
+          <separator/>
           <filter name="showbids" string="Bids encoded" domain="[('order_id.state', '=', 'bid')]"/>
+          <separator/>
           <filter name="meets_specifications" string="Meets Specifications" domain="[('meets_specifications', '=', True)]"/>
+          <separator/>
           <filter name="bid_eligible" string="Eligible" domain="[('bid_eligible', '=', True)]"/>
+          <separator/>
         </xpath>
 
         <xpath expr="//filter[@name='groupby_product']" position="after">
