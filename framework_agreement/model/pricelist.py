@@ -24,3 +24,13 @@ class Pricelist(models.Model):
         'framework.agreement.portfolio',
         'Portfolio',
     )
+
+    picking_type_id = fields.Many2one('stock.picking.type', 'Deliver to')
+    payment_term_id = fields.Many2one('account.payment.term', 'Payment terms')
+    incoterm_id = fields.Many2one(
+        'stock.incoterms',
+        'Incoterm',
+        help="International Commercial Terms are a series of predefined "
+        "commercial terms used in international transactions.")
+
+    incoterm_address = fields.Char('Incoterm Address')

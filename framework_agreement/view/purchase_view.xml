@@ -13,6 +13,7 @@
         </field>
 
         <field name="pricelist_id" position="attributes">
+          <attribute name="on_change" eval="1"/>
           <attribute name="domain">[('type','=','purchase'), ('portfolio_id', '=', portfolio_id)]</attribute>
         </field>
 
@@ -26,6 +27,14 @@
 
         <field name="product_qty" position="attributes">
           <attribute name="context_agreement">{'agreement_id': framework_agreement_id, 'incoterm_id': parent.incoterm_id, 'currency_id': parent.currency_id, 'portfolio_id': parent.portfolio_id}</attribute>
+        </field>
+
+        <field name="picking_type_id" position="attributes">
+          <attribute name="attrs">{'readonly': [('portfolio_id', '!=', False)]}</attribute>
+        </field>
+
+        <field name="incoterm_id" position="attributes">
+          <attribute name="attrs">{'readonly': [('portfolio_id', '!=', False)]}</attribute>
         </field>
 
       </field>
