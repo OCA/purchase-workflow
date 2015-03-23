@@ -29,6 +29,7 @@
           'view/product_view.xml',
           'view/framework_agreement_view.xml',
           'view/portfolio.xml',
+          'view/pricelist.xml',
           'view/purchase_view.xml',
           'view/company_view.xml',
           'security/multicompany.xml',

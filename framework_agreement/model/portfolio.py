@@ -39,8 +39,8 @@ class Portfolio(models.Model):
     supplier_id = fields.Many2one('res.partner', 'Supplier', required=True)
     company_id = fields.Many2one('res.company', 'Company',
                                  default=_company_get)
-    agreement_ids = fields.One2many('framework.agreement', 'portfolio_id',
-                                    'Agreements')
+    pricelist_ids = fields.One2many('product.pricelist', 'portfolio_id',
+                                    'Pricelists')
 
     _sql_constraints = [
         ('uniq_portfolio',

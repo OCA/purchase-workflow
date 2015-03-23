@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record id="product_pricelist_view" model="ir.ui.view">
+      <field name="name">product_pricelist_view</field>
+      <field name="model">product.pricelist</field>
+      <field name="inherit_id" ref="product.product_pricelist_view" />
+      <field name="arch" type="xml">
+
+        <field name="active" position="before">
+          <field name="portfolio_id" invisible="context.get('hide_portfolio')"/>
+        </field>
+
+      </field>
+    </record>
+
+    <record id="product_pricelist_view_tree" model="ir.ui.view">
+      <field name="name">product_pricelist_view_tree</field>
+      <field name="model">product.pricelist</field>
+      <field name="inherit_id" ref="product.product_pricelist_view_tree" />
+      <field name="arch" type="xml">
+
+        <field name="active" position="before">
+          <field name="portfolio_id" />
+        </field>
+
+      </field>
+    </record>
+
+    <record id="product_pricelist_view_search" model="ir.ui.view">
+      <field name="name">product_pricelist_view_search</field>
+      <field name="model">product.pricelist</field>
+      <field name="inherit_id" ref="product.product_pricelist_view_search" />
+      <field name="arch" type="xml">
+
+        <field name="active" position="before">
+          <field name="portfolio_id" />
+        </field>
+
+      </field>
+    </record>
+
+  </data>
+</openerp>
+
