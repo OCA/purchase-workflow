@@ -1,7 +1,9 @@
 Purchase Delivery Address
 =========================
 
-This module was merged into purchase_addresses and will be dropped in v9.
+This module was merged into purchase_addresses
+(https://github.com/OCA/stock-logistics-transport)
+and will be dropped in v9.
 
 
 Credits

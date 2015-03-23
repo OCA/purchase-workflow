@@ -18,15 +18,16 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-{'name': 'Purchase Origin Address',
- 'summary': 'Allows to manage origin address on purchase',
+{'name': 'Purchase Origin Address [DEPRECATED]',
+ 'summary': 'Deprecated: use purchase_addresses '
+            'from OCA/stock-logistics-transport',
  'version': '1.0',
  'author': "Camptocamp,Odoo Community Association (OCA)",
  'category': 'Purchase Management',
  'license': 'AGPL-3',
  'complexity': 'normal',
  'images': [],
- 'depends': ['purchase',
+ 'depends': ['purchase_addresses',
              ],
  'demo': [],
  'data': [],

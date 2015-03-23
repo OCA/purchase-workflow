@@ -6,16 +6,14 @@ python:
 
 env:
   - VERSION="8.0" LINT_CHECK="1"
-  - VERSION="8.0" ODOO_REPO="odoo/odoo" INCLUDE="purchase_addresses" LINT_CHECK="0"
-  - VERSION="8.0" ODOO_REPO="OCA/OCB" INCLUDE="purchase_addresses" LINT_CHECK="0"
   - VERSION="8.0" ODOO_REPO="odoo/odoo" INCLUDE="framework_agreement" LINT_CHECK="0"
   - VERSION="8.0" ODOO_REPO="OCA/OCB" INCLUDE="framework_agreement" LINT_CHECK="0"
   - VERSION="8.0" ODOO_REPO="odoo/odoo" INCLUDE="purchase_rfq_bid_workflow" LINT_CHECK="0"
   - VERSION="8.0" ODOO_REPO="OCA/OCB" INCLUDE="purchase_rfq_bid_workflow" LINT_CHECK="0"
   - VERSION="8.0" ODOO_REPO="odoo/odoo" INCLUDE="purchase_requisition_bid_selection,purchase_requisition_auto_rfq,purchase_requisition_auto_rfq_bid_selection" LINT_CHECK="0"
   - VERSION="8.0" ODOO_REPO="OCA/OCB" INCLUDE="purchase_requisition_bid_selection,purchase_requisition_auto_rfq,purchase_requisition_auto_rfq_bid_selection" LINT_CHECK="0"
-  - VERSION="8.0" ODOO_REPO="odoo/odoo" EXCLUDE="purchase_delivery_address,purchase_origin_address,purchase_addresses,framework_agreement,purchase_rfq_bid_workflow,purchase_requisition_bid_selection,purchase_requisition_auto_rfq,purchase_requisition_auto_rfq_bid_selection" LINT_CHECK="0"
-  - VERSION="8.0" ODOO_REPO="OCA/OCB" EXCLUDE="purchase_delivery_address,purchase_origin_address,purchase_addresses,framework_agreement,purchase_rfq_bid_workflow,purchase_requisition_bid_selection,purchase_requisition_auto_rfq,purchase_requisition_auto_rfq_bid_selection" LINT_CHECK="0"
+  - VERSION="8.0" ODOO_REPO="odoo/odoo" EXCLUDE="purchase_requisition_delivery_address,purchase_delivery_address,purchase_origin_address,framework_agreement,purchase_rfq_bid_workflow,purchase_requisition_bid_selection,purchase_requisition_auto_rfq,purchase_requisition_auto_rfq_bid_selection" LINT_CHECK="0"
+  - VERSION="8.0" ODOO_REPO="OCA/OCB" EXCLUDE="purchase_requisition_delivery_address,purchase_delivery_address,purchase_origin_address,framework_agreement,purchase_rfq_bid_workflow,purchase_requisition_bid_selection,purchase_requisition_auto_rfq,purchase_requisition_auto_rfq_bid_selection" LINT_CHECK="0"
 
 virtualenv:
   system_site_packages: true
