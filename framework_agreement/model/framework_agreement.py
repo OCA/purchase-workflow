@@ -92,11 +92,6 @@ class framework_agreement(models.Model):
     )
     draft = fields.Boolean('Is draft')
 
-    purchase_line_ids = fields.One2many(
-        comodel_name='purchase.order.line',
-        inverse_name='framework_agreement_id'
-    )
-
     payment_term_id = fields.Many2one('account.payment.term', 'Payment Term')
 
     incoterm_id = fields.Many2one(
