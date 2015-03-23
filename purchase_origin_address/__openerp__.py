@@ -19,7 +19,7 @@
 #
 #
 {'name': 'Purchase Origin Address [DEPRECATED]',
- 'summary': 'Deprecated: use purchase_addresses '
+ 'summary': 'Deprecated: use purchase_transport_multi_address '
             'from OCA/stock-logistics-transport',
  'version': '1.0',
  'author': "Camptocamp,Odoo Community Association (OCA)",
@@ -27,7 +27,7 @@
  'license': 'AGPL-3',
  'complexity': 'normal',
  'images': [],
- 'depends': ['purchase_addresses',
+ 'depends': ['purchase_transport_multi_address',
              ],
  'demo': [],
  'data': [],

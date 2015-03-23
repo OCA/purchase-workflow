@@ -20,14 +20,15 @@
 #
 #
 {'name': "Purchase Requisition - Delivery Address [DEPRECATED]",
- 'summary': "Deprecated: install purchase_requisition_addresses instead",
+ 'summary': "Deprecated: "
+            "install purchase_requisition_transport_multi_address instead",
  'version': "0.2",
  'author': "Camptocamp,Odoo Community Association (OCA)",
  'category': "Purchase Management",
  'license': "AGPL-3",
  'complexity': "easy",
  'images': [],
- 'depends': ['purchase_requisition_addresses',
+ 'depends': ['purchase_requisition_transport_multi_address',
              ],
  'demo': [],
  'data': [],

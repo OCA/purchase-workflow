@@ -15,14 +15,14 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 {'name': 'Purchase Delivery Address [DEPRECATED]',
- 'summary': 'Deprecated: install purchase_addresses instead',
+ 'summary': 'Deprecated: install purchase_transport_multi_address instead',
  'version': '1.1',
  'author': "Camptocamp,Odoo Community Association (OCA)",
  'category': 'Purchase Management',
  'license': 'AGPL-3',
  'complexity': 'easy',
  'images': [],
- 'depends': ['purchase_addresses',
+ 'depends': ['purchase_transport_multi_address',
              ],
  'demo': [],
  'data': [],
