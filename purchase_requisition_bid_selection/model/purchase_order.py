@@ -17,7 +17,6 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-
 from openerp import models, fields, api, osv
 
 
@@ -117,7 +116,8 @@ class PurchaseOrderLine(models.Model):
                                         related='order_id.country_of_origin')
     incoterm_id = fields.Many2one('stock.incoterms',
                                   string='Incoterm',
-                                  related='order_id.incoterm_id')
+                                  related='order_id.incoterm_id',
+                                  store=True)
     incoterm_address = fields.Char('Incoterms place',
                                    related='order_id.incoterm_address')
     terms_of_payment = fields.Char(related='order_id.terms_of_payment')
