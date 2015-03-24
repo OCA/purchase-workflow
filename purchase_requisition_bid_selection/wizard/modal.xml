@@ -44,6 +44,10 @@
       <field name="arch" type="xml">
         <form string="Selection reasons">
 
+          <p>
+            Please enter a reason for the suggested selection.
+          </p>
+
           <group name="Selection reasons">
             <field name="selection_reasons" nolabel="1"/>
           </group>
