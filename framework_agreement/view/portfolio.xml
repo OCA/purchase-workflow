@@ -34,11 +34,38 @@
       <field name="model">framework.agreement.portfolio</field>
       <field name="arch" type="xml">
         <form string="Agreement Portfolio">
+          <header>
+            <field name="state"
+              widget="statusbar"
+              statusbar_visible="draft,future,running,consumed,closed"
+              statusbar_colors='{"draft": "blue", "future": "blue", "closed": "blue", "running": "green", "consumed": "red"}'/>
+          </header>
           <sheet>
             <group>
+              <field name="draft"/>
               <field name="name"/>
               <field name="company_id" groups="base.group_multi_company" widget="selection"/>
               <field name="supplier_id" context="{'search_default_supplier': True, 'default_supplier': True, 'default_customer': False}" domain="[('supplier','=',True)]"/>
+              <field name="start_date"/>
+              <field name="end_date"/>
+              <field name="origin"/>
+              <separator string="Product lines"/>
+              <field name="line_ids" nolabel="1" colspan="2" context="{'hide_portfolio': True}">
+                <tree>
+                  <field name="product_id"/>
+                  <field name="quantity"/>
+                  <field name="available_quantity"/>
+                </tree>
+                <form>
+                  <group>
+                    <group>
+                      <field name="product_id"/>
+                      <field name="quantity"/>
+                      <field name="available_quantity"/>
+                    </group>
+                  </group>
+                </form>
+              </field>
               <separator string="Agreements"/>
               <field name="pricelist_ids" nolabel="1" colspan="2" context="{'hide_portfolio': True}"/>
             </group>
@@ -61,6 +88,20 @@
       parent="purchase.menu_purchase_config_pricelist"
       action="portfolio_action"
       id="portfolio_menu"/>
+
+    <record model="ir.actions.act_window" id="portfolio_line_action">
+      <field name="name">Agreement Product Line</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">agreement.product.line</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+      name="Agreement Product Lines"
+      parent="purchase.menu_purchase_config_pricelist"
+      action="portfolio_line_action"
+      id="portfolio_line_menu"/>
 
   </data>
 </openerp>

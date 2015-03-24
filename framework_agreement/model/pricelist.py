@@ -28,6 +28,7 @@ class Pricelist(models.Model):
 
     picking_type_id = fields.Many2one('stock.picking.type', 'Deliver to')
     payment_term_id = fields.Many2one('account.payment.term', 'Payment terms')
+    # terms of payment
     incoterm_id = fields.Many2one(
         'stock.incoterms',
         'Incoterm',
@@ -35,6 +36,7 @@ class Pricelist(models.Model):
         "commercial terms used in international transactions.")
 
     incoterm_address = fields.Char('Incoterm Address')
+    shipment_origin_id = fields.Many2one('res.partner', 'Shipment Origin')
 
     def _price_rule_get_multi(self, cr, uid, pricelist,
                               products_by_qty_by_partner, context=None):

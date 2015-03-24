@@ -106,7 +106,6 @@ class framework_agreement(models.Model):
 
     clauses = fields.Html('Clauses')
 
-    shipment_origin_id = fields.Many2one('res.partner', 'Shipment Origin')
 
     @api.model
     def get_agreement_domain(self, product_id, qty, portfolio_id=None,
@@ -144,13 +143,6 @@ class framework_agreement(models.Model):
                   - "closed" if agreement is outdated
         :rtype: str
         """
-        now, start, end = self._get_dates(agreement)
-        if start > now:
-            return 'future'
-        elif end < now:
-            return 'closed'
-        elif start <= now <= end:
-            return 'running'
         else:
             raise ValueError('Agreement start/end dates are incorrect')
 
