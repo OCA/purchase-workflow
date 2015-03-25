@@ -46,10 +46,10 @@
                 <div class="col-xs-6">
                   <strong class="col-xs-6">Tendering output (<span t-field="o.company_id.currency_id"/>)</strong>
                   <t t-if="tendering_output > o.budget">
-                    <span class="col-xs-6 bg-warning text-center" t-esc="tendering_output"/>
+                    <span class="col-xs-6 bg-warning text-center" t-esc="'{:,.2f}'.format(tendering_output)"/>
                   </t>
                   <t t-if="not tendering_output > o.budget">
-                    <span class="col-xs-6 bg-info" t-esc="tendering_output"/>
+                    <span class="col-xs-6 bg-info text-center" t-esc="'{:,.2f}'.format(tendering_output)"/>
                   </t>
                 </div>
               </div>
@@ -146,7 +146,7 @@
                             <t t-foreach="bid_batch" t-as="bid">
                               <t t-if="bid_first">
                                 <td><span t-field="req_line.product_id"/></td>
-                                <td class="text-right col-separator"><span t-esc="req_line.product_qty"/></td>
+                                <td class="text-right col-separator"><span t-esc="'{:,.2f}'.format(req_line.product_qty)"/></td>
                               </t>
                               <t t-set="bid_line" t-value="[l for l in bid.order_line if l.product_id == req_line.product_id]"/>
                               <t t-if="bid_line">
@@ -154,7 +154,7 @@
                                 <!--Selected-->
                                 <t t-if="bid_line.quantity_bid">
                                   <td class="text-right bg-success">
-                                    <span t-esc="bid_line.quantity_bid"/>
+                                    <span t-esc="'{:,.2f}'.format(bid_line.quantity_bid)"/>
                                   </td>
                                 </t>
                                 <t t-if="not bid_line.quantity_bid">
@@ -192,11 +192,11 @@
                             </t>
                             <td colspan="2"/>
                             <td class="text-right">
-                              <t t-esc="sum(l.price_subtotal for l in bid.order_line if l.product_id.type != 'service')"/>
+                              <t t-esc="'{:,.2f}'.format(sum(l.price_subtotal for l in bid.order_line if l.product_id.type != 'service'))"/>
                             </td>
                             <td/>
                             <td class="text-right col-separator">
-                              <t t-esc="sum(l.price_subtotal_co for l in bid.order_line if l.product_id.type != 'service')"/>
+                              <t t-esc="'{:,.2f}'.format(sum(l.price_subtotal_co for l in bid.order_line if l.product_id.type != 'service'))"/>
                             </td>
                           </t>
                         </tr>
@@ -244,11 +244,11 @@
                             </t>
                             <td colspan="2"/>
                             <td class="text-right">
-                              <t t-esc="sum(l.price_subtotal for l in bid.order_line if l.product_id.type == 'service')"/>
+                              <t t-esc="'{:,.2f}'.format(sum(l.price_subtotal for l in bid.order_line if l.product_id.type == 'service'))"/>
                             </td>
                             <td/>
                             <td class="text-right col-separator">
-                              <t t-esc="sum(l.price_subtotal_co for l in bid.order_line if l.product_id.type == 'service')"/>
+                              <t t-esc="'{:,.2f}'.format(sum(l.price_subtotal_co for l in bid.order_line if l.product_id.type == 'service'))"/>
                             </td>
                           </t>
                         </tr>
@@ -270,7 +270,7 @@
                               <span t-field="o.company_id.currency_id"/>
                             </th>
                             <td class="text-right col-separator">
-                              <span t-esc="sum(l.price_subtotal_co for l in bid.order_line)"/>
+                              <span t-esc="'{:,.2f}'.format(sum(l.price_subtotal_co for l in bid.order_line))"/>
                             </td>
                           </t>
                         </tr>
