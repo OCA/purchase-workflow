@@ -203,9 +203,12 @@
                         <tr>
                           <t t-foreach="bid_batch" t-as="bid">
                             <t t-if="bid_first">
-                              <th colspan="2" class="col-separator">
+                              <th colspan="1">
                                 Incoterm (2010)
                               </th>
+                              <td colspan="1" class="col-separator">
+                                <span t-field="o.req_incoterm_id.code"/>
+                              </td>
                             </t>
                             <td colspan="5" class="col-separator"/>
                           </t>
