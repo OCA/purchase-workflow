@@ -22,7 +22,15 @@
         </field>
 
         <field name="version_id" position="after">
-          <field name="supplierinfo_ids" />
+          <field name="supplierinfo_ids">
+            <tree>
+              <field name="sequence"/>
+              <field name="name"/>
+              <field name="product_tmpl_id"/>
+              <field name="delay"/>
+              <field name="min_qty"/>
+            </tree>
+          </field>
         </field>
 
       </field>
@@ -35,7 +43,16 @@
       <field name="arch" type="xml">
 
         <field name="active" position="before">
-          <field name="portfolio_id" />
+          <field name="portfolio_id" invisible="context.get('hide_portfolio')"/>
+        </field>
+
+        <field name="type" position="after">
+          <field name="picking_type_id" />
+          <field name="payment_term_id" />
+          <field name="terms_of_payment" />
+          <field name="incoterm_id" />
+          <field name="incoterm_address" />
+          <field name="shipment_origin_id" />
         </field>
 
       </field>

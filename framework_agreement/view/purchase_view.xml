@@ -16,6 +16,7 @@
           <attribute name="on_change" eval="1"/>
           <attribute name="domain">[('type','=','purchase'), ('portfolio_id', '=', portfolio_id)]</attribute>
           <attribute name="options">{'always_show_search_more': true}</attribute>
+          <attribute name="context">{'hide_portfolio': True}</attribute>
         </field>
 
         <field name="partner_id" position="attributes">
