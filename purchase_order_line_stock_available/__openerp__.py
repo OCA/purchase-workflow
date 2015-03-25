@@ -20,7 +20,9 @@
 {
     "name": "Purchase order line stock available",
     "version": "1.0",
-    'author': 'OdooMRP team',
+    "author": "OdooMRP team,"
+              "AvanzOSC,"
+              "Serv. Tecnol. Avanzados - Pedro M. Baeza",
     'website': "http://www.odoomrp.com",
     'contributors': ["Daniel Campos <danielcampos@avanzosc.es>",
                      "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
