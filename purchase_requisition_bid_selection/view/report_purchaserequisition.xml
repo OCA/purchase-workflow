@@ -4,7 +4,7 @@
     <template id="report_purchaserequisitions_document">
       <t t-call="report.internal_layout">
         <div class="page">
-          <t t-set="num_of_suppliers" t-value="len(set(bid.partner_id for bid in o.purchase_ids if bid.state in ('draftbid', 'bid')))"/>
+          <t t-set="num_of_suppliers" t-value="len(set(bid.partner_id for bid in o.purchase_ids))"/>
           <t t-set="all_eligible_bids" t-value="[bid for bid in o.purchase_ids if bid.state in ('draftbid', 'bid') and bid.bid_eligible]"/>
           <t t-set="tendering_output" t-value="sum(l.quantity_bid * l.price_unit_co for bid in all_eligible_bids for l in bid.order_line)"/>
           <t t-if="not all_eligible_bids">
