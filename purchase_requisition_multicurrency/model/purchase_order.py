@@ -19,6 +19,7 @@
 #
 #
 from openerp import models, fields, api
+import openerp.addons.decimal_precision as dp
 
 
 class PurchaseOrderLine(models.Model):
@@ -45,12 +46,14 @@ class PurchaseOrderLine(models.Model):
     price_unit_co = fields.Float(
         compute='_compute_prices_in_company_currency',
         string="Unit Price",
+        digits=dp.get_precision('Account'),
         store=True,
         help="Unit Price in company currency."
         )
     price_subtotal_co = fields.Float(
         compute='_compute_prices_in_company_currency',
         string="Subtotal",
+        digits=dp.get_precision('Account'),
         store=True,
         help="Subtotal in company currency."
         )
