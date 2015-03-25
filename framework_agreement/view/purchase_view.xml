@@ -9,12 +9,13 @@
       <field name="arch" type="xml">
 
         <field name="pricelist_id" position="before">
-          <field name="portfolio_id" />
+          <field name="portfolio_id" options="{'always_show_search_more': true}" />
         </field>
 
         <field name="pricelist_id" position="attributes">
           <attribute name="on_change" eval="1"/>
           <attribute name="domain">[('type','=','purchase'), ('portfolio_id', '=', portfolio_id)]</attribute>
+          <attribute name="options">{'always_show_search_more': true}</attribute>
         </field>
 
         <field name="partner_id" position="attributes">
