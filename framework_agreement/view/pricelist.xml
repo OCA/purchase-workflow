@@ -12,6 +12,19 @@
           <field name="portfolio_id" invisible="context.get('hide_portfolio')"/>
         </field>
 
+        <field name="type" position="after">
+          <field name="picking_type_id" />
+          <field name="payment_term_id" />
+          <field name="terms_of_payment" />
+          <field name="incoterm_id" />
+          <field name="incoterm_address" />
+          <field name="shipment_origin_id" />
+        </field>
+
+        <field name="version_id" position="after">
+          <field name="supplierinfo_ids" />
+        </field>
+
       </field>
     </record>
 

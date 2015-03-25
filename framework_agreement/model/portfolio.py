@@ -66,9 +66,9 @@ class Portfolio(models.Model):
     purchase_ids = fields.Many2one('purchase.order', 'portfolio_id')
 
     _sql_constraints = [
-        ('uniq_portfolio',
-         'unique(supplier_id, company_id)',
-         'There can be only one portfolio per supplier and company.'),
+        # ('uniq_portfolio',
+        #  'unique(supplier_id, company_id)',
+        #  'There can be only one portfolio per supplier and company.'),
     ]
 
     @api.one
@@ -125,18 +125,20 @@ class Portfolio(models.Model):
             )
         return [('id', 'in', found_ids)]
 
+
 class AgreementProductLine(models.Model):
     _name = 'agreement.product.line'
 
-    portfolio_id = fields.Many2one('framework.agreement.portfolio', 
+    portfolio_id = fields.Many2one('framework.agreement.portfolio',
                                    required=True)
     product_id = fields.Many2one('product.product', 'Product', required=True)
     quantity = fields.Integer('Negociated quantity', required=True)
     available_quantity = fields.Integer(
-        compute='_compute_available_qty',
+        # compute='_compute_available_qty',
         string='Available quantity',
-        store=True,
+        # store=True,
         # default=0,
+        readonly=False,
     )
 
     @api.depends(
@@ -148,7 +150,7 @@ class AgreementProductLine(models.Model):
         # 'portfolio_id.purchase_ids.state',
         # 'portfolio_id.purchase_ids.order_line.product_qty'
     )
-    @api.multi
+    @api.one
     def _compute_available_qty(self):
         """Compute available qty based on confirmed PO lines."""
         if not isinstance(self.id, models.NewId):

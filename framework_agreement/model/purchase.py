@@ -38,15 +38,14 @@ class PurchaseOrder(models.Model):
 
         pricelist = self.pricelist_id
         if pricelist.portfolio_id:
-            self.write({
-                'payment_term_id': pricelist.payment_term_id,
-                # 'terms_of_payment': pricelist.terms_of_payment,
-                'picking_type_id': pricelist.picking_type_id,
-                # 'delivery_address_id': pricelist.delivery_address_id,
-                # origin address
-                'incoterm_id': pricelist.incoterm_id,
-                # incoterm address
-            })
+            # self.write does not work in an onchange
+            self.payment_term_id = pricelist.payment_term_id
+            self.terms_of_payment = pricelist.terms_of_payment
+            self.incoterm_id = pricelist.incoterm_id
+            self.incoterm_address = pricelist.incoterm_address
+            self.origin_address_id = pricelist.origin_address_id
+            self.dest_address_id = pricelist.dest_address_id
+            self.picking_type_id = pricelist.picking_type_id
 
     @api.onchange('portfolio_id')
     def onchange_portfolio(self):
