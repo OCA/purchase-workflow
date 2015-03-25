@@ -24,7 +24,10 @@
 {
     'name': 'Purchase landed costs - Alternative option',
     'version': '1.0',
-    'author': 'Joaquin Gutierrez, OdooMRP team',
+    "author": "OdooMRP team,"
+              "AvanzOSC,"
+              "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
+              "Joaquín Gutierrez",
     'category': 'Purchase Management',
     'website': 'http://www.gutierrezweb.es,http://www.odoomrp.com',
     'summary': 'Purchase cost distribution',
