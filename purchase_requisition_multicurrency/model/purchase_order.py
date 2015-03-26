@@ -28,7 +28,7 @@ class PurchaseOrderLine(models.Model):
     @api.one
     @api.depends('price_unit',
                  'price_subtotal',
-                 'order_id.currency_id',
+                 'order_id.pricelist_id.currency_id',
                  'order_id.requisition_id.date_exchange_rate',
                  'order_id.requisition_id.pricelist_id.currency_id')
     def _compute_prices_in_company_currency(self):
@@ -36,7 +36,10 @@ class PurchaseOrderLine(models.Model):
         requisition = self.order_id.requisition_id
         if requisition and requisition.pricelist_id.currency_id:
             date = requisition.date_exchange_rate or fields.Date.today()
-            from_curr = self.order_id.currency_id.with_context(date=date)
+            # We take pricelist currency as currency should be related,
+            # but due to odoo issue #4598 currency could mismatch
+            from_curr = self.order_id.pricelist_id.currency_id
+            from_curr = from_curr.with_context(date=date)
             to_curr = requisition.pricelist_id.currency_id
             self.price_unit_co = from_curr.compute(self.price_unit,
                                                    to_curr, round=False)
