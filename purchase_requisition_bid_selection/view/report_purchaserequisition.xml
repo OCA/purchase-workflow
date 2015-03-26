@@ -452,7 +452,13 @@
                   <div class="row mt32">
                     <div class="col-xs-6">
                       <strong class="col-xs-4">Recommended Supplier(s)</strong>
-                      <span class="col-xs-8 bg-info text-center" t-esc="', '.join(bid.partner_id.name for bid in all_eligible_bids if any(l.quantity_bid for l in bid.order_line))"/>
+                      <t t-set="recommended_suppliers" t-value="', '.join(bid.partner_id.name for bid in all_eligible_bids if any(l.quantity_bid for l in bid.order_line))"/>
+                      <t t-if="recommended_suppliers">
+                        <span class="col-xs-8 bg-info text-center" t-esc="recommended_suppliers"/>
+                      </t>
+                      <t t-if="not recommended_suppliers">
+                        <span class="col-xs-8 text-center">N/A</span>
+                      </t>
                     </div>
                     <div class="col-xs-6">
                       <strong class="col-xs-4 ">Prepared and submited by</strong>
