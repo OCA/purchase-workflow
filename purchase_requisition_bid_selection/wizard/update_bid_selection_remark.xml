@@ -7,7 +7,7 @@
       <field name="arch" type="xml">
         <form string="Remark">
           <group>
-            <field name="bid_selection_remark" />
+            <field name="bid_selection_remark"/>
           </group>
           <footer>
             <button name="update_remark" string="Update remark" type="object" class="oe_highlight"/>
