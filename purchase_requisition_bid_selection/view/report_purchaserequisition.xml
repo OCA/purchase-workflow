@@ -393,7 +393,7 @@
                               <td colspan="2" class="col-separator">Internal remarks</td>
                             </t>
                             <td colspan="5" class="col-separator">
-                              <span t-field="bid.bid_selection_remark"/>
+                              <span t-field="bid.bid_internal_remark"/>
                             </td>
                           </t>
                         </tr>
@@ -428,7 +428,7 @@
                                 <td><span t-field="bid.bid_date"/></td>
                                 <td><span t-field="bid.name"/></td>
                                 <td><span t-field="bid.partner_ref"/></td>
-                                <td><span t-field="bid.bid_selection_remark"/></td>
+                                <td><span t-field="bid.bid_internal_remark"/></td>
                               </tr>
                             </t>
                           </tbody>
@@ -450,7 +450,7 @@
                             <t t-foreach="canceled_bids" t-as="bid">
                               <tr>
                                 <td><span t-field="bid.partner_id"/></td>
-                                <td><span t-field="bid.bid_selection_remark"/></td>
+                                <td><span t-field="bid.bid_internal_remark"/></td>
                               </tr>
                             </t>
                           </tbody>

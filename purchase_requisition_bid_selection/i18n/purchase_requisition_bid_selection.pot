@@ -57,8 +57,8 @@ msgid "Bid partially selected"
 msgstr ""
 
 #. module: purchase_requisition_bid_selection
-#: field:update.bid.selection.remark,bid_selection_remark:0
-msgid "Bid selection remark"
+#: field:update.bid.internal.remark,bid_internal_remark:0
+msgid "Bid internal remark"
 msgstr ""
 
 #. module: purchase_requisition_bid_selection
@@ -101,7 +101,7 @@ msgstr ""
 #: view:purchase.action_modal:purchase_requisition_bid_selection.modal_confirm_close_selection
 #: view:purchase.action_modal.ask_selection_reasons:purchase_requisition_bid_selection.ask_selection_reasons
 #: view:purchase.requisition.partner:purchase_requisition_bid_selection.view_purchase_requisition_partner_draftbid
-#: view:update.bid.selection.remark:purchase_requisition_bid_selection.view_update_bid_selection_remark
+#: view:update.bid.internal.remark:purchase_requisition_bid_selection.view_update_bid_internal_remark
 msgid "Cancel"
 msgstr ""
 
@@ -141,13 +141,13 @@ msgstr ""
 
 #. module: purchase_requisition_bid_selection
 #: field:purchase.action_modal.ask_selection_reasons,create_uid:0
-#: field:update.bid.selection.remark,create_uid:0
+#: field:update.bid.internal.remark,create_uid:0
 msgid "Created by"
 msgstr ""
 
 #. module: purchase_requisition_bid_selection
 #: field:purchase.action_modal.ask_selection_reasons,create_date:0
-#: field:update.bid.selection.remark,create_date:0
+#: field:update.bid.internal.remark,create_date:0
 msgid "Created on"
 msgstr ""
 
@@ -215,7 +215,7 @@ msgstr ""
 
 #. module: purchase_requisition_bid_selection
 #: field:purchase.action_modal.ask_selection_reasons,id:0
-#: field:update.bid.selection.remark,id:0
+#: field:update.bid.internal.remark,id:0
 msgid "ID"
 msgstr ""
 
@@ -237,13 +237,13 @@ msgstr ""
 
 #. module: purchase_requisition_bid_selection
 #: field:purchase.action_modal.ask_selection_reasons,write_uid:0
-#: field:update.bid.selection.remark,write_uid:0
+#: field:update.bid.internal.remark,write_uid:0
 msgid "Last Updated by"
 msgstr ""
 
 #. module: purchase_requisition_bid_selection
 #: field:purchase.action_modal.ask_selection_reasons,write_date:0
-#: field:update.bid.selection.remark,write_date:0
+#: field:update.bid.internal.remark,write_date:0
 msgid "Last Updated on"
 msgstr ""
 
@@ -321,7 +321,7 @@ msgid "Re-Open Bids Selection"
 msgstr ""
 
 #. module: purchase_requisition_bid_selection
-#: view:update.bid.selection.remark:purchase_requisition_bid_selection.view_update_bid_selection_remark
+#: view:update.bid.internal.remark:purchase_requisition_bid_selection.view_update_bid_internal_remark
 msgid "Remark"
 msgstr ""
 
@@ -393,8 +393,8 @@ msgid "Selection reasons"
 msgstr ""
 
 #. module: purchase_requisition_bid_selection
-#: field:purchase.order,bid_selection_remark:0
-msgid "Selection remarks"
+#: field:purchase.order,bid_internal_remark:0
+msgid "Internal remarks"
 msgstr ""
 
 #. module: purchase_requisition_bid_selection
@@ -429,18 +429,18 @@ msgid "True if the bid has been partially selected"
 msgstr ""
 
 #. module: purchase_requisition_bid_selection
-#: model:ir.actions.act_window,name:purchase_requisition_bid_selection.action_update_bid_selection_remark
-msgid "Update bid selection remark"
+#: model:ir.actions.act_window,name:purchase_requisition_bid_selection.action_update_bid_internal_remark
+msgid "Update bid internal remark"
 msgstr ""
 
 #. module: purchase_requisition_bid_selection
-#: view:update.bid.selection.remark:purchase_requisition_bid_selection.view_update_bid_selection_remark
+#: view:update.bid.internal.remark:purchase_requisition_bid_selection.view_update_bid_internal_remark
 msgid "Update remark"
 msgstr ""
 
 #. module: purchase_requisition_bid_selection
 #: view:purchase.requisition:purchase_requisition_bid_selection.view_purchase_requisition_form
-msgid "Update selection remark"
+msgid "Update internal remark"
 msgstr ""
 
 #. module: purchase_requisition_bid_selection
@@ -501,7 +501,7 @@ msgstr ""
 #: view:purchase.action_modal:purchase_requisition_bid_selection.modal_confirm_close_selection
 #: view:purchase.action_modal.ask_selection_reasons:purchase_requisition_bid_selection.ask_selection_reasons
 #: view:purchase.requisition.partner:purchase_requisition_bid_selection.view_purchase_requisition_partner_draftbid
-#: view:update.bid.selection.remark:purchase_requisition_bid_selection.view_update_bid_selection_remark
+#: view:update.bid.internal.remark:purchase_requisition_bid_selection.view_update_bid_internal_remark
 msgid "or"
 msgstr ""
 

@@ -29,7 +29,7 @@
  "demo": [],
  "data": ["wizard/modal.xml",
           "wizard/purchase_requisition_partner_view.xml",
-          "wizard/update_bid_selection_remark.xml",
+          "wizard/update_bid_internal_remark.xml",
           "view/purchase_requisition.xml",
           "view/purchase_order.xml",
           "view/report_purchaserequisition.xml",

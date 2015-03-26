@@ -41,8 +41,8 @@
         </separator>
 
         <xpath expr="//field[@name='purchase_ids']//field[@name='state']" position="after">
-          <field name="bid_selection_remark"/>
-          <button name="%(action_update_bid_selection_remark)d" type="action" string="Update selection remark" icon="gtk-ok"/>
+          <field name="bid_internal_remark"/>
+          <button name="%(action_update_bid_internal_remark)d" type="action" string="Update internal remark" icon="gtk-ok"/>
         </xpath>
 
         <xpath expr="//field[@name='purchase_ids']" position="after">

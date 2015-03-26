@@ -17,6 +17,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
+
 from openerp import models, fields, api, osv
 
 
@@ -52,7 +53,7 @@ class PurchaseOrder(models.Model):
     weight_estimated = fields.Float('Weight estimated (kg)')
     meets_specifications = fields.Boolean()
     bid_eligible = fields.Boolean()
-    bid_selection_remark = fields.Text('Selection remarks')
+    bid_internal_remark = fields.Text('Internal remarks')
 
     @api.model
     def _prepare_purchase_order(self, requisition, supplier):
