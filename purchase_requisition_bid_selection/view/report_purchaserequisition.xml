@@ -5,7 +5,8 @@
       <t t-call="report.internal_layout">
         <div class="page">
           <t t-set="num_of_suppliers" t-value="len(set(bid.partner_id for bid in o.purchase_ids))"/>
-          <t t-set="all_eligible_bids" t-value="[bid for bid in o.purchase_ids if bid.state in ('draftbid', 'bid') and bid.bid_eligible]"/>
+          <t t-set="all_bids" t-value="[bid for bid in o.purchase_ids if bid.type == 'bid']"/>
+          <t t-set="all_eligible_bids" t-value="[bid for bid in all_bids if bid.state in ('draftbid', 'bid') and bid.bid_eligible]"/>
           <t t-set="tendering_output" t-value="sum(l.quantity_bid * l.price_unit_co for bid in all_eligible_bids for l in bid.order_line)"/>
           <t t-if="not all_eligible_bids">
             <p>
@@ -387,6 +388,64 @@
                         </tr>
                       </tbody>
                     </table>
+                    <t t-if="batch_start_last">
+                      <t t-set="non_eligible_bids" t-value="[bid for bid in all_bids if not bid.bid_eligible and bid.state in ('draftbid', 'bid')]"/>
+                      <t t-if="non_eligible_bids">
+                        <h3>Non eligible bids</h3>
+                        <table id="bids-non-eligible" class="table table-condensed table-bordered" width="100%">
+                          <tbody>
+                            <tr>
+                              <th class="col-xs-2 info">
+                                Supplier name
+                              </th>
+                              <th class="col-xs-1 info">
+                                Bid Date
+                              </th>
+                              <th class="col-xs-2 info">
+                                Bid number
+                              </th>
+                              <th class="col-xs-2 info">
+                                Supplier reference
+                              </th>
+                              <th class="col-xs-5 info">
+                                Internal remark
+                              </th>
+                            </tr>
+                            <t t-foreach="non_eligible_bids" t-as="bid">
+                              <tr>
+                                <td><span t-field="bid.partner_id"/></td>
+                                <td><span t-field="bid.bid_date"/></td>
+                                <td><span t-field="bid.name"/></td>
+                                <td><span t-field="bid.partner_ref"/></td>
+                                <td><span t-field="bid.bid_selection_remark"/></td>
+                              </tr>
+                            </t>
+                          </tbody>
+                        </table>
+                      </t>
+                      <t t-set="canceled_bids" t-value="[bid for bid in all_bids if bid.state == 'cancel']"/>
+                      <t t-if="canceled_bids">
+                        <h3>Canceled bids</h3>
+                        <table id="bids-canceled" class="table table-condensed table-bordered" width="100%">
+                          <tbody>
+                            <tr>
+                              <th class="col-xs-8 info">
+                                Supplier name
+                              </th>
+                              <th class="col-xs-4 info">
+                                Internal remark
+                              </th>
+                            </tr>
+                            <t t-foreach="canceled_bids" t-as="bid">
+                              <tr>
+                                <td><span t-field="bid.partner_id"/></td>
+                                <td><span t-field="bid.bid_selection_remark"/></td>
+                              </tr>
+                            </t>
+                          </tbody>
+                        </table>
+                      </t>
+                    </t>
                   </small>
                 </small>
                 <t t-if="batch_start_last">
