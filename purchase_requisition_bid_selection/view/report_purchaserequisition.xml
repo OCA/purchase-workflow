@@ -379,7 +379,7 @@
                         <tr>
                           <t t-foreach="bid_batch" t-as="bid">
                             <t t-if="bid_first">
-                              <td colspan="2" class="col-separator">Comments</td>
+                              <td colspan="2" class="col-separator">Internal remarks</td>
                             </t>
                             <td colspan="5" class="col-separator">
                               <span t-field="bid.bid_selection_remark"/>
