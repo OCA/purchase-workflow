@@ -59,18 +59,4 @@ class PurchaseOrderLine(models.Model):
         digits=dp.get_precision('Account'),
         store=True,
         help="Subtotal in company currency."
-        )
-
-    @api.model
-    def read_group(self, domain, fields, groupby, offset=0, limit=None,
-                   orderby=False, lazy=True):
-        """ Remove computed Float fields from read_group to avoid
-        AttributeError: 'NoneType' object has no attribute '_classic_write'
-        due to odoo/odoo#3972
-        """
-        remove_fields = ('price_unit_co', 'price_subtotal_co')
-        stored_fields = [f for f in fields if f not in remove_fields]
-        _super = super(PurchaseOrderLine, self)
-        return _super.read_group(domain, stored_fields, groupby=groupby,
-                                 offset=offset, limit=limit,
-                                 orderby=orderby, lazy=lazy)
+    )
