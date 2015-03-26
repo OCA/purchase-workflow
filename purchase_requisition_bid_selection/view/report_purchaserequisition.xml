@@ -224,7 +224,18 @@
                               <t t-set="service_line" t-value="[l for l in bid.order_line if l.product_id == service]"/>
                               <t t-if="service_line">
                                 <t t-set="service_line" t-value="service_line[0]"/>
-                                <td colspan="2"/>
+                                <!--Selected-->
+                                <t t-if="service_line.quantity_bid">
+                                  <td class="text-right bg-success">
+                                    <span t-esc="'{:,.2f}'.format(service_line.quantity_bid)"/>
+                                  </td>
+                                </t>
+                                <t t-if="not service_line.quantity_bid">
+                                  <td class="text-right">
+                                    -
+                                  </td>
+                                </t>
+                                <td colspan="1"/>
                                 <td colspan="1" class="text-right">
                                   <span t-field="service_line.price_unit"/>
                                 </td>
