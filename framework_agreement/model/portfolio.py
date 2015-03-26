@@ -24,6 +24,7 @@ AGR_PO_STATE = ('draft', 'confirmed', 'approved',
 # AGR_PO_STATE = ('confirmed', 'approved',
 #                 'done', 'except_picking', 'except_invoice')
 
+
 class Portfolio(models.Model):
     _name = 'framework.agreement.portfolio'
     _description = 'Agreement Portfolio'
@@ -134,33 +135,30 @@ class AgreementProductLine(models.Model):
     product_id = fields.Many2one('product.product', 'Product', required=True)
     quantity = fields.Integer('Negociated quantity', required=True)
     available_quantity = fields.Integer(
-        # compute='_compute_available_qty',
+        compute='_compute_available_qty',
         string='Available quantity',
-        # store=True,
+        store=True,
         # default=0,
-        readonly=False,
+        # readonly=False,
     )
 
     @api.depends(
         'quantity',
-        # 'product_id',
-        # 'portfolio_id',
-        # 'portfolio_id.purchase_ids',
-        # 'portfolio_id.purchase_ids.portfolio_id',
-        # 'portfolio_id.purchase_ids.state',
-        # 'portfolio_id.purchase_ids.order_line.product_qty'
+        'product_id',
+        'portfolio_id',
+        'portfolio_id.purchase_ids',
+        'portfolio_id.purchase_ids.portfolio_id',
+        'portfolio_id.purchase_ids.state',
+        'portfolio_id.purchase_ids.order_line.product_qty'
     )
     @api.one
     def _compute_available_qty(self):
         """Compute available qty based on confirmed PO lines."""
-        if not isinstance(self.id, models.NewId):
-            print "No, I'm cached" 
-            return
+        print "\nline: ", self.id, " portfolio: ", self.portfolio_id.id
+        import pdb; pdb.set_trace()  # XXX BREAKPOINT
         if isinstance(self.portfolio_id.id, models.NewId):
-            print "No, the portfolio is cached" 
-            return
-        print 'compute for real'
-        print 'before it is ', self.available_quantity
+            import pdb; pdb.set_trace()  # XXX BREAKPOINT
+
         sql = """
             SELECT SUM(po_line.product_qty)
             FROM purchase_order_line AS po_line
