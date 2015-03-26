@@ -71,6 +71,10 @@ class PurchaseOrder(models.Model):
             )
         return res
 
+    @api.multi
+    def write(self, vals):
+        return super(PurchaseOrder, self.with_context(block_if_negative_available=True)).write(vals)
+
 
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"

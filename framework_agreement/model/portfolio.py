@@ -16,7 +16,7 @@
 from collections import namedtuple
 from datetime import datetime
 
-from openerp import models, fields, api
+from openerp import models, fields, api, exceptions
 from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
 
 AGR_PO_STATE = ('draft', 'confirmed', 'approved',
@@ -63,8 +63,9 @@ class Portfolio(models.Model):
         string='State',
         compute='_compute_state',
         search='_search_state',
+        # not stored because it depends on the current date
     )
-    purchase_ids = fields.Many2one('purchase.order', 'portfolio_id')
+    purchase_ids = fields.One2many('purchase.order', 'portfolio_id')
 
     _sql_constraints = [
         # ('uniq_portfolio',
@@ -138,8 +139,9 @@ class AgreementProductLine(models.Model):
         compute='_compute_available_qty',
         string='Available quantity',
         store=True,
-        # default=0,
-        # readonly=False,
+        # this is stored because we do searches on it. However, the method
+        # might be called more often than necessary (specifically, when
+        # computing the state of the portfolio).
     )
 
     @api.depends(
@@ -154,10 +156,9 @@ class AgreementProductLine(models.Model):
     @api.one
     def _compute_available_qty(self):
         """Compute available qty based on confirmed PO lines."""
-        print "\nline: ", self.id, " portfolio: ", self.portfolio_id.id
-        import pdb; pdb.set_trace()  # XXX BREAKPOINT
+        print "\n compute ", self.id
         if isinstance(self.portfolio_id.id, models.NewId):
-            import pdb; pdb.set_trace()  # XXX BREAKPOINT
+            return
 
         sql = """
             SELECT SUM(po_line.product_qty)
@@ -176,4 +177,10 @@ class AgreementProductLine(models.Model):
         })
         used_amount = self.env.cr.fetchone()[0] or 0
         self.available_quantity = self.quantity - used_amount
-        print 'now it is ', self.available_quantity
+
+        if 'block_if_negative_available' in self.env.context:
+            if self.available_quantity < 0:
+                raise exceptions.Warning(_(
+                    'Insufficient available quantity for product %s' %
+                    self.product_id.name
+                ))
