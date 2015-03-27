@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record id="purchase.trans_draft_confirmed" model="workflow.transition">
+      <field name="condition">test_exceptions()</field>
+    </record>
+
+    <record id="purchase.trans_bid_confirmed" model="workflow.transition">
+      <field name="condition">test_exceptions()</field>
+    </record>
+
+  </data>
+</openerp>
