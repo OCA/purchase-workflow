@@ -71,10 +71,16 @@ class PurchaseOrder(models.Model):
             )
         return res
 
-    @api.multi
-    def write(self, vals):
-        return super(PurchaseOrder, self.with_context(block_if_negative_available=True)).write(vals)
-
 
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
+
+    def insufficient_agreed_quantity(self):
+        self.ensure_one()
+        for product_line in self.order_id.portfolio_id.line_ids:
+            if product_line.product_id == self.product_id:
+                return self.product_qty > product_line.available_quantity
+        raise exceptions.Warning(_(
+            'The selected portfolio does not cover product %s'
+            % self.product_id.name
+        ))

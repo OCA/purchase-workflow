@@ -20,6 +20,15 @@
             <field name="exception_ids" nolabel="1"/>
           </group>
         </notebook>
+
+        <xpath expr="//button[@id='draft_confirm']" position="attributes">
+          <attribute name="invisible">1</attribute>
+        </xpath>
+
+        <xpath expr="//button[@id='draft_confirm']" position="after">
+          <button name="button_confirm_with_exceptions_check" states="draft" string="Confirm Order" type="object" />
+        </xpath>
+
       </field>
     </record>
 

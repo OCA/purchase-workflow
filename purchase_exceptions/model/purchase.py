@@ -82,6 +82,14 @@ class PurchaseOrder(models.Model):
 
     ignore_exceptions = fields.Boolean('Ignore Exceptions')
 
+    @api.multi
+    def button_confirm_with_exceptions_check(self):
+        self.ensure_one()
+        if self.detect_exceptions():
+            return self._popup_exceptions()
+        else:
+            self.signal_workflow('purchase_confirm')
+
     @api.one
     @api.depends('state', 'exception_ids')
     def _get_main_error(self):
@@ -121,18 +129,8 @@ class PurchaseOrder(models.Model):
         return action
 
     @api.multi
-    def action_button_confirm(self):
-        self.ensure_one()
-        if self.detect_exceptions():
-            return self._popup_exceptions()
-        else:
-            return super(PurchaseOrder, self).action_button_confirm()
-
-    @api.multi
     def test_exceptions(self):
-        """
-        Condition method for the workflow from draft to confirm
-        """
+        """Condition method for the workflow"""
         if self.detect_exceptions():
             return False
         return True
@@ -143,7 +141,7 @@ class PurchaseOrder(models.Model):
         orders
 
         as a side effect, the purchase order's exception_ids column is updated
-        with the list of exceptions related to the SO
+        with the list of exceptions related to the PO
         """
         exception_obj = self.env['purchase.exception']
         order_exceptions = exception_obj.search(
