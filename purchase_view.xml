@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="view_purchase_form" model="ir.ui.view">
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form" />
+            <field name="arch" type="xml">
+                <field name="order_line" position="before">
+                    <button name="add_product"
+                            string="Add product"
+                            type="object"
+                            attrs="{'invisible': ['|', ('lock','=', True), ('state', 'not in', ('draft', 'sent'))]}"
+                            class="oe_highlight"/>
+                </field>
+                <field name="order_line" position="attributes">
+                    <attribute name="create">0</attribute>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>
