@@ -422,6 +422,59 @@ class TestAmendmentCombinations(common.TransactionCase):
         #     (self.product3, 800, 'confirmed'),
         # ])
 
+    def test_amend_revert_cancel(self):
+        # Split 100 of product1 in another picking
+        self.split([(self.product1, 100)])
+
+        # Cancel the 100 product1
+        self.cancel_move(self.product1, 100)
+        self.assert_moves([
+            (self.product1, 900, 'assigned'),
+            (self.product1, 100, 'cancel'),
+            (self.product2, 500, 'assigned'),
+            (self.product3, 800, 'assigned'),
+        ])
+
+        # purchase is in shipping exception only if a part
+        # is done and the other part is canceled
+        self.ship()
+
+        self.assertEqual(self.purchase.state, 'except_picking')
+
+        # amend the purchase order
+        amendment = self.amend()
+        # revert the canceled product1 by half, put 750
+        self.amend_product(amendment, self.product1, 100)
+
+        self.assert_amendment_quantities(amendment, self.product1,
+                                         ordered_qty=1000,
+                                         shipped_qty=900,
+                                         canceled_qty=100,
+                                         amend_qty=100)
+        self.assert_amendment_quantities(amendment, self.product2,
+                                         ordered_qty=500, shipped_qty=500)
+        self.assert_amendment_quantities(amendment, self.product3,
+                                         ordered_qty=800, shipped_qty=800)
+        amendment.do_amendment()
+        self.assert_purchase_lines([
+            (self.product1, 1000, 'confirmed'),
+            (self.product2, 500, 'confirmed'),
+            (self.product3, 800, 'confirmed'),
+        ])
+        # self.assert_procurements([
+        #     (self.product1, 900, 'running'),
+        #     (self.product1, 100, 'running'),
+        #     (self.product2, 500, 'running'),
+        #     (self.product3, 800, 'running'),
+        # ])
+        # self.assert_moves([
+        #     (self.product1, 100, 'confirmed'),
+        #     (self.product1, 100, 'cancel'),
+        #     (self.product1, 900, 'confirmed'),
+        #     (self.product2, 500, 'confirmed'),
+        #     (self.product3, 800, 'confirmed'),
+        # ])
+
     def test_amend_quantity(self):
         # Ship 200 product1
         self.ship([(self.product1, 200),
