@@ -79,17 +79,25 @@ class TestAmendmentCombinations(common.TransactionCase):
                           for move in p.move_lines)
         )[0]
 
-    def ship(self, products):
+    def ship(self, products=None):
         """ Ship products of a picking
 
         products is a list of tuples [(product, qty)]
         """
         operations = {}
         pickings = self.env['stock.picking'].browse()
-        for product, qty in products:
-            picking = self._search_picking_by_product(product, qty)
-            pickings |= picking
-            operations.setdefault(picking, []).append((product, qty))
+        if products:
+            for product, qty in products:
+                picking = self._search_picking_by_product(product, qty)
+                pickings |= picking
+                operations.setdefault(picking, []).append((product, qty))
+        else:
+            # ship all
+            pickings = self.purchase.picking_ids.filtered(
+                lambda p: p.state not in ('cancel', 'done')
+            )
+            for picking in pickings:
+                operations[picking] = []
 
         pickings.do_prepare_partial()
 
@@ -242,6 +250,64 @@ class TestAmendmentCombinations(common.TransactionCase):
         if message:
             raise AssertionError('Moves do not match:\n\n%s' % message)
 
+    def test_ship_and_cancel_part(self):
+        # We have 1000 product1
+        # Ship 200 products
+        self.ship([(self.product1, 200),
+                   (self.product2, 0),
+                   (self.product3, 0),
+                   ])
+        # Split 500 and 300 products
+        self.split([(self.product1, 300)])
+        # Cancel the 300
+        self.cancel_move(self.product1, 300)
+
+        self.assert_moves([
+            (self.product1, 200, 'done'),
+            (self.product1, 500, 'assigned'),
+            (self.product1, 300, 'cancel'),
+            (self.product2, 500, 'assigned'),
+            (self.product3, 800, 'assigned'),
+        ])
+
+        # Ship the rest
+        self.ship()
+
+        self.assertEqual(self.purchase.state, 'except_picking')
+
+        # amend the purchase order
+        amendment = self.amend()
+
+        self.assert_amendment_quantities(amendment, self.product1,
+                                         ordered_qty=1000,
+                                         shipped_qty=700,
+                                         canceled_qty=300)
+        self.assert_amendment_quantities(amendment, self.product2,
+                                         ordered_qty=500, shipped_qty=500)
+        self.assert_amendment_quantities(amendment, self.product3,
+                                         ordered_qty=800, shipped_qty=800)
+        amendment.do_amendment()
+        self.assert_purchase_lines([
+            (self.product1, 700, 'confirmed'),
+            (self.product1, 300, 'cancel'),
+            (self.product2, 500, 'confirmed'),
+            (self.product3, 800, 'confirmed'),
+        ])
+        # self.assert_procurements([
+        #     (self.product1, 200, 'done'),
+        #     (self.product1, 300, 'cancel'),
+        #     (self.product1, 500, 'running'),
+        #     (self.product2, 500, 'running'),
+        #     (self.product3, 800, 'running'),
+        # ])
+        # self.assert_moves([
+        #     (self.product1, 200, 'done'),
+        #     (self.product1, 300, 'cancel'),
+        #     (self.product1, 500, 'confirmed'),
+        #     (self.product2, 500, 'confirmed'),
+        #     (self.product3, 800, 'confirmed'),
+        # ])
+
     def test_cancel_one_line(self):
         # We have 500 product2
         # Split product2 in another picking
@@ -257,8 +323,7 @@ class TestAmendmentCombinations(common.TransactionCase):
 
         # purchase is in shipping exception only if a part
         # is done and the other part is canceled
-        self.ship([(self.product1, 1000),
-                   (self.product3, 800)])
+        self.ship()
 
         self.assertEqual(self.purchase.state, 'except_picking')
 
