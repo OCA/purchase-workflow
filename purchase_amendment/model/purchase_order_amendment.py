@@ -257,7 +257,7 @@ class PurchaseOrderAmendmentItem(models.TransientModel):
                     values['procurement_ids'] = False
 
                 amend_line = line.copy(default=values)
-                amend_line.button_confirm()
+                amend_line.action_confirm()
                 for proc in amend_line.procurement_ids:
                     if proc.state == 'confirmed':
                         # if a new procurement has been created,
