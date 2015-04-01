@@ -200,7 +200,7 @@ class PurchaseOrderAmendmentItem(models.TransientModel):
             procurements = line.procurement_ids
             moves = line.move_ids
             if received_qty:
-                # only keep the done procurement on the purchase line
+                # leave the 'done' procurements on this line
                 proc = procurements.filtered(lambda p: p.state == 'done')
                 procurements -= proc
                 # only keep the done moves on the purchase line
@@ -212,7 +212,6 @@ class PurchaseOrderAmendmentItem(models.TransientModel):
                 line.write({
                     'product_qty': received_qty,
                     'move_ids': [(6, 0, move.ids)],
-                    'procurement_ids': [(6, 0, proc.ids)],
                 })
 
             # new moves will be generated for the new quantities
@@ -230,6 +229,7 @@ class PurchaseOrderAmendmentItem(models.TransientModel):
                     # current line kept for the received quantity so
                     # create a new one
                     canceled_line = line.copy(default=values)
+                    proc.write({'purchase_line_id': canceled_line.id})
                 else:
                     # cancel the current line
                     line.write(values)
@@ -245,6 +245,9 @@ class PurchaseOrderAmendmentItem(models.TransientModel):
                           'move_ids': False,
                           'procurement_ids': [(6, 0, procurements.ids)]}
                 amend_line = line.copy(default=values)
+                # procurement not done nor canceled are linked with this
+                # line
+                procurements.write({'purchase_line_id': amend_line.id})
                 amend_line.action_confirm()
 
         if recreate_picking:
