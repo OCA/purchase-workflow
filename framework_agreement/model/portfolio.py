@@ -127,6 +127,38 @@ class Portfolio(models.Model):
             )
         return [('id', 'in', found_ids)]
 
+    @api.multi
+    def create_new_agreement(self):
+        self.ensure_one()
+        new_agreement = self.env['product.pricelist'].create({
+            'name': '{}: New agreement'.format(self.name),
+            'portfolio_id': self.id,
+            'type': 'purchase',
+            'version_id': [(0, 0, {
+                'name': '{}: Main version'.format(self.name),
+                'date_start': self.start_date,
+                'date_end': self.end_date,
+                'items_id': [(0, 0, {
+                    'name': '{}: Main rule'.format(self.name),
+                    'base': -2,
+                    'use_agreement_prices': True,
+                })],
+            })],
+        })
+
+        for product_line in self.line_ids:
+            self.env['product.supplierinfo'].create({
+                'name': self.supplier_id.id,
+                'agreement_pricelist_id': new_agreement.id,
+                'product_tmpl_id': product_line.product_id.product_tmpl_id.id,
+                'product_name': product_line.product_id.name,
+                'product_code': product_line.product_id.code,
+                'pricelist_ids': [(0, 0, {
+                    'min_quantity': 1.0,
+                    'price': 0.0,
+                })],
+            })
+
 
 class AgreementProductLine(models.Model):
     _name = 'agreement.product.line'

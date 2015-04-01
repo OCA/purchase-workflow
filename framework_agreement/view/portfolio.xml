@@ -67,6 +67,7 @@
                 </form>
               </field>
               <separator string="Agreements"/>
+              <button string="Create a new Agreement" name="create_new_agreement" type="object"/>
               <field name="pricelist_ids" nolabel="1" colspan="2" context="{'hide_portfolio': True}"/>
             </group>
           </sheet>
