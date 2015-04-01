@@ -35,13 +35,15 @@ class Pricelist(models.Model):
         help="International Commercial Terms are a series of predefined "
         "commercial terms used in international transactions.")
     origin_address_id = fields.Many2one('res.partner', 'Origin Address')
-    dest_address_id = fields.Many2one('res.partner', 
+    dest_address_id = fields.Many2one('res.partner',
                                       'Customer Address (Direct Delivery)')
     origin_address_id = fields.Many2one('res.partner', 'Origin Address')
     incoterm_address = fields.Char('Incoterm Address')
     shipment_origin_id = fields.Many2one('res.partner', 'Shipment Origin')
     supplierinfo_ids = fields.One2many('product.supplierinfo',
                                        'agreement_pricelist_id')
+    partnerinfo_ids = fields.One2many('pricelist.partnerinfo',
+                                      related='supplierinfo_ids.pricelist_ids')
 
     def _price_rule_get_multi(self, cr, uid, pricelist,
                               products_by_qty_by_partner, context=None):
@@ -300,3 +302,22 @@ class SupplierInfo(models.Model):
 
     agreement_pricelist_id = fields.Many2one('product.pricelist',
                                              'Agreement pricelist')
+
+
+class PartnerInfo(models.Model):
+    _inherit = "pricelist.partnerinfo"
+
+    partner_id = fields.Many2one('res.partner',
+                                 related='suppinfo_id.name',
+                                 readonly=True)
+    product_tmpl_id = fields.Many2one('product.template',
+                                      related='suppinfo_id.product_tmpl_id',
+                                      readonly=True)
+    pricelist_id = fields.Many2one(
+        'product.pricelist',
+        related='suppinfo_id.agreement_pricelist_id',
+        readonly=True)
+    currency_id = fields.Many2one(
+        'res.currency',
+        related='suppinfo_id.agreement_pricelist_id.currency_id',
+        readonly=True)
