@@ -8,7 +8,7 @@
       <field name="inherit_id" ref="purchase.purchase_order_form"/>
       <field name="arch" type="xml">
          <button name="picking_ok">
-           <button name="button_amend" states="except_picking"
+           <button name="button_amend" states="confirmed,approved,except_picking"
              type="object" string="Amend"/>
          </button>
          <xpath expr="//field[@name='order_line']/tree/field[@name='state']" position="attributes">

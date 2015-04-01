@@ -18,7 +18,9 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-from openerp import models, api
+from openerp import models, fields, api
+import openerp.addons.decimal_precision as dp
+from openerp.tools import float_compare
 
 
 class PurchaseOrder(models.Model):
@@ -35,3 +37,32 @@ class PurchaseOrder(models.Model):
 
         amendment = amend_model.create({'purchase_id': self.id})
         return amendment.wizard_view()
+
+
+class PurchaseOrderLine(models.Model):
+    _inherit = 'purchase.order.line'
+
+    received_qty = fields.Float(
+        string='Received Quantity',
+        compute='_compute_received_qty',
+        digits_compute=dp.get_precision('Product Unit of Measure'),
+    )
+    received = fields.Boolean(string='Received',
+                              compute='_compute_received_qty')
+
+    @api.one
+    @api.depends('product_qty',
+                 'move_ids', 'move_ids.state', 'move_ids.product_qty')
+    def _compute_received_qty(self):
+        moves = self.move_ids
+        if not moves:
+            self.received = False
+            self.received_qty = 0
+
+        received_qty = sum(moves.mapped(
+            lambda m: m.product_qty if m.state == 'done' else 0.)
+        )
+        rounding = self.product_id.uom_id.rounding
+        self.received = bool(float_compare(self.product_qty, received_qty,
+                                           precision_digits=rounding) <= 0)
+        self.received_qty = received_qty

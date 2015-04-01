@@ -58,6 +58,8 @@ class PurchaseOrderAmendment(models.TransientModel):
         for line in purchase.order_line:
             if line.state in ('cancel', 'done'):
                 continue
+            elif line.received:
+                continue
             items.append(self._prepare_item(line))
         res['item_ids'] = items
         return res
@@ -66,18 +68,16 @@ class PurchaseOrderAmendment(models.TransientModel):
     def _prepare_item(self, purchase_line):
         ordered = purchase_line.product_qty
 
-        shipped = 0.
+        received = purchase_line.received_qty
         canceled = 0.
         for move in purchase_line.move_ids:
-            if move.state == 'done':
-                shipped += move.product_qty
-            elif move.state == 'cancel':
+            if move.state == 'cancel':
                 canceled += move.product_qty
 
-        amend = ordered - canceled - shipped
+        amend = ordered - canceled - received
         return {
             'purchase_line_id': purchase_line.id,
-            'shipped_qty': shipped,
+            'received_qty': received,
             'canceled_qty': canceled,
             'amend_qty': amend,
         }
@@ -88,9 +88,9 @@ class PurchaseOrderAmendment(models.TransientModel):
         message = '<h3>%s</h3><ul>' % title
         for item in self.item_ids:
             message += (_('<li><b>%s</b>: %s Ordered, %s '
-                          'Shipped, %s Canceled, %s Amended</li>') %
+                          'Received, %s Canceled, %s Amended</li>') %
                         (item.purchase_line_id.name,
-                         item.ordered_qty, item.shipped_qty,
+                         item.ordered_qty, item.received_qty,
                          item.canceled_qty, item.amend_qty,
                          )
                         )
@@ -142,10 +142,10 @@ class PurchaseOrderAmendmentItem(models.TransientModel):
                                        readonly=True)
     ordered_qty = fields.Float(related='purchase_line_id.product_qty',
                                readonly=True)
-    shipped_qty = fields.Float(string='Delivered',
-                               readonly=True,
-                               digits_compute=dp.get_precision('Product UoS'))
-    canceled_qty = fields.Float(string='Canceled',
+    received_qty = fields.Float(string='Received',
+                                readonly=True,
+                                digits_compute=dp.get_precision('Product UoS'))
+    canceled_qty = fields.Float(string='Canceled Moves',
                                 readonly=True,
                                 digits_compute=dp.get_precision('Product UoS'))
     amend_qty = fields.Float(string='Amend',
@@ -153,36 +153,23 @@ class PurchaseOrderAmendmentItem(models.TransientModel):
     product_uom_id = fields.Many2one(related='purchase_line_id.product_uom',
                                      readonly=True)
 
-    @api.constrains('amend_qty')
-    def _constrains_amend_qty(self):
-        max_qty = self.ordered_qty - self.shipped_qty
-        min_qty = self.ordered_qty - self.shipped_qty - self.canceled_qty
-        rounding = self.purchase_line_id.product_uom.rounding
-        compare = partial(float_compare, precision_digits=rounding)
-        if (compare(min_qty, self.amend_qty) == 1 or
-                compare(self.amend_qty, max_qty) == 1):
-            raise exceptions.ValidationError(
-                _('The amended quantity for the product "%s" must be '
-                  'between the canceled quantity of %0.2f and the ordered '
-                  'quantity of %0.2f.') % (self.purchase_line_id.name,
-                                           min_qty, max_qty)
-            )
-
     @api.multi
     def split_lines(self):
         """ Split the order line according to selected quantities
 
-        The shipped quantity is the quantity that will remain in the original
+        The received quantity is the quantity that will remain in the original
         purchases order line.
         The canceled quantity will split the original line and cancel the
         duplicated line.
         The amended quantity will split the original line; the
         duplicated line will be 'confirmed' and a new picking will be created.
         """
+        moves_to_cancel = self.env['stock.move'].browse()
+        recreate_picking = False
         for item in self:
             line = item.purchase_line_id
             amend_qty = item.amend_qty
-            shipped_qty = item.shipped_qty
+            received_qty = item.received_qty
             ordered_qty = item.ordered_qty
             rounding = line.product_id.uom_id.rounding
             # the total canceled may be different than the one displayed
@@ -190,81 +177,116 @@ class PurchaseOrderAmendmentItem(models.TransientModel):
             # canceled in the *pickings*, here it includes also the
             # quantity removed when amending
             compare = partial(float_compare, precision_digits=rounding)
-            canceled_qty = ordered_qty - shipped_qty - amend_qty
+            canceled_qty = ordered_qty - received_qty - amend_qty
             if compare(canceled_qty, 0) == -1:  # Means: canceled_qty < 0
-                canceled_qty = 0
+                # The amendment is bigger than ordered qty
+                # Cancel the ordered quantity, create a new line for the
+                # amendment
+                canceled_qty = ordered_qty - received_qty
 
-            if (not (shipped_qty or canceled_qty) and
+            if (not (received_qty or canceled_qty) and
                     compare(amend_qty, ordered_qty) == 0):
                 # Means: amend_qty == ordered_qty
                 # the line is not changed
                 continue
 
             if (not canceled_qty and
-                    compare(shipped_qty + amend_qty, ordered_qty) == 0):
-                # Means: shipped_qty + amend_qty == ordered_qty
-                # part has been shipped but there is no reason to split
+                    compare(received_qty + amend_qty, ordered_qty) == 0):
+                # Means: received_qty + amend_qty == ordered_qty
+                # part has been received but there is no reason to split
                 # the lines
                 continue
 
             procurements = line.procurement_ids
-            if shipped_qty:
+            moves = line.move_ids
+            if received_qty:
                 # only keep the done procurement on the purchase line
                 proc = procurements.filtered(lambda p: p.state == 'done')
                 procurements -= proc
-                # update the current line with the shipped qty,
+                # only keep the done moves on the purchase line
+                move = moves.filtered(lambda p: p.state == 'done')
+                moves -= move
+                # update the current line with the received qty,
                 # the rest will be either canceled either amended,
                 # either both
                 line.write({
-                    'product_qty': shipped_qty,
+                    'product_qty': received_qty,
+                    'move_ids': [(6, 0, move.ids)],
                     'procurement_ids': [(6, 0, proc.ids)],
                 })
+
+            # new moves will be generated for the new quantities
+            moves.action_cancel()
 
             if canceled_qty:
                 # only keep the canceled procurement on the purchase line
                 proc = procurements.filtered(lambda p: p.state == 'cancel')
                 procurements -= proc
-                if shipped_qty:
-                    # current line kept for the shipped quantity so
+                # only keep the canceled moves on the purchase line
+                values = {'product_qty': canceled_qty,
+                          'move_ids': [(6, 0, moves.ids)],
+                          'procurement_ids': [(6, 0, proc.ids)]}
+                if received_qty:
+                    # current line kept for the received quantity so
                     # create a new one
-                    values = {'product_qty': canceled_qty,
-                              'procurement_ids': [(6, 0, proc.ids)]}
                     canceled_line = line.copy(default=values)
                 else:
                     # cancel the current line
-                    proc.cancel()
-                    line.write({
-                        'product_qty': canceled_qty,
-                        'procurement_ids': [(6, 0, proc.ids)],
-                    })
+                    line.write(values)
                     canceled_line = line
+                moves_to_cancel |= canceled_line.move_ids
                 canceled_line.action_cancel()
 
             if amend_qty:
+                recreate_picking = True
                 # link the new line with the remaining procurements
                 # (not done nor canceled)
                 values = {'product_qty': amend_qty,
+                          'move_ids': False,
                           'procurement_ids': [(6, 0, procurements.ids)]}
-
-                original_amend_qty = (ordered_qty -
-                                      shipped_qty -
-                                      item.canceled_qty)
-                if compare(amend_qty, original_amend_qty) != 0:
-                    # Means: amend_qty != original_amend_qty
-                    # We need to change the quantity of the move
-                    # A new procurement will be generated for the line
-                    procurements.cancel()
-                    values['procurement_ids'] = False
-
                 amend_line = line.copy(default=values)
                 amend_line.action_confirm()
-                for proc in amend_line.procurement_ids:
-                    if proc.state == 'confirmed':
-                        # if a new procurement has been created,
-                        # create the move and change it to 'running'
-                        proc.run()
 
-        purchase = self.mapped('purchase_line_id.order_id')
-        # Update the pickings according to the new procurements
-        # TODO: ship recreate
+        if recreate_picking:
+            self.picking_recreate()
+        # they must be canceled after the creation of the new pickings
+        # otherwise the order's state change to 'except_picking'
+        moves_to_cancel.action_cancel()
         return True
+
+    @api.multi
+    def picking_recreate(self):
+        purchase = self.mapped('purchase_line_id.order_id')
+        purchase_model = self.env['purchase.order']
+
+        lines = self.env['purchase.order.line'].browse()
+        for line in purchase.order_line:
+            if line.state == 'cancel':
+                continue
+            elif line.received:
+                continue
+            # check if we already have moves before generating them
+            move_qty = sum(line.move_ids.mapped(lambda m: m.product_qty
+                                                if m.state != 'cancel'
+                                                else 0.))
+            rounding = line.product_uom.rounding
+            if float_compare(line.product_qty, move_qty,
+                             precision_digits=rounding) == 0:
+                continue
+            lines += line
+
+        for picking in purchase.picking_ids:
+            if picking.state == 'assigned':
+                # reuse existing picking
+                purchase_model._create_stock_moves(purchase, lines, picking.id)
+                break
+        else:
+            picking_vals = {
+                'picking_type_id': purchase.picking_type_id.id,
+                'partner_id': purchase.partner_id.id,
+                'date': max([l.date_planned for l in purchase.order_line
+                             if l.state != 'cancel']),
+                'origin': purchase.name,
+            }
+            picking = self.env['stock.picking'].create(picking_vals)
+            purchase_model._create_stock_moves(purchase, lines, picking.id)
