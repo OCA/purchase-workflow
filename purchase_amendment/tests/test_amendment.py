@@ -334,7 +334,6 @@ class TestAmendmentCombinations(common.TransactionCase):
         ])
 
     def test_amend_nothing(self):
-        # Cancel the 100 product1
         # amend the purchase order
         amendment = self.amend()
 
@@ -355,3 +354,45 @@ class TestAmendmentCombinations(common.TransactionCase):
             (self.product2, 500, 'assigned'),
             (self.product3, 800, 'assigned'),
         ])
+
+    def test_cancel_and_amend(self):
+        # Cancel all moves
+        self.purchase.mapped('picking_ids.move_lines').action_cancel()
+
+        self.assertEqual(self.purchase.state, 'except_picking')
+
+        # amend the purchase order
+        amendment = self.amend()
+
+        # reset to original quantity
+        self.amend_product(amendment, self.product1, 1000)
+        self.amend_product(amendment, self.product2, 500)
+        self.amend_product(amendment, self.product3, 800)
+
+        self.assert_amendment_quantities(amendment, self.product1,
+                                         ordered_qty=1000,
+                                         canceled_qty=1000,
+                                         amend_qty=1000)
+        self.assert_amendment_quantities(amendment, self.product2,
+                                         ordered_qty=500,
+                                         canceled_qty=500, amend_qty=500)
+        self.assert_amendment_quantities(amendment, self.product3,
+                                         ordered_qty=800,
+                                         canceled_qty=800,
+                                         amend_qty=800)
+        amendment.do_amendment()
+        self.assert_purchase_lines([
+            (self.product1, 1000, 'confirmed'),
+            (self.product2, 500, 'confirmed'),
+            (self.product3, 800, 'confirmed'),
+        ])
+        self.assert_moves([
+            (self.product1, 1000, 'cancel'),
+            (self.product2, 500, 'cancel'),
+            (self.product3, 800, 'cancel'),
+            (self.product1, 1000, 'assigned'),
+            (self.product2, 500, 'assigned'),
+            (self.product3, 800, 'assigned'),
+        ])
+
+        self.assertEqual(self.purchase.state, 'approved')

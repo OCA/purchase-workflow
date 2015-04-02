@@ -38,17 +38,33 @@ class PurchaseOrder(models.Model):
         amendment = amend_model.create({'purchase_id': self.id})
         return amendment.wizard_view()
 
+    @api.multi
+    def action_picking_create(self):
+        for purchase in self:
+            # since we added a transition from picking_except to
+            # picking, we prevent the picking to be created again
+            if purchase.picking_ids:
+                # change from picking_except to confirmed
+                purchase.state = 'approved'
+                continue
+            super(PurchaseOrder, self).action_picking_create()
+
 
 class PurchaseOrderLine(models.Model):
     _inherit = 'purchase.order.line'
 
+    move_qty = fields.Float(
+        string='Moves Quantity',
+        compute='_compute_move_qty',
+        digits_compute=dp.get_precision('Product Unit of Measure'),
+    )
     received_qty = fields.Float(
         string='Received Quantity',
-        compute='_compute_received_qty',
+        compute='_compute_move_qty',
         digits_compute=dp.get_precision('Product Unit of Measure'),
     )
     received = fields.Boolean(string='Received',
-                              compute='_compute_received_qty')
+                              compute='_compute_move_qty')
     amend_id = fields.Many2one(comodel_name='purchase.order.line',
                                string='Amend Line')
     amended_by_ids = fields.One2many(comodel_name='purchase.order.line',
@@ -58,16 +74,24 @@ class PurchaseOrderLine(models.Model):
     @api.one
     @api.depends('product_qty',
                  'move_ids', 'move_ids.state', 'move_ids.product_qty')
-    def _compute_received_qty(self):
+    def _compute_move_qty(self):
         moves = self.move_ids
         if not moves:
+            self.move_qty = 0
             self.received = False
             self.received_qty = 0
+            return
 
-        received_qty = sum(moves.mapped(
-            lambda m: m.product_qty if m.state == 'done' else 0.)
-        )
+        move_qty = 0.
+        received_qty = 0.
+        for move in moves:
+            if move.state == 'done':
+                received_qty += move.product_qty
+            elif move.state != 'cancel':
+                move_qty += move.product_qty
+
         rounding = self.product_id.uom_id.rounding
         self.received = bool(float_compare(self.product_qty, received_qty,
                                            precision_digits=rounding) <= 0)
+        self.move_qty = move_qty
         self.received_qty = received_qty

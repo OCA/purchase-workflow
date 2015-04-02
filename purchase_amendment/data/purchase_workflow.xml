@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data noupdate="0">
+
+    <record id="trans_picking_except_picking_amend" model="workflow.transition">
+      <field name="act_from" ref="purchase.act_except_picking"/>
+      <field name="act_to" ref="purchase.act_picking"/>
+      <field name="signal">picking_amend</field>
+    </record>
+
+  </data>
+</openerp>

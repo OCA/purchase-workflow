@@ -33,6 +33,7 @@
     "installable": True,
     "data": ["view/purchase_order.xml",
              "view/purchase_order_amendment_view.xml",
+             "data/purchase_workflow.xml",
              ],
     "test": [],
 }

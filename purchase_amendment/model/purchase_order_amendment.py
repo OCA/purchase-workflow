@@ -165,7 +165,6 @@ class PurchaseOrderAmendmentItem(models.TransientModel):
         duplicated line will be 'confirmed' and a new picking will be created.
         """
         moves_to_cancel = self.env['stock.move'].browse()
-        recreate_picking = False
         for item in self:
             line = item.purchase_line_id
             amend_qty = item.amend_qty
@@ -239,7 +238,6 @@ class PurchaseOrderAmendmentItem(models.TransientModel):
                 canceled_line.action_cancel()
 
             if amend_qty:
-                recreate_picking = True
                 # link the new line with the remaining procurements
                 # (not done nor canceled)
                 values = {'product_qty': amend_qty,
@@ -252,8 +250,7 @@ class PurchaseOrderAmendmentItem(models.TransientModel):
                 # line
                 procurements.write({'purchase_line_id': amend_line.id})
 
-        if recreate_picking:
-            self.picking_recreate()
+        self.picking_recreate()
         # they must be canceled after the creation of the new pickings
         # otherwise the order's state change to 'except_picking'
         moves_to_cancel.action_cancel()
@@ -271,14 +268,16 @@ class PurchaseOrderAmendmentItem(models.TransientModel):
             elif line.received:
                 continue
             # check if we already have moves before generating them
-            move_qty = sum(line.move_ids.mapped(lambda m: m.product_qty
-                                                if m.state != 'cancel'
-                                                else 0.))
             rounding = line.product_uom.rounding
-            if float_compare(line.product_qty, move_qty,
+            if float_compare(line.product_qty, line.move_qty,
                              precision_digits=rounding) == 0:
+                # when we have the same quantity of moves, we don't need
+                # to create new ones
                 continue
             lines += line
+
+        if not lines:
+            return
 
         for picking in purchase.picking_ids:
             if picking.state == 'assigned':
@@ -295,3 +294,4 @@ class PurchaseOrderAmendmentItem(models.TransientModel):
             }
             picking = self.env['stock.picking'].create(picking_vals)
             purchase_model._create_stock_moves(purchase, lines, picking.id)
+        purchase.signal_workflow('picking_amend')
