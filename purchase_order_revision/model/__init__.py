@@ -19,23 +19,4 @@
 #
 ##############################################################################
 
-{
-    'name': "Purchase order revisions",
-    'version': '0.2',
-    'category': 'Purchase Management',
-    'author': "Agile Business Group,"
-              "Camptocamp,"
-              "Odoo Community Association (OCA)",
-    'website': 'http://www.agilebg.com',
-    'license': 'AGPL-3',
-    "depends": ['purchase'],
-    "data": [
-        'view/purchase_order.xml',
-    ],
-    "demo": [],
-    "test": [
-        'test/purchase_order.yml',
-    ],
-    "active": False,
-    "installable": True
-}
+from . import purchase_order
