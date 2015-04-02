@@ -19,50 +19,49 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, orm
+from openerp import models, fields, api
 from openerp.tools.translate import _
 
 
-class purchase_order(orm.Model):
-
+class purchase_order(models.Model):
     _inherit = "purchase.order"
 
-    _columns = {
-        'current_revision_id': fields.many2one(
-            'purchase.order', 'Current revision', readonly=True),
-        'old_revision_ids': fields.one2many(
-            'purchase.order', 'current_revision_id',
-            'Old revisions', readonly=True),
-    }
+    current_revision_id = fields.Many2one('purchase.order',
+                                          'Current revision',
+                                          readonly=True)
+    old_revision_ids = fields.One2many('purchase.order',
+                                       'current_revision_id',
+                                       'Old revisions',
+                                       readonly=True)
 
-    def new_revision(self, cr, uid, ids, context=None):
-        if len(ids) > 1:
-            raise orm.except_orm(
-                _('Error'), _('This only works for 1 PO at a time'))
-        po = self.browse(cr, uid, ids[0], context)
-        new_seq = self.pool.get('ir.sequence').get(
-            cr, uid, 'purchase.order') or '/'
-        old_seq = po.name
-        po.write({'name': new_seq}, context=context)
+    @api.multi
+    def new_revision(self):
+        self.ensure_one()
+        seq = self.env['ir.sequence']
+        new_name = seq.next_by_code('purchase.order') or '/'
+        old_name = self.name
+        self.write({'name': new_name})
         # 'orm.Model.copy' is called instead of 'self.copy' in order to avoid
         # 'purchase.order' method to overwrite our values, like name and state
-        orm.Model.copy(self, cr, uid, po.id, default={
-            'name': old_seq,
-            'state': 'cancel',
-            'shipped': False,
-            'invoiced': False,
-            'invoice_ids': [],
-            'picking_ids': [],
-            'old_revision_ids': [],
-            'current_revision_id': po.id,
-        }, context=None)
-        self.action_cancel_draft(cr, uid, [po.id], context=context)
+        defaults = {'name': old_name,
+                    'state': 'cancel',
+                    'shipped': False,
+                    'invoiced': False,
+                    'invoice_ids': [],
+                    'picking_ids': [],
+                    'old_revision_ids': [],
+                    'current_revision_id': self.id,
+                    }
+        super(purchase_order, self).copy(default=defaults)
+        self.action_cancel_draft()
         return True
 
-    def copy(self, cr, uid, id, default=None, context=None):
+    @api.returns('self', lambda value: value.id)
+    @api.multi
+    def copy(self, default=None):
         if not default:
             default = {}
         default.update({
             'old_revision_ids': [],
         })
-        return super(purchase_order, self).copy(cr, uid, id, default, context)
+        return super(purchase_order, self).copy(default)
