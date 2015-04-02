@@ -2,11 +2,10 @@ Purchase Amendment
 ==============
 
 This module is meant to assist the users in handling the cases when a customer
-changes his mind about a sale and the order is using drop shipping or
-make to order.
+changes his mind about a purchase.
 
 See also `sale_amendment` (in https://github.com/OCA/sale-workflow)
-which cover the more general use case of changes in sale orders.
+which cover a similar use case for changes in sale orders.
 
 
 Background information
@@ -14,6 +13,15 @@ Background information
 
 Usage
 =====
+
+Once a purchase order is confirmed, an 'Amend' button is shown on the
+view's header. Clicking on this button will open a new window with the
+order's lines and the quantity to amend.
+
+Amending a purchase order will cancel the stock moves and create new
+ones with the new quantities.
+
+An invoiced purchase order cannot be amended.
 
 Known issues / Roadmap
 ======================
