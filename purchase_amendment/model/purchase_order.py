@@ -49,6 +49,11 @@ class PurchaseOrderLine(models.Model):
     )
     received = fields.Boolean(string='Received',
                               compute='_compute_received_qty')
+    amend_id = fields.Many2one(comodel_name='purchase.order.line',
+                               string='Amend Line')
+    amended_by_ids = fields.One2many(comodel_name='purchase.order.line',
+                                     inverse_name='amend_id',
+                                     string='Amended by lines')
 
     @api.one
     @api.depends('product_qty',
