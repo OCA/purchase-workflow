@@ -7,7 +7,8 @@
           <t t-set="num_of_suppliers" t-value="len(set(bid.partner_id for bid in o.purchase_ids))"/>
           <t t-set="all_bids" t-value="[bid for bid in o.purchase_ids if bid.type == 'bid']"/>
           <t t-set="all_eligible_bids" t-value="[bid for bid in all_bids if bid.state in ('draftbid', 'bid') and bid.bid_eligible]"/>
-          <t t-set="tendering_output" t-value="sum(l.quantity_bid * l.price_unit_co for bid in all_eligible_bids for l in bid.order_line)"/>
+
+          <t t-set="tendering_output" t-value="sum(l.quantity_bid * l.order_id.currency_id.compute(l.price_unit, l.order_id.currency_id, round=False) for bid in all_eligible_bids for l in bid.order_line)"/>
           <t t-if="not all_eligible_bids">
             <p>
               No eligible bids
@@ -120,7 +121,8 @@
                               </td>
                             </t>
                             <td colspan="5" class="text-center col-separator">
-                              <span t-esc="bid.currency_id._get_conversion_rate(bid.currency_id, o.company_id.currency_id)"/>
+                              <t t-set="bid_conversion_rate" t-value="bid.currency_id._get_conversion_rate(bid.currency_id, o.company_id.currency_id)"/>
+                              <span t-esc="bid_conversion_rate"/>
                             </td>
                           </t>
                         </tr>
@@ -145,6 +147,7 @@
                         <t t-foreach="o.line_ids" t-as="req_line">
                           <tr>
                             <t t-foreach="bid_batch" t-as="bid">
+                              <t t-set="bid_conversion_rate" t-value="bid.currency_id._get_conversion_rate(bid.currency_id, o.company_id.currency_id)"/>
                               <t t-if="bid_first">
                                 <td><span t-field="req_line.product_id"/></td>
                                 <td class="text-right col-separator"><span t-esc="'{:,.2f}'.format(req_line.product_qty)"/></td>
@@ -173,11 +176,11 @@
                                 </td>
                                 <td class="text-right">
                                   <!--Company Currency Unit Price-->
-                                  <span t-field="bid_line.price_unit"/>
+                                  <span t-esc="'{:,.2f}'.format(bid_line.price_unit * bid_conversion_rate)"/>
                                 </td>
                                 <td class="text-right col-separator">
                                   <!--Company Currency total-->
-                                  <span t-field="bid_line.price_subtotal_co"/>
+                                  <span t-esc="'{:,.2f}'.format(bid_line.price_subtotal * bid_conversion_rate)"/>
                                 </td>
                               </t>
                               <t t-if="not bid_line">
@@ -188,6 +191,7 @@
                         </t>
                         <tr class="subtotal">
                           <t t-foreach="bid_batch" t-as="bid">
+                            <t t-set="bid_conversion_rate" t-value="bid.currency_id._get_conversion_rate(bid.currency_id, o.company_id.currency_id)"/>
                             <t t-if="bid_first">
                               <td colspan="2" class="col-separator"/>
                             </t>
@@ -197,7 +201,7 @@
                             </td>
                             <td/>
                             <td class="text-right col-separator">
-                              <t t-esc="'{:,.2f}'.format(sum(l.price_subtotal_co for l in bid.order_line if l.product_id.type != 'service'))"/>
+                              <t t-esc="'{:,.2f}'.format(sum(l.price_subtotal for l in bid.order_line if l.product_id.type != 'service') * bid_conversion_rate)"/>
                             </td>
                           </t>
                         </tr>
@@ -218,6 +222,7 @@
                         <t t-foreach="service_products" t-as="service">
                           <tr>
                             <t t-foreach="bid_batch" t-as="bid">
+                              <t t-set="bid_conversion_rate" t-value="bid.currency_id._get_conversion_rate(bid.currency_id, o.company_id.currency_id)"/>
                               <t t-if="bid_first">
                                 <td colspan="2" class="col-separator"><span t-esc="service.name"/></td>
                               </t>
@@ -241,7 +246,7 @@
                                 </td>
                                 <td colspan="1"/>
                                 <td colspan="1" class="text-right col-separator">
-                                  <span t-field="service_line.price_unit_co"/>
+                                  <span t-esc="'{:,.2f}'.format(service_line.price_unit * bid_conversion_rate)"/>
                                 </td>
                               </t>
                               <t t-if="not service_line">
@@ -252,6 +257,7 @@
                         </t>
                         <tr class="subtotal">
                           <t t-foreach="bid_batch" t-as="bid">
+                            <t t-set="bid_conversion_rate" t-value="bid.currency_id._get_conversion_rate(bid.currency_id, o.company_id.currency_id)"/>
                             <t t-if="bid_first">
                               <th colspan="2" class="col-separator">
                                 Sub-total services
@@ -263,12 +269,13 @@
                             </td>
                             <td/>
                             <td class="text-right col-separator">
-                              <t t-esc="'{:,.2f}'.format(sum(l.price_subtotal_co for l in bid.order_line if l.product_id.type == 'service'))"/>
+                              <t t-esc="'{:,.2f}'.format(sum(l.price_subtotal for l in bid.order_line if l.product_id.type == 'service') * bid_conversion_rate)"/>
                             </td>
                           </t>
                         </tr>
                         <tr class="total">
                           <t t-foreach="bid_batch" t-as="bid">
+                            <t t-set="bid_conversion_rate" t-value="bid.currency_id._get_conversion_rate(bid.currency_id, o.company_id.currency_id)"/>
                             <t t-if="bid_first">
                               <th colspan="2" class="col-separator">
                                 GRAND TOTAL
@@ -285,7 +292,7 @@
                               <span t-field="o.company_id.currency_id"/>
                             </th>
                             <td class="text-right col-separator">
-                              <span t-esc="'{:,.2f}'.format(sum(l.price_subtotal_co for l in bid.order_line))"/>
+                              <span t-esc="'{:,.2f}'.format(sum(l.price_subtotal for l in bid.order_line) * bid_conversion_rate)"/>
                             </td>
                           </t>
                         </tr>
