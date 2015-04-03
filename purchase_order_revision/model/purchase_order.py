@@ -28,40 +28,47 @@ class purchase_order(models.Model):
 
     current_revision_id = fields.Many2one('purchase.order',
                                           'Current revision',
+                                          copy=True,
                                           readonly=True)
     old_revision_ids = fields.One2many('purchase.order',
                                        'current_revision_id',
                                        'Old revisions',
-                                       readonly=True)
+                                       readonly=True,
+                                       context={'active_test': False})
+    revision_number = fields.Integer('Revision',
+                                     copy=False)
+    unrevisioned_name = fields.Char('Order Reference',
+                                    copy=True,
+                                    readonly=True)
+    active = fields.Boolean('Active',
+                            default=True,
+                            copy=True)
+
+    _sql_constraints = [
+        ('revision_unique',
+         'unique(unrevisioned_name, revision_number, company_id)',
+         'Order Reference and revision must be unique per Company.'),
+    ]
 
     @api.multi
     def new_revision(self):
         self.ensure_one()
-        seq = self.env['ir.sequence']
-        new_name = seq.next_by_code('purchase.order') or '/'
         old_name = self.name
-        self.write({'name': new_name})
+        revno = self.revision_number
+        self.write({'name': '%s-%02d' % (self.unrevisioned_name,
+                                         revno + 1),
+                    'revision_number': revno + 1})
         # 'orm.Model.copy' is called instead of 'self.copy' in order to avoid
         # 'purchase.order' method to overwrite our values, like name and state
         defaults = {'name': old_name,
+                    'revision_number': revno,
+                    'active': False,
                     'state': 'cancel',
-                    'shipped': False,
-                    'invoiced': False,
-                    'invoice_ids': [],
-                    'picking_ids': [],
-                    'old_revision_ids': [],
                     'current_revision_id': self.id,
                     }
-        super(purchase_order, self).copy(default=defaults)
+        old_revision = super(purchase_order, self).copy(default=defaults)
         self.action_cancel_draft()
+        msg = _('New revision created: %s') % self.name
+        self.message_post(body=msg)
+        old_revision.message_post(body=msg)
         return True
-
-    @api.returns('self', lambda value: value.id)
-    @api.multi
-    def copy(self, default=None):
-        if not default:
-            default = {}
-        default.update({
-            'old_revision_ids': [],
-        })
-        return super(purchase_order, self).copy(default)
