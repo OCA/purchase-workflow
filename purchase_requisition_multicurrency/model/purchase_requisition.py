@@ -19,6 +19,7 @@
 #
 #
 from openerp import models, fields
+from openerp.tools import SUPERUSER_ID
 
 
 class PurchaseRequisition(models.Model):
@@ -38,3 +39,35 @@ class PurchaseRequisition(models.Model):
         related='pricelist_id.currency_id',
         comodel_name='res.currency',
         string='Currency')
+
+    def _auto_init(self, cr, context):
+        """Fill in the required field with default values.
+
+        This is similar to the solution used in mail_alias.py in the core.
+
+        The installation of the module will succeed with no errors, and the
+        column will be required immediately (the previous solution made it
+        required only on the first module update after installation).
+
+        """
+
+        # create the column non required
+        self._columns['pricelist_id'].required = False
+        super(PurchaseRequisition, self)._auto_init(cr, context=context)
+
+        default_pricelist_id = self.pool['product.pricelist'].search(
+            cr, SUPERUSER_ID, [('type', '=', 'purchase')], limit=1,
+            context=context
+        )[0]
+
+        # do not use the ORM, because it would try to recompute fields that are
+        # not fully initialized
+        cr.execute('''
+                   UPDATE purchase_requisition
+                   SET pricelist_id = %s
+                   WHERE pricelist_id IS NULL;
+                   ''', (default_pricelist_id,))
+
+        # make the column required again
+        self._columns['pricelist_id'].required = True
+        super(PurchaseRequisition, self)._auto_init(cr, context=context)
