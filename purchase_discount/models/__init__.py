@@ -18,3 +18,4 @@
 #
 ##############################################################################
 from . import purchase_discount
+from . import stock_move
