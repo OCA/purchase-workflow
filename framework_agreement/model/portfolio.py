@@ -19,10 +19,8 @@ from datetime import datetime
 from openerp import models, fields, api, exceptions
 from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
 
-AGR_PO_STATE = ('draft', 'confirmed', 'approved',
+AGR_PO_STATE = ('confirmed', 'approved',
                 'done', 'except_picking', 'except_invoice')
-# AGR_PO_STATE = ('confirmed', 'approved',
-#                 'done', 'except_picking', 'except_invoice')
 
 
 class Portfolio(models.Model):
