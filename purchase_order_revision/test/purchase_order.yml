@@ -26,3 +26,5 @@
      action = self.new_revision(cr, uid, [ref('purchase_order_1')])
      new_po = self.browse(cr, uid, ref('purchase_order_1'))
      assert new_po.old_revision_ids, "Old revisions not set"
+     assert new_po.revision_number == 1
+     assert new_po.name.endswith('-01')
