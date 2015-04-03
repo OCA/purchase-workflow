@@ -66,9 +66,12 @@ class Portfolio(models.Model):
     purchase_ids = fields.One2many('purchase.order', 'portfolio_id')
 
     _sql_constraints = [
-        # ('uniq_portfolio',
-        #  'unique(supplier_id, company_id)',
-        #  'There can be only one portfolio per supplier and company.'),
+        ('uniq_portfolio',
+         'unique(supplier_id, company_id)',
+         'There can be only one portfolio per supplier and company.'),
+        ('date_priority',
+         'check(start_date < end_date)',
+         'Start/end date inversion'),
     ]
 
     @api.one
