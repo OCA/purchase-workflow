@@ -160,6 +160,14 @@ class Portfolio(models.Model):
                 })],
             })
 
+    @api.multi
+    def get_line_for_product(self, product):
+        self.ensure_one()
+        for product_line in self.line_ids:
+            if product_line.product_id == product:
+                return product_line
+        return False
+
 
 class AgreementProductLine(models.Model):
     _name = 'agreement.product.line'

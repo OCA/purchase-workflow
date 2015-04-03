@@ -47,6 +47,7 @@ class Pricelist(models.Model):
 
     def _price_rule_get_multi(self, cr, uid, pricelist,
                               products_by_qty_by_partner, context=None):
+        """Ugly duplication to implement the boolean use_agreement_prices."""
         context = context or {}
         date = context.get('date') or time.strftime('%Y-%m-%d')
 
