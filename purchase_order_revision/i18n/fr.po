@@ -18,51 +18,51 @@ msgstr ""
 #. module: purchase_order_revision
 #: field:purchase.order,active:0
 msgid "Active"
-msgstr ""
+msgstr "Actif"
 
 #. module: purchase_order_revision
 #: field:purchase.order,current_revision_id:0
 msgid "Current revision"
-msgstr ""
+msgstr "Dernière version"
 
 #. module: purchase_order_revision
 #: view:purchase.order:purchase_order_revision.purchase_order_form
 msgid "New revision"
-msgstr ""
+msgstr "Nouvelle version"
 
 #. module: purchase_order_revision
 #: code:addons/purchase_order_revision/model/purchase_order.py:72
 #, python-format
 msgid "New revision created: %s"
-msgstr ""
+msgstr "Nouvelle version créée : %s"
 
 #. module: purchase_order_revision
 #: field:purchase.order,old_revision_ids:0
 msgid "Old revisions"
-msgstr ""
+msgstr "Précédentes versions"
 
 #. module: purchase_order_revision
 #: field:purchase.order,unrevisioned_name:0
 msgid "Order Reference"
-msgstr ""
+msgstr "Référence commande"
 
 #. module: purchase_order_revision
 #: sql_constraint:purchase.order:0
 msgid "Order Reference and revision must be unique per Company."
-msgstr ""
+msgstr "La référence de l'offre et son numéro de version doivent être uniques au sein d'une société."
 
 #. module: purchase_order_revision
 #: model:ir.model,name:purchase_order_revision.model_purchase_order
 msgid "Purchase Order"
-msgstr ""
+msgstr "Bon de commande"
 
 #. module: purchase_order_revision
 #: field:purchase.order,revision_number:0
 msgid "Revision"
-msgstr ""
+msgstr "Version"
 
 #. module: purchase_order_revision
 #: view:purchase.order:purchase_order_revision.purchase_order_form
 msgid "Revisions"
-msgstr ""
+msgstr "Versions"
 

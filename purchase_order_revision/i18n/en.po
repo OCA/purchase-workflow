@@ -18,51 +18,51 @@ msgstr ""
 #. module: purchase_order_revision
 #: field:purchase.order,active:0
 msgid "Active"
-msgstr ""
+msgstr "Active"
 
 #. module: purchase_order_revision
 #: field:purchase.order,current_revision_id:0
 msgid "Current revision"
-msgstr ""
+msgstr "Current revision"
 
 #. module: purchase_order_revision
 #: view:purchase.order:purchase_order_revision.purchase_order_form
 msgid "New revision"
-msgstr ""
+msgstr "New revision"
 
 #. module: purchase_order_revision
 #: code:addons/purchase_order_revision/model/purchase_order.py:72
 #, python-format
 msgid "New revision created: %s"
-msgstr ""
+msgstr "New revision created: %s"
 
 #. module: purchase_order_revision
 #: field:purchase.order,old_revision_ids:0
 msgid "Old revisions"
-msgstr ""
+msgstr "Old revisions"
 
 #. module: purchase_order_revision
 #: field:purchase.order,unrevisioned_name:0
 msgid "Order Reference"
-msgstr ""
+msgstr "Order Reference"
 
 #. module: purchase_order_revision
 #: sql_constraint:purchase.order:0
 msgid "Order Reference and revision must be unique per Company."
-msgstr ""
+msgstr "Order Reference and revision must be unique per Company."
 
 #. module: purchase_order_revision
 #: model:ir.model,name:purchase_order_revision.model_purchase_order
 msgid "Purchase Order"
-msgstr ""
+msgstr "Purchase Order"
 
 #. module: purchase_order_revision
 #: field:purchase.order,revision_number:0
 msgid "Revision"
-msgstr ""
+msgstr "Revision"
 
 #. module: purchase_order_revision
 #: view:purchase.order:purchase_order_revision.purchase_order_form
 msgid "Revisions"
-msgstr ""
+msgstr "Revisions"
 
