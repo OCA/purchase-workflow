@@ -1,10 +1,6 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2004-2009 Tiny SPRL (<http://tiny.be>).
-#    Copyright (c) 2014-2015 Serv. Tecnol. Avanzados - Pedro M. Baeza
-#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
 #    published by the Free Software Foundation, either version 3 of the
@@ -19,26 +15,17 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{
-    "name": "Purchase order lines with discounts",
-    "author": "Tiny, "
-              "Acysos S.L., "
-              "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
-              "Odoo Community Association (OCA)",
-    "version": "1.0",
-    "contributors": [
-        'Pedro M. Baeza',
-    ],
-    "category": "Purchase Management",
-    "depends": [
-        "stock",
-        "purchase",
-    ],
-    "data": [
-        "views/purchase_discount_view.xml",
-        "views/account_invoice_view.xml",
-        "report/purchase_discount_report.xml",
-    ],
-    "license": 'AGPL-3',
-    "installable": True
-}
+
+from openerp import models, api
+
+
+class StockMove(models.Model):
+    _inherit = "stock.move"
+
+    @api.model
+    def _get_invoice_line_vals(self, move, partner, inv_type):
+        res = super(StockMove, self)._get_invoice_line_vals(move, partner,
+                                                            inv_type)
+        if move.purchase_line_id:
+            res['discount'] = move.purchase_line_id.discount
+        return res
