@@ -14,27 +14,20 @@
 #
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+from openerp.tests import common
 
 
-class BaseAgreementTestMixin(object):
-    """Class that contain common behavior for all agreement unit test classes.
-
-    We use Mixin because we want to have those behaviors on the various
-    unit test subclasses provided by OpenERP in test common.
-
-    """
-
-    def commonsetUp(self):
-        self.agreement_model = self.env['framework.agreement']
-        self.agreement_pl_model = self.env['framework.agreement.pricelist']
-        self.agreement_line_model = self.env['framework.agreement.line']
+class AgreementTransactionCase(common.TransactionCase):
+    def setUp(self):
+        super(AgreementTransactionCase, self).setUp()
+        self.Portfolio = self.env['framework.agreement.portfolio']
         self.product = self.env['product.product'].create({
             'name': 'test_1',
             'type': 'product',
             'list_price': 10.00
         })
         self.supplier = self.env.ref('base.res_partner_1')
-        self.portfolio = self.env['framework.agreement.portfolio'].create({
+        self.portfolio = self.Portfolio.create({
             'name': '/',
             'supplier_id': self.supplier.id,
         })
