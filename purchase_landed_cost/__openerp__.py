@@ -43,6 +43,7 @@
         'views/purchase_order_view.xml',
         'views/stock_picking_view.xml',
         'data/purchase_cost_distribution_sequence.xml',
+        'security/purchase_landed_cost_security.xml',
         'security/ir.model.access.csv',
     ],
     'installable': True,
