@@ -25,7 +25,7 @@ class PurchaseExpenseType(models.Model):
     name = fields.Char(string='Name', required=True, translate=True,
                        select=True)
     company_id = fields.Many2one(
-        comodel_name='res.company', string='Company', required=True,
+        comodel_name='res.company', string='Company',
         default=(lambda self: self.env['res.company']._company_default_get(
             'purchase.cost.type')))
     default_expense = fields.Boolean(
