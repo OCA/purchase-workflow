@@ -224,38 +224,69 @@ class PurchaseCostDistribution(models.Model):
             distribution.state = 'calculated'
         return True
 
-    @api.multi
+    def _product_price_update(self, move, new_price):
+        """Method that mimicks stock.move's product_price_update_before_done
+        method behaviour, but taking into account that calculations are made
+        on an already done move, and prices sources are given as parameters.
+        """
+        if (move.location_id.usage == 'supplier' and
+                move.product_id.cost_method == 'average'):
+            product = move.product_id
+            qty_available = product.product_tmpl_id.qty_available
+            product_avail = qty_available - move.product_qty
+            if product_avail <= 0:
+                new_std_price = move.price_unit
+            else:
+                domain_quant = [
+                    ('product_id', 'in',
+                     product.product_tmpl_id.product_variant_ids.ids),
+                    ('id', 'not in', move.quant_ids.ids)]
+                quants = self.env['stock.quant'].read_group(
+                    domain_quant, ['product_id', 'qty', 'cost'], [])[0]
+                # Get the standard price
+                new_std_price = ((quants['cost'] * quants['qty'] +
+                                  new_price * move.product_qty) /
+                                 qty_available)
+            # Write the standard price, as SUPERUSER_ID, because a
+            # warehouse manager may not have the right to write on products
+            product.sudo().write({'standard_price': new_std_price})
+
+    @api.one
     def action_done(self):
-        for distribution in self:
-            for line in distribution.cost_lines:
-                if distribution.cost_update_type == 'direct':
-                    line.product_id.standard_price = line.standard_price_new
-            distribution.state = 'done'
-        return True
+        for line in self.cost_lines:
+            if self.cost_update_type == 'direct':
+                line.move_id.quant_ids._price_update(line.standard_price_new)
+                self._product_price_update(
+                    line.move_id, line.standard_price_new)
+                line.move_id.product_price_update_after_done()
+        self.state = 'done'
 
     @api.multi
     def action_draft(self):
-        for distribution in self:
-            distribution.state = 'draft'
+        self.write({'state': 'draft'})
         return True
 
-    @api.multi
+    @api.one
     def action_cancel(self):
-        for distribution in self:
-            for line in distribution.cost_lines:
-                if distribution.currency_id.compare_amounts(
-                        line.product_id.standard_price,
+        for line in self.cost_lines:
+            if self.cost_update_type == 'direct':
+                if self.currency_id.compare_amounts(
+                        line.move_id.quant_ids[0].cost,
                         line.standard_price_new) != 0:
                     raise exceptions.Warning(
                         _('Cost update cannot be undone because there has '
                           'been a later update. Restore correct price and try '
                           'again.'))
-                line.product_id.standard_price = line.standard_price_old
-            distribution.state = 'draft'
-        return True
+                line.move_id.quant_ids._price_update(line.standard_price_old)
+                self._product_price_update(
+                    line.move_id, line.standard_price_old)
+                line.move_id.product_price_update_after_done()
+        self.state = 'draft'
 
 
 class PurchaseCostDistributionLine(models.Model):
+    _name = "purchase.cost.distribution.line"
+    _description = "Purchase cost distribution Line"
 
     @api.one
     @api.depends('product_price_unit', 'product_qty')
@@ -265,17 +296,34 @@ class PurchaseCostDistributionLine(models.Model):
     @api.one
     @api.depends('product_id', 'product_qty')
     def _compute_total_weight(self):
-        self.total_weight = self.product_weight * self.product_qty
+        self.total_weight = sum(x.total_weight for x in self.move_id.quant_ids)
+
+    @api.one
+    @api.depends('total_weight')
+    def _compute_product_weight(self):
+        self.product_weight = self.total_weight / self.move_id.product_qty
 
     @api.one
     @api.depends('product_id', 'product_qty')
     def _compute_total_weight_net(self):
-        self.total_weight_net = self.product_weight_net * self.product_qty
+        self.total_weight_net = sum(x.total_weight_net for x in
+                                    self.move_id.quant_ids)
+
+    @api.one
+    @api.depends('total_weight_net')
+    def _compute_product_weight_net(self):
+        self.product_weight_net = (self.total_weight_net /
+                                   self.move_id.product_qty)
 
     @api.one
     @api.depends('product_id', 'product_qty')
     def _compute_total_volume(self):
-        self.total_volume = self.product_volume * self.product_qty
+        self.total_volume = sum(x.total_volume for x in self.move_id.quant_ids)
+
+    @api.one
+    @api.depends('total_weight')
+    def _compute_product_volume(self):
+        self.product_volume = self.total_volume / self.move_id.product_qty
 
     @api.one
     @api.depends('expense_lines', 'expense_lines.cost_ratio')
@@ -292,9 +340,6 @@ class PurchaseCostDistributionLine(models.Model):
     @api.depends('standard_price_old', 'cost_ratio')
     def _compute_standard_price_new(self):
         self.standard_price_new = self.standard_price_old + self.cost_ratio
-
-    _name = "purchase.cost.distribution.line"
-    _description = "Purchase cost distribution Line"
 
     @api.one
     @api.depends('move_id', 'move_id.picking_id', 'move_id.product_id',
@@ -315,6 +360,12 @@ class PurchaseCostDistributionLine(models.Model):
     def _get_product_qty(self):
         # Cannot be done via related field due to strange bug in update chain
         self.product_qty = self.move_id.product_qty
+
+    @api.one
+    @api.depends('move_id')
+    def _get_standard_price_old(self):
+        self.standard_price_old = (
+            self.move_id and self.move_id.get_price_unit(self.move_id) or 0.0)
 
     name = fields.Char(
         string='Name', compute='_compute_display_name')
@@ -355,15 +406,15 @@ class PurchaseCostDistributionLine(models.Model):
         ondelete='cascade')
     product_volume = fields.Float(
         string='Volume', help="The volume in m3.",
-        related='product_id.product_tmpl_id.volume')
+        compute='_compute_product_volume', store=True)
     product_weight = fields.Float(
-        string='Gross weight', related='product_id.product_tmpl_id.weight',
+        string='Gross weight', compute='_compute_product_weight', store=True,
         help="The gross weight in Kg.")
     product_weight_net = fields.Float(
-        string='Net weight', related='product_id.product_tmpl_id.weight_net',
+        string='Net weight', compute='_compute_product_weight_net', store=True,
         help="The net weight in Kg.")
     standard_price_old = fields.Float(
-        string='Previous cost',
+        string='Previous cost', compute="_get_standard_price_old", store=True,
         digits_compute=dp.get_precision('Product Price'))
     expense_amount = fields.Float(
         string='Cost amount', digits_compute=dp.get_precision('Account'),
