@@ -16,6 +16,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import time
 from openerp import models, fields, api, tools, exceptions, osv
+from openerp.tools.translate import _
 
 
 class Pricelist(models.Model):

@@ -18,6 +18,7 @@ from datetime import datetime
 
 from openerp import models, fields, api, exceptions
 from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
+from openerp.tools.translate import _
 
 AGR_PO_STATE = ('confirmed', 'approved',
                 'done', 'except_picking', 'except_invoice')
