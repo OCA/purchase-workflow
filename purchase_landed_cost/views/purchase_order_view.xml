@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+
+        <record model="ir.ui.view" id="purchase_order_2_stock_picking_landed_cost">
+            <field name="name">purchase.order.form.landed.cost</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_2_stock_picking" />
+            <field name="arch" type="xml">
+                <div name="buttons" position="inside">
+                    <button class="oe_stat_button"
+                            name="action_open_landed_cost"
+                            icon="fa-credit-card"
+                            type="object"
+                            string="Landed costs">
+                    </button>
+                </div>
+            </field>
+        </record>
+
+	</data>
+</openerp>
