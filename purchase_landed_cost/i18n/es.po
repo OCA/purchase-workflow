@@ -361,9 +361,9 @@ msgid "Import supplier invoice line"
 msgstr "Importar línea de factura de proveedor"
 
 #. module: purchase_landed_cost
-#: field:picking.import.wizard,picking_id:0
-msgid "Incoming shipment"
-msgstr "Envío entrante"
+#: field:picking.import.wizard,pickings:0
+msgid "Incoming shipments"
+msgstr "Envíos entrantes"
 
 #. module: purchase_landed_cost
 #: field:import.invoice.line.wizard,invoice:0

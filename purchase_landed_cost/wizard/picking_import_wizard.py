@@ -36,22 +36,26 @@ class PickingImportWizard(models.TransientModel):
     supplier = fields.Many2one(
         comodel_name='res.partner', string='Supplier', required=True,
         domain="[('supplier',  '=', True)]")
-    picking_id = fields.Many2one(
-        comodel_name='stock.picking', string='Incoming shipment',
-        domain="[('partner_id', '=', supplier),"
+    pickings = fields.Many2many(
+        comodel_name='stock.picking',
+        relation='distribution_import_picking_rel', column1='wizard_id',
+        column2='picking_id', string='Incoming shipments',
+        domain="[('partner_id', 'child_of', supplier),"
                "('location_id.usage', '=', 'supplier'),"
                "('state', '=', 'done'),"
                "('id', 'not in', prev_pickings[0][2])]", required=True)
     prev_pickings = fields.Many2many(comodel_name='stock.picking')
 
+    def _prepare_distribution_line(self, move):
+        return {
+            'distribution': self.env.context['active_id'],
+            'move_id': move.id,
+        }
+
     @api.multi
     def action_import_picking(self):
         self.ensure_one()
-        for move in self.picking_id.move_lines:
-            res = {
-                'distribution': self.env.context['active_id'],
-                'move_id': move.id,
-                'standard_price_old': (
-                    move.product_id.product_tmpl_id.standard_price),
-            }
-            self.env['purchase.cost.distribution.line'].create(res)
+        for picking in self.pickings:
+            for move in picking.move_lines:
+                self.env['purchase.cost.distribution.line'].create(
+                    self._prepare_distribution_line(move))
