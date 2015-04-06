@@ -10,7 +10,7 @@
                     <group>
                         <field name="prev_pickings" invisible="1"/>
                         <field name="supplier" />
-                        <field name="picking_id" />
+                        <field name="pickings" />
                     </group>
 					<footer>
                         <button string="Import"
