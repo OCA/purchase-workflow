@@ -198,7 +198,6 @@ class AgreementProductLine(models.Model):
     @api.one
     def _compute_available_qty(self):
         """Compute available qty based on confirmed PO lines."""
-        print "\n compute ", self.id
         if isinstance(self.portfolio_id.id, models.NewId):
             return
 
