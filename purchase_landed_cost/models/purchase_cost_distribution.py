@@ -362,12 +362,13 @@ class PurchaseCostDistributionLine(models.Model):
         related='move_id.purchase_line_id')
     purchase_id = fields.Many2one(
         comodel_name='purchase.order', string='Purchase order', readonly=True,
-        related='purchase_line_id.order_id')
+        related='purchase_line_id.order_id', store=True)
     partner = fields.Many2one(
         comodel_name='res.partner', string='Supplier', readonly=True,
         related='purchase_id.partner_id')
     picking_id = fields.Many2one(
-        'stock.picking', string='Picking', related='move_id.picking_id')
+        'stock.picking', string='Picking', related='move_id.picking_id',
+        store=True)
     product_id = fields.Many2one(
         comodel_name='product.product', string='Product', store=True,
         compute='_get_product_id')
