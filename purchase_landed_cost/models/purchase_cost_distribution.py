@@ -296,34 +296,17 @@ class PurchaseCostDistributionLine(models.Model):
     @api.one
     @api.depends('product_id', 'product_qty')
     def _compute_total_weight(self):
-        self.total_weight = sum(x.total_weight for x in self.move_id.quant_ids)
-
-    @api.one
-    @api.depends('total_weight')
-    def _compute_product_weight(self):
-        self.product_weight = self.total_weight / self.move_id.product_qty
+        self.total_weight = self.product_weight * self.product_qty
 
     @api.one
     @api.depends('product_id', 'product_qty')
     def _compute_total_weight_net(self):
-        self.total_weight_net = sum(x.total_weight_net for x in
-                                    self.move_id.quant_ids)
-
-    @api.one
-    @api.depends('total_weight_net')
-    def _compute_product_weight_net(self):
-        self.product_weight_net = (self.total_weight_net /
-                                   self.move_id.product_qty)
+        self.total_weight_net = self.product_weight_net * self.product_qty
 
     @api.one
     @api.depends('product_id', 'product_qty')
     def _compute_total_volume(self):
-        self.total_volume = sum(x.total_volume for x in self.move_id.quant_ids)
-
-    @api.one
-    @api.depends('total_weight')
-    def _compute_product_volume(self):
-        self.product_volume = self.total_volume / self.move_id.product_qty
+        self.total_volume = self.product_volume * self.product_qty
 
     @api.one
     @api.depends('expense_lines', 'expense_lines.cost_ratio')
@@ -406,12 +389,12 @@ class PurchaseCostDistributionLine(models.Model):
         ondelete='cascade')
     product_volume = fields.Float(
         string='Volume', help="The volume in m3.",
-        compute='_compute_product_volume', store=True)
+        related='product_id.product_tmpl_id.volume')
     product_weight = fields.Float(
-        string='Gross weight', compute='_compute_product_weight', store=True,
+        string='Gross weight', related='product_id.product_tmpl_id.weight',
         help="The gross weight in Kg.")
     product_weight_net = fields.Float(
-        string='Net weight', compute='_compute_product_weight_net', store=True,
+        string='Net weight', related='product_id.product_tmpl_id.weight_net',
         help="The net weight in Kg.")
     standard_price_old = fields.Float(
         string='Previous cost', compute="_get_standard_price_old", store=True,
