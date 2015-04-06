@@ -40,6 +40,8 @@
         'wizard/import_invoice_line_wizard_view.xml',
         'views/purchase_cost_distribution_view.xml',
         'views/purchase_expense_type_view.xml',
+        'views/purchase_order_view.xml',
+        'views/stock_picking_view.xml',
         'data/purchase_cost_distribution_sequence.xml',
         'security/ir.model.access.csv',
     ],
