@@ -1,3 +1,6 @@
+.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
+    :alt: License
+
 Purchase Requisition Bid Selection
 ==================================
 
@@ -28,9 +31,39 @@ A link has been added between a call for bids line and the corresponding line
 of each generated RFQ. This is used for the bids comparison in order to compare
 bid lines and group then properly.
 
+To proceed and validate bid selection, you can print the "Comparative Bid Analysis".
+This comparative report will only show eligible bids.
+
 For running the tests the nose python package is required.
+
 
 .. warning::
    Version prior to 0.4 was defining a `dest_address_id` field on Purchase
    Requisition. This field has been extracted in module
    `purchase_requisition_delivery_address`
+
+Credits
+=======
+
+* Jacques-Etienne Baudoux <je@bcim.be>
+* Joêl Grand-Guillaume <joel.grandguillaume@camptocamp.com>
+* Guewen Baconnier <guewen.baconnier@camptocamp.com>
+* Nicolas Bessi <nicolas.bessi@camptocamp.com>
+* Romain Deheele <romain.deheele@camptocamp.com>
+* Leonardo Pistone <leonardo.pistone@camptocamp.com>
+* Yannick Vaucher <yannick.vaucher@camptocamp.com>
+* Alexandre Fayolle <alexandre.fayolle@camptocamp.com>
+* Pierre Verkest <pverkest@anybox.fr>
+
+Maintainer
+----------
+
+.. image:: http://odoo-community.org/logo.png
+   :alt: Odoo Community Association
+   :target: http://odoo-community.org
+
+This module is maintained by the OCA.
+
+OCA, or the Odoo Community Association, is a nonprofit organization whose mission is to support the collaborative development of Odoo features and promote its widespread use.
+
+To contribute to this module, please visit http://odoo-community.org.

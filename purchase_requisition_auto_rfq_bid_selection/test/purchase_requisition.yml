@@ -15,6 +15,7 @@
  !record {model: purchase.requisition, id: requisition1}:
    name: PR01
    bid_tendering_mode: open
+   pricelist_id: purchase.list0
    line_ids:
     - product_id: purchase_requisition_auto_rfq.kitchenset
       product_qty: 10

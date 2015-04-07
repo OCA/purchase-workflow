@@ -8,6 +8,7 @@
     bid_tendering_mode: 'restricted'
     schedule_date: '2013-09-30'
     req_validity: '2013-09-10'
+    pricelist_id: purchase.list0
     line_ids:
       - product_id: product.product_product_15
         product_qty: 15.0

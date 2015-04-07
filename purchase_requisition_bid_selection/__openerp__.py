@@ -15,7 +15,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 {"name": "Purchase Requisition Bid Selection",
- "version": "2.0",
+ "version": "2.1",
  "author": "Camptocamp,Odoo Community Association (OCA)",
  "license": "AGPL-3",
  "category": "Purchase Management",
@@ -24,13 +24,16 @@
  "depends": ["purchase_requisition",
              "stock",  # For incoterms
              "purchase_rfq_bid_workflow",
+             "purchase_requisition_multicurrency",
              ],
  "demo": [],
  "data": ["wizard/modal.xml",
           "wizard/purchase_requisition_partner_view.xml",
-          "wizard/update_bid_selection_remark.xml",
+          "wizard/update_bid_internal_remark.xml",
           "view/purchase_requisition.xml",
           "view/purchase_order.xml",
+          "view/report_purchaserequisition.xml",
+          "report.xml",
           "workflow/purchase_order.xml",
           "workflow/purchase_requisition.xml",
           "data/purchase.cancelreason.yml",

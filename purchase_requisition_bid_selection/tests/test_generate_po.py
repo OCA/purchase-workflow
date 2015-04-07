@@ -40,7 +40,8 @@ class test_generate_po(common.TransactionCase):
                 'purchase_requisition_bid_selection.act_closed').id,
             'condition': True,
         })
-        self.preq = PReq.create({'state': 'closed'})
+        self.preq = PReq.create({'state': 'closed',
+                                 'pricelist_id': self.ref('purchase.list0')})
         dummy_wkf_trans.unlink()
 
         partner_12 = self.env.ref('base.res_partner_12')

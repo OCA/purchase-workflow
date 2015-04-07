@@ -19,6 +19,7 @@
 #
 #
 from openerp import models, fields, api
+import openerp.addons.decimal_precision as dp
 
 
 class PurchaseOrderLine(models.Model):
@@ -27,7 +28,7 @@ class PurchaseOrderLine(models.Model):
     @api.one
     @api.depends('price_unit',
                  'price_subtotal',
-                 'order_id.currency_id',
+                 'order_id.pricelist_id.currency_id',
                  'order_id.requisition_id.date_exchange_rate',
                  'order_id.requisition_id.pricelist_id.currency_id')
     def _compute_prices_in_company_currency(self):
@@ -35,7 +36,10 @@ class PurchaseOrderLine(models.Model):
         requisition = self.order_id.requisition_id
         if requisition and requisition.pricelist_id.currency_id:
             date = requisition.date_exchange_rate or fields.Date.today()
-            from_curr = self.order_id.currency_id.with_context(date=date)
+            # We take pricelist currency as currency should be related,
+            # but due to odoo issue #4598 currency could mismatch
+            from_curr = self.order_id.pricelist_id.currency_id
+            from_curr = from_curr.with_context(date=date)
             to_curr = requisition.pricelist_id.currency_id
             self.price_unit_co = from_curr.compute(self.price_unit,
                                                    to_curr, round=False)
@@ -45,26 +49,14 @@ class PurchaseOrderLine(models.Model):
     price_unit_co = fields.Float(
         compute='_compute_prices_in_company_currency',
         string="Unit Price",
+        digits=dp.get_precision('Account'),
         store=True,
         help="Unit Price in company currency."
         )
     price_subtotal_co = fields.Float(
         compute='_compute_prices_in_company_currency',
         string="Subtotal",
+        digits=dp.get_precision('Account'),
         store=True,
         help="Subtotal in company currency."
-        )
-
-    @api.model
-    def read_group(self, domain, fields, groupby, offset=0, limit=None,
-                   orderby=False, lazy=True):
-        """ Remove computed Float fields from read_group to avoid
-        AttributeError: 'NoneType' object has no attribute '_classic_write'
-        due to odoo/odoo#3972
-        """
-        remove_fields = ('price_unit_co', 'price_subtotal_co')
-        stored_fields = [f for f in fields if f not in remove_fields]
-        _super = super(PurchaseOrderLine, self)
-        return _super.read_group(domain, stored_fields, groupby=groupby,
-                                 offset=offset, limit=limit,
-                                 orderby=orderby, lazy=lazy)
+    )
