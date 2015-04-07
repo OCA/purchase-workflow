@@ -13,37 +13,39 @@
         </field>
 
         <field name="type" position="after">
-          <field name="picking_type_id" />
-          <field name="payment_term_id" />
-          <field name="terms_of_payment" />
-          <field name="incoterm_id" />
-          <field name="incoterm_address" />
-          <field name="shipment_origin_id" />
+          <field name="picking_type_id" attrs="{'invisible': [('type', '!=', 'purchase')]}"/>
+          <field name="payment_term_id" attrs="{'invisible': [('type', '!=', 'purchase')]}"/>
+          <field name="terms_of_payment" attrs="{'invisible': [('type', '!=', 'purchase')]}"/>
+          <field name="incoterm_id" attrs="{'invisible': [('type', '!=', 'purchase')]}"/>
+          <field name="incoterm_address" attrs="{'invisible': [('type', '!=', 'purchase')]}"/>
+          <field name="shipment_origin_id" attrs="{'invisible': [('type', '!=', 'purchase')]}"/>
         </field>
 
         <field name="version_id" position="after">
-          <separator string="Supplier information"/>
-          <field name="supplierinfo_ids">
-            <tree>
-              <field name="sequence"/>
-              <field name="name"/>
-              <field name="product_tmpl_id"/>
-              <field name="delay"/>
-              <field name="min_qty"/>
-            </tree>
-          </field>
-          <separator string="Prices"/>
-          <field name="partnerinfo_ids">
-            <tree>
-              <field name="name"/>
-              <field name="partner_id"/>
-              <field name="min_quantity"/>
-              <field name="price"/>
-              <field name="product_tmpl_id"/>
-              <field name="currency_id"/>
-              <field name="pricelist_id"/>
-            </tree>
-          </field>
+          <group colspan="4" col="1" attrs="{'invisible': [('type', '!=', 'purchase')]}">
+            <separator string="Supplier information"/>
+            <field name="supplierinfo_ids">
+              <tree>
+                <field name="sequence"/>
+                <field name="name"/>
+                <field name="product_tmpl_id"/>
+                <field name="delay"/>
+                <field name="min_qty"/>
+              </tree>
+            </field>
+            <separator string="Prices"/>
+            <field name="partnerinfo_ids">
+              <tree>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="min_quantity"/>
+                <field name="price"/>
+                <field name="product_tmpl_id"/>
+                <field name="currency_id"/>
+                <field name="pricelist_id"/>
+              </tree>
+            </field>
+          </group>
         </field>
 
       </field>
