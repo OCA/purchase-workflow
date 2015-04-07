@@ -9,7 +9,7 @@
     <record model="ir.ui.view" id="view_purchase_requisition_form">
       <field name="name">purchase.requisition.form.inherit</field>
       <field name="model">purchase.requisition</field>
-      <field name="inherit_id" ref="purchase_requisition.view_purchase_requisition_form"/>
+      <field name="inherit_id" ref="purchase_requisition_multicurrency.view_purchase_requisition_form"/>
       <field name="arch" type="xml">
 
         <xpath expr="//header/field[@name='state']" position="attributes">
@@ -32,8 +32,11 @@
 
         <xpath expr="//field[@name='user_id']" position="after">
           <field name="bid_tendering_mode" attrs="{'readonly': [('state','not in',('draft'))]}" />
-          <field name="pricelist_id" attrs="{'readonly': [('state','not in',('draft'))]}"/>
           <field name="budget"/>
+        </xpath>
+
+        <xpath expr="//field[@name='pricelist_id']" position="attributes">
+          <attributes name="attrs">{'readonly': [('state','not in',('draft'))]}</attributes>
         </xpath>
 
         <separator string="Requests for Quotation" position="attributes">
