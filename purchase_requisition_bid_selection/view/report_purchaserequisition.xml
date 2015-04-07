@@ -145,49 +145,52 @@
                           </t>
                         </tr>
                         <t t-foreach="o.line_ids" t-as="req_line">
-                          <tr>
-                            <t t-foreach="bid_batch" t-as="bid">
-                              <t t-set="bid_conversion_rate" t-value="bid.currency_id._get_conversion_rate(bid.currency_id, o.company_id.currency_id)"/>
-                              <t t-if="bid_first">
-                                <td><span t-field="req_line.product_id"/></td>
-                                <td class="text-right col-separator"><span t-esc="'{:,.2f}'.format(req_line.product_qty)"/></td>
-                              </t>
-                              <t t-set="bid_line" t-value="[l for l in bid.order_line if l.product_id == req_line.product_id]"/>
-                              <t t-if="bid_line">
-                                <t t-set="bid_line" t-value="bid_line[0]"/>
-                                <!--Selected-->
-                                <t t-if="bid_line.quantity_bid">
-                                  <td class="text-right bg-success">
-                                    <span t-esc="'{:,.2f}'.format(bid_line.quantity_bid)"/>
-                                  </td>
+                          <!-- Exclude services as they will appear in incoterms -->
+                          <t t-if="req_line.product_id.type != 'service'">
+                            <tr>
+                              <t t-foreach="bid_batch" t-as="bid">
+                                <t t-set="bid_conversion_rate" t-value="bid.currency_id._get_conversion_rate(bid.currency_id, o.company_id.currency_id)"/>
+                                <t t-if="bid_first">
+                                  <td><span t-field="req_line.product_id"/></td>
+                                  <td class="text-right col-separator"><span t-esc="'{:,.2f}'.format(req_line.product_qty)"/></td>
                                 </t>
-                                <t t-if="not bid_line.quantity_bid">
+                                <t t-set="bid_line" t-value="[l for l in bid.order_line if l.product_id == req_line.product_id]"/>
+                                <t t-if="bid_line">
+                                  <t t-set="bid_line" t-value="bid_line[0]"/>
+                                  <!--Selected-->
+                                  <t t-if="bid_line.quantity_bid">
+                                    <td class="text-right bg-success">
+                                      <span t-esc="'{:,.2f}'.format(bid_line.quantity_bid)"/>
+                                    </td>
+                                  </t>
+                                  <t t-if="not bid_line.quantity_bid">
+                                    <td class="text-right">
+                                      -
+                                    </td>
+                                  </t>
                                   <td class="text-right">
-                                    -
+                                    <!--Unit Price-->
+                                    <span t-field="bid_line.price_unit"/>
+                                  </td>
+                                  <td class="text-right">
+                                    <!--TOTAL-->
+                                    <span t-field="bid_line.price_subtotal"/>
+                                  </td>
+                                  <td class="text-right">
+                                    <!--Company Currency Unit Price-->
+                                    <span t-esc="'{:,.2f}'.format(bid_line.price_unit * bid_conversion_rate)"/>
+                                  </td>
+                                  <td class="text-right col-separator">
+                                    <!--Company Currency total-->
+                                    <span t-esc="'{:,.2f}'.format(bid_line.price_subtotal * bid_conversion_rate)"/>
                                   </td>
                                 </t>
-                                <td class="text-right">
-                                  <!--Unit Price-->
-                                  <span t-field="bid_line.price_unit"/>
-                                </td>
-                                <td class="text-right">
-                                  <!--TOTAL-->
-                                  <span t-field="bid_line.price_subtotal"/>
-                                </td>
-                                <td class="text-right">
-                                  <!--Company Currency Unit Price-->
-                                  <span t-esc="'{:,.2f}'.format(bid_line.price_unit * bid_conversion_rate)"/>
-                                </td>
-                                <td class="text-right col-separator">
-                                  <!--Company Currency total-->
-                                  <span t-esc="'{:,.2f}'.format(bid_line.price_subtotal * bid_conversion_rate)"/>
-                                </td>
+                                <t t-if="not bid_line">
+                                  <td colspan="5" class="col-separator"/>
+                                </t>
                               </t>
-                              <t t-if="not bid_line">
-                                <td colspan="5" class="col-separator"/>
-                              </t>
-                            </t>
-                          </tr>
+                            </tr>
+                          </t>
                         </t>
                         <tr class="subtotal">
                           <t t-foreach="bid_batch" t-as="bid">
