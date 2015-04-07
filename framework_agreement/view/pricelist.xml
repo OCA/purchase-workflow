@@ -9,6 +9,8 @@
       <field name="arch" type="xml">
 
         <field name="active" position="before">
+          <button string="Open Prices" name="open_prices" type="object" attrs="{'invisible': [('type', '!=', 'purchase')]}"/>
+          <newline/>
           <field name="portfolio_id" invisible="context.get('hide_portfolio')"/>
         </field>
 

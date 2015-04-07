@@ -34,6 +34,7 @@
           'view/purchase_view.xml',
           'view/company_view.xml',
           'view/supplierinfo.xml',
+          'view/partnerinfo.xml',
           'security/multicompany.xml',
           'security/groups.xml',
           'security/ir.model.access.csv'],

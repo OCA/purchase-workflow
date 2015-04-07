@@ -292,6 +292,12 @@ class Pricelist(models.Model):
 
         return result
 
+    @api.multi
+    def open_prices(self):
+        action_data = self.env.ref('framework_agreement.open_prices').read()[0]
+        action_data['domain'] = [('pricelist_id', 'in', self.ids)]
+        return action_data
+
 
 class PricelistItem(models.Model):
     _inherit = "product.pricelist.item"

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record model="ir.actions.act_window" id="open_prices">
+      <field name="name">Open Prices</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">pricelist.partnerinfo</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="prices_tree" model="ir.ui.view">
+      <field name="name">prices_tree</field>
+      <field name="model">pricelist.partnerinfo</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="partner_id"/>
+          <field name="min_quantity"/>
+          <field name="price"/>
+          <field name="product_tmpl_id"/>
+          <field name="currency_id"/>
+          <field name="pricelist_id"/>
+        </tree>
+      </field>
+    </record>
+
+  </data>
+</openerp>
