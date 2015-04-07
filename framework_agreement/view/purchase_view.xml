@@ -9,12 +9,14 @@
       <field name="arch" type="xml">
 
         <field name="pricelist_id" position="before">
+          <!-- option needs https://github.com/odoo/odoo/compare/odoo:8.0...lepistone:always-show-search-more -->
           <field name="portfolio_id" options="{'always_show_search_more': true}" />
         </field>
 
         <field name="pricelist_id" position="attributes">
           <attribute name="on_change" eval="1"/>
           <attribute name="domain">[('type','=','purchase'), ('portfolio_id', '=', portfolio_id)]</attribute>
+          <!-- option needs https://github.com/odoo/odoo/compare/odoo:8.0...lepistone:always-show-search-more -->
           <attribute name="options">{'always_show_search_more': true}</attribute>
           <attribute name="context">{'hide_portfolio': True}</attribute>
         </field>
