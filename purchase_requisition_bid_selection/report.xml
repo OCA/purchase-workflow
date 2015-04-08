@@ -17,7 +17,7 @@
       <field name="orientation">Landscape</field>
       <field name="margin_top">5</field>
       <field name="margin_bottom">15</field>
-      <field name="header_spacing">0</field>
+      <field name="header_spacing">5</field>
     </record>
 
     <record id="action_report_purchase_requisitions" model="ir.actions.report.xml">
