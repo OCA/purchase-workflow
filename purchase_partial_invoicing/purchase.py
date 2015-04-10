@@ -33,6 +33,24 @@ class purchase_order_line(orm.Model):
             res[line.id] = invoiced_qty
         return res
 
+    def _fully_invoiced(self, cursor, user, ids, name, arg, context=None):
+        res = {}
+        for line in self.browse(cursor, user, ids, context=context):
+            res[line.id] = line.invoiced_qty == line.product_qty
+        return res
+
+    def _all_invoices_approved(self, cursor, user, ids, name, arg,
+                               context=None):
+        res = {}
+        for line in self.browse(cursor, user, ids, context=context):
+            if line.invoice_lines:
+                res[line.id] = not any(inv_line.invoice_id.state
+                                       in ['draft', 'cancel']
+                                       for inv_line in line.invoice_lines)
+            else:
+                res[line.id] = False
+        return res
+
     _inherit = 'purchase.order.line'
 
     _columns = {
@@ -40,4 +58,48 @@ class purchase_order_line(orm.Model):
             _invoiced_qty,
             string='Invoiced quantity',
             type='float'),
+        'fully_invoiced': fields.function(
+            _fully_invoiced,
+            string='Fully invoiced',
+            type='boolean'),
+        'all_invoices_approved': fields.function(
+            _all_invoices_approved,
+            string='All invoices approved',
+            type='boolean'),
     }
+
+
+class purchase_order(orm.Model):
+
+    _inherit = 'purchase.order'
+
+    def _invoiced(self, cursor, user, ids, name, arg, context=None):
+        res = {}
+        for purchase in self.browse(cursor, user, ids, context=context):
+            res[purchase.id] = all(line.all_invoices_approved
+                                   for line in purchase.order_line)
+        return res
+
+    _columns = {
+        'invoiced': fields.function(_invoiced, string='Invoice Received',
+                                    type='boolean',
+                                    help="It indicates that an invoice has "
+                                         "been validated"),
+    }
+
+
+class account_invoice(orm.Model):
+    _inherit = 'account.invoice'
+
+    def invoice_validate(self, cr, uid, ids, context=None):
+        res = super(account_invoice, self).invoice_validate(cr, uid, ids,
+                                                            context=context)
+        purchase_order_obj = self.pool.get('purchase.order')
+        po_ids = purchase_order_obj.search(
+            cr, uid, [('invoice_ids', 'in', ids)], context=context)
+        for purchase_order in purchase_order_obj.browse(cr, uid, po_ids,
+                                                        context=context):
+            for po_line in purchase_order.order_line:
+                if po_line.invoiced_qty != po_line.product_qty:
+                    po_line.write({'invoiced': False})
+        return res
