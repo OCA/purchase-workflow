@@ -69,7 +69,7 @@
                 <small>
                   <small>
                     <table id="bids-info" class="table table-condensed table-bordered" width="100%">
-                      <tbody>
+                      <thead>
                         <tr>
                           <t t-foreach="bid_batch" t-as="bid">
                             <t t-if="bid_first">
@@ -89,6 +89,8 @@
                             </t>
                           </t>
                         </tr>
+                      </thead>
+                      <tbody>
                         <tr>
                           <t t-foreach="bid_batch" t-as="bid">
                             <t t-if="bid_first">
