@@ -15,7 +15,8 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 {'name': 'Purchase Delivery Address [DEPRECATED]',
- 'summary': 'Deprecated: install purchase_transport_multi_address instead',
+ 'summary': 'Deprecated: install purchase_transport_multi_address and '
+            'stock_transport_multi_address instead',
  'version': '1.1',
  'author': "Camptocamp,Odoo Community Association (OCA)",
  'category': 'Purchase Management',
@@ -23,6 +24,7 @@
  'complexity': 'easy',
  'images': [],
  'depends': ['purchase_transport_multi_address',
+             'stock_transport_multi_address'
              ],
  'demo': [],
  'data': [],
