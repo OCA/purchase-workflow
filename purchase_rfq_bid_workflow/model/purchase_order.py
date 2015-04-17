@@ -186,6 +186,8 @@ class PurchaseOrder(models.Model):
                                          'action_modal_cancel_reason'))[1]
         ctx = self._context.copy()
         ctx['action'] = 'action_cancel_ok'
+        ctx['active_model'] = 'purchase.order'
+        ctx['active_ids'] = self.ids
         # TODO: filter based on po type
         return {
             'type': 'ir.actions.act_window',
