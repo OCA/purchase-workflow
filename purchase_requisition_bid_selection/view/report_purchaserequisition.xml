@@ -5,24 +5,23 @@
       <t t-call="report.internal_layout">
         <div class="page">
           <t t-set="num_of_suppliers" t-value="len(set(bid.partner_id for bid in o.purchase_ids))"/>
-          <t t-set="all_bids" t-value="[bid for bid in o.purchase_ids if bid.type == 'bid']"/>
-          <t t-set="all_eligible_bids" t-value="[bid for bid in all_bids if bid.state in ('draftbid', 'bid') and bid.bid_eligible]"/>
-
-          <t t-set="tendering_output" t-value="sum(l.quantity_bid * l.order_id.currency_id.compute(l.price_unit, l.order_id.currency_id, round=False) for bid in all_eligible_bids for l in bid.order_line)"/>
-          <t t-if="not all_eligible_bids">
+          <t t-set="tendering_output" t-value="sum(l.quantity_bid * l.order_id.currency_id.compute(l.price_unit, l.order_id.currency_id, round=False) for bid in o.eligible_bid_ids for l in bid.order_line)"/>
+          <t t-if="not o.eligible_bid_ids">
             <p>
-              No eligible bids
+              This tender has no eligible bids
+
+              To be valid, a bid must have Eligible bid checked and be in state "Draft Bid" or "Bid encoded"
             </p>
           </t>
-          <t t-foreach="range(0, len(all_eligible_bids), 3)" t-as="batch_start">
+          <t t-foreach="range(0, len(o.eligible_bid_ids), 3)" t-as="batch_start">
             <!-- ensure title is not cut -->
             <br/>
             <h2 class="text-center">Comparative Bid analysis</h2>
             <t t-if="not batch_start_last">
-              <t t-set="bid_batch" t-value="all_eligible_bids[batch_start:batch_start+3]"/>
+              <t t-set="bid_batch" t-value="o.eligible_bid_ids[batch_start:batch_start+3]"/>
             </t>
             <t t-if="batch_start_last">
-              <t t-set="bid_batch" t-value="all_eligible_bids[batch_start:]"/>
+              <t t-set="bid_batch" t-value="o.eligible_bid_ids[batch_start:]"/>
             </t>
             <small>
               <div class="row mt32">
@@ -412,7 +411,7 @@
                       </tbody>
                     </table>
                     <t t-if="batch_start_last">
-                      <t t-set="non_eligible_bids" t-value="[bid for bid in all_bids if not bid.bid_eligible and bid.state in ('draftbid', 'bid')]"/>
+                      <t t-set="non_eligible_bids" t-value="[bid for bid in o.bid_ids if not bid.bid_eligible and bid.state in ('draftbid', 'bid')]"/>
                       <t t-if="non_eligible_bids">
                         <h3>Non eligible bids</h3>
                         <table id="bids-non-eligible" class="table table-condensed table-bordered" width="100%">
@@ -446,7 +445,7 @@
                           </tbody>
                         </table>
                       </t>
-                      <t t-set="canceled_bids" t-value="[bid for bid in all_bids if bid.state == 'cancel']"/>
+                      <t t-set="canceled_bids" t-value="[bid for bid in o.bid_ids if bid.state == 'cancel']"/>
                       <t t-if="canceled_bids">
                         <h3>Canceled bids</h3>
                         <table id="bids-canceled" class="table table-condensed table-bordered" width="100%">
@@ -475,7 +474,7 @@
                   <div class="row mt32">
                     <div class="col-xs-6">
                       <strong class="col-xs-4">Recommended Supplier(s)</strong>
-                      <t t-set="recommended_suppliers" t-value="', '.join(bid.partner_id.name for bid in all_eligible_bids if any(l.quantity_bid for l in bid.order_line))"/>
+                      <t t-set="recommended_suppliers" t-value="', '.join(bid.partner_id.name for bid in o.eligible_bid_ids if any(l.quantity_bid for l in bid.order_line))"/>
                       <t t-if="recommended_suppliers">
                         <span class="col-xs-8 bg-info text-center" t-esc="recommended_suppliers"/>
                       </t>
