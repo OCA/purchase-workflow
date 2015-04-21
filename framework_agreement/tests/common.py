@@ -37,3 +37,5 @@ class AgreementTransactionCase(common.TransactionCase):
             'supplier_id': self.supplier.id,
             'start_date': fields.Date.to_string(start_date),
         })
+        self.portfolio.create_new_agreement()
+        self.agreement = self.portfolio.pricelist_ids

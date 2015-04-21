@@ -15,18 +15,13 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from datetime import timedelta, date
 from openerp import fields
 from .common import AgreementTransactionCase
-from unittest2 import skip
 
 
 class TestAvailableQty(AgreementTransactionCase):
 
-    """Test the function fields available_quantity"""
-
     def setUp(self):
-        """ Create a default agreement"""
         super(TestAvailableQty, self).setUp()
         self.ProductLine = self.env['agreement.product.line']
 
@@ -36,18 +31,26 @@ class TestAvailableQty(AgreementTransactionCase):
             'quantity': 200,
         })
 
-    def test_00_noting_consumed(self):
-        """Test non consumption"""
+    def test_nothing_consumed(self):
         self.assertEqual(self.product_line.available_quantity, 200)
 
-    @skip('unported test')
-    def test_01_150_consumed(self):
-        """ test consumption of 150 units"""
-        po = self.env['purchase.order'].create(
-            self._map_agreement_to_po(self.agreement, delta_days=5))
-        self.env['purchase.order.line'].create(
-            self._map_agreement_to_po_line(self.agreement, qty=150, po=po))
+    def test_consumption_of_150_units(self):
+        po = self.env['purchase.order'].create({
+            'partner_id': self.supplier.id,
+            'location_id': self.supplier.property_stock_supplier.id,
+            'portfolio_id': self.portfolio.id,
+            'pricelist_id': self.agreement.id,
+        })
+
+        self.env['purchase.order.line'].create({
+            'order_id': po.id,
+            'product_id': self.product.id,
+            'name': self.product.name,
+            'product_qty': 150.,
+            'price_unit': 10.,
+            'date_planned': fields.Date.today(),
+        })
 
         po.signal_workflow('purchase_confirm')
-        self.assertIn(po.state, 'approved')
-        self.assertEqual(self.agreement.available_quantity, 50)
+        self.assertEqual(po.state, 'approved')
+        self.assertEqual(self.product_line.available_quantity, 50)
