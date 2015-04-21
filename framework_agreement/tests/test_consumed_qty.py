@@ -25,36 +25,20 @@ class TestAvailableQty(AgreementTransactionCase):
 
     """Test the function fields available_quantity"""
 
-    def XXX_unported_setUp(self):
+    def setUp(self):
         """ Create a default agreement"""
         super(TestAvailableQty, self).setUp()
-        start_date = date.today() + timedelta(days=10)
-        end_date = date.today() + timedelta(days=20)
+        self.ProductLine = self.env['agreement.product.line']
 
-        self.agreement = self.agreement_model.create({
+        self.product_line = self.ProductLine.create({
             'portfolio_id': self.portfolio.id,
             'product_id': self.product.id,
-            'start_date': fields.Date.to_string(start_date),
-            'end_date': fields.Date.to_string(end_date),
-            'delay': 5,
             'quantity': 200,
         })
-        pl = self.agreement_pl_model.create(
-            {'framework_agreement_id': self.agreement.id,
-             'currency_id': self.ref('base.EUR')}
-        )
 
-        self.agreement_line_model.create(
-            {'framework_agreement_pricelist_id': pl.id,
-             'quantity': 0,
-             'price': 77.0}
-        )
-        self.agreement.open_agreement(strict=False)
-
-    @skip('unported test')
     def test_00_noting_consumed(self):
         """Test non consumption"""
-        self.assertEqual(self.agreement.available_quantity, 200)
+        self.assertEqual(self.product_line.available_quantity, 200)
 
     @skip('unported test')
     def test_01_150_consumed(self):

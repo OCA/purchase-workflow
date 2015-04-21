@@ -14,7 +14,10 @@
 #
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+from datetime import timedelta, date
+
 from openerp.tests import common
+from openerp import fields
 
 
 class AgreementTransactionCase(common.TransactionCase):
@@ -27,7 +30,10 @@ class AgreementTransactionCase(common.TransactionCase):
             'list_price': 10.00
         })
         self.supplier = self.env.ref('base.res_partner_1')
+        start_date = date.today() - timedelta(days=10)
+
         self.portfolio = self.Portfolio.create({
             'name': '/',
             'supplier_id': self.supplier.id,
+            'start_date': fields.Date.to_string(start_date),
         })

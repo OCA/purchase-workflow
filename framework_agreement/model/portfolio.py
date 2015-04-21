@@ -50,7 +50,7 @@ class Portfolio(models.Model):
     pricelist_ids = fields.One2many('product.pricelist', 'portfolio_id',
                                     'Pricelists')
     origin = fields.Char('Origin')
-    start_date = fields.Date()
+    start_date = fields.Date(required=True)
     end_date = fields.Date()
     draft = fields.Boolean('Is draft')
     state = fields.Selection(
