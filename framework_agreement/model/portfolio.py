@@ -17,7 +17,7 @@ from collections import namedtuple
 from datetime import datetime
 
 from openerp import models, fields, api, exceptions
-from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
+from openerp.tools import DEFAULT_SERVER_DATE_FORMAT as DATE_FORMAT
 from openerp.tools.translate import _
 
 AGR_PO_STATE = ('confirmed', 'approved',
@@ -78,19 +78,19 @@ class Portfolio(models.Model):
     @api.one
     def _compute_state(self):
         """Compute the state based on dates and consumption."""
-        if self.start_date and self.end_date and not self.draft:
+        if self.draft:
+            self.state = 'draft'
+        else:
             now, start, end = self._get_dates()
             if start > now:
                 self.state = 'future'
-            elif end < now:
+            elif end and end < now:
                 self.state = 'closed'
-            elif start <= now <= end:
+            else:  # date is good
                 if all(l.available_quantity <= 0 for l in self.line_ids):
                     self.state = 'consumed'
                 else:
                     self.state = 'running'
-        else:
-            self.state = 'draft'
 
     @api.multi
     def _get_dates(self):
@@ -103,11 +103,12 @@ class Portfolio(models.Model):
         self.ensure_one()
         AGDates = namedtuple('AGDates', ['now', 'start', 'end'])
         now = fields.date.today()
-        start = datetime.strptime(self.start_date,
-                                  DEFAULT_SERVER_DATE_FORMAT)
-        end = datetime.strptime(self.end_date,
-                                DEFAULT_SERVER_DATE_FORMAT)
-        return AGDates(now, start.date(), end.date())
+        start = datetime.strptime(self.start_date, DATE_FORMAT).date()
+        if self.end_date:
+            end = datetime.strptime(self.end_date, DATE_FORMAT).date()
+        else:
+            end = None
+        return AGDates(now, start, end)
 
     def _search_state(self, operator, value):
         """Search on the state field by evaluating on all records"""
@@ -162,12 +163,30 @@ class Portfolio(models.Model):
             })
 
     @api.multi
-    def get_line_for_product(self, product):
+    def get_line_for_product(self, product, quantity=0):
         self.ensure_one()
         for product_line in self.line_ids:
-            if product_line.product_id == product:
+            if (product_line.product_id == product and
+                    product_line.quantity >= quantity):
                 return product_line
         return False
+
+    @api.multi
+    def is_suitable_for(self, date, product, quantity=0):
+        return (self.is_valid_at_date(date) and
+                self.get_line_for_product(product, quantity))
+
+    @api.multi
+    def is_valid_at_date(self, proposed_date):
+        self.ensure_one()
+        start = datetime.strptime(self.start_date, DATE_FORMAT)
+        is_valid = start < proposed_date
+
+        if self.end_date:
+            end = datetime.strptime(self.end_date, DATE_FORMAT)
+            is_valid = is_valid and proposed_date < end
+
+        return is_valid
 
 
 class AgreementProductLine(models.Model):

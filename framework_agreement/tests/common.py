@@ -23,6 +23,9 @@ from openerp import fields
 class AgreementTransactionCase(common.TransactionCase):
     def setUp(self):
         super(AgreementTransactionCase, self).setUp()
+        self.start_date = date.today() + timedelta(days=10)
+        self.end_date = date.today() + timedelta(days=20)
+
         self.Portfolio = self.env['framework.agreement.portfolio']
         self.product = self.env['product.product'].create({
             'name': 'test_1',
@@ -30,12 +33,16 @@ class AgreementTransactionCase(common.TransactionCase):
             'list_price': 10.00
         })
         self.supplier = self.env.ref('base.res_partner_1')
-        start_date = date.today() - timedelta(days=10)
 
         self.portfolio = self.Portfolio.create({
             'name': '/',
             'supplier_id': self.supplier.id,
-            'start_date': fields.Date.to_string(start_date),
+            'start_date': fields.Date.to_string(self.start_date),
+            'end_date': fields.Date.to_string(self.end_date),
+            'line_ids': [(0, 0, {
+                'product_id': self.product.id,
+                'quantity': 300.,
+            })],
         })
         self.portfolio.create_new_agreement()
         self.agreement = self.portfolio.pricelist_ids
