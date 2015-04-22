@@ -18,26 +18,4 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-from openerp.osv import fields, orm
-
-
-class purchase_order_line(orm.Model):
-
-    def _invoiced_qty(self, cursor, user, ids, name, arg, context=None):
-        res = {}
-        for line in self.browse(cursor, user, ids, context=context):
-            invoiced_qty = 0.0
-            for invoice_line in line.invoice_lines:
-                invoiced_qty += invoice_line.quantity
-            res[line.id] = invoiced_qty
-        return res
-
-    _inherit = 'purchase.order.line'
-
-    _columns = {
-        'invoiced_qty': fields.function(
-            _invoiced_qty,
-            string='Invoiced quantity',
-            type='float'),
-    }
+from . import po_line_invoice
