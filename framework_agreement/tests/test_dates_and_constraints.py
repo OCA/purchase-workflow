@@ -51,7 +51,7 @@ class TestPortfolioState(AgreementTransactionCase):
             'start_date': fields.Date.to_string(start_date),
             'end_date': fields.Date.to_string(end_date),
         })
-        self.assertEqual(self.portfolio.state, 'consumed')
+        self.assertEqual(self.portfolio.state, 'running')
 
     def test_inverted_date_constraint(self):
         start_date = date.today() - timedelta(days=40)
@@ -97,7 +97,7 @@ class TestPortfolioState(AgreementTransactionCase):
         end_date = date.today() + timedelta(days=2)
 
         self.assertEqual(
-            len(self.Portfolio.search([('state', '=', 'consumed')])),
+            len(self.Portfolio.search([('state', '=', 'running')])),
             0
         )
 
@@ -106,8 +106,8 @@ class TestPortfolioState(AgreementTransactionCase):
             'end_date': fields.Date.to_string(end_date),
         })
         self.portfolio.refresh()
-        self.assertEqual(self.portfolio.state, 'consumed')
+        self.assertEqual(self.portfolio.state, 'running')
         self.assertEqual(
-            len(self.Portfolio.search([('state', '=', 'consumed')])),
+            len(self.Portfolio.search([('state', '=', 'running')])),
             1
         )
