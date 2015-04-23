@@ -42,7 +42,10 @@ class Portfolio(models.Model):
             return self.create({'supplier_id': supplier.id,
                                 'name': supplier.name})
 
-    name = fields.Char('Name', required=True)
+    def default_name(self):
+        return self.env['ir.sequence'].next_by_code('framework.agreement')
+
+    name = fields.Char('Name', required=True, default=default_name)
     supplier_id = fields.Many2one('res.partner', 'Supplier', required=True)
     line_ids = fields.One2many('agreement.product.line', 'portfolio_id')
     company_id = fields.Many2one('res.company', 'Company',
