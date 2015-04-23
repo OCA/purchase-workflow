@@ -45,6 +45,8 @@ class Pricelist(models.Model):
                                        'agreement_pricelist_id')
     partnerinfo_ids = fields.One2many('pricelist.partnerinfo',
                                       related='supplierinfo_ids.pricelist_ids')
+    start_date = fields.Date(related='portfolio_id.start_date', readonly=True)
+    end_date = fields.Date(related='portfolio_id.end_date', readonly=True)
 
     def _price_rule_get_multi(self, cr, uid, pricelist,
                               products_by_qty_by_partner, context=None):
@@ -320,12 +322,34 @@ class PartnerInfo(models.Model):
                                  readonly=True)
     product_tmpl_id = fields.Many2one('product.template',
                                       related='suppinfo_id.product_tmpl_id',
-                                      readonly=True)
+                                      readonly=True,
+                                      store=True)
     pricelist_id = fields.Many2one(
         'product.pricelist',
         related='suppinfo_id.agreement_pricelist_id',
-        readonly=True)
+        readonly=True,
+        store=True)
     currency_id = fields.Many2one(
         'res.currency',
         related='suppinfo_id.agreement_pricelist_id.currency_id',
-        readonly=True)
+        readonly=True,
+        store=True)
+    picking_type_id = fields.Many2one(
+        'stock.picking.type',
+        related='suppinfo_id.agreement_pricelist_id.picking_type_id',
+        readonly=True,
+        store=True)
+    incoterm_id = fields.Many2one(
+        'stock.incoterms',
+        related='suppinfo_id.agreement_pricelist_id.incoterm_id',
+        readonly=True,
+        store=True)
+    incoterm_address = fields.Char(
+        related='suppinfo_id.agreement_pricelist_id.incoterm_address',
+        readonly=True,
+        store=True)
+    shipment_origin_id = fields.Many2one(
+        'res.partner',
+        related='suppinfo_id.agreement_pricelist_id.shipment_origin_id',
+        readonly=True,
+        store=True)

@@ -20,6 +20,8 @@
           <field name="terms_of_payment" attrs="{'invisible': [('type', '!=', 'purchase')]}"/>
           <field name="incoterm_id" attrs="{'invisible': [('type', '!=', 'purchase')]}"/>
           <field name="incoterm_address" attrs="{'invisible': [('type', '!=', 'purchase')]}"/>
+          <field name="start_date" attrs="{'invisible': [('type', '!=', 'purchase')]}"/>
+          <field name="end_date" attrs="{'invisible': [('type', '!=', 'purchase')]}"/>
           <field name="shipment_origin_id" attrs="{'invisible': [('type', '!=', 'purchase')]}"/>
         </field>
 
@@ -64,12 +66,15 @@
         </field>
 
         <field name="type" position="after">
+          <button string="Open Prices" name="open_prices" type="object" attrs="{'invisible': [('type', '!=', 'purchase')]}"/>
           <field name="picking_type_id" />
           <field name="payment_term_id" />
           <field name="terms_of_payment" />
           <field name="incoterm_id" />
           <field name="incoterm_address" />
           <field name="shipment_origin_id" />
+          <field name="start_date" />
+          <field name="end_date" />
         </field>
 
       </field>

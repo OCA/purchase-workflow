@@ -22,9 +22,43 @@
           <field name="product_tmpl_id"/>
           <field name="currency_id"/>
           <field name="pricelist_id"/>
+          <field name="picking_type_id"/>
+          <field name="incoterm_id"/>
+          <field name="incoterm_address"/>
+          <field name="shipment_origin_id"/>
         </tree>
       </field>
     </record>
 
+    <record id="prices_search" model="ir.ui.view">
+      <field name="name">prices_search</field>
+      <field name="model">pricelist.partnerinfo</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name"/>
+          <field name="partner_id"/>
+          <field name="min_quantity"/>
+          <field name="price"/>
+          <field name="product_tmpl_id"/>
+          <field name="currency_id"/>
+          <field name="pricelist_id"/>
+          <field name="picking_type_id"/>
+          <field name="incoterm_id"/>
+          <field name="incoterm_address"/>
+          <field name="shipment_origin_id"/>
+
+          <group  expand='0' string='Group by...'>
+            <filter string='Product' domain="[]" context="{'group_by' : 'product_tmpl_id'}"/>
+            <filter string='Agreement Pricelist' domain="[]" context="{'group_by' : 'pricelist_id'}"/>
+            <filter string='Currency' domain="[]" context="{'group_by' : 'currency_id'}"/>
+            <filter string='Deliver to' domain="[]" context="{'group_by' : 'picking_type_id'}"/>
+            <filter string='Incoterm' domain="[]" context="{'group_by' : 'incoterm_id'}"/>
+            <filter string='Incoterm Address' domain="[]" context="{'group_by' : 'incoterm_address'}"/>
+            <filter string='Shipment Origin' domain="[]" context="{'group_by' : 'shipment_origin_id'}"/>
+          </group>
+
+        </search>
+      </field>
+    </record>
   </data>
 </openerp>
