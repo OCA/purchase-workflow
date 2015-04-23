@@ -54,7 +54,7 @@ class Portfolio(models.Model):
                                     'Pricelists')
     origin = fields.Char('Origin')
     start_date = fields.Date(required=True)
-    end_date = fields.Date()
+    end_date = fields.Date(help="Leave empty for unlimited duration")
     draft = fields.Boolean('Is draft')
     state = fields.Selection(
         selection=[('draft', 'Draft'),
