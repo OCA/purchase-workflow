@@ -15,7 +15,7 @@
         </field>
 
         <field name="type" position="after">
-          <field name="picking_type_id" attrs="{'invisible': [('type', '!=', 'purchase')]}"/>
+          <field name="picking_type_id" attrs="{'invisible': [('type', '!=', 'purchase')]}" domain="[('code','=','incoming')]" widget="selection" context="{'special_shortened_wh_name': True}" groups="stock.group_locations"/>
           <field name="payment_term_id" attrs="{'invisible': [('type', '!=', 'purchase')]}"/>
           <field name="terms_of_payment" attrs="{'invisible': [('type', '!=', 'purchase')]}"/>
           <field name="incoterm_id" attrs="{'invisible': [('type', '!=', 'purchase')]}"/>
