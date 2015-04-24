@@ -48,6 +48,55 @@ class Pricelist(models.Model):
     start_date = fields.Date(related='portfolio_id.start_date', readonly=True)
     end_date = fields.Date(related='portfolio_id.end_date', readonly=True)
 
+    @api.onchange('dest_address_id')
+    def onchange_dest_address_id(self):
+        """Find a picking type from the address
+
+        Taken from the module purchase_transport_multi_address in
+        github.com/OCA/stock-logistics-transport (historical note: this used to
+        be in the module purchase_delivery_address.
+
+        """
+        PickType = self.env['stock.picking.type']
+        types = PickType.search([
+            ('warehouse_id.partner_id', '=', self.dest_address_id.id),
+            ('code', '=', 'incoming'),
+        ])
+
+        if types:
+            if self.picking_type_id in types:
+                return
+            picking_type = types[0]
+        elif self.dest_address_id.customer:
+            # if destination is not for a warehouse address,
+            # we set dropshipping picking type
+            ref = 'stock_dropshipping.picking_type_dropship'
+            picking_type = self.env.ref(ref)
+        else:
+            raise exceptions.Warning(
+                _('The delivery address %s is not the address of a '
+                  'warehouse or the address of a customer.') %
+                self.dest_address_id.name)
+        self.picking_type_id = picking_type
+
+    @api.onchange('picking_type_id')
+    def onchange_picking_type_id(self):
+        """If the picking type has an address, use it.
+
+        This also comes from stock-logistics-transport.
+
+        """
+
+        if self.picking_type_id:
+            pick_type = self.picking_type_id
+
+            if pick_type.warehouse_id.partner_id:
+                self.dest_address_id = pick_type.warehouse_id.partner_id.id
+
+            if pick_type.default_location_dest_id:
+                self.location_id = pick_type.default_location_dest_id
+                self.related_location_id = pick_type.default_location_dest_id
+
     def _price_rule_get_multi(self, cr, uid, pricelist,
                               products_by_qty_by_partner, context=None):
         """Ugly duplication to implement the boolean use_agreement_prices."""

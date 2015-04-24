@@ -20,6 +20,8 @@
           <field name="terms_of_payment" attrs="{'invisible': [('type', '!=', 'purchase')]}"/>
           <field name="incoterm_id" attrs="{'invisible': [('type', '!=', 'purchase')]}"/>
           <field name="incoterm_address" attrs="{'invisible': [('type', '!=', 'purchase')]}"/>
+          <field name="origin_address_id" attrs="{'invisible': [('type', '!=', 'purchase')]}"/>
+          <field name="dest_address_id" attrs="{'invisible': [('type', '!=', 'purchase')]}"/>
           <field name="start_date" attrs="{'invisible': [('type', '!=', 'purchase')]}"/>
           <field name="end_date" attrs="{'invisible': [('type', '!=', 'purchase')]}"/>
           <field name="shipment_origin_id" attrs="{'invisible': [('type', '!=', 'purchase')]}"/>
