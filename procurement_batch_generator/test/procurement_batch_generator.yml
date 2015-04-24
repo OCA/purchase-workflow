@@ -1,0 +1,16 @@
+-
+  Create procurement requests, validate and check result
+-
+  !python {model: procurement.batch.generator}: |
+    ctx = context.copy()
+    ctx.update({'active_ids': [ref('product.product_product_48'), ref('product.product_product_23')], 'active_model': 'product.product'})
+    wiz_id = self.create(cr, uid, {}, context=ctx)
+    wiz = self.browse(cr, uid, wiz_id, context=ctx)
+    for line in wiz.line_ids:
+        line.write({'procurement_qty': 42})
+    action = self.validate(cr, uid, [wiz_id], context=context)
+    proc_ids = action['domain'][0][2]
+    assert proc_ids, "No procurements created"
+    for proc in self.pool['procurement.order'].browse(cr, uid, proc_ids, context=context):
+        assert proc.product_qty == 42, 'Wrong quantity on generated procurement'
+        assert proc.state in ('running', 'exception'), 'Wrong status for generated procurement'
