@@ -1,15 +1,12 @@
 Purchase Amendment
-==============
+==================
 
 This module is meant to assist the users in handling the cases when a customer
 changes his mind about a purchase.
 
 See also `sale_amendment` (in https://github.com/OCA/sale-workflow)
-which cover a similar use case for changes in sale orders.
+which covers a similar use case for changes in sale orders.
 
-
-Background information
-======================
 
 Usage
 =====
