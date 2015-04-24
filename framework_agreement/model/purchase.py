@@ -77,6 +77,9 @@ class PurchaseOrderLine(models.Model):
 
     def insufficient_agreed_quantity(self):
         self.ensure_one()
+        if not self.order_id.portfolio_id:
+            return False
+
         for product_line in self.order_id.portfolio_id.line_ids:
             if product_line.product_id == self.product_id:
                 return self.product_qty > product_line.available_quantity
