@@ -319,6 +319,10 @@ class PurchaseRequisition(models.Model):
         self.state = 'selected'
 
     @api.multi
+    def act_tender_closed(self):
+        self.signal_workflow('close_bid')
+
+    @api.multi
     def tender_closed(self):
         self.state = 'closed'
 
@@ -392,7 +396,7 @@ class PurchaseRequisition(models.Model):
     def ask_confirmation_to_close_selection(self):
         ctx = self.env.context.copy()
 
-        ctx.update({'action': 'tender_closed',
+        ctx.update({'action': 'act_tender_closed',
                     'active_model': self._name,
                     'active_ids': self._ids,
                     })
