@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="product_last_purchase_info">
+            <field name="name">product.last.purchase.info</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_last_info_page" />
+            <field name="arch" type="xml">
+                <page string="Last Price Info" position="inside">
+                    <group string="Purchase" name="last_purchase_info">
+                        <field name="last_seller" />
+                        <field name="last_purchase_date" />
+                        <field name="last_purchase_price" />
+                    </group>
+                </page>
+            </field>
+        </record>
+
+    </data>
+</openerp>
