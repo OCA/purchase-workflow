@@ -26,7 +26,7 @@
     'website': "http://www.odoomrp.com",
     'contributors': ["Daniel Campos <danielcampos@avanzosc.es>",
                      "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
-                     "Ana Juaristi <ajuaristio@gmail.com>"],
+                     "Ana Juaristi <anajuaristi@avanzosc.es>"],
     "depends": ['purchase'],
     "category": "Custom Modules",
     "data": ['views/purchase_view.xml',
