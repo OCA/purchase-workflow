@@ -78,6 +78,7 @@ class PurchaseOrderAmendment(models.TransientModel):
         amend = ordered - canceled - received
         return {
             'purchase_line_id': purchase_line.id,
+            'ordered_qty': purchase_line.product_qty,
             'received_qty': received,
             'canceled_qty': canceled,
             'amend_qty': amend,
@@ -88,11 +89,12 @@ class PurchaseOrderAmendment(models.TransientModel):
         title = _('Order amendment')
         message = '<h3>%s</h3><ul>' % title
         for item in self.item_ids:
+            cancel_qty = item.ordered_qty - item.received_qty - item.amend_qty
             message += (_('<li><b>%s</b>: %s Ordered, %s '
                           'Received, %s Canceled, %s Amended</li>') %
                         (item.purchase_line_id.name,
                          item.ordered_qty, item.received_qty,
-                         item.canceled_qty, item.amend_qty,
+                         cancel_qty, item.amend_qty,
                          )
                         )
         message += '</ul>'
@@ -106,9 +108,9 @@ class PurchaseOrderAmendment(models.TransientModel):
     @api.multi
     def do_amendment(self):
         self.ensure_one()
-        self.item_ids.split_lines()
         purchase = self.purchase_id
         purchase.message_post(body=self._message_content())
+        self.item_ids.split_lines()
         return True
 
     @api.multi
@@ -141,7 +143,8 @@ class PurchaseOrderAmendmentItem(models.TransientModel):
                                        string='Line',
                                        required=True,
                                        readonly=True)
-    ordered_qty = fields.Float(related='purchase_line_id.product_qty',
+    ordered_qty = fields.Float(string='Ordered',
+                               digits_compute=dp.get_precision('Product UoS'),
                                readonly=True)
     received_qty = fields.Float(string='Received',
                                 readonly=True,
