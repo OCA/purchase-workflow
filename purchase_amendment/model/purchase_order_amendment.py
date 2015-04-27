@@ -49,7 +49,8 @@ class PurchaseOrderAmendment(models.TransientModel):
 
         purchase = self.env['purchase.order'].browse(purchase_ids)
 
-        if any(inv.state != 'cancel' for inv in purchase.invoice_ids):
+        if (purchase.invoice_method != 'picking' and
+                any(inv.state != 'cancel' for inv in purchase.invoice_ids)):
             raise exceptions.Warning(
                 _('An invoiced order cannot be amended.')
             )
