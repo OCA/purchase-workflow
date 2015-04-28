@@ -1,0 +1,92 @@
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2 class="oe_slogan">Group purchase orders from procurements</h2>
+            <p>
+            This module is a backport from version 8.0 to 7.0 of the purchase order
+            creation from procurement orders. At the time of running the scheduler the
+            application will search for an existing PO in draft state for the same
+            supplier and with the same destination location. If found, it will extend
+            the PO to include the new product and quantity to be procured.
+
+            The main difference with version 8.0 is that the application will not
+            attempt to increase the quantity of a line for an existing PO, because each
+            line in a PO is associated in 7.0 to the procurement's stock move.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2 class="oe_slogan">Installation</h2>
+        </div>
+        <div class="oe_span6">
+            <p class="oe_mt32">No additional installation instructions are required.</p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2 class="oe_slogan">Configuration</h2>
+        </div>
+        <div class="oe_span6">
+            <p class="oe_mt32">This module does not require any additional configuration.</p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2 class="oe_slogan">Usage</h2>
+        </div>
+        <div class="oe_span6">
+            <p class="oe_mt32">
+            When the procurement scheduler is run the application creates or extends the
+            purchase orders.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2 class="oe_slogan">Known issues / Roadmap</h2>
+        </div>
+        <div class="oe_span6">
+            <p class="oe_mt32">
+                This module conflicts with module 'stock_picking_invoice_link' available in
+                the same OCA repository.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row">
+        <div class="oe_span12">
+            <h2 class="oe_slogan">Credits</h2>
+        </div>
+        <div class="oe_span12">
+            <h3>Contributors</h3>
+            <ul>
+                <li>Jordi Ballester Alomar &lt;<a
+                        href="mailto:jordi.ballester@eficent.com">jordi.ballester@eficent.com</a>&gt;</li>
+            </ul>
+        </div>
+        <div class="oe_span12">
+            <h3>Maintainer</h3>
+            <p>
+                This module is maintained by the OCA.<br/>
+                OCA, or the Odoo Community Association, is a nonprofit organization whose mission is to support the collaborative development of Odoo features and promote its widespread use.<br/>
+                To contribute to this module, please visit <a href="http://odoo-community.org">http://odoo-community.org</a>.<br/>
+                <a href="http://odoo-community.org"><img class="oe_picture oe_centered" src="http://odoo-community.org/logo.png"></a>
+            </p>
+        </div>
+    </div>
+</section>
