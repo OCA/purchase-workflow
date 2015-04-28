@@ -12,6 +12,10 @@
             The main difference with version 8.0 is that the application will not
             attempt to increase the quantity of a line for an existing PO, because each
             line in a PO is associated in 7.0 to the procurement's stock move.
+
+            Attention! This module overrides the 'make_po' method of purchase.order
+            completely (not calling super()). Changes incorporated by other modules
+            calling to this 'make_po' method will be lost.
             </p>
         </div>
     </div>

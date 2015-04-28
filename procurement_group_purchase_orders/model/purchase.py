@@ -109,6 +109,9 @@ class procurement_order(orm.Model):
         @return: dictionary giving for each procurement its related resolving
         PO line.
         """
+        # Attention! This method overrides the core implementation, as well
+        # as any other implementation of this method done by a third party
+        # module.
         res = {}
         company = self.pool.get('res.users').browse(cr, uid, uid,
                                                     context=context).company_id
