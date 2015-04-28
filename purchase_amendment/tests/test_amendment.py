@@ -421,5 +421,60 @@ class TestAmendmentCombinations(common.TransactionCase):
                    (self.product2, 300),
                    (self.product3, 300),
                    ])
+        self.assert_moves([
+            (self.product1, 1000, 'cancel'),
+            (self.product1, 500, 'done'),
+            (self.product2, 500, 'cancel'),
+            (self.product2, 300, 'done'),
+            (self.product3, 800, 'cancel'),
+            (self.product3, 300, 'done'),
+        ])
         self.assertNotEqual(self.purchase.state, 'except_picking')
+
+
+    def test_ship_partial_amend_ship_all(self):
+        amendment = self.amend()
+        self.ship([(self.product1, 100),
+                   (self.product2, 100),
+                   (self.product3, 0),
+                   ])
+        self.assert_moves([
+            (self.product1, 100, 'done'),
+            (self.product1, 900, 'assigned'),
+            (self.product2, 400, 'assigned'),
+            (self.product2, 100, 'done'),
+            (self.product3, 800, 'assigned'),
+        ])
+        self.amend_product(amendment, self.product1, 200)
+        self.amend_product(amendment, self.product2, 200)
+        self.amend_product(amendment, self.product3, 200)
+        amendment.do_amendment()
+
+        self.assert_moves([
+            (self.product1, 100, 'done'),
+            (self.product1, 200, 'assigned'),
+            (self.product1, 900, 'cancel'),
+            (self.product2, 400, 'cancel'),
+            (self.product2, 100, 'done'),
+            (self.product2, 200, 'assigned'),
+            (self.product3, 800, 'cancel'),
+            (self.product3, 200, 'assigned'),
+        ])
+
+        self.ship([(self.product1, 200),
+                   (self.product2, 200),
+                   (self.product3, 200),
+                   ])
+        self.assert_moves([
+            (self.product1, 100, 'done'),
+            (self.product1, 200, 'done'),
+            (self.product1, 900, 'cancel'),
+            (self.product2, 400, 'cancel'),
+            (self.product2, 100, 'done'),
+            (self.product2, 200, 'done'),
+            (self.product3, 800, 'cancel'),
+            (self.product3, 200, 'done'),
+        ])
+        self.assertNotEqual(self.purchase.state, 'except_picking')
+
 

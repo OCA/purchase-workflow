@@ -218,7 +218,7 @@ class PurchaseOrderAmendmentItem(models.TransientModel):
                 })
 
             # new moves will be generated for the new quantities
-            moves.action_cancel()
+            moves.filtered(lambda m: m.state != 'done').action_cancel()
 
             if canceled_qty:
                 # only keep the canceled procurement on the purchase line
@@ -257,7 +257,7 @@ class PurchaseOrderAmendmentItem(models.TransientModel):
         self.picking_recreate()
         # they must be canceled after the creation of the new pickings
         # otherwise the order's state change to 'except_picking'
-        moves_to_cancel.action_cancel()
+        moves_to_cancel.filtered(lambda mv: mv.state!= 'done').action_cancel()
         return True
 
     @api.multi
