@@ -49,6 +49,17 @@ class PurchaseOrder(models.Model):
                 continue
             super(PurchaseOrder, self).action_picking_create()
 
+    @api.multi
+    def canceled_picking_not_canceled_line(self):
+        self.ensure_one()
+        for line in self.order_line:
+            if line.state == 'cancel':
+                continue
+            for move in line.move_ids:
+                if move.state == 'cancel':
+                    return True
+        return False
+
 
 class PurchaseOrderLine(models.Model):
     _inherit = 'purchase.order.line'

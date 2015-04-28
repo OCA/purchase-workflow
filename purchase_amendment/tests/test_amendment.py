@@ -63,12 +63,14 @@ class TestAmendmentCombinations(common.TransactionCase):
             lines.append(
                 (0, 0, line_values)
             )
-        return self.purchase_model.create({
+        po = self.purchase_model.create({
             'partner_id': self.partner1.id,
             'location_id': self.location_stock.id,
             'pricelist_id': self.purchase_pricelist.id,
             'order_line': lines,
+            'invoice_method': 'manual',
         })
+        return po
 
     def _search_picking_by_product(self, product, qty):
         return self.purchase.picking_ids.filtered(
@@ -271,6 +273,7 @@ class TestAmendmentCombinations(common.TransactionCase):
             (self.product2, 500, 'assigned'),
             (self.product3, 800, 'assigned'),
         ])
+        self.assertEqual(self.purchase.state, 'approved')
 
     def test_cancel_one_line(self):
         # amend the purchase order
@@ -297,6 +300,7 @@ class TestAmendmentCombinations(common.TransactionCase):
             (self.product2, 500, 'assigned'),
             (self.product3, 800, 'assigned'),
         ])
+        self.assertEqual(self.purchase.state, 'approved')
 
     def test_ship_amend_more(self):
         # Ship 200 product1
@@ -332,6 +336,7 @@ class TestAmendmentCombinations(common.TransactionCase):
             (self.product2, 500, 'assigned'),
             (self.product3, 800, 'assigned'),
         ])
+        self.assertEqual(self.purchase.state, 'approved')
 
     def test_amend_nothing(self):
         # amend the purchase order
@@ -354,6 +359,7 @@ class TestAmendmentCombinations(common.TransactionCase):
             (self.product2, 500, 'assigned'),
             (self.product3, 800, 'assigned'),
         ])
+        self.assertEqual(self.purchase.state, 'approved')
 
     def test_cancel_and_amend(self):
         # Cancel all moves
@@ -396,3 +402,24 @@ class TestAmendmentCombinations(common.TransactionCase):
         ])
 
         self.assertEqual(self.purchase.state, 'approved')
+
+    def test_amend_ship_all(self):
+        amendment = self.amend()
+        self.amend_product(amendment, self.product1, 500)
+        self.amend_product(amendment, self.product2, 300)
+        self.amend_product(amendment, self.product3, 300)
+        amendment.do_amendment()
+        self.assert_moves([
+            (self.product1, 1000, 'cancel'),
+            (self.product1, 500, 'assigned'),
+            (self.product2, 500, 'cancel'),
+            (self.product2, 300, 'assigned'),
+            (self.product3, 800, 'cancel'),
+            (self.product3, 300, 'assigned'),
+        ])
+        self.ship([(self.product1, 500),
+                   (self.product2, 300),
+                   (self.product3, 300),
+                   ])
+        self.assertNotEqual(self.purchase.state, 'except_picking')
+
