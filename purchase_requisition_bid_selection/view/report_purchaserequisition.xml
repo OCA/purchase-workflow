@@ -5,7 +5,7 @@
       <t t-call="report.internal_layout">
         <div class="page">
           <t t-set="num_of_suppliers" t-value="len(set(bid.partner_id for bid in o.purchase_ids))"/>
-          <t t-set="tendering_output" t-value="sum(l.quantity_bid * l.order_id.currency_id.compute(l.price_unit, l.order_id.currency_id, round=False) for bid in o.eligible_bid_ids for l in bid.order_line)"/>
+          <t t-set="tendering_output" t-value="sum(l.quantity_bid * l.order_id.currency_id.compute(l.price_unit, l.order_id.company_id.currency_id, round=False) for bid in o.eligible_bid_ids for l in bid.order_line)"/>
           <t t-if="not o.eligible_bid_ids">
             <p>
               This tender has no eligible bids
