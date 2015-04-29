@@ -59,6 +59,8 @@ class purchase_line_invoice(orm.TransientModel):
         purchase_line_obj = self.pool.get('purchase.order.line')
         changed_lines = {}
         context['active_ids'] = []
+        not_invoiced_ids = []
+        invoiced_ids = []
         for line in wizard.line_ids:
             if line.invoiced_qty > line.product_qty:
                 raise orm.except_orm(
@@ -70,6 +72,16 @@ class purchase_line_invoice(orm.TransientModel):
             changed_lines[
                 line.po_line_id.id
             ] = line.invoiced_qty
+            if line.po_line_id.fully_invoiced:
+                invoiced_ids.append(line.po_line_id.id)
+            else:
+                not_invoiced_ids.append(line.po_line_id.id)
+        if len(not_invoiced_ids) > 0:
+            purchase_line_obj.write(cr, uid, not_invoiced_ids,
+                                    {'invoiced': False})
+        if len(invoiced_ids) > 0:
+            purchase_line_obj.write(cr, uid, not_invoiced_ids,
+                                    {'invoiced': True})
         ctx.update({'partial_quantity': changed_lines})
         res = super(purchase_line_invoice, self).makeInvoices(
             cr, uid, ids, context=ctx)
