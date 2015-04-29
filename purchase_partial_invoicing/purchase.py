@@ -96,7 +96,8 @@ class purchase_order(orm.Model):
     def _invoiced(self, cursor, user, ids, name, arg, context=None):
         res = {}
         for purchase in self.browse(cursor, user, ids, context=context):
-            res[purchase.id] = all(line.all_invoices_approved
+            res[purchase.id] = all(line.all_invoices_approved and
+                                   line.fully_invoiced
                                    for line in purchase.order_line)
         return res
 
