@@ -34,18 +34,22 @@ class PurchaseOrder(models.Model):
 
     @api.onchange('pricelist_id')
     def propagate_agreement_fields(self):
-        self.currency_id = self.pricelist_id.currency_id
+        PROPAGATE_FIELDS = [
+            'currency_id',
+            'payment_term_id',
+            'terms_of_payment',
+            'incoterm_id',
+            'incoterm_address',
+            'origin_address_id',
+            'dest_address_id',
+            'picking_type_id',
+        ]
 
-        pricelist = self.pricelist_id
-        if pricelist.portfolio_id:
+        for field_name in PROPAGATE_FIELDS:
             # self.write does not work in an onchange
-            self.payment_term_id = pricelist.payment_term_id
-            self.terms_of_payment = pricelist.terms_of_payment
-            self.incoterm_id = pricelist.incoterm_id
-            self.incoterm_address = pricelist.incoterm_address
-            self.origin_address_id = pricelist.origin_address_id
-            self.dest_address_id = pricelist.dest_address_id
-            self.picking_type_id = pricelist.picking_type_id
+            field_value = getattr(self.pricelist_id, field_name)
+            if field_value:
+                setattr(self, field_name, field_value)
 
     @api.onchange('portfolio_id')
     def onchange_portfolio(self):
