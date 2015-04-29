@@ -51,17 +51,37 @@ class purchase_order_line(orm.Model):
                 res[line.id] = False
         return res
 
+    def _order_lines_from_invoice_line(self, cr, uid, ids, context=None):
+        result = {}
+        for invoice in self.pool['account.invoice'].browse(cr, uid, ids,
+                                                           context=context):
+            for line in invoice.invoice_line:
+                result[line.purchase_line_id.id] = True
+        return result.keys()
+
     _inherit = 'purchase.order.line'
 
     _columns = {
         'invoiced_qty': fields.function(
             _invoiced_qty,
             string='Invoiced quantity',
-            type='float'),
+            type='float',
+            copy=False,
+            store={
+                   'account.invoice': (_order_lines_from_invoice_line, [], 5),
+                   'purchase.order.line': (lambda self, cr, uid, ids,
+                                           context=None: ids,
+                                           ['invoice_lines'], 5)}),
         'fully_invoiced': fields.function(
             _fully_invoiced,
             string='Fully invoiced',
-            type='boolean'),
+            type='boolean',
+            copy=False,
+            store={
+                   'account.invoice': (_order_lines_from_invoice_line, [], 10),
+                   'purchase.order.line': (lambda self, cr, uid, ids,
+                                           context=None: ids,
+                                           ['invoice_lines'], 10)}),
         'all_invoices_approved': fields.function(
             _all_invoices_approved,
             string='All invoices approved',
