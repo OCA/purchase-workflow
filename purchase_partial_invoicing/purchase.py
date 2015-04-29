@@ -87,6 +87,15 @@ class purchase_order(orm.Model):
                                          "been validated"),
     }
 
+    def _prepare_inv_line(self, cr, uid, account_id, order_line, context=None):
+        res = super(purchase_order, self).\
+            _prepare_inv_line(cr, uid, account_id, order_line, context=context)
+        if context is not None and context.get('partial_quantity', False):
+            partial_quantity = context.get('partial_quantity')
+            if partial_quantity.get(order_line.id, False):
+                res.update({'quantity': partial_quantity.get(order_line.id)})
+        return res
+
 
 class account_invoice(orm.Model):
     _inherit = 'account.invoice'

@@ -54,6 +54,7 @@ class purchase_line_invoice(orm.TransientModel):
     def makeInvoices(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
+        ctx = context.copy()
         wizard = self.browse(cr, uid, ids[0], context=context)
         purchase_line_obj = self.pool.get('purchase.order.line')
         changed_lines = {}
@@ -68,18 +69,13 @@ class purchase_line_invoice(orm.TransientModel):
             context['active_ids'].append(line.po_line_id.id)
             changed_lines[
                 line.po_line_id.id
-            ] = line.po_line_id.product_qty
-            line.po_line_id.write({
-                'product_qty': line.invoiced_qty,
-            })
+            ] = line.invoiced_qty
+        ctx.update({'partial_quantity': changed_lines})
         res = super(purchase_line_invoice, self).makeInvoices(
-            cr, uid, ids, context=context)
+            cr, uid, ids, context=ctx)
         for po_line_id in changed_lines:
             po_line = purchase_line_obj.browse(cr, uid, po_line_id,
                                                context=context)
-            purchase_line_obj.write(cr, uid, [po_line_id], {
-                'product_qty': changed_lines[po_line_id],
-            }, context=context)
             if po_line.invoiced_qty != po_line.product_qty:
                 po_line.write({'invoiced': False})
         return res
