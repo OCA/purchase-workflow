@@ -39,18 +39,6 @@
                 <field name="min_qty"/>
               </tree>
             </field>
-            <separator string="Prices"/>
-            <field name="partnerinfo_ids">
-              <tree>
-                <field name="name"/>
-                <field name="partner_id"/>
-                <field name="min_quantity"/>
-                <field name="price"/>
-                <field name="product_tmpl_id"/>
-                <field name="currency_id"/>
-                <field name="pricelist_id"/>
-              </tree>
-            </field>
           </group>
         </field>
 

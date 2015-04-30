@@ -43,8 +43,6 @@ class Pricelist(models.Model):
     shipment_origin_id = fields.Many2one('res.partner', 'Shipment Origin')
     supplierinfo_ids = fields.One2many('product.supplierinfo',
                                        'agreement_pricelist_id')
-    partnerinfo_ids = fields.One2many('pricelist.partnerinfo',
-                                      related='supplierinfo_ids.pricelist_ids')
     start_date = fields.Date(related='portfolio_id.start_date', readonly=True)
     end_date = fields.Date(related='portfolio_id.end_date', readonly=True)
 
