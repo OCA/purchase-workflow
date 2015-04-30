@@ -21,11 +21,11 @@
           something like https://gist.github.com/lepistone/a95e6ed938d3b1508903
           -->
 
-          <field name="name"/>
           <field name="partner_id"/>
           <field name="min_quantity"/>
           <field name="price"/>
-          <field name="product_tmpl_id"/>
+          <field name="suppinfo_id"
+            domain="[('agreement_pricelist_id', '=', context['default_pricelist_id'])]" />
           <field name="currency_id"/>
           <field name="pricelist_id"/>
           <field name="picking_type_id"/>

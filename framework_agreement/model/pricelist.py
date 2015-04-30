@@ -345,6 +345,9 @@ class Pricelist(models.Model):
     def open_prices(self):
         action_data = self.env.ref('framework_agreement.open_prices').read()[0]
         action_data['domain'] = [('pricelist_id', 'in', self.ids)]
+        action_data['context'] = {
+            'default_pricelist_id': self.id,
+        }
         return action_data
 
 
@@ -360,6 +363,10 @@ class SupplierInfo(models.Model):
     agreement_pricelist_id = fields.Many2one('product.pricelist',
                                              'Agreement pricelist')
 
+    @api.one
+    def name_get(self):
+        """Used in the 'open prices' tree view."""
+        return (self.id, self.product_tmpl_id.name)
 
 class PartnerInfo(models.Model):
     _inherit = "pricelist.partnerinfo"
