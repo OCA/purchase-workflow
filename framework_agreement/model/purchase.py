@@ -44,12 +44,13 @@ class PurchaseOrder(models.Model):
             'dest_address_id',
             'picking_type_id',
         ]
+        agreement = self.pricelist_id
 
         for field_name in PROPAGATE_FIELDS:
             # self.write does not work in an onchange
-            field_value = getattr(self.pricelist_id, field_name)
+            field_value = agreement[field_name]
             if field_value:
-                setattr(self, field_name, field_value)
+                self[field_name] = field_value
 
     @api.onchange('portfolio_id')
     def onchange_portfolio(self):
