@@ -82,7 +82,7 @@ class purchase_line_invoice(orm.TransientModel):
         if len(invoiced_ids) > 0:
             purchase_line_obj.write(cr, uid, not_invoiced_ids,
                                     {'invoiced': True})
-        ctx.update({'partial_quantity': changed_lines})
+        ctx.update({'partial_quantity_lines': changed_lines})
         res = super(purchase_line_invoice, self).makeInvoices(
             cr, uid, ids, context=ctx)
         for po_line_id in changed_lines:
