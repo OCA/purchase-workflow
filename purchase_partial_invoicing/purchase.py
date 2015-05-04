@@ -109,9 +109,11 @@ class purchase_order(orm.Model):
     }
 
     def _prepare_inv_line(self, cr, uid, account_id, order_line, context=None):
+        if context is None:
+            context = {}
         res = super(purchase_order, self).\
             _prepare_inv_line(cr, uid, account_id, order_line, context=context)
-        if context is not None and context.get('partial_quantity_lines'):
+        if context.get('partial_quantity_lines'):
             partial_quantity_lines = context.get('partial_quantity_lines')
             if partial_quantity_lines.get(order_line.id):
                 res.update({'quantity':
