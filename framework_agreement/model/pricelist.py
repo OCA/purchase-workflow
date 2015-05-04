@@ -368,6 +368,7 @@ class SupplierInfo(models.Model):
         """Used in the 'open prices' tree view."""
         return (self.id, self.product_tmpl_id.name)
 
+
 class PartnerInfo(models.Model):
     _inherit = "pricelist.partnerinfo"
 
