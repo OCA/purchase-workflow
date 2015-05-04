@@ -22,9 +22,9 @@
 from openerp.osv import fields, orm
 from openerp.tools.translate import _
 from openerp.tools import DEFAULT_SERVER_DATE_FORMAT, \
-    DEFAULT_SERVER_DATETIME_FORMAT, DATETIME_FORMATS_MAP
+    DEFAULT_SERVER_DATETIME_FORMAT
 from datetime import datetime
-from openerp import SUPERUSER_ID, workflow
+from openerp import SUPERUSER_ID
 
 
 class procurement_order(orm.Model):
@@ -85,7 +85,7 @@ class procurement_order(orm.Model):
                                     taxes_ids)
         name = product.partner_ref
         if product.description_purchase:
-            name += '\n'+ product.description_purchase
+            name += '\n'+product.description_purchase
 
         return {
             'name': name,
