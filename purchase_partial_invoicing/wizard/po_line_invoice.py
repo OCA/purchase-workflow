@@ -76,10 +76,10 @@ class purchase_line_invoice(orm.TransientModel):
                 invoiced_ids.append(line.po_line_id.id)
             else:
                 not_invoiced_ids.append(line.po_line_id.id)
-        if len(not_invoiced_ids) > 0:
+        if not_invoiced_ids:
             purchase_line_obj.write(cr, uid, not_invoiced_ids,
                                     {'invoiced': False})
-        if len(invoiced_ids) > 0:
+        if invoiced_ids:
             purchase_line_obj.write(cr, uid, not_invoiced_ids,
                                     {'invoiced': True})
         ctx.update({'partial_quantity_lines': changed_lines})
