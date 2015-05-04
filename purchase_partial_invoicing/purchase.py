@@ -52,12 +52,12 @@ class purchase_order_line(orm.Model):
         return res
 
     def _order_lines_from_invoice_line(self, cr, uid, ids, context=None):
-        result = {}
+        result = set()
         for invoice in self.pool['account.invoice'].browse(cr, uid, ids,
                                                            context=context):
             for line in invoice.invoice_line:
-                result[line.purchase_line_id.id] = True
-        return result.keys()
+                result.add(line.purchase_line_id.id)
+        return list(result)
 
     _inherit = 'purchase.order.line'
 
