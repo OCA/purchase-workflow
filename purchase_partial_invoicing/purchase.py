@@ -20,6 +20,7 @@
 ##############################################################################
 
 from openerp.osv import fields, orm
+import openerp.addons.decimal_precision as dp
 
 
 class purchase_order_line(orm.Model):
@@ -51,17 +52,38 @@ class purchase_order_line(orm.Model):
                 res[line.id] = False
         return res
 
+    def _order_lines_from_invoice_line(self, cr, uid, ids, context=None):
+        result = set()
+        for invoice in self.pool['account.invoice'].browse(cr, uid, ids,
+                                                           context=context):
+            for line in invoice.invoice_line:
+                result.add(line.purchase_line_id.id)
+        return list(result)
+
     _inherit = 'purchase.order.line'
 
     _columns = {
         'invoiced_qty': fields.function(
             _invoiced_qty,
             string='Invoiced quantity',
-            type='float'),
+            type='float',
+            digits_compute=dp.get_precision('Product Unit of Measure'),
+            copy=False,
+            store={
+                   'account.invoice': (_order_lines_from_invoice_line, [], 5),
+                   'purchase.order.line': (lambda self, cr, uid, ids,
+                                           context=None: ids,
+                                           ['invoice_lines'], 5)}),
         'fully_invoiced': fields.function(
             _fully_invoiced,
             string='Fully invoiced',
-            type='boolean'),
+            type='boolean',
+            copy=False,
+            store={
+                   'account.invoice': (_order_lines_from_invoice_line, [], 10),
+                   'purchase.order.line': (lambda self, cr, uid, ids,
+                                           context=None: ids,
+                                           ['invoice_lines'], 10)}),
         'all_invoices_approved': fields.function(
             _all_invoices_approved,
             string='All invoices approved',
@@ -76,7 +98,8 @@ class purchase_order(orm.Model):
     def _invoiced(self, cursor, user, ids, name, arg, context=None):
         res = {}
         for purchase in self.browse(cursor, user, ids, context=context):
-            res[purchase.id] = all(line.all_invoices_approved
+            res[purchase.id] = all(line.all_invoices_approved and
+                                   line.fully_invoiced
                                    for line in purchase.order_line)
         return res
 
@@ -86,6 +109,18 @@ class purchase_order(orm.Model):
                                     help="It indicates that an invoice has "
                                          "been validated"),
     }
+
+    def _prepare_inv_line(self, cr, uid, account_id, order_line, context=None):
+        if context is None:
+            context = {}
+        res = super(purchase_order, self).\
+            _prepare_inv_line(cr, uid, account_id, order_line, context=context)
+        if context.get('partial_quantity_lines'):
+            partial_quantity_lines = context.get('partial_quantity_lines')
+            if partial_quantity_lines.get(order_line.id):
+                res.update({'quantity':
+                            partial_quantity_lines.get(order_line.id)})
+        return res
 
 
 class account_invoice(orm.Model):

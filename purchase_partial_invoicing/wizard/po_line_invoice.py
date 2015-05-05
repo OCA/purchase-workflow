@@ -54,10 +54,13 @@ class purchase_line_invoice(orm.TransientModel):
     def makeInvoices(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
+        ctx = context.copy()
         wizard = self.browse(cr, uid, ids[0], context=context)
         purchase_line_obj = self.pool.get('purchase.order.line')
         changed_lines = {}
         context['active_ids'] = []
+        not_invoiced_ids = []
+        invoiced_ids = []
         for line in wizard.line_ids:
             if line.invoiced_qty > line.product_qty:
                 raise orm.except_orm(
@@ -68,18 +71,23 @@ class purchase_line_invoice(orm.TransientModel):
             context['active_ids'].append(line.po_line_id.id)
             changed_lines[
                 line.po_line_id.id
-            ] = line.po_line_id.product_qty
-            line.po_line_id.write({
-                'product_qty': line.invoiced_qty,
-            })
+            ] = line.invoiced_qty
+            if line.po_line_id.fully_invoiced:
+                invoiced_ids.append(line.po_line_id.id)
+            else:
+                not_invoiced_ids.append(line.po_line_id.id)
+        if not_invoiced_ids:
+            purchase_line_obj.write(cr, uid, not_invoiced_ids,
+                                    {'invoiced': False})
+        if invoiced_ids:
+            purchase_line_obj.write(cr, uid, not_invoiced_ids,
+                                    {'invoiced': True})
+        ctx.update({'partial_quantity_lines': changed_lines})
         res = super(purchase_line_invoice, self).makeInvoices(
-            cr, uid, ids, context=context)
+            cr, uid, ids, context=ctx)
         for po_line_id in changed_lines:
             po_line = purchase_line_obj.browse(cr, uid, po_line_id,
                                                context=context)
-            purchase_line_obj.write(cr, uid, [po_line_id], {
-                'product_qty': changed_lines[po_line_id],
-            }, context=context)
             if po_line.invoiced_qty != po_line.product_qty:
                 po_line.write({'invoiced': False})
         return res
