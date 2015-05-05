@@ -20,6 +20,7 @@
 ##############################################################################
 
 from openerp.osv import fields, orm
+import openerp.addons.decimal_precision as dp
 
 
 class purchase_order_line(orm.Model):
@@ -66,6 +67,7 @@ class purchase_order_line(orm.Model):
             _invoiced_qty,
             string='Invoiced quantity',
             type='float',
+            digits_compute=dp.get_precision('Product Unit of Measure'),
             copy=False,
             store={
                    'account.invoice': (_order_lines_from_invoice_line, [], 5),
