@@ -140,6 +140,7 @@ class Portfolio(models.Model):
             'name': '{}: New agreement'.format(self.name),
             'portfolio_id': self.id,
             'type': 'purchase',
+            'origin_address_id': self.supplier_id.id,
             'version_id': [(0, 0, {
                 'name': '{}: Main version'.format(self.name),
                 'date_start': self.start_date,
