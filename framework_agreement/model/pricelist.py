@@ -38,7 +38,6 @@ class Pricelist(models.Model):
     origin_address_id = fields.Many2one('res.partner', 'Origin Address')
     dest_address_id = fields.Many2one('res.partner',
                                       'Customer Address (Direct Delivery)')
-    origin_address_id = fields.Many2one('res.partner', 'Origin Address')
     incoterm_address = fields.Char('Incoterm Address')
     shipment_origin_id = fields.Many2one('res.partner', 'Shipment Origin')
     supplierinfo_ids = fields.One2many('product.supplierinfo',
