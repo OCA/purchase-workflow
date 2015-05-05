@@ -431,7 +431,6 @@ class TestAmendmentCombinations(common.TransactionCase):
         ])
         self.assertNotEqual(self.purchase.state, 'except_picking')
 
-
     def test_ship_partial_amend_ship_all(self):
         amendment = self.amend()
         self.ship([(self.product1, 100),
@@ -476,7 +475,6 @@ class TestAmendmentCombinations(common.TransactionCase):
             (self.product3, 200, 'done'),
         ])
         self.assertNotEqual(self.purchase.state, 'except_picking')
-
 
     def test_ship_partial_amend_ship_partial_amend0(self):
         self.ship([(self.product1, 100),

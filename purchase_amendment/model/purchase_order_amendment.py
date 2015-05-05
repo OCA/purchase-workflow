@@ -52,7 +52,7 @@ class PurchaseOrderAmendment(models.TransientModel):
         if (purchase.invoice_method != 'picking' and
                 any(inv.state != 'cancel' for inv in purchase.invoice_ids)):
             raise exceptions.Warning(
-                _('An invoiced order cannot be amended.')
+                _('An invoiced order cannot be amended')
             )
 
         items = []
@@ -91,7 +91,7 @@ class PurchaseOrderAmendment(models.TransientModel):
         for item in self.item_ids:
             cancel_qty = item.ordered_qty - item.received_qty - item.amend_qty
             message += (_('<li><b>%s</b>: %s Ordered, %s '
-                          'Received, %s Canceled, %s Amended</li>') %
+                          'Received, %s Canceled, %s Remaining amended quantity</li>') %
                         (item.purchase_line_id.name,
                          item.ordered_qty, item.received_qty,
                          cancel_qty, item.amend_qty,
@@ -257,7 +257,7 @@ class PurchaseOrderAmendmentItem(models.TransientModel):
         self.picking_recreate()
         # they must be canceled after the creation of the new pickings
         # otherwise the order's state change to 'except_picking'
-        moves_to_cancel.filtered(lambda mv: mv.state!= 'done').action_cancel()
+        moves_to_cancel.filtered(lambda mv: mv.state != 'done').action_cancel()
         return True
 
     @api.multi
