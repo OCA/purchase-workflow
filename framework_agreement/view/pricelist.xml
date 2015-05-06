@@ -2,46 +2,81 @@
 <openerp>
   <data>
 
-    <record id="product_pricelist_view" model="ir.ui.view">
-      <field name="name">product_pricelist_view</field>
+    <record id="agreement_view_form" model="ir.ui.view">
+      <field name="name">agreement_view_form</field>
       <field name="model">product.pricelist</field>
-      <field name="inherit_id" ref="product.product_pricelist_view" />
       <field name="arch" type="xml">
-
-        <field name="active" position="before">
-          <button string="Open Prices" name="open_prices" type="object" attrs="{'invisible': [('type', '!=', 'purchase')]}"/>
-          <newline/>
-          <field name="portfolio_id" invisible="context.get('hide_portfolio')"/>
-        </field>
-
-        <field name="type" position="after">
-          <field name="picking_type_id" attrs="{'invisible': [('type', '!=', 'purchase')]}" domain="[('code','=','incoming')]" widget="selection" context="{'special_shortened_wh_name': True}" groups="stock.group_locations"/>
-          <field name="payment_term_id" attrs="{'invisible': [('type', '!=', 'purchase')]}"/>
-          <field name="terms_of_payment" attrs="{'invisible': [('type', '!=', 'purchase')]}"/>
-          <field name="incoterm_id" attrs="{'invisible': [('type', '!=', 'purchase')]}"/>
-          <field name="incoterm_address" attrs="{'invisible': [('type', '!=', 'purchase')]}"/>
-          <field name="origin_address_id" attrs="{'invisible': [('type', '!=', 'purchase')], 'required': [('portfolio_id', '!=', False)]}"/>
-          <field name="dest_address_id" attrs="{'invisible': [('type', '!=', 'purchase')]}"/>
-          <field name="start_date" attrs="{'invisible': [('type', '!=', 'purchase')]}"/>
-          <field name="end_date" attrs="{'invisible': [('type', '!=', 'purchase')]}"/>
-          <field name="shipment_origin_id" attrs="{'invisible': [('type', '!=', 'purchase')]}"/>
-        </field>
-
-        <field name="version_id" position="after">
-          <group colspan="4" col="1" attrs="{'invisible': [('type', '!=', 'purchase')]}">
-            <separator string="Supplier information"/>
-            <field name="supplierinfo_ids">
-              <tree>
-                <field name="sequence"/>
-                <field name="name"/>
-                <field name="product_tmpl_id"/>
-                <field name="delay"/>
-                <field name="min_qty"/>
-              </tree>
-            </field>
+        <form string="Products Price List">
+          <label for="name" class="oe_edit_only"/>
+          <h1>
+            <field name="name"/>
+          </h1>
+          <group col="4">
+            <button string="Open Prices" name="open_prices" type="object" attrs="{'invisible': [('type', '!=', 'purchase')]}"/>
+            <newline/>
+            <field name="portfolio_id" invisible="context.get('hide_portfolio')"/>
+            <field name="active"/>
+            <field name="type" attrs="{'invisible': [('portfolio_id', '!=', False)]}"/>
           </group>
-        </field>
 
+          <notebook>
+
+            <page string="Agreement information">
+              <group>
+                <group>
+                  <field name="picking_type_id" attrs="{'invisible': [('type', '!=', 'purchase')]}" domain="[('code','=','incoming')]" widget="selection" context="{'special_shortened_wh_name': True}" groups="stock.group_locations"/>
+                  <field name="payment_term_id" attrs="{'invisible': [('type', '!=', 'purchase')]}"/>
+                  <field name="terms_of_payment" attrs="{'invisible': [('type', '!=', 'purchase')]}"/>
+                  <field name="incoterm_id" attrs="{'invisible': [('type', '!=', 'purchase')]}"/>
+                  <field name="incoterm_address" attrs="{'invisible': [('type', '!=', 'purchase')]}"/>
+                  <field name="origin_address_id" attrs="{'invisible': [('type', '!=', 'purchase')], 'required': [('portfolio_id', '!=', False)]}"/>
+                  <field name="dest_address_id" attrs="{'invisible': [('type', '!=', 'purchase')]}"/>
+                </group>
+                <group>
+                  <field name="start_date" attrs="{'invisible': [('type', '!=', 'purchase')]}"/>
+                  <field name="end_date" attrs="{'invisible': [('type', '!=', 'purchase')]}"/>
+                  <field name="shipment_origin_id" attrs="{'invisible': [('type', '!=', 'purchase')]}"/>
+                  <field name="currency_id" groups="base.group_multi_currency"/>
+                  <field name="company_id" groups="base.group_multi_company" widget="selection"/>
+                </group>
+              </group>
+            </page>
+
+            <page string="Supplier and prices information">
+              <field name="supplierinfo_ids">
+                <tree>
+                  <field name="sequence"/>
+                  <field name="name"/>
+                  <field name="product_tmpl_id"/>
+                  <field name="delay"/>
+                  <field name="min_qty"/>
+                </tree>
+              </field>
+            </page>
+
+            <page string="Pricelist versions">
+              <field name="version_id" context="{'type':type}">
+                <form string="Pricelist Version">
+                  <group col="4">
+                    <field name="name"/>
+                    <field name="active"/>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                  </group>
+                  <field name="items_id" context="{'type':type}"/>
+                </form>
+                <tree string="Pricelist Version">
+                  <field name="name"/>
+                  <field name="active"/>
+                  <field name="date_start"/>
+                  <field name="date_end"/>
+                </tree>
+              </field>
+            </page>
+
+          </notebook>
+
+        </form>
       </field>
     </record>
 
