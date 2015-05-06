@@ -92,3 +92,24 @@ class PurchaseOrderLine(models.Model):
             'The selected portfolio does not cover product %s'
             % self.product_id.name
         ))
+
+    def onchange_product_id(self, cr, uid, ids, pricelist_id, product_id, qty,
+                            uom_id, partner_id, date_order=False,
+                            fiscal_position_id=False, date_planned=False,
+                            name=False, price_unit=False, state='draftpo',
+                            context=None):
+
+        if context.get('portfolio_id') and not context.get('pricelist_id'):
+            return {'warning': {
+                'title': _('Warning'),
+                'message': _('Since an Agreement Portfolio is selected, '
+                             'please select an Agreement in the Pricelist '
+                             'field.'),
+            }}
+
+        res = super(PurchaseOrderLine, self).onchange_product_id(
+            cr, uid, ids, pricelist_id, product_id, qty, uom_id, partner_id,
+            date_order, fiscal_position_id, date_planned, name, price_unit,
+            context=context)
+
+        return res

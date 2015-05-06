@@ -25,6 +25,10 @@
           <attribute name="context_agreement">{'portfolio_id': portfolio_id}</attribute>
         </field>
 
+        <field name="product_id" position="attributes">
+          <attribute name="context_agreement">{'portfolio_id': parent.portfolio_id, 'pricelist_id': parent.pricelist_id}</attribute>
+        </field>
+
         <field name="picking_type_id" position="attributes">
           <attribute name="attrs">{'readonly': [('portfolio_id', '!=', False)]}</attribute>
         </field>
