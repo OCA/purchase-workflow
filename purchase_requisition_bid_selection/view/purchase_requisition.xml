@@ -49,8 +49,8 @@
         </xpath>
 
         <xpath expr="//field[@name='purchase_ids']" position="after">
-          <group string="Selection reasons" attrs="{'invisible': [('state','not in',('open', 'selected', 'closed', 'done', 'cancel'))], 'readonly': [('state','in',('closed', 'done'))]}">
-            <field name="selection_reasons" nolabel="1"/>
+          <group string="Selection reasons" attrs="{'invisible': [('state','not in',('open', 'selected', 'closed', 'done', 'cancel'))]}">
+            <field name="selection_reasons" attrs="{'readonly': [('state','in',('closed', 'done'))]}" nolabel="1"/>
           </group>
         </xpath>
 
