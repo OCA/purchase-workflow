@@ -425,3 +425,8 @@ class PartnerInfo(models.Model):
         related='suppinfo_id.agreement_pricelist_id.incoterm_address',
         readonly=True,
         store=True)
+    origin_address_id = fields.Many2one(
+        'res.partner',
+        related='suppinfo_id.agreement_pricelist_id.origin_address_id',
+        readonly=True,
+        store=True)
