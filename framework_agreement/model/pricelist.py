@@ -44,6 +44,7 @@ class Pricelist(models.Model):
                                        'agreement_pricelist_id')
     start_date = fields.Date(related='portfolio_id.start_date', readonly=True)
     end_date = fields.Date(related='portfolio_id.end_date', readonly=True)
+    relevant_po_count = fields.Integer(compute='_count_relevant_purchases')
 
     @api.onchange('dest_address_id')
     def onchange_dest_address_id(self):
@@ -348,6 +349,29 @@ class Pricelist(models.Model):
             'default_pricelist_id': self.id,
         }
         return action_data
+
+    @api.multi
+    def _get_relevant_purchases(self):
+        return self.env['purchase.order'].search([
+            ('portfolio_id', 'in', self.mapped('portfolio_id').ids)
+        ])
+
+    @api.multi
+    def _count_relevant_purchases(self):
+        self.relevant_po_count = self.env['purchase.order'].search_count([
+            ('portfolio_id', 'in', self.mapped('portfolio_id').ids)
+        ])
+
+    @api.multi
+    def action_open_relevant_po(self):
+        self.ensure_one()
+        action_ref = 'purchase.purchase_form_action'
+        action_dict = self.env.ref(action_ref).read()[0]
+        purchases = self._get_relevant_purchases()
+        action_dict['domain'] = [('id', 'in', purchases.ids)]
+        del action_dict['help']
+
+        return action_dict
 
 
 class PricelistItem(models.Model):

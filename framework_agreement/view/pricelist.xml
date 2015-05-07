@@ -8,6 +8,11 @@
       <field name="arch" type="xml">
         <form string="Products Price List">
           <label for="name" class="oe_edit_only"/>
+          <div class="oe_right oe_button_box" style="width: 300px;" name="buttons">
+            <button class="oe_inline oe_stat_button" name="action_open_relevant_po" type="object" icon="fa-shopping-cart">
+              <field string="Relevant PO" name="relevant_po_count" widget="statinfo" />
+            </button>
+          </div>
           <h1>
             <field name="name"/>
           </h1>
