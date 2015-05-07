@@ -39,7 +39,6 @@ class Pricelist(models.Model):
     dest_address_id = fields.Many2one('res.partner',
                                       'Customer Address (Direct Delivery)')
     incoterm_address = fields.Char('Incoterm Address')
-    shipment_origin_id = fields.Many2one('res.partner', 'Shipment Origin')
     supplierinfo_ids = fields.One2many('product.supplierinfo',
                                        'agreement_pricelist_id')
     start_date = fields.Date(related='portfolio_id.start_date', readonly=True)
@@ -424,10 +423,5 @@ class PartnerInfo(models.Model):
         store=True)
     incoterm_address = fields.Char(
         related='suppinfo_id.agreement_pricelist_id.incoterm_address',
-        readonly=True,
-        store=True)
-    shipment_origin_id = fields.Many2one(
-        'res.partner',
-        related='suppinfo_id.agreement_pricelist_id.shipment_origin_id',
         readonly=True,
         store=True)

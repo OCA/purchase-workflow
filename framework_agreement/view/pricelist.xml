@@ -40,7 +40,6 @@
                 <group>
                   <field name="start_date" attrs="{'invisible': [('type', '!=', 'purchase')]}"/>
                   <field name="end_date" attrs="{'invisible': [('type', '!=', 'purchase')]}"/>
-                  <field name="shipment_origin_id" attrs="{'invisible': [('type', '!=', 'purchase')]}"/>
                   <field name="currency_id" groups="base.group_multi_currency"/>
                   <field name="company_id" groups="base.group_multi_company" widget="selection"/>
                 </group>
@@ -102,7 +101,7 @@
           <field name="terms_of_payment" />
           <field name="incoterm_id" />
           <field name="incoterm_address" />
-          <field name="shipment_origin_id" />
+          <field name="origin_address_id" />
           <field name="start_date" />
           <field name="end_date" />
         </field>

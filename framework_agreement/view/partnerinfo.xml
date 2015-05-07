@@ -31,7 +31,7 @@
           <field name="picking_type_id"/>
           <field name="incoterm_id"/>
           <field name="incoterm_address"/>
-          <field name="shipment_origin_id"/>
+          <field name="origin_address_id"/>
         </tree>
       </field>
     </record>
@@ -51,7 +51,7 @@
           <field name="picking_type_id"/>
           <field name="incoterm_id"/>
           <field name="incoterm_address"/>
-          <field name="shipment_origin_id"/>
+          <field name="origin_address_id"/>
 
           <group  expand='0' string='Group by...'>
             <filter string='Product' domain="[]" context="{'group_by' : 'product_tmpl_id'}"/>
@@ -60,7 +60,7 @@
             <filter string='Deliver to' domain="[]" context="{'group_by' : 'picking_type_id'}"/>
             <filter string='Incoterm' domain="[]" context="{'group_by' : 'incoterm_id'}"/>
             <filter string='Incoterm Address' domain="[]" context="{'group_by' : 'incoterm_address'}"/>
-            <filter string='Shipment Origin' domain="[]" context="{'group_by' : 'shipment_origin_id'}"/>
+            <filter string='Origin Address' domain="[]" context="{'group_by' : 'origin_address_id'}"/>
           </group>
 
         </search>
