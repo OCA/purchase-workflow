@@ -177,8 +177,11 @@ class Portfolio(models.Model):
 
     @api.multi
     def is_suitable_for(self, date, product, quantity=0):
-        return (self.is_valid_at_date(date) and
-                self.get_line_for_product(product, quantity))
+        # we prefer doing a rough check and let the user make their choices
+        # instead of risking to limit things too much for a small discrepancy.
+        # Think of an agreement that would be good a few days later, or with a
+        # slightly different incoterm.
+        return self.state in ('running', 'future')
 
     @api.multi
     def is_valid_at_date(self, proposed_date):
