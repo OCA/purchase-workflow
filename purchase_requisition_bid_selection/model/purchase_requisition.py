@@ -121,22 +121,16 @@ class PurchaseRequisition(models.Model):
     # Report fields
     bid_ids = fields.One2many(
         comodel_name='purchase.order',
-        compute='_get_bid_ids'
+        inverse_name='requisition_id',
+        domain=[('type', '=', 'bid')],
     )
     eligible_bid_ids = fields.One2many(
         comodel_name='purchase.order',
-        compute='_get_eligible_bid_ids'
+        inverse_name='requisition_id',
+        domain=[('type', '=', 'bid'),
+                ('state', 'in', ('draftbid', 'bid')),
+                ('bid_eligible', '=', True)],
     )
-
-    @api.depends('purchase_ids.type')
-    def _get_bid_ids(self):
-        self.bid_ids = self.purchase_ids.filtered(
-            lambda rec: rec.type == 'bid')
-
-    @api.depends('bid_ids.state', 'bid_ids.bid_eligible')
-    def _get_eligible_bid_ids(self):
-        self.eligible_bid_ids = self.bid_ids.filtered(
-            lambda rec: rec.state in ('draftbid', 'bid') and rec.bid_eligible)
 
     @api.multi
     def _has_product_lines(self):
