@@ -118,6 +118,20 @@ class PurchaseRequisition(models.Model):
     budget = fields.Float()
     selection_reasons = fields.Text(copy=False)
 
+    # Report fields
+    bid_ids = fields.One2many(
+        comodel_name='purchase.order',
+        inverse_name='requisition_id',
+        domain=[('type', '=', 'bid')],
+    )
+    eligible_bid_ids = fields.One2many(
+        comodel_name='purchase.order',
+        inverse_name='requisition_id',
+        domain=[('type', '=', 'bid'),
+                ('state', 'in', ('draftbid', 'bid')),
+                ('bid_eligible', '=', True)],
+    )
+
     @api.multi
     def _has_product_lines(self):
         """

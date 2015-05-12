@@ -7,6 +7,7 @@
       id="action_report_purchase_requisitions"
       model="purchase.requisition"
       report_type="qweb-pdf"
+      attachment="(object.state in ('open', 'selected') and len(object.eligible_bid_ids)) and ('CBA-' + (object.name or '') + '-' + time.strftime('%Y%m%d%H%M') + '.pdf')"
       name="purchase_requisition_bid_selection.report_purchaserequisitions"
       file="purchase_requisition_bid_selection.report_purchaserequisitions"
       />
