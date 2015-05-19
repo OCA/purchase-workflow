@@ -22,7 +22,7 @@
 from openerp.tests import common
 from .helper import AmendmentMixin
 
-class TestAmendmentCombinations(common.TransactionCase, AmendementMixin):
+class TestAmendmentCombinations(common.TransactionCase, AmendmentMixin):
 
     def setUp(self):
         super(TestAmendmentCombinations, self).setUp()
