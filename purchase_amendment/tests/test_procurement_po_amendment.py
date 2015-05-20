@@ -106,3 +106,24 @@ class TestResupplyAmendment(common.TransactionCase, AmendmentMixin):
         ])
         self.assertEqual(self.purchase.state, 'approved')
 
+    def test_cancel_one_line(self):
+        # amend the purchase order
+        amendment = self.amend()
+        # Remove product2
+        self.amend_product(amendment, self.product2, 0)
+        self.assert_amendment_quantities(amendment, self.product2,
+                                         ordered_qty=101,
+                                         amend_qty=0)
+        self.assert_amendment_quantities(amendment, self.product3,
+                                         ordered_qty=97,
+                                         amend_qty=97)
+        amendment.do_amendment()
+        self.assert_purchase_lines([
+            (self.product2, 101, 'cancel'),
+            (self.product3, 97, 'confirmed'),
+        ])
+        self.assert_moves([
+            (self.product2, 101, 'cancel'),
+            (self.product3, 97, 'assigned'),
+        ])
+        self.assertEqual(self.purchase.state, 'approved')
