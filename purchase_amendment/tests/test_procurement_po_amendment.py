@@ -80,7 +80,7 @@ class TestResupplyAmendment(common.TransactionCase, AmendmentMixin):
         # amend the purchase order
         amendment = self.amend()
 
-        # keep only 30 product1 of the 101 expected
+        # keep only 30 product2 of the 101 expected
         self.amend_product(amendment, self.product2, 30)
         self.assert_amendment_quantities(amendment,
                                          self.product2,
