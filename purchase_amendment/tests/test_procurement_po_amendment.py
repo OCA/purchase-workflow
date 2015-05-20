@@ -23,6 +23,7 @@ from openerp.tests import common
 
 from .helper import AmendmentMixin
 
+
 class TestResupplyAmendment(common.TransactionCase, AmendmentMixin):
     def setUp(self):
         super(TestResupplyAmendment, self).setUp()
