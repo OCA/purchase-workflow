@@ -204,8 +204,11 @@ class PurchaseOrderAmendmentItem(models.TransientModel):
             procurements = line.procurement_ids
             moves = line.move_ids
             if received_qty:
-                # leave the 'done' procurements on this line
-                proc = procurements.filtered(lambda p: p.state == 'done')
+                # do not check directly the procurement state, because that
+                # becomes done only when the order is shipped
+                proc = procurements.filtered(
+                    lambda p: p.mapped('move_ids.state') == ['done']
+                )
                 procurements -= proc
                 # only keep the done moves on the purchase line
                 move = moves.filtered(lambda p: p.state == 'done')
