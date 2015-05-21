@@ -61,12 +61,37 @@ class PurchaseOrderAmendment(models.TransientModel):
                 continue
             elif line.amended_by_ids:
                 continue
-            items.append(self._prepare_item(line))
+            proc_qty = 0.
+            for proc in line.procurement_ids:
+                items += self._prepare_proc_item(proc)
+                proc_qty += proc.product_qty
+
+            items += self._prepare_item(line, proc_qty)
         res['item_ids'] = items
         return res
 
     @api.model
-    def _prepare_item(self, purchase_line):
+    def _prepare_proc_item(self, proc):
+        ordered = proc.product_qty
+
+        received = proc.received_qty
+        canceled = 0.
+        for move in proc.move_ids:
+            if move.state == 'cancel':
+                canceled += move.product_qty
+
+        amend = ordered - canceled - received
+        return [{
+            'purchase_line_id': proc.purchase_line_id.id,
+            'procurement_id': proc.id,
+            'ordered_qty': proc.product_qty,
+            'received_qty': received,
+            'canceled_qty': canceled,
+            'amend_qty': amend,
+        }]
+
+    @api.model
+    def _prepare_item(self, purchase_line, proc_qty=0.):
         ordered = purchase_line.product_qty
 
         received = purchase_line.received_qty
@@ -75,14 +100,17 @@ class PurchaseOrderAmendment(models.TransientModel):
             if move.state == 'cancel':
                 canceled += move.product_qty
 
-        amend = ordered - canceled - received
-        return {
-            'purchase_line_id': purchase_line.id,
-            'ordered_qty': purchase_line.product_qty,
-            'received_qty': received,
-            'canceled_qty': canceled,
-            'amend_qty': amend,
-        }
+        amend = ordered - canceled - received - proc_qty
+        if True or amend > 0:  # XXX
+            return [{
+                'purchase_line_id': purchase_line.id,
+                'ordered_qty': purchase_line.product_qty,
+                'received_qty': received,
+                'canceled_qty': canceled,
+                'amend_qty': amend,
+            }]
+        else:
+            return []
 
     @api.multi
     def _message_content(self):
@@ -145,6 +173,11 @@ class PurchaseOrderAmendmentItem(models.TransientModel):
                                        string='Line',
                                        required=True,
                                        readonly=True)
+    procurement_id = fields.Many2one(comodel_name='procurement.order',
+                                     readonly=True)
+    procurement_group_id = fields.Many2one(comodel_name='procurement.group',
+                                           related='procurement_id.group_id',
+                                           readonly=True)
     ordered_qty = fields.Float(string='Ordered',
                                digits_compute=dp.get_precision('Product UoS'),
                                readonly=True)
@@ -173,11 +206,19 @@ class PurchaseOrderAmendmentItem(models.TransientModel):
         duplicated line will be 'confirmed' and a new picking will be created.
         """
         moves_to_cancel = self.env['stock.move'].browse()
-        for item in self:
-            line = item.purchase_line_id
-            amend_qty = item.amend_qty
-            received_qty = item.received_qty
-            ordered_qty = item.ordered_qty
+        read_group = self.read_group(
+            domain=[('id', 'in', self.ids)], 
+            fields=['purchase_line_id', 'amend_qty', 'received_qty', 
+                    'ordered_qty'], 
+            groupby=['purchase_line_id']
+        )
+        for group in read_group:
+            line = self.env['purchase.order.line'].browse(
+                group['purchase_line_id'][0]
+            )
+            amend_qty = group['amend_qty']
+            received_qty = group['received_qty']
+            ordered_qty = group['ordered_qty']
             rounding = line.product_id.uom_id.rounding
             # the total canceled may be different than the one displayed
             # to the user, because the one displayed is the quantity

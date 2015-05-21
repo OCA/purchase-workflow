@@ -15,6 +15,8 @@
             <field name="item_ids" nolabel="1">
               <tree string="Details" create="false" editable="bottom">
                 <field name="purchase_line_id" options="{'no_open': true}"/>
+                <field name="procurement_id"/>
+                <field name="procurement_group_id"/>
                 <field name="ordered_qty"/>
                 <field name="received_qty"/>
                 <field name="canceled_qty"/>

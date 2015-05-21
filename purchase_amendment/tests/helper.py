@@ -95,8 +95,10 @@ class AmendmentMixin(object):
 
     def amend_product(self, amendment, product, qty):
         item = amendment.item_ids.filtered(
-            lambda m: m.purchase_line_id.product_id == product
+            lambda m: m.purchase_line_id.product_id == product and
+            not m.procurement_id
         )
+
         item.amend_qty = qty
 
     def assert_amendment_quantities(self, amendment, product,
@@ -105,10 +107,17 @@ class AmendmentMixin(object):
         item = amendment.item_ids.filtered(
             lambda i: i.purchase_line_id.product_id == product
         )
-        self.assertEqual(len(item), 1)
+        group = item.read_group(
+            domain=[('id', 'in', item.ids)],
+            fields=['purchase_line_id', 'amend_qty', 'received_qty',
+                    'canceled_qty', 'ordered_qty'],
+            groupby=['purchase_line_id']
+        )
+        self.assertEqual(len(group), 1)
+        group = group[0]
         self.assertEqual(
-            [item.ordered_qty, item.received_qty,
-             item.canceled_qty, item.amend_qty],
+            [group['ordered_qty'], group['received_qty'],
+             group['canceled_qty'], group['amend_qty']],
             [ordered_qty, received_qty,
              canceled_qty, amend_qty],
             'The quantities do not match (ordered, received, '
