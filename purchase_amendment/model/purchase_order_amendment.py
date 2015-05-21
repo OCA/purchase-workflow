@@ -90,14 +90,15 @@ class PurchaseOrderAmendment(models.TransientModel):
         message = '<h3>%s</h3><ul>' % title
         for item in self.item_ids:
             cancel_qty = item.ordered_qty - item.received_qty - item.amend_qty
-            message += _('<li><b>%s</b>: %s Ordered, %s '
-                         'Received, %s Canceled, %s Remaining amended quantity</li>') \
-                         % (item.purchase_line_id.name,
-                            item.ordered_qty,
-                            item.received_qty,
-                            cancel_qty,
-                            item.amend_qty,
-                            )
+            message += _(
+                '<li><b>%s</b>: %s Ordered, %s '
+                'Received, %s Canceled, %s Remaining amended quantity</li>'
+            ) % (item.purchase_line_id.name,
+                 item.ordered_qty,
+                 item.received_qty,
+                 cancel_qty,
+                 item.amend_qty,
+                 )
         message += '</ul>'
         # if the html field is touched, it may return '<br/>' or
         # '<p></p>' so check if it contains text at all
