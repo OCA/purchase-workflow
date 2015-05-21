@@ -155,6 +155,8 @@ class PurchaseOrderAmendmentItem(models.TransientModel):
                                 digits_compute=dp.get_precision('Product UoS'))
     amend_qty = fields.Float(string='Amend',
                              digits_compute=dp.get_precision('Product UoS'))
+    product_id = fields.Many2one(related='purchase_line_id.product_id',
+                                 readonly=True)
     product_uom_id = fields.Many2one(related='purchase_line_id.product_uom',
                                      readonly=True)
 

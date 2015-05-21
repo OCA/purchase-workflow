@@ -1,3 +1,6 @@
+import pprint
+
+
 class AmendmentMixin(object):
     def _search_picking_by_product(self, product, qty):
         return self.purchase.picking_ids.filtered(
@@ -6,7 +9,6 @@ class AmendmentMixin(object):
                           move.state in ('confirmed', 'assigned')
                           for move in p.move_lines)
         )[0]
-
 
     def ship(self, products=None):
         """ Ship products of a picking
@@ -112,6 +114,43 @@ class AmendmentMixin(object):
             'The quantities do not match (ordered, received, '
             'canceled, amended)'
         )
+
+    def assertRecordEqual(self, expected, actual, msg=None):
+        for field_name, expected_value in expected.iteritems():
+            self.assertEqual(actual[field_name], expected_value, msg)
+
+    def check_record_equal(self, expected, actual):
+        try:
+            self.assertRecordEqual(expected, actual)
+        except AssertionError:
+            return False
+        return True
+
+    def assertRecordsetEqual(self, expecteds, actual_records, msg=None):
+        not_found = []
+        extra_actual = actual_records
+
+        diffMsg = ''
+
+        for expected in expecteds:
+            for actual_record in actual_records:
+                if self.check_record_equal(expected, actual_record):
+                    extra_actual -= actual_record
+                    break
+            else:
+                not_found.append(expected)
+
+        for item in not_found:
+            diffMsg += ("- %s\n" % pprint.pformat(item))
+        for item in extra_actual:
+            extra_values = {k: item[k] for k in expecteds[0].keys()}
+            diffMsg += ("+ %s\n" % pprint.pformat(extra_values))
+
+        if diffMsg:
+            standardMsg = '\nLines do not match:\n'
+            standardMsg = self._truncateMessage(standardMsg, diffMsg)
+            msg = self._formatMessage(msg, standardMsg)
+            self.fail(msg)
 
     def assert_purchase_lines(self, expected_lines):
         lines = self.purchase.order_line

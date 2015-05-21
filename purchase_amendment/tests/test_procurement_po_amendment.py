@@ -128,3 +128,55 @@ class TestResupplyAmendment(common.TransactionCase, AmendmentMixin):
             (self.product3, 97, 'assigned'),
         ])
         self.assertEqual(self.purchase.state, 'approved')
+
+    def test_ship_amend_more(self):
+        self.ship([(self.product2, 20),
+                   (self.product3, 0),
+                   ])
+
+        # amend the purchase order
+        amendment = self.amend()
+        self.amend_product(amendment, self.product2, 2000)
+
+        self.assertRecordsetEqual([
+            {'product_id': self.product2,
+             'ordered_qty': 101,
+             'received_qty': 19,
+             'amend_qty': 2000},
+            {'product_id': self.product3,
+             'ordered_qty': 97,
+             'received_qty': 0,
+             'amend_qty': 97},
+        ], amendment.item_ids)
+
+        self.assert_amendment_quantities(amendment, self.product2,
+                                         ordered_qty=101,
+                                         received_qty=19,
+                                         amend_qty=2000)
+        self.assert_amendment_quantities(amendment, self.product3,
+                                         ordered_qty=97,
+                                         amend_qty=97)
+        amendment.do_amendment()
+        self.assert_purchase_lines([
+            (self.product2, 20, 'confirmed'),
+            (self.product2, 81, 'cancel'),
+            (self.product2, 2000, 'confirmed'),
+            (self.product3, 97, 'confirmed'),
+        ])
+        self.assertRecordsetEqual([
+            {'product_id': self.product2,
+             'product_qty': 20,
+             'state': 'done'},
+            {'product_id': self.product2,
+             'product_qty': 81,
+             'state': 'cancel'},
+            {'product_id': self.product2,
+             'product_qty': 2000,
+             'state': 'assigned'},
+            {'product_id': self.product3,
+             'product_qty': 97,
+             'state': 'assigned'},
+            ],
+            self.purchase.mapped('picking_ids.move_lines'),
+        )
+        self.assertEqual(self.purchase.state, 'approved')
