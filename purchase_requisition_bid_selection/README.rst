@@ -42,6 +42,16 @@ For running the tests the nose python package is required.
    Requisition. This field has been extracted in module
    `purchase_requisition_delivery_address`
 
+
+Bug Tracker
+===========
+
+Bugs are tracked on `GitHub Issues <https://github.com/OCA/purchase-workflow/issues>`_.
+In case of trouble, please check there if your issue has already been reported.
+If you spotted it first, help us smashing it by providing a detailed and welcomed feedback
+`here <https://github.com/OCA/purchase-workflow/issues/new?body=module:%20purchase_requisition_bid_selection%0Aversion:%208.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+
+
 Credits
 =======
 
