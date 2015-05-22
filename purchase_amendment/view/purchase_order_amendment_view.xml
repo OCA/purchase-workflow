@@ -17,10 +17,9 @@
                 <field name="purchase_line_id" options="{'no_open': true}"/>
                 <field name="procurement_id"/>
                 <field name="procurement_group_id"/>
-                <field name="ordered_qty"/>
-                <field name="received_qty"/>
-                <field name="canceled_qty"/>
-                <field name="amend_qty"/>
+                <field name="original_qty"/>
+                <field name="new_qty"/>
+                <field name="state"/>
                 <field name="product_uom_id" options="{'no_open': true}"/>
               </tree>
             </field>

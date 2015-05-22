@@ -19,5 +19,5 @@
 #
 #
 
-from . import test_amendment
+# from . import test_amendment
 from . import test_procurement_po_amendment

@@ -95,11 +95,11 @@ class AmendmentMixin(object):
 
     def amend_product(self, amendment, product, qty):
         item = amendment.item_ids.filtered(
-            lambda m: m.purchase_line_id.product_id == product and
-            not m.procurement_id
+            lambda i: i.purchase_line_id.product_id == product
+            and i.state not in ('cancel', 'done')
         )
 
-        item.amend_qty = qty
+        item.new_qty = qty
 
     def assert_amendment_quantities(self, amendment, product,
                                     ordered_qty=0, received_qty=0,
