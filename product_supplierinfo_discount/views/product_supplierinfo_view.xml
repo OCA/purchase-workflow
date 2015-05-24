@@ -1,0 +1,19 @@
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="purchase_discount_order_form">
+             <field name="name">product.supplierinfo.form.view.discount</field>
+             <field name="model">product.supplierinfo</field>
+             <field name="inherit_id" ref="product.product_supplierinfo_form_view"/>
+             <field name="arch" type="xml">
+                  <xpath expr="//field[@name='pricelist_ids']/tree//field[@name='price']" position="after">
+                      <field name="discount"/>
+                  </xpath>
+                  <xpath expr="//field[@name='pricelist_ids']/form//field[@name='price']" position="after">
+                      <field name="discount"/>
+                  </xpath>
+             </field>
+         </record>
+
+    </data>
+</openerp>
