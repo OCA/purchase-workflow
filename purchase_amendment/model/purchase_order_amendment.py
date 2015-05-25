@@ -238,8 +238,11 @@ class PurchaseOrderAmendmentItem(models.TransientModel):
                 canceled_move.action_cancel()
                 item.purchase_line_id.product_qty -= canceled_qty
             else:
-                raise NotImplementedError(
-                    "I don't know how to increase the quantity yet")
+                # this show propagate to chained moves just fine
+                item.move_id.product_uom_qty = item.new_qty
+                added_qty = item.new_qty - item.original_qty
+                item.purchase_line_id.product_qty += added_qty
+
         return True
 
     @api.multi
