@@ -19,8 +19,6 @@
 #
 #
 from openerp import models, fields, api
-import openerp.addons.decimal_precision as dp
-from openerp.tools import float_compare
 
 
 class PurchaseOrder(models.Model):
@@ -64,45 +62,8 @@ class PurchaseOrder(models.Model):
 class PurchaseOrderLine(models.Model):
     _inherit = 'purchase.order.line'
 
-    move_qty = fields.Float(
-        string='Moves Quantity',
-        compute='_compute_move_qty',
-        digits_compute=dp.get_precision('Product Unit of Measure'),
-    )
-    received_qty = fields.Float(
-        string='Received Quantity',
-        compute='_compute_move_qty',
-        digits_compute=dp.get_precision('Product Unit of Measure'),
-    )
-    received = fields.Boolean(string='Received',
-                              compute='_compute_move_qty')
     amend_id = fields.Many2one(comodel_name='purchase.order.line',
                                string='Amend Line')
     amended_by_ids = fields.One2many(comodel_name='purchase.order.line',
                                      inverse_name='amend_id',
                                      string='Amended by lines')
-
-    @api.one
-    @api.depends('product_qty',
-                 'move_ids', 'move_ids.state', 'move_ids.product_qty')
-    def _compute_move_qty(self):
-        moves = self.move_ids
-        if not moves:
-            self.move_qty = 0
-            self.received = False
-            self.received_qty = 0
-            return
-
-        move_qty = 0.
-        received_qty = 0.
-        for move in moves:
-            if move.state == 'done':
-                received_qty += move.product_qty
-            elif move.state != 'cancel':
-                move_qty += move.product_qty
-
-        rounding = self.product_id.uom_id.rounding
-        self.received = bool(float_compare(self.product_qty, received_qty,
-                                           precision_digits=rounding) <= 0)
-        self.move_qty = move_qty
-        self.received_qty = received_qty

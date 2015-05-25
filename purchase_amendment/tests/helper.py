@@ -10,25 +10,17 @@ class AmendmentMixin(object):
                           for move in p.move_lines)
         )[0]
 
-    def ship(self, products=None):
+    def ship(self, products):
         """ Ship products of a picking
 
         products is a list of tuples [(product, qty)]
         """
         operations = {}
         pickings = self.env['stock.picking'].browse()
-        if products:
-            for product, qty in products:
-                picking = self._search_picking_by_product(product, qty)
-                pickings |= picking
-                operations.setdefault(picking, []).append((product, qty))
-        else:
-            # ship all
-            pickings = self.purchase.picking_ids.filtered(
-                lambda p: p.state not in ('cancel', 'done')
-            )
-            for picking in pickings:
-                operations[picking] = []
+        for product, qty in products:
+            picking = self._search_picking_by_product(product, qty)
+            pickings |= picking
+            operations.setdefault(picking, []).append((product, qty))
 
         pickings.do_prepare_partial()
 
@@ -41,50 +33,6 @@ class AmendmentMixin(object):
         pickings.do_transfer()
         for picking in pickings:
             self.assertEqual(picking.state, 'done')
-
-    def split(self, products):
-        """ Split pickings
-
-        ``products`` is a list of tuples [(product, quantity)]
-        """
-        operations = {}
-        pickings = self.env['stock.picking'].browse()
-        for product, qty in products:
-            picking = self._search_picking_by_product(product, qty)
-            pickings |= picking
-            operations.setdefault(picking, []).append((product, qty))
-
-        location_stock = self.env.ref('stock.stock_location_stock')
-        location_customer = self.env.ref('stock.stock_location_customers')
-
-        for picking in pickings:
-            transfer_model = self.env['stock.transfer_details'].with_context(
-                active_model='stock.picking',
-                active_id=picking.id,
-                active_ids=picking.ids
-            )
-            items = []
-            for product_qtys in operations[picking]:
-                items.append((0, 0, {
-                    'quantity': qty,
-                    'product_id': product.id,
-                    'product_uom_id': product.uom_id.id,
-                    'sourceloc_id': location_stock.id,
-                    'destinationloc_id': location_customer.id,
-                }))
-            transfer = transfer_model.create({
-                'picking_id': picking.id,
-                'item_ids': items
-            })
-            transfer.with_context(do_only_split=True).do_detailed_transfer()
-
-    def cancel_move(self, product, qty):
-        move = self.purchase.mapped('picking_ids.move_lines').filtered(
-            lambda m: (m.product_id == product and
-                       m.product_qty == qty and
-                       m.state in ('confirmed', 'assigned'))
-        )
-        move.action_cancel()
 
     def amend(self):
         return self.amendment_model.with_context(

@@ -77,48 +77,6 @@ class PurchaseOrderAmendment(models.TransientModel):
             or '',
         }]
 
-    @api.model
-    def _prepare_proc_item(self, proc):
-        ordered = proc.product_qty
-
-        received = proc.received_qty
-        canceled = 0.
-        for move in proc.move_ids:
-            if move.state == 'cancel':
-                canceled += move.product_qty
-
-        amend = ordered - canceled - received
-        return [{
-            'purchase_line_id': proc.purchase_line_id.id,
-            'procurement_id': proc.id,
-            'ordered_qty': proc.product_qty,
-            'received_qty': received,
-            'canceled_qty': canceled,
-            'amend_qty': amend,
-        }]
-
-    @api.model
-    def _prepare_item(self, purchase_line, proc_qty=0.):
-        ordered = purchase_line.product_qty
-
-        received = purchase_line.received_qty
-        canceled = 0.
-        for move in purchase_line.move_ids:
-            if move.state == 'cancel':
-                canceled += move.product_qty
-
-        amend = max(ordered - canceled - received - proc_qty, 0)
-        if True or amend > 0:  # XXX
-            return [{
-                'purchase_line_id': purchase_line.id,
-                'ordered_qty': purchase_line.product_qty,
-                'received_qty': received,
-                'canceled_qty': canceled,
-                'amend_qty': amend,
-            }]
-        else:
-            return []
-
     @api.multi
     def _message_content(self):
         title = _('Order amendment')
@@ -261,43 +219,3 @@ class PurchaseOrderAmendmentItem(models.TransientModel):
                 item.purchase_line_id.product_qty += added_qty
 
         return True
-
-    @api.multi
-    def picking_recreate(self):
-        purchase = self.mapped('purchase_line_id.order_id')
-        purchase_model = self.env['purchase.order']
-
-        lines = self.env['purchase.order.line'].browse()
-        for line in purchase.order_line:
-            if line.state == 'cancel':
-                continue
-            elif line.received:
-                continue
-            # check if we already have moves before generating them
-            rounding = line.product_uom.rounding
-            if float_compare(line.product_qty, line.move_qty,
-                             precision_digits=rounding) == 0:
-                # when we have the same quantity of moves, we don't need
-                # to create new ones
-                continue
-            lines += line
-
-        if not lines:
-            return
-
-        for picking in purchase.picking_ids:
-            if picking.state == 'assigned':
-                # reuse existing picking
-                purchase_model._create_stock_moves(purchase, lines, picking.id)
-                break
-        else:
-            picking_vals = {
-                'picking_type_id': purchase.picking_type_id.id,
-                'partner_id': purchase.partner_id.id,
-                'date': max([l.date_planned for l in purchase.order_line
-                             if l.state != 'cancel']),
-                'origin': purchase.name,
-            }
-            picking = self.env['stock.picking'].create(picking_vals)
-            purchase_model._create_stock_moves(purchase, lines, picking.id)
-        purchase.signal_workflow('picking_amend')
