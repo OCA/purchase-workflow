@@ -8,17 +8,16 @@
         <form string="Amendment Details">
           <field name="purchase_id" invisible="True"/>
           <p class="oe_grey">
-            After amended, the purchase order will recreate the incoming shipments
-            based on the new quantities.<br/>
+            With this amendment, stock moves will be updated accordingly, and
+            changes will be propagated in chained moves.<br/>
           </p>
           <group>
             <field name="item_ids" nolabel="1">
               <tree string="Details" create="false" editable="bottom">
                 <field name="purchase_line_id" options="{'no_open': true}"/>
-                <field name="procurement_id"/>
-                <field name="procurement_group_id"/>
+                <field name="origin"/>
                 <field name="original_qty"/>
-                <field name="new_qty"/>
+                <field name="new_qty" attrs="{'readonly': [('state', 'in', ['cancel', 'done'])]}"/>
                 <field name="state"/>
                 <field name="product_uom_id" options="{'no_open': true}"/>
               </tree>

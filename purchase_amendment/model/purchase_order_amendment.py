@@ -71,6 +71,10 @@ class PurchaseOrderAmendment(models.TransientModel):
             'original_qty': move.product_qty,
             'new_qty': move.product_qty,
             'state': move.state,
+            'origin': move.procurement_id.group_id.name
+            or move.procurement_id.name
+            or move.name
+            or '',
         }]
 
     @api.model
@@ -120,15 +124,14 @@ class PurchaseOrderAmendment(models.TransientModel):
         title = _('Order amendment')
         message = '<h3>%s</h3><ul>' % title
         for item in self.item_ids:
-            cancel_qty = item.ordered_qty - item.received_qty - item.amend_qty
             message += _(
-                '<li><b>%s</b>: %s Ordered, %s '
-                'Received, %s Canceled, %s Remaining amended quantity</li>'
+                '<li><b>%s</b>: Origin %s, Original quantity %s, '
+                'New quantity %s, State %s</li>'
             ) % (item.purchase_line_id.name,
-                 item.ordered_qty,
-                 item.received_qty,
-                 cancel_qty,
-                 item.amend_qty,
+                 item.origin,
+                 item.original_qty,
+                 item.new_qty,
+                 item.state,
                  )
         message += '</ul>'
         # if the html field is touched, it may return '<br/>' or
@@ -141,8 +144,8 @@ class PurchaseOrderAmendment(models.TransientModel):
     @api.multi
     def do_amendment(self):
         self.ensure_one()
-        # purchase = self.purchase_id
-        # purchase.message_post(body=self._message_content())
+        purchase = self.purchase_id
+        purchase.message_post(body=self._message_content())
         self.item_ids.split_lines()
         return True
 
@@ -181,6 +184,7 @@ class PurchaseOrderAmendmentItem(models.TransientModel):
     procurement_group_id = fields.Many2one(comodel_name='procurement.group',
                                            related='procurement_id.group_id',
                                            readonly=True)
+    origin = fields.Char(readonly=True)
     move_id = fields.Many2one(comodel_name='stock.move',
                               readonly=True)
     original_qty = fields.Float(string='Ordered',
