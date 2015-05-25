@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 #
-#    Authors: Guewen Baconnier
+#    Authors: Guewen Baconnier, Leonardo Pistone
 #    Copyright 2015 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -219,8 +219,21 @@ class PurchaseOrderAmendmentItem(models.TransientModel):
             if compare(item.original_qty, item.new_qty) == 0:
                 continue
             elif compare(item.new_qty, 0.) == 0:
+                if compare(item.original_qty,
+                           line.product_qty) == 0:
+                    line.action_cancel()
+                else:
+                    values = {'product_qty': item.move_id.product_qty,
+                              'amend_id': line.id,
+                              'move_ids': [(6, 0, item.move_id.ids)],
+                              'procurement_ids': [
+                                  (6, 0, item.move_id.procurement_id.ids)
+                              ]}
+                    cancel_line = line.copy(default=values)
+                    cancel_line.action_cancel()
+                    line.product_qty -= canceled_qty
                 item.move_id.action_cancel()
-                item.purchase_line_id.action_cancel()
+
             elif compare(item.original_qty, item.new_qty) == 1:
                 canceled_qty = item.original_qty - item.new_qty
                 canceled_move = Move.browse(Move.split(
@@ -236,9 +249,9 @@ class PurchaseOrderAmendmentItem(models.TransientModel):
 
                 cancel_line.action_cancel()
                 canceled_move.action_cancel()
-                item.purchase_line_id.product_qty -= canceled_qty
+                line.product_qty -= canceled_qty
             else:
-                # this show propagate to chained moves just fine
+                # this should propagate to chained moves just fine
                 item.move_id.product_uom_qty = item.new_qty
                 added_qty = item.new_qty - item.original_qty
                 item.purchase_line_id.product_qty += added_qty

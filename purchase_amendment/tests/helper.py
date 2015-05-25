@@ -101,29 +101,6 @@ class AmendmentMixin(object):
 
         item.new_qty = qty
 
-    def assert_amendment_quantities(self, amendment, product,
-                                    ordered_qty=0, received_qty=0,
-                                    canceled_qty=0, amend_qty=0):
-        item = amendment.item_ids.filtered(
-            lambda i: i.purchase_line_id.product_id == product
-        )
-        group = item.read_group(
-            domain=[('id', 'in', item.ids)],
-            fields=['purchase_line_id', 'amend_qty', 'received_qty',
-                    'canceled_qty', 'ordered_qty'],
-            groupby=['purchase_line_id']
-        )
-        self.assertEqual(len(group), 1)
-        group = group[0]
-        self.assertEqual(
-            [group['ordered_qty'], group['received_qty'],
-             group['canceled_qty'], group['amend_qty']],
-            [ordered_qty, received_qty,
-             canceled_qty, amend_qty],
-            'The quantities do not match (ordered, received, '
-            'canceled, amended)'
-        )
-
     def assertRecordEqual(self, expected, actual, msg=None):
         for field_name, expected_value in expected.iteritems():
             self.assertEqual(actual[field_name], expected_value, msg)
@@ -162,46 +139,18 @@ class AmendmentMixin(object):
             self.fail(msg)
 
     def assert_purchase_lines(self, expected_lines):
-        lines = self.purchase.order_line
-        not_found = []
-        for product, qty, state in expected_lines:
-            for line in lines:
-                if ((line.product_id, line.product_qty, line.state) ==
-                        (product, qty, state)):
-                    lines -= line
-                    break
-            else:
-                not_found.append((product, qty, state))
-        message = ''
-        for product, qty, state in not_found:
-            message += ("- product: '%s', qty: '%s', state: '%s'\n" %
-                        (product.display_name, qty, state))
-        for line in lines:
-            message += ("+ product: '%s', qty: '%s', state: '%s'\n" %
-                        (line.product_id.display_name, line.product_qty,
-                         line.state))
-        if message:
-            raise AssertionError('Purchase lines do not match:\n\n%s' %
-                                 message)
+        expecteds = [{
+            'product_id': exp[0],
+            'product_qty': exp[1],
+            'state': exp[2],
+        } for exp in expected_lines]
+        self.assertRecordsetEqual(expecteds, self.purchase.order_line)
 
     def assert_moves(self, expected_moves):
         moves = self.purchase.mapped('picking_ids.move_lines')
-        not_found = []
-        for product, qty, state in expected_moves:
-            for move in moves:
-                if ((move.product_id, move.product_qty, move.state) ==
-                        (product, qty, state)):
-                    moves -= move
-                    break
-            else:
-                not_found.append((product, qty, state))
-        message = ''
-        for product, qty, state in not_found:
-            message += ("- product: '%s', qty: '%s', state: '%s'\n" %
-                        (product.display_name, qty, state))
-        for line in moves:
-            message += ("+ product: '%s', qty: '%s', state: '%s'\n" %
-                        (line.product_id.display_name, line.product_qty,
-                         line.state))
-        if message:
-            raise AssertionError('Moves do not match:\n\n%s' % message)
+        expecteds = [{
+            'product_id': exp[0],
+            'product_qty': exp[1],
+            'state': exp[2],
+        } for exp in expected_moves]
+        self.assertRecordsetEqual(expecteds, moves)

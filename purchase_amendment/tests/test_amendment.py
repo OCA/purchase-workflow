@@ -22,6 +22,7 @@
 from openerp.tests import common
 from .helper import AmendmentMixin
 
+
 class TestAmendmentCombinations(common.TransactionCase, AmendmentMixin):
 
     def setUp(self):
@@ -72,7 +73,6 @@ class TestAmendmentCombinations(common.TransactionCase, AmendmentMixin):
         })
         return po
 
-
     def test_ship_and_cancel_part(self):
         # We have 1000 product1
         # Ship 200 products
@@ -93,25 +93,16 @@ class TestAmendmentCombinations(common.TransactionCase, AmendmentMixin):
 
         # keep only 300 product1 of the 800 expected
         self.amend_product(amendment, self.product1, 300)
-        self.assert_amendment_quantities(amendment, self.product1,
-                                         ordered_qty=1000,
-                                         received_qty=200,
-                                         amend_qty=300)
-        self.assert_amendment_quantities(amendment, self.product2,
-                                         ordered_qty=500, amend_qty=500)
-        self.assert_amendment_quantities(amendment, self.product3,
-                                         ordered_qty=800, amend_qty=800)
         amendment.do_amendment()
         self.assert_purchase_lines([
-            (self.product1, 200, 'confirmed'),
+            (self.product1, 500, 'confirmed'),
             (self.product1, 500, 'cancel'),
-            (self.product1, 300, 'confirmed'),
             (self.product2, 500, 'confirmed'),
             (self.product3, 800, 'confirmed'),
         ])
         self.assert_moves([
             (self.product1, 200, 'done'),
-            (self.product1, 800, 'cancel'),
+            (self.product1, 500, 'cancel'),
             (self.product1, 300, 'assigned'),
             (self.product2, 500, 'assigned'),
             (self.product3, 800, 'assigned'),
@@ -123,15 +114,6 @@ class TestAmendmentCombinations(common.TransactionCase, AmendmentMixin):
         amendment = self.amend()
         # Remove product1
         self.amend_product(amendment, self.product1, 0)
-        self.assert_amendment_quantities(amendment, self.product1,
-                                         ordered_qty=1000,
-                                         amend_qty=0)
-        self.assert_amendment_quantities(amendment, self.product2,
-                                         ordered_qty=500,
-                                         amend_qty=500)
-        self.assert_amendment_quantities(amendment, self.product3,
-                                         ordered_qty=800,
-                                         amend_qty=800)
         amendment.do_amendment()
         self.assert_purchase_lines([
             (self.product1, 1000, 'cancel'),
@@ -156,25 +138,14 @@ class TestAmendmentCombinations(common.TransactionCase, AmendmentMixin):
         amendment = self.amend()
         self.amend_product(amendment, self.product1, 2000)
 
-        self.assert_amendment_quantities(amendment, self.product1,
-                                         ordered_qty=1000,
-                                         received_qty=200,
-                                         amend_qty=2000)
-        self.assert_amendment_quantities(amendment, self.product2,
-                                         ordered_qty=500, amend_qty=500)
-        self.assert_amendment_quantities(amendment, self.product3,
-                                         ordered_qty=800, amend_qty=800)
         amendment.do_amendment()
         self.assert_purchase_lines([
-            (self.product1, 200, 'confirmed'),
-            (self.product1, 800, 'cancel'),
-            (self.product1, 2000, 'confirmed'),
+            (self.product1, 2200, 'confirmed'),
             (self.product2, 500, 'confirmed'),
             (self.product3, 800, 'confirmed'),
         ])
         self.assert_moves([
             (self.product1, 200, 'done'),
-            (self.product1, 800, 'cancel'),
             (self.product1, 2000, 'assigned'),
             (self.product2, 500, 'assigned'),
             (self.product3, 800, 'assigned'),
@@ -185,12 +156,6 @@ class TestAmendmentCombinations(common.TransactionCase, AmendmentMixin):
         # amend the purchase order
         amendment = self.amend()
 
-        self.assert_amendment_quantities(amendment, self.product1,
-                                         ordered_qty=1000, amend_qty=1000)
-        self.assert_amendment_quantities(amendment, self.product2,
-                                         ordered_qty=500, amend_qty=500)
-        self.assert_amendment_quantities(amendment, self.product3,
-                                         ordered_qty=800, amend_qty=800)
         amendment.do_amendment()
         self.assert_purchase_lines([
             (self.product1, 1000, 'confirmed'),
@@ -204,7 +169,10 @@ class TestAmendmentCombinations(common.TransactionCase, AmendmentMixin):
         ])
         self.assertEqual(self.purchase.state, 'approved')
 
-    def test_cancel_and_amend(self):
+    def XXX_test_cancel_and_amend(self):
+        # We do not handle that case at the moment. Maybe we can handle this
+        # case recreating the moves manually.
+
         # Cancel all moves
         self.purchase.mapped('picking_ids.move_lines').action_cancel()
 
@@ -218,17 +186,6 @@ class TestAmendmentCombinations(common.TransactionCase, AmendmentMixin):
         self.amend_product(amendment, self.product2, 500)
         self.amend_product(amendment, self.product3, 800)
 
-        self.assert_amendment_quantities(amendment, self.product1,
-                                         ordered_qty=1000,
-                                         canceled_qty=1000,
-                                         amend_qty=1000)
-        self.assert_amendment_quantities(amendment, self.product2,
-                                         ordered_qty=500,
-                                         canceled_qty=500, amend_qty=500)
-        self.assert_amendment_quantities(amendment, self.product3,
-                                         ordered_qty=800,
-                                         canceled_qty=800,
-                                         amend_qty=800)
         amendment.do_amendment()
         self.assert_purchase_lines([
             (self.product1, 1000, 'confirmed'),
@@ -253,11 +210,11 @@ class TestAmendmentCombinations(common.TransactionCase, AmendmentMixin):
         self.amend_product(amendment, self.product3, 300)
         amendment.do_amendment()
         self.assert_moves([
-            (self.product1, 1000, 'cancel'),
+            (self.product1, 500, 'cancel'),
             (self.product1, 500, 'assigned'),
-            (self.product2, 500, 'cancel'),
+            (self.product2, 200, 'cancel'),
             (self.product2, 300, 'assigned'),
-            (self.product3, 800, 'cancel'),
+            (self.product3, 500, 'cancel'),
             (self.product3, 300, 'assigned'),
         ])
         self.ship([(self.product1, 500),
@@ -265,17 +222,16 @@ class TestAmendmentCombinations(common.TransactionCase, AmendmentMixin):
                    (self.product3, 300),
                    ])
         self.assert_moves([
-            (self.product1, 1000, 'cancel'),
+            (self.product1, 500, 'cancel'),
             (self.product1, 500, 'done'),
-            (self.product2, 500, 'cancel'),
+            (self.product2, 200, 'cancel'),
             (self.product2, 300, 'done'),
-            (self.product3, 800, 'cancel'),
+            (self.product3, 500, 'cancel'),
             (self.product3, 300, 'done'),
         ])
         self.assertNotEqual(self.purchase.state, 'except_picking')
 
     def test_ship_partial_amend_ship_all(self):
-        amendment = self.amend()
         self.ship([(self.product1, 100),
                    (self.product2, 100),
                    (self.product3, 0),
@@ -287,6 +243,7 @@ class TestAmendmentCombinations(common.TransactionCase, AmendmentMixin):
             (self.product2, 100, 'done'),
             (self.product3, 800, 'assigned'),
         ])
+        amendment = self.amend()
         self.amend_product(amendment, self.product1, 200)
         self.amend_product(amendment, self.product2, 200)
         self.amend_product(amendment, self.product3, 200)
@@ -295,11 +252,11 @@ class TestAmendmentCombinations(common.TransactionCase, AmendmentMixin):
         self.assert_moves([
             (self.product1, 100, 'done'),
             (self.product1, 200, 'assigned'),
-            (self.product1, 900, 'cancel'),
-            (self.product2, 400, 'cancel'),
+            (self.product1, 700, 'cancel'),
+            (self.product2, 200, 'cancel'),
             (self.product2, 100, 'done'),
             (self.product2, 200, 'assigned'),
-            (self.product3, 800, 'cancel'),
+            (self.product3, 600, 'cancel'),
             (self.product3, 200, 'assigned'),
         ])
 
@@ -310,11 +267,11 @@ class TestAmendmentCombinations(common.TransactionCase, AmendmentMixin):
         self.assert_moves([
             (self.product1, 100, 'done'),
             (self.product1, 200, 'done'),
-            (self.product1, 900, 'cancel'),
-            (self.product2, 400, 'cancel'),
+            (self.product1, 700, 'cancel'),
+            (self.product2, 200, 'cancel'),
             (self.product2, 100, 'done'),
             (self.product2, 200, 'done'),
-            (self.product3, 800, 'cancel'),
+            (self.product3, 600, 'cancel'),
             (self.product3, 200, 'done'),
         ])
         self.assertNotEqual(self.purchase.state, 'except_picking')
@@ -340,11 +297,11 @@ class TestAmendmentCombinations(common.TransactionCase, AmendmentMixin):
         self.assert_moves([
             (self.product1, 100, 'done'),
             (self.product1, 200, 'assigned'),
-            (self.product1, 900, 'cancel'),
-            (self.product2, 400, 'cancel'),
+            (self.product1, 700, 'cancel'),
+            (self.product2, 200, 'cancel'),
             (self.product2, 100, 'done'),
             (self.product2, 200, 'assigned'),
-            (self.product3, 800, 'cancel'),
+            (self.product3, 600, 'cancel'),
             (self.product3, 200, 'assigned'),
         ])
 
@@ -356,12 +313,12 @@ class TestAmendmentCombinations(common.TransactionCase, AmendmentMixin):
             (self.product1, 100, 'done'),
             (self.product1, 110, 'done'),
             (self.product1, 90, 'assigned'),
-            (self.product1, 900, 'cancel'),
-            (self.product2, 400, 'cancel'),
+            (self.product1, 700, 'cancel'),
+            (self.product2, 200, 'cancel'),
             (self.product2, 100, 'done'),
             (self.product2, 120, 'done'),
             (self.product2, 80, 'assigned'),
-            (self.product3, 800, 'cancel'),
+            (self.product3, 600, 'cancel'),
             (self.product3, 130, 'done'),
             (self.product3, 70, 'assigned'),
         ])
@@ -374,12 +331,12 @@ class TestAmendmentCombinations(common.TransactionCase, AmendmentMixin):
             (self.product1, 100, 'done'),
             (self.product1, 110, 'done'),
             (self.product1, 90, 'cancel'),
-            (self.product1, 900, 'cancel'),
-            (self.product2, 400, 'cancel'),
+            (self.product1, 700, 'cancel'),
+            (self.product2, 200, 'cancel'),
             (self.product2, 100, 'done'),
             (self.product2, 120, 'done'),
             (self.product2, 80, 'cancel'),
-            (self.product3, 800, 'cancel'),
+            (self.product3, 600, 'cancel'),
             (self.product3, 130, 'done'),
             (self.product3, 70, 'cancel'),
         ])
