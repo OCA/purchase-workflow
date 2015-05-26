@@ -156,6 +156,11 @@ class PurchaseOrderAmendmentItem(models.TransientModel):
     product_uom_id = fields.Many2one(related='purchase_line_id.product_uom',
                                      readonly=True)
 
+    def affected_sale_lines(self):
+        return self.env['sale.order.line'].search([
+            ('procurement_group_id', '=', self.procurement_id.group_id.id)
+        ])
+
     @api.multi
     def split_lines(self):
         """ Split the order line according to selected quantities
@@ -195,6 +200,32 @@ class PurchaseOrderAmendmentItem(models.TransientModel):
                     line.product_qty -= cancel_line.product_qty
                 item.move_id.action_cancel()
 
+                for sale_line in item.affected_sale_lines():
+                    if compare(item.original_qty,
+                               sale_line.product_uom_qty) == 0:
+                        # this sale line has only one move, and quantity goes
+                        # to zero: cancel the sale order line
+
+                        # sale_line.button_cancel would try to run the
+                        # procurement again, and that gives trouble (it tries
+                        # to delete the purchase order line, for some reason)
+                        sale_line.state = 'cancel'
+                        sale_line.order_id.message_post(
+                            body='Line {} cancelled because the amendment of '
+                            'Purchase Order {}'.format(sale_line, line.name))
+                    else:
+                        # this sale line has some other quantity remaining
+                        original_sale_quantity = sale_line.product_uom_qty
+                        sale_line.product_uom_qty -= item.original_qty
+                        sale_line.order_id.message_post(
+                            body='Line {} quantity reduced from {} to {} '
+                            'because of an amendment '
+                            'of Purchase Order {}'.format(
+                                sale_line.name,
+                                original_sale_quantity,
+                                sale_line.product_uom_qty,
+                                line.order_id.name))
+
             elif compare(item.original_qty, item.new_qty) == 1:
                 # quantity decreased
                 canceled_qty = item.original_qty - item.new_qty
@@ -212,10 +243,32 @@ class PurchaseOrderAmendmentItem(models.TransientModel):
                 cancel_line.action_cancel()
                 canceled_move.action_cancel()
                 line.product_qty -= canceled_qty
+                for sale_line in item.affected_sale_lines():
+                    original_sale_quantity = sale_line.product_uom_qty
+                    sale_line.product_uom_qty -= canceled_qty
+                    sale_line.order_id.message_post(
+                        body='Line {} quantity reduced from {} to {} '
+                        'because of an amendment '
+                        'of Purchase Order {}'.format(
+                            sale_line.name,
+                            original_sale_quantity,
+                            sale_line.product_uom_qty,
+                            line.order_id.name))
             else:  # quantity increased
                 # this should propagate to chained moves just fine
                 item.move_id.product_uom_qty = item.new_qty
                 added_qty = item.new_qty - item.original_qty
                 item.purchase_line_id.product_qty += added_qty
+                for sale_line in item.affected_sale_lines():
+                    original_sale_quantity = sale_line.product_uom_qty
+                    sale_line.product_uom_qty += added_qty
+                    sale_line.order_id.message_post(
+                        body='Line {} quantity increased from {} to {} '
+                        'because of an amendment '
+                        'of Purchase Order {}'.format(
+                            sale_line.name,
+                            original_sale_quantity,
+                            sale_line.product_uom_qty,
+                            line.order_id.name))
 
         return True
