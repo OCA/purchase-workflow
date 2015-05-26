@@ -170,21 +170,20 @@ class PurchaseOrderAmendmentItem(models.TransientModel):
         Move = self.env['stock.move']
         for item in self:
             line = item.purchase_line_id
-            # received_qty = group['received_qty']
-            received_qty = 0.  # XXX
-            ordered_qty = item.original_qty
-            amend_qty = item.new_qty
             rounding = line.product_id.uom_id.rounding
             compare = partial(float_compare, precision_digits=rounding)
-            canceled_qty = ordered_qty - received_qty - amend_qty
 
-            if compare(item.original_qty, item.new_qty) == 0:
+            if compare(item.original_qty, item.new_qty) == 0:  # no changes
                 continue
-            elif compare(item.new_qty, 0.) == 0:
+            elif compare(item.new_qty, 0.) == 0:  # new quantity is zero
                 if compare(item.original_qty,
                            line.product_qty) == 0:
+                    # this purchase line has only one move, and quantity goes
+                    # to zero: cancel the purchase order line
                     line.action_cancel()
                 else:
+                    # we cancel the move, but the purchase order line has some
+                    # quantity left from other moves
                     values = {'product_qty': item.move_id.product_qty,
                               'amend_id': line.id,
                               'move_ids': [(6, 0, item.move_id.ids)],
@@ -193,10 +192,11 @@ class PurchaseOrderAmendmentItem(models.TransientModel):
                               ]}
                     cancel_line = line.copy(default=values)
                     cancel_line.action_cancel()
-                    line.product_qty -= canceled_qty
+                    line.product_qty -= cancel_line.product_qty
                 item.move_id.action_cancel()
 
             elif compare(item.original_qty, item.new_qty) == 1:
+                # quantity decreased
                 canceled_qty = item.original_qty - item.new_qty
                 canceled_move = Move.browse(Move.split(
                     item.move_id,
@@ -212,7 +212,7 @@ class PurchaseOrderAmendmentItem(models.TransientModel):
                 cancel_line.action_cancel()
                 canceled_move.action_cancel()
                 line.product_qty -= canceled_qty
-            else:
+            else:  # quantity increased
                 # this should propagate to chained moves just fine
                 item.move_id.product_uom_qty = item.new_qty
                 added_qty = item.new_qty - item.original_qty
