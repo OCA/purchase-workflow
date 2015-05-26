@@ -10,6 +10,10 @@
           <p class="oe_grey">
             With this amendment, stock moves will be updated accordingly, and
             changes will be propagated in chained moves.<br/>
+            If any sales are linked to this purchase (for example, in the case
+            of Make To Order or Dropshipping flows), they will be amended as
+            well without further approval.
+            <br/>
           </p>
           <group>
             <field name="item_ids" nolabel="1">
