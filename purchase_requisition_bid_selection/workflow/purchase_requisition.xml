@@ -24,6 +24,12 @@
             <field name="signal">bid_selected</field>
             <field name="group_id" ref="purchase.group_purchase_user"/>
         </record>
+        <record id="trans_open_sent" model="workflow.transition">
+            <field name="act_from" ref="purchase_requisition.act_open"/>
+            <field name="act_to" ref="purchase_requisition.act_sent"/>
+            <field name="signal">back_to_sent</field>
+            <field name="group_id" ref="purchase.group_purchase_user"/>
+        </record>
         <record id="trans_selected_open" model="workflow.transition">
             <field name="act_from" ref="act_selected"/>
             <field name="act_to" ref="purchase_requisition.act_open"/>
