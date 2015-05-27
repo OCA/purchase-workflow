@@ -157,9 +157,13 @@ class PurchaseOrderAmendmentItem(models.TransientModel):
                                      readonly=True)
 
     def affected_sale_lines(self):
-        return self.env['sale.order.line'].search([
-            ('procurement_group_id', '=', self.procurement_id.group_id.id)
-        ])
+        move_chain = self.env['stock.move']
+        current_move = self.move_id
+        if current_move:
+            move_chain |= current_move
+            current_move = current_move.move_dest_id
+
+        return move_chain.mapped('procurement_id.sale_line_id')
 
     @api.multi
     def split_lines(self):
