@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 #
-#    Authors: Guewen Baconnier
+#    Authors: Guewen Baconnier, Leonardo Pistone
 #    Copyright 2015 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -23,7 +23,7 @@
 {
     "name": "Purchase Amendment",
     # description is in README.rst
-    "version": "0.1",
+    "version": "0.2",
     "depends": ["purchase",
                 "stock_split_picking",
                 ],
