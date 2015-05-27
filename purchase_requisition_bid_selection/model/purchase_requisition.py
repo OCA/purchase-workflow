@@ -329,6 +329,16 @@ class PurchaseRequisition(models.Model):
         self.signal_workflow('bid_selected')
 
     @api.multi
+    def update_validity(self):
+        wizard = self.env['purchase.action_modal.'
+                          'ask_validity'].browse(
+            self.env.context['active_id']
+        )
+        self.message_post(body=_('Validity extended from %s to %s')
+                          % (self.req_validity, wizard.validity))
+        self.req_validity = wizard.validity
+
+    @api.multi
     def tender_selected(self):
         self.state = 'selected'
 
@@ -441,6 +451,28 @@ class PurchaseRequisition(models.Model):
         ctx['search_default_groupby_requisitionline'] = True
         ctx['search_default_showbids'] = True
         return res
+
+    @api.multi
+    def ask_validity(self):
+        ctx = self._context.copy()
+        ctx.update({
+            'action': 'update_validity',
+            'active_model': self._name,
+            'active_ids': self._ids,
+            'default_validity': self.req_validity,
+        })
+        view = self.env.ref('purchase_requisition_bid_selection.'
+                            'ask_validity')
+        return {
+            'type': 'ir.actions.act_window',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'purchase.action_modal.ask_validity',
+            'view_id': view.id,
+            'views': [(view.id, 'form')],
+            'target': 'new',
+            'context': ctx,
+        }
 
     @api.multi
     def ask_selection_reasons(self):

@@ -72,7 +72,13 @@
           <page string="Options">
             <group>
               <group>
-                <field name="req_validity" attrs="{'readonly': [('state','not in',('draft'))]}"/>
+
+                <label for="req_validity" />
+                <div>
+                  <field name="req_validity" class="oe_inline" attrs="{'readonly': [('state','!=','draft')]}"/>
+                  <button name="ask_validity" class="oe_inline oe_link" type="object" string="(extend)" attrs="{'invisible': [('state', '=', 'draft')]}"/>
+                </div>
+
                 <field name="req_incoterm_id" attrs="{'readonly': [('state','not in',('draft'))]}"/>
                 <field name="req_incoterm_address" attrs="{'readonly': [('state','not in',('draft'))]}"/>
                 <field name="req_payment_term_id" attrs="{'readonly': [('state','not in',('draft'))]}"/>
