@@ -450,6 +450,7 @@ class PurchaseRequisition(models.Model):
             del ctx['search_default_hide_cancelled']
         ctx['search_default_groupby_requisitionline'] = True
         ctx['search_default_showbids'] = True
+        ctx['search_default_selection_view'] = True
         return res
 
     @api.multi
