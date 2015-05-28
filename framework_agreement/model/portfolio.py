@@ -181,7 +181,9 @@ class Portfolio(models.Model):
         # instead of risking to limit things too much for a small discrepancy.
         # Think of an agreement that would be good a few days later, or with a
         # slightly different incoterm.
-        return self.state in ('running', 'future')
+        return (
+            self.state in ('running', 'future')
+            and self.get_line_for_product(product, quantity))
 
     @api.multi
     def is_valid_at_date(self, proposed_date):
