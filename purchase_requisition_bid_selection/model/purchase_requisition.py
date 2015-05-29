@@ -384,7 +384,7 @@ class PurchaseRequisition(models.Model):
 
         ctx.update({'action': 'ask_selection_reasons',
                     'active_model': self._name,
-                    'active_ids': self._ids,
+                    'active_ids': self.ids,
                     })
         view = self.env.ref('purchase_requisition_bid_selection'
                             '.action_modal_confirm_different_quantity')
@@ -405,7 +405,7 @@ class PurchaseRequisition(models.Model):
 
         ctx.update({'action': 'act_tender_closed',
                     'active_model': self._name,
-                    'active_ids': self._ids,
+                    'active_ids': self.ids,
                     })
         view = self.env.ref('purchase_requisition_bid_selection'
                             '.modal_confirm_close_selection')
@@ -438,11 +438,11 @@ class PurchaseRequisition(models.Model):
 
     @api.multi
     def ask_validity(self):
-        ctx = self._context.copy()
+        ctx = self.env.context.copy()
         ctx.update({
             'action': 'update_validity',
             'active_model': self._name,
-            'active_ids': self._ids,
+            'active_ids': self.ids,
             'default_validity': self.req_validity,
         })
         view = self.env.ref('purchase_requisition_bid_selection.'
@@ -460,11 +460,11 @@ class PurchaseRequisition(models.Model):
 
     @api.multi
     def ask_selection_reasons(self):
-        ctx = self._context.copy()
+        ctx = self.env.context.copy()
         ctx.update({
             'action': 'update_selection_reasons',
             'active_model': self._name,
-            'active_ids': self._ids,
+            'active_ids': self.ids,
             'default_selection_reasons': self.selection_reasons,
         })
         view = self.env.ref('purchase_requisition_bid_selection.'
