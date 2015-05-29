@@ -97,6 +97,7 @@
 
         <button name="open_product_line" position="after">
           <button name="back_to_sent" states="open" string="Back to Confirmed" groups="purchase_requisition.group_purchase_requisition_manager"/>
+          <button name="back_to_selected" states="closed" string="Back to Selected" groups="purchase_requisition.group_purchase_requisition_manager"/>
         </button>
 
         <xpath expr="//field[@name='purchase_ids']//button[@name='purchase_cancel']" position="attributes">
