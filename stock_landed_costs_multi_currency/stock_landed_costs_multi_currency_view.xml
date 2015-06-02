@@ -1,0 +1,16 @@
+<openerp>
+    <data>
+        <!-- inheriting Stock Landed Cost Form View -->
+        <record id='view_stock_landed_cost_form_inherit' model='ir.ui.view'>
+            <field name="name">stock.landed.cost.form.inherit</field>
+            <field name="model">stock.landed.cost</field>
+            <field name="inherit_id" ref="stock_landed_costs.view_stock_landed_cost_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='cost_lines']/tree/field[@name='price_unit']" position="before">
+                    <field name="amount_currency" />
+                    <field name="currency_id" />
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
