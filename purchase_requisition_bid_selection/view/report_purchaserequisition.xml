@@ -5,7 +5,7 @@
       <t t-call="report.internal_layout">
         <div class="page">
           <t t-set="num_of_suppliers" t-value="len(set(bid.partner_id for bid in o.purchase_ids))"/>
-          <t t-set="tendering_output" t-value="sum(l.quantity_bid * l.order_id.currency_id.compute(l.price_unit, l.order_id.company_id.currency_id, round=False) for bid in o.eligible_bid_ids for l in bid.order_line)"/>
+          <t t-set="tendering_output" t-value="sum(l.quantity_bid * l.order_id.currency_id.compute(l.price_unit, l.order_id.company_id.currency_id, round=False) for bid in o.eligible_bid_ids for l in bid.order_line if l.state == 'confirmed')"/>
           <t t-if="not o.eligible_bid_ids">
             <p>
               This tender has no eligible bids
@@ -76,12 +76,12 @@
                                 Informations
                               </th>
                             </t>
-                            <t t-if="any(l.quantity_bid for l in bid.order_line)">
+                            <t t-if="any(l.state == 'confirmed' for l in bid.order_line)">
                               <th colspan="5" class="col-xs-3 bg-primary text-center col-separator">
                                 <span t-field="bid.partner_id"/> of bid <span t-field="bid.name"/>
                               </th>
                             </t>
-                            <t t-if="not any(l.quantity_bid for l in bid.order_line)">
+                            <t t-if="not any(l.state == 'confirmed' for l in bid.order_line)">
                               <th colspan="5" class="col-xs-3 info text-center col-separator">
                                 <span t-field="bid.partner_id"/> of bid <span t-field="bid.name"/>
                               </th>
@@ -133,10 +133,10 @@
                               <th class="info">Description of item</th>
                               <th class="info text-center col-separator">Quantity</th>
                             </t>
-                            <t t-if="any(l.quantity_bid for l in bid.order_line)">
+                            <t t-if="any(l.state == 'confirmed' for l in bid.order_line)">
                               <td class="bg-primary text-center">Selected</td>
                             </t>
-                            <t t-if="not any(l.quantity_bid for l in bid.order_line)">
+                            <t t-if="not any(l.state == 'confirmed' for l in bid.order_line)">
                               <td class="info text-center">Selected</td>
                             </t>
                             <td class="info text-center">Unit Price</td>
@@ -159,12 +159,12 @@
                                 <t t-if="bid_line">
                                   <t t-set="bid_line" t-value="bid_line[0]"/>
                                   <!--Selected-->
-                                  <t t-if="bid_line.quantity_bid">
+                                  <t t-if="bid_line.state == 'confirmed'">
                                     <td class="text-right bg-success">
                                       <span t-esc="'{:,.2f}'.format(bid_line.quantity_bid)"/>
                                     </td>
                                   </t>
-                                  <t t-if="not bid_line.quantity_bid">
+                                  <t t-if="bid_line.state != 'confirmed'">
                                     <td class="text-right">
                                       -
                                     </td>
@@ -209,12 +209,12 @@
                                   <t t-if="bid_line">
                                     <t t-set="bid_line" t-value="bid_line[0]"/>
                                     <!--Selected-->
-                                    <t t-if="bid_line.quantity_bid">
+                                    <t t-if="bid_line.state == 'confirmed'">
                                       <td class="text-right bg-success">
                                         <span t-esc="'{:,.2f}'.format(bid_line.quantity_bid)"/>
                                       </td>
                                     </t>
-                                    <t t-if="not bid_line.quantity_bid">
+                                    <t t-if="bid_line.state != 'confirmed'">
                                       <td class="text-right">
                                         -
                                       </td>
@@ -285,12 +285,12 @@
                               <t t-if="service_line">
                                 <t t-set="service_line" t-value="service_line[0]"/>
                                 <!--Selected-->
-                                <t t-if="service_line.quantity_bid">
+                                <t t-if="service_line.state == 'confirmed'">
                                   <td class="text-right bg-success">
                                     <span t-esc="'{:,.2f}'.format(service_line.quantity_bid)"/>
                                   </td>
                                 </t>
-                                <t t-if="not service_line.quantity_bid">
+                                <t t-if="service_line.state != 'confirmed'">
                                   <td class="text-right">
                                     -
                                   </td>
@@ -525,7 +525,7 @@
                   <div class="row mt32">
                     <div class="col-xs-6">
                       <strong class="col-xs-4">Recommended Supplier(s)</strong>
-                      <t t-set="recommended_suppliers" t-value="', '.join(bid.partner_id.name for bid in o.eligible_bid_ids if any(l.quantity_bid for l in bid.order_line))"/>
+                      <t t-set="recommended_suppliers" t-value="', '.join(bid.partner_id.name for bid in o.eligible_bid_ids if any(l.state == 'confirmed' for l in bid.order_line))"/>
                       <t t-if="recommended_suppliers">
                         <span class="col-xs-8 bg-info text-center" t-esc="recommended_suppliers"/>
                       </t>
