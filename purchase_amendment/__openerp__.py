@@ -26,6 +26,7 @@
     "version": "0.2",
     "depends": ["purchase",
                 "stock_split_picking",
+                "stock_account",
                 ],
     "author": "Camptocamp,Odoo Community Association (OCA)",
     "license": "AGPL-3",
