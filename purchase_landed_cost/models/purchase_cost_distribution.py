@@ -287,6 +287,7 @@ class PurchaseCostDistribution(models.Model):
 class PurchaseCostDistributionLine(models.Model):
     _name = "purchase.cost.distribution.line"
     _description = "Purchase cost distribution Line"
+    _rec_name = 'picking_id'
 
     @api.one
     @api.depends('product_price_unit', 'product_qty')
