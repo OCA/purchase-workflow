@@ -33,6 +33,7 @@ class PurchaseOrder(models.Model):
     )
 
     @api.onchange('pricelist_id')
+    @api.multi
     def propagate_agreement_fields(self):
         PROPAGATE_FIELDS = [
             'currency_id',
