@@ -41,6 +41,7 @@
 					<field name="total_purchase" />
 					<field name="total_expense" />
 					<field name="amount_total" />
+					<field name="cost_lines" />
 					<field name="state" />
                     <field name="company_id" groups="base.group_multi_company"/>
 				</tree>
