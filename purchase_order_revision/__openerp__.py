@@ -21,7 +21,7 @@
 
 {
     'name': "Purchase order revisions",
-    'version': '0.2',
+    'version': '1.0',
     'category': 'Purchase Management',
     'author': "Agile Business Group,"
               "Camptocamp,"
