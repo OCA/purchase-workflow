@@ -296,11 +296,12 @@ class PurchaseRequisition(models.Model):
         Cancel call for bids and try to cancel related RFQs/PO
 
         """
+        self.ensure_one()
         po_to_cancel = self.mapped('purchase_ids')
         if po_to_cancel:
             self._cancel_po_with_reason(po_to_cancel,
                                         self._get_default_reason())
-        self.write({'state': 'cancel'})
+        self.state = 'cancel'
 
     @api.multi
     def update_selection_reasons(self):
