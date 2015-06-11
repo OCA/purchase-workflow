@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2013 Agile Business Group sagl
-#    (<http://www.agilebg.com>)
+#    Copyright (C) 2013 Agile Business Group sagl (<http://www.agilebg.com>)
+#    Copyright (c) 2015 ACSONE SA/NV (<http://acsone.eu>)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -23,7 +23,8 @@
     'name': "Purchase partial invoicing",
     'version': '0.1',
     'category': 'Purchase Management',
-    'author': "Agile Business Group,Odoo Community Association (OCA)",
+    'author':
+        "Agile Business Group,ACSONE SA/NV,Odoo Community Association (OCA)",
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
     "depends": ['purchase'],
