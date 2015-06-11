@@ -37,6 +37,8 @@ class PurchaseOrderClassic(osv.orm.Model):
 class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
 
+    # Keep requisition_id when copying a PO or a bid
+    requisition_id = fields.Many2one(copy=True)
     bid_partial = fields.Boolean(
         'Bid partially selected',
         readonly=True,
