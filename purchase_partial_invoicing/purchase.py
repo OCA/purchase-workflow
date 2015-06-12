@@ -25,70 +25,51 @@ import openerp.addons.decimal_precision as dp
 
 class PurchaseOrderLine(models.Model):
 
-    @api.multi
-    def _get_invoiced_quantity(self):
-        self.ensure_one()
-        return sum(self.invoice_lines.mapped('quantity'))
+    @api.one
+    @api.depends('invoice_lines', 'invoice_lines.invoice_id',
+                 'invoice_lines.quantity')
+    def _compute_invoiced_qty(self):
+        self.invoiced_qty = sum(self.invoice_lines.mapped('quantity'))
 
     @api.one
     @api.depends('invoice_lines', 'invoice_lines.invoice_id',
                  'invoice_lines.quantity')
-    def compute_invoiced_qty(self):
-        self.invoiced_qty = self._get_invoiced_quantity()
-
-    @api.multi
-    def is_fully_invoiced(self):
-        self.ensure_one()
-        return self.invoiced_qty == self.product_qty
+    def _compute_fully_invoiced(self):
+        self.fully_invoiced = (self.invoiced_qty == self.product_qty)
 
     @api.one
-    @api.depends('invoice_lines', 'invoice_lines.invoice_id',
-                 'invoice_lines.quantity')
-    def compute_fully_invoiced(self):
-        self.fully_invoiced = self.is_fully_invoiced()
-
-    @api.multi
-    def is_all_invoices_approved(self):
+    def _compute_all_invoices_approved(self):
         if self.invoice_lines:
-            return not any(inv_line.invoice_id.state
-                           in ['draft', 'cancel']
-                           for inv_line in self.invoice_lines)
+            self.all_invoices_approved = \
+                not any(inv_line.invoice_id.state in ['draft', 'cancel']
+                        for inv_line in self.invoice_lines)
         else:
-            return False
-
-    @api.one
-    def compute_all_invoices_approved(self):
-        self.all_invoices_approved = self.is_all_invoices_approved()
+            self.all_invoices_approved = False
 
     _inherit = 'purchase.order.line'
 
     invoiced_qty = fields.Float(
-        compute='compute_invoiced_qty',
+        compute='_compute_invoiced_qty',
         digits_compute=dp.get_precision('Product Unit of Measure'),
         copy=False, store=True)
 
     fully_invoiced = fields.Boolean(
-        compute='compute_fully_invoiced', copy=False, store=True)
+        compute='_compute_fully_invoiced', copy=False, store=True)
 
     all_invoices_approved = fields.Boolean(
-       compute='compute_all_invoices_approved')
+       compute='_compute_all_invoices_approved')
 
 
 class PurchaseOrder(models.Model):
 
     _inherit = 'purchase.order'
 
-    @api.multi
-    def is_invoiced(self):
-        self.ensure_one()
-        return all(line.all_invoices_approved and line.fully_invoiced
-                   for line in self.order_line)
-
     @api.one
-    def compute_invoiced(self):
-        self.invoiced = self.is_invoiced()
+    def _compute_invoiced(self):
+        self.invoiced = all(line.all_invoices_approved and line.fully_invoiced
+                            for line in self.order_line)
 
-    invoiced = fields.Boolean(compute='compute_invoiced')
+    invoiced = fields.Boolean(compute='_compute_invoiced')
 
     @api.model
     def _prepare_inv_line(self, account_id, order_line):
