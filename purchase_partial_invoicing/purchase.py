@@ -62,16 +62,16 @@ class PurchaseOrderLine(models.Model):
 
     _inherit = 'purchase.order.line'
 
-    invoiced_qty = fields\
-        .Float(compute='compute_invoiced_qty',
-               digits_compute=dp.get_precision('Product Unit of Measure'),
-               copy=False, store=True)
+    invoiced_qty = fields.Float(
+        compute='compute_invoiced_qty',
+        digits_compute=dp.get_precision('Product Unit of Measure'),
+        copy=False, store=True)
 
-    fully_invoiced = fields\
-        .Boolean(compute='compute_fully_invoiced', copy=False, store=True)
+    fully_invoiced = fields.Boolean(
+        compute='compute_fully_invoiced', copy=False, store=True)
 
-    all_invoices_approved = fields\
-        .Boolean(compute='compute_all_invoices_approved')
+    all_invoices_approved = fields.Boolean(
+       compute='compute_all_invoices_approved')
 
 
 class PurchaseOrder(models.Model):
