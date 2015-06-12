@@ -28,10 +28,7 @@ class PurchaseOrderLine(models.Model):
     @api.multi
     def _get_invoiced_quantity(self):
         self.ensure_one()
-        invoiced_qty = 0.0
-        for invoice_line in self.invoice_lines:
-            invoiced_qty += invoice_line.quantity
-        return invoiced_qty
+        return sum(self.invoice_lines.mapped('quantity'))
 
     @api.one
     @api.depends('invoice_lines', 'invoice_lines.invoice_id',
