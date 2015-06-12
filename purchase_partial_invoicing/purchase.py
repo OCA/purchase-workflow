@@ -23,7 +23,7 @@ from openerp import models, fields, api
 import openerp.addons.decimal_precision as dp
 
 
-class purchase_order_line(models.Model):
+class PurchaseOrderLine(models.Model):
 
     @api.multi
     def _get_invoiced_quantity(self):
@@ -77,7 +77,7 @@ class purchase_order_line(models.Model):
         .Boolean(compute='compute_all_invoices_approved')
 
 
-class purchase_order(models.Model):
+class PurchaseOrder(models.Model):
 
     _inherit = 'purchase.order'
 
@@ -95,7 +95,7 @@ class purchase_order(models.Model):
 
     @api.model
     def _prepare_inv_line(self, account_id, order_line):
-        res = super(purchase_order, self).\
+        res = super(PurchaseOrder, self).\
             _prepare_inv_line(account_id, order_line)
         ctx = self.env.context.copy()
         if ctx.get('partial_quantity_lines'):
@@ -106,12 +106,12 @@ class purchase_order(models.Model):
         return res
 
 
-class account_invoice(models.Model):
+class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
     @api.multi
     def invoice_validate(self):
-        res = super(account_invoice, self).invoice_validate()
+        res = super(AccountInvoice, self).invoice_validate()
         purchase_order_obj = self.env['purchase.order']
         po_ids = purchase_order_obj.search([('invoice_ids', 'in', self.ids)])
         for purchase_order in po_ids:
