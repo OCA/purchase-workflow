@@ -70,10 +70,8 @@ class PurchaseLineInvoice(models.TransientModel):
                 invoiced_lines += line.po_line_id
             else:
                 not_invoiced_lines += line.po_line_id
-        if not_invoiced_lines.ids:
-            not_invoiced_lines.write({'invoiced': False})
-        if invoiced_lines.ids:
-            invoiced_lines.write({'invoiced': True})
+        not_invoiced_lines.write({'invoiced': False})
+        invoiced_lines.write({'invoiced': True})
         ctx.update({'partial_quantity_lines': changed_lines})
         res = super(PurchaseLineInvoice, self.with_context(ctx))\
             .makeInvoices()
