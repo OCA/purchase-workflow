@@ -23,8 +23,9 @@
     'name': "Purchase partial invoicing",
     'version': '0.1',
     'category': 'Purchase Management',
-    'author':
-        "Agile Business Group,ACSONE SA/NV,Odoo Community Association (OCA)",
+    'author': "Agile Business Group,"
+              "ACSONE SA/NV,"
+              "Odoo Community Association (OCA)",
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
     "depends": ['purchase'],
