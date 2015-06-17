@@ -57,7 +57,7 @@ class PurchaseOrderLine(models.Model):
         compute='_compute_fully_invoiced', copy=False, store=True)
 
     all_invoices_approved = fields.Boolean(
-       compute='_compute_all_invoices_approved')
+        compute='_compute_all_invoices_approved')
 
 
 class PurchaseOrder(models.Model):
