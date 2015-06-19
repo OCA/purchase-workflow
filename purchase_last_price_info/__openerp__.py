@@ -19,24 +19,23 @@
 {
     "name": "Product Last Price Info - Purchase",
     "version": "1.0",
-    "depends": [
-        "purchase",
-        "product_last_price_info",
-    ],
-    "author": "OdooMRP team,"
-              "AvanzOSC,"
-              "Serv. Tecnol. Avanzados - Pedro M. Baeza",
+    "category": "Hidden/Dependency",
+    "license": "AGPL-3",
+    "author": "OdooMRP team, "
+              "AvanzOSC, "
+              "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
+              "Odoo Community Association (OCA)",
     "website": "http://www.odoomrp.com",
     "contributors": [
         "Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>",
         "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
-        "Ana Juaristi <ajuaristio@gmail.com>"
+        "Ana Juaristi <anajuaristi@avanzosc.es>",
     ],
-    "category": "Hidden/Dependency",
-    "summary": "",
+    "depends": [
+        "purchase",
+    ],
     "data": [
         "views/product_view.xml",
     ],
     "installable": True,
-    "auto_install": True,
 }
