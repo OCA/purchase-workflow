@@ -19,3 +19,4 @@
 #
 ##############################################################################
 from . import po_line_invoice
+from . import po_line_cancel_quantity

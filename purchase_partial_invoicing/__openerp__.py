@@ -31,6 +31,7 @@
     "depends": ['purchase'],
     "data": [
         'wizard/po_line_invoice_view.xml',
+        'wizard/po_line_cancel_quantity_view.xml',
         'purchase_view.xml',
     ],
     "demo": [],

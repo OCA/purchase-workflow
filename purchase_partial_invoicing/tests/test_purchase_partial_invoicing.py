@@ -53,7 +53,8 @@ class testPurchasePartialInvoicing(common.TransactionCase):
         # I get menu item action
         menu = self.env.ref('purchase.purchase_line_form_action2')
         self.domain = safe_eval(menu.domain)
-        self.domain.append(('order_id', '=', self.purchase_order.id))
+        self.domain.extend([('order_id', '=', self.purchase_order.id),
+                            ('fully_invoiced', '=', False)])
         purchase_line_domain = self.po_line_obj.search(self.domain)
         # I check if all lines is on the view's result
         self.assertEqual(purchase_line_domain, purchase_lines,
@@ -206,3 +207,73 @@ class testPurchasePartialInvoicing(common.TransactionCase):
         self.assertTrue(line_to_partial.invoiced)
         # I check if the purchase order is flag as invoiced
         self.assertTrue(self.purchase_order.invoiced)
+
+    def test_cancel_quantity(self):
+        self.common_test()
+        quantity_to_invoiced = 4
+        line_to_invoice = self.purchase_order.order_line[0]
+        ctx = self.context.copy()
+        ctx.update({'active_ids': line_to_invoice.id})
+        wizard = self.env['purchase.order.line_invoice']\
+            .with_context(ctx).create({})
+        # I change the quantity on the line that will be invoiced
+        wizard.line_ids[0].invoiced_qty = quantity_to_invoiced
+        # I click on make invoice button
+        wizard.with_context(ctx).makeInvoices()
+        # I cancel quantity
+        quantity_to_cancel = 4
+        wizard = self.env['purchase.order.line_cancel_quantity']\
+            .with_context(ctx).create({})
+        # I change the quantity on the line that will be cancelled
+        wizard.line_ids[0].cancelled_qty = quantity_to_cancel
+        wizard.cancel_quantity()
+        # I check the cancelled quantity on purchase line
+        self.assertEqual(line_to_invoice.cancelled_qty, quantity_to_cancel)
+        # I check the quantity to invoiced
+        max_quantity = line_to_invoice.product_qty -\
+            line_to_invoice.invoiced_qty - line_to_invoice.cancelled_qty
+        wizard = self.env['purchase.order.line_invoice']\
+            .with_context(ctx).create({})
+        self.assertEqual(wizard.line_ids[0].product_qty, max_quantity)
+        # I make an invoice for the remaining quantity
+        wizard.line_ids[0].invoiced_qty = max_quantity
+        wizard.with_context(ctx).makeInvoices()
+        # I check if the line is fully invoiced
+        self.assertTrue(line_to_invoice.fully_invoiced)
+
+    def test_cancel_full_line(self):
+        self.common_test()
+        line_to_cancel = self.purchase_order.order_line[0]
+        lines_to_invoice = self.purchase_order.order_line\
+            .filtered(lambda r: r.id != line_to_cancel.id)
+        ctx = self.context.copy()
+        ctx.update({'active_ids': lines_to_invoice.ids})
+        wizard = self.env['purchase.order.line_invoice']\
+            .with_context(ctx).create({})
+        # I click on make invoice button
+        wizard.with_context(ctx).makeInvoices()
+        ctx.update({'active_ids': line_to_cancel.id})
+        # I check if lines are invoiced
+        invoice_lines = self.inv_line_obj\
+            .search([('purchase_line_id', 'in', lines_to_invoice.ids)])
+        self.assertEqual(len(invoice_lines), len(lines_to_invoice.ids))
+        # I get the created invoice
+        invoice = invoice_lines[0].invoice_id
+        # I validate the invoice
+        workflow.trg_validate(self.uid, 'account.invoice',
+                              invoice.id, 'invoice_open',
+                              self.cr)
+        # I cancel quantity
+        quantity_to_cancel = line_to_cancel.product_qty
+        wizard = self.env['purchase.order.line_cancel_quantity']\
+            .with_context(ctx).create({})
+        # I change the quantity on the line that will be cancelled
+        wizard.line_ids[0].cancelled_qty = quantity_to_cancel
+        wizard.cancel_quantity()
+        # I check the cancelled quantity on purchase line
+        self.assertEqual(line_to_cancel.cancelled_qty, quantity_to_cancel)
+        # I check if the line is fully invoiced
+        self.assertTrue(line_to_cancel.fully_invoiced)
+        # I check if the purchase order is invoiced
+        line_to_cancel.order_id.invalidate_cache()
+        self.assertTrue(line_to_cancel.order_id.invoiced)
