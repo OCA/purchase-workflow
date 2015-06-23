@@ -31,9 +31,9 @@ msgid "Purchase"
 msgstr "Compra"
 
 #. module: purchase_last_price_info
-#: field:product.product,last_seller:0
-msgid "Last Seller"
-msgstr "Último vendedor"
+#: field:product.product,last_supplier:0
+msgid "Last Supplier"
+msgstr "Último proveedor"
 
 #. module: purchase_last_price_info
 #: field:product.product,last_purchase_price:0
