@@ -15,16 +15,15 @@
         price_unit: 3297.20
         product_qty: 4.0
 -
-  I cancel the PO
+  I cancel the PO and create a new revision
 -
    !python {model: purchase.order}: |
+     po = self.browse(cr, uid, ref('purchase_order_1'))
+     old_name = po.name
      self.action_cancel(cr, uid, [ref('purchase_order_1')])
--
-  I create a new revision
--
-   !python {model: purchase.order}: |
      action = self.new_revision(cr, uid, [ref('purchase_order_1')])
-     new_po = self.browse(cr, uid, ref('purchase_order_1'))
-     assert new_po.old_revision_ids, "Old revisions not set"
-     assert new_po.revision_number == 1
-     assert new_po.name.endswith('-01')
+     po.refresh()
+     assert po.old_revision_ids, "Old revisions not set"
+     assert po.revision_number == 1, "Revision number should be 1, %s found" % po.revision_number
+     new_name = '%s-01' % old_name
+     assert po.name == new_name, "New name should be %s, %s found" % (new_name, po.name)
