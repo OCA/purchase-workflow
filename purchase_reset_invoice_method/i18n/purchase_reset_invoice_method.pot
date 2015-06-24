@@ -1,0 +1,128 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# 	* purchase_reset_invoice_method
+#
+msgid ""
+msgstr ""
+
+#. module: purchase_reset_invoice_method
+#: view:purchase.order:0
+msgid "Reset"
+msgstr ""
+
+#. module: purchase_reset_invoice_method
+#: code:addons/purchase_reset_invoice_method/model/purchase_order.py:69
+#, python-format
+msgid "The new invoice method is the same as the old."
+msgstr ""
+
+#. module: purchase_reset_invoice_method
+#: view:purchase.reset.invoice_method:0
+msgid "or"
+msgstr ""
+
+#. module: purchase_reset_invoice_method
+#: code:addons/purchase_reset_invoice_method/model/purchase_order.py:90
+#, python-format
+msgid ""
+"This order has an old invoice created from a picking, but without the "
+"picking reference registered."
+msgstr ""
+
+#. module: purchase_reset_invoice_method
+#: code:_description:0
+#: model:ir.model,name:purchase_reset_invoice_method.model_purchase_reset_invoice_method
+#, python-format
+msgid "purchase.reset.invoice_method"
+msgstr ""
+
+#. module: purchase_reset_invoice_method
+#: view:purchase.reset.invoice_method:0
+msgid "Confirm"
+msgstr ""
+
+#. module: purchase_reset_invoice_method
+#: selection:purchase.reset.invoice_method,invoice_method:0
+msgid "Based on incoming shipments"
+msgstr ""
+
+#. module: purchase_reset_invoice_method
+#: field:account.invoice.line,invoiced_stock_move_id:0
+msgid "Invoiced stock move"
+msgstr ""
+
+#. module: purchase_reset_invoice_method
+#: code:_description:0
+#: model:ir.model,name:purchase_reset_invoice_method.model_account_invoice_line
+#, python-format
+msgid "Invoice Line"
+msgstr ""
+
+#. module: purchase_reset_invoice_method
+#: code:_description:0
+#: model:ir.model,name:purchase_reset_invoice_method.model_purchase_order
+#, python-format
+msgid "Purchase Order"
+msgstr ""
+
+#. module: purchase_reset_invoice_method
+#: code:addons/purchase_reset_invoice_method/model/purchase_order.py:78
+#, python-format
+msgid ""
+"This order has an invoice which is not in draft state. Cannot reset the "
+"invoice method"
+msgstr ""
+
+#. module: purchase_reset_invoice_method
+#: code:addons/purchase_reset_invoice_method/model/purchase_order.py:62
+#, python-format
+msgid "Please convert a single order at once."
+msgstr ""
+
+#. module: purchase_reset_invoice_method
+#: code:addons/purchase_reset_invoice_method/model/purchase_order.py:34
+#: view:purchase.reset.invoice_method:0
+#, python-format
+msgid "Reset invoice method"
+msgstr ""
+
+#. module: purchase_reset_invoice_method
+#: code:addons/purchase_reset_invoice_method/model/purchase_order.py:61
+#: code:addons/purchase_reset_invoice_method/model/purchase_order.py:68
+#: code:addons/purchase_reset_invoice_method/model/purchase_order.py:77
+#: code:addons/purchase_reset_invoice_method/model/purchase_order.py:89
+#, python-format
+msgid "Error"
+msgstr ""
+
+#. module: purchase_reset_invoice_method
+#: view:purchase.reset.invoice_method:0
+msgid "Cancel"
+msgstr ""
+
+#. module: purchase_reset_invoice_method
+#: selection:purchase.reset.invoice_method,invoice_method:0
+msgid "Based on Purchase Order lines"
+msgstr ""
+
+#. module: purchase_reset_invoice_method
+#: field:purchase.reset.invoice_method,invoice_method:0
+msgid "Invoicing Control"
+msgstr ""
+
+#. module: purchase_reset_invoice_method
+#: code:_description:0
+#: model:ir.model,name:purchase_reset_invoice_method.model_stock_picking
+#, python-format
+msgid "Picking List"
+msgstr ""
+
+#. module: purchase_reset_invoice_method
+#: field:purchase.reset.invoice_method,order_id:0
+msgid "Order"
+msgstr ""
+
+#. module: purchase_reset_invoice_method
+#: selection:purchase.reset.invoice_method,invoice_method:0
+msgid "Based on generated draft invoice"
+msgstr ""

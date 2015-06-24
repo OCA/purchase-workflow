@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+    <record id="reset_wizard_form_view" model="ir.ui.view">
+        <field name="name">Reset invoice method form view</field>
+        <field name="model">purchase.reset.invoice_method</field>
+        <field name="arch" type="xml">
+            <form string="Reset invoice method" version="7.0">
+                <group>
+                    <field name="order_id" />
+                    <field name="invoice_method" required="1" />
+                </group>
+                <footer>
+                    <button name="do_reset" string="Confirm"
+                            type="object" class="oe_highlight" />
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</data>
+</openerp>
+
+
+                    

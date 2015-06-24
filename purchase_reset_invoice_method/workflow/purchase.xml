@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="act_ignore_exception" model="workflow.activity">
+            <field name="wkf_id" ref="purchase.purchase_order"/>
+            <field name="name">skip_exception_after_invoice_method_reset</field>
+            <field name="kind">function</field>
+            <field name="action">write({'state': 'approved'})</field>
+        </record>
+
+        <!--
+            Orders with new method other than 'order' skip the invoice
+            part of the workflow. This applies to orders with old method
+            'order', without an existing (draft) invoice.
+        -->
+        <record id="trans_skip_invoice" model="workflow.transition">
+            <field name="act_from" ref="purchase.act_invoice" />
+            <field name="act_to" ref="purchase.act_invoice_end" />
+            <field name="condition">invoice_method != 'order'</field>
+            <field name="signal">reset_invoice_method_order</field>
+        </record>
+
+        <!--
+            Orders with old method 'order' with an existing draft
+            invoice will get an invoice exception when the draft
+            invoice is removed. Route the workflow in this case
+            passed the activity that resets the state field and
+            moves on to the end of the invoice subflow], which is
+            skipped for these invoice methods
+        -->
+        <record id="trans_ignore_exception" model="workflow.transition">
+            <field name="act_from" ref="purchase.act_except_invoice" />
+            <field name="act_to" ref="act_ignore_exception" />
+            <field name="condition">invoice_method != 'order'</field>
+            <field name="signal">reset_invoice_method_order</field>
+        </record>
+
+        <record id="trans_skip_invoiced_invoice" model="workflow.transition">
+            <field name="act_from" ref="act_ignore_exception" />
+            <field name="act_to" ref="purchase.act_invoice_end" />
+        </record>
+
+        <!--
+            Orders with new method 'order' need to enter the invoice
+            part of the workflow.
+        -->
+        <record id="trans_goto_invoice" model="workflow.transition">
+            <field name="act_from" ref="purchase.act_invoice_end" />
+            <field name="act_to" ref="purchase.act_invoice" />
+            <field name="condition">invoice_method == 'order'</field>
+            <field name="signal">reset_invoice_method_order</field>
+        </record>
+
+    </data>
+</openerp>
