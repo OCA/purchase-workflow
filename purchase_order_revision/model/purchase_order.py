@@ -72,3 +72,12 @@ class purchase_order(models.Model):
         self.message_post(body=msg)
         old_revision.message_post(body=msg)
         return True
+
+    @api.model
+    def create(self, values):
+        if 'unrevisioned_name' not in values:
+            if values.get('name', '/') == '/':
+                seq = self.env['ir.sequence']
+                values['name'] = seq.next_by_code('purchase.order') or '/'
+            values['unrevisioned_name'] = values['name']
+        return super(purchase_order, self).create(values)
