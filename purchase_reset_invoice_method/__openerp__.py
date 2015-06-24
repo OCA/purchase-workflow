@@ -21,7 +21,8 @@
 {
     "name": "Reset invoice method of confirmed purchase orders",
     "version": "0.1",
-    "author": "Therp BV",
+    "author": "Therp BV,Odoo Community Association (OCA)",
+    'license': 'AGPL-3',
     "category": 'Purchase Management',
     'description': """
 Description
@@ -44,7 +45,7 @@ have been only been invoiced after installation of this module, as OpenERP
 does not properly register which invoice line comes from which picking by
 itself.
     """,
-    'website': 'http://therp.nl',
+    'website': 'https://github.com/OCA/purchase-workflow',
     'depends': [
         'purchase'
         ],
