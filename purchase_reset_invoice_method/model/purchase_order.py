@@ -118,7 +118,7 @@ class PurchaseOrder(orm.Model):
             state = '2binvoiced' if new_invoice_method == 'picking' else 'none'
             self.pool['stock.picking'].write(
                 cr, uid,
-                [picking.id for picking in order.picking_ids],
+                [pick.id for pick in order.picking_ids],
                 {'invoice_state': state}, context=context)
 
         order.write({'invoice_method': new_invoice_method})
