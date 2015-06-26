@@ -7,10 +7,7 @@
             <field name="inherit_id" ref="account.invoice_supplier_form"/>
             <field name="arch" type="xml">
                 <field name="discount" position="attributes">
-                    <attribute name="invisible">True</attribute>
-                </field>            
-                <field name="price_unit" position="after">
-                    <field name="discount"/>
+                    <attribute name="groups"></attribute>
                 </field>
             </field>
         </record>
