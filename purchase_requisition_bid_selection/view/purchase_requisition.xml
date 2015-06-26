@@ -72,7 +72,13 @@
           <page string="Options">
             <group>
               <group>
-                <field name="req_validity" attrs="{'readonly': [('state','not in',('draft'))]}"/>
+
+                <label for="req_validity" />
+                <div>
+                  <field name="req_validity" class="oe_inline" attrs="{'readonly': [('state','!=','draft')]}"/>
+                  <button name="ask_validity" class="oe_inline oe_link" type="object" string="(extend)" attrs="{'invisible': [('state', '=', 'draft')]}"/>
+                </div>
+
                 <field name="req_incoterm_id" attrs="{'readonly': [('state','not in',('draft'))]}"/>
                 <field name="req_incoterm_address" attrs="{'readonly': [('state','not in',('draft'))]}"/>
                 <field name="req_payment_term_id" attrs="{'readonly': [('state','not in',('draft'))]}"/>
@@ -87,7 +93,11 @@
 
         <button name="open_bid" position="after">
           <button type="object" name="ask_confirmation_to_close_selection" states="selected" string="Accept selection" class="oe_highlight"/>
-          <button name="reopen_bid" states="selected" string="Re-Open Bids Selection"/>
+        </button>
+
+        <button name="open_product_line" position="after">
+          <button name="back_to_sent" states="open" string="Back to Confirmed" groups="purchase_requisition.group_purchase_requisition_manager"/>
+          <button name="back_to_selected" states="closed" string="Back to Selected" groups="purchase_requisition.group_purchase_requisition_manager"/>
         </button>
 
         <xpath expr="//field[@name='purchase_ids']//button[@name='purchase_cancel']" position="attributes">

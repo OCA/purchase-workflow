@@ -62,5 +62,29 @@
       </field>
     </record>
 
+    <record id="ask_validity" model="ir.ui.view">
+      <field name="name">action.modal</field>
+      <field name="model">purchase.action_modal.ask_validity</field>
+      <field name="arch" type="xml">
+        <form string="Change validity">
+
+          <p>
+            Please enter validity date
+          </p>
+
+          <group name="End of validity">
+            <field name="validity" nolabel="1"/>
+          </group>
+
+          <footer>
+            <button string="Confirm" class="oe_highlight" type="object" name="action"/>
+            or
+            <button special="cancel" string="Cancel" class="oe_link"/>
+          </footer>
+
+        </form>
+      </field>
+    </record>
+
   </data>
 </openerp>

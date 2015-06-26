@@ -109,6 +109,25 @@
         </xpath>
         -->
 
+        <field name="name" position="after">
+          <field name="country_of_origin" invisible="not context.get('selection_view')"/>
+        </field>
+
+        <field name="partner_id" position="after">
+          <field name="meets_specifications" invisible="not context.get('selection_view')"/>
+          <field name="bid_eligible" invisible="not context.get('selection_view')"/>
+          <field name="remark" invisible="not context.get('selection_view')"/>
+          <button name="%(action_update_remark)d" type="action" string="Update remark" icon="gtk-ok"/>
+          <field name="incoterm_id" invisible="not context.get('selection_view')"/>
+          <field name="incoterm_address" invisible="not context.get('selection_view')"/>
+          <field name="date_planned" invisible="not context.get('selection_view')"/>
+        </field>
+
+        <field name="product_qty" position="before">
+          <field name="terms_of_payment" invisible="not context.get('selection_view')"/>
+          <field name="payment_term_id" invisible="not context.get('selection_view')"/>
+        </field>
+
         <xpath expr="//field[@name='product_id']" position="attributes">
           <attribute name="invisible">1</attribute>
         </xpath>

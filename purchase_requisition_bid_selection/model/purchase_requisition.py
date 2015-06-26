@@ -270,21 +270,6 @@ class PurchaseRequisition(models.Model):
         purchases = self.mapped('purchase_ids')
         return purchases.filtered(lambda rec: rec.state in ('draft', 'sent'))
 
-    @api.one
-    def _check_can_be_canceled(self):
-        """Raise an exception if callforbids can not be cancelled
-
-        :returns: True or raise exception
-
-        """
-        for purchase in self.purchase_ids:
-            if purchase.state not in ('draft', 'sent'):
-                raise except_orm(
-                    _('Error'),
-                    _('You cannot cancel a call for bids which '
-                      'has already received bids.'))
-        return True
-
     @api.model
     def _cancel_po_with_reason(self, po_list, reason_id):
         """Cancel purchase order of a tender, using given reasons
@@ -311,12 +296,11 @@ class PurchaseRequisition(models.Model):
         Cancel call for bids and try to cancel related RFQs/PO
 
         """
-        reason_id = self._get_default_reason()
-        for callforbid in self:
-            callforbid._check_can_be_canceled()
-        po_to_cancel = self._get_po_to_cancel()
+        self.ensure_one()
+        po_to_cancel = self.mapped('purchase_ids')
         if po_to_cancel:
-            self._cancel_po_with_reason(po_to_cancel, reason_id)
+            self._cancel_po_with_reason(po_to_cancel,
+                                        self._get_default_reason())
         self.state = 'cancel'
 
     @api.multi
@@ -327,6 +311,16 @@ class PurchaseRequisition(models.Model):
         )
         self.selection_reasons = wizard.selection_reasons
         self.signal_workflow('bid_selected')
+
+    @api.multi
+    def update_validity(self):
+        wizard = self.env['purchase.action_modal.'
+                          'ask_validity'].browse(
+            self.env.context['active_id']
+        )
+        self.message_post(body=_('Validity extended from %s to %s')
+                          % (self.req_validity, wizard.validity))
+        self.req_validity = wizard.validity
 
     @api.multi
     def tender_selected(self):
@@ -391,7 +385,7 @@ class PurchaseRequisition(models.Model):
 
         ctx.update({'action': 'ask_selection_reasons',
                     'active_model': self._name,
-                    'active_ids': self._ids,
+                    'active_ids': self.ids,
                     })
         view = self.env.ref('purchase_requisition_bid_selection'
                             '.action_modal_confirm_different_quantity')
@@ -412,7 +406,7 @@ class PurchaseRequisition(models.Model):
 
         ctx.update({'action': 'act_tender_closed',
                     'active_model': self._name,
-                    'active_ids': self._ids,
+                    'active_ids': self.ids,
                     })
         view = self.env.ref('purchase_requisition_bid_selection'
                             '.modal_confirm_close_selection')
@@ -440,15 +434,38 @@ class PurchaseRequisition(models.Model):
             del ctx['search_default_hide_cancelled']
         ctx['search_default_groupby_requisitionline'] = True
         ctx['search_default_showbids'] = True
+        ctx['search_default_selection_view'] = True
         return res
 
     @api.multi
+    def ask_validity(self):
+        ctx = self.env.context.copy()
+        ctx.update({
+            'action': 'update_validity',
+            'active_model': self._name,
+            'active_ids': self.ids,
+            'default_validity': self.req_validity,
+        })
+        view = self.env.ref('purchase_requisition_bid_selection.'
+                            'ask_validity')
+        return {
+            'type': 'ir.actions.act_window',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'purchase.action_modal.ask_validity',
+            'view_id': view.id,
+            'views': [(view.id, 'form')],
+            'target': 'new',
+            'context': ctx,
+        }
+
+    @api.multi
     def ask_selection_reasons(self):
-        ctx = self._context.copy()
+        ctx = self.env.context.copy()
         ctx.update({
             'action': 'update_selection_reasons',
             'active_model': self._name,
-            'active_ids': self._ids,
+            'active_ids': self.ids,
             'default_selection_reasons': self.selection_reasons,
         })
         view = self.env.ref('purchase_requisition_bid_selection.'
