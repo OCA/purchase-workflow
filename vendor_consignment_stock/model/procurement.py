@@ -40,6 +40,11 @@ class Procurement(models.Model):
 
                 order_line.order_id.is_vci = True
 
+                # As no picking is generated for this kind
+                # of purchase, it must be generated on order
+                if order_line.order_id.invoice_method == 'picking':
+                    order_line.order_id.invoice_method = 'order'
+
         return result
 
     @api.model
