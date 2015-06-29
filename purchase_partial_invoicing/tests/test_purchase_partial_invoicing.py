@@ -210,14 +210,14 @@ class testPurchasePartialInvoicing(common.TransactionCase):
 
     def test_cancel_quantity(self):
         self.common_test()
-        quantity_to_invoiced = 4
+        quantity_to_invoice = 4
         line_to_invoice = self.purchase_order.order_line[0]
         ctx = self.context.copy()
         ctx.update({'active_ids': line_to_invoice.id})
         wizard = self.env['purchase.order.line_invoice']\
             .with_context(ctx).create({})
         # I change the quantity on the line that will be invoiced
-        wizard.line_ids[0].invoiced_qty = quantity_to_invoiced
+        wizard.line_ids[0].invoiced_qty = quantity_to_invoice
         # I click on make invoice button
         wizard.with_context(ctx).makeInvoices()
         # I cancel quantity
