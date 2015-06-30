@@ -18,27 +18,37 @@
 #
 ##############################################################################
 
-from openerp.osv import orm
+import logging
+from itertools import groupby
+from openerp import models, api
+
+_logger = logging.getLogger(__name__)
 
 
-class PurchaseOrder(orm.Model):
+class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
-    def _create_pickings(self, cr, uid, order, order_lines, picking_id=False,
-                         context=None):
-        """Group the Purchase Order's receptions by expected date"""
-        picking_ids = []
-        delivery_dates = {}
-        # Triage the order lines by delivery date
-        for line in order_lines:
-            if line.date_planned in delivery_dates:
-                delivery_dates[line.date_planned].append(line)
-            else:
-                delivery_dates[line.date_planned] = [line]
-        # Process each group of lines
-        for lines in delivery_dates.itervalues():
-            picking_ids.extend(
-                super(PurchaseOrder, self)._create_pickings(
-                    cr, uid, order, lines, picking_id=picking_id,
-                    context=context))
-        return picking_ids
+    @api.model
+    def _create_stock_moves(self, order, order_lines, picking_id=False):
+        """Group the receptions in one picking per expected date"""
+
+        # Group the order lines by delivery date
+        order_lines = sorted(order_lines, key=lambda l: l.date_planned)
+        date_groups = groupby(order_lines, lambda l: l.date_planned)
+
+        # If a picking is provided, use it for the first group only
+        if picking_id:
+            delivery_date, lines = date_groups.next()
+            first_picking = self.env['stock.picking'].browse(picking_id)
+            first_picking.date = delivery_date
+            super(PurchaseOrder, self)._create_stock_moves(
+                order, list(lines), picking_id=picking_id)
+
+        for delivery_date, lines in date_groups:
+            # If a picking is provided, clone it for each date for modularity
+            if picking_id:
+                picking_id = first_picking.copy({'move_lines': [],
+                                                 'date': delivery_date}).id
+
+            super(PurchaseOrder, self)._create_stock_moves(
+                order, list(lines), picking_id=picking_id)
