@@ -39,10 +39,12 @@ class PurchaseLineInvoice(models.TransientModel):
         po_line_obj = self.env['purchase.order.line']
         lines = []
         for po_line in po_line_obj.browse(po_ids):
+            max_quantity = po_line.product_qty - po_line.invoiced_qty -\
+                po_line.cancelled_qty
             lines.append({
                 'po_line_id': po_line.id,
-                'product_qty': po_line.product_qty - po_line.invoiced_qty,
-                'invoiced_qty': po_line.product_qty - po_line.invoiced_qty,
+                'product_qty': max_quantity,
+                'invoiced_qty': max_quantity,
                 'price_unit': po_line.price_unit,
             })
         defaults = super(PurchaseLineInvoice, self).default_get(fields)

@@ -33,9 +33,10 @@ class PurchaseOrderLine(models.Model):
 
     @api.one
     @api.depends('invoice_lines', 'invoice_lines.invoice_id',
-                 'invoice_lines.quantity')
+                 'invoice_lines.quantity', 'cancelled_qty')
     def _compute_fully_invoiced(self):
-        self.fully_invoiced = (self.invoiced_qty == self.product_qty)
+        self.fully_invoiced = \
+            (self.invoiced_qty + self.cancelled_qty == self.product_qty)
 
     @api.one
     def _compute_all_invoices_approved(self):
@@ -53,6 +54,10 @@ class PurchaseOrderLine(models.Model):
         digits_compute=dp.get_precision('Product Unit of Measure'),
         copy=False, store=True)
 
+    cancelled_qty = fields.Float(
+        string='Cancelled Quantity',
+        digits_compute=dp.get_precision('Product Unit of Measure'))
+
     fully_invoiced = fields.Boolean(
         compute='_compute_fully_invoiced', copy=False, store=True)
 
@@ -66,7 +71,9 @@ class PurchaseOrder(models.Model):
 
     @api.one
     def _compute_invoiced(self):
-        self.invoiced = all(line.all_invoices_approved and line.fully_invoiced
+        self.invoiced = all((line.all_invoices_approved or
+                             line.product_qty == line.cancelled_qty) and
+                            line.fully_invoiced
                             for line in self.order_line)
 
     invoiced = fields.Boolean(compute='_compute_invoiced')

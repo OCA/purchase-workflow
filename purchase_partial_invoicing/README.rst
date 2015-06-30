@@ -24,6 +24,11 @@ For further information, please visit:
 
 * https://www.odoo.com/forum/help-1
 
+Known issues / Roadmap
+======================
+
+* The possibility to define quantities to not invoice on the purchase order
+line is not considered in the picking.
 
 Bug Tracker
 ===========

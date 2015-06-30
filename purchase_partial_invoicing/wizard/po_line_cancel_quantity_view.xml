@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_purchase_line_cancel" model="ir.ui.view">
+            <field name="name">Cancel Quantity</field>
+            <field name="model">purchase.order.line_cancel_quantity</field>
+            <field name="arch" type="xml">
+                <form string="Select an Open Sales Order">
+                    <group>
+                        <label string="Do you want to cancel some quantity to invoice ? "/>
+                    </group>
+                    <group>
+                        <field name="line_ids" nolabel="1" colspan="4">
+                            <tree editable="bottom">
+                                <field name="po_line_id"></field>
+                                <field name="product_qty"></field>
+                                <field name="price_unit"></field>
+                                <field name="cancelled_qty" ></field>
+                            </tree>
+                        </field>
+                    </group>
+                    <footer>
+                        <button name="cancel_quantity" string="Confirm" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+    <act_window name="Cancel quantity"
+            res_model="purchase.order.line_cancel_quantity"
+            src_model="purchase.order.line"
+            view_mode="form"
+            target="new"
+            key2="client_action_multi"
+            id="action_view_purchase_line_cancel"/>
+    </data>
+</openerp>
