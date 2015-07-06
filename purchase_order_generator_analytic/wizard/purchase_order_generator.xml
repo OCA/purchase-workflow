@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+      <record id="purchase_order_generator_view" model="ir.ui.view">
+        <field name="name">Purchase Order Generator</field>
+        <field name="model">purchase.order.generator</field>
+        <field name="inherit_id" ref="purchase_order_generator.purchase_order_generator_view"/>
+        <field name="arch" type="xml">
+
+          <field name="destination_location_id" position="after">
+            <field name="analytic_id"/>
+          </field>
+
+        </field>
+      </record>
+
+    </data>
+</openerp>
