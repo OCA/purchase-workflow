@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<openerp>
+  <data>
+
+    <menuitem id="menu_purchase_order_generator_configuration"
+              parent="purchase.menu_purchase_config_purchase"
+              name="Generator Configuration"
+              action="action_purchase_order_generator_configuration"
+              groups="purchase.group_purchase_manager"/>
+
+  </data>
+</openerp>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record id="demo_po_generator_configuration"
+            model="purchase.order.generator.configuration">
+      <field name="name">Laying cycle</field>
+      <field name="interval">1</field>
+      <field name="recurrence_type">weekly</field>
+    </record>
+
+    <record id="demo_product_egg" model="product.product">
+      <field name="name">Egg</field>
+    </record>
+
+    <record id="demo_po_generator_configuration_line_1"
+            model="purchase.order.generator.configuration.line">
+      <field name="configurator_id" ref="demo_po_generator_configuration" />
+      <field name="sequence">1</field>
+      <field name="product_id" ref="demo_product_egg"/>
+      <field name="quantity_ratio">0.2</field>
+    </record>
+
+    <record id="demo_po_generator_configuration_line_2"
+            model="purchase.order.generator.configuration.line">
+      <field name="configurator_id" ref="demo_po_generator_configuration" />
+      <field name="sequence">2</field>
+      <field name="product_id" ref="demo_product_egg"/>
+      <field name="quantity_ratio">1.5</field>
+    </record>
+
+    <record id="demo_po_generator_configuration_line_3"
+            model="purchase.order.generator.configuration.line">
+      <field name="configurator_id" ref="demo_po_generator_configuration" />
+      <field name="sequence">3</field>
+      <field name="product_id" ref="demo_product_egg"/>
+      <field name="quantity_ratio">3.5</field>
+    </record>
+
+    <record id="demo_po_generator_configuration_line_4"
+            model="purchase.order.generator.configuration.line">
+      <field name="configurator_id" ref="demo_po_generator_configuration" />
+      <field name="sequence">4</field>
+      <field name="product_id" ref="demo_product_egg"/>
+      <field name="quantity_ratio">5.1</field>
+    </record>
+
+  </data>
+</openerp>

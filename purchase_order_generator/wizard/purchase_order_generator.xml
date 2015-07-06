@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+      <record id="purchase_order_generator_view" model="ir.ui.view">
+        <field name="name">Purchase Order Generator</field>
+        <field name="model">purchase.order.generator</field>
+        <field name="arch" type="xml">
+          <form string="Purchase Order Generator">
+            <group>
+              <field name="date"/>
+              <field name="configurator_id"/>
+              <field name="partner_id"/>
+              <field name="initial_quantity"/>
+              <field name="destination_location_id"/>
+            </group>
+            <footer>
+              <button string="Validate" name="validate" type="object"
+                      class="oe_highlight"/>
+              or
+              <button string="Cancel" class="oe_link" special="cancel"/>
+            </footer>
+          </form>
+        </field>
+      </record>
+
+      <record id="action_purchase_order_generator" model="ir.actions.act_window">
+        <field name="name">Purchase Order Generator</field>
+        <field name="res_model">purchase.order.generator</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="purchase_order_generator_view"/>
+        <field name="target">new</field>
+      </record>
+
+      <menuitem
+              id="menu_purchase_order_generator"
+              name="Purchase Order Generator"
+              parent="base.menu_purchase_root"
+              sequence="2"/>
+      <menuitem
+              id="submenu_purchase_order_generator"
+              name="Purchase Order Generator"
+              parent="menu_purchase_order_generator"
+              action="action_purchase_order_generator"/>
+
+    </data>
+</openerp>

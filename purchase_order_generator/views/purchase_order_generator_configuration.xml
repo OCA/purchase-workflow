@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<openerp>
+  <data>
+
+    <record id="purchase_order_generator_configuration_list_view"
+            model="ir.ui.view">
+      <field name="model">purchase.order.generator.configuration</field>
+      <field name="arch" type="xml">
+
+        <tree string="Configurator List">
+          <field name="name"/>
+        </tree>
+
+      </field>
+    </record>
+
+    <record id="purchase_order_generator_configuration_form_view"
+            model="ir.ui.view">
+      <field name="model">purchase.order.generator.configuration</field>
+      <field name="arch" type="xml">
+
+        <form string="Configurator">
+
+          <sheet>
+
+            <group>
+            <h1><field name="name" /></h1>
+            </group>
+
+            <div>
+              <label for="interval" string="Repeat every"/>
+              <field name="interval" style="width: 20%"/>
+              <field name="recurrence_type" style="width: 20%"/>
+            </div>
+            <field name="line_ids">
+              <tree string="Configurator Lines" editable="bottom">
+                <field name="sequence" />
+                <field name="product_id" />
+                <field name="quantity_ratio" />
+              </tree>
+            </field>
+
+          </sheet>
+
+        </form>
+
+      </field>
+    </record>
+
+    <record id="purchase_order_generator_configuration_search" model="ir.ui.view">
+      <field name="model">purchase.order.generator.configuration</field>
+      <field name="type">search</field>
+      <field name="arch" type="xml">
+        <search name="Configurator">
+          <field name="name"/>
+        </search>
+      </field>
+    </record>
+
+    <record id="action_purchase_order_generator_configuration"
+            model="ir.actions.act_window">
+      <field name="name">Configurator</field>
+      <field name="view_id" ref="purchase_order_generator_configuration_list_view"/>
+      <field name="search_view_id" ref="purchase_order_generator_configuration_search"/>
+      <field name="res_model">purchase.order.generator.configuration</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+  </data>
+</openerp>
