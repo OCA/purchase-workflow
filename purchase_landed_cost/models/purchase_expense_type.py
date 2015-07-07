@@ -42,3 +42,7 @@ class PurchaseExpenseType(models.Model):
          ('equal', 'Equally to all lines')], string='Calculation method',
         default='amount')
     note = fields.Text(string='Cost documentation')
+    default_amount = fields.Float(
+        string="Default amount",
+        help="If set, this amount is put in the expense line when you "
+             "select this expense type")
