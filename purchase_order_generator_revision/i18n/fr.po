@@ -1,0 +1,119 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_order_generator_revision
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-07-07 14:20+0000\n"
+"PO-Revision-Date: 2015-07-07 10:26-0500\n"
+"Last-Translator: Agathe Mollé <agathe.molle@savoirfairelinux.com>\n"
+"Language-Team: Savoir-faire Linux <support@savoirfairelinux.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 1.5.4\n"
+"Language: fr\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#. module: purchase_order_generator_revision
+#: view:purchase.order.generator.revision:purchase_order_generator_revision.purchase_order_generator_revision_view
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: purchase_order_generator_revision
+#: field:purchase.order.generator.revision,create_uid:0
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: purchase_order_generator_revision
+#: field:purchase.order.generator.revision,create_date:0
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: purchase_order_generator_revision
+#: help:purchase.order.generator.revision,effective_date:0
+msgid "Date on which the revision factor will be applied."
+msgstr "Date à laquelle le facteur de révision va être appliqué."
+
+#. module: purchase_order_generator_revision
+#: field:purchase.order.generator.revision,effective_date:0
+msgid "Effective Date"
+msgstr "Date effective"
+
+#. module: purchase_order_generator_revision
+#: help:purchase.order.generator.revision,revision_factor:0
+msgid "Factor that will revise the quantities on the Purchase Order."
+msgstr "Facteur qui va réviser les quantités sur le bon de commande."
+
+#. module: purchase_order_generator_revision
+#: field:purchase.order.generator.revision,id:0
+msgid "ID"
+msgstr "Id"
+
+#. module: purchase_order_generator_revision
+#: field:purchase.order.generator.revision,write_uid:0
+msgid "Last Updated by"
+msgstr "Dernière modification par"
+
+#. module: purchase_order_generator_revision
+#: field:purchase.order.generator.revision,write_date:0
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: purchase_order_generator_revision
+#: help:purchase.order.generator.revision,order_id:0
+msgid "Name of the Purchase Order."
+msgstr "Nom du bon de commande"
+
+#. module: purchase_order_generator_revision
+#: field:purchase.order.generator.revision,new_target:0
+msgid "New Target"
+msgstr "Nouvelle cible"
+
+#. module: purchase_order_generator_revision
+#: help:purchase.order.generator.revision,new_target:0
+msgid ""
+"New expected target.\n"
+"This field can either be entered before and a revision factor will be "
+"calculated or will be calculated based on the revision factor."
+msgstr ""
+"Nouvelle cible attendue.\n"
+"Ce champs peut être renseigné soit avant ou après et le facture de révision "
+"sera calculé ou la cible sera calculé d'après le facteur de révision."
+
+#. module: purchase_order_generator_revision
+#: field:purchase.order.generator.revision,order_id:0
+msgid "Order"
+msgstr "Commande"
+
+#. module: purchase_order_generator_revision
+#: model:ir.actions.act_window,name:purchase_order_generator_revision.purchase_order_generator_revision_action
+#: model:ir.model,name:purchase_order_generator_revision.model_purchase_order_generator_revision
+#: model:ir.ui.menu,name:purchase_order_generator_revision.purchase_order_generator_revision_action_menu
+#: model:ir.ui.menu,name:purchase_order_generator_revision.purchase_order_generator_revision_action_submenu
+#: view:purchase.order.generator.revision:purchase_order_generator_revision.purchase_order_generator_revision_view
+msgid "Purchase Order Generator Revision"
+msgstr "Révision du générateur de bon de commande"
+
+#. module: purchase_order_generator_revision
+#: field:purchase.order.generator.revision,description:0
+msgid "Reason for Revision"
+msgstr "Raison de la révision"
+
+#. module: purchase_order_generator_revision
+#: field:purchase.order.generator.revision,revision_factor:0
+msgid "Revision Factor"
+msgstr "Facteur de révision"
+
+#. module: purchase_order_generator_revision
+#: view:purchase.order.generator.revision:purchase_order_generator_revision.purchase_order_generator_revision_view
+msgid "Validate"
+msgstr "Valider"
+
+#. module: purchase_order_generator_revision
+#: view:purchase.order.generator.revision:purchase_order_generator_revision.purchase_order_generator_revision_view
+msgid "or"
+msgstr "ou"

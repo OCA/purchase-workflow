@@ -3,9 +3,9 @@
 from openerp import models, fields, api
 
 
-class PurchasePlanningRevision(models.TransientModel):
-    _name = "purchase.planning.revision"
-    _description = "Purchase Planning Revision"
+class PurchaseOrderGeneratorRevision(models.TransientModel):
+    _name = "purchase.order.generator.revision"
+    _description = "Purchase Order Generator Revision"
 
     order_id = fields.Many2one(
         comodel_name="purchase.order",

@@ -20,7 +20,7 @@
 #
 ##############################################################################
 {
-    'name': 'Purchase Order Line Revision',
+    'name': 'Purchase Order Generator Revision',
     'version': '0.1',
     'author': 'Savoir-faire Linux,'
               'Odoo Community Association (OCA)',
@@ -36,7 +36,7 @@
         'python': [],
     },
     'data': [
-        'wizards/purchase_planning_revision.xml',
+        'wizards/purchase_order_generator_revision.xml',
     ],
     'demo': [
     ],
