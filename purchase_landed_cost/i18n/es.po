@@ -207,6 +207,11 @@ msgid "Default Expense"
 msgstr "Gasto por defecto"
 
 #. module: purchase_landed_cost
+#: field:purchase.expense.type,default_amount:0
+msgid "Default amount"
+msgstr "Importe por defecto"
+
+#. module: purchase_landed_cost
 #: selection:purchase.cost.distribution,cost_update_type:0
 msgid "Direct Update"
 msgstr "Actualización directa"
@@ -335,6 +340,11 @@ msgstr "Tipos de gastos"
 #: field:purchase.expense.type,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: purchase_landed_cost
+#: help:purchase.expense.type,default_amount:0
+msgid "If set, this amount is put in the expense line when you select this expense type"
+msgstr "Si está establecido, este importe se pondrá en la línea de gasto cuando seleccione este tipo de gasto"
 
 #. module: purchase_landed_cost
 #: view:import.invoice.line.wizard:purchase_landed_cost.import_invoice_line_wizard_view
@@ -612,6 +622,11 @@ msgstr "Recalcular"
 #: field:purchase.cost.distribution.expense,ref:0
 msgid "Reference"
 msgstr "Referencia"
+
+#. module: purchase_landed_cost
+#: view:purchase.cost.distribution:purchase_landed_cost.purchase_cost_distribution_search
+msgid "Search purchase costs distributions"
+msgstr "Buscar distribuciones de costes de compra"
 
 #. module: purchase_landed_cost
 #: view:picking.import.wizard:purchase_landed_cost.picking_import_wizard_view
