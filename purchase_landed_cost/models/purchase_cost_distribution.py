@@ -71,7 +71,8 @@ class PurchaseCostDistribution(models.Model):
     def _expense_lines_default(self):
         expenses = self.env['purchase.expense.type'].search(
             [('default_expense', '=', True)])
-        return [{'type': x} for x in expenses]
+        return [{'type': x, 'expense_amount': x.default_amount}
+                for x in expenses]
 
     name = fields.Char(string='Distribution number', required=True,
                        select=True, default='/')
@@ -485,3 +486,8 @@ class PurchaseCostDistributionExpense(models.Model):
         comodel_name='account.invoice.line', string="Supplier invoice line",
         domain="[('invoice_id.type', '=', 'in_invoice'),"
                "('invoice_id.state', 'in', ('open', 'paid'))]")
+
+    @api.onchange('type')
+    def onchange_type(self):
+        if self.type and self.type.default_amount:
+            self.expense_amount = self.type.default_amount
