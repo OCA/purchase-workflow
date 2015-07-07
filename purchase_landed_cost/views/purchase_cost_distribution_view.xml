@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
 	<data>
+
 		<menuitem id="menu_purchase_cost_control"
                   name="Costs distributions"
                   parent="base.menu_purchase_root"
@@ -61,7 +62,7 @@
 			</field>
 		</record>
 
-		<record model="ir.ui.view" id="view_purchase_cost_distribution_graph">
+		<record id="view_purchase_cost_distribution_graph" model="ir.ui.view" >
 			<field name="name">purchase.cost.distribution.graph</field>
 			<field name="model">purchase.cost.distribution</field>
 			<field name="arch" type="xml">
@@ -196,12 +197,23 @@
 			</field>
 		</record>
 
+		<record id="purchase_cost_distribution_search" model="ir.ui.view">
+			<field name="name">purchase.cost.distribution.search</field>
+			<field name="model">purchase.cost.distribution</field>
+			<field name="arch" type="xml">
+                <search string="Search purchase costs distributions">
+					<field name="name"/>
+					<field name="cost_lines"/>
+					<field name="expense_lines"/>
+                </search>
+			</field>
+		</record>
 
 		<record id="view_purchase_cost_distribution_line_form" model="ir.ui.view">
 			<field name="name">purchase.cost.distribution.line.form</field>
 			<field name="model">purchase.cost.distribution.line</field>
 			<field name="arch" type="xml">
-                <form string="Purchase Cost Line" version="7.0">
+                <form string="Purchase Cost Line">
                     <group readonly="1">
                         <group string="Purchase information">
                             <field name="partner" />
