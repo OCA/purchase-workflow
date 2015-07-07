@@ -1,13 +1,8 @@
-# -*- encoding: utf-8 -*-
-###########################################################################
-#    Module Writen to OpenERP, Open Source Management Solution
+# -*- coding: utf-8 -*-
+##############################################################################
 #
-#    Copyright (c) 2012 Vauxoo - http://www.vauxoo.com
-#    All Rights Reserved.
-#    info@vauxoo.com
-############################################################################
-#    Coded by: julio (julio@vauxoo.com)
-############################################################################
+#    Copyright (C) 2014 Eficent (<http://www.eficent.com/>)
+#             <contact@eficent.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
