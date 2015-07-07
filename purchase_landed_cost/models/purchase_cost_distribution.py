@@ -450,6 +450,7 @@ class PurchaseCostDistributionLineExpense(models.Model):
 class PurchaseCostDistributionExpense(models.Model):
     _name = "purchase.cost.distribution.expense"
     _description = "Purchase cost distribution expense"
+    _rec_name = "type"
 
     @api.one
     @api.depends('distribution', 'distribution.cost_lines')
