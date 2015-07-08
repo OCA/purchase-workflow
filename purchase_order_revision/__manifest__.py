@@ -38,4 +38,5 @@
     ],
     "active": False,
     'installable': False
+    "post_init_hook": 'fill_unrevisioned_name',
 }

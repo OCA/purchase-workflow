@@ -23,7 +23,7 @@ from openerp import models, fields, api
 from openerp.tools.translate import _
 
 
-class purchase_order(models.Model):
+class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
     current_revision_id = fields.Many2one('purchase.order',
@@ -38,7 +38,7 @@ class purchase_order(models.Model):
     revision_number = fields.Integer('Revision',
                                      copy=False)
     unrevisioned_name = fields.Char('Order Reference',
-                                    copy=True,
+                                    copy=False,
                                     readonly=True)
     active = fields.Boolean('Active',
                             default=True,
@@ -65,8 +65,9 @@ class purchase_order(models.Model):
                     'active': False,
                     'state': 'cancel',
                     'current_revision_id': self.id,
+                    'unrevisioned_name': self.unrevisioned_name,
                     }
-        old_revision = super(purchase_order, self).copy(default=defaults)
+        old_revision = super(PurchaseOrder, self).copy(default=defaults)
         self.action_cancel_draft()
         msg = _('New revision created: %s') % self.name
         self.message_post(body=msg)
@@ -80,4 +81,4 @@ class purchase_order(models.Model):
                 seq = self.env['ir.sequence']
                 values['name'] = seq.next_by_code('purchase.order') or '/'
             values['unrevisioned_name'] = values['name']
-        return super(purchase_order, self).create(values)
+        return super(PurchaseOrder, self).create(values)
