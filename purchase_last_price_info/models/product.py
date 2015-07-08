@@ -18,7 +18,7 @@ class ProductProduct(models.Model):
             key=lambda l: l.order_id.date_order, reverse=True)
         self.last_purchase_date = lines[:1].order_id.date_order
         self.last_purchase_price = lines[:1].price_unit
-        self.last_supplier = lines[:1].order_id.partner_id
+        self.last_supplier_id = lines[:1].order_id.partner_id
 
     last_purchase_price = fields.Float(
         string='Last Purchase Price', compute='_get_last_purchase')
