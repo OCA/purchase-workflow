@@ -28,4 +28,5 @@ class TestPurchaseLastPriceInfo(common.TransactionCase):
         self.assertEqual(
             purchase_lines[:1].price_unit, self.product.last_purchase_price)
         self.assertEqual(
-            purchase_lines[:1].order_id.partner_id, self.product.last_supplier)
+            purchase_lines[:1].order_id.partner_id,
+            self.product.last_supplier_id)

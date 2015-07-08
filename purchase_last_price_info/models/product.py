@@ -24,6 +24,6 @@ class ProductProduct(models.Model):
         string='Last Purchase Price', compute='_get_last_purchase')
     last_purchase_date = fields.Date(
         string='Last Purchase Date', compute='_get_last_purchase')
-    last_supplier = fields.Many2one(
+    last_supplier_id = fields.Many2one(
         comodel_name='res.partner', string='Last Supplier',
         compute='_get_last_purchase')
