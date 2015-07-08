@@ -5,7 +5,7 @@
             <field name="act_from" ref="purchase.act_invoice_end"/>
             <field name="act_to" ref="purchase.act_cancel"/>
             <field name="signal">purchase_cancel</field>
-            <field name="condition">invoice_method == 'manual'</field>
+            <field name="condition">invoice_method&lt;&gt;'order'</field>
         </record>
     </data>
 </openerp>

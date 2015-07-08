@@ -19,31 +19,32 @@
 #
 ##############################################################################
 {
-    "name": "Purchase Order Cancel when PO is invoiced based on PO lines",
+    "name": "Add transition invoice_end to cancel in the workflow",
     "version": "1.0",
     "author": "Eficent",
     "category": "Generic Modules/Account",
     "description": """
-This module was written to extend the purchasing capabilities of Odoo,
-and allows the user to cancel an approved purchase order where the invoice
-control is based on PO lines.
+This module was written to extend the purchasing capabilities of Odoo.
+If the state of the PO is 'approved', there is no transition foreseen in
+order to cancel the PO.
 
-Currently, when the user chooses the invoice control 'Based on Purchase
-Order Lines', if she then presses the button 'Cancel' the
-PO is not cancelled, but the purchase order lines are cancelled, leaving
-the Purchase Order in an inconsistent state.
+The user might be blocked in the following situation:
+- Create a purchase order with invoicing set as Based on incoming shipment
+- Validate the purchase order, create the shipment
+- Then, cancel it (the shipment)
+- Return back in the purchase order, the PO should be in shipping exception
+- Hit the "manually corrected"
+- Then, try to cancel the PO: nothing happens.
 
-The system will continue to restrict the user from cancelling the
-Purchase Order if:
-* One of the associated Incoming Shipments has been completed
-* One of the associated Purchase Order Lines has been invoiced, and the
-invoice is not in state 'cancelled' or 'draft'.
+
 
 Known issues / Roadmap
 ======================
 
-This module only applies to verion 7.0. In version 8.0 the limitation is
-resolved in the 'purchase' module.
+This module only applies to verion 7.0. In version 8.0 the limitation was
+resolved by the following commit:
+https://github.com/odoo/odoo/commit/4a281754db610d004701ce8edd9aeed32e766af4
+
 
 Credits
 =======
@@ -80,7 +81,8 @@ To contribute to this module, please visit http://odoo-community.org.
         "purchase_workflow.xml"
     ],
     "test": [
-        "test/cancel_order.yml"
+        "test/cancel_order_1.yml",
+        "test/cancel_order_2.yml"
     ],
     "js": [], 
     "css": [], 

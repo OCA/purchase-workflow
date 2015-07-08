@@ -1,0 +1,28 @@
+-
+  !record {model: purchase.order, id: purchase_order_c_1}:
+    invoice_method: manual
+    partner_id: base.res_partner_22
+    order_line:
+      - product_id: product.product_product_38
+        price_unit: 58
+        product_qty: 9
+      - product_id: product.product_product_39
+        product_qty: 3
+        price_unit: 65
+      - product_id: product.product_product_44
+        product_qty: 4
+        price_unit: 154.5
+-
+  !record {model: purchase.order, id: purchase_order_c_2}:
+    invoice_method: picking
+    partner_id: base.res_partner_22
+    order_line:
+      - product_id: product.product_product_38
+        price_unit: 58
+        product_qty: 9
+      - product_id: product.product_product_39
+        product_qty: 3
+        price_unit: 65
+      - product_id: product.product_product_44
+        product_qty: 4
+        price_unit: 154.5

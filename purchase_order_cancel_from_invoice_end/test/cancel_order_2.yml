@@ -9,7 +9,7 @@
 -
   !python {model: purchase.order}: |
     invoice_line_obj = self.pool.get('purchase.order.line_invoice')
-    purchase_order = self.browse(cr, uid, ref("purchase_order_c_1"))
+    purchase_order = self.browse(cr, uid, ref("purchase_order_c_2"))
     purchase_lines = []
     for purchase_line in purchase_order.order_line:
       purchase_lines.append(purchase_line.id)
@@ -63,12 +63,6 @@
 -
   !assert {model: purchase.order, id: purchase_order_c_1}:
     - state == 'cancel'
--
-  After cancel the order, I check that it's related invoice cancelled.
--
-  !python {model: purchase.order}: |
-    order = self.browse(cr, uid, ref("purchase_order_c_1"))
-    assert order.invoice_ids[0].state == "cancel", "order's related invoice should be cancelled"   
 -
   Now again set cancelled order to draft.
 -
