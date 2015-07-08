@@ -73,11 +73,15 @@ To contribute to this module, please visit http://odoo-community.org.
     "depends": [
         "purchase"
     ], 
-    "demo": [], 
+    "demo": [
+        'purchase_order_demo.yml'
+    ],
     "data": [
         "purchase_workflow.xml"
     ], 
-    "test": [], 
+    "test": [
+        "test/cancel_order.yml"
+    ],
     "js": [], 
     "css": [], 
     "qweb": [], 

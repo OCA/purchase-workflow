@@ -1,0 +1,86 @@
+-
+  In order to test the cancel flow when invoice control is set to Purchase Order Lines, I start it from canceling confirmed purchase order that has draft invoices.
+-
+  I confirm the purchase order.
+-
+  !workflow {model: purchase.order, action: purchase_confirm, ref: purchase_order_c_1}
+-
+  I now create invoice for just one of the purchase order lines.
+-
+  !python {model: purchase.order}: |
+    invoice_line_obj = self.pool.get('purchase.order.line_invoice')
+    purchase_order = self.browse(cr, uid, ref("purchase_order_c_1"))
+    purchase_lines = []
+    for purchase_line in purchase_order.order_line:
+      purchase_lines.append(purchase_line.id)
+      break
+    context.update({'active_model': 'purchase.order.line', 'active_ids': purchase_lines})
+    for purchase_line in purchase_order.order_line:
+        invoice_line_obj.makeInvoices(cr, uid, purchase_lines, context=context)
+-
+  I check the invoice of order.
+-
+   !python {model: purchase.order}: |
+     purchase_order = self.browse(cr, uid, ref("purchase_order_c_1"))
+     for purchase_line in purchase_order.order_line:
+       assert len(purchase_order.invoice_ids) == 1, "Invoice should be generated."
+-
+  I cancel  receptions related to this order if order shipped.
+-
+  !python {model: purchase.order}: |
+    order = self.browse(cr, uid, ref("purchase_order_c_1"))
+    self.pool.get('stock.picking').action_cancel(cr, uid, [picking.id for picking in  order.picking_ids])
+-
+  I check order status in "Except Picking".
+-
+  !python {model: purchase.order}: |
+    order = self.browse(cr, uid, ref("purchase_order_c_1"))
+    assert order.state == "except_picking", "order should be in Except Picking state after cancel shipment"
+-
+  I manually correct the purchase order.
+-
+  !workflow {model: purchase.order, action: picking_ok, ref: purchase_order_c_1}
+-
+  I check order status in "Purchase Order".
+-
+  !python {model: purchase.order}: |
+    order = self.browse(cr, uid, ref("purchase_order_c_1"))
+    assert order.state == "approved", "order should be in Purchase Order state after cancel shipment"
+-
+  I check order status of purchase order lines in "Confirmed".
+-
+  !python {model: purchase.order}: |
+    purchase_order = self.browse(cr, uid, ref("purchase_order_c_1"))
+    for purchase_line in purchase_order.order_line:
+      assert purchase_line.state == "confirmed", "order should be in Confirmed state"
+-
+  Now I am able to cancel purchase order.
+-
+  !python {model: purchase.order}: |
+    self.action_cancel(cr, uid, [ref("purchase_order_c_1")])
+-
+  I check that order is cancelled.
+-
+  !assert {model: purchase.order, id: purchase_order_c_1}:
+    - state == 'cancel'
+-
+  After cancel the order, I check that it's related invoice cancelled.
+-
+  !python {model: purchase.order}: |
+    order = self.browse(cr, uid, ref("purchase_order_c_1"))
+    assert order.invoice_ids[0].state == "cancel", "order's related invoice should be cancelled"   
+-
+  Now again set cancelled order to draft.
+-
+  !python {model: purchase.order}: |
+    self.action_cancel_draft(cr, uid, [ref("purchase_order_c_1")])
+-
+  Now I again to cancel draft order.
+-
+  !python {model: purchase.order}: |
+    self.action_cancel(cr, uid, [ref("purchase_order_c_1")])
+-
+  I check that order is cancelled.
+-
+  !assert {model: purchase.order, id: purchase_order_c_1}:
+    - state == 'cancel'
