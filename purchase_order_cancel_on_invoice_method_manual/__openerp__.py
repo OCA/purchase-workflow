@@ -22,7 +22,7 @@
     "name": "Purchase Order Cancel when PO is invoiced based on PO lines",
     "version": "1.0",
     "author": "Eficent",
-    "category": "Generic Modules/Account", 
+    "category": "Generic Modules/Account",
     "description": """
 This module was written to extend the purchasing capabilities of Odoo,
 and allows the user to cancel an approved purchase order where the invoice
@@ -67,18 +67,18 @@ mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
 To contribute to this module, please visit http://odoo-community.org.
-    """, 
+    """,
     "website": "http://www.eficent.com/",
     "license": "",
     "depends": [
         "purchase"
-    ], 
+    ],
     "demo": [
         'purchase_order_demo.yml'
     ],
     "data": [
         "purchase_workflow.xml"
-    ], 
+    ],
     "test": [
         "test/cancel_order.yml"
     ],
