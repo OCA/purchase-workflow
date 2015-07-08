@@ -19,7 +19,7 @@
             <field name="arch" type="xml">
                 <page string="Last Price Info" position="inside">
                     <group string="Purchase" name="last_purchase_info">
-                        <field name="last_supplier" />
+                        <field name="last_supplier_id" />
                         <field name="last_purchase_date" />
                         <field name="last_purchase_price" />
                     </group>
