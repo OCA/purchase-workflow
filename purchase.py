@@ -42,7 +42,7 @@ class ProcurementOrder(orm.Model):
                                           line_vals, context=None):
         """ method comes from purchase/purchase.py
         """
-        if procurement.product_id.track_from_sale:
+        if procurement.product_id.auto_generate_prodlot:
             line_vals['lot_id'] = procurement.move_id.lot_id.id
         return super(ProcurementOrder, self).create_procurement_purchase_order(
             cr, uid, procurement, po_vals, line_vals, context=context)
