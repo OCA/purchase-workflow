@@ -20,7 +20,7 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp import api, models, fields
 
 
 class PurchaseOrderGeneratorConfiguration(models.Model):
@@ -53,6 +53,7 @@ class PurchaseOrderGeneratorConfiguration(models.Model):
         'purchase.order.generator.configuration.line',
         'configurator_id',
         'Purchase Order Generator Configuration Lines',
+        copy=True,
     )
 
     _sql_constraints = [
@@ -60,3 +61,10 @@ class PurchaseOrderGeneratorConfiguration(models.Model):
          'unique(name)',
          'The configurator name must be unique !')
     ]
+
+    @api.one
+    def copy(self, default=None):
+        if default is None:
+            default = {}
+        default.update({'name': self.name + ' (Copy)'})
+        return super(PurchaseOrderGeneratorConfiguration, self).copy(default)
