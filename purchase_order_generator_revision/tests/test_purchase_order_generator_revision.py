@@ -21,7 +21,6 @@
 ##############################################################################
 
 from openerp.tests import TransactionCase
-from openerp.exceptions import ValidationError
 from datetime import datetime
 
 
