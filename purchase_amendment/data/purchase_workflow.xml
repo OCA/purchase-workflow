@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data noupdate="0">
+
+    <record id="purchase.trans_picking_except_picking" model="workflow.transition">
+      <field name="act_from" ref="purchase.act_picking"/>
+      <field name="act_to" ref="purchase.act_except_picking"/>
+      <field name="signal">subflow.cancel</field>
+      <field name="condition">canceled_picking_not_canceled_line()</field>
+    </record>
+  </data>
+</openerp>
