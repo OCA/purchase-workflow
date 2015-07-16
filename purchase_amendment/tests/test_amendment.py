@@ -146,7 +146,7 @@ class TestAmendmentCombinations(common.TransactionCase, AmendmentMixin):
         amendment = self.amend(cr, uid, context=context)
         # Remove product1
         amendment = self.amend_product(cr, uid, amendment, self.product1, 0,
-                           context=context)
+                                       context=context)
         self.amendment_model.do_amendment(cr, uid, [amendment.id],
                                           context=context)
         self.assert_purchase_lines(cr, uid, [
@@ -170,7 +170,7 @@ class TestAmendmentCombinations(common.TransactionCase, AmendmentMixin):
         # amend the purchase order
         amendment = self.amend(cr, uid, context=context)
         amendment = self.amend_product(cr, uid, amendment, self.product1, 2000,
-                           context=context)
+                                       context=context)
 
         self.amendment_model.do_amendment(cr, uid, [amendment.id],
                                           context=context)
@@ -210,11 +210,11 @@ class TestAmendmentCombinations(common.TransactionCase, AmendmentMixin):
         cr, uid, context = self.cr, self.uid, {}
         amendment = self.amend(cr, uid, context=context)
         amendment = self.amend_product(cr, uid, amendment, self.product1, 500,
-                           context=context)
+                                       context=context)
         amendment = self.amend_product(cr, uid, amendment, self.product2, 300,
-                           context=context)
+                                       context=context)
         amendment = self.amend_product(cr, uid, amendment, self.product3, 300,
-                           context=context)
+                                       context=context)
         self.amendment_model.do_amendment(cr, uid, [amendment.id],
                                           context=context)
         self.assert_moves(cr, uid, [
@@ -252,11 +252,11 @@ class TestAmendmentCombinations(common.TransactionCase, AmendmentMixin):
         ], context=context)
         amendment = self.amend(cr, uid, context=context)
         amendment = self.amend_product(cr, uid, amendment, self.product1, 200,
-                           context=context)
+                                       context=context)
         amendment = self.amend_product(cr, uid, amendment, self.product2, 200,
-                           context=context)
+                                       context=context)
         amendment = self.amend_product(cr, uid, amendment, self.product3, 200,
-                           context=context)
+                                       context=context)
         self.amendment_model.do_amendment(cr, uid, [amendment.id],
                                           context=context)
         self.assert_moves(cr, uid, [
@@ -299,11 +299,11 @@ class TestAmendmentCombinations(common.TransactionCase, AmendmentMixin):
         ], context=context)
         amendment = self.amend(cr, uid, context=context)
         amendment = self.amend_product(cr, uid, amendment, self.product1, 200,
-                           context=context)
+                                       context=context)
         amendment = self.amend_product(cr, uid, amendment, self.product2, 200,
-                           context=context)
+                                       context=context)
         amendment = self.amend_product(cr, uid, amendment, self.product3, 200,
-                           context=context)
+                                       context=context)
         self.amendment_model.do_amendment(cr, uid, [amendment.id],
                                           context=context)
         self.assert_moves(cr, uid, [
@@ -335,11 +335,11 @@ class TestAmendmentCombinations(common.TransactionCase, AmendmentMixin):
         ], context=context)
         amendment = self.amend(cr, uid, context=context)
         amendment = self.amend_product(cr, uid, amendment, self.product1, 0,
-                           context=context)
+                                       context=context)
         amendment = self.amend_product(cr, uid, amendment, self.product2, 0,
-                           context=context)
+                                       context=context)
         amendment = self.amend_product(cr, uid, amendment, self.product3, 0,
-                           context=context)
+                                       context=context)
         self.amendment_model.do_amendment(cr, uid, [amendment.id],
                                           context=context)
         self.assert_moves(cr, uid, [

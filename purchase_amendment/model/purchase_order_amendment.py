@@ -182,7 +182,6 @@ class PurchaseOrderAmendmentItem(orm.TransientModel):
         """
         move_obj = self.pool['stock.move']
         po_line_obj = self.pool['purchase.order.line']
-        so_line_obj = self.pool['sale.order.line']
         for item in self.browse(cr, uid, ids, context=context):
             line = item.purchase_line_id
             rounding = line.product_id.uom_id.rounding
