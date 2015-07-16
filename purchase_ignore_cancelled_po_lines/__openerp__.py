@@ -90,7 +90,7 @@ To contribute to this module, please visit http://odoo-community.org.
     "init_xml": [],
     "update_xml": [],
     'demo_xml': [],
-    'test':[],
+    'test': [],
     'installable': True,
     'active': False,
     'certificate': '',

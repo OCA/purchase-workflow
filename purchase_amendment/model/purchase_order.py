@@ -78,7 +78,8 @@ class PurchaseOrderLine(orm.Model):
         default.update({
             'amend_id': False,
         })
-        return super(PurchaseOrderLine, self).copy(cr, uid, id, default, context)
+        return super(PurchaseOrderLine, self).copy(cr, uid, id, default,
+                                                   context=context)
 
     def action_cancel(self, cr, uid, ids, context=None):
         self.write(cr, uid, ids, {'state': 'cancel'}, context=context)

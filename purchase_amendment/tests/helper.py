@@ -69,8 +69,8 @@ class AmendmentMixin(object):
                                         context=context)
         return amendment_obj.browse(cr, uid, amend_id, context=context)
 
-    def amend_product(self, cr, uid, amendment, product, qty, \
-                                               context=None):
+    def amend_product(self, cr, uid, amendment, product, qty,
+                      context=None):
         amendment_item_obj = self.registry('purchase.order.amendment.item')
         amendment_obj = self.registry('purchase.order.amendment')
         for item in amendment.item_ids:
@@ -79,8 +79,7 @@ class AmendmentMixin(object):
                 amendment_item_obj.write(cr, uid, [item.id], {'new_qty': qty},
                                          context=context)
         return amendment_obj.browse(cr, uid, amendment.id,
-                                         context=context)
-
+                                    context=context)
 
     def assertRecordEqual(self, expected, actual, msg=None):
         for field_name, expected_value in expected.iteritems():

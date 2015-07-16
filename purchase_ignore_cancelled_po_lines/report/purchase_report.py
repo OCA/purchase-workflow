@@ -18,7 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ##############################################################################
 
-from openerp.osv import fields, orm
+from openerp.osv import orm
 from openerp import tools
 
 
@@ -51,17 +51,26 @@ class PurchaseReport(orm.Model):
                     t.uom_id as product_uom,
                     s.location_id as location_id,
                     sum(l.product_qty/u.factor*u2.factor) as quantity,
-                    extract(epoch from age(s.date_approve,s.date_order))/(24*60*60)::decimal(16,2) as delay,
-                    extract(epoch from age(l.date_planned,s.date_order))/(24*60*60)::decimal(16,2) as delay_pass,
+                    extract(epoch from age(s.date_approve,s.date_order))/
+                    (24*60*60)::decimal(16,2) as delay,
+                    extract(epoch from age(l.date_planned,s.date_order))/
+                    (24*60*60)::decimal(16,2) as delay_pass,
                     count(*) as nbr,
-                    sum(l.price_unit*l.product_qty)::decimal(16,2) as price_total,
-                    avg(100.0 * (l.price_unit*l.product_qty) / NULLIF(t.standard_price*l.product_qty/u.factor*u2.factor, 0.0))::decimal(16,2) as negociation,
-                    sum(t.standard_price*l.product_qty/u.factor*u2.factor)::decimal(16,2) as price_standard,
-                    (sum(l.product_qty*l.price_unit)/NULLIF(sum(l.product_qty/u.factor*u2.factor),0.0))::decimal(16,2) as price_average
+                    sum(l.price_unit*l.product_qty)::decimal(16,2)
+                    as price_total,
+                    avg(100.0 * (l.price_unit*l.product_qty) /
+                    NULLIF(t.standard_price*l.product_qty/
+                    u.factor*u2.factor, 0.0))::decimal(16,2) as negociation,
+                    sum(t.standard_price*l.product_qty/
+                    u.factor*u2.factor)::decimal(16,2) as price_standard,
+                    (sum(l.product_qty*l.price_unit)/
+                    NULLIF(sum(l.product_qty/u.factor*u2.factor),0.0))::
+                    decimal(16,2) as price_average
                 from purchase_order_line l
                     join purchase_order s on (l.order_id=s.id)
                         left join product_product p on (l.product_id=p.id)
-                            left join product_template t on (p.product_tmpl_id=t.id)
+                            left join product_template t on
+                            (p.product_tmpl_id=t.id)
                     left join product_uom u on (u.id=l.product_uom)
                     left join product_uom u2 on (u2.id=t.uom_id)
                 group by
