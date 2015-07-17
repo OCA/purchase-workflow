@@ -8,8 +8,7 @@
         <form string="Amendment Details" version="7.0">
           <field name="purchase_id" invisible="True"/>
           <p class="oe_grey">
-            With this amendment, stock moves will be updated accordingly, and
-            changes will be propagated in chained moves.<br/>
+            With this amendment, stock moves will be updated accordingly.<br/>
             <br/>
           </p>
           <group>
