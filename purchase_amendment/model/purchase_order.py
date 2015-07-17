@@ -49,11 +49,11 @@ class PurchaseOrder(orm.Model):
                 self.write(cr, uid, purchase.id, {'state': 'approved'},
                            context=context)
                 continue
-            super(PurchaseOrder, self).action_picking_create(cr, uid, ids,
-                                                             context=context)
+        return super(PurchaseOrder, self).action_picking_create(
+            cr, uid, ids, context=context)
 
-    def canceled_picking_not_canceled_line(self, cr, uid, ids, context=None):
-        for purchase in self.browse(cr, uid, ids, context=context):
+    def canceled_picking_not_canceled_line(self, cr, uid, ids, *args):
+        for purchase in self.browse(cr, uid, ids):
             for line in purchase.order_line:
                 if line.state == 'cancel':
                     continue
@@ -91,13 +91,3 @@ class PurchaseOrderLine(orm.Model):
                 self.pool.get('purchase.order').action_cancel(
                     cr, uid, [purchase.id], context=context)
         return True
-
-    def canceled_picking_not_canceled_line(self, cr, uid, ids, context=None):
-        for po in self.browse(cr, uid, ids, context=context):
-            for line in po.order_line:
-                if line.state == 'cancel':
-                    continue
-                for move in line.move_ids:
-                    if move.state == 'cancel':
-                        return True
-        return False

@@ -8,5 +8,6 @@
       <field name="signal">subflow.cancel</field>
       <field name="condition">canceled_picking_not_canceled_line()</field>
     </record>
+
   </data>
 </openerp>
