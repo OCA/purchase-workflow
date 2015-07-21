@@ -1,13 +1,13 @@
-# Translation of OpenERP Server.
+# Translation of Odoo Server.
 # This file contains the translation of the following modules:
 #	* purchase_supplier_postage_free
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 7.0\n"
+"Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-03 12:59+0000\n"
-"PO-Revision-Date: 2015-03-03 12:59+0000\n"
+"POT-Creation-Date: 2015-07-21 12:26+0000\n"
+"PO-Revision-Date: 2015-07-21 12:26+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: purchase_supplier_postage_free
-#: help:purchase.order,free_postage:0
-msgid "Amount above which the supplier offers postage fees in the currency of the purchase order."
+#: view:purchase.order:purchase_supplier_postage_free.purchase_order_form
+msgid "Amount has been reached"
 msgstr ""
 
 #. module: purchase_supplier_postage_free
@@ -26,12 +26,12 @@ msgid "Expressed in the currency of the supplier's purchase pricelist.  This is 
 msgstr ""
 
 #. module: purchase_supplier_postage_free
-#: field:purchase.order,free_postage:0
+#: view:purchase.order:purchase_supplier_postage_free.view_purchase_order_filter
+#: view:purchase.order:purchase_supplier_postage_free.view_request_for_quotation_filter
 msgid "Free Postage"
 msgstr ""
 
 #. module: purchase_supplier_postage_free
-#: view:purchase.order:0
 #: field:purchase.order,free_postage_reached:0
 msgid "Free Postage Reached"
 msgstr ""
@@ -42,9 +42,13 @@ msgid "If the free postage amount is reached or not. This field is refreshed whe
 msgstr ""
 
 #. module: purchase_supplier_postage_free
-#: code:_description:0
+#: view:purchase.order:purchase_supplier_postage_free.view_purchase_order_filter
+#: view:purchase.order:purchase_supplier_postage_free.view_request_for_quotation_filter
+msgid "No Free Postage"
+msgstr ""
+
+#. module: purchase_supplier_postage_free
 #: model:ir.model,name:purchase_supplier_postage_free.model_res_partner
-#, python-format
 msgid "Partner"
 msgstr ""
 
@@ -54,28 +58,24 @@ msgid "Purchase Free Postage"
 msgstr ""
 
 #. module: purchase_supplier_postage_free
-#: code:_description:0
-#, python-format
+#: model:ir.model,name:purchase_supplier_postage_free.model_purchase_order
 msgid "Purchase Order"
 msgstr ""
 
 #. module: purchase_supplier_postage_free
-#: model:ir.model,name:purchase_supplier_postage_free.model_purchase_order
-msgid "Purchase order"
+#: view:purchase.order:purchase_supplier_postage_free.view_purchase_order_filter
+#: view:purchase.order:purchase_supplier_postage_free.view_request_for_quotation_filter
+msgid "Purchase orders having an untaxed amount below the Free Postage threshold."
 msgstr ""
 
 #. module: purchase_supplier_postage_free
-#: view:purchase.order:0
+#: view:purchase.order:purchase_supplier_postage_free.view_purchase_order_filter
+#: view:purchase.order:purchase_supplier_postage_free.view_request_for_quotation_filter
 msgid "Purchase orders having an untaxed amount greater than the Free Postage threshold."
 msgstr ""
 
 #. module: purchase_supplier_postage_free
-#: view:purchase.order:0
-msgid "onchange_partner_id(partner_id, pricelist_id, context)"
-msgstr ""
-
-#. module: purchase_supplier_postage_free
-#: view:purchase.order:0
-msgid "{'partner_id': partner_id}"
+#: view:purchase.order:purchase_supplier_postage_free.purchase_order_form
+msgid "until amount is reached"
 msgstr ""
 
