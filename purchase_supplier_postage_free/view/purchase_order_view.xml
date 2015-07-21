@@ -9,11 +9,35 @@
         <xpath expr="//group[@class='oe_subtotal_footer oe_right']" position="after">
           <div class="oe_left" style="width: 300px;">
             <group>
-              <field name="free_postage"/>
-              <field name="free_postage_reached"/>
+              <field name="free_postage_reached" invisible="1"/>
+              <field name="free_postage"
+                widget="monetary" options="{'currency_field': 'currency_id'}"/>
+              <span colspan="2"
+                attrs="{'invisible': [('free_postage_reached', '=', False)]}">
+                <span class="oe_kanban_status oe_kanban_status_green"/>
+                <label string="Amount has been reached"/>
+              </span>
+              <span colspan="2"
+                attrs="{'invisible': [('free_postage_reached', '=', True)]}">
+                <span class="oe_kanban_status oe_kanban_status_red"/>
+                <field name="free_postage_diff" class="oe_inline" nolabel="1"
+                  widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                <label string="until amount is reached" class="oe_inline"/>
+              </span>
             </group>
           </div>
         </xpath>
+      </field>
+    </record>
+
+    <record id="purchase_order_tree" model="ir.ui.view">
+      <field name="name">purchase.order.tree</field>
+      <field name="model">purchase.order</field>
+      <field name="inherit_id" ref="purchase.purchase_order_tree"/>
+      <field name="arch" type="xml">
+        <field name="state" position="after">
+          <field name="free_postage_reached"/>
+        </field>
       </field>
     </record>
 

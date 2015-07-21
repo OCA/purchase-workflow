@@ -34,6 +34,12 @@ class PurchaseOrder(models.Model):
         help="Amount above which the supplier offers postage fees in the "
              "currency of the purchase order.",
     )
+    free_postage_diff = fields.Float(
+        compute='_compute_free_postage',
+        string='Remaining for free postage',
+        digits_compute=dp.get_precision('Account'),
+        help="Remaining amount before the postage fees are free."
+    )
     free_postage_reached = fields.Boolean(
         compute='_compute_free_postage',
         string='Free Postage Reached',
@@ -60,6 +66,7 @@ class PurchaseOrder(models.Model):
             threshold_reached = False
         self.free_postage = threshold
         self.free_postage_reached = threshold_reached
+        self.free_postage_diff = self.amount_untaxed - threshold
 
     @api.multi
     def _get_free_postage_amount(self, supplier, order_currency):
