@@ -36,7 +36,9 @@
       <field name="inherit_id" ref="purchase.purchase_order_tree"/>
       <field name="arch" type="xml">
         <field name="state" position="after">
-          <field name="free_postage_reached"/>
+          <field name="free_postage_reached" invisible="context.get('search_no_free_postage') or context.get('search_free_postage')"/>
+          <field name="free_postage" invisible="not context.get('search_no_free_postage')"/>
+          <field name="free_postage_diff" invisible="not context.get('search_no_free_postage')"/>
         </field>
       </field>
     </record>
@@ -47,7 +49,14 @@
       <field name="inherit_id" ref="purchase.view_request_for_quotation_filter"/>
       <field name="arch" type="xml">
         <filter name="not_invoiced" position="after">
-          <filter name="free_postage_reached" string="Free Postage Reached" domain="[('free_postage_reached', '=', True)]" help="Purchase orders having an untaxed amount greater than the Free Postage threshold."/>
+          <filter name="free_postage_reached"
+            context="{'search_free_postage': 1}"
+            string="Free Postage"
+            domain="[('free_postage_reached', '=', True)]" help="Purchase orders having an untaxed amount greater than the Free Postage threshold."/>
+          <filter name="free_postage_not_reached"
+            context="{'search_no_free_postage': 1}"
+            string="No Free Postage"
+            domain="[('free_postage_reached', '=', False)]" help="Purchase orders having an untaxed amount below the Free Postage threshold."/>
         </filter>
       </field>
     </record>
@@ -58,7 +67,14 @@
       <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
       <field name="arch" type="xml">
         <filter name="not_invoiced" position="after">
-          <filter name="free_postage_reached" string="Free Postage Reached" domain="[('free_postage_reached', '=', True)]" help="Purchase orders having an untaxed amount greater than the Free Postage threshold."/>
+          <filter name="free_postage_reached"
+            context="{'search_free_postage': 1}"
+            string="Free Postage"
+            domain="[('free_postage_reached', '=', True)]" help="Purchase orders having an untaxed amount greater than the Free Postage threshold."/>
+          <filter name="free_postage_not_reached"
+            context="{'search_no_free_postage': 1}"
+            string="No Free Postage"
+            domain="[('free_postage_reached', '=', False)]" help="Purchase orders having an untaxed amount below the Free Postage threshold."/>
         </filter>
       </field>
     </record>
