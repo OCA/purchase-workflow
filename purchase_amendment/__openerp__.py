@@ -34,7 +34,6 @@
     "description": """
 Purchase Amendment
 ==================
-
 This module is meant to assist the users in handling the cases when the company
 changes his mind about a purchase.
 
@@ -44,7 +43,6 @@ which covers a similar use case for changes in sale orders.
 
 Usage
 =====
-
 Once a purchase order is confirmed, an 'Amend' button is shown on the
 view's header. Clicking on this button will open a new window with the
 order's lines and the quantity to amend.
