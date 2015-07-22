@@ -8,15 +8,27 @@
         <field name="arch" type="xml">
           <form string="Purchase Order Generator Revision">
             <group>
-              <field name="order_id"/>
-              <field name="configurator_id"/>
-              <field name="target"/>
-              <field name="received_qty"/>
-              <field name="effective_date"/>
-              <field name="revision_factor"/>
-              <field name="new_target"/>
+              <group>>
+                <field name="order_id" domain="[('state', '=', 'approved')]"/>
+                <field name="configurator_id"/>
+              </group>
+              <group>
+                <field name="target"/>
+                <field name="new_target"/>
+              </group>
+              <group>
+                <field name="received_qty"/>
+                <field name="effective_date"/>
+              </group>
+              <group>
+                <field name="revision_factor"/>
+                <field name="revision_qty"/>
+              </group>
+            </group>
+            <group>
               <field name="description"/>
             </group>
+
             <footer>
               <button string="Validate" name="validate" type="object"
                       class="oe_highlight"/>

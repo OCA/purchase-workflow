@@ -97,19 +97,12 @@ class TestPurchaseOrderGenerator(TransactionCase):
         self.revision = self.POGeneratorRevisionObj.create({
             'order_id': self.PO.id,
             'effective_date': datetime.today(),
-            'new_target': 5000,
             'revision_factor': 0.95,
+            'revision_qty': 50,
             'description': 'Test',
         })
 
     def test_compute_target_received_qty(self):
-        self.assertEqual(
-            self.revision.target,
-            sum(l.product_qty for l in self.revision.order_id.order_line) *
-            sum(l.quantity_ratio for l in
-                self.revision.configurator_id.line_ids)
-        )
-
         self.assertEqual(
             self.revision.received_qty,
             sum(
@@ -117,6 +110,13 @@ class TestPurchaseOrderGenerator(TransactionCase):
                 for p in self.revision.order_id.picking_ids
                 if p.state == "done"
             )
+        )
+        self.assertEqual(
+            self.revision.target,
+            sum(l.product_qty for l in self.revision.order_id.order_line) *
+            sum(l.quantity_ratio for l in
+                self.revision.configurator_id.line_ids)
+            - self.revision.received_qty
         )
 
     def test_onchange_revision_factor(self):
@@ -126,17 +126,44 @@ class TestPurchaseOrderGenerator(TransactionCase):
         self.revision._onchange_revision_factor()
         self.assertEqual(
             self.revision.new_target,
-            self.revision.target * self.revision.revision_factor
+            self.revision.target * self.revision.revision_factor / 100
+        )
+        self.assertEqual(
+            self.revision.revision_qty,
+            self.revision.new_target - self.revision.target
         )
 
-    def test_onchange_new_target(self):
+    def test_onchange_revision_qty(self):
         self.revision.write({
-            'new_target': 6000,
+            'revision_qty': 600,
         })
-        self.revision._onchange_new_target()
+        self.revision._onchange_revision_qty()
         self.assertEqual(
+            self.revision.new_target,
+            self.revision.target + self.revision.revision_qty
+        )
+        self.assertAlmostEqual(
             self.revision.revision_factor,
-            self.revision.new_target / self.revision.target
+            100 * self.revision.new_target / self.revision.target
+        )
+
+    def test_onchange_target(self):
+        self.PO2 = self.env.ref('purchase.purchase_order_1')
+        self.revision.write({
+            'order_id': self.PO2.id,
+        })
+        self.revision._onchange_target()
+        self.assertEqual(
+            self.revision.new_target,
+            self.revision.target
+        )
+        self.assertAlmostEqual(
+            self.revision.revision_factor,
+            100
+        )
+        self.assertEqual(
+            self.revision.revision_qty,
+            0
         )
 
     def test_validate(self):

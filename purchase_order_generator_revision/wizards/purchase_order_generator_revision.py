@@ -25,7 +25,7 @@ class PurchaseOrderGeneratorRevision(models.TransientModel):
         help="Number of products that are supposed to be received.",
     )
     received_qty = fields.Float(
-        "Quantity",
+        "Received Quantity",
         compute="_compute_target_received_qty",
         help="Quantity of products received from the previously generated "
         "Purchase Order.",
@@ -36,16 +36,31 @@ class PurchaseOrderGeneratorRevision(models.TransientModel):
         help="Date on which the revision factor will be applied.",
     )
     revision_factor = fields.Float(
-        "Revision Factor",
+        "Revision Factor (%)",
         required=True,
-        help="Factor that will revise the quantities on the Purchase Order.",
+        help="Factor that will revise the quantities on the Purchase Order "
+             "(in %). You can adjust the quantities either with this factor "
+             "or directly with the 'quantity to adjust' field. Changing one "
+             "of those 2 fields will automatically calculate the other one.",
+        default=100.0,
+        digits=(32, 32),
+    )
+    revision_qty = fields.Integer(
+        "Quantity to adjust",
+        required=True,
+        help="Quantity to add or remove to the Purchase Order. If you want to "
+             "receive more products, enter a positive number. If you have "
+             "already received too much and want to receive less, enter a "
+             "negative number. You can either adjust the quantities with this "
+             "field or set a revision factor. Changing one of those 2 fields "
+             "will automatically calculate the other one.",
+        default=0,
     )
     new_target = fields.Float(
         "New Target",
-        required=True,
-        help="""New expected target.
-This field can either be entered before and a revision factor will be \
-calculated or will be calculated based on the revision factor.""",
+        help="New expected target. This field will be calculated based on the "
+             "revision factor or the revision quantity.",
+        readonly=True,
     )
     description = fields.Text(
         "Reason for Revision",
@@ -55,13 +70,9 @@ calculated or will be calculated based on the revision factor.""",
     @api.depends("order_id")
     def _compute_target_received_qty(self):
         """
-        Compute target from expected deliveries of the referred products
         Compute quantity stock moves from received (done) pickings
+        Compute target from expected deliveries of the referred products
         """
-        self.target = (
-            sum(l.product_qty for l in self.order_id.order_line) *
-            sum(l.quantity_ratio for l in self.configurator_id.line_ids)
-        )
         self.received_qty = (
             sum(
                 sum(l.product_uom_qty for l in p.move_lines)
@@ -69,15 +80,29 @@ calculated or will be calculated based on the revision factor.""",
                 if p.state == "done"
             )
         )
+        self.target = (
+            sum(l.product_qty for l in self.order_id.order_line) *
+            sum(l.quantity_ratio for l in self.configurator_id.line_ids)
+        ) - self.received_qty
 
     @api.onchange("revision_factor")
     def _onchange_revision_factor(self):
-        self.new_target = self.target * self.revision_factor
+        self.new_target = self.target * self.revision_factor / 100
+        self.revision_qty = self.new_target - self.target
 
-    @api.onchange("new_target")
-    def _onchange_new_target(self):
-        if self.target != 0.0:
-            self.revision_factor = self.new_target / self.target
+    @api.onchange("revision_qty")
+    def _onchange_revision_qty(self):
+        self.new_target = self.target + self.revision_qty
+        if self.target == 0:
+            self.revision_factor = 100
+        else:
+            self.revision_factor = 100 * self.new_target / self.target
+
+    @api.onchange("target")
+    def _onchange_target(self):
+        self.new_target = self.target
+        self.revision_factor = 100
+        self.revision_qty = 0
 
     @api.multi
     def validate(self):

@@ -1,13 +1,26 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* purchase_order_line_revision
+#	* purchase_order_generator_revision
+#
+###############################################################################
+#  WARNING:
+#  This module also changes translations on computed and related fields.
+#  Those translations have been added manually. Please make sure not to delete
+#  them.
+#  - msgid "Generator"
+#  - msgid "Target"
+#  - msgid "Received Quantity"
+#  - msgid "Configuration with which the Purchase Order is generated."
+#  - msgid "Number of products that are supposed to be received."
+#  - msgid "Quantity of products received from the previously generated Purchase Order."
+###############################################################################
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-06 22:48+0000\n"
-"PO-Revision-Date: 2015-07-06 22:48+0000\n"
+"POT-Creation-Date: 2015-07-22 18:27+0000\n"
+"PO-Revision-Date: 2015-07-22 18:27+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -15,102 +28,135 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: purchase_order_line_revision
-#: view:purchase.planning.revision:purchase_order_line_revision.purchase_planning_revision_view
+#. module: purchase_order_generator_revision
+#: view:purchase.order.generator.revision:purchase_order_generator_revision.purchase_order_generator_revision_view
 msgid "Cancel"
 msgstr ""
 
-#. module: purchase_order_line_revision
-#: field:purchase.planning.revision,create_uid:0
+#. module: purchase_order_generator_revision
+#: field:purchase.order.generator.revision,create_uid:0
 msgid "Created by"
 msgstr ""
 
-#. module: purchase_order_line_revision
-#: field:purchase.planning.revision,create_date:0
+#. module: purchase_order_generator_revision
+#: field:purchase.order.generator.revision,create_date:0
 msgid "Created on"
 msgstr ""
 
-#. module: purchase_order_line_revision
-#: help:purchase.planning.revision,effective_date:0
+#. module: purchase_order_generator_revision
+#: help:purchase.order.generator.revision,effective_date:0
 msgid "Date on which the revision factor will be applied."
 msgstr ""
 
-#. module: purchase_order_line_revision
-#: field:purchase.planning.revision,effective_date:0
+#. module: purchase_order_generator_revision
+#: field:purchase.order.generator.revision,effective_date:0
 msgid "Effective Date"
 msgstr ""
 
-#. module: purchase_order_line_revision
-#: help:purchase.planning.revision,revision_factor:0
-msgid "Factor that will revise the quantities on the Purchase Order."
+#. module: purchase_order_generator_revision
+#: help:purchase.order.generator.revision,revision_factor:0
+msgid "Factor that will revise the quantities on the Purchase Order (in %). You can adjust the quantities either with this factor or directly with the 'quantity to adjust' field. Changing one of those 2 fields will automatically calculate the other one."
 msgstr ""
 
-#. module: purchase_order_line_revision
-#: field:purchase.planning.revision,id:0
+#. module: purchase_order_generator_revision
+#: field:purchase.order.generator.revision,id:0
 msgid "ID"
 msgstr ""
 
-#. module: purchase_order_line_revision
-#: field:purchase.planning.revision,write_uid:0
+#. module: purchase_order_generator_revision
+#: field:purchase.order.generator.revision,write_uid:0
 msgid "Last Updated by"
 msgstr ""
 
-#. module: purchase_order_line_revision
-#: field:purchase.planning.revision,write_date:0
+#. module: purchase_order_generator_revision
+#: field:purchase.order.generator.revision,write_date:0
 msgid "Last Updated on"
 msgstr ""
 
-#. module: purchase_order_line_revision
-#: help:purchase.planning.revision,order_id:0
+#. module: purchase_order_generator_revision
+#: help:purchase.order.generator.revision,order_id:0
 msgid "Name of the Purchase Order."
 msgstr ""
 
-#. module: purchase_order_line_revision
-#: field:purchase.planning.revision,new_target:0
+#. module: purchase_order_generator_revision
+#: field:purchase.order.generator.revision,new_target:0
 msgid "New Target"
 msgstr ""
 
-#. module: purchase_order_line_revision
-#: help:purchase.planning.revision,new_target:0
-msgid "New expected target.\n"
-"This field can either be entered before and a revision factor will be calculated or will be calculated based on the revision factor."
+#. module: purchase_order_generator_revision
+#: help:purchase.order.generator.revision,new_target:0
+msgid "New expected target. This field will be calculated based on the revision factor or the revision quantity."
 msgstr ""
 
-#. module: purchase_order_line_revision
-#: field:purchase.planning.revision,order_id:0
+#. module: purchase_order_generator_revision
+#: field:purchase.order.generator.revision,order_id:0
 msgid "Order"
 msgstr ""
 
-#. module: purchase_order_line_revision
-#: model:ir.actions.act_window,name:purchase_order_line_revision.purchase_planning_revision_action
-#: model:ir.ui.menu,name:purchase_order_line_revision.purchase_planning_revision_action_menu
-#: model:ir.ui.menu,name:purchase_order_line_revision.purchase_planning_revision_action_submenu
-#: view:purchase.planning.revision:purchase_order_line_revision.purchase_planning_revision_view
-msgid "Purchase Order Planning Revision"
+#. module: purchase_order_generator_revision
+#: model:ir.actions.act_window,name:purchase_order_generator_revision.purchase_order_generator_revision_action
+#: model:ir.model,name:purchase_order_generator_revision.model_purchase_order_generator_revision
+#: model:ir.ui.menu,name:purchase_order_generator_revision.purchase_order_generator_revision_action_submenu
+#: view:purchase.order.generator.revision:purchase_order_generator_revision.purchase_order_generator_revision_view
+msgid "Purchase Order Generator Revision"
 msgstr ""
 
-#. module: purchase_order_line_revision
-#: model:ir.model,name:purchase_order_line_revision.model_purchase_planning_revision
-msgid "Purchase Planning Revision"
+#. module: purchase_order_generator_revision
+#: help:purchase.order.generator.revision,revision_qty:0
+msgid "Quantity to add or remove to the Purchase Order. If you want to receive more products, enter a positive number. If you have already received too much and want to receive less, enter a negative number. You can either adjust the quantities with this field or set a revision factor. Changing one of those 2 fields will automatically calculate the other one."
 msgstr ""
 
-#. module: purchase_order_line_revision
-#: field:purchase.planning.revision,description:0
+#. module: purchase_order_generator_revision
+#: field:purchase.order.generator.revision,revision_qty:0
+msgid "Quantity to adjust"
+msgstr ""
+
+#. module: purchase_order_generator_revision
+#: field:purchase.order.generator.revision,description:0
 msgid "Reason for Revision"
 msgstr ""
 
-#. module: purchase_order_line_revision
-#: field:purchase.planning.revision,revision_factor:0
-msgid "Revision Factor"
+#. module: purchase_order_generator_revision
+#: field:purchase.order.generator.revision,revision_factor:0
+msgid "Revision Factor (%)"
 msgstr ""
 
-#. module: purchase_order_line_revision
-#: view:purchase.planning.revision:purchase_order_line_revision.purchase_planning_revision_view
+#. module: purchase_order_generator_revision
+#: view:purchase.order.generator.revision:purchase_order_generator_revision.purchase_order_generator_revision_view
 msgid "Validate"
 msgstr ""
 
-#. module: purchase_order_line_revision
-#: view:purchase.planning.revision:purchase_order_line_revision.purchase_planning_revision_view
+#. module: purchase_order_generator_revision
+#: view:purchase.order.generator.revision:purchase_order_generator_revision.purchase_order_generator_revision_view
 msgid "or"
 msgstr ""
 
+#. module: purchase_order_generator_revision
+#: field:purchase.order.generator.revision,configurator_id:0
+msgid "Generator"
+msgstr ""
+
+#. module: purchase_order_generator_revision
+#: field:purchase.order.generator.revision,target:0
+msgid "Target"
+msgstr ""
+
+#. module: purchase_order_generator_revision
+#: field:purchase.order.generator.revision,received_qty:0
+msgid "Received Quantity"
+msgstr ""
+
+#. module: purchase_order_generator_revision
+#: help:purchase.order.generator.revision,configurator_id:0
+msgid "Configuration with which the Purchase Order is generated."
+msgstr ""
+
+#. module: purchase_order_generator_revision
+#: help:purchase.order.generator.revision,target:0
+msgid "Number of products that are supposed to be received."
+msgstr ""
+
+#. module: purchase_order_generator_revision
+#: help:purchase.order.generator.revision,received_qty:0
+msgid "Quantity of products received from the previously generated Purchase Order."
+msgstr ""

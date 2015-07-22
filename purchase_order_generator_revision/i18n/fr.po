@@ -6,16 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-07 14:20+0000\n"
-"PO-Revision-Date: 2015-07-07 10:26-0500\n"
+"POT-Creation-Date: 2015-07-22 18:27+0000\n"
+"PO-Revision-Date: 2015-07-22 14:58-0500\n"
 "Last-Translator: Agathe Mollé <agathe.molle@savoirfairelinux.com>\n"
 "Language-Team: Savoir-faire Linux <support@savoirfairelinux.com>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 1.5.4\n"
-"Language: fr\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #. module: purchase_order_generator_revision
@@ -45,8 +45,16 @@ msgstr "Date effective"
 
 #. module: purchase_order_generator_revision
 #: help:purchase.order.generator.revision,revision_factor:0
-msgid "Factor that will revise the quantities on the Purchase Order."
-msgstr "Facteur qui va réviser les quantités sur le bon de commande."
+msgid ""
+"Factor that will revise the quantities on the Purchase Order (in %). You can "
+"adjust the quantities either with this factor or directly with the 'quantity "
+"to adjust' field. Changing one of those 2 fields will automatically "
+"calculate the other one."
+msgstr ""
+"Facteur qui va permettre de réviser les quantités du bon de commande (en %). "
+"Vous pouvez ajuster les quantités soit par ce facteur, ou directement avec "
+"le champs 'Quantité à ajuster'. Changer l'un de ces deux champs calculera "
+"automatiquement le second."
 
 #. module: purchase_order_generator_revision
 #: field:purchase.order.generator.revision,id:0
@@ -76,13 +84,11 @@ msgstr "Nouvelle cible"
 #. module: purchase_order_generator_revision
 #: help:purchase.order.generator.revision,new_target:0
 msgid ""
-"New expected target.\n"
-"This field can either be entered before and a revision factor will be "
-"calculated or will be calculated based on the revision factor."
+"New expected target. This field will be calculated based on the revision "
+"factor or the revision quantity."
 msgstr ""
-"Nouvelle cible attendue.\n"
-"Ce champs peut être renseigné soit avant ou après et le facture de révision "
-"sera calculé ou la cible sera calculé d'après le facteur de révision."
+"Nouvelle cible attendue. Ce champs est calculé en fonction du facteur de "
+"révision ou de la quantité à ajuster."
 
 #. module: purchase_order_generator_revision
 #: field:purchase.order.generator.revision,order_id:0
@@ -92,11 +98,31 @@ msgstr "Commande"
 #. module: purchase_order_generator_revision
 #: model:ir.actions.act_window,name:purchase_order_generator_revision.purchase_order_generator_revision_action
 #: model:ir.model,name:purchase_order_generator_revision.model_purchase_order_generator_revision
-#: model:ir.ui.menu,name:purchase_order_generator_revision.purchase_order_generator_revision_action_menu
 #: model:ir.ui.menu,name:purchase_order_generator_revision.purchase_order_generator_revision_action_submenu
 #: view:purchase.order.generator.revision:purchase_order_generator_revision.purchase_order_generator_revision_view
 msgid "Purchase Order Generator Revision"
 msgstr "Révision du générateur de bon de commande"
+
+#. module: purchase_order_generator_revision
+#: help:purchase.order.generator.revision,revision_qty:0
+msgid ""
+"Quantity to add or remove to the Purchase Order. If you want to receive more "
+"products, enter a positive number. If you have already received too much and "
+"want to receive less, enter a negative number. You can either adjust the "
+"quantities with this field or set a revision factor. Changing one of those 2 "
+"fields will automatically calculate the other one."
+msgstr ""
+"Quantité à ajouter ou retirer du bon de commande. Si vous souhaitez recevoir "
+"plus de produits, entrez un nombre positif. Si vous avez déjà reçu une trop "
+"grande quantité et que vous en voulez moins, entrez une quantité négative. "
+"Vous pouvez ajuster les quantités soit pas ce champs, soit en modifiant le "
+"facteur de révision. Changer l'un de ces deux champs calculera "
+"automatiquement le second."
+
+#. module: purchase_order_generator_revision
+#: field:purchase.order.generator.revision,revision_qty:0
+msgid "Quantity to adjust"
+msgstr "Quantité à ajuster"
 
 #. module: purchase_order_generator_revision
 #: field:purchase.order.generator.revision,description:0
@@ -105,8 +131,8 @@ msgstr "Raison de la révision"
 
 #. module: purchase_order_generator_revision
 #: field:purchase.order.generator.revision,revision_factor:0
-msgid "Revision Factor"
-msgstr "Facteur de révision"
+msgid "Revision Factor (%)"
+msgstr "Facteur de révision (%)"
 
 #. module: purchase_order_generator_revision
 #: view:purchase.order.generator.revision:purchase_order_generator_revision.purchase_order_generator_revision_view
@@ -117,3 +143,38 @@ msgstr "Valider"
 #: view:purchase.order.generator.revision:purchase_order_generator_revision.purchase_order_generator_revision_view
 msgid "or"
 msgstr "ou"
+
+#. module: purchase_order_generator_revision
+#: field:purchase.order.generator.revision,configurator_id:0
+msgid "Generator"
+msgstr "Générateur"
+
+#. module: purchase_order_generator_revision
+#: field:purchase.order.generator.revision,target:0
+msgid "Target"
+msgstr "Cible"
+
+#. module: purchase_order_generator_revision
+#: field:purchase.order.generator.revision,received_qty:0
+msgid "Received Quantity"
+msgstr "Quantité reçue"
+
+#. module: purchase_order_generator_revision
+#: help:purchase.order.generator.revision,configurator_id:0
+msgid "Configuration with which the Purchase Order is generated."
+msgstr "Configuration qui a servi à générer le bon de commande."
+
+#. module: purchase_order_generator_revision
+#: help:purchase.order.generator.revision,target:0
+msgid "Number of products that are supposed to be received."
+msgstr "Nombre de produits supposés avoir été reçus."
+
+#. module: purchase_order_generator_revision
+#: help:purchase.order.generator.revision,received_qty:0
+msgid ""
+"Quantity of products received from the previously generated Purchase Order."
+msgstr ""
+"Quantité de produits reçue à partir du bon de commande préalablement généré."
+
+#~ msgid "Factor that will revise the quantities on the Purchase Order."
+#~ msgstr "Facteur qui va réviser les quantités sur le bon de commande."
