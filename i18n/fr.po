@@ -1,0 +1,145 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* quick_purchase_dd
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-07-23 13:52+0000\n"
+"PO-Revision-Date: 2015-07-23 13:52+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: quick_purchase_dd
+#: view:purchase.order:0
+msgid "Add product"
+msgstr "Ajouter produit"
+
+#. module: quick_purchase_dd
+#: view:product.product:0
+msgid "Attente Reception"
+msgstr "Attente Réception"
+
+#. module: quick_purchase_dd
+#: view:purchase.product:0
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: quick_purchase_dd
+#: view:product.product:0
+msgid "Code"
+msgstr "Code"
+
+#. module: quick_purchase_dd
+#: view:product.product:0
+msgid "Collection"
+msgstr "Collection"
+
+#. module: quick_purchase_dd
+#: view:product.product:0
+msgid "Commande Manuelle"
+msgstr "Commande Manuelle"
+
+#. module: quick_purchase_dd
+#: model:ir.model.fields,field_description:quick_purchase_dd.field_product_product_real_incomming_qty
+#: field:product.product,real_incomming_qty:0
+msgid "Incomming QTY"
+msgstr "Quantité entrante"
+
+#. module: quick_purchase_dd
+#: view:product.product:0
+msgid "Prix"
+msgstr "Prix"
+
+#. module: quick_purchase_dd
+#: model:ir.model,name:quick_purchase_dd.model_product_product
+msgid "Product"
+msgstr "Article"
+
+#. module: quick_purchase_dd
+#: view:product.product:0
+msgid "Products"
+msgstr "Articles"
+
+#. module: quick_purchase_dd
+#: model:ir.model,name:quick_purchase_dd.model_purchase_order
+msgid "Purchase Order"
+msgstr "Bon de commande"
+
+#. module: quick_purchase_dd
+#: model:ir.actions.act_window,name:quick_purchase_dd.purchase_product_action
+#: view:purchase.product:0
+msgid "Purchase Product"
+msgstr "Acheter produit"
+
+#. module: quick_purchase_dd
+#: model:ir.actions.act_window,name:quick_purchase_dd.product_product_action
+msgid "Purchase Products"
+msgstr "Acheter produits"
+
+#. module: quick_purchase_dd
+#: model:ir.model.fields,field_description:quick_purchase_dd.field_product_product_purchase_qty
+#: field:product.product,purchase_qty:0
+msgid "Purchase QTY"
+msgstr "Quantité achetée"
+
+#. module: quick_purchase_dd
+#: model:ir.model.fields,field_description:quick_purchase_dd.field_purchase_product_qty
+#: field:purchase.product,qty:0
+msgid "Quantity to Purchase"
+msgstr "Quantité à acheter"
+
+#. module: quick_purchase_dd
+#: view:product.product:0
+msgid "Reassort"
+msgstr "Réassort"
+
+#. module: quick_purchase_dd
+#: view:product.product:0
+msgid "Stock"
+msgstr "Stock"
+
+#. module: quick_purchase_dd
+#: code:addons/quick_purchase_dd/product.py:94
+#: code:addons/quick_purchase_dd/product.py:99
+#, python-format
+msgid "User Error"
+msgstr "Erreur utilisateur"
+
+#. module: quick_purchase_dd
+#: view:product.product:0
+msgid "Vendable"
+msgstr "Vendable"
+
+#. module: quick_purchase_dd
+#: code:addons/quick_purchase_dd/product.py:95
+#, python-format
+msgid "You can not buy this product"
+msgstr "Vous ne pouvez pas acheter ce produit"
+
+#. module: quick_purchase_dd
+#: code:addons/quick_purchase_dd/product.py:100
+#, python-format
+msgid "You can not order less then %s product,as customer already buy it"
+msgstr "Vous ne pouvez pas commander moins que %s produits, un client a déjà acheté"
+
+#. module: quick_purchase_dd
+#: view:purchase.product:0
+msgid "_Apply"
+msgstr "_Apply"
+
+#. module: quick_purchase_dd
+#: view:purchase.product:0
+msgid "or"
+msgstr "ou"
+
+#. module: quick_purchase_dd
+#: model:ir.model,name:quick_purchase_dd.model_purchase_product
+msgid "purchase.product"
+msgstr "purchase.product"
+
