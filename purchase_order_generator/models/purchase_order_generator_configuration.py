@@ -31,6 +31,7 @@ class PurchaseOrderGeneratorConfiguration(models.Model):
         'Name',
         required=True,
         translate=True,
+        copy=False,  # Prevent duplicate from copying the translation
     )
     interval = fields.Integer(
         'Repeat every',
@@ -64,7 +65,14 @@ class PurchaseOrderGeneratorConfiguration(models.Model):
 
     @api.one
     def copy(self, default=None):
+        """Override unique name by appending Copy to it
+
+        If there is already a copied element, add a count in the name.
+        """
         if default is None:
             default = {}
-        default.update({'name': self.name + ' (Copy)'})
+        nb = self.search_count(
+            [('name', 'like', "%s - " % self.name)])
+        new_name = "%s - %d" % (self.name, nb + 1)
+        default.update({'name': new_name})
         return super(PurchaseOrderGeneratorConfiguration, self).copy(default)

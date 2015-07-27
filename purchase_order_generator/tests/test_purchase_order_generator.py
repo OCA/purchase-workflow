@@ -97,3 +97,13 @@ class TestPurchaseOrderGenerator(TransactionCase):
             'destination_location_id': self.location.id,
         })
         self.POGenerator.validate()
+
+    def test_copy(self):
+        """
+        Make sure name constraint isn't violated.
+        """
+        configurator2 = self.configurator.copy()
+        self.assertNotEqual(
+            configurator2.name,
+            self.configurator.name
+        )
