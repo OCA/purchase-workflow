@@ -94,6 +94,8 @@ class TestPurchaseOrderGenerator(TransactionCase):
             [('configurator_id', '=', self.configurator.id)]
         )
 
+        self.PO.signal_workflow('purchase_confirm')
+
         self.revision = self.POGeneratorRevisionObj.create({
             'order_id': self.PO.id,
             'effective_date': datetime.today(),
@@ -113,10 +115,11 @@ class TestPurchaseOrderGenerator(TransactionCase):
         )
         self.assertEqual(
             self.revision.target,
-            sum(l.product_qty for l in self.revision.order_id.order_line) *
-            sum(l.quantity_ratio for l in
-                self.revision.configurator_id.line_ids)
-            - self.revision.received_qty
+            sum(
+                sum(l.product_uom_qty for l in p.move_lines)
+                for p in self.revision.order_id.picking_ids
+                if p.state in ["waiting", "confirmed", "assigned"]
+            )
         )
 
     def test_onchange_revision_factor(self):

@@ -71,7 +71,7 @@ class PurchaseOrderGeneratorRevision(models.TransientModel):
     def _compute_target_received_qty(self):
         """
         Compute quantity stock moves from received (done) pickings
-        Compute target from expected deliveries of the referred products
+        Compute target from available stock moves.
         """
         self.received_qty = (
             sum(
@@ -81,9 +81,12 @@ class PurchaseOrderGeneratorRevision(models.TransientModel):
             )
         )
         self.target = (
-            sum(l.product_qty for l in self.order_id.order_line) *
-            sum(l.quantity_ratio for l in self.configurator_id.line_ids)
-        ) - self.received_qty
+            sum(
+                sum(l.product_uom_qty for l in p.move_lines)
+                for p in self.order_id.picking_ids
+                if p.state in ["waiting", "confirmed", "assigned"]
+            )
+        )
 
     @api.onchange("revision_factor")
     def _onchange_revision_factor(self):
