@@ -31,7 +31,6 @@
     'license': 'AGPL-3',
     'depends': [
         'product',
-        'stock',
         'purchase',
     ],
     'data': [
