@@ -21,18 +21,18 @@
 
 
 {
-    'name': 'Purchase From Configuration',
+    'name': 'Purchase Lot',
     'version': '0.2',
     'category': 'Purchase',
     'description': """
-        Purchase From Configuration
+        Purchase a specific lot number linked to the lot sold
     """,
     'author': 'Akretion',
     'website': '',
     'depends': [
         'purchase',
-        'stock',
-        'sale_embedded_configuration'],
+        'sale_order_lot_selection',
+        ],
     'data': [
         'purchase_view.xml',
         ],
