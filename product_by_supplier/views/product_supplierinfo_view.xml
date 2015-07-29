@@ -53,7 +53,7 @@
         </record>
 
         <record id="action_product_supplier_info" model="ir.actions.act_window">
-            <field name="name">Product by Suppliers</field>
+            <field name="name">Products by Suppliers</field>
             <field name="res_model">product.supplierinfo</field>
             <field name="type">ir.actions.act_window</field>
             <field name="view_type">form</field>
