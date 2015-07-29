@@ -25,22 +25,9 @@
     'version': '1.0.1',
     'category': 'purchase',
     'summary': 'Show products grouped by suppliers',
-    'description': """
-Product Supplier Info
-==================================================
-This module categorizes each product item by supplier.
-It allows for users to be able to view a compiled list
-of products supplied by the supplier.
-
-Users can also directly add new products to the supplier's list.
-
-Contributors
-------------
-
-* Alex Comba <alex.comba@agilebg.com>
-""",
-    'author': "Elico Corp,Odoo Community Association (OCA)",
-    'website': 'http://www.elico-corp.com',
+    'author': "Elico Corp,"
+              "Odoo Community Association (OCA)",
+    'website': 'http://www.elico-corp.com, ',
     'license': 'AGPL-3',
     'depends': [
         'product',
