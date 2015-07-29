@@ -8,41 +8,45 @@
 #
 ##############################################################################
 
-from openerp.osv import orm, fields
+from openerp import api, fields, models
 
 
-class PurchaseOrder(orm.Model):
+class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
 
-    def _prepare_order_line_move(self, cr, uid, order, order_line, picking_id,
-                                 context=None):
+    @api.model
+    def _prepare_order_line_move(self, order, order_line, picking_id):
         res = super(PurchaseOrder, self)._prepare_order_line_move(
-            cr, uid, order, order_line, picking_id, context=context)
-        res['lot_id'] = order_line.lot_id.id
+            order, order_line, picking_id)
+        res['restrict_lot_id'] = order_line.lot_id.id
         return res
 
 
-class PurchaseOrderLine(orm.Model):
+class PurchaseOrderLine(models.Model):
     _inherit = 'purchase.order.line'
 
-    _columns = {
-        'lot_id': fields.many2one(
+    lot_id = fields.Many2one(
             'stock.production.lot',
-            oldname='prodlot_id',
             string='Serial Number',
             readonly=True
         )
-    }
 
 
-class ProcurementOrder(orm.Model):
+class ProcurementOrder(models.Model):
     _inherit = 'procurement.order'
 
-    def create_procurement_purchase_order(self, cr, uid, procurement, po_vals,
-                                          line_vals, context=None):
-        """ method comes from purchase/purchase.py
-        """
+    @api.model
+    def _get_po_line_values_from_proc(self, procurement, partner, company,
+                                      schedule_date):
+        res = super(ProcurementOrder,self)._get_po_line_values_from_proc(
+            procurement, partner, company, schedule_date)
         if procurement.product_id.auto_generate_prodlot:
-            line_vals['lot_id'] = procurement.move_id.lot_id.id
-        return super(ProcurementOrder, self).create_procurement_purchase_order(
-            cr, uid, procurement, po_vals, line_vals, context=context)
+            res['lot_id'] = procurement.lot_id.id
+        return res
+
+    @api.model
+    def _get_available_draft_po_line_domain(self, po_id, line_vals):
+        res = super(ProcurementOrder, self)._get_available_draft_po_line_domain(
+            po_id, line_vals)
+        res.append(('lot_id', '=', line_vals.get('lot_id')))
+        return res
