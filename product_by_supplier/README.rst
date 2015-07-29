@@ -4,7 +4,8 @@
 Product by supplier info
 ========================
 
-This module categorizes each product item by supplier.It allows for users to be able to view a compiled list of products supplied by the supplier.
+This module categorizes each product item by supplier. It allows for users to be able to view a compiled list of products supplied by the supplier.
+This information is the corresponding to the supplier list on each product.
 
 Users can also directly add new products to the supplier's list.
 
