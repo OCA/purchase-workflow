@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (c) 2010-2013 Elico Corp. All Rights Reserved.
+#    Copyright (c) 2010-2013 Elico Corp.
 #    Author: LIN Yu <lin.yu@elico-corp.com>
 #
 #    This program is free software: you can redistribute it and/or modify
