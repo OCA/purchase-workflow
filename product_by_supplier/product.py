@@ -55,5 +55,3 @@ class product_supplierinfo(orm.Model):
             " the purchase order planning."
         ),
     }
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
