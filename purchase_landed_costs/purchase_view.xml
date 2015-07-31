@@ -6,7 +6,6 @@
       <field name="name">c2clanded.cost.tree</field>
       <field name="model">landed.cost.position</field>
       <field name="priority">1</field>
-      <field name="type">tree</field>
       <field name="arch" type="xml">
         <tree string="Landing Costs" editable="bottom">
               <field name="generate_invoice"/>
@@ -23,7 +22,6 @@
       <field name="name">c2clanded.cost.form</field>
       <field name="model">landed.cost.position</field>
       <field name="priority">1</field>
-      <field name="type">form</field>
       <field name="arch" type="xml">
         <form string="Landing Costs">
               <field name="generate_invoice"/>
@@ -44,7 +42,6 @@
       <field name="name">c2c_product.landed.cost.view</field>
       <field name="model">product.product</field>
       <field name="inherit_id" ref="product.product_normal_form_view"/>
-      <field name="type">form</field>
       <field name="arch" type="xml">
         <field name="description" position="before">
            <group>
@@ -59,7 +56,6 @@
         <field name="name">c2clanded.cost.tree</field>
         <field name="model">landed.cost.position</field>
         <field name="priority">20</field>
-        <field name="type">tree</field>
         <field name="arch" type="xml">
           <tree string="Landing Costs" create="false">
                 <field name="date_po"/>
@@ -144,7 +140,6 @@
       <field name="name">purchase.oder.line.landed.cost.view</field>
       <field name="model">purchase.order.line</field>
       <field name="inherit_id" ref="purchase.purchase_order_line_form"/>
-      <field name="type">form</field>
       <field name="arch" type="xml">
         <notebook position="inside">
              <page string="Landing Costs" >
@@ -188,7 +183,6 @@
     <record model="ir.ui.view" id="landed_cost_position_graph">
         <field name="name">landed.cost.position.graph</field>
         <field name="model">landed.cost.position</field>
-        <field name="type">graph</field>
         <field name="arch" type="xml">
             <graph string="Landed Costs" type="bar">
                 <field name="account_id"/>
