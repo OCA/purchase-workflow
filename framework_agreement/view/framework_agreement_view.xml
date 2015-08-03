@@ -8,7 +8,7 @@
         <tree string="Framework Agreement (LTA)">
           <field name="name" />
           <field name="company_id" groups="base.group_multi_company" />
-          <field name="product_id"/>
+          <field name="product_id" invisible="context.get('on_product_form')" />
           <field name="portfolio_id"/>
           <field name="supplier_id"/>
           <field name="delay"/>
@@ -74,7 +74,9 @@
                 <field name="payment_term_id" options="{'no_open': True, 'no_create': True}"/>
                 <field name="incoterm_id" widget="selection" groups="base.group_user"/>
                 <field name="incoterm_address"/>
-                <field name="product_id"/>
+                <field name="product_id"
+                       invisible="context.get('on_product_form')"
+                       required="not context.get('on_product_form')" />
               </group>
               <group>
                 <field name="delay"/>
@@ -214,7 +216,7 @@
     </record>
 
     <record model="ir.actions.act_window" id="action_framework_agreement">
-      <field name="name">Framework Agreement</field>
+      <field name="name">Framework Agreements</field>
       <field name="type">ir.actions.act_window</field>
       <field name="res_model">framework.agreement</field>
       <field name="view_type">form</field>
@@ -224,7 +226,7 @@
 
 
     <menuitem
-      name="Framework Agreement"
+      name="Framework Agreements"
       parent="purchase.menu_purchase_config_pricelist"
       action="action_framework_agreement"
       id="action_framework_agreement_menu"/>
