@@ -19,9 +19,16 @@
             <field name="inherit_id" ref="purchase.purchase_order_form" />
             <field name="priority">2</field>
             <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']" position="before">
+                    <field name="max_line_sequence" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='order_line']" position="attributes">
+                    <attribute name="context">{'default_sequence': max_line_sequence}</attribute>
+                </xpath>
                 <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="before">
                     <field name="sequence" widget="handle"/>
                 </xpath>
+                
             </field>
         </record>
 

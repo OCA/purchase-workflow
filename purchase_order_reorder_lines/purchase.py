@@ -29,13 +29,7 @@ class PurchaseOrderLine(models.Model):
     _inherit = 'purchase.order.line'
     _order = 'order_id desc, sequence, id'
 
-    @api.model
-    def _get_sequence(self):
-        last_sequence = 0
-        return last_sequence
-
-    sequence = fields.Integer(default=_get_sequence,
-                              help="Gives the sequence of this line when "
+    sequence = fields.Integer(help="Gives the sequence of this line when "
                                    "displaying the purchase order.")
 
 
@@ -62,6 +56,16 @@ class PurchaseOrder(models.Model):
         if res:
             res[0]['sequence'] = order_line.sequence
         return res
+
+    @api.depends('order_line')
+    def _get_max_line_sequence(self):
+        for purchase in self:
+            purchase.max_line_sequence = (
+                max(purchase.mapped('order_line.sequence')) + 10
+                )
+
+    max_line_sequence = fields.Integer(string='Max sequence in lines',
+                                       compute='_get_max_line_sequence')
 
 
 class PurchaseLineInvoice(models.TransientModel):
