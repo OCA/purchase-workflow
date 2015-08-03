@@ -25,7 +25,7 @@
               "Acysos S.L., "
               "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
               "Odoo Community Association (OCA)",
-    "version": "1.0",
+    "version": "8.0.1.1",
     "contributors": [
         'Pedro M. Baeza',
     ],
@@ -36,7 +36,7 @@
     ],
     "data": [
         "views/purchase_discount_view.xml",
-        "report/purchase_discount_report.xml",
+        "views/report_purchaseorder.xml",
     ],
     "license": 'AGPL-3',
     "installable": True
