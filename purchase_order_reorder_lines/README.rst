@@ -7,9 +7,11 @@ Purchase order lines with sequence number
 Provide a new field on the purchase order form, allowing to manage the order of the lines
 order.
 
-For further information, please visit:
+Installation
+============
 
-* https://www.odoo.com/forum/help-1
+This module depends on the following module(s) :
+ * stock_picking_reorder_lines (https://github.com/OCA/stock-logistics-workflow/)
 
 Known issues / Roadmap
 ======================
