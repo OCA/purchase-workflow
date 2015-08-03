@@ -44,9 +44,12 @@ class PurchaseOrderLine(orm.Model):
         product = product_obj.browse(cr, uid, product_id, context=context)
         from_uom = context.get('uom') or product.uom_id.id
         qty_in_product_uom = qty
+        partner = self.pool['res.partner'].browse(
+            cr, uid, partner_id, context=context)
         sinfo_ids = supplierinfo_obj.search(
             cr, uid, [('product_id', '=', product.product_tmpl_id.id),
-                      ('name', 'child_of', partner_id)], context=context)
+                      ('name', 'child_of', partner.commercial_partner_id.id)],
+            context=context)
         if not sinfo_ids:
             return res
         sinfo = supplierinfo_obj.browse(cr, uid, sinfo_ids[0], context=context)
