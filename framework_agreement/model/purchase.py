@@ -32,22 +32,24 @@ class PurchaseOrder(models.Model):
         'the agreement.'
     )
 
-    @api.onchange('pricelist_id')
-    @api.multi
-    def propagate_agreement_fields(self):
-        PROPAGATE_FIELDS = [
+    @api.model
+    def get_propagate_fields(self):
+        return [
             'currency_id',
             'payment_term_id',
             'terms_of_payment',
             'incoterm_id',
             'incoterm_address',
-            'origin_address_id',
             'dest_address_id',
             'picking_type_id',
-        ]
+            ]
+
+    @api.onchange('pricelist_id')
+    @api.one
+    def propagate_agreement_fields(self):
         agreement = self.pricelist_id
 
-        for field_name in PROPAGATE_FIELDS:
+        for field_name in self.get_propagate_fields():
             # self.write does not work in an onchange
             field_value = agreement[field_name]
             if field_value:

@@ -35,7 +35,6 @@ class Pricelist(models.Model):
         'Incoterm',
         help="International Commercial Terms are a series of predefined "
         "commercial terms used in international transactions.")
-    origin_address_id = fields.Many2one('res.partner', 'Origin Address')
     dest_address_id = fields.Many2one('res.partner',
                                       'Customer Address (Direct Delivery)')
     incoterm_address = fields.Char('Incoterm Address')
@@ -423,10 +422,5 @@ class PartnerInfo(models.Model):
         store=True)
     incoterm_address = fields.Char(
         related='suppinfo_id.agreement_pricelist_id.incoterm_address',
-        readonly=True,
-        store=True)
-    origin_address_id = fields.Many2one(
-        'res.partner',
-        related='suppinfo_id.agreement_pricelist_id.origin_address_id',
         readonly=True,
         store=True)
