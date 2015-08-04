@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (c) 2010-2013 Elico Corp. All Rights Reserved.
+#    Copyright (c) 2010-2013 Elico Corp.
 #    Author: LIN Yu <lin.yu@elico-corp.com>
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -22,39 +22,21 @@
 
 {
     'name': 'Product by supplier info',
-    'version': '1.0.1',
+    'version': '8.0.1.0',
     'category': 'purchase',
     'summary': 'Show products grouped by suppliers',
-    'description': """
-Product Supplier Info
-==================================================
-This module categorizes each product item by supplier.
-It allows for users to be able to view a compiled list
-of products supplied by the supplier.
-
-Users can also directly add new products to the supplier's list.
-
-Contributors
-------------
-
-* Alex Comba <alex.comba@agilebg.com>
-""",
-    'author': "Elico Corp,Odoo Community Association (OCA)",
-    'website': 'http://www.elico-corp.com',
+    'author': "Elico Corp,"
+              "Odoo Community Association (OCA)",
+    'website': 'http://www.elico-corp.com, ',
     'license': 'AGPL-3',
     'depends': [
         'product',
-        'stock',
         'purchase',
     ],
     'data': [
-        'product_view.xml',
+        'views/product_supplierinfo_view.xml',
     ],
-    'test': [],
-    'demo': [],
     'installable': True,
     'auto_install': False,
     'application': False,
 }
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
