@@ -82,7 +82,8 @@ class PurchaseLineInvoice(models.TransientModel):
     def makeInvoices(self):
         invoice_line_obj = self.env['account.invoice.line']
         purchase_line_obj = self.env['purchase.order.line']
-        res = super(PurchaseLineInvoice, self).makeInvoices()
+        ctx = self.env.context.copy()
+        res = super(PurchaseLineInvoice, self.with_context(ctx)).makeInvoices()
         invoice_ids = []
         for field, op, val in safe_eval(res['domain']):
             if field == 'id':

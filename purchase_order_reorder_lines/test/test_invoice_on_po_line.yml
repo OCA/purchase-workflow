@@ -31,10 +31,10 @@
 -
   !python {model: purchase.order}: |
     invoice_line_obj = self.pool.get('purchase.order.line_invoice')
+    invoice_line_obj_id = invoice_line_obj.create(cr, uid, {}, context=context)
     purchase_order = self.browse(cr, uid, ref("purchase_order_8"))
-    for purchase_line in purchase_order.order_line:
-        context.update({'active_model': 'purchase.order.line', 'active_ids': [purchase_line.id]})
-        invoice_line_obj.makeInvoices(cr, uid, [], context=context)
+    context.update({'active_model': 'purchase.order.line', 'active_ids': [pl.id for pl in purchase_order.order_line]})
+    invoice_line_obj.makeInvoices(cr, uid, invoice_line_obj_id, context=context)
 -
   I check the invoice of order.
 -
