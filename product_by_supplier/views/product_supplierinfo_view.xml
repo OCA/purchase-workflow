@@ -8,7 +8,7 @@
                 <search string="Product by Suppliers">
                     <field name="name" string="Supplier"/>
                     <field name="product_code" string="Supplier Product Code"/>
-                    <field name="product_name" string="Supplier Product Code"/>
+                    <field name="product_name" string="Supplier Product Name"/>
                     <field name="product_tmpl_id" />
                     <group expand='1' string='Group by...'>
                        <filter string='Product Code' name='supplier_code' icon="terp-stock_symbol-selection" 
