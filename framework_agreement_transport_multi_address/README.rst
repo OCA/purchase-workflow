@@ -8,9 +8,10 @@ This module improves the compatibility between the modules for framework
 agreements and transport addresses. It is installed automatically if both
 modules are installed on your database.
 
-With this module, you can specify a specific transport address on a framework's
+With this module, you can specify a specific origin address on a framework's
 pricelist, which is then propagated to the purchases on that framework.
-agreement.
+agreement. Any existing framework pricelists are assigned the supplier as its
+default origin address.
 
 Bug Tracker
 ===========
