@@ -59,6 +59,13 @@ class PurchaseOrder(models.Model):
 
     @api.depends('order_line')
     def _get_max_line_sequence(self):
+        """Allow to know the highest sequence
+        entered in purchase order lines.
+        Web add 10 to this value for the next sequence
+        This value is given to the context of the o2m field
+        in the view. So when we create new purchase order lines,
+        the sequence is automatically max_sequence + 10
+        """
         for purchase in self:
             purchase.max_line_sequence = (
                 max(purchase.mapped('order_line.sequence')) + 10
@@ -76,7 +83,6 @@ class PurchaseLineInvoice(models.TransientModel):
         invoice_line_obj = self.env['account.invoice.line']
         purchase_line_obj = self.env['purchase.order.line']
         res = super(PurchaseLineInvoice, self).makeInvoices()
-
         invoice_ids = []
         for field, op, val in safe_eval(res['domain']):
             if field == 'id':
@@ -86,13 +92,14 @@ class PurchaseLineInvoice(models.TransientModel):
         invoice_lines = invoice_line_obj.search(
             [('invoice_id', 'in', invoice_ids)])
         for invoice_line in invoice_lines:
-            order_lines = purchase_line_obj.search(
+            order_line = purchase_line_obj.search(
                 [('invoice_lines', '=', invoice_line.id)],
+                limit=1
                 )
-            if not order_lines:
+            if not order_line:
                 continue
 
             if not invoice_line.sequence:
-                invoice_line.write({'sequence': order_lines.sequence})
+                invoice_line.write({'sequence': order_line.sequence})
 
         return res

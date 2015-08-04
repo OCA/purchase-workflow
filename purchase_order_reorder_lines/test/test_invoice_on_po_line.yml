@@ -3,6 +3,7 @@
 -
   !record {model: purchase.order, id: purchase_order_8}:
     partner_id: base.res_partner_22
+    invoice_method: manual
     order_line:
       - product_id: product.product_product_38
         price_unit: 58
@@ -31,15 +32,15 @@
   !python {model: purchase.order}: |
     invoice_line_obj = self.pool.get('purchase.order.line_invoice')
     purchase_order = self.browse(cr, uid, ref("purchase_order_8"))
-    context.update({'active_model': 'purchase.order', 'active_ids': [ref("purchase_order_8")]})
     for purchase_line in purchase_order.order_line:
-        invoice_line_obj.makeInvoices(cr, uid, purchase_line.id, context=context)
+        context.update({'active_model': 'purchase.order.line', 'active_ids': [purchase_line.id]})
+        invoice_line_obj.makeInvoices(cr, uid, [], context=context)
 -
   I check the invoice of order.
 -
   !python {model: purchase.order}: |
     purchase_order = self.browse(cr, uid, ref("purchase_order_8"))
     for purchase_line in purchase_order.order_line:
-      assert len(purchase_order.invoice_ids) == 1, "Invoice should be generated."
+      assert len(purchase_line.invoice_lines) == 1, "Invoice should be generated. 1 != %s" % (len(purchase_line.invoice_lines))
       for inv_line in purchase_line.invoice_lines:
         assert purchase_line.sequence == inv_line.sequence, "Sequences should be the same"
