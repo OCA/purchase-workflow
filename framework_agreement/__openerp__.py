@@ -24,7 +24,7 @@
  'category': 'Purchase Management',
  'complexity': 'normal',
  'depends': ['stock', 'procurement', 'purchase', 'web_context_tunnel',
-             'purchase_exceptions'],
+             'purchase_exceptions', 'purchase_transport_multi_address'],
  'website': 'http://www.camptocamp.com',
  'data': ['data.xml',
           'data/exception.xml',
