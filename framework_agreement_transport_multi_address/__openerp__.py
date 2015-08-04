@@ -19,7 +19,7 @@
 ##############################################################################
 {
     'name': 'Framework Agreement with Transport Addresses',
-    'summary': ('Specify the purchase transport address on the framework '
+    'summary': ('Specify the purchase origin address on the framework '
                 'agreement'),
     'version': '1.0',
     'author': "Camptocamp,Therp BV,Odoo Community Association (OCA)",
