@@ -1,0 +1,58 @@
+<?xml version="1.0" ?>
+<openerp>
+  <data>
+
+    <record id="purchase_order_form" model="ir.ui.view">
+      <field name="name">purchase_order_form</field>
+      <field name="model">purchase.order</field>
+      <field name="inherit_id" ref="purchase.purchase_order_form"/>
+      <field name="arch" type="xml">
+        <field name="name" position="after">
+          <group>
+            <field name="main_exception_id" options='{"no_open": True}'
+              class="oe_inline" string="Error:"
+              attrs="{'invisible':[('main_exception_id','=', False)]}"/>
+          </group>
+        </field>
+        <notebook position="inside">
+          <group name="exception">
+            <separator string="Exception"/>
+            <field name="exception_ids" nolabel="1"/>
+          </group>
+        </notebook>
+
+        <xpath expr="//button[@id='draft_confirm']" position="attributes">
+          <attribute name="invisible">1</attribute>
+        </xpath>
+
+        <xpath expr="//button[@id='draft_confirm']" position="after">
+          <button name="button_confirm_with_exceptions_check" states="draft" string="Confirm Order" type="object" />
+        </xpath>
+
+      </field>
+    </record>
+
+    <record id="purchase_order_tree" model="ir.ui.view">
+      <field name="name">purchase_order_tree</field>
+      <field name="model">purchase.order</field>
+      <field name="inherit_id" ref="purchase.purchase_order_tree"/>
+      <field name="arch" type="xml">
+        <field name="state" position="after">
+          <field name="main_exception_id"/>
+        </field>
+      </field>
+    </record>
+
+    <record id="view_purchase_order_filter" model="ir.ui.view">
+      <field name="name">view_purchase_order_filter</field>
+      <field name="model">purchase.order</field>
+      <field name="inherit_id" ref="purchase.view_purchase_order_filter" />
+      <field name="arch" type="xml">
+        <filter name="message_unread" position="after">
+          <separator orientation="vertical"/>
+          <filter icon="terp-emblem-important" name="tofix" string="Blocked in draft" domain="[('main_exception_id','!=',False)]"/>
+        </filter>
+      </field>
+    </record>
+  </data>
+</openerp>

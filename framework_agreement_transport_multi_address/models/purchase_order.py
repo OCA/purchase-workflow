@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#    Author: Nicolas Bessi, Leonardo Pistone
+#    Author: Nicolas Bessi, Leonardo Pistone, Stefan Rijnhart
 #    Copyright 2013-2015 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -14,6 +14,14 @@
 #
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+from openerp import models, api
 
-from . import test_dates_and_constraints
-from . import test_consumed_qty
+
+class PurchaseOrder(models.Model):
+    _inherit = 'purchase.order'
+
+    @api.model
+    def get_propagate_fields(self):
+        res = super(PurchaseOrder, self).get_propagate_fields()
+        res.append('origin_address_id')
+        return res

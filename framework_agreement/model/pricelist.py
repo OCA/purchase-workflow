@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Author: Nicolas Bessi
-#    Copyright 2013, 2014 Camptocamp SA
+#    Author: Nicolas Bessi, Leonardo Pistone
+#    Copyright 2013-2015 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -16,75 +14,413 @@
 #
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-from datetime import datetime
-from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
-from openerp.osv import orm, fields
+import time
+from openerp import models, fields, api, tools, exceptions, osv
+from openerp.tools.translate import _
 
 
-# Using new API seem to have side effect on
-# other official addons
-class product_pricelist(orm.Model):
-
-    """Add framework agreement behavior on pricelist"""
-
+class Pricelist(models.Model):
     _inherit = "product.pricelist"
 
-    def _plist_is_agreement(self, cr, uid, pricelist_id, context=None):
-        """Check that a price list can be subject to agreement.
+    portfolio_id = fields.Many2one(
+        'framework.agreement.portfolio',
+        'Portfolio',
+    )
 
-        :param pricelist_id: the price list to be validated
+    picking_type_id = fields.Many2one('stock.picking.type', 'Deliver to')
+    payment_term_id = fields.Many2one('account.payment.term', 'Payment terms')
+    terms_of_payment = fields.Char()
+    incoterm_id = fields.Many2one(
+        'stock.incoterms',
+        'Incoterm',
+        help="International Commercial Terms are a series of predefined "
+        "commercial terms used in international transactions.")
+    dest_address_id = fields.Many2one('res.partner',
+                                      'Customer Address (Direct Delivery)')
+    incoterm_address = fields.Char('Incoterm Address')
+    supplierinfo_ids = fields.One2many('product.supplierinfo',
+                                       'agreement_pricelist_id')
+    start_date = fields.Date(related='portfolio_id.start_date', readonly=True)
+    end_date = fields.Date(related='portfolio_id.end_date', readonly=True)
+    relevant_po_count = fields.Integer(compute='_count_relevant_purchases')
 
-        :returns: a boolean (True if agreement is applicable)
+    @api.onchange('dest_address_id')
+    def onchange_dest_address_id(self):
+        """Find a picking type from the address
+
+        Taken from the module purchase_transport_multi_address in
+        github.com/OCA/stock-logistics-transport (historical note: this used to
+        be in the module purchase_delivery_address.
 
         """
-        p_list = self.browse(cr, uid, pricelist_id, context=context)
-        return p_list.type == 'purchase'
+        PickType = self.env['stock.picking.type']
+        types = PickType.search([
+            ('warehouse_id.partner_id', '=', self.dest_address_id.id),
+            ('code', '=', 'incoming'),
+        ])
 
-    def price_get(self, cr, uid, ids, prod_id, qty,
-                  partner=None, context=None):
-        """Override of price retrieval function in order to support framework
-        agreement.
+        if types:
+            if self.picking_type_id in types:
+                return
+            picking_type = types[0]
+        elif self.dest_address_id.customer:
+            # if destination is not for a warehouse address,
+            # we set dropshipping picking type
+            ref = 'stock_dropshipping.picking_type_dropship'
+            picking_type = self.env.ref(ref)
+        else:
+            raise exceptions.Warning(
+                _('The delivery address %s is not the address of a '
+                  'warehouse or the address of a customer.') %
+                self.dest_address_id.name)
+        self.picking_type_id = picking_type
 
-        If it is a supplier price list, agreement will be taken in account
-        and use the price of the agreement if required.
+    @api.onchange('picking_type_id')
+    def onchange_picking_type_id(self):
+        """If the picking type has an address, use it.
 
-        If there is not enough available qty on agreement,
-        standard price will be used.
-
-        This is maybe a faulty design and we should use on_change override
+        This also comes from stock-logistics-transport.
 
         """
-        if context is None:
-            context = {}
-        agreement_obj = self.pool['framework.agreement']
-        res = super(product_pricelist, self).price_get(
-            cr, uid, ids, prod_id, qty, partner=partner, context=context)
-        if not partner:
-            return res
-        for pricelist_id in res:
-            if (pricelist_id == 'item_id' or not
-                    self._plist_is_agreement(cr, uid,
-                                             pricelist_id, context=context)):
-                continue
-            now = datetime.strptime(fields.date.today(),
-                                    DEFAULT_SERVER_DATE_FORMAT)
-            date = context.get('date') or context.get('date_order') or now
-            prod = self.pool['product.product'].browse(cr, uid, prod_id,
-                                                       context=context)
-            agreement = agreement_obj.get_product_agreement(
-                cr, uid,
-                prod.product_tmpl_id.id,
-                partner,
-                date,
-                qty=qty,
-                context=context
-            )
-            if agreement is not None:
-                currency = agreement_obj._get_currency(
-                    cr, uid, partner, pricelist_id,
-                    context=context
-                )
-                res[pricelist_id] = agreement.get_price(qty, currency=currency)
-        return res
+
+        if self.picking_type_id:
+            pick_type = self.picking_type_id
+
+            if pick_type.warehouse_id.partner_id:
+                self.dest_address_id = pick_type.warehouse_id.partner_id.id
+
+            if pick_type.default_location_dest_id:
+                self.location_id = pick_type.default_location_dest_id
+                self.related_location_id = pick_type.default_location_dest_id
+
+    def _price_rule_get_multi(self, cr, uid, pricelist,
+                              products_by_qty_by_partner, context=None):
+        """Ugly duplication to implement the boolean use_agreement_prices."""
+        context = context or {}
+        date = context.get('date') or time.strftime('%Y-%m-%d')
+
+        products = map(lambda x: x[0], products_by_qty_by_partner)
+        currency_obj = self.pool.get('res.currency')
+        product_obj = self.pool.get('product.template')
+        product_uom_obj = self.pool.get('product.uom')
+        price_type_obj = self.pool.get('product.price.type')
+
+        if not products:
+            return {}
+
+        version = False
+        for v in pricelist.version_id:
+            if (
+                (v.date_start is False) or
+                (v.date_start <= date)) and (
+                    (v.date_end is False) or
+                    (v.date_end >= date)
+                    ):
+                version = v
+                break
+        if not version:
+            raise osv.except_osv(
+                _('Warning!'),
+                _("At least one pricelist has no active version !\n"
+                  "Please create or activate one."))
+        categ_ids = {}
+        for p in products:
+            categ = p.categ_id
+            while categ:
+                categ_ids[categ.id] = True
+                categ = categ.parent_id
+        categ_ids = categ_ids.keys()
+
+        is_product_template = products[0]._name == "product.template"
+        if is_product_template:
+            prod_tmpl_ids = [tmpl.id for tmpl in products]
+            prod_ids = [product.id for product in tmpl.product_variant_ids
+                        for tmpl in products]
+        else:
+            prod_ids = [product.id for product in products]
+            prod_tmpl_ids = [product.product_tmpl_id.id
+                             for product in products]
+
+        # Load all rules
+        cr.execute(
+            'SELECT i.id '
+            'FROM product_pricelist_item AS i '
+            'WHERE (product_tmpl_id IS NULL OR product_tmpl_id = any(%s)) '
+            'AND (product_id IS NULL OR (product_id = any(%s))) '
+            'AND ((categ_id IS NULL) OR (categ_id = any(%s))) '
+            'AND (price_version_id = %s) '
+            'ORDER BY sequence, min_quantity desc',
+            (prod_tmpl_ids, prod_ids, categ_ids, version.id))
+
+        item_ids = [x[0] for x in cr.fetchall()]
+        items = self.pool.get('product.pricelist.item').browse(
+            cr, uid, item_ids, context=context)
+
+        price_types = {}
+
+        results = {}
+        for product, qty, partner in products_by_qty_by_partner:
+            results[product.id] = 0.0
+            rule_id = False
+            price = False
+
+            # Final unit price is computed according to `qty` in the
+            # `qty_uom_id` UoM.  An intermediary unit price may be computed
+            # according to a different UoM, in which case the price_uom_id
+            # contains that UoM.
+            # The final price will be converted to match `qty_uom_id`.
+            qty_uom_id = context.get('uom') or product.uom_id.id
+            price_uom_id = product.uom_id.id
+            qty_in_product_uom = qty
+            if qty_uom_id != product.uom_id.id:
+                try:
+                    qty_in_product_uom = product_uom_obj._compute_qty(
+                        cr, uid, context['uom'], qty, product.uom_id.id or
+                        product.uos_id.id)
+                except exceptions.except_orm:
+                    # Ignored - incompatible UoM in context, use default
+                    #  product UoM
+                    pass
+
+            for rule in items:
+
+                if (rule.min_quantity and
+                        qty_in_product_uom < rule.min_quantity):
+                    continue
+                if is_product_template:
+                    if (
+                        rule.product_tmpl_id and
+                        product.id != rule.product_tmpl_id.id
+                    ):
+                        continue
+                    if rule.product_id:
+                        continue
+                else:
+                    if (
+                        rule.product_tmpl_id and
+                        product.product_tmpl_id.id != rule.product_tmpl_id.id
+                    ):
+                        continue
+                    if rule.product_id and product.id != rule.product_id.id:
+                        continue
+
+                if rule.categ_id:
+                    cat = product.categ_id
+                    while cat:
+                        if cat.id == rule.categ_id.id:
+                            break
+                        cat = cat.parent_id
+                    if not cat:
+                        continue
+
+                if rule.base == -1:
+                    if rule.base_pricelist_id:
+                        price_tmp = self._price_get_multi(
+                            cr, uid,
+                            rule.base_pricelist_id,
+                            [(product, qty, partner)],
+                            context=context)[product.id]
+                        ptype_src = rule.base_pricelist_id.currency_id.id
+                        price_uom_id = qty_uom_id
+                        price = currency_obj.compute(
+                            cr, uid,
+                            ptype_src, pricelist.currency_id.id,
+                            price_tmp, round=False,
+                            context=context)
+                elif rule.base == -2:
+                    seller = False
+                    for seller_id in product.seller_ids:
+                        # framework_agreement START
+                        if rule.use_agreement_prices:
+                            if (
+                                seller_id.agreement_pricelist_id !=
+                                rule.price_version_id.pricelist_id
+                            ):
+                                continue
+                        # framework_agreement END
+                        if (not partner) or (seller_id.name.id != partner):
+                            continue
+                        seller = seller_id
+                    if not seller and product.seller_ids:
+                        # framework_agreement START
+                        if not rule.use_agreement_prices:
+                            seller = product.seller_ids[0]
+                        # framework_agreement END
+                    if seller:
+                        qty_in_seller_uom = qty
+                        seller_uom = seller.product_uom.id
+                        if qty_uom_id != seller_uom:
+                            qty_in_seller_uom = product_uom_obj._compute_qty(
+                                cr, uid, qty_uom_id, qty, to_uom_id=seller_uom)
+                        price_uom_id = seller_uom
+                        for line in seller.pricelist_ids:
+                            if line.min_quantity <= qty_in_seller_uom:
+                                price = line.price
+
+                else:
+                    if rule.base not in price_types:
+                        price_types[rule.base] = price_type_obj.browse(
+                            cr, uid, int(rule.base))
+                    price_type = price_types[rule.base]
+
+                    # price_get returns the price in the context UoM, i.e.
+                    # qty_uom_id
+                    price_uom_id = qty_uom_id
+                    price = currency_obj.compute(
+                        cr, uid,
+                        price_type.currency_id.id,
+                        pricelist.currency_id.id,
+                        product_obj._price_get(
+                            cr, uid, [product],
+                            price_type.field,
+                            context=context)[product.id],
+                        round=False, context=context)
+
+                if price is not False:
+                    price_limit = price
+                    price = price * (1.0+(rule.price_discount or 0.0))
+                    if rule.price_round:
+                        price = tools.float_round(
+                            price,
+                            precision_rounding=rule.price_round)
+
+                    convert_to_price_uom = (
+                        lambda price: product_uom_obj._compute_price(
+                            cr, uid, product.uom_id.id,
+                            price, price_uom_id))
+                    if rule.price_surcharge:
+                        price_surcharge = convert_to_price_uom(
+                            rule.price_surcharge)
+                        price += price_surcharge
+
+                    if rule.price_min_margin:
+                        price_min_margin = convert_to_price_uom(
+                            rule.price_min_margin)
+                        price = max(price, price_limit + price_min_margin)
+
+                    if rule.price_max_margin:
+                        price_max_margin = convert_to_price_uom(
+                            rule.price_max_margin)
+                        price = min(price, price_limit + price_max_margin)
+
+                    rule_id = rule.id
+                break
+
+            # Final price conversion to target UoM
+            price = product_uom_obj._compute_price(cr, uid, price_uom_id,
+                                                   price, qty_uom_id)
+
+            results[product.id] = (price, rule_id)
+        return results
+
+    @api.model
+    def XXX_price_rule_get_multi(self, pricelist, products_by_qty_by_partner):
+        """attempt to avoid repeating 200 lines"""
+        Rule = self.env['product.pricelist.item']
+        Product = self.env['product.product']
+        SupplierInfo = self.env['product.supplierinfo']
+
+        result = super(Pricelist, self)._price_rule_get_multi(
+            pricelist, products_by_qty_by_partner)
+
+        for product_id, (price, rule_id) in result.iteritems():
+            rule = Rule.browse(rule_id)
+            if rule.use_agreement_prices:
+                product = Product.browse(product_id)
+                supinfo = SupplierInfo.search([
+                    ('product_tmpl_id', '=', product.product_template_id),
+                    ('agreement_id', '=', rule.version_id.pricelist_id),
+                ])
+                if supinfo:
+                    for priceinfo in supinfo[0].pricelist_ids:
+                        pass  # XXX
+                else:
+                    result[product_id] = (False, False)
+
+        return result
+
+    @api.multi
+    def open_prices(self):
+        action_data = self.env.ref('framework_agreement.open_prices').read()[0]
+        action_data['domain'] = [('pricelist_id', 'in', self.ids)]
+        action_data['context'] = {
+            'default_pricelist_id': self.id,
+        }
+        return action_data
+
+    @api.multi
+    def _get_relevant_purchases(self):
+        return self.env['purchase.order'].search([
+            ('portfolio_id', 'in', self.mapped('portfolio_id').ids)
+        ])
+
+    @api.multi
+    def _count_relevant_purchases(self):
+        self.relevant_po_count = self.env['purchase.order'].search_count([
+            ('portfolio_id', 'in', self.mapped('portfolio_id').ids)
+        ])
+
+    @api.multi
+    def action_open_relevant_po(self):
+        self.ensure_one()
+        action_ref = 'purchase.purchase_form_action'
+        action_dict = self.env.ref(action_ref).read()[0]
+        purchases = self._get_relevant_purchases()
+        action_dict['domain'] = [('id', 'in', purchases.ids)]
+        del action_dict['help']
+
+        return action_dict
+
+
+class PricelistItem(models.Model):
+    _inherit = "product.pricelist.item"
+
+    use_agreement_prices = fields.Boolean()
+
+
+class SupplierInfo(models.Model):
+    _inherit = "product.supplierinfo"
+
+    agreement_pricelist_id = fields.Many2one('product.pricelist',
+                                             'Agreement pricelist')
+
+    @api.one
+    def name_get(self):
+        """Used in the 'open prices' tree view."""
+        return (self.id, self.product_tmpl_id.name)
+
+
+class PartnerInfo(models.Model):
+    _inherit = "pricelist.partnerinfo"
+
+    partner_id = fields.Many2one('res.partner',
+                                 related='suppinfo_id.name',
+                                 readonly=True)
+    product_tmpl_id = fields.Many2one('product.template',
+                                      related='suppinfo_id.product_tmpl_id',
+                                      readonly=True,
+                                      store=True)
+    pricelist_id = fields.Many2one(
+        'product.pricelist',
+        related='suppinfo_id.agreement_pricelist_id',
+        readonly=True,
+        store=True)
+    currency_id = fields.Many2one(
+        'res.currency',
+        related='suppinfo_id.agreement_pricelist_id.currency_id',
+        readonly=True,
+        store=True)
+    picking_type_id = fields.Many2one(
+        'stock.picking.type',
+        related='suppinfo_id.agreement_pricelist_id.picking_type_id',
+        readonly=True,
+        store=True)
+    incoterm_id = fields.Many2one(
+        'stock.incoterms',
+        related='suppinfo_id.agreement_pricelist_id.incoterm_id',
+        readonly=True,
+        store=True)
+    incoterm_address = fields.Char(
+        related='suppinfo_id.agreement_pricelist_id.incoterm_address',
+        readonly=True,
+        store=True)

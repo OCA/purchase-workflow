@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data noupdate="1">
+
+    <record id="insufficient_agreed_quantity" model="purchase.exception">
+      <field name="name">Insufficient agreed quantity</field>
+      <field name="description">The quantity that has been agreed is insufficient</field>
+      <field name="sequence">20</field>
+      <field name="model">purchase.order.line</field>
+      <field name="code">failed = object.insufficient_agreed_quantity()</field>
+      <field name="active" eval="True"/>
+    </record>
+
+  </data>
+</openerp>

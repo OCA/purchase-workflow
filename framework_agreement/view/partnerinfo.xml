@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record model="ir.actions.act_window" id="open_prices">
+      <field name="name">Open Prices</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">pricelist.partnerinfo</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="prices_tree" model="ir.ui.view">
+      <field name="name">prices_tree</field>
+      <field name="model">pricelist.partnerinfo</field>
+      <field name="arch" type="xml">
+        <tree editable="bottom" force_editable_mode="bottom">
+          <!--
+          the force_editable_mode is there so that we can edit price even when
+          grouping. It needs a web module to implement this, that should look
+          something like https://gist.github.com/lepistone/a95e6ed938d3b1508903
+          -->
+
+          <field name="partner_id"/>
+          <field name="min_quantity"/>
+          <field name="price"/>
+          <field name="suppinfo_id"
+            domain="[('agreement_pricelist_id', '=', context['default_pricelist_id'])]" />
+          <field name="currency_id"/>
+          <field name="pricelist_id"/>
+          <field name="picking_type_id"/>
+          <field name="incoterm_id"/>
+          <field name="incoterm_address"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="prices_search" model="ir.ui.view">
+      <field name="name">prices_search</field>
+      <field name="model">pricelist.partnerinfo</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name"/>
+          <field name="partner_id"/>
+          <field name="min_quantity"/>
+          <field name="price"/>
+          <field name="product_tmpl_id"/>
+          <field name="currency_id"/>
+          <field name="pricelist_id"/>
+          <field name="picking_type_id"/>
+          <field name="incoterm_id"/>
+          <field name="incoterm_address"/>
+
+          <group  expand='0' string='Group by...'>
+            <filter string='Product' domain="[]" context="{'group_by' : 'product_tmpl_id'}"/>
+            <filter string='Agreement Pricelist' domain="[]" context="{'group_by' : 'pricelist_id'}"/>
+            <filter string='Currency' domain="[]" context="{'group_by' : 'currency_id'}"/>
+            <filter string='Deliver to' domain="[]" context="{'group_by' : 'picking_type_id'}"/>
+            <filter string='Incoterm' domain="[]" context="{'group_by' : 'incoterm_id'}"/>
+            <filter string='Incoterm Address' domain="[]" context="{'group_by' : 'incoterm_address'}"/>
+          </group>
+
+        </search>
+      </field>
+    </record>
+  </data>
+</openerp>

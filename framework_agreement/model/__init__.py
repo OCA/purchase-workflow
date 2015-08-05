@@ -15,8 +15,6 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 from . import pricelist
-from . import framework_agreement
-from . import product
 from . import purchase
 from . import company
 from . import portfolio

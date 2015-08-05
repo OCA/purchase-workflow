@@ -308,7 +308,8 @@ class PurchaseOrderLine(models.Model):
                             fiscal_position_id=False, date_planned=False,
                             name=False, price_unit=False, state='draftpo',
                             context=None):
-
+        # debugging tip: make sure that in the view the parameters are actually
+        # passed and not forced to None, 'draft' or something
         order_type = context.get('order_type') or 'rfq'
 
         res = super(PurchaseOrderLine, self).onchange_product_id(

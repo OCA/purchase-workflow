@@ -26,47 +26,44 @@ class PurchaseOrder(models.Model):
         'framework.agreement.portfolio',
         'Portfolio',
         domain="[('supplier_id', '=', partner_id)]",
+        help='When a portfolio is selected, the pricelist selection is '
+        'restricted to agreements belonging to it. Moreover, some fields '
+        'of the order cannot be changed because they their values are set in '
+        'the agreement.'
     )
 
+    @api.model
+    def get_propagate_fields(self):
+        return [
+            'currency_id',
+            'payment_term_id',
+            'terms_of_payment',
+            'incoterm_id',
+            'incoterm_address',
+            'dest_address_id',
+            'picking_type_id',
+            ]
+
     @api.onchange('pricelist_id')
-    def update_currency_from_pricelist(self):
-        """Reproduce the old_api onchange_pricelist from the purchase module.
+    @api.one
+    def propagate_agreement_fields(self):
+        agreement = self.pricelist_id
 
-        We need new-style onchanges to be able to modify agreements on order
-        lines, and we cannot have new-style and old-style onchanges at the same
-        time.
+        for field_name in self.get_propagate_fields():
+            # self.write does not work in an onchange
+            field_value = agreement[field_name]
+            if field_value:
+                self[field_name] = field_value
 
-        """
-        self.currency_id = self.pricelist_id.currency_id
-
-    @api.onchange('portfolio_id', 'pricelist_id', 'date_order', 'incoterm_id')
-    def update_agreements_in_lines(self):
-        Agreement = self.env['framework.agreement']
-        if self.portfolio_id:
-            for line in self.order_line:
-                ag_domain = Agreement.get_agreement_domain(
-                    line.product_id.id,
-                    line.product_qty,
-                    self.portfolio_id.id,
-                    self.date_order,
-                    self.incoterm_id.id,
-                )
-                good_agreements = Agreement.search(ag_domain).filtered(
-                    lambda a: a.has_currency(self.currency_id))
-
-                if line.framework_agreement_id in good_agreements:
-                    pass  # it's good! let's keep it!
-                else:
-                    if len(good_agreements) == 1:
-                        line.framework_agreement_id = good_agreements
-                    else:
-                        line.framework_agreement_id = Agreement
-
-                if line.framework_agreement_id:
-                    line.price_unit = line.framework_agreement_id.get_price(
-                        line.product_qty, self.currency_id)
-        else:
-            self.order_line.write({'framework_agreement_id': False})
+    @api.onchange('portfolio_id')
+    def onchange_portfolio(self):
+        if self.pricelist_id:
+            if self.portfolio_id:
+                if not self.pricelist_id.portfolio_id:
+                    self.pricelist_id = False
+            else:
+                if self.pricelist_id.portfolio_id:
+                    self.pricelist_id = False
 
     @api.multi
     def onchange_partner_id(self, partner_id):
@@ -84,120 +81,38 @@ class PurchaseOrder(models.Model):
 
 
 class PurchaseOrderLine(models.Model):
-    """Add on change on price to raise a warning if line is subject to
-    an agreement.
-    """
-
     _inherit = "purchase.order.line"
 
-    framework_agreement_id = fields.Many2one(
-        'framework.agreement',
-        'Agreement',
-        domain=[('portfolio_id', '=', 'order_id.portfolio_id')],
-    )
-
-    portfolio_id = fields.Many2one(
-        'framework.agreement.portfolio',
-        'Portfolio',
-        readonly=True,
-        related='order_id.portfolio_id',
-    )
-
-    @api.multi
-    def onchange_product_id(self, pricelist_id, product_id, qty, uom_id,
-                            partner_id, date_order=False,
-                            fiscal_position_id=False, date_planned=False,
-                            name=False, price_unit=False, state='draft'):
-        res = super(PurchaseOrderLine, self).onchange_product_id(
-            pricelist_id,
-            product_id,
-            qty,
-            uom_id,
-            partner_id,
-            date_order=date_order,
-            fiscal_position_id=fiscal_position_id,
-            date_planned=date_planned,
-            name=name,
-            price_unit=price_unit,
-        )
-        context = self.env.context
-        if 'domain' not in res:
-            res['domain'] = {}
-
-        if not context.get('portfolio_id') or not product_id:
-            res['domain']['framework_agreement_id'] = [('id', '=', 0)]
-            res['value']['framework_agreement_id'] = False
-            return res
-
-        currency = self.env['res.currency'].browse(context.get('currency_id'))
-        Agreement = self.env['framework.agreement']
-        agreement = Agreement.browse(context.get('agreement_id'))
-
-        ag_domain = Agreement.get_agreement_domain(
-            product_id,
-            qty,
-            context['portfolio_id'],
-            date_planned,
-            context.get('incoterm_id'),
-        )
-        res['domain']['framework_agreement_id'] = ag_domain
-
-        good_agreements = Agreement.search(ag_domain).filtered(
-            lambda a: a.has_currency(currency))
-
-        if agreement in good_agreements:
-            pass  # it's good! let's keep it!
-        else:
-            if len(good_agreements) == 1:
-                agreement = good_agreements
-            else:
-                agreement = Agreement
-
-        if agreement:
-            res['value']['price_unit'] = agreement.get_price(qty, currency)
-        res['value']['framework_agreement_id'] = agreement.id
-        return res
-
-    @api.onchange('price_unit')
-    def onchange_price_unit(self):
-        if self.framework_agreement_id:
-            agreement_price = self.framework_agreement_id.get_price(
-                self.product_qty,
-                currency=self.order_id.pricelist_id.currency_id)
-            if agreement_price != self.price_unit:
-                msg = _(
-                    "You have set the price to %s \n"
-                    " but there is a running agreement"
-                    " with price %s") % (
-                        self.price_unit, agreement_price
-                )
-                raise exceptions.Warning(msg)
-
-    @api.multi
-    def _propagate_fields(self):
+    def insufficient_agreed_quantity(self):
         self.ensure_one()
-        agreement = self.framework_agreement_id
+        if not self.order_id.portfolio_id:
+            return False
 
-        if agreement.payment_term_id:
-            self.payment_term_id = agreement.payment_term_id
+        for product_line in self.order_id.portfolio_id.line_ids:
+            if product_line.product_id == self.product_id:
+                return self.product_qty > product_line.available_quantity
+        raise exceptions.Warning(_(
+            'The selected portfolio does not cover product %s'
+            % self.product_id.name
+        ))
 
-        if agreement.incoterm_id:
-            self.incoterm_id = agreement.incoterm_id
+    def onchange_product_id(self, cr, uid, ids, pricelist_id, product_id, qty,
+                            uom_id, partner_id, date_order=False,
+                            fiscal_position_id=False, date_planned=False,
+                            name=False, price_unit=False, state='draftpo',
+                            context=None):
 
-        if agreement.incoterm_address:
-            self.incoterm_address = agreement.incoterm_address
+        if context.get('portfolio_id') and not context.get('pricelist_id'):
+            return {'warning': {
+                'title': _('Warning'),
+                'message': _('Since an Agreement Portfolio is selected, '
+                             'please select an Agreement in the Pricelist '
+                             'field.'),
+            }}
 
-    @api.onchange('framework_agreement_id')
-    def onchange_agreement(self):
-        self._propagate_fields()
+        res = super(PurchaseOrderLine, self).onchange_product_id(
+            cr, uid, ids, pricelist_id, product_id, qty, uom_id, partner_id,
+            date_order, fiscal_position_id, date_planned, name, price_unit,
+            context=context)
 
-        if self.framework_agreement_id:
-            agreement = self.framework_agreement_id
-            if agreement.supplier_id != self.order_id.partner_id:
-                raise exceptions.Warning(
-                    _('Invalid agreement '
-                      'Agreement and supplier does not match')
-                )
-
-            self.price_unit = agreement.get_price(self.product_qty,
-                                                  self.order_id.currency_id)
+        return res

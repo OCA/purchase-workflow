@@ -14,27 +14,35 @@
 #
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+from datetime import timedelta, date
+
+from openerp.tests import common
+from openerp import fields
 
 
-class BaseAgreementTestMixin(object):
-    """Class that contain common behavior for all agreement unit test classes.
+class AgreementTransactionCase(common.TransactionCase):
+    def setUp(self):
+        super(AgreementTransactionCase, self).setUp()
+        self.start_date = date.today() + timedelta(days=10)
+        self.end_date = date.today() + timedelta(days=20)
 
-    We use Mixin because we want to have those behaviors on the various
-    unit test subclasses provided by OpenERP in test common.
-
-    """
-
-    def commonsetUp(self):
-        self.agreement_model = self.env['framework.agreement']
-        self.agreement_pl_model = self.env['framework.agreement.pricelist']
-        self.agreement_line_model = self.env['framework.agreement.line']
+        self.Portfolio = self.env['framework.agreement.portfolio']
         self.product = self.env['product.product'].create({
             'name': 'test_1',
             'type': 'product',
             'list_price': 10.00
         })
         self.supplier = self.env.ref('base.res_partner_1')
-        self.portfolio = self.env['framework.agreement.portfolio'].create({
+
+        self.portfolio = self.Portfolio.create({
             'name': '/',
             'supplier_id': self.supplier.id,
+            'start_date': fields.Date.to_string(self.start_date),
+            'end_date': fields.Date.to_string(self.end_date),
+            'line_ids': [(0, 0, {
+                'product_id': self.product.id,
+                'quantity': 300.,
+            })],
         })
+        self.portfolio.create_new_agreement()
+        self.agreement = self.portfolio.pricelist_ids

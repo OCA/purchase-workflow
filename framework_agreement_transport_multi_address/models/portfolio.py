@@ -1,6 +1,5 @@
-# -*- coding: utf-8 -*-
-#    Author: Nicolas Bessi, Leonardo Pistone
-#    Copyright 2013-2015 Camptocamp SA
+#    Author: Leonardo Pistone, Stefan Rijnhart
+#    Copyright 2015 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -14,6 +13,15 @@
 #
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+from openerp import models, api
 
-from . import test_dates_and_constraints
-from . import test_consumed_qty
+
+class Portfolio(models.Model):
+    _inherit = 'framework.agreement.portfolio'
+
+    @api.model
+    def _prepare_new_agreement(self):
+        """ Set a default origin address on new agreements """
+        res = super(Portfolio, self)._prepare_new_agreement()
+        res['origin_address_id'] = self.supplier_id.id
+        return res

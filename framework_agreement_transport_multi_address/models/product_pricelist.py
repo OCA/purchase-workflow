@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#    Author: Nicolas Bessi, Leonardo Pistone
+#    Author: Nicolas Bessi, Leonardo Pistone, Stefan Rijnhart
 #    Copyright 2013-2015 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -14,6 +14,10 @@
 #
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+from openerp import models, fields
 
-from . import test_dates_and_constraints
-from . import test_consumed_qty
+
+class Pricelist(models.Model):
+    _inherit = 'product.pricelist'
+
+    origin_address_id = fields.Many2one('res.partner', 'Origin Address')

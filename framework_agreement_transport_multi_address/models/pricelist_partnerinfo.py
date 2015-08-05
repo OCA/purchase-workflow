@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Author: Nicolas Bessi
-#    Copyright 2013, 2014 Camptocamp SA
+#    Author: Nicolas Bessi, Leonardo Pistone, Stefan Rijnhart
+#    Copyright 2013-2015 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -16,18 +14,14 @@
 #
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
 from openerp import models, fields
 
 
-class product_product(models.Model):
-    """Add relation to framework agreement"""
+class Partnerinfo(models.Model):
+    _inherit = 'pricelist.partnerinfo'
 
-    _inherit = "product.product"
-    framework_agreement_ids = fields.One2many(
-        comodel_name='framework.agreement',
-        inverse_name='product_id',
-        string='Framework Agreements (LTA)',
-        copy=False,
-    )
+    origin_address_id = fields.Many2one(
+        'res.partner',
+        related='suppinfo_id.agreement_pricelist_id.origin_address_id',
+        readonly=True,
+        store=True)

@@ -1,0 +1,57 @@
+<?xml version="1.0" ?>
+<openerp>
+  <data>
+
+    <record id="view_purchase_exception_tree" model="ir.ui.view">
+      <field name="name">purchase.exception.tree</field>
+      <field name="model">purchase.exception</field>
+      <field name="arch" type="xml">
+        <tree string="Purchase Exception">
+          <field name="active"/>
+          <field name="name"/>
+          <field name="description"/>
+          <field name="model"/>
+          <field name="sequence"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_purchase_exception_form" model="ir.ui.view">
+      <field name="name">purchase.exception.form</field>
+      <field name="model">purchase.exception</field>
+      <field name="arch" type="xml">
+        <form string="Purchase Exception Setup">
+          <group colspan="4" col="2">
+            <field name="name"/>
+            <field name="description"/>
+          </group>
+          <group col="4" colspan="4" groups="puchase.group_purchase_manager">
+            <field name="active"/>
+            <field name="sequence"/>
+            <group colspan="4" col="2" groups="base.group_system">
+              <field name="model"/>
+              <field name="code"/>
+            </group>
+          </group>
+          <group colspan="4" col="2">
+            <separator string="Affected Purchases Orders"/>
+            <newline/>
+            <field name="purchase_order_ids" nolabel="1" domain="[('state', '=', 'draft')]"/>
+          </group>
+        </form>
+      </field>
+    </record>
+
+    <record id="action_purchase_test_tree" model="ir.actions.act_window">
+      <field name="name">Exception Rules</field>
+      <field name="res_model">purchase.exception</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="view_purchase_exception_tree"/>
+      <field name="context">{'active_test': False}</field>
+    </record>
+
+    <menuitem action="action_purchase_test_tree" id="menu_purchase_test" parent="base.menu_purchase_config_purchases" />
+
+  </data>
+</openerp>

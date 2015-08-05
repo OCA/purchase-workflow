@@ -8,12 +8,17 @@
       <field name="inherit_id" ref="purchase.purchase_order_form" />
       <field name="arch" type="xml">
 
-        <field name="pricelist_id" position="after">
-          <field name="portfolio_id" />
+        <field name="pricelist_id" position="before">
+          <!-- option needs https://github.com/odoo/odoo/compare/odoo:8.0...lepistone:always-show-search-more -->
+          <field name="portfolio_id" options="{'always_show_search_more': true}" />
         </field>
 
         <field name="pricelist_id" position="attributes">
-          <attribute name="on_change">1</attribute>
+          <attribute name="on_change" eval="1"/>
+          <attribute name="domain">[('type','=','purchase'), ('portfolio_id', '=', portfolio_id)]</attribute>
+          <!-- option needs https://github.com/odoo/odoo/compare/odoo:8.0...lepistone:always-show-search-more -->
+          <attribute name="options">{'always_show_search_more': true}</attribute>
+          <attribute name="context">{'hide_portfolio': True}</attribute>
         </field>
 
         <field name="partner_id" position="attributes">
@@ -21,29 +26,15 @@
         </field>
 
         <field name="product_id" position="attributes">
-          <attribute name="context_agreement">{'agreement_id': framework_agreement_id, 'incoterm_id': parent.incoterm_id, 'currency_id': parent.currency_id, 'portfolio_id': parent.portfolio_id}</attribute>
+          <attribute name="context_agreement">{'portfolio_id': parent.portfolio_id, 'pricelist_id': parent.pricelist_id}</attribute>
         </field>
 
-        <field name="product_qty" position="after">
-          <field name="portfolio_id" invisible="1"/> <!-- used by attrs below -->
-          <field name="framework_agreement_id" attrs="{'required': [('portfolio_id', '!=', False)], 'readonly': [('portfolio_id', '=', False)]}" />
+        <field name="picking_type_id" position="attributes">
+          <attribute name="attrs">{'readonly': [('portfolio_id', '!=', False)]}</attribute>
         </field>
 
-        <field name="product_qty" position="attributes">
-          <attribute name="context_agreement">{'agreement_id': framework_agreement_id, 'incoterm_id': parent.incoterm_id, 'currency_id': parent.currency_id, 'portfolio_id': parent.portfolio_id}</attribute>
-        </field>
-
-      </field>
-    </record>
-
-    <record id="add_onchange_on_pruchase_order_line_form_standalone" model="ir.ui.view">
-      <field name="name">purchase_order_line_form</field>
-      <field name="model">purchase.order.line</field>
-      <field name="inherit_id" ref="purchase.purchase_order_line_form" />
-      <field name="arch" type="xml">
-
-        <field name="price_unit" position="attributes">
-          <attribute name="on_change">1</attribute>
+        <field name="incoterm_id" position="attributes">
+          <attribute name="attrs">{'readonly': [('portfolio_id', '!=', False)]}</attribute>
         </field>
 
       </field>

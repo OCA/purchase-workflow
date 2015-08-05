@@ -18,82 +18,53 @@
 from datetime import timedelta, date
 from openerp import fields
 from openerp.tools import mute_logger
-import openerp.tests.common as test_common
-from .common import BaseAgreementTestMixin
+from .common import AgreementTransactionCase
+from unittest2 import skip
 
 
-class TestAgreementState(test_common.TransactionCase, BaseAgreementTestMixin):
-
-    def setUp(self):
-        super(TestAgreementState, self).setUp()
-        self.commonsetUp()
-
-    def test_00_future(self):
-        """Test state of a future agreement"""
+class TestPortfolioState(AgreementTransactionCase):
+    def test_future(self):
         start_date = date.today() + timedelta(days=10)
         end_date = date.today() + timedelta(days=20)
 
-        agreement = self.agreement_model.create({
-            'portfolio_id': self.portfolio.id,
-            'product_id': self.product.id,
+        self.portfolio.write({
             'start_date': fields.Date.to_string(start_date),
             'end_date': fields.Date.to_string(end_date),
-            'delay': 5,
-            'quantity': 20,
         })
+        self.assertEqual(self.portfolio.state, 'future')
 
-        agreement.open_agreement(strict=False)
-        self.assertEqual(agreement.state, 'future')
-
-    def test_01_past(self):
-        """Test state of a past agreement"""
+    def test_past(self):
         start_date = date.today() - timedelta(days=20)
         end_date = date.today() - timedelta(days=10)
 
-        agreement = self.agreement_model.create({
-            'portfolio_id': self.portfolio.id,
-            'product_id': self.product.id,
+        self.portfolio.write({
             'start_date': fields.Date.to_string(start_date),
             'end_date': fields.Date.to_string(end_date),
-            'delay': 5,
-            'quantity': 20,
         })
-        agreement.open_agreement(strict=False)
-        self.assertEqual(agreement.state, 'closed')
+        self.assertEqual(self.portfolio.state, 'closed')
 
-    def test_02_running(self):
-        """Test state of a running agreement"""
+    def test_running(self):
         start_date = date.today() - timedelta(days=2)
         end_date = date.today() + timedelta(days=2)
 
-        agreement = self.agreement_model.create({
-            'portfolio_id': self.portfolio.id,
-            'product_id': self.product.id,
+        self.portfolio.write({
             'start_date': fields.Date.to_string(start_date),
             'end_date': fields.Date.to_string(end_date),
-            'delay': 5,
-            'quantity': 20,
         })
-        agreement.open_agreement(strict=False)
-        self.assertEqual(agreement.state, 'running')
+        self.assertEqual(self.portfolio.state, 'running')
 
-    def test_03_date_orderconstraint(self):
-        """Test that date order is checked"""
+    def test_inverted_date_constraint(self):
         start_date = date.today() - timedelta(days=40)
         end_date = date.today() + timedelta(days=30)
 
         with mute_logger('openerp.sql_db'):
             with self.assertRaises(Exception):
-                self.agreement_model.create({
-                    'portfolio_id': self.portfolio.id,
-                    'product_id': self.product.id,
+                self.portfolio.write({
                     'start_date': end_date,
                     'end_date': start_date,
-                    'draft': False,
-                    'delay': 5,
-                    'quantity': 20,
                 })
 
+    @skip('Overlap check in portfolios is unported')
     def test_04_test_overlap(self):
         start_date = date.today() - timedelta(days=10)
         end_date = date.today() + timedelta(days=10)
@@ -121,21 +92,22 @@ class TestAgreementState(test_common.TransactionCase, BaseAgreementTestMixin):
                     'quantity': 20,
                 })
 
-    def test_05_search_on_state(self):
+    def test_search_on_state(self):
         start_date = date.today() - timedelta(days=2)
         end_date = date.today() + timedelta(days=2)
 
-        agreement = self.agreement_model.create({
-            'portfolio_id': self.portfolio.id,
-            'product_id': self.product.id,
+        self.assertEqual(
+            len(self.Portfolio.search([('state', '=', 'running')])),
+            0
+        )
+
+        self.portfolio.write({
             'start_date': fields.Date.to_string(start_date),
             'end_date': fields.Date.to_string(end_date),
-            'delay': 5,
-            'quantity': 20,
         })
-        agreement.open_agreement(strict=False)
-        self.assertEqual(agreement.state, 'running')
-        self.assertTrue(
-            self.agreement_model.search([('state', '=', 'running')]),
-            msg='Search function seems broken'
+        self.portfolio.refresh()
+        self.assertEqual(self.portfolio.state, 'running')
+        self.assertEqual(
+            len(self.Portfolio.search([('state', '=', 'running')])),
+            1
         )
