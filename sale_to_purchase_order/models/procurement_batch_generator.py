@@ -45,6 +45,20 @@ class ProcurementBatchGenerator(models.TransientModel):
         return res
 
     @api.model
+    def _prepare_batch_generator_line(self, order_line, warehouse_id, today):
+        return {
+            'product_id': order_line.product_id.id,
+            'partner_id': order_line.product_id.seller_id.id or False,
+            'qty_available': order_line.product_id.qty_available,
+            'outgoing_qty': order_line.product_id.outgoing_qty,
+            'incoming_qty': order_line.product_id.incoming_qty,
+            'uom_id': order_line.product_uom.id,
+            'procurement_qty': order_line.product_uom_qty,
+            'warehouse_id': warehouse_id,
+            'date_planned': today,
+        }
+
+    @api.model
     def _default_lines(self):
         """ If active model is sale order
             create procurement for product in sale order line
@@ -58,17 +72,8 @@ class ProcurementBatchGenerator(models.TransientModel):
         warehouse_id = sale_order.warehouse_id.id
         today = fields.Date.context_today(self)
         for line in self._get_order_line(sale_order):
-            res.append({
-                'product_id': line.product_id.id,
-                'partner_id': line.product_id.seller_id.id or False,
-                'qty_available': line.product_id.qty_available,
-                'outgoing_qty': line.product_id.outgoing_qty,
-                'incoming_qty': line.product_id.incoming_qty,
-                'uom_id': line.product_uom.id,
-                'procurement_qty': line.product_uom_qty,
-                'warehouse_id': warehouse_id,
-                'date_planned': today,
-            })
+            res.append(self._prepare_batch_generator_line(line, warehouse_id,
+                                                          today))
         return res
 
     line_ids = fields.One2many(default=_default_lines)
