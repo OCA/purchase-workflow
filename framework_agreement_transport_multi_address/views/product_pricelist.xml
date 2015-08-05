@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="agreement_view_form" model="ir.ui.view">
+            <field name="name">agreement_view_form</field>
+            <field name="model">product.pricelist</field>
+            <field name="inherit_id" ref="framework_agreement.agreement_view_form" />
+            <field name="arch" type="xml">
+                <field name="incoterm_address" position="after">
+                    <field name="origin_address_id"
+                           attrs="{'invisible': [('type', '!=', 'purchase')], 'required': [('portfolio_id', '!=', False)]}" />
+                </field>
+            </field>
+        </record>
+        
+        <record id="product_pricelist_view_tree" model="ir.ui.view">
+            <field name="name">product_pricelist_view_tree</field>
+            <field name="model">product.pricelist</field>
+            <field name="inherit_id" ref="framework_agreement.product_pricelist_view_tree" />
+            <field name="arch" type="xml">
+                <field name="incoterm_address" position="after">
+                    <field name="origin_address_id" />
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

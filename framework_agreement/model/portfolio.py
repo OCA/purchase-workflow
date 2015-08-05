@@ -133,14 +133,12 @@ class Portfolio(models.Model):
             )
         return [('id', 'in', found_ids)]
 
-    @api.multi
-    def create_new_agreement(self):
-        self.ensure_one()
-        new_agreement = self.env['product.pricelist'].create({
+    @api.model
+    def _prepare_new_agreement(self):
+        return {
             'name': '{}: New agreement'.format(self.name),
             'portfolio_id': self.id,
             'type': 'purchase',
-            'origin_address_id': self.supplier_id.id,
             'version_id': [(0, 0, {
                 'name': '{}: Main version'.format(self.name),
                 'date_start': self.start_date,
@@ -151,7 +149,13 @@ class Portfolio(models.Model):
                     'use_agreement_prices': True,
                 })],
             })],
-        })
+        }
+
+    @api.multi
+    def create_new_agreement(self):
+        self.ensure_one()
+        new_agreement = self.env['product.pricelist'].create(
+            self._prepare_new_agreement())
 
         for product_line in self.line_ids:
             self.env['product.supplierinfo'].create({
