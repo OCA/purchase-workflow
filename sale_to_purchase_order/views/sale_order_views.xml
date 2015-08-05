@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <record id="procurement_batch_generator_action" model="ir.actions.act_window">
+            <field name="name">Request Procurements</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">procurement.batch.generator</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="context">{'valid_so': True}</field>
+        </record>
+
+        <record id="sale_order_view_form_inherit_sale_to_purchase_order" model="ir.ui.view">
+            <field name="name">sale.order.form (sale_to_purchase_order)</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <button name="action_view_invoice" position="before">
+                        <button name="%(procurement_batch_generator_action)d" states="draft" string="Confirm and reorder" type="action" groups="base.group_user"/>
+                        <button name="%(procurement_batch_generator_action)d" states="sent" string="Confirm and reorder" class="oe_highlight" type="action" groups="base.group_user"/>
+                    </button>
+                </data>
+           </field>
+        </record>
+
+    </data>
+</openerp>
