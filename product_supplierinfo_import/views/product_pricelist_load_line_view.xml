@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+    <!-- ************* file_line Tree View  *************** -->
+        <record id="product_supplierinfo_load_line_tree_view" model="ir.ui.view">
+            <field name="name">product.supplierinfo.load.line.tree.view</field>
+            <field name="model">product.supplierinfo.load.line</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="File Lines">
+                    <field name="supplier" />
+                    <field name="code" />
+                    <field name="sequence"/>
+                    <field name="supplier_code"/>
+                    <field name="info"/>
+                    <field name="delay"/>
+                    <field name="price"/>
+                    <field name="min_qty"/>
+                    <field name="fail"/>
+                    <field name="fail_reason" />
+                </tree>
+            </field>
+        </record>
+    <!-- ************* file_load form View  *************** -->
+        <record id="product_supplierinfo_load_line_form_view" model="ir.ui.view">
+            <field name="name">product.supplierinfo.load.line.form.view</field>
+            <field name="model">product.supplierinfo.load.line</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="File Load">
+                    <group colspan="4">
+                        <field name="supplier" />
+                        <field name="code" />
+                        <field name="sequence"/>
+                        <field name="supplier_code"/>
+                        <field name="info"/>
+                        <field name="delay"/>
+                        <field name="price"/>
+                        <field name="min_qty"/>
+                        <field name="fail"/>
+                        <field name="fail_reason" />
+                    </group>
+                </form>
+            </field>
+        </record>
+    </data>
+</openerp>

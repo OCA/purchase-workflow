@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_import_file" model="ir.ui.view">
+            <field name="name">view.import.file</field>
+            <field name="model">import.price.file</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group colspan="4">
+                        <separator string="Import File" colspan="4" />
+                        <field name="data" filename="name" />
+                        <field name="name" colspan="2" />
+                        <field name="file_type" colspan="2"  />
+                        <field name="delimeter" attrs="{'invisible':[('file_type','=',('xls'))]}"/>
+                    </group>
+                    <footer>
+                        <button class="oe_highlight" name="action_import"
+                            string="Import" type="object" />
+                        or
+                        <button class="oe_link" special="cancel"
+                            string="Cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+    <record id="action_import_file" model="ir.actions.act_window">
+        <field name="name">Import File</field>
+        <field name="res_model">import.price.file</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+    <field name="view_id" ref="view_import_file" />
+    <field name="target">new</field>
+    </record>
+
+    </data>
+</openerp>
