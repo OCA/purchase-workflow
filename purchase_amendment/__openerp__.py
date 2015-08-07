@@ -23,7 +23,6 @@
 
 {
     "name": "Purchase Amendment",
-    # description is in README.rst
     "version": "0.2",
     "depends": ["purchase",
                 "stock_split_picking",
