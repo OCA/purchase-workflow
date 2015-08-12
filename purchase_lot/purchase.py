@@ -15,10 +15,12 @@ class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
 
     @api.model
-    def _prepare_order_line_move(self, order, order_line, picking_id):
+    def _prepare_order_line_move(self, order, order_line, picking_id,
+                                 group_id):
         res = super(PurchaseOrder, self)._prepare_order_line_move(
-            order, order_line, picking_id)
-        res['restrict_lot_id'] = order_line.lot_id.id
+            order, order_line, picking_id, group_id)
+        for move in res:
+            move['restrict_lot_id'] = order_line.lot_id.id
         return res
 
 
