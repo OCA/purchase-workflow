@@ -1,0 +1,38 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* procurement_purchase_no_grouping
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-08-03 14:49+0000\n"
+"PO-Revision-Date: 2015-08-15 09:07+0200\n"
+"Last-Translator: Matjaz Mozetic <m.mozetic@matmoz.si>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: sl\n"
+"X-Generator: Poedit 1.8.4\n"
+
+#. module: procurement_purchase_no_grouping
+#: help:product.category,group_on_procured_purchases:0
+msgid "If this new field is checked, running the procurement acts like the standard way, adding the amount on existing line purchase order if the product and the UoM is the same, but if it is not checked, no grouping will be done, creating a new line each time"
+msgstr "Če je to novo polje označeno, se zagon oskrbe obnaša na običajen način z dodajanjem zneska obstoječi postavki nabavnega naloga če sta EM in proizvod enaka. Če pa ni označena, ne bo združevanja in bo vsakokrat ustvarjena nova postavka."
+
+#. module: procurement_purchase_no_grouping
+#: model:ir.model,name:procurement_purchase_no_grouping.model_procurement_order
+msgid "Procurement"
+msgstr "Oskrbovanje"
+
+#. module: procurement_purchase_no_grouping
+#: model:ir.model,name:procurement_purchase_no_grouping.model_product_category
+msgid "Product Category"
+msgstr "Kategorija proizvoda"
+
+#. module: procurement_purchase_no_grouping
+#: model:ir.model,name:procurement_purchase_no_grouping.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Postavka nabavnega naloga"
