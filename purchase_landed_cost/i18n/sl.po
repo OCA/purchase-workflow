@@ -1,0 +1,653 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_landed_cost
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-07-07 23:04+0000\n"
+"PO-Revision-Date: 2015-08-15 18:33+0200\n"
+"Last-Translator: Matjaz Mozetic <m.mozetic@matmoz.si>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: sl\n"
+"X-Generator: Poedit 1.8.4\n"
+
+#. module: purchase_landed_cost
+#: model:ir.actions.act_window,help:purchase_landed_cost.action_purchase_cost_distribution
+msgid ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"\t\t\t\t\tClick to create a draft purchase expenses distribution.\n"
+"\t\t\t\t</p>\n"
+"\t\t\t\t<p>\n"
+"\t\t\t\t\tUse this menu to control the cost of purchases by expense type\n"
+"\t\t\t\t\tsuch as transport, insurance, freight customs, etc.\n"
+"\t\t\t\t</p>\n"
+"\t\t\t\t<p>\n"
+"\t\t\t\t\tYou can add one or more receipts which share the same expenses\n"
+"\t\t\t\t\tand update cost price of product.\n"
+"\t\t\t\t</p>\n"
+"\t\t\t"
+msgstr ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"\t\t\t\t\tKliknite, da ustvarite osnutek distribucije nabavnih izdatkov.\n"
+"\t\t\t\t</p>\n"
+"\t\t\t\t<p>\n"
+"\t\t\t\t\tUporabite ta meni za nadzor stroškov nabave po tipu izdatka\n"
+"\t\t\t\t\tkot npr. transport, zavarovanje, carina, ipd.\n"
+"\t\t\t\t</p>\n"
+"\t\t\t\t<p>\n"
+"\t\t\t\t\tDodate lahko enega ali več prejemov, ki delijo iste izdatke\n"
+"\t\t\t\t\tin posodobite lastno ceno proizvoda.\n"
+"\t\t\t\t</p>\n"
+"\t\t\t"
+
+#. module: purchase_landed_cost
+#: model:ir.actions.act_window,help:purchase_landed_cost.action_purchase_expense_type
+msgid ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"\t\t\t\t\tClick to create a new expense type.\n"
+"\t\t\t\t</p>\n"
+"\t\t\t\t<p>\n"
+"\t\t\t\t\tUse this menu to create types of purchase expenses.\n"
+"\t\t\t\t\tThe types marked by default will be added to the cost\n"
+"\t\t\t\t\tdistribution automatically.\n"
+"\t\t\t\t</p>\n"
+"\t\t\t\t<p>\n"
+"\t\t\t\t\tDefine the type of the calculation of each purchase expense\n"
+"                    used for calculating the distribution between lines.\n"
+"\t\t\t\t</p>\n"
+"\t\t\t"
+msgstr ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"\t\t\t\t\tKliknite, da ustvarite nov tip izdatka.\n"
+"\t\t\t\t</p>\n"
+"\t\t\t\t<p>\n"
+"\t\t\t\t\tUporabite ta meni, da ustvarite tipe nabavnih izdatkov.\n"
+"\t\t\t\t\tOznačeni tipi bodo privzeto samodejno dodani\n"
+"\t\t\t\t\tdistribuciji stroškov.\n"
+"\t\t\t\t</p>\n"
+"\t\t\t\t<p>\n"
+"\t\t\t\t\tDoločite tip kalkulacije za vsak nabavni izdatek,\n"
+"                    ki se uporablja za izračun distribucije med postavkami.\n"
+"\t\t\t\t</p>\n"
+"\t\t\t"
+
+#. module: purchase_landed_cost
+#: field:purchase.cost.distribution.expense,affected_lines:0
+msgid "Affected lines"
+msgstr "Prizadete postavke"
+
+#. module: purchase_landed_cost
+#: view:purchase.cost.distribution:purchase_landed_cost.purchase_cost_distribution_form
+msgid "Are you sure that you want to update product prices?"
+msgstr "Ste prepričani, da želite posodobiti cene proizvodov?"
+
+#. module: purchase_landed_cost
+#: selection:purchase.expense.type,calculation_method:0
+msgid "By amount of the line"
+msgstr "Po znesku postavke"
+
+#. module: purchase_landed_cost
+#: selection:purchase.expense.type,calculation_method:0
+msgid "By product price"
+msgstr "Po ceni proizvoda"
+
+#. module: purchase_landed_cost
+#: selection:purchase.expense.type,calculation_method:0
+msgid "By product quantity"
+msgstr "Po količini proizvoda"
+
+#. module: purchase_landed_cost
+#: selection:purchase.expense.type,calculation_method:0
+msgid "By product volume"
+msgstr "Po prostornini proizvoda"
+
+#. module: purchase_landed_cost
+#: selection:purchase.expense.type,calculation_method:0
+msgid "By product weight"
+msgstr "Po masi proizvoda"
+
+#. module: purchase_landed_cost
+#: selection:purchase.expense.type,calculation_method:0
+msgid "By product weight net"
+msgstr "Po neto masi proizvoda"
+
+#. module: purchase_landed_cost
+#: view:purchase.cost.distribution:purchase_landed_cost.purchase_cost_distribution_form
+msgid "Calculate"
+msgstr "Izračunaj"
+
+#. module: purchase_landed_cost
+#: selection:purchase.cost.distribution,state:0
+msgid "Calculated"
+msgstr "Izračunano"
+
+#. module: purchase_landed_cost
+#: view:purchase.cost.distribution.line:purchase_landed_cost.view_purchase_cost_distribution_line_form
+msgid "Calculated Cost"
+msgstr "Izračunani strošek"
+
+#. module: purchase_landed_cost
+#: field:purchase.expense.type,calculation_method:0
+msgid "Calculation method"
+msgstr "Metoda izračuna"
+
+#. module: purchase_landed_cost
+#: view:import.invoice.line.wizard:purchase_landed_cost.import_invoice_line_wizard_view
+#: view:picking.import.wizard:purchase_landed_cost.picking_import_wizard_view
+#: view:purchase.cost.distribution:purchase_landed_cost.purchase_cost_distribution_form
+#: selection:purchase.cost.distribution,state:0
+msgid "Cancel"
+msgstr "Preklic"
+
+#. module: purchase_landed_cost
+#: field:purchase.cost.distribution,company_id:0
+#: field:purchase.expense.type,company_id:0
+msgid "Company"
+msgstr "Družba:"
+
+#. module: purchase_landed_cost
+#: view:purchase.cost.distribution.line:purchase_landed_cost.view_purchase_cost_distribution_line_form
+msgid "Cost Line Expenses"
+msgstr "Izdatki stroškovnih postavk"
+
+#. module: purchase_landed_cost
+#: field:purchase.cost.distribution,cost_update_type:0
+msgid "Cost Update Type"
+msgstr "Tip posodobitve stroška"
+
+#. module: purchase_landed_cost
+#: view:purchase.cost.distribution:purchase_landed_cost.purchase_cost_distribution_form
+#: field:purchase.cost.distribution.expense,distribution:0
+#: field:purchase.cost.distribution.line,distribution:0
+msgid "Cost distribution"
+msgstr "Distribucija stroškov"
+
+#. module: purchase_landed_cost
+#: view:purchase.cost.distribution:purchase_landed_cost.purchase_cost_distribution_form
+msgid "Cost distribution expenses"
+msgstr "Izdatki distribucije stroškov"
+
+#. module: purchase_landed_cost
+#: field:purchase.cost.distribution.line.expense,distribution_line:0
+msgid "Cost distribution line"
+msgstr "Postavka distribucije stroškov"
+
+#. module: purchase_landed_cost
+#: view:purchase.cost.distribution.line:purchase_landed_cost.view_purchase_cost_distribution_line_form
+msgid "Cost distribution line information"
+msgstr "Podatki o postavki distribucije stroškov"
+
+#. module: purchase_landed_cost
+#: view:purchase.cost.distribution:purchase_landed_cost.purchase_cost_distribution_form
+msgid "Cost distribution notes..."
+msgstr "Opombe k distribuciji stroškov..."
+
+#. module: purchase_landed_cost
+#: field:purchase.expense.type,note:0
+msgid "Cost documentation"
+msgstr "Stroškovna dokumentacija"
+
+#. module: purchase_landed_cost
+#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:278
+#, python-format
+msgid "Cost update cannot be undone because there has been a later update. Restore correct price and try again."
+msgstr "Posodobitve stroškov ni mogoče razveljaviti, ker obstaja že kasnejša posodobitev. Povrnite pravilno ceno in poskusite ponovno."
+
+#. module: purchase_landed_cost
+#: view:purchase.cost.distribution:purchase_landed_cost.purchase_cost_distribution_form
+msgid "Costs distribution picking lines"
+msgstr "Postavke zbirnika distribucije stroškov"
+
+#. module: purchase_landed_cost
+#: model:ir.ui.menu,name:purchase_landed_cost.menu_purchase_cost_control
+msgid "Costs distributions"
+msgstr "Distribucije stroškov"
+
+#. module: purchase_landed_cost
+#: field:import.invoice.line.wizard,create_uid:0
+#: field:picking.import.wizard,create_uid:0
+#: field:purchase.cost.distribution,create_uid:0
+#: field:purchase.cost.distribution.expense,create_uid:0
+#: field:purchase.cost.distribution.line,create_uid:0
+#: field:purchase.cost.distribution.line.expense,create_uid:0
+#: field:purchase.expense.type,create_uid:0
+msgid "Created by"
+msgstr "Ustvaril"
+
+#. module: purchase_landed_cost
+#: field:import.invoice.line.wizard,create_date:0
+#: field:picking.import.wizard,create_date:0
+#: field:purchase.cost.distribution,create_date:0
+#: field:purchase.cost.distribution.expense,create_date:0
+#: field:purchase.cost.distribution.line,create_date:0
+#: field:purchase.cost.distribution.line.expense,create_date:0
+#: field:purchase.expense.type,create_date:0
+msgid "Created on"
+msgstr "Ustvarjeno"
+
+#. module: purchase_landed_cost
+#: field:purchase.cost.distribution,date:0
+msgid "Date"
+msgstr "Datum"
+
+#. module: purchase_landed_cost
+#: field:purchase.expense.type,default_expense:0
+msgid "Default Expense"
+msgstr "Privzeti izdatek"
+
+#. module: purchase_landed_cost
+#: field:purchase.expense.type,default_amount:0
+msgid "Default amount"
+msgstr "Privzeti znesek"
+
+#. module: purchase_landed_cost
+#: selection:purchase.cost.distribution,cost_update_type:0
+msgid "Direct Update"
+msgstr "Neposredna posodobitev"
+
+#. module: purchase_landed_cost
+#: field:purchase.cost.distribution.line.expense,distribution_expense:0
+msgid "Distribution expense"
+msgstr "Distribucijski izdatek"
+
+#. module: purchase_landed_cost
+#: field:purchase.cost.distribution,cost_lines:0
+msgid "Distribution lines"
+msgstr "Distribucijske postavke"
+
+#. module: purchase_landed_cost
+#: field:purchase.cost.distribution,name:0
+msgid "Distribution number"
+msgstr "Distribucijska številka"
+
+#. module: purchase_landed_cost
+#: field:purchase.cost.distribution,note:0
+msgid "Documentation for this order"
+msgstr "Dokumentacija za ta nalog"
+
+#. module: purchase_landed_cost
+#: selection:purchase.cost.distribution,state:0
+msgid "Done"
+msgstr "Opravljeno"
+
+#. module: purchase_landed_cost
+#: selection:purchase.cost.distribution,state:0
+msgid "Draft"
+msgstr "Osnutek"
+
+#. module: purchase_landed_cost
+#: selection:purchase.expense.type,calculation_method:0
+msgid "Equally to all lines"
+msgstr "Enako za vse postavke"
+
+#. module: purchase_landed_cost
+#: selection:purchase.cost.distribution,state:0
+msgid "Error"
+msgstr "Napaka"
+
+#. module: purchase_landed_cost
+#: field:purchase.cost.distribution.expense,expense_amount:0
+#: field:purchase.cost.distribution.line.expense,expense_amount:0
+msgid "Expense amount"
+msgstr "Znesek izdatka"
+
+#. module: purchase_landed_cost
+#: field:import.invoice.line.wizard,expense_type:0
+#: field:purchase.cost.distribution.expense,type:0
+msgid "Expense type"
+msgstr "Tip izdatka"
+
+#. module: purchase_landed_cost
+#: view:purchase.cost.distribution:purchase_landed_cost.purchase_cost_distribution_form
+#: field:purchase.cost.distribution,expense_lines:0
+msgid "Expenses"
+msgstr "Izdatki"
+
+#. module: purchase_landed_cost
+#: field:purchase.cost.distribution.line,expense_lines:0
+msgid "Expenses distribution lines"
+msgstr "Distribucijske postavke izdatkov"
+
+#. module: purchase_landed_cost
+#: model:ir.actions.act_window,name:purchase_landed_cost.action_purchase_expense_type
+#: model:ir.ui.menu,name:purchase_landed_cost.menu_purchase_expense_type
+msgid "Expenses types"
+msgstr "Tipi izdatkov"
+
+#. module: purchase_landed_cost
+#: field:import.invoice.line.wizard,id:0 field:picking.import.wizard,id:0
+#: field:purchase.cost.distribution,id:0
+#: field:purchase.cost.distribution.expense,id:0
+#: field:purchase.cost.distribution.line,id:0
+#: field:purchase.cost.distribution.line.expense,id:0
+#: field:purchase.expense.type,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_landed_cost
+#: help:purchase.expense.type,default_amount:0
+msgid "If set, this amount is put in the expense line when you select this expense type"
+msgstr "Če je nastavljeno, se ob izbiri tega tipa izdatka znesek da med postavke izdatkov"
+
+#. module: purchase_landed_cost
+#: view:import.invoice.line.wizard:purchase_landed_cost.import_invoice_line_wizard_view
+#: view:picking.import.wizard:purchase_landed_cost.picking_import_wizard_view
+msgid "Import"
+msgstr "Uvoz"
+
+#. module: purchase_landed_cost
+#: model:ir.actions.act_window,name:purchase_landed_cost.action_picking_import_wizard
+#: model:ir.model,name:purchase_landed_cost.model_picking_import_wizard
+#: view:purchase.cost.distribution:purchase_landed_cost.purchase_cost_distribution_form
+msgid "Import incoming shipment"
+msgstr "Uvoz prihajajoče pošiljke"
+
+#. module: purchase_landed_cost
+#: view:purchase.cost.distribution:purchase_landed_cost.purchase_cost_distribution_form
+msgid "Import invoice line"
+msgstr "Uvoz postavke računa"
+
+#. module: purchase_landed_cost
+#: model:ir.actions.act_window,name:purchase_landed_cost.action_import_invoice_line_wizard
+#: model:ir.model,name:purchase_landed_cost.model_import_invoice_line_wizard
+msgid "Import supplier invoice line"
+msgstr "Uvoz postavke prejetega računa"
+
+#. module: purchase_landed_cost
+#: field:picking.import.wizard,pickings:0
+msgid "Incoming shipments"
+msgstr "Prihajajoče pošiljke"
+
+#. module: purchase_landed_cost
+#: field:import.invoice.line.wizard,invoice:0
+msgid "Invoice"
+msgstr "Račun"
+
+#. module: purchase_landed_cost
+#: field:import.invoice.line.wizard,invoice_line:0
+msgid "Invoice line"
+msgstr "Postavka računa"
+
+#. module: purchase_landed_cost
+#: view:purchase.order:purchase_landed_cost.purchase_order_2_stock_picking_landed_cost
+#: view:stock.picking:purchase_landed_cost.view_picking_form_landed_cost
+msgid "Landed costs"
+msgstr "Stroški iztovarjanja"
+
+#. module: purchase_landed_cost
+#: field:import.invoice.line.wizard,write_uid:0
+#: field:picking.import.wizard,write_uid:0
+#: field:purchase.cost.distribution,write_uid:0
+#: field:purchase.cost.distribution.expense,write_uid:0
+#: field:purchase.cost.distribution.line,write_uid:0
+#: field:purchase.cost.distribution.line.expense,write_uid:0
+#: field:purchase.expense.type,write_uid:0
+msgid "Last Updated by"
+msgstr "Zadnji posodobil"
+
+#. module: purchase_landed_cost
+#: field:import.invoice.line.wizard,write_date:0
+#: field:picking.import.wizard,write_date:0
+#: field:purchase.cost.distribution,write_date:0
+#: field:purchase.cost.distribution.expense,write_date:0
+#: field:purchase.cost.distribution.line,write_date:0
+#: field:purchase.cost.distribution.line.expense,write_date:0
+#: field:purchase.expense.type,write_date:0
+msgid "Last Updated on"
+msgstr "Zadnjič posodobljeno"
+
+#. module: purchase_landed_cost
+#: field:purchase.cost.distribution.line,total_weight_net:0
+msgid "Line net weight"
+msgstr "Neto masa postavke"
+
+#. module: purchase_landed_cost
+#: field:purchase.cost.distribution.line,total_volume:0
+msgid "Line volume"
+msgstr "Prostornina postavke"
+
+#. module: purchase_landed_cost
+#: field:purchase.cost.distribution.line,total_weight:0
+msgid "Line weight"
+msgstr "Masa postavke"
+
+#. module: purchase_landed_cost
+#: field:purchase.expense.type,name:0
+msgid "Name"
+msgstr "Naziv"
+
+#. module: purchase_landed_cost
+#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:216
+#, python-format
+msgid "No valid distribution type."
+msgstr "Ni veljavnega tipa distribucije."
+
+#. module: purchase_landed_cost
+#: field:purchase.cost.distribution.line,picking_id:0
+msgid "Picking"
+msgstr "Zbirnik"
+
+#. module: purchase_landed_cost
+#: model:ir.model,name:purchase_landed_cost.model_stock_picking
+msgid "Picking List"
+msgstr "Zbirnik"
+
+#. module: purchase_landed_cost
+#: field:purchase.cost.distribution.line,move_id:0
+msgid "Picking line"
+msgstr "Postavka zbirnika"
+
+#. module: purchase_landed_cost
+#: view:purchase.cost.distribution:purchase_landed_cost.purchase_cost_distribution_form
+msgid "Picking lines"
+msgstr "Postavke zbirnika"
+
+#. module: purchase_landed_cost
+#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:156
+#, python-format
+msgid "Please enter an amount for all the expenses"
+msgstr "Vnesite znesek za vse izdatke"
+
+#. module: purchase_landed_cost
+#: field:picking.import.wizard,prev_pickings:0
+msgid "Prev pickings"
+msgstr "Prejšnji zbirniki"
+
+#. module: purchase_landed_cost
+#: field:purchase.cost.distribution.line,standard_price_old:0
+msgid "Previous cost"
+msgstr "Prejšnji stroški"
+
+#. module: purchase_landed_cost
+#: field:purchase.cost.distribution.line,product_id:0
+msgid "Product"
+msgstr "Proizvod"
+
+#. module: purchase_landed_cost
+#: view:purchase.cost.distribution.line:purchase_landed_cost.view_purchase_cost_distribution_line_form
+msgid "Product information"
+msgstr "Podatki o proizvodu"
+
+#. module: purchase_landed_cost
+#: view:purchase.cost.distribution.line:purchase_landed_cost.view_purchase_cost_distribution_line_form
+msgid "Purchase Cost Line"
+msgstr "Postavka nabavnega stroška"
+
+#. module: purchase_landed_cost
+#: model:ir.model,name:purchase_landed_cost.model_purchase_order
+msgid "Purchase Order"
+msgstr "Nabavni nalog"
+
+#. module: purchase_landed_cost
+#: view:purchase.cost.distribution:purchase_landed_cost.purchase_cost_distribution_form
+#: view:purchase.cost.distribution:purchase_landed_cost.view_purchase_cost_distribution_calendar
+#: view:purchase.cost.distribution:purchase_landed_cost.view_purchase_cost_distribution_graph
+msgid "Purchase cost distribution"
+msgstr "Distribucija nabavnih stroškov"
+
+#. module: purchase_landed_cost
+#: model:ir.model,name:purchase_landed_cost.model_purchase_cost_distribution_line
+msgid "Purchase cost distribution Line"
+msgstr "Distribucijska postavka nabavnih stroškov"
+
+#. module: purchase_landed_cost
+#: model:ir.model,name:purchase_landed_cost.model_purchase_cost_distribution_expense
+msgid "Purchase cost distribution expense"
+msgstr "Distribucijski izdatek nabavnih stroškov"
+
+#. module: purchase_landed_cost
+#: model:ir.model,name:purchase_landed_cost.model_purchase_cost_distribution_line_expense
+msgid "Purchase cost distribution line expense"
+msgstr "Distribucijska postavka izdatka stroška nabave"
+
+#. module: purchase_landed_cost
+#: model:ir.actions.act_window,name:purchase_landed_cost.action_purchase_cost_distribution
+#: model:ir.ui.menu,name:purchase_landed_cost.menu_purchase_cost_distribution
+#: view:purchase.cost.distribution:purchase_landed_cost.view_purchase_cost_distribution_tree
+msgid "Purchase cost distributions"
+msgstr "Distribucije nabavnih stroškov"
+
+#. module: purchase_landed_cost
+#: model:ir.model,name:purchase_landed_cost.model_purchase_expense_type
+msgid "Purchase cost type"
+msgstr "Tip nabavnega stroška"
+
+#. module: purchase_landed_cost
+#: view:purchase.expense.type:purchase_landed_cost.purchase_expense_type_tree
+msgid "Purchase expense types"
+msgstr "Tipi nabavnih izdatkov"
+
+#. module: purchase_landed_cost
+#: view:purchase.cost.distribution.line:purchase_landed_cost.view_purchase_cost_distribution_line_form
+msgid "Purchase information"
+msgstr "Nabavni podatki"
+
+#. module: purchase_landed_cost
+#: model:ir.model,name:purchase_landed_cost.model_purchase_cost_distribution
+msgid "Purchase landed costs distribution"
+msgstr "Distribucija nabavnih stroškov iztovarjanja"
+
+#. module: purchase_landed_cost
+#: field:purchase.cost.distribution.line,purchase_id:0
+msgid "Purchase order"
+msgstr "Nabavni nalog"
+
+#. module: purchase_landed_cost
+#: help:purchase.cost.distribution.expense,affected_lines:0
+msgid "Put here specific lines that this expense is going to be distributed across. Leave it blank to use all imported lines."
+msgstr "Sem postavite določene postavke, ki jih bo ta izdatek distribuiral naokrog. Pustite prazno za uporabo vseh uvoženih postavk."
+
+#. module: purchase_landed_cost
+#: field:purchase.cost.distribution.line,product_qty:0
+msgid "Quantity"
+msgstr "Količina"
+
+#. module: purchase_landed_cost
+#: view:purchase.cost.distribution:purchase_landed_cost.purchase_cost_distribution_form
+msgid "Recalculate"
+msgstr "Ponoven izračun"
+
+#. module: purchase_landed_cost
+#: field:purchase.cost.distribution.expense,ref:0
+msgid "Reference"
+msgstr "Sklic"
+
+#. module: purchase_landed_cost
+#: view:purchase.cost.distribution:purchase_landed_cost.purchase_cost_distribution_search
+msgid "Search purchase costs distributions"
+msgstr "Iskanje distribucij nabavnih stroškov"
+
+#. module: purchase_landed_cost
+#: view:picking.import.wizard:purchase_landed_cost.picking_import_wizard_view
+msgid "Select incoming shipment wizard"
+msgstr "Čarovnik za izbiro prihajajočih pošiljk"
+
+#. module: purchase_landed_cost
+#: view:import.invoice.line.wizard:purchase_landed_cost.import_invoice_line_wizard_view
+msgid "Select supplier invoice line wizard"
+msgstr "Čarovnik za izbiro postavk prejetih računov"
+
+#. module: purchase_landed_cost
+#: help:purchase.expense.type,default_expense:0
+msgid "Specify if the expense will be automatically added in a purchase cost distribution."
+msgstr "Določite, če se izdatek samodejno doda v distribucijo nabavnih stroškov."
+
+#. module: purchase_landed_cost
+#: field:purchase.cost.distribution,state:0
+msgid "Status"
+msgstr "Status"
+
+#. module: purchase_landed_cost
+#: field:import.invoice.line.wizard,supplier:0
+#: field:picking.import.wizard,supplier:0
+msgid "Supplier"
+msgstr "Dobavitelj"
+
+#. module: purchase_landed_cost
+#: field:purchase.cost.distribution.expense,invoice_line:0
+msgid "Supplier invoice line"
+msgstr "Postavka prejetega računa"
+
+#. module: purchase_landed_cost
+#: help:purchase.cost.distribution.line,total_weight:0
+msgid "The line gross weight in Kg."
+msgstr "Bruto masa postavke v kg."
+
+#. module: purchase_landed_cost
+#: help:purchase.cost.distribution.line,total_weight_net:0
+msgid "The line net weight in Kg."
+msgstr "Neto masa postavke v kg."
+
+#. module: purchase_landed_cost
+#: help:purchase.cost.distribution.line,total_volume:0
+msgid "The line volume in m3."
+msgstr "Prostornina postavke v m3."
+
+#. module: purchase_landed_cost
+#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:160
+#, python-format
+msgid "There is no picking lines in the distribution"
+msgstr "V distribuciji ni postavk zbirnika"
+
+#. module: purchase_landed_cost
+#: view:purchase.cost.distribution:purchase_landed_cost.purchase_cost_distribution_form
+msgid "This will undo the product price update (only if current value matches with the calculated price in this distribution). Do you want to continue?"
+msgstr "To razveljavi posodobitev cene proizvoda (le, če trenutna vrednost ustreza izračunani ceni te distribucije). Želite nadaljevati?"
+
+#. module: purchase_landed_cost
+#: view:purchase.cost.distribution.line:purchase_landed_cost.view_purchase_cost_distribution_line_form
+msgid "Total Expenses"
+msgstr "Skupaj izdatkov"
+
+#. module: purchase_landed_cost
+#: field:purchase.cost.distribution.line.expense,cost_ratio:0
+msgid "Unit cost"
+msgstr "Cena enote"
+
+#. module: purchase_landed_cost
+#: view:purchase.cost.distribution:purchase_landed_cost.purchase_cost_distribution_form
+msgid "Update Cost"
+msgstr "Posodobitev cene"
+
+#. module: purchase_landed_cost
+#: view:purchase.cost.distribution.line:purchase_landed_cost.view_purchase_cost_distribution_line_form
+msgid "Warehouse information"
+msgstr "Podatki o skladišču"
+
+#. module: purchase_landed_cost
+#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:140
+#, python-format
+msgid "You can't delete a confirmed cost distribution"
+msgstr "Ne morete izbrisati potrjene distribucije stroškov"
+
+#. module: purchase_landed_cost
+#: view:import.invoice.line.wizard:purchase_landed_cost.import_invoice_line_wizard_view
+#: view:picking.import.wizard:purchase_landed_cost.picking_import_wizard_view
+msgid "or"
+msgstr "ali"
