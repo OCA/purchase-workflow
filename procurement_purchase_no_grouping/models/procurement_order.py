@@ -10,6 +10,6 @@ class ProcurementOrder(models.Model):
 
     @api.multi
     def make_po(self):
-        res = super(
-            ProcurementOrder, self.with_context(not_group=True)).make_po()
-        return res
+        obj = self.with_context(
+            grouping=self.product_id.categ_id.procured_purchase_grouping)
+        return super(ProcurementOrder, obj).make_po()
