@@ -8,9 +8,18 @@ from openerp import models, fields
 class ProductCategory(models.Model):
     _inherit = 'product.category'
 
-    group_on_procured_purchases = fields.Boolean(
-        string='Group on procured purchases', default=True,
-        help='If this new field is checked, running the procurement acts like'
-        ' the standard way, adding the amount on existing line purchase order'
-        ' if the product and the UoM is the same, but if it is not checked, no'
-        ' grouping will be done, creating a new line each time')
+    procured_purchase_grouping = fields.Selection(
+        [('standard', 'Standard grouping'),
+         ('line', 'No line grouping'),
+         ('order', 'No order grouping')],
+        string='Procured purchase grouping', default='standard',
+        help="Select the behaviour for grouping procured purchases for the "
+             "the products of this category:\n"
+             "* Standard grouping (default): Procurements will generate "
+             "purchase orders as always, grouping lines and orders when "
+             "possible.\n"
+             "* No line grouping: If there are any open purchase order for "
+             "the same supplier, it will be reused, but lines won't be "
+             "merged.\n"
+             "* No order grouping: This option will prevent any kind of "
+             "grouping.")
