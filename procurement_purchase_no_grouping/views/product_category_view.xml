@@ -8,7 +8,7 @@
             <field name="model">product.category</field>
             <field name="arch" type="xml">
                 <field name="type" position="after">
-                    <field name="group_on_procured_purchases" />
+                    <field name="procured_purchase_grouping" />
                 </field>
             </field>
         </record>
