@@ -1,3 +1,4 @@
+[![Runbot Status](https://runbot.odoo-community.org/runbot/badge/flat/142/8.0.svg)](https://runbot.odoo-community.org/runbot/repo/github-com-oca-purchase-workflow-142)
 [![Build Status](https://travis-ci.org/OCA/purchase-workflow.svg?branch=8.0)](https://travis-ci.org/OCA/purchase-workflow)
 [![Coverage Status](https://coveralls.io/repos/OCA/purchase-workflow/badge.png?branch=8.0)](https://coveralls.io/r/OCA/purchase-workflow?branch=8.0)
 
