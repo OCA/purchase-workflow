@@ -42,6 +42,9 @@ class TestProcurementGroupbyOrder(common.TransactionCase):
              'location_src_id': loc_supplier_id,
              'picking_type_id': self.env["stock.picking.type"].search([])[0].id
              })
+        self.product = self.env.ref('product.product_product_36')
+        self.project = self.env.ref('account.analytic_project_1')
+        self.partner = self.env.ref('base.res_partner_3')
 
     def test_procurement(self):
         """ Create sale order :
@@ -51,24 +54,22 @@ class TestProcurementGroupbyOrder(common.TransactionCase):
                 * analytic account
             Confirm sale order
             Check there is two po
-            Check analytic account is not set on po 1
             Check analytic account is not set on po_line 1
-            Check analytic account is analytic account on po 2
             Check analytic account is analytic account on po_line 2
         """
 
         so1 = self.env['sale.order'].create(
-            {'partner_id': self.env.ref('base.res_partner_3').id})
+            {'partner_id': self.partner.id})
         self.env['sale.order.line'].create(
             {'order_id': so1.id,
-             'product_id': self.env.ref('product.product_product_36').id,
+             'product_id': self.product.id,
              'route_id': self.buy_route.id})
         so2 = self.env['sale.order'].create(
-            {'partner_id': self.env.ref('base.res_partner_3').id,
-             'project_id': self.env.ref('account.analytic_project_1').id})
+            {'partner_id': self.partner.id,
+             'project_id': self.project.id})
         self.env['sale.order.line'].create(
             {'order_id': so2.id,
-             'product_id': self.env.ref('product.product_product_36').id,
+             'product_id': self.product.id,
              'route_id': self.buy_route.id})
 
         so1.signal_workflow('order_confirm')
@@ -79,4 +80,32 @@ class TestProcurementGroupbyOrder(common.TransactionCase):
         self.assertNotEqual(po1.id, po2.id)
         self.assertFalse(po1.order_line.account_analytic_id)
         self.assertEqual(po2.order_line.account_analytic_id.id,
-                         self.env.ref('account.analytic_project_1').id)
+                         self.project.id)
+
+    def test_procurement_mto(self):
+        """ set prodcut.product_product_36 as mto
+            Create sale order :
+                * product.product_product_36
+                * analytic account
+            Confirm sale order
+            Check there is one po
+            Check analytic account is analytic account on po_line
+        """
+        self.product.route_ids = [(
+            4, self.env.ref('stock.route_warehouse0_mto').id)]
+        so = self.env['sale.order'].create(
+            {'partner_id': self.partner.id,
+             'project_id': self.project.id})
+        self.env['sale.order.line'].create(
+            {'order_id': so.id,
+             'product_id': self.product.id})
+
+        so.signal_workflow('order_confirm')
+
+        self.env['procurement.order'].run_scheduler()
+
+        for proc in so.procurement_group_id.procurement_ids:
+            if proc.purchase_id:
+                po = proc.purchase_id
+        self.assertEqual(po.order_line.account_analytic_id.id,
+                         self.project.id)

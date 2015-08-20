@@ -31,10 +31,18 @@ class ProcurementOrder(models.Model):
         comodel_name='account.analytic.account')
 
     @api.one
-    @api.depends('sale_line_id.order_id.project_id')
+    @api.depends('sale_line_id.order_id.project_id',
+                 'group_id')
     def _compute_analytic_id(self):
+        analytic = None
         if self.sale_line_id:
-            self.account_analytic_id = self.sale_line_id.order_id.project_id.id
+            analytic = self.sale_line_id.order_id.project_id.id
+        elif self.group_id:
+            so = self.env['sale.order'].search(
+                [('procurement_group_id', '=', self.group_id.id)])
+            if so and len(so) == 1:
+                analytic = so.project_id.id
+        self.account_analytic_id = analytic
 
     @api.model
     def _get_available_draft_po_domain(self, procurement, partner):
@@ -56,8 +64,8 @@ class ProcurementOrder(models.Model):
         """ If account analytic is defined on procurement order
             set it on purchase order line
         """
-        line_vals['account_analytic_id'] = procurement.account_analytic_id and \
-            procurement.account_analytic_id.id
+        line_vals['account_analytic_id'] = procurement.account_analytic_id \
+            and procurement.account_analytic_id.id
         return super(
             ProcurementOrder, self).create_procurement_purchase_order(
                 procurement, po_vals, line_vals)
