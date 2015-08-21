@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="purchase_order_add_variants_form" model="ir.ui.view">
+            <field name="name">purchase.order.form Add Variants</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header/button[@name='bid_received']" position="before">
+                    <button name="%(action_purchase_add_variants)d"
+                        type="action" string="Add Variants"
+                        groups="purchase_order_add_variants.group_purchase_add_variants"
+                        states="draft,sent"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

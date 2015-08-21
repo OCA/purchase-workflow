@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_purchases_config_purchase_add_variants" model="ir.ui.view">
+            <field name="name">purchase settings: Add Variants</field>
+            <field name="model">purchase.config.settings</field>
+            <field name="inherit_id" ref="purchase.view_purchase_configuration"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='group_analytic_account_for_purchases']/.." position="after">
+                    <div name="group_purchase_add_variants">
+                        <field name="group_purchase_add_variants" class="oe_inline"/>
+                        <label for="group_purchase_add_variants"/>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>
