@@ -7,6 +7,18 @@ Product Last Price Info - Purchase
 This module adds the last purchase info of the product.
 
 
+Usage
+=====
+
+.. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
+   :alt: Try me on Runbot
+   :target: https://runbot.odoo-community.org/runbot/142/8.0
+
+For further information, please visit:
+
+* https://www.odoo.com/forum/help-1
+
+
 Bug Tracker
 ===========
 
