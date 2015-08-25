@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Server Actions -->
+        <record model="ir.actions.server" id="purchase_waiting_validation">
+            <field name="name">Notify the purchase manager group of a new purchase order to validate</field>
+            <field name="model_id" ref="model_purchase_order" />
+            <field name="state">email</field>
+            <field name="sequence">5</field>
+            <field name="condition">True</field>
+            <field name="email">object.create_uid.user_email</field>
+            <field name="subject">New PO to validate</field>
+            <field name="message">Hello,
+&lt;br /&gt;
+&lt;br /&gt;
+The purchase order [[object.name]] is waiting for validation:
+&lt;br /&gt;
+&lt;a href="http://localhost:8080"&gt;http://localhost:8080&lt;/a&gt;
+&lt;br /&gt;
+Thank you.
+&lt;br /&gt;
+--
+&lt;br /&gt;
+OpenERP</field>
+        </record>
+
+        <record model="ir.actions.server" id="purchase_refused">
+            <field name="name">Notify the buyer that the purchase order has been refused</field>
+            <field name="model_id" ref="model_purchase_order" />
+            <field name="state">email</field>
+            <field name="sequence">5</field>
+            <field name="condition">True</field>
+            <field name="email">object.create_uid.user_email</field>
+            <field name="subject">[[object.name]] refused</field>
+            <field name="message">Hello,
+&lt;br /&gt;
+&lt;br /&gt;
+The purchase order [[object.name]] has been refused:
+&lt;br /&gt;
+&lt;a href="http://localhost:8080"&gt;http://localhost:8080&lt;/a&gt;
+&lt;br /&gt;
+Thank you.
+&lt;br /&gt;
+--
+&lt;br /&gt;
+OpenERP</field>
+        </record>
+
+        <record model="ir.actions.server" id="purchase_validated">
+            <field name="name">Notify the buyer that the purchase order has been validated</field>
+            <field name="model_id" ref="model_purchase_order" />
+            <field name="state">email</field>
+            <field name="sequence">5</field>
+            <field name="condition">True</field>
+            <field name="email">object.create_uid.user_email</field>
+            <field name="subject">[[object.name]] validated</field>
+            <field name="message">Hello,
+&lt;br /&gt;
+&lt;br /&gt;
+The purchase order [[object.name]] has been validated:
+&lt;br /&gt;
+&lt;a href="http://localhost:8080"&gt;http://localhost:8080&lt;/a&gt;
+&lt;br /&gt;
+Thank you.
+&lt;br /&gt;
+--
+&lt;br /&gt;
+OpenERP</field>
+        </record>
+
+        <!-- Activities -->
+        <record model="workflow.activity" id="purchase_waiting_internal_validation">
+            <field name="name">wait_valid</field>
+            <field name="wkf_id" ref="purchase.purchase_order"/>
+            <field name="kind">function</field>
+            <field name="split_mode">XOR</field>
+            <field name="join_mode">XOR</field>
+            <field name="action">wkf_wait_validation_order()</field>
+            <field name="action_id" ref="purchase_waiting_validation"/>
+        </record>
+
+        <record model="workflow.activity" id="purchase_waiting_correction">
+            <field name="name">wait_correct</field>
+            <field name="wkf_id" ref="purchase.purchase_order"/>
+            <field name="kind">function</field>
+            <field name="split_mode">XOR</field>
+            <field name="join_mode">XOR</field>
+            <field name="action">wkf_wait_correction()</field>
+            <field name="action_id" ref="purchase_refused"/>
+        </record>
+
+        <record model="workflow.activity" id="purchase.act_confirmed">
+            <field name="action_id" ref="purchase_validated"/>
+        </record>
+
+        <!-- Transitions -->
+        <record id="trans_draft_waiting_internal_validation" model="workflow.transition">
+            <field name="act_from" ref="purchase.act_draft"/>
+            <field name="act_to" ref="purchase_waiting_internal_validation"/>
+            <field name="condition">amount_untaxed &gt;= 1000</field>
+            <field name="signal">purchase_confirm</field>
+        </record>
+
+        <record id="purchase.trans_draft_confirmed" model="workflow.transition">
+            <field name="condition">amount_untaxed &lt; 1000</field>
+        </record>
+
+        <record id="trans_waiting_approval_confirmed" model="workflow.transition">
+            <field name="act_from" ref="purchase_waiting_internal_validation"/>
+            <field name="act_to" ref="purchase.act_confirmed"/>
+            <field name="group_id" ref="purchase.group_purchase_manager"/>
+            <field name="signal">purchase_confirm</field>
+        </record>
+
+        <record id="trans_waiting_approval_wait_correction" model="workflow.transition">
+            <field name="act_from" ref="purchase_waiting_internal_validation"/>
+            <field name="act_to" ref="purchase_waiting_correction"/>
+            <field name="group_id" ref="purchase.group_purchase_manager"/>
+            <field name="signal">purchase_refuse</field>
+        </record>
+
+        <record id="trans_waiting_correction_wait_approval" model="workflow.transition">
+            <field name="act_from" ref="purchase_waiting_correction"/>
+            <field name="act_to" ref="purchase_waiting_internal_validation"/>
+            <field name="signal">purchase_confirm</field>
+        </record>
+
+        <record id="trans_waiting_correction_cancel" model="workflow.transition">
+            <field name="act_from" ref="purchase_waiting_correction"/>
+            <field name="act_to" ref="purchase.act_cancel"/>
+            <field name="signal">purchase_cancel</field>
+        </record>
+
+    </data>
+</openerp>

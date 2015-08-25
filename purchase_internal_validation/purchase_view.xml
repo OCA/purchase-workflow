@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="purchase_order_internal_validation_form" model="ir.ui.view">
+            <field name="name">purchase.order.form.internalvalidation</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <field name="state" position="after">
+                    <button name="purchase_refuse" states="wait_valid" string="Refuse" icon="gtk-cancel"/>
+                    <button name="purchase_confirm" states="wait_valid" string="Confirm" icon="gtk-go-forward"/>
+                    <button name="purchase_cancel" states="wait_correct" string="Cancel" icon="gtk-cancel"/>
+                    <button name="purchase_confirm" states="wait_correct" string="Confirm" icon="gtk-go-forward"/>
+                </field>
+            </field>
+        </record>
+
+
+    </data>
+</openerp>

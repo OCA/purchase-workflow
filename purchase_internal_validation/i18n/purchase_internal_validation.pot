@@ -1,0 +1,222 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* purchase_internal_validation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.0.3\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2011-10-02 20:47+0000\n"
+"PO-Revision-Date: 2011-10-02 20:47+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_internal_validation
+#: code:addons/purchase_internal_validation/purchase_order.py:55
+#, python-format
+msgid "Purchase order '%s' is waiting for validation."
+msgstr "Purchase order '%s' is waiting for validation."
+
+#. module: purchase_internal_validation
+#: view:purchase.order:0
+msgid "Confirm"
+msgstr "Confirm"
+
+#. module: purchase_internal_validation
+#: field:purchase.internal.validation.installer,limit_amount:0
+msgid "Maximum Purchase Amount"
+msgstr "Maximum Purchase Amount"
+
+#. module: purchase_internal_validation
+#: model:ir.actions.server,name:purchase_internal_validation.purchase_waiting_validation
+msgid "Notify the purchase manager group of a new purchase order to val"
+msgstr "Notify the purchase manager group of a new purchase order to val"
+
+#. module: purchase_internal_validation
+#: model:ir.actions.server,subject:purchase_internal_validation.purchase_refused
+msgid "[[object.name]] refused"
+msgstr "[[object.name]] refused"
+
+#. module: purchase_internal_validation
+#: code:addons/purchase_internal_validation/purchase_order.py:51
+#, python-format
+msgid "You can not wait for purchase order to be validated without Purchase Order Lines."
+msgstr "You can not wait for purchase order to be validated without Purchase Order Lines."
+
+#. module: purchase_internal_validation
+#: sql_constraint:purchase.order:0
+msgid "Order Reference must be unique !"
+msgstr "Order Reference must be unique !"
+
+#. module: purchase_internal_validation
+#: code:addons/purchase_internal_validation/purchase_order.py:51
+#, python-format
+msgid "Error !"
+msgstr "Error !"
+
+#. module: purchase_internal_validation
+#: field:purchase.internal.validation.installer,progress:0
+msgid "Configuration Progress"
+msgstr "Configuration Progress"
+
+#. module: purchase_internal_validation
+#: view:purchase.internal.validation.installer:0
+msgid "title"
+msgstr "title"
+
+#. module: purchase_internal_validation
+#: model:ir.actions.server,name:purchase_internal_validation.purchase_refused
+msgid "Notify the buyer that the purchase order has been refused"
+msgstr "Notify the buyer that the purchase order has been refused"
+
+#. module: purchase_internal_validation
+#: model:ir.model,name:purchase_internal_validation.model_purchase_internal_validation_installer
+msgid "purchase.internal.validation.installer"
+msgstr "purchase.internal.validation.installer"
+
+#. module: purchase_internal_validation
+#: model:ir.actions.server,message:purchase_internal_validation.purchase_refused
+msgid "Hello,\n"
+"<br />\n"
+"<br />\n"
+"The purchase order [[object.name]] has been refused:\n"
+"<br />\n"
+"<a href=\"http://localhost:8080\">http://localhost:8080</a>\n"
+"<br />\n"
+"Thank you.\n"
+"<br />\n"
+"--\n"
+"<br />\n"
+"OpenERP"
+msgstr "Hello,\n"
+"<br />\n"
+"<br />\n"
+"The purchase order [[object.name]] has been refused:\n"
+"<br />\n"
+"<a href=\"http://localhost:8080\">http://localhost:8080</a>\n"
+"<br />\n"
+"Thank you.\n"
+"<br />\n"
+"--\n"
+"<br />\n"
+"OpenERP"
+
+#. module: purchase_internal_validation
+#: view:purchase.order:0
+msgid "Refuse"
+msgstr "Refuse"
+
+#. module: purchase_internal_validation
+#: model:ir.actions.server,subject:purchase_internal_validation.purchase_validated
+msgid "[[object.name]] validated"
+msgstr "[[object.name]] validated"
+
+#. module: purchase_internal_validation
+#: model:ir.model,name:purchase_internal_validation.model_purchase_order
+msgid "Purchase Order"
+msgstr "Purchase Order"
+
+#. module: purchase_internal_validation
+#: model:ir.actions.act_window,name:purchase_internal_validation.action_config_purchase_limit_amount
+#: view:purchase.internal.validation.installer:0
+msgid "Configure Limit Amount for Purchase"
+msgstr "Configure Limit Amount for Purchase"
+
+#. module: purchase_internal_validation
+#: view:purchase.internal.validation.installer:0
+msgid "Define minimum amount after which purchase needs to be validated."
+msgstr "Define minimum amount after which purchase needs to be validated."
+
+#. module: purchase_internal_validation
+#: model:ir.actions.server,message:purchase_internal_validation.purchase_waiting_validation
+msgid "Hello,\n"
+"<br />\n"
+"<br />\n"
+"The purchase order [[object.name]] is waiting for validation:\n"
+"<br />\n"
+"<a href=\"http://localhost:8080\">http://localhost:8080</a>\n"
+"<br />\n"
+"Thank you.\n"
+"<br />\n"
+"--\n"
+"<br />\n"
+"OpenERP"
+msgstr "Hello,\n"
+"<br />\n"
+"<br />\n"
+"The purchase order [[object.name]] is waiting for validation:\n"
+"<br />\n"
+"<a href=\"http://localhost:8080\">http://localhost:8080</a>\n"
+"<br />\n"
+"Thank you.\n"
+"<br />\n"
+"--\n"
+"<br />\n"
+"OpenERP"
+
+#. module: purchase_internal_validation
+#: model:ir.actions.server,message:purchase_internal_validation.purchase_validated
+msgid "Hello,\n"
+"<br />\n"
+"<br />\n"
+"The purchase order [[object.name]] has been validated:\n"
+"<br />\n"
+"<a href=\"http://localhost:8080\">http://localhost:8080</a>\n"
+"<br />\n"
+"Thank you.\n"
+"<br />\n"
+"--\n"
+"<br />\n"
+"OpenERP"
+msgstr "Hello,\n"
+"<br />\n"
+"<br />\n"
+"The purchase order [[object.name]] has been validated:\n"
+"<br />\n"
+"<a href=\"http://localhost:8080\">http://localhost:8080</a>\n"
+"<br />\n"
+"Thank you.\n"
+"<br />\n"
+"--\n"
+"<br />\n"
+"OpenERP"
+
+#. module: purchase_internal_validation
+#: view:purchase.internal.validation.installer:0
+msgid "Purchase Application Configuration"
+msgstr "Purchase Application Configuration"
+
+#. module: purchase_internal_validation
+#: model:ir.actions.server,subject:purchase_internal_validation.purchase_waiting_validation
+msgid "New PO to validate"
+msgstr "New PO to validate"
+
+#. module: purchase_internal_validation
+#: field:purchase.internal.validation.installer,config_logo:0
+msgid "Image"
+msgstr "Image"
+
+#. module: purchase_internal_validation
+#: view:purchase.internal.validation.installer:0
+msgid "res_config_contents"
+msgstr "res_config_contents"
+
+#. module: purchase_internal_validation
+#: help:purchase.internal.validation.installer,limit_amount:0
+msgid "Maximum amount after which internal validation of purchase is required."
+msgstr "Maximum amount after which internal validation of purchase is required."
+
+#. module: purchase_internal_validation
+#: view:purchase.order:0
+msgid "Cancel"
+msgstr "Cancel"
+
+#. module: purchase_internal_validation
+#: model:ir.actions.server,name:purchase_internal_validation.purchase_validated
+msgid "Notify the buyer that the purchase order has been validated"
+msgstr "Notify the buyer that the purchase order has been validated"
+
