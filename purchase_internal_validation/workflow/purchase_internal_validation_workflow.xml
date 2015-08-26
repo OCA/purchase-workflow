@@ -10,19 +10,15 @@
             <field name="sequence">5</field>
             <field name="condition">True</field>
             <field name="email">object.create_uid.user_email</field>
-            <field name="subject">New PO to validate</field>
+            <field name="subject">New PO to approve</field>
             <field name="message">Hello,
-&lt;br /&gt;
-&lt;br /&gt;
-The purchase order [[object.name]] is waiting for validation:
-&lt;br /&gt;
-&lt;a href="http://localhost:8080"&gt;http://localhost:8080&lt;/a&gt;
-&lt;br /&gt;
+
+The purchase order [[object.name]] is waiting for your approval:
+[[object.get_action_url()]]
+
 Thank you.
-&lt;br /&gt;
 --
-&lt;br /&gt;
-OpenERP</field>
+Odoo</field>
         </record>
 
         <record model="ir.actions.server" id="purchase_refused">
@@ -34,39 +30,31 @@ OpenERP</field>
             <field name="email">object.create_uid.user_email</field>
             <field name="subject">[[object.name]] refused</field>
             <field name="message">Hello,
-&lt;br /&gt;
-&lt;br /&gt;
+
 The purchase order [[object.name]] has been refused:
-&lt;br /&gt;
-&lt;a href="http://localhost:8080"&gt;http://localhost:8080&lt;/a&gt;
-&lt;br /&gt;
+[[object.get_action_url()]]
+
 Thank you.
-&lt;br /&gt;
 --
-&lt;br /&gt;
-OpenERP</field>
+Odoo</field>
         </record>
 
-        <record model="ir.actions.server" id="purchase_validated">
-            <field name="name">Notify the buyer that the purchase order has been validated</field>
+        <record model="ir.actions.server" id="purchase_approved">
+            <field name="name">Notify the buyer that the purchase order has been approved</field>
             <field name="model_id" ref="model_purchase_order" />
             <field name="state">email</field>
             <field name="sequence">5</field>
             <field name="condition">True</field>
             <field name="email">object.create_uid.user_email</field>
-            <field name="subject">[[object.name]] validated</field>
+            <field name="subject">[[object.name]] approved</field>
             <field name="message">Hello,
-&lt;br /&gt;
-&lt;br /&gt;
-The purchase order [[object.name]] has been validated:
-&lt;br /&gt;
-&lt;a href="http://localhost:8080"&gt;http://localhost:8080&lt;/a&gt;
-&lt;br /&gt;
+
+The purchase order [[object.name]] has been approved:
+[[object.get_action_url()]]
+
 Thank you.
-&lt;br /&gt;
 --
-&lt;br /&gt;
-OpenERP</field>
+Odoo</field>
         </record>
 
         <!-- Activities -->
@@ -96,7 +84,8 @@ OpenERP</field>
             <field name="kind">function</field>
             <field name="split_mode">XOR</field>
             <field name="join_mode">XOR</field>
-            <field name="action_id" ref="purchase_validated"/>
+            <field name="action">wkf_approved()</field>
+            <field name="action_id" ref="purchase_approved"/>
         </record>
 
         <!-- Transitions -->

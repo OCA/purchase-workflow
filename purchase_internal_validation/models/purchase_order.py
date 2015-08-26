@@ -79,3 +79,9 @@ class purchase_order(orm.Model):
         for id in ids:
             self.write(cr, uid, [id], {'state': 'wait_correct'})
         return True
+
+    # TODO: implement messages system
+    def wkf_approved(self, cr, uid, ids, context=None):
+        for id in ids:
+            self.write(cr, uid, [id], {'state': 'approved'})
+        return True
