@@ -20,17 +20,17 @@
 ##############################################################################
 
 {
-    "name" : "Internal Validation for Purchase",
-    "version" : "1.1",
+    "name": "Internal Validation for Purchase",
+    "version": "1.1",
     "category": 'Purchases',
-    "depends" : [
+    "depends": [
         "base",
         "purchase",
     ],
-    "author" : 'Savoir-faire Linux',
+    "author": 'Savoir-faire Linux',
     "description": """
-        This module modifies the purchase workflow in order to validate purchases 
-        that exceeds minimum amount set by configuration wizard.
+        This module modifies the purchase workflow in order to validate
+        purchases that exceeds minimum amount set by configuration wizard.
     """,
     'website': 'http://www.savoirfairelinux.com',
     'data': [
@@ -41,6 +41,5 @@
     'demo': [],
     'installable': True,
     'active': False,
-    'certificate' : '',
-
+    'certificate': '',
 }

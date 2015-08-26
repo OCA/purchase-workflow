@@ -19,5 +19,5 @@
 #
 ##############################################################################
 
-import purchase_internal_validation_installer
-import purchase_order
+from . import purchase_internal_validation_installer
+from . import purchase_order
