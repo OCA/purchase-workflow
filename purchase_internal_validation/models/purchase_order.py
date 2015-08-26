@@ -35,8 +35,9 @@ class purchase_order(orm.Model):
         ('wait_valid', 'Waiting for Validation'),
         ('wait_correct', 'Waiting for Correction'),
         ('wait', 'Waiting'),
-        ('approved', 'Approved'),
-        ('confirmed', 'Confirmed'),
+        ('validated', 'Validated'),
+        ('confirmed', 'Waiting Approval'),
+        ('approved', 'Purchase Order'),
         ('except_picking', 'Shipping Exception'),
         ('except_invoice', 'Invoice Exception'),
         ('done', 'Done'),
@@ -84,9 +85,9 @@ class purchase_order(orm.Model):
         return True
 
     # TODO: implement messages system
-    def wkf_approved(self, cr, uid, ids, context=None):
+    def wkf_validated(self, cr, uid, ids, context=None):
         for id in ids:
-            self.write(cr, uid, [id], {'state': 'approved'})
+            self.write(cr, uid, [id], {'state': 'validated'})
         return True
 
     def get_action_url(self, cr, uid, ids, context=None):

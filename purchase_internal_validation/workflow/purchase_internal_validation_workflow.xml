@@ -10,10 +10,10 @@
             <field name="sequence">5</field>
             <field name="condition">True</field>
             <field name="email">object.create_uid.user_email</field>
-            <field name="subject">New PO to approve</field>
+            <field name="subject">New PO to validate</field>
             <field name="message">Hello,
 
-The purchase order [[object.name]] is waiting for your approval:
+The purchase order [[object.name]] is waiting for your validation:
 [[object.get_action_url()]]
 
 Thank you.
@@ -39,17 +39,17 @@ Thank you.
 Odoo</field>
         </record>
 
-        <record model="ir.actions.server" id="purchase_approved">
-            <field name="name">Notify the buyer that the purchase order has been approved</field>
+        <record model="ir.actions.server" id="purchase_validated">
+            <field name="name">Notify the buyer that the purchase order has been validated</field>
             <field name="model_id" ref="model_purchase_order" />
             <field name="state">email</field>
             <field name="sequence">5</field>
             <field name="condition">True</field>
             <field name="email">object.create_uid.user_email</field>
-            <field name="subject">[[object.name]] approved</field>
+            <field name="subject">[[object.name]] validated</field>
             <field name="message">Hello,
 
-The purchase order [[object.name]] has been approved:
+The purchase order [[object.name]] has been validated:
 [[object.get_action_url()]]
 
 Thank you.
@@ -78,14 +78,14 @@ Odoo</field>
             <field name="action_id" ref="purchase_refused"/>
         </record>
 
-        <record model="workflow.activity" id="purchase_approved">
-            <field name="name">approved</field>
+        <record model="workflow.activity" id="purchase_validated">
+            <field name="name">validated</field>
             <field name="wkf_id" ref="purchase.purchase_order"/>
             <field name="kind">function</field>
             <field name="split_mode">XOR</field>
             <field name="join_mode">XOR</field>
-            <field name="action">wkf_approved()</field>
-            <field name="action_id" ref="purchase_approved"/>
+            <field name="action">wkf_validated()</field>
+            <field name="action_id" ref="purchase_validated"/>
         </record>
 
         <!-- Transitions -->
@@ -113,13 +113,13 @@ Odoo</field>
 
         <record id="trans_waiting_approval_confirmed" model="workflow.transition">
             <field name="act_from" ref="purchase_waiting_internal_validation"/>
-            <field name="act_to" ref="purchase_approved"/>
+            <field name="act_to" ref="purchase_validated"/>
             <field name="group_id" ref="purchase.group_purchase_manager"/>
-            <field name="signal">purchase_approve</field>
+            <field name="signal">purchase_validate</field>
         </record>
 
-        <record id="trans_approved_confirmed" model="workflow.transition">
-            <field name="act_from" ref="purchase_approved"/>
+        <record id="trans_validated_confirmed" model="workflow.transition">
+            <field name="act_from" ref="purchase_validated"/>
             <field name="act_to" ref="purchase.act_confirmed"/>
             <field name="signal">purchase_confirm</field>
         </record>

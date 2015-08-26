@@ -9,9 +9,10 @@
             <field name="arch" type="xml">
                 <field name="state" position="after">
                     <button name="purchase_refuse" states="wait_valid" string="Refuse" icon="gtk-cancel" groups="purchase.group_purchase_manager"/>
-                    <button name="purchase_approve" states="wait_valid" string="Approve" icon="gtk-go-forward" groups="purchase.group_purchase_manager"/>
+                    <button name="purchase_validate" states="wait_valid" string="Validate" icon="gtk-go-forward" groups="purchase.group_purchase_manager"/>
                     <button name="purchase_cancel" states="wait_correct" string="Cancel" icon="gtk-cancel"/>
                     <button name="purchase_confirm" states="wait_correct" string="Confirm" icon="gtk-go-forward"/>
+                    <button name="purchase_confirm" states="validated" string="Confirm" icon="gtk-go-forward"/>
                 </field>
             </field>
         </record>
