@@ -9,7 +9,7 @@
             <field name="arch" type="xml">
                 <field name="state" position="after">
                     <button name="purchase_refuse" states="wait_valid" string="Refuse" icon="gtk-cancel"/>
-                    <button name="purchase_confirm" states="wait_valid" string="Confirm" icon="gtk-go-forward"/>
+                    <button name="purchase_confirm" states="wait_valid" string="Approve" icon="gtk-go-forward"/>
                     <button name="purchase_cancel" states="wait_correct" string="Cancel" icon="gtk-cancel"/>
                     <button name="purchase_confirm" states="wait_correct" string="Confirm" icon="gtk-go-forward"/>
                 </field>
