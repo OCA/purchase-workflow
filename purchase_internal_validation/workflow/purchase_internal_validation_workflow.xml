@@ -90,7 +90,12 @@ OpenERP</field>
             <field name="action_id" ref="purchase_refused"/>
         </record>
 
-        <record model="workflow.activity" id="purchase.act_confirmed">
+        <record model="workflow.activity" id="purchase_approved">
+            <field name="name">approved</field>
+            <field name="wkf_id" ref="purchase.purchase_order"/>
+            <field name="kind">function</field>
+            <field name="split_mode">XOR</field>
+            <field name="join_mode">XOR</field>
             <field name="action_id" ref="purchase_validated"/>
         </record>
 
@@ -119,8 +124,14 @@ OpenERP</field>
 
         <record id="trans_waiting_approval_confirmed" model="workflow.transition">
             <field name="act_from" ref="purchase_waiting_internal_validation"/>
-            <field name="act_to" ref="purchase.act_confirmed"/>
+            <field name="act_to" ref="purchase_approved"/>
             <field name="group_id" ref="purchase.group_purchase_manager"/>
+            <field name="signal">purchase_approve</field>
+        </record>
+
+        <record id="trans_approved_confirmed" model="workflow.transition">
+            <field name="act_from" ref="purchase_approved"/>
+            <field name="act_to" ref="purchase.act_confirmed"/>
             <field name="signal">purchase_confirm</field>
         </record>
 
