@@ -85,3 +85,16 @@ class purchase_order(orm.Model):
         for id in ids:
             self.write(cr, uid, [id], {'state': 'approved'})
         return True
+
+    def get_action_url(self, cr, uid, ids, context=None):
+        assert len(ids) == 1
+        purchase = self.browse(cr, uid, ids[0], context=context)
+        base_url = self.pool['ir.config_parameter'].get_param(
+            cr, uid, 'web.base.url', default='http://localhost:8069',
+            context=context,
+        )
+        query = {'db': cr.dbname}
+        fragment = {'id': purchase.id, 'model': self._name}
+        return urljoin(base_url, "?%s#%s" % (
+            urlencode(query), urlencode(fragment)
+        ))
