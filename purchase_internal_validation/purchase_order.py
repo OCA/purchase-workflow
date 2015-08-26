@@ -28,6 +28,7 @@ class purchase_order(orm.Model):
 
     STATE_SELECTION = [
         ('draft', 'Request for Quotation'),
+        ('sent', 'RFQ Sent'),
         ('wait_valid', 'Waiting for Validation'),
         ('wait_correct', 'Waiting for Correction'),
         ('wait', 'Waiting'),
