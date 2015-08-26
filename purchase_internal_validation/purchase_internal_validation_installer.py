@@ -44,15 +44,22 @@ class purchase_internal_validation_installer(orm.TransientModel):
         amt = data[0]['limit_amount']
         data_pool = self.pool['ir.model.data']
         transition_obj = self.pool['workflow.transition']
-        waiting = data_pool._get_id(cr, uid,
-                                    'purchase_internal_validation',
-                                    'trans_draft_waiting_internal_validation')
-        waiting_id = data_pool.browse(cr, uid, waiting, context=context).res_id
-        confirm = data_pool._get_id(cr, uid,
-                                    'purchase', 'trans_draft_confirmed')
-        confirm_id = data_pool.browse(cr, uid, confirm, context=context).res_id
-        transition_obj.write(cr, uid, waiting_id,
-                             {'condition': 'amount_total>=%s' % (amt)})
-        transition_obj.write(cr, uid, confirm_id,
-                             {'condition': 'amount_total<%s' % (amt)})
+        cond_over = 'amount_total >= {0}'.format(amt)
+        cond_under = 'amount_total < {0}'.format(amt)
+        for module, extid, condition in [
+                ("purchase_internal_validation",
+                 "trans_draft_waiting_internal_validation",
+                 cond_over),
+                ("purchase",
+                 "trans_draft_confirmed",
+                 cond_under),
+                ("purchase_internal_validation",
+                 "trans_sent_waiting_internal_validation",
+                 cond_over),
+                ("purchase",
+                 "trans_sent_confirmed",
+                 cond_under)]:
+            transition = data_pool.get_object(cr, uid, module, extid,
+                                              context=context)
+            transition.write({"condition": condition})
         return {}

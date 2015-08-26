@@ -102,7 +102,18 @@ OpenERP</field>
             <field name="signal">purchase_confirm</field>
         </record>
 
+        <record id="trans_sent_waiting_internal_validation" model="workflow.transition">
+            <field name="act_from" ref="purchase.act_sent"/>
+            <field name="act_to" ref="purchase_waiting_internal_validation"/>
+            <field name="condition">amount_untaxed &gt;= 1000</field>
+            <field name="signal">purchase_confirm</field>
+        </record>
+
         <record id="purchase.trans_draft_confirmed" model="workflow.transition">
+            <field name="condition">amount_untaxed &lt; 1000</field>
+        </record>
+
+        <record id="purchase.trans_sent_confirmed" model="workflow.transition">
             <field name="condition">amount_untaxed &lt; 1000</field>
         </record>
 
