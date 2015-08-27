@@ -34,7 +34,7 @@
     """,
     'data': [
         'workflow/purchase_internal_validation_workflow.xml',
-        'views/purchase_internal_validation_installer.xml',
+        'views/res_config_view.xml',
         'views/purchase_view.xml'
     ],
     'installable': True,

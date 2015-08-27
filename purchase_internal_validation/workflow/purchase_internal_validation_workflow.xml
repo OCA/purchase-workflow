@@ -58,7 +58,7 @@ Odoo</field>
         </record>
 
         <!-- Activities -->
-        <record model="workflow.activity" id="purchase_waiting_internal_validation">
+        <record model="workflow.activity" id="act_purchase_waiting_internal_validation">
             <field name="name">wait_valid</field>
             <field name="wkf_id" ref="purchase.purchase_order"/>
             <field name="kind">function</field>
@@ -68,7 +68,7 @@ Odoo</field>
             <field name="action_id" ref="purchase_waiting_validation"/>
         </record>
 
-        <record model="workflow.activity" id="purchase_waiting_correction">
+        <record model="workflow.activity" id="act_purchase_waiting_correction">
             <field name="name">wait_correct</field>
             <field name="wkf_id" ref="purchase.purchase_order"/>
             <field name="kind">function</field>
@@ -78,7 +78,7 @@ Odoo</field>
             <field name="action_id" ref="purchase_refused"/>
         </record>
 
-        <record model="workflow.activity" id="purchase_validated">
+        <record model="workflow.activity" id="act_purchase_validated">
             <field name="name">validated</field>
             <field name="wkf_id" ref="purchase.purchase_order"/>
             <field name="kind">function</field>
@@ -91,54 +91,54 @@ Odoo</field>
         <!-- Transitions -->
         <record id="trans_draft_waiting_internal_validation" model="workflow.transition">
             <field name="act_from" ref="purchase.act_draft"/>
-            <field name="act_to" ref="purchase_waiting_internal_validation"/>
-            <field name="condition">amount_untaxed &gt;= 1000</field>
+            <field name="act_to" ref="act_purchase_waiting_internal_validation"/>
+            <field name="condition">test_require_validation()</field>
             <field name="signal">purchase_confirm</field>
         </record>
 
         <record id="trans_sent_waiting_internal_validation" model="workflow.transition">
             <field name="act_from" ref="purchase.act_sent"/>
-            <field name="act_to" ref="purchase_waiting_internal_validation"/>
-            <field name="condition">amount_untaxed &gt;= 1000</field>
+            <field name="act_to" ref="act_purchase_waiting_internal_validation"/>
+            <field name="condition">test_require_validation()</field>
             <field name="signal">purchase_confirm</field>
         </record>
 
         <record id="purchase.trans_draft_confirmed" model="workflow.transition">
-            <field name="condition">amount_untaxed &lt; 1000</field>
+            <field name="condition">not test_require_validation()</field>
         </record>
 
         <record id="purchase.trans_sent_confirmed" model="workflow.transition">
-            <field name="condition">amount_untaxed &lt; 1000</field>
+            <field name="condition">not test_require_validation()</field>
         </record>
 
         <record id="trans_waiting_approval_confirmed" model="workflow.transition">
-            <field name="act_from" ref="purchase_waiting_internal_validation"/>
-            <field name="act_to" ref="purchase_validated"/>
+            <field name="act_from" ref="act_purchase_waiting_internal_validation"/>
+            <field name="act_to" ref="act_purchase_validated"/>
             <field name="group_id" ref="purchase.group_purchase_manager"/>
             <field name="signal">purchase_validate</field>
         </record>
 
         <record id="trans_validated_confirmed" model="workflow.transition">
-            <field name="act_from" ref="purchase_validated"/>
+            <field name="act_from" ref="act_purchase_validated"/>
             <field name="act_to" ref="purchase.act_confirmed"/>
             <field name="signal">purchase_confirm</field>
         </record>
 
         <record id="trans_waiting_approval_wait_correction" model="workflow.transition">
-            <field name="act_from" ref="purchase_waiting_internal_validation"/>
-            <field name="act_to" ref="purchase_waiting_correction"/>
+            <field name="act_from" ref="act_purchase_waiting_internal_validation"/>
+            <field name="act_to" ref="act_purchase_waiting_correction"/>
             <field name="group_id" ref="purchase.group_purchase_manager"/>
             <field name="signal">purchase_refuse</field>
         </record>
 
         <record id="trans_waiting_correction_wait_approval" model="workflow.transition">
-            <field name="act_from" ref="purchase_waiting_correction"/>
-            <field name="act_to" ref="purchase_waiting_internal_validation"/>
+            <field name="act_from" ref="act_purchase_waiting_correction"/>
+            <field name="act_to" ref="act_purchase_waiting_internal_validation"/>
             <field name="signal">purchase_confirm</field>
         </record>
 
         <record id="trans_waiting_correction_cancel" model="workflow.transition">
-            <field name="act_from" ref="purchase_waiting_correction"/>
+            <field name="act_from" ref="act_purchase_waiting_correction"/>
             <field name="act_to" ref="purchase.act_cancel"/>
             <field name="signal">purchase_cancel</field>
         </record>

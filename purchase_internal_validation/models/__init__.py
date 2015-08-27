@@ -19,6 +19,6 @@
 #
 ##############################################################################
 from . import (
-    purchase_internal_validation_installer,
-    purchase_order
+    purchase_order,
+    res_config,
 )

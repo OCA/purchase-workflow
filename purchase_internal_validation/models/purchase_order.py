@@ -90,6 +90,15 @@ class purchase_order(orm.Model):
             self.write(cr, uid, [id], {'state': 'validated'})
         return True
 
+    def test_require_validation(self, cr, uid, ids, context=None):
+        limit = self.pool["purchase.config.settings"].get_default_limit_amount(
+            cr, uid, None, context=context)["limit_amount"]
+        for rec in self.browse(cr, uid, ids, context=context):
+            if rec.amount_untaxed >= limit:
+                return True
+
+        return False
+
     def get_action_url(self, cr, uid, ids, context=None):
         assert len(ids) == 1
         purchase = self.browse(cr, uid, ids[0], context=context)
