@@ -33,9 +33,10 @@
         purchases that exceeds minimum amount set by configuration wizard.
     """,
     'data': [
-        'workflow/purchase_internal_validation_workflow.xml',
+        'security/groups.xml',
         'views/res_config_view.xml',
-        'views/purchase_view.xml'
+        'views/purchase_view.xml',
+        'workflow/purchase_internal_validation_workflow.xml',
     ],
     'installable': True,
 }

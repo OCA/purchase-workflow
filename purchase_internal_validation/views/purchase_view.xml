@@ -8,8 +8,8 @@
             <field name="inherit_id" ref="purchase.purchase_order_form"/>
             <field name="arch" type="xml">
                 <field name="state" position="after">
-                    <button name="purchase_refuse" states="wait_valid" string="Refuse" icon="gtk-cancel" groups="purchase.group_purchase_manager"/>
-                    <button name="purchase_validate" states="wait_valid" string="Validate" icon="gtk-go-forward" groups="purchase.group_purchase_manager"/>
+                    <button name="purchase_refuse" states="wait_valid" string="Refuse" icon="gtk-cancel" groups="purchase_internal_validation.group_purchase_validator"/>
+                    <button name="purchase_validate" states="wait_valid" string="Validate" icon="gtk-go-forward" groups="purchase_internal_validation.group_purchase_validator"/>
                     <button name="purchase_cancel" states="wait_correct" string="Cancel" icon="gtk-cancel"/>
                     <button name="purchase_confirm" states="wait_correct" string="Confirm" icon="gtk-go-forward"/>
                     <button name="wkf_send_rfq" states="validated" string="Send by Email" type="object" context="{'send_rfq':True}" class="oe_highlight"/>

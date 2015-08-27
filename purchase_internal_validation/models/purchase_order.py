@@ -99,6 +99,18 @@ class purchase_order(orm.Model):
 
         return False
 
+    def get_validator_emails(self, cr, uid, ids, name, args, context):
+        res = {}
+        grp = self.pool["ir.model.data"].get_object(
+            cr, uid, "purchase_internal_validation", "group_purchase_validator",
+            context=context)
+        emails = ",".join(
+            user.email
+            for user in grp.users
+            if user.email
+        )
+        return dict((id, emails) for id in ids)
+
     def get_action_url(self, cr, uid, ids, context=None):
         assert len(ids) == 1
         purchase = self.browse(cr, uid, ids[0], context=context)
