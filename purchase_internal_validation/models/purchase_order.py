@@ -100,9 +100,9 @@ class purchase_order(orm.Model):
         return False
 
     def get_validator_emails(self, cr, uid, ids, name, args, context):
-        res = {}
         grp = self.pool["ir.model.data"].get_object(
-            cr, uid, "purchase_internal_validation", "group_purchase_validator",
+            cr, uid,
+            "purchase_internal_validation", "group_purchase_validator",
             context=context)
         emails = ",".join(
             user.email
