@@ -12,11 +12,21 @@
                     <button name="purchase_validate" states="wait_valid" string="Validate" icon="gtk-go-forward" groups="purchase.group_purchase_manager"/>
                     <button name="purchase_cancel" states="wait_correct" string="Cancel" icon="gtk-cancel"/>
                     <button name="purchase_confirm" states="wait_correct" string="Confirm" icon="gtk-go-forward"/>
-                    <button name="purchase_confirm" states="validated" string="Confirm" icon="gtk-go-forward"/>
+                    <button name="wkf_send_rfq" states="validated" string="Send by Email" type="object" context="{'send_rfq':True}" class="oe_highlight"/>
+                    <button name="print_quotation" states="validated" string="Print" type="object" class="oe_highlight"/>
+                    <button name="purchase_confirm" states="validated" string="Confirm Order" icon="gtk-go-forward" class="oe_highlight"/>
+                    <button name="action_cancel" states="validated" string="Cancel Order" type="object" icon="gtk-cancel"/>
                 </field>
             </field>
         </record>
 
+        <record id="purchase.purchase_rfq" model="ir.actions.act_window">
+            <field name="domain">[('state','in',('draft','sent','confirmed','wait_valid','wait_correct','validated'))]</field>
+        </record>
+
+        <record id="purchase.purchase_form_action" model="ir.actions.act_window">
+            <field name="domain">[('state','not in',('draft','sent','confirmed','wait_valid','wait_correct','validated'))]</field>
+        </record>
 
     </data>
 </openerp>
