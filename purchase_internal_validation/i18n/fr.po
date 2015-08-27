@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 6.0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-27 14:20+0000\n"
+"POT-Creation-Date: 2015-08-27 15:37+0000\n"
 "PO-Revision-Date: 2015-08-27 10:30-0500\n"
 "Last-Translator: Maxime Chambreuil <maxime.chambreuil@savoirfairelinux.com>\n"
 "Language-Team: \n"
@@ -29,7 +29,7 @@ msgid "Confirm"
 msgstr "Confirmer"
 
 #. module: purchase_internal_validation
-#: field:purchase.internal.validation.installer,limit_amount:0
+#: field:purchase.config.settings,limit_amount:0
 msgid "Maximum Purchase Amount"
 msgstr "Montant maximum"
 
@@ -42,6 +42,11 @@ msgstr "Notifie les gestionnaires d'un bon de commande à approuver"
 #: view:purchase.order:0
 msgid "Print"
 msgstr "Imprimer"
+
+#. module: purchase_internal_validation
+#: model:ir.model,name:purchase_internal_validation.model_purchase_config_settings
+msgid "purchase.config.settings"
+msgstr ""
 
 #. module: purchase_internal_validation
 #: model:ir.actions.server,subject:purchase_internal_validation.purchase_refused
@@ -83,6 +88,27 @@ msgstr ""
 #: view:purchase.order:0
 msgid "Confirm Order"
 msgstr "Confirmer la commande"
+
+#. module: purchase_internal_validation
+#: model:ir.actions.server,message:purchase_internal_validation.purchase_validated
+msgid ""
+"Hello,\n"
+"\n"
+"The purchase order [[object.name]] has been validated:\n"
+"[[object.get_action_url()]]\n"
+"\n"
+"Thank you.\n"
+"--\n"
+"Odoo"
+msgstr ""
+"Bonjour,\n"
+"\n"
+"Le bon de commande [[object.name]] a été validé :\n"
+"[[object.get_action_url()]]\n"
+"\n"
+"Merci.\n"
+"--\n"
+"Odoo"
 
 #. module: purchase_internal_validation
 #: model:ir.actions.server,message:purchase_internal_validation.purchase_waiting_validation
@@ -137,15 +163,19 @@ msgid "Send by Email"
 msgstr "Envoyer par courriel"
 
 #. module: purchase_internal_validation
+#: model:ir.actions.server,subject:purchase_internal_validation.purchase_validated
+msgid "[[object.name]] validated"
+msgstr "[[object.name]] approuvé"
+
+#. module: purchase_internal_validation
 #: model:ir.model,name:purchase_internal_validation.model_purchase_order
 msgid "Purchase Order"
 msgstr "Bon de commande"
 
 #. module: purchase_internal_validation
-#: model:ir.actions.act_window,name:purchase_internal_validation.action_config_purchase_limit_amount
-#: view:purchase.internal.validation.installer:0
-msgid "Configure Limit Amount for Purchase"
-msgstr "Configurer le montant limite pour les achats"
+#: model:res.groups,name:purchase_internal_validation.group_purchase_validator
+msgid "Validator"
+msgstr "Approbateurs"
 
 #. module: purchase_internal_validation
 #: code:addons/purchase_internal_validation/models/purchase_order.py:67
@@ -154,15 +184,9 @@ msgid "Error"
 msgstr "Erreur"
 
 #. module: purchase_internal_validation
-#: view:purchase.internal.validation.installer:0
-msgid "Define minimum amount after which purchase needs to be validated."
-msgstr ""
-"Définir le montant minimum à partir duquel les achats doivent être approuvés."
-
-#. module: purchase_internal_validation
-#: view:purchase.internal.validation.installer:0
-msgid "Purchase Application Configuration"
-msgstr "Configuration de l'application des achats"
+#: model:ir.model,name:purchase_internal_validation.model_purchase_internal_validation_settings
+msgid "purchase.internal.validation.settings"
+msgstr "purchase.internal.validation.settings"
 
 #. module: purchase_internal_validation
 #: model:ir.actions.server,subject:purchase_internal_validation.purchase_waiting_validation
@@ -170,12 +194,7 @@ msgid "New PO to validate"
 msgstr "Nouveau bon de commande à approuver"
 
 #. module: purchase_internal_validation
-#: view:purchase.internal.validation.installer:0
-msgid "res_config_contents"
-msgstr "res_config_contents"
-
-#. module: purchase_internal_validation
-#: help:purchase.internal.validation.installer,limit_amount:0
+#: help:purchase.config.settings,limit_amount:0
 msgid "Maximum amount after which internal validation of purchase is required."
 msgstr "Montant maximum après lequel les achats doivent être approuvés."
 
@@ -184,74 +203,7 @@ msgstr "Montant maximum après lequel les achats doivent être approuvés."
 msgid "Cancel"
 msgstr "Annuler"
 
-#~ msgid "Order Reference must be unique !"
-#~ msgstr "La référence doi être unique !"
-
-#~ msgid "Configuration Progress"
-#~ msgstr "Avancement de la configuration"
-
-#~ msgid "title"
-#~ msgstr "titre"
-
-#~ msgid ""
-#~ "Hello,\n"
-#~ "<br />\n"
-#~ "<br />\n"
-#~ "The purchase order [[object.name]] has been refused:\n"
-#~ "<br />\n"
-#~ "<a href=\"http://localhost:8080\">http://localhost:8080</a>\n"
-#~ "<br />\n"
-#~ "Thank you.\n"
-#~ "<br />\n"
-#~ "--\n"
-#~ "<br />\n"
-#~ "OpenERP"
-#~ msgstr ""
-#~ "Bonjour,\n"
-#~ "<br />\n"
-#~ "<br />\n"
-#~ "Le bon de commande [[object.name]] a été refusé :\n"
-#~ "<br />\n"
-#~ "<a href=\"http://localhost:8080\">http://localhost:8080</a>\n"
-#~ "<br />\n"
-#~ "Merci.\n"
-#~ "<br />\n"
-#~ "--\n"
-#~ "<br />\n"
-#~ "OpenERP"
-
-#~ msgid "[[object.name]] validated"
-#~ msgstr "[[object.name]] approuvé"
-
-#~ msgid ""
-#~ "Hello,\n"
-#~ "<br />\n"
-#~ "<br />\n"
-#~ "The purchase order [[object.name]] has been validated:\n"
-#~ "<br />\n"
-#~ "<a href=\"http://localhost:8080\">http://localhost:8080</a>\n"
-#~ "<br />\n"
-#~ "Thank you.\n"
-#~ "<br />\n"
-#~ "--\n"
-#~ "<br />\n"
-#~ "OpenERP"
-#~ msgstr ""
-#~ "Bonjour,\n"
-#~ "<br />\n"
-#~ "<br />\n"
-#~ "Le bon de commande [[object.name]] a été approuvé :\n"
-#~ "<br />\n"
-#~ "<a href=\"http://localhost:8080\">http://localhost:8080</a>\n"
-#~ "<br />\n"
-#~ "Merci.\n"
-#~ "<br />\n"
-#~ "--\n"
-#~ "<br />\n"
-#~ "OpenERP"
-
-#~ msgid "Image"
-#~ msgstr "Image"
-
-#~ msgid "Notify the buyer that the purchase order has been validated"
-#~ msgstr "Notifie l'acheteur que le bon de commande a été approuvé"
+#. module: purchase_internal_validation
+#: model:ir.actions.server,name:purchase_internal_validation.purchase_validated
+msgid "Notify the buyer that the purchase order has been validated"
+msgstr "Notifie l'acheteur que le bon de commande a été approuvé"
