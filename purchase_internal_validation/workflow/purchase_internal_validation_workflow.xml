@@ -9,7 +9,7 @@
             <field name="state">email</field>
             <field name="sequence">5</field>
             <field name="condition">True</field>
-            <field name="email">[[object.get_validator_emails()]]</field>
+            <field name="email">object.get_validator_emails()</field>
             <field name="subject">New PO to validate</field>
             <field name="message">Hello,
 

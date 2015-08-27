@@ -55,7 +55,7 @@ class purchase_order(orm.Model):
                  "order is paid and received, the state becomes 'Done'. "
                  "If a cancel action occurs in the invoice or in the "
                  "reception of goods, the state becomes in exception.",
-            select=True)
+            select=True),
     }
 
     # TODO: implement messages system
@@ -99,17 +99,17 @@ class purchase_order(orm.Model):
 
         return False
 
-    def get_validator_emails(self, cr, uid, ids, name, args, context):
+    def get_validator_emails(self, cr, uid, ids, context):
         grp = self.pool["ir.model.data"].get_object(
             cr, uid,
             "purchase_internal_validation", "group_purchase_validator",
             context=context)
-        emails = ",".join(
+        emails = [
             user.email
             for user in grp.users
             if user.email
-        )
-        return dict((id, emails) for id in ids)
+        ]
+        return emails
 
     def get_action_url(self, cr, uid, ids, context=None):
         assert len(ids) == 1
