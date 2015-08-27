@@ -175,7 +175,7 @@ msgstr "Bon de commande"
 #. module: purchase_internal_validation
 #: model:res.groups,name:purchase_internal_validation.group_purchase_validator
 msgid "Validator"
-msgstr "Approbateurs"
+msgstr "Approbateur"
 
 #. module: purchase_internal_validation
 #: code:addons/purchase_internal_validation/models/purchase_order.py:67
@@ -191,12 +191,12 @@ msgstr "purchase.internal.validation.settings"
 #. module: purchase_internal_validation
 #: model:ir.actions.server,subject:purchase_internal_validation.purchase_waiting_validation
 msgid "New PO to validate"
-msgstr "Nouveau bon de commande à approuver"
+msgstr "Nouveau bon de commande à valider"
 
 #. module: purchase_internal_validation
 #: help:purchase.config.settings,limit_amount:0
 msgid "Maximum amount after which internal validation of purchase is required."
-msgstr "Montant maximum après lequel les achats doivent être approuvés."
+msgstr "Montant maximum après lequel les achats doivent être validés."
 
 #. module: purchase_internal_validation
 #: view:purchase.order:0
@@ -206,4 +206,4 @@ msgstr "Annuler"
 #. module: purchase_internal_validation
 #: model:ir.actions.server,name:purchase_internal_validation.purchase_validated
 msgid "Notify the buyer that the purchase order has been validated"
-msgstr "Notifie l'acheteur que le bon de commande a été approuvé"
+msgstr "Notifie l'acheteur que le bon de commande a été validé"
