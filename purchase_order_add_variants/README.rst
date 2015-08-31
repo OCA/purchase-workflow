@@ -2,7 +2,7 @@
     :alt: License: AGPL-3
 
 Add variants in purchase orders
-============================
+===============================
 
 This module adds a wizard to select a template product showing all of this variants and allowing to change each variant quantity.
 Adding this variants to purchase order with the quantities selected
