@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data noupdate="1">
+
+
+<record id="base.res_partner_6" model="res.partner"> 
+    <field name="supplier_order_policy">picking</field>
+</record>
+
+<record id="base.res_partner_address_12" model="res.partner"> 
+    <field name="supplier_order_policy">order</field>
+</record>
+
+<record id="base.res_partner_19" model="res.partner"> 
+    <field name="supplier_order_policy">manual</field>
+</record>
+
+</data>
+</openerp>
