@@ -26,9 +26,10 @@
     'license': 'AGPL-3',
     'summary': "Adds customer create invoice method on partner form",
     'description': """
-    The module is similar to the policy for sales order. 
-    A field is added to the type of provider policy. 
-    Then in the purchase order, at select the provider the field Invoice Method is completed with the chosen policy.
+    The module is similar to the policy for sales order.
+    A field is added to the type of provider policy.
+    Then in the purchase order, at select the provider the field Invoice Method
+    is completed with the chosen policy.
 
     """,
     'author': "ADHOC SA",
