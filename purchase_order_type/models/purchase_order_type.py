@@ -19,11 +19,24 @@
 #
 #
 
-from openerp import models, fields
+from openerp import models, fields, api
 
 
 class PurchaseOrderType(models.Model):
     _name = 'purchase.order.type'
 
+    @api.model
+    def _get_selection_invoice_method(self):
+        return self.env['purchase.order'].fields_get(
+            allfields=['invoice_method'])['invoice_method']['selection']
+
+    def default_invoice_method(self):
+        default_dict = self.env[
+            'purchase.order'].default_get(['invoice_method'])
+        return default_dict.get('invoice_method')
+
     name = fields.Char(required=True)
     active = fields.Boolean(default=True)
+    invoice_method = fields.Selection(
+        selection='_get_selection_invoice_method', string='Create Invoice',
+        required=True, default=default_invoice_method)
