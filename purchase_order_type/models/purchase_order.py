@@ -32,7 +32,7 @@ class PurchaseOrder(models.Model):
         self.invoice_method = self.order_type.invoice_method
 
     def _get_order_type(self):
-        return self.env['sale.order.type'].search([])[:1].id
+        return self.env['purchase.order.type'].search([])[:1].id
 
     @api.multi
     def onchange_partner_id(self, part):
