@@ -19,15 +19,35 @@
 #
 #
 
-from openerp import models, fields
+from openerp import models, fields, api
 from openerp.addons.purchase.purchase import purchase_order
 
 
 class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
 
+    @api.one
+    @api.onchange('order_type')
+    def onchange_order_type(self):
+        self.invoice_method = self.order_type.invoice_method
+
+    def _get_order_type(self):
+        return self.env['sale.order.type'].search([])[:1].id
+
+    @api.multi
+    def onchange_partner_id(self, part):
+        res = super(PurchaseOrder, self).onchange_partner_id(part)
+        if part:
+            partner = self.env['res.partner'].browse(part)
+            res['value'].update({
+                'order_type': partner.purchase_type.id
+                or self._get_order_type(),
+            })
+        return res
+
     order_type = fields.Many2one(comodel_name='purchase.order.type',
                                  readonly=False,
                                  states=purchase_order.READONLY_STATES,
                                  string='Type',
-                                 ondelete='restrict')
+                                 ondelete='restrict',
+                                 default=_get_order_type)
