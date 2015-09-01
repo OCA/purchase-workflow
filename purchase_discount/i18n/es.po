@@ -17,6 +17,11 @@ msgstr ""
 "X-Generator: Launchpad (build 17058)\n"
 
 #. module: purchase_discount
+#: view:website:purchase.report_purchaseorder_document
+msgid "Disc.(%)"
+msgstr "Desc.(%)"
+
+#. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_purchase_order
 msgid "Purchase Order"
 msgstr "Orden de Compra"
@@ -29,7 +34,7 @@ msgstr "Albarán"
 #. module: purchase_discount
 #: sql_constraint:purchase.order.line:0
 msgid "Discount must be lower than 100%."
-msgstr "El desduento debe ser menor al 100%."
+msgstr "El descuento debe ser menor al 100%."
 
 #. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_purchase_order_line
