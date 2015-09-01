@@ -1,9 +1,28 @@
 language: python
+sudo: false
+cache: pip
 
 python:
   - "2.7"
 
+addons:
+  apt:
+    packages:
+      - expect-dev  # provides unbuffer utility
+      - python-lxml  # because pip installation is slow
+      - python-simplejson
+      - python-serial
+      - python-yaml
+
 env:
+  global:
+  - VERSION="7.0" TESTS="0" LINT_CHECK="0" TRANSIFEX="0"
+  - TRANSIFEX_USER='transbot@odoo-community.org'
+  - secure: DncQWtzMNwjo/k6Kmotl5IXI1l7sj3AcFTPSjT8i5D/2C42Y2bYTahdXcabDIXhBeUPrMxiQFc/A4cxoDPyn8u2YeLpuX4NNiUtTOIuI0GU3zanna7AUO31JGwMle4Rzaepa3lHxFaQzqs9+auawlt1s9qmwmRsfYpjyclf0ydw=
+
+  matrix:
+  - LINT_CHECK="1"
+  - TRANSIFEX="1"
   - VERSION="7.0" ODOO_REPO="odoo/odoo" EXCLUDE="framework_agreement,purchase_landed_costs"
   - VERSION="7.0" ODOO_REPO="OCA/OCB" EXCLUDE="framework_agreement,purchase_landed_costs"
   - VERSION="7.0" ODOO_REPO="odoo/odoo" INCLUDE="framework_agreement"
@@ -23,4 +42,4 @@ script:
   - travis_run_tests
 
 after_success:
-  coveralls
+  - travis_after_tests_success
