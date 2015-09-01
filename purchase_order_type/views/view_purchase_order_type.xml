@@ -9,6 +9,7 @@
         <tree string="Purchase Order Types" editable="bottom">
           <field name="name"/>
           <field name="active"/>
+          <field name="invoice_method"/>
         </tree>
       </field>
     </record>
