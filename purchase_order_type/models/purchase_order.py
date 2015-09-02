@@ -26,25 +26,26 @@ from openerp.addons.purchase.purchase import purchase_order
 class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
 
-    def _get_order_type(self):
-        return self.env['purchase.order.type'].search([])[:1]
+    def _default_order_type(self):
+        return self.env['purchase.order.type'].search([], limit=1)
 
     order_type = fields.Many2one(comodel_name='purchase.order.type',
                                  readonly=False,
                                  states=purchase_order.READONLY_STATES,
                                  string='Type',
                                  ondelete='restrict',
-                                 default=_get_order_type)
+                                 default=_default_order_type)
 
     @api.multi
-    def onchange_partner_id(self, part):
-        res = super(PurchaseOrder, self).onchange_partner_id(part)
-        if part:
-            partner = self.env['res.partner'].browse(part)
-            res['value'].update({
-                'order_type': partner.purchase_type.id
-                or self._get_order_type().id,
-            })
+    def onchange_partner_id(self, partner_id):
+        res = super(PurchaseOrder, self).onchange_partner_id(partner_id)
+        if partner_id:
+            partner = self.env['res.partner'].browse(partner_id)
+            if partner.purchase_type:
+                res['value'] = res.get('value', {})
+                res['value'].update({
+                    'order_type': partner.purchase_type.id,
+                })
         return res
 
     @api.one
