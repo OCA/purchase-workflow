@@ -12,5 +12,5 @@ This project aim to deal with modules related to manage purchase and their relat
  - Add validation step
 
 Translation Status
-----------------
+------------------
 [![Transifex Status](https://www.transifex.com/projects/p/OCA-purchase-workflow-7-0/chart/image_png)](https://www.transifex.com/projects/p/OCA-purchase-workflow-7-0)
