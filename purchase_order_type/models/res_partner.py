@@ -26,4 +26,4 @@ class ResPartner(models.Model):
     _inherit = 'res.partner'
 
     purchase_type = fields.Many2one(
-        comodel_name='purchase.order.type', string='Sale Order Type')
+        comodel_name='purchase.order.type', string='Purchase Order Type')
