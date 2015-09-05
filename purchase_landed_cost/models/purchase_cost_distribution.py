@@ -236,7 +236,7 @@ class PurchaseCostDistribution(models.Model):
             qty_available = product.product_tmpl_id.qty_available
             product_avail = qty_available - move.product_qty
             if product_avail <= 0:
-                new_std_price = move.price_unit
+                new_std_price = new_price
             else:
                 domain_quant = [
                     ('product_id', 'in',
