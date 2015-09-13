@@ -1,0 +1,214 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# * purchase_delivery_term
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: purchase-workflow (7.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-01 21:19+0000\n"
+"PO-Revision-Date: 2015-09-01 21:19+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Italian (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/it/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: it\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: purchase_delivery_term
+#: model:ir.model,name:purchase_delivery_term.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Riga Ordine d'Acquisto"
+
+#. module: purchase_delivery_term
+#: help:purchase.delivery.term.line,quantity_perc:0
+msgid "For 20% set '0.2'"
+msgstr ""
+
+#. module: purchase_delivery_term
+#: model:ir.model,name:purchase_delivery_term.model_purchase_delivery_term_line
+msgid "purchase.delivery.term.line"
+msgstr ""
+
+#. module: purchase_delivery_term
+#: field:purchase.order.line.master,price_unit:0
+msgid "Unit Price"
+msgstr "Prezzo unitario"
+
+#. module: purchase_delivery_term
+#: field:purchase.order.line,master_line_id:0
+msgid "Master Line"
+msgstr ""
+
+#. module: purchase_delivery_term
+#: model:ir.model,name:purchase_delivery_term.model_purchase_delivery_term
+msgid "purchase.delivery.term"
+msgstr ""
+
+#. module: purchase_delivery_term
+#: field:purchase.order.line.master,date_planned:0
+msgid "Scheduled Date"
+msgstr ""
+
+#. module: purchase_delivery_term
+#: field:purchase.order.line.master,product_id:0
+msgid "Product"
+msgstr ""
+
+#. module: purchase_delivery_term
+#: field:purchase.order.line.master,name:0
+msgid "Description"
+msgstr ""
+
+#. module: purchase_delivery_term
+#: field:purchase.delivery.term,company_id:0
+msgid "Company"
+msgstr ""
+
+#. module: purchase_delivery_term
+#: field:purchase.delivery.term.line,delay:0
+msgid "Delivery Lead Time"
+msgstr ""
+
+#. module: purchase_delivery_term
+#: field:purchase.delivery.term.line,quantity_perc:0
+msgid "Quantity percentage"
+msgstr ""
+
+#. module: purchase_delivery_term
+#: field:purchase.order.line.master,order_line_ids:0
+msgid "Detailed lines"
+msgstr ""
+
+#. module: purchase_delivery_term
+#: field:purchase.order.line.master,product_uom:0
+msgid "Product UOM"
+msgstr ""
+
+#. module: purchase_delivery_term
+#: help:purchase.delivery.term.line,delay:0
+msgid ""
+"Number of days between the order confirmation and the shipping of the "
+"products from the supplier"
+msgstr ""
+
+#. module: purchase_delivery_term
+#: field:purchase.order.line.master,order_id:0
+msgid "Order Reference"
+msgstr ""
+
+#. module: purchase_delivery_term
+#: field:purchase.order.line.master,price_subtotal:0
+msgid "Subtotal"
+msgstr ""
+
+#. module: purchase_delivery_term
+#: view:purchase.order.line.master:0
+msgid "Master order lines"
+msgstr ""
+
+#. module: purchase_delivery_term
+#: view:purchase.order:0
+msgid "Generate detailed lines"
+msgstr ""
+
+#. module: purchase_delivery_term
+#: field:purchase.delivery.term.line,term_id:0
+msgid "Term"
+msgstr ""
+
+#. module: purchase_delivery_term
+#: field:purchase.delivery.term,name:0
+msgid "Name"
+msgstr ""
+
+#. module: purchase_delivery_term
+#: model:ir.actions.act_window,name:purchase_delivery_term.action_delivery_term_form
+#: model:ir.ui.menu,name:purchase_delivery_term.menu_action_delivery_term_form
+msgid "Delivery Terms"
+msgstr ""
+
+#. module: purchase_delivery_term
+#: field:purchase.delivery.term,line_ids:0
+msgid "Lines"
+msgstr "Righe"
+
+#. module: purchase_delivery_term
+#: view:purchase.order.line.master:0
+msgid "Master order line"
+msgstr ""
+
+#. module: purchase_delivery_term
+#: view:purchase.order.line.master:0
+#: field:purchase.order.line.master,taxes_id:0
+msgid "Taxes"
+msgstr ""
+
+#. module: purchase_delivery_term
+#: model:ir.model,name:purchase_delivery_term.model_purchase_order
+msgid "Purchase Order"
+msgstr "Ordine Acquisto"
+
+#. module: purchase_delivery_term
+#: view:purchase.delivery.term:0
+#: field:purchase.order.line.master,delivery_term_id:0
+msgid "Delivery term"
+msgstr ""
+
+#. module: purchase_delivery_term
+#: code:addons/purchase_delivery_term/purchase.py:189
+#, python-format
+msgid "Detailed lines generated yet (for master line '%s'). Remove them first"
+msgstr ""
+
+#. module: purchase_delivery_term
+#: code:addons/purchase_delivery_term/purchase.py:188
+#: code:addons/purchase_delivery_term/purchase.py:193
+#: code:addons/purchase_delivery_term/purchase.py:200
+#: code:addons/purchase_delivery_term/purchase.py:229
+#, python-format
+msgid "Error"
+msgstr "Errore"
+
+#. module: purchase_delivery_term
+#: code:addons/purchase_delivery_term/purchase.py:201
+#, python-format
+msgid "Total percentage of delivery term %s is not equal to 1"
+msgstr ""
+
+#. module: purchase_delivery_term
+#: field:purchase.order.line.master,product_qty:0
+msgid "Quantity"
+msgstr "Quantità"
+
+#. module: purchase_delivery_term
+#: model:ir.model,name:purchase_delivery_term.model_purchase_order_line_master
+msgid "purchase.order.line.master"
+msgstr ""
+
+#. module: purchase_delivery_term
+#: view:purchase.delivery.term:0
+msgid "Term Lines"
+msgstr ""
+
+#. module: purchase_delivery_term
+#: code:addons/purchase_delivery_term/purchase.py:194
+#, python-format
+msgid ""
+"Delivery term lines are %d. Order line groups are %d. Please create more "
+"groups"
+msgstr ""
+
+#. module: purchase_delivery_term
+#: field:purchase.order,master_order_line:0
+msgid "Master Order Lines"
+msgstr ""
+
+#. module: purchase_delivery_term
+#: code:addons/purchase_delivery_term/purchase.py:229
+#, python-format
+msgid ""
+"Order lines total quantity %s is different from master line quantity %s"
+msgstr ""

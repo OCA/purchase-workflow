@@ -8,86 +8,86 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-01 21:19+0000\n"
-"PO-Revision-Date: 2015-09-12 21:12+0000\n"
+"PO-Revision-Date: 2015-09-01 21:19+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: French (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/fr/)\n"
+"Language-Team: English (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/en/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: product_by_supplier
 #: field:product.supplierinfo,virtual_available:0
 msgid "Forecasted Quantity"
-msgstr "Quantité prévue"
+msgstr "Forecasted Quantity"
 
 #. module: product_by_supplier
 #: field:product.supplierinfo,qty_available:0
 msgid "Quantity On Hand"
-msgstr "Quantité en stock"
+msgstr "Quantity On Hand"
 
 #. module: product_by_supplier
 #: model:ir.model,name:product_by_supplier.model_product_product
 #: view:product.supplierinfo:0
 msgid "Product"
-msgstr "Article"
+msgstr "Product"
 
 #. module: product_by_supplier
 #: view:product.supplierinfo:0
 msgid "Supplier Product Code"
-msgstr "Code de l'article chez le fournisseur"
+msgstr "Supplier Product Code"
 
 #. module: product_by_supplier
 #: view:product.supplierinfo:0
 msgid "Product Code"
-msgstr "Référence interne"
+msgstr "Product Code"
 
 #. module: product_by_supplier
 #: view:product.supplierinfo:0
 msgid "Supplier Information"
-msgstr "Informations sur le fournisseur"
+msgstr "Supplier Information"
 
 #. module: product_by_supplier
 #: field:product.product,partner_ref2:0
 msgid "Supplier codes"
-msgstr "Codes fournisseurs"
+msgstr "Supplier codes"
 
 #. module: product_by_supplier
 #: view:product.supplierinfo:0
 msgid "Group by..."
-msgstr "Grouper par ..."
+msgstr "Group by..."
 
 #. module: product_by_supplier
 #: view:product.supplierinfo:0
 msgid ""
 "The prices below will only be taken into account when your pricelist is set "
 "as based on supplier prices."
-msgstr "Les prix ci-dessous sont seulement pris en compte lorsque la liste de prix est définie comme \"basée sur les prix des fournisseurs\"."
+msgstr "The prices below will only be taken into account when your pricelist is set as based on supplier prices."
 
 #. module: product_by_supplier
 #: model:ir.model,name:product_by_supplier.model_product_supplierinfo
 msgid "Information about a product supplier"
-msgstr "Information sur le fournisseur de l'article"
+msgstr "Information about a product supplier"
 
 #. module: product_by_supplier
 #: view:product.supplierinfo:0
 msgid "Supplier"
-msgstr "Fournisseur"
+msgstr "Supplier"
 
 #. module: product_by_supplier
 #: view:product.supplierinfo:0
 msgid "Pricelist"
-msgstr "Liste de prix"
+msgstr "Pricelist"
 
 #. module: product_by_supplier
 #: model:ir.actions.act_window,name:product_by_supplier.action_product_supplier_info
 #: model:ir.ui.menu,name:product_by_supplier.menu_product_supplier_info
 #: view:product.supplierinfo:0
 msgid "Product by Suppliers"
-msgstr "Articles par fournisseurs"
+msgstr "Product by Suppliers"
 
 #. module: product_by_supplier
 #: view:product.supplierinfo:0
 msgid "Supplier Product Name"
-msgstr "Nom de l'article chez le fournisseur"
+msgstr "Supplier Product Name"

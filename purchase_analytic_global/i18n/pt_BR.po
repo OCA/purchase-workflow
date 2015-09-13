@@ -8,19 +8,19 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-01 21:19+0000\n"
-"PO-Revision-Date: 2015-09-01 21:20+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: French (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/fr/)\n"
+"PO-Revision-Date: 2015-09-01 21:19+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
+"Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: purchase_analytic_global
 #: field:purchase.order,account_analytic_id:0
 msgid "Analytic Account"
-msgstr "Compte analytique"
+msgstr ""
 
 #. module: purchase_analytic_global
 #: help:purchase.order,account_analytic_id:0
@@ -28,7 +28,7 @@ msgid ""
 "The analytic account that will be set on all the lines. If you want to use "
 "different accounts, leave this field empty and set the accounts individually"
 " on the lines."
-msgstr "Le compte analytique sera défini sur toutes les lignes. Afin d'utiliser des comptes différents sur les lignes, veuillez laisser ce champ vide et les définir manuellement sur les lignes."
+msgstr ""
 
 #. module: purchase_analytic_global
 #: view:purchase.order:0
@@ -38,4 +38,4 @@ msgstr ""
 #. module: purchase_analytic_global
 #: model:ir.model,name:purchase_analytic_global.model_purchase_order
 msgid "Purchase Order"
-msgstr "Commande d'achat"
+msgstr "Ordem de Compra"
