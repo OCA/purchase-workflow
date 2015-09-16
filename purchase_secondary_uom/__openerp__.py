@@ -33,6 +33,7 @@
         ],
     "data": [
         'views/product_view.xml',
+        'views/purchase_view.xml',
         ],
     "update_xml": [],
     "demo_xml": [],
