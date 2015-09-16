@@ -20,22 +20,16 @@
 #
 ##############################################################################
 
-{
-    'name': "Purchase Order Secondary UoM",
-    'version': '0.1',
-    'category': 'Purchase',
-    'author': 'Francesco OpenCode Apruzzese,Odoo Community Association (OCA)',
-    'website': 'https://www.apuliasoftware.it',
-    'license': 'AGPL-3',
-    "depends": [
-        'product',
-        'purchase',
-        ],
-    "data": [
-        'views/product_view.xml',
-        ],
-    "update_xml": [],
-    "demo_xml": [],
-    "auto_install": False,
-    "installable": True
-}
+
+from openerp import models, fields
+
+
+class ProductTemplate(models.Model):
+
+    _inherit = 'product.template'
+
+    uop_id = fields.Many2one('product.uom', string='Unit of Purchase')
+    uop_coeff = fields.Float(string='Unit of Measure -> UOP Coeff')
+    uop_type = fields.Selection(
+        [('fixed', 'Fixed'), ('variable', 'Variable')])
+
