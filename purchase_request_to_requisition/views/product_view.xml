@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+    <record model="ir.ui.view" id="product_normal_form_view_inherit">
+        <field name="name">product.form.inherit</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id"
+               ref="purchase_requisition.product_normal_form_view_inherit"/>
+        <field name="arch" type="xml">
+            <field name="purchase_requisition" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </field>
+            <field name="purchase_requisition" position="after">
+                <field name="purchase_request"/>
+            </field>
+        </field>
+    </record>
+
+    </data>
+</openerp>

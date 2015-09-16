@@ -1,0 +1,36 @@
+-
+  I open a request.
+-
+  I create an RFQ.
+-
+  !python {model: purchase.request.line.make.purchase.order}: |
+    context.update({"active_model": "purchase.request.line","active_ids": [ref("request1")],"active_id": ref("request1")})
+-
+  !record {model: purchase.request.line.make.purchase.order, id: request_line_make_po_0}:
+    supplier_id: base.res_partner_12
+-
+  !python {model: purchase.request.line.make.purchase.order}: |
+    self.make_purchase_order(cr, uid, [ref("request_line_make_po_0")], context=context)
+-
+  I check that the RFQ details which created for supplier.
+-
+  !python {model: purchase.order.line}: |
+    request_obj = self.pool["purchase.request"]
+    request_line_obj = self.pool["purchase.request.line"]
+    request = request_obj.browse(cr, uid, ref("request1"), context=context)
+    rfq_line = False
+    for pr_line in request.line_ids:
+        assert len(pr_line.purchase_lines) == 1, "No purchase order line was created."
+        for po_line in pr_line.purchase_lines:
+            rfq_line = po_line
+    rfq = rfq_line.order_id
+    supplier = rfq.partner_id
+    assert supplier.id == ref('base.res_partner_12'), "RFQ Partner does not match."
+    assert len(rfq.order_line) == len(request.line_ids), "Lines do not match."
+    for rfq_line in rfq.order_line:
+        for line in request.line_ids:
+            if rfq_line.product_id.id == line.product_id.id:
+                seller_price, qty, default_uom_po_id, date_planned = request_line_obj._seller_details(cr, uid, line, supplier, context=context)
+                assert rfq_line.product_qty == qty, "Quantity does not match."
+                assert rfq_line.product_uom.id == default_uom_po_id, "UOM does not match."
+                assert rfq_line.price_unit == seller_price, "Unit Price does not match."

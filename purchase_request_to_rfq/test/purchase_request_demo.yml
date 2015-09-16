@@ -1,0 +1,9 @@
+-
+  In order to test process of the purchase request ,I create a request
+- 
+  !record {model: purchase.request, id: request2}:
+    line_ids:
+      - product_id: product.product_product_9
+        product_qty: 10.0
+        product_uom_id: product.product_uom_unit
+  

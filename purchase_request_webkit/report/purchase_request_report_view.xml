@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <report id="purchase_request_webkit.report_purchase_request"
+            name="purchase.request.webkit"
+            auto="False"
+            model="purchase.request"
+            file="purchase_request_webkit/report/purchase_request.mako"
+            string="Purchase Request"
+            report_type="webkit" />
+
+    <record id="purchase_request_webkit.report_purchase_request" model="ir.actions.report.xml">
+      <field name="webkit_header" ref="base_headers_webkit.base_reports_portrait_header"/>
+    </record>
+  </data>
+</openerp>
