@@ -23,13 +23,16 @@
                      <group>
                          <field name="item_ids" nolabel="1" colspan="2">
                               <tree string="Details" create="false" editable="bottom">
-                                <field name="line_id"
+                                  <field name="line_id"
                                        options="{'no_open': true}"
                                        invisible="1"/>
-                                <field name="product_id"/>
-                                <field name="name"/>
-                                <field name="product_qty" readonly="1"/>
-                                <field name="product_uom_id" options="{'no_open': true}"/>
+                                  <field name="request_id"/>
+                                  <field name="product_id"
+                                         on_change="onchange_product_id(product_id,product_uom_id)"/>
+                                  <field name="name"/>
+                                  <field name="product_qty"/>
+                                  <field name="product_uom_id"
+                                         groups="product.group_uom"/>
                               </tree>
                          </field>
                      </group>

@@ -70,6 +70,15 @@ class PurchaseRequest(orm.Model):
                                   track_visibility='onchange'),
     }
 
+    def _get_default_warehouse(self, cr, uid, context=None):
+        warehouse_obj = self.pool['stock.warehouse']
+        company_id = self.pool.get('res.users').browse(
+            cr, uid, uid).company_id.id
+        warehouse_ids = warehouse_obj.search(
+            cr, uid, [('company_id', '=', company_id)], context=context)
+        warehouse_id = warehouse_ids and warehouse_ids[0] or False
+        return warehouse_id
+
     _defaults = {
         'date_start': lambda *args: time.strftime('%Y-%m-%d %H:%M:%S'),
         'company_id':
@@ -84,6 +93,8 @@ class PurchaseRequest(orm.Model):
             obj.pool.get('ir.sequence').get(
                 cr, uid, 'purchase.request'),
         'state': 'draft',
+        'is_editable': True,
+        'warehouse_id': _get_default_warehouse,
     }
 
     def copy(self, cr, uid, id, default=None, context=None):
@@ -211,6 +222,7 @@ class PurchaseRequestLine(orm.Model):
     _defaults = {
         'date_required': lambda *args: time.strftime('%Y-%m-%d %H:%M:%S'),
         'name': '',
+        'is_editable': True,
     }
 
     def onchange_product_id(self, cr, uid, ids, product_id,

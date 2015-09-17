@@ -91,8 +91,10 @@ class PurchaseRequestLineMakePurchaseRequisition(orm.TransientModel):
     def _get_requisition_line_search_domain(self, cr, uid, requisition_id,
                                             request_line, context=None):
         return [('requisition_id', '=', requisition_id),
-                ('product_id', '=', request_line.product_id.id),
-                ('product_uom_id', '=', request_line.product_uom_id.id)]
+                ('product_id', '=', request_line.product_id.id or False),
+                ('product_uom_id', '=',
+                 request_line.product_uom_id.id or False),
+                ('name', '=', )]
 
     def make_purchase_requisition(self, cr, uid, ids, context=None):
         if context is None:

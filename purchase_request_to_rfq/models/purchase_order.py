@@ -21,6 +21,7 @@
 from openerp.osv import fields, orm
 from openerp.tools.translate import _
 
+
 class PurchaseOrder(orm.Model):
     _inherit = "purchase.order"
 
@@ -97,12 +98,10 @@ class PurchaseOrder(orm.Model):
         return True
 
     def wkf_confirm_order(self, cr, uid, ids, context=None):
-        self._purchase_request_line_check(
-                cr, uid, ids, context=context)
+        self._purchase_request_line_check(cr, uid, ids, context=context)
         res = super(PurchaseOrder, self).wkf_confirm_order(cr, uid, ids,
                                                            context=context)
-        self._purchase_request_confirm_message(
-                cr, uid, ids, context=context)
+        self._purchase_request_confirm_message(cr, uid, ids, context=context)
         return res
 
 

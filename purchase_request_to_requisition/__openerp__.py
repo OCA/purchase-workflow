@@ -118,7 +118,11 @@ To contribute to this module, please visit http://odoo-community.org.
         "views/procurement_view.xml",
     ],
     'demo_xml': [],
-    'test': [],
+    'test': [
+        "test/purchase_request_users.yml",
+        "test/purchase_request_data.yml",
+        "test/purchase_request_from_procurement.yml"
+    ],
     'installable': True,
     'active': False,
     'certificate': '',
