@@ -57,8 +57,9 @@ class PurchaseOrder(models.Model):
             res[0]['sequence'] = order_line.sequence
         return res
 
+    @api.one
     @api.depends('order_line')
-    def _get_max_line_sequence(self):
+    def compute_max_line_sequence(self):
         """Allow to know the highest sequence
         entered in purchase order lines.
         Web add 10 to this value for the next sequence
@@ -66,13 +67,11 @@ class PurchaseOrder(models.Model):
         in the view. So when we create new purchase order lines,
         the sequence is automatically max_sequence + 10
         """
-        for purchase in self:
-            purchase.max_line_sequence = (
-                max(purchase.mapped('order_line.sequence')) + 10
-                )
+        self.max_line_sequence = (
+            max(self.mapped('order_line.sequence') or [0]) + 10)
 
     max_line_sequence = fields.Integer(string='Max sequence in lines',
-                                       compute='_get_max_line_sequence')
+                                       compute='compute_max_line_sequence')
 
 
 class PurchaseLineInvoice(models.TransientModel):
