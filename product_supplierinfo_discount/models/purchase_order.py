@@ -34,7 +34,7 @@ class PurchaseOrderLine(orm.Model):
             partner_id, date_order=date_order,
             fiscal_position_id=fiscal_position_id, date_planned=date_planned,
             name=name, price_unit=price_unit, context=context)
-        if not product_id:
+        if not product_id or not partner_id:
             return res
         supplierinfo_obj = self.pool['product.supplierinfo']
         product_obj = self.pool['product.product']
