@@ -24,6 +24,24 @@
 from openerp import models, fields, api
 
 
+class PurchaseOrder(models.Model):
+
+    _inherit = 'purchase.order'
+
+    @api.v7
+    def _prepare_order_line_move(self, cr, uid, order, order_line, picking_id,
+                                 group_id, context=None):
+        res = super(PurchaseOrder, self)._prepare_order_line_move(
+            cr, uid, order, order_line, picking_id, group_id, context)
+        for line in res:
+            for purchase_line in order_line:
+                if line['purchase_line_id'] == purchase_line.id and\
+                        purchase_line.product_uop_id:
+                    line['product_uos'] = purchase_line.product_uop_id.id
+                    line['product_uos_qty'] = purchase_line.product_uop_qty
+        return res
+
+
 class PurchaseOrderLine(models.Model):
 
     _inherit = 'purchase.order.line'
