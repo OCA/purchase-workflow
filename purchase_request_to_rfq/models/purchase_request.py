@@ -35,9 +35,17 @@ class PurchaseRequestLine(orm.Model):
 
     _inherit = "purchase.request.line"
 
-    def _purchased_qty(self, cursor, user, ids, name, arg, context=None):
+    def _get_is_editable(self, cr, uid, ids, names, arg, context=None):
+        res = super(PurchaseRequestLine, self)._get_is_editable(
+            cr, uid, ids, names, arg, context=context)
+        for line in self.browse(cr, uid, ids, context=context):
+            if line.purchase_lines:
+                res[line.id] = False
+        return res
+
+    def _purchased_qty(self, cr, uid, ids, name, arg, context=None):
         res = {}
-        for request_line in self.browse(cursor, user, ids, context=context):
+        for request_line in self.browse(cr, uid, ids, context=context):
             purchased_qty = 0.0
             for purchase_line in request_line.purchase_lines:
                 if purchase_line.state != 'cancel':
@@ -88,6 +96,9 @@ class PurchaseRequestLine(orm.Model):
             store={'purchase.order.line': (
                 _get_request_lines_from_po_lines,
                 ['state'], 10)}),
+        'is_editable': fields.function(_get_is_editable,
+                                       string="Is editable",
+                                       type="boolean")
     }
 
     _defaults = {

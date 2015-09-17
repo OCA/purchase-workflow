@@ -1,10 +1,13 @@
 -
-  I open a request.
+  I log as the Purchase User
+-
+  !context
+    uid: 'res_users_purchase_user'
 -
   I create an RFQ.
 -
   !python {model: purchase.request.line.make.purchase.order}: |
-    context.update({"active_model": "purchase.request.line","active_ids": [ref("request1")],"active_id": ref("request1")})
+    context.update({"active_model": "purchase.request.line","active_ids": [ref("request_line1")],"active_id": ref("request_line1")})
 -
   !record {model: purchase.request.line.make.purchase.order, id: request_line_make_po_0}:
     supplier_id: base.res_partner_12
@@ -34,3 +37,4 @@
                 assert rfq_line.product_qty == qty, "Quantity does not match."
                 assert rfq_line.product_uom.id == default_uom_po_id, "UOM does not match."
                 assert rfq_line.price_unit == seller_price, "Unit Price does not match."
+                assert rfq_line.state == line.purchase_state, "State does not match"

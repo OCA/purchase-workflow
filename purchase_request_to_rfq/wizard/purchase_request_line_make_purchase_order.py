@@ -148,6 +148,12 @@ class PurchaseRequestLineMakePurchaseOrder(orm.TransientModel):
             'purchase_request_lines': [(4, item.line_id.id)]
         }
 
+    def _get_order_line_search_domain(self, cr, uid, order_id, request_line,
+                                      context=None):
+        return [('requisition_id', '=', order_id),
+                ('product_id', '=', request_line.product_id.id),
+                ('product_uom_id', '=', request_line.product_uom_id.id)]
+
     def make_purchase_order(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
@@ -209,13 +215,10 @@ class PurchaseRequestLineMakePurchaseOrder(orm.TransientModel):
             # Look for any other PO line in the selected PO with same
             # product and UoM to sum quantities instead of creating a new
             # po line
+            domain = self._get_order_line_search_domain(
+                cr, uid, purchase_id, line, context=context)
             available_po_line_ids = po_line_obj.search(
-                cr, uid, [('order_id', '=', purchase_id),
-                          ('product_id', '=', line.product_id.id),
-                          ('product_uom', '=', line.product_uom_id.id),
-                          ('state', '!=', 'cancel'),
-                          ('move_dest_id', '=', False)],
-                context=context)
+                cr, uid, domain, context=context)
             if available_po_line_ids:
                 po_line = po_line_obj.browse(
                     cr, uid, available_po_line_ids[0], context=context)

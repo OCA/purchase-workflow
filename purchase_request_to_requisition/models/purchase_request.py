@@ -33,6 +33,14 @@ class PurchaseRequestLine(orm.Model):
 
     _inherit = "purchase.request.line"
 
+    def _get_is_editable(self, cr, uid, ids, names, arg, context=None):
+        res = super(PurchaseRequestLine, self)._get_is_editable(
+            cr, uid, ids, names, arg, context=context)
+        for line in self.browse(cr, uid, ids, context=context):
+            if line.requisition_lines:
+                res[line.id] = False
+        return res
+
     def _requisition_qty(self, cursor, user, ids, name, arg, context=None):
         res = {}
         for request_line in self.browse(cursor, user, ids, context=context):
@@ -98,6 +106,9 @@ class PurchaseRequestLine(orm.Model):
                 ['state', 'line_ids'], 10),
                 'purchase.requisition.line': (
                 _get_request_lines_from_prl, None, 10)},),
+        'is_editable': fields.function(_get_is_editable,
+                                       string="Is editable",
+                                       type="boolean")
     }
 
     _defaults = {

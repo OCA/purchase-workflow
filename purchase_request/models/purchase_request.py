@@ -21,6 +21,12 @@
 from openerp.osv import fields, orm
 import time
 import openerp.addons.decimal_precision as dp
+_STATES = [
+    ('draft', 'Draft'),
+    ('to_approve', 'To be approved'),
+    ('approved', 'Approved'),
+    ('rejected', 'Rejected')
+]
 
 
 class PurchaseRequest(orm.Model):
@@ -28,6 +34,14 @@ class PurchaseRequest(orm.Model):
     _name = 'purchase.request'
     _description = 'Purchase Request'
     _inherit = ['mail.thread', 'ir.needaction_mixin']
+
+    def _get_is_editable(self, cr, uid, ids, names, arg, context=None):
+        res = dict.fromkeys(ids, True)
+        for line in self.browse(cr, uid, ids, context=context):
+            if line.state in ('to_approve', 'approved', 'rejected'):
+                res[line.id] = False
+        return res
+
     _columns = {
         'name': fields.char('Request Reference', size=32, required=True),
         'origin': fields.char('Source Document', size=32),
@@ -49,6 +63,11 @@ class PurchaseRequest(orm.Model):
                                     readonly=False),
         'warehouse_id': fields.many2one('stock.warehouse', 'Warehouse',
                                         track_visibility='onchange'),
+        'is_editable': fields.function(_get_is_editable,
+                                       string="Is editable",
+                                       type="boolean"),
+        'state': fields.selection(_STATES, 'State', required=True,
+                                  track_visibility='onchange'),
     }
 
     _defaults = {
@@ -64,6 +83,7 @@ class PurchaseRequest(orm.Model):
             lambda obj, cr, uid, context:
             obj.pool.get('ir.sequence').get(
                 cr, uid, 'purchase.request'),
+        'state': 'draft',
     }
 
     def copy(self, cr, uid, id, default=None, context=None):
@@ -72,6 +92,7 @@ class PurchaseRequest(orm.Model):
         default.update({
             'name': self.pool.get('ir.sequence').get(cr, uid,
                                                      'purchase.request'),
+            'state': 'draft',
         })
         return super(PurchaseRequest, self).copy(
             cr, uid, id, default, context)
@@ -93,6 +114,21 @@ class PurchaseRequest(orm.Model):
                                                  context=context)
         return res
 
+    def button_draft(self, cr, uid, ids, context=None):
+        return self.write(cr, uid, ids, {'state': 'draft'}, context=context)
+
+    def button_to_approve(self, cr, uid, ids, context=None):
+        return self.write(cr, uid, ids, {'state': 'to_approve'},
+                          context=context)
+
+    def button_approved(self, cr, uid, ids, context=None):
+        return self.write(cr, uid, ids, {'state': 'approved'},
+                          context=context)
+
+    def button_rejected(self, cr, uid, ids, context=None):
+        return self.write(cr, uid, ids, {'state': 'rejected'},
+                          context=context)
+
 
 class PurchaseRequestLine(orm.Model):
 
@@ -100,6 +136,13 @@ class PurchaseRequestLine(orm.Model):
     _description = "Purchase Request Line"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _rec_name = 'product_id'
+
+    def _get_is_editable(self, cr, uid, ids, names, arg, context=None):
+        res = dict.fromkeys(ids, True)
+        for line in self.browse(cr, uid, ids, context=context):
+            if line.request_id.state in ('to_approve', 'approved', 'rejected'):
+                res[line.id] = False
+        return res
 
     _columns = {
         'product_id': fields.many2one(
@@ -159,6 +202,10 @@ class PurchaseRequestLine(orm.Model):
                                           "services rendered.",
                                      required=True,
                                      track_visibility='onchange'),
+        'is_editable': fields.function(_get_is_editable,
+                                       string="Is editable",
+                                       type="boolean"),
+        'specifications': fields.text('Specifications')
     }
 
     _defaults = {
