@@ -29,7 +29,7 @@ class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     uop_id = fields.Many2one('product.uom', string='Unit of Purchase')
-    uop_coeff = fields.Float(string='Unit of Measure -> UOP Coeff')
+    uop_coeff = fields.Float(string='Unit of Measure -> UOP Coeff',
+                             default=1.00)
     uop_type = fields.Selection(
         [('fixed', 'Fixed'), ('variable', 'Variable')])
-

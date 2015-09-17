@@ -21,7 +21,7 @@
 ##############################################################################
 
 
-from openerp import models, fields
+from openerp import models, fields, api
 
 
 class PurchaseOrderLine(models.Model):
@@ -29,4 +29,14 @@ class PurchaseOrderLine(models.Model):
     _inherit = 'purchase.order.line'
 
     product_uop_id = fields.Many2one('product.uom', string='Product UoP')
-    product_uop_qty = fields.Float(string='Quantity (UoP)')
+    product_uop_qty = fields.Float(string='Quantity (UoP)',
+                                   default=1.00)
+
+    @api.onchange('product_id', 'product_uop_qty', 'product_uop_id')
+    def on_change_secondary_uom(self):
+        if self.product_id:
+            try:
+                self.product_qty = (self.product_uop_qty /
+                                    self.product_id.uop_coeff)
+            except ZeroDivisionError:
+                pass
