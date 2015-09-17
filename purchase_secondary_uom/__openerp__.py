@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    Copyright (C) 2015
-#    Francesco OpenCode Apruzzese (<f.apruzzese@apuliasoftware.com>)
+#    Francesco OpenCode Apruzzese (<f.apruzzese@apuliasoftware.it>)
 #    All Rights Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
