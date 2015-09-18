@@ -9,8 +9,8 @@ class TestPurchaseOrder(common.TransactionCase):
 
     def setUp(self):
         super(TestPurchaseOrder, self).setUp()
-        self.product_1 = self.env.ref('product.product_product_5')
-        self.product_2 = self.env.ref('product.product_product_1')
+        self.product_1 = self.env.ref('product.product_product_4')
+        self.product_2 = self.env.ref('product.product_product_5b')
         po_model = self.env['purchase.order.line']
         self.purchase_order = self.env['purchase.order'].create(
             {'partner_id': self.env.ref('base.res_partner_3').id,
@@ -57,7 +57,8 @@ class TestPurchaseOrder(common.TransactionCase):
         workflow.trg_validate(
             self.uid, 'purchase.order', self.purchase_order.id,
             'purchase_confirm', self.cr)
-        self.purchase_order.picking_ids.action_invoice_create(
+        invoice_ids = self.purchase_order.picking_ids.action_invoice_create(
             self.env.ref('account.expenses_journal').id, type='in_invoice')
-        self.assertEqual(self.po_line_1.invoice_lines.discount, 50)
-        self.assertEqual(self.po_line_2.invoice_lines.discount, 30)
+        invoice = self.env['account.invoice'].browse(invoice_ids[0])
+        self.assertEqual(invoice.invoice_line[0].discount, 50)
+        self.assertEqual(invoice.invoice_line[1].discount, 30)
