@@ -75,7 +75,7 @@
                                 <field name="product_qty"/>
                                 <field name="product_uom_id" groups="product.group_uom"/>
                                 <field name="analytic_account_id"
-                                       groups="purchase.group_analytic_accounting"/>
+                                       groups="analytic.group_analytic_accounting"/>
                                 <field name="date_required"/>
                                 <field name="is_editable" invisible="1"/>
                             </tree>
@@ -101,7 +101,7 @@
                                                        attrs="{'readonly': [('is_editable','=', False)]}"/>
                                             </div>
                                             <field name="analytic_account_id"
-                                                   groups="purchase.group_analytic_accounting"
+                                                   groups="analytic.group_analytic_accounting"
                                                    domain="[('type','not in',('view','template'))]"
                                                    attrs="{'readonly': [('is_editable','=', False)]}"/>
                                             <field name="date_required"
@@ -156,18 +156,20 @@
                 <field name="name" string="Purchase Request"/>
                 <separator/>
                 <field name="state"/>
-                <filter icon="terp-personal-" string="Unassigned"
+                <filter name="unassigned" string="Unassigned"
                         domain="[('assigned_to','=', False)]"
-                        name="unassigned"
                         help="Unassigned Request"/>
-                <filter name="approval_to_approve" string="To Approve"
-                        domain="[('approval_state','=','to_approve')]"
+                <filter name="state_draft" string="Draft"
+                        domain="[('state','=','draft')]"
                         help="Request is to be approved"/>
-                <filter name="approval_approved" string="Approved"
-                        domain="[('approval_state','=','approved')]"
+                <filter name="state_to_approve" string="To Approve"
+                        domain="[('state','=','to_approve')]"
+                        help="Request is to be approved"/>
+                <filter name="state_approved" string="Approved"
+                        domain="[('state','=','approved')]"
                         help="Request is approved"/>
-                <filter name="approval_rejected" string="Rejected"
-                        domain="[('approval_state','=','rejected')]"
+                <filter name="state_rejected" string="Rejected"
+                        domain="[('state','=','rejected')]"
                         help="Request is rejected"/>
                 <field name="requested_by" />
                 <field name="assigned_to" />
@@ -219,15 +221,16 @@
         <field name="arch" type="xml">
             <tree string="Purchase Request Lines" create="false">
                 <field name="request_id"/>
+                <field name="request_state"/>
                 <field name="requested_by"/>
                 <field name="assigned_to"/>
+                <field name="date_required"/>
                 <field name="product_id"/>
                 <field name="name"/>
                 <field name="product_qty"/>
                 <field name="product_uom_id" groups="product.group_uom"/>
-                <field name="date_required"/>
                 <field name="analytic_account_id"
-                       groups="purchase.group_analytic_accounting"/>
+                       groups="analytic.group_analytic_accounting"/>
             </tree>
         </field>
     </record>
@@ -239,8 +242,8 @@
             <form string="Purchase Request Line" version="7.0">
                 <sheet>
                     <h1>
-                        <field name="request_id"
-                               attrs="{'readonly': [('is_editable','=', False)]}"/>
+                        <field name="request_id"/>
+                        <field name="request_state"/>
                     </h1>
                     <group>
                         <group>
@@ -279,7 +282,7 @@
                                        attrs="{'readonly': [('is_editable','=', False)]}"/>
                             </div>
                             <field name="analytic_account_id"
-                                   groups="purchase.group_analytic_accounting"
+                                   groups="analytic.group_analytic_accounting"
                                    domain="[('type','not in',('view','template'))]"
                                    attrs="{'readonly': [('is_editable','=', False)]}"/>
                             <field name="date_required"
@@ -315,15 +318,30 @@
                 <field name="assigned_to"/>
                 <field name="date_start"/>
                 <field name="date_required"/>
+                <filter name="request_state_draft" string="Draft"
+                        domain="[('request_state','=','draft')]"
+                        help="Request is to be approved"/>
+                <filter name="request_state_to_approve" string="To Approve"
+                        domain="[('request_state','=','to_approve')]"
+                        help="Request is to be approved"/>
+                <filter name="request_state_approved" string="Approved"
+                        domain="[('request_state','=','approved')]"
+                        help="Request is approved"/>
+                <filter name="request_state_rejected" string="Rejected"
+                        domain="[('request_state','=','rejected')]"
+                        help="Request is rejected"/>
                 <group expand="0" string="Group By...">
-                    <filter string="Product" icon="terp-accessories-archiver"
+                    <filter string="Product"
                             domain="[]" context="{'group_by' : 'product_id'}" />
-                    <filter string="Requested by" icon="terp-personal"
+                    <filter string="Requested by"
                             domain="[]"
                             context="{'group_by':'assigned_to'}"/>
-                    <filter string="Assigned to" icon="terp-personal"
+                    <filter string="Assigned to"
                             domain="[]"
                             context="{'group_by':'assigned_to'}"/>
+                    <filter string="Request state"
+                            domain="[]"
+                            context="{'group_by':'request_state'}"/>
                 </group>
             </search>
         </field>

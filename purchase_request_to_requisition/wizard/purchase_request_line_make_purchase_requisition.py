@@ -86,7 +86,10 @@ class PurchaseRequestLineMakePurchaseRequisition(orm.TransientModel):
             'product_qty': item.product_qty,
             'product_id': item.product_id.id,
             'product_uom_id': item.product_uom_id.id,
-            'purchase_request_lines': [(4, item.line_id.id)]
+            'purchase_request_lines': [(4, item.line_id.id)],
+            'name': item.name,
+            'account_analytic_id': item.line_id.analytic_account_id.id or
+            False,
         }
 
     def _get_requisition_line_search_domain(self, cr, uid, requisition_id,

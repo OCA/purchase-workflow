@@ -216,7 +216,13 @@ class PurchaseRequestLine(orm.Model):
         'is_editable': fields.function(_get_is_editable,
                                        string="Is editable",
                                        type="boolean"),
-        'specifications': fields.text('Specifications')
+        'specifications': fields.text('Specifications'),
+        'request_state': fields.related('request_id', 'state',
+                                        string="Request state",
+                                        readonly=True,
+                                        type="selection",
+                                        selection=_STATES,
+                                        store=True)
     }
 
     _defaults = {
