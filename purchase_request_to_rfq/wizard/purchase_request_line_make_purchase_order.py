@@ -129,6 +129,9 @@ class PurchaseRequestLineMakePurchaseOrder(orm.TransientModel):
         product = item.product_id
         seller_price, qty, default_uom_po_id, date_planned = \
             purchase_req_line_obj._seller_details(cr, uid, item.line_id,
+                                                  item.product_id,
+                                                  item.product_qty,
+                                                  item.product_uom_id,
                                                   supplier, context=context)
         taxes_ids = product.supplier_taxes_id
         taxes = fiscal_position.map_tax(
@@ -149,13 +152,13 @@ class PurchaseRequestLineMakePurchaseOrder(orm.TransientModel):
             'purchase_request_lines': [(4, item.line_id.id)]
         }
 
-    def _get_order_line_search_domain(self, cr, uid, order_id, request_line,
+    def _get_order_line_search_domain(self, cr, uid, order_id, item,
                                       context=None):
-        return [('requisition_id', '=', order_id),
-                ('product_id', '=', request_line.product_id.id or False),
-                ('product_uom_id', '=',
-                 request_line.product_uom_id.id or False),
-                ('name', '=', request_line.name)]
+        return [('order_id', '=', order_id),
+                ('product_id', '=', item.product_id.id or False),
+                ('product_uom', '=',
+                 item.product_uom_id.id or False),
+                ('name', '=', item.name)]
 
     def make_purchase_order(self, cr, uid, ids, context=None):
         if context is None:
@@ -219,7 +222,7 @@ class PurchaseRequestLineMakePurchaseOrder(orm.TransientModel):
             # product and UoM to sum quantities instead of creating a new
             # po line
             domain = self._get_order_line_search_domain(
-                cr, uid, purchase_id, line, context=context)
+                cr, uid, purchase_id, item, context=context)
             available_po_line_ids = po_line_obj.search(
                 cr, uid, domain, context=context)
             if available_po_line_ids:
@@ -232,7 +235,8 @@ class PurchaseRequestLineMakePurchaseOrder(orm.TransientModel):
                         po_line_obj.write(
                             cr, uid, po_line.id,
                             {'product_qty': new_qty,
-                             'price_unit': new_price},
+                             'price_unit': new_price,
+                             'purchase_request_lines': [(4, line.id)]},
                             context=context)
             else:
                 po_line_data = self._prepare_purchase_order_line(

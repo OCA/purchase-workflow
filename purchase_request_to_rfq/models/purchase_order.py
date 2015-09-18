@@ -91,10 +91,12 @@ class PurchaseOrder(orm.Model):
     def _purchase_request_line_check(self, cr, uid, ids, context=None):
         for po in self.browse(cr, uid, ids, context=context):
             for line in po.order_line:
-                if line.purchase_state == 'done':
-                    raise orm.except_orm(
-                        _('Warning !'),
-                        _('Purchase Request %s has already been completed'))
+                for request_line in line.purchase_request_lines:
+                    if request_line.purchase_state == 'done':
+                        raise orm.except_orm(
+                            _('Warning !'),
+                            _('Purchase Request %s has already '
+                              'been completed'))
         return True
 
     def wkf_confirm_order(self, cr, uid, ids, context=None):

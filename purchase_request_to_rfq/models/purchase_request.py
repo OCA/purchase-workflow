@@ -71,6 +71,15 @@ class PurchaseRequestLine(orm.Model):
                 res[line.id] = 'draft'
         return res
 
+    def _get_request_lines_from_po(self, cr, uid, ids, context=None):
+        request_line_ids = []
+        for order in self.pool['purchase.order'].browse(
+                cr, uid, ids, context=context):
+            for line in order.order_line:
+                for request_line in line.purchase_request_lines:
+                    request_line_ids.append(request_line.id)
+        return list(set(request_line_ids))
+
     def _get_request_lines_from_po_lines(self, cr, uid, ids, context=None):
         request_line_ids = []
         for order_line in self.pool['purchase.order.line'].browse(
@@ -93,9 +102,14 @@ class PurchaseRequestLine(orm.Model):
             _get_purchase_state, string="Purchase Status",
             type="selection",
             selection=_PURCHASE_ORDER_LINE_STATE,
-            store={'purchase.order.line': (
-                _get_request_lines_from_po_lines,
-                ['state'], 10)}),
+            store={
+                'purchase.order': (
+                    _get_request_lines_from_po,
+                    ['state', 'order_line'], 10),
+                'purchase.order.line': (
+                    _get_request_lines_from_po_lines,
+                    ['state', 'purchase_request_lines'], 10)}),
+
         'is_editable': fields.function(_get_is_editable,
                                        string="Is editable",
                                        type="boolean")
@@ -124,16 +138,16 @@ class PurchaseRequestLine(orm.Model):
         return date_planned and date_planned.strftime('%Y-%m-%d') \
             or False
 
-    def _seller_details(self, cr, uid, request_line, supplier,
+    def _seller_details(self, cr, uid, request_line, product,
+                        product_qty, product_uom, supplier,
                         context=None):
-        product_uom = self.pool.get('product.uom')
-        pricelist = self.pool.get('product.pricelist')
-        product = request_line.product_id
+        product_uom_obj = self.pool['product.uom']
+        pricelist_obj = self.pool['product.pricelist']
         default_uom_po_id = product.uom_po_id.id
-        qty = product_uom._compute_qty(cr, uid,
-                                       request_line.product_uom_id.id,
-                                       request_line.product_qty,
-                                       default_uom_po_id)
+        qty = product_uom_obj._compute_qty(cr, uid,
+                                           product_uom.id,
+                                           product_qty,
+                                           default_uom_po_id)
         seller_delay = 0.0
         seller_qty = False
         for product_supplier in product.seller_ids:
@@ -143,7 +157,7 @@ class PurchaseRequestLine(orm.Model):
                 seller_qty = product_supplier.qty
         supplier_pricelist = supplier.property_product_pricelist_purchase \
             or False
-        seller_price = pricelist.price_get(
+        seller_price = pricelist_obj.price_get(
             cr, uid, [supplier_pricelist.id],
             product.id, qty, supplier.id,
             {'uom': default_uom_po_id})[supplier_pricelist.id]
@@ -178,7 +192,7 @@ class PurchaseRequestLine(orm.Model):
                         cr, uid, supplierinfo_ids, context=context).min_qty
 
         if supplierinfo_min_qty == 0.0:
-            qty += po_line.product_qty
+            qty += request_line.product_qty
         else:
             # Recompute quantity by adding existing running procurements.
             for rl in po_line.purchase_request_lines:

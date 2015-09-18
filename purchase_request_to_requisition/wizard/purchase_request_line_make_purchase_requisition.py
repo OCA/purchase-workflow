@@ -39,6 +39,7 @@ class PurchaseRequestLineMakePurchaseRequisition(orm.TransientModel):
     def _prepare_item(self, cr, uid, line, context=None):
         return [{
             'line_id': line.id,
+            'request_id': line.request_id.id,
             'product_id': line.product_id.id,
             'name': line.name,
             'product_qty': line.product_qty,
@@ -83,18 +84,17 @@ class PurchaseRequestLineMakePurchaseRequisition(orm.TransientModel):
         return {
             'requisition_id': pr_id,
             'product_qty': item.product_qty,
-            'product_id': item.line_id.product_id.id,
-            'product_uom_id': item.line_id.product_uom_id.id,
+            'product_id': item.product_id.id,
+            'product_uom_id': item.product_uom_id.id,
             'purchase_request_lines': [(4, item.line_id.id)]
         }
 
     def _get_requisition_line_search_domain(self, cr, uid, requisition_id,
-                                            request_line, context=None):
+                                            item, context=None):
         return [('requisition_id', '=', requisition_id),
-                ('product_id', '=', request_line.product_id.id or False),
+                ('product_id', '=', item.product_id.id or False),
                 ('product_uom_id', '=',
-                 request_line.product_uom_id.id or False),
-                ('name', '=', )]
+                 item.product_uom_id.id or False)]
 
     def make_purchase_requisition(self, cr, uid, ids, context=None):
         if context is None:
@@ -109,10 +109,6 @@ class PurchaseRequestLineMakePurchaseRequisition(orm.TransientModel):
         requisition_id = False
         for item in make_purchase_requisition.item_ids:
             line = item.line_id
-            if line.state == 'done':
-                raise orm.except_orm(
-                    _('Could not process !'),
-                    _('A related requisition has already been completed'))
             if item.product_qty <= 0.0:
                 raise orm.except_orm(
                     _('Could not process !'),
@@ -153,7 +149,7 @@ class PurchaseRequestLineMakePurchaseRequisition(orm.TransientModel):
             # product and UoM to sum quantities instead of creating a new
             # po line
             domain = self._get_requisition_line_search_domain(
-                cr, uid, requisition_id, line, context=context)
+                cr, uid, requisition_id, item, context=context)
             available_pr_line_ids = pr_line_obj.search(
                 cr, uid, domain, context=context)
             if available_pr_line_ids:
@@ -196,21 +192,46 @@ class PurchaseRequestLineMakePurchaseRequisitionItem(orm.TransientModel):
                                    'Purchase Request Line',
                                    required=True,
                                    readonly=True),
+        'request_id': fields.related('line_id',
+                                     'request_id', type='many2one',
+                                     relation='purchase.request',
+                                     string='Purchase Request',
+                                     readonly=True),
         'product_id': fields.related('line_id',
                                      'product_id', type='many2one',
                                      relation='product.product',
-                                     string='Product',
-                                     readonly=True),
+                                     string='Product'),
         'product_qty': fields.float(string='Quantity to deliver',
                                     digits_compute=dp.get_precision(
                                         'Product UoS')),
         'product_uom_id': fields.related('line_id',
                                          'product_uom_id', type='many2one',
                                          relation='product.uom',
-                                         string='UoM',
-                                         readonly=True),
+                                         string='UoM'),
         'name': fields.related('line_id',
                                'name', type='char',
-                               string='Description',
-                               readonly=True)
+                               string='Description')
     }
+
+    def onchange_product_id(self, cr, uid, ids, product_id,
+                            product_uom_id, context=None):
+        """ Changes UoM and name if product_id changes.
+        @param name: Name of the field
+        @param product_id: Changed product_id
+        @return:  Dictionary of changed values
+        """
+        value = {'product_uom_id': ''}
+        if product_id:
+            product_obj = self.pool['product.product']
+            prod = product_obj.browse(
+                cr, uid, product_id, context=context)
+            product_name = product_obj.name_get(cr, uid, product_id,
+                                                context=context)
+            dummy, name = product_name and product_name[0] or (False,
+                                                               False)
+            if prod.description_purchase:
+                name += '\n' + prod.description_purchase
+
+            value = {'product_uom_id': prod.uom_id.id,
+                     'name': name}
+        return {'value': value}

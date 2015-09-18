@@ -105,7 +105,8 @@ class PurchaseRequestLine(orm.Model):
                 _get_request_lines_from_pr,
                 ['state', 'line_ids'], 10),
                 'purchase.requisition.line': (
-                _get_request_lines_from_prl, None, 10)},),
+                _get_request_lines_from_prl, ['purchase_request_lines'],
+                10)},),
         'is_editable': fields.function(_get_is_editable,
                                        string="Is editable",
                                        type="boolean")
