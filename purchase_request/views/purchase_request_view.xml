@@ -339,9 +339,6 @@
                     <filter string="Assigned to"
                             domain="[]"
                             context="{'group_by':'assigned_to'}"/>
-                    <filter string="Request state"
-                            domain="[]"
-                            context="{'group_by':'request_state'}"/>
                 </group>
             </search>
         </field>

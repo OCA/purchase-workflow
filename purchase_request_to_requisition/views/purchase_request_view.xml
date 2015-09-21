@@ -57,13 +57,13 @@
                    ref="purchase_request.purchase_request_line_form"/>
             <field name="arch" type="xml">
                 <notebook position="inside">
-                    <group>
-                        <field name="requisition_qty"/>
-                        <field name="requisition_state"/>
-                    </group>
-                    <group>
-                        <page name="purchase_requisition_lines"
+                    <page name="purchase_requisition_lines"
                               string="Purchase Requisition Lines">
+                        <group>
+                            <field name="requisition_qty"/>
+                            <field name="requisition_state"/>
+                        </group>
+                        <group>
                             <group>
                                 <field name="requisition_lines" nolabel="1">
                                     <tree string="Purchase Requisition Lines">
@@ -82,8 +82,8 @@
                                     </form>
                                 </field>
                             </group>
-                        </page>
-                    </group>
+                        </group>
+                    </page>
                 </notebook>
             </field>
         </record>

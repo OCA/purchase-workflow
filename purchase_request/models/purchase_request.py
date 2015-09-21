@@ -231,7 +231,7 @@ class PurchaseRequestLine(orm.Model):
                                         readonly=True,
                                         type="selection",
                                         selection=_STATES,
-                                        store=True),
+                                        store={}),
         'supplier_id': fields.function(_get_supplier,
                                        string="Preferred supplier",
                                        type="many2one",

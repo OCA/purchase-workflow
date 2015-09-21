@@ -154,11 +154,26 @@ class PurchaseRequestLineMakePurchaseOrder(orm.TransientModel):
 
     def _get_order_line_search_domain(self, cr, uid, order_id, item,
                                       context=None):
-        return [('order_id', '=', order_id),
-                ('product_id', '=', item.product_id.id or False),
-                ('product_uom', '=',
-                 item.product_uom_id.id or False),
-                ('name', '=', item.name)]
+        purchase_obj = self.pool['purchase.order']
+        purchase_req_line_obj = self.pool['purchase.request.line']
+        purchase = purchase_obj.browse(cr, uid, order_id, context=context)
+
+        seller_price, qty, default_uom_po_id, date_planned = \
+            purchase_req_line_obj._seller_details(cr, uid, item.line_id,
+                                                  item.product_id,
+                                                  item.product_qty,
+                                                  item.product_uom_id,
+                                                  purchase.partner_id,
+                                                  context=context)
+        order_line_data = [('order_id', '=', order_id),
+                           ('product_id', '=', item.product_id.id or False),
+                           ('product_uom', '=', default_uom_po_id or
+                            False),
+                           ('account_analytic_id', '=',
+                            item.line_id.analytic_account_id.id or False)]
+        if not item.product_id:
+            order_line_data['name'] = item.name
+        return order_line_data
 
     def make_purchase_order(self, cr, uid, ids, context=None):
         if context is None:
