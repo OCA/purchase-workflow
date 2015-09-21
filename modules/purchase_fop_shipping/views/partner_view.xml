@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="res_partner_form_view_fop_shipping">
+			<field name="name">fop.shipping.res.partner.form</field>
+			<field name="model">res.partner</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="base.view_partner_form" />
+			<field name="priority" eval="20" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='property_account_payable']/.."
+					position="inside">
+					<field name="fop_shipping" />
+				</xpath>
+			</field>
+		</record>
+		
+	</data>
+</openerp>

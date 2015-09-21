@@ -1,0 +1,72 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* purchase_fop_shipping
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-21 14:13+0000\n"
+"PO-Revision-Date: 2015-09-21 14:13+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_fop_shipping
+#: field:purchase.order,force_order_under_fop:0
+msgid "Confirm under FOP"
+msgstr "Confirmer sous Franco"
+
+#. module: purchase_fop_shipping
+#: field:purchase.order,fop_shipping:0
+#: field:res.partner,fop_shipping:0
+msgid "FOP shipping"
+msgstr "Franco"
+
+#. module: purchase_fop_shipping
+#: help:purchase.order,force_order_under_fop:0
+msgid "Force confirm order under Free-Of-Paiment shipping"
+msgstr "Forcer la confirmation de la commande sous le franco"
+
+#. module: purchase_fop_shipping
+#: help:res.partner,fop_shipping:0
+msgid "Min order amount for FOP shipping"
+msgstr "Franco de commande d'achat"
+
+#. module: purchase_fop_shipping
+#: help:purchase.order,fop_shipping:0
+msgid "Min order amount for Free-Of-Paiment shipping"
+msgstr "Franco de commande d'achat"
+
+#. module: purchase_fop_shipping
+#: model:ir.model,name:purchase_fop_shipping.model_res_partner
+msgid "Partner"
+msgstr "Partenaire"
+
+#. module: purchase_fop_shipping
+#: model:ir.model,name:purchase_fop_shipping.model_purchase_order
+msgid "Purchase Order"
+msgstr "Bon de commande"
+
+#. module: purchase_fop_shipping
+#: code:addons/purchase_fop_shipping/models/purchase.py:48
+#, python-format
+msgid "You cannot confirm a purchase order with Invoice Control Method 'Based on incoming shipments' that doesn't contain any stockable item."
+msgstr "Vous ne pouvez pas confirmer une commande dont la méthode de facturation est basée sur les réception et qui n'a aucun produit stockable."
+
+#. module: purchase_fop_shipping
+#: code:addons/purchase_fop_shipping/models/purchase.py:43
+#, python-format
+msgid "You cannot confirm a purchase order with amount under FOP shipping."
+msgstr "Vous ne pouvez pas confirmer une commande dont le montant est en dessous du Franco."
+
+#. module: purchase_fop_shipping
+#: code:addons/purchase_fop_shipping/models/purchase.py:45
+#, python-format
+msgid "You cannot confirm a purchase order without any purchase order line."
+msgstr "Vous ne pouvez pas confirmer une commande d'achat sans aucune ligne."
+
+
