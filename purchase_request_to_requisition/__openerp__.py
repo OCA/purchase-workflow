@@ -119,8 +119,6 @@ To contribute to this module, please visit http://odoo-community.org.
     ],
     'demo_xml': [],
     'test': [
-        "test/purchase_request_users.yml",
-        "test/purchase_request_data.yml",
         "test/purchase_request_from_procurement.yml"
     ],
     'installable': True,

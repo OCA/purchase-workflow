@@ -42,8 +42,8 @@ and the requested date.
 automatically, for example, from procurement orders.
 
 A purchase request is an instruction to Purchasing to procure a certain
-quantity of materials services, so that they are is available at a
-certain point in time.
+quantity of materials services, so that they are available at a certain
+point in time.
 
 A line of a requisition contains the quantity and requested date of the
 material to be supplied or the quantity of the service to be performed. You

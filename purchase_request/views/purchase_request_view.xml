@@ -115,8 +115,8 @@
                                                nolabel="1"
                                                attrs="{'readonly': [('is_editable','=', False)]}"/>
                                     </group>
-                                    <group name="follow_up">
-                                    </group>
+                                    <notebook>
+                                    </notebook>
                                 </sheet>
                             </form>
                         </field>
@@ -201,10 +201,9 @@
           <p class="oe_view_nocontent_create">
             Click to start a new purchase request process. 
           </p><p>
-            A purchase request is the step before a request for quotation.
-            In a purchase request (or purchase tender), you can record the
-            products you need to buy and trigger the creation of RfQs to
-            suppliers.
+            A purchase request is an instruction to Purchasing to procure
+            a certain quantity of materials services, so that they are
+            available at a certain point in time.
           </p>
         </field>
     </record>
@@ -231,6 +230,7 @@
                 <field name="product_uom_id" groups="product.group_uom"/>
                 <field name="analytic_account_id"
                        groups="analytic.group_analytic_accounting"/>
+                <field name="supplier_id"/>
             </tree>
         </field>
     </record>
@@ -296,8 +296,8 @@
                                nolabel="1"
                                attrs="{'readonly': [('is_editable','=', False)]}"/>
                     </group>
-                    <group name="follow_up">
-                    </group>
+                    <notebook>
+                    </notebook>
                 </sheet>
                 <div class="oe_chatter">
                   <field name="message_follower_ids" widget="mail_followers"/>

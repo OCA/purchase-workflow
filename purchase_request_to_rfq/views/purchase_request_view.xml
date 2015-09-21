@@ -8,32 +8,37 @@
             <field name="inherit_id"
                    ref="purchase_request.view_purchase_request_form"/>
             <field name="arch" type="xml">
-                <xpath
-                        expr="//field[@name='line_ids']/tree//field[@name='date_required']"
-                        position="after">
+                <xpath expr="//field[@name='line_ids']/tree"
+                       position="inside">
                     <field name="purchased_qty"/>
                     <field name="purchase_state"/>
                 </xpath>
-                <xpath
-                        expr="//field[@name='line_ids']/form//group[@name='follow_up']"
-                        position="inside">
-                    <newline/>
-                    <separator string="Purchase Order Lines"/>
-                    <newline/>
-                    <field name="purchase_lines" nolabel="1">
-                        <tree string="Purchase Order Lines">
-                            <field name="order_id"/>
-                            <field name="product_id"/>
-                            <field name="name"/>
-                            <field name="account_analytic_id"
-                                   groups="purchase.group_analytic_accounting"
-                                   domain="[('type','not in',('view','template'))]"/>
-                            <field name="product_qty"/>
-                            <field name="product_uom"
-                                   groups="product.group_uom"/>
-                            <field name="state"/>
-                        </tree>
-                    </field>
+                <xpath expr="//field[@name='line_ids']/form//notebook"
+                       position="inside">
+                    <page name="purchase_lines"
+                          string="Purchase Order Lines">
+                        <group>
+                            <field name="purchased_qty"/>
+                            <field name="purchase_state"/>
+                        </group>
+                        <newline/>
+                        <group>
+                            <field name="purchase_lines" nolabel="1">
+                                <tree string="Purchase Order Lines">
+                                    <field name="order_id"/>
+                                    <field name="product_id"/>
+                                    <field name="name"/>
+                                    <field name="account_analytic_id"
+                                           groups="purchase.group_analytic_accounting"
+                                           domain="[('type','not in',('view','template'))]"/>
+                                    <field name="product_qty"/>
+                                    <field name="product_uom"
+                                           groups="product.group_uom"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
                 </xpath>
             </field>
         </record>
@@ -57,30 +62,45 @@
             <field name="inherit_id"
                    ref="purchase_request.purchase_request_line_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='date_required']"
-                       position="after">
-                    <field name="purchased_qty"/>
-                    <field name="purchase_state"/>
-                </xpath>
-                <xpath expr="//group[@name='follow_up']" position="inside">
-                    <newline/>
-                    <separator string="Purchase Order Lines"/>
-                    <newline/>
-                    <field name="purchase_lines" nolabel="1">
-                        <tree string="Purchase Order Lines">
-                            <field name="order_id"/>
-                            <field name="product_id"/>
-                            <field name="name"/>
-                            <field name="account_analytic_id"
-                                   groups="purchase.group_analytic_accounting"
-                                   domain="[('type','not in',('view','template'))]"/>
-                            <field name="product_qty"/>
-                            <field name="product_uom"
-                                   groups="product.group_uom"/>
-                            <field name="state"/>
-                        </tree>
-                    </field>
-                </xpath>
+                <notebook position="inside">
+                    <group>
+                        <field name="purchased_qty"/>
+                        <field name="purchase_state"/>
+                    </group>
+                    <group>
+                        <page name="purchase_lines"
+                              string="Purchase Order Lines">
+                            <group>
+                                <field name="purchase_lines" nolabel="1">
+                                    <tree string="Purchase Order Lines">
+                                        <field name="order_id"/>
+                                        <field name="product_id"/>
+                                        <field name="name"/>
+                                        <field name="account_analytic_id"
+                                               groups="purchase.group_analytic_accounting"
+                                               domain="[('type','not in',('view','template'))]"/>
+                                        <field name="product_qty"/>
+                                        <field name="product_uom"
+                                               groups="product.group_uom"/>
+                                        <field name="state"/>
+                                    </tree>
+                                    <form string="Purchase Order Lines">
+                                        <field name="order_id"/>
+                                        <field name="product_id"/>
+                                        <field name="name"/>
+                                        <field name="account_analytic_id"
+                                               groups="purchase.group_analytic_accounting"
+                                               domain="[('type','not in',('view','template'))]"/>
+                                        <field name="product_qty"/>
+                                        <field name="product_uom"
+                                               groups="product.group_uom"/>
+                                        <field name="state"/>
+                                    </form>
+                                </field>
+                            </group>
+                        </page>
+                    </group>
+                </notebook>
             </field>
         </record>
 

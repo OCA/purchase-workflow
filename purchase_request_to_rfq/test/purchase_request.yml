@@ -33,7 +33,8 @@
     for rfq_line in rfq.order_line:
         for line in request.line_ids:
             if rfq_line.product_id.id == line.product_id.id:
-                seller_price, qty, default_uom_po_id, date_planned = request_line_obj._seller_details(cr, uid, line, supplier, context=context)
+
+                seller_price, qty, default_uom_po_id, date_planned = request_line_obj._seller_details(cr, uid, line, line.product_id, line.product_qty, line.product_uom_id, supplier, context=context)
                 assert rfq_line.product_qty == qty, "Quantity does not match."
                 assert rfq_line.product_uom.id == default_uom_po_id, "UOM does not match."
                 assert rfq_line.price_unit == seller_price, "Unit Price does not match."

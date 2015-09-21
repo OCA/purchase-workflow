@@ -155,6 +155,15 @@ class PurchaseRequestLine(orm.Model):
                 res[line.id] = False
         return res
 
+    def _get_supplier(self, cr, uid, ids, names, arg, context=None):
+        res = dict.fromkeys(ids, False)
+        for line in self.browse(cr, uid, ids, context=context):
+            if line.product_id:
+                for product_supplier in line.product_id.seller_ids:
+                    res[line.id] = product_supplier.name.id
+                    break
+        return res
+
     _columns = {
         'product_id': fields.many2one(
             'product.product', 'Product',
@@ -222,7 +231,12 @@ class PurchaseRequestLine(orm.Model):
                                         readonly=True,
                                         type="selection",
                                         selection=_STATES,
-                                        store=True)
+                                        store=True),
+        'supplier_id': fields.function(_get_supplier,
+                                       string="Preferred supplier",
+                                       type="many2one",
+                                       relation="res.partner",
+                                       readonly=True),
     }
 
     _defaults = {
