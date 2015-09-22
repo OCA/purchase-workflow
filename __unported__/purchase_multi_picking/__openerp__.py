@@ -39,5 +39,5 @@ picking. When confirming the order, for each group a picking is generated.
     ],
     "demo": [],
     "active": False,
-    "installable": True
+    "installable": False
 }

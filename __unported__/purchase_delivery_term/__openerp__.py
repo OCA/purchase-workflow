@@ -43,5 +43,5 @@ generate several pickings according to delivery term (thanks to
     ],
     "demo": [],
     "active": False,
-    "installable": True
+    "installable": False
 }
