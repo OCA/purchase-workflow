@@ -1,0 +1,40 @@
+-
+  I log as the Purchase Request User
+-
+  !context
+    uid: 'res_users_purchase_request_user'
+-
+  I request approval of a purchase request.
+-
+  !python {model: purchase.request}: |
+    self.button_to_approve(cr, uid, [ref("request1")])
+-
+  I check the status of the request
+-
+  !assert {model: purchase.request, id: request1}:
+    - state == 'to_approve'
+-
+  I log as the Purchase Request Manager
+-
+  !context
+    uid: 'res_users_purchase_request_manager'
+-
+  I reset the request as "Draft".
+-
+  !python {model: purchase.request}: |
+    self.button_draft(cr, uid, [ref('request1')])
+-
+  I check the status of the request
+-
+  !assert {model: purchase.request, id: request1}:
+    - state == 'draft'
+-
+  I duplicate request.
+-
+  !python {model: purchase.request}: |
+    self.copy(cr, uid, ref('request1'))
+-
+  I delete request.
+-
+  !python {model: purchase.request}: |
+    self.unlink(cr, uid, [ref("request1")])
