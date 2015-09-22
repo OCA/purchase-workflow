@@ -34,6 +34,11 @@ Users can access to the list of Purchase Requests or Purchase Request Lines.
 
 It is possible to filter requests by it's approval status.
 
+.. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
+   :alt: Try me on Runbot
+   :target: https://runbot.odoo-community.org/runbot/142/8.0
+
+
 Credits
 =======
 
