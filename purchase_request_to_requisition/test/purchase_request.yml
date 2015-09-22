@@ -1,0 +1,105 @@
+-
+  I log as the Purchase User
+-
+  !context
+    uid: 'res_users_purchase_user'
+-
+  I create a Requisition
+-
+  !python {model: purchase.request.line.make.purchase.requisition}: |
+    context.update({"active_model": "purchase.request.line","active_ids": [ref("request_line1")],"active_id": ref("request_line1")})
+-
+  !record {model: purchase.request.line.make.purchase.requisition, id: request_line_make_pr_0}:
+-
+  !python {model: purchase.request.line.make.purchase.requisition}: |
+    self.make_purchase_requisition(cr, uid, [ref("request_line_make_pr_0")], context=context)
+-
+  I check that the Requisition details which created for supplier.
+-
+  !python {model: purchase.requisition.line}: |
+    request_obj = self.pool["purchase.request"]
+    request_line_obj = self.pool["purchase.request.line"]
+    request = request_obj.browse(cr, uid, ref("request1"), context=context)
+    requisition_line = False
+    for pr_line in request.line_ids:
+        assert len(pr_line.requisition_lines) == 1, "No purchase requisition line was created."
+        for requisition_l in pr_line.requisition_lines:
+            requisition_line = requisition_l
+    requisition = requisition_line.requisition_id
+    assert len(requisition.line_ids) == len(request.line_ids), "Lines do not match."
+    for requisition_line in requisition.line_ids:
+        for line in request.line_ids:
+            if requisition_line.product_id.id == line.product_id.id:
+                assert requisition_line.product_id == line.product_id, "Product does not match."
+                assert requisition_line.requisition_id.state == line.requisition_state, "State does not match"
+-
+  Set tender state to choose bidding line.
+-
+  !python {model: purchase.requisition}: |
+    request_obj = self.pool["purchase.request"]
+    request = request_obj.browse(cr, uid, ref("request1"), context=context)
+    requisition_line = False
+    for pr_line in request.line_ids:
+        assert len(pr_line.requisition_lines) == 1, "No purchase requisition line was created."
+        for requisition_l in pr_line.requisition_lines:
+            requisition_line = requisition_l
+    requisition = requisition_line.requisition_id
+    self.tender_in_progress(cr, uid, requisition.id, context=context)
+    self.tender_open(cr, uid, requisition.id, context=context)
+-
+  Supplier send one RFQ so I create requisition request of that supplier.
+-
+  !python {model: purchase.requisition.partner}: |
+    request_obj = self.pool["purchase.request"]
+    request = request_obj.browse(cr, uid, ref("request1"), context=context)
+    requisition_line = False
+    for pr_line in request.line_ids:
+        assert len(pr_line.requisition_lines) == 1, "No purchase requisition line was created."
+        for requisition_l in pr_line.requisition_lines:
+            requisition_line = requisition_l
+    requisition = requisition_line.requisition_id
+    context.update({"active_model": "purchase.requisition","active_ids": [requisition.id],"active_id": requisition.id})
+-
+  !record {model: purchase.requisition.partner, id: requisition_partner_0}:
+    partner_id: base.res_partner_12
+-
+  !python {model: purchase.requisition.partner}: |
+    context.update({"mail_create_nolog" : True })
+    self.create_order(cr, uid, [ref("requisition_partner_0")], context=context)
+-
+  I check that the RFQ details which created for supplier.
+-
+  !python {model: purchase.order}: |
+    request_obj = self.pool["purchase.request"]
+    request = request_obj.browse(cr, uid, ref("request1"), context=context)
+    requisition_line = False
+    for pr_line in request.line_ids:
+        assert len(pr_line.requisition_lines) == 1, "No purchase requisition line was created."
+        for requisition_l in pr_line.requisition_lines:
+            requisition_line = requisition_l
+    requisition = requisition_line.requisition_id
+    purchase_requisition = self.pool.get("purchase.requisition")
+    purchase_ids = self.search(cr, uid, [('requisition_id','=', requisition.id)])
+    assert purchase_ids, "RFQ is not created."
+    for rfq in self.browse(cr, uid, purchase_ids, context=context):
+        if rfq.partner_id.id == ref('base.res_partner_12'):
+            purchase = self.browse(cr, uid, rfq.id, context=context)
+            purchase.signal_workflow('purchase_confirm')
+            for order_line in purchase.order_line:
+                for request_line in order_line.purchase_request_lines:
+                    assert len(order_line.purchase_request_lines)>0, "No link between purchase order lines and request lines"
+        else:
+            assert False, "No PO found for res_partner_12."
+-
+  I check status of requisition after confirmed the RFQ.
+-
+  !python {model: purchase.requisition}: |
+    request_obj = self.pool["purchase.request"]
+    request = request_obj.browse(cr, uid, ref("request1"), context=context)
+    requisition_line = False
+    for pr_line in request.line_ids:
+        assert len(pr_line.requisition_lines) == 1, "No purchase requisition line was created."
+        for requisition_l in pr_line.requisition_lines:
+            requisition_line = requisition_l
+    requisition = requisition_line.requisition_id
+    requisition.state == 'done', "Requisition should be closed."
