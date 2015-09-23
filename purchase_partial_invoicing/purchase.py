@@ -99,6 +99,10 @@ class AccountInvoice(models.Model):
     def invoice_validate(self):
         res = super(AccountInvoice, self).invoice_validate()
         purchase_order_obj = self.env['purchase.order']
+        # Users might not have access rights for Purchase Order (e.g. POS users)
+        if not purchase_order_obj.check_access_rights(
+                'read', raise_exception=False):
+            return res
         po_ids = purchase_order_obj.search([('invoice_ids', 'in', self.ids)])
         for purchase_order in po_ids:
             for po_line in purchase_order.order_line:
