@@ -21,7 +21,8 @@
 
 {
     "name": "Purchase Request to RFQ",
-    "author": "Eficent",
+    "author": "Eficent,"
+              "Odoo Community Association (OCA)",
     "version": "1.0",
     "contributors": [
         'Jordi Ballester Alomar',
