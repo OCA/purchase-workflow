@@ -39,8 +39,8 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
 
     @api.model
     def _default_warehouse(self):
-        warehouse_obj = self.pool.get('stock.warehouse')
-        company_obj = self.pool.get('res.company')
+        warehouse_obj = self.env['stock.warehouse']
+        company_obj = self.env['res.company']
         company_id = company_obj._company_default_get('stock.warehouse')
         warehouses = warehouse_obj.search(
             [('company_id', '=', company_id)], limit=1)
@@ -52,7 +52,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
 
     @api.model
     def _prepare_item(self, line):
-        return [{
+        return {
             'line_id': line.id,
             'request_id': line.request_id.id,
             'product_id': line.product_id.id,
@@ -60,7 +60,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             'product_qty': line.product_qty,
             'product_uom_id': line.product_uom_id.id,
             'analytic_account_id': line.analytic_account_id.id,
-        }]
+        }
 
 
     @api.model
@@ -78,9 +78,8 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
 
         items = []
         for line in request_line_obj.browse(request_line_ids):
-                items += self._prepare_item(line)
+                items.append([0, 0, self._prepare_item(line)])
         res['item_ids'] = items
-
         return res
 
     @api.model

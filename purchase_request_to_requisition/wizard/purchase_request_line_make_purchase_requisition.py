@@ -35,14 +35,14 @@ class PurchaseRequestLineMakePurchaseRequisition(models.TransientModel):
 
     @api.model
     def _prepare_item(self, line):
-        return [{
+        return {
             'line_id': line.id,
             'request_id': line.request_id.id,
             'product_id': line.product_id.id,
             'name': line.name or line.product_id.name,
             'product_qty': line.product_qty,
             'product_uom_id': line.product_uom_id.id,
-        }]
+        }
 
     @api.model
     def default_get(self, fields):
@@ -59,9 +59,8 @@ class PurchaseRequestLineMakePurchaseRequisition(models.TransientModel):
 
         items = []
         for line in request_line_obj.browse(request_line_ids):
-                items += self._prepare_item(line)
+                items.append([0, 0, self._prepare_item(line)])
         res['item_ids'] = items
-
         return res
 
     @api.model
