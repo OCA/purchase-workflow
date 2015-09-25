@@ -22,7 +22,8 @@
 {
     "name": "Purchase Request to Call for Bids",
     "version": "1.0",
-    "author": "Eficent",
+    "author": "Eficent, "
+              "Odoo Community Association (OCA)",
     "website": "www.eficent.com",
     "category": "Purchase Management",
     "depends": ["purchase_request", "purchase_requisition",

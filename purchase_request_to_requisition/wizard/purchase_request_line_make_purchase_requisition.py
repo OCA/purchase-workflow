@@ -170,9 +170,9 @@ class PurchaseRequestLineMakePurchaseRequisitionItem(models.TransientModel):
     _description = "Purchase Request Line Make Purchase Requisition Item"
 
     wiz_id = fields.Many2one(
-            'purchase.request.line.make.purchase.requisition',
-            string='Wizard', required=True, ondelete='cascade',
-            readonly=True)
+        'purchase.request.line.make.purchase.requisition',
+        string='Wizard', required=True, ondelete='cascade',
+        readonly=True)
     line_id = fields.Many2one('purchase.request.line',
                               string='Purchase Request Line',
                               required=True,
@@ -192,7 +192,7 @@ class PurchaseRequestLineMakePurchaseRequisitionItem(models.TransientModel):
         if self.product_id:
             name = self.product_id.name
             if self.product_id.code:
-                name = '[%s] %s' %(name, self.product_id.code)
+                name = '[%s] %s' % (name, self.product_id.code)
             if self.product_id.description_purchase:
                 name += '\n' + self.product_id.description_purchase
             self.product_uom_id = self.product_id.uom_id.id

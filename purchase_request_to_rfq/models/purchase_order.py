@@ -80,7 +80,7 @@ class PurchaseOrder(models.Model):
                     if request_line.purchase_state == 'done':
                         raise exceptions.Warning(
                             _('Purchase Request %s has already '
-                              'been completed') %request_line.request_id.name)
+                              'been completed') % request_line.request_id.name)
         return True
 
     @api.multi
@@ -102,14 +102,14 @@ class PurchaseOrderLine(models.Model):
             self.has_purchase_request_lines = False
 
     purchase_request_lines = fields.Many2many(
-            'purchase.request.line',
-            'purchase_request_purchase_order_line_rel',
-            'purchase_order_line_id',
-            'purchase_request_line_id',
-            'Purchase Request Lines', readonly=True)
+        'purchase.request.line',
+        'purchase_request_purchase_order_line_rel',
+        'purchase_order_line_id',
+        'purchase_request_line_id',
+        'Purchase Request Lines', readonly=True)
     has_purchase_request_lines = fields.Boolean(
-            compute="_has_purchase_request_lines",
-            string="Has Purchase Request Lines")
+        compute="_has_purchase_request_lines",
+        string="Has Purchase Request Lines")
 
     @api.one
     def copy(self, default=None):
