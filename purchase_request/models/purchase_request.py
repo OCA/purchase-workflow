@@ -18,7 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import api, fields, models, _, exceptions
+from openerp import api, fields, models
 import time
 import openerp.addons.decimal_precision as dp
 _STATES = [
@@ -238,7 +238,7 @@ class PurchaseRequestLine(models.Model):
         if self.product_id:
             name = self.product_id.name
             if self.product_id.code:
-                name = '[%s] %s' %(name, self.product_id.code)
+                name = '[%s] %s' % (name, self.product_id.code)
             if self.product_id.description_purchase:
                 name += '\n' + self.product_id.description_purchase
             self.product_uom_id = self.product_id.uom_id.id
