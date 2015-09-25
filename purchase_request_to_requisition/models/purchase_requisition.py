@@ -92,7 +92,7 @@ class PurchaseRequisition(models.Model):
 class PurchaseRequisitionLine(models.Model):
     _inherit = "purchase.requisition.line"
 
-    @api.multi
+    @api.one
     def _has_purchase_request_lines(self):
         if self.purchase_request_lines:
             self.has_purchase_request_lines = True
@@ -127,13 +127,11 @@ class PurchaseRequisitionLine(models.Model):
         for line in self:
             request_line_ids = [request_line.id for request_line
                                 in line.purchase_request_lines]
-        domain = "[('id', 'in', ["+','.join(
-            map(str, request_line_ids))+"])]"
+        domain = [('id', 'in', request_line_ids)]
 
         return {'name': _('Purchase Request Lines'),
                 'type': 'ir.actions.act_window',
                 'res_model': 'purchase.request.line',
                 'view_type': 'form',
                 'view_mode': 'tree,form',
-                'target': 'new',
                 'domain': domain}
