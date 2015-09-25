@@ -11,7 +11,22 @@
                 <label for="product_uop_qty"/>
                 <div>
                     <field name="product_uop_qty" class="oe_inline"/>
-                    <field name="product_uop_id" groups="product.group_uom" class="oe_inline"/>
+                    <field name="product_uop_id"
+                           groups="product.group_uom" class="oe_inline"/>
+                </div>
+            </field>
+            <xpath expr="//form/sheet/group/group[2]" position="after">
+                <group>
+                    <button name="update_uom_price_data"
+                            string="Update Secondary UoP"
+                            type="object" class="oe_highlight"/>
+                </group>
+            </xpath>
+            <field name="price_unit" position="after">
+                <label for="price_unit_uop"/>
+                <div>
+                    <field name="price_unit_uop" groups="product.group_uom"
+                           class="oe_inline"/>
                 </div>
             </field>
         </field>

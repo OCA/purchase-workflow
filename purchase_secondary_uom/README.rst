@@ -32,6 +32,7 @@ Contributors
 ------------
 
 * Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
+* Andrea Gallina <a.gallina@apuliasoftware.it>
 
 Maintainer
 ----------

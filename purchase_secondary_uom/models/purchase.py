@@ -22,6 +22,7 @@
 
 
 from openerp import models, fields, api
+import openerp.addons.decimal_precision as dp
 
 
 class PurchaseOrder(models.Model):
@@ -49,12 +50,35 @@ class PurchaseOrderLine(models.Model):
     product_uop_id = fields.Many2one('product.uom', string='Product UoP')
     product_uop_qty = fields.Float(string='Quantity (UoP)',
                                    default=1.00)
+    price_unit_uop = fields.Float(string='Price Unit (UoP)',
+                                  digits=dp.get_precision('Product Price'),)
 
-    @api.onchange('product_id', 'product_uop_qty', 'product_uop_id')
-    def on_change_secondary_uom(self):
-        if self.product_id:
-            try:
-                self.product_qty = (self.product_uop_qty /
-                                    self.product_id.uop_coeff)
-            except ZeroDivisionError:
-                pass
+    @api.multi
+    def update_uom_price_data(self):
+        try:
+            self.product_qty = (self.product_uop_qty /
+                                self.product_id.uop_coeff)
+            self.price_unit = self.price_unit_uop * self.product_id.uop_coeff
+        except ZeroDivisionError:
+            pass
+
+    def onchange_product_id(self, cr, uid, ids, pricelist_id, product_id,
+                            qty, uom_id, partner_id, date_order=False,
+                            fiscal_position_id=False, date_planned=False,
+                            name=False, price_unit=False, state='draft',
+                            context=None):
+        res = super(PurchaseOrderLine, self).onchange_product_id(
+            cr, uid, ids, pricelist_id, product_id, qty, uom_id, partner_id,
+            date_order, fiscal_position_id, date_planned, name,
+            price_unit, state, context)
+        if not res:
+            return res
+        if not product_id:
+            return res
+        product = self.pool['product.product'].browse(
+            cr, uid, product_id, context)
+        if product.uop_id:
+            res['value'].update(
+                {'product_uop_id': product.uop_id.id,
+                 'product_uop_qty': (product.uop_coeff * qty) or qty})
+        return res
