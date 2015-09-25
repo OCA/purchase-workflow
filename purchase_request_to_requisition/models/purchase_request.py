@@ -19,6 +19,7 @@
 #
 ##############################################################################
 from openerp.osv import fields, orm
+from openerp.tools.translate import _
 
 _PURCHASE_REQUISITION_STATE = [
     ('none', 'No Bid'),
@@ -124,3 +125,13 @@ class PurchaseRequestLine(orm.Model):
         })
         return super(PurchaseRequestLine, self).copy(
             cr, uid, id, default, context)
+
+    def unlink(self, cr, uid, ids, context=None):
+        for line in self.browse(cr, uid, ids, context=context):
+            if line.requisition_lines:
+                raise orm.except_orm(
+                    _('Error!'),
+                    _('You cannot delete a record that refers to purchase '
+                      'requisition lines!'))
+        return super(PurchaseRequestLine, self).unlink(cr, uid, ids,
+                                                       context=context)

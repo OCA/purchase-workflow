@@ -164,6 +164,14 @@ class PurchaseRequestLine(orm.Model):
                     break
         return res
 
+    def _get_lines_from_request(self, cr, uid, ids, context=None):
+        lines = []
+        for request in self.pool['purchase.request'].browse(
+                cr, uid, ids, context=context):
+            for line in request.line_ids:
+                lines.append(line.id)
+        return list(set(lines))
+
     _columns = {
         'product_id': fields.many2one(
             'product.product', 'Product',
@@ -184,7 +192,10 @@ class PurchaseRequestLine(orm.Model):
                                      type='many2one',
                                      relation='res.company',
                                      string='Company',
-                                     store=True, readonly=True),
+                                     readonly=True,
+                                     store={'purchase.request': (
+                                       _get_lines_from_request,
+                                       None, 20)}),
         'analytic_account_id': fields.many2one(
             'account.analytic.account', 'Analytic Account',
             track_visibility='onchange'),
@@ -193,29 +204,41 @@ class PurchaseRequestLine(orm.Model):
                                        readonly=True,
                                        type="many2one",
                                        relation="res.users",
-                                       store=True),
+                                       store={'purchase.request': (
+                                           _get_lines_from_request,
+                                           None, 20)}),
         'assigned_to': fields.related('request_id', 'assigned_to',
                                       string='Assigned to',
                                       readonly=True,
                                       type="many2one",
                                       relation="res.users",
-                                      store=True),
+                                      store={'purchase.request': (
+                                           _get_lines_from_request,
+                                           None, 20)}),
         'date_start': fields.related('request_id', 'date_start',
                                      string='Request Date', readonly=True,
                                      type="date",
-                                     store=True),
+                                     store={'purchase.request': (
+                                           _get_lines_from_request,
+                                           None, 20)}),
         'description': fields.related('request_id', 'description',
-                                      string='Description', readonly=True,
-                                      type="text"),
+                                      string='Description',
+                                      type='text',
+                                      readonly=True),
         'origin': fields.related('request_id', 'origin',
                                  string='Source Document', readonly=True,
-                                 type="char", size=32, store=True),
+                                 type="char", size=32,
+                                 store={'purchase.request': (
+                                     _get_lines_from_request,
+                                     None, 20)}),
         'warehouse_id': fields.related('request_id', 'warehouse_id',
                                        string='Warehouse',
                                        readonly=True,
                                        type="many2one",
                                        relation="stock.warehouse",
-                                       store=True),
+                                       store={'purchase.request': (
+                                           _get_lines_from_request,
+                                           None, 20)}),
         'date_required': fields.date('Required date',
                                      help="Date that the products are "
                                           "required to be received or "
@@ -231,14 +254,15 @@ class PurchaseRequestLine(orm.Model):
                                         readonly=True,
                                         type="selection",
                                         selection=_STATES,
-                                        store={}),
+                                        store={'purchase.request': (
+                                           _get_lines_from_request,
+                                           None, 20)}),
         'supplier_id': fields.function(_get_supplier,
                                        string="Preferred supplier",
                                        type="many2one",
                                        relation="res.partner",
                                        readonly=True),
     }
-
     _defaults = {
         'date_required': lambda *args: time.strftime('%Y-%m-%d %H:%M:%S'),
         'name': '',

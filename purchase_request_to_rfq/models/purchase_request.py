@@ -19,6 +19,7 @@
 #
 ##############################################################################
 from openerp.osv import fields, orm
+from openerp.tools.translate import _
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
@@ -189,10 +190,10 @@ class PurchaseRequestLine(orm.Model):
                                po_line.product_id.id)], context=context)
                 if supplierinfo_ids:
                     supplierinfo_min_qty = supplierinfo_obj.browse(
-                        cr, uid, supplierinfo_ids, context=context).min_qty
+                        cr, uid, supplierinfo_ids[0], context=context).min_qty
 
         if supplierinfo_min_qty == 0.0:
-            qty += request_line.product_qty
+            qty += po_line.product_qty
         else:
             # Recompute quantity by adding existing running procurements.
             for rl in po_line.purchase_request_lines:
@@ -212,3 +213,13 @@ class PurchaseRequestLine(orm.Model):
                 {'uom': request_line.product_id.uom_po_id.id})[pricelist_id]
 
         return qty, price
+
+    def unlink(self, cr, uid, ids, context=None):
+        for line in self.browse(cr, uid, ids, context=context):
+            if line.purchase_lines:
+                raise orm.except_orm(
+                    _('Error!'),
+                    _('You cannot delete a record that refers to purchase '
+                      'lines!'))
+        return super(PurchaseRequestLine, self).unlink(cr, uid, ids,
+                                                       context=context)

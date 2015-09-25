@@ -69,13 +69,13 @@ class StockPicking(orm.Model):
                             'product_uom': move.product_uom.name,
                         }
                         requests_dict[request_id][request_line.id] = data
-                for request_id in requests_dict.keys():
-                    request = request_obj.browse(cr, uid, request_id,
-                                                 context=context)
-                    message = \
-                        self._purchase_request_picking_confirm_message_content(
-                            cr, uid, picking, request,
-                            requests_dict[request_id], context=context)
-                    request_obj.message_post(cr, uid, [request_id],
-                                             body=message)
+            for request_id in requests_dict.keys():
+                request = request_obj.browse(cr, uid, request_id,
+                                             context=context)
+                message = \
+                    self._purchase_request_picking_confirm_message_content(
+                        cr, uid, picking, request,
+                        requests_dict[request_id], context=context)
+                request_obj.message_post(cr, uid, [request_id],
+                                         body=message)
         return res
