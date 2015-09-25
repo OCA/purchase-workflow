@@ -48,9 +48,9 @@ class StockPicking(models.Model):
         return message
 
     @api.multi
-    def action_done(self):
-        res = super(StockPicking, self).action_done()
-        request_obj = self.pool['purchase.request']
+    def do_transfer(self):
+        super(StockPicking, self).do_transfer()
+        request_obj = self.env['purchase.request']
         for picking in self:
             requests_dict = {}
             if picking.picking_type_id.code != 'incoming':
@@ -74,4 +74,4 @@ class StockPicking(models.Model):
                     self._purchase_request_picking_confirm_message_content(
                         picking, request, requests_dict[request_id])
                 request.message_post(body=message)
-        return res
+

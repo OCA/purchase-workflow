@@ -42,7 +42,7 @@ consolidated into as few as possible lines in the RFQ.
 
 For further information, please visit:
 
-* https://www.odoo.com/forum/help-1
+* http://www.eficent.com/blog_en/streamline-your-purchasing-process-in-odoo-using-purchase-requests/
 
 
 Known issues / Roadmap
