@@ -66,4 +66,6 @@ class Procurement(models.Model):
             req = request_obj.create(request_data)
             procurement.message_post(body=_("Purchase Request created"))
             procurement.request_id = req.id
-        return True
+            return True
+        return super(Procurement, self)._run(procurement)
+
