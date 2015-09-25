@@ -50,6 +50,7 @@
         <field name="domain_force">['|',('requested_by','=',user.id),
                                         ('message_follower_ids', 'in', [user.partner_id.id])]</field>
     </record>
+
     <record id="purchase_request_modify_rule" model="ir.rule">
         <field name="name">Modify Purchase Request</field>
         <field name="model_id" ref="model_purchase_request"/>
@@ -69,8 +70,8 @@
         <field name="perm_write" eval="False"/>
         <field name="perm_create" eval="False"/>
         <field name="perm_unlink" eval="False"/>
-        <field name="domain_force">['|',('requested_by','=',user.id),
-                                        ('message_follower_ids', 'in', [user.partner_id.id])]</field>
+        <field name="domain_force">['|',('request_id.requested_by','=',user.id),
+                                        ('request_id.message_follower_ids', 'in', [user.partner_id.id])]</field>
     </record>
 
     <record id="purchase_request_line_modify_rule" model="ir.rule">
@@ -81,7 +82,7 @@
         <field name="perm_write" eval="True"/>
         <field name="perm_create" eval="True"/>
         <field name="perm_unlink" eval="True"/>
-        <field name="domain_force">[('requested_by','=',user.id)]</field>
+        <field name="domain_force">[('request_id.requested_by','=',user.id)]</field>
     </record>
 
 </data>
