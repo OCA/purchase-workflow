@@ -38,6 +38,10 @@ It is possible to filter requests by it's approval status.
    :alt: Try me on Runbot
    :target: https://runbot.odoo-community.org/runbot/142/8.0
 
+For further information, please visit:
+
+* http://www.eficent.com/blog_en/streamline-your-purchasing-process-in-odoo-using-purchase-requests/
+
 
 Credits
 =======
