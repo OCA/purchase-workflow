@@ -18,7 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import api, fields, models, _, exceptions
+from openerp import api, fields, models, _
 
 
 class PurchaseRequisition(models.Model):
@@ -106,8 +106,8 @@ class PurchaseRequisitionLine(models.Model):
         'purchase_request_line_id',
         string='Purchase Request Lines', readonly=True)
     has_purchase_request_lines = fields.Boolean(
-            compute="_has_purchase_request_lines",
-            string="Has Purchase Request Lines")
+        compute="_has_purchase_request_lines",
+        string="Has Purchase Request Lines")
 
     @api.one
     def copy(self, default=None):

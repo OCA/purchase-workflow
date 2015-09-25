@@ -32,7 +32,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
     item_ids = fields.One2many(
         'purchase.request.line.make.purchase.order.item',
         'wiz_id', string='Items')
-    purchase_order_id=fields.Many2one('purchase.order',
+    purchase_order_id = fields.Many2one('purchase.order',
                                       string='Purchase Order',
                                       required=False,
                                       domain=[('state', '=', 'draft')])
@@ -61,7 +61,6 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             'product_uom_id': line.product_uom_id.id,
             'analytic_account_id': line.analytic_account_id.id,
         }
-
 
     @api.model
     def default_get(self, fields):
@@ -99,7 +98,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             'pricelist_id': supplier_pricelist.id,
             'location_id': location_id,
             'fiscal_position': supplier.property_account_position and
-                               supplier.property_account_position.id or False,
+            supplier.property_account_position.id or False,
             'warehouse_id': warehouse_id,
             'company_id': company_id,
             }
@@ -244,13 +243,12 @@ class PurchaseRequestLineMakePurchaseOrderItem(models.TransientModel):
                                digits_compute=dp.get_precision('Product UoS'))
     product_uom_id = fields.Many2one('product.uom', string='UoM')
 
-
     @api.onchange('product_id', 'product_uom_id')
     def onchange_product_id(self):
         if self.product_id:
             name = self.product_id.name
             if self.product_id.code:
-                name = '[%s] %s' %(name, self.product_id.code)
+                name = '[%s] %s' % (name, self.product_id.code)
             if self.product_id.description_purchase:
                 name += '\n' + self.product_id.description_purchase
             self.product_uom_id = self.product_id.uom_id.id

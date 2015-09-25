@@ -18,7 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import api, fields, models, _, exceptions
+from openerp import api, models, _
 
 
 class StockPicking(models.Model):
@@ -74,4 +74,3 @@ class StockPicking(models.Model):
                     self._purchase_request_picking_confirm_message_content(
                         picking, request, requests_dict[request_id])
                 request.message_post(body=message)
-

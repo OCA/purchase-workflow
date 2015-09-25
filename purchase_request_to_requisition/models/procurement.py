@@ -18,7 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import api, fields, models, _, exceptions
+from openerp import api, fields, models, _
 
 
 class Procurement(models.Model):
@@ -37,11 +37,11 @@ class Procurement(models.Model):
     @api.model
     def _prepare_purchase_request_line(self, procurement):
         return {
-                'product_id': procurement.product_id.id,
-                'name': procurement.product_id.name,
-                'date_required': procurement.date_planned,
-                'product_uom_id': procurement.product_uom.id,
-                'product_qty': procurement.product_qty
+            'product_id': procurement.product_id.id,
+            'name': procurement.product_id.name,
+            'date_required': procurement.date_planned,
+            'product_uom_id': procurement.product_uom.id,
+            'product_qty': procurement.product_qty
         }
 
     @api.model
@@ -49,7 +49,7 @@ class Procurement(models.Model):
         warehouse_obj = self.env['stock.warehouse']
         request_line_data = self._prepare_purchase_request_line(procurement)
         warehouse_id = warehouse_obj.search([('company_id', '=',
-                                      procurement.company_id.id)])
+                                              procurement.company_id.id)])
         return {
             'origin': procurement.origin,
             'company_id': procurement.company_id.id,
