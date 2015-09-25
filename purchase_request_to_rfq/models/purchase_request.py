@@ -101,8 +101,7 @@ class PurchaseRequestLine(models.Model):
             or False
 
     @api.model
-    def _calc_new_qty_price(self, request_line, po_line=None, cancel=False,
-                            context=None):
+    def _calc_new_qty_price(self, request_line, po_line=None, cancel=False):
         uom_obj = self.env['product.uom']
         qty = uom_obj._compute_qty(request_line.product_uom_id.id,
                                    request_line.product_qty,
@@ -118,7 +117,8 @@ class PurchaseRequestLine(models.Model):
                 supplierinfo_obj = self.env['product.supplierinfo']
                 supplierinfos = supplierinfo_obj.search(
                     [('name', '=', po_line.order_id.partner_id.id),
-                     ('product_id', '=', po_line.product_id.id)])
+                     ('product_tmpl_id', '=',
+                      po_line.product_id.product_tmpl_id.id)])
                 if supplierinfos:
                     supplierinfo_min_qty = supplierinfos[0].min_qty
 
@@ -134,11 +134,12 @@ class PurchaseRequestLine(models.Model):
 
         price = po_line.price_unit
         if qty != po_line.product_qty:
-            pricelist_obj = self.env['product.pricelist']
+            pricelist_obj = self.pool['product.pricelist']
             pricelist_id = po_line.order_id.partner_id.\
                 property_product_pricelist_purchase.id
             price = pricelist_obj.price_get(
-                [pricelist_id], request_line.product_id.id, qty,
+                self.env.cr, self.env.uid, [pricelist_id],
+                request_line.product_id.id, qty,
                 po_line.order_id.partner_id.id,
                 {'uom': request_line.product_id.uom_po_id.id})[pricelist_id]
 
