@@ -92,7 +92,6 @@ class PurchaseRequest(models.Model):
     line_ids = fields.One2many('purchase.request.line', 'request_id',
                                'Products to Purchase',
                                readonly=False,
-                               states={'done': [('readonly', True)]},
                                track_visibility='onchange')
     warehouse_id = fields.Many2one('stock.warehouse',
                                    string='Warehouse',
