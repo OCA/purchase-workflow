@@ -68,4 +68,3 @@ class Procurement(models.Model):
             procurement.request_id = req.id
             return True
         return super(Procurement, self)._run(procurement)
-
