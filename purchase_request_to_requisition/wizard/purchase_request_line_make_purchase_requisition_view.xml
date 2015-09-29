@@ -55,7 +55,6 @@
         <record model="ir.values"
                 id="purchase_request_line_make_purchase_requisition">
             <field name="model_id" ref="model_purchase_request_line" />
-            <field name="object" eval="1" />
             <field name="name">Create Call for Bids</field>
             <field name="key2">client_action_multi</field>
             <field name="value"
