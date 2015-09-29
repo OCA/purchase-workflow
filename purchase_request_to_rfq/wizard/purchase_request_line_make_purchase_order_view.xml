@@ -58,7 +58,6 @@
 
         <record model="ir.values" id="purchase_request_line_make_purchase_order">
             <field name="model_id" ref="model_purchase_request_line" />
-            <field name="object" eval="1" />
             <field name="name">Create RFQ</field>
             <field name="key2">client_action_multi</field>
             <field name="value" eval="'ir.actions.act_window,' + str(ref('action_purchase_request_line_make_purchase_order'))" />
