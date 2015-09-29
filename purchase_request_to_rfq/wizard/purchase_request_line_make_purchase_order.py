@@ -33,9 +33,9 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         'purchase.request.line.make.purchase.order.item',
         'wiz_id', string='Items')
     purchase_order_id = fields.Many2one('purchase.order',
-                                      string='Purchase Order',
-                                      required=False,
-                                      domain=[('state', '=', 'draft')])
+                                        string='Purchase Order',
+                                        required=False,
+                                        domain=[('state', '=', 'draft')])
 
     @api.model
     def _default_warehouse(self):
