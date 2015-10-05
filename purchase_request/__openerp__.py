@@ -112,6 +112,7 @@ To contribute to this module, please visit http://odoo-community.org.
         "security/purchase_request.xml",
         "security/ir.model.access.csv",
         "data/purchase_request_sequence.xml",
+        "data/purchase_request_data.xml",
         "views/purchase_request_view.xml",
     ],
     'demo_xml': [

@@ -35,6 +35,20 @@ class PurchaseRequest(orm.Model):
     _description = 'Purchase Request'
     _inherit = ['mail.thread', 'ir.needaction_mixin']
 
+    _track = {
+        'state': {
+            'purchase_request.mt_request_to_approve':
+                lambda self, cr, uid, obj,
+                ctx=None: obj['state'] == 'to_approve',
+            'purchase_request.mt_request_approved':
+                lambda self, cr, uid, obj,
+                ctx=None: obj['state'] == 'approved',
+            'purchase_request.mt_request_rejected':
+                lambda self, cr, uid, obj,
+                ctx=None: obj['state'] == 'rejected',
+        },
+    }
+
     def _get_is_editable(self, cr, uid, ids, names, arg, context=None):
         res = dict.fromkeys(ids, True)
         for line in self.browse(cr, uid, ids, context=context):
@@ -109,18 +123,20 @@ class PurchaseRequest(orm.Model):
             cr, uid, id, default, context)
 
     def create(self, cr, uid, vals, context=None):
-        if vals.get('assigned_to'):
+        if vals.get('assigned_to', False):
             assigned_to = self.pool.get('res.users').browse(
                 cr, uid, vals.get('assigned_to'), context=context)
-            vals['message_follower_ids'] = [(4, assigned_to.partner_id.id)]
+            if assigned_to.partner_id:
+                vals['message_follower_ids'] = [(4, assigned_to.partner_id.id)]
         return super(PurchaseRequest, self).create(cr, uid, vals,
                                                    context=context)
 
     def write(self, cr, uid, ids, vals, context=None):
-        if vals.get('assigned_to'):
+        if vals.get('assigned_to', False):
             assigned_to = self.pool.get('res.users').browse(
                 cr, uid, vals.get('assigned_to'), context=context)
-            vals['message_follower_ids'] = [(4, assigned_to.partner_id.id)]
+            if assigned_to.partner_id:
+                vals['message_follower_ids'] = [(4, assigned_to.partner_id.id)]
         res = super(PurchaseRequest, self).write(cr, uid, ids, vals,
                                                  context=context)
         return res

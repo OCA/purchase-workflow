@@ -159,6 +159,12 @@
                 <filter name="unassigned" string="Unassigned"
                         domain="[('assigned_to','=', False)]"
                         help="Unassigned Request"/>
+                <filter name="assigned_to_me" string="Assigned to me"
+                        domain="[('assigned_to','=', uid)]"
+                        help="Requests assigned to me"/>
+                <filter name="requested_by_me" string="Requested by me"
+                        domain="[('requested_by','=', uid)]"
+                        help="Requested by me"/>
                 <filter name="state_draft" string="Draft"
                         domain="[('state','=','draft')]"
                         help="Request is to be approved"/>
