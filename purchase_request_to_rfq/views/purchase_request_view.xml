@@ -73,7 +73,7 @@
             <field name="arch" type="xml">
                     <field name="date_required" position="after">
                         <filter name="purchase_state_none"
-                                string="No Purchase"
+                                string="Purchasing not started"
                                 domain="[('purchase_state','=','none')]"
                                 help="No RFQ or Purchase has been created"/>
                         <filter name="purchase_state_draft"
