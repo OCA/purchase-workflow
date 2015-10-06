@@ -8,9 +8,6 @@
         <field name="inherit_id"
                ref="purchase_requisition.product_template_form_view_inherit"/>
         <field name="arch" type="xml">
-            <field name="purchase_requisition" position="attributes">
-                <attribute name="invisible">True</attribute>
-            </field>
             <field name="purchase_requisition" position="after">
                 <field name="purchase_request"/>
             </field>
