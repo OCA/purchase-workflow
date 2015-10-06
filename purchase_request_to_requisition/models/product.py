@@ -33,3 +33,14 @@ class Product(orm.Model):
     _defaults = {
         'purchase_request': False
     }
+
+    def _check_request_requisition(self, cr, uid, ids, context=None):
+        for product in self.browse(cr, uid, ids, context=context):
+            if product.purchase_request and product.purchase_requisition:
+                return False
+        return True
+
+    _constraints = [
+        (_check_request_requisition,
+         'Only one selection of Purchase Request or Purchase Requisition '
+         'is allowed', ['purchase_request', 'purchase_requisition'])]
