@@ -331,7 +331,7 @@
                                 domain="[]" context="{'group_by' : 'product_id'}" />
                         <filter string="Requested by"
                                 domain="[]"
-                                context="{'group_by':'assigned_to'}"/>
+                                context="{'group_by':'requested_by'}"/>
                         <filter string="Assigned to"
                                 domain="[]"
                                 context="{'group_by':'assigned_to'}"/>
