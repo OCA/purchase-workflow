@@ -173,7 +173,7 @@
                     <group expand="0" string="Group By...">
                         <filter string="Requested by" icon="terp-personal"
                                 domain="[]"
-                                context="{'group_by':'assigned_to'}"/>
+                                context="{'group_by':'requested_by'}"/>
                         <filter string="Assigned to" icon="terp-personal"
                                 domain="[]"
                                 context="{'group_by':'assigned_to'}"/>
