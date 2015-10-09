@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: odoomrp-wip (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-07 10:44+0000\n"
-"PO-Revision-Date: 2015-10-09 10:50+0000\n"
-"Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/odoomrp-wip-8-0/language/es/)\n"
+"PO-Revision-Date: 2015-09-10 16:42+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: French (http://www.transifex.com/oca/odoomrp-wip-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: purchase_landed_cost
 #: model:ir.actions.act_window,help:purchase_landed_cost.action_purchase_cost_distribution
@@ -95,7 +95,7 @@ msgstr ""
 #. module: purchase_landed_cost
 #: view:purchase.cost.distribution:purchase_landed_cost.purchase_cost_distribution_form
 msgid "Calculate"
-msgstr "Calcular"
+msgstr ""
 
 #. module: purchase_landed_cost
 #: selection:purchase.cost.distribution,state:0
@@ -118,13 +118,13 @@ msgstr ""
 #: view:purchase.cost.distribution:purchase_landed_cost.purchase_cost_distribution_form
 #: selection:purchase.cost.distribution,state:0
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr "Annuler"
 
 #. module: purchase_landed_cost
 #: field:purchase.cost.distribution,company_id:0
 #: field:purchase.expense.type,company_id:0
 msgid "Company"
-msgstr "Compañía"
+msgstr ""
 
 #. module: purchase_landed_cost
 #: view:purchase.cost.distribution.line:purchase_landed_cost.view_purchase_cost_distribution_line_form
@@ -195,7 +195,7 @@ msgstr ""
 #: field:purchase.cost.distribution.line.expense,create_uid:0
 #: field:purchase.expense.type,create_uid:0
 msgid "Created by"
-msgstr "Creado por"
+msgstr "Créé par"
 
 #. module: purchase_landed_cost
 #: field:import.invoice.line.wizard,create_date:0
@@ -206,12 +206,12 @@ msgstr "Creado por"
 #: field:purchase.cost.distribution.line.expense,create_date:0
 #: field:purchase.expense.type,create_date:0
 msgid "Created on"
-msgstr "Creado el"
+msgstr "Créé le"
 
 #. module: purchase_landed_cost
 #: field:purchase.cost.distribution,date:0
 msgid "Date"
-msgstr "Fecha"
+msgstr ""
 
 #. module: purchase_landed_cost
 #: field:purchase.expense.type,default_expense:0
@@ -251,12 +251,12 @@ msgstr ""
 #. module: purchase_landed_cost
 #: selection:purchase.cost.distribution,state:0
 msgid "Done"
-msgstr "Realizado"
+msgstr ""
 
 #. module: purchase_landed_cost
 #: selection:purchase.cost.distribution,state:0
 msgid "Draft"
-msgstr "Borrador"
+msgstr ""
 
 #. module: purchase_landed_cost
 #: selection:purchase.expense.type,calculation_method:0
@@ -266,7 +266,7 @@ msgstr ""
 #. module: purchase_landed_cost
 #: selection:purchase.cost.distribution,state:0
 msgid "Error"
-msgstr "Error"
+msgstr ""
 
 #. module: purchase_landed_cost
 #: field:purchase.cost.distribution.expense,expense_amount:0
@@ -305,7 +305,7 @@ msgstr ""
 #: field:purchase.cost.distribution.line.expense,id:0
 #: field:purchase.expense.type,id:0
 msgid "ID"
-msgstr "ID"
+msgstr "Id."
 
 #. module: purchase_landed_cost
 #: help:purchase.expense.type,default_amount:0
@@ -318,7 +318,7 @@ msgstr ""
 #: view:import.invoice.line.wizard:purchase_landed_cost.import_invoice_line_wizard_view
 #: view:picking.import.wizard:purchase_landed_cost.picking_import_wizard_view
 msgid "Import"
-msgstr "Importar"
+msgstr ""
 
 #. module: purchase_landed_cost
 #: model:ir.actions.act_window,name:purchase_landed_cost.action_picking_import_wizard
@@ -346,7 +346,7 @@ msgstr ""
 #. module: purchase_landed_cost
 #: field:import.invoice.line.wizard,invoice:0
 msgid "Invoice"
-msgstr "Factura"
+msgstr ""
 
 #. module: purchase_landed_cost
 #: field:import.invoice.line.wizard,invoice_line:0
@@ -368,7 +368,7 @@ msgstr ""
 #: field:purchase.cost.distribution.line.expense,write_uid:0
 #: field:purchase.expense.type,write_uid:0
 msgid "Last Updated by"
-msgstr "Última actualización por"
+msgstr "Mis à jour par"
 
 #. module: purchase_landed_cost
 #: field:import.invoice.line.wizard,write_date:0
@@ -379,7 +379,7 @@ msgstr "Última actualización por"
 #: field:purchase.cost.distribution.line.expense,write_date:0
 #: field:purchase.expense.type,write_date:0
 msgid "Last Updated on"
-msgstr "Última actualización el"
+msgstr "Mis à jour le"
 
 #. module: purchase_landed_cost
 #: field:purchase.cost.distribution.line,total_weight_net:0
@@ -399,7 +399,7 @@ msgstr ""
 #. module: purchase_landed_cost
 #: field:purchase.expense.type,name:0
 msgid "Name"
-msgstr "Nombre"
+msgstr ""
 
 #. module: purchase_landed_cost
 #: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:216
@@ -410,12 +410,12 @@ msgstr ""
 #. module: purchase_landed_cost
 #: field:purchase.cost.distribution.line,picking_id:0
 msgid "Picking"
-msgstr "Albarán"
+msgstr ""
 
 #. module: purchase_landed_cost
 #: model:ir.model,name:purchase_landed_cost.model_stock_picking
 msgid "Picking List"
-msgstr "Albarán"
+msgstr ""
 
 #. module: purchase_landed_cost
 #: field:purchase.cost.distribution.line,move_id:0
@@ -446,7 +446,7 @@ msgstr ""
 #. module: purchase_landed_cost
 #: field:purchase.cost.distribution.line,product_id:0
 msgid "Product"
-msgstr "Producto"
+msgstr "Article"
 
 #. module: purchase_landed_cost
 #: view:purchase.cost.distribution.line:purchase_landed_cost.view_purchase_cost_distribution_line_form
@@ -461,7 +461,7 @@ msgstr ""
 #. module: purchase_landed_cost
 #: model:ir.model,name:purchase_landed_cost.model_purchase_order
 msgid "Purchase Order"
-msgstr "Pedido de compra"
+msgstr ""
 
 #. module: purchase_landed_cost
 #: view:purchase.cost.distribution:purchase_landed_cost.purchase_cost_distribution_form
@@ -527,7 +527,7 @@ msgstr ""
 #. module: purchase_landed_cost
 #: field:purchase.cost.distribution.line,product_qty:0
 msgid "Quantity"
-msgstr "Cantidad"
+msgstr ""
 
 #. module: purchase_landed_cost
 #: view:purchase.cost.distribution:purchase_landed_cost.purchase_cost_distribution_form
@@ -537,7 +537,7 @@ msgstr ""
 #. module: purchase_landed_cost
 #: field:purchase.cost.distribution.expense,ref:0
 msgid "Reference"
-msgstr "Referencia"
+msgstr ""
 
 #. module: purchase_landed_cost
 #: view:purchase.cost.distribution:purchase_landed_cost.purchase_cost_distribution_search
@@ -564,13 +564,13 @@ msgstr ""
 #. module: purchase_landed_cost
 #: field:purchase.cost.distribution,state:0
 msgid "Status"
-msgstr "Estado"
+msgstr ""
 
 #. module: purchase_landed_cost
 #: field:import.invoice.line.wizard,supplier:0
 #: field:picking.import.wizard,supplier:0
 msgid "Supplier"
-msgstr "Proveedor"
+msgstr ""
 
 #. module: purchase_landed_cost
 #: field:purchase.cost.distribution.expense,invoice_line:0
@@ -635,4 +635,4 @@ msgstr ""
 #: view:import.invoice.line.wizard:purchase_landed_cost.import_invoice_line_wizard_view
 #: view:picking.import.wizard:purchase_landed_cost.picking_import_wizard_view
 msgid "or"
-msgstr "o"
+msgstr "ou"
