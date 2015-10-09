@@ -21,7 +21,7 @@
 
 {"name": "Purchase Transport Document",
  "summary": "Add a new Transport Document object in the Purchase Order",
- "version": "0.1",
+ "version": "8.0.0.1.0",
  "author": "Camptocamp,Odoo Community Association (OCA)",
  "category": "Purchase Management",
  "license": "AGPL-3",

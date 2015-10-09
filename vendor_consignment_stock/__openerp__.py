@@ -16,7 +16,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 {'name': 'Vendor Consignment Stock',
  'summary': 'Manage stock in our warehouse that is owned by a vendor',
- 'version': '0.2',
+ 'version': '8.0.0.2.0',
  'author': "Camptocamp,Odoo Community Association (OCA)",
  'category': 'Purchase Management',
  'license': 'AGPL-3',

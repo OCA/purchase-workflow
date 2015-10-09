@@ -15,7 +15,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 {"name": "Purchase Requisition Bid Selection",
- "version": "2.1",
+ "version": "8.0.2.1.0",
  "author": "Camptocamp,Odoo Community Association (OCA)",
  "license": "AGPL-3",
  "category": "Purchase Management",
