@@ -20,7 +20,7 @@
 
 {"name": "Purchase Requisition Auto RFQ",
  "summary": "Automatically create RFQ from a purchase requisition",
- "version": "0.2",
+ "version": "8.0.0.2.0",
  "author": "Camptocamp,Odoo Community Association (OCA)",
  "category": "Purchase Management",
  "license": "AGPL-3",
