@@ -46,12 +46,12 @@ Unported addons
 ---------------
 addon | version | summary
 --- | --- | ---
-[mrp_smart_purchase](__unported__/mrp_smart_purchase/) | 0.2 (unported) | Smart MRP Purchase based on supplier price
-[purchase_delivery_term](__unported__/purchase_delivery_term/) | 0.2 (unported) | Delivery term for purchase orders
-[purchase_group_hooks](__unported__/purchase_group_hooks/) | 0.1 (unported) | Add hooks to the merge PO feature.
-[purchase_group_orders](__unported__/purchase_group_orders/) | 0.4 (unported) | Purchase Group Orders by Shop and Carrier
-[purchase_landed_costs](__unported__/purchase_landed_costs/) | 1.0.1 (unported) | Purchase Landed Costs
-[purchase_multi_picking](__unported__/purchase_multi_picking/) | 0.2 (unported) | Multi Pickings from Purchase Orders
-[purchase_order_force_number](__unported__/purchase_order_force_number/) | 0.1 (unported) | Force purchase orders numeration
+[mrp_smart_purchase](mrp_smart_purchase/) | 0.2 (unported) | Smart MRP Purchase based on supplier price
+[purchase_delivery_term](purchase_delivery_term/) | 0.2 (unported) | Delivery term for purchase orders
+[purchase_group_hooks](purchase_group_hooks/) | 0.1 (unported) | Add hooks to the merge PO feature.
+[purchase_group_orders](purchase_group_orders/) | 0.4 (unported) | Purchase Group Orders by Shop and Carrier
+[purchase_landed_costs](purchase_landed_costs/) | 1.0.1 (unported) | Purchase Landed Costs
+[purchase_multi_picking](purchase_multi_picking/) | 0.2 (unported) | Multi Pickings from Purchase Orders
+[purchase_order_force_number](purchase_order_force_number/) | 0.1 (unported) | Force purchase orders numeration
 
 [//]: # (end addons)
