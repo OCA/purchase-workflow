@@ -32,5 +32,5 @@
  ],
  "post_init_hook": 'workaround_create_initial_rules',
  'auto_install': False,
- 'installable': True,
+ 'installable': False,
  }

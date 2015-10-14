@@ -42,6 +42,6 @@
  "auto_install": False,
  "test": ["test/process/restricted.yml",
           ],
- "installable": True,
+ 'installable': False,
  "certificate": "",
  }

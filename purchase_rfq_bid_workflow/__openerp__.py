@@ -81,6 +81,6 @@ listed as an external dependency because it is not needed in production.
              "test/process/rfq2cancel.yml",
              "test/process/bid2cancel.yml",
              ],
-    "installable": True,
+    'installable': False,
     "certificate": "",
  }

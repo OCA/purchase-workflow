@@ -33,5 +33,5 @@
           "security/ir.model.access.csv",
           "data/transport_document.xml",
           ],
- "installable": True,
+ 'installable': False,
  }

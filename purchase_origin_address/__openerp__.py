@@ -33,5 +33,5 @@
  'data': [],
  'auto_install': False,
  'test': [],
- 'installable': True,
+ 'installable': False,
  }

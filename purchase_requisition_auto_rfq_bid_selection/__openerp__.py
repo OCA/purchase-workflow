@@ -34,6 +34,6 @@
  "test": ['test/purchase_requisition.yml',
           ],
  "auto_install": True,
- "installable": True,
+ 'installable': False,
  "certificate": "",
  }

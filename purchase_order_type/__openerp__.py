@@ -33,6 +33,6 @@
           'data/purchase_order_type.xml',
           ],
  'test': [],
- 'installable': True,
+ 'installable': False,
  'auto_install': False,
  }

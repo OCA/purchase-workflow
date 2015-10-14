@@ -38,5 +38,5 @@ for more information and demo data.
              ],
  "data": ["view/purchase_requisition.xml",
           ],
- "installable": True,
+ 'installable': False,
  }

@@ -39,5 +39,5 @@ This module has been written by Alexis de Lattre
     'depends': ['purchase'],
     'data': ['partner_view.xml'],
     'demo': ['partner_demo.xml'],
-    'installable': True,
+    'installable': False,
 }

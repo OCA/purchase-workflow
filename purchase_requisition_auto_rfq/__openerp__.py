@@ -47,6 +47,6 @@ dependency because it is not needed in production.
     "test": ["test/purchase_requisition.yml",
              "test/purchase_requisition_no_supplier.yml",
              ],
-    "installable": True,
+    'installable': False,
     "certificate": "",
  }

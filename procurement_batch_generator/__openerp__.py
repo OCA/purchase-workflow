@@ -32,5 +32,5 @@
     'depends': ['stock'],
     'data': ['wizard/procurement_batch_generator_view.xml'],
     'test': ['test/procurement_batch_generator.yml'],
-    'installable': True,
+    'installable': False,
 }
