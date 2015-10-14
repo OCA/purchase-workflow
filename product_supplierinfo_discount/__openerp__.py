@@ -36,5 +36,5 @@
     "data": [
         'views/product_supplierinfo_view.xml',
     ],
-    "installable": True,
+    'installable': False,
 }
