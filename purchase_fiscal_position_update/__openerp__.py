@@ -41,5 +41,5 @@ updated and a warning is displayed to the user in this case.
               "Odoo Community Association (OCA)",
     'depends': ['purchase'],
     'data': [],
-    'installable': True,
+    'installable': False,
 }
