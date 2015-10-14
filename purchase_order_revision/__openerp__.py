@@ -37,5 +37,5 @@
         'test/purchase_order.yml',
     ],
     "active": False,
-    "installable": True
+    'installable': False
 }
