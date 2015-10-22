@@ -36,6 +36,6 @@
     "test": [
         'test/purchase_order.yml',
     ],
-    "active": False,
-    "installable": True
+    "installable": True,
+    "post_init_hook": 'fill_unrevisioned_name',
 }
