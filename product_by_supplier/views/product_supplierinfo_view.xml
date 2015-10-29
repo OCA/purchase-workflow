@@ -40,18 +40,6 @@
             </field>
         </record>
 
-        <record id="view_product_supplierinfo_form1" model="ir.ui.view">
-            <field name="name">product.supplierinfo.form1</field>
-            <field name="model">product.supplierinfo</field>
-            <field name="inherit_id" ref="product.product_supplierinfo_form_view"/>
-            <field name="priority">99</field>
-            <field name="arch" type="xml">
-                <xpath expr="//field[@name='sequence']" position="before">
-                    <field name="product_tmpl_id"  string="Product"/>
-                </xpath>
-            </field>
-        </record>
-
         <record id="action_product_supplier_info" model="ir.actions.act_window">
             <field name="name">Products by Suppliers</field>
             <field name="res_model">product.supplierinfo</field>
