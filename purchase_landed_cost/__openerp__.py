@@ -46,7 +46,7 @@
         'security/purchase_landed_cost_security.xml',
         'security/ir.model.access.csv',
     ],
-    'installable': True,
+    'installable': False,
     'images': [
         '/static/description/images/purchase_order_expense_main.png',
         '/static/description/images/purchase_order_expense_line.png',
