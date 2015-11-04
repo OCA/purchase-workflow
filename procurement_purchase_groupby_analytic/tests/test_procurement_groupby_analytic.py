@@ -109,3 +109,44 @@ class TestProcurementGroupbyOrder(common.TransactionCase):
                 po = proc.purchase_id
         self.assertEqual(po.order_line.account_analytic_id.id,
                          self.project.id)
+
+    def test_multi_procurement(self):
+        """ set prodcut.product_product_36 as mto
+            set product.product_product_46 same supplier
+            Create sale order :
+                * product.product_product_36
+                * product.product_product_46
+                * analytic account
+            Confirm sale order
+            Check there is one po
+            Check analytic account is analytic account on po_line
+        """
+        self.product.route_ids = [(
+            4, self.env.ref('stock.route_warehouse0_mto').id)]
+        product2 = self.env.ref('product.product_product_46')
+        product2.route_ids = [(
+            4, self.env.ref('stock.route_warehouse0_mto').id)]
+        product2.seller_ids.name = self.product.seller_ids.name
+        self.assertEquals(self.product.seller_ids.name,
+                          product2.seller_ids.name)
+        so = self.env['sale.order'].create(
+            {'partner_id': self.partner.id,
+             'project_id': self.project.id})
+        self.env['sale.order.line'].create(
+            {'order_id': so.id,
+             'product_id': self.product.id})
+        self.env['sale.order.line'].create(
+            {'order_id': so.id,
+             'product_id': product2.id})
+
+        so.signal_workflow('order_confirm')
+
+        self.env['procurement.order'].run_scheduler()
+
+        for proc in so.procurement_group_id.procurement_ids:
+            if proc.purchase_id:
+                po = proc.purchase_id
+        self.assertEquals(2, len(po.order_line))
+        for po_line in po.order_line:
+            self.assertEqual(po_line.account_analytic_id.id,
+                             self.project.id)
