@@ -59,13 +59,15 @@ class ProcurementOrder(models.Model):
         return available_draft_po_domain
 
     @api.model
-    def create_procurement_purchase_order(self, procurement, po_vals,
-                                          line_vals):
+    def _get_po_line_values_from_proc(self, procurement, partner, company,
+                                      schedule_date):
+
         """ If account analytic is defined on procurement order
             set it on purchase order line
         """
+        line_vals = super(
+            ProcurementOrder, self)._get_po_line_values_from_proc(
+                procurement, partner, company, schedule_date)
         line_vals['account_analytic_id'] = procurement.account_analytic_id \
             and procurement.account_analytic_id.id
-        return super(
-            ProcurementOrder, self).create_procurement_purchase_order(
-                procurement, po_vals, line_vals)
+        return line_vals
