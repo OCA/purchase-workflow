@@ -25,17 +25,15 @@ import openerp.addons.decimal_precision as dp
 from openerp.tools.translate import _
 
 
-class PurchaseProduct(orm.TransientModel):
-    _name = 'purchase.product'
-
-    _columns = {
-        'qty': fields.float(
-            'Quantity to Purchase',
-            digits_compute=dp.get_precision('Product Unit of Measure')),
-    }
+# WARNING FOR NOW WE DO NO TAKE IN ACCOUNT THE UOM BE CAREFULL
+# WE ASSUME THAT THE UOM IS ALWAYS THE "UNIT"
+# This module should be review in order to do something generic
+# need customer investissement
+class ProductProduct(orm.Model):
+    _inherit = 'product.product'
 
     def _prepare_purchase_line(self, cr, uid, po, product_id, qty,
-                               context=None):
+                              context=None):
         model_data_obj = self.pool['ir.model.data']
         po_line_obj = self.pool['purchase.order.line']
         __, uom_id = model_data_obj.get_object_reference(
@@ -82,50 +80,24 @@ class PurchaseProduct(orm.TransientModel):
             po_line_obj.unlink(cr, uid, [line_id], context=context)
         return True
 
-    def confirm(self, cr, uid, ids, context=None):
-        wizard = self.browse(cr, uid, ids[0], context=context)
-        product_id = context['active_id']
-        po_id = context['purchase_id']
-        product = self.pool['product.product'].browse(
-            cr, uid, context['active_id'], context=context)
-
-        if product.restocking_type == 'no_restocking':
-            raise orm.except_orm(
-                _('User Error'),
-                _('You can not buy this product'))
-
-        if -product.immediately_usable_qty > wizard.qty:
+    def _set_purchase_qty(self, cr, uid, id, name, value,
+                          args=None, context=None):
+        product = self.browse(cr, uid, id, context=context)
+        if -product.immediately_usable_qty > value:
             raise orm.except_orm(
                 _('User Error'),
                 _('You can not order less then %s product,'
                   'as customer already buy it')
                 % -product.immediately_usable_qty)
-
-        po_line_id = self._get_purchase_line(cr, uid, po_id, product_id)
+        po_id = context['purchase_id']
+        po_line_id = self._get_purchase_line(cr, uid, po_id, product.id)
         if po_line_id:
             self._update_purchase_line(
-                cr, uid, po_line_id, wizard.qty, context=context)
+                cr, uid, po_line_id, value, context=context)
         else:
             self._add_purchase_line(
-                cr, uid, po_id, product_id, wizard.qty, context=context)
+                cr, uid, po_id, product.id, value, context=context)
         return True
-
-    def _get_default_qty(self, cr, uid, context=None):
-        product = self.pool['product.product'].browse(
-            cr, uid, context['active_id'], context=context)
-        return product.purchase_qty
-
-    _defaults = {
-        'qty': _get_default_qty,
-        }
-
-
-# WARNING FOR NOW WE DO NO TAKE IN ACCOUNT THE UOM BE CAREFULL
-# WE ASSUME THAT THE UOM IS ALWAYS THE "UNIT"
-# This module should be review in order to do something generic
-# need customer investissement
-class ProductProduct(orm.Model):
-    _inherit = 'product.product'
 
     def _get_purchase_qty(self, cr, uid, ids, field_name, args, context=None):
         if context is None:
@@ -172,6 +144,7 @@ class ProductProduct(orm.Model):
     _columns = {
         'purchase_qty': fields.function(
             _get_purchase_qty,
+            fnct_inv=_set_purchase_qty,
             string='Purchase QTY',
             type='integer'),
         'real_incomming_qty': fields.function(
