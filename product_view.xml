@@ -2,55 +2,24 @@
 <openerp>
     <data>
 
-<record id="view_purchase_product_form" model="ir.ui.view">
-    <field name="model">purchase.product</field>
-    <field name="arch" type="xml">
-        <form string="Purchase Product" version="7.0">
-            <group>
-                <field name="qty" select="1"/>
-            </group>
-            <footer>
-                <button name="confirm" string="_Apply" type="object"
-                        class="oe_highlight"/>
-                or
-                <button string="Cancel" class="oe_link" special="cancel" />
-            </footer>
-        </form>
-    </field>
-</record>
-
-<record id="purchase_product_action" model="ir.actions.act_window">
-    <field name="name">Purchase Product</field>
-    <field name="type">ir.actions.act_window</field>
-    <field name="res_model">purchase.product</field>
-    <field name="view_type">form</field>
-    <field name="view_mode">form</field>
-    <field name="target">new</field>
-    <field name="domain">[]</field>
-    <field name="context">{}</field>
-</record>
-
 <record id="product_product_tree_view" model="ir.ui.view">
     <field name="model">product.product</field>
     <field eval="7" name="priority"/>
     <field name="arch" type="xml">
-        <tree colors="red:immediately_usable_qty&lt;0;" string="Products" create="0">
-            <field name="categ_brand_id"/>
-            <field name="categ_id" string="Collection"/>
-            <field name="base_default_code" string="Code"/>
-            <field name="name"/>
-            <field name="size_id"/>
-            <field name="color_id"/>
-            <field name="lst_price" string="Prix"/>
-            <field name="collection_state"/>
-            <field name="restocking_type" string="Reassort"/>
-            <field name="qty_available" string="Stock"/>
-            <field name="immediately_usable_qty" string="Vendable"/>
-            <field name="real_incomming_qty" string="Attente Reception"/>
+        <tree colors="red:immediately_usable_qty&lt;0;" string="Products" create="0" editable="top">
+            <field name="lst_price" string="Prix" readonly="1"/>
+            <field name="collection_state" readonly="1"/>
+            <field name="categ_brand_id" readonly="1"/>
+            <field name="categ_id" string="Collection" readonly="1"/>
+            <field name="base_default_code" string="Code" readonly="1"/>
+            <field name="name" readonly="1"/>
+            <field name="color_id" readonly="1"/>
+            <field name="size_id" readonly="1"/>
             <field name="purchase_qty" string="Commande Manuelle"/>
-            <button name="%(purchase_product_action)d"
-                    icon='gtk-jump-to'
-                    type='action'/>
+            <field name="real_incomming_qty" string="Attente Reception" readonly="1"/>
+            <field name="qty_available" string="Stock" readonly="1"/>
+            <field name="immediately_usable_qty" string="Vendable" readonly="1"/>
+            <field name="restocking_type" string="Reassort" readonly="1"/>
         </tree>
     </field>
 </record>
