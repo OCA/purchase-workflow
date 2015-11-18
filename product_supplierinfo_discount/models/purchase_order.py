@@ -51,10 +51,7 @@ class PurchaseOrderLine(models.Model):
              ('name', 'child_of', partner.commercial_partner_id.id)])
         if not sinfos:
             return res
-        if len(sinfos) > 1:
-            seller_uom = sinfos[0].product_uom.id or False
-        else:
-            seller_uom = sinfos.product_uom.id or False
+        seller_uom = sinfos[:1].product_uom.id or False
         if seller_uom and from_uom and from_uom != seller_uom:
             qty_in_product_uom = product_uom_obj._compute_qty(
                 from_uom, qty, to_uom_id=seller_uom)
