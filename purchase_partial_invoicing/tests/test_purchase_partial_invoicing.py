@@ -29,6 +29,8 @@ class testPurchasePartialInvoicing(common.TransactionCase):
 
     def setUp(self):
         super(testPurchasePartialInvoicing, self).setUp()
+        # tests are called before register_hook
+        self.env['ir.rule']._register_hook()
         self.context = self.env['res.users'].context_get()
         self.po_obj = self.env['purchase.order']
         self.po_line_obj = self.env['purchase.order.line']

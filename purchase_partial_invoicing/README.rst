@@ -12,6 +12,8 @@ To install this module, you need to:
 
 * Click on install button
 
+This module depends on base_suspend_security module which can be found on apps.odoo.com or on the OCA/server-tools github repository.
+
 Usage
 =====
 
