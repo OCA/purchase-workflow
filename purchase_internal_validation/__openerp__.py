@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
+#    Copyright (C) 2015 Savoir-faire Linux (<http://savoirfairelinux.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -33,8 +33,10 @@
 Purchase Internal Validation
 ============================
 
-This module modifies the purchase workflow in order to validate
+This module modifies the purchase workflow in order to validate 
 purchases that exceeds the amount set in the Purchase configuration panel.
+It differs from the purchase_double_validation module by inserting the validation
+step in the purchase order workflow before the confirmation, not after.
 
 Configuration
 =============
