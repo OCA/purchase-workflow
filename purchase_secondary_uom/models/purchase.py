@@ -28,11 +28,11 @@ class PurchaseOrder(models.Model):
 
     _inherit = 'purchase.order'
 
-    @api.v7
-    def _prepare_order_line_move(self, cr, uid, order, order_line, picking_id,
-                                 group_id, context=None):
+    @api.model
+    def _prepare_order_line_move(self, order, order_line,
+                                 picking_id, group_id):
         res = super(PurchaseOrder, self)._prepare_order_line_move(
-            cr, uid, order, order_line, picking_id, group_id, context)
+            order, order_line, picking_id, group_id)
         for line in res:
             for purchase_line in order_line:
                 if line['purchase_line_id'] == purchase_line.id and\
