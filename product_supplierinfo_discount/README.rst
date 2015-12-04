@@ -47,6 +47,7 @@ Contributors
 ------------
 
 * Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
+* Ignacio Ibeas <ignacio@acysos.com>
 
 Maintainer
 ----------

@@ -8,9 +8,11 @@
              <field name="arch" type="xml">
                   <xpath expr="//field[@name='pricelist_ids']/tree//field[@name='price']" position="after">
                       <field name="discount"/>
+                      <field name="price_with_disc"/>
                   </xpath>
                   <xpath expr="//field[@name='pricelist_ids']/form//field[@name='price']" position="after">
                       <field name="discount"/>
+                      <field name="price_with_disc"/>
                   </xpath>
              </field>
          </record>

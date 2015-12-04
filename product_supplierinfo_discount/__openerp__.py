@@ -29,6 +29,9 @@
     "category": "Purchase Management",
     "website": "www.serviciosbaeza.com",
     "license": "AGPL-3",
+    "contributors": [
+        "Ignacio Ibeas <ignacio@acysos.com>",
+    ],
     "depends": [
         'product',
         'purchase_discount',
