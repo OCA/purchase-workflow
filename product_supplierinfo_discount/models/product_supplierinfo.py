@@ -19,12 +19,23 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, fields
+from openerp import models, fields, api
 import openerp.addons.decimal_precision as dp
 
 
 class PricelistPartnerInfo(models.Model):
     _inherit = "pricelist.partnerinfo"
 
+    @api.onchange('discount', 'price')
+    def _get_price_disc(self):
+        self.price_with_disc = self.price * (1 - self.discount/100)
+
+    @api.onchange('price_with_disc')
+    def _get_discount(self):
+        self.price = self.price_with_disc / (1 - self.discount/100)
+
     discount = fields.Float(
         string='Discount (%)', digits_compute=dp.get_precision('Discount'))
+    price_with_disc = fields.Float(
+        string='Price with Discount',
+        digits_compute=dp.get_precision('Product Price'))

@@ -22,13 +22,17 @@
 
 {
     "name": "Discounts in product supplier info",
-    "version": "8.0.1.0.0",
+    "version": "8.0.2.0.0",
     "author": "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
               "Antiun Ingeniería S.L., "
+              "Acysos S.L., "
               "Odoo Community Association (OCA)",
     "category": "Purchase Management",
     "website": "www.serviciosbaeza.com",
     "license": "AGPL-3",
+    "contributors": [
+        "Ignacio Ibeas <ignacio@acysos.com>",
+    ],
     "depends": [
         'product',
         'purchase_discount',
