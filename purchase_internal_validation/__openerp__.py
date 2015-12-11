@@ -22,21 +22,23 @@
 {
     "name": "Internal Validation for Purchase",
     "version": "7.0.1.0.0",
-    "category": 'Purchases',
+    "category": "Purchases",
     "depends": [
         "purchase",
     ],
-    "author": 'Savoir-faire Linux',
-    'website': 'http://www.savoirfairelinux.com',
+    "author": "Savoir-faire Linux, Odoo Community Association (OCA)",
+    "website": "http://www.savoirfairelinux.com",
+    "license": "AGPL-3",
     "description": """
 ============================
 Purchase Internal Validation
 ============================
 
-This module modifies the purchase workflow in order to validate 
+This module modifies the purchase workflow in order to validate
 purchases that exceeds the amount set in the Purchase configuration panel.
-It differs from the purchase_double_validation module by inserting the validation
-step in the purchase order workflow before the confirmation, not after.
+It differs from the purchase_double_validation module by inserting the
+validation step in the purchase order workflow before the confirmation,
+not after.
 
 Configuration
 =============
@@ -97,11 +99,14 @@ promote its widespread use.
 
 To contribute to this module, please visit http://odoo-community.org.
     """,
-    'data': [
-        'security/groups.xml',
-        'views/res_config_view.xml',
-        'views/purchase_view.xml',
-        'workflow/purchase_internal_validation_workflow.xml',
+    "data": [
+        "security/groups.xml",
+        "views/res_config_view.xml",
+        "views/purchase_view.xml",
+        "workflow/purchase_internal_validation_workflow.xml",
     ],
-    'installable': True,
+    "images": [
+        "static/description/img/purchase_internal_validation01.png",
+    ],
+    "installable": True,
 }
