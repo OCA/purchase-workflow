@@ -13,12 +13,6 @@ This project aim to deal with modules related to manage purchase and their relat
  - ...
 
 [//]: # (addons)
-Available addons
-----------------
-addon | version | summary
---- | --- | ---
-[purchase_all_shipments](purchase_all_shipments/) | 8.0.1.0.0 | Purchase All Shipments
-
 Unported addons
 ---------------
 addon | version | summary
@@ -28,6 +22,7 @@ addon | version | summary
 [procurement_batch_generator](procurement_batch_generator/) | 8.0.0.1.0 (unported) | Wizard to create procurements from product variants
 [product_by_supplier](product_by_supplier/) | 8.0.1.0 (unported) | Show products grouped by suppliers
 [product_supplierinfo_discount](product_supplierinfo_discount/) | 8.0.1.0.0 (unported) | Discounts in product supplier info
+[purchase_all_shipments](purchase_all_shipments/) | 8.0.1.0.0 (unported) | Purchase All Shipments
 [purchase_delivery_address](purchase_delivery_address/) | 8.0.1.1.0 (unported) | Deprecated: install purchase_transport_multi_address and stock_transport_multi_address instead
 [purchase_delivery_term](purchase_delivery_term/) | 0.2 (unported) | Delivery term for purchase orders
 [purchase_discount](purchase_discount/) | 8.0.1.1 (unported) | Purchase order lines with discounts
