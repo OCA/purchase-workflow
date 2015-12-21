@@ -19,27 +19,28 @@
 #
 ##############################################################################
 
-from osv import orm, fields
+from openerp import api, fields, models
 
 
-class purchase_internal_validation_settings(orm.TransientModel):
+class PurchaseConfigSettings(models.TransientModel):
     _inherit = 'purchase.config.settings'
-    _columns = {
-        'limit_amount': fields.integer(
-            'Maximum Purchase Amount', required=True,
-            help="Maximum amount after which internal validation of"
-                 " purchase is required.",
-        ),
-    }
 
-    def get_default_limit_amount(self, cr, uid, ids, context=None):
-        res = self.pool["ir.config_parameter"].get_param(
-            cr, uid, "purchase_internal_validation.limit_amount",
-            default="5000", context=context)
+    limit_amount = fields.Integer(
+        'Maximum Purchase Amount', required=True,
+        help="Maximum amount after which internal validation of"
+             " purchase is required.",
+    )
+
+    @api.multi
+    def get_default_limit_amount(self):
+        res = self.env["ir.config_parameter"].get_param(
+            "purchase_internal_validation.limit_amount",
+            default="5000")
         return {"limit_amount": int(res)}
 
-    def set_limit_amount(self, cr, uid, ids, context=None):
-        for record in self.browse(cr, uid, ids, context=context):
-            self.pool["ir.config_parameter"].set_param(
-                cr, uid, "purchase_internal_validation.limit_amount",
+    @api.multi
+    def set_limit_amount(self):
+        for record in self:
+            self.env["ir.config_parameter"].set_param(
+                "purchase_internal_validation.limit_amount",
                 record.limit_amount or "5000")

@@ -9,9 +9,10 @@
             <field name="arch" type="xml">
                 <data>
 
-                    <button name="purchase_confirm" states="draft" string="Confirm Order" position="before">
-                        <button name="purchase_submit" states="draft,sent" string="Submit" icon="gtk-go-forward"/>
+                    <button id="draft_confirm" position="replace">
+                        <button name="purchase_submit" states="draft,bid" string="Submit" icon="gtk-go-forward"/>
                     </button>
+                    <button id="bid_confirm" position="replace"/>
 
                     <field name="state" position="before">
                         <button name="purchase_refuse" states="wait_valid" string="Refuse" icon="gtk-cancel" groups="purchase_internal_validation.group_purchase_validator"/>
@@ -24,8 +25,6 @@
                         <button name="action_cancel" states="validated" string="Cancel Order" type="object" icon="gtk-cancel"/>
                     </field>
 
-                    <button name="purchase_confirm" states="draft" string="Confirm Order" position="replace"/>
-                    <button name="purchase_confirm" states="sent" string="Confirm Order" class="oe_highlight" position="replace"/>
                 </data>
 
             </field>

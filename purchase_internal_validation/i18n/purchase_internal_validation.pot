@@ -183,3 +183,23 @@ msgstr ""
 #: view:purchase.order:0
 msgid "Cancel"
 msgstr "Annuler"
+
+#. module: purchase_internal_validation
+#: selection:purchase.order,state:0
+msgid "Waiting for Validation"
+msgstr ""
+
+#. module: purchase_internal_validation
+#: selection:purchase.order,state:0
+msgid "Waiting for Correction"
+msgstr ""
+
+#. module: purchase_internal_validation
+#: selection:purchase.order,state:0
+msgid "Waiting"
+msgstr ""
+
+#. module: purchase_internal_validation
+#: selection:purchase.order,state:0
+msgid "Validated"
+msgstr ""

@@ -18,7 +18,6 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from . import (
-    purchase_order,
-    res_config,
-)
+
+from . import purchase_order
+from . import res_config

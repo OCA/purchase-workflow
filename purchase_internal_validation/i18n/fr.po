@@ -207,3 +207,24 @@ msgstr "Annuler"
 #: model:ir.actions.server,name:purchase_internal_validation.purchase_validated
 msgid "Notify the buyer that the purchase order has been validated"
 msgstr "Notifie l'acheteur que le bon de commande a été validé"
+
+#. module: purchase_internal_validation
+#: selection:purchase.order,state:0
+msgid "Waiting for Validation"
+msgstr "En attente de validation"
+
+#. module: purchase_internal_validation
+#: selection:purchase.order,state:0
+msgid "Waiting for Correction"
+msgstr "En attente de correction"
+
+#. module: purchase_internal_validation
+#: selection:purchase.order,state:0
+msgid "Waiting"
+msgstr "En attente"
+
+#. module: purchase_internal_validation
+#: selection:purchase.order,state:0
+msgid "Validated"
+msgstr "Validé"
+

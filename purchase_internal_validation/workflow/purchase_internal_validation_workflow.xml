@@ -99,20 +99,22 @@ Odoo</field>
             <field name="signal">purchase_submit</field>
         </record>
 
-        <record id="trans_sent_waiting_internal_validation" model="workflow.transition">
-            <field name="act_from" ref="purchase.act_sent"/>
+        <record id="trans_bid_waiting_internal_validation" model="workflow.transition">
+            <field name="act_from" ref="purchase.act_bid"/>
             <field name="act_to" ref="act_purchase_waiting_internal_validation"/>
             <field name="condition">test_require_validation()</field>
             <field name="signal">purchase_submit</field>
         </record>
 
         <record id="purchase.trans_draft_confirmed" model="workflow.transition">
+            <field name="act_from" ref="purchase.act_draft"/>
             <field name="act_to" ref="act_purchase_validated"/>
             <field name="condition">not test_require_validation()</field>
             <field name="signal">purchase_submit</field>
         </record>
 
-        <record id="purchase.trans_sent_confirmed" model="workflow.transition">
+        <record id="purchase.trans_bid_confirmed" model="workflow.transition">
+            <field name="act_from" ref="purchase.act_bid"/>
             <field name="act_to" ref="act_purchase_validated"/>
             <field name="condition">not test_require_validation()</field>
             <field name="signal">purchase_submit</field>
@@ -146,6 +148,12 @@ Odoo</field>
 
         <record id="trans_waiting_correction_cancel" model="workflow.transition">
             <field name="act_from" ref="act_purchase_waiting_correction"/>
+            <field name="act_to" ref="purchase.act_cancel"/>
+            <field name="signal">purchase_cancel</field>
+        </record>
+
+        <record id="trans_validated_cancel" model="workflow.transition">
+            <field name="act_from" ref="act_purchase_validated"/>
             <field name="act_to" ref="purchase.act_cancel"/>
             <field name="signal">purchase_cancel</field>
         </record>

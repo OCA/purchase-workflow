@@ -22,88 +22,75 @@
 from urllib import urlencode
 from urlparse import urljoin
 
-from openerp.tools.translate import _
-from openerp.osv import orm, fields
+from openerp import api, fields, models, _
+from openerp.exceptions import ValidationError
 
 
-class purchase_order(orm.Model):
+class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
 
     STATE_SELECTION = [
-        ('draft', 'Request for Quotation'),
-        ('sent', 'RFQ Sent'),
+        ('draft', 'Draft PO'),
+        ('sent', 'RFQ'),
+        ('bid', 'Bid Received'),
+
+        # States Added
         ('wait_valid', 'Waiting for Validation'),
         ('wait_correct', 'Waiting for Correction'),
         ('wait', 'Waiting'),
         ('validated', 'Validated'),
+
         ('confirmed', 'Waiting Approval'),
-        ('approved', 'Purchase Order'),
+        ('approved', 'Purchase Confirmed'),
         ('except_picking', 'Shipping Exception'),
         ('except_invoice', 'Invoice Exception'),
         ('done', 'Done'),
-        ('cancel', 'Cancelled')
+        ('cancel', 'Cancelled'),
     ]
 
-    _columns = {
-        'state': fields.selection(
-            STATE_SELECTION, 'State', readonly=True,
-            help="The state of the purchase order or the quotation request. "
-                 "A quotation is a purchase order in a 'Draft' state. "
-                 "Then the order has to be confirmed by the user, the state "
-                 "switch to 'Confirmed'. Then the supplier must confirm the "
-                 "order to change the state to 'Approved'. When the purchase "
-                 "order is paid and received, the state becomes 'Done'. "
-                 "If a cancel action occurs in the invoice or in the "
-                 "reception of goods, the state becomes in exception.",
-            select=True),
-    }
+    state = fields.Selection(STATE_SELECTION)
 
-    # TODO: implement messages system
-    def wkf_wait_validation_order(self, cr, uid, ids, context=None):
-        todo = []
-        for po in self.browse(cr, uid, ids, context=context):
+    @api.multi
+    def wkf_wait_validation_order(self):
+        for po in self:
             if not po.order_line:
-                raise orm.except_orm(
-                    _('Error'),
+                raise ValidationError(
                     _('You can not wait for purchase order to be validated '
                       'without Purchase Order Lines.'))
-            for line in po.order_line:
-                if line.state == 'draft':
-                    todo.append(line.id)
             message = _(
                 "Purchase order '%s' is waiting for validation."
             ) % (po.name,)
-            self.log(cr, uid, po.id, message)
-        for id in ids:
-            self.write(cr, uid, [id], {'state': 'wait_valid'})
+            po.message_post(body=message)
+
+        self.write({'state': 'wait_valid'})
         return True
 
-    # TODO: implement messages system
-    def wkf_wait_correction(self, cr, uid, ids, context=None):
-        for id in ids:
-            self.write(cr, uid, [id], {'state': 'wait_correct'})
+    @api.multi
+    def wkf_wait_correction(self):
+        self.write({'state': 'wait_correct'})
         return True
 
-    # TODO: implement messages system
-    def wkf_validated(self, cr, uid, ids, context=None):
-        for id in ids:
-            self.write(cr, uid, [id], {'state': 'validated'})
+    @api.multi
+    def wkf_validated(self):
+        self.write({'state': 'validated'})
         return True
 
-    def test_require_validation(self, cr, uid, ids, context=None):
-        limit = self.pool["purchase.config.settings"].get_default_limit_amount(
-            cr, uid, None, context=context)["limit_amount"]
-        for rec in self.browse(cr, uid, ids, context=context):
+    @api.multi
+    def test_require_validation(self):
+        limit = (
+            self.env["purchase.config.settings"].get_default_limit_amount()
+            ["limit_amount"]
+        )
+        for rec in self:
             if rec.amount_total >= limit:
                 return True
 
         return False
 
-    def get_validator_emails(self, cr, uid, ids, context):
-        grp = self.pool["ir.model.data"].get_object(
-            cr, uid,
-            "purchase_internal_validation", "group_purchase_validator",
-            context=context)
+    @api.multi
+    def get_validator_emails(self):
+        grp = self.env.ref(
+            "purchase_internal_validation.group_purchase_validator")
         emails = [
             user.email
             for user in grp.users
@@ -111,15 +98,14 @@ class purchase_order(orm.Model):
         ]
         return emails
 
-    def get_action_url(self, cr, uid, ids, context=None):
-        assert len(ids) == 1
-        purchase = self.browse(cr, uid, ids[0], context=context)
-        base_url = self.pool['ir.config_parameter'].get_param(
-            cr, uid, 'web.base.url', default='http://localhost:8069',
-            context=context,
-        )
-        query = {'db': cr.dbname}
-        fragment = {'id': purchase.id, 'model': self._name}
+    @api.multi
+    def get_action_url(self):
+        self.ensure_one()
+
+        base_url = self.env['ir.config_parameter'].get_param(
+            'web.base.url', default='http://localhost:8069')
+        query = {'db': self.env.cr.dbname}
+        fragment = {'id': self.id, 'model': self._name}
         return urljoin(base_url, "?%s#%s" % (
             urlencode(query), urlencode(fragment)
         ))
