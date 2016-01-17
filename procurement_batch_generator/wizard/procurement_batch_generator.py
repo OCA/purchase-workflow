@@ -23,12 +23,23 @@
 from openerp import models, fields, api, _
 import openerp.addons.decimal_precision as dp
 from openerp.exceptions import Warning
-
+import logging
+_logger = logging.getLogger(__name__)
 
 class ProcurementBatchGenerator(models.TransientModel):
     _name = 'procurement.batch.generator'
     _description = 'Wizard to create procurements from product tree'
 
+    @api.onchange('warehouse_id')
+    def onchange_warehouse_id(self):
+        for line in self.line_ids:
+            line.warehouse_id = self.warehouse_id
+    
+    @api.onchange('date')
+    def onchange_date(self):
+        for line in self.line_ids:
+            line.date_planned = self.date
+    
     @api.model
     def _default_lines(self):
         assert isinstance(self.env.context['active_ids'], list),\
@@ -36,15 +47,14 @@ class ProcurementBatchGenerator(models.TransientModel):
         assert self.env.context['active_model'] == 'product.product',\
             "context['active_model'] must be 'product.product'"
         res = []
-        warehouses = self.env['stock.warehouse'].search(
-            [('company_id', '=', self.env.user.company_id.id)])
-        warehouse_id = warehouses and warehouses[0].id or False
+ 
+        warehouse_id  = self._get_default_warehouse()
+
         today = fields.Date.context_today(self)
         for product in self.env['product.product'].browse(
                 self.env.context['active_ids']):
             res.append({
                 'product_id': product.id,
-                'partner_id': product.seller_id.id or False,
                 'qty_available': product.qty_available,
                 'outgoing_qty': product.outgoing_qty,
                 'incoming_qty': product.incoming_qty,
@@ -55,9 +65,21 @@ class ProcurementBatchGenerator(models.TransientModel):
                 })
         return res
 
+    @api.model
+    def _get_default_warehouse(self):
+        warehouses = self.env['stock.warehouse'].search(
+            [('company_id', '=', self.env.user.company_id.id)])
+        warehouse_id = warehouses and warehouses[0].id or False
+        return warehouse_id
+
     line_ids = fields.One2many(
         'procurement.batch.generator.line', 'parent_id',
-        string='Procurement Request Lines', default=_default_lines)
+        string='Procurement Request Lines', default=_default_lines)    
+    date = fields.Date(string="Procurement Date", 
+        default=lambda self:fields.Date.context_today(self))
+    warehouse_id = fields.Many2one(comodel_name="stock.warehouse", 
+        string="Warehouse", default=_get_default_warehouse, required=1)
+    comment = fields.Text(string="Comment")
 
     @api.multi
     def validate(self):
@@ -114,7 +136,8 @@ class ProcurementBatchGeneratorLine(models.TransientModel):
     def _prepare_procurement_order(self):
         self.ensure_one()
         vals = {
-            'name': u'INT: ' + unicode(self.env.user.login),
+            'name': u'INT: ' + unicode(self.env.user.login + '\n'+ self.parent_id.comment),
+            'origin':u'INT: ' + unicode(self.env.user.login ),
             'product_id': self.product_id.id,
             'product_qty': self.procurement_qty,
             'product_uom': self.uom_id.id,

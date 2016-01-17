@@ -6,45 +6,56 @@
 -->
 
 <openerp>
-<data>
+    <data>
 
-<record id="procurement_batch_generator_form" model="ir.ui.view">
-    <field name="name">procurement.batch.generator.form</field>
-    <field name="model">procurement.batch.generator</field>
-    <field name="arch" type="xml">
-        <form string="Request Procurements">
-            <group name="main">
-                <field name="line_ids" nolabel="1" colspan="2">
-                    <tree editable="bottom">
-                        <field name="product_id"/>
-                        <field name="partner_id" required="1"/>
-                        <field name="qty_available"/>
-                        <field name="outgoing_qty"/>
-                        <field name="incoming_qty"/>
-                        <field name="uom_id" groups="product.group_uom"/>
-                        <field name="procurement_qty"/>
-                        <field name="warehouse_id"/>
-                        <field name="date_planned"/>
-                    </tree>
-                </field>
-            </group>
-            <footer>
-                <button type="object" name="validate"
-                    string="Validate" class="oe_highlight"/>
-                <button special="cancel" string="Cancel" class="oe_link"/>
-            </footer>
-        </form>
-    </field>
-</record>
+        <record id="procurement_batch_generator_form" model="ir.ui.view">
+            <field name="name">procurement.batch.generator.form</field>
+            <field name="model">procurement.batch.generator</field>
+            <field name="arch" type="xml">
+                <form string="Request Procurements">
+                    <group name="general">                          
+                        <group  colspan="2">
+                            <label for="date" ></label>
+                            <field name="date" nolabel="1" required="1" />
+                            <label for="warehouse_id" ></label>
+                            <field name="warehouse_id" nolabel="1" />
+                            <label for="comment" ></label>
+                            <field name="comment" nolabel="1" />
+                            
+                        </group>
+                    </group>
+                    <group name="main" >
+                        <field name="line_ids" nolabel="1" colspan="2">
+                            <tree editable="bottom">
+                                <field name="product_id"/>
+                                <field name="partner_id" required="0" invisible="1"/>
+                                <field name="qty_available"/>
+                                <field name="outgoing_qty"/>
+                                <field name="incoming_qty"/>
+                                <field name="uom_id" groups="product.group_uom"/>
+                                <field name="procurement_qty"/>
+                                <field name="warehouse_id"/>
+                                <field name="date_planned"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <footer>
+                        <button type="object" name="validate"
+                                string="Validate" class="oe_highlight"/>
+                        <button special="cancel" string="Cancel" class="oe_link"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
 
-<act_window id="procurement_batch_generator_tree_action"
-            multi="True"
-            key2="client_action_multi"
-            name="Request Procurements"
-            res_model="procurement.batch.generator"
-            src_model="product.product"
-            view_mode="form"
-            target="new" />
+        <act_window id="procurement_batch_generator_tree_action"
+                    multi="True"
+                    key2="client_action_multi"
+                    name="Request Procurements"
+                    res_model="procurement.batch.generator"
+                    src_model="product.product"
+                    view_mode="form"
+                    target="new" />
 
-</data>
+    </data>
 </openerp>
