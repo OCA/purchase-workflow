@@ -135,8 +135,11 @@ class ProcurementBatchGeneratorLine(models.TransientModel):
     @api.multi
     def _prepare_procurement_order(self):
         self.ensure_one()
+        comment = self.env.user.login 
+        if self.parent_id.comment :
+            comment += '\n'+ self.parent_id.comment
         vals = {
-            'name': u'INT: ' + unicode(self.env.user.login + '\n'+ self.parent_id.comment),
+            'name': u'INT: ' + unicode(comment),
             'origin':u'INT: ' + unicode(self.env.user.login ),
             'product_id': self.product_id.id,
             'product_qty': self.procurement_qty,
