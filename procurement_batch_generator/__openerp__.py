@@ -23,7 +23,7 @@
 
 {
     'name': 'Procurement Batch Generator',
-    'version': '8.0.0.1.0',
+    'version': '9.0.0.1.0',
     'category': 'Warehouse Management',
     'license': 'AGPL-3',
     'summary': 'Wizard to create procurements from product variants',
