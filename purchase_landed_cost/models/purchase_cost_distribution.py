@@ -214,8 +214,14 @@ class PurchaseCostDistribution(models.Model):
                     else:
                         raise exceptions.Warning(
                             _('No valid distribution type.'))
-                    expense_amount = (expense.expense_amount * multiplier /
-                                      divisor)
+                    if divisor:
+                        expense_amount = (expense.expense_amount * multiplier /
+                                          divisor)
+                    else:
+                        raise exceptions.Warning(
+                            _("The cost for the line '%s' can't be "
+                              "distributed because the calculation method "
+                              "doesn't provide valid data" % line.type.name))
                     expense_line = {
                         'distribution_expense': expense.id,
                         'expense_amount': expense_amount,
