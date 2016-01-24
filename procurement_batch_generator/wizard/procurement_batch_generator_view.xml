@@ -17,6 +17,8 @@
                         <group  colspan="2">
                             <label for="date" ></label>
                             <field name="date" nolabel="1" required="1" />
+                            <label for="default_quantity" ></label>
+                            <field name="default_quantity" nolabel="1" />
                             <label for="warehouse_id" ></label>
                             <field name="warehouse_id" nolabel="1" />
                             <label for="comment" ></label>

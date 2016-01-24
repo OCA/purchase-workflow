@@ -33,12 +33,18 @@ class ProcurementBatchGenerator(models.TransientModel):
     @api.onchange('warehouse_id')
     def onchange_warehouse_id(self):
         for line in self.line_ids:
-            line.warehouse_id = self.warehouse_id
+            line.warehouse_id = self.warehouse_id.id
     
     @api.onchange('date')
     def onchange_date(self):
         for line in self.line_ids:
             line.date_planned = self.date
+    
+    @api.onchange('default_quantity')
+    def onchange_default_quantity(self):
+        _logger.debug("ONCHANGE defaul qty")
+        for line in self.line_ids:
+            line.product_qty = self.default_quantity
     
     @api.model
     def _default_lines(self):
@@ -80,6 +86,7 @@ class ProcurementBatchGenerator(models.TransientModel):
     warehouse_id = fields.Many2one(comodel_name="stock.warehouse", 
         string="Warehouse", default=_get_default_warehouse, required=1)
     comment = fields.Text(string="Comment")
+    default_quantity = fields.Float(string="Default Quantity", default=1.0)
 
     @api.multi
     def validate(self):
@@ -147,5 +154,7 @@ class ProcurementBatchGeneratorLine(models.TransientModel):
             'location_id': self.warehouse_id.lot_stock_id.id,
             'company_id': self.warehouse_id.company_id.id,
             'date_planned': self.date_planned,
+            'warehouse_id': self.warehouse_id.id,
+            
             }
         return vals
