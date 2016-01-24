@@ -3,13 +3,14 @@
 # * framework_agreement
 # 
 # Translators:
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-01 21:19+0000\n"
-"PO-Revision-Date: 2015-09-01 21:19+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2015-10-12 17:49+0000\n"
+"PO-Revision-Date: 2016-01-18 09:04+0000\n"
+"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,7 +26,7 @@ msgstr "Bestellauftragsposition"
 #. module: framework_agreement
 #: field:framework.agreement,quantity:0
 msgid "Negociated quantity"
-msgstr ""
+msgstr "Ausgehandelte Menge"
 
 #. module: framework_agreement
 #: view:purchase.order:0
@@ -38,51 +39,51 @@ msgstr ""
 #: code:addons/framework_agreement/model/framework_agreement.py:501
 #, python-format
 msgid "Missing Agreement price list"
-msgstr ""
+msgstr "Preisliste des Rahmenvertrags fehlt"
 
 #. module: framework_agreement
 #: code:addons/framework_agreement/model/framework_agreement.py:230
 #, python-format
 msgid "Data are missing"
-msgstr ""
+msgstr "Daten fehlen"
 
 #. module: framework_agreement
 #: view:framework.agreement:0
 msgid "Framework Agreement (LTA)"
-msgstr ""
+msgstr "Rahmenvertrag"
 
 #. module: framework_agreement
 #: view:framework.agreement:0
 #: field:framework.agreement.pricelist,framework_agreement_line_ids:0
 #: view:product.product:0
 msgid "Price lines"
-msgstr ""
+msgstr "Preispositionen"
 
 #. module: framework_agreement
 #: field:framework.agreement,delay:0
 msgid "Lead time in days"
-msgstr ""
+msgstr "Vorlaufzeit in Tagen"
 
 #. module: framework_agreement
 #: code:addons/framework_agreement/model/framework_agreement.py:231
 #, python-format
 msgid "Please enter dates and price informations"
-msgstr ""
+msgstr "Bitte Information zu Daten und Preisen angeben"
 
 #. module: framework_agreement
 #: selection:framework.agreement,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Entwurf"
 
 #. module: framework_agreement
 #: selection:framework.agreement,state:0
 msgid "Closed"
-msgstr ""
+msgstr "Geschlossen"
 
 #. module: framework_agreement
 #: field:product.product,framework_agreement_ids:0
 msgid "Framework Agreements (LTA)"
-msgstr ""
+msgstr "Rahmenvertrag"
 
 #. module: framework_agreement
 #: field:framework.agreement,supplier_id:0
@@ -98,20 +99,20 @@ msgstr ""
 #: code:addons/framework_agreement/model/framework_agreement.py:474
 #, python-format
 msgid "Please contact your ERP administrator"
-msgstr ""
+msgstr "Nehmen Sie bitte mit dem ERP-Administrator Verbindung auf"
 
 #. module: framework_agreement
 #: code:addons/framework_agreement/model/purchase.py:193
 #, python-format
 msgid "You can not change supplier"
-msgstr ""
+msgstr "Sie dürfen den Lieferanten nicht ändern"
 
 #. module: framework_agreement
 #: help:res.company,one_agreement_per_product:0
 msgid ""
 "If checked you can have only one framework agreement  per product at the "
 "same time"
-msgstr ""
+msgstr "Wenn angewählt, darf je Produkt nur ein Rahmenvertrag zu gegebener Zeit bestehen"
 
 #. module: framework_agreement
 #: view:purchase.order.line:0
@@ -124,12 +125,12 @@ msgstr ""
 #: code:addons/framework_agreement/model/framework_agreement.py:556
 #, python-format
 msgid "Please set a pricelist on PO or supplier %s"
-msgstr ""
+msgstr "Legen Sie bitte eine Preisliste in der Bestellung oder beim Lieferanten %s fest"
 
 #. module: framework_agreement
 #: selection:framework.agreement,state:0
 msgid "Running"
-msgstr ""
+msgstr "Laufend"
 
 #. module: framework_agreement
 #: code:addons/framework_agreement/model/purchase.py:149
@@ -137,7 +138,7 @@ msgstr ""
 msgid ""
 "If you change the agreement of this order (and eventually the currency), "
 "existing order lines will not be updated."
-msgstr ""
+msgstr "Wenn Sie den Rahmenvertrag (oder ggf. die Währung) dieses Auftrags ändern, werden Auftragspositionen nicht aktualisiert."
 
 #. module: framework_agreement
 #: field:framework.agreement,product_id:0
@@ -151,7 +152,7 @@ msgstr "Produkt"
 #: code:addons/framework_agreement/model/purchase.py:183
 #, python-format
 msgid "Invalid date"
-msgstr ""
+msgstr "Unzulässiges Datum"
 
 #. module: framework_agreement
 #: code:addons/framework_agreement/model/framework_agreement.py:762
@@ -159,7 +160,7 @@ msgstr ""
 #: code:addons/framework_agreement/model/purchase.py:184
 #, python-format
 msgid "Agreement and purchase date does not match"
-msgstr ""
+msgstr "Rahmenvertrag und Bestelldatum stimmen nicht überein"
 
 #. module: framework_agreement
 #: view:purchase.order:0
@@ -175,14 +176,14 @@ msgstr "Unternehmen"
 #. module: framework_agreement
 #: field:framework.agreement,start_date:0
 msgid "Begin of Agreement"
-msgstr ""
+msgstr "Beginn der Vereinbarung"
 
 #. module: framework_agreement
 #: field:framework.agreement.pricelist,framework_agreement_id:0
 #: field:purchase.order,framework_agreement_id:0
 #: field:purchase.order.line,framework_agreement_id:0
 msgid "Agreement"
-msgstr ""
+msgstr "Vereinbarung"
 
 #. module: framework_agreement
 #: view:framework.agreement:0
@@ -191,24 +192,24 @@ msgstr ""
 #: view:product.product:0
 #: model:res.currency.rate.type,name:framework_agreement.framework_agreement_currency_type
 msgid "Framework Agreement"
-msgstr ""
+msgstr "Rahmenvertrag"
 
 #. module: framework_agreement
 #: field:framework.agreement,draft:0
 msgid "Is draft"
-msgstr ""
+msgstr "Ist Entwurf"
 
 #. module: framework_agreement
 #: model:ir.model,name:framework_agreement.model_framework_agreement_line
 msgid "Framework agreement line"
-msgstr ""
+msgstr "Rahmenvertragsposition"
 
 #. module: framework_agreement
 #: code:addons/framework_agreement/model/framework_agreement.py:764
 #: code:addons/framework_agreement/model/framework_agreement.py:767
 #, python-format
 msgid "User Error"
-msgstr ""
+msgstr "Anwenderfehler"
 
 #. module: framework_agreement
 #: code:addons/framework_agreement/model/framework_agreement.py:628
@@ -216,18 +217,18 @@ msgstr ""
 msgid ""
 "You have set the price to %s \n"
 " but there is a running agreement with price %s"
-msgstr ""
+msgstr "Sie haben den Preis auf %s festgelegt, aber\nes besteht eine laufende Vereinbarung zum Preis %s"
 
 #. module: framework_agreement
 #: code:addons/framework_agreement/model/framework_agreement.py:765
 #, python-format
 msgid "Wrong product for choosen agreement"
-msgstr ""
+msgstr "Falsches Produkt zur gewählten Aushandlung"
 
 #. module: framework_agreement
 #: field:framework.agreement,state:0
 msgid "state"
-msgstr ""
+msgstr "Status"
 
 #. module: framework_agreement
 #: model:ir.model,name:framework_agreement.model_product_pricelist
@@ -247,13 +248,13 @@ msgstr ""
 #. module: framework_agreement
 #: field:framework.agreement,available_quantity:0
 msgid "Available quantity"
-msgstr ""
+msgstr "Verfügbare Mange"
 
 #. module: framework_agreement
 #: code:addons/framework_agreement/model/framework_agreement.py:555
 #, python-format
 msgid "No pricelist found"
-msgstr ""
+msgstr "Keine Preisliste gefunden"
 
 #. module: framework_agreement
 #: view:product.product:0
@@ -263,43 +264,43 @@ msgstr "Erwerb"
 #. module: framework_agreement
 #: view:framework.agreement:0 view:product.product:0
 msgid "Dates"
-msgstr ""
+msgstr "Daten"
 
 #. module: framework_agreement
 #: code:addons/framework_agreement/model/framework_agreement.py:768
 #, python-format
 msgid "Wrong supplier for choosen agreement"
-msgstr ""
+msgstr "Falscher Lieferant zur gewählten Vereinbarung"
 
 #. module: framework_agreement
 #: sql_constraint:framework.agreement:0
 msgid "Start/end date inversion"
-msgstr ""
+msgstr "Start-/Enddatum Vertauschung"
 
 #. module: framework_agreement
 #: field:framework.agreement,framework_agreement_pricelist_ids:0
 msgid "Price lists"
-msgstr ""
+msgstr "Preislisten"
 
 #. module: framework_agreement
 #: selection:framework.agreement,state:0
 msgid "Consumed"
-msgstr ""
+msgstr "Verbraucht"
 
 #. module: framework_agreement
 #: view:framework.agreement:0 view:product.product:0
 msgid "Negociated price lists"
-msgstr ""
+msgstr "Vereinbarte Preislisten"
 
 #. module: framework_agreement
 #: model:ir.model,name:framework_agreement.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Unternehmen"
 
 #. module: framework_agreement
 #: field:framework.agreement,end_date:0
 msgid "End of Agreement"
-msgstr ""
+msgstr "Auslauf der Vereinbarung"
 
 #. module: framework_agreement
 #: model:ir.model,name:framework_agreement.model_purchase_order
@@ -309,7 +310,7 @@ msgstr "Bestellauftrag"
 #. module: framework_agreement
 #: constraint:framework.agreement:0
 msgid "You can not have overlapping dates for same supplier and product"
-msgstr ""
+msgstr "Daten für gleichen Lieferant und Produkt dürfen nicht überlappen"
 
 #. module: framework_agreement
 #: code:addons/framework_agreement/model/framework_agreement.py:701
@@ -318,12 +319,12 @@ msgstr ""
 msgid ""
 "You have ask for a quantity of %s \n"
 " but there is only %s available for current agreement"
-msgstr ""
+msgstr "Sie erbitten eine Menge von %s, aber es\nsind für diese Vereinbarung nur %s verfügbar"
 
 #. module: framework_agreement
 #: selection:framework.agreement,state:0
 msgid "Future"
-msgstr ""
+msgstr "Zukunft"
 
 #. module: framework_agreement
 #: code:addons/framework_agreement/model/framework_agreement.py:633
@@ -333,42 +334,42 @@ msgstr ""
 #: code:addons/framework_agreement/model/purchase.py:148
 #, python-format
 msgid "Agreement Warning!"
-msgstr ""
+msgstr "Vereinbarungswarnung!"
 
 #. module: framework_agreement
 #: code:addons/framework_agreement/model/purchase.py:146
 #, python-format
 msgid "Agreement and supplier does not match"
-msgstr ""
+msgstr "Vereinbarung und Lieferant stimmen nicht überein"
 
 #. module: framework_agreement
 #: code:addons/framework_agreement/model/purchase.py:164
 #, python-format
 msgid "Pricelist Warning!"
-msgstr ""
+msgstr "Preislistenwarnung!"
 
 #. module: framework_agreement
 #: view:framework.agreement:0
 #: field:framework.agreement.line,framework_agreement_pricelist_id:0
 #: view:product.product:0
 msgid "Price list"
-msgstr ""
+msgstr "Preisliste"
 
 #. module: framework_agreement
 #: field:framework.agreement,origin:0
 msgid "Origin"
-msgstr ""
+msgstr "Herkunft"
 
 #. module: framework_agreement
 #: model:ir.model,name:framework_agreement.model_framework_agreement
 msgid "Agreement on price"
-msgstr ""
+msgstr "Preisvereinbarung"
 
 #. module: framework_agreement
 #: code:addons/framework_agreement/model/purchase.py:194
 #, python-format
 msgid "PO is linked to an agreement"
-msgstr ""
+msgstr "Bestellung ist an Vereinbarung gebunden"
 
 #. module: framework_agreement
 #: model:ir.model,name:framework_agreement.model_framework_agreement_pricelist
@@ -379,18 +380,18 @@ msgstr ""
 #: code:addons/framework_agreement/model/framework_agreement.py:502
 #, python-format
 msgid "Please set a price list in currency %s for agreement %s"
-msgstr ""
+msgstr "Legen Sie eine Preisliste mit Währung %s für Vereinbarung %s fest"
 
 #. module: framework_agreement
 #: code:addons/framework_agreement/model/framework_agreement.py:472
 #, python-format
 msgid "Many agreements found for the product with id %s at date %s"
-msgstr ""
+msgstr "Mehrere Vereinbarungen zum Produkt mit ID %s zum Datum %s gefunden"
 
 #. module: framework_agreement
 #: field:framework.agreement,name:0
 msgid "Number"
-msgstr ""
+msgstr "Nummer"
 
 #. module: framework_agreement
 #: code:addons/framework_agreement/model/purchase.py:165
@@ -398,34 +399,34 @@ msgstr ""
 msgid ""
 "If you change the pricelist of this order (and eventually the currency), "
 "prices of existing order lines will not be updated."
-msgstr ""
+msgstr "Wenn Sie die Preisliste dieses Auftrags (oder ggf. die Währung) ändern, werden Preise bestehender Positionen nicht aktualisiert."
 
 #. module: framework_agreement
 #: code:addons/framework_agreement/model/purchase.py:115
 #, python-format
 msgid "Product not in agreement"
-msgstr ""
+msgstr "Produkt nicht in Vereinbarung"
 
 #. module: framework_agreement
 #: code:addons/framework_agreement/model/purchase.py:145
 #, python-format
 msgid "Invalid agreement"
-msgstr ""
+msgstr "Unzulässige Vereinbarung"
 
 #. module: framework_agreement
 #: field:framework.agreement.pricelist,currency_id:0
 msgid "Currency"
-msgstr ""
+msgstr "Währung"
 
 #. module: framework_agreement
 #: view:framework.agreement:0 view:product.product:0
 msgid "Open Agreement"
-msgstr ""
+msgstr "Öffne Vereinbarung"
 
 #. module: framework_agreement
 #: view:framework.agreement:0 view:product.product:0
 msgid "Price line"
-msgstr ""
+msgstr "Preisposition"
 
 #. module: framework_agreement
 #: view:purchase.order:0
@@ -435,14 +436,14 @@ msgstr ""
 #. module: framework_agreement
 #: field:res.company,one_agreement_per_product:0
 msgid "One agreement per product"
-msgstr ""
+msgstr "Eine Vereinbarung je Produkt"
 
 #. module: framework_agreement
 #: view:product.product:0
 msgid "Framework agreements (LTA)"
-msgstr ""
+msgstr "Rahmenverträge"
 
 #. module: framework_agreement
 #: field:framework.agreement.line,price:0
 msgid "Price"
-msgstr ""
+msgstr "Preis"
