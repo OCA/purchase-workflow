@@ -2,7 +2,6 @@
 # © 2015 Eficent Business and IT Consulting Services S.L. (www.eficent.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from openerp import netsvc
 from openerp.tests import common
 
 
@@ -10,7 +9,6 @@ class TestAccountMoveLinePurchaseInfo(common.TransactionCase):
 
     def setUp(self):
         super(TestAccountMoveLinePurchaseInfo, self).setUp()
-        cr, uid, context = self.cr, self.uid, {}
         self.purchase_model = self.env['purchase.order']
         self.purchase_line_model = self.env['purchase.order.line']
         self.invoice_model = self.env['account.invoice']
@@ -132,10 +130,9 @@ class TestAccountMoveLinePurchaseInfo(common.TransactionCase):
 
         balance = self._get_balance(domain)
         if purchase_line:
-            self.assertEqual(
-                    balance, expected_balance,
-                    'Balance is not %s for Purchase Line %s.'
-                    % (str(expected_balance), purchase_line.name))
+            self.assertEqual(balance, expected_balance,
+                             'Balance is not %s for Purchase Line %s.'
+                             % (str(expected_balance), purchase_line.name))
 
     def test_purchase_invoice_on_order(self):
         """Test that creating a purchase order with invoicing method on order,

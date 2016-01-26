@@ -14,14 +14,19 @@ This module will add the purchase order line to invoice lines and to account
 
 Usage
 =====
+
 The purchase order line will be automatically copied to invoice lines and
 account move lines.
-* If an invoice is created from a purchase order, the PO line is copied
-directly to the invoice, and to the account move line upon validation.
-* If an invoice is created from a stock picking, the PO line is copied from
-the stock move to the invoice, and to the account move line upon validation.
-* When a stock move is validated and generates an account move, the PO line is
-copied to the account move line.
+
+  * If an invoice is created from a purchase order, the PO line is copied
+  directly to the invoice, and to the account move line upon validation.
+
+  * If an invoice is created from a stock picking, the PO line is copied
+  from the stock move to the invoice, and to the account move line upon
+  validation.
+
+  * When a stock move is validated and generates an account move, the PO
+  line is copied to the account move line.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
