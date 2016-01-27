@@ -6,7 +6,7 @@
     "name": "Stock Account Purchase Line",
     "summary": "Introduces the PO line to invoice line and account move line",
     "version": "8.0.1.0.0",
-    "author": "Eficent Business and IT Consulting Services, S.L., "
+    "author": "Eficent Business and IT Consulting Services S.L., "
               "Odoo Community Association (OCA)",
     "website": "http://www.eficent.com",
     "category": "Generic",

@@ -1,6 +1,6 @@
-.. image:: https://img.shields.io/badge/license-LGPLv3-blue.svg
-   :target: https://www.gnu.org/licenses/lgpl.html
-   :alt: License: LGPL-3
+.. image:: https://img.shields.io/badge/license-AGPLv3-blue.svg
+   :target: https://www.gnu.org/licenses/agpl.html
+   :alt: License: AGPL-3
 
 ===========================
 Stock Account Purchase Line
@@ -19,13 +19,13 @@ The purchase order line will be automatically copied to invoice lines and
 account move lines.
 
 * If an invoice is created from a purchase order, the PO line is copied
-directly to the invoice, and to the account move line upon validation.
+  directly to the invoice, and to the account move line upon validation.
 
 * If an invoice is created from a stock picking, the PO line is copied from
-the stock move to the invoice, and to the account move line upon validation.
+  the stock move to the invoice, and to the account move line upon validation.
 
 * When a stock move is validated and generates an account move, the PO line
-is copied to the account move line.
+  is copied to the account move line.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
