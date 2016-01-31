@@ -1,0 +1,68 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * procurement_purchase_no_grouping
+# 
+# Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: odoomrp-wip (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-10-07 10:44+0000\n"
+"PO-Revision-Date: 2015-09-20 19:01+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/odoomrp-wip-8-0/language/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: procurement_purchase_no_grouping
+#: selection:product.category,procured_purchase_grouping:0
+msgid "No line grouping"
+msgstr "Brez združevanja postavk"
+
+#. module: procurement_purchase_no_grouping
+#: selection:product.category,procured_purchase_grouping:0
+msgid "No order grouping"
+msgstr "Brez združevanja nalogov"
+
+#. module: procurement_purchase_no_grouping
+#: field:product.category,procured_purchase_grouping:0
+msgid "Procured purchase grouping"
+msgstr "Združevanje oskrbovalnih nabav"
+
+#. module: procurement_purchase_no_grouping
+#: model:ir.model,name:procurement_purchase_no_grouping.model_procurement_order
+msgid "Procurement"
+msgstr "Oskrbovanje"
+
+#. module: procurement_purchase_no_grouping
+#: model:ir.model,name:procurement_purchase_no_grouping.model_product_category
+msgid "Product Category"
+msgstr "Kategorija proizvoda"
+
+#. module: procurement_purchase_no_grouping
+#: model:ir.model,name:procurement_purchase_no_grouping.model_purchase_order
+msgid "Purchase Order"
+msgstr "Nabavni nalog"
+
+#. module: procurement_purchase_no_grouping
+#: model:ir.model,name:procurement_purchase_no_grouping.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Postavka nabavnega naloga"
+
+#. module: procurement_purchase_no_grouping
+#: help:product.category,procured_purchase_grouping:0
+msgid ""
+"Select the behaviour for grouping procured purchases for the the products of this category:\n"
+"* Standard grouping (default): Procurements will generate purchase orders as always, grouping lines and orders when possible.\n"
+"* No line grouping: If there are any open purchase order for the same supplier, it will be reused, but lines won't be merged.\n"
+"* No order grouping: This option will prevent any kind of grouping."
+msgstr "Izbira obnašanja za združevanje oskrbovalnih nabav za proizvode te kategorije:\n* Standardno združevanje (privzeto): oskrbovanja ustvarijo nabavne naloge, združevanje postavk in nalogov, ko je to mogoče.\n* Brez združevanja postavk: če ni odprtih nabavnih nalogov za istega dobavitelja, se ponovno uporabi, a postavke ne bodo spojene.\n* Brez združevanja nalogov: ta opcija prepreči kakršnokoli združevanje."
+
+#. module: procurement_purchase_no_grouping
+#: selection:product.category,procured_purchase_grouping:0
+msgid "Standard grouping"
+msgstr "Standardno združevanje"

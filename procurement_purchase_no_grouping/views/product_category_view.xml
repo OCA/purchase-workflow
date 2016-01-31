@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <record id="product_category_form_view_inh_purchasenogroup" model="ir.ui.view" >
+            <field name="name">product.category.form.view.inh.purchasenogroup</field>
+            <field name="inherit_id" ref="product.product_category_form_view"/>
+            <field name="model">product.category</field>
+            <field name="arch" type="xml">
+                <field name="type" position="after">
+                    <field name="procured_purchase_grouping" />
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>
