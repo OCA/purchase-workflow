@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-# For copyright and license notices, see __openerp__.py file in root directory
-##############################################################################
-from openerp import models, api
+# © 2015 Pedro M. Baeza (http://http://www.serviciosbaeza.com).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+from openerp import api, models
 
 
 class ProcurementOrder(models.Model):
@@ -10,8 +9,6 @@ class ProcurementOrder(models.Model):
 
     @api.multi
     def make_po(self):
-        import pdb
-        pdb.set_trace()
         obj = self.with_context(
             grouping=self.product_id.categ_id.procured_purchase_grouping)
         return super(ProcurementOrder, obj).make_po()
