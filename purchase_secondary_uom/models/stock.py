@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2015
+#    Copyright (C) 2016
 #    Francesco OpenCode Apruzzese (<f.apruzzese@apuliasoftware.it>)
 #    All Rights Reserved
 #
@@ -20,7 +20,20 @@
 #
 ##############################################################################
 
-from . import product
-from . import purchase
-from . import procurement
-from . import stock
+
+from openerp import models, api
+
+
+class StockMove(models.Model):
+
+    _inherit = 'stock.move'
+
+    @api.model
+    def _get_invoice_line_vals(self, move, partner, inv_type):
+        res = super(StockMove, self)._get_invoice_line_vals(
+            move, partner, inv_type)
+        if inv_type == 'in_invoice' and move.purchase_line_id:
+            purchase_line = move.purchase_line_id
+            if purchase_line.price_unit_uop:
+                res['price_unit'] = purchase_line.price_unit_uop
+        return res
