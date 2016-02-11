@@ -21,6 +21,9 @@
                             <field name="default_quantity" nolabel="1" />
                             <label for="warehouse_id" ></label>
                             <field name="warehouse_id" nolabel="1" />
+                            <label for="route_ids" >Preferred routes</label>
+                            <field name="route_ids" nolabel="1" 
+                                   widget="many2many_tags" />
                             <label for="comment" ></label>
                             <field name="comment" nolabel="1" />
                             
@@ -36,7 +39,7 @@
                                 <field name="incoming_qty"/>
                                 <field name="uom_id" groups="product.group_uom"/>
                                 <field name="procurement_qty"/>
-                                <field name="warehouse_id"/>
+                                <field name="warehouse_id" readonly="1"/>
                                 <field name="date_planned"/>
                             </tree>
                         </field>

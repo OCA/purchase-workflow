@@ -1,24 +1,6 @@
-# -*- encoding: utf-8 -*-
-##############################################################################
-#
-#    Procurement Batch Generator module for Odoo
-#    Copyright (C) 2014-2015 Akretion (http://www.akretion.com)
-#    @author Alexis de Lattre <alexis.delattre@akretion.com>
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# -*- coding: utf-8 -*-
+# © <YEAR(S)> <AUTHOR(S)>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp import models, fields, api, _
 import openerp.addons.decimal_precision as dp
@@ -44,7 +26,7 @@ class ProcurementBatchGenerator(models.TransientModel):
     def onchange_default_quantity(self):
         _logger.debug("ONCHANGE defaul qty")
         for line in self.line_ids:
-            line.product_qty = self.default_quantity
+            line.procurement_qty = self.default_quantity
     
     @api.model
     def _default_lines(self):
@@ -87,7 +69,8 @@ class ProcurementBatchGenerator(models.TransientModel):
         string="Warehouse", default=_get_default_warehouse, required=1)
     comment = fields.Text(string="Comment")
     default_quantity = fields.Float(string="Default Quantity", default=1.0)
-
+    route_ids = fields.Many2many('stock.location.route', string='Preferred Routes')
+    
     @api.multi
     def validate(self):
         self.ensure_one()
@@ -138,6 +121,7 @@ class ProcurementBatchGeneratorLine(models.TransientModel):
     warehouse_id = fields.Many2one(
         'stock.warehouse', string='Warehouse', required=True)
     date_planned = fields.Date(string='Planned Date', required=True)
+    
 
     @api.multi
     def _prepare_procurement_order(self):
@@ -157,4 +141,9 @@ class ProcurementBatchGeneratorLine(models.TransientModel):
             'warehouse_id': self.warehouse_id.id,
             
             }
+        if self.parent_id.route_ids:
+            vals.update({
+                'route_ids': [(6, 0, 
+                    [r.id for r in self.parent_id.route_ids])],
+            })
         return vals
