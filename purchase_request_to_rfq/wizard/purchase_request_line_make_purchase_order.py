@@ -127,7 +127,9 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             'product_id': product.id,
             'account_analytic_id': item.line_id.analytic_account_id.id,
             'taxes_id': [(6, 0, vals.get('taxes_id', []))],
-            'purchase_request_lines': [(4, item.line_id.id)]
+            'purchase_request_lines': [(4, item.line_id.id)],
+            'date_planned':
+                vals.get('date_planned', False) or item.line_id.date_required,
         })
         return vals
 
@@ -140,7 +142,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                            ('account_analytic_id', '=',
                             item.line_id.analytic_account_id.id or False)]
         if not item.product_id:
-            order_line_data['name'] = item.name
+            order_line_data.append(('name', '=', item.name))
         return order_line_data
 
     @api.multi
