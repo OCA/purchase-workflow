@@ -77,8 +77,6 @@ class PurchaseRequestLineMakePurchaseRequisition(models.TransientModel):
                  item.product_uom_id.id or False),
                 ('account_analytic_id', '=',
                  item.line_id.analytic_account_id.id or False)]
-        if not item.product_id:
-            vals['name'] = item.name
         return vals
 
     @api.multi
