@@ -36,8 +36,8 @@
                             <span t-field="o.assigned_to"/>
                         </div>
                         <div class="col-xs-3">
-                            <strong>Warehouse:</strong><br/>
-                            <span t-field="o.warehouse_id"/>
+                            <strong>Picking Type:</strong><br/>
+                            <span t-field="o.picking_type_id"/>
                         </div>
                     </div>
 
