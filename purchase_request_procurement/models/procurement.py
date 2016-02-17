@@ -20,30 +20,16 @@ class Procurement(models.Model):
         return super(Procurement, self).copy(default)
 
     @api.model
-    def _prepare_purchase_request_line(self, purchase_request_id, procurement):
+    def _prepare_purchase_request_line(self, purchase_request, procurement):
         return {
             'product_id': procurement.product_id.id,
             'name': procurement.product_id.name,
             'date_required': procurement.date_planned,
             'product_uom_id': procurement.product_uom.id,
             'product_qty': procurement.product_qty,
-            'request_id': purchase_request_id,
+            'request_id': purchase_request.id,
+            'procurement_id': procurement.id
         }
-
-    @api.model
-    def _get_warehouse(self, procurement):
-        """
-            Return the warehouse containing the procurment stock location
-            (or one of it ancestors)
-            If none match, returns then first warehouse of the company
-        """
-        warehouse_obj = self.env['stock.warehouse']
-        warehouses = warehouse_obj.search([('company_id', '=',
-                                            procurement.company_id.id)])
-        if warehouses:
-            return warehouses[0].id
-        else:
-            return False
 
     @api.model
     def _prepare_purchase_request(self, procurement):
@@ -51,7 +37,7 @@ class Procurement(models.Model):
         return {
             'origin': procurement.origin,
             'company_id': procurement.company_id.id,
-            'warehouse_id': self._get_warehouse(procurement),
+            'picking_type_id': procurement.rule_id.picking_type_id.id,
         }
 
     @api.model
@@ -77,9 +63,8 @@ class Procurement(models.Model):
                 procurement.message_post(body=_("Purchase Request created"))
                 procurement.request_id = req.id
             request_line_data = self._prepare_purchase_request_line(
-                pr, procurement)
+                req, procurement)
             request_line_obj.create(request_line_data),
-            self.message_post([procurement.id],
-                              body=_("Purchase Request extended."))
+            procurement.message_post(body=_("Purchase Request extended."))
             return True
         return super(Procurement, self)._run(procurement)
