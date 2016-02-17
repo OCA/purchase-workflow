@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (C) 2015 Savoir-faire Linux (<http://savoirfairelinux.com>).
+#    Copyright (C) 2016 Savoir-faire Linux (<http://savoirfairelinux.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -21,7 +21,7 @@
 
 {
     "name": "Internal Validation for Purchase",
-    "version": "7.0.1.0.0",
+    "version": "8.0.1.0.0",
     "category": "Purchases",
     "depends": [
         "purchase",
