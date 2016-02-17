@@ -2,7 +2,7 @@
 <openerp>
   <data noupdate="1">
 
-    <record id="view_purchase_configuration" model="ir.config_parameter">
+    <record id="limit_amount" model="ir.config_parameter">
       <field name="key">purchase_internal_validation.limit_amount</field>
       <field name="value">1000000</field>
     </record>
