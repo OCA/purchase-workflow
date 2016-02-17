@@ -49,18 +49,21 @@ class PurchaseRequest(models.Model):
         return self.env['ir.sequence'].get('purchase.request')
 
     @api.model
-    def _get_default_warehouse(self):
-        warehouse_obj = self.env['stock.warehouse']
-        company_id = self.env['res.users'].browse(
-            self.env.uid).company_id.id
-        warehouse = warehouse_obj.search([('company_id', '=', company_id)],
-                                         limit=1)
-        return warehouse
+    def _default_picking_type(self):
+        type_obj = self.env['stock.picking.type']
+        company_id = self.env.context.get('company_id') or \
+            self.env.user.company_id.id
+        types = type_obj.search([('code', '=', 'incoming'),
+                                 ('warehouse_id.company_id', '=', company_id)])
+        if not types:
+            types = type_obj.search([('code', '=', 'incoming'),
+                                     ('warehouse_id', '=', False)])
+        return types[:1]
 
     @api.multi
     @api.depends('name', 'origin', 'date_start',
                  'requested_by', 'assigned_to', 'description', 'company_id',
-                 'line_ids', 'warehouse_id')
+                 'line_ids', 'picking_type_id')
     def _get_is_editable(self):
         if self.state in ('to_approve', 'approved', 'rejected'):
             self.is_editable = False
@@ -107,10 +110,6 @@ class PurchaseRequest(models.Model):
                                'Products to Purchase',
                                readonly=False,
                                track_visibility='onchange')
-    warehouse_id = fields.Many2one('stock.warehouse',
-                                   string='Warehouse',
-                                   default=_get_default_warehouse,
-                                   track_visibility='onchange')
     state = fields.Selection(selection=_STATES,
                              string='Status',
                              track_visibility='onchange',
@@ -119,6 +118,10 @@ class PurchaseRequest(models.Model):
     is_editable = fields.Boolean(string="Is editable",
                                  compute="_get_is_editable",
                                  readonly=True)
+
+    picking_type_id = fields.Many2one('stock.picking.type',
+                                      'Picking Type', required=True,
+                                      default=_default_picking_type)
 
     @api.one
     def copy(self, default=None):
@@ -226,10 +229,6 @@ class PurchaseRequestLine(models.Model):
     origin = fields.Char(related='request_id.origin',
                          size=32, string='Source Document', readonly=True,
                          store=True)
-    warehouse_id = fields.Many2one('stock.warehouse',
-                                   related='request_id.warehouse_id',
-                                   string='Warehouse',
-                                   store=True, readonly=True)
     date_required = fields.Date(string='Request Date', required=True,
                                 track_visibility='onchange',
                                 default=lambda *args: time.strftime(
@@ -246,6 +245,10 @@ class PurchaseRequestLine(models.Model):
     supplier_id = fields.Many2one('res.partner',
                                   string='Preferred supplier',
                                   compute="_get_supplier")
+
+    procurement_id = fields.Many2one('procurement.order',
+                                     'Procurement Order',
+                                     readonly=True)
 
     @api.onchange('product_id', 'product_uom_id')
     def onchange_product_id(self):
