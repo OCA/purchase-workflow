@@ -37,7 +37,6 @@
         "workflow/purchase.xml",
     ],
     "images": [
-        "static/description/img/purchase_internal_validation01.png",
     ],
     "installable": True,
 }
