@@ -12,6 +12,8 @@ Configuration
 =============
 
 * Set the limit in the Purchase configuration panel
+  By default the limit amount is set to a very high value to prevent
+  conflicts with unit tests in other modules.
 * Add some users to the Purchase / Validator and Purchase / User groups
 * Make sure those users have correct email addresses to receive notifications
 

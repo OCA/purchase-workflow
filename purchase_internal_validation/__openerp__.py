@@ -30,10 +30,11 @@
     "website": "http://www.savoirfairelinux.com",
     "license": "AGPL-3",
     "data": [
+        "data/ir_config_parameter.xml",
         "security/groups.xml",
         "views/res_config.xml",
         "views/purchase.xml",
-        "workflow/purchase_internal_validation_workflow.xml",
+        "workflow/purchase.xml",
     ],
     "images": [
         "static/description/img/purchase_internal_validation01.png",

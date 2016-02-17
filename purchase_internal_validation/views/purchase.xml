@@ -9,20 +9,15 @@
             <field name="arch" type="xml">
                 <data>
 
-                    <button id="draft_confirm" position="replace">
-                        <button name="purchase_submit" states="draft,bid" string="Submit" icon="gtk-go-forward"/>
-                    </button>
-                    <button id="bid_confirm" position="replace"/>
-
                     <field name="state" position="before">
-                        <button name="purchase_refuse" states="wait_valid" string="Refuse" icon="gtk-cancel" groups="purchase_internal_validation.group_purchase_validator"/>
-                        <button name="purchase_validate" states="wait_valid" string="Validate" icon="gtk-go-forward" groups="purchase_internal_validation.group_purchase_validator"/>
-                        <button name="purchase_cancel" states="wait_correct" string="Cancel" icon="gtk-cancel"/>
-                        <button name="purchase_submit" states="wait_correct" string="Submit" icon="gtk-go-forward"/>
+                        <button name="purchase_refuse" states="wait_valid" string="Refuse" groups="purchase_internal_validation.group_purchase_validator"/>
+                        <button name="purchase_validate" states="wait_valid" string="Validate" groups="purchase_internal_validation.group_purchase_validator"/>
+                        <button name="purchase_cancel" states="wait_correct" string="Cancel"/>
                         <button name="wkf_send_rfq" states="validated" string="Send by Email" type="object" context="{'send_rfq':True}" class="oe_highlight"/>
                         <button name="print_quotation" states="validated" string="Print" type="object" class="oe_highlight"/>
-                        <button name="purchase_confirm" states="validated" string="Confirm Order" icon="gtk-go-forward" class="oe_highlight"/>
-                        <button name="action_cancel" states="validated" string="Cancel Order" type="object" icon="gtk-cancel"/>
+                        <button name="purchase_confirm" states="wait_correct,validated" string="Confirm Order" class="oe_highlight"/>
+                        <button name="action_cancel" states="validated" string="Cancel Order" type="object"/>
+
                     </field>
 
                 </data>
