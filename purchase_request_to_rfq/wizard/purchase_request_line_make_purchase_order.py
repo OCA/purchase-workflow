@@ -38,19 +38,6 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                                         domain=[('state', '=', 'draft')])
 
     @api.model
-    def _default_warehouse(self):
-        warehouse_obj = self.env['stock.warehouse']
-        company_obj = self.env['res.company']
-        company_id = company_obj._company_default_get('stock.warehouse')
-        warehouses = warehouse_obj.search(
-            [('company_id', '=', company_id)], limit=1)
-
-        if warehouses:
-            return warehouses[0]
-        else:
-            return False
-
-    @api.model
     def _prepare_item(self, line):
         return {
             'line_id': line.id,
@@ -82,24 +69,21 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         return res
 
     @api.model
-    def _prepare_purchase_order(self, warehouse_id, company_id):
-        warehouse_obj = self.env['stock.warehouse']
+    def _prepare_purchase_order(self, picking_type, location, company_id):
         if not self.supplier_id:
             raise exceptions.Warning(
                 _('Enter a supplier.'))
-        warehouse = warehouse_obj.browse(warehouse_id)
         supplier = self.supplier_id
-        location_id = warehouse.wh_input_stock_loc_id.id
         supplier_pricelist = supplier.property_product_pricelist_purchase  \
             or False
         data = {
             'origin': '',
             'partner_id': self.supplier_id.id,
             'pricelist_id': supplier_pricelist.id,
-            'location_id': location_id,
+            'location_id': location.id,
             'fiscal_position': supplier.property_account_position and
             supplier.property_account_position.id or False,
-            'warehouse_id': warehouse_id,
+            'picking_type_id': picking_type.id,
             'company_id': company_id,
             }
         return data
@@ -127,8 +111,11 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             'product_id': product.id,
             'account_analytic_id': item.line_id.analytic_account_id.id,
             'taxes_id': [(6, 0, vals.get('taxes_id', []))],
-            'purchase_request_lines': [(4, item.line_id.id)]
+            'purchase_request_lines': [(4, item.line_id.id)],
         })
+        if item.line_id.procurement_id:
+            vals['procurement_ids'] = [(4, item.line_id.procurement_id.id)]
+
         return vals
 
     @api.model
@@ -138,9 +125,13 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                            ('product_id', '=', item.product_id.id or False),
                            ('product_uom', '=', vals['product_uom']),
                            ('account_analytic_id', '=',
-                            item.line_id.analytic_account_id.id or False)]
+                            item.line_id.analytic_account_id.id or False),]
         if not item.product_id:
             order_line_data['name'] = item.name
+        if not item.line_id.procurement_id and \
+                item.line_id.procurement_id.location_id:
+            order_line_data['location_id'] = \
+                item.line_id.procurement_id.location_id.id
         return order_line_data
 
     @api.multi
@@ -150,8 +141,10 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         po_line_obj = self.env['purchase.order.line']
         pr_line_obj = self.env['purchase.request.line']
         company_id = False
-        warehouse_id = False
+        picking_type = False
         purchase = False
+        location = False
+
         for item in self.item_ids:
             line = item.line_id
             if line.purchase_state == 'done':
@@ -170,23 +163,32 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             else:
                 company_id = line_company_id
 
-            line_warehouse_id = line.request_id.warehouse_id \
-                and line.request_id.warehouse_id.id or False
-            if not line_warehouse_id:
+            line_picking_type = line.request_id.picking_type_id or False
+            if not line_picking_type:
                 raise exceptions.Warning(
-                    _('You have to enter a Warehouse.'))
-            if warehouse_id is not False \
-                    and line_warehouse_id != warehouse_id:
+                    _('You have to enter a Picking Type.'))
+            if picking_type is not False \
+                    and line_picking_type != picking_type:
                 raise exceptions.Warning(
                     _('You have to select lines '
-                      'from the same Warehouse.'))
+                      'from the same Picking Type.'))
             else:
-                warehouse_id = line_warehouse_id
+                picking_type = line_picking_type
+
+            line_location = line.procurement_id and \
+                            line.procurement_id.location_id or False
+
+            if location is not False and line_location != location:
+                raise exceptions.Warning(
+                    _('You have to select lines '
+                      'from the same procurement location.'))
+            else:
+                location = line_location
 
             if self.purchase_order_id:
                 purchase = self.purchase_order_id
             if not purchase:
-                po_data = self._prepare_purchase_order(warehouse_id,
+                po_data = self._prepare_purchase_order(picking_type, location,
                                                        company_id)
                 purchase = purchase_obj.create(po_data)
 
