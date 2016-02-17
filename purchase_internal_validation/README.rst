@@ -51,6 +51,7 @@ Contributors
 
 * Maxime Chambreuil <maxime.chambreuil@savoirfairelinux.com>
 * Vincent Vinet <vincent.vinet@savoirfairelinux.com>
+* David Dufresne <david.dufresne@savoirfairelinux.com>
 
 Maintainer
 ----------
