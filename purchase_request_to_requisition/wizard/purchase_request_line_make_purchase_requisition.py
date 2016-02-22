@@ -49,10 +49,11 @@ class PurchaseRequestLineMakePurchaseRequisition(models.TransientModel):
         return res
 
     @api.model
-    def _prepare_purchase_requisition(self, warehouse_id, company_id):
+    def _prepare_purchase_requisition(self, picking_type_id,
+                                      company_id):
         data = {
             'origin': '',
-            'warehouse_id': warehouse_id,
+            'picking_type_id': picking_type_id,
             'company_id': company_id,
             }
         return data
@@ -84,7 +85,7 @@ class PurchaseRequestLineMakePurchaseRequisition(models.TransientModel):
         pr_obj = self.env['purchase.requisition']
         pr_line_obj = self.env['purchase.requisition.line']
         company_id = False
-        warehouse_id = False
+        picking_type_id = False
         requisition = False
         res = []
         for item in self.item_ids:
@@ -102,20 +103,19 @@ class PurchaseRequestLineMakePurchaseRequisition(models.TransientModel):
             else:
                 company_id = line_company_id
 
-            line_warehouse_id = line.request_id.warehouse_id \
-                and line.request_id.warehouse_id.id or False
-            if warehouse_id is not False \
-                    and line_warehouse_id != warehouse_id:
+            line_picking_type = line.request_id.picking_type_id
+            if picking_type_id is not False \
+                    and line_picking_type.id != picking_type_id:
                 raise exceptions.Warning(
                     _('You have to select lines '
-                      'from the same warehouse.'))
+                      'from the same picking type.'))
             else:
-                warehouse_id = line_warehouse_id
+                picking_type_id = line_picking_type.id
 
             if self.purchase_requisition_id:
                 requisition = self.purchase_requisition_id
             if not requisition:
-                preq_data = self._prepare_purchase_requisition(warehouse_id,
+                preq_data = self._prepare_purchase_requisition(picking_type_id,
                                                                company_id)
                 requisition = pr_obj.create(preq_data)
 
