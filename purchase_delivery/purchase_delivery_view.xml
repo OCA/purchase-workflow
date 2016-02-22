@@ -1,0 +1,26 @@
+<openerp>
+    <data>
+        <record id="view_purchase_with_carrier_form" model="ir.ui.view">
+            <field name="name">delivery.purchase.order_carrier.form.view</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/notebook/page/group[1]" position="after">
+                    <group style="width: 65%%">
+                        <label for="carrier_id"/>
+                        <div>
+                            <field name="carrier_id" context="{'purchase_order_id':active_id or False}" class="oe_inline"/>
+                            <button name="delivery_set" string="Add in Quote" type="object"
+                                class="oe_edit_only"
+                                attrs="{'invisible':['|',('carrier_id','=',False),('state','not in',('draft','sent'))]}"/>
+                            <br/>
+                            <label string="If you don't 'Add in Quote', the exact price will be computed when invoicing based on delivery order(s)."
+                                class="oe_edit_only"
+                                attrs="{'invisible':['|',('carrier_id','=',False),('state','not in',('draft','sent'))]}"/>
+                        </div>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

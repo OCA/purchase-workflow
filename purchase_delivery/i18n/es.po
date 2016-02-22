@@ -1,0 +1,79 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* purchase_delivery
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-01-25 20:57+0000\n"
+"PO-Revision-Date: 2016-01-25 20:57+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_delivery
+#: view:purchase.order:purchase_delivery.view_purchase_with_carrier_form
+msgid "Add in Quote"
+msgstr "Añadir en presupuesto"
+
+#. module: purchase_delivery
+#: model:ir.model,name:purchase_delivery.model_delivery_carrier
+msgid "Carrier"
+msgstr "Transportista"
+
+#. module: purchase_delivery
+#: help:purchase.order,carrier_id:0
+msgid "Complete this field if you plan to invoice the shipping based on picking."
+msgstr "Complete este campo si tiene previsto facturar el envío según el albarán."
+
+#. module: purchase_delivery
+#: model:ir.model,name:purchase_delivery.model_delivery_grid
+msgid "Delivery Grid"
+msgstr "Cuadrícula de envío"
+
+#. module: purchase_delivery
+#: field:purchase.order,carrier_id:0
+msgid "Delivery Method"
+msgstr "Método de envío"
+
+#. module: purchase_delivery
+#: view:purchase.order:purchase_delivery.view_purchase_with_carrier_form
+msgid "If you don't 'Add in Quote', the exact price will be computed when invoicing based on delivery order(s)."
+msgstr "Si no se 'Añade en presupuesto', el precio exacto se calculará cuando facture a partir de albarán(es)."
+
+#. module: purchase_delivery
+#: field:purchase.order.line,is_delivery:0
+msgid "Is a Delivery"
+msgstr "Es un envío"
+
+#. module: purchase_delivery
+#: code:addons/purchase_delivery/purchase_delivery.py:74
+#, python-format
+msgid "No grid matching for this carrier!"
+msgstr "No hay coincidencia de tabla de envío para este transportista!"
+
+#. module: purchase_delivery
+#: model:ir.model,name:purchase_delivery.model_stock_picking
+msgid "Picking List"
+msgstr "Albarán"
+
+#. module: purchase_delivery
+#: model:ir.model,name:purchase_delivery.model_purchase_order
+msgid "Purchase Order"
+msgstr "Pedido de compra"
+
+#. module: purchase_delivery
+#: model:ir.model,name:purchase_delivery.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Línea pedido de compra"
+
+#. module: purchase_delivery
+#: code:addons/purchase_delivery/purchase_delivery.py:76
+#, python-format
+msgid "The order state have to be draft to add delivery lines."
+msgstr "TLa orden debe estar en estado borrador para añadir líneas de envío."
+
