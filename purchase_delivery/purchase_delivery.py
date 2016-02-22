@@ -31,8 +31,8 @@ class purchase_order(models.Model):
         return val
 
     def action_picking_create(self, cr, uid, ids, context=None):
-        assert len(ids) == 1, 'This option should only be '
-        'used for a single id at a time'
+        assert len(ids) == 1, \
+            'This option should only be used for a single id at a time'
         res = super(purchase_order, self).action_picking_create(
             cr, uid, ids, context=context)
         order = self.browse(cr, uid, ids, context)
