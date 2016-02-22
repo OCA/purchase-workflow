@@ -4,7 +4,7 @@
 ##############################################################################
 
 import time
-from openerp import fields, models
+from openerp import fields, models, _
 from openerp.exceptions import Warning
 
 
