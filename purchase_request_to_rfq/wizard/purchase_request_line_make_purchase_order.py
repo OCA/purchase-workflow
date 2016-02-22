@@ -125,9 +125,10 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                            ('product_id', '=', item.product_id.id or False),
                            ('product_uom', '=', vals['product_uom']),
                            ('account_analytic_id', '=',
-                            item.line_id.analytic_account_id.id or False),]
+                            item.line_id.analytic_account_id.id or False),
+                           ]
         if not item.product_id:
-            order_line_data['name'] = item.name
+            order_line_data.append(('name', '=', item.name))
         if not item.line_id.procurement_id and \
                 item.line_id.procurement_id.location_id:
             order_line_data['location_id'] = \
