@@ -362,6 +362,7 @@
             <field name="res_model">purchase.request.line</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
+            <field name="domain">[('request_state','!=','draft')]</field>
             <field name="search_view_id" ref="purchase_request_line_search"/>
         </record>
 
