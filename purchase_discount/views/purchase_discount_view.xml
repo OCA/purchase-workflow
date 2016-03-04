@@ -1,9 +1,9 @@
 <openerp>
 <data>
-    <record model="ir.ui.view" id="purchase_discount_order_line_form">
-        <field name="name">purchase_discount.order.line.form</field>
+    <record model="ir.ui.view" id="purchase_discount_order_line_form2">
+        <field name="name">purchase_discount.order.line.form2 (purchase_discount)</field>
         <field name="model">purchase.order.line</field>
-        <field name="inherit_id" ref="purchase.purchase_order_line_form"/>
+        <field name="inherit_id" ref="purchase.purchase_order_line_form2"/>
         <field name="arch" type="xml">
             <field name="price_unit" position="after">
                 <field name="discount"/>
@@ -28,7 +28,7 @@
          <field name="arch" type="xml">
               <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="after">
                   <field name="discount"/>
-                 </xpath>
+              </xpath>
          </field>
      </record>
 </data>
