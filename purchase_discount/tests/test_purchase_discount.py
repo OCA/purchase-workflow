@@ -3,7 +3,7 @@
 # Copyright 2016 ACSONE SA/NV (<http://acsone.eu>)
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 import openerp.tests.common as common
-from openerp import workflow, fields
+from openerp import fields
 
 
 class TestPurchaseOrder(common.TransactionCase):
