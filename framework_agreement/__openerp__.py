@@ -18,7 +18,7 @@
 ##############################################################################
 {'name': 'Framework Agreement',
  'summary': 'Long Term Agreement (or Framework Agreement) for purchases',
- 'version': '2.0',
+ 'version': '8.0.2.0.0',
  'author': "Camptocamp,Odoo Community Association (OCA)",
  'maintainer': 'Camptocamp',
  'category': 'Purchase Management',

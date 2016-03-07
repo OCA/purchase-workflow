@@ -99,7 +99,8 @@ class AccountInvoice(models.Model):
     def invoice_validate(self):
         res = super(AccountInvoice, self).invoice_validate()
         purchase_order_obj = self.env['purchase.order']
-        po_ids = purchase_order_obj.search([('invoice_ids', 'in', self.ids)])
+        po_ids = purchase_order_obj.suspend_security()\
+            .search([('invoice_ids', 'in', self.ids)])
         for purchase_order in po_ids:
             for po_line in purchase_order.order_line:
                 if po_line.invoiced_qty != po_line.product_qty:

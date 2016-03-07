@@ -21,7 +21,7 @@
 
 {
     'name': "Purchase order revisions",
-    'version': '1.0',
+    'version': '8.0.1.0.0',
     'category': 'Purchase Management',
     'author': "Agile Business Group,"
               "Camptocamp,"
@@ -36,6 +36,6 @@
     "test": [
         'test/purchase_order.yml',
     ],
-    "active": False,
-    "installable": True
+    "installable": True,
+    "post_init_hook": 'fill_unrevisioned_name',
 }

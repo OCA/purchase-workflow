@@ -17,7 +17,7 @@
 {'name': 'Purchase Delivery Address [DEPRECATED]',
  'summary': 'Deprecated: install purchase_transport_multi_address and '
             'stock_transport_multi_address instead',
- 'version': '1.1',
+ 'version': '8.0.1.1.0',
  'author': "Camptocamp,Odoo Community Association (OCA)",
  'category': 'Purchase Management',
  'license': 'AGPL-3',

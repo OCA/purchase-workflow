@@ -21,7 +21,7 @@
 {"name": "Purchase RFQ Bid workflow",
  "summary": "Improve the purchase workflow to manage RFQ, Bids, and Orders",
  "post_init_hook": 'fix_inconsistent_initial_types',
- "version": "0.3",
+ "version": "8.0.0.3.0",
  "author": "Camptocamp,Odoo Community Association (OCA)",
  "category": "Purchase Management",
  "license": "AGPL-3",

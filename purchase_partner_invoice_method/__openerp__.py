@@ -22,7 +22,7 @@
 
 {
     'name': 'Purchase Partner Invoice Method',
-    'version': '1.0',
+    'version': '8.0.1.0.0',
     'category': 'Purchase Management',
     'license': 'AGPL-3',
     'summary': "Adds supplier invoicing control on partner form",
