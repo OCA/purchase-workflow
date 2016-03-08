@@ -1,3 +1,7 @@
+language: python
+
+python:
+  - "2.7"
 sudo: false
 cache: pip
 
@@ -7,23 +11,16 @@ addons:
       - expect-dev  # provides unbuffer utility
       - python-lxml # because pip installation is slow
 
-language: python
-
-python:
-  - "2.7"
-
 env:
-  - VERSION="9.0" LINT_CHECK="1"
-  - VERSION="9.0" ODOO_REPO="odoo/odoo" INCLUDE="framework_agreement" LINT_CHECK="0"
-  - VERSION="9.0" ODOO_REPO="OCA/OCB" INCLUDE="framework_agreement" LINT_CHECK="0"
-  - VERSION="9.0" ODOO_REPO="odoo/odoo" INCLUDE="purchase_rfq_bid_workflow" LINT_CHECK="0"
-  - VERSION="9.0" ODOO_REPO="OCA/OCB" INCLUDE="purchase_rfq_bid_workflow" LINT_CHECK="0"
-  - VERSION="9.0" ODOO_REPO="odoo/odoo" INCLUDE="purchase_requisition_auto_rfq" LINT_CHECK="0"
-  - VERSION="9.0" ODOO_REPO="OCA/OCB" INCLUDE="purchase_requisition_auto_rfq" LINT_CHECK="0"
-  - VERSION="9.0" ODOO_REPO="odoo/odoo" INCLUDE="purchase_requisition_multicurrency,purchase_rfq_bid_workflow,purchase_requisition_bid_selection,purchase_requisition_auto_rfq_bid_selection" LINT_CHECK="0"
-  - VERSION="9.0" ODOO_REPO="OCA/OCB" INCLUDE="purchase_requisition_multicurrency,purchase_rfq_bid_workflow,purchase_requisition_bid_selection,purchase_requisition_auto_rfq_bid_selection" LINT_CHECK="0"
-  - VERSION="9.0" ODOO_REPO="odoo/odoo" EXCLUDE="purchase_requisition_delivery_address,purchase_delivery_address,purchase_origin_address,framework_agreement,purchase_rfq_bid_workflow,purchase_requisition_bid_selection,purchase_requisition_auto_rfq,purchase_requisition_auto_rfq_bid_selection,purchase_requisition_multicurrency" LINT_CHECK="0"
-  - VERSION="9.0" ODOO_REPO="OCA/OCB" EXCLUDE="purchase_requisition_delivery_address,purchase_delivery_address,purchase_origin_address,framework_agreement,purchase_rfq_bid_workflow,purchase_requisition_bid_selection,purchase_requisition_auto_rfq,purchase_requisition_auto_rfq_bid_selection,purchase_requisition_multicurrency" LINT_CHECK="0"
+  global:
+  - VERSION="9.0" TESTS="0" LINT_CHECK="0" TRANSIFEX="0"
+  - TRANSIFEX_USER='transbot@odoo-community.org'
+  - secure: "GRXFURohRzzBbzRovVHd+cObj1yBe9x9bddKqUo7jEGPo+MYHKfGo1M7disTDq6HPLgCwacbhWRsMavGORB3AEkoNewP7q31MKGGPiS8Com9wMmYUtDPs4ZiuUlakJjvfsmGlpwTWUe1Xv1YSZweXVGIESAn0SwhzKHrSKiTcSFAapTwdZXt0lKIsDcra/xOesJ8p9QjY4mzsgyeLrLUSq/Gpt/icAJeoktJ2c4Z6sMV4ozbaRgMFSMCxXKXQTNtLgFICfiJZ2PAw3BQTYo6iX0sdX3RekvaWVBiFr1iblrFjZleoZ9CnkOEKq0JL8EXHMeX7UBvkSJvQV4M3DPd5GdHA0docKDwgdJKUSP9oxBJ6ElYxG5/bbwOxWfY0x6mh/iJdSuNyrfaUqzaCfhQsckuEw6IgqcMGWLPoO5FSovzAtC+u0+GIqphyFsA25lku9B76eZB8KuqWEUJGQZswIOYUKc0i1A2S/ej6MjCYW0BrazhN5laP/6nu7RHmYs0sIrIaxeJJZG0AaVKWAXmTbcDplF07wzwQau4nk922pH5Bxmt2hB1BOzeOqCGnE3wTOAuacuDIfyJaIpTmNMALWeWk/EkMghDZXRRCEueZO5QR2LdcxJk86x5ANj6sxKVo+nkl+x93ZBsehqELn4rTHwjAaA+Ck3vWRkzfV8nJ3A="
+  matrix:
+  - LINT_CHECK="1"
+  - TRANSIFEX="1"
+  - TESTS="1" ODOO_REPO="odoo/odoo"
+  - TESTS="1" ODOO_REPO="OCA/OCB"
 
 virtualenv:
   system_site_packages: true
@@ -37,4 +34,4 @@ script:
   - travis_run_tests
 
 after_success:
-  coveralls
+  - travis_after_tests_success
