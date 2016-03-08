@@ -5,7 +5,7 @@ Discounts in product supplier info
 ==================================
 
 This module allows to put a discount in the supplier info form, and propagate
-it to purchase orders, having two advantages over pricelists:
+it to purchase order lines:
 
 * The discount is directly put on purchase orders instead of reducing the
   unit price.
@@ -47,6 +47,7 @@ Contributors
 ------------
 
 * Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
+* Jonathan Nemry <jonathan.nemry@acsone.eu>
 
 Maintainer
 ----------
