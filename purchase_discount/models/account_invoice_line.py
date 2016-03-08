@@ -7,11 +7,12 @@ from openerp import models
 class AccountInvoiceLine(models.Model):
     _inherit = "account.invoice.line"
 
-    def new(self, values={}):
+    def new(self, values=None):
         """
         Apply the linked to a purchase.order.line.discount to the
         account_invoice_line
         """
+        values = {} if values is None else values
         account_invoice_line = super(
             AccountInvoiceLine, self).new(values=values)
         if account_invoice_line.purchase_line_id:
