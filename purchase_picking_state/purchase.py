@@ -55,7 +55,7 @@ class PurchaseOrder(models.Model):
             purchase.picking_state = picking_state
 
     picking_state = fields.Selection(
-        string="Picking Status", readonly=True,
+        string="Picking status", readonly=True,
         compute='_compute_picking_state',
         selection='get_picking_state',
-        help="Overall status of all pickings")
+        help="Overall status based on all pickings")
