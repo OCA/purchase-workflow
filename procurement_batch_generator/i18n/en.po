@@ -8,37 +8,37 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-03-08 10:15+0000\n"
-"PO-Revision-Date: 2016-03-08 10:18+0000\n"
+"PO-Revision-Date: 2016-03-08 10:16+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: French (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/fr/)\n"
+"Language-Team: English (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: procurement_batch_generator
 #: code:addons/procurement_batch_generator/wizard/procurement_batch_generator.py:75
 #, python-format
 msgid "All requested quantities are null."
-msgstr "Toutes les quantités demandées sont nulles."
+msgstr "All requested quantities are null."
 
 #. module: procurement_batch_generator
 #: view:procurement.batch.generator:procurement_batch_generator.procurement_batch_generator_form
 msgid "Cancel"
-msgstr "Annuler"
+msgstr "Cancel"
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator,create_uid:0
 #: field:procurement.batch.generator.line,create_uid:0
 msgid "Created by"
-msgstr "Créé par"
+msgstr "Created by"
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator,create_date:0
 #: field:procurement.batch.generator.line,create_date:0
 msgid "Created on"
-msgstr "Créé le"
+msgstr "Created on"
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator,id:0
@@ -49,29 +49,29 @@ msgstr "ID"
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator.line,incoming_qty:0
 msgid "Incoming Quantity"
-msgstr "Quantité entrante"
+msgstr "Incoming Quantity"
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator,write_uid:0
 #: field:procurement.batch.generator.line,write_uid:0
 msgid "Last Updated by"
-msgstr "Dernière modification par"
+msgstr "Last Updated by"
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator,write_date:0
 #: field:procurement.batch.generator.line,write_date:0
 msgid "Last Updated on"
-msgstr "Dernière modification le"
+msgstr "Last Updated on"
 
 #. module: procurement_batch_generator
 #: model:ir.model,name:procurement_batch_generator.model_procurement_batch_generator_line
 msgid "Lines of the wizard to request procurements"
-msgstr ""
+msgstr "Lines of the wizard to request procurements"
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator.line,outgoing_qty:0
 msgid "Outgoing qty"
-msgstr "Quantité sortante"
+msgstr "Outgoing qty"
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator.line,parent_id:0
@@ -81,55 +81,55 @@ msgstr "Parent"
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator.line,date_planned:0
 msgid "Planned Date"
-msgstr "Date demandée"
+msgstr "Planned Date"
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator,line_ids:0
 msgid "Procurement Request Lines"
-msgstr "Lignes de requêtes d'approvisionnement"
+msgstr "Procurement Request Lines"
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator.line,product_id:0
 msgid "Product"
-msgstr "Produit"
+msgstr "Product"
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator.line,qty_available:0
 msgid "Quantity Available"
-msgstr "Quantité disponible"
+msgstr "Quantity Available"
 
 #. module: procurement_batch_generator
 #: model:ir.actions.act_window,name:procurement_batch_generator.procurement_batch_generator_tree_action
 #: view:procurement.batch.generator:procurement_batch_generator.procurement_batch_generator_form
 msgid "Request Procurements"
-msgstr "Créer des approvisionnements"
+msgstr "Request Procurements"
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator.line,procurement_qty:0
 msgid "Requested Quantity"
-msgstr "Quantité demandée"
+msgstr "Requested Quantity"
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator.line,partner_id:0
 msgid "Supplier"
-msgstr "Fournisseur"
+msgstr "Supplier"
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator.line,uom_id:0
 msgid "Unit of Measure"
-msgstr "Unité de measure"
+msgstr "Unit of Measure"
 
 #. module: procurement_batch_generator
 #: view:procurement.batch.generator:procurement_batch_generator.procurement_batch_generator_form
 msgid "Validate"
-msgstr "Valider"
+msgstr "Validate"
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator.line,warehouse_id:0
 msgid "Warehouse"
-msgstr "Entrepôt"
+msgstr "Warehouse"
 
 #. module: procurement_batch_generator
 #: model:ir.model,name:procurement_batch_generator.model_procurement_batch_generator
 msgid "Wizard to create procurements from product tree"
-msgstr "Assistant pour créer des approvisionnements à partir de la liste des produits"
+msgstr "Wizard to create procurements from product tree"
