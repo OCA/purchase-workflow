@@ -1,0 +1,86 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * vendor_consignment_stock
+# 
+# Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: purchase-workflow (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-03-08 10:16+0000\n"
+"PO-Revision-Date: 2016-03-09 09:33+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: vendor_consignment_stock
+#: field:stock.warehouse,buy_vci_pull_id:0
+msgid "BUY VCI rule"
+msgstr "Pravilo nabave iz prodajalčeve konsignacijske zaloge"
+
+#. module: vendor_consignment_stock
+#: code:addons/vendor_consignment_stock/model/rule.py:26
+#: code:addons/vendor_consignment_stock/model/warehouse.py:39
+#: code:addons/vendor_consignment_stock/model/warehouse.py:46
+#: model:stock.location.route,name:vendor_consignment_stock.route_warehouse0_buy_vci
+#, python-format
+msgid "Buy VCI"
+msgstr "Nabava iz prodajalčeve konsignacijske zaloge"
+
+#. module: vendor_consignment_stock
+#: code:addons/vendor_consignment_stock/model/warehouse.py:42
+#, python-format
+msgid "Can't find any generic Buy VCI route."
+msgstr "Ne najdem nobene splošne nabavne proga iz prodajalčevega konsignacijske zaloge."
+
+#. module: vendor_consignment_stock
+#: model:ir.model,name:vendor_consignment_stock.model_procurement_order
+msgid "Procurement"
+msgstr "Oskrba"
+
+#. module: vendor_consignment_stock
+#: model:ir.model,name:vendor_consignment_stock.model_procurement_rule
+msgid "Procurement Rule"
+msgstr "Oskrbovalno pravilo"
+
+#. module: vendor_consignment_stock
+#: model:ir.model,name:vendor_consignment_stock.model_purchase_order
+msgid "Purchase Order"
+msgstr "Nabavni nalog"
+
+#. module: vendor_consignment_stock
+#: field:stock.warehouse,buy_vci_to_resupply:0
+msgid "Purchase from VCI to resupply this warehouse"
+msgstr "Nabavi iz prodajalčeve konsignacijske zaloge za to skladišče"
+
+#. module: vendor_consignment_stock
+#: model:ir.model,name:vendor_consignment_stock.model_sale_order
+msgid "Sales Order"
+msgstr "Prodajni nalog"
+
+#. module: vendor_consignment_stock
+#: help:stock.warehouse,buy_vci_to_resupply:0
+msgid ""
+"This warehouse can contain Vendor-Supplied-Inventory (VCI) that have to be "
+"bought before being sold."
+msgstr "To skladišče lahko vsebuje prodajalčevo konsignacijsko zalogo (VCI), ki mora biti kupljena preden se jo lahko proda."
+
+#. module: vendor_consignment_stock
+#: view:purchase.order:vendor_consignment_stock.view_purchase_order_filter
+msgid "VCI"
+msgstr "Prodajalčeva konsignacijska zaloga"
+
+#. module: vendor_consignment_stock
+#: field:purchase.order,is_vci:0
+msgid "Vendor Consignment Inventory"
+msgstr "Prodajalčeva konsignacijska zaloga"
+
+#. module: vendor_consignment_stock
+#: model:ir.model,name:vendor_consignment_stock.model_stock_warehouse
+msgid "Warehouse"
+msgstr "Skladišče"

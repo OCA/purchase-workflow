@@ -1,19 +1,21 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* vendor_consignment_stock
-#
+# * vendor_consignment_stock
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0\n"
+"Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-27 12:46+0000\n"
-"PO-Revision-Date: 2015-01-27 12:46+0000\n"
-"Last-Translator: <>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2016-03-08 10:16+0000\n"
+"PO-Revision-Date: 2016-03-08 10:18+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: French (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: vendor_consignment_stock
 #: field:stock.warehouse,buy_vci_pull_id:0
@@ -24,6 +26,7 @@ msgstr "BUY VCI rule"
 #: code:addons/vendor_consignment_stock/model/rule.py:26
 #: code:addons/vendor_consignment_stock/model/warehouse.py:39
 #: code:addons/vendor_consignment_stock/model/warehouse.py:46
+#: model:stock.location.route,name:vendor_consignment_stock.route_warehouse0_buy_vci
 #, python-format
 msgid "Buy VCI"
 msgstr "Buy VCI"
@@ -61,7 +64,9 @@ msgstr "Sales Order"
 
 #. module: vendor_consignment_stock
 #: help:stock.warehouse,buy_vci_to_resupply:0
-msgid "This warehouse can contain Vendor-Supplied-Inventory (VCI) that have to be bought before being sold."
+msgid ""
+"This warehouse can contain Vendor-Supplied-Inventory (VCI) that have to be "
+"bought before being sold."
 msgstr "This warehouse can contain Vendor-Supplied-Inventory (VCI) that have to be bought before being sold."
 
 #. module: vendor_consignment_stock
@@ -78,4 +83,3 @@ msgstr "Vendor Consignment Inventory"
 #: model:ir.model,name:vendor_consignment_stock.model_stock_warehouse
 msgid "Warehouse"
 msgstr "Warehouse"
-

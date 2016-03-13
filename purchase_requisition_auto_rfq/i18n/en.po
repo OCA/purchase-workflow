@@ -1,0 +1,57 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * purchase_requisition_auto_rfq
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: purchase-workflow (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-03-08 10:16+0000\n"
+"PO-Revision-Date: 2016-03-08 10:17+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: English (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/en/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: purchase_requisition_auto_rfq
+#: code:addons/purchase_requisition_auto_rfq/model/purchase_requisition.py:49
+#, python-format
+msgid ""
+"<p><b>RFQ generation</b></p><p>The following products have no registered "
+"suppliers and are not included in the generated RFQs:<ul>%s</ul></p>"
+msgstr "<p><b>RFQ generation</b></p><p>The following products have no registered suppliers and are not included in the generated RFQs:<ul>%s</ul></p>"
+
+#. module: purchase_requisition_auto_rfq
+#: model:product.template,name:purchase_requisition_auto_rfq.blankets_product_template
+msgid "Blankets"
+msgstr "Blankets"
+
+#. module: purchase_requisition_auto_rfq
+#: view:purchase.requisition:purchase_requisition_auto_rfq.purchase_requisition_form_inherit
+msgid "Generate RFQs from suppliers"
+msgstr "Generate RFQs from suppliers"
+
+#. module: purchase_requisition_auto_rfq
+#: model:product.template,name:purchase_requisition_auto_rfq.kitchenset_product_template
+msgid "Kitchen Set"
+msgstr "Kitchen Set"
+
+#. module: purchase_requisition_auto_rfq
+#: model:ir.model,name:purchase_requisition_auto_rfq.model_purchase_requisition
+msgid "Purchase Requisition"
+msgstr "Purchase Requisition"
+
+#. module: purchase_requisition_auto_rfq
+#: code:addons/purchase_requisition_auto_rfq/model/purchase_requisition.py:56
+#, python-format
+msgid "RFQ Generation"
+msgstr "RFQ Generation"
+
+#. module: purchase_requisition_auto_rfq
+#: model:product.template,name:purchase_requisition_auto_rfq.tarpaulin_product_template
+msgid "Tarpaulin"
+msgstr "Tarpaulin"
