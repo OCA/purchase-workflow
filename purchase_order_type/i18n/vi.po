@@ -1,0 +1,99 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * purchase_order_type
+#
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: purchase-workflow (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-08-19 07:43+0000\n"
+"PO-Revision-Date: 2016-03-08 10:17+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Vietnamese (http://www.transifex.com/oca/OCA-purchase-"
+"workflow-8-0/language/vi/)\n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: purchase_order_type
+#: field:purchase.order.type,active:0
+msgid "Active"
+msgstr "Hoạt động"
+
+#. module: purchase_order_type
+#: field:purchase.order.type,invoice_method:0
+msgid "Create Invoice"
+msgstr ""
+
+#. module: purchase_order_type
+#: field:purchase.order.type,create_uid:0
+msgid "Created by"
+msgstr "Được tạo bởi"
+
+#. module: purchase_order_type
+#: field:purchase.order.type,create_date:0
+msgid "Created on"
+msgstr "Được tạo vào"
+
+#. module: purchase_order_type
+#: field:purchase.order.type,display_name:0
+msgid "Display Name"
+msgstr "Tên hiển thị"
+
+#. module: purchase_order_type
+#: field:purchase.order.type,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_order_type
+#: field:purchase.order.type,__last_update:0
+msgid "Last Modified on"
+msgstr "Sửa lần cuối vào"
+
+#. module: purchase_order_type
+#: field:purchase.order.type,write_uid:0
+msgid "Last Updated by"
+msgstr "Last Updated by"
+
+#. module: purchase_order_type
+#: field:purchase.order.type,write_date:0
+msgid "Last Updated on"
+msgstr "Cập nhật lần cuối vào"
+
+#. module: purchase_order_type
+#: field:purchase.order.type,name:0
+msgid "Name"
+msgstr "Tên"
+
+#. module: purchase_order_type
+#: model:ir.model,name:purchase_order_type.model_res_partner
+msgid "Partner"
+msgstr "Đối tác"
+
+#. module: purchase_order_type
+#: model:ir.model,name:purchase_order_type.model_purchase_order
+msgid "Purchase Order"
+msgstr ""
+
+#. module: purchase_order_type
+#: view:res.partner:purchase_order_type.res_partner_purchase_type_form_view
+#: field:res.partner,purchase_type:0
+msgid "Purchase Order Type"
+msgstr ""
+
+#. module: purchase_order_type
+#: model:ir.actions.act_window,name:purchase_order_type.action_purchase_order_type_view
+#: model:ir.ui.menu,name:purchase_order_type.menu_purchase_order_type
+#: view:purchase.order.type:purchase_order_type.view_purchase_order_type_search
+#: view:purchase.order.type:purchase_order_type.view_purchase_order_type_tree
+msgid "Purchase Order Types"
+msgstr ""
+
+#. module: purchase_order_type
+#: view:purchase.order:purchase_order_type.view_purchase_order_filter
+#: field:purchase.order,order_type:0
+msgid "Type"
+msgstr "Loại"
