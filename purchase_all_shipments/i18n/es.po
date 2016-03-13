@@ -1,0 +1,41 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * purchase_all_shipments
+# 
+# Translators:
+# danimaribeiro <danimaribeiro@gmail.com>, 2016
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012
+# Jesús Ventosinos Mayor <jesus@comunitea.com>, 2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# SaFi J. <safi2266@gmail.com>, 2015
+# Thomas A. Jaeger, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: purchase-workflow (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-07-22 23:40+0000\n"
+"PO-Revision-Date: 2016-07-29 11:43+0000\n"
+"Last-Translator: Jesús Ventosinos Mayor <jesus@comunitea.com>\n"
+"Language-Team: Spanish (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: purchase_all_shipments
+#: view:purchase.order:purchase_all_shipments.purchase_order_2_stock_picking
+#: field:purchase.order,all_picking_ids:0
+#: field:purchase.order,all_shipment_count:0
+msgid "All Shipments"
+msgstr "En recepciones"
+
+#. module: purchase_all_shipments
+#: view:purchase.order:purchase_all_shipments.purchase_order_2_stock_picking
+msgid "All Shipments, including chained"
+msgstr "Todas las recepciones, incluidos encadenados"
+
+#. module: purchase_all_shipments
+#: model:ir.model,name:purchase_all_shipments.model_purchase_order
+msgid "Purchase Order"
+msgstr "Orden de Compra"
