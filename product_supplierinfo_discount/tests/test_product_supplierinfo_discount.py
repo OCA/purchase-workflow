@@ -64,3 +64,37 @@ class TestProductSupplierinfoDiscount(common.TransactionCase):
         self.assertEquals(
             self.po_line_1.discount, 0.0, "Incorrect discount for product "
             "6 with partner 1 and qty 1")
+
+    def test_004_prepare_purchase_order_line(self):
+        vals = {
+            'sequence': 20,
+            'location_id': self.env.ref('stock.stock_location_locations').id,
+            'picking_type_id': self.env.ref('stock.chi_picking_type_in').id,
+            'warehouse_id': self.env.ref('stock.warehouse0').id,
+            'propagate': True,
+            'procure_method': 'make_to_stock',
+            'route_sequence': 5.0,
+            'name': 'YourCompany:  Buy',
+            'route_id': self.env.ref('stock.route_warehouse0_mto').id,
+            'action': 'buy',
+        }
+        procurement_rule = self.env['procurement.rule'].create(vals)
+        vals = {
+            'origin': 'SO012:WH: Stock -> Customers MTO',
+            'product_uom': self.env.ref('product.product_uom_unit').id,
+            'product_qty': 50,
+            'location_id': self.env.ref('stock.stock_location_locations').id,
+            'company_id': self.env.ref('base.main_company').id,
+            'state': 'confirmed',
+            'warehouse_id': self.env.ref('stock.warehouse0').id,
+            'move_dest_id': self.env.ref('stock.stock_location_customers').id,
+            'message_unread_counter': 0,
+            'name': 'WH: Stock -> Customers MTO',
+            'product_id': self.product.id,
+            'date_planned': fields.Datetime.now(),
+            'rule_id': procurement_rule.id,
+        }
+        procurement_order = self.env['procurement.order'].create(vals)
+        res = procurement_order._prepare_purchase_order_line(
+            self.purchase_order, self.supplierinfo)
+        self.assertTrue(res.get('discount'), 'Should have a discount key')
