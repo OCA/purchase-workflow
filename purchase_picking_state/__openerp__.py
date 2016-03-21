@@ -5,25 +5,17 @@
     'name': 'Purchase Picking State',
     'summary': 'Add the status of all the incoming picking'
     ' in the purchase order',
-    'version': '8.0.0.1.0',
+    'version': '8.0.1.0.0',
     'category': 'Purchase Management',
     'website': 'http://akretion.com',
     'author': 'Akretion',
     'license': 'AGPL-3',
     'application': False,
     'installable': True,
-    'external_dependencies': {
-        'python': [],
-        'bin': [],
-    },
     'depends': [
         'purchase',
     ],
     'data': [
         'purchase_view.xml',
-    ],
-    'demo': [
-    ],
-    'qweb': [
     ]
 }

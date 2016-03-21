@@ -11,7 +11,7 @@ class PurchaseOrder(models.Model):
     @api.model
     def get_picking_state(self):
         return [
-            ('draft', 'Draft'),
+            ('draft', ''),
             ('cancel', 'Cancelled'),
             ('not_received', 'Not Received'),
             ('partially_received', 'Partially Received'),
@@ -22,37 +22,20 @@ class PurchaseOrder(models.Model):
     @api.depends('picking_ids', 'picking_ids.state')
     def _compute_picking_state(self):
         for purchase in self:
-            picking_state = 'draft'
-            for picking in purchase.picking_ids:
-                if picking_state in ['draft', 'cancel']:
-                    if picking.state == 'cancel':
-                        picking_state = 'cancel'
-                    elif picking.state == 'done':
-                        picking_state = 'done'
-                    else:
-                        picking_state = 'not_received'
-                elif picking_state == 'done':
-                    if picking.state == 'cancel':
-                        picking_state = 'done'
-                    elif picking.state == 'done':
-                        picking_state = 'done'
-                    else:
-                        picking_state = 'partially_received'
-                elif picking_state == 'not_received':
-                    if picking.state == 'cancel':
-                        picking_state = 'not_received'
-                    elif picking.state == 'done':
-                        picking_state = 'partially_received'
-                    else:
-                        picking_state = 'not_received'
-                elif picking_state == 'partially_received':
-                    if picking.state == 'cancel':
-                        picking_state = 'partially_received'
-                    elif picking.state == 'done':
-                        picking_state = 'partially_received'
-                    else:
-                        picking_state = 'partially_received'
-            purchase.picking_state = picking_state
+            if purchase.picking_ids:
+                pickings_state = set(
+                    [picking.state for picking in purchase.picking_ids])
+                if pickings_state == set(['cancel']):
+                    purchase.picking_state = 'cancel'
+                elif (pickings_state == set(['cancel', 'done']) or
+                      pickings_state == set(['done'])):
+                    purchase.picking_state = 'done'
+                elif 'done' in pickings_state:
+                    purchase.picking_state = 'partially_received'
+                else:
+                    purchase.picking_state = 'not_received'
+            else:
+                purchase.picking_state = 'draft'
 
     picking_state = fields.Selection(
         string="Picking status", readonly=True,
