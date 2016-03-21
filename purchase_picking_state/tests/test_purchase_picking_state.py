@@ -7,25 +7,23 @@ from openerp.tests.common import TransactionCase
 
 class TestPurchasePickingState(TransactionCase):
     def test_picking_state_in_purchase_order(self):
-        for purchase in self.env['purchase.order'].search([]):
-            if not purchase.picking_ids:
-                self.purchase_draft = purchase
+        draft_order_ids = self.env['purchase.order'].search([
+            ('state', 'in', ['draft', 'sent', 'bid', 'cancel']),
+        ])
+        for purchase in draft_order_ids:
+            self.assertEquals(purchase.picking_state, 'draft')
+        confirmed_order_ids = self.env['purchase.order'].search([
+            ('state', 'in', ['confirmed', 'approved', 'done']),
+        ])
+        for purchase in confirmed_order_ids:
+            pickings_state = set(
+                [picking.state for picking in purchase.picking_ids])
+            if pickings_state == set(['cancel']):
+                self.assertEquals(purchase.picking_state, 'cancel')
+            elif (pickings_state == set(['cancel', 'done']) or
+                  pickings_state == set(['done'])):
+                self.assertEquals(purchase.picking_state, 'done')
+            elif 'done' in pickings_state:
+                self.assertEquals(purchase.picking_state, 'partially_received')
             else:
-                pickings_state = set(
-                    [picking.state for picking in purchase.picking_ids])
-                if pickings_state == set(['cancel']):
-                    self.purchase_cancel = purchase
-                elif (pickings_state == set(['cancel', 'done']) or
-                      pickings_state == set(['done'])):
-                    self.purchase_done = purchase
-                elif 'done' in pickings_state:
-                    self.purchase_partially_received = purchase
-                else:
-                    self.purchase_not_received = purchase
-        self.assertEquals(self.purchase_draft.picking_state, 'draft')
-        self.assertEquals(self.purchase_cancel.picking_state, 'cancel')
-        self.assertEquals(self.purchase_done.picking_state, 'done')
-        self.assertEquals(self.purchase_partially_received.picking_state,
-                          'partially_received')
-        self.assertEquals(self.purchase_not_received.picking_state,
-                          'not_received')
+                self.assertEquals(purchase.picking_state, 'not_received')
