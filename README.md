@@ -32,6 +32,7 @@ addon | version | summary
 [purchase_origin_address](purchase_origin_address/) | 8.0.1.0.0 | Deprecated: use purchase_transport_multi_address from OCA/stock-logistics-transport
 [purchase_partial_invoicing](purchase_partial_invoicing/) | 8.0.0.1.1 | Purchase partial invoicing
 [purchase_partner_invoice_method](purchase_partner_invoice_method/) | 8.0.1.0.0 | Adds supplier invoicing control on partner form
+[purchase_picking_state](purchase_picking_state/) | 8.0.1.0.0 | Add the status of all the incoming picking in the purchase order
 [purchase_requisition_auto_rfq](purchase_requisition_auto_rfq/) | 8.0.0.2.0 | Automatically create RFQ from a purchase requisition
 [purchase_requisition_auto_rfq_bid_selection](purchase_requisition_auto_rfq_bid_selection/) | 8.0.0.1.0 | Bridge module for PR Auto RFQ / Bid Selection
 [purchase_requisition_bid_selection](purchase_requisition_bid_selection/) | 8.0.2.1.0 | Purchase Requisition Bid Selection
