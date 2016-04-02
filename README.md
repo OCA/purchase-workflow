@@ -13,6 +13,12 @@ This project aim to deal with modules related to manage purchase and their relat
  - ...
 
 [//]: # (addons)
+Available addons
+----------------
+addon | version | summary
+--- | --- | ---
+[purchase_picking_state](purchase_picking_state/) | 9.0.1.0.0 | Add the status of all the incoming picking in the purchase order
+
 Unported addons
 ---------------
 addon | version | summary
