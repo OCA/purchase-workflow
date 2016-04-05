@@ -63,5 +63,6 @@ class PurchaseOrderLine(models.Model):
             if pl_pinfo.min_quantity <= qty_in_product_uom:
                 res['value']['discount'] = pl_pinfo.discount
             else:
-                break
+                res['value']['discount'] = 0.0
+                res['value']['price_unit'] = product.standard_price
         return res
