@@ -9,7 +9,7 @@
       <field name="arch" type="xml">
 
         <field name="pricelist_id" position="after">
-          <field name="portfolio_id" />
+          <field name="portfolio_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
         </field>
 
         <field name="pricelist_id" position="attributes">
