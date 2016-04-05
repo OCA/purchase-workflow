@@ -23,6 +23,7 @@ addon | version | summary
 [product_supplierinfo_discount](product_supplierinfo_discount/) | 8.0.1.0.0 | Discounts in product supplier info
 [purchase_all_shipments](purchase_all_shipments/) | 8.0.1.0.0 | Purchase All Shipments
 [purchase_delivery_address](purchase_delivery_address/) | 8.0.1.1.0 | Deprecated: install purchase_transport_multi_address and stock_transport_multi_address instead
+[purchase_delivery_split_date](purchase_delivery_split_date/) | 8.0.1.0.0 | Purchase Deliveries split by date
 [purchase_discount](purchase_discount/) | 8.0.1.1 | Purchase order lines with discounts
 [purchase_fiscal_position_update](purchase_fiscal_position_update/) | 8.0.1.0.0 | Changing the fiscal position of a purchase order will auto-update purchase order lines
 [purchase_last_price_info](purchase_last_price_info/) | 8.0.1.0.0 | Product Last Price Info - Purchase
