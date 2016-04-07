@@ -412,8 +412,7 @@ class PurchaseCostDistributionLine(models.Model):
         string='Cost amount', digits_compute=dp.get_precision('Account'),
         compute='_compute_expense_amount')
     cost_ratio = fields.Float(
-        string='Unit cost', digits_compute=dp.get_precision('Account'),
-        compute='_compute_cost_ratio')
+        string='Unit cost', compute='_compute_cost_ratio')
     standard_price_new = fields.Float(
         string='New cost', digits_compute=dp.get_precision('Product Price'),
         compute='_compute_standard_price_new')
@@ -449,9 +448,7 @@ class PurchaseCostDistributionLineExpense(models.Model):
     expense_amount = fields.Float(
         string='Expense amount', default=0.0,
         digits_compute=dp.get_precision('Account'))
-    cost_ratio = fields.Float(
-        'Unit cost', default=0.0,
-        digits_compute=dp.get_precision('Account'))
+    cost_ratio = fields.Float('Unit cost', default=0.0)
 
 
 class PurchaseCostDistributionExpense(models.Model):
