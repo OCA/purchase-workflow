@@ -2,12 +2,12 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
     
-==============================================
-Purchase RFQ(Request For Quotation) Numeration
-==============================================
+=============================================
+Purchase RFQ(Request For Quotation) Numbering
+=============================================
 
 This module adds the possibility to define a sequence for the purchase RFQ.
-When you create a RFQ, RFQ Number will be automatically filled in accordance with the sequence.
+When you create a RFQ, RFQ Number will be automatically filled according to the sequence.
 When you confirm a RFQ, RFQ Number will be saved in the
 'origin' field and the purchase order gets a new number, retrieving it from
 'purchase.order' sequence.
@@ -21,7 +21,7 @@ To install this module, you need to:
 2.  Add the path to this repository in your configuration (addons-path)
 3.  Update the module list
 4.  Go to menu *Setting -> Modules -> Local Modules*
-5.  Search For *Purchase RFQ(Request For Quotation) Numeration*
+5.  Search For *Purchase RFQ(Request For Quotation) Numbering*
 6.  Install the module
 
 Usage
