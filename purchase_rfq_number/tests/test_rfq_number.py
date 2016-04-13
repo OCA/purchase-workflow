@@ -8,21 +8,21 @@ from openerp.tests.common import TransactionCase
 class TestRFQNumber(TransactionCase):
     def setUp(self, *args, **kwargs):
         super(TestRFQNumber, self).setUp(*args, **kwargs)
-        #Objects
+        # Objects
         self.obj_purchase_order = self.env['purchase.order']
         self.obj_ir_sequence = self.env['ir.sequence']
 
-        #Data Products
+        # Data Products
         self.prod_1 = self.env.ref('product.product_product_5')
         self.prod_2 = self.env.ref('product.product_product_8')
 
-        #Data Partner
+        # Data Partner
         self.partner = self.ref('base.res_partner_3')
 
-        #Data Location
+        # Data Location
         self.location = self.ref('stock.stock_location_stock')
 
-        #Data Pricelist
+        # Data Pricelist
         self.pricelist = self.ref('purchase.list0')
 
     def _prepare_purchase_order_data(self):
@@ -54,12 +54,12 @@ class TestRFQNumber(TransactionCase):
         return purchase_order
 
     def test_rfq_number(self):
-        #Create PO
+        # Create PO
         purchase_order = self._create_purchase_order()
-        #Check RFQ Number
-        #Prefix == 'RFQ'
+        # Check RFQ Number
+        # Prefix == 'RFQ'
         self.assertEqual('RFQ', purchase_order.name[:3])
-        #Check Confirm PO
-        #Prefix == 'PO'
+        # Check Confirm PO
+        # Prefix == 'PO'
         purchase_order.signal_workflow('purchase_confirm')
         self.assertEqual('PO', purchase_order.name[:2])
