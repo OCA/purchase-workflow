@@ -2,22 +2,26 @@
 # © 2004-2009 Tiny SPRL (<http://tiny.be>).
 # © 2015 Pedro M. Baeza
 # © 2016 ACSONE SA/NV (<http://acsone.eu>)
-# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
-from openerp import models, fields, api
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+from openerp import api, fields, models
 import openerp.addons.decimal_precision as dp
 
 
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
-    def _calc_line_base_price(self):
-        self.ensure_one()
-        res = super(PurchaseOrderLine, self)._calc_line_base_price()
-        return res * (1 - self.discount / 100.0)
-
     @api.depends('discount')
     def _compute_amount(self):
+        prices = {}
+        for line in self:
+            if line.discount:
+                prices[line.id] = line.price_unit
+                line.price_unit *= (1 - line.discount / 100.0)
         super(PurchaseOrderLine, self)._compute_amount()
+        # restore prices
+        for line in self:
+            if self.discount:
+                line.price_unit = prices[line.id]
 
     discount = fields.Float(
         string='Discount (%)', digits_compute=dp.get_precision('Discount'))
