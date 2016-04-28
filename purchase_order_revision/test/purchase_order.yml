@@ -1,0 +1,58 @@
+-
+  I create a PO
+-
+  !record {model: purchase.order, id: purchase_order_1}:
+    partner_id: base.res_partner_1
+    invoice_method: order
+    order_line:
+      - product_id: product.product_product_15
+        price_unit: 79.80
+        product_qty: 15.0
+      - product_id: product.product_product_25
+        price_unit: 2868.70
+        product_qty: 5.0
+      - product_id: product.product_product_27
+        price_unit: 3297.20
+        product_qty: 4.0
+-
+  I cancel the PO and create a new revision
+-
+   !python {model: purchase.order}: |
+     po = self.browse(cr, uid, ref('purchase_order_1'))
+     old_name = po.name
+     self.action_cancel(cr, uid, [ref('purchase_order_1')])
+     action = self.new_revision(cr, uid, [ref('purchase_order_1')])
+     po.refresh()
+     assert po.old_revision_ids, "Old revisions not set"
+     assert po.revision_number == 1, "Revision number should be 1, %s found" % po.revision_number
+     new_name = '%s-01' % old_name
+     assert po.name == new_name, "New name should be %s, %s found" % (new_name, po.name)
+-
+  I cancel an existing demo PO and create a new revision
+-
+   !python {model: purchase.order}: |
+     po = self.browse(cr, uid, ref('purchase.purchase_order_1'))
+     old_name = po.name
+     self.action_cancel(cr, uid, [ref('purchase.purchase_order_1')])
+     action = self.new_revision(cr, uid, [ref('purchase.purchase_order_1')])
+     po.refresh()
+     assert po.old_revision_ids, "Old revisions not set"
+     assert po.revision_number == 1, "Revision number should be 1, %s found" % po.revision_number
+     new_name = '%s-01' % old_name
+     assert po.name == new_name, "New name should be %s, %s found" % (new_name, po.name)
+-
+  I test that the standard duplicate button does not compromise new revisions
+-
+   !python {model: purchase.order}: |
+     purchase_order_1_id = ref('purchase.purchase_order_1')
+     self.action_cancel(cr, uid, [purchase_order_1_id])
+     new_id = self.copy(cr, uid, purchase_order_1_id)
+     po = self.browse(cr, uid, new_id)
+     old_name = po.name
+     self.action_cancel(cr, uid, [new_id])
+     self.new_revision(cr, uid, [new_id])
+     po.refresh()
+     assert po.old_revision_ids, "Old revisions not set"
+     assert po.revision_number == 1, "Revision number should be 1, %s found" % po.revision_number
+     new_name = '%s-01' % old_name
+     assert po.name == new_name, "New name should be %s, %s found" % (new_name, po.name)

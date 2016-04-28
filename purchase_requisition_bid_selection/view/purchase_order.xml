@@ -21,6 +21,10 @@
           <field name="delivery_remark"/>
         </xpath>
 
+        <field name="payment_term_id" position="after">
+          <field name="terms_of_payment"/>
+        </field>
+
         <field name="notes" position="replace"/>
 
         <notebook position="inside">
@@ -40,6 +44,11 @@
 
         <xpath expr="//field[@name='bid_validity']" position="after">
           <field name="bid_partial"/>
+          <field name="country_of_origin"/>
+          <field name="meets_specifications"/>
+          <field name="bid_eligible"/>
+          <field name="volume_estimated"/>
+          <field name="weight_estimated"/>
         </xpath>
 
         <xpath expr="//field[@name='requisition_id']" position="after">
@@ -67,11 +76,18 @@
       <field name="arch" type="xml">
 
         <xpath expr="//filter[@name='hide_cancelled']" position="before">
+          <separator/>
           <filter name="showbids" string="Bids encoded" domain="[('order_id.state', '=', 'bid')]"/>
+          <separator/>
+          <filter name="meets_specifications" string="Meets Specifications" domain="[('meets_specifications', '=', True)]"/>
+          <separator/>
+          <filter name="bid_eligible" string="Eligible" domain="[('bid_eligible', '=', True)]"/>
+          <separator/>
         </xpath>
 
         <xpath expr="//filter[@name='groupby_product']" position="after">
           <filter name="groupby_requisitionline" string="Call for Bids line" domain="[]" context="{'group_by' : 'requisition_line_id'}" />
+          <filter name="groupby_incoterm" string="Incoterm" context="{'group_by' : 'incoterm_id'}" />
         </xpath>
 
       </field>
@@ -92,6 +108,25 @@
           <field name="date_planned"/>
         </xpath>
         -->
+
+        <field name="name" position="after">
+          <field name="country_of_origin" invisible="not context.get('selection_view')"/>
+        </field>
+
+        <field name="partner_id" position="after">
+          <field name="meets_specifications" invisible="not context.get('selection_view')"/>
+          <field name="bid_eligible" invisible="not context.get('selection_view')"/>
+          <field name="remark" invisible="not context.get('selection_view')"/>
+          <button name="%(action_update_remark)d" type="action" string="Update remark" icon="gtk-ok"/>
+          <field name="incoterm_id" invisible="not context.get('selection_view')"/>
+          <field name="incoterm_address" invisible="not context.get('selection_view')"/>
+          <field name="date_planned" invisible="not context.get('selection_view')"/>
+        </field>
+
+        <field name="product_qty" position="before">
+          <field name="terms_of_payment" invisible="not context.get('selection_view')"/>
+          <field name="payment_term_id" invisible="not context.get('selection_view')"/>
+        </field>
 
         <xpath expr="//field[@name='product_id']" position="attributes">
           <attribute name="invisible">1</attribute>

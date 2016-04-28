@@ -7,7 +7,7 @@ class TestPropagateDocuments(TransactionCase):
 
         self.Requisition = self.env['purchase.requisition']
 
-        self.requisition = self.Requisition.create({})
+        self.requisition = self.Requisition.new({})
         self.supplier = self.browse_ref('base.res_partner_1')
 
         self.doc1 = self.browse_ref('purchase_transport_document.CMR')

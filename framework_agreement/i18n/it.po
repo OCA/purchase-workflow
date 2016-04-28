@@ -1,0 +1,444 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * framework_agreement
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: purchase-workflow (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-03-08 10:15+0000\n"
+"PO-Revision-Date: 2016-03-08 10:16+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Italian (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/it/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: it\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: framework_agreement
+#: field:framework.agreement.pricelist,framework_agreement_id:0
+#: field:purchase.order.line,framework_agreement_id:0
+msgid "Agreement"
+msgstr ""
+
+#. module: framework_agreement
+#: view:framework.agreement.portfolio:framework_agreement.portfolio_form_view
+#: model:ir.model,name:framework_agreement.model_framework_agreement_portfolio
+msgid "Agreement Portfolio"
+msgstr ""
+
+#. module: framework_agreement
+#: view:framework.agreement.portfolio:framework_agreement.portfolio_search_view
+#: view:framework.agreement.portfolio:framework_agreement.portfolio_tree_view
+#: model:ir.actions.act_window,name:framework_agreement.portfolio_action
+#: model:ir.ui.menu,name:framework_agreement.portfolio_menu
+msgid "Agreement Portfolios"
+msgstr ""
+
+#. module: framework_agreement
+#: model:ir.model,name:framework_agreement.model_framework_agreement
+msgid "Agreement on price"
+msgstr ""
+
+#. module: framework_agreement
+#: view:framework.agreement.portfolio:framework_agreement.portfolio_form_view
+#: field:framework.agreement.portfolio,agreement_ids:0
+msgid "Agreements"
+msgstr ""
+
+#. module: framework_agreement
+#: field:framework.agreement,available_quantity:0
+msgid "Available quantity"
+msgstr ""
+
+#. module: framework_agreement
+#: field:framework.agreement,start_date:0
+msgid "Begin of Agreement"
+msgstr ""
+
+#. module: framework_agreement
+#: view:framework.agreement:framework_agreement.agreement_in_portfolio_form_view
+#: view:framework.agreement:framework_agreement.framework_agreement_form_view
+#: field:framework.agreement,clauses:0
+msgid "Clauses"
+msgstr ""
+
+#. module: framework_agreement
+#: view:framework.agreement:framework_agreement.framework_agreement_search_view
+msgid "Closed"
+msgstr ""
+
+#. module: framework_agreement
+#: model:ir.model,name:framework_agreement.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: framework_agreement
+#: field:framework.agreement.portfolio,company_id:0
+msgid "Company"
+msgstr ""
+
+#. module: framework_agreement
+#: view:framework.agreement:framework_agreement.framework_agreement_search_view
+msgid "Consumed"
+msgstr ""
+
+#. module: framework_agreement
+#: field:framework.agreement,create_uid:0
+#: field:framework.agreement.line,create_uid:0
+#: field:framework.agreement.portfolio,create_uid:0
+#: field:framework.agreement.pricelist,create_uid:0
+msgid "Created by"
+msgstr ""
+
+#. module: framework_agreement
+#: field:framework.agreement,create_date:0
+#: field:framework.agreement.line,create_date:0
+#: field:framework.agreement.portfolio,create_date:0
+#: field:framework.agreement.pricelist,create_date:0
+msgid "Created on"
+msgstr ""
+
+#. module: framework_agreement
+#: field:framework.agreement.pricelist,currency_id:0
+msgid "Currency"
+msgstr ""
+
+#. module: framework_agreement
+#: code:addons/framework_agreement/model/framework_agreement.py:300
+#, python-format
+msgid "Data are missing. Please enter dates and prices"
+msgstr ""
+
+#. module: framework_agreement
+#: view:framework.agreement:framework_agreement.agreement_in_portfolio_form_view
+#: view:framework.agreement:framework_agreement.framework_agreement_form_view
+#: view:product.product:framework_agreement.agreement in product view
+msgid "Dates"
+msgstr ""
+
+#. module: framework_agreement
+#: view:framework.agreement:framework_agreement.agreement_in_portfolio_form_view
+#: view:framework.agreement:framework_agreement.framework_agreement_form_view
+#: field:framework.agreement,delivery_remark:0
+msgid "Delivery Remarks"
+msgstr ""
+
+#. module: framework_agreement
+#: view:framework.agreement:framework_agreement.framework_agreement_search_view
+msgid "Draft"
+msgstr ""
+
+#. module: framework_agreement
+#: field:framework.agreement,end_date:0
+msgid "End of Agreement"
+msgstr ""
+
+#. module: framework_agreement
+#: view:framework.agreement:framework_agreement.agreement_in_portfolio_form_view
+#: view:framework.agreement:framework_agreement.framework_agreement_form_view
+#: model:ir.actions.act_window,name:framework_agreement.action_framework_agreement
+#: model:ir.ui.menu,name:framework_agreement.action_framework_agreement_menu
+#: view:product.product:framework_agreement.agreement in product view
+msgid "Framework Agreement"
+msgstr ""
+
+#. module: framework_agreement
+#: view:framework.agreement:framework_agreement.framework_agreement_list_view
+#: view:framework.agreement:framework_agreement.framework_agreement_search_view
+msgid "Framework Agreement (LTA)"
+msgstr ""
+
+#. module: framework_agreement
+#: field:product.product,framework_agreement_ids:0
+msgid "Framework Agreements (LTA)"
+msgstr ""
+
+#. module: framework_agreement
+#: model:ir.model,name:framework_agreement.model_framework_agreement_line
+msgid "Framework agreement line"
+msgstr ""
+
+#. module: framework_agreement
+#: view:product.product:framework_agreement.agreement in product view
+msgid "Framework agreements (LTA)"
+msgstr ""
+
+#. module: framework_agreement
+#: view:framework.agreement:framework_agreement.framework_agreement_search_view
+msgid "Future"
+msgstr ""
+
+#. module: framework_agreement
+#: view:framework.agreement:framework_agreement.framework_agreement_search_view
+#: view:framework.agreement.portfolio:framework_agreement.portfolio_search_view
+msgid "Group By"
+msgstr ""
+
+#. module: framework_agreement
+#: field:framework.agreement,id:0 field:framework.agreement.line,id:0
+#: field:framework.agreement.portfolio,id:0
+#: field:framework.agreement.pricelist,id:0
+msgid "ID"
+msgstr ""
+
+#. module: framework_agreement
+#: help:res.company,one_agreement_per_product:0
+msgid ""
+"If checked you can have only one framework agreement per product at the same"
+" time."
+msgstr ""
+
+#. module: framework_agreement
+#: field:framework.agreement,incoterm_id:0
+msgid "Incoterm"
+msgstr ""
+
+#. module: framework_agreement
+#: field:framework.agreement,incoterm_address:0
+msgid "Incoterm Address"
+msgstr ""
+
+#. module: framework_agreement
+#: help:framework.agreement,incoterm_id:0
+msgid ""
+"International Commercial Terms are a series of predefined commercial terms "
+"used in international transactions."
+msgstr ""
+
+#. module: framework_agreement
+#: code:addons/framework_agreement/model/purchase.py:198
+#, python-format
+msgid "Invalid agreement Agreement and supplier does not match"
+msgstr ""
+
+#. module: framework_agreement
+#: field:framework.agreement,draft:0
+msgid "Is draft"
+msgstr ""
+
+#. module: framework_agreement
+#: field:framework.agreement,write_uid:0
+#: field:framework.agreement.line,write_uid:0
+#: field:framework.agreement.portfolio,write_uid:0
+#: field:framework.agreement.pricelist,write_uid:0
+msgid "Last Updated by"
+msgstr ""
+
+#. module: framework_agreement
+#: field:framework.agreement,write_date:0
+#: field:framework.agreement.line,write_date:0
+#: field:framework.agreement.portfolio,write_date:0
+#: field:framework.agreement.pricelist,write_date:0
+msgid "Last Updated on"
+msgstr ""
+
+#. module: framework_agreement
+#: field:framework.agreement,delay:0
+msgid "Lead time in days"
+msgstr ""
+
+#. module: framework_agreement
+#: code:addons/framework_agreement/model/framework_agreement.py:442
+#, python-format
+msgid "Many agreements found for the product with id %s at date %s"
+msgstr ""
+
+#. module: framework_agreement
+#: code:addons/framework_agreement/model/framework_agreement.py:466
+#, python-format
+msgid ""
+"Missing Agreement price list Please set a price list in currency %s for "
+"agreement %s"
+msgstr ""
+
+#. module: framework_agreement
+#: field:framework.agreement.portfolio,name:0
+msgid "Name"
+msgstr ""
+
+#. module: framework_agreement
+#: field:framework.agreement.line,price:0
+msgid "Negociated price"
+msgstr ""
+
+#. module: framework_agreement
+#: view:framework.agreement:framework_agreement.agreement_in_portfolio_form_view
+#: view:framework.agreement:framework_agreement.framework_agreement_form_view
+#: view:product.product:framework_agreement.agreement in product view
+msgid "Negociated price lists"
+msgstr ""
+
+#. module: framework_agreement
+#: field:framework.agreement,quantity:0
+msgid "Negociated quantity"
+msgstr ""
+
+#. module: framework_agreement
+#: code:addons/framework_agreement/model/framework_agreement.py:516
+#, python-format
+msgid "No pricelist foundPlease set a pricelist on PO or supplier %s"
+msgstr ""
+
+#. module: framework_agreement
+#: field:framework.agreement,name:0
+msgid "Number"
+msgstr ""
+
+#. module: framework_agreement
+#: field:res.company,one_agreement_per_product:0
+msgid "One agreement per product"
+msgstr ""
+
+#. module: framework_agreement
+#: view:framework.agreement:framework_agreement.agreement_in_portfolio_form_view
+#: view:framework.agreement:framework_agreement.framework_agreement_form_view
+#: view:product.product:framework_agreement.agreement in product view
+msgid "Open Agreement"
+msgstr ""
+
+#. module: framework_agreement
+#: field:framework.agreement,origin:0
+msgid "Origin"
+msgstr ""
+
+#. module: framework_agreement
+#: field:framework.agreement,payment_term_id:0
+msgid "Payment Term"
+msgstr ""
+
+#. module: framework_agreement
+#: field:framework.agreement,portfolio_id:0
+#: field:purchase.order,portfolio_id:0
+msgid "Portfolio"
+msgstr ""
+
+#. module: framework_agreement
+#: view:framework.agreement:framework_agreement.agreement_in_portfolio_form_view
+#: view:framework.agreement:framework_agreement.framework_agreement_form_view
+#: view:product.product:framework_agreement.agreement in product view
+msgid "Price line"
+msgstr ""
+
+#. module: framework_agreement
+#: view:framework.agreement:framework_agreement.agreement_in_portfolio_form_view
+#: view:framework.agreement:framework_agreement.framework_agreement_form_view
+#: field:framework.agreement.pricelist,framework_agreement_line_ids:0
+#: view:product.product:framework_agreement.agreement in product view
+msgid "Price lines"
+msgstr ""
+
+#. module: framework_agreement
+#: view:framework.agreement:framework_agreement.agreement_in_portfolio_form_view
+#: view:framework.agreement:framework_agreement.framework_agreement_form_view
+#: field:framework.agreement.line,framework_agreement_pricelist_id:0
+#: view:product.product:framework_agreement.agreement in product view
+msgid "Price list"
+msgstr ""
+
+#. module: framework_agreement
+#: field:framework.agreement,framework_agreement_pricelist_ids:0
+msgid "Price lists"
+msgstr ""
+
+#. module: framework_agreement
+#: model:ir.model,name:framework_agreement.model_product_pricelist
+msgid "Pricelist"
+msgstr ""
+
+#. module: framework_agreement
+#: view:framework.agreement:framework_agreement.framework_agreement_search_view
+#: field:framework.agreement,product_id:0
+#: model:ir.model,name:framework_agreement.model_product_product
+msgid "Product"
+msgstr ""
+
+#. module: framework_agreement
+#: model:ir.model,name:framework_agreement.model_purchase_order
+msgid "Purchase Order"
+msgstr "Ordine Acquisto"
+
+#. module: framework_agreement
+#: model:ir.model,name:framework_agreement.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Riga Ordine d'Acquisto"
+
+#. module: framework_agreement
+#: field:framework.agreement,purchase_line_ids:0
+msgid "Purchase line ids"
+msgstr ""
+
+#. module: framework_agreement
+#: field:framework.agreement.line,quantity:0
+msgid "Quantity"
+msgstr "Quantità"
+
+#. module: framework_agreement
+#: view:framework.agreement:framework_agreement.framework_agreement_search_view
+msgid "Running"
+msgstr ""
+
+#. module: framework_agreement
+#: field:framework.agreement,shipment_origin_id:0
+msgid "Shipment Origin"
+msgstr ""
+
+#. module: framework_agreement
+#: sql_constraint:framework.agreement:0
+msgid "Start/end date inversion"
+msgstr ""
+
+#. module: framework_agreement
+#: view:framework.agreement:framework_agreement.framework_agreement_search_view
+#: view:framework.agreement.portfolio:framework_agreement.portfolio_search_view
+#: field:framework.agreement.portfolio,supplier_id:0
+msgid "Supplier"
+msgstr ""
+
+#. module: framework_agreement
+#: sql_constraint:framework.agreement.portfolio:0
+msgid "There can be only one portfolio per supplier and company."
+msgstr ""
+
+#. module: framework_agreement
+#: code:addons/framework_agreement/model/framework_agreement.py:355
+#, python-format
+msgid ""
+"There can only be one agreement for a given supplier, incoterm, incoterm "
+"address and product"
+msgstr ""
+
+#. module: framework_agreement
+#: code:addons/framework_agreement/model/framework_agreement.py:349
+#, python-format
+msgid "There is already is a running agreement for product %s"
+msgstr ""
+
+#. module: framework_agreement
+#: code:addons/framework_agreement/model/purchase.py:80
+#, python-format
+msgid ""
+"You cannot change the supplier: the PO is linked to an agreement portfolio."
+msgstr ""
+
+#. module: framework_agreement
+#: code:addons/framework_agreement/model/purchase.py:168
+#, python-format
+msgid ""
+"You have set the price to %s \n"
+" but there is a running agreement with price %s"
+msgstr ""
+
+#. module: framework_agreement
+#: view:purchase.order:framework_agreement.add_onchange_on_pruchase_order_form
+msgid ""
+"{'agreement_id': framework_agreement_id, 'incoterm_id': parent.incoterm_id, "
+"'currency_id': parent.currency_id, 'portfolio_id': parent.portfolio_id}"
+msgstr ""
+
+#. module: framework_agreement
+#: view:purchase.order:framework_agreement.add_onchange_on_pruchase_order_form
+msgid "{'portfolio_id': portfolio_id}"
+msgstr ""

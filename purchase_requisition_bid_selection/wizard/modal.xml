@@ -1,22 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
-    <data>
-        <record id="action_modal_close_callforbids" model="ir.ui.view">
-            <field name="name">action.modal</field>
-            <field name="model">purchase.action_modal</field>
-            <field name="arch" type="xml">
-                <form string="Warning" version="7.0">
-                    <p>
-                        For some lines, the selected quantity does not match the requested quantity.
-                        Please confirm the operation.
-                    </p>
-                    <footer>
-                        <button string="Confirm" class="oe_highlight" type="object" name="action"/>
-                        or
-                        <button special="cancel" string="Cancel" class="oe_link"/>
-                    </footer>
-                </form>
-            </field>
-        </record>
-    </data>
+  <data>
+
+    <record id="action_modal_confirm_different_quantity" model="ir.ui.view">
+      <field name="name">action.modal</field>
+      <field name="model">purchase.action_modal</field>
+      <field name="arch" type="xml">
+        <form string="Warning">
+          <p>
+            For some lines, the selected quantity does not match the requested quantity.
+            Please confirm the operation.
+          </p>
+          <footer>
+            <button string="Confirm" class="oe_highlight" type="object" name="action"/>
+            or
+            <button special="cancel" string="Cancel" class="oe_link"/>
+          </footer>
+        </form>
+      </field>
+    </record>
+
+    <record id="modal_confirm_close_selection" model="ir.ui.view">
+      <field name="name">action.modal</field>
+      <field name="model">purchase.action_modal</field>
+      <field name="arch" type="xml">
+        <form string="Confirmation">
+          <p>
+            Are you sure you want to accept the current selection?
+            You cannot cancel this action.
+          </p>
+          <footer>
+            <button string="Confirm" class="oe_highlight" type="object" name="action"/>
+            or
+            <button special="cancel" string="Cancel" class="oe_link"/>
+          </footer>
+        </form>
+      </field>
+    </record>
+
+    <record id="ask_selection_reasons" model="ir.ui.view">
+      <field name="name">action.modal</field>
+      <field name="model">purchase.action_modal.ask_selection_reasons</field>
+      <field name="arch" type="xml">
+        <form string="Selection reasons">
+
+          <p>
+            Please enter a reason for the suggested selection.
+          </p>
+
+          <group name="Selection reasons">
+            <field name="selection_reasons" nolabel="1"/>
+          </group>
+
+          <footer>
+            <button string="Confirm" class="oe_highlight" type="object" name="action"/>
+            or
+            <button special="cancel" string="Cancel" class="oe_link"/>
+          </footer>
+
+        </form>
+      </field>
+    </record>
+
+    <record id="ask_validity" model="ir.ui.view">
+      <field name="name">action.modal</field>
+      <field name="model">purchase.action_modal.ask_validity</field>
+      <field name="arch" type="xml">
+        <form string="Change validity">
+
+          <p>
+            Please enter validity date
+          </p>
+
+          <group name="End of validity">
+            <field name="validity" nolabel="1"/>
+          </group>
+
+          <footer>
+            <button string="Confirm" class="oe_highlight" type="object" name="action"/>
+            or
+            <button special="cancel" string="Cancel" class="oe_link"/>
+          </footer>
+
+        </form>
+      </field>
+    </record>
+
+  </data>
 </openerp>

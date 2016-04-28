@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Author: Nicolas Bessi
-#    Copyright 2013, 2014 Camptocamp SA
+#    Author: Nicolas Bessi, Leonardo Pistone
+#    Copyright 2013-2015 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -16,8 +14,7 @@
 #
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+
 from operator import attrgetter
 from collections import namedtuple
 from datetime import datetime
@@ -36,12 +33,6 @@ class framework_agreement(models.Model):
     _name = 'framework.agreement'
     _description = 'Agreement on price'
 
-    @api.model
-    def _company_get(self):
-        return self.env['res.company']._company_default_get(
-            object='framework.agreement'
-        )
-
     name = fields.Char(
         'Number',
         readonly=True
@@ -49,7 +40,13 @@ class framework_agreement(models.Model):
     supplier_id = fields.Many2one(
         'res.partner',
         'Supplier',
-        required=True
+        related='portfolio_id.supplier_id',
+        readonly=True,
+    )
+    portfolio_id = fields.Many2one(
+        'framework.agreement.portfolio',
+        'Portfolio',
+        required=True,
     )
     product_id = fields.Many2one(
         'product.product',
@@ -90,12 +87,13 @@ class framework_agreement(models.Model):
     company_id = fields.Many2one(
         'res.company',
         'Company',
-        default=_company_get
+        related='portfolio_id.company_id',
+        readonly=True,
     )
     draft = fields.Boolean('Is draft')
 
-    purchase_order_ids = fields.One2many(
-        comodel_name='purchase.order',
+    purchase_line_ids = fields.One2many(
+        comodel_name='purchase.order.line',
         inverse_name='framework_agreement_id'
     )
 
@@ -114,6 +112,29 @@ class framework_agreement(models.Model):
     clauses = fields.Html('Clauses')
 
     shipment_origin_id = fields.Many2one('res.partner', 'Shipment Origin')
+
+    @api.model
+    def get_agreement_domain(self, product_id, qty, portfolio_id=None,
+                             date_planned=None, incoterm_id=None,
+                             incoterm_address=None):
+        ag_domain = [
+            ('draft', '=', False),
+            ('product_id', '=', product_id),
+            ('available_quantity', '>=', qty or 0.0),
+        ]
+        if portfolio_id:
+            ag_domain += [('portfolio_id', '=', portfolio_id)]
+        if date_planned:
+            ag_domain += [
+                ('start_date', '<=', date_planned),
+                ('end_date', '>=', date_planned),
+            ]
+        if incoterm_id:
+            ag_domain += [('incoterm_id', '=', incoterm_id)]
+        if incoterm_address:
+            ag_domain += [('incoterm_address', '=', incoterm_address)]
+
+        return ag_domain
 
     @api.model
     def _check_running_date(self, agreement):
@@ -157,22 +178,6 @@ class framework_agreement(models.Model):
                                 DEFAULT_SERVER_DATE_FORMAT)
         return AGDates(now, start.date(), end.date())
 
-    @api.one
-    def date_valid(self, date):
-        """Predicate that checks that date is in agreement
-
-        :param date: date to validate
-        :type date: Odoo datestring
-
-        :return: True if date is valid
-        :type: bool
-        """
-        current = self
-        now, start, end = self._get_dates(current)
-        pdate = datetime.strptime(date,
-                                  DEFAULT_SERVER_DATE_FORMAT)
-        return start <= pdate <= end
-
     def _search_state(self, operator, value):
         """Search on the state field by evaluating on all records"""
 
@@ -201,9 +206,8 @@ class framework_agreement(models.Model):
         Please refer to function field documentation for more details.
 
         """
-        company_id = self._company_get()
         for agreement in self:
-
+            company = agreement.portfolio_id._company_get()
             if isinstance(agreement.id, models.NewId):
                 agreement.available_quantity = 0
                 continue
@@ -219,19 +223,19 @@ class framework_agreement(models.Model):
             AND po.company_id = %s"""
             self.env.cr.execute(sql, (agreement.id,
                                       variant_ids,
-                                      agreement.supplier_id.id,
+                                      agreement.portfolio_id.supplier_id.id,
                                       AGR_PO_STATE,
-                                      company_id))
+                                      company.id))
             amount = self.env.cr.fetchone()[0]
             if amount is None:
                 amount = 0
             agreement.available_quantity = agreement.quantity - amount
 
     @api.depends('quantity',
-                 'purchase_order_ids.framework_agreement_id',
-                 'purchase_order_ids.state',
-                 'purchase_order_ids.order_line',
-                 'purchase_order_ids.order_line.product_qty')
+                 'purchase_line_ids.framework_agreement_id',
+                 'purchase_line_ids.order_id.state',
+                 'purchase_line_ids',
+                 'purchase_line_ids.product_qty')
     @api.multi
     def _get_available_qty(self):
         """Compute available qty of current agreements.
@@ -268,10 +272,11 @@ class framework_agreement(models.Model):
 
     @api.multi
     @api.depends('quantity',
-                 'purchase_order_ids.framework_agreement_id',
-                 'purchase_order_ids.state',
-                 'purchase_order_ids.order_line',
-                 'purchase_order_ids.order_line.product_qty')
+                 'purchase_line_ids.framework_agreement_id',
+                 'purchase_line_ids.order_id.state',
+                 'purchase_line_ids',
+                 'purchase_line_ids.product_qty')
+    # same dependencies as available_quantity
     def _get_state(self):
         """ Compute current state of agreement based on date and consumption
 
@@ -311,72 +316,44 @@ class framework_agreement(models.Model):
         )
         return super(framework_agreement, self).create(vals)
 
-    @api.multi
-    def _check_overlap(self):
-        """Constraint to check that no agreements for same product/supplier overlap.
-
-        One agreement per product limit is checked if one_agreement_per_product
-        is set to True on company
-
-        """
-        comp_obj = self.env['res.company']
-        company_id = self._company_get()
-        strict = comp_obj.browse(company_id).one_agreement_per_product
-        for agreement in self:
-            # we do not add current id in domain for readability reasons
-            # indent is not PEP8 compliant but more readable.
-            overlap = self.search(
-                ['&',
-                 ('draft', '=', False),
-                 ('product_id', '=', agreement.product_id.id),
-                 '|',
-                 '&',
-                 ('start_date', '>=', agreement.start_date),
-                 ('start_date', '<=', agreement.end_date),
-                 '&',
-                 ('end_date', '>=', agreement.start_date),
-                 ('end_date', '<=', agreement.end_date)]
-            )
-            # we also look for the one that includes current offer
-            overlap += self.search(
-                [('start_date', '<=', agreement.start_date),
-                 ('end_date', '>=', agreement.end_date),
-                 ('id', '!=', agreement.id),
-                 ('product_id', '=', agreement.product_id.id)]
-            )
-            overlap = self.browse([x.id for x in overlap
-                                   if x.id != agreement.id])
-            # we ensure that there is only one agreement at time per product
-            # if strict agreement is set on company
-            if strict and overlap:
-                raise exceptions.Warning(
-                    _('There is already is a running agreement for '
-                      'product %s')) % agreement.product_id.name
-            # We ensure that there are not multiple agreements
-            # for same supplier at same time
-            supplier = next(
-                (x for x in overlap
-                 if x.supplier_id.id == agreement.supplier_id.id),
-                None)
-            if supplier:
-                raise exceptions.Warning(
-                    _('There can not be multiple agreement '
-                      'for supplier %s') % supplier.name
-                )
-        return True
-
-    # 'supplier_id', 'product_id',
-    # 'start_date', 'end_date' may be only watch
-    @api.multi
-    @api.constrains('supplier_id', 'product_id', 'start_date', 'end_date')
+    @api.one
+    @api.constrains('supplier_id', 'product_id', 'start_date', 'end_date',
+                    'company_id', 'incoterm_id', 'incoterm_address')
     def check_overlap(self):
-        """Constraint to check that no agreements for same product/supplier overlap.
+        """Check that there are no similar agreements at the same time.
 
-        One agreement per product limit is checked if one_agreement_per_product
-        is set to True on company
+        Depending on the one_agreement_per_product flag on the company,
+        agreements from different companies are tolerated or not.
 
         """
-        return self._check_overlap()
+        date_domain = [
+            ('start_date', '<=', self.end_date),
+            ('end_date', '>=', self.start_date),
+        ]
+
+        overlap = self.search(
+            date_domain +
+            [
+                ('draft', '=', False),
+                ('product_id', '=', self.product_id.id),
+                ('incoterm_id', '=', self.incoterm_id.id),
+                ('incoterm_address', '=', self.incoterm_address),
+                ('id', '!=', self.id),
+            ]
+        )
+
+        if self.company_id.one_agreement_per_product:
+            # in strict mode, any overlap is bad
+            if overlap:
+                raise exceptions.ValidationError(
+                    _('There is already is a running agreement for '
+                      'product %s')) % self.product_id.name
+        else:
+            # in non-strict mode, same-supplier overlap is bad
+            if any(o.supplier_id == self.supplier_id for o in overlap):
+                raise exceptions.ValidationError(
+                    _('There can only be one agreement for a given '
+                      'supplier, incoterm, incoterm address and product'))
 
     _sql_constraints = [('date_priority',
                          'check(start_date < end_date)',
@@ -468,16 +445,14 @@ class framework_agreement(models.Model):
             return agreement_ids[0]
         return None
 
-    @api.one
-    @api.noguess
+    @api.multi
     def has_currency(self, currency):
         """Predicate that check that agreement has a given currency pricelist
 
         :returns: boolean (True if a price list in given currency is present)
 
         """
-        agreement = self
-        plists = agreement.framework_agreement_pricelist_ids
+        plists = self.framework_agreement_pricelist_ids
         return any(x for x in plists if x.currency_id == currency)
 
     @api.model
@@ -494,8 +469,7 @@ class framework_agreement(models.Model):
             )
         return plist.framework_agreement_line_ids
 
-    @api.model
-    @api.noguess
+    @api.multi
     def get_price(self, qty=0, currency=None):
         """Return price negociated for quantity
 
@@ -507,12 +481,9 @@ class framework_agreement(models.Model):
 
         """
         self.ensure_one()
-        current = self[0]
         if not currency:
-            comp_obj = self.env['res.company']
-            comp_id = self._company_get()
-            currency = comp_obj.browse(comp_id).currency_id
-        lines = self._get_pricelist_lines(current, currency)
+            currency = self.company_id.currency_id
+        lines = self._get_pricelist_lines(self, currency)
         lines = [x for x in lines]
         lines.sort(key=attrgetter('quantity'), reverse=True)
         for line in lines:

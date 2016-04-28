@@ -1,0 +1,52 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* purchase_partner_invoice_method
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-11-16 23:16+0000\n"
+"PO-Revision-Date: 2014-11-16 23:16+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_partner_invoice_method
+#: selection:res.partner,supplier_invoice_method:0
+msgid "Based on Purchase Order lines"
+msgstr ""
+
+#. module: purchase_partner_invoice_method
+#: selection:res.partner,supplier_invoice_method:0
+msgid "Based on generated draft invoice"
+msgstr ""
+
+#. module: purchase_partner_invoice_method
+#: selection:res.partner,supplier_invoice_method:0
+msgid "Based on incoming shipments"
+msgstr ""
+
+#. module: purchase_partner_invoice_method
+#: model:ir.model,name:purchase_partner_invoice_method.model_res_partner
+msgid "Partner"
+msgstr ""
+
+#. module: purchase_partner_invoice_method
+#: model:ir.model,name:purchase_partner_invoice_method.model_purchase_order
+msgid "Purchase Order"
+msgstr ""
+
+#. module: purchase_partner_invoice_method
+#: help:res.partner,supplier_invoice_method:0
+msgid "Select the default invoicing control for the purchase orders of this supplier"
+msgstr ""
+
+#. module: purchase_partner_invoice_method
+#: field:res.partner,supplier_invoice_method:0
+msgid "Supplier Invoicing Control"
+msgstr ""
+

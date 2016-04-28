@@ -1,25 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-        <!-- Add intermediate activity 'closed' between 'open' and 'done' -->
+      <!-- Add intermediate activities 'selected' and 'closed' 
+           between 'open' and 'done' -->
+        <record id="act_selected" model="workflow.activity">
+            <field name="wkf_id" ref="purchase_requisition.purchase_requisition_workflow"/>
+            <field name="name">selected</field>
+            <field name="kind">function</field>
+            <field name="action">tender_selected()</field>
+        </record>
         <record id="act_closed" model="workflow.activity">
             <field name="wkf_id" ref="purchase_requisition.purchase_requisition_workflow"/>
-            <field name="name">Bids selected</field>
+            <field name="name">closed</field>
             <field name="kind">function</field>
-            <field name="action">tender_close()</field>
+            <field name="action">tender_closed()</field>
         </record>
         <record id="purchase_requisition.trans_open_done" model="workflow.transition">
             <field name="act_from" ref="act_closed"/>
         </record>
-        <record id="trans_open_closed" model="workflow.transition">
+        <record id="trans_open_selected" model="workflow.transition">
             <field name="act_from" ref="purchase_requisition.act_open"/>
-            <field name="act_to" ref="act_closed"/>
-            <field name="signal">close_bid</field>
+            <field name="act_to" ref="act_selected"/>
+            <field name="signal">bid_selected</field>
+            <field name="group_id" ref="purchase.group_purchase_user"/>
         </record>
-        <record id="trans_closed_open" model="workflow.transition">
-            <field name="act_from" ref="act_closed"/>
+        <record id="trans_open_sent" model="workflow.transition">
+            <field name="act_from" ref="purchase_requisition.act_open"/>
+            <field name="act_to" ref="purchase_requisition.act_sent"/>
+            <field name="signal">back_to_sent</field>
+            <field name="group_id" ref="purchase.group_purchase_user"/>
+        </record>
+        <record id="trans_selected_open" model="workflow.transition">
+            <field name="act_from" ref="act_selected"/>
             <field name="act_to" ref="purchase_requisition.act_open"/>
             <field name="signal">reopen_bid</field>
+        </record>
+        <record id="trans_selected_closed" model="workflow.transition">
+            <field name="act_from" ref="act_selected"/>
+            <field name="act_to" ref="act_closed"/>
+            <field name="signal">close_bid</field>
+            <field name="group_id" ref="purchase.group_purchase_manager"/>
+        </record>
+        <record id="trans_closed_selected" model="workflow.transition">
+            <field name="act_from" ref="act_closed"/>
+            <field name="act_to" ref="act_selected"/>
+            <field name="signal">back_to_selected</field>
+            <field name="group_id" ref="purchase.group_purchase_manager"/>
         </record>
 
         <!-- Check there are product lines when confirming the Call for Bids -->

@@ -9,11 +9,11 @@
     <record model="ir.ui.view" id="view_purchase_requisition_form">
       <field name="name">purchase.requisition.form.inherit</field>
       <field name="model">purchase.requisition</field>
-      <field name="inherit_id" ref="purchase_requisition.view_purchase_requisition_form"/>
+      <field name="inherit_id" ref="purchase_requisition_multicurrency.view_purchase_requisition_form"/>
       <field name="arch" type="xml">
 
         <xpath expr="//header/field[@name='state']" position="attributes">
-          <attribute name="statusbar_visible">draft,in_progress,open,closed,done</attribute>
+          <attribute name="statusbar_visible">draft,in_progress,open,selected,closed,done</attribute>
         </xpath>
 
         <xpath expr="//header/button[@name='generate_po']" position="attributes">
@@ -22,22 +22,37 @@
         </xpath>
 
         <xpath expr="//sheet//button[@name='open_product_line']" position="attributes">
-          <!-- add the state 'closed' -->
-          <attribute name="attrs">{'invisible': ['|', ('state', 'not in', ('open','closed','done')), ('exclusive', '=', 'exclusive')]}</attribute>
+          <!-- add states 'selected' and 'closed' -->
+          <attribute name="attrs">{'invisible': ['|', ('state', 'not in', ('open','selected','closed','done')), ('exclusive', '=', 'exclusive')]}</attribute>
         </xpath>
 
         <xpath expr="//sheet//button[@name='open_product_line']" position="after">
-          <button name="open_po" type="object" string="View Generated PO" states="open,closed,done"/>
+          <button name="open_po" type="object" string="View Generated PO" states="open,selected,closed,done"/>
         </xpath>
 
         <xpath expr="//field[@name='user_id']" position="after">
           <field name="bid_tendering_mode" attrs="{'readonly': [('state','not in',('draft'))]}" />
-          <field name="pricelist_id" attrs="{'readonly': [('state','not in',('draft'))]}"/>
+          <field name="budget"/>
+        </xpath>
+
+        <xpath expr="//field[@name='pricelist_id']" position="attributes">
+          <attributes name="attrs">{'readonly': [('state','not in',('draft'))]}</attributes>
         </xpath>
 
         <separator string="Requests for Quotation" position="attributes">
           <attribute name="string">Requests for Quotation / Bids</attribute>
         </separator>
+
+        <xpath expr="//field[@name='purchase_ids']//field[@name='state']" position="after">
+          <field name="bid_internal_remark"/>
+          <button name="%(action_update_bid_internal_remark)d" type="action" string="Update internal remark" icon="gtk-ok"/>
+        </xpath>
+
+        <xpath expr="//field[@name='purchase_ids']" position="after">
+          <group string="Selection reasons" attrs="{'invisible': [('state','not in',('open', 'selected', 'closed', 'done', 'cancel'))]}">
+            <field name="selection_reasons" attrs="{'readonly': [('state','in',('closed', 'done'))]}" nolabel="1"/>
+          </group>
+        </xpath>
 
         <xpath expr="//page[@string='Products']//button[@name='%(purchase_requisition.action_purchase_requisition_partner)d']" position="attributes">
           <attribute name="attrs">{'invisible': ['|','|',('bid_tendering_mode','=','open'),('line_ids','=',[]),('state','!=','in_progress')]}</attribute>
@@ -57,10 +72,17 @@
           <page string="Options">
             <group>
               <group>
-                <field name="req_validity" attrs="{'readonly': [('state','not in',('draft'))]}"/>
+
+                <label for="req_validity" />
+                <div>
+                  <field name="req_validity" class="oe_inline" attrs="{'readonly': [('state','!=','draft')]}"/>
+                  <button name="ask_validity" class="oe_inline oe_link" type="object" string="(extend)" attrs="{'invisible': [('state', '=', 'draft')]}"/>
+                </div>
+
                 <field name="req_incoterm_id" attrs="{'readonly': [('state','not in',('draft'))]}"/>
                 <field name="req_incoterm_address" attrs="{'readonly': [('state','not in',('draft'))]}"/>
                 <field name="req_payment_term_id" attrs="{'readonly': [('state','not in',('draft'))]}"/>
+                <field name="req_terms_of_payment" attrs="{'readonly': [('state','not in',('draft'))]}"/>
               </group>
               <group>
                 <field name="bid_receipt_mode" attrs="{'readonly': [('state','not in',('draft'))]}"/>
@@ -70,8 +92,12 @@
         </xpath>
 
         <button name="open_bid" position="after">
-          <!--<button name="close_bid" states="open" string="Close Bids Selection" class="oe_highlight" type="object"/>-->
-          <button name="reopen_bid" states="closed" string="Re-Open Bids Selection"/>
+          <button type="object" name="ask_confirmation_to_close_selection" states="selected" string="Accept selection" class="oe_highlight"/>
+        </button>
+
+        <button name="open_product_line" position="after">
+          <button name="back_to_sent" states="open" string="Back to Confirmed" groups="purchase_requisition.group_purchase_requisition_manager"/>
+          <button name="back_to_selected" states="closed" string="Back to Selected" groups="purchase_requisition.group_purchase_requisition_manager"/>
         </button>
 
         <xpath expr="//field[@name='purchase_ids']//button[@name='purchase_cancel']" position="attributes">

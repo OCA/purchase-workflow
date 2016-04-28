@@ -3,6 +3,7 @@
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2004-2009 Tiny SPRL (<http://tiny.be>).
+#    Copyright (c) 2014-2015 Serv. Tecnol. Avanzados - Pedro M. Baeza
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -20,33 +21,25 @@
 ##############################################################################
 {
     "name": "Purchase order lines with discounts",
-    "author": "Tiny, Acysos S.L.",
-    "description": """
-It allows to define a discount per line in the purchase
-orders. This discount can be also negative, interpreting it as an increment.
-
-**REMARK**: This module can be incompatible with other modules that modify
-purchase prices, because it overwrites computation methods.
-
-**Contributors**:
- * Pedro Manuel Baeza <pedro.baeza@serviciosbaeza.com>
-    """,
-    "version": "1.0",
+    "author": "Tiny, "
+              "Acysos S.L., "
+              "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
+              "AvanzOSC, S.L., "
+              "Odoo Community Association (OCA)",
+    "version": "8.0.1.1",
     "contributors": [
         'Pedro M. Baeza',
+        'Ainara Galdona'
     ],
-    "category": "Generic Modules/Sales & Purchases",
+    "category": "Purchase Management",
     "depends": [
         "stock",
         "purchase",
     ],
-    "demo": [],
     "data": [
         "views/purchase_discount_view.xml",
-        "views/account_invoice_view.xml",
-        "report/purchase_discount_report.xml",
+        "views/report_purchaseorder.xml",
     ],
     "license": 'AGPL-3',
     "installable": True
 }
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

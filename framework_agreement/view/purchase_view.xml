@@ -1,45 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
   <data>
+
     <record id="add_onchange_on_pruchase_order_form" model="ir.ui.view">
-      <field name="name">add onchange on pruchase form</field>
+      <field name="name">purchase_order_form</field>
       <field name="model">purchase.order</field>
       <field name="inherit_id" ref="purchase.purchase_order_form" />
       <field name="arch" type="xml">
+
         <field name="pricelist_id" position="after">
-          <field name="framework_agreement_id"
-                 domain="[('draft', '=', False)]"/>
+          <field name="portfolio_id" />
         </field>
+
         <field name="pricelist_id" position="attributes">
-          <attribute name="context_agreement">{'order_line_ids': order_line}</attribute>
+          <attribute name="on_change">1</attribute>
         </field>
+
         <field name="partner_id" position="attributes">
-          <attribute name="context_agreement">{'agreement_id': framework_agreement_id}</attribute>
-        </field>
-        <field name="product_id"
-               position="attributes">
-          <attribute name="context_agreement">{'agreement_id': parent.framework_agreement_id}</attribute>
-        </field>
-        <field name="product_qty"
-               position="attributes">
-          <attribute name="context_agreement">{'agreement_id': parent.framework_agreement_id}</attribute>
+          <attribute name="context_agreement">{'portfolio_id': portfolio_id}</attribute>
         </field>
 
-        <field name="price_unit" position="attributes">
-          <attribute name="on_change">onchange_price(price_unit, parent.framework_agreement_id, product_qty, parent.pricelist_id, product_id)</attribute>
+        <field name="product_id" position="attributes">
+          <attribute name="context_agreement">{'agreement_id': framework_agreement_id, 'incoterm_id': parent.incoterm_id, 'currency_id': parent.currency_id, 'portfolio_id': parent.portfolio_id}</attribute>
         </field>
+
+        <field name="product_qty" position="after">
+          <field name="portfolio_id" invisible="1"/> <!-- used by attrs below -->
+          <field name="framework_agreement_id" attrs="{'required': [('portfolio_id', '!=', False)], 'readonly': [('portfolio_id', '=', False)]}" />
+        </field>
+
+        <field name="product_qty" position="attributes">
+          <attribute name="context_agreement">{'agreement_id': framework_agreement_id, 'incoterm_id': parent.incoterm_id, 'currency_id': parent.currency_id, 'portfolio_id': parent.portfolio_id}</attribute>
+        </field>
+
       </field>
-
     </record>
-   <record id="add_onchange_on_pruchase_order_line_form_standalone" model="ir.ui.view">
-      <field name="name">add onchange on pruchase order line form standalone</field>
+
+    <record id="add_onchange_on_pruchase_order_line_form_standalone" model="ir.ui.view">
+      <field name="name">purchase_order_line_form</field>
       <field name="model">purchase.order.line</field>
       <field name="inherit_id" ref="purchase.purchase_order_line_form" />
       <field name="arch" type="xml">
+
         <field name="price_unit" position="attributes">
-          <attribute name="on_change">onchange_price(price_unit, parent.framework_agreement_id, product_qty, parent.pricelist_id, product_id)</attribute>
+          <attribute name="on_change">1</attribute>
         </field>
+
       </field>
     </record>
+
   </data>
 </openerp>

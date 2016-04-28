@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="purchase_order_line_tree" model="ir.ui.view">
+            <field name="name">purchase.order.line.tree</field>
+            <field name="model">purchase.order.line</field>
+            <field name="inherit_id" ref="purchase.purchase_order_line_tree"/>
+            <field name="arch" type="xml">
+                <field name="product_qty" position="after">
+                    <field name="invoiced_qty"/>
+                    <field name="cancelled_qty" />
+                    <field name="all_invoices_approved"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="purchase_order_line_search" model="ir.ui.view">
+            <field name="name">purchase.order.line.search (purchase_partial_invoicing)</field>
+            <field name="model">purchase.order.line</field>
+            <field name="inherit_id" ref="purchase.purchase_order_line_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='hide_cancelled']" position="after">
+                    <group expand="0" name="invoicing" string="Invoicing">
+                        <filter name="not_fully_invoiced" string="Not Fully Invoiced" domain="[('fully_invoiced', '=', False)]"/>
+                        <filter name="cancelled_qty" string="With Cancelled Quantity" domain="[('cancelled_qty', '>', 0)]"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="purchase.purchase_line_form_action2" model="ir.actions.act_window">
+            <field name="name">On Purchase Order Lines</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.order.line</field>
+            <field name="domain">[('order_id.invoice_method','=','manual'), ('state','in',('confirmed','done'))]</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="purchase.purchase_order_line_search"/>
+            <field name="context">{'search_default_not_fully_invoiced': 1}</field>
+            <field name="help" type="html">
+              <p>
+                Here you can track all the lines of purchase orders where the
+                invoicing is "Based on Purchase Order Lines", and for which you
+                have not received a supplier invoice yet. You can generate a
+                draft supplier invoice based on the lines from this list.
+              </p>
+            </field>
+        </record>
+
+    </data>
+</openerp>

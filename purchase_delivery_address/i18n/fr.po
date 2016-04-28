@@ -1,0 +1,39 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* purchase_delivery_address
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-02-02 10:50+0000\n"
+"PO-Revision-Date: 2015-02-02 10:50+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_delivery_address
+#: view:purchase.order:purchase_delivery_address.purchase_order_form
+#: field:stock.picking,delivery_address_id:0
+msgid "Delivery Address"
+msgstr ""
+
+#. module: purchase_delivery_address
+#: code:addons/purchase_delivery_address/model/purchase_order.py:49
+#, python-format
+msgid "No picking types were found on warehouse. Please verify you have set an address on warehouse."
+msgstr ""
+
+#. module: purchase_delivery_address
+#: model:ir.model,name:purchase_delivery_address.model_stock_picking
+msgid "Picking List"
+msgstr ""
+
+#. module: purchase_delivery_address
+#: model:ir.model,name:purchase_delivery_address.model_purchase_order
+msgid "Purchase Order"
+msgstr ""
+

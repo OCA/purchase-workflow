@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <report
+      string="Comparative Bid Analysis"
+      id="action_report_purchase_requisitions"
+      model="purchase.requisition"
+      report_type="qweb-pdf"
+      attachment="(object.state in ('open', 'selected') and len(object.eligible_bid_ids)) and ('CBA-' + (object.name or '') + '-' + time.strftime('%Y%m%d%H%M') + '.pdf')"
+      name="purchase_requisition_bid_selection.report_purchaserequisitions"
+      file="purchase_requisition_bid_selection.report_purchaserequisitions"
+      />
+  </data>
+  <data noupdate="1">
+    <record id="paperformat_bid_selection" model="report.paperformat">
+      <field name="name">Bid selection</field>
+      <field name="orientation">Landscape</field>
+      <field name="margin_top">5</field>
+      <field name="margin_bottom">15</field>
+      <field name="header_spacing">5</field>
+    </record>
+
+    <record id="action_report_purchase_requisitions" model="ir.actions.report.xml">
+      <field name="paperformat_id" ref="paperformat_bid_selection"/>
+    </record>
+
+  </data>
+</openerp>

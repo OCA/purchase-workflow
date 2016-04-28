@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data noupdate="1">
+
+    <record id="route_warehouse0_buy_vci" model='stock.location.route'>
+      <field name="name">Buy VCI</field>
+      <field name="sequence">8</field>
+      <field name="product_selectable" eval="False"/>
+    </record>
+
+  </data>
+</openerp>

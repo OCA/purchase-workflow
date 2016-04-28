@@ -1,30 +1,43 @@
 Purchase Delivery Address
-============================
+=========================
 
-This module adds a delivery address to the purchase order, which is
-automatically propagated to a corresponding field in the generated picking.
+This module was merged into purchase_addresses
+(https://github.com/OCA/stock-logistics-transport)
+and will be dropped in v9.
 
-Some of this logic was present in the core, but is not functioning properly.
-More specifically, in the core, a dropshipping purchase order has two fields:
-partner_id is used for the supplier, and dest_address_id contains the address
-of the customer. This works, except that the address is not visible because of
-odoo/odoo#2950).
 
-On the other hand, the picking has only one field: the partner_id. By default,
-it takes the delivery address of the PO if there is one, or else the supplier.
-The stock.move also has a partner_id field that is filled with the same
-partner.  To make things even more confusing, in v7 the partner_id of the move
-is the supplier, while the partner_id of the picking is the customer address.
 
-This means that in v8 with core modules, we do not clearly see the supplier and
-the customer address of a picking. Those two fields are important to handle
-dropshipping.
+Bug Tracker
+===========
 
-With this module, in dropshipping mode the generated picking will have the
-supplier in the partner_id field, and the customer address in the new
-delivery_address_id field.
+Bugs are tracked on `GitHub Issues <https://github.com/OCA/purchase-workflow/issues>`_.
+In case of trouble, please check there if your issue has already been reported.
+If you spotted it first, help us smashing it by providing a detailed and welcomed feedback
+`here <https://github.com/OCA/purchase-workflow/issues/new?body=module:%20purchase_delivery_address%0Aversion:%208.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+
+
+Credits
+=======
+
 
 Contributors
 ------------
 
 * Leonardo Pistone <leonardo.pistone@camptocamp.com>
+* Alexandre Fayolle <alexandre.fayolle@camptocamp.com>
+
+
+Maintainer
+----------
+
+.. image:: http://odoo-community.org/logo.png
+   :alt: Odoo Community Association
+   :target: http://odoo-community.org
+
+This module is maintained by the OCA.
+
+OCA, or the Odoo Community Association, is a nonprofit organization whose
+mission is to support the collaborative development of Odoo features and
+promote its widespread use.
+
+To contribute to this module, please visit http://odoo-community.org.

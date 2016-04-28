@@ -37,11 +37,25 @@ class PurchaseOrderClassic(osv.orm.Model):
 class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
 
+    # Keep requisition_id when copying a PO or a bid
+    requisition_id = fields.Many2one(copy=True)
     bid_partial = fields.Boolean(
         'Bid partially selected',
         readonly=True,
         help="True if the bid has been partially selected")
+    keep_in_draft = fields.Boolean(
+        'Prevent validation of purchase order.',
+        help="Technical field used to prevent the PO that is automatically "
+        "generated from a Tender to be validated. It is checked on the "
+        "workflow transition.")
     delivery_remark = fields.Text('Delivery Remarks')
+    terms_of_payment = fields.Char()
+    country_of_origin = fields.Many2one('res.country')
+    volume_estimated = fields.Float('Volume estimated (m3)')
+    weight_estimated = fields.Float('Weight estimated (kg)')
+    meets_specifications = fields.Boolean()
+    bid_eligible = fields.Boolean()
+    bid_internal_remark = fields.Text('Internal remarks')
 
     @api.model
     def _prepare_purchase_order(self, requisition, supplier):
@@ -101,3 +115,19 @@ class PurchaseOrderLine(models.Model):
         'purchase.requisition.line',
         'Call for Bid Line',
         readonly=True)
+    country_of_origin = fields.Many2one('res.country',
+                                        related='order_id.country_of_origin')
+    incoterm_id = fields.Many2one('stock.incoterms',
+                                  string='Incoterm',
+                                  related='order_id.incoterm_id',
+                                  store=True)
+    incoterm_address = fields.Char('Incoterms place',
+                                   related='order_id.incoterm_address')
+    terms_of_payment = fields.Char(related='order_id.terms_of_payment')
+    meets_specifications = fields.Boolean(
+        related='order_id.meets_specifications',
+        store=True)
+    payment_term_id = fields.Many2one('account.payment.term',
+                                      related='order_id.payment_term_id')
+    bid_eligible = fields.Boolean(related='order_id.bid_eligible',
+                                  store=True)

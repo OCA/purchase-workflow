@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data noupdate="0">
+
+    <record id="view_purchase_order_type_tree" model="ir.ui.view">
+      <field name="name">purchase.order.type.tree</field>
+      <field name="model">purchase.order.type</field>
+      <field name="arch" type="xml">
+        <tree string="Purchase Order Types" editable="bottom">
+          <field name="name"/>
+          <field name="active"/>
+          <field name="invoice_method"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_purchase_order_type_search" model="ir.ui.view">
+      <field name="name">purchase.order.type.search</field>
+      <field name="model">purchase.order.type</field>
+      <field name="arch" type="xml">
+        <search string="Purchase Order Types">
+          <field name="name"/>
+        </search>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_purchase_order_type_view">
+      <field name="name">Purchase Order Types</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">purchase.order.type</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree</field>
+      <field name="search_view_id" ref="view_purchase_order_type_search"/>
+    </record>
+
+    <menuitem id="menu_purchase_order_type"
+      parent="purchase.menu_purchase_config_purchase"
+      sequence="40"
+      action="action_purchase_order_type_view"/>
+
+  </data>
+</openerp>

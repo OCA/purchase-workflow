@@ -1,0 +1,58 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * purchase_requisition_auto_rfq
+# 
+# Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: purchase-workflow (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-03-08 10:16+0000\n"
+"PO-Revision-Date: 2016-03-09 09:23+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: purchase_requisition_auto_rfq
+#: code:addons/purchase_requisition_auto_rfq/model/purchase_requisition.py:49
+#, python-format
+msgid ""
+"<p><b>RFQ generation</b></p><p>The following products have no registered "
+"suppliers and are not included in the generated RFQs:<ul>%s</ul></p>"
+msgstr "<p><b>Ustvarjanje povpraševanj</b></p><p>Za sledeče proizvode ni registriranih dobaviteljev in niso vključeni v ustvarjena povpraševanja:<ul>%s</ul></p>"
+
+#. module: purchase_requisition_auto_rfq
+#: model:product.template,name:purchase_requisition_auto_rfq.blankets_product_template
+msgid "Blankets"
+msgstr "Splošne odredbe"
+
+#. module: purchase_requisition_auto_rfq
+#: view:purchase.requisition:purchase_requisition_auto_rfq.purchase_requisition_form_inherit
+msgid "Generate RFQs from suppliers"
+msgstr "Ustvari povpraševanja iz dobaviteljev"
+
+#. module: purchase_requisition_auto_rfq
+#: model:product.template,name:purchase_requisition_auto_rfq.kitchenset_product_template
+msgid "Kitchen Set"
+msgstr "Kuhinjska oprema"
+
+#. module: purchase_requisition_auto_rfq
+#: model:ir.model,name:purchase_requisition_auto_rfq.model_purchase_requisition
+msgid "Purchase Requisition"
+msgstr "Nabavni zahtevek"
+
+#. module: purchase_requisition_auto_rfq
+#: code:addons/purchase_requisition_auto_rfq/model/purchase_requisition.py:56
+#, python-format
+msgid "RFQ Generation"
+msgstr "Ustvarjanje povpraševanj"
+
+#. module: purchase_requisition_auto_rfq
+#: model:product.template,name:purchase_requisition_auto_rfq.tarpaulin_product_template
+msgid "Tarpaulin"
+msgstr "Tarpaulin"

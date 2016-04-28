@@ -22,7 +22,7 @@
 
 {
     'name': 'Purchase Fiscal Position Update',
-    'version': '1.0',
+    'version': '8.0.1.0.0',
     'category': 'Purchase Management',
     'license': 'AGPL-3',
     'summary': 'Changing the fiscal position of a purchase order will '
@@ -36,7 +36,9 @@ the taxes on all the purchase order lines which have a product are
 automatically updated. The purchase order lines without a product are not
 updated and a warning is displayed to the user in this case.
 """,
-    'author': 'Julius Network Solutions, Akretion',
+    'author': "Julius Network Solutions,"
+              "Akretion,"
+              "Odoo Community Association (OCA)",
     'depends': ['purchase'],
     'data': [],
     'installable': True,
