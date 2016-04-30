@@ -42,6 +42,7 @@ class ImportInvoiceLine(models.TransientModel):
         self.env['purchase.cost.distribution.expense'].create({
             'distribution': self.env.context['active_id'],
             'invoice_line': self.invoice_line.id,
+            'invoice_id': self.invoice_line.invoice_id.id,
             'ref': self.invoice_line.name,
             'expense_amount': self.invoice_line.price_subtotal,
             'type': self.expense_type.id,

@@ -489,8 +489,20 @@ class PurchaseCostDistributionExpense(models.Model):
         comodel_name='account.invoice.line', string="Supplier invoice line",
         domain="[('invoice_id.type', '=', 'in_invoice'),"
                "('invoice_id.state', 'in', ('open', 'paid'))]")
+    invoice_id = fields.Many2one(
+        comodel_name='account.invoice', string="Invoice")
 
     @api.onchange('type')
     def onchange_type(self):
         if self.type and self.type.default_amount:
             self.expense_amount = self.type.default_amount
+
+    @api.onchange('invoice_line')
+    def onchange_invoice_line(self):
+        self.invoice_id = self.invoice_line.invoice_id.id
+        self.expense_amount = self.invoice_line.price_subtotal
+
+    @api.multi
+    def button_duplicate(self):
+        for expense in self:
+            expense.copy()
