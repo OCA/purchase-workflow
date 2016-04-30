@@ -262,5 +262,29 @@
 			</field>
 		</record>
 
+        <record id="view_purchase_cost_distribution_expense_invoice_form" model="ir.ui.view">
+            <field name="model">purchase.cost.distribution.expense</field>
+            <field name="arch" type="xml">
+				<tree string="Cost distribution expenses"
+					  options="{'reload_on_button': true}"
+					  editable="bottom"
+					  create="0">
+					<field name="invoice_line"
+						   options="{'no_create': true, 'create_edit': false}"
+						   domain="[('invoice_id', '=', parent.id)]"
+					/>
+					<field name="type" />
+					<field name="calculation_method" />
+					<field name="expense_amount" />
+					<field name="distribution" readonly="1"/>
+					<button name="button_duplicate"
+							string="Duplicate expense"
+							type="object"
+							icon="gtk-dnd-multiple"
+					/>
+				</tree>
+            </field>
+        </record>
+
 	</data>
 </openerp>
