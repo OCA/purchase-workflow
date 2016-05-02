@@ -26,20 +26,22 @@ class PurchaseOrder(models.Model):
     @api.multi
     def purchase_confirm(self):
         self.ensure_one()
-        self.wkf_confirm_order()
         products_to_update = []
         products_to_update = self._check_product_supplierinfo()
         if products_to_update:
+            if self.partner_id.parent_id:
+                supplier_id = self.partner_id.parent_id
+            else:
+                supplier_id = self.partner_id
             ctx = dict(
-                default_supplier_id=self.partner_id.id,
                 default_product_ids=[(6, 0, products_to_update)],
             )
             add_supplierinfo_form = self.env.ref(
                 'purchase_add_product_supplierinfo.'
                 'view_purchase_add_supplierinfo_form', False)
             return {
-                'name': _('Associate the products and the supplier '
-                          'of this purchase order.'),
+                'name': _("Associate the supplier '%s' with the products "
+                          "of this purchase order.") % supplier_id.name,
                 'type': 'ir.actions.act_window',
                 'view_type': 'form',
                 'view_mode': 'form',
@@ -49,30 +51,3 @@ class PurchaseOrder(models.Model):
                 'target': 'new',
                 'context': ctx,
             }
-
-    #@api.multi
-    #def purchase_approve(self):
-    #    self.ensure_one()
-    #    self.wkf_approve_order()
-    #    products_to_update = []
-    #    products_to_update = self._check_product_supplierinfo()
-    #    if products_to_update:
-    #        ctx = dict(
-    #            default_supplier_id=self.partner_id.id,
-    #            default_product_ids=[(6, 0, products_to_update)],
-    #        )
-    #        add_supplierinfo_form = self.env.ref(
-    #            'purchase_add_product_supplierinfo.'
-    #            'view_purchase_add_supplierinfo_form', False)
-    #        return {
-    #            'name': _('Associate the products and the supplier '
-    #                      'of this purchase order.'),
-    #            'type': 'ir.actions.act_window',
-    #            'view_type': 'form',
-    #            'view_mode': 'form',
-    #            'res_model': 'purchase.add.product.supplierinfo',
-    #            'views': [(add_supplierinfo_form.id, 'form')],
-    #            'view_id': add_supplierinfo_form.id,
-    #            'target': 'new',
-    #            'context': ctx,
-    #        }

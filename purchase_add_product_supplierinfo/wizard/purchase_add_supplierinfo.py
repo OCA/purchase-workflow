@@ -11,14 +11,19 @@ class PurchaseAddProductSupplierinfo(models.TransientModel):
 
     product_ids = fields.Many2many('product.product',
                                    string='Products')
-    supplier_id = fields.Many2one('res.partner',
-                                  string='Supplier')
 
     @api.multi
     def add_product_supplierinfo(self):
+        order = self.env['purchase.order'].browse(
+            self._context['active_id'])
+        order.signal_workflow('purchase_confirm')
+        if order.partner_id.parent_id:
+            supplier_id = order.partner_id.parent_id
+        else:
+            supplier_id = order.partner_id
         for product in self.product_ids:
             self.env['product.supplierinfo'].create({
-                'name': self.supplier_id.id,
+                'name': supplier_id.id,
                 'product_id': product.id,
                 'min_qty': 0.0,
                 'delay': 1,

@@ -6,8 +6,6 @@
         <field name="model">purchase.add.product.supplierinfo</field>
         <field name="arch" type="xml">
             <form string="Add supplier to products">
-                <separator string="Supplier to associate products"/>
-                <field name="supplier_id" nolabel="1" readonly="1" options="{'no_open': True}"/>
                 <separator string="List of products to update"/>
                 <field name="product_ids" nolabel="1" widget="many2many_tags"/>
                 <footer>

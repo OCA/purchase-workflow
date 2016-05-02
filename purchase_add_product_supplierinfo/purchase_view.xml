@@ -12,9 +12,6 @@
                 <xpath expr="//button[@name='purchase_confirm'][@states='bid']" position="attributes">
                     <attribute name="type">object</attribute>
                 </xpath>
-                <!--<xpath expr="//button[@name='purchase_approve']" position="attributes">
-                    <attribute name="type">object</attribute>
-                </xpath>-->
             </field>
         </record>
 
