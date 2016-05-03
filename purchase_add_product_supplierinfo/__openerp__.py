@@ -17,7 +17,7 @@
     'installable': True,
     'depends': [
         'purchase',
-        'product_supplierinfo_variant'
+        'product_variant_supplierinfo'
     ],
     'data': [
         'purchase_view.xml',
