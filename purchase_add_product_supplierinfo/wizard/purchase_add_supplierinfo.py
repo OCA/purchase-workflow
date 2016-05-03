@@ -14,13 +14,13 @@ class PurchaseAddProductSupplierinfo(models.TransientModel):
 
     @api.multi
     def add_product_supplierinfo(self):
-        order = self.env['purchase.order'].browse(
+        purchase = self.env['purchase.order'].browse(
             self._context['active_id'])
-        order.signal_workflow('purchase_confirm')
-        if order.partner_id.parent_id:
-            supplier_id = order.partner_id.parent_id
+        purchase.signal_workflow('purchase_confirm')
+        if purchase.partner_id.parent_id:
+            supplier_id = purchase.partner_id.parent_id
         else:
-            supplier_id = order.partner_id
+            supplier_id = purchase.partner_id
         for product in self.product_ids:
             self.env['product.supplierinfo'].create({
                 'name': supplier_id.id,

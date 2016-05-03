@@ -51,3 +51,5 @@ class PurchaseOrder(models.Model):
                 'target': 'new',
                 'context': ctx,
             }
+        else:
+            self.signal_workflow('purchase_confirm')
