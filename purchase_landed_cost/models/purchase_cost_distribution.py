@@ -294,7 +294,6 @@ class PurchaseCostDistribution(models.Model):
 class PurchaseCostDistributionLine(models.Model):
     _name = "purchase.cost.distribution.line"
     _description = "Purchase cost distribution Line"
-    _rec_name = 'picking_id'
 
     @api.one
     @api.depends('product_price_unit', 'product_qty')
@@ -430,6 +429,14 @@ class PurchaseCostDistributionLine(models.Model):
     total_volume = fields.Float(
         compute=_compute_total_volume, string='Line volume', store=True,
         help="The line volume in m3.")
+
+    @api.multi
+    def name_get(self):
+        res = []
+        for record in self:
+            res.append((record.id, "%s / %s" % (
+                record.picking_id.name, record.product_id.name_get()[0][1])))
+        return res
 
 
 class PurchaseCostDistributionLineExpense(models.Model):
