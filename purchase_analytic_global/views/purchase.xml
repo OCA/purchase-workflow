@@ -6,11 +6,10 @@
       <field name="model">purchase.order</field>
       <field name="inherit_id" ref="purchase.purchase_order_form"/>
       <field name="arch" type="xml">
-        <xpath expr="/form/sheet/group/group/field[@name='pricelist_id']" position="after">
+        <xpath expr="//field[@name='partner_ref']" position="after">
           <field name="account_analytic_id"
             groups="purchase.group_analytic_accounting"
-            on_change="onchange_default_analytic_id(account_analytic_id, order_line)"
-            domain="[('type','not in',('view','template'))]"
+            domain="[('account_type','=','normal')]"
             />
         </xpath>
         <field name="order_line" position="attributes">
