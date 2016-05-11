@@ -36,7 +36,7 @@ class PurchaseOrderLine(models.Model):
                  'invoice_lines.quantity', 'cancelled_qty')
     def _compute_fully_invoiced(self):
         self.fully_invoiced = \
-            (self.invoiced_qty + self.cancelled_qty == self.product_qty)
+            (self.invoiced_qty + self.cancelled_qty >= self.product_qty)
 
     @api.one
     def _compute_all_invoices_approved(self):
@@ -103,6 +103,7 @@ class AccountInvoice(models.Model):
             .search([('invoice_ids', 'in', self.ids)])
         for purchase_order in po_ids:
             for po_line in purchase_order.order_line:
-                if po_line.invoiced_qty != po_line.product_qty:
+                total_quantity = po_line.invoiced_qty + po_line.cancelled_qty
+                if total_quantity < po_line.product_qty:
                     po_line.invoiced = False
         return res
