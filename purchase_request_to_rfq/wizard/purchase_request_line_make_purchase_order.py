@@ -183,17 +183,14 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             line_location = line.procurement_id and \
                 line.procurement_id.location_id or False
 
-            if location is not False and line_location != location:
+            if location is not False and line_location != location and\
+                    line_location:
                 raise exceptions.Warning(
                     _('You have to select lines '
                       'from the same procurement location.'))
             else:
                 location = line_location
 
-            # TODO: Please review
-            # kittiu: Error will be raised if no location,
-            #         this occur if use purchse_request to create order
-            #         should we use location from picking type?
             if not location:
                 location = picking_type.default_location_dest_id
 
