@@ -3,13 +3,23 @@
 # * procurement_batch_generator
 # 
 # Translators:
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
+# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2016
+# Carles Antoli <carlesantoli@hotmail.com>, 2016
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012
+# Kostas Goutoudis <goutoudis@gmail.com>, 2015
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Paolo Valier, 2016
+# Pedro Castro Silva <pedrocs@sossia.pt>, 2015
+# Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
+# SaFi J. <safi2266@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-08 10:15+0000\n"
-"PO-Revision-Date: 2016-03-08 11:54+0000\n"
+"POT-Creation-Date: 2016-05-14 02:42+0000\n"
+"PO-Revision-Date: 2016-05-12 05:25+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -42,6 +52,12 @@ msgid "Created on"
 msgstr "Ustvarjeno"
 
 #. module: procurement_batch_generator
+#: field:procurement.batch.generator,display_name:0
+#: field:procurement.batch.generator.line,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: procurement_batch_generator
 #: field:procurement.batch.generator,id:0
 #: field:procurement.batch.generator.line,id:0
 msgid "ID"
@@ -51,6 +67,12 @@ msgstr "ID"
 #: field:procurement.batch.generator.line,incoming_qty:0
 msgid "Incoming Quantity"
 msgstr "Prihajajoča količina"
+
+#. module: procurement_batch_generator
+#: field:procurement.batch.generator,__last_update:0
+#: field:procurement.batch.generator.line,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator,write_uid:0
