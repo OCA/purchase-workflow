@@ -3,56 +3,46 @@
 # * purchase_last_price_info
 # 
 # Translators:
-# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2015
-# Antonio Trueba, 2016
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2012,2014
-# Gustavo Lepri <gustavolepri@gmail.com>, 2015
-# Hotellook, 2014
-# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
-# Paolo Valier, 2016
-# Rudolf Schnapka <rs@techno-flex.de>, 2015-2016
-# Thomas A. Jaeger, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-05-14 02:43+0000\n"
-"PO-Revision-Date: 2016-05-12 05:27+0000\n"
-"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
-"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/sl/)\n"
+"PO-Revision-Date: 2016-05-11 13:28+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: English (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: purchase_last_price_info
 #: view:product.product:purchase_last_price_info.product_last_purchase_info_form_view
 msgid "Last Price Info"
-msgstr "Podatki o zadnji ceni"
+msgstr "Last Price Info"
 
 #. module: purchase_last_price_info
 #: field:product.product,last_purchase_date:0
 msgid "Last Purchase Date"
-msgstr "Datum zadnje nabave"
+msgstr "Last Purchase Date"
 
 #. module: purchase_last_price_info
 #: field:product.product,last_purchase_price:0
 msgid "Last Purchase Price"
-msgstr "Cena zadnje nabave"
+msgstr "Last Purchase Price"
 
 #. module: purchase_last_price_info
 #: field:product.product,last_supplier_id:0
 msgid "Last Supplier"
-msgstr "Zadnji dobavitelj"
+msgstr "Last Supplier"
 
 #. module: purchase_last_price_info
 #: model:ir.model,name:purchase_last_price_info.model_product_product
 msgid "Product"
-msgstr "Proizvod"
+msgstr "Product"
 
 #. module: purchase_last_price_info
 #: view:product.product:purchase_last_price_info.product_last_purchase_info_form_view
 msgid "Purchase"
-msgstr "Nabava"
+msgstr "Purchase"

@@ -3,13 +3,14 @@
 # * purchase_order_reorder_lines
 # 
 # Translators:
+# Hotellook, 2014
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-08 10:15+0000\n"
-"PO-Revision-Date: 2016-03-08 12:00+0000\n"
+"POT-Creation-Date: 2016-05-14 02:43+0000\n"
+"PO-Revision-Date: 2016-05-12 05:27+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -22,6 +23,11 @@ msgstr ""
 #: help:purchase.order.line,sequence:0
 msgid "Gives the sequence of this line when displaying the purchase order."
 msgstr "Poda zaporedje postavke pri prikazu nabavnega naloga."
+
+#. module: purchase_order_reorder_lines
+#: field:purchase.order,max_line_sequence:0
+msgid "Max sequence in lines"
+msgstr "Maksimalno zaporedje v postavkah"
 
 #. module: purchase_order_reorder_lines
 #: model:ir.model,name:purchase_order_reorder_lines.model_purchase_order
