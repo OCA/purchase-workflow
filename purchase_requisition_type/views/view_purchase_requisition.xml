@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- © 2016 OpenSynergy Indonesia
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+
+<openerp>
+<data>
+
+<record id="purchase_requisition_type_view_form" model="ir.ui.view">
+    <field name="name">Purchase Requisition Type</field>
+    <field name="model">purchase.requisition</field>
+    <field name="inherit_id" ref="purchase_requisition.view_purchase_requisition_form"/>
+    <field name="arch" type="xml">
+        <xpath expr="//field[@name='user_id']" position="after">
+            <field name="order_type"/>
+        </xpath>
+    </field>
+</record>
+
+</data>
+</openerp>
