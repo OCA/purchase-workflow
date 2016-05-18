@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="purchase_order_tree_inherit_purchase_free_shipping" model="ir.ui.view">
+            <field name="name">purchase.order.tree.inherit.purchase.free.shipping</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_tree" />
+            <field name="arch" type="xml">
+                 <field name="amount_total" position="after">
+                     <field name="free_shipping_amount" readonly="1"/>
+                 </field>
+                 <xpath expr="//tree" position="attributes">
+                    <attribute name="colors">grey:state=='cancel';red:state in
+                        ('except_invoice','except_picking');orange:amount_untaxed
+                        &lt; free_shipping_amount;</attribute>
+                 </xpath>
+            </field>
+        </record>
+
+        <record id="purchase_order_form_inherit_purchase_free_shipping" model="ir.ui.view">
+            <field name="name">purchase.order.form.inherit.purchase.free.shipping</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form" />
+            <field name="arch" type="xml">
+                 <field name="amount_total" position="after">
+                     <field name="free_shipping_amount"
+                            readonly="1"
+                            attrs="{'invisible':[('free_shipping_amount', '=', 0)]}"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"/>
+                 </field>
+            </field>
+        </record>
+    </data>
+</openerp>
+

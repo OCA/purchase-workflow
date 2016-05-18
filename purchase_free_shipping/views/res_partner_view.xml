@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="res_partner_view_form_inherit_purchase_free_shipping" model="ir.ui.view">
+            <field name="name">res.partner.view.form.inherit.purchase.free.shipping</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="groups_id" eval="[(4, ref('purchase.group_purchase_manager'))]"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='sales_purchases']//field[@name='supplier']" position="after">
+                    <field name="free_shipping_amount" attrs="{'invisible': [('supplier','=',False)]}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
+
