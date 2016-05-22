@@ -3,13 +3,22 @@
 # * framework_agreement
 # 
 # Translators:
+# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2015-2016
+# Alejandro Santana <alejandrosantana@anubia.es>, 2015
+# Antonio Trueba, 2016
+# Carles Antoli <carlesantoli@hotmail.com>, 2015-2016
+# danimaribeiro <danimaribeiro@gmail.com>, 2016
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010,2012
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
+# SaFi J. <safi2266@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-08 10:15+0000\n"
-"PO-Revision-Date: 2016-03-08 10:16+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2016-05-15 09:24+0000\n"
+"PO-Revision-Date: 2016-05-18 20:51+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -67,6 +76,7 @@ msgstr ""
 
 #. module: framework_agreement
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view
+#: selection:framework.agreement,state:0
 msgid "Closed"
 msgstr ""
 
@@ -76,12 +86,14 @@ msgid "Companies"
 msgstr ""
 
 #. module: framework_agreement
+#: field:framework.agreement,company_id:0
 #: field:framework.agreement.portfolio,company_id:0
 msgid "Company"
 msgstr ""
 
 #. module: framework_agreement
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view
+#: selection:framework.agreement,state:0
 msgid "Consumed"
 msgstr ""
 
@@ -91,7 +103,7 @@ msgstr ""
 #: field:framework.agreement.portfolio,create_uid:0
 #: field:framework.agreement.pricelist,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Criado por"
 
 #. module: framework_agreement
 #: field:framework.agreement,create_date:0
@@ -99,7 +111,7 @@ msgstr ""
 #: field:framework.agreement.portfolio,create_date:0
 #: field:framework.agreement.pricelist,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Criado em"
 
 #. module: framework_agreement
 #: field:framework.agreement.pricelist,currency_id:0
@@ -127,7 +139,16 @@ msgid "Delivery Remarks"
 msgstr ""
 
 #. module: framework_agreement
+#: field:framework.agreement,display_name:0
+#: field:framework.agreement.line,display_name:0
+#: field:framework.agreement.portfolio,display_name:0
+#: field:framework.agreement.pricelist,display_name:0
+msgid "Display Name"
+msgstr "Mostrar Nome"
+
+#. module: framework_agreement
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view
+#: selection:framework.agreement,state:0
 msgid "Draft"
 msgstr ""
 
@@ -168,6 +189,7 @@ msgstr ""
 
 #. module: framework_agreement
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view
+#: selection:framework.agreement,state:0
 msgid "Future"
 msgstr ""
 
@@ -182,7 +204,7 @@ msgstr ""
 #: field:framework.agreement.portfolio,id:0
 #: field:framework.agreement.pricelist,id:0
 msgid "ID"
-msgstr ""
+msgstr "Identificação"
 
 #. module: framework_agreement
 #: help:res.company,one_agreement_per_product:0
@@ -220,12 +242,20 @@ msgid "Is draft"
 msgstr ""
 
 #. module: framework_agreement
+#: field:framework.agreement,__last_update:0
+#: field:framework.agreement.line,__last_update:0
+#: field:framework.agreement.portfolio,__last_update:0
+#: field:framework.agreement.pricelist,__last_update:0
+msgid "Last Modified on"
+msgstr "Ultima Modificação em"
+
+#. module: framework_agreement
 #: field:framework.agreement,write_uid:0
 #: field:framework.agreement.line,write_uid:0
 #: field:framework.agreement.portfolio,write_uid:0
 #: field:framework.agreement.pricelist,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultima Atualização por"
 
 #. module: framework_agreement
 #: field:framework.agreement,write_date:0
@@ -233,7 +263,7 @@ msgstr ""
 #: field:framework.agreement.portfolio,write_date:0
 #: field:framework.agreement.pricelist,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultima Atualização em"
 
 #. module: framework_agreement
 #: field:framework.agreement,delay:0
@@ -312,6 +342,7 @@ msgstr ""
 #. module: framework_agreement
 #: field:framework.agreement,portfolio_id:0
 #: field:purchase.order,portfolio_id:0
+#: field:purchase.order.line,portfolio_id:0
 msgid "Portfolio"
 msgstr ""
 
@@ -353,7 +384,7 @@ msgstr ""
 #: field:framework.agreement,product_id:0
 #: model:ir.model,name:framework_agreement.model_product_product
 msgid "Product"
-msgstr ""
+msgstr "Produto"
 
 #. module: framework_agreement
 #: model:ir.model,name:framework_agreement.model_purchase_order
@@ -363,7 +394,7 @@ msgstr "Ordem de Compra"
 #. module: framework_agreement
 #: model:ir.model,name:framework_agreement.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Linha da Ordem de Compra"
 
 #. module: framework_agreement
 #: field:framework.agreement,purchase_line_ids:0
@@ -377,6 +408,7 @@ msgstr ""
 
 #. module: framework_agreement
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view
+#: selection:framework.agreement,state:0
 msgid "Running"
 msgstr ""
 
@@ -391,11 +423,17 @@ msgid "Start/end date inversion"
 msgstr ""
 
 #. module: framework_agreement
+#: field:framework.agreement,state:0
+msgid "State"
+msgstr ""
+
+#. module: framework_agreement
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view
+#: field:framework.agreement,supplier_id:0
 #: view:framework.agreement.portfolio:framework_agreement.portfolio_search_view
 #: field:framework.agreement.portfolio,supplier_id:0
 msgid "Supplier"
-msgstr ""
+msgstr "Fornecedor"
 
 #. module: framework_agreement
 #: sql_constraint:framework.agreement.portfolio:0

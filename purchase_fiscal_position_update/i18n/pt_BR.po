@@ -3,13 +3,28 @@
 # * purchase_fiscal_position_update
 # 
 # Translators:
+# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2015
+# Antonio Trueba, 2016
+# Armando Vulcano Junior <vulcano@uol.com.br>, 2015
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
+# danimaribeiro <danimaribeiro@gmail.com>, 2016
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012,2014
+# Hotellook, 2014
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# Paolo Valier, 2016
+# Paulo Ricardo <ti@shoppingescritorio.com.br>, 2016
+# Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
+# SaFi J. <safi2266@gmail.com>, 2015
+# Stéphane Bidoul <sbi@skynet.be>, 2015
+# Yael Terrettaz, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-08 10:15+0000\n"
-"PO-Revision-Date: 2016-03-08 10:16+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2016-05-15 09:24+0000\n"
+"PO-Revision-Date: 2016-05-18 16:49+0000\n"
+"Last-Translator: Paulo Ricardo <ti@shoppingescritorio.com.br>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -37,7 +52,7 @@ msgid ""
 "The following Purchase Order Lines were not updated to the new Fiscal Position because they don't have a Product:\n"
 "- %s\n"
 "You should update the Taxes of these Purchase Order Lines manually."
-msgstr ""
+msgstr "The following Purchase Order Lines were not updated to the new Fiscal Position because they don't have a Product:\n - %s\n You should update the Taxes of these Purchase Order Lines manually."
 
 #. module: purchase_fiscal_position_update
 #: code:addons/purchase_fiscal_position_update/purchase.py:49

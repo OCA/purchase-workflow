@@ -3,13 +3,17 @@
 # * purchase_all_shipments
 # 
 # Translators:
+# Alejandro Santana <alejandrosantana@anubia.es>, 2015
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010
+# Hotellook, 2014
+# Paulo Ricardo <ti@shoppingescritorio.com.br>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-08 10:15+0000\n"
-"PO-Revision-Date: 2016-03-08 10:16+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2016-05-15 09:24+0000\n"
+"PO-Revision-Date: 2016-05-18 17:03+0000\n"
+"Last-Translator: Paulo Ricardo <ti@shoppingescritorio.com.br>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,13 +23,15 @@ msgstr ""
 
 #. module: purchase_all_shipments
 #: view:purchase.order:purchase_all_shipments.purchase_order_2_stock_picking
+#: field:purchase.order,all_picking_ids:0
+#: field:purchase.order,all_shipment_count:0
 msgid "All Shipments"
-msgstr ""
+msgstr "Todas as Transferências"
 
 #. module: purchase_all_shipments
 #: view:purchase.order:purchase_all_shipments.purchase_order_2_stock_picking
 msgid "All Shipments, including chained"
-msgstr ""
+msgstr "Todas as Transferências, incluindo os Encadeados"
 
 #. module: purchase_all_shipments
 #: model:ir.model,name:purchase_all_shipments.model_purchase_order
