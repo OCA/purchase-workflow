@@ -25,6 +25,6 @@ class PurchaseRequisition(models.Model):
             requisition, supplier)
 
         if requisition.order_type:
-            res.update({'order_type': requisition.order_type})
+            res.update({'order_type': requisition.order_type.id})
 
         return res
