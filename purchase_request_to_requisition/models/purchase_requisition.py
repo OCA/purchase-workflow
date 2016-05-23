@@ -52,7 +52,7 @@ class PurchaseRequisition(models.Model):
                 request = request_obj.browse(request_id)
                 message = self._purchase_request_confirm_message_content(
                     pr, request, requests_dict[request_id])
-                request.message_post(body=message)
+                request.message_post(body=message, subtype='mail.mt_comment')
         return True
 
     @api.multi
