@@ -54,5 +54,7 @@ class TestPreparePurchaseOrder(TransactionCase):
         data_prepare_po = self.obj_purchase_requisition.\
             _prepare_purchase_order(purchase_requisition, self.supplier)
 
-        self.assertEqual(data_prepare_po.get('order_type'), self.order_type.id)
-        self.assertEqual(data_prepare_po.get('invoice_method'), self.order_type.invoice_method)
+        order_type = data_prepare_po.get('order_type')
+
+        self.assertEqual(order_type, self.order_type.id)
+        self.assertEqual(order_type, self.order_type.invoice_method)
