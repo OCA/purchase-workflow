@@ -40,6 +40,7 @@ addon | version | summary
 [purchase_requisition_delivery_address](purchase_requisition_delivery_address/) | 8.0.0.2.0 | Deprecated: install purchase_requisition_transport_multi_address instead
 [purchase_requisition_multicurrency](purchase_requisition_multicurrency/) | 8.0.0.1.0 | Purchase Requisition Multicurrency
 [purchase_requisition_transport_document](purchase_requisition_transport_document/) | 8.0.0.1.0 | Add Transport Documents to Purchase Requisitions
+[purchase_requisition_type](purchase_requisition_type/) | 8.0.1.0.0 | Add order type to purchase requisition
 [purchase_rfq_bid_workflow](purchase_rfq_bid_workflow/) | 8.0.0.3.0 | Improve the purchase workflow to manage RFQ, Bids, and Orders
 [purchase_rfq_number](purchase_rfq_number/) | 8.0.1.0.0 | Adds a sequence on purchase RFQ
 [purchase_transport_document](purchase_transport_document/) | 8.0.0.1.0 | Add a new Transport Document object in the Purchase Order
