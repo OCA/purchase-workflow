@@ -4,8 +4,8 @@
 
 {
     'name': 'Purchase Add Product Supplierinfo',
-    'summary': 'From the purchase order, '
-    'allow to automatic complete with partner, '
+    'summary': 'In the purchase order, '
+    'allow automatically complete with partner, '
     'the supplierinfo list for all products '
     'which are not related to this supplier',
     'version': '8.0.1.0.0',
@@ -13,7 +13,6 @@
     'website': 'http://akretion.com',
     'author': 'Akretion, Odoo Community Association (OCA)',
     'license': 'AGPL-3',
-    'application': False,
     'installable': True,
     'depends': [
         'purchase',

@@ -9,32 +9,30 @@ class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
 
     @api.model
-    def _get_product_supplierinfo_domain(self, product_id):
-        return [('product_id', '=', product_id.id),
-                ('name', '=', self.partner_id.id)]
-
-    @api.model
     def _check_product_supplierinfo(self):
-        products = []
+        lines = []
         for line in self.order_line:
-            domain = self._get_product_supplierinfo_domain(line.product_id)
-            result = self.env['product.supplierinfo'].search(domain)
-            if not result:
-                products.append(line.product_id.id)
-        return products
+            suppinfo = self.env['product.supplierinfo'].search([
+                ('product_id', '=', line.product_id.id),
+                ('name', '=', self.partner_id.id)])
+            if not suppinfo:
+                lines.append((0, 0, {
+                    'name': line.name,
+                    'product_id': line.product_id.id,
+                }))
+        return lines
 
     @api.multi
     def purchase_confirm(self):
         self.ensure_one()
-        products_to_update = []
-        products_to_update = self._check_product_supplierinfo()
-        if products_to_update:
+        lines_for_update = self._check_product_supplierinfo()
+        if lines_for_update:
             if self.partner_id.parent_id:
                 supplier_id = self.partner_id.parent_id
             else:
                 supplier_id = self.partner_id
             ctx = dict(
-                default_product_ids=[(6, 0, products_to_update)],
+                default_wizard_line_ids=lines_for_update,
             )
             add_supplierinfo_form = self.env.ref(
                 'purchase_add_product_supplierinfo.'

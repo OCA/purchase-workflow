@@ -7,7 +7,11 @@
         <field name="arch" type="xml">
             <form string="Add supplier to products">
                 <separator string="List of products to update"/>
-                <field name="product_ids" nolabel="1" widget="many2many_tags"/>
+                <field name="wizard_line_ids">
+                    <tree create="false">
+                        <field name="name"/>
+                    </tree>
+                </field>
                 <footer>
                     <button name="add_product_supplierinfo"
                             string="Confirm"
