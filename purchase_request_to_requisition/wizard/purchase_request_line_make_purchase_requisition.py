@@ -3,7 +3,8 @@
 # - Jordi Ballester Alomar
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from openerp import api, fields, models, _, exceptions
+from openerp import api, fields, models, exceptions
+from openerp.tools.translate import _
 import openerp.addons.decimal_precision as dp
 
 
