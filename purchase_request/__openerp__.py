@@ -23,7 +23,7 @@
     "name": "Purchase Request",
     "author": "Eficent, "
               "Odoo Community Association (OCA)",
-    "version": "1.0",
+    "version": "8.0.1.0.0",
     "contributors": [
         'Jordi Ballester Alomar',
     ],
@@ -43,11 +43,6 @@
     ],
     'demo': [
         "demo/purchase_request_demo.xml",
-    ],
-    'test': [
-        "test/purchase_request_users.yml",
-        "test/purchase_request_data.yml",
-        "test/purchase_request_status.yml"
     ],
     "license": 'AGPL-3',
     "installable": True
