@@ -51,6 +51,7 @@ Contributors
 
 * Eficent <contact@eficent.com>
 * Jordi Ballester Alomar <jordi.ballester@eficent.com>
+* Jonathan Nemry <jonathan.nemry@acsone.eu>
 
 
 Maintainer
