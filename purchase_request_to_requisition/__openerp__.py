@@ -5,7 +5,7 @@
 
 {
     "name": "Purchase Request to Call for Bids",
-    "version": "1.0",
+    "version": "8.0.1.0.0",
     "author": "Eficent, "
               "Odoo Community Association (OCA)",
     "website": "www.eficent.com",
