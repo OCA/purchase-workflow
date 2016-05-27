@@ -16,11 +16,6 @@
         "views/purchase_request_view.xml",
         "views/purchase_requisition_view.xml",
     ],
-    "test": [
-        'test/purchase_request_users.yml',
-        'test/purchase_request_data.yml',
-        'test/purchase_request.yml',
-    ],
     "license": 'AGPL-3',
     "installable": True
 }

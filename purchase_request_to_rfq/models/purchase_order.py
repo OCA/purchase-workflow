@@ -107,6 +107,7 @@ class PurchaseOrderLine(models.Model):
         'purchase_order_line_id',
         'purchase_request_line_id',
         'Purchase Request Lines', readonly=True)
+
     has_purchase_request_lines = fields.Boolean(
         compute="_has_purchase_request_lines",
         string="Has Purchase Request Lines")
