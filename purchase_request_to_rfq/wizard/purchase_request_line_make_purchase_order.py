@@ -46,7 +46,6 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             'name': line.name or line.product_id.name,
             'product_qty': line.product_qty,
             'product_uom_id': line.product_uom_id.id,
-            'analytic_account_id': line.analytic_account_id.id,
         }
 
     @api.model

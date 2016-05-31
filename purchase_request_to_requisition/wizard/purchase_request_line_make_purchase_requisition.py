@@ -3,7 +3,8 @@
 # - Jordi Ballester Alomar
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from openerp import api, fields, models, _, exceptions
+from openerp import api, fields, models, exceptions
+from openerp.tools.translate import _
 import openerp.addons.decimal_precision as dp
 
 
@@ -34,8 +35,8 @@ class PurchaseRequestLineMakePurchaseRequisition(models.TransientModel):
         res = super(PurchaseRequestLineMakePurchaseRequisition,
                     self).default_get(fields)
         request_line_obj = self.env['purchase.request.line']
-        request_line_ids = self.env.context['active_ids'] or []
-        active_model = self.env.context['active_model']
+        request_line_ids = self.env.context.get('active_ids')
+        active_model = self.env.context.get('active_model')
 
         if not request_line_ids:
             return res
