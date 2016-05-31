@@ -10,7 +10,11 @@
               "Odoo Community Association (OCA)",
     "website": "www.eficent.com",
     "category": "Purchase Management",
-    "depends": ["purchase_request_procurement", "purchase_requisition"],
+    "depends": [
+        "purchase_request_procurement",
+        "purchase_requisition"
+        "purchase_request_to_rfq",
+    ],
     "data": [
         "wizard/purchase_request_line_make_purchase_requisition_view.xml",
         "views/purchase_request_view.xml",
