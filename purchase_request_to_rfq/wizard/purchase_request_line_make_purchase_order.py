@@ -105,12 +105,15 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             fiscal_position_id=po.partner_id.property_account_position.id,
             date_planned=item.line_id.date_required,
             name=False, price_unit=False, state='draft')['value']
+        # If no product_id, date_planned won't be prepared, use today instead
         vals.update({
             'order_id': po.id,
             'product_id': product.id,
             'account_analytic_id': item.line_id.analytic_account_id.id,
             'taxes_id': [(6, 0, vals.get('taxes_id', []))],
             'purchase_request_lines': [(4, item.line_id.id)],
+            'date_planned': (vals.get('date_planned') or
+                             item.line_id.date_required)
         })
         if item.line_id.procurement_id:
             vals['procurement_ids'] = [(4, item.line_id.procurement_id.id)]
