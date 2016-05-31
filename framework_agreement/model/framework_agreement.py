@@ -410,6 +410,8 @@ class framework_agreement(orm.Model):
                        ('draft', '=', False)]
         if qty:
             search_args.append(('available_quantity', '>=', qty))
+        else:
+            search_args.append(('available_quantity', '>', 0.0))
         agreement_ids = self.search(cr, uid, search_args)
         if agreement_ids:
             return self.browse(cr, uid, agreement_ids, context=context)
