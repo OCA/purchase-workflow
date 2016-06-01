@@ -3,7 +3,7 @@
 # - Jordi Ballester Alomar
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from openerp import fields, models, api
+from openerp import models, api
 
 
 class ProductTemplate(models.Model):
