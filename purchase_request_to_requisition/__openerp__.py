@@ -12,7 +12,7 @@
     "category": "Purchase Management",
     "depends": [
         "purchase_request_procurement",
-        "purchase_requisition"
+        "purchase_requisition",
         "purchase_request_to_rfq",
     ],
     "data": [
