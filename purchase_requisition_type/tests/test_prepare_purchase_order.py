@@ -10,6 +10,8 @@ class TestPreparePurchaseOrder(TransactionCase):
         super(TestPreparePurchaseOrder, self).setUp(*args, **kwargs)
         # Objects
         self.obj_purchase_requisition = self.env['purchase.requisition']
+        self.obj_purchase_order_type = self.env['purchase.order.type']
+        self.obj_purchase_order = self.env['purchase.order']
 
         # Data Products
         self.prod_1 = self.env.ref('product.product_product_8')
@@ -38,7 +40,6 @@ class TestPreparePurchaseOrder(TransactionCase):
         return data
 
     def test_prepare_purchase_order(self):
-        x = []
         # Create Purchase Requisition
         data_purchase_requisition = self._prepare_purchase_requisition()
         purchase_requisition = self.obj_purchase_requisition.\
@@ -47,14 +48,17 @@ class TestPreparePurchaseOrder(TransactionCase):
         # Check Create Purchase Requisition
         self.assertIsNotNone(purchase_requisition)
 
-        # Check Purchase Term
-        self.assertIsNotNone(x)
+        # Create Purchase Order For Purchase Requitition
+        po = purchase_requisition.make_purchase_order(self.supplier.id)
 
-        # Check Prepare Purchase Order
-        data_prepare_po = self.obj_purchase_requisition.\
-            _prepare_purchase_order(purchase_requisition, self.supplier)
+        # Check Create Purchase Order
+        self.assertIsNotNone(po)
 
-        order_type = data_prepare_po.get('order_type')
+        # Check method _prepare_purchase_order
+        po_id = po[purchase_requisition.id]
 
-        self.assertEqual(order_type, self.order_type.id)
-        self.assertEqual(order_type, self.order_type.invoice_method)
+        data_po = self.obj_purchase_order.browse(po_id)[0]
+
+        self.assertEqual(data_po.order_type.id, self.order_type.id)
+        self.assertEqual(
+            data_po.invoice_method, self.order_type.invoice_method)
