@@ -31,9 +31,9 @@ class TestPurchaseRequestToRequisition(common.TransactionCase):
         }
         purchase_request_line = self.purchase_request_line.create(vals)
         wiz_id = self.wiz.with_context(
-             active_model="purchase.request.line",
-             active_ids=[purchase_request_line.id],
-             active_id=purchase_request_line.id,).create({})
+            active_model="purchase.request.line",
+            active_ids=[purchase_request_line.id],
+            active_id=purchase_request_line.id,).create({})
         wiz_id.make_purchase_requisition()
         self.assertTrue(
             len(purchase_request_line.requisition_lines.ids) == 1,
@@ -58,10 +58,9 @@ class TestPurchaseRequestToRequisition(common.TransactionCase):
         }
         requisition_partner_id =\
             self.purchase_requisition_partner_model.with_context(
-                    active_model='purchase.requisition',
-                    active_ids=[requisition_id.id],
-                    active_id=requisition_id.id,
-                ).create(vals)
+                active_model='purchase.requisition',
+                active_ids=[requisition_id.id],
+                active_id=requisition_id.id,).create(vals)
         requisition_partner_id.create_order()
         domain = [
             ('requisition_id', '=', requisition_id.id),
