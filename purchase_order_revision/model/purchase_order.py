@@ -38,7 +38,7 @@ class PurchaseOrder(models.Model):
     revision_number = fields.Integer('Revision',
                                      copy=False)
     unrevisioned_name = fields.Char('Order Reference',
-                                    copy=True,
+                                    copy=False,
                                     readonly=True)
     active = fields.Boolean('Active',
                             default=True,
@@ -65,6 +65,7 @@ class PurchaseOrder(models.Model):
                     'active': False,
                     'state': 'cancel',
                     'current_revision_id': self.id,
+                    'unrevisioned_name': self.unrevisioned_name,
                     }
         old_revision = super(PurchaseOrder, self).copy(default=defaults)
         self.action_cancel_draft()

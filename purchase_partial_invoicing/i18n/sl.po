@@ -1,0 +1,227 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * purchase_partial_invoicing
+# 
+# Translators:
+# Antonio Trueba, 2016
+# Carles Antoli <carlesantoli@hotmail.com>, 2015
+# danimaribeiro <danimaribeiro@gmail.com>, 2016
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010,2012,2014
+# Giacomo <giacomo.spettoli@gmail.com>, 2015
+# Giedrius Slavinskas <giedrius@inovera.lt>, 2012
+# Hotellook, 2014
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Paolo Valier, 2016
+# Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: purchase-workflow (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-05-14 02:43+0000\n"
+"PO-Revision-Date: 2016-05-12 05:25+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: purchase_partial_invoicing
+#: field:purchase.order.line,all_invoices_approved:0
+msgid "All invoices approved"
+msgstr "Vsi računi odobreni"
+
+#. module: purchase_partial_invoicing
+#: view:purchase.order.line_cancel_quantity:purchase_partial_invoicing.view_purchase_line_cancel
+msgid "Cancel"
+msgstr "Preklic"
+
+#. module: purchase_partial_invoicing
+#: model:ir.actions.act_window,name:purchase_partial_invoicing.action_view_purchase_line_cancel
+msgid "Cancel quantity"
+msgstr "Preklic količine"
+
+#. module: purchase_partial_invoicing
+#: field:purchase.order.line,cancelled_qty:0
+msgid "Cancelled Quantity"
+msgstr "Preklicana količina"
+
+#. module: purchase_partial_invoicing
+#: view:purchase.order.line_cancel_quantity:purchase_partial_invoicing.view_purchase_line_cancel
+msgid "Confirm"
+msgstr "Potrdi"
+
+#. module: purchase_partial_invoicing
+#: field:purchase.order.line_cancel_quantity,create_uid:0
+#: field:purchase.order.line_cancel_quantity_line,create_uid:0
+#: field:purchase.order.line_invoice.line,create_uid:0
+msgid "Created by"
+msgstr "Ustvaril"
+
+#. module: purchase_partial_invoicing
+#: field:purchase.order.line_cancel_quantity,create_date:0
+#: field:purchase.order.line_cancel_quantity_line,create_date:0
+#: field:purchase.order.line_invoice.line,create_date:0
+msgid "Created on"
+msgstr "Ustvarjeno"
+
+#. module: purchase_partial_invoicing
+#: field:purchase.order.line_cancel_quantity,display_name:0
+#: field:purchase.order.line_cancel_quantity_line,display_name:0
+#: field:purchase.order.line_invoice.line,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: purchase_partial_invoicing
+#: view:purchase.order.line_cancel_quantity:purchase_partial_invoicing.view_purchase_line_cancel
+msgid "Do you want to cancel some quantity to invoice ?"
+msgstr "Želite preklicati določeno obračunsko količino?"
+
+#. module: purchase_partial_invoicing
+#: field:purchase.order.line,fully_invoiced:0
+msgid "Fully invoiced"
+msgstr "V celoti zaračunano"
+
+#. module: purchase_partial_invoicing
+#: field:purchase.order.line_cancel_quantity,id:0
+#: field:purchase.order.line_cancel_quantity_line,id:0
+#: field:purchase.order.line_invoice.line,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_partial_invoicing
+#: model:ir.model,name:purchase_partial_invoicing.model_account_invoice
+msgid "Invoice"
+msgstr "Račun"
+
+#. module: purchase_partial_invoicing
+#: field:purchase.order.line,invoiced_qty:0
+msgid "Invoiced qty"
+msgstr "Zaračunana kol."
+
+#. module: purchase_partial_invoicing
+#: view:purchase.order.line:purchase_partial_invoicing.purchase_order_line_search
+msgid "Invoicing"
+msgstr "Obračun"
+
+#. module: purchase_partial_invoicing
+#: field:purchase.order.line_cancel_quantity,__last_update:0
+#: field:purchase.order.line_cancel_quantity_line,__last_update:0
+#: field:purchase.order.line_invoice.line,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
+
+#. module: purchase_partial_invoicing
+#: field:purchase.order.line_cancel_quantity,write_uid:0
+#: field:purchase.order.line_cancel_quantity_line,write_uid:0
+#: field:purchase.order.line_invoice.line,write_uid:0
+msgid "Last Updated by"
+msgstr "Zadnji posodobil"
+
+#. module: purchase_partial_invoicing
+#: field:purchase.order.line_cancel_quantity,write_date:0
+#: field:purchase.order.line_cancel_quantity_line,write_date:0
+#: field:purchase.order.line_invoice.line,write_date:0
+msgid "Last Updated on"
+msgstr "Zadnjič posodobljeno"
+
+#. module: purchase_partial_invoicing
+#: field:purchase.order.line_cancel_quantity,line_ids:0
+#: field:purchase.order.line_invoice,line_ids:0
+msgid "Lines"
+msgstr "Postavke"
+
+#. module: purchase_partial_invoicing
+#: view:purchase.order.line:purchase_partial_invoicing.purchase_order_line_search
+msgid "Not Fully Invoiced"
+msgstr "Ne povsem obračunano"
+
+#. module: purchase_partial_invoicing
+#: model:ir.model,name:purchase_partial_invoicing.model_purchase_order
+msgid "Purchase Order"
+msgstr "Nabavni nalog"
+
+#. module: purchase_partial_invoicing
+#: model:ir.model,name:purchase_partial_invoicing.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Postavka nabavnega naloga"
+
+#. module: purchase_partial_invoicing
+#: model:ir.model,name:purchase_partial_invoicing.model_purchase_order_line_invoice
+msgid "Purchase Order Line Make Invoice"
+msgstr "Ustvari račun iz postavke nabavnega naloga"
+
+#. module: purchase_partial_invoicing
+#: field:purchase.order.line_cancel_quantity_line,po_line_id:0
+#: field:purchase.order.line_invoice.line,po_line_id:0
+msgid "Purchase order line"
+msgstr "Postavka nabavnega naloga"
+
+#. module: purchase_partial_invoicing
+#: field:purchase.order.line_cancel_quantity_line,product_qty:0
+#: field:purchase.order.line_invoice.line,product_qty:0
+msgid "Quantity"
+msgstr "Količina"
+
+#. module: purchase_partial_invoicing
+#: field:purchase.order.line_cancel_quantity_line,cancelled_qty:0
+msgid "Quantity to cancel"
+msgstr "Količina za preklic"
+
+#. module: purchase_partial_invoicing
+#: code:addons/purchase_partial_invoicing/wizard/po_line_cancel_quantity.py:55
+#, python-format
+msgid ""
+"Quantity to cancel is greater\n"
+"                    than available quantity"
+msgstr "Količina za preklic je večja od\n                    razpoložljive količine"
+
+#. module: purchase_partial_invoicing
+#: code:addons/purchase_partial_invoicing/wizard/po_line_cancel_quantity.py:61
+#, python-format
+msgid ""
+"Quantity to cancel is greater\n"
+"                    than quantity already cancelled"
+msgstr "Količina za preklic je večja od\n                    že preklicane količine"
+
+#. module: purchase_partial_invoicing
+#: field:purchase.order.line_invoice.line,invoiced_qty:0
+msgid "Quantity to invoice"
+msgstr "Količina za obračun"
+
+#. module: purchase_partial_invoicing
+#: code:addons/purchase_partial_invoicing/wizard/po_line_invoice.py:65
+#, python-format
+msgid ""
+"Quantity to invoice is greater\n"
+"                    than available quantity"
+msgstr "Količina za obračun je večja od\n                    razpoložljive količine"
+
+#. module: purchase_partial_invoicing
+#: view:purchase.order.line_cancel_quantity:purchase_partial_invoicing.view_purchase_line_cancel
+msgid "Select an Open Sales Order"
+msgstr "Izberite odprt prodajni nalog"
+
+#. module: purchase_partial_invoicing
+#: field:purchase.order.line_cancel_quantity_line,price_unit:0
+#: field:purchase.order.line_invoice.line,price_unit:0
+msgid "Unit Price"
+msgstr "Cena enote"
+
+#. module: purchase_partial_invoicing
+#: view:purchase.order.line:purchase_partial_invoicing.purchase_order_line_search
+msgid "With Cancelled Quantity"
+msgstr "S preklicano količino"
+
+#. module: purchase_partial_invoicing
+#: field:purchase.order.line_cancel_quantity_line,wizard_id:0
+#: field:purchase.order.line_invoice.line,wizard_id:0
+msgid "Wizard"
+msgstr "Čarovnik"
+
+#. module: purchase_partial_invoicing
+#: view:purchase.order.line_cancel_quantity:purchase_partial_invoicing.view_purchase_line_cancel
+msgid "or"
+msgstr "ali"

@@ -1,0 +1,337 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * purchase_rfq_bid_workflow
+# 
+# Translators:
+# Antonio Trueba, 2016
+# Armando Vulcano Junior <vulcano@uol.com.br>, 2015
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010,2012,2014
+# Hotellook, 2014
+# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Paolo Valier, 2016
+# Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
+# Rudolf Schnapka <rs@techno-flex.de>, 2015-2016
+# Rudolf Schnapka <schnapkar@golive-saar.de>, 2015
+# SaFi J. <safi2266@gmail.com>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: purchase-workflow (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-05-14 02:43+0000\n"
+"PO-Revision-Date: 2016-05-12 05:26+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: purchase_rfq_bid_workflow
+#: code:addons/purchase_rfq_bid_workflow/model/purchase_order.py:218
+#: selection:purchase.order,type:0
+#, python-format
+msgid "Bid"
+msgstr "Ponudba"
+
+#. module: purchase_rfq_bid_workflow
+#: view:purchase.order:purchase_rfq_bid_workflow.view_purchase_order_form
+msgid "Bid Encoded"
+msgstr "Ponudba knjižena"
+
+#. module: purchase_rfq_bid_workflow
+#: model:purchase.cancel_reason,name:purchase_rfq_bid_workflow.purchase_cancel_reason_bid_bidnotselected
+msgid "Bid not selected"
+msgstr "Ponudba ni izbrana"
+
+#. module: purchase_rfq_bid_workflow
+#: code:addons/purchase_rfq_bid_workflow/model/purchase_order.py:259
+#, python-format
+msgid "Bid received and encoded"
+msgstr "Ponudba prejeta in knjižena"
+
+#. module: purchase_rfq_bid_workflow
+#: view:purchase.action_modal.datetime:purchase_rfq_bid_workflow.action_modal_bid_date
+msgid "Bid received date"
+msgstr "Datum prejema ponudbe"
+
+#. module: purchase_rfq_bid_workflow
+#: model:purchase.cancel_reason,name:purchase_rfq_bid_workflow.purchase_cancel_reason_bid_validity_expired
+msgid "Bid validity date expired"
+msgstr "Pretekel rok veljavnosti ponudbe"
+
+#. module: purchase_rfq_bid_workflow
+#: view:purchase.action_modal.cancel_reason:purchase_rfq_bid_workflow.action_modal_cancel_reason
+#: view:purchase.action_modal.datetime:purchase_rfq_bid_workflow.action_modal_bid_date
+msgid "Cancel"
+msgstr "Preklic"
+
+#. module: purchase_rfq_bid_workflow
+#: view:purchase.action_modal.cancel_reason:purchase_rfq_bid_workflow.action_modal_cancel_reason
+#: view:purchase.action_modal.datetime:purchase_rfq_bid_workflow.action_modal_bid_date
+msgid "Confirm"
+msgstr "Potrdi"
+
+#. module: purchase_rfq_bid_workflow
+#: view:purchase.order:purchase_rfq_bid_workflow.view_purchase_order_form
+msgid "Convert to PO"
+msgstr "Pretvori v nabavni nalog"
+
+#. module: purchase_rfq_bid_workflow
+#: code:addons/purchase_rfq_bid_workflow/model/purchase_order.py:174
+#, python-format
+msgid "Converted to draft Purchase Order"
+msgstr "Pretvorjeno v osnutek nabavnega naloga"
+
+#. module: purchase_rfq_bid_workflow
+#: field:purchase.action_modal,create_uid:0
+#: field:purchase.action_modal.cancel_reason,create_uid:0
+#: field:purchase.action_modal.datetime,create_uid:0
+#: field:purchase.cancel_reason,create_uid:0
+msgid "Created by"
+msgstr "Ustvaril"
+
+#. module: purchase_rfq_bid_workflow
+#: field:purchase.action_modal,create_date:0
+#: field:purchase.action_modal.cancel_reason,create_date:0
+#: field:purchase.action_modal.datetime,create_date:0
+#: field:purchase.cancel_reason,create_date:0
+msgid "Created on"
+msgstr "Ustvarjeno"
+
+#. module: purchase_rfq_bid_workflow
+#: field:purchase.action_modal.datetime,datetime:0
+msgid "Date"
+msgstr "Datum"
+
+#. module: purchase_rfq_bid_workflow
+#: field:purchase.action_modal,display_name:0
+#: field:purchase.action_modal.cancel_reason,display_name:0
+#: field:purchase.action_modal.datetime,display_name:0
+#: field:purchase.cancel_reason,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: purchase_rfq_bid_workflow
+#: code:addons/purchase_rfq_bid_workflow/model/purchase_order.py:281
+#: code:addons/purchase_rfq_bid_workflow/model/purchase_order.py:290
+#, python-format
+msgid "Error!"
+msgstr "Napaka!"
+
+#. module: purchase_rfq_bid_workflow
+#: field:purchase.action_modal,id:0
+#: field:purchase.action_modal.cancel_reason,id:0
+#: field:purchase.action_modal.datetime,id:0 field:purchase.cancel_reason,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_rfq_bid_workflow
+#: field:purchase.order,incoterm_address:0
+msgid "Incoterms Place"
+msgstr "Incoterm lokacija"
+
+#. module: purchase_rfq_bid_workflow
+#: help:purchase.order,incoterm_address:0
+msgid ""
+"Incoterms Place of Delivery. International Commercial Terms are a series of "
+"predefined commercial terms used in international transactions."
+msgstr "Incoterm lokacija dobave. Mednarodni komercialni termini \"incoterms\" so zbirka terminov v uporabi pri mednarodnih transakcijah."
+
+#. module: purchase_rfq_bid_workflow
+#: field:purchase.action_modal,__last_update:0
+#: field:purchase.action_modal.cancel_reason,__last_update:0
+#: field:purchase.action_modal.datetime,__last_update:0
+#: field:purchase.cancel_reason,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
+
+#. module: purchase_rfq_bid_workflow
+#: field:purchase.action_modal,write_uid:0
+#: field:purchase.action_modal.cancel_reason,write_uid:0
+#: field:purchase.action_modal.datetime,write_uid:0
+#: field:purchase.cancel_reason,write_uid:0
+msgid "Last Updated by"
+msgstr "Zadnji posodobil"
+
+#. module: purchase_rfq_bid_workflow
+#: field:purchase.action_modal,write_date:0
+#: field:purchase.action_modal.cancel_reason,write_date:0
+#: field:purchase.action_modal.datetime,write_date:0
+#: field:purchase.cancel_reason,write_date:0
+msgid "Last Updated on"
+msgstr "Zadnjič posodobljeno"
+
+#. module: purchase_rfq_bid_workflow
+#: model:purchase.cancel_reason,name:purchase_rfq_bid_workflow.purchase_cancel_reason_bid_latereply
+msgid "Late reply"
+msgstr "Pozen odgovor"
+
+#. module: purchase_rfq_bid_workflow
+#: model:purchase.cancel_reason,name:purchase_rfq_bid_workflow.purchase_cancel_reason_bid_noreply
+msgid "No reply"
+msgstr "Brez odgovora"
+
+#. module: purchase_rfq_bid_workflow
+#: field:purchase.cancel_reason,nounlink:0
+msgid "No unlink"
+msgstr "Brez odveze"
+
+#. module: purchase_rfq_bid_workflow
+#: model:purchase.cancel_reason,name:purchase_rfq_bid_workflow.purchase_cancel_reason_purchase_canceled
+msgid "PO canceled"
+msgstr "Nabavni nalog preklican"
+
+#. module: purchase_rfq_bid_workflow
+#: view:purchase.action_modal.cancel_reason:purchase_rfq_bid_workflow.action_modal_cancel_reason
+#: view:purchase.action_modal.datetime:purchase_rfq_bid_workflow.action_modal_bid_date
+msgid "Please confirm operation"
+msgstr "Prosimo, da operacijo potrdite"
+
+#. module: purchase_rfq_bid_workflow
+#: view:purchase.cancel_reason:purchase_rfq_bid_workflow.view_purchase_cancel_reason_form
+msgid "Purchase Cancel Reason"
+msgstr "Razlog preklica nabave"
+
+#. module: purchase_rfq_bid_workflow
+#: model:ir.actions.act_window,name:purchase_rfq_bid_workflow.action_purchase_cancel_reason
+#: model:ir.ui.menu,name:purchase_rfq_bid_workflow.menu_purchase_config_cancel_reason
+#: view:purchase.cancel_reason:purchase_rfq_bid_workflow.view_purchase_cancel_reason_tree
+msgid "Purchase Cancel Reasons"
+msgstr "Razlogi preklica nabave"
+
+#. module: purchase_rfq_bid_workflow
+#: model:ir.model,name:purchase_rfq_bid_workflow.model_purchase_order
+#: selection:purchase.cancel_reason,type:0 selection:purchase.order,type:0
+msgid "Purchase Order"
+msgstr "Nabavni nalog"
+
+#. module: purchase_rfq_bid_workflow
+#: model:ir.model,name:purchase_rfq_bid_workflow.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Postavka nabavnega naloga"
+
+#. module: purchase_rfq_bid_workflow
+#: model:purchase.cancel_reason,name:purchase_rfq_bid_workflow.purchase_cancel_reason_rfq_canceled
+msgid "RFQ canceled"
+msgstr "Povpraševanje preklicano"
+
+#. module: purchase_rfq_bid_workflow
+#: selection:purchase.cancel_reason,type:0
+msgid "RFQ/Bid"
+msgstr "Povpraševanje/ponudba"
+
+#. module: purchase_rfq_bid_workflow
+#: field:purchase.cancel_reason,name:0
+msgid "Reason"
+msgstr "Razlog"
+
+#. module: purchase_rfq_bid_workflow
+#: field:purchase.action_modal.cancel_reason,reason_id:0
+#: field:purchase.order,cancel_reason_id:0
+msgid "Reason for Cancellation"
+msgstr "Razlogi za preklic"
+
+#. module: purchase_rfq_bid_workflow
+#: view:purchase.order:purchase_rfq_bid_workflow.view_purchase_order_form
+msgid "Reason for Cancellation:"
+msgstr "Razlog za preklic"
+
+#. module: purchase_rfq_bid_workflow
+#: model:purchase.cancel_reason,name:purchase_rfq_bid_workflow.purchase_cancel_reason_bid_regretfromsupplier
+msgid "Regret from supplier"
+msgstr "Obžalovanje dobavitelja"
+
+#. module: purchase_rfq_bid_workflow
+#: code:addons/purchase_rfq_bid_workflow/model/purchase_order.py:216
+#: selection:purchase.order,type:0
+#, python-format
+msgid "Request for Quotation"
+msgstr "Povpraševanje po predračunu"
+
+#. module: purchase_rfq_bid_workflow
+#: code:addons/purchase_rfq_bid_workflow/model/purchase_order.py:293
+#, python-format
+msgid "Request for Quotation printed"
+msgstr "Povpraševanje po predračunu natisnjeno"
+
+#. module: purchase_rfq_bid_workflow
+#: view:purchase.order:purchase_rfq_bid_workflow.view_purchase_order_form
+msgid "Reset to Draft RFQ"
+msgstr "Ponastavi povpraševanje v osnutek"
+
+#. module: purchase_rfq_bid_workflow
+#: view:purchase.order:purchase_rfq_bid_workflow.view_purchase_order_form
+msgid "Send Draft PO by Email"
+msgstr "Pošlji osnutek nabavnega naloga po e-pošti"
+
+#. module: purchase_rfq_bid_workflow
+#: field:purchase.cancel_reason,type:0 field:purchase.order,type:0
+msgid "Type"
+msgstr "Tip"
+
+#. module: purchase_rfq_bid_workflow
+#: code:addons/purchase_rfq_bid_workflow/model/purchase_order.py:291
+#, python-format
+msgid "You cannot print a Request for Quotation without any product line."
+msgstr "Povpraševanj po predračunu brez postavk proizvoda ni mogoče tiskati."
+
+#. module: purchase_rfq_bid_workflow
+#: code:addons/purchase_rfq_bid_workflow/model/purchase_order.py:282
+#, python-format
+msgid "You cannot send a Request for Quotation without any product line."
+msgstr "Povpraševanj po predračunu brez postavk proizvoda ni mogoče pošiljati."
+
+#. module: purchase_rfq_bid_workflow
+#: view:purchase.order:purchase_rfq_bid_workflow.view_purchase_order_form
+msgid "cancel,draftpo"
+msgstr "cancel,draftpo"
+
+#. module: purchase_rfq_bid_workflow
+#: code:addons/purchase_rfq_bid_workflow/model/purchase_order.py:221
+#, python-format
+msgid "canceled"
+msgstr "canceled"
+
+#. module: purchase_rfq_bid_workflow
+#: view:purchase.order:purchase_rfq_bid_workflow.view_purchase_order_form
+msgid "draft,confirmed,sent,bid,draftbid,draftpo"
+msgstr "draft,confirmed,sent,bid,draftbid,draftpo"
+
+#. module: purchase_rfq_bid_workflow
+#: view:purchase.order:purchase_rfq_bid_workflow.view_purchase_order_form
+msgid "draft,sent,bid,draftpo,approved,done"
+msgstr "draft,sent,bid,draftpo,approved,done"
+
+#. module: purchase_rfq_bid_workflow
+#: view:purchase.order:purchase_rfq_bid_workflow.view_purchase_order_form
+msgid "draftpo"
+msgstr "draftpo"
+
+#. module: purchase_rfq_bid_workflow
+#: view:purchase.order:purchase_rfq_bid_workflow.view_purchase_order_form
+msgid "object"
+msgstr "object"
+
+#. module: purchase_rfq_bid_workflow
+#: view:purchase.action_modal.cancel_reason:purchase_rfq_bid_workflow.action_modal_cancel_reason
+#: view:purchase.action_modal.datetime:purchase_rfq_bid_workflow.action_modal_bid_date
+msgid "or"
+msgstr "ali"
+
+#. module: purchase_rfq_bid_workflow
+#: view:purchase.order:purchase_rfq_bid_workflow.view_purchase_order_form
+msgid "sent,draftbid"
+msgstr "sent,draftbid"
+
+#. module: purchase_rfq_bid_workflow
+#: view:purchase.order:purchase_rfq_bid_workflow.view_purchase_order_invoice_form
+msgid "{'invisible': [('state', 'in', ['draft','draftbid','draftpo'])]}"
+msgstr "{'invisible': [('state', 'in', ['draft','draftbid','draftpo'])]}"
+
+#. module: purchase_rfq_bid_workflow
+#: view:purchase.order:purchase_rfq_bid_workflow.view_purchase_order_form
+#: view:purchase.order.line:purchase_rfq_bid_workflow.po_line_onchange_form
+msgid "{'order_type': parent.type}"
+msgstr "{'order_type': parent.type}"

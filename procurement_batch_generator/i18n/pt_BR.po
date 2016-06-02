@@ -1,0 +1,148 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * procurement_batch_generator
+# 
+# Translators:
+# Paulo Ricardo <ti@shoppingescritorio.com.br>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: purchase-workflow (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-05-15 09:24+0000\n"
+"PO-Revision-Date: 2016-05-19 12:09+0000\n"
+"Last-Translator: Paulo Ricardo <ti@shoppingescritorio.com.br>\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/pt_BR/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: pt_BR\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: procurement_batch_generator
+#: code:addons/procurement_batch_generator/wizard/procurement_batch_generator.py:75
+#, python-format
+msgid "All requested quantities are null."
+msgstr ""
+
+#. module: procurement_batch_generator
+#: view:procurement.batch.generator:procurement_batch_generator.procurement_batch_generator_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: procurement_batch_generator
+#: field:procurement.batch.generator,create_uid:0
+#: field:procurement.batch.generator.line,create_uid:0
+msgid "Created by"
+msgstr "Criado por"
+
+#. module: procurement_batch_generator
+#: field:procurement.batch.generator,create_date:0
+#: field:procurement.batch.generator.line,create_date:0
+msgid "Created on"
+msgstr "Criado em"
+
+#. module: procurement_batch_generator
+#: field:procurement.batch.generator,display_name:0
+#: field:procurement.batch.generator.line,display_name:0
+msgid "Display Name"
+msgstr "Mostrar Nome"
+
+#. module: procurement_batch_generator
+#: field:procurement.batch.generator,id:0
+#: field:procurement.batch.generator.line,id:0
+msgid "ID"
+msgstr "Identificação"
+
+#. module: procurement_batch_generator
+#: field:procurement.batch.generator.line,incoming_qty:0
+msgid "Incoming Quantity"
+msgstr "Quantidade de Entrada"
+
+#. module: procurement_batch_generator
+#: field:procurement.batch.generator,__last_update:0
+#: field:procurement.batch.generator.line,__last_update:0
+msgid "Last Modified on"
+msgstr "Última Modificação em"
+
+#. module: procurement_batch_generator
+#: field:procurement.batch.generator,write_uid:0
+#: field:procurement.batch.generator.line,write_uid:0
+msgid "Last Updated by"
+msgstr "Última Atualização por"
+
+#. module: procurement_batch_generator
+#: field:procurement.batch.generator,write_date:0
+#: field:procurement.batch.generator.line,write_date:0
+msgid "Last Updated on"
+msgstr "Última Atualização em"
+
+#. module: procurement_batch_generator
+#: model:ir.model,name:procurement_batch_generator.model_procurement_batch_generator_line
+msgid "Lines of the wizard to request procurements"
+msgstr ""
+
+#. module: procurement_batch_generator
+#: field:procurement.batch.generator.line,outgoing_qty:0
+msgid "Outgoing qty"
+msgstr ""
+
+#. module: procurement_batch_generator
+#: field:procurement.batch.generator.line,parent_id:0
+msgid "Parent"
+msgstr "Aparentado"
+
+#. module: procurement_batch_generator
+#: field:procurement.batch.generator.line,date_planned:0
+msgid "Planned Date"
+msgstr ""
+
+#. module: procurement_batch_generator
+#: field:procurement.batch.generator,line_ids:0
+msgid "Procurement Request Lines"
+msgstr "Linha de Solicitação de Aquisições"
+
+#. module: procurement_batch_generator
+#: field:procurement.batch.generator.line,product_id:0
+msgid "Product"
+msgstr "Produto"
+
+#. module: procurement_batch_generator
+#: field:procurement.batch.generator.line,qty_available:0
+msgid "Quantity Available"
+msgstr "Quantidade Disponível"
+
+#. module: procurement_batch_generator
+#: model:ir.actions.act_window,name:procurement_batch_generator.procurement_batch_generator_tree_action
+#: view:procurement.batch.generator:procurement_batch_generator.procurement_batch_generator_form
+msgid "Request Procurements"
+msgstr "Solicitação de Aquisições"
+
+#. module: procurement_batch_generator
+#: field:procurement.batch.generator.line,procurement_qty:0
+msgid "Requested Quantity"
+msgstr "Solicitação de Quantidade"
+
+#. module: procurement_batch_generator
+#: field:procurement.batch.generator.line,partner_id:0
+msgid "Supplier"
+msgstr "Fornecedor"
+
+#. module: procurement_batch_generator
+#: field:procurement.batch.generator.line,uom_id:0
+msgid "Unit of Measure"
+msgstr "Unidade de Medida"
+
+#. module: procurement_batch_generator
+#: view:procurement.batch.generator:procurement_batch_generator.procurement_batch_generator_form
+msgid "Validate"
+msgstr "Validar"
+
+#. module: procurement_batch_generator
+#: field:procurement.batch.generator.line,warehouse_id:0
+msgid "Warehouse"
+msgstr "Armazém"
+
+#. module: procurement_batch_generator
+#: model:ir.model,name:procurement_batch_generator.model_procurement_batch_generator
+msgid "Wizard to create procurements from product tree"
+msgstr "Assistente para criar as aquisições na arvore de produtos"
