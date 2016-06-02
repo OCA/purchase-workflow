@@ -10,6 +10,10 @@ When this module is installed, each Purchase Order you confirm will
 generate one Reception Order per expected date indicated in the
 Purchase Order Lines.
 
+This module is also designed for extensibility, so that you can define
+in other modules new criteria to split deliveries.
+
+
 Bug Tracker
 ===========
 
