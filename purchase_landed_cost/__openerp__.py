@@ -6,7 +6,7 @@
 
 {
     'name': 'Purchase landed costs - Alternative option',
-    'version': '8.0.2.0.2',
+    'version': '8.0.2.0.3',
     "author": "OdooMRP team,"
               "AvanzOSC,"
               "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
