@@ -23,12 +23,12 @@ msgstr "Produits autorisés"
 #. module: account_invoice_allowed_product
 #: help:res.partner,supplier_invoice_only_allowed:0
 msgid "If checked, by default you will only be able to select products that can be supplied by this supplier when creating a supplier invoice for it. This value can be changed for each invoice."
-msgstr "Si l'option est coché, par défaut, vous pourrez sélectionner que les produits du fournisseur lors de la création d'une facture fournisseur.Cette option est modifiable dans chaque facture. "
+msgstr "Si l'option est coché, par défaut, vous pourrez sélectionner que les produits de ce fournisseur lors de la création d'une facture avec ce fournisseur.Cette option est modifiable dans chaque facture. "
 
 #. module: account_invoice_allowed_product
 #: help:account.invoice,only_allowed_products:0
 msgid "If checked, you will only be able to select products that can be supplied by this supplier."
-msgstr "Si l'option est coché, vous pourrez sélectionner que les produits de ce fournisseur ."
+msgstr "Si l'option est coché, vous pourrez sélectionner que les produits du fournisseur ci-dessus."
 
 #. module: account_invoice_allowed_product
 #: model:ir.model,name:account_invoice_allowed_product.model_account_invoice
@@ -43,12 +43,12 @@ msgstr "Partenaire"
 #. module: account_invoice_allowed_product
 #: field:res.partner,supplier_invoice_only_allowed:0
 msgid "Use in supplier invoices only allowed products"
-msgstr "Sélectionner parmis ses produits "
+msgstr "Utiliser ses produits "
 
 #. module: account_invoice_allowed_product
 #: field:account.invoice,only_allowed_products:0
 msgid "Use only allowed products"
-msgstr "Sélectionner seulement parmis les produits de ce fournisseur"
+msgstr "Utiliser seulement les produits du fournisseur ci-dessus"
 
 #. module: account_invoice_allowed_product
 #: view:account.invoice:account_invoice_allowed_product.account_invoice_supplier_form_inh_supplierinvoiceallowedproduct
