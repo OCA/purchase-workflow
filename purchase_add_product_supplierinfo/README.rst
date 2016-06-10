@@ -6,8 +6,9 @@
 Add Product Supplierinfo from Purchase Order
 ============================================
 
-This module allow in the purchase order, automatically complete with partner,
-the supplierinfo list for all products which are not related to this supplier
+This module allows in the purchase order, to automatically complete with
+partner, the supplierinfo list for all products which are not related
+to this supplier
  
 Usage
 =====
