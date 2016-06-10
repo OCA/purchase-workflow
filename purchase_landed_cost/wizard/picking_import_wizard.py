@@ -29,8 +29,14 @@ class PickingImportWizard(models.TransientModel):
         if self.env.context.get('active_id') and 'prev_pickings' in field_list:
             distribution = self.env['purchase.cost.distribution'].browse(
                 self.env.context['active_id'])
-            res['prev_pickings'] = [(6, 0, [x.picking_id.id for x in
-                                            distribution.cost_lines])]
+            pickings = self.env['stock.picking']
+            moves = distribution.mapped('cost_lines.move_id')
+            for line in distribution.cost_lines:
+                if line.picking_id in pickings:
+                    continue
+                if all(x in moves for x in line.picking_id.move_lines):
+                    pickings |= line.picking_id
+            res['prev_pickings'] = [(6, 0, pickings.ids)]
         return res
 
     supplier = fields.Many2one(
@@ -55,7 +61,10 @@ class PickingImportWizard(models.TransientModel):
     @api.multi
     def action_import_picking(self):
         self.ensure_one()
-        for picking in self.pickings:
-            for move in picking.move_lines:
+        distribution = self.env['purchase.cost.distribution'].browse(
+            self.env.context['active_id'])
+        previous_moves = distribution.mapped('cost_lines.move_id')
+        for move in self.mapped('pickings.move_lines'):
+            if move not in previous_moves:
                 self.env['purchase.cost.distribution.line'].create(
                     self._prepare_distribution_line(move))
