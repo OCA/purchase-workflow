@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="account_invoice_supplier_form_inh_supplierinvoiceallowedproduct">
+            <field name="name">account.invoice.supplier.form.inh.supplierinvoiceallowedproduct</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form" />
+            <field name="arch" type="xml">
+                <field name="invoice_line" position="before">
+                    <field name="only_allowed_products"
+                           attrs="{'invisible': [('state', 'not in', ('draft', 'send'))]}"
+                           class="oe_edit_only" />
+                    <label for="only_allowed_products"
+                           attrs="{'invisible': [('state', 'not in', ('draft', 'send'))]}"
+                           class="oe_edit_only" />
+                    <field name="allowed_products" invisible="1"/>
+                </field>
+                <xpath expr="//field[@name='invoice_line']/tree/field[@name='product_id']" position="attributes">
+                    <attribute name="domain">[('id', 'in', parent.allowed_products[0][2])]</attribute>
+                </xpath>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="invoice_line_form_inh_supplierinvoiceallowedproduct">
+            <field name="name">account.invoice.line.form.inh.supplierinvoiceallowedproduct</field>
+            <field name="model">account.invoice.line</field>
+            <field name="inherit_id" ref="account.view_invoice_line_form" />
+            <field name="arch" type="xml">
+                <field name="product_id" position="attributes">
+                    <attribute name="domain">[('id', 'in', parent.allowed_products[0][2])]</attribute>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>
