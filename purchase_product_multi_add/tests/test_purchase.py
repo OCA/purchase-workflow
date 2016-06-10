@@ -39,3 +39,29 @@ class TestPurchase(common.TransactionCase):
 
         for line in po.order_line:
             self.assertEqual(line.product_qty, 5.0)
+
+    def test_import_product_no_quantity(self):
+        """ Create PO
+            Import products with no quantity
+            Check products are presents
+        """
+
+        po = self.env["purchase.order"].create(
+            {"partner_id": self.supplier.id,
+             'location_id': self.env.ref("stock.stock_location_stock").id,
+             'pricelist_id': self.env.ref('purchase.list0').id})
+
+        wiz_obj = self.env['purchase.import.products']
+        wizard = wiz_obj.with_context(active_id=po.id,
+                                      active_model='purchase.order')
+
+        products = [(6, 0, [self.product_35.id, self.product_36.id])]
+
+        wizard_id = wizard.create({'products': products})
+
+        wizard_id.select_products()
+
+        self.assertEqual(len(po.order_line), 2)
+
+        for line in po.order_line:
+            self.assertEqual(line.product_qty, 1.0)
