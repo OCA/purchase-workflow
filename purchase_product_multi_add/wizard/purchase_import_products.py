@@ -46,10 +46,10 @@ class PurchaseImportProducts(models.TransientModel):
 
             if purchase:
                 for product in wizard.products:
+                    quantity = 1.0
                     if wizard.quantity:
                         quantity = wizard.quantity
-                    else:
-                        quantity = 1
+
                     pol = self.env['purchase.order.line']
                     position = purchase.fiscal_position.id
                     date_order = purchase.date_order
