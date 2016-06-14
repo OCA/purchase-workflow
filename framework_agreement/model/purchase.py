@@ -15,8 +15,11 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from openerp import models, fields, api
-from openerp import exceptions, _
+from datetime import datetime
+from openerp import api, fields, models, _
+from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
+from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
+from openerp.exceptions import UserError
 
 
 class PurchaseOrder(models.Model):
@@ -28,18 +31,7 @@ class PurchaseOrder(models.Model):
         domain="[('supplier_id', '=', partner_id)]",
     )
 
-    @api.onchange('pricelist_id')
-    def update_currency_from_pricelist(self):
-        """Reproduce the old_api onchange_pricelist from the purchase module.
-
-        We need new-style onchanges to be able to modify agreements on order
-        lines, and we cannot have new-style and old-style onchanges at the same
-        time.
-
-        """
-        self.currency_id = self.pricelist_id.currency_id
-
-    @api.onchange('portfolio_id', 'pricelist_id', 'date_order', 'incoterm_id')
+    @api.onchange('portfolio_id', 'date_order', 'incoterm_id')
     def update_agreements_in_lines(self):
         Agreement = self.env['framework.agreement']
         if self.portfolio_id:
@@ -68,15 +60,12 @@ class PurchaseOrder(models.Model):
         else:
             self.order_line.write({'framework_agreement_id': False})
 
-    @api.multi
-    def onchange_partner_id(self, partner_id):
-        """Prevent changes to the supplier if the portfolio is set.
-
-        We use web_context_tunnel in order to keep the original signature.
-        """
-        res = super(PurchaseOrder, self).onchange_partner_id(partner_id)
-        if self.env.context.get('portfolio_id'):
-            raise exceptions.Warning(
+    @api.onchange('partner_id')
+    def _onchange_partner_id(self):
+        """Prevent changes to the supplier if the portfolio is set."""
+        res = super(PurchaseOrder, self).onchange_partner_id()
+        if self.portfolio_id:
+            raise UserError(
                 _('You cannot change the supplier: '
                   'the PO is linked to an agreement portfolio.')
             )
@@ -103,79 +92,50 @@ class PurchaseOrderLine(models.Model):
         related='order_id.portfolio_id',
     )
 
-    @api.multi
-    def onchange_product_id(self, pricelist_id, product_id, qty, uom_id,
-                            partner_id, date_order=False,
-                            fiscal_position_id=False, date_planned=False,
-                            name=False, price_unit=False, state='draft'):
-        res = super(PurchaseOrderLine, self).onchange_product_id(
-            pricelist_id,
-            product_id,
-            qty,
-            uom_id,
-            partner_id,
-            date_order=date_order,
-            fiscal_position_id=fiscal_position_id,
-            date_planned=date_planned,
-            name=name,
-            price_unit=price_unit,
+    def _get_framework_agreement(self):
+        agreement_model = self.env['framework.agreement']
+        ag_domain = agreement_model.get_agreement_domain(
+            self.product_id.id,
+            self.product_qty,
+            self.portfolio_id.id,
+            self.order_id.date_order,
+            self.order_id.incoterm_id.id,
         )
-        context = self.env.context
-        if 'domain' not in res:
-            res['domain'] = {}
-
-        if not context.get('portfolio_id') or not product_id:
-            res['domain']['framework_agreement_id'] = [('id', '=', 0)]
-            res['value']['framework_agreement_id'] = False
-            return res
-
-        currency = self.env['res.currency'].browse(context.get('currency_id'))
-        Agreement = self.env['framework.agreement']
-        agreement = Agreement.browse(context.get('agreement_id'))
-
-        ag_domain = Agreement.get_agreement_domain(
-            product_id,
-            qty,
-            context['portfolio_id'],
-            date_planned,
-            context.get('incoterm_id'),
-        )
-        res['domain']['framework_agreement_id'] = ag_domain
-
-        good_agreements = Agreement.search(ag_domain).filtered(
-            lambda a: a.has_currency(currency))
-
-        if agreement in good_agreements:
+        framework_agreement = self.framework_agreement_id
+        good_agreements = agreement_model.search(ag_domain).filtered(
+            lambda a: a.has_currency(self.order_id.currency_id))
+        if len(good_agreements) > 1 \
+                and framework_agreement \
+                        in good_agreements:
             pass  # it's good! let's keep it!
         else:
             if len(good_agreements) == 1:
-                agreement = good_agreements
+                framework_agreement = good_agreements
             else:
-                agreement = Agreement
+                framework_agreement = False
+        return framework_agreement
 
-        if agreement:
-            res['value']['price_unit'] = agreement.get_price(qty, currency)
-        res['value']['framework_agreement_id'] = agreement.id
-        return res
-
-    @api.onchange('price_unit')
-    def onchange_price_unit(self):
+    def _get_framework_agreement_price(self):
         if self.framework_agreement_id:
-            agreement_price = self.framework_agreement_id.get_price(
-                self.product_qty,
-                currency=self.order_id.pricelist_id.currency_id)
-            if agreement_price != self.price_unit:
-                msg = _(
-                    "You have set the price to %s \n"
-                    " but there is a running agreement"
-                    " with price %s") % (
-                        self.price_unit, agreement_price
-                )
-                raise exceptions.Warning(msg)
+            return self.framework_agreement_id.get_price(
+                self.product_qty, currency=self.currency_id)
 
-    @api.multi
+    @api.onchange('product_id', 'product_qty', 'product_uom')
+    def onchange_get_price_unit(self):
+        if not self.order_id.portfolio_id or not self.product_id or not \
+                self.date_planned:
+            pass
+        else:
+            agreement = self._get_framework_agreement()
+            if agreement != self.framework_agreement_id:
+                self.framework_agreement_id = agreement
+        if self.order_id.portfolio_id:
+            if self.framework_agreement_id:
+                self.price_unit = self._get_framework_agreement_price()
+            else:
+                self.price_unit = 0.0
+
     def _propagate_fields(self):
-        self.ensure_one()
         agreement = self.framework_agreement_id
 
         if agreement.payment_term_id:
@@ -190,14 +150,27 @@ class PurchaseOrderLine(models.Model):
     @api.onchange('framework_agreement_id')
     def onchange_agreement(self):
         self._propagate_fields()
-
         if self.framework_agreement_id:
             agreement = self.framework_agreement_id
             if agreement.supplier_id != self.order_id.partner_id:
-                raise exceptions.Warning(
+                raise UserError(
                     _('Invalid agreement '
-                      'Agreement and supplier does not match')
-                )
-
+                      'Agreement and supplier does not match'))
             self.price_unit = agreement.get_price(self.product_qty,
                                                   self.order_id.currency_id)
+
+    @api.multi
+    @api.constrains('price_unit')
+    def _check_line_price_unit_framework_agreement(self):
+        for record in self:
+            if record.framework_agreement_id:
+                agreement_price = record.framework_agreement_id.get_price(
+                    record.product_qty,
+                    currency=record.currency_id)
+                if agreement_price != self.price_unit:
+                    msg = _(
+                        "In line %s You have set the price to %s \n"
+                        " but there is a running agreement"
+                        " with price %s") % (
+                        record.name, record.price_unit, agreement_price)
+                    raise UserError(msg)

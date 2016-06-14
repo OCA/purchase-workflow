@@ -35,13 +35,20 @@
       <field name="arch" type="xml">
         <form string="Agreement Portfolio">
           <sheet>
+            <div class="oe_title">
+              <label for="name" class="oe_edit_only"/>
+              <h1><field name="name" class="oe_inline"/></h1>
+            </div>
             <group>
-              <field name="name"/>
-              <field name="company_id" groups="base.group_multi_company" widget="selection"/>
               <field name="supplier_id" context="{'search_default_supplier': True, 'default_supplier': True, 'default_customer': False}" domain="[('supplier','=',True)]"/>
-              <separator string="Agreements"/>
-              <field name="agreement_ids" nolabel="1" colspan="2" context="{'form_view_ref': 'framework_agreement.agreement_in_portfolio_form_view'}"/>
+              <field name="company_id" groups="base.group_multi_company" widget="selection"/>
             </group>
+            <notebook>
+              <page name="agreements" string="Agreements">
+                <field name="agreement_ids" nolabel="1" colspan="2"
+                       context="{'form_view_ref': 'framework_agreement.agreement_in_portfolio_form_view'}"/>
+              </page>
+            </notebook>
           </sheet>
         </form>
       </field>

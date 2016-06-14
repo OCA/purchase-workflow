@@ -22,8 +22,7 @@ class Portfolio(models.Model):
     _description = 'Agreement Portfolio'
 
     def _company_get(self):
-        company_id = self.env['res.company']._company_default_get(self._name)
-        return self.env['res.company'].browse(company_id)
+        return self.env['res.company']._company_default_get(self._name)
 
     @api.returns('self')
     @api.model
