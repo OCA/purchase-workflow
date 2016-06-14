@@ -11,8 +11,7 @@ from openerp import exceptions
 from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
 import openerp.addons.decimal_precision as dp
 
-AGR_PO_STATE = ('confirmed', 'approved',
-                'done', 'except_picking', 'except_invoice')
+AGR_PO_STATE = ('purchase', 'done', )
 
 
 class FrameworkAgreement(models.Model):

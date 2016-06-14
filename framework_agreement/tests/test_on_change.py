@@ -58,7 +58,6 @@ class TestAgreementOnChange(test_common.TransactionCase,
         order = self.env['purchase.order'].create({
             'currency_id': self.ref('base.EUR'),
             'partner_id': self.supplier.id,
-            'location_id': self.supplier.property_stock_customer.id,
         })
         order_line = self.po_line_model.new({
             'framework_agreement_id': self.agreement.id,
@@ -69,6 +68,6 @@ class TestAgreementOnChange(test_common.TransactionCase,
         exception = False
         with self.assertRaises(exceptions.UserError) as exc:
             order_line._check_line_price_unit_framework_agreement()
-        if exc.exception.message:
+        if exc.exception.name:
             exception = True
         self.assertEqual(exception, True)

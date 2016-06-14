@@ -52,7 +52,7 @@ class TestAvailableQty(test_common.TransactionCase, BaseAgreementTestMixin):
             self._map_agreement_to_po_line(self.agreement, qty=150, po=po))
 
         po.button_confirm()
-        self.assertIn(po.state, 'approved')
+        self.assertIn(po.state, 'purchase')
         self.assertEqual(self.agreement.available_quantity, 50)
 
     def _map_agreement_to_po(self, agreement, delta_days):
@@ -65,7 +65,6 @@ class TestAvailableQty(test_common.TransactionCase, BaseAgreementTestMixin):
         return {
             'partner_id': supplier.id,
             'dest_address_id': address.id,
-            'location_id': address.property_stock_customer.id,
             'payment_term_id': supplier.property_supplier_payment_term_id.id,
             'origin': agreement.name,
             'date_order': fields.Date.to_string(date_order),
