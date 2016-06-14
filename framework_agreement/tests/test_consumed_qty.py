@@ -66,7 +66,7 @@ class TestAvailableQty(test_common.TransactionCase, BaseAgreementTestMixin):
             'partner_id': supplier.id,
             'dest_address_id': address.id,
             'location_id': address.property_stock_customer.id,
-            'payment_term_id': supplier.property_supplier_payment_term.id,
+            'payment_term_id': supplier.property_supplier_payment_term_id.id,
             'origin': agreement.name,
             'date_order': fields.Date.to_string(date_order),
             'name': agreement.name,

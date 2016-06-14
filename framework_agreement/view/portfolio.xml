@@ -65,7 +65,7 @@
 
     <menuitem
       name="Agreement Portfolios"
-      parent="purchase.menu_purchase_config_pricelist"
+      parent="purchase.menu_procurement_management"
       action="portfolio_action"
       id="portfolio_menu"/>
 

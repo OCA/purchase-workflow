@@ -66,7 +66,7 @@ class TestAgreementOnChange(test_common.TransactionCase,
             'product_qty': 100,
             'order_id': order.id,
         })
-        with self.assertRaises(exceptions.Warning) as exc:
+        with self.assertRaises(exceptions.UserError) as exc:
             order_line._check_line_price_unit_framework_agreement()
         self.assertEqual(
             exc.exception.message,

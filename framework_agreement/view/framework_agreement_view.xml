@@ -222,10 +222,9 @@
       <field name="view_id" ref="framework_agreement_list_view"/>
     </record>
 
-
     <menuitem
       name="Framework Agreement"
-      parent="purchase.menu_purchase_config_pricelist"
+      parent="purchase.menu_procurement_management"
       action="action_framework_agreement"
       id="action_framework_agreement_menu"/>
 

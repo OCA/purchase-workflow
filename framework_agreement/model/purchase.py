@@ -90,8 +90,7 @@ class PurchaseOrderLine(models.Model):
         good_agreements = agreement_model.search(ag_domain).filtered(
             lambda a: a.has_currency(self.order_id.currency_id))
         if len(good_agreements) > 1 \
-                and framework_agreement \
-                        in good_agreements:
+                and framework_agreement in good_agreements:
             pass  # it's good! let's keep it!
         else:
             if len(good_agreements) == 1:
