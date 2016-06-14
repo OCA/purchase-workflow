@@ -51,7 +51,7 @@ class TestAvailableQty(test_common.TransactionCase, BaseAgreementTestMixin):
         self.env['purchase.order.line'].create(
             self._map_agreement_to_po_line(self.agreement, qty=150, po=po))
 
-        po.signal_workflow('purchase_confirm')
+        po.button_confirm()
         self.assertIn(po.state, 'approved')
         self.assertEqual(self.agreement.available_quantity, 50)
 

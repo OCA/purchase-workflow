@@ -226,7 +226,8 @@
       name="Framework Agreement"
       parent="purchase.menu_procurement_management"
       action="action_framework_agreement"
-      id="action_framework_agreement_menu"/>
+      id="action_framework_agreement_menu"
+      sequence="17"/>
 
   </data>
 </openerp>

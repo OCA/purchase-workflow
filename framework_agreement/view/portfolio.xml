@@ -67,7 +67,8 @@
       name="Agreement Portfolios"
       parent="purchase.menu_procurement_management"
       action="portfolio_action"
-      id="portfolio_menu"/>
+      id="portfolio_menu"
+      sequence="18"/>
 
   </data>
 </openerp>
