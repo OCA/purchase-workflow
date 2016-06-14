@@ -1,19 +1,7 @@
 # -*- coding: utf-8 -*-
-#    Author: Nicolas Bessi, Leonardo Pistone
-#    Copyright 2013-2015 Camptocamp SA
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# © 2013-2015 Camptocamp SA - Nicolas Bessi, Leonardo Pistone
+# © 2016 Eficent Business and IT Consulting Services S.L.
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from operator import attrgetter
 from collections import namedtuple
@@ -27,7 +15,7 @@ AGR_PO_STATE = ('confirmed', 'approved',
                 'done', 'except_picking', 'except_invoice')
 
 
-class framework_agreement(models.Model):
+class FrameworkAgreement(models.Model):
     """Long term agreement on product price with a supplier"""
 
     _name = 'framework.agreement'
@@ -157,7 +145,7 @@ class framework_agreement(models.Model):
         elif start <= now <= end:
             return 'running'
         else:
-            raise ValueError('Agreement start/end dates are incorrect')
+            raise ValueError(_('Agreement start/end dates are incorrect'))
 
     @api.model
     def _get_dates(self, agreement):
@@ -314,9 +302,8 @@ class framework_agreement(models.Model):
         vals['name'] = self.env['ir.sequence'].next_by_code(
             'framework.agreement'
         )
-        return super(framework_agreement, self).create(vals)
+        return super(FrameworkAgreement, self).create(vals)
 
-    @api.one
     @api.constrains('supplier_id', 'product_id', 'start_date', 'end_date',
                     'company_id', 'incoterm_id', 'incoterm_address')
     def check_overlap(self):
@@ -326,6 +313,7 @@ class framework_agreement(models.Model):
         agreements from different companies are tolerated or not.
 
         """
+        self.ensure_one()
         date_domain = [
             ('start_date', '<=', self.end_date),
             ('end_date', '>=', self.start_date),
@@ -520,7 +508,7 @@ class framework_agreement(models.Model):
         return partner.property_product_pricelist_purchase.currency_id
 
 
-class framework_agreement_pricelist(models.Model):
+class FrameworkAgreementPricelist(models.Model):
     """Price list container"""
 
     _name = "framework.agreement.pricelist"
@@ -543,7 +531,7 @@ class framework_agreement_pricelist(models.Model):
     )
 
 
-class framework_agreement_line(models.Model):
+class FrameworkAgreementLine(models.Model):
     """Price list line of framework agreement
     that contains price and qty"""
 

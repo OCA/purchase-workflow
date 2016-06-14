@@ -1,19 +1,7 @@
 # -*- coding: utf-8 -*-
-#    Author: Nicolas Bessi, Leonardo Pistone
-#    Copyright 2013, 2015 Camptocamp SA
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# © 2013-2015 Camptocamp SA - Nicolas Bessi, Leonardo Pistone
+# © 2016 Eficent Business and IT Consulting Services S.L.
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from datetime import timedelta, date
 from openerp import fields
@@ -76,19 +64,18 @@ class TestAvailableQty(test_common.TransactionCase, BaseAgreementTestMixin):
 
         return {
             'partner_id': supplier.id,
-            'pricelist_id': supplier.property_product_pricelist_purchase.id,
             'dest_address_id': address.id,
             'location_id': address.property_stock_customer.id,
             'payment_term_id': supplier.property_supplier_payment_term.id,
             'origin': agreement.name,
             'date_order': fields.Date.to_string(date_order),
             'name': agreement.name,
+            'currency_id': self.ref('base.EUR')
         }
 
     def _map_agreement_to_po_line(self, agreement, qty, po):
         """Map agreement to dict to be used by PO line create"""
-        supplier = agreement.supplier_id
-        currency = supplier.property_product_pricelist_purchase.currency_id
+        currency = po.currency_id
         return {
             'product_qty': qty,
             'product_id': agreement.product_id.product_variant_ids[0].id,
