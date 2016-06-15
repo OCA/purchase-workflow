@@ -2,6 +2,7 @@
 # © 2016  Denis Roussel, Acsone SA/NV (http://www.acsone.eu)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import openerp.tests.common as common
+import re
 
 
 class TestPurchase(common.TransactionCase):
@@ -65,3 +66,23 @@ class TestPurchase(common.TransactionCase):
 
         for line in po.order_line:
             self.assertEqual(line.product_qty, 1.0)
+
+    def test_import_product_fields_view(self):
+        """ Check if domain is well affected
+        """
+
+        po = self.env["purchase.order"].create(
+            {"partner_id": self.supplier.id,
+             'location_id': self.env.ref("stock.stock_location_stock").id,
+             'pricelist_id': self.env.ref('purchase.list0').id})
+
+        wiz_obj = self.env['purchase.import.products']
+        wizard = wiz_obj.with_context(active_id=po.id,
+                                      active_model='purchase.order')
+
+        res = wizard.fields_view_get()
+        self.assertEqual('arch' in res, True)
+        match = re.compile(r'<field(.)+domain=(.)+&quot;seller_ids.name')
+        find_res = re.findall(match,
+                              res['arch'])
+        self.assertEqual(len(find_res) > 0, True)
