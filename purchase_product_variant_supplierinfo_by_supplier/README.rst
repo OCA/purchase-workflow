@@ -7,7 +7,7 @@ Product Variant Supplierinfo By Supplier
 ========================================
 
 This module replaces the product template by the product variant
-in the views of product supplierinfo.
+in the views of product supplierinfo defined in the product_by_supplier module.
 
 Usage
 =====
