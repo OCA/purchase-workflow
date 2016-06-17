@@ -10,8 +10,8 @@ class AccountInvoice(models.Model):
 
     only_allowed_products = fields.Boolean(
         string="Use only allowed products",
-        help="If checked, you will only be able to select products that can be"
-             " supplied by this supplier.")
+        help="If checked, only the products provided by this supplier "
+             "will be shown.")
     allowed_products = fields.Many2many(
         comodel_name='product.product', string='Allowed products')
 
@@ -28,9 +28,10 @@ class AccountInvoice(models.Model):
             partner.commercial_partner_id.supplier_invoice_only_allowed)
         return result
 
-    @api.one
+    @api.multi
     @api.onchange('only_allowed_products')
     def onchange_only_allowed_products(self):
+        self.ensure_one()
         product_obj = self.env['product.product']
         self.allowed_products = product_obj.search(
             [('purchase_ok', '=', True)])

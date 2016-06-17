@@ -12,4 +12,4 @@ class ResPartner(models.Model):
         string="Use in supplier invoices only allowed products",
         help="If checked, by default you will only be able to select products"
              " that can be supplied by this supplier when creating a supplier"
-             " invoice for it. This value can be changed for each invoice.")
+             " invoice for it. This value can be set for each invoice.")
