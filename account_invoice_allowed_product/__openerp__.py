@@ -8,7 +8,7 @@
                'supplied by the supplier',
     'version': '8.0.1.0.0',
     'category': 'Accounting & Finance',
-    'website': 'http://akretion.com',
+    'website': 'https://akretion.com',
     'author': 'Akretion, Odoo Community Association (OCA)',
     'license': 'AGPL-3',
     'installable': True,
