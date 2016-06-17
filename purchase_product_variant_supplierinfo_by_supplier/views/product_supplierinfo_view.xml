@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        
+        <record id="view_product_variant_supplierinfo_search" model="ir.ui.view">
+            <field name="model">product.supplierinfo</field>
+            <field name="inherit_id" ref="product_by_supplier.view_product_supplierinfo_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_tmpl_id']" position="after">
+                    <field name="product_id" />
+                </xpath>
+                <xpath expr="//field[@name='product_tmpl_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//filter[@name='supplier_code']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//filter[@name='supplier']" position="attributes">
+                    <attribute name="context">{'group_by' : 'name', 'group_by_supplier': 1}</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_product_variant_supplierinfo_tree1" model="ir.ui.view">
+            <field name="model">product.supplierinfo</field>
+            <field name="inherit_id" ref="product_by_supplier.view_product_supplierinfo_tree1"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='sequence']" position="before">
+                    <field name="product_id" string="Product variant"/>
+                </xpath>
+                <xpath expr="//field[@name='product_tmpl_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='name']" position="attributes">
+                    <attribute name="invisible">context.get('group_by_supplier')</attribute>
+                </xpath>
+                <xpath expr="//field[@name='product_code']" position="attributes">
+                    <attribute name="string">Supplier Product Variant Code</attribute>
+                </xpath>
+                <xpath expr="//field[@name='product_name']" position="attributes">
+                    <attribute name="string">Supplier Product Variant Name</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_product_variant_supplierinfo_form1" model="ir.ui.view">
+            <field name="model">product.supplierinfo</field>
+            <field name="inherit_id" ref="product_by_supplier.view_product_supplierinfo_form1"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_tmpl_id']" position="after">
+                    <field name="product_id" string="Product variant" required="1"/>
+                </xpath>
+                <xpath expr="//field[@name='product_tmpl_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                    <attribute name="required">0</attribute>
+                </xpath>
+                <xpath expr="//field[@name='product_code']" position="attributes">
+                    <attribute name="string">Supplier Product Variant Code</attribute>
+                </xpath>
+                <xpath expr="//field[@name='product_name']" position="attributes">
+                    <attribute name="string">Supplier Product Variant Name</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="product_by_supplier.action_product_supplier_info" model="ir.actions.act_window">
+            <field name="name">Product Variants by Suppliers</field>
+            <field name="view_id" ref="view_product_variant_supplierinfo_tree1"/>
+            <field name="search_view_id" ref="view_product_variant_supplierinfo_search"/>
+        </record>
+
+        <record model="ir.ui.menu" id="product_by_supplier.menu_product_supplier_info">
+            <field name="name">Product Variants by Suppliers</field>
+        </record>
+
+    </data>
+</openerp>
