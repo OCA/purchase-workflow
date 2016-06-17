@@ -35,10 +35,10 @@
                     <attribute name="invisible">context.get('group_by_supplier')</attribute>
                 </xpath>
                 <xpath expr="//field[@name='product_code']" position="attributes">
-                    <attribute name="string">Supplier Product Variant Code</attribute>
+                    <attribute name="string">Supplier product variant code</attribute>
                 </xpath>
                 <xpath expr="//field[@name='product_name']" position="attributes">
-                    <attribute name="string">Supplier Product Variant Name</attribute>
+                    <attribute name="string">Supplier product variant name</attribute>
                 </xpath>
             </field>
         </record>
@@ -55,22 +55,22 @@
                     <attribute name="required">0</attribute>
                 </xpath>
                 <xpath expr="//field[@name='product_code']" position="attributes">
-                    <attribute name="string">Supplier Product Variant Code</attribute>
+                    <attribute name="string">Supplier product variant code</attribute>
                 </xpath>
                 <xpath expr="//field[@name='product_name']" position="attributes">
-                    <attribute name="string">Supplier Product Variant Name</attribute>
+                    <attribute name="string">Supplier product variant name</attribute>
                 </xpath>
             </field>
         </record>
 
         <record id="product_by_supplier.action_product_supplier_info" model="ir.actions.act_window">
-            <field name="name">Product Variants by Suppliers</field>
+            <field name="name">Product variants by suppliers</field>
             <field name="view_id" ref="view_product_variant_supplierinfo_tree1"/>
             <field name="search_view_id" ref="view_product_variant_supplierinfo_search"/>
         </record>
 
         <record model="ir.ui.menu" id="product_by_supplier.menu_product_supplier_info">
-            <field name="name">Product Variants by Suppliers</field>
+            <field name="name">Product variants by suppliers</field>
         </record>
 
     </data>
