@@ -3,7 +3,6 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from openerp import api, fields, models
-import time
 import openerp.addons.decimal_precision as dp
 
 _STATES = [
@@ -172,7 +171,7 @@ class PurchaseRequestLine(models.Model):
         else:
             self.is_editable = True
 
-    @api.one
+    @api.multi
     def _compute_supplier_id(self):
         if self.product_id:
             for product_supplier in self.product_id.seller_ids:
