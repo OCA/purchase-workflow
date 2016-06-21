@@ -24,14 +24,12 @@ class PurchaseRequestLine(models.Model):
     @api.multi
     @api.depends('purchase_lines')
     def _compute_is_editable(self):
-        self.ensure_one()
         super(PurchaseRequestLine, self)._compute_is_editable()
         if self.purchase_lines:
             self.is_editable = False
 
     @api.multi
-    def _purchased_qty(self):
-        self.ensure_one()
+    def _compute_purchased_qty(self):
         purchased_qty = 0.0
         for purchase_line in self.purchase_lines:
             if purchase_line.state != 'cancel':
@@ -41,7 +39,6 @@ class PurchaseRequestLine(models.Model):
     @api.multi
     @api.depends('purchase_lines.state')
     def _compute_purchase_state(self):
-        self.ensure_one()
         self.purchase_state = 'none'
         if self.purchase_lines:
             if any([po_line.state == 'done' for po_line in
@@ -58,7 +55,7 @@ class PurchaseRequestLine(models.Model):
                 self.purchase_state = 'draft'
 
     purchased_qty = fields.Float(string='Quantity in RFQ or PO',
-                                 compute="_purchased_qty")
+                                 compute="_compute_purchased_qty")
     purchase_lines = fields.Many2many(
         'purchase.order.line', 'purchase_request_purchase_order_line_rel',
         'purchase_request_line_id',
