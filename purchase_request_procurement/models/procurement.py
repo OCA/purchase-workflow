@@ -3,7 +3,7 @@
 # - Jordi Ballester Alomar
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from openerp import api, fields, models, _
+from openerp import _, api, fields, models
 
 
 class Procurement(models.Model):
@@ -12,10 +12,11 @@ class Procurement(models.Model):
     request_id = fields.Many2one('purchase.request',
                                  string='Latest Purchase Request')
 
-    @api.one
+    @api.multi
     def copy(self, default=None):
         if default is None:
             default = {}
+        self.ensure_one()
         default['request_id'] = False
         return super(Procurement, self).copy(default)
 

@@ -1,24 +1,8 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Copyright (C) 2015 Eficent (<http://www.eficent.com/>)
-#              <contact@eficent.com>
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-from openerp import api, models, _
+# © 2015 Eficent Business and IT Consulting Services S.L.
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+
+from openerp import _, api, models
 
 
 class StockPicking(models.Model):
@@ -68,7 +52,7 @@ class StockPicking(models.Model):
                             'product_uom': move.product_uom.name,
                         }
                         requests_dict[request_id][request_line.id] = data
-            for request_id in requests_dict.keys():
+            for request_id in requests_dict:
                 request = request_obj.browse(request_id)
                 message = \
                     self._purchase_request_picking_confirm_message_content(

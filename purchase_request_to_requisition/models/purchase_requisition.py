@@ -3,7 +3,7 @@
 # - Jordi Ballester Alomar
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from openerp import api, fields, models, _
+from openerp import _, api, fields, models
 
 
 class PurchaseRequisition(models.Model):
@@ -78,7 +78,7 @@ class PurchaseRequisitionLine(models.Model):
     _inherit = "purchase.requisition.line"
 
     @api.one
-    def _has_purchase_request_lines(self):
+    def _compute_has_purchase_request_lines(self):
         if self.purchase_request_lines:
             self.has_purchase_request_lines = True
         else:
@@ -89,19 +89,10 @@ class PurchaseRequisitionLine(models.Model):
         'purchase_request_purchase_requisition_line_rel',
         'purchase_requisition_line_id',
         'purchase_request_line_id',
-        string='Purchase Request Lines', readonly=True)
+        string='Purchase Request Lines', readonly=True, copy=False)
     has_purchase_request_lines = fields.Boolean(
-        compute="_has_purchase_request_lines",
+        compute="_compute_has_purchase_request_lines",
         string="Has Purchase Request Lines")
-
-    @api.one
-    def copy(self, default=None):
-        if default is None:
-            default = {}
-        default.update({
-            'purchase_request_lines': [],
-        })
-        return super(PurchaseRequisitionLine, self).copy(default)
 
     @api.multi
     def action_openRequestLineTreeView(self):

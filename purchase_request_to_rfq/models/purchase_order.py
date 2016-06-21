@@ -1,24 +1,8 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Copyright (C) 2015 Eficent (<http://www.eficent.com/>)
-#              <contact@eficent.com>
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-from openerp import api, fields, models, _, exceptions
+# © 2015 Eficent Business and IT Consulting Services S.L.
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+
+from openerp import _, api, exceptions, fields, models
 
 
 class PurchaseOrder(models.Model):
@@ -65,7 +49,7 @@ class PurchaseOrder(models.Model):
                         'date_planned': date_planned,
                     }
                     requests_dict[request_id][request_line.id] = data
-            for request_id in requests_dict.keys():
+            for request_id in requests_dict:
                 request = request_obj.browse(request_id)
                 message = self._purchase_request_confirm_message_content(
                     po, request, requests_dict[request_id])
@@ -94,32 +78,21 @@ class PurchaseOrder(models.Model):
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
-    @api.one
-    def _has_purchase_request_lines(self):
-        if self.purchase_request_lines:
-            self.has_purchase_request_lines = True
-        else:
-            self.has_purchase_request_lines = False
+    @api.multi
+    def _compute_has_purchase_request_lines(self):
+        self.ensure_one()
+        self.has_purchase_request_lines = bool(self.purchase_request_lines)
 
     purchase_request_lines = fields.Many2many(
         'purchase.request.line',
         'purchase_request_purchase_order_line_rel',
         'purchase_order_line_id',
         'purchase_request_line_id',
-        'Purchase Request Lines', readonly=True)
+        'Purchase Request Lines', readonly=True, copy=False)
 
     has_purchase_request_lines = fields.Boolean(
-        compute="_has_purchase_request_lines",
+        compute="_compute_has_purchase_request_lines",
         string="Has Purchase Request Lines")
-
-    @api.one
-    def copy(self, default=None):
-        if default is None:
-            default = {}
-        default.update({
-            'purchase_request_lines': [],
-        })
-        return super(PurchaseOrderLine, self).copy(default)
 
     @api.multi
     def action_openRequestLineTreeView(self):

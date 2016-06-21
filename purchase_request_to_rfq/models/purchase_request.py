@@ -1,26 +1,12 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Copyright (C) 2015 Eficent (<http://www.eficent.com/>)
-#              <contact@eficent.com>
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-from openerp import api, fields, models, _, exceptions
+# © 2015 Eficent Business and IT Consulting Services S.L.
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+
 from datetime import datetime
+
 from dateutil.relativedelta import relativedelta
+
+from openerp import _, api, exceptions, fields, models
 
 _PURCHASE_ORDER_LINE_STATE = [
     ('none', 'No Purchase'),
@@ -35,24 +21,27 @@ class PurchaseRequestLine(models.Model):
 
     _inherit = "purchase.request.line"
 
-    @api.one
+    @api.multi
     @api.depends('purchase_lines')
-    def _get_is_editable(self):
-        super(PurchaseRequestLine, self)._get_is_editable()
+    def _compute_is_editable(self):
+        self.ensure_one()
+        super(PurchaseRequestLine, self)._compute_is_editable()
         if self.purchase_lines:
             self.is_editable = False
 
-    @api.one
+    @api.multi
     def _purchased_qty(self):
+        self.ensure_one()
         purchased_qty = 0.0
         for purchase_line in self.purchase_lines:
             if purchase_line.state != 'cancel':
                 purchased_qty += purchase_line.product_qty
         self.purchased_qty = purchased_qty
 
-    @api.one
+    @api.multi
     @api.depends('purchase_lines.state')
-    def _get_purchase_state(self):
+    def _compute_purchase_state(self):
+        self.ensure_one()
         self.purchase_state = 'none'
         if self.purchase_lines:
             if any([po_line.state == 'done' for po_line in
@@ -73,21 +62,12 @@ class PurchaseRequestLine(models.Model):
     purchase_lines = fields.Many2many(
         'purchase.order.line', 'purchase_request_purchase_order_line_rel',
         'purchase_request_line_id',
-        'purchase_order_line_id', 'Purchase Order Lines', readonly=True)
-    purchase_state = fields.Selection(compute="_get_purchase_state",
+        'purchase_order_line_id', 'Purchase Order Lines', readonly=True, copy=False)
+    purchase_state = fields.Selection(compute="_compute_purchase_state",
                                       string="Purchase Status",
                                       selection=_PURCHASE_ORDER_LINE_STATE,
                                       store=True,
                                       default='none')
-
-    @api.one
-    def copy(self, default=None):
-        if default is None:
-            default = {}
-        default.update({
-            'purchase_lines': [],
-        })
-        return super(PurchaseRequestLine, self).copy(default)
 
     @api.model
     def _planned_date(self, request_line, delay=0.0):
