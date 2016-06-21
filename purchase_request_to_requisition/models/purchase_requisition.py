@@ -77,12 +77,9 @@ class PurchaseRequisition(models.Model):
 class PurchaseRequisitionLine(models.Model):
     _inherit = "purchase.requisition.line"
 
-    @api.one
+    @api.multi
     def _compute_has_purchase_request_lines(self):
-        if self.purchase_request_lines:
-            self.has_purchase_request_lines = True
-        else:
-            self.has_purchase_request_lines = False
+        self.has_purchase_request_lines = bool(self.purchase_request_lines)
 
     purchase_request_lines = fields.Many2many(
         'purchase.request.line',

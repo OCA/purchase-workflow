@@ -20,7 +20,6 @@ class PurchaseRequestLine(models.Model):
     @api.multi
     @api.depends('requisition_lines')
     def _compute_is_editable(self):
-        self.ensure_one()
         super(PurchaseRequestLine, self)._compute_is_editable()
         if self.requisition_lines:
             self.is_editable = False
@@ -37,7 +36,6 @@ class PurchaseRequestLine(models.Model):
     @api.multi
     @api.depends('requisition_lines.requisition_id.state')
     def _compute_requisition_state(self):
-        self.ensure_one()
         self.requisition_state = 'none'
         if self.requisition_lines:
             if any([pr_line.requisition_id.state == 'done' for

@@ -80,7 +80,6 @@ class PurchaseOrderLine(models.Model):
 
     @api.multi
     def _compute_has_purchase_request_lines(self):
-        self.ensure_one()
         self.has_purchase_request_lines = bool(self.purchase_request_lines)
 
     purchase_request_lines = fields.Many2many(
