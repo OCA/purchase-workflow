@@ -1,26 +1,11 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Copyright (C) 2015 Eficent (<http://www.eficent.com/>)
-#              <contact@eficent.com>
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# © 2015 Eficent Business and IT Consulting Services S.L.
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+
 from openerp import api, fields, models
 import time
 import openerp.addons.decimal_precision as dp
+
 _STATES = [
     ('draft', 'Draft'),
     ('to_approve', 'To be approved'),
@@ -64,7 +49,7 @@ class PurchaseRequest(models.Model):
     @api.depends('name', 'origin', 'date_start',
                  'requested_by', 'assigned_to', 'description', 'company_id',
                  'line_ids', 'picking_type_id')
-    def _get_is_editable(self):
+    def _compute_is_editable(self):
         if self.state in ('to_approve', 'approved', 'rejected'):
             self.is_editable = False
         else:
@@ -91,8 +76,7 @@ class PurchaseRequest(models.Model):
     date_start = fields.Date('Creation date',
                              help="Date when the user initiated the "
                                   "request.",
-                             default=lambda *args:
-                             time.strftime('%Y-%m-%d %H:%M:%S'),
+                             default=fields.Date.context_today,
                              track_visibility='onchange')
     requested_by = fields.Many2one('res.users',
                                    'Requested by',
@@ -109,6 +93,7 @@ class PurchaseRequest(models.Model):
     line_ids = fields.One2many('purchase.request.line', 'request_id',
                                'Products to Purchase',
                                readonly=False,
+                               copy=True,
                                track_visibility='onchange')
     state = fields.Selection(selection=_STATES,
                              string='Status',
@@ -116,16 +101,17 @@ class PurchaseRequest(models.Model):
                              required=True,
                              default='draft')
     is_editable = fields.Boolean(string="Is editable",
-                                 compute="_get_is_editable",
+                                 compute="_compute_is_editable",
                                  readonly=True)
 
     picking_type_id = fields.Many2one('stock.picking.type',
                                       'Picking Type', required=True,
                                       default=_default_picking_type)
 
-    @api.one
+    @api.multi
     def copy(self, default=None):
         default = dict(default or {})
+        self.ensure_one()
         default.update({
             'state': 'draft',
             'name': self.env['ir.sequence'].get('purchase.request'),
@@ -140,8 +126,9 @@ class PurchaseRequest(models.Model):
             vals['message_follower_ids'] = [(4, assigned_to.partner_id.id)]
         return super(PurchaseRequest, self).create(vals)
 
-    @api.one
+    @api.multi
     def write(self, vals):
+        self.ensure_one()
         if vals.get('assigned_to'):
             assigned_to = self.env['res.users'].browse(
                 vals.get('assigned_to'))
@@ -179,14 +166,14 @@ class PurchaseRequestLine(models.Model):
     @api.multi
     @api.depends('product_id', 'name', 'product_uom_id', 'product_qty',
                  'analytic_account_id', 'date_required', 'specifications')
-    def _get_is_editable(self):
+    def _compute_is_editable(self):
         if self.request_id.state in ('to_approve', 'approved', 'rejected'):
             self.is_editable = False
         else:
             self.is_editable = True
 
     @api.one
-    def _get_supplier(self):
+    def _compute_supplier_id(self):
         if self.product_id:
             for product_supplier in self.product_id.seller_ids:
                 self.supplier_id = product_supplier.name
@@ -231,10 +218,9 @@ class PurchaseRequestLine(models.Model):
                          store=True)
     date_required = fields.Date(string='Request Date', required=True,
                                 track_visibility='onchange',
-                                default=lambda *args: time.strftime(
-                                    '%Y-%m-%d %H:%M:%S'))
+                                default=fields.Date.context_today)
     is_editable = fields.Boolean(string='Is editable',
-                                 compute="_get_is_editable",
+                                 compute="_compute_is_editable",
                                  readonly=True)
     specifications = fields.Text(string='Specifications')
     request_state = fields.Selection(string='Request state',
@@ -244,7 +230,7 @@ class PurchaseRequestLine(models.Model):
                                      store=True)
     supplier_id = fields.Many2one('res.partner',
                                   string='Preferred supplier',
-                                  compute="_get_supplier")
+                                  compute="_compute_supplier_id")
 
     procurement_id = fields.Many2one('procurement.order',
                                      'Procurement Order',

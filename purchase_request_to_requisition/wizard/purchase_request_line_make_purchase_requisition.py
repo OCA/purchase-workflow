@@ -3,9 +3,9 @@
 # - Jordi Ballester Alomar
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from openerp import api, fields, models, exceptions
-from openerp.tools.translate import _
 import openerp.addons.decimal_precision as dp
+from openerp import api, exceptions, fields, models
+from openerp.tools.translate import _
 
 
 class PurchaseRequestLineMakePurchaseRequisition(models.TransientModel):
@@ -45,7 +45,7 @@ class PurchaseRequestLineMakePurchaseRequisition(models.TransientModel):
 
         items = []
         for line in request_line_obj.browse(request_line_ids):
-                items.append([0, 0, self._prepare_item(line)])
+            items.append([0, 0, self._prepare_item(line)])
         res['item_ids'] = items
         return res
 

@@ -18,8 +18,8 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import api, fields, models, _, exceptions
 import openerp.addons.decimal_precision as dp
+from openerp import _, api, exceptions, fields, models
 
 
 class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
@@ -63,7 +63,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
 
         items = []
         for line in request_line_obj.browse(request_line_ids):
-                items.append([0, 0, self._prepare_item(line)])
+            items.append([0, 0, self._prepare_item(line)])
         res['item_ids'] = items
         return res
 
@@ -210,9 +210,9 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                 new_qty, new_price = pr_line_obj._calc_new_qty_price(
                     line, po_line=po_line)
                 if new_qty > po_line.product_qty:
-                        po_line.product_qty = new_qty
-                        po_line.price_unit = new_price
-                        po_line.purchase_request_lines = [(4, line.id)]
+                    po_line.product_qty = new_qty
+                    po_line.price_unit = new_price
+                    po_line.purchase_request_lines = [(4, line.id)]
             else:
                 po_line_data = self._prepare_purchase_order_line(purchase,
                                                                  item)
