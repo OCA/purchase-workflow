@@ -59,7 +59,8 @@ class PurchaseRequestLine(models.Model):
     purchase_lines = fields.Many2many(
         'purchase.order.line', 'purchase_request_purchase_order_line_rel',
         'purchase_request_line_id',
-        'purchase_order_line_id', 'Purchase Order Lines', readonly=True, copy=False)
+        'purchase_order_line_id', 'Purchase Order Lines',
+        readonly=True, copy=False)
     purchase_state = fields.Selection(compute="_compute_purchase_state",
                                       string="Purchase Status",
                                       selection=_PURCHASE_ORDER_LINE_STATE,
