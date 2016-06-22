@@ -25,34 +25,37 @@ class PurchaseRequestLine(models.Model):
     @api.depends('purchase_lines')
     def _compute_is_editable(self):
         super(PurchaseRequestLine, self)._compute_is_editable()
-        if self.purchase_lines:
-            self.is_editable = False
+        for rec in self:
+            if rec.purchase_lines:
+                rec.is_editable = False
 
     @api.multi
     def _compute_purchased_qty(self):
-        purchased_qty = 0.0
-        for purchase_line in self.purchase_lines:
-            if purchase_line.state != 'cancel':
-                purchased_qty += purchase_line.product_qty
-        self.purchased_qty = purchased_qty
+        for rec in self:
+            purchased_qty = 0.0
+            for purchase_line in rec.purchase_lines:
+                if purchase_line.state != 'cancel':
+                    purchased_qty += purchase_line.product_qty
+            rec.purchased_qty = purchased_qty
 
     @api.multi
     @api.depends('purchase_lines.state')
     def _compute_purchase_state(self):
-        self.purchase_state = 'none'
-        if self.purchase_lines:
-            if any([po_line.state == 'done' for po_line in
-                    self.purchase_lines]):
-                self.purchase_state = 'done'
-            elif all([po_line.state == 'cancel' for po_line in
-                      self.purchase_lines]):
-                self.purchase_state = 'cancel'
-            elif any([po_line.state == 'confirmed' for po_line in
-                      self.purchase_lines]):
-                self.purchase_state = 'confirmed'
-            elif all([po_line.state in ('draft', 'cancel') for po_line in
-                      self.purchase_lines]):
-                self.purchase_state = 'draft'
+        for rec in self:
+            rec.purchase_state = 'none'
+            if rec.purchase_lines:
+                if any([po_line.state == 'done' for po_line in
+                        rec.purchase_lines]):
+                    rec.purchase_state = 'done'
+                elif all([po_line.state == 'cancel' for po_line in
+                          rec.purchase_lines]):
+                    rec.purchase_state = 'cancel'
+                elif any([po_line.state == 'confirmed' for po_line in
+                          rec.purchase_lines]):
+                    rec.purchase_state = 'confirmed'
+                elif all([po_line.state in ('draft', 'cancel') for po_line in
+                          rec.purchase_lines]):
+                    rec.purchase_state = 'draft'
 
     purchased_qty = fields.Float(string='Quantity in RFQ or PO',
                                  compute="_compute_purchased_qty")
