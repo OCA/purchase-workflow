@@ -38,21 +38,22 @@ class PurchaseRequestLine(models.Model):
     @api.depends('requisition_lines.requisition_id.state')
     def _compute_requisition_state(self):
         for rec in self:
-            rec.requisition_state = 'none'
+            temp_req_state = 'none'
             if rec.requisition_lines:
                 if any([pr_line.requisition_id.state == 'done' for
                         pr_line in
                         rec.requisition_lines]):
-                    rec.requisition_state = 'done'
+                    temp_req_state = 'done'
                 elif all([pr_line.requisition_id.state == 'cancel'
                           for pr_line in rec.requisition_lines]):
-                    rec.requisition_state = 'cancel'
+                    temp_req_state = 'cancel'
                 elif any([pr_line.requisition_id.state == 'in_progress'
                           for pr_line in rec.requisition_lines]):
-                    rec.requisition_state = 'in_progress'
+                    temp_req_state = 'in_progress'
                 elif all([pr_line.requisition_id.state in ('draft', 'cancel')
                           for pr_line in rec.requisition_lines]):
-                    rec.requisition_state = 'draft'
+                    temp_req_state = 'draft'
+            rec.requisition_state = temp_req_state
 
     requisition_lines = fields.Many2many(
         'purchase.requisition.line',
