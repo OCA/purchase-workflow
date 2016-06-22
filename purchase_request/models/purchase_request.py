@@ -49,10 +49,11 @@ class PurchaseRequest(models.Model):
                  'requested_by', 'assigned_to', 'description', 'company_id',
                  'line_ids', 'picking_type_id')
     def _compute_is_editable(self):
-        if self.state in ('to_approve', 'approved', 'rejected'):
-            self.is_editable = False
-        else:
-            self.is_editable = True
+        for rec in self:
+            if rec.state in ('to_approve', 'approved', 'rejected'):
+                rec.is_editable = False
+            else:
+                rec.is_editable = True
 
     _track = {
         'state': {
@@ -166,16 +167,18 @@ class PurchaseRequestLine(models.Model):
     @api.depends('product_id', 'name', 'product_uom_id', 'product_qty',
                  'analytic_account_id', 'date_required', 'specifications')
     def _compute_is_editable(self):
-        if self.request_id.state in ('to_approve', 'approved', 'rejected'):
-            self.is_editable = False
-        else:
-            self.is_editable = True
+        for rec in self:
+            if rec.request_id.state in ('to_approve', 'approved', 'rejected'):
+                rec.is_editable = False
+            else:
+                rec.is_editable = True
 
     @api.multi
     def _compute_supplier_id(self):
-        if self.product_id:
-            for product_supplier in self.product_id.seller_ids:
-                self.supplier_id = product_supplier.name
+        for rec in self:
+            if rec.product_id:
+                for product_supplier in rec.product_id.seller_ids:
+                    rec.supplier_id = product_supplier.name
 
     product_id = fields.Many2one(
         'product.product', 'Product',
