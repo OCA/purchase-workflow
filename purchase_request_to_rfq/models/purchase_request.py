@@ -42,20 +42,21 @@ class PurchaseRequestLine(models.Model):
     @api.depends('purchase_lines.state')
     def _compute_purchase_state(self):
         for rec in self:
-            rec.purchase_state = 'none'
+            temp_purchase_state = 'none'
             if rec.purchase_lines:
                 if any([po_line.state == 'done' for po_line in
                         rec.purchase_lines]):
-                    rec.purchase_state = 'done'
+                    temp_purchase_state = 'done'
                 elif all([po_line.state == 'cancel' for po_line in
                           rec.purchase_lines]):
-                    rec.purchase_state = 'cancel'
+                    temp_purchase_state = 'cancel'
                 elif any([po_line.state == 'confirmed' for po_line in
                           rec.purchase_lines]):
-                    rec.purchase_state = 'confirmed'
+                    temp_purchase_state = 'confirmed'
                 elif all([po_line.state in ('draft', 'cancel') for po_line in
                           rec.purchase_lines]):
-                    rec.purchase_state = 'draft'
+                    temp_purchase_state = 'draft'
+            rec.purchase_state = temp_purchase_state
 
     purchased_qty = fields.Float(string='Quantity in RFQ or PO',
                                  compute="_compute_purchased_qty")
