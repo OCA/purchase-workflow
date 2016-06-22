@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-# Copyright 2016 Eficent Business and IT Consulting Services S.L.
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
+# © 2015 Eficent Business and IT Consulting Services S.L.
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from openerp import _, api, exceptions, fields, models
 
@@ -68,9 +68,9 @@ class PurchaseOrder(models.Model):
         return True
 
     @api.multi
-    def button_confirm(self):
+    def wkf_confirm_order(self):
         self._purchase_request_line_check()
-        res = super(PurchaseOrder, self).button_confirm()
+        res = super(PurchaseOrder, self).wkf_confirm_order()
         self._purchase_request_confirm_message()
         return res
 
@@ -80,8 +80,7 @@ class PurchaseOrderLine(models.Model):
 
     @api.multi
     def _compute_has_purchase_request_lines(self):
-        for rec in self:
-            rec.has_purchase_request_lines = bool(rec.purchase_request_lines)
+        self.has_purchase_request_lines = bool(self.purchase_request_lines)
 
     purchase_request_lines = fields.Many2many(
         'purchase.request.line',

@@ -1,12 +1,26 @@
 # -*- coding: utf-8 -*-
-# Copyright 2016 Eficent Business and IT Consulting Services S.L.
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
-
+##############################################################################
+#
+#    Copyright (C) 2014 Eficent (<http://www.eficent.com/>)
+#              <contact@eficent.com>
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
 import openerp.addons.decimal_precision as dp
 from openerp import _, api, exceptions, fields, models
-from openerp.tools import DEFAULT_SERVER_DATE_FORMAT, \
-    DEFAULT_SERVER_DATETIME_FORMAT
-from datetime import datetime
+
 
 class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
     _name = "purchase.request.line.make.purchase.order"
@@ -59,15 +73,15 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             raise exceptions.Warning(
                 _('Enter a supplier.'))
         supplier = self.supplier_id
-        supplier_pricelist = supplier.property_product_pricelist  \
+        supplier_pricelist = supplier.property_product_pricelist_purchase  \
             or False
         data = {
             'origin': '',
             'partner_id': self.supplier_id.id,
             'pricelist_id': supplier_pricelist.id,
             'location_id': location.id,
-            'fiscal_position': supplier.property_account_position_id and
-            supplier.property_account_position_id.id or False,
+            'fiscal_position': supplier.property_account_position and
+            supplier.property_account_position.id or False,
             'picking_type_id': picking_type.id,
             'company_id': company_id,
             }
@@ -76,40 +90,24 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
     @api.model
     def _prepare_purchase_order_line(self, po, item):
         po_line_obj = self.env['purchase.order.line']
+        product_uom = self.env['product.uom']
         product = item.product_id
-        # supplierinfo = self.env['product.supplierinfo'].search([
-        #     ('product_tmpl_id','=',product.id),
-        #     ('name','=', self.supplier_id.id)])
-        # if supplierinfo:
-        #     price = supplierinfo[0].price
-        # else:
-        #     price = 0.0
-        supplier = self.supplier_id
-        pricelist_id = supplier.property_product_pricelist
-
-        if pricelist_id:
-            date_order_str = datetime.strptime(
-                fields.datetime.now().strftime(DEFAULT_SERVER_DATETIME_FORMAT),
-                DEFAULT_SERVER_DATETIME_FORMAT).\
-                strftime(DEFAULT_SERVER_DATE_FORMAT)
-            price = pricelist_id.price_get(prod_id = product.id,
-                                           qty = item.product_qty or 1.0,
-                                           partner = supplier or False,
-                                           context = {'uom': product.\
-                                           uom_po_id.id,
-                                                      'date': date_order_str})
-            price = price[pricelist_id.id]
-        else:
-            price = product.standard_price
-
-        vals = po_line_obj.onchange_product_id()
+        default_uom_po_id = product.uom_po_id.id
+        qty = product_uom._compute_qty(item.product_uom_id.id,
+                                       item.product_qty,
+                                       default_uom_po_id)
+        supplier_pricelist = \
+            po.partner_id.property_product_pricelist_purchase \
+            and po.partner_id.property_product_pricelist_purchase.id or False
+        vals = po_line_obj.onchange_product_id(
+            supplier_pricelist, product.id, qty, default_uom_po_id,
+            po.partner_id.id, date_order=False,
+            fiscal_position_id=po.partner_id.property_account_position.id,
+            date_planned=item.line_id.date_required,
+            name=False, price_unit=False, state='draft')['value']
         vals.update({
-            'name': product.name,
             'order_id': po.id,
             'product_id': product.id,
-            'product_uom': product.uom_po_id.id,
-            'price_unit': price,
-            'product_qty': item.product_qty,
             'account_analytic_id': item.line_id.analytic_account_id.id,
             'taxes_id': [(6, 0, vals.get('taxes_id', []))],
             'purchase_request_lines': [(4, item.line_id.id)],
@@ -223,7 +221,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
 
         return {
             'domain': "[('id','in', ["+','.join(map(str, res))+"])]",
-            'name': _('RFQ'),
+            'name': _('Purchase order'),
             'view_type': 'form',
             'view_mode': 'tree,form',
             'res_model': 'purchase.order',

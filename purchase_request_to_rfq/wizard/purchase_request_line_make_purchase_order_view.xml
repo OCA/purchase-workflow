@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright 2016 Eficent Business and IT Consulting Services S.L.
-     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
 <openerp>
     <data>
         <record id="view_purchase_request_line_make_purchase_order" model="ir.ui.view">
@@ -8,8 +6,8 @@
             <field name="model">purchase.request.line.make.purchase.order</field>
             <field name="type">form</field>
             <field name="arch" type="xml">
-                 <form string="Create RFQ">
-                     <separator string="Existing RFQ to update:"/>
+                 <form string="Create Purchase Order">
+                     <separator string="Existing draft PO to update:"/>
                      <newline/>
                      <group>
                         <field name="purchase_order_id"/>
@@ -40,7 +38,7 @@
                      <newline/>
                      <group colspan="2">
                          <button name="make_purchase_order"
-                                 string="Create RFQ" type="object"
+                                 string="Create Purchase Order" type="object"
                                  class="oe_highlight"/>
                          <button special="cancel" string="Cancel" class="oe_link"/>
                      </group>
@@ -49,7 +47,7 @@
         </record>
 
         <record id="action_purchase_request_line_make_purchase_order" model="ir.actions.act_window">
-            <field name="name">Create RFQ</field>
+            <field name="name">Create Purchase Order</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">purchase.request.line.make.purchase.order</field>
             <field name="view_type">form</field>
