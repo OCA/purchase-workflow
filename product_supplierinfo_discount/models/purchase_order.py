@@ -33,7 +33,7 @@ class PurchaseOrderLine(models.Model):
         product_uom_obj = self.env['product.uom']
         pl_pinfo_obj = self.env['pricelist.partnerinfo']
 
-        to_ret = None
+        res = None
         product = product_obj.browse(product_id)
         from_uom = self.env.context.get('uom') or product.uom_id.id
         qty_in_product_uom = qty
@@ -42,7 +42,7 @@ class PurchaseOrderLine(models.Model):
             [('product_tmpl_id', '=', product.product_tmpl_id.id),
              ('name', 'child_of', partner.commercial_partner_id.id)])
         if not sinfos:
-            return to_ret
+            return res
         seller_uom = sinfos[:1].product_uom.id or False
         if seller_uom and from_uom and from_uom != seller_uom:
             qty_in_product_uom = product_uom_obj._compute_qty(
@@ -52,11 +52,11 @@ class PurchaseOrderLine(models.Model):
 
         for pl_pinfo in pl_pinfos:
             if pl_pinfo.min_quantity <= qty_in_product_uom:
-                to_ret = pl_pinfo.discount
+                res = pl_pinfo.discount
             else:
                 break
 
-        return to_ret
+        return res
 
     @api.multi
     def onchange_product_id(
