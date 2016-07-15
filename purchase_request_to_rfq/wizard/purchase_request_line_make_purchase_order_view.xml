@@ -38,7 +38,7 @@
                      <newline/>
                      <group colspan="2">
                          <button name="make_purchase_order"
-                                 string="Create Purchase Order" type="object"
+                                 string="Create RFQ" type="object"
                                  class="oe_highlight"/>
                          <button special="cancel" string="Cancel" class="oe_link"/>
                      </group>
