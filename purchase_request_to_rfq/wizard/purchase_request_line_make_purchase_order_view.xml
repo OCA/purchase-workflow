@@ -6,8 +6,8 @@
             <field name="model">purchase.request.line.make.purchase.order</field>
             <field name="type">form</field>
             <field name="arch" type="xml">
-                 <form string="Create Purchase Order">
-                     <separator string="Existing draft PO to update:"/>
+                 <form string="Create RFQ">
+                     <separator string="Existing RFQ to update:"/>
                      <newline/>
                      <group>
                         <field name="purchase_order_id"/>
@@ -47,7 +47,7 @@
         </record>
 
         <record id="action_purchase_request_line_make_purchase_order" model="ir.actions.act_window">
-            <field name="name">Create Purchase Order</field>
+            <field name="name">Create RFQ</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">purchase.request.line.make.purchase.order</field>
             <field name="view_type">form</field>
