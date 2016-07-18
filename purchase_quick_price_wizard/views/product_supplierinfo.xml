@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="product_supplierinfo_tree_view">
+            <field name="name">product.supplierinfo.tree</field>
+            <field name="model">product.supplierinfo</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Supplier Information" editable="top">
+                    <field name="sequence" widget="handle"/>
+                    <field name="name"/>
+                    <field name="product_name" invisible="1"/>
+                    <field name="product_code" invisible="0"/>
+                    <field name="product_tmpl_id" string="Product" invisible="1"/>
+                    <field name="delay"/>
+                    <field name="min_qty"/>
+                    <field name="price" string="Price"/>
+                    <field name="date_start" invisible="1"/>
+                    <field name="date_end" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</odoo>
