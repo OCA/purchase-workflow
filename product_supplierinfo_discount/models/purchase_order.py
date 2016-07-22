@@ -17,7 +17,6 @@ class PurchaseOrderLine(models.Model):
         product_obj = self.env['product.product']
         product_uom_obj = self.env['product.uom']
         pl_pinfo_obj = self.env['pricelist.partnerinfo']
-
         res = None
         product = product_obj.browse(product_id)
         from_uom = self.env.context.get('uom') or product.uom_id.id
@@ -40,7 +39,6 @@ class PurchaseOrderLine(models.Model):
                 res = pl_pinfo.discount
             else:
                 break
-
         return res
 
     @api.multi
@@ -55,12 +53,9 @@ class PurchaseOrderLine(models.Model):
             state=state)
         if not product_id:
             return res
-
         # Look for a possible discount
         discount = self._get_product_discount(product_id, qty, partner_id)
         if discount is not None:
-            if 'value' not in res:
-                res['value'] = {}
-            res['value']['discount'] = discount
-
+            val = res.setdefault('value', {})
+            val['discount'] = discount
         return res
