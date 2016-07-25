@@ -3,13 +3,14 @@
 # * framework_agreement
 # 
 # Translators:
+# Hotellook, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-08 10:15+0000\n"
-"PO-Revision-Date: 2016-03-08 10:16+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2016-07-03 12:23+0000\n"
+"PO-Revision-Date: 2016-07-04 11:03+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -67,6 +68,7 @@ msgstr ""
 
 #. module: framework_agreement
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view
+#: selection:framework.agreement,state:0
 msgid "Closed"
 msgstr ""
 
@@ -76,12 +78,14 @@ msgid "Companies"
 msgstr ""
 
 #. module: framework_agreement
+#: field:framework.agreement,company_id:0
 #: field:framework.agreement.portfolio,company_id:0
 msgid "Company"
 msgstr ""
 
 #. module: framework_agreement
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view
+#: selection:framework.agreement,state:0
 msgid "Consumed"
 msgstr ""
 
@@ -127,7 +131,16 @@ msgid "Delivery Remarks"
 msgstr ""
 
 #. module: framework_agreement
+#: field:framework.agreement,display_name:0
+#: field:framework.agreement.line,display_name:0
+#: field:framework.agreement.portfolio,display_name:0
+#: field:framework.agreement.pricelist,display_name:0
+msgid "Display Name"
+msgstr ""
+
+#. module: framework_agreement
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view
+#: selection:framework.agreement,state:0
 msgid "Draft"
 msgstr ""
 
@@ -168,6 +181,7 @@ msgstr ""
 
 #. module: framework_agreement
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view
+#: selection:framework.agreement,state:0
 msgid "Future"
 msgstr ""
 
@@ -217,6 +231,14 @@ msgstr ""
 #. module: framework_agreement
 #: field:framework.agreement,draft:0
 msgid "Is draft"
+msgstr ""
+
+#. module: framework_agreement
+#: field:framework.agreement,__last_update:0
+#: field:framework.agreement.line,__last_update:0
+#: field:framework.agreement.portfolio,__last_update:0
+#: field:framework.agreement.pricelist,__last_update:0
+msgid "Last Modified on"
 msgstr ""
 
 #. module: framework_agreement
@@ -312,6 +334,7 @@ msgstr ""
 #. module: framework_agreement
 #: field:framework.agreement,portfolio_id:0
 #: field:purchase.order,portfolio_id:0
+#: field:purchase.order.line,portfolio_id:0
 msgid "Portfolio"
 msgstr ""
 
@@ -377,6 +400,7 @@ msgstr ""
 
 #. module: framework_agreement
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view
+#: selection:framework.agreement,state:0
 msgid "Running"
 msgstr ""
 
@@ -391,11 +415,17 @@ msgid "Start/end date inversion"
 msgstr ""
 
 #. module: framework_agreement
+#: field:framework.agreement,state:0
+msgid "State"
+msgstr ""
+
+#. module: framework_agreement
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view
+#: field:framework.agreement,supplier_id:0
 #: view:framework.agreement.portfolio:framework_agreement.portfolio_search_view
 #: field:framework.agreement.portfolio,supplier_id:0
 msgid "Supplier"
-msgstr ""
+msgstr "Proveedor"
 
 #. module: framework_agreement
 #: sql_constraint:framework.agreement.portfolio:0

@@ -3,12 +3,22 @@
 # * purchase_order_reorder_lines
 # 
 # Translators:
+# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2016
+# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2013
+# Antonio Trueba, 2016
+# danimaribeiro <danimaribeiro@gmail.com>, 2016
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012-2013
+# Hotellook, 2014
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Paolo Valier, 2016
+# Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-08 10:15+0000\n"
-"PO-Revision-Date: 2016-03-08 10:17+0000\n"
+"POT-Creation-Date: 2016-07-03 12:23+0000\n"
+"PO-Revision-Date: 2016-07-04 10:12+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -23,6 +33,11 @@ msgid "Gives the sequence of this line when displaying the purchase order."
 msgstr "Numéro d'ordre des lines lors de l'affichage du bon de commande."
 
 #. module: purchase_order_reorder_lines
+#: field:purchase.order,max_line_sequence:0
+msgid "Max sequence in lines"
+msgstr ""
+
+#. module: purchase_order_reorder_lines
 #: model:ir.model,name:purchase_order_reorder_lines.model_purchase_order
 msgid "Purchase Order"
 msgstr "Bon de commande"
@@ -30,7 +45,7 @@ msgstr "Bon de commande"
 #. module: purchase_order_reorder_lines
 #: model:ir.model,name:purchase_order_reorder_lines.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Ligne de commande d'achat"
 
 #. module: purchase_order_reorder_lines
 #: model:ir.model,name:purchase_order_reorder_lines.model_purchase_order_line_invoice
