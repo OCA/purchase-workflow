@@ -12,9 +12,12 @@ class PurchaseOrder(models.Model):
     def _check_product_supplierinfo(self):
         lines = []
         for line in self.order_line:
-            suppinfo = self.env['product.supplierinfo'].search([
-                ('product_id', '=', line.product_id.id),
-                ('name', '=', self.partner_id.id)])
+            suppinfo = False
+            for seller in line.product_id.seller_ids:
+                if (self.partner_id == seller.name or
+                        self.partner_id.commercial_partner_id == seller.name):
+                    suppinfo = seller
+                    break
             if not suppinfo:
                 lines.append((0, 0, {
                     'name': line.name,
@@ -27,8 +30,8 @@ class PurchaseOrder(models.Model):
         self.ensure_one()
         lines_for_update = self._check_product_supplierinfo()
         if lines_for_update:
-            if self.partner_id.parent_id:
-                supplier_id = self.partner_id.parent_id
+            if self.partner_id.commercial_partner_id:
+                supplier_id = self.partner_id.commercial_partner_id
             else:
                 supplier_id = self.partner_id
             ctx = dict(
