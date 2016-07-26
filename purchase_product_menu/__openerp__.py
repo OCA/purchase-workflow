@@ -11,7 +11,7 @@
     "author": "OdooMRP team,"
               "AvanzOSC,"
               "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
-              "Eficent Business and IT Consulting Services S.L."
+              "Eficent Business and IT Consulting Services S.L.,"
               "Odoo Community Association (OCA)",
     "website": "http://www.odoomrp.com",
     "contributors": [
