@@ -18,8 +18,8 @@ class PurchaseAddProductSupplierinfo(models.TransientModel):
         purchase = self.env['purchase.order'].browse(
             self._context['active_id'])
         purchase.signal_workflow('purchase_confirm')
-        if purchase.partner_id.parent_id:
-            supplier_id = purchase.partner_id.parent_id
+        if purchase.partner_id.commercial_partner_id:
+            supplier_id = purchase.partner_id.commercial_partner_id
         else:
             supplier_id = purchase.partner_id
         for line in self.wizard_line_ids:
