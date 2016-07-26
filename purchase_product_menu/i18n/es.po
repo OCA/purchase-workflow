@@ -1,0 +1,42 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * purchase_product_menu
+# 
+# Translators:
+# Oihane Crucelaegui <oihanecruce@gmail.com>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: odoomrp-utils (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-10-08 08:45+0000\n"
+"PO-Revision-Date: 2015-09-11 12:43+0000\n"
+"Last-Translator: Oihane Crucelaegui <oihanecruce@gmail.com>\n"
+"Language-Team: Spanish (http://www.transifex.com/oca/odoomrp-utils-8-0/language/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: purchase_product_menu
+#: model:ir.ui.menu,name:purchase_product_menu.menu_products
+#: model:ir.actions.act_window,name:purchase_product_menu.product_normal_action_purchase
+msgid "Products"
+msgstr "Productos"
+
+#. module: purchase_product_menu
+#: model:ir.actions.act_window,help:purchase_product_menu.product_normal_action_purchase
+msgid ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"            Click to define a new product.\n"
+"          </p><p>\n"
+"            You must define a product for everything you purchase, whether\n"
+"            it's a physical product, a consumable or services you buy to\n"
+"            subcontractants.\n"
+"          </p><p>\n"
+"            The product form contains detailed information to improve the\n"
+"            purchase process: prices, procurement logistics, accounting data,\n"
+"            available suppliers, etc.\n"
+"          </p>\n"
+"        "
+msgstr "<p class=\"oe_view_nocontent_create\">\nPulse para crear un nuevo producto\n</p><p>\nDebería definir un producto para cada cosa que compra, tanto si es \nun producto físico, un consumible o un servicio a subcontratistas.\n</p><p>\nEl formulario de producto contiene información detallada para \nmejorar el proceso de compra: precios, logística de abastecimiento,\ndatos de contabilidad, proveedores disponibles, etc.\n</p>\n        "

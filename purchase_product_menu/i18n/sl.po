@@ -1,0 +1,42 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * purchase_product_menu
+# 
+# Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: odoomrp-utils (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-10-08 08:45+0000\n"
+"PO-Revision-Date: 2015-09-28 13:17+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/odoomrp-utils-8-0/language/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: purchase_product_menu
+#: model:ir.ui.menu,name:purchase_product_menu.menu_products
+#: model:ir.actions.act_window,name:purchase_product_menu.product_normal_action_purchase
+msgid "Products"
+msgstr "Proizvodi"
+
+#. module: purchase
+#: model:ir.actions.act_window,help:purchase_product_menu.product_normal_action_purchase
+msgid ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"            Click to define a new product.\n"
+"          </p><p>\n"
+"            You must define a product for everything you purchase, whether\n"
+"            it's a physical product, a consumable or services you buy to\n"
+"            subcontractants.\n"
+"          </p><p>\n"
+"            The product form contains detailed information to improve the\n"
+"            purchase process: prices, procurement logistics, accounting data,\n"
+"            available suppliers, etc.\n"
+"          </p>\n"
+"        "
+msgstr "<p class=\"oe_view_nocontent_create\">\n            Določi nov proizvod.\n          </p><p>\n            Proizvod se določi za karkoli nabavljamo, najsi bo fizičen\n            proizvod, potrošni material ali storitev\n            podizvajalcev.\n          </p><p>\n            Obrazec proizvoda vsebuje podrobne podatke potrebne za izboljšanje\n            nabavnega procesa: cene, nabavno logistiko, knjigovodske podatke,\n            razpoložljive dobavitelje, itd.\n          </p>\n        "
