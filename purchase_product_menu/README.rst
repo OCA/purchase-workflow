@@ -41,7 +41,7 @@ Contributors
 ------------
 
 * Daniel Campos <danielcampos@avanzosc.es>
-* Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
+* Pedro M. Baeza <pedro.baeza@tecnativa.com>
 * Ana Juaristi <anajuaristi@avanzosc.es>
 * Jordi Ballester Alomar <jordi.ballester@eficent.com>
 
