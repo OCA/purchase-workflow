@@ -47,3 +47,49 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
             purchase_request_line.purchase_lines.state,
             purchase_request_line.purchase_state,
             'Should have same state')
+        self.assertEquals(
+            purchase_request_line,
+            purchase_request_line.purchase_lines.purchase_request_lines,
+            'The PO should cross-reference to the purchase request.')
+
+    def test_purchase_request_to_purchase_rfq_minimum_order_qty(self):
+
+        vals = {
+            'picking_type_id': self.env.ref('stock.picking_type_in').id,
+            'requested_by': SUPERUSER_ID,
+        }
+        purchase_request = self.purchase_request.create(vals)
+        vals = {
+            'request_id': purchase_request.id,
+            'product_id': self.env.ref('product.product_product_8').id,
+            'product_uom_id': self.env.ref('product.product_uom_unit').id,
+            'product_qty': 1.0,
+        }
+        purchase_request_line = self.purchase_request_line.create(vals)
+        vals = {
+            'supplier_id': self.env.ref('base.res_partner_16').id,
+        }
+        wiz_id = self.wiz.with_context(
+            active_model="purchase.request.line",
+            active_ids=[purchase_request_line.id],
+            active_id=purchase_request_line.id,).create(vals)
+        wiz_id.make_purchase_order()
+        self.assertTrue(
+            len(purchase_request_line.purchase_lines),
+            'Should have a purchase line')
+        self.assertEquals(
+            purchase_request_line.purchase_lines.product_id.id,
+            purchase_request_line.product_id.id,
+            'Should have same product')
+        self.assertEquals(
+            purchase_request_line.purchase_lines.state,
+            purchase_request_line.purchase_state,
+            'Should have same state')
+        self.assertEquals(
+            purchase_request_line.purchase_lines.product_qty,
+            5,
+            'The PO line should have the minimum order quantity.')
+        self.assertEquals(
+            purchase_request_line,
+            purchase_request_line.purchase_lines.purchase_request_lines,
+            'The PO should cross-reference to the purchase request.')
