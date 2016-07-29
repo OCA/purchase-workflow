@@ -23,12 +23,20 @@ class PurchaseAddProductSupplierinfo(models.TransientModel):
         else:
             supplier_id = purchase.partner_id
         for line in self.wizard_line_ids:
-            self.env['product.supplierinfo'].create({
-                'name': supplier_id.id,
-                'product_id': line.product_id.id,
-                'min_qty': 0.0,
-                'delay': 1,
-            })
+            if line.product_id.variant_seller_ids:
+                self.env['product.supplierinfo'].create({
+                    'name': supplier_id.id,
+                    'product_id': line.product_id.id,
+                    'min_qty': 0.0,
+                    'delay': 1,
+                })
+            else:
+                self.env['product.supplierinfo'].create({
+                    'name': supplier_id.id,
+                    'product_tmpl_id': line.product_id.product_tmpl_id.id,
+                    'min_qty': 0.0,
+                    'delay': 1,
+                })
 
 
 class PurchaseAddProductSupplierinfoLine(models.TransientModel):

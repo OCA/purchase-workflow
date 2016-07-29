@@ -21,5 +21,9 @@
     'data': [
         'purchase_view.xml',
         'wizard/purchase_add_supplierinfo.xml'
-    ]
+    ],
+    'demo': [
+        'demo/product_demo.xml',
+        'demo/purchase_order_demo.xml',
+    ],
 }
