@@ -3,13 +3,14 @@
 # * purchase_request_to_rfq
 # 
 # Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2016
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-01 10:08+0000\n"
-"PO-Revision-Date: 2016-07-01 10:08+0000\n"
+"POT-Creation-Date: 2016-07-22 23:40+0000\n"
+"PO-Revision-Date: 2016-07-22 23:40+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>, 2016\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -63,8 +64,8 @@ msgstr "Potrjeno"
 #. module: purchase_request_to_rfq
 #: model:ir.actions.act_window,name:purchase_request_to_rfq.action_purchase_request_line_make_purchase_order
 #: view:purchase.request.line.make.purchase.order:purchase_request_to_rfq.view_purchase_request_line_make_purchase_order
-msgid "Create Purchase Order"
-msgstr "Ustvari nabavni nalog"
+msgid "Create RFQ"
+msgstr "Ustvari povpraševanje po ponudbi"
 
 #. module: purchase_request_to_rfq
 #: field:purchase.request.line.make.purchase.order,create_uid:0
@@ -113,8 +114,8 @@ msgstr "Vnos dobavitelja"
 
 #. module: purchase_request_to_rfq
 #: view:purchase.request.line.make.purchase.order:purchase_request_to_rfq.view_purchase_request_line_make_purchase_order
-msgid "Existing draft PO to update:"
-msgstr "Obstoječi osnutek nabavnega naloga za posodobitev:"
+msgid "Existing RFQ to update:"
+msgstr "Posodobitev obstoječega povpraševanja po ponudbi:"
 
 #. module: purchase_request_to_rfq
 #: field:purchase.order.line,has_purchase_request_lines:0
@@ -258,12 +259,6 @@ msgid "Purchase Status"
 msgstr "Status nabave"
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:224
-#, python-format
-msgid "Purchase order"
-msgstr "Nabavni nalog"
-
-#. module: purchase_request_to_rfq
 #: view:purchase.request.line:purchase_request_to_rfq.purchase_request_line_search
 msgid "Purchasing not started"
 msgstr "Nabava še ni začeta"
@@ -279,7 +274,9 @@ msgid "Quantity to purchase"
 msgstr "Količina za nabavo"
 
 #. module: purchase_request_to_rfq
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:224
 #: selection:purchase.request.line,purchase_state:0
+#, python-format
 msgid "RFQ"
 msgstr "Povpraševanje"
 
