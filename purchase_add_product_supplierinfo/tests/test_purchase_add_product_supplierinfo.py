@@ -56,7 +56,8 @@ class TestPurchaseAddProductSupplierinfo(TransactionCase):
         wizard.with_context(active_id=purchase_9.id).add_product_supplierinfo()
         supplierinfo_ids = self.env['product.supplierinfo'].search([
             ('product_id', '=',
-             result9['context']['default_wizard_line_ids'][0][2]['product_id']),
+             result9['context']['default_wizard_line_ids'][0][2]
+             ['product_id']),
             ('name', '=', purchase_9.partner_id.id)])
         self.assertNotEquals(supplierinfo_ids, False)
 
