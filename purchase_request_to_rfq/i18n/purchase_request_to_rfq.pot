@@ -29,17 +29,17 @@ msgstr ""
 
 #. module: purchase_request_to_rfq
 #: view:purchase.request.line:purchase_request_to_rfq.purchase_request_line_search
-msgid "At least a Draft PO has been created"
+msgid "At least an RFQ has been created"
 msgstr ""
 
 #. module: purchase_request_to_rfq
 #: view:purchase.request.line:purchase_request_to_rfq.purchase_request_line_search
-msgid "At least a PO has been completed"
+msgid "At least an RFQ has been completed"
 msgstr ""
 
 #. module: purchase_request_to_rfq
 #: view:purchase.request.line:purchase_request_to_rfq.purchase_request_line_search
-msgid "At least a PO has been confirmed"
+msgid "At least an RFQ has been confirmed"
 msgstr ""
 
 #. module: purchase_request_to_rfq
@@ -149,7 +149,7 @@ msgstr ""
 
 #. module: purchase_request_to_rfq
 #: view:purchase.request.line.make.purchase.order:purchase_request_to_rfq.view_purchase_request_line_make_purchase_order
-msgid "New PO details:"
+msgid "New RFQ details:"
 msgstr ""
 
 #. module: purchase_request_to_rfq
