@@ -7,6 +7,7 @@
     <field name="invoice_method">order</field>
     <field name="location_id" ref="stock.stock_location_stock"/>
     <field name="pricelist_id" ref="purchase.list0"/>
+    <field name="date_order" eval="time.strftime('%Y')+'-01-01'"/>
     <field name="state">draft</field>
 </record>
 
@@ -15,6 +16,7 @@
     <field name="invoice_method">order</field>
     <field name="location_id" ref="stock.stock_location_stock"/>
     <field name="pricelist_id" ref="purchase.list0"/>
+    <field name="date_order" eval="time.strftime('%Y')+'-01-01'"/>
     <field name="state">draft</field>
 </record>
 
@@ -23,6 +25,7 @@
     <field name="invoice_method">order</field>
     <field name="location_id" ref="stock.stock_location_stock"/>
     <field name="pricelist_id" ref="purchase.list0"/>
+    <field name="date_order" eval="time.strftime('%Y')+'-01-01'"/>
     <field name="state">draft</field>
 </record>
 
@@ -31,6 +34,7 @@
     <field name="invoice_method">order</field>
     <field name="location_id" ref="stock.stock_location_stock"/>
     <field name="pricelist_id" ref="purchase.list0"/>
+    <field name="date_order" eval="time.strftime('%Y')+'-01-01'"/>
     <field name="state">draft</field>
 </record>
 
@@ -40,7 +44,8 @@
     <field name="name">iPad Retina Display</field>
     <field name="price_unit">500</field>
     <field name="product_qty">1</field>
-    <field name="date_planned">31/12/2099</field>
+    <field name="date_order" eval="time.strftime('%Y')+'-01-01'"/>
+    <field name="date_planned" eval="time.strftime('%Y')+'-01-08'"/>
 </record>
 
 <record id="purchase_order_line_9" model="purchase.order.line">
@@ -49,7 +54,8 @@
     <field name="name">iMac</field>
     <field name="price_unit">1299</field>
     <field name="product_qty">1</field>
-    <field name="date_planned">31/12/2099</field>
+    <field name="date_order" eval="time.strftime('%Y')+'-01-01'"/>
+    <field name="date_planned" eval="time.strftime('%Y')+'-01-08'"/>
 </record>
 
 <record id="purchase_order_line_10" model="purchase.order.line">
@@ -58,7 +64,8 @@
     <field name="name">iPad Retina Display</field>
     <field name="price_unit">500</field>
     <field name="product_qty">1</field>
-    <field name="date_planned">31/12/2099</field>
+    <field name="date_order" eval="time.strftime('%Y')+'-01-01'"/>
+    <field name="date_planned" eval="time.strftime('%Y')+'-01-08'"/>
 </record>
 
 <record id="purchase_order_line_11" model="purchase.order.line">
@@ -67,7 +74,8 @@
     <field name="name">iMac</field>
     <field name="price_unit">1299</field>
     <field name="product_qty">1</field>
-    <field name="date_planned">31/12/2099</field>
+    <field name="date_order" eval="time.strftime('%Y')+'-01-01'"/>
+    <field name="date_planned" eval="time.strftime('%Y')+'-01-08'"/>
 </record>
 
     </data>
