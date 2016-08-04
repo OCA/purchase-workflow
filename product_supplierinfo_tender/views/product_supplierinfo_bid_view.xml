@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="product_supplierinfo_bid_form_view" model="ir.ui.view">
+            <field name="name">product.supplierinfo.bid.form</field>
+            <field name="model">product.supplierinfo.bid</field>
+            <field name="arch" type="xml">
+                <form string="Pricelist Bid">
+                    <header>
+                        <button name="button_open"
+                            string="Reopen"
+                            type="object"
+                            attrs="{'invisible': ['|', ('state', 'not in', ['close', 'cancel']), ('tender_state', 'not in', ['draft', 'open'])]}"/>
+                        <button name="button_close"
+                            string="Close"
+                            attrs="{'invisible': ['|', ('state', '!=', 'open'), ('tender_state', '!=', 'open')]}"
+                            type="object"/>
+                        <button name="button_cancel"
+                            string="Cancel"
+                            attrs="{'invisible': ['|', ('state', '=', 'cancel'), ('tender_state', '=', 'done')]}"
+                            type="object"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <label for="tender_id" string="Tender"/>
+                            <div><field name="tender_id" class="oe_inline"/> - <field name="tender_state" class="oe_inline"/></div>
+                            <field name="partner_id"/>
+                            <field name="currency_id" groups="base.group_multi_currency"/>
+                            <field name="company_id"
+                                   groups="base.group_multi_company"/>
+                        </group>
+                        <notebook>
+                            <page string="Products">
+                                <field name="line_ids">
+                                    <tree string="Supplier Pricelists"
+                                          editable="bottom">
+                                        <field name="name"/>
+                                        <field name="product_id"/>
+                                        <field name="min_qty"/>
+                                        <field name="price" string="Price"/>
+                                        <field name="date_start"/>
+                                        <field name="date_end"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page name="description" string="Description">
+                                <field name="description" nolabel="True"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" help="Follow this project to automatically track the events associated to tasks and issues of this project." groups="base.group_user"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_product_supplierinfo_bid_search_view" model="ir.ui.view">
+            <field name="name">product.supplierinfo.bid.search</field>
+            <field name="model">product.supplierinfo.bid</field>
+            <field name="arch" type="xml">
+                <search string="Search Pricelist bids">
+                    <field name="name"/>
+                    <field name="tender_id"/>
+                    <field name="partner_id"/>
+                    <field name="description"/>
+                    <field name="date_received"/>
+                    <field name="state"/>
+                    <filter string="Unread Messages" name="message_needaction" domain="[('message_needaction','=',True)]"/>
+                    <group expand="0" name="group" string="Group By">
+                        <filter string="Tender" domain=""
+                                context="{'group_by':'tender_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_product_supplierinfo_bid_tree_view" model="ir.ui.view">
+            <field name="name">product.supplierinfo.bid.tree</field>
+            <field name="model">product.supplierinfo.bid</field>
+            <field name="arch" type="xml">
+                <tree decoration-bf="message_needaction==True"
+                      string="Pricelist bids">
+                    <field name="message_needaction" invisible="1"/>
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="state"/>
+                    <field name="date_received"/>
+                    <field name="currency_id" groups="base.group_multi_currency"/>
+                    <field name="company_id"
+                           groups="base.group_multi_company"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="open_view_product_supplierinfo_bid_all"
+                model="ir.actions.act_window">
+            <field name="name">Pricelist Bids</field>
+            <field name="res_model">product.supplierinfo.bid</field>
+            <field name="view_type">form</field>
+            <field name="domain">[]</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_product_supplierinfo_bid_search_view"/>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create a new Pricelist Bid.
+                </p>
+            </field>
+        </record>
+
+        <menuitem action="open_view_product_supplierinfo_bid_all"
+                  id="menu_product_supplierinfo_bid"
+                  name="Pricelist Bids"
+                  parent="purchase.menu_procurement_management"/>
+
+
+    </data>
+</openerp>

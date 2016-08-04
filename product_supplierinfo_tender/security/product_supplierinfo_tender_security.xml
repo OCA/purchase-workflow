@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+<openerp>
+
+    <data noupdate="0">
+        <record model="ir.module.category"
+                id="module_product_supplerinfo_tender_category">
+            <field name="name">Pricelist Tenders</field>
+        </record>
+        <record id="group_pricelist_tender_user" model="res.groups">
+            <field name="name">User</field>
+            <field name="implied_ids"
+                   eval="[(4, ref('purchase.group_purchase_user'))]"/>
+            <field name="category_id" ref="module_product_supplerinfo_tender_category"/>
+        </record>
+        <record id="group_pricelist_tender_manager" model="res.groups">
+            <field name="name">Manager</field>
+            <field name="implied_ids" eval="[(4, ref('group_pricelist_tender_user'))]"/>
+            <field name="category_id" ref="module_product_supplerinfo_tender_category"/>
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        </record>
+    </data>
+
+    <data noupdate="1">
+        <record id="product_supplierinfo_bid_user" model="ir.rule">
+            <field name="name">User can create/delete only supplierinfo records associated to open bids</field>
+            <field name="model_id" ref="model_product_supplierinfo"/>
+            <field name="groups" eval="[(4, ref('group_pricelist_tender_user'))]"/>
+            <field name="perm_read" eval="False"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="domain_force">[('bid_id','!=', False), ('bid_id.state','=','open')]</field>
+        </record>
+
+    </data>
+</openerp>

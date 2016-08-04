@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<template id="report_pricelist_bid_doc">
+    <t t-call="report.external_layout">
+        <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+        <div class="page">
+            <div class="oe_structure"/>
+
+            <div class="row mt32 mb32">
+                <div class="col-xs-6">
+                    <strong>Vendor :</strong>
+                <div t-field="o.partner_id"
+                    t-field-options='{"widget": "contact", "fields": ["address", "name", "phone", "fax"], "no_marker": true, "phone_icons": true}'/>
+                    <p t-if="o.partner_id.vat">VAT: <span t-field="o.partner_id.vat"/></p>
+                </div>
+            </div>
+            <br/>
+            <br/>
+            <h2>Request for Bids : <span t-field="o.name"/></h2>
+            <br/>
+            <table class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th><strong>Vendor Name</strong></th>
+                        <th class="text-center"><strong>Product</strong></th>
+                        <th class="text-center"><strong>Minimum Quantity</strong></th>
+                        <th class="text-center"><strong>Price</strong></th>
+                        <th class="text-center"><strong>Start Date</strong></th>
+                        <th class="text-center"><strong>End Date</strong></th>
+                        <th class="text-center"><strong>Approved</strong></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-set="idx" t-value="0"/>
+                    <tr t-foreach="o.line_ids" t-as="line">
+                        <t t-set="idx" t-value="idx+1"/>
+                        <td>
+                            <span t-field="line.name"/>
+                        </td>
+                        <td class="text-center">
+                            <span t-field="line.product_id"/>
+                        </td>
+                        <td class="text-center">
+                            <span t-field="line.min_qty"/>
+                        </td>
+                        <td class="text-center">
+                            <span t-field="line.price"/>
+                        </td>
+                        <td class="text-center">
+                            <span t-field="line.date_start"/>
+                        </td>
+                        <td class="text-center">
+                            <span t-field="line.date_end"/>
+                        </td>
+                        <td class="text-center">
+                            <span t-field="line.approved"/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <h4 class="text-right">No of Bids : <span t-esc="idx"/></h4>
+        </div>
+    </t>
+</template>
+
+<template id="report_pricelist_bid">
+    <t t-call="report.html_container">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="product_supplierinfo_tender.report_pricelist_bid_doc" t-lang="o.partner_id.lang"/>
+        </t>
+    </t>
+</template>
+</data>
+</openerp>
+

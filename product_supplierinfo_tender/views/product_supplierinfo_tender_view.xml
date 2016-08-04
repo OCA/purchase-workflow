@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="product_supplierinfo_tender_form_view" model="ir.ui.view">
+            <field name="name">product.supplierinfo.tender.form</field>
+            <field name="model">product.supplierinfo.tender</field>
+            <field name="arch" type="xml">
+                <form string="Pricelist Tender">
+                    <header>
+                        <button name="button_draft"
+                            states="open,selection,done,cancel"
+                            string="Reset"
+                            type="object"/>
+                        <button name="button_open"
+                            states="draft"
+                            string="Confirm"
+                            type="object"/>
+                        <button name="button_selection"
+                            states="open"
+                            string="Select Bids"
+                            type="object"/>
+                        <button name="button_done"
+                            states="selection"
+                            string="Close Selection"
+                            type="object"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <field name="date_end"/>
+                            <field name="user_id"/>
+                            <field name="currency_id" groups="base.group_multi_currency"/>
+                            <field name="company_id"
+                                   groups="base.group_multi_company"/>
+                        </group>
+                        <notebook>
+                            <page string="Products">
+                                <field name="line_ids">
+                                    <tree string="Products" editable="bottom">
+                                        <field name="product_id"/>
+                                        <field name="product_uom_id" groups="product.group_uom"/>
+                                        <field name="min_qty"/>
+                                    </tree>
+                                    <form string="Products">
+                                        <group>
+                                            <field name="product_id"/>
+                                            <field name="product_uom_id" groups="product.group_uom"/>
+                                            <field name="min_qty"/>
+                                        </group>
+                                    </form>
+                                </field>
+                                <separator string="Bids"/>
+                                <button type="action"
+                                        icon="fa-list-alt"
+                                        string="Bids"
+                                        name="%(product_supplierinfo_tender.open_view_product_supplierinfo_bid_all)d"
+                                        context="{'search_default_tender_id': active_id,'default_tender_id': active_id}"/>
+                                <button name="%(action_product_supplierinfo_tender_create_bid)d" type="action"
+                                        string="Encode Bids" icon="fa-cogs"
+                                        attrs="{'invisible': ['|', ('line_ids','=',[]),('state', 'in', ('draft','selection','done','cancel'))]}"/>
+                                <field name="bid_ids" nolabel="True"
+                                       options="{'no_create': True}"/>
+                                <separator string="Bidding Pricelists"/>
+                                <button type="action"
+                                        icon="fa-list-alt"
+                                        string="Pricelists"
+                                        name="%(product.product_supplierinfo_type_action)d"
+                                        context="{'search_default_tender_id': active_id,'default_tender_id': active_id}"/>
+                                <field name="product_supplierinfo_ids">
+                                    <tree string="Supplier Pricelists"
+                                          editable="bottom">
+                                        <field name="name"/>
+                                        <field name="product_tmpl_id"/>
+                                        <field name="product_id"/>
+                                        <field name="min_qty"/>
+                                        <field name="price" string="Price"/>
+                                        <field name="date_start"/>
+                                        <field name="date_end"/>
+                                        <field name="approved_tender"
+                                               string="Approved"/>
+                                        <field name="tender_state"
+                                               invisible="True"/>
+                                        <button name="button_approve_tender"
+                                                string="Approve" type="object"
+                                                icon="fa-check"
+                                                attrs="{'invisible': ['|',('tender_state', '!=', 'selection'),('approved_tender', '=', True)]}"/>
+                                        <button name="button_unapprove_tender"
+                                                string="Un-Approve"
+                                                type="object"
+                                                icon="gtk-redo"
+                                                attrs="{'invisible': ['|',('tender_state', '!=', 'selection'),('approved_tender', '=', False)]}"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page name="description" string="Description">
+                                <field name="description" nolabel="True"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" help="Follow this project to automatically track the events associated to tasks and issues of this project." groups="base.group_user"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_product_supplierinfo_tender_search_view" model="ir.ui.view">
+            <field name="name">product.supplierinfo.tender.search</field>
+            <field name="model">product.supplierinfo.tender</field>
+            <field name="arch" type="xml">
+                <search string="Search Pricelist Tenders">
+                    <field name="name"/>
+                    <field name="description"/>
+                    <field name="state"/>
+                    <filter string="Unread Messages" name="message_needaction" domain="[('message_needaction','=',True)]"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_product_supplierinfo_tender_tree_view" model="ir.ui.view">
+            <field name="name">product.supplierinfo.tender.tree</field>
+            <field name="model">product.supplierinfo.tender</field>
+            <field name="arch" type="xml">
+                <tree decoration-bf="message_needaction==True"
+                      string="Pricelist Tenders">
+                    <field name="message_needaction" invisible="1"/>
+                    <field name="name"/>
+                    <field name="user_id"/>
+                    <field name="state"/>
+                    <field name="date_end"/>
+                    <field name="company_id"
+                           groups="base.group_multi_company"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="open_view_product_supplierinfo_tender_all"
+                model="ir.actions.act_window">
+            <field name="name">Pricelist Tenders</field>
+            <field name="res_model">product.supplierinfo.tender</field>
+            <field name="view_type">form</field>
+            <field name="domain">[]</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_product_supplierinfo_tender_search_view"/>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create a new Pricelist Tender.
+                </p>
+            </field>
+        </record>
+
+        <menuitem action="open_view_product_supplierinfo_tender_all"
+                  id="menu_product_supplierinfo_tender"
+                  name="Pricelist Tenders"
+                  parent="purchase.menu_procurement_management"/>
+
+
+    </data>
+</openerp>

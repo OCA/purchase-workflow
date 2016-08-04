@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <record id="seq_product_supplierinfo_tender" model="ir.sequence">
+            <field name="name">Supplier Pricelist Tender</field>
+            <field name="code">product.supplierinfo.tender</field>
+            <field name="prefix">PT</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    </data>
+</openerp>

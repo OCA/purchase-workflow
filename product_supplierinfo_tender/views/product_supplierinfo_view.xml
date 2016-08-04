@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="product_supplierinfo_search_view" model="ir.ui.view">
+            <field name="name">product.supplierinfo.search.view</field>
+            <field name="model">product.supplierinfo</field>
+            <field name="arch" type="xml">
+                <search string="Vendor Information">
+                    <field name="name"/>
+                    <field name="product_tmpl_id"/>
+                    <field name="product_id"/>
+                    <field name="tender_id"/>
+                    <field name="bid_id"/>
+                    <field name="price" string="Price"/>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                    <group expand="0" name="group" string="Group By">
+                        <filter string="Tender" domain=""
+                                context="{'group_by':'tender_id'}"/>
+                        <filter string="Bid" domain=""
+                                context="{'group_by':'bid_id'}"/>
+                        <filter string="Product" domain=""
+                                context="{'group_by':'product_tmpl_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="product.product_supplierinfo_type_action"
+                model="ir.actions.act_window">
+            <field name="search_view_id" ref="product_supplierinfo_search_view"/>
+        </record>
+
+
+        <record id="product_supplierinfo_form_view" model="ir.ui.view">
+            <field name="name">product.supplierinfo.form.view</field>
+            <field name="model">product.supplierinfo</field>
+            <field name="inherit_id"
+                   ref="product_supplierinfo_editable.product_supplierinfo_form_view"/>
+            <field name="arch" type="xml">
+                <field name="company_id" position="after">
+                    <group
+                            name='tender_grp'
+                            attrs="{'invisible': [('tender_id', '=', False)]}">
+                        <separator string="Tender Information" colspan="4"/>
+                        <field name="tender_id" attrs="{'readonly':[('is_editable','=',False)]}"/>
+                        <field name="tender_state"/>
+                        <field name="bid_id" attrs="{'readonly':[('is_editable','=',False)]}"/>
+                        <field name="approved_tender"
+                               attrs="{'readonly':[('is_editable','=',False)]}"/>
+                        <br/>
+                        <button name="button_approve_tender"
+                            string="Approve" type="object"
+                            icon="fa-check"
+                            attrs="{'invisible': ['|', ('tender_state', '!=', 'selection'), ('approved_tender', '=', True)]}"/>
+                        <button name="button_unapprove_tender"
+                            string="Un-Approve"
+                            type="object"
+                            icon="gtk-redo"
+                            attrs="{'invisible': ['|', ('tender_state', '!=', 'selection'), ('approved_tender', '=', False)]}"/>
+                    </group>
+                </field>
+            </field>
+        </record>
+
+        <record id="product_supplierinfo_tree_view" model="ir.ui.view">
+            <field name="name">product.supplierinfo.tree.view</field>
+            <field name="model">product.supplierinfo</field>
+            <field name="inherit_id"
+                   ref="product.product_supplierinfo_tree_view"/>
+            <field name="arch" type="xml">
+                <field name="date_end" position="after">
+                    <field name="tender_id"/>
+                    <field name="bid_id"/>
+                    <field name="approved_tender" string="Approved"/>
+                    <field name="tender_state" invisible="True"/>
+                    <button name="button_approve_tender"
+                            string="Approve" type="object"
+                            icon="fa-check"
+                            attrs="{'invisible': ['|',('tender_state', '&lt;&gt;', 'selection'), ('approved_tender', '=', True)]}"/>
+                    <button name="button_unapprove_tender"
+                            string="Un-Approve"
+                            type="object"
+                            icon="gtk-redo"
+                            attrs="{'invisible': ['|',('tender_state', '&lt;&gt;', 'selection'), ('approved_tender', '=', False)]}"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

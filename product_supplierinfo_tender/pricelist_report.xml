@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <report 
+            string="Request for Bids" 
+            id="pricelist_bid_report" 
+            model="product.supplierinfo.bid" 
+            report_type="qweb-pdf"
+            name="product_supplierinfo_tender.report_pricelist_bid" 
+            file="product_supplierinfo_tender.report_pricelist_bid"
+        />
+        
+        <report 
+            string="Pricelist Tender" 
+            id="pricelist_tender_report" 
+            model="product.supplierinfo.tender" 
+            report_type="qweb-pdf"
+            name="product_supplierinfo_tender.report_pricelist_tender" 
+            file="product_supplierinfo_tender.report_pricelist_tender"
+        />
+    </data>
+</openerp>

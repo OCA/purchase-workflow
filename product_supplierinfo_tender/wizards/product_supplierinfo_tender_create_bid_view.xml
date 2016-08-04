@@ -1,0 +1,35 @@
+<openerp>
+      <data>
+
+        <record id="view_product_supplierinfo_tender_create_bid"
+                model="ir.ui.view">
+            <field name="name">Choose Vendor</field>
+            <field name="model">product.supplierinfo.tender.create.bid</field>
+            <field name="arch" type="xml">
+                <form string="Choose Vendor">
+                    <group>
+                        <field name="partner_ids" widget="many2many_tags" context="{'default_supplier': 1, 'default_customer': 0}"/>
+                    </group>
+                    <footer>
+                        <button name="create_bid"
+                                string="Create Bid" type="object"
+                                class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_product_supplierinfo_tender_create_bid"
+                model="ir.actions.act_window">
+               <field name="name">Choose Vendor</field>
+               <field name="type">ir.actions.act_window</field>
+               <field name="res_model">product.supplierinfo.tender.create.bid</field>
+               <field name="view_type">form</field>
+               <field name="view_mode">form</field>
+               <field name="context">{'record_id' : active_id}</field>
+               <field name="target">new</field>
+        </record>
+        
+</data>
+</openerp>
