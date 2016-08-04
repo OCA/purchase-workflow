@@ -244,13 +244,14 @@ class PurchaseCostDistribution(models.Model):
                 domain_quant = [
                     ('product_id', 'in',
                      product.product_tmpl_id.product_variant_ids.ids),
-                    ('id', 'not in', move.quant_ids.ids)]
-                quants = self.env['stock.quant'].read_group(
-                    domain_quant, ['product_id', 'qty', 'cost'], [])[0]
+                    ('id', 'not in', move.quant_ids.ids),
+                    ('location_id.usage', '=', 'internal')]
+                quants = self.env['stock.quant'].search(domain_quant)
+                current_valuation = sum([(q.cost * q.qty) for q in quants])
                 # Get the standard price
-                new_std_price = ((quants['cost'] * quants['qty'] +
-                                  new_price * move.product_qty) /
-                                 qty_available)
+                new_std_price = (
+                    (current_valuation + new_price * move.product_qty) /
+                    qty_available)
             # Write the standard price, as SUPERUSER_ID, because a
             # warehouse manager may not have the right to write on products
             product.sudo().write({'standard_price': new_std_price})
