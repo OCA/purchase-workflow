@@ -3,15 +3,15 @@
 # * purchase_request_to_rfq
 # 
 # Translators:
-# Paulo Ricardo <ti@shoppingescritorio.com.br>, 2016
 # OCA Transbot <transbot@odoo-community.org>, 2016
+# Felipe Lopes <ti@trojahntoppel.com.br>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-01 10:08+0000\n"
-"PO-Revision-Date: 2016-07-01 10:08+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"POT-Creation-Date: 2016-07-31 13:20+0000\n"
+"PO-Revision-Date: 2016-07-31 13:20+0000\n"
+"Last-Translator: Felipe Lopes <ti@trojahntoppel.com.br>, 2016\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/23907/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -64,7 +64,7 @@ msgstr ""
 #. module: purchase_request_to_rfq
 #: model:ir.actions.act_window,name:purchase_request_to_rfq.action_purchase_request_line_make_purchase_order
 #: view:purchase.request.line.make.purchase.order:purchase_request_to_rfq.view_purchase_request_line_make_purchase_order
-msgid "Create Purchase Order"
+msgid "Create RFQ"
 msgstr ""
 
 #. module: purchase_request_to_rfq
@@ -82,7 +82,7 @@ msgstr "Criado em"
 #. module: purchase_request_to_rfq
 #: field:purchase.request.line.make.purchase.order.item,name:0
 msgid "Description"
-msgstr ""
+msgstr "Descrição"
 
 #. module: purchase_request_to_rfq
 #: view:purchase.request.line.make.purchase.order:purchase_request_to_rfq.view_purchase_request_line_make_purchase_order
@@ -114,7 +114,7 @@ msgstr ""
 
 #. module: purchase_request_to_rfq
 #: view:purchase.request.line.make.purchase.order:purchase_request_to_rfq.view_purchase_request_line_make_purchase_order
-msgid "Existing draft PO to update:"
+msgid "Existing RFQ to update:"
 msgstr ""
 
 #. module: purchase_request_to_rfq
@@ -213,7 +213,7 @@ msgstr ""
 #. module: purchase_request_to_rfq
 #: field:purchase.request.line.make.purchase.order.item,request_id:0
 msgid "Purchase Request"
-msgstr ""
+msgstr "Requisição de compra"
 
 #. module: purchase_request_to_rfq
 #: code:addons/purchase_request_to_rfq/models/purchase_order.py:66
@@ -259,12 +259,6 @@ msgid "Purchase Status"
 msgstr ""
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:224
-#, python-format
-msgid "Purchase order"
-msgstr ""
-
-#. module: purchase_request_to_rfq
 #: view:purchase.request.line:purchase_request_to_rfq.purchase_request_line_search
 msgid "Purchasing not started"
 msgstr ""
@@ -280,7 +274,9 @@ msgid "Quantity to purchase"
 msgstr ""
 
 #. module: purchase_request_to_rfq
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:224
 #: selection:purchase.request.line,purchase_state:0
+#, python-format
 msgid "RFQ"
 msgstr ""
 
