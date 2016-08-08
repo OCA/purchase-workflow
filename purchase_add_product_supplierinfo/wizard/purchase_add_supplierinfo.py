@@ -23,20 +23,20 @@ class PurchaseAddProductSupplierinfo(models.TransientModel):
         else:
             supplier_id = purchase.partner_id
         for line in self.wizard_line_ids:
-            if line.product_id.variant_seller_ids:
-                self.env['product.supplierinfo'].create({
-                    'name': supplier_id.id,
+            vals = {
+                'name': supplier_id.id,
+                'min_qty': 0.0,
+                'delay': 1,
+            }
+            if line.to_variant:
+                vals.update({
                     'product_id': line.product_id.id,
-                    'min_qty': 0.0,
-                    'delay': 1,
                 })
             else:
-                self.env['product.supplierinfo'].create({
-                    'name': supplier_id.id,
+                vals.update({
                     'product_tmpl_id': line.product_id.product_tmpl_id.id,
-                    'min_qty': 0.0,
-                    'delay': 1,
                 })
+            self.env['product.supplierinfo'].create(vals)
 
 
 class PurchaseAddProductSupplierinfoLine(models.TransientModel):
@@ -48,3 +48,8 @@ class PurchaseAddProductSupplierinfoLine(models.TransientModel):
     name = fields.Text(string='Description', required=True)
     product_id = fields.Many2one('product.product',
                                  string='Product')
+    to_variant = fields.Boolean(string='Added to the variant',
+                                help="if option is checked then supplier is "
+                                     "added to the product variant else "
+                                     "supplier is added to the "
+                                     "product template")

@@ -22,6 +22,7 @@ class PurchaseOrder(models.Model):
                 lines.append((0, 0, {
                     'name': line.name,
                     'product_id': line.product_id.id,
+                    'to_variant': True
                 }))
         return lines
 

@@ -8,8 +8,9 @@
             <form string="Add supplier to products">
                 <separator string="List of products to update"/>
                 <field name="wizard_line_ids">
-                    <tree create="false">
-                        <field name="name"/>
+                    <tree create="false" editable="bottom">
+                        <field name="name" readonly="1"/>
+                        <field name="to_variant"/>
                     </tree>
                 </field>
                 <footer>

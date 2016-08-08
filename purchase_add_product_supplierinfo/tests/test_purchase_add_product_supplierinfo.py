@@ -18,12 +18,17 @@ class TestPurchaseAddProductSupplierinfo(TransactionCase):
                           'purchase.add.product.supplierinfo')
         self.assertEquals(
             result8['context']['default_wizard_line_ids'],
-            [(0, 0, {'name': u'iPad Retina Display', 'product_id': 6})])
+            [(0, 0, {
+                'to_variant': True,
+                'name': u'iPad Retina Display',
+                'product_id': 6
+            })])
         self.assertEquals(result8['type'], 'ir.actions.act_window')
         self.assertEquals(result8['target'], 'new')
         vals = {
             'wizard_line_ids': result8['context']['default_wizard_line_ids'],
         }
+        vals['wizard_line_ids'][0][2]['to_variant'] = False
         wizard = self.env['purchase.add.product.supplierinfo'].create(vals)
         # add product supplierinfo
         wizard.with_context(active_id=purchase_8.id).add_product_supplierinfo()
@@ -45,7 +50,11 @@ class TestPurchaseAddProductSupplierinfo(TransactionCase):
                           'purchase.add.product.supplierinfo')
         self.assertEquals(
             result9['context']['default_wizard_line_ids'],
-            [(0, 0, {'name': u'iMac', 'product_id': 13})])
+            [(0, 0, {
+                'to_variant': True,
+                'name': u'iMac',
+                'product_id': 13
+            })])
         self.assertEquals(result9['type'], 'ir.actions.act_window')
         self.assertEquals(result9['target'], 'new')
         vals = {
@@ -61,15 +70,7 @@ class TestPurchaseAddProductSupplierinfo(TransactionCase):
             ('name', '=', purchase_9.partner_id.id)])
         self.assertNotEquals(supplierinfo_ids, False)
 
-        # purchases with product supplierinfo to update and
-        # product supplierinfo is on product_template
-        purchase_10 = self.env.ref(
-            'purchase_add_product_supplierinfo.purchase_order_10')
-        result10 = purchase_10.purchase_confirm()
-        self.assertEquals(result10, None)
-
-        # purchases without product supplierinfo to update and
-        # product supplierinfo is on product_product
+        # purchases without product supplierinfo to update 
         purchase_11 = self.env.ref(
             'purchase_add_product_supplierinfo.purchase_order_11')
         result11 = purchase_11.purchase_confirm()
