@@ -70,7 +70,7 @@ class TestPurchaseAddProductSupplierinfo(TransactionCase):
             ('name', '=', purchase_9.partner_id.id)])
         self.assertNotEquals(supplierinfo_ids, False)
 
-        # purchases without product supplierinfo to update 
+        # purchases without product supplierinfo to update
         purchase_11 = self.env.ref(
             'purchase_add_product_supplierinfo.purchase_order_11')
         result11 = purchase_11.purchase_confirm()
