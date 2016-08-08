@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-26 08:34+0000\n"
-"PO-Revision-Date: 2016-05-26 08:34+0000\n"
+"POT-Creation-Date: 2016-08-08 11:06+0000\n"
+"PO-Revision-Date: 2016-08-08 11:06+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,12 @@ msgid "Add supplier to products"
 msgstr "Ajouter un fournisseur aux produits"
 
 #. module: purchase_add_product_supplierinfo
-#: code:addons/purchase_add_product_supplierinfo/purchase.py:41
+#: field:purchase.add.product.supplierinfo.line,to_variant:0
+msgid "Added to the variant"
+msgstr "Ajouté à la variante"
+
+#. module: purchase_add_product_supplierinfo
+#: code:addons/purchase_add_product_supplierinfo/purchase.py:45
 #, python-format
 msgid "Associate the supplier '%s' with the products of this purchase order."
 msgstr "Associer le fournisseur '%s' avec les produits de cette commande."
@@ -99,11 +104,6 @@ msgid "Purchase Order"
 msgstr "Bon de commande"
 
 #. module: purchase_add_product_supplierinfo
-#: model:ir.model,name:purchase_add_product_supplierinfo.model_purchase_add_product_supplierinfo
-msgid "Update Product Sellers from Purchase Order"
-msgstr "Mettre à jour les fournisseurs produits à partir de la commande"
-
-#. module: purchase_add_product_supplierinfo
 #: field:purchase.add.product.supplierinfo.line,wizard_id:0
 msgid "Wizard Reference"
 msgstr "Réference du wizard"
@@ -112,6 +112,11 @@ msgstr "Réference du wizard"
 #: field:purchase.add.product.supplierinfo,wizard_line_ids:0
 msgid "Wizard lines"
 msgstr "Lignes du wizard"
+
+#. module: purchase_add_product_supplierinfo
+#: help:purchase.add.product.supplierinfo.line,to_variant:0
+msgid "if option is checked then supplier is added to the product variant else supplier is added to the product template"
+msgstr "si l'option est cochée alors le fournisseur est ajouté à la variante du produit sinon il est ajouté au modèle du produit"
 
 #. module: purchase_add_product_supplierinfo
 #: view:purchase.order:purchase_add_product_supplierinfo.purchase_order_form
