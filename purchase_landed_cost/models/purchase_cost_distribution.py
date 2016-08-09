@@ -1,22 +1,12 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# © 2013 Joaquín Gutierrez
+# © 2014-2016 Pedro M. Baeza <pedro.baeza@tecnativa.com>
+# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3
+
 
 from openerp import models, fields, exceptions, api, _
+# NOTE: In v9, this should be `from openerp.tools.misc import formatLang`
+from .format_lang_wrapper import formatLang
 import openerp.addons.decimal_precision as dp
 
 
@@ -468,7 +458,7 @@ class PurchaseCostDistributionLineExpense(models.Model):
 class PurchaseCostDistributionExpense(models.Model):
     _name = "purchase.cost.distribution.expense"
     _description = "Purchase cost distribution expense"
-    _rec_name = "type"
+    _rec_name = "display_name"
 
     @api.one
     @api.depends('distribution', 'distribution.cost_lines')
@@ -505,6 +495,15 @@ class PurchaseCostDistributionExpense(models.Model):
                "('invoice_id.state', 'in', ('open', 'paid'))]")
     invoice_id = fields.Many2one(
         comodel_name='account.invoice', string="Invoice")
+    display_name = fields.Char(compute="_compute_display_name", store=True)
+
+    @api.one
+    @api.depends('distribution', 'type', 'expense_amount')
+    def _compute_display_name(self):
+        self.display_name = "%s: %s (%s)" % (
+            self.distribution.name, self.type.name,
+            formatLang(self.env, self.expense_amount,
+                       currency_obj=self.distribution.currency_id))
 
     @api.onchange('type')
     def onchange_type(self):
