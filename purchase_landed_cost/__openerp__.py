@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 # © 2013 Joaquín Gutierrez
-# © 2014-2015 Pedro M. Baeza <pedro.baeza@tecnativa.com>
+# © 2014-2016 Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3
 
 
 {
     'name': 'Purchase landed costs - Alternative option',
-    'version': '8.0.2.0.3',
+    'version': '8.0.2.1.0',
     "author": "OdooMRP team,"
               "AvanzOSC,"
               "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
