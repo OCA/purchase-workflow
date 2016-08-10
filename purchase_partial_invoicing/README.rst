@@ -20,7 +20,7 @@ Usage
 To use this module, you need to:
 
 * In order to create invoice from purchase order line, you have to set invoice
-method on purchas order to based on purchase order line.
+  method on purchas order to "based on purchase order line".
 
 For further information, please visit:
 
@@ -30,7 +30,7 @@ Known issues / Roadmap
 ======================
 
 * The possibility to define quantities to not invoice on the purchase order
-line is not considered in the picking.
+  line is not considered in the picking.
 
 Bug Tracker
 ===========
