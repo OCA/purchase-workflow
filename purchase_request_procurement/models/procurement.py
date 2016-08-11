@@ -84,8 +84,8 @@ class Procurement(models.Model):
         # or reject
         for line in request_lines:
             if line.request_id.state not in ('draft', 'reject'):
-                raise ValidationError(_('Can not cancel this procurement as the'
-                                        ' related purchase request is in '
+                raise ValidationError(_('Can not cancel this procurement as '
+                                        'the related purchase request is in '
                                         'progress confirmed already. '
                                         'Please cancel the purchase request '
                                         'first.'))
