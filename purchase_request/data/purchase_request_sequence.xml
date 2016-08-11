@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 Eficent Business and IT Consulting Services S.L.
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
 <openerp>
-    <data noupdate="0">
-        <!-- Sequences for purchase.order --> 
-        <record id="seq_type_purchase_request" model="ir.sequence.type">
-            <field name="name">Purchase Request</field>
-            <field name="code">purchase.request</field>
-        </record>
+    <data noupdate="1">
         <record id="seq_purchase_request" model="ir.sequence">
             <field name="name">Purchase Request</field>
             <field name="code">purchase.request</field>
