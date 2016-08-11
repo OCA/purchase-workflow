@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-# © 2015 Eficent Business and IT Consulting Services S.L.
-# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+# Copyright 2016 Eficent Business and IT Consulting Services S.L.
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
 
 from openerp import api, fields, models
 import openerp.addons.decimal_precision as dp
@@ -22,7 +22,7 @@ class PurchaseRequest(models.Model):
     @api.model
     def _company_get(self):
         company_id = self.env['res.company']._company_default_get(self._name)
-        return self.env['res.company'].browse(company_id)
+        return self.env['res.company'].browse(company_id.id)
 
     @api.model
     def _get_default_requested_by(self):
