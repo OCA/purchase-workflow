@@ -6,6 +6,7 @@ from openerp.tests import common
 from openerp import fields
 from openerp.exceptions import ValidationError
 
+
 class TestPurchaseRequestProcurement(common.TransactionCase):
 
     def setUp(self):
@@ -27,7 +28,8 @@ class TestPurchaseRequestProcurement(common.TransactionCase):
                   'location_id': self.env.ref('stock.stock_location_stock').id,
                   'route_ids':
                       [(
-                       4, self.env.ref('purchase.route_warehouse0_buy').id, 0)],
+                       4, self.env.ref('purchase.route_warehouse0_buy').id,
+                       0)],
                   }
 
         return self.env['procurement.order'].create(values)
@@ -47,17 +49,17 @@ class TestPurchaseRequestProcurement(common.TransactionCase):
         proc.check()
         proc.run()
         request = proc.request_id
-        self.assertEqual(len(request.line_ids),1)
+        self.assertEqual(len(request.line_ids), 1)
         proc.cancel()
         request = proc.request_id
-        self.assertEqual(len(request),0)
+        self.assertEqual(len(request), 0)
 
     def test_3_purchase_request_keep_manual(self):
         proc = self.create_purchase_request('SOME/TEST/0003')
         proc.check()
         proc.run()
         request = proc.request_id
-        #create line
+        # create line
         vals = {
             'request_id': request.id,
             'product_id': self.product_2.id,
@@ -68,4 +70,3 @@ class TestPurchaseRequestProcurement(common.TransactionCase):
         self.assertEqual(len(request.line_ids), 2)
         proc.cancel()
         self.assertEqual(len(request.line_ids), 1)
-
