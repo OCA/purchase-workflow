@@ -4,7 +4,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from openerp import _, api, fields, models
-
+from openerp.exceptions import ValidationError
 
 class Procurement(models.Model):
     _inherit = 'procurement.order'
@@ -69,3 +69,28 @@ class Procurement(models.Model):
             procurement.message_post(body=_("Purchase Request extended."))
             return True
         return super(Procurement, self)._run(procurement)
+
+
+    @api.model
+    def propagate_cancel(self, procurement):
+        result = super(Procurement, self).propagate_cancel(procurement)
+        # Remove the reference to the request_id from the procurement order
+        request = procurement.request_id
+        procurement.write({'request_id': None})
+        # Search for purchase request lines containing the procurement_id
+        request_lines = self.env['purchase.request.line'].\
+            search([('procurement_id','=',procurement.id)])
+        # Remove the purchase request lines, if the request is not draft
+        # or reject
+        for line in request_lines:
+            if line.request_id.state not in ('draft','reject'):
+                raise ValidationError(_('Can not cancel this procurement as'
+                                ' the related purchase request is in progress'
+                                ' confirmed already.  Please cancel the'
+                                ' purchase request first.'))
+            else:
+                line.unlink()
+        # If the purchase request has not lines, delete it as well
+        if len (request.line_ids) == 0:
+            request.unlink()
+        return result
