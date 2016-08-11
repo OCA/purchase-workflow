@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 Eficent Business and IT Consulting Services S.L.
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
 <openerp>
 <data noupdate="0">
 
@@ -10,13 +12,13 @@
 
     <record id="group_purchase_request_user" model="res.groups">
         <field name="name">Purchase Request User</field>
-        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="users" eval="[(4, ref('base.group_user'))]"/>
         <field name="category_id" ref="module_category_purchase_request"/>
     </record>
 
     <record id="group_purchase_request_manager" model="res.groups">
         <field name="name">Purchase Request Manager</field>
-        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="implied_ids" eval="[(4, ref('purchase_request.group_purchase_request_user'))]"/>
         <field name="category_id" ref="module_category_purchase_request"/>
     </record>
 
