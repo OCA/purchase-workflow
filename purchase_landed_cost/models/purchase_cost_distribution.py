@@ -358,9 +358,10 @@ class PurchaseCostDistributionLine(models.Model):
         string='Name', compute='_compute_display_name')
     distribution = fields.Many2one(
         comodel_name='purchase.cost.distribution', string='Cost distribution',
-        ondelete='cascade')
+        ondelete='cascade', required=True)
     move_id = fields.Many2one(
-        comodel_name='stock.move', string='Picking line', ondelete="restrict")
+        comodel_name='stock.move', string='Picking line', ondelete="restrict",
+        required=True)
     purchase_line_id = fields.Many2one(
         comodel_name='purchase.order.line', string='Purchase order line',
         related='move_id.purchase_line_id')
@@ -390,8 +391,7 @@ class PurchaseCostDistributionLine(models.Model):
         string='Unit price', related='move_id.price_unit')
     expense_lines = fields.One2many(
         comodel_name='purchase.cost.distribution.line.expense',
-        inverse_name='distribution_line', string='Expenses distribution lines',
-        ondelete='cascade')
+        inverse_name='distribution_line', string='Expenses distribution lines')
     product_volume = fields.Float(
         string='Volume', help="The volume in m3.",
         related='product_id.product_tmpl_id.volume')
