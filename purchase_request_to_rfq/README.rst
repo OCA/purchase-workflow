@@ -1,5 +1,5 @@
-.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
-    :alt: License AGPL-3
+.. image:: https://img.shields.io/badge/licence-LGPL--3-blue.svg
+    :alt: License LGPL-3
 
 Purchase Request to RFQ
 =======================
@@ -38,7 +38,7 @@ consolidated into as few as possible lines in the RFQ.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/142/8.0
+   :target: https://runbot.odoo-community.org/runbot/142/9.0
 
 For further information, please visit:
 
@@ -49,6 +49,14 @@ Known issues / Roadmap
 ======================
 
 No issues have been identified
+
+Bug Tracker
+===========
+
+Bugs are tracked on `GitHub Issues
+<https://github.com/OCA/purchase-workflow/issues>`_. In case of trouble, please
+check there if your issue has already been reported. If you spotted it first,
+help us smashing it by providing a detailed and welcomed feedback.
 
 
 Credits
