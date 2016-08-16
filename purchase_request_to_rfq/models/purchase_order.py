@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-# © 2015 Eficent Business and IT Consulting Services S.L.
-# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+# Copyright 2016 Eficent Business and IT Consulting Services S.L.
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
 
 from openerp import _, api, exceptions, fields, models
 
@@ -68,9 +68,9 @@ class PurchaseOrder(models.Model):
         return True
 
     @api.multi
-    def wkf_confirm_order(self):
+    def button_confirm(self):
         self._purchase_request_line_check()
-        res = super(PurchaseOrder, self).wkf_confirm_order()
+        res = super(PurchaseOrder, self).button_confirm()
         self._purchase_request_confirm_message()
         return res
 
