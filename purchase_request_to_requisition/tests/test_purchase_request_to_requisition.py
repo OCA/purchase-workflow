@@ -54,7 +54,7 @@ class TestPurchaseRequestToRequisition(common.TransactionCase):
         requisition_id.tender_in_progress()
         requisition_id.tender_open()
         vals = {
-            'partner_id': self.env.ref('base.res_partner_12').id,
+            'partner_ids': [(4, self.env.ref('base.res_partner_12').id, 0)]
         }
         requisition_partner_id =\
             self.purchase_requisition_partner_model.with_context(
