@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
-# © 2015 Eficent Business and IT Consulting Services S.L.
-# - Jordi Ballester Alomar
-# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+# Copyright 2016 Eficent Business and IT Consulting Services S.L.
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
 
 {
     "name": "Purchase Request to Call for Bids",
-    "version": "8.0.1.0.0",
+    "version": "9.0.1.0.0",
     "author": "Eficent, "
+              "Acsone SA/NV,"
               "Odoo Community Association (OCA)",
-    "website": "www.eficent.com",
+    "website": "https://github.com/OCA/purchase-workflow",
     "category": "Purchase Management",
     "depends": [
         "purchase_request_procurement",
@@ -21,6 +21,6 @@
         "views/purchase_request_view.xml",
         "views/purchase_requisition_view.xml",
     ],
-    "license": 'AGPL-3',
+    "license": 'LGPL-3',
     "installable": True
 }
