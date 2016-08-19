@@ -11,11 +11,10 @@ Installation
 
 No specific instructions required.
 
-
 Configuration
 =============
 
-No specific instructions requied.
+No specific instructions required.
 
 Usage
 =====
@@ -66,7 +65,7 @@ Contributors
 ------------
 
 * Jordi Ballester <jordi.ballester@eficent.com>
-
+* Aaron Henriquez <ahenriquez@eficent.com>
 
 Maintainer
 ----------
