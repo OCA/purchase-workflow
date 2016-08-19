@@ -1,29 +1,19 @@
 # -*- coding: utf-8 -*-
-# © 2015 Eficent Business and IT Consulting Services S.L.
-# - Jordi Ballester Alomar
-# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+# Copyright 2016 Eficent Business and IT Consulting Services S.L.
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
 
 from openerp import _, api, exceptions, fields, models
-
-_PURCHASE_REQUISITION_STATE = [
-    ('none', 'No Bid'),
-    ('draft', 'Draft'),
-    ('in_progress', 'Confirmed'),
-    ('open', 'Bid Selection'),
-    ('done', 'PO Created'),
-    ('cancel', 'Cancelled')]
 
 
 class PurchaseRequestLine(models.Model):
     _inherit = "purchase.request.line"
 
     @api.multi
-    @api.depends('requisition_lines')
+    @api.depends('purchase_lines')
     def _compute_is_editable(self):
         super(PurchaseRequestLine, self)._compute_is_editable()
-        for rec in self:
-            if rec.requisition_lines:
-                rec.is_editable = False
+        for rec in self.filtered(lambda p: p in self and p.requisition_lines):
+            rec.is_editable = False
 
     @api.multi
     def _compute_requisition_qty(self):
@@ -38,7 +28,7 @@ class PurchaseRequestLine(models.Model):
     @api.depends('requisition_lines.requisition_id.state')
     def _compute_requisition_state(self):
         for rec in self:
-            temp_req_state = 'none'
+            temp_req_state = False
             if rec.requisition_lines:
                 if any([pr_line.requisition_id.state == 'done' for
                         pr_line in
@@ -66,8 +56,9 @@ class PurchaseRequestLine(models.Model):
                                    string='Quantity in a Bid')
     requisition_state = fields.Selection(
         compute='_compute_requisition_state', string="Bid Status",
-        type='selection', selection=_PURCHASE_REQUISITION_STATE, store=True,
-        default='none')
+        type='selection', selection=lambda self: self.env[
+            'purchase.requisition']._columns['state'].selection,
+        store=True)
 
     is_editable = fields.Boolean(compute='_compute_is_editable',
                                  string="Is editable")
