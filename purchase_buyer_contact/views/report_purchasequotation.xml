@@ -1,0 +1,23 @@
+<?xml version="1.1" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="report_purchasequotation_buyer" inherit_id="purchase.report_purchasequotation_document">
+            <xpath expr="//div[@class='col-xs-6']" position="before">
+                <div class="col-xs-3 col-xs-offset-1">
+                    <t t-if="o.partner_id.customer_code!=''">
+                        <p>Customer Code: <span t-field="o.partner_id.customer_code"/></p>
+                    </t>
+                    <p>Contact:</p>
+                    <div t-field="o.partner_id.buyer_partner_id"
+                            t-field-options='{"widget": "contact", "fields": ["name", "phone", "email"], "no_marker": true, "phone_icons": true}'/>
+                </div>
+            </xpath>
+            <xpath expr="//div[@class='col-xs-5 col-xs-offset-1']" position="attributes">
+                <attribute name="class">col-xs-3 col-xs-offset-1</attribute>
+            </xpath>
+            <xpath expr="//div[@class='col-xs-6']" position="attributes">
+                <attribute name="class">col-xs-3</attribute>
+            </xpath>
+        </template>
+    </data>
+</openerp>
