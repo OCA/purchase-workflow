@@ -20,7 +20,7 @@ class PurchaseOrderLine(models.Model):
         super(PurchaseOrderLine, self)._compute_amount()
         # restore prices
         for line in self:
-            if self.discount:
+            if line.discount:
                 line.price_unit = prices[line.id]
 
     discount = fields.Float(
