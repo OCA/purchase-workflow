@@ -2,9 +2,9 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-==============
+==========================
 Purchase Product Multi Add
-==============
+==========================
 
 This module extends the functionality of purchase module
 and allow you to import multiple products into your current purchase order.
@@ -24,8 +24,6 @@ on the supplier you have selected in your purchase order.
 
 Known issues / Roadmap
 ======================
-
-* ...
 
 Bug Tracker
 ===========
@@ -47,6 +45,7 @@ Contributors
 ------------
 
 * Denis Roussel <denis.roussel@acsone.eu>
+* Nemry Jonathan <jonathan.nemry@acsone.eu>
 
 Maintainer
 ----------

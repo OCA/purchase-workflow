@@ -4,7 +4,9 @@
 {
     'name': "Purchase Product Multi Add",
     'summary': """
-        Purchase Product Multi Add """,
+        This module allows a shortcut to add purchase.order.line by selecting
+        product into a wizard for the given suplier
+    """,
     'author': 'ACSONE SA/NV, Odoo Community Association (OCA)',
     'website': "http://acsone.eu",
     'category': 'Purchase Management',
@@ -13,7 +15,8 @@
     'depends': [
         'purchase',
     ],
-    'data': ['wizard/purchase_import_products_view.xml',
-             'views/purchase_view.xml',
-             ]
+    'data': [
+        'wizard/purchase_import_products_view.xml',
+        'views/purchase_view.xml',
+    ],
 }

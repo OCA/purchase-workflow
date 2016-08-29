@@ -8,12 +8,12 @@
             <field name="arch" type="xml">
                 <div class="oe_title" position="after">
                     <div class=" oe_right oe_button_box">
-                        <button class="oe_inline oe_stat_button oe_right" name="%(action_import_product_to_purchase)d" string="Products" Help="Select Products to Import"
-                               type="action" attrs="{'invisible':[('partner_id','=',False)]}" icon="fa-bars" widget="statinfo"/>
+                        <button class="oe_inline oe_stat_button oe_right" name="%(action_import_product_to_purchase)d"
+                            string="Products" Help="Select Products to Import" type="action"
+                            attrs="{'invisible':[('partner_id','=',False)]}" icon="fa-bars" widget="statinfo"
+                            context="{'default_partner_id': partner_id}"/>
                     </div>
-                
                 </div>
-                
                 <field name="order_line" position="attributes">
                     <attribute name="options">{'always_reload':true}</attribute>
                 </field>
