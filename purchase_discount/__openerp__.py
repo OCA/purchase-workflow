@@ -7,7 +7,7 @@
     "name": "Purchase order lines with discounts",
     "author": "Tiny, "
               "Acysos S.L., "
-              "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
+              "Tecnativa, "
               "ACSONE SA/NV,"
               "Odoo Community Association (OCA)",
     "version": "9.0.1.0.0",
