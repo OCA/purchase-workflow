@@ -11,19 +11,6 @@
 from openerp import api, fields, models
 
 
-class PurchaseOrder(models.Model):
-    _inherit = 'purchase.order'
-
-    @api.model
-    def _prepare_order_line_move(self, order, order_line, picking_id,
-                                 group_id):
-        res = super(PurchaseOrder, self)._prepare_order_line_move(
-            order, order_line, picking_id, group_id)
-        for move in res:
-            move['restrict_lot_id'] = order_line.lot_id.id
-        return res
-
-
 class PurchaseOrderLine(models.Model):
     _inherit = 'purchase.order.line'
 
@@ -32,22 +19,33 @@ class PurchaseOrderLine(models.Model):
         string='Serial Number',
         readonly=True)
 
+    @api.multi
+    def _create_stock_moves(self, picking):
+        moves = super(PurchaseOrderLine, self)._create_stock_moves(picking)
+        for move in moves:
+            if move.purchase_line_id.lot_id:
+                move.write(
+                    {'restrict_lot_id': move.purchase_line_id.lot_id.id})
+        return moves
+
 
 class ProcurementOrder(models.Model):
     _inherit = 'procurement.order'
 
-    @api.model
-    def _get_po_line_values_from_proc(self, procurement, partner, company,
-                                      schedule_date):
-        res = super(ProcurementOrder, self)._get_po_line_values_from_proc(
-            procurement, partner, company, schedule_date)
-        if procurement.product_id.auto_generate_prodlot:
-            res['lot_id'] = procurement.lot_id.id
+    @api.multi
+    def _prepare_purchase_order_line(self, po, supplier):
+        res = super(ProcurementOrder, self)._prepare_purchase_order_line(
+            po, supplier)
+        if self.product_id.auto_generate_prodlot:
+            res['lot_id'] = self.lot_id.id
         return res
 
+    # Need to merge https://github.com/akretion/odoo/tree/9.0-hooks
     @api.model
-    def _get_available_draft_po_line_domain(self, po_id, line_vals):
-        res = super(ProcurementOrder, self).\
-            _get_available_draft_po_line_domain(po_id, line_vals)
-        res.append(('lot_id', '=', line_vals.get('lot_id')))
-        return res
+    def check_merge_po_line(self, line, procurement):
+        res = super(ProcurementOrder, self).check_merge_po_line(
+            line, procurement)
+        if not line.lot_id == procurement.lot_id:
+            return False
+        else:
+            return res

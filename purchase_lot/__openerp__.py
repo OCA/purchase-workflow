@@ -22,7 +22,7 @@
 
 {
     'name': 'Purchase Lot',
-    'version': '0.2',
+    'version': '9.0.2.0.0',
     'category': 'Purchase',
     'description': """
         Purchase a specific lot number linked to the lot sold
