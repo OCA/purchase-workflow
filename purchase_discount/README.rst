@@ -24,6 +24,14 @@ Usage
    :alt: Try me on Runbot
    :target: https://runbot.odoo-community.org/runbot/142/9.0
 
+Known issues / Roadmap
+======================
+
+* Improvement made into 8.0: load price with discount in stock_move when confirm a purchase order
+(https://github.com/OCA/purchase-workflow/commit/e5b578b9e7613c4535fa77768207e8c44acd4822)
+* Issue into the previous 8.0 improvement: Purchase discount not taken into account in the purchase report
+(https://github.com/OCA/purchase-workflow/issues/265)
+
 Bug Tracker
 ===========
 
