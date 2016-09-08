@@ -10,6 +10,7 @@ class Procurement(models.Model):
     _inherit = 'procurement.order'
 
     request_id = fields.Many2one('purchase.request',
+                                 ondelete='restrict',
                                  string='Latest Purchase Request')
 
     @api.multi
