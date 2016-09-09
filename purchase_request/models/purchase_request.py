@@ -122,35 +122,39 @@ class PurchaseRequest(models.Model):
     def create(self, vals):
         request = super(PurchaseRequest, self).create(vals)
         if vals.get('assigned_to'):
-            self.message_subscribe_users(user_ids=[request.assigned_to.id])
-
+            request.message_subscribe_users(user_ids=[request.assigned_to.id])
         return request
 
     @api.multi
     def write(self, vals):
-        request = super(PurchaseRequest, self).write(vals)
-        if vals.get('assigned_to'):
-            self.message_subscribe_users(user_ids=[request.assigned_to.id])
-        return request
+        res = super(PurchaseRequest, self).write(vals)
+        for request in self:
+            if vals.get('assigned_to'):
+                self.message_subscribe_users(user_ids=[request.assigned_to.id])
+        return res
 
     @api.multi
     def button_draft(self):
-        self.state = 'draft'
+        for rec in self:
+            rec.state = 'draft'
         return True
 
     @api.multi
     def button_to_approve(self):
-        self.state = 'to_approve'
+        for rec in self:
+            rec.state = 'to_approve'
         return True
 
     @api.multi
     def button_approved(self):
-        self.state = 'approved'
+        for rec in self:
+            rec.state = 'approved'
         return True
 
     @api.multi
     def button_rejected(self):
-        self.state = 'rejected'
+        for rec in self:
+            rec.state = 'rejected'
         return True
 
 
