@@ -120,21 +120,18 @@ class PurchaseRequest(models.Model):
 
     @api.model
     def create(self, vals):
+        request = super(PurchaseRequest, self).create(vals)
         if vals.get('assigned_to'):
-            assigned_to = self.env['res.users'].browse(vals.get(
-                'assigned_to'))
-            vals['message_follower_ids'] = [(4, assigned_to.partner_id.id)]
-        return super(PurchaseRequest, self).create(vals)
+            self.message_subscribe_users(user_ids=[request.assigned_to.id])
+
+        return request
 
     @api.multi
     def write(self, vals):
-        self.ensure_one()
+        request = super(PurchaseRequest, self).write(vals)
         if vals.get('assigned_to'):
-            assigned_to = self.env['res.users'].browse(
-                vals.get('assigned_to'))
-            vals['message_follower_ids'] = [(4, assigned_to.partner_id.id)]
-        res = super(PurchaseRequest, self).write(vals)
-        return res
+            self.message_subscribe_users(user_ids=[request.assigned_to.id])
+        return request
 
     @api.multi
     def button_draft(self):
