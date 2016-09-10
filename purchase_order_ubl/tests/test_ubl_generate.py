@@ -5,7 +5,7 @@
 from openerp.tests.common import TransactionCase
 
 
-class TestUblOrderImport(TransactionCase):
+class TestUblOrder(TransactionCase):
 
     def test_ubl_generate(self):
         ro = self.registry['report']
@@ -13,8 +13,6 @@ class TestUblOrderImport(TransactionCase):
         buo = self.env['base.ubl']
         order_states = poo.get_order_states()
         rfq_states = poo.get_rfq_states()
-        rfq_filename = poo.get_ubl_filename('rfq')
-        order_filename = poo.get_ubl_filename('order')
         for i in range(6):
             i += 1
             order = self.env.ref('purchase.purchase_order_%d' % i)
@@ -24,6 +22,8 @@ class TestUblOrderImport(TransactionCase):
                 'purchase.report_purchasequotation')
             res = buo.get_xml_files_from_pdf(pdf_file)
             if order.state in order_states:
-                self.assertTrue(order_filename in res)
+                filename = order.get_ubl_filename('order')
+                self.assertTrue(filename in res)
             elif order.state in rfq_states:
-                self.assertTrue(rfq_filename in res)
+                filename = order.get_ubl_filename('rfq')
+                self.assertTrue(filename in res)
