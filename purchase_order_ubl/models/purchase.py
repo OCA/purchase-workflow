@@ -78,8 +78,8 @@ class PurchaseOrder(models.Model):
         qty_precision = dpo.precision_get('Product Unit of Measure')
         price_precision = dpo.precision_get('Product Price')
         self._ubl_add_line_item(
-            line_number, oline.product_id, 'purchase', oline.product_qty,
-            oline.product_uom, line_root, ns,
+            line_number, oline.name, oline.product_id, 'purchase',
+            oline.product_qty, oline.product_uom, line_root, ns,
             seller=self.partner_id.commercial_partner_id,
             currency=self.currency_id, price_subtotal=oline.price_subtotal,
             qty_precision=qty_precision, price_precision=price_precision)
