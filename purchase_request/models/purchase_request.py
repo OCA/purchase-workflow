@@ -55,19 +55,16 @@ class PurchaseRequest(models.Model):
             else:
                 rec.is_editable = True
 
-    _track = {
-        'state': {
-            'purchase_request.mt_request_to_approve':
-                lambda self, cr, uid, obj,
-                ctx=None: obj.state == 'to_approve',
-            'purchase_request.mt_request_approved':
-                lambda self, cr, uid, obj,
-                ctx=None: obj.state == 'approved',
-            'purchase_request.mt_request_rejected':
-                lambda self, cr, uid, obj,
-                ctx=None: obj.state == 'rejected',
-        },
-    }
+    @api.multi
+    def _track_subtype(self, init_values):
+        for rec in self:
+            if 'state' in init_values and rec.state == 'to_approve':
+                return 'purchase_request.mt_request_to_approve'
+            elif 'state' in init_values and rec.state == 'approved':
+                return 'purchase_request.mt_request_approved'
+            elif 'state' in init_values and rec.state == 'rejected':
+                return 'purchase_request.mt_request_rejected'
+        return super(PurchaseRequest, self)._track_subtype(init_values)
 
     name = fields.Char('Request Reference', size=32, required=True,
                        default=_get_default_name,
@@ -97,8 +94,10 @@ class PurchaseRequest(models.Model):
                                track_visibility='onchange')
     state = fields.Selection(selection=_STATES,
                              string='Status',
+                             index=True,
                              track_visibility='onchange',
                              required=True,
+                             copy=False,
                              default='draft')
     is_editable = fields.Boolean(string="Is editable",
                                  compute="_compute_is_editable",
