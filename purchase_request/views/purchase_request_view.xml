@@ -134,9 +134,11 @@
             <field name="name">purchase.request.tree</field>
             <field name="model">purchase.request</field>
             <field name="arch" type="xml">
-                <tree fonts="bold:message_unread==True"
+                <tree decoration-bf="message_needaction==True"
+                      decoration-info="state in ('draft','to_approve')"
+                      decoration-muted="state in ('rejected')"
                       string="Purchase Request">
-                    <field name="message_unread" invisible="1"/>
+                    <field name="message_needaction" invisible="1"/>
                     <field name="name"/>
                     <field name="date_start"/>
                     <field name="requested_by"/>
@@ -170,6 +172,9 @@
                     <filter name="state_rejected" string="Rejected"
                             domain="[('state','=','rejected')]"
                             help="Request is rejected"/>
+                    <filter string="Unread Messages"
+                            name="message_needaction"
+                            domain="[('message_needaction','=',True)]"/>
                     <field name="requested_by" />
                     <field name="assigned_to" />
                     <field name="picking_type_id"/>
