@@ -50,7 +50,7 @@
         <field name="perm_create" eval="False"/>
         <field name="perm_unlink" eval="False"/>
         <field name="domain_force">['|',('requested_by','=',user.id),
-                                        ('message_follower_ids', 'in', [user.partner_id.id])]</field>
+                                        ('message_partner_ids', 'in', [user.partner_id.id])]</field>
     </record>
 
     <record id="purchase_request_modify_rule" model="ir.rule">
@@ -73,7 +73,7 @@
         <field name="perm_create" eval="False"/>
         <field name="perm_unlink" eval="False"/>
         <field name="domain_force">['|',('request_id.requested_by','=',user.id),
-                                        ('request_id.message_follower_ids', 'in', [user.partner_id.id])]</field>
+                                        ('request_id.message_partner_ids', 'in', [user.partner_id.id])]</field>
     </record>
 
     <record id="purchase_request_line_modify_rule" model="ir.rule">
