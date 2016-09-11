@@ -18,12 +18,17 @@ class Report(models.Model):
         """We go through that method when the PDF is generated for the 1st
         time and also when it is read from the attachment.
         This method is specific to QWeb"""
+        if context is None:
+            context = {}
         pdf_content = super(Report, self).get_pdf(
             cr, uid, ids, report_name, html=html, data=data, context=context)
         purchase_reports = [
             'purchase.report_purchaseorder',
             'purchase.report_purchasequotation']
-        if report_name in purchase_reports and len(ids) == 1:
+        if (
+                report_name in purchase_reports and
+                len(ids) == 1 and
+                not context.get('no_embedded_ubl_xml')):
             order = self.pool['purchase.order'].browse(
                 cr, uid, ids[0], context=context)
             pdf_content = order.embed_ubl_xml_in_pdf(
