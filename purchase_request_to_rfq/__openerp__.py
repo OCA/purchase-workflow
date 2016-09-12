@@ -4,12 +4,9 @@
 
 {
     "name": "Purchase Request to RFQ",
-    "author": "Eficent,"
+    "author": "Eficent Business and IT Consulting Services S.L., "
               "Odoo Community Association (OCA)",
     "version": "9.0.1.0.0",
-    "contributors": [
-        'Jordi Ballester Alomar',
-    ],
     "website": "www.eficent.com",
     "category": "Purchase Management",
     "depends": [
