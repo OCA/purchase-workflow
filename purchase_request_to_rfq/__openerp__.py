@@ -6,7 +6,7 @@
     "name": "Purchase Request to RFQ",
     "author": "Eficent,"
               "Odoo Community Association (OCA)",
-    "version": "8.0.1.0.0",
+    "version": "9.0.1.0.0",
     "contributors": [
         'Jordi Ballester Alomar',
     ],
