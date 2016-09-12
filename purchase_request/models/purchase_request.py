@@ -177,8 +177,8 @@ class PurchaseRequestLine(models.Model):
     def _compute_supplier_id(self):
         for rec in self:
             if rec.product_id:
-                for product_supplier in rec.product_id.seller_ids:
-                    rec.supplier_id = product_supplier.name
+                if rec.product_id.seller_ids:
+                    rec.supplier_id = rec.product_id.seller_ids[0].name
 
     product_id = fields.Many2one(
         'product.product', 'Product',
