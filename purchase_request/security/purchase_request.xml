@@ -64,6 +64,16 @@
         <field name="domain_force">[('requested_by','=',user.id)]</field>
     </record>
 
+    <record id="purchase_request_modify_manager_rule" model="ir.rule">
+        <field name="name">Purchase Request Manager</field>
+        <field name="model_id" ref="model_purchase_request"/>
+        <field name="groups" eval="[(6,0, [ref('group_purchase_request_manager')])]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
     <record id="purchase_request_line_followers_rule" model="ir.rule">
         <field name="name">Follow Purchase Request Line</field>
         <field name="model_id" ref="model_purchase_request_line"/>
@@ -85,6 +95,16 @@
         <field name="perm_create" eval="True"/>
         <field name="perm_unlink" eval="True"/>
         <field name="domain_force">[('request_id.requested_by','=',user.id)]</field>
+    </record>
+
+    <record id="purchase_request_line_modify_manager_rule" model="ir.rule">
+        <field name="name">Modify Purchase Request Line Manager</field>
+        <field name="model_id" ref="model_purchase_request_line"/>
+        <field name="groups" eval="[(6,0, [ref('group_purchase_request_manager')])]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
     </record>
 
 </data>
