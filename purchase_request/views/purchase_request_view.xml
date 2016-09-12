@@ -100,6 +100,7 @@
                                                 </div>
                                                 <field name="analytic_account_id"
                                                        groups="analytic.group_analytic_accounting"
+                                                       domain="[('account_type','=','normal')]"
                                                        attrs="{'readonly': [('is_editable','=', False)]}"/>
                                                 <field name="date_required"
                                                        attrs="{'readonly': [('is_editable','=', False)]}"/>
