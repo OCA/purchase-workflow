@@ -175,6 +175,10 @@
                     <filter string="Unread Messages"
                             name="message_needaction"
                             domain="[('message_needaction','=',True)]"/>
+                    <filter domain="[('assigned_to','=', uid)]"
+                            help="Assigned to me"/>
+                    <filter domain="[('requested_by','=', uid)]"
+                            help="My requests"/>
                     <field name="requested_by" />
                     <field name="assigned_to" />
                     <field name="picking_type_id"/>
@@ -334,6 +338,10 @@
                     <filter name="request_state_rejected" string="Rejected"
                             domain="[('request_state','=','rejected')]"
                             help="Request is rejected"/>
+                    <filter domain="[('assigned_to','=', uid)]"
+                            help="Assigned to me"/>
+                    <filter domain="[('requested_by','=', uid)]"
+                            help="My requests"/>
                     <group expand="0" string="Group By...">
                         <filter string="Product"
                                 domain="[]" context="{'group_by' : 'product_id'}" />
