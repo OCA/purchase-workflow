@@ -38,7 +38,10 @@ Credits
 Contributors
 ------------
 
-* Eficent Business and IT Consulting Services, S.L. <contact@eficent.com>
+* Jordi Ballester Alomar <jordi.ballester@eficent.com>
+* Jonathan Nemry <jonathan.nemry@acsone.eu>
+* Aaron Henriquez <ahenriquez@eficent.com>
+* Adrien Peiffer <adrien.peiffer@acsone.eu>
 
 
 Maintainer
