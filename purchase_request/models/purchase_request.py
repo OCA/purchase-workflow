@@ -45,9 +45,7 @@ class PurchaseRequest(models.Model):
         return types[:1]
 
     @api.multi
-    @api.depends('name', 'origin', 'date_start',
-                 'requested_by', 'assigned_to', 'description', 'company_id',
-                 'line_ids', 'picking_type_id')
+    @api.depends('state')
     def _compute_is_editable(self):
         for rec in self:
             if rec.state in ('to_approve', 'approved', 'rejected'):
