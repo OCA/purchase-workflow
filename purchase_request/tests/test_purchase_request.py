@@ -26,10 +26,16 @@ class TestPurchaseRequest(common.TransactionCase):
             'product_qty': 5.0,
         }
         self.purchase_request_line.create(vals)
+        self.assertEqual(
+            purchase_request.is_editable, True,
+            'Should be editable')
         purchase_request.button_to_approve()
         self.assertEqual(
             purchase_request.state, 'to_approve',
             'Should be in state to_approve')
+        self.assertEqual(
+            purchase_request.is_editable, False,
+            'Should not be editable')
         purchase_request.button_draft()
         self.assertEqual(
             purchase_request.state, 'draft',
