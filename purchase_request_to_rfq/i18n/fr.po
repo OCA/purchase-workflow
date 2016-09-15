@@ -33,18 +33,18 @@ msgstr "<li><b>%s</b>: Quantité recue %s %s</li>"
 
 #. module: purchase_request_to_rfq
 #: view:purchase.request.line:purchase_request_to_rfq.purchase_request_line_search
-msgid "At least a Draft PO has been created"
-msgstr "Au moins un bon de commande brouillon a été créé"
+msgid "At least an RFQ has been created"
+msgstr "Au moins une demande de prix a été créée"
 
 #. module: purchase_request_to_rfq
 #: view:purchase.request.line:purchase_request_to_rfq.purchase_request_line_search
-msgid "At least a PO has been completed"
-msgstr "Au moin un bon de commande a été terminé"
+msgid "At least an RFQ has been completed"
+msgstr "Au moin une demande de prix a été terminée"
 
 #. module: purchase_request_to_rfq
 #: view:purchase.request.line:purchase_request_to_rfq.purchase_request_line_search
-msgid "At least a PO has been confirmed"
-msgstr "Au moins un bon de commande a été confirmé"
+msgid "At least an RFQ has been confirmed"
+msgstr "Au moins une demande de prix a été confirmée"
 
 #. module: purchase_request_to_rfq
 #: view:purchase.request.line.make.purchase.order:purchase_request_to_rfq.view_purchase_request_line_make_purchase_order
@@ -115,7 +115,7 @@ msgstr "Indiquez un fournisseur."
 #. module: purchase_request_to_rfq
 #: view:purchase.request.line.make.purchase.order:purchase_request_to_rfq.view_purchase_request_line_make_purchase_order
 msgid "Existing RFQ to update:"
-msgstr "Existing RFQ to update:"
+msgstr "Demande de prix à mettre à jour:"
 
 #. module: purchase_request_to_rfq
 #: field:purchase.order.line,has_purchase_request_lines:0
@@ -153,8 +153,8 @@ msgstr "Dernière modification le"
 
 #. module: purchase_request_to_rfq
 #: view:purchase.request.line.make.purchase.order:purchase_request_to_rfq.view_purchase_request_line_make_purchase_order
-msgid "New PO details:"
-msgstr "Nouveaux détails de bon de commande:"
+msgid "New RFQ details:"
+msgstr "Détails de la nouvelle demande de prix:"
 
 #. module: purchase_request_to_rfq
 #: selection:purchase.request.line,purchase_state:0

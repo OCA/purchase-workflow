@@ -79,15 +79,15 @@
                         <filter name="purchase_state_draft"
                                 string="Requested for Quotation"
                                 domain="[('purchase_state','=','draft')]"
-                                help="At least a Draft PO has been created"/>
+                                help="At least an RFQ has been created"/>
                         <filter name="purchase_state_confirmed"
                                 string="Purchase Confirmed"
                                 domain="[('purchase_state','=','confirmed')]"
-                                help="At least a PO has been confirmed"/>
+                                help="At least an RFQ has been confirmed"/>
                         <filter name="purchase_state_done"
                                 string="Purchase Done"
                                 domain="[('purchase_state','=','done')]"
-                                help="At least a PO has been completed"/>
+                                help="At least an RFQ has been completed"/>
                     </field>
                     <group position="inside">
                         <filter string="Purchase Status"

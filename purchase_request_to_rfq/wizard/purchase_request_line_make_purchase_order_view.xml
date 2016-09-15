@@ -14,7 +14,7 @@
                      </group>
                      <newline/>
                      <separator
-                             string="New PO details:"/>
+                             string="New RFQ details:"/>
                      <newline/>
                      <group>
                          <field name="supplier_id"/>
