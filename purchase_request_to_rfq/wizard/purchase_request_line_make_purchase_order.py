@@ -8,6 +8,7 @@ from openerp.tools import DEFAULT_SERVER_DATE_FORMAT, \
     DEFAULT_SERVER_DATETIME_FORMAT
 from datetime import datetime
 
+
 class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
     _name = "purchase.request.line.make.purchase.order"
     _description = "Purchase Request Line Make Purchase Order"
@@ -77,13 +78,6 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
     def _prepare_purchase_order_line(self, po, item):
         po_line_obj = self.env['purchase.order.line']
         product = item.product_id
-        # supplierinfo = self.env['product.supplierinfo'].search([
-        #     ('product_tmpl_id','=',product.id),
-        #     ('name','=', self.supplier_id.id)])
-        # if supplierinfo:
-        #     price = supplierinfo[0].price
-        # else:
-        #     price = 0.0
         supplier = self.supplier_id
         pricelist_id = supplier.property_product_pricelist
 
@@ -92,12 +86,12 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                 fields.datetime.now().strftime(DEFAULT_SERVER_DATETIME_FORMAT),
                 DEFAULT_SERVER_DATETIME_FORMAT).\
                 strftime(DEFAULT_SERVER_DATE_FORMAT)
-            price = pricelist_id.price_get(prod_id = product.id,
-                                           qty = item.product_qty or 1.0,
-                                           partner = supplier or False,
-                                           context = {'uom': product.\
-                                           uom_po_id.id,
-                                                      'date': date_order_str})
+            price = pricelist_id.price_get(prod_id=product.id,
+                                           qty=item.product_qty or 1.0,
+                                           partner=supplier or False,
+                                           context={'uom':
+                                                    product.uom_po_id.id,
+                                                    'date': date_order_str})
             price = price[pricelist_id.id]
         else:
             price = product.standard_price
