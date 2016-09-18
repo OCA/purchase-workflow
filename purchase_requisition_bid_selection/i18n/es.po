@@ -3,13 +3,20 @@
 # * purchase_requisition_bid_selection
 # 
 # Translators:
+# danimaribeiro <danimaribeiro@gmail.com>, 2016
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012
+# Hotellook, 2014
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Rudolf Schnapka <schnapkar@golive-saar.de>, 2015
+# SaFi J. <safi2266@gmail.com>, 2015
+# Thomas A. Jaeger, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-08 10:16+0000\n"
-"PO-Revision-Date: 2016-03-08 10:17+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2016-09-15 11:37+0000\n"
+"PO-Revision-Date: 2016-09-16 21:45+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -165,7 +172,7 @@ msgstr ""
 #: view:update.bid.internal.remark:purchase_requisition_bid_selection.view_update_bid_internal_remark
 #: view:update.remark:purchase_requisition_bid_selection.view_update_remark
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #. module: purchase_requisition_bid_selection
 #: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
@@ -215,6 +222,7 @@ msgstr ""
 
 #. module: purchase_requisition_bid_selection
 #: field:purchase.order,country_of_origin:0
+#: field:purchase.order.line,country_of_origin:0
 #: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
 msgid "Country of origin"
 msgstr ""
@@ -230,7 +238,7 @@ msgstr ""
 #: field:update.bid.internal.remark,create_uid:0
 #: field:update.remark,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Creado por"
 
 #. module: purchase_requisition_bid_selection
 #: field:purchase.action_modal.ask_selection_reasons,create_date:0
@@ -238,7 +246,7 @@ msgstr ""
 #: field:update.bid.internal.remark,create_date:0
 #: field:update.remark,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Creado en"
 
 #. module: purchase_requisition_bid_selection
 #: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
@@ -279,6 +287,14 @@ msgstr ""
 #: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
 msgid "Description of item"
 msgstr ""
+
+#. module: purchase_requisition_bid_selection
+#: field:purchase.action_modal.ask_selection_reasons,display_name:0
+#: field:purchase.action_modal.ask_validity,display_name:0
+#: field:update.bid.internal.remark,display_name:0
+#: field:update.remark,display_name:0
+msgid "Display Name"
+msgstr "Nombre mostrado"
 
 #. module: purchase_requisition_bid_selection
 #: view:purchase.order.line:purchase_requisition_bid_selection.view_purchase_order_line_search
@@ -339,7 +355,7 @@ msgstr ""
 #: field:purchase.action_modal.ask_validity,id:0
 #: field:update.bid.internal.remark,id:0 field:update.remark,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: purchase_requisition_bid_selection
 #: view:purchase.order.line:purchase_requisition_bid_selection.view_purchase_order_line_search
@@ -357,6 +373,18 @@ msgstr ""
 msgid ""
 "Incoterm Place of Delivery. International Commercial Terms are a series of "
 "predefined commercial terms used in international transactions."
+msgstr ""
+
+#. module: purchase_requisition_bid_selection
+#: help:purchase.order.line,incoterm_address:0
+msgid ""
+"Incoterms Place of Delivery. International Commercial Terms are a series of "
+"predefined commercial terms used in international transactions."
+msgstr ""
+
+#. module: purchase_requisition_bid_selection
+#: field:purchase.order.line,incoterm_address:0
+msgid "Incoterms place"
 msgstr ""
 
 #. module: purchase_requisition_bid_selection
@@ -383,12 +411,20 @@ msgid ""
 msgstr ""
 
 #. module: purchase_requisition_bid_selection
+#: field:purchase.action_modal.ask_selection_reasons,__last_update:0
+#: field:purchase.action_modal.ask_validity,__last_update:0
+#: field:update.bid.internal.remark,__last_update:0
+#: field:update.remark,__last_update:0
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: purchase_requisition_bid_selection
 #: field:purchase.action_modal.ask_selection_reasons,write_uid:0
 #: field:purchase.action_modal.ask_validity,write_uid:0
 #: field:update.bid.internal.remark,write_uid:0
 #: field:update.remark,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Última actualización por"
 
 #. module: purchase_requisition_bid_selection
 #: field:purchase.action_modal.ask_selection_reasons,write_date:0
@@ -396,7 +432,7 @@ msgstr ""
 #: field:update.bid.internal.remark,write_date:0
 #: field:update.remark,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Última actualización el"
 
 #. module: purchase_requisition_bid_selection
 #: view:purchase.order.line:purchase_requisition_bid_selection.view_purchase_order_line_search
@@ -444,6 +480,11 @@ msgstr ""
 #. module: purchase_requisition_bid_selection
 #: view:purchase.requisition:purchase_requisition_bid_selection.view_purchase_requisition_form
 msgid "Options"
+msgstr ""
+
+#. module: purchase_requisition_bid_selection
+#: field:purchase.order.line,payment_term_id:0
+msgid "Payment Term"
 msgstr ""
 
 #. module: purchase_requisition_bid_selection
@@ -665,6 +706,7 @@ msgstr ""
 
 #. module: purchase_requisition_bid_selection
 #: field:purchase.order,terms_of_payment:0
+#: field:purchase.order.line,terms_of_payment:0
 #: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
 msgid "Terms of payment"
 msgstr ""
@@ -680,7 +722,7 @@ msgstr ""
 #. module: purchase_requisition_bid_selection
 #: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
 msgid "Total"
-msgstr ""
+msgstr "Total"
 
 #. module: purchase_requisition_bid_selection
 #: help:purchase.order,bid_partial:0

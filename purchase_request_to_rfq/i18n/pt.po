@@ -1,0 +1,363 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * purchase_request_to_rfq
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-09-15 11:37+0000\n"
+"PO-Revision-Date: 2016-09-15 11:37+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"Language-Team: Portuguese (https://www.transifex.com/oca/teams/23907/pt/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: pt\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: purchase_request_to_rfq
+#: code:addons/purchase_request_to_rfq/models/purchase_order.py:24
+#, python-format
+msgid "<li><b>%s</b>: Ordered quantity %s %s, Planned date %s</li>"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: code:addons/purchase_request_to_rfq/models/stock.py:25
+#, python-format
+msgid "<li><b>%s</b>: Received quantity %s %s</li>"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: view:purchase.request.line:purchase_request_to_rfq.purchase_request_line_search
+msgid "At least an RFQ has been completed"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: view:purchase.request.line:purchase_request_to_rfq.purchase_request_line_search
+msgid "At least an RFQ has been confirmed"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: view:purchase.request.line:purchase_request_to_rfq.purchase_request_line_search
+msgid "At least an RFQ has been created"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: view:purchase.request.line.make.purchase.order:purchase_request_to_rfq.view_purchase_request_line_make_purchase_order
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: purchase_request_to_rfq
+#: selection:purchase.request.line,purchase_state:0
+msgid "Cancelled"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: selection:purchase.request.line,purchase_state:0
+msgid "Confirmed"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: model:ir.actions.act_window,name:purchase_request_to_rfq.action_purchase_request_line_make_purchase_order
+#: view:purchase.request.line.make.purchase.order:purchase_request_to_rfq.view_purchase_request_line_make_purchase_order
+msgid "Create RFQ"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: field:purchase.request.line.make.purchase.order,create_uid:0
+#: field:purchase.request.line.make.purchase.order.item,create_uid:0
+msgid "Created by"
+msgstr "Criado por"
+
+#. module: purchase_request_to_rfq
+#: field:purchase.request.line.make.purchase.order,create_date:0
+#: field:purchase.request.line.make.purchase.order.item,create_date:0
+msgid "Created on"
+msgstr "Criado em"
+
+#. module: purchase_request_to_rfq
+#: field:purchase.request.line.make.purchase.order.item,name:0
+msgid "Description"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: view:purchase.request.line.make.purchase.order:purchase_request_to_rfq.view_purchase_request_line_make_purchase_order
+msgid "Details"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: field:purchase.request.line.make.purchase.order,display_name:0
+#: field:purchase.request.line.make.purchase.order.item,display_name:0
+msgid "Display Name"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: selection:purchase.request.line,purchase_state:0
+msgid "Done"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:159
+#, python-format
+msgid "Enter a positive quantity."
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:74
+#, python-format
+msgid "Enter a supplier."
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: view:purchase.request.line.make.purchase.order:purchase_request_to_rfq.view_purchase_request_line_make_purchase_order
+msgid "Existing RFQ to update:"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: field:purchase.order.line,has_purchase_request_lines:0
+msgid "Has Purchase Request Lines"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: field:purchase.request.line.make.purchase.order,id:0
+#: field:purchase.request.line.make.purchase.order.item,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_request_to_rfq
+#: field:purchase.request.line.make.purchase.order,item_ids:0
+msgid "Items"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: field:purchase.request.line.make.purchase.order,__last_update:0
+#: field:purchase.request.line.make.purchase.order.item,__last_update:0
+msgid "Last Modified on"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: field:purchase.request.line.make.purchase.order,write_uid:0
+#: field:purchase.request.line.make.purchase.order.item,write_uid:0
+msgid "Last Updated by"
+msgstr "Atualizado pela última vez por"
+
+#. module: purchase_request_to_rfq
+#: field:purchase.request.line.make.purchase.order,write_date:0
+#: field:purchase.request.line.make.purchase.order.item,write_date:0
+msgid "Last Updated on"
+msgstr "Atualizado pela última vez em"
+
+#. module: purchase_request_to_rfq
+#: view:purchase.request.line.make.purchase.order:purchase_request_to_rfq.view_purchase_request_line_make_purchase_order
+msgid "New RFQ details:"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: selection:purchase.request.line,purchase_state:0
+msgid "No Purchase"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: view:purchase.request.line:purchase_request_to_rfq.purchase_request_line_search
+msgid "No RFQ or Purchase has been created"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: code:addons/purchase_request_to_rfq/models/purchase_order.py:16
+#, python-format
+msgid "Order confirmation %s for your Request %s"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: model:ir.model,name:purchase_request_to_rfq.model_stock_picking
+msgid "Picking List"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: field:purchase.request.line.make.purchase.order.item,product_id:0
+msgid "Product"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: view:purchase.request.line:purchase_request_to_rfq.purchase_request_line_search
+msgid "Purchase Confirmed"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: view:purchase.request.line:purchase_request_to_rfq.purchase_request_line_search
+msgid "Purchase Done"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: model:ir.model,name:purchase_request_to_rfq.model_purchase_order
+#: field:purchase.request.line.make.purchase.order,purchase_order_id:0
+msgid "Purchase Order"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: model:ir.model,name:purchase_request_to_rfq.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: view:purchase.request:purchase_request_to_rfq.view_purchase_request_form
+#: view:purchase.request.line:purchase_request_to_rfq.purchase_request_line_form
+#: field:purchase.request.line,purchase_lines:0
+msgid "Purchase Order Lines"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: field:purchase.request.line.make.purchase.order.item,request_id:0
+msgid "Purchase Request"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: code:addons/purchase_request_to_rfq/models/purchase_order.py:66
+#, python-format
+msgid "Purchase Request %s has already been completed"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: model:ir.model,name:purchase_request_to_rfq.model_purchase_request_line
+#: field:purchase.request.line.make.purchase.order.item,line_id:0
+msgid "Purchase Request Line"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: model:ir.model,name:purchase_request_to_rfq.model_purchase_request_line_make_purchase_order
+msgid "Purchase Request Line Make Purchase Order"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: model:ir.model,name:purchase_request_to_rfq.model_purchase_request_line_make_purchase_order_item
+msgid "Purchase Request Line Make Purchase Order Item"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: code:addons/purchase_request_to_rfq/models/purchase_order.py:108
+#: view:purchase.order.line:purchase_request_to_rfq.purchase_order_line_form
+#: view:purchase.order.line:purchase_request_to_rfq.purchase_order_line_form2
+#: field:purchase.order.line,purchase_request_lines:0
+#, python-format
+msgid "Purchase Request Lines"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: view:purchase.order:purchase_request_to_rfq.purchase_order_form
+#: view:purchase.order.line:purchase_request_to_rfq.purchase_order_line_tree
+msgid "Purchase Request lines"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: view:purchase.request.line:purchase_request_to_rfq.purchase_request_line_search
+#: field:purchase.request.line,purchase_state:0
+msgid "Purchase Status"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: view:purchase.request.line:purchase_request_to_rfq.purchase_request_line_search
+msgid "Purchasing not started"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: field:purchase.request.line,purchased_qty:0
+msgid "Quantity in RFQ or PO"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: field:purchase.request.line.make.purchase.order.item,product_qty:0
+msgid "Quantity to purchase"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:224
+#: selection:purchase.request.line,purchase_state:0
+#, python-format
+msgid "RFQ"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: code:addons/purchase_request_to_rfq/models/stock.py:17
+#, python-format
+msgid "Receipt confirmation %s for your Request %s"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: view:purchase.request.line:purchase_request_to_rfq.purchase_request_line_search
+msgid "Request"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: view:purchase.request.line:purchase_request_to_rfq.purchase_request_line_search
+msgid "Requested for Quotation"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: field:purchase.request.line.make.purchase.order,supplier_id:0
+msgid "Supplier"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: code:addons/purchase_request_to_rfq/models/purchase_order.py:19
+#, python-format
+msgid ""
+"The following requested items from Purchase Request %s have now been "
+"confirmed in Purchase Order %s:"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: code:addons/purchase_request_to_rfq/models/stock.py:20
+#, python-format
+msgid ""
+"The following requested items from Purchase Request %s have now been "
+"received in Incoming Shipment %s:"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:156
+#, python-format
+msgid "The purchase has already been completed."
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: field:purchase.request.line.make.purchase.order.item,product_uom_id:0
+msgid "UoM"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: field:purchase.request.line.make.purchase.order.item,wiz_id:0
+msgid "Wizard"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: code:addons/purchase_request_to_rfq/models/purchase_request.py:135
+#, python-format
+msgid "You cannot delete a record that refers to purchase lines!"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:173
+#, python-format
+msgid "You have to enter a Picking Type."
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:177
+#, python-format
+msgid "You have to select lines from the same Picking Type."
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:165
+#, python-format
+msgid "You have to select lines from the same company."
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:188
+#, python-format
+msgid "You have to select lines from the same procurement location."
+msgstr ""

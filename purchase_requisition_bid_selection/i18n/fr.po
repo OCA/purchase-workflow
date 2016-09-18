@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-22 23:40+0000\n"
-"PO-Revision-Date: 2016-07-22 08:21+0000\n"
+"POT-Creation-Date: 2016-09-15 11:37+0000\n"
+"PO-Revision-Date: 2016-09-16 21:46+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -311,7 +311,7 @@ msgstr ""
 #: code:addons/purchase_requisition_bid_selection/model/purchase_requisition.py:260
 #, python-format
 msgid "Error"
-msgstr ""
+msgstr "Erreur"
 
 #. module: purchase_requisition_bid_selection
 #: code:addons/purchase_requisition_bid_selection/model/purchase_requisition.py:144
@@ -471,7 +471,7 @@ msgstr ""
 #: selection:purchase.requisition,bid_receipt_mode:0
 #: selection:purchase.requisition,bid_tendering_mode:0
 msgid "Open"
-msgstr ""
+msgstr "Ouverte"
 
 #. module: purchase_requisition_bid_selection
 #: view:purchase.requisition:purchase_requisition_bid_selection.view_purchase_requisition_form
@@ -718,7 +718,7 @@ msgstr ""
 #. module: purchase_requisition_bid_selection
 #: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
 msgid "Total"
-msgstr ""
+msgstr "Total"
 
 #. module: purchase_requisition_bid_selection
 #: help:purchase.order,bid_partial:0

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-03 12:23+0000\n"
-"PO-Revision-Date: 2016-07-04 11:03+0000\n"
+"POT-Creation-Date: 2016-09-15 11:37+0000\n"
+"PO-Revision-Date: 2016-09-16 21:45+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -95,7 +95,7 @@ msgstr ""
 #: field:framework.agreement.portfolio,create_uid:0
 #: field:framework.agreement.pricelist,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Creado por"
 
 #. module: framework_agreement
 #: field:framework.agreement,create_date:0
@@ -103,7 +103,7 @@ msgstr ""
 #: field:framework.agreement.portfolio,create_date:0
 #: field:framework.agreement.pricelist,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Creado en"
 
 #. module: framework_agreement
 #: field:framework.agreement.pricelist,currency_id:0
@@ -136,7 +136,7 @@ msgstr ""
 #: field:framework.agreement.portfolio,display_name:0
 #: field:framework.agreement.pricelist,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Nombre mostrado"
 
 #. module: framework_agreement
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view
@@ -196,7 +196,7 @@ msgstr ""
 #: field:framework.agreement.portfolio,id:0
 #: field:framework.agreement.pricelist,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: framework_agreement
 #: help:res.company,one_agreement_per_product:0
@@ -239,7 +239,7 @@ msgstr ""
 #: field:framework.agreement.portfolio,__last_update:0
 #: field:framework.agreement.pricelist,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última modificación el"
 
 #. module: framework_agreement
 #: field:framework.agreement,write_uid:0
@@ -247,7 +247,7 @@ msgstr ""
 #: field:framework.agreement.portfolio,write_uid:0
 #: field:framework.agreement.pricelist,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Última actualización por"
 
 #. module: framework_agreement
 #: field:framework.agreement,write_date:0
@@ -255,7 +255,7 @@ msgstr ""
 #: field:framework.agreement.portfolio,write_date:0
 #: field:framework.agreement.pricelist,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Última actualización el"
 
 #. module: framework_agreement
 #: field:framework.agreement,delay:0
@@ -279,7 +279,7 @@ msgstr ""
 #. module: framework_agreement
 #: field:framework.agreement.portfolio,name:0
 msgid "Name"
-msgstr ""
+msgstr "Nombre"
 
 #. module: framework_agreement
 #: field:framework.agreement.line,price:0

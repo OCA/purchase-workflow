@@ -3,7 +3,7 @@
 # * framework_agreement
 # 
 # Translators:
-# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2015-2016
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015-2016
 # Antonio Trueba, 2016
 # Armando Vulcano Junior <vulcano@uol.com.br>, 2015
 # Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
@@ -21,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-22 23:40+0000\n"
-"PO-Revision-Date: 2016-07-22 08:21+0000\n"
+"POT-Creation-Date: 2016-09-15 11:37+0000\n"
+"PO-Revision-Date: 2016-09-17 19:03+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -202,7 +202,7 @@ msgstr ""
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view
 #: view:framework.agreement.portfolio:framework_agreement.portfolio_search_view
 msgid "Group By"
-msgstr ""
+msgstr "Regrouper par"
 
 #. module: framework_agreement
 #: field:framework.agreement,id:0 field:framework.agreement.line,id:0
@@ -430,7 +430,7 @@ msgstr ""
 #. module: framework_agreement
 #: field:framework.agreement,state:0
 msgid "State"
-msgstr ""
+msgstr "État"
 
 #. module: framework_agreement
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view
