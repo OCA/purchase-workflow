@@ -10,17 +10,17 @@ msgstr ""
 "POT-Creation-Date: 2016-08-10 12:30+0000\n"
 "PO-Revision-Date: 2015-09-01 21:19+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/es/)\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
 #. module: framework_agreement
 #: model:ir.model,name:framework_agreement.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr "Línea orden de compra"
+msgstr ""
 
 #. module: framework_agreement
 #: field:framework.agreement,quantity:0
@@ -143,7 +143,7 @@ msgstr ""
 #: field:framework.agreement,product_id:0
 #: model:ir.model,name:framework_agreement.model_product_product
 msgid "Product"
-msgstr "Producto"
+msgstr "Proizvod"
 
 #. module: framework_agreement
 #: code:addons/framework_agreement/model/framework_agreement.py:761
@@ -237,7 +237,7 @@ msgstr ""
 #. module: framework_agreement
 #: field:framework.agreement.line,quantity:0
 msgid "Quantity"
-msgstr "Cantidad"
+msgstr ""
 
 #. module: framework_agreement
 #: view:purchase.order:0
@@ -304,7 +304,7 @@ msgstr ""
 #. module: framework_agreement
 #: model:ir.model,name:framework_agreement.model_purchase_order
 msgid "Purchase Order"
-msgstr "Orden de Compra"
+msgstr ""
 
 #. module: framework_agreement
 #: constraint:framework.agreement:0

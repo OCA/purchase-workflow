@@ -10,17 +10,17 @@ msgstr ""
 "POT-Creation-Date: 2016-08-10 12:30+0000\n"
 "PO-Revision-Date: 2015-09-01 21:20+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: French (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/fr/)\n"
+"Language-Team: Finnish (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: fi\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: purchase_partial_invoicing
 #: model:ir.model,name:purchase_partial_invoicing.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr "Ligne de commande d'achat"
+msgstr ""
 
 #. module: purchase_partial_invoicing
 #: field:purchase.order.line_invoice.line,po_line_id:0
@@ -58,7 +58,7 @@ msgstr ""
 #. module: purchase_partial_invoicing
 #: model:ir.model,name:purchase_partial_invoicing.model_purchase_order
 msgid "Purchase Order"
-msgstr "Bon de commande"
+msgstr ""
 
 #. module: purchase_partial_invoicing
 #: field:purchase.order.line_invoice.line,price_unit:0
@@ -79,7 +79,7 @@ msgstr ""
 #: code:addons/purchase_partial_invoicing/wizard/po_line_invoice.py:64
 #, python-format
 msgid "Error"
-msgstr "Erreur"
+msgstr ""
 
 #. module: purchase_partial_invoicing
 #: field:purchase.order.line_invoice.line,invoiced_qty:0
@@ -99,4 +99,4 @@ msgstr ""
 #. module: purchase_partial_invoicing
 #: field:purchase.order.line_invoice.line,product_qty:0
 msgid "Quantity"
-msgstr "Quantité"
+msgstr "Määrä"

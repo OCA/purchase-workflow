@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-01 21:19+0000\n"
+"POT-Creation-Date: 2016-08-10 12:30+0000\n"
 "PO-Revision-Date: 2015-09-01 21:20+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/it/)\n"
@@ -41,7 +41,7 @@ msgstr ""
 #. module: purchase_landed_costs
 #: view:landed.cost.position:0
 msgid "Group By..."
-msgstr ""
+msgstr "Raggruppa per..."
 
 #. module: purchase_landed_costs
 #: help:product.template,landed_cost_type:0
@@ -87,7 +87,7 @@ msgstr ""
 #. module: purchase_landed_costs
 #: model:ir.model,name:purchase_landed_costs.model_product_product
 msgid "Product"
-msgstr ""
+msgstr "Prodotto"
 
 #. module: purchase_landed_costs
 #: code:addons/purchase_landed_costs/product.py:69
@@ -121,7 +121,7 @@ msgstr ""
 #. module: purchase_landed_costs
 #: selection:landed.cost.distribution.type,apply_on:0
 msgid "Order"
-msgstr ""
+msgstr "Ordine"
 
 #. module: purchase_landed_costs
 #: model:ir.model,name:purchase_landed_costs.model_landed_cost_distribution_type

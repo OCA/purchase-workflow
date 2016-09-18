@@ -10,12 +10,12 @@ msgstr ""
 "POT-Creation-Date: 2016-08-10 12:30+0000\n"
 "PO-Revision-Date: 2015-09-01 21:20+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/pt_BR/)\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: pt_BR\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
 #. module: purchase_landed_costs
 #: code:addons/purchase_landed_costs/purchase.py:586
@@ -41,7 +41,7 @@ msgstr ""
 #. module: purchase_landed_costs
 #: view:landed.cost.position:0
 msgid "Group By..."
-msgstr ""
+msgstr "Združi po..."
 
 #. module: purchase_landed_costs
 #: help:product.template,landed_cost_type:0
@@ -87,7 +87,7 @@ msgstr ""
 #. module: purchase_landed_costs
 #: model:ir.model,name:purchase_landed_costs.model_product_product
 msgid "Product"
-msgstr ""
+msgstr "Proizvod"
 
 #. module: purchase_landed_costs
 #: code:addons/purchase_landed_costs/product.py:69
@@ -121,7 +121,7 @@ msgstr ""
 #. module: purchase_landed_costs
 #: selection:landed.cost.distribution.type,apply_on:0
 msgid "Order"
-msgstr "Pedido"
+msgstr "Nalog"
 
 #. module: purchase_landed_costs
 #: model:ir.model,name:purchase_landed_costs.model_landed_cost_distribution_type
@@ -142,7 +142,7 @@ msgstr ""
 #. module: purchase_landed_costs
 #: view:landed.cost.position:0 field:landed.cost.position,date_po:0
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 #. module: purchase_landed_costs
 #: field:purchase.order,landed_cost_base_value:0
@@ -213,7 +213,7 @@ msgstr ""
 #: model:ir.model,name:purchase_landed_costs.model_purchase_order
 #: field:landed.cost.position,purchase_order_id:0
 msgid "Purchase Order"
-msgstr "Ordem de Compra"
+msgstr ""
 
 #. module: purchase_landed_costs
 #: field:purchase.order.line,landed_cost_line_ids:0
@@ -333,7 +333,7 @@ msgstr ""
 #. module: purchase_landed_costs
 #: field:landed.cost.position,partner_id:0
 msgid "Partner"
-msgstr ""
+msgstr "Partner"
 
 #. module: purchase_landed_costs
 #: field:purchase.order,landed_cost:0
