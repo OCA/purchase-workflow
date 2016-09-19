@@ -1,34 +1,16 @@
-# -*- encoding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2004-2009 Tiny SPRL (<http://tiny.be>).
-#    Copyright (c) 2014-2015 Serv. Tecnol. Avanzados - Pedro M. Baeza
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# -*- coding: utf-8 -*-
+# © 2004-2009 Tiny SPRL (<http://tiny.be>).
+# © 2014-2015 Serv. Tecnol. Avanzados - Pedro M. Baeza
+# © 2016 ACSONE SA/NV (<http://acsone.eu>)
+# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 {
     "name": "Purchase order lines with discounts",
     "author": "Tiny, "
               "Acysos S.L., "
-              "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
+              "Tecnativa, "
+              "ACSONE SA/NV,"
               "Odoo Community Association (OCA)",
-    "version": "8.0.1.1",
-    "contributors": [
-        'Pedro M. Baeza',
-    ],
+    "version": "9.0.1.0.0",
     "category": "Purchase Management",
     "depends": [
         "stock",
@@ -39,5 +21,6 @@
         "views/report_purchaseorder.xml",
     ],
     "license": 'AGPL-3',
-    'installable': False
+    'installable': True,
+    'images': ['images/purchase_discount.png'],
 }
