@@ -30,20 +30,19 @@ class PurchaseOrderLine(models.Model):
         'date_order',)
     def onchange_pol_info(self):
         if self.product_id:
-            discount = 0
             # Look for a possible discount
-            qty_in_product_uom = self.product_qty
-            sinfos = self.env['product.supplierinfo'].search(
-                [('product_tmpl_id', '=', self.product_id.product_tmpl_id.id),
-                 ('name', 'child_of', self.partner_id.
-                    commercial_partner_id.id),
-                 '|', ('date_start', '=', False),
-                 ('date_start', '<=', self.date_order),
-                 '|', ('date_end', '=', False),
-                 ('date_end', '>=', self.date_order),
-                 ], order="min_qty desc")
-            for sinfo in sinfos:
-                if sinfo.min_qty <= qty_in_product_uom:
-                    discount = sinfo.discount
-                    break
-            self.discount = discount
+            sinfos = self.product_id.seller_ids.filtered(
+                lambda r, s=self: (
+                    r.name in self.partner_id.commercial_partner_id.
+                    child_ids or
+                    r.name == self.partner_id.commercial_partner_id) and (
+                        r.date_start is False or
+                        r.date_start <= self.date_order) and (
+                            r.date_end is False or
+                            r.date_end >= self.date_order
+                ) and r.min_qty <= self.product_qty).sorted(
+                    key=lambda s: s.min_qty)
+            if sinfos:
+                self.discount = sinfos[:-1].discount
+            else:
+                self.discount = 0
