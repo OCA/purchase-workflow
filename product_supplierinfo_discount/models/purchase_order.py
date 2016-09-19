@@ -19,7 +19,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, api, fields
+from openerp import api, models
 
 
 class PurchaseOrderLine(models.Model):
@@ -33,13 +33,14 @@ class PurchaseOrderLine(models.Model):
         if self.product_id:
             # Look for a possible discount
             qty_in_product_uom = self.product_qty
-            tday = fields.Date.today()
             sinfos = self.env['product.supplierinfo'].search(
                 [('product_tmpl_id', '=', self.product_id.product_tmpl_id.id),
                  ('name', 'child_of', self.partner_id.
                     commercial_partner_id.id),
-                 '|', ('date_start', '=', False), ('date_start', '<=', tday),
-                 '|', ('date_end', '=', False), ('date_end', '>=', tday),
+                 '|', ('date_start', '=', False),
+                 ('date_start', '<=', self.date_order),
+                 '|', ('date_end', '=', False),
+                 ('date_end', '>=', self.date_order),
                  ], order="min_qty desc")
             for sinfo in sinfos:
                 if sinfo.min_qty <= qty_in_product_uom:
