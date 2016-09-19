@@ -29,8 +29,8 @@ class PurchaseOrderLine(models.Model):
         'product_id', 'product_qty', 'product_uom', 'partner_id',
         'date_order',)
     def onchange_pol_info(self):
-        discount = 0
         if self.product_id:
+            discount = 0
             # Look for a possible discount
             qty_in_product_uom = self.product_qty
             sinfos = self.env['product.supplierinfo'].search(
@@ -46,4 +46,4 @@ class PurchaseOrderLine(models.Model):
                 if sinfo.min_qty <= qty_in_product_uom:
                     discount = sinfo.discount
                     break
-        self.discount = discount
+            self.discount = discount
