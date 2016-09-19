@@ -27,7 +27,7 @@ class PurchaseOrderLine(models.Model):
 
     @api.onchange(
         'product_id', 'product_qty', 'product_uom', 'partner_id',
-        'date_order', 'date_planned', 'name', 'price_unit', 'state')
+        'date_order',)
     def _compute_discount(self):
         discount = 0
         if self.product_id:
