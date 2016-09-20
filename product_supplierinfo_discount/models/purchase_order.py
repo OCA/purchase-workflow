@@ -43,6 +43,6 @@ class PurchaseOrderLine(models.Model):
                 ) and r.min_qty <= self.product_qty).sorted(
                     key=lambda s: s.min_qty)
             if sinfos:
-                self.discount = sinfos[:-1].discount
+                self.discount = sinfos[-1].discount or 0
             else:
                 self.discount = 0
