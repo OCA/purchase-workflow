@@ -15,6 +15,7 @@
 #
 ##############################################################################
 import openerp.tests.common as common
+import time
 
 
 class TestProductSupplierinfoDiscount(common.TransactionCase):
@@ -23,43 +24,70 @@ class TestProductSupplierinfoDiscount(common.TransactionCase):
         super(TestProductSupplierinfoDiscount, self).setUp()
         self.supplierinfo_model = self.env['product.supplierinfo']
         self.purchase_order_line_model = self.env['purchase.order.line']
+        self.purchase_order_model = self.env['purchase.order']
         self.partner_1 = self.env.ref('base.res_partner_1')
         self.partner_3 = self.env.ref('base.res_partner_3')
         self.product = self.env.ref('product.product_product_6')
-        self.supplierinfo = self.supplierinfo_model.create(
+        self.supplierinfo1 = self.supplierinfo_model.create(
             {'min_qty': 1,
              'name': self.partner_3.id,
              'product_tmpl_id': self.product.product_tmpl_id.id,
-             'pricelist_ids': [
-                 (0, 0, {'min_quantity': 1,
-                         'price': 15,
-                         'discount': 10}),
-                 (0, 0, {'min_quantity': 10,
-                         'price': 15,
-                         'discount': 20}),
-             ]}
-        )
+             'price': 15,
+             'discount': 10})
+        self.supplierinfo2 = self.supplierinfo_model.create(
+            {'min_qty': 10,
+             'name': self.partner_3.id,
+             'product_tmpl_id': self.product.product_tmpl_id.id,
+             'price': 15,
+             'discount': 20})
+        self.purchase_order1 = self.purchase_order_model.create(
+            {'name': 'Order1',
+             'partner_id': self.partner_1.id, })
+        self.purchase_order2 = self.purchase_order_model.create(
+            {'name': 'Order2',
+             'partner_id': self.partner_3.id, })
 
     def test_purchase_order_partner_3_qty_1(self):
-        res = self.purchase_order_line_model.onchange_product_id(
-            self.partner_3.property_product_pricelist_purchase.id,
-            self.product.id, 1, self.product.uom_id.id, self.partner_3.id)
+        pol1 = self.purchase_order_line_model.create(
+            {'name': 'line1',
+             'product_id': self.product.id,
+             'product_qty': 1,
+             'price_unit': 10,
+             'product_uom': self.product.uom_id.id,
+             'partner_id': self.partner_3.id,
+             'order_id': self.purchase_order2.id,
+             'date_planned': time.strftime('%Y-%m-%d')})
+        pol1.onchange_pol_info()
         self.assertEqual(
-            res['value']['discount'], 10.0,
+            pol1.discount, 10.0,
             "Incorrect discount for product 6 with partner 3 and qty 1")
 
     def test_purchase_order_partner_3_qty_10(self):
-        res = self.purchase_order_line_model.onchange_product_id(
-            self.partner_3.property_product_pricelist_purchase.id,
-            self.product.id, 10, self.product.uom_id.id, self.partner_3.id)
+        pol2 = self.purchase_order_line_model.create(
+            {'name': 'line2',
+             'product_id': self.product.id,
+             'product_qty': 10,
+             'price_unit': 10,
+             'product_uom': self.product.uom_id.id,
+             'partner_id': self.partner_3.id,
+             'order_id': self.purchase_order2.id,
+             'date_planned': time.strftime('%Y-%m-%d')})
+        pol2.onchange_pol_info()
         self.assertEqual(
-            res['value']['discount'], 20.0,
+            pol2.discount, 20.0,
             "Incorrect discount for product 6 with partner 3 and qty 10")
 
     def test_purchase_order_partner_1_qty_1(self):
-        res = self.purchase_order_line_model.onchange_product_id(
-            self.partner_3.property_product_pricelist_purchase.id,
-            self.product.id, 1, self.product.uom_id.id, self.partner_1.id)
+        pol3 = self.purchase_order_line_model.create(
+            {'name': 'line3',
+             'product_id': self.product.id,
+             'product_qty': 1,
+             'price_unit': 10,
+             'product_uom': self.product.uom_id.id,
+             'partner_id': self.partner_1.id,
+             'order_id': self.purchase_order1.id,
+             'date_planned': time.strftime('%Y-%m-%d')})
+        pol3.onchange_pol_info()
         self.assertEqual(
-            res['value'].get('discount', 0.0), 0.0,
+            pol3.discount, 0.0,
             "Incorrect discount for product 6 with partner 1 and qty 1")
