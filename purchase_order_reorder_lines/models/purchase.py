@@ -21,8 +21,7 @@
 #
 #
 
-from openerp import models, api, fields
-from openerp.tools.safe_eval import safe_eval
+from openerp import api, fields, models
 
 
 class PurchaseOrderLine(models.Model):
@@ -32,30 +31,16 @@ class PurchaseOrderLine(models.Model):
     sequence = fields.Integer(help="Gives the sequence of this line when "
                                    "displaying the purchase order.")
 
+    @api.multi
+    def _create_stock_moves(self, picking):
+        res = super(PurchaseOrderLine, self)._create_stock_moves(picking)
+        for move, line in zip(res, self):
+            move.write({'sequence': line.sequence})
+        return res
+
 
 class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
-
-    @api.model
-    def _prepare_inv_line(self, account_id, order_line):
-        res = super(PurchaseOrder, self)._prepare_inv_line(
-            account_id,
-            order_line,
-            )
-        res['sequence'] = order_line.sequence
-        return res
-
-    @api.model
-    def _prepare_order_line_move(self, order, order_line,
-                                 picking_id, group_id):
-        res = super(PurchaseOrder, self)._prepare_order_line_move(
-            order,
-            order_line,
-            picking_id,
-            group_id)
-        if res:
-            res[0]['sequence'] = order_line.sequence
-        return res
 
     @api.one
     @api.depends('order_line')
@@ -72,34 +57,3 @@ class PurchaseOrder(models.Model):
 
     max_line_sequence = fields.Integer(string='Max sequence in lines',
                                        compute='compute_max_line_sequence')
-
-
-class PurchaseLineInvoice(models.TransientModel):
-    _inherit = 'purchase.order.line_invoice'
-
-    @api.multi
-    def makeInvoices(self):
-        invoice_line_obj = self.env['account.invoice.line']
-        purchase_line_obj = self.env['purchase.order.line']
-        ctx = self.env.context.copy()
-        res = super(PurchaseLineInvoice, self.with_context(ctx)).makeInvoices()
-        invoice_ids = []
-        for field, op, val in safe_eval(res['domain']):
-            if field == 'id':
-                invoice_ids = val
-                break
-
-        invoice_lines = invoice_line_obj.search(
-            [('invoice_id', 'in', invoice_ids)])
-        for invoice_line in invoice_lines:
-            order_line = purchase_line_obj.search(
-                [('invoice_lines', '=', invoice_line.id)],
-                limit=1
-                )
-            if not order_line:
-                continue
-
-            if not invoice_line.sequence:
-                invoice_line.write({'sequence': order_line.sequence})
-
-        return res

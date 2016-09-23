@@ -23,18 +23,19 @@
 #
 {
     'name': 'Purchase order lines with sequence number',
-    'version': '8.0.1.0.1',
+    'version': '9.0.1.0.1',
     'category': 'Purchase Management',
-    'author': "Camptocamp,Odoo Community Association (OCA)",
+    'author': "Camptocamp, "
+              "Eficent, "
+              "Serpent CS, "
+              "Odoo Community Association (OCA)",
     'website': 'http://www.camptocamp.com',
     'depends': [
         'purchase',
         'stock_picking_reorder_lines',
     ],
     'data': ['views/purchase_view.xml'],
-    'demo': [],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
-    'application': False,
     'license': "AGPL-3",
 }

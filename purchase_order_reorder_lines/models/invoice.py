@@ -21,5 +21,10 @@
 #
 #
 
-from . import invoice
-from . import purchase
+from openerp import fields, models
+
+
+class AccountInvoiceLine(models.Model):
+    _inherit = 'account.invoice.line'
+
+    sequence = fields.Integer(related='purchase_line_id.sequence', store=True)
