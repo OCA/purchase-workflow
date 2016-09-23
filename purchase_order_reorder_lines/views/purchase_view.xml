@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
+<odoo>
 
         <record model="ir.ui.view" id="purchase_order_line_form">
             <field name="name">purchase.order.line.form</field>
             <field name="model">purchase.order.line</field>
-            <field name="inherit_id" ref="purchase.purchase_order_line_form"/>
+            <field name="inherit_id" ref="purchase.purchase_order_line_form2"/>
             <field name="arch" type="xml">
                 <field name="company_id" position="after">
-                    <field name="sequence" />
+                    <field name="sequence"/>
                 </field>
             </field>
         </record>
@@ -33,5 +32,4 @@
         </record>
 
 
-    </data>
-</openerp>
+</odoo>
