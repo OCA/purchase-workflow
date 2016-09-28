@@ -8,10 +8,13 @@
 # © 2015 Serpent Consulting Services Pvt. Ltd. - Sudhir Arya
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-from openerp import fields, models
+from openerp import api, fields, models
 
 
 class AccountInvoiceLine(models.Model):
     _inherit = 'account.invoice.line'
 
-    sequence = fields.Integer(related='purchase_line_id.sequence', store=True)
+    def _set_additional_fields(self, invoice):
+        if self.purchase_line_id:
+            self.sequence = self.purchase_line_id.sequence
+        super(AccountInvoiceLine, self)._set_additional_fields(invoice)
