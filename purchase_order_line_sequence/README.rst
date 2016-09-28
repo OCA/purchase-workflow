@@ -14,7 +14,8 @@ Installation
 
 To install this module, you need to install its dependant module:
 
- * stock_picking_reorder_lines (https://github.com/OCA/stock-logistics-workflow/)
+ * stock_picking_line_sequence (https://github.com/OCA/stock-logistics-workflow/)
+ * account_invoice_line_sequence (https://github.com/OCA/account-invoicing/)
 
 Configuration
 =============
