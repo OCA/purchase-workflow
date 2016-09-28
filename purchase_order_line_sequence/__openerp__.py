@@ -20,6 +20,7 @@
     'depends': [
         'purchase',
         'stock_picking_line_sequence',
+        'account_invoice_line_sequence',
     ],
     'data': ['views/purchase_view.xml',
              'views/report_purchaseorder.xml',
