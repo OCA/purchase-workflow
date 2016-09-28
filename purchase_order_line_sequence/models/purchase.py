@@ -18,6 +18,10 @@ class PurchaseOrderLine(models.Model):
     sequence = fields.Integer(help="Gives the sequence of this line when "
                                    "displaying the purchase order.")
 
+    sequence2 = fields.Integer(help="Shows the sequence of this line in "
+                               "the purchase order.",
+                               related='sequence', readonly=True)
+
     @api.multi
     def _create_stock_moves(self, picking):
         res = super(PurchaseOrderLine, self)._create_stock_moves(picking)
@@ -34,13 +38,13 @@ class PurchaseOrder(models.Model):
     def compute_max_line_sequence(self):
         """Allow to know the highest sequence
         entered in purchase order lines.
-        Web add 10 to this value for the next sequence
+        Web add 1 to this value for the next sequence
         This value is given to the context of the o2m field
         in the view. So when we create new purchase order lines,
-        the sequence is automatically max_sequence + 10
+        the sequence is automatically max_sequence + 1
         """
         self.max_line_sequence = (
-            max(self.mapped('order_line.sequence') or [0]) + 10)
+            max(self.mapped('order_line.sequence') or [0]) + 1)
 
     max_line_sequence = fields.Integer(string='Max sequence in lines',
                                        compute='compute_max_line_sequence')
