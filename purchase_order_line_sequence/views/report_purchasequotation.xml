@@ -7,7 +7,7 @@
             </xpath>
             <xpath expr="//table[@class='table table-condensed']/tbody/tr/td[1]" position="before">
                  <td>
-                    <span t-field="order_line.sequence"/>
+                    <span t-field="order_line.sequence2"/>
                  </td>
             </xpath>
         </template>
