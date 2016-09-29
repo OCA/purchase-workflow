@@ -20,7 +20,7 @@ class PurchaseOrderLine(models.Model):
 
     sequence2 = fields.Integer(help="Shows the sequence of this line in "
                                "the purchase order.",
-                               related='sequence')
+                               related='sequence', readonly=True)
 
     @api.multi
     def _create_stock_moves(self, picking):
