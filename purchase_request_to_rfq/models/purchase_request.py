@@ -91,10 +91,11 @@ class PurchaseRequestLine(models.Model):
         # Make sure we use the minimum quantity of the partner corresponding
         # to the PO. This does not apply in case of dropshipping
         supplierinfo_min_qty = 0.0
-        if po_line.order_id.location_id.usage != 'customer':
-            if po_line.product_id.seller_id.id == \
-                    po_line.order_id.partner_id.id:
-                supplierinfo_min_qty = po_line.product_id.seller_qty
+        if not po_line.order_id.dest_address_id:
+            if po_line.product_id.seller_ids and \
+                            po_line.product_id.seller_ids[0].id == \
+                            po_line.order_id.partner_id.id:
+                supplierinfo_min_qty = po_line.product_id.seller_ids[0].min_qty
             else:
                 supplierinfo_obj = self.env['product.supplierinfo']
                 supplierinfos = supplierinfo_obj.search(
@@ -118,7 +119,7 @@ class PurchaseRequestLine(models.Model):
         if qty != po_line.product_qty:
             pricelist_obj = self.pool['product.pricelist']
             pricelist_id = po_line.order_id.partner_id.\
-                property_product_pricelist_purchase.id
+                property_product_pricelist.id
             price = pricelist_obj.price_get(
                 self.env.cr, self.env.uid, [pricelist_id],
                 request_line.product_id.id, qty,
