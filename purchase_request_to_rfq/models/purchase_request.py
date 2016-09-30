@@ -93,8 +93,8 @@ class PurchaseRequestLine(models.Model):
         supplierinfo_min_qty = 0.0
         if not po_line.order_id.dest_address_id:
             if po_line.product_id.seller_ids and \
-                            po_line.product_id.seller_ids[0].id == \
-                            po_line.order_id.partner_id.id:
+                po_line.product_id.seller_ids[0].id == \
+                po_line.order_id.partner_id.id:
                 supplierinfo_min_qty = po_line.product_id.seller_ids[0].min_qty
             else:
                 supplierinfo_obj = self.env['product.supplierinfo']
