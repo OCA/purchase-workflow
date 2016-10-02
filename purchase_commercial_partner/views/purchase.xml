@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  © 2016 Akretion (Alexis de Lattre <alexis.delattre@akretion.com>)
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+
+<openerp>
+<data>
+
+
+<record id="purchase_order_form" model="ir.ui.view">
+    <field name="name">commercial.partner.purchase.order.form</field>
+    <field name="model">purchase.order</field>
+    <field name="inherit_id" ref="purchase.purchase_order_form"/>
+    <field name="arch" type="xml">
+        <field name="partner_id" position="before">
+            <field name="commercial_partner_id" invisible="1"/>
+        </field>
+    </field>
+</record>
+
+<record id="view_request_for_quotation_filter" model="ir.ui.view">
+    <field name="name">commercial.partner.rfq.purchase.order.search</field>
+    <field name="model">purchase.order</field>
+    <field name="inherit_id" ref="purchase.view_request_for_quotation_filter"/>
+    <field name="arch" type="xml">
+        <filter context="{'group_by':'partner_id'}" position="before">
+            <filter name="commercial_partner_groupby"
+                string="Commercial Supplier"
+                context="{'group_by': 'commercial_partner_id'}"/>
+        </filter>
+    </field>
+</record>
+
+<record id="view_purchase_order_filter" model="ir.ui.view">
+    <field name="name">commercial.partner.purchase.order.search</field>
+    <field name="model">purchase.order</field>
+    <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+    <field name="arch" type="xml">
+        <filter context="{'group_by':'partner_id'}" position="before">
+            <filter name="commercial_partner_groupby"
+                string="Commercial Supplier"
+                context="{'group_by': 'commercial_partner_id'}"/>
+        </filter>
+    </field>
+</record>
+
+
+</data>
+</openerp>
