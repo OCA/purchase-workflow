@@ -14,7 +14,6 @@ logger = logging.getLogger(__name__)
 
 class PurchaseOrderImport(models.TransientModel):
     _name = 'purchase.order.import'
-    _inherit = ['business.document.import']
     _description = 'Purchase Order Import from Files'
 
     @api.model
@@ -119,7 +118,7 @@ class PurchaseOrderImport(models.TransientModel):
     @api.model
     def _prepare_update_order_vals(self, parsed_quote, order):
         vals = {}
-        incoterm = self._match_incoterm(
+        incoterm = self.env['business.document.import']._match_incoterm(
             parsed_quote.get('incoterm'), parsed_quote['chatter_msg'])
         if incoterm and incoterm != order.incoterm_id:
             parsed_quote['chatter_msg'].append(_(
@@ -146,6 +145,7 @@ class PurchaseOrderImport(models.TransientModel):
         polo = self.env['purchase.order.line']
         chatter = parsed_quote['chatter_msg']
         dpo = self.env['decimal.precision']
+        bdio = self.env['business.document.import']
         qty_prec = dpo.precision_get('Product Unit of Measure')
         existing_lines = []
         for oline in order.order_line:
@@ -162,7 +162,7 @@ class PurchaseOrderImport(models.TransientModel):
                 'line': oline,
                 })
 
-        compare_res = self.compare_lines(
+        compare_res = bdio.compare_lines(
             existing_lines, parsed_quote['lines'], chatter,
             seller=order.partner_id.commercial_partner_id)
 
@@ -230,15 +230,16 @@ class PurchaseOrderImport(models.TransientModel):
     @api.multi
     def update_rfq_button(self):
         self.ensure_one()
+        bdio = self.env['business.document.import']
         order = self.purchase_id
         assert order, 'No link to PO'
         if not order:
             raise UserError(_('You must select a quotation to update.'))
         parsed_quote = self.parse_quote(
             self.quote_file.decode('base64'), self.quote_filename)
-        currency = self._match_currency(
+        currency = bdio._match_currency(
             parsed_quote.get('currency'), parsed_quote['chatter_msg'])
-        partner = self._match_partner(
+        partner = bdio._match_partner(
             parsed_quote['partner'], parsed_quote['chatter_msg'],
             partner_type='supplier')
         if (
@@ -261,7 +262,7 @@ class PurchaseOrderImport(models.TransientModel):
             raise UserError(_(
                 "This quotation doesn't have any line !"))
         self.update_order_lines(parsed_quote, order)
-        self.post_create_or_update(parsed_quote, order)
+        bdio.post_create_or_update(parsed_quote, order)
         logger.info(
             'purchase.order ID %d updated via import of file %s', order.id,
             self.quote_filename)
