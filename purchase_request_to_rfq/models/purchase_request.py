@@ -11,7 +11,9 @@ from openerp import _, api, exceptions, fields, models
 _PURCHASE_ORDER_LINE_STATE = [
     ('none', 'No Purchase'),
     ('draft', 'RFQ'),
-    ('confirmed', 'Confirmed'),
+    ('sent', 'RFQ Sent'),
+    ('to approve', 'To Approve'),
+    ('purchase', 'Purchase Order'),
     ('done', 'Done'),
     ('cancel', 'Cancelled')
 ]
@@ -39,7 +41,7 @@ class PurchaseRequestLine(models.Model):
             rec.purchased_qty = purchased_qty
 
     @api.multi
-    @api.depends('purchase_lines.state')
+    @api.depends('purchase_lines.state', 'purchase_lines.order_id.state')
     def _compute_purchase_state(self):
         for rec in self:
             temp_purchase_state = 'none'
@@ -50,9 +52,15 @@ class PurchaseRequestLine(models.Model):
                 elif all([po_line.state == 'cancel' for po_line in
                           rec.purchase_lines]):
                     temp_purchase_state = 'cancel'
-                elif any([po_line.state == 'confirmed' for po_line in
+                elif any([po_line.state == 'purchase' for po_line in
                           rec.purchase_lines]):
-                    temp_purchase_state = 'confirmed'
+                    temp_purchase_state = 'purchase'
+                elif any([po_line.state == 'to approve' for po_line in
+                          rec.purchase_lines]):
+                    temp_purchase_state = 'to approve'
+                elif any([po_line.state == 'sent' for po_line in
+                          rec.purchase_lines]):
+                    temp_purchase_state = 'sent'
                 elif all([po_line.state in ('draft', 'cancel') for po_line in
                           rec.purchase_lines]):
                     temp_purchase_state = 'draft'
