@@ -42,7 +42,8 @@ class StockPicking(models.Model):
             for move in picking.move_lines:
                 if move.purchase_line_id:
                     for request_line in \
-                            move.purchase_line_id.purchase_request_lines:
+                            move.purchase_line_id.sudo().\
+                            purchase_request_lines:
                         request_id = request_line.request_id.id
                         if request_id not in requests_dict:
                             requests_dict[request_id] = {}
@@ -53,7 +54,7 @@ class StockPicking(models.Model):
                         }
                         requests_dict[request_id][request_line.id] = data
             for request_id in requests_dict:
-                request = request_obj.browse(request_id)
+                request = request_obj.sudo().browse(request_id)
                 message = \
                     self._purchase_request_picking_confirm_message_content(
                         picking, request, requests_dict[request_id])
