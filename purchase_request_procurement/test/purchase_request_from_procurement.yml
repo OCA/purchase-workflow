@@ -1,0 +1,31 @@
+-
+  I create the procurement order and run that procurement.
+-
+  !python {model: make.procurement}: |
+    context.update({'active_model':'product.product', 'active_ids': [ref('product.product_product_13')], 'active_id': ref('product.product_product_13')})
+-
+  !record {model: make.procurement, id: procurement_product_hdd3}:
+    product_id: product.product_product_13
+    qty: 15
+    uom_id: product.product_uom_unit
+    warehouse_id: stock.stock_warehouse_shop0
+-
+  !python {model: make.procurement}: |
+    self.make_procurement(cr, uid, [ref('procurement_product_hdd3')], context)
+-
+  I run the scheduler.
+-
+  !python {model: procurement.order}: |
+    self.run_scheduler(cr, uid)
+-
+  I check request details which created after run procurement.
+-
+  !python {model: procurement.order}: |
+    procurement_ids = self.search(cr, uid, [('request_id','!=', False)])
+    for procurement in self.browse(cr, uid, procurement_ids, context=context):
+        request = procurement.request_id
+        assert len(request.line_ids) == 1, "Request Lines should be one."
+        line = request.line_ids[0]
+        assert line.product_id.id == procurement.product_id.id, "Product is not correspond."
+        assert line.product_uom_id.id == procurement.product_uom.id, "UOM is not correspond."
+        assert line.product_qty == procurement.product_qty, "Quantity is not correspond."
