@@ -37,7 +37,7 @@ class PurchaseOrder(models.Model):
         for po in self:
             requests_dict = {}
             for line in po.order_line:
-                for request_line in line.purchase_request_lines:
+                for request_line in line.sudo().purchase_request_lines:
                     request_id = request_line.request_id.id
                     if request_id not in requests_dict:
                         requests_dict[request_id] = {}
@@ -50,7 +50,7 @@ class PurchaseOrder(models.Model):
                     }
                     requests_dict[request_id][request_line.id] = data
             for request_id in requests_dict:
-                request = request_obj.browse(request_id)
+                request = request_obj.sudo().browse(request_id)
                 message = self._purchase_request_confirm_message_content(
                     po, request, requests_dict[request_id])
                 request.message_post(body=message, subtype='mail.mt_comment')
@@ -61,7 +61,7 @@ class PurchaseOrder(models.Model):
         for po in self:
             for line in po.order_line:
                 for request_line in line.purchase_request_lines:
-                    if request_line.purchase_state == 'done':
+                    if request_line.sudo().purchase_state == 'done':
                         raise exceptions.Warning(
                             _('Purchase Request %s has already '
                               'been completed') % request_line.request_id.name)

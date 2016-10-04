@@ -36,6 +36,56 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         }
 
     @api.model
+    def _check_valid_request_line(self, request_line_ids):
+        location = False
+        picking_type = False
+        company_id = False
+
+        for line in self.env['purchase.request.line'].browse(request_line_ids):
+
+            if line.request_id.state != 'approved':
+                raise exceptions.Warning(
+                    _('Purchase Request %s is not approved') %
+                    line.request_id.name)
+
+            if line.purchase_state == 'done':
+                raise exceptions.Warning(
+                    _('The purchase has already been completed.'))
+
+            line_company_id = line.company_id \
+                and line.company_id.id or False
+            if company_id is not False \
+                    and line_company_id != company_id:
+                raise exceptions.Warning(
+                    _('You have to select lines '
+                      'from the same company.'))
+            else:
+                company_id = line_company_id
+
+            line_picking_type = line.request_id.picking_type_id or False
+            if not line_picking_type:
+                raise exceptions.Warning(
+                    _('You have to enter a Picking Type.'))
+            if picking_type is not False \
+                    and line_picking_type != picking_type:
+                raise exceptions.Warning(
+                    _('You have to select lines '
+                      'from the same Picking Type.'))
+            else:
+                picking_type = line_picking_type
+
+            line_location = line.procurement_id and \
+                            line.procurement_id.location_id or False
+
+            if location is not False and line_location != location and \
+                    line_location:
+                raise exceptions.Warning(
+                    _('You have to select lines '
+                      'from the same procurement location.'))
+            else:
+                location = line_location
+
+    @api.model
     def default_get(self, fields):
         res = super(PurchaseRequestLineMakePurchaseOrder, self).default_get(
             fields)
@@ -49,13 +99,14 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             'Bad context propagation'
 
         items = []
+        self._check_valid_request_line(request_line_ids)
         for line in request_line_obj.browse(request_line_ids):
             items.append([0, 0, self._prepare_item(line)])
         res['item_ids'] = items
         return res
 
     @api.model
-    def _prepare_purchase_order(self, picking_type, location, company_id):
+    def _prepare_purchase_order(self, picking_type, location, company):
         if not self.supplier_id:
             raise exceptions.Warning(
                 _('Enter a supplier.'))
@@ -70,7 +121,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             'fiscal_position': supplier.property_account_position_id and
             supplier.property_account_position_id.id or False,
             'picking_type_id': picking_type.id,
-            'company_id': company_id,
+            'company_id': company.id,
             }
         return data
 
@@ -140,60 +191,21 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         purchase_obj = self.env['purchase.order']
         po_line_obj = self.env['purchase.order.line']
         pr_line_obj = self.env['purchase.request.line']
-        company_id = False
-        picking_type = False
         purchase = False
-        location = False
 
         for item in self.item_ids:
             line = item.line_id
-            if line.purchase_state == 'done':
-                raise exceptions.Warning(
-                    _('The purchase has already been completed.'))
             if item.product_qty <= 0.0:
                 raise exceptions.Warning(
                     _('Enter a positive quantity.'))
-            line_company_id = line.company_id \
-                and line.company_id.id or False
-            if company_id is not False \
-                    and line_company_id != company_id:
-                raise exceptions.Warning(
-                    _('You have to select lines '
-                      'from the same company.'))
-            else:
-                company_id = line_company_id
 
-            line_picking_type = line.request_id.picking_type_id or False
-            if not line_picking_type:
-                raise exceptions.Warning(
-                    _('You have to enter a Picking Type.'))
-            if picking_type is not False \
-                    and line_picking_type != picking_type:
-                raise exceptions.Warning(
-                    _('You have to select lines '
-                      'from the same Picking Type.'))
-            else:
-                picking_type = line_picking_type
-
-            line_location = line.procurement_id and \
-                line.procurement_id.location_id or False
-
-            if location is not False and line_location != location and\
-                    line_location:
-                raise exceptions.Warning(
-                    _('You have to select lines '
-                      'from the same procurement location.'))
-            else:
-                location = line_location
-
-            if not location:
-                location = picking_type.default_location_dest_id
-
+            location = line.request_id.picking_type_id.default_location_dest_id
             if self.purchase_order_id:
                 purchase = self.purchase_order_id
             if not purchase:
-                po_data = self._prepare_purchase_order(picking_type, location,
-                                                       company_id)
+                po_data = self._prepare_purchase_order(
+                    line.request_id.picking_type_id, location,
+                    line.company_id)
                 purchase = purchase_obj.create(po_data)
 
             # Look for any other PO line in the selected PO with same
