@@ -75,7 +75,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                 picking_type = line_picking_type
 
             line_location = line.procurement_id and \
-                            line.procurement_id.location_id or False
+                line.procurement_id.location_id or False
 
             if location is not False and line_location != location and \
                     line_location:
