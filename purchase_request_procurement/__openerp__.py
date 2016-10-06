@@ -19,5 +19,5 @@
         "test/purchase_request_from_procurement.yml",
     ],
     "license": 'LGPL-3',
-    "installable": True
+    'installable': False
 }
