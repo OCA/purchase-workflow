@@ -21,6 +21,6 @@
         "views/report_purchaseorder.xml",
     ],
     "license": 'AGPL-3',
-    'installable': True,
+    'installable': False,
     'images': ['images/purchase_discount.png'],
 }
