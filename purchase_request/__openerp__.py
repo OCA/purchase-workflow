@@ -25,5 +25,5 @@
         "demo/purchase_request_demo.xml",
     ],
     "license": 'LGPL-3',
-    "installable": True
+    'installable': False
 }
