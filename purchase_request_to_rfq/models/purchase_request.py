@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2016 Eficent Business and IT Consulting Services S.L.
+# Copyright 2016 Acsone SA/NV
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
 
 from datetime import datetime
@@ -28,23 +29,19 @@ class PurchaseRequestLine(models.Model):
     def _compute_is_editable(self):
         super(PurchaseRequestLine, self)._compute_is_editable()
         for rec in self:
-            if rec.purchase_lines:
-                rec.is_editable = False
+            self.filtered(rec.purchase_lines).update({'is_editable': False})
 
     @api.multi
     def _compute_purchased_qty(self):
         for rec in self:
-            purchased_qty = 0.0
-            for purchase_line in rec.purchase_lines:
-                if purchase_line.state != 'cancel':
-                    purchased_qty += purchase_line.product_qty
-            rec.purchased_qty = purchased_qty
+            rec.purchased_qty = sum(rec.purchase_lines.filtered(
+                lambda x: x.state != 'cancel').mapped('product_qty'))
 
     @api.multi
     @api.depends('purchase_lines.state', 'purchase_lines.order_id.state')
     def _compute_purchase_state(self):
         for rec in self:
-            temp_purchase_state = 'none'
+            temp_purchase_state = False
             if rec.purchase_lines:
                 if any([po_line.state == 'done' for po_line in
                         rec.purchase_lines]):
@@ -73,11 +70,11 @@ class PurchaseRequestLine(models.Model):
         'purchase_request_line_id',
         'purchase_order_line_id', 'Purchase Order Lines',
         readonly=True, copy=False)
-    purchase_state = fields.Selection(compute="_compute_purchase_state",
-                                      string="Purchase Status",
-                                      selection=_PURCHASE_ORDER_LINE_STATE,
-                                      store=True,
-                                      default='none')
+    purchase_state = fields.Selection(
+        compute="_compute_purchase_state",
+        string="Purchase Status",
+        selection=lambda self: self.env['purchase.order.line']._fields[
+            'state'].selection, store=True)
 
     @api.model
     def _planned_date(self, request_line, delay=0.0):
@@ -113,7 +110,7 @@ class PurchaseRequestLine(models.Model):
                 if supplierinfos:
                     supplierinfo_min_qty = supplierinfos[0].min_qty
 
-        if supplierinfo_min_qty == 0.0:
+        if not supplierinfo_min_qty:
             qty += po_line.product_qty
         else:
             # Recompute quantity by adding existing running procurements.
@@ -138,9 +135,8 @@ class PurchaseRequestLine(models.Model):
 
     @api.multi
     def unlink(self):
-        for line in self:
-            if line.purchase_lines:
-                raise exceptions.Warning(
-                    _('You cannot delete a record that refers to purchase '
-                      'lines!'))
+        if self.mapped('purchase_lines'):
+            raise exceptions.Warning(
+                _('You cannot delete a record that refers to purchase '
+                  'lines!'))
         return super(PurchaseRequestLine, self).unlink()

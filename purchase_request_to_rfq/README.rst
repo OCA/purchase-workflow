@@ -6,15 +6,6 @@ Purchase Request to RFQ
 This module adds the possibility to create or update Requests for
 Quotation (RFQ) from Purchase Request Lines.
 
-Installation
-============
-
-No specific instructions required.
-
-Configuration
-=============
-
-No specific instructions required.
 
 Usage
 =====
@@ -39,15 +30,6 @@ consolidated into as few as possible lines in the RFQ.
    :alt: Try me on Runbot
    :target: https://runbot.odoo-community.org/runbot/142/9.0
 
-For further information, please visit:
-
-* http://www.eficent.com/blog_en/streamline-your-purchasing-process-in-odoo-using-purchase-requests/
-
-
-Known issues / Roadmap
-======================
-
-No issues have been identified
 
 Bug Tracker
 ===========
