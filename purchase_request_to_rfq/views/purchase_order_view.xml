@@ -11,9 +11,8 @@
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='order_line']/tree"
                        position="inside">
-                    <field name="has_purchase_request_lines" invisible="1"/>
                     <button string="Purchase Request lines"
-                        attrs="{'invisible':[('has_purchase_request_lines','=',False)]}"
+                        attrs="{'invisible': [('purchase_request_lines', '=', [])]}"
                         name="action_openRequestLineTreeView"
                         type="object"
                         icon="gtk-open"/>
@@ -39,9 +38,8 @@
             <field name="inherit_id" ref="purchase.purchase_order_line_tree"/>
             <field name="arch" type="xml">
                 <tree position="inside">
-                    <field name="has_purchase_request_lines" invisible="1"/>
                     <button string="Purchase Request lines"
-                        attrs="{'invisible':[('has_purchase_request_lines','=',False)]}"
+                        attrs="{'invisible': [('purchase_request_lines', '=', [])]}"
                         name="action_openRequestLineTreeView"
                         type="object"
                         icon="gtk-open"/>

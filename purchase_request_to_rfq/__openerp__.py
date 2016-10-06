@@ -4,7 +4,8 @@
 
 {
     "name": "Purchase Request to RFQ",
-    "author": "Eficent Business and IT Consulting Services S.L., "
+    "author": "Eficent, "
+              "Acsone SA/NV,"
               "Odoo Community Association (OCA)",
     "version": "9.0.1.0.0",
     "website": "www.eficent.com",
@@ -18,7 +19,6 @@
         "views/purchase_request_view.xml",
         "views/purchase_order_view.xml",
     ],
-    'demo': [],
     "license": 'AGPL-3',
     "installable": True
 }
