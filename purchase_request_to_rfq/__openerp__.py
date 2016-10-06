@@ -4,12 +4,10 @@
 
 {
     "name": "Purchase Request to RFQ",
-    "author": "Eficent,"
+    "author": "Eficent, "
+              "Acsone SA/NV,"
               "Odoo Community Association (OCA)",
-    "version": "8.0.1.0.0",
-    "contributors": [
-        'Jordi Ballester Alomar',
-    ],
+    "version": "9.0.1.0.0",
     "website": "www.eficent.com",
     "category": "Purchase Management",
     "depends": [
@@ -21,7 +19,6 @@
         "views/purchase_request_view.xml",
         "views/purchase_order_view.xml",
     ],
-    'demo': [],
     "license": 'AGPL-3',
     "installable": True
 }
