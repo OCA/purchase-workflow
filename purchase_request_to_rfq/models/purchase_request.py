@@ -41,7 +41,7 @@ class PurchaseRequestLine(models.Model):
     @api.depends('purchase_lines.state', 'purchase_lines.order_id.state')
     def _compute_purchase_state(self):
         for rec in self:
-            temp_purchase_state = False
+            temp_purchase_state = 'none'
             if rec.purchase_lines:
                 if any([po_line.state == 'done' for po_line in
                         rec.purchase_lines]):
@@ -73,8 +73,7 @@ class PurchaseRequestLine(models.Model):
     purchase_state = fields.Selection(
         compute="_compute_purchase_state",
         string="Purchase Status",
-        selection=lambda self: self.env['purchase.order.line']._fields[
-            'state'].selection, store=True)
+        selection=_PURCHASE_ORDER_LINE_STATE, store=True, default='none')
 
     @api.model
     def _planned_date(self, request_line, delay=0.0):
