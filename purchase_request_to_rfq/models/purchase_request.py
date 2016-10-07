@@ -9,16 +9,6 @@ from dateutil.relativedelta import relativedelta
 
 from openerp import _, api, exceptions, fields, models
 
-_PURCHASE_ORDER_LINE_STATE = [
-    ('none', 'No Purchase'),
-    ('draft', 'RFQ'),
-    ('sent', 'RFQ Sent'),
-    ('to approve', 'To Approve'),
-    ('purchase', 'Purchase Order'),
-    ('done', 'Done'),
-    ('cancel', 'Cancelled')
-]
-
 
 class PurchaseRequestLine(models.Model):
 
@@ -28,8 +18,8 @@ class PurchaseRequestLine(models.Model):
     @api.depends('purchase_lines')
     def _compute_is_editable(self):
         super(PurchaseRequestLine, self)._compute_is_editable()
-        for rec in self:
-            self.filtered(rec.purchase_lines).update({'is_editable': False})
+        self.filtered(lambda p: p in self and p.purchase_lines).update(
+            {'is_editable': False})
 
     @api.multi
     def _compute_purchased_qty(self):
@@ -41,7 +31,7 @@ class PurchaseRequestLine(models.Model):
     @api.depends('purchase_lines.state', 'purchase_lines.order_id.state')
     def _compute_purchase_state(self):
         for rec in self:
-            temp_purchase_state = 'none'
+            temp_purchase_state = False
             if rec.purchase_lines:
                 if any([po_line.state == 'done' for po_line in
                         rec.purchase_lines]):
@@ -73,7 +63,10 @@ class PurchaseRequestLine(models.Model):
     purchase_state = fields.Selection(
         compute="_compute_purchase_state",
         string="Purchase Status",
-        selection=_PURCHASE_ORDER_LINE_STATE, store=True, default='none')
+        selection=lambda self:
+        self.env['purchase.order']._columns['state'].selection,
+        stored=True,
+    )
 
     @api.model
     def _planned_date(self, request_line, delay=0.0):
