@@ -10,17 +10,17 @@ msgstr ""
 "POT-Creation-Date: 2016-09-18 03:09+0000\n"
 "PO-Revision-Date: 2015-09-01 21:20+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: Italian (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/it/)\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
 #. module: purchase_multi_picking
 #: model:ir.model,name:purchase_multi_picking.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr "Riga Ordine d'Acquisto"
+msgstr ""
 
 #. module: purchase_multi_picking
 #: field:purchase.order.line,picking_group_id:0
@@ -37,12 +37,12 @@ msgstr ""
 #. module: purchase_multi_picking
 #: field:purchase.order.line.group,company_id:0
 msgid "Company"
-msgstr "Azienda"
+msgstr "Družba"
 
 #. module: purchase_multi_picking
 #: model:ir.model,name:purchase_multi_picking.model_purchase_order
 msgid "Purchase Order"
-msgstr "Ordine Acquisto"
+msgstr ""
 
 #. module: purchase_multi_picking
 #: model:ir.model,name:purchase_multi_picking.model_purchase_order_line_group

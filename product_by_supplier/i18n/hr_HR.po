@@ -10,12 +10,12 @@ msgstr ""
 "POT-Creation-Date: 2016-09-18 03:09+0000\n"
 "PO-Revision-Date: 2015-09-01 21:19+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: Italian (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/it/)\n"
+"Language-Team: Croatian (Croatia) (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/hr_HR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: hr_HR\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #. module: product_by_supplier
 #: field:product.supplierinfo,virtual_available:0
@@ -31,7 +31,7 @@ msgstr ""
 #: model:ir.model,name:product_by_supplier.model_product_product
 #: view:product.supplierinfo:0
 msgid "Product"
-msgstr "Prodotto"
+msgstr "Proizvod"
 
 #. module: product_by_supplier
 #: view:product.supplierinfo:0
@@ -68,7 +68,7 @@ msgstr ""
 #. module: product_by_supplier
 #: model:ir.model,name:product_by_supplier.model_product_supplierinfo
 msgid "Information about a product supplier"
-msgstr "Informazioni su un fornitore prodotti"
+msgstr ""
 
 #. module: product_by_supplier
 #: view:product.supplierinfo:0

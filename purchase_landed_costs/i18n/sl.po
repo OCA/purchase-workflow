@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-10 12:30+0000\n"
+"POT-Creation-Date: 2016-09-18 03:09+0000\n"
 "PO-Revision-Date: 2015-09-01 21:20+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/sl/)\n"
@@ -111,7 +111,7 @@ msgstr ""
 #. module: purchase_landed_costs
 #: field:landed.cost.position,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Družba"
 
 #. module: purchase_landed_costs
 #: help:landed.cost.position,amount:0
@@ -225,7 +225,7 @@ msgstr ""
 #: code:addons/purchase_landed_costs/purchase.py:585
 #, python-format
 msgid "Error!"
-msgstr ""
+msgstr "Napaka!"
 
 #. module: purchase_landed_costs
 #: field:landed.cost.position,amount:0
