@@ -18,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-15 11:37+0000\n"
-"PO-Revision-Date: 2016-09-09 11:33+0000\n"
+"POT-Creation-Date: 2016-09-30 13:28+0000\n"
+"PO-Revision-Date: 2016-10-04 09:43+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -36,7 +36,7 @@ msgstr ""
 #. module: purchase_partial_invoicing
 #: view:purchase.order.line_cancel_quantity:purchase_partial_invoicing.view_purchase_line_cancel
 msgid "Cancel"
-msgstr ""
+msgstr "Abbrechen"
 
 #. module: purchase_partial_invoicing
 #: model:ir.actions.act_window,name:purchase_partial_invoicing.action_view_purchase_line_cancel
@@ -72,7 +72,7 @@ msgstr "Erstellt am:"
 #: field:purchase.order.line_cancel_quantity_line,display_name:0
 #: field:purchase.order.line_invoice.line,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Anzeigename"
 
 #. module: purchase_partial_invoicing
 #: view:purchase.order.line_cancel_quantity:purchase_partial_invoicing.view_purchase_line_cancel
@@ -94,7 +94,7 @@ msgstr "ID"
 #. module: purchase_partial_invoicing
 #: model:ir.model,name:purchase_partial_invoicing.model_account_invoice
 msgid "Invoice"
-msgstr ""
+msgstr "Rechnung"
 
 #. module: purchase_partial_invoicing
 #: field:purchase.order.line,invoiced_qty:0
@@ -111,7 +111,7 @@ msgstr ""
 #: field:purchase.order.line_cancel_quantity_line,__last_update:0
 #: field:purchase.order.line_invoice.line,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Zuletzt geändert am"
 
 #. module: purchase_partial_invoicing
 #: field:purchase.order.line_cancel_quantity,write_uid:0
@@ -224,4 +224,4 @@ msgstr "Assistent"
 #. module: purchase_partial_invoicing
 #: view:purchase.order.line_cancel_quantity:purchase_partial_invoicing.view_purchase_line_cancel
 msgid "or"
-msgstr ""
+msgstr "oder"

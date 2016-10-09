@@ -3,11 +3,12 @@
 # * purchase_partner_invoice_method
 # 
 # Translators:
+# Hotellook, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-08 10:16+0000\n"
+"POT-Creation-Date: 2016-09-30 13:28+0000\n"
 "PO-Revision-Date: 2016-03-08 10:17+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/de/)\n"
@@ -35,7 +36,7 @@ msgstr ""
 #. module: purchase_partner_invoice_method
 #: model:ir.model,name:purchase_partner_invoice_method.model_res_partner
 msgid "Partner"
-msgstr ""
+msgstr "Partner"
 
 #. module: purchase_partner_invoice_method
 #: model:ir.model,name:purchase_partner_invoice_method.model_purchase_order

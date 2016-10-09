@@ -4,8 +4,10 @@
 # 
 # Translators:
 # Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015
 # Alexsandro Haag <alex@hgsoft.com.br>, 2015
 # Antonio Trueba, 2016
+# Carles Antoli <carlesantoli@hotmail.com>, 2015
 # Carles Antoli <carlesantoli@hotmail.com>, 2015
 # danimaribeiro <danimaribeiro@gmail.com>, 2016
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2012-2013
@@ -20,8 +22,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-15 11:37+0000\n"
-"PO-Revision-Date: 2016-09-09 11:33+0000\n"
+"POT-Creation-Date: 2016-09-30 13:27+0000\n"
+"PO-Revision-Date: 2016-10-04 09:43+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -33,7 +35,7 @@ msgstr ""
 #. module: purchase_order_type
 #: field:purchase.order.type,active:0
 msgid "Active"
-msgstr ""
+msgstr "Aktiv"
 
 #. module: purchase_order_type
 #: field:purchase.order.type,invoice_method:0
@@ -53,7 +55,7 @@ msgstr "Erstellt am:"
 #. module: purchase_order_type
 #: field:purchase.order.type,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Anzeigename"
 
 #. module: purchase_order_type
 #: field:purchase.order.type,id:0
@@ -63,7 +65,7 @@ msgstr "ID"
 #. module: purchase_order_type
 #: field:purchase.order.type,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Zuletzt geändert am"
 
 #. module: purchase_order_type
 #: field:purchase.order.type,write_uid:0
@@ -78,12 +80,12 @@ msgstr "Zuletzt aktualisiert am"
 #. module: purchase_order_type
 #: field:purchase.order.type,name:0
 msgid "Name"
-msgstr ""
+msgstr "Bezeichnung"
 
 #. module: purchase_order_type
 #: model:ir.model,name:purchase_order_type.model_res_partner
 msgid "Partner"
-msgstr ""
+msgstr "Partner"
 
 #. module: purchase_order_type
 #: model:ir.model,name:purchase_order_type.model_purchase_order

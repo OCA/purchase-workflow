@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-01 10:08+0000\n"
-"PO-Revision-Date: 2016-07-01 10:08+0000\n"
+"POT-Creation-Date: 2016-09-30 13:28+0000\n"
+"PO-Revision-Date: 2016-09-30 13:28+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "MIME-Version: 1.0\n"
@@ -32,17 +32,17 @@ msgstr ""
 
 #. module: purchase_request_to_rfq
 #: view:purchase.request.line:purchase_request_to_rfq.purchase_request_line_search
-msgid "At least a Draft PO has been created"
+msgid "At least an RFQ has been completed"
 msgstr ""
 
 #. module: purchase_request_to_rfq
 #: view:purchase.request.line:purchase_request_to_rfq.purchase_request_line_search
-msgid "At least a PO has been completed"
+msgid "At least an RFQ has been confirmed"
 msgstr ""
 
 #. module: purchase_request_to_rfq
 #: view:purchase.request.line:purchase_request_to_rfq.purchase_request_line_search
-msgid "At least a PO has been confirmed"
+msgid "At least an RFQ has been created"
 msgstr ""
 
 #. module: purchase_request_to_rfq
@@ -63,25 +63,25 @@ msgstr ""
 #. module: purchase_request_to_rfq
 #: model:ir.actions.act_window,name:purchase_request_to_rfq.action_purchase_request_line_make_purchase_order
 #: view:purchase.request.line.make.purchase.order:purchase_request_to_rfq.view_purchase_request_line_make_purchase_order
-msgid "Create Purchase Order"
+msgid "Create RFQ"
 msgstr ""
 
 #. module: purchase_request_to_rfq
 #: field:purchase.request.line.make.purchase.order,create_uid:0
 #: field:purchase.request.line.make.purchase.order.item,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Erstellt von"
 
 #. module: purchase_request_to_rfq
 #: field:purchase.request.line.make.purchase.order,create_date:0
 #: field:purchase.request.line.make.purchase.order.item,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Erstellt am:"
 
 #. module: purchase_request_to_rfq
 #: field:purchase.request.line.make.purchase.order.item,name:0
 msgid "Description"
-msgstr ""
+msgstr "Beschreibung"
 
 #. module: purchase_request_to_rfq
 #: view:purchase.request.line.make.purchase.order:purchase_request_to_rfq.view_purchase_request_line_make_purchase_order
@@ -113,7 +113,7 @@ msgstr ""
 
 #. module: purchase_request_to_rfq
 #: view:purchase.request.line.make.purchase.order:purchase_request_to_rfq.view_purchase_request_line_make_purchase_order
-msgid "Existing draft PO to update:"
+msgid "Existing RFQ to update:"
 msgstr ""
 
 #. module: purchase_request_to_rfq
@@ -125,7 +125,7 @@ msgstr ""
 #: field:purchase.request.line.make.purchase.order,id:0
 #: field:purchase.request.line.make.purchase.order.item,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: purchase_request_to_rfq
 #: field:purchase.request.line.make.purchase.order,item_ids:0
@@ -142,17 +142,17 @@ msgstr ""
 #: field:purchase.request.line.make.purchase.order,write_uid:0
 #: field:purchase.request.line.make.purchase.order.item,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Zuletzt aktualisiert von"
 
 #. module: purchase_request_to_rfq
 #: field:purchase.request.line.make.purchase.order,write_date:0
 #: field:purchase.request.line.make.purchase.order.item,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Zuletzt aktualisiert am"
 
 #. module: purchase_request_to_rfq
 #: view:purchase.request.line.make.purchase.order:purchase_request_to_rfq.view_purchase_request_line_make_purchase_order
-msgid "New PO details:"
+msgid "New RFQ details:"
 msgstr ""
 
 #. module: purchase_request_to_rfq
@@ -258,12 +258,6 @@ msgid "Purchase Status"
 msgstr ""
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:224
-#, python-format
-msgid "Purchase order"
-msgstr ""
-
-#. module: purchase_request_to_rfq
 #: view:purchase.request.line:purchase_request_to_rfq.purchase_request_line_search
 msgid "Purchasing not started"
 msgstr ""
@@ -279,7 +273,9 @@ msgid "Quantity to purchase"
 msgstr ""
 
 #. module: purchase_request_to_rfq
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:224
 #: selection:purchase.request.line,purchase_state:0
+#, python-format
 msgid "RFQ"
 msgstr ""
 

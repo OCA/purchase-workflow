@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-01 10:08+0000\n"
-"PO-Revision-Date: 2016-07-01 10:08+0000\n"
+"POT-Creation-Date: 2016-09-30 13:28+0000\n"
+"PO-Revision-Date: 2016-09-30 13:28+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "MIME-Version: 1.0\n"
@@ -90,18 +90,18 @@ msgstr ""
 #: field:purchase.request.line.make.purchase.requisition,create_uid:0
 #: field:purchase.request.line.make.purchase.requisition.item,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Created by"
 
 #. module: purchase_request_to_requisition
 #: field:purchase.request.line.make.purchase.requisition,create_date:0
 #: field:purchase.request.line.make.purchase.requisition.item,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Created on"
 
 #. module: purchase_request_to_requisition
 #: field:purchase.request.line.make.purchase.requisition.item,name:0
 msgid "Description"
-msgstr ""
+msgstr "Descrizione"
 
 #. module: purchase_request_to_requisition
 #: view:purchase.request.line.make.purchase.requisition:purchase_request_to_requisition.view_purchase_request_line_make_purchase_requisition
@@ -139,7 +139,7 @@ msgstr ""
 #: field:purchase.request.line.make.purchase.requisition,id:0
 #: field:purchase.request.line.make.purchase.requisition.item,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: purchase_request_to_requisition
 #: field:purchase.request.line.make.purchase.requisition,item_ids:0
@@ -156,13 +156,13 @@ msgstr ""
 #: field:purchase.request.line.make.purchase.requisition,write_uid:0
 #: field:purchase.request.line.make.purchase.requisition.item,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Last Updated by"
 
 #. module: purchase_request_to_requisition
 #: field:purchase.request.line.make.purchase.requisition,write_date:0
 #: field:purchase.request.line.make.purchase.requisition.item,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Last Updated on"
 
 #. module: purchase_request_to_requisition
 #: view:purchase.request.line:purchase_request_to_requisition.purchase_request_line_search
