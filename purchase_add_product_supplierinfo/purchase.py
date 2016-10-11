@@ -45,7 +45,6 @@ class PurchaseOrder(models.Model):
                 'name': _("Associate the supplier '%s' with the products "
                           "of this purchase order.") % supplier_id.name,
                 'type': 'ir.actions.act_window',
-                'view_type': 'form',
                 'view_mode': 'form',
                 'res_model': 'purchase.add.product.supplierinfo',
                 'views': [(add_supplierinfo_form.id, 'form')],
