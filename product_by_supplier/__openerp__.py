@@ -3,7 +3,7 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 {
     'name': 'Product by supplier info',
-    'version': '9.0.1.0',
+    'version': '9.0.1.0.0',
     'category': 'purchase',
     'summary': 'Show products grouped by suppliers',
     'author': "Elico Corp, "
