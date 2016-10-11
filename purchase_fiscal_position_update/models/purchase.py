@@ -17,7 +17,8 @@ class PurchaseOrder(models.Model):
         fp = self.fiscal_position_id
         for line in self.order_line:
             # product_id is a required field since v9
-            taxes = line.product_id.supplier_taxes_id
+            taxes = line.product_id.supplier_taxes_id.filtered(
+                lambda tax: tax.company_id == self.company_id)
             if fp:
                 taxes = fp.map_tax(taxes)
             line.taxes_id = [(6, 0, taxes.ids)]
