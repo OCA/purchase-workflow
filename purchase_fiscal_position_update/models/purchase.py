@@ -13,4 +13,6 @@ class purchase_order(models.Model):
     @api.onchange('fiscal_position_id')
     def onchange_fiscal_position_id(self):
         for line in self.order_line:
-            line.onchange_product_id()
+            temp_line = line.new(line._convert_to_write(line._cache))
+            temp_line.onchange_product_id()
+            line.taxes_id = temp_line.taxes_id
