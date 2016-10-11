@@ -26,7 +26,7 @@
               "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
               "AvanzOSC, S.L., "
               "Odoo Community Association (OCA)",
-    "version": "8.0.1.1",
+    "version": "8.0.1.1.0",
     "contributors": [
         'Pedro M. Baeza',
         'Ainara Galdona'

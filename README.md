@@ -19,12 +19,12 @@ addon | version | summary
 --- | --- | ---
 [framework_agreement](framework_agreement/) | 8.0.2.0.0 | Long Term Agreement (or Framework Agreement) for purchases
 [procurement_batch_generator](procurement_batch_generator/) | 8.0.0.1.0 | Wizard to create procurements from product variants
-[product_by_supplier](product_by_supplier/) | 8.0.1.0 | Show products grouped by suppliers
+[product_by_supplier](product_by_supplier/) | 8.0.1.0.0 | Show products grouped by suppliers
 [product_supplierinfo_discount](product_supplierinfo_discount/) | 8.0.1.0.0 | Discounts in product supplier info
 [purchase_all_shipments](purchase_all_shipments/) | 8.0.1.0.0 | Purchase All Shipments
 [purchase_delivery_address](purchase_delivery_address/) | 8.0.1.1.0 | Deprecated: install purchase_transport_multi_address and stock_transport_multi_address instead
 [purchase_delivery_split_date](purchase_delivery_split_date/) | 8.0.1.0.0 | Purchase Deliveries split by date
-[purchase_discount](purchase_discount/) | 8.0.1.1 | Purchase order lines with discounts
+[purchase_discount](purchase_discount/) | 8.0.1.1.0 | Purchase order lines with discounts
 [purchase_fiscal_position_update](purchase_fiscal_position_update/) | 8.0.1.0.0 | Changing the fiscal position of a purchase order will auto-update purchase order lines
 [purchase_last_price_info](purchase_last_price_info/) | 8.0.1.0.0 | Product Last Price Info - Purchase
 [purchase_order_reorder_lines](purchase_order_reorder_lines/) | 8.0.1.0.1 | Purchase order lines with sequence number
