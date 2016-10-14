@@ -11,8 +11,14 @@ class purchase_order(models.Model):
     _inherit = "purchase.order"
 
     @api.onchange('fiscal_position_id')
-    def onchange_fiscal_position_id(self):
+    def fiscal_position_change(self):
+        '''Function executed by the on_change on the fiscal_position_id field
+        of a purchase order ; it updates taxes on all order lines'''
+        fp = self.fiscal_position_id
         for line in self.order_line:
-            temp_line = line.new(line._convert_to_write(line._cache))
-            temp_line.onchange_product_id()
-            line.taxes_id = temp_line.taxes_id
+            # product_id is a required field since v9
+            taxes = line.product_id.supplier_taxes_id.filtered(
+                lambda tax: tax.company_id == self.company_id)
+            if fp:
+                taxes = fp.map_tax(taxes)
+            line.taxes_id = [(6, 0, taxes.ids)]
