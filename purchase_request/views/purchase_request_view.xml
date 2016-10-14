@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!-- Copyright 2016 Eficent Business and IT Consulting Services S.L.
      License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
-<openerp>
+<odoo>
     <data>
         <record model="ir.ui.view" id="view_purchase_request_form">
             <field name="name">purchase.request.form</field>
@@ -428,4 +428,4 @@
             />
 
     </data>
-</openerp>
+</odoo>
