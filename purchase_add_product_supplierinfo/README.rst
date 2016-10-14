@@ -6,9 +6,9 @@
 ============================================
 Add Product Supplierinfo from Purchase Order
 ============================================
-
 This module allows from the purchase order, to complete the supplierinfo list
 of each product.
+
  
 Usage
 =====
@@ -31,6 +31,7 @@ Contributors
 ------------
  
 * Chafique Delli <chafique.delli@akretion.com>
+
  
 Maintainer
 ----------

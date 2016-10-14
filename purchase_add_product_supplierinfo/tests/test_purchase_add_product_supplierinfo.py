@@ -6,14 +6,14 @@ from openerp.tests.common import TransactionCase
 
 
 class TestPurchaseAddProductSupplierinfo(TransactionCase):
-    def test_add_product_supplierinfo_from_purchase_order(self):
+    def test_add_product_supplierinfo_on_product_template(self):
         # purchases with product supplierinfo to update and
         # product supplierinfo is on product_template
         purchase_8 = self.env.ref(
             'purchase_add_product_supplierinfo.purchase_order_8')
         result8 = purchase_8.purchase_confirm()
         # open new form when products to update
-        self.assertEquals(result8['view_type'], 'form')
+        self.assertEquals(result8['view_mode'], 'form')
         self.assertEquals(result8['res_model'],
                           'purchase.add.product.supplierinfo')
         self.assertEquals(
@@ -39,13 +39,14 @@ class TestPurchaseAddProductSupplierinfo(TransactionCase):
             ('name', '=', purchase_8.partner_id.id)])
         self.assertNotEquals(supplierinfo_ids, False)
 
+    def test_add_product_supplierinfo_on_product_product(self):
         # purchases with product supplierinfo to update and
         # product supplierinfo is on product_product
         purchase_9 = self.env.ref(
             'purchase_add_product_supplierinfo.purchase_order_9')
         result9 = purchase_9.purchase_confirm()
         # open new form when products to update
-        self.assertEquals(result9['view_type'], 'form')
+        self.assertEquals(result9['view_mode'], 'form')
         self.assertEquals(result9['res_model'],
                           'purchase.add.product.supplierinfo')
         self.assertEquals(
@@ -70,6 +71,7 @@ class TestPurchaseAddProductSupplierinfo(TransactionCase):
             ('name', '=', purchase_9.partner_id.id)])
         self.assertNotEquals(supplierinfo_ids, False)
 
+    def test_without_add_product_supplierinfo(self):
         # purchases without product supplierinfo to update
         purchase_11 = self.env.ref(
             'purchase_add_product_supplierinfo.purchase_order_11')
