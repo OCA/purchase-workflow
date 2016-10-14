@@ -279,3 +279,27 @@ class testPurchasePartialInvoicing(common.TransactionCase):
         # I check if the purchase order is invoiced
         line_to_cancel.order_id.invalidate_cache()
         self.assertTrue(line_to_cancel.order_id.invoiced)
+
+    def test_line_zero(self):
+        self.common_test()
+        quantity_to_invoiced = 0
+        line_to_invoice = self.purchase_order.order_line[0]
+        ctx = self.context.copy()
+        ctx.update({'active_ids': line_to_invoice.id})
+        wizard = self.env['purchase.order.line_invoice']\
+            .with_context(ctx).create({})
+        # I change the quantity on the line that will be invoiced
+        wizard.line_ids[0].invoiced_qty = quantity_to_invoiced
+        # I click on make invoice button
+        wizard.with_context(ctx).makeInvoices()
+        # I check if only the line that I chose is invoiced
+        invoice_line = self.inv_line_obj\
+            .search([('purchase_line_id', 'in', self.purchase_order.ids)])
+        self.assertEqual(len(invoice_line), 1,
+                         "Number of invoiced lines isn't correct")
+        # I check if the quantity on the invoice line is correct
+        self.assertEqual(invoice_line.quantity, quantity_to_invoiced,
+                         "Quantity on invoice line isn't correct")
+        # I check invoiced quantity on the purchase order line
+        self.assertEqual(line_to_invoice.invoiced_qty, invoice_line.quantity,
+                         "Invoiced quantity isn't the same as on invoice line")

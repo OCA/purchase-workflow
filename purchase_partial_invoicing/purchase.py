@@ -86,7 +86,7 @@ class PurchaseOrder(models.Model):
         ctx = self.env.context.copy()
         if ctx.get('partial_quantity_lines'):
             partial_quantity_lines = ctx.get('partial_quantity_lines')
-            if partial_quantity_lines.get(order_line.id):
+            if order_line.id in partial_quantity_lines:
                 res.update({'quantity':
                             partial_quantity_lines.get(order_line.id)})
         return res

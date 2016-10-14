@@ -21,7 +21,7 @@
 
 {
     'name': "Purchase partial invoicing",
-    'version': '8.0.0.1.1',
+    'version': '8.0.0.1.2',
     'category': 'Purchase Management',
     'author': "Agile Business Group,"
               "ACSONE SA/NV,"
