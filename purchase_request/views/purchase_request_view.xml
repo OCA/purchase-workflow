@@ -51,10 +51,6 @@
                                    attrs="{'readonly': [('is_editable','=', False)]}"/>
                         </group>
                         <group>
-                            <field name="description"
-                                   attrs="{'readonly': [('is_editable','=', False)]}"/>
-                        </group>
-                        <group>
                             <field name="date_start"
                                     attrs="{'readonly': [('is_editable','=', False)]}"/>
                             <field name="picking_type_id"
@@ -63,6 +59,9 @@
                                    attrs="{'readonly': [('is_editable','=', False)]}"/>
                         </group>
                     </group>
+                    <label for="description"/>
+                    <field name="description"
+                            attrs="{'readonly': [('is_editable','=', False)]}"/>
                     <notebook>
                         <page string="Products">
                             <field name="line_ids">

@@ -23,7 +23,7 @@
     "name": "Purchase Request",
     "author": "Eficent, "
               "Odoo Community Association (OCA)",
-    "version": "8.0.1.0.0",
+    "version": "8.0.1.1.0",
     "contributors": [
         'Jordi Ballester Alomar',
     ],
