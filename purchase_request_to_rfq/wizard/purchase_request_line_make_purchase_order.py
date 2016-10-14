@@ -2,9 +2,9 @@
 # Copyright 2016 Eficent Business and IT Consulting Services S.L.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
 
-import openerp.addons.decimal_precision as dp
-from openerp import _, api, exceptions, fields, models
-from openerp.tools import DEFAULT_SERVER_DATE_FORMAT, \
+import odoo.addons.decimal_precision as dp
+from odoo import _, api, exceptions, fields, models
+from odoo.tools import DEFAULT_SERVER_DATE_FORMAT, \
     DEFAULT_SERVER_DATETIME_FORMAT
 from datetime import datetime
 
@@ -137,12 +137,12 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                 fields.datetime.now().strftime(DEFAULT_SERVER_DATETIME_FORMAT),
                 DEFAULT_SERVER_DATETIME_FORMAT).\
                 strftime(DEFAULT_SERVER_DATE_FORMAT)
-            price = pricelist_id.price_get(prod_id=product.id,
-                                           qty=item.product_qty or 1.0,
-                                           partner=supplier or False,
-                                           context={'uom':
-                                                    product.uom_po_id.id,
-                                                    'date': date_order_str})
+            ctx = self.env.context.copy()
+            ctx.update({'uom': product.uom_po_id.id,
+                        'date': date_order_str})
+            price = pricelist_id.with_context(ctx).price_get(
+                prod_id=product.id, qty=item.product_qty or 1.0,
+                partner=supplier or False)
             price = price[pricelist_id.id]
         else:
             price = product.standard_price

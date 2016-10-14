@@ -7,7 +7,7 @@ from datetime import datetime
 
 from dateutil.relativedelta import relativedelta
 
-from openerp import _, api, exceptions, fields, models
+from odoo import _, api, exceptions, fields, models
 
 
 class PurchaseRequestLine(models.Model):
@@ -64,7 +64,7 @@ class PurchaseRequestLine(models.Model):
         compute="_compute_purchase_state",
         string="Purchase Status",
         selection=lambda self:
-        self.env['purchase.order']._columns['state'].selection,
+        self.env['purchase.order']._fields['state'].selection,
         stored=True,
     )
 
@@ -81,10 +81,9 @@ class PurchaseRequestLine(models.Model):
 
     @api.model
     def _calc_new_qty_price(self, request_line, po_line=None, cancel=False):
-        uom_obj = self.env['product.uom']
-        qty = uom_obj._compute_qty(request_line.product_uom_id.id,
-                                   request_line.product_qty,
-                                   request_line.product_id.uom_po_id.id)
+        uom = request_line.product_uom_id
+        qty = uom._compute_quantity(request_line.product_qty,
+                                    request_line.product_id.uom_po_id)
         # Make sure we use the minimum quantity of the partner corresponding
         # to the PO. This does not apply in case of dropshipping
         supplierinfo_min_qty = 0.0
@@ -107,21 +106,20 @@ class PurchaseRequestLine(models.Model):
         else:
             # Recompute quantity by adding existing running procurements.
             for rl in po_line.purchase_request_lines:
-                qty += uom_obj._compute_qty(rl.product_uom_id.id,
-                                            rl.product_qty,
-                                            rl.product_id.uom_po_id.id)
+                qty += uom._compute_quantity(rl.product_qty,
+                                             rl.product_id.uom_po_id)
             qty = max(qty, supplierinfo_min_qty) if qty > 0.0 else 0.0
 
         price = po_line.price_unit
         if qty != po_line.product_qty:
-            pricelist_obj = self.pool['product.pricelist']
-            pricelist_id = po_line.order_id.partner_id.\
-                property_product_pricelist.id
-            price = pricelist_obj.price_get(
-                self.env.cr, self.env.uid, [pricelist_id],
+            pricelist = po_line.order_id.partner_id.\
+                property_product_pricelist
+            ctx = self.env.context.copy()
+            ctx.update({'uom': request_line.product_id.uom_po_id.id})
+            price = pricelist.price_get(
                 request_line.product_id.id, qty,
-                po_line.order_id.partner_id.id,
-                {'uom': request_line.product_id.uom_po_id.id})[pricelist_id]
+                po_line.order_id.partner_id,
+                )[pricelist.id]
 
         return qty, price
 
