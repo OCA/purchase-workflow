@@ -31,7 +31,7 @@ addon | version | summary
 [purchase_order_revision](purchase_order_revision/) | 8.0.1.0.0 | Purchase order revisions
 [purchase_order_type](purchase_order_type/) | 8.0.1.0.0 | Purchase Order Type
 [purchase_origin_address](purchase_origin_address/) | 8.0.1.0.0 | Deprecated: use purchase_transport_multi_address from OCA/stock-logistics-transport
-[purchase_partial_invoicing](purchase_partial_invoicing/) | 8.0.0.1.1 | Purchase partial invoicing
+[purchase_partial_invoicing](purchase_partial_invoicing/) | 8.0.0.1.2 | Purchase partial invoicing
 [purchase_partner_invoice_method](purchase_partner_invoice_method/) | 8.0.1.0.0 | Adds supplier invoicing control on partner form
 [purchase_picking_state](purchase_picking_state/) | 8.0.1.0.0 | Add the status of all the incoming picking in the purchase order
 [purchase_request](purchase_request/) | 8.0.1.0.0 | Purchase Request
