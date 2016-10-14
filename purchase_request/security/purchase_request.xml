@@ -18,6 +18,7 @@
             <field name="name">Purchase Request Manager</field>
             <field name="implied_ids" eval="[(4, ref('purchase_request.group_purchase_request_user'))]"/>
             <field name="category_id" ref="module_category_purchase_request"/>
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
         </record>
 
     </data>
