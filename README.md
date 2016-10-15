@@ -22,6 +22,7 @@ addon | version | summary
 [product_by_supplier](product_by_supplier/) | 8.0.1.0.0 | Show products grouped by suppliers
 [product_supplierinfo_discount](product_supplierinfo_discount/) | 8.0.1.0.0 | Discounts in product supplier info
 [purchase_all_shipments](purchase_all_shipments/) | 8.0.1.0.0 | Purchase All Shipments
+[purchase_commercial_partner](purchase_commercial_partner/) | 8.0.1.0.0 | Add stored related field 'Commercial Supplier' on POs
 [purchase_delivery_address](purchase_delivery_address/) | 8.0.1.1.0 | Deprecated: install purchase_transport_multi_address and stock_transport_multi_address instead
 [purchase_delivery_split_date](purchase_delivery_split_date/) | 8.0.1.0.0 | Purchase Deliveries split by date
 [purchase_discount](purchase_discount/) | 8.0.1.1.0 | Purchase order lines with discounts
