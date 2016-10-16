@@ -19,7 +19,6 @@ class PurchaseOrder(models.Model):
         ]
 
     @api.multi
-    @api.depends('picking_ids', 'picking_ids.state')
     def _compute_picking_state(self):
         for purchase in self:
             if purchase.picking_ids:
@@ -39,7 +38,6 @@ class PurchaseOrder(models.Model):
 
     picking_state = fields.Selection(
         string="Picking status", readonly=True,
-        store=True,
         compute='_compute_picking_state',
         selection='get_picking_state',
         help="Overall status based on all pickings")
