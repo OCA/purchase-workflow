@@ -113,8 +113,8 @@ class PurchaseRequestLine(models.Model):
         else:
             # Recompute quantity by adding existing running procurements.
             for rl in po_line.purchase_request_lines:
-                qty += uom._compute_quantity(rl.product_qty,
-                                             rl.product_id.uom_po_id)
+                qty += rl.product_uom_id._compute_quantity(
+                    rl.product_qty, rl.product_id.uom_po_id)
             qty = max(qty, supplierinfo_min_qty) if qty > 0.0 else 0.0
         return qty
 
