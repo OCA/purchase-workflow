@@ -87,6 +87,19 @@ class PurchaseRequestLine(models.Model):
             or False
 
     @api.model
+    def _get_supplier_min_qty(self, product, partner_id=False):
+        seller_min_qty = 0.0
+        if partner_id:
+            seller = product.seller_ids \
+                .filtered(lambda r: r.name == partner_id) \
+                .sorted(key=lambda r: r.min_qty)
+        else:
+            seller = product.seller_ids.sorted(key=lambda r: r.min_qty)
+        if seller:
+            seller_min_qty = seller[0].min_qty
+        return seller_min_qty
+
+    @api.model
     def _calc_new_qty(self, request_line, po_line=None, cancel=False):
         uom = request_line.product_uom_id
         qty = uom._compute_quantity(request_line.product_qty,
@@ -95,18 +108,8 @@ class PurchaseRequestLine(models.Model):
         # to the PO. This does not apply in case of dropshipping
         supplierinfo_min_qty = 0.0
         if not po_line.order_id.dest_address_id:
-            if po_line.product_id.seller_ids and \
-                po_line.product_id.seller_ids[0].id == \
-                    po_line.order_id.partner_id.id:
-                supplierinfo_min_qty = po_line.product_id.seller_ids[0].min_qty
-            else:
-                supplierinfo_obj = self.env['product.supplierinfo']
-                supplierinfos = supplierinfo_obj.search(
-                    [('name', '=', po_line.order_id.partner_id.id),
-                     ('product_tmpl_id', '=',
-                      po_line.product_id.product_tmpl_id.id)])
-                if supplierinfos:
-                    supplierinfo_min_qty = supplierinfos[0].min_qty
+            supplierinfo_min_qty = self._get_supplier_min_qty(
+                po_line.product_id, po_line.order_id.partner_id)
 
         if not supplierinfo_min_qty:
             qty += po_line.product_qty
