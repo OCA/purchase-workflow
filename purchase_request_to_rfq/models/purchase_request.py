@@ -87,7 +87,7 @@ class PurchaseRequestLine(models.Model):
             or False
 
     @api.model
-    def _calc_new_qty_price(self, request_line, po_line=None, cancel=False):
+    def _calc_new_qty(self, request_line, po_line=None, cancel=False):
         uom = request_line.product_uom_id
         qty = uom._compute_quantity(request_line.product_qty,
                                     request_line.product_id.uom_po_id)
@@ -116,19 +116,7 @@ class PurchaseRequestLine(models.Model):
                 qty += uom._compute_quantity(rl.product_qty,
                                              rl.product_id.uom_po_id)
             qty = max(qty, supplierinfo_min_qty) if qty > 0.0 else 0.0
-
-        price = po_line.price_unit
-        if qty != po_line.product_qty:
-            pricelist = po_line.order_id.partner_id.\
-                property_product_pricelist
-            ctx = self.env.context.copy()
-            ctx.update({'uom': request_line.product_id.uom_po_id.id})
-            price = pricelist.price_get(
-                request_line.product_id.id, qty,
-                po_line.order_id.partner_id,
-                )[pricelist.id]
-
-        return qty, price
+        return qty
 
     @api.multi
     def unlink(self):
