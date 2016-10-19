@@ -149,6 +149,9 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         # convert the product quantity to this UOM
         qty = item.product_uom_id._compute_quantity(
             item.product_qty, product.uom_po_id)
+        # Suggest the supplier min qty as it's done in Odoo core
+        min_qty = item.line_id._get_supplier_min_qty(product, po.partner_id)
+        qty = max(qty, min_qty)
         vals = {
             'name': product.name,
             'order_id': po.id,
