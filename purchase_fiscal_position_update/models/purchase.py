@@ -11,7 +11,7 @@ class purchase_order(models.Model):
     _inherit = "purchase.order"
 
     @api.onchange('fiscal_position_id')
-    def fiscal_position_change(self):
+    def onchange_fiscal_position_id(self):
         '''Function executed by the on_change on the fiscal_position_id field
         of a purchase order ; it updates taxes on all order lines'''
         fp = self.fiscal_position_id
