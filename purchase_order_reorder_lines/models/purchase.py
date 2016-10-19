@@ -29,7 +29,7 @@ class PurchaseOrderLine(models.Model):
     _inherit = 'purchase.order.line'
     _order = 'order_id desc, sequence, id'
 
-    sequence = fields.Integer(default=0,
+    sequence = fields.Integer(default=10,
                               help="Gives the sequence of this line when "
                                    "displaying the purchase order.")
 
