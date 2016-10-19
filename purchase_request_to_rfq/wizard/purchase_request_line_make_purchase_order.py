@@ -100,9 +100,13 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
 
         items = []
         self._check_valid_request_line(request_line_ids)
-        for line in request_line_obj.browse(request_line_ids):
+        request_lines = request_line_obj.browse(request_line_ids)
+        for line in request_lines:
             items.append([0, 0, self._prepare_item(line)])
         res['item_ids'] = items
+        supplier_ids = request_lines.mapped('supplier_id').ids
+        if len(supplier_ids) == 1:
+            res['supplier_id'] = supplier_ids[0]
         return res
 
     @api.model
