@@ -145,13 +145,17 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
     def _prepare_purchase_order_line(self, po, item):
         po_line_obj = self.env['purchase.order.line']
         product = item.product_id
+        # Keep the standard product UOM for purchase order so we should
+        # convert the product quantity to this UOM
+        qty = item.product_uom_id._compute_quantity(
+            item.product_qty, product.uom_po_id)
         vals = {
             'name': product.name,
             'order_id': po.id,
             'product_id': product.id,
             'product_uom': product.uom_po_id.id,
             'price_unit': 0.0,
-            'product_qty': item.product_qty,
+            'product_qty': qty,
             'account_analytic_id': item.line_id.analytic_account_id.id,
             'purchase_request_lines': [(4, item.line_id.id)],
         }
