@@ -126,45 +126,38 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         return data
 
     @api.model
+    def _execute_purchase_line_onchange(self, vals):
+        cls = self.env['purchase.order.line']
+        onchanges_dict = {
+            'onchange_product_id':
+                ['date_planned', 'product_uom', 'price_unit', 'name',
+                 'taxes_id'],
+        }
+        for onchange_method, changed_fields in onchanges_dict.items():
+            if any(f not in vals for f in changed_fields):
+                obj = cls.new(vals)
+                getattr(obj, onchange_method)()
+                for field in changed_fields:
+                    vals[field] = obj._fields[field].convert_to_write(
+                        obj[field], obj)
+
+    @api.model
     def _prepare_purchase_order_line(self, po, item):
         po_line_obj = self.env['purchase.order.line']
         product = item.product_id
-        supplier = self.supplier_id
-        pricelist_id = supplier.property_product_pricelist
-
-        if pricelist_id:
-            date_order_str = datetime.strptime(
-                fields.datetime.now().strftime(DEFAULT_SERVER_DATETIME_FORMAT),
-                DEFAULT_SERVER_DATETIME_FORMAT).\
-                strftime(DEFAULT_SERVER_DATE_FORMAT)
-            ctx = self.env.context.copy()
-            ctx.update({'uom': product.uom_po_id.id,
-                        'date': date_order_str})
-            price = pricelist_id.with_context(ctx).price_get(
-                prod_id=product.id, qty=item.product_qty or 1.0,
-                partner=supplier or False)
-            price = price[pricelist_id.id]
-        else:
-            price = product.standard_price
-
-        vals = po_line_obj.onchange_product_id()
-        vals.update({
+        vals = {
             'name': product.name,
             'order_id': po.id,
             'product_id': product.id,
             'product_uom': product.uom_po_id.id,
-            'price_unit': price,
+            'price_unit': 0.0,
             'product_qty': item.product_qty,
             'account_analytic_id': item.line_id.analytic_account_id.id,
-            'taxes_id': [(6, 0, vals.get('taxes_id', []))],
             'purchase_request_lines': [(4, item.line_id.id)],
-            'date_planned':
-                vals.get('date_planned', False) or item.line_id.date_required,
-
-        })
+        }
         if item.line_id.procurement_id:
             vals['procurement_ids'] = [(4, item.line_id.procurement_id.id)]
-
+        self._execute_purchase_line_onchange(vals)
         return vals
 
     @api.model
@@ -215,11 +208,12 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             available_po_lines = po_line_obj.search(domain)
             if available_po_lines:
                 po_line = available_po_lines[0]
-                new_qty, new_price = pr_line_obj._calc_new_qty_price(
-                    line, po_line=po_line)
+                new_qty = pr_line_obj._calc_new_qty(line, po_line=po_line)
                 if new_qty > po_line.product_qty:
                     po_line.product_qty = new_qty
-                    po_line.price_unit = new_price
+                    # Leave the purchase order order to calculate its prices
+                    # itself
+                    po_line._onchange_quantity()
                     po_line.purchase_request_lines = [(4, line.id)]
             else:
                 po_line_data = self._prepare_purchase_order_line(purchase,
