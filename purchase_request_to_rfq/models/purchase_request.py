@@ -24,8 +24,15 @@ class PurchaseRequestLine(models.Model):
     @api.multi
     def _compute_purchased_qty(self):
         for rec in self:
-            rec.purchased_qty = sum(rec.purchase_lines.filtered(
-                lambda x: x.state != 'cancel').mapped('product_qty'))
+            rec.purchased_qty = 0.0
+            for line in rec.purchase_lines.filtered(
+                    lambda x: x.state != 'cancel'):
+                if rec.product_uom_id and\
+                        line.product_uom != rec.product_uom_id:
+                    rec.purchased_qty += line.product_uom._compute_quantity(
+                        line.product_qty, rec.product_uom_id)
+                else:
+                    rec.purchased_qty += line.product_qty
 
     @api.multi
     @api.depends('purchase_lines.state', 'purchase_lines.order_id.state')
