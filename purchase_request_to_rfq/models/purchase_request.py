@@ -18,7 +18,7 @@ class PurchaseRequestLine(models.Model):
     @api.depends('purchase_lines')
     def _compute_is_editable(self):
         super(PurchaseRequestLine, self)._compute_is_editable()
-        self.filtered(lambda p: p in self and p.purchase_lines).update(
+        self.filtered(lambda p: p in self and p.purchase_lines).write(
             {'is_editable': False})
 
     @api.multi
