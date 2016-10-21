@@ -51,3 +51,24 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
             purchase_request_line.purchase_lines.state,
             purchase_request_line.purchase_state,
             'Should have same state')
+
+    def test_bug_is_editable_multiple_lines(self):
+        # Check that reading multiple lines is still possible
+        # https://github.com/OCA/purchase-workflow/pull/291
+        vals = {
+            'picking_type_id': self.env.ref('stock.picking_type_in').id,
+            'requested_by': SUPERUSER_ID,
+        }
+        purchase_request = self.purchase_request.create(vals)
+        vals = {
+            'request_id': purchase_request.id,
+            'product_id': self.env.ref('product.product_product_13').id,
+            'product_uom_id': self.env.ref('product.product_uom_unit').id,
+            'product_qty': 5.0,
+        }
+        purchase_request_line = self.purchase_request_line.create(vals)
+        request_lines = purchase_request_line + purchase_request_line.copy()
+        request_lines.mapped('is_editable')
+
+        # Test also for onchanges on non created lines
+        self.purchase_request_line.new({}).is_editable
