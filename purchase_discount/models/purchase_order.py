@@ -48,3 +48,13 @@ class PurchaseOrder(models.Model):
             account_id, order_line)
         result['discount'] = order_line.discount or 0.0
         return result
+
+    @api.model
+    def _prepare_order_line_move(self, order, order_line, picking_id,
+                                 group_id):
+        res = super(PurchaseOrder, self)._prepare_order_line_move(
+            order, order_line, picking_id, group_id)
+        for vals in res:
+            vals['price_unit'] = (vals.get('price_unit', 0.0) *
+                                  (1 - (order_line.discount / 100)))
+        return res

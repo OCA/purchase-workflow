@@ -42,6 +42,7 @@ Contributors
 * OpenERP S.A.
 * Ignacio Ibeas <ignacio@acysos.com>
 * Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
+* Ainara Galdona <ainaragaldona@avanzosc.es>
 
 Icon
 ----

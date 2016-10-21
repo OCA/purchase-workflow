@@ -1,0 +1,219 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * purchase_partial_invoicing
+# 
+# Translators:
+# Jonathan Nemry (ACSONE) <jonathan.nemry@acsone.eu>, 2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
+# Stéphane Bidoul (ACSONE), 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: purchase-workflow (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-07-22 23:40+0000\n"
+"PO-Revision-Date: 2016-07-22 08:21+0000\n"
+"Last-Translator: Jonathan Nemry (ACSONE) <jonathan.nemry@acsone.eu>\n"
+"Language-Team: French (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/fr/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: purchase_partial_invoicing
+#: field:purchase.order.line,all_invoices_approved:0
+msgid "All invoices approved"
+msgstr "Toutes les factures sont approuvées"
+
+#. module: purchase_partial_invoicing
+#: view:purchase.order.line_cancel_quantity:purchase_partial_invoicing.view_purchase_line_cancel
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: purchase_partial_invoicing
+#: model:ir.actions.act_window,name:purchase_partial_invoicing.action_view_purchase_line_cancel
+msgid "Cancel quantity"
+msgstr "Annuler la quantité"
+
+#. module: purchase_partial_invoicing
+#: field:purchase.order.line,cancelled_qty:0
+msgid "Cancelled Quantity"
+msgstr "Quantité annulée"
+
+#. module: purchase_partial_invoicing
+#: view:purchase.order.line_cancel_quantity:purchase_partial_invoicing.view_purchase_line_cancel
+msgid "Confirm"
+msgstr "Confirmer"
+
+#. module: purchase_partial_invoicing
+#: field:purchase.order.line_cancel_quantity,create_uid:0
+#: field:purchase.order.line_cancel_quantity_line,create_uid:0
+#: field:purchase.order.line_invoice.line,create_uid:0
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: purchase_partial_invoicing
+#: field:purchase.order.line_cancel_quantity,create_date:0
+#: field:purchase.order.line_cancel_quantity_line,create_date:0
+#: field:purchase.order.line_invoice.line,create_date:0
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: purchase_partial_invoicing
+#: field:purchase.order.line_cancel_quantity,display_name:0
+#: field:purchase.order.line_cancel_quantity_line,display_name:0
+#: field:purchase.order.line_invoice.line,display_name:0
+msgid "Display Name"
+msgstr "Display Name"
+
+#. module: purchase_partial_invoicing
+#: view:purchase.order.line_cancel_quantity:purchase_partial_invoicing.view_purchase_line_cancel
+msgid "Do you want to cancel some quantity to invoice ?"
+msgstr "Voulez vous annuler une certaine quantité à facturer?"
+
+#. module: purchase_partial_invoicing
+#: field:purchase.order.line,fully_invoiced:0
+msgid "Fully invoiced"
+msgstr "Complètement facturé"
+
+#. module: purchase_partial_invoicing
+#: field:purchase.order.line_cancel_quantity,id:0
+#: field:purchase.order.line_cancel_quantity_line,id:0
+#: field:purchase.order.line_invoice.line,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_partial_invoicing
+#: model:ir.model,name:purchase_partial_invoicing.model_account_invoice
+msgid "Invoice"
+msgstr "Facture"
+
+#. module: purchase_partial_invoicing
+#: field:purchase.order.line,invoiced_qty:0
+msgid "Invoiced qty"
+msgstr "Qté facturée"
+
+#. module: purchase_partial_invoicing
+#: view:purchase.order.line:purchase_partial_invoicing.purchase_order_line_search
+msgid "Invoicing"
+msgstr "Facturation"
+
+#. module: purchase_partial_invoicing
+#: field:purchase.order.line_cancel_quantity,__last_update:0
+#: field:purchase.order.line_cancel_quantity_line,__last_update:0
+#: field:purchase.order.line_invoice.line,__last_update:0
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: purchase_partial_invoicing
+#: field:purchase.order.line_cancel_quantity,write_uid:0
+#: field:purchase.order.line_cancel_quantity_line,write_uid:0
+#: field:purchase.order.line_invoice.line,write_uid:0
+msgid "Last Updated by"
+msgstr "Dernière modification par"
+
+#. module: purchase_partial_invoicing
+#: field:purchase.order.line_cancel_quantity,write_date:0
+#: field:purchase.order.line_cancel_quantity_line,write_date:0
+#: field:purchase.order.line_invoice.line,write_date:0
+msgid "Last Updated on"
+msgstr "Dernière modification le"
+
+#. module: purchase_partial_invoicing
+#: field:purchase.order.line_cancel_quantity,line_ids:0
+#: field:purchase.order.line_invoice,line_ids:0
+msgid "Lines"
+msgstr "Lignes"
+
+#. module: purchase_partial_invoicing
+#: view:purchase.order.line:purchase_partial_invoicing.purchase_order_line_search
+msgid "Not Fully Invoiced"
+msgstr "Pas complètement facturé"
+
+#. module: purchase_partial_invoicing
+#: model:ir.model,name:purchase_partial_invoicing.model_purchase_order
+msgid "Purchase Order"
+msgstr "Bon de commande"
+
+#. module: purchase_partial_invoicing
+#: model:ir.model,name:purchase_partial_invoicing.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Ligne de commande d'achat"
+
+#. module: purchase_partial_invoicing
+#: model:ir.model,name:purchase_partial_invoicing.model_purchase_order_line_invoice
+msgid "Purchase Order Line Make Invoice"
+msgstr "Créer la facture des lignes de commande d'achat"
+
+#. module: purchase_partial_invoicing
+#: field:purchase.order.line_cancel_quantity_line,po_line_id:0
+#: field:purchase.order.line_invoice.line,po_line_id:0
+msgid "Purchase order line"
+msgstr "Ligne de bon de commande"
+
+#. module: purchase_partial_invoicing
+#: field:purchase.order.line_cancel_quantity_line,product_qty:0
+#: field:purchase.order.line_invoice.line,product_qty:0
+msgid "Quantity"
+msgstr "Quantité"
+
+#. module: purchase_partial_invoicing
+#: field:purchase.order.line_cancel_quantity_line,cancelled_qty:0
+msgid "Quantity to cancel"
+msgstr "Quantité à annuler"
+
+#. module: purchase_partial_invoicing
+#: code:addons/purchase_partial_invoicing/wizard/po_line_cancel_quantity.py:55
+#, python-format
+msgid ""
+"Quantity to cancel is greater\n"
+"                    than available quantity"
+msgstr "Quantité à annuler est plus grande\nque la quantité disponible"
+
+#. module: purchase_partial_invoicing
+#: code:addons/purchase_partial_invoicing/wizard/po_line_cancel_quantity.py:61
+#, python-format
+msgid ""
+"Quantity to cancel is greater\n"
+"                    than quantity already cancelled"
+msgstr "Quantité à annuler est plus grande\nque la quantité déjà annulée"
+
+#. module: purchase_partial_invoicing
+#: field:purchase.order.line_invoice.line,invoiced_qty:0
+msgid "Quantity to invoice"
+msgstr "Quantité à facturer"
+
+#. module: purchase_partial_invoicing
+#: code:addons/purchase_partial_invoicing/wizard/po_line_invoice.py:65
+#, python-format
+msgid ""
+"Quantity to invoice is greater\n"
+"                    than available quantity"
+msgstr "Quantité à facturer est plus grande\nque la quantité disponible"
+
+#. module: purchase_partial_invoicing
+#: view:purchase.order.line_cancel_quantity:purchase_partial_invoicing.view_purchase_line_cancel
+msgid "Select an Open Sales Order"
+msgstr "Selectionner une commande ouverte"
+
+#. module: purchase_partial_invoicing
+#: field:purchase.order.line_cancel_quantity_line,price_unit:0
+#: field:purchase.order.line_invoice.line,price_unit:0
+msgid "Unit Price"
+msgstr "Prix uniatire"
+
+#. module: purchase_partial_invoicing
+#: view:purchase.order.line:purchase_partial_invoicing.purchase_order_line_search
+msgid "With Cancelled Quantity"
+msgstr "Avec la quantité annulée"
+
+#. module: purchase_partial_invoicing
+#: field:purchase.order.line_cancel_quantity_line,wizard_id:0
+#: field:purchase.order.line_invoice.line,wizard_id:0
+msgid "Wizard"
+msgstr "Assistant"
+
+#. module: purchase_partial_invoicing
+#: view:purchase.order.line_cancel_quantity:purchase_partial_invoicing.view_purchase_line_cancel
+msgid "or"
+msgstr "ou"

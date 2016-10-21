@@ -1,0 +1,876 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * purchase_requisition_bid_selection
+# 
+# Translators:
+# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2016
+# Carles Antoli <carlesantoli@hotmail.com>, 2016
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012
+# Kostas Goutoudis <goutoudis@gmail.com>, 2015
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Paolo Valier, 2016
+# Pedro Castro Silva <pedrocs@sossia.pt>, 2015
+# Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
+# SaFi J. <safi2266@gmail.com>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: purchase-workflow (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-05-14 02:43+0000\n"
+"PO-Revision-Date: 2016-05-12 05:26+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: purchase_requisition_bid_selection
+#: view:purchase.requisition:purchase_requisition_bid_selection.view_purchase_requisition_form
+msgid "(extend)"
+msgstr "(razširi)"
+
+#. module: purchase_requisition_bid_selection
+#: help:purchase.requisition,bid_receipt_mode:0
+msgid ""
+"- Open : The bids can be opened when received and encoded. \n"
+"- Closed : The bids can be marked as received but they have to be opened \n"
+"all at the same time after an opening ceremony (probably specific to public sector)."
+msgstr "- Odprti : Ponudbe se lahko odpirajo ob prejemu in knjiženju. \n- Zaprti : Ponudbe se lahko označi za prejete, odpirajo pa se\nvse hkrati skladno s postopkom odpiranja (značilno za javni sektor)."
+
+#. module: purchase_requisition_bid_selection
+#: help:purchase.requisition,bid_tendering_mode:0
+msgid ""
+"- Restricted : you select yourself the bidders and generate a RFQ for each of those. \n"
+"- Open : anybody can bid (you have to advertise the call for bids) and you directly encode the bids you received. You are still able to generate RFQ if you want to contact usual bidders."
+msgstr "- Omejeni : sami izberete ponudnike in ustvarite povpraševanja za vsakega izmed njih. \n- Odprti : vsakdo lahko ponuja (objaviti je potrebno razpis), prejete ponudbe pa se neposredno knjiži. Če želite povabiti običajne ponudnike, lahko še vedno ustvarjate povpraševanja."
+
+#. module: purchase_requisition_bid_selection
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid "/ Received on:"
+msgstr "/ Prejeto:"
+
+#. module: purchase_requisition_bid_selection
+#: view:purchase.requisition:purchase_requisition_bid_selection.view_purchase_requisition_form
+msgid "Accept selection"
+msgstr "Sprejem izbire"
+
+#. module: purchase_requisition_bid_selection
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid "Approved by"
+msgstr "Odobril"
+
+#. module: purchase_requisition_bid_selection
+#: view:purchase.action_modal:purchase_requisition_bid_selection.modal_confirm_close_selection
+msgid ""
+"Are you sure you want to accept the current selection?\n"
+"            You cannot cancel this action."
+msgstr "Ste prepričani, da želite sprejeti trenutno izbiro?\n            Tega dejanja ne morete preklicati."
+
+#. module: purchase_requisition_bid_selection
+#: view:purchase.requisition:purchase_requisition_bid_selection.view_purchase_requisition_form
+msgid "Back to Confirmed"
+msgstr "Nazaj na potrjene"
+
+#. module: purchase_requisition_bid_selection
+#: view:purchase.requisition:purchase_requisition_bid_selection.view_purchase_requisition_form
+msgid "Back to Selected"
+msgstr "Nazaj na izbrane"
+
+#. module: purchase_requisition_bid_selection
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid "Bid"
+msgstr "Ponudba"
+
+#. module: purchase_requisition_bid_selection
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid "Bid Date"
+msgstr "Datum ponudbe"
+
+#. module: purchase_requisition_bid_selection
+#: field:purchase.order,tender_bid_receipt_mode:0
+#: field:purchase.requisition,bid_receipt_mode:0
+msgid "Bid Receipt Mode"
+msgstr "Način prejema ponudbe"
+
+#. module: purchase_requisition_bid_selection
+#: field:purchase.order,bid_eligible:0
+#: field:purchase.order.line,bid_eligible:0
+msgid "Bid eligible"
+msgstr "Ponudba veljavna"
+
+#. module: purchase_requisition_bid_selection
+#: field:purchase.requisition,bid_ids:0
+msgid "Bid ids"
+msgstr "ID-ji ponudb"
+
+#. module: purchase_requisition_bid_selection
+#: field:update.bid.internal.remark,bid_internal_remark:0
+msgid "Bid internal remark"
+msgstr "Interne pripombe k ponudbi"
+
+#. module: purchase_requisition_bid_selection
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid "Bid number"
+msgstr "Številka ponudbe"
+
+#. module: purchase_requisition_bid_selection
+#: field:purchase.order,bid_partial:0
+msgid "Bid partially selected"
+msgstr "Ponudba delno izbrana"
+
+#. module: purchase_requisition_bid_selection
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid "Bid validity date"
+msgstr "Datum veljavnosti ponudbe"
+
+#. module: purchase_requisition_bid_selection
+#: field:purchase.requisition.line,purchase_line_ids:0
+msgid "Bids Lines"
+msgstr "Ponudbene postavke"
+
+#. module: purchase_requisition_bid_selection
+#: view:purchase.order.line:purchase_requisition_bid_selection.view_purchase_order_line_search
+msgid "Bids encoded"
+msgstr "Ponudbe knjižene"
+
+#. module: purchase_requisition_bid_selection
+#: field:purchase.requisition,budget:0
+msgid "Budget"
+msgstr "Proračun"
+
+#. module: purchase_requisition_bid_selection
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid "Budget availability ("
+msgstr "Razpoložljivi proračun ("
+
+#. module: purchase_requisition_bid_selection
+#: field:purchase.order.line,requisition_line_id:0
+msgid "Call for Bid Line"
+msgstr "Postavka razpisa"
+
+#. module: purchase_requisition_bid_selection
+#: field:purchase.requisition,bid_tendering_mode:0
+msgid "Call for Bids Mode"
+msgstr "Način razpisa"
+
+#. module: purchase_requisition_bid_selection
+#: view:purchase.order.line:purchase_requisition_bid_selection.view_purchase_order_line_search
+msgid "Call for Bids line"
+msgstr "Postavka razpisov"
+
+#. module: purchase_requisition_bid_selection
+#: model:purchase.cancel_reason,name:purchase_requisition_bid_selection.purchase_cancelreason_callforbids_canceled
+msgid "Call for bids canceled"
+msgstr "Razpis preklican"
+
+#. module: purchase_requisition_bid_selection
+#: view:purchase.action_modal:purchase_requisition_bid_selection.action_modal_confirm_different_quantity
+#: view:purchase.action_modal:purchase_requisition_bid_selection.modal_confirm_close_selection
+#: view:purchase.action_modal.ask_selection_reasons:purchase_requisition_bid_selection.ask_selection_reasons
+#: view:purchase.action_modal.ask_validity:purchase_requisition_bid_selection.ask_validity
+#: view:purchase.requisition.partner:purchase_requisition_bid_selection.view_purchase_requisition_partner_draftbid
+#: view:update.bid.internal.remark:purchase_requisition_bid_selection.view_update_bid_internal_remark
+#: view:update.remark:purchase_requisition_bid_selection.view_update_remark
+msgid "Cancel"
+msgstr "Preklic"
+
+#. module: purchase_requisition_bid_selection
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid "Canceled bids"
+msgstr "Preklicane ponudbe"
+
+#. module: purchase_requisition_bid_selection
+#: code:addons/purchase_requisition_bid_selection/model/purchase_requisition.py:234
+#, python-format
+msgid ""
+"Canceled by the call for bids associated to this request for quotation."
+msgstr "Preklicano z razpisom povezanim s tem povpraševanjem."
+
+#. module: purchase_requisition_bid_selection
+#: view:purchase.action_modal.ask_validity:purchase_requisition_bid_selection.ask_validity
+msgid "Change validity"
+msgstr "Sprememba veljavnosti"
+
+#. module: purchase_requisition_bid_selection
+#: model:ir.actions.act_window,name:purchase_requisition_bid_selection.action_purchase_requisition_partner_draftbid
+#: view:purchase.requisition.partner:purchase_requisition_bid_selection.view_purchase_requisition_partner_draftbid
+msgid "Choose Supplier"
+msgstr "Izbira dobavitelja"
+
+#. module: purchase_requisition_bid_selection
+#: model:ir.actions.report.xml,name:purchase_requisition_bid_selection.action_report_purchase_requisitions
+msgid "Comparative Bid Analysis"
+msgstr "Primerjalna analiza ponudbe"
+
+#. module: purchase_requisition_bid_selection
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid "Comparative Bid analysis"
+msgstr "Primerjalna analiza ponudbe"
+
+#. module: purchase_requisition_bid_selection
+#: view:purchase.action_modal:purchase_requisition_bid_selection.action_modal_confirm_different_quantity
+#: view:purchase.action_modal:purchase_requisition_bid_selection.modal_confirm_close_selection
+#: view:purchase.action_modal.ask_selection_reasons:purchase_requisition_bid_selection.ask_selection_reasons
+#: view:purchase.action_modal.ask_validity:purchase_requisition_bid_selection.ask_validity
+msgid "Confirm"
+msgstr "Potrdi"
+
+#. module: purchase_requisition_bid_selection
+#: view:purchase.action_modal:purchase_requisition_bid_selection.modal_confirm_close_selection
+msgid "Confirmation"
+msgstr "Potrditev"
+
+#. module: purchase_requisition_bid_selection
+#: field:purchase.order,country_of_origin:0
+#: field:purchase.order.line,country_of_origin:0
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid "Country of origin"
+msgstr "Država porekla"
+
+#. module: purchase_requisition_bid_selection
+#: view:purchase.requisition.partner:purchase_requisition_bid_selection.view_purchase_requisition_partner_draftbid
+msgid "Create Bid"
+msgstr "Ustvari ponudbo"
+
+#. module: purchase_requisition_bid_selection
+#: field:purchase.action_modal.ask_selection_reasons,create_uid:0
+#: field:purchase.action_modal.ask_validity,create_uid:0
+#: field:update.bid.internal.remark,create_uid:0
+#: field:update.remark,create_uid:0
+msgid "Created by"
+msgstr "Ustvaril"
+
+#. module: purchase_requisition_bid_selection
+#: field:purchase.action_modal.ask_selection_reasons,create_date:0
+#: field:purchase.action_modal.ask_validity,create_date:0
+#: field:update.bid.internal.remark,create_date:0
+#: field:update.remark,create_date:0
+msgid "Created on"
+msgstr "Ustvarjeno"
+
+#. module: purchase_requisition_bid_selection
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid "Currency of bid"
+msgstr "Valuta ponudbe"
+
+#. module: purchase_requisition_bid_selection
+#: help:purchase.requisition,req_payment_term_id:0
+msgid "Default value requested to the supplier."
+msgstr "Privzeta vrednost povpraševanja dobavitelju."
+
+#. module: purchase_requisition_bid_selection
+#: help:purchase.requisition,req_incoterm_id:0
+msgid ""
+"Default value requested to the supplier. International Commercial Terms are "
+"a series of predefined commercial terms used in international transactions."
+msgstr "Privzeta vrednost povpraševanja dobavitelju. Mednarodni komercialni termini \"incoterms\" so zbirka terminov v uporabi pri mednarodnih transakcijah."
+
+#. module: purchase_requisition_bid_selection
+#: view:purchase.requisition:purchase_requisition_bid_selection.view_purchase_requisition_form
+msgid "Deliveries"
+msgstr "Dobave"
+
+#. module: purchase_requisition_bid_selection
+#: view:purchase.order:purchase_requisition_bid_selection.view_purchase_order_form
+#: field:purchase.order,delivery_remark:0
+#: view:purchase.requisition:purchase_requisition_bid_selection.view_purchase_requisition_form
+#: field:purchase.requisition,delivery_remark:0
+msgid "Delivery Remarks"
+msgstr "Dobavne pripombe"
+
+#. module: purchase_requisition_bid_selection
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid "Delivery promised (Incoterms + destination)"
+msgstr "Dobava obljubljena (incoterms + destinacija)"
+
+#. module: purchase_requisition_bid_selection
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid "Description of item"
+msgstr "Opis predmeta"
+
+#. module: purchase_requisition_bid_selection
+#: field:purchase.action_modal.ask_selection_reasons,display_name:0
+#: field:purchase.action_modal.ask_validity,display_name:0
+#: field:update.bid.internal.remark,display_name:0
+#: field:update.remark,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: purchase_requisition_bid_selection
+#: view:purchase.order.line:purchase_requisition_bid_selection.view_purchase_order_line_search
+msgid "Eligible"
+msgstr "Veljavna"
+
+#. module: purchase_requisition_bid_selection
+#: field:purchase.requisition,eligible_bid_ids:0
+msgid "Eligible bid ids"
+msgstr "ID-ji veljavnih ponudb"
+
+#. module: purchase_requisition_bid_selection
+#: view:purchase.requisition:purchase_requisition_bid_selection.view_purchase_requisition_form
+msgid "Encode a Bid"
+msgstr "Vknjiži ponudbo"
+
+#. module: purchase_requisition_bid_selection
+#: code:addons/purchase_requisition_bid_selection/model/purchase_requisition.py:260
+#, python-format
+msgid "Error"
+msgstr "Napaka"
+
+#. module: purchase_requisition_bid_selection
+#: code:addons/purchase_requisition_bid_selection/model/purchase_requisition.py:144
+#, python-format
+msgid "Error!"
+msgstr "Napaka!"
+
+#. module: purchase_requisition_bid_selection
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid "Estimated arrival date"
+msgstr "Ocena datuma prihoda"
+
+#. module: purchase_requisition_bid_selection
+#: view:purchase.action_modal:purchase_requisition_bid_selection.action_modal_confirm_different_quantity
+msgid ""
+"For some lines, the selected quantity does not match the requested quantity.\n"
+"            Please confirm the operation."
+msgstr "Izbrana količina pri nekaterih postavkah ne ustreza zahtevani količini.\n            Potrdite operacijo, prosim."
+
+#. module: purchase_requisition_bid_selection
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid "GRAND TOTAL"
+msgstr "SKUPAJ"
+
+#. module: purchase_requisition_bid_selection
+#: view:purchase.requisition:purchase_requisition_bid_selection.view_purchase_requisition_form
+msgid "Generate PO"
+msgstr "Ustvari nabavni nalog"
+
+#. module: purchase_requisition_bid_selection
+#: field:purchase.requisition,generated_order_ids:0
+msgid "Generated Purchase Orders"
+msgstr "Ustvarjeni nabavni nalogi"
+
+#. module: purchase_requisition_bid_selection
+#: field:purchase.action_modal.ask_selection_reasons,id:0
+#: field:purchase.action_modal.ask_validity,id:0
+#: field:update.bid.internal.remark,id:0 field:update.remark,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_requisition_bid_selection
+#: view:purchase.order.line:purchase_requisition_bid_selection.view_purchase_order_line_search
+#: field:purchase.order.line,incoterm_id:0
+msgid "Incoterm"
+msgstr "Incoterm"
+
+#. module: purchase_requisition_bid_selection
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid "Incoterm (2010)"
+msgstr "Incoterm (2010)"
+
+#. module: purchase_requisition_bid_selection
+#: help:purchase.requisition,req_incoterm_address:0
+msgid ""
+"Incoterm Place of Delivery. International Commercial Terms are a series of "
+"predefined commercial terms used in international transactions."
+msgstr "Incoterm lokacija dobave. Mednarodni komercialni termini \"incoterms\" so zbirka terminov v uporabi pri mednarodnih transakcijah."
+
+#. module: purchase_requisition_bid_selection
+#: help:purchase.order.line,incoterm_address:0
+msgid ""
+"Incoterms Place of Delivery. International Commercial Terms are a series of "
+"predefined commercial terms used in international transactions."
+msgstr "Incoterm lokacija dobave. Mednarodni komercialni termini \"incoterms\" so zbirka terminov v uporabi pri mednarodnih transakcijah."
+
+#. module: purchase_requisition_bid_selection
+#: field:purchase.order.line,incoterm_address:0
+msgid "Incoterms place"
+msgstr "Incoterms lokacija"
+
+#. module: purchase_requisition_bid_selection
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid "Informations"
+msgstr "Informacije"
+
+#. module: purchase_requisition_bid_selection
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid "Internal remark"
+msgstr "Interne pripombe"
+
+#. module: purchase_requisition_bid_selection
+#: field:purchase.order,bid_internal_remark:0
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid "Internal remarks"
+msgstr "Interne pripombe"
+
+#. module: purchase_requisition_bid_selection
+#: help:purchase.order.line,incoterm_id:0
+msgid ""
+"International Commercial Terms are a series of predefined commercial terms "
+"used in international transactions."
+msgstr "Mednarodni komercialni termini \"incoterms\" so zbirka terminov v uporabi pri mednarodnih transakcijah."
+
+#. module: purchase_requisition_bid_selection
+#: field:purchase.action_modal.ask_selection_reasons,__last_update:0
+#: field:purchase.action_modal.ask_validity,__last_update:0
+#: field:update.bid.internal.remark,__last_update:0
+#: field:update.remark,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
+
+#. module: purchase_requisition_bid_selection
+#: field:purchase.action_modal.ask_selection_reasons,write_uid:0
+#: field:purchase.action_modal.ask_validity,write_uid:0
+#: field:update.bid.internal.remark,write_uid:0
+#: field:update.remark,write_uid:0
+msgid "Last Updated by"
+msgstr "Zadnji posodobil"
+
+#. module: purchase_requisition_bid_selection
+#: field:purchase.action_modal.ask_selection_reasons,write_date:0
+#: field:purchase.action_modal.ask_validity,write_date:0
+#: field:update.bid.internal.remark,write_date:0
+#: field:update.remark,write_date:0
+msgid "Last Updated on"
+msgstr "Zadnjič posodobljeno"
+
+#. module: purchase_requisition_bid_selection
+#: view:purchase.order.line:purchase_requisition_bid_selection.view_purchase_order_line_search
+msgid "Meets Specifications"
+msgstr "Ustreza specifikaciji"
+
+#. module: purchase_requisition_bid_selection
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid "Meets required specifications"
+msgstr "Ustreza zahtevani specifikaciji"
+
+#. module: purchase_requisition_bid_selection
+#: field:purchase.order,meets_specifications:0
+#: field:purchase.order.line,meets_specifications:0
+msgid "Meets specifications"
+msgstr "Ustreza specifikaciji"
+
+#. module: purchase_requisition_bid_selection
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid "N/A"
+msgstr "N/A"
+
+#. module: purchase_requisition_bid_selection
+#: field:purchase.action_modal.ask_validity,validity:0
+msgid "New end of validity"
+msgstr "Nov rok veljavnosti"
+
+#. module: purchase_requisition_bid_selection
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid "Non eligible bids"
+msgstr "Ne veljavne ponudbe"
+
+#. module: purchase_requisition_bid_selection
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid "Number of Suppliers invited"
+msgstr "Število povabljenih dobaviteljev"
+
+#. module: purchase_requisition_bid_selection
+#: selection:purchase.order,tender_bid_receipt_mode:0
+#: selection:purchase.requisition,bid_receipt_mode:0
+#: selection:purchase.requisition,bid_tendering_mode:0
+msgid "Open"
+msgstr "Odprt"
+
+#. module: purchase_requisition_bid_selection
+#: view:purchase.requisition:purchase_requisition_bid_selection.view_purchase_requisition_form
+msgid "Options"
+msgstr "Možnosti"
+
+#. module: purchase_requisition_bid_selection
+#: field:purchase.order.line,payment_term_id:0
+msgid "Payment Term"
+msgstr "Plačilni pogoj"
+
+#. module: purchase_requisition_bid_selection
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid "Paymet terms"
+msgstr "Plačilni pogoji"
+
+#. module: purchase_requisition_bid_selection
+#: view:purchase.action_modal.ask_selection_reasons:purchase_requisition_bid_selection.ask_selection_reasons
+msgid "Please enter a reason for the suggested selection."
+msgstr "Vnesite razlog za predlagani izbor."
+
+#. module: purchase_requisition_bid_selection
+#: view:purchase.action_modal.ask_validity:purchase_requisition_bid_selection.ask_validity
+msgid "Please enter validity date"
+msgstr "Vnesite rok veljavnosti"
+
+#. module: purchase_requisition_bid_selection
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid "Prepared and submited by"
+msgstr "Pripravil in predložil"
+
+#. module: purchase_requisition_bid_selection
+#: field:purchase.order,keep_in_draft:0
+msgid "Prevent validation of purchase order."
+msgstr "Prepreči potrditev nabavnega naloga."
+
+#. module: purchase_requisition_bid_selection
+#: model:ir.model,name:purchase_requisition_bid_selection.model_purchase_order
+msgid "Purchase Order"
+msgstr "Nabavni nalog"
+
+#. module: purchase_requisition_bid_selection
+#: model:ir.model,name:purchase_requisition_bid_selection.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Postavka nabavnega naloga"
+
+#. module: purchase_requisition_bid_selection
+#: model:ir.model,name:purchase_requisition_bid_selection.model_purchase_requisition
+msgid "Purchase Requisition"
+msgstr "Nabavni zahtevek"
+
+#. module: purchase_requisition_bid_selection
+#: model:ir.model,name:purchase_requisition_bid_selection.model_purchase_requisition_line
+msgid "Purchase Requisition Line"
+msgstr "Postavka nabavnega zahtevka"
+
+#. module: purchase_requisition_bid_selection
+#: model:ir.model,name:purchase_requisition_bid_selection.model_purchase_requisition_partner
+msgid "Purchase Requisition Partner"
+msgstr "Partner nabavnega zahtevka"
+
+#. module: purchase_requisition_bid_selection
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid "Quantity"
+msgstr "Količina"
+
+#. module: purchase_requisition_bid_selection
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid "Quotation Request (QR) No"
+msgstr "Povpraševanje (po predračunu) št."
+
+#. module: purchase_requisition_bid_selection
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid "Quotations reference and date"
+msgstr "Sklic in datum predračunov"
+
+#. module: purchase_requisition_bid_selection
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid "Rate of exchange"
+msgstr "Menjalni tečaj"
+
+#. module: purchase_requisition_bid_selection
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid "Reason"
+msgstr "Razlog"
+
+#. module: purchase_requisition_bid_selection
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid "Recommended Supplier(s)"
+msgstr "Priporočeni dobavitelj(i)"
+
+#. module: purchase_requisition_bid_selection
+#: view:update.bid.internal.remark:purchase_requisition_bid_selection.view_update_bid_internal_remark
+#: view:update.remark:purchase_requisition_bid_selection.view_update_remark
+#: field:update.remark,remark:0
+msgid "Remark"
+msgstr "Pripomba"
+
+#. module: purchase_requisition_bid_selection
+#: view:purchase.order.line:purchase_requisition_bid_selection.view_purchase_order_line_form
+#: field:purchase.order.line,remark:0 field:purchase.requisition.line,remark:0
+msgid "Remarks / Conditions"
+msgstr "Pripombe/pogoji"
+
+#. module: purchase_requisition_bid_selection
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid "Report date"
+msgstr "Datum poročila"
+
+#. module: purchase_requisition_bid_selection
+#: field:purchase.requisition,req_validity:0
+msgid "Requested Bid's End of Validity"
+msgstr "Zahtevani rok veljavnosti ponudb"
+
+#. module: purchase_requisition_bid_selection
+#: field:purchase.requisition,req_incoterm_id:0
+msgid "Requested Incoterms"
+msgstr "Zahtevani Incoterms"
+
+#. module: purchase_requisition_bid_selection
+#: field:purchase.requisition,req_incoterm_address:0
+msgid "Requested Incoterms Place"
+msgstr "Zahtevana Incoterm lokacija"
+
+#. module: purchase_requisition_bid_selection
+#: field:purchase.requisition,req_payment_term_id:0
+msgid "Requested Payment Term"
+msgstr "Zahtevani plačilni pogoj"
+
+#. module: purchase_requisition_bid_selection
+#: field:purchase.requisition,req_terms_of_payment:0
+msgid "Requested Terms of Payment"
+msgstr "Zahtevani plačilni pogoji"
+
+#. module: purchase_requisition_bid_selection
+#: help:purchase.requisition,req_validity:0
+msgid ""
+"Requested validity period requested to the bidder, i.e. please send bids that stay valid until that date.\n"
+" The bidder is allowed to send a bid with another validity end date that gets encoded in the bid."
+msgstr "Obdobje veljavnosti, ki se je od ponudnika zahtevalo.\n Ponudniku je dovoljeno poslati ponudbo z drugačno veljavnostjo, ki bo knjižena k ponudbi."
+
+#. module: purchase_requisition_bid_selection
+#: view:purchase.requisition:purchase_requisition_bid_selection.view_purchase_requisition_form
+msgid "Requests for Quotation"
+msgstr "Povpraševanje po predračunu"
+
+#. module: purchase_requisition_bid_selection
+#: view:purchase.requisition:purchase_requisition_bid_selection.view_purchase_requisition_form
+msgid "Requests for Quotation / Bids"
+msgstr "Povpraševanja po predračunu/ponudbe"
+
+#. module: purchase_requisition_bid_selection
+#: selection:purchase.requisition,bid_tendering_mode:0
+msgid "Restricted"
+msgstr "Omejen"
+
+#. module: purchase_requisition_bid_selection
+#: selection:purchase.order,tender_bid_receipt_mode:0
+#: selection:purchase.requisition,bid_receipt_mode:0
+msgid "Sealed"
+msgstr "Zapečateno"
+
+#. module: purchase_requisition_bid_selection
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid "Selected"
+msgstr "Izbrano"
+
+#. module: purchase_requisition_bid_selection
+#: view:purchase.action_modal.ask_selection_reasons:purchase_requisition_bid_selection.ask_selection_reasons
+#: field:purchase.action_modal.ask_selection_reasons,selection_reasons:0
+#: view:purchase.requisition:purchase_requisition_bid_selection.view_purchase_requisition_form
+#: field:purchase.requisition,selection_reasons:0
+msgid "Selection reasons"
+msgstr "Razlogi za izbiro"
+
+#. module: purchase_requisition_bid_selection
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid "Sub-total services"
+msgstr "Vmesni seštevek storitev"
+
+#. module: purchase_requisition_bid_selection
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid "Supplier name"
+msgstr "Naziv dobavitelja"
+
+#. module: purchase_requisition_bid_selection
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid "Supplier reference"
+msgstr "Sklic dobavitelja"
+
+#. module: purchase_requisition_bid_selection
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid "TOTAL"
+msgstr "SKUPAJ"
+
+#. module: purchase_requisition_bid_selection
+#: help:purchase.order,keep_in_draft:0
+msgid ""
+"Technical field used to prevent the PO that is automatically generated from "
+"a Tender to be validated. It is checked on the workflow transition."
+msgstr "Tehnično polje, ki preprečuje, da bi iz razpisa samodejno ustvarjen nabavni nalog bil potrjen. Označi se ob tranziciji delotoka."
+
+#. module: purchase_requisition_bid_selection
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid "Tender closing date/time"
+msgstr "Datum/čas zaključka razpisa"
+
+#. module: purchase_requisition_bid_selection
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid "Tendering output ("
+msgstr "Razpisni rezultat ("
+
+#. module: purchase_requisition_bid_selection
+#: view:purchase.order:purchase_requisition_bid_selection.view_purchase_order_form
+#: view:purchase.requisition:purchase_requisition_bid_selection.view_purchase_requisition_form
+msgid "Terms and Conditions"
+msgstr "Pojmi in pogoji"
+
+#. module: purchase_requisition_bid_selection
+#: view:purchase.requisition:purchase_requisition_bid_selection.view_purchase_requisition_form
+msgid "Terms and Conditions..."
+msgstr "Pojmi in pogoji..."
+
+#. module: purchase_requisition_bid_selection
+#: view:purchase.order:purchase_requisition_bid_selection.view_purchase_order_form
+msgid "Terms and conditions..."
+msgstr "Pojmi in pogoji..."
+
+#. module: purchase_requisition_bid_selection
+#: field:purchase.order,terms_of_payment:0
+#: field:purchase.order.line,terms_of_payment:0
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid "Terms of payment"
+msgstr "Plačilni pogoji"
+
+#. module: purchase_requisition_bid_selection
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid ""
+"This tender has no eligible bids\n"
+"\n"
+"              To be valid, a bid must have Eligible bid checked and be in state \"Draft Bid\" or \"Bid encoded\""
+msgstr "Ta razpis nima veljavnih ponudb\n\n              Da bi bil veljaven, mora imeti označeno polje 'Veljaven' in biti v stanjih \"Osnutek ponudbe\" ali \"Ponudba knjižena\""
+
+#. module: purchase_requisition_bid_selection
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid "Total"
+msgstr "Skupaj"
+
+#. module: purchase_requisition_bid_selection
+#: help:purchase.order,bid_partial:0
+msgid "True if the bid has been partially selected"
+msgstr "Pravilno, če je ponudba delno izbrana"
+
+#. module: purchase_requisition_bid_selection
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid "Unit Price"
+msgstr "Cena enote"
+
+#. module: purchase_requisition_bid_selection
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid "Unit price"
+msgstr "Cena enote"
+
+#. module: purchase_requisition_bid_selection
+#: model:ir.actions.act_window,name:purchase_requisition_bid_selection.action_update_bid_internal_remark
+msgid "Update bid internal remark"
+msgstr "Interna pripomba ob posodobitvi"
+
+#. module: purchase_requisition_bid_selection
+#: view:purchase.requisition:purchase_requisition_bid_selection.view_purchase_requisition_form
+msgid "Update internal remark"
+msgstr "Interna pripomba ob posodobitvi"
+
+#. module: purchase_requisition_bid_selection
+#: model:ir.actions.act_window,name:purchase_requisition_bid_selection.action_update_remark
+#: view:purchase.order.line:purchase_requisition_bid_selection.view_purchase_order_line_tree
+#: view:update.bid.internal.remark:purchase_requisition_bid_selection.view_update_bid_internal_remark
+#: view:update.remark:purchase_requisition_bid_selection.view_update_remark
+msgid "Update remark"
+msgstr "Pripomba ob posodobitvi"
+
+#. module: purchase_requisition_bid_selection
+#: code:addons/purchase_requisition_bid_selection/model/purchase_requisition.py:321
+#, python-format
+msgid "Validity extended from %s to %s"
+msgstr "Veljavnost podaljšana od %s na %s"
+
+#. module: purchase_requisition_bid_selection
+#: view:purchase.requisition:purchase_requisition_bid_selection.view_purchase_requisition_form
+msgid "View Generated PO"
+msgstr "Prikaz ustvarjenega nabavnega naloga"
+
+#. module: purchase_requisition_bid_selection
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid "Volume estimated"
+msgstr "Ocena prostornine"
+
+#. module: purchase_requisition_bid_selection
+#: field:purchase.order,volume_estimated:0
+msgid "Volume estimated (m3)"
+msgstr "Ocena prostornine (m3)"
+
+#. module: purchase_requisition_bid_selection
+#: view:purchase.action_modal:purchase_requisition_bid_selection.action_modal_confirm_different_quantity
+msgid "Warning"
+msgstr "Opozorilo"
+
+#. module: purchase_requisition_bid_selection
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid "Weight estimated"
+msgstr "Ocena mase"
+
+#. module: purchase_requisition_bid_selection
+#: field:purchase.order,weight_estimated:0
+msgid "Weight estimated (kg)"
+msgstr "Ocena mase (kg)"
+
+#. module: purchase_requisition_bid_selection
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid "Yes"
+msgstr "Da"
+
+#. module: purchase_requisition_bid_selection
+#: code:addons/purchase_requisition_bid_selection/model/purchase_requisition.py:260
+#, python-format
+msgid "You do not have valid sent RFQs."
+msgstr "Nimate veljavnega poslanega povpraševanja po predračunu."
+
+#. module: purchase_requisition_bid_selection
+#: code:addons/purchase_requisition_bid_selection/model/purchase_requisition.py:145
+#, python-format
+msgid "You have to define some products before confirming the call for bids."
+msgstr "Pred potrditvijo razpisa morate določiti nekaj proizvodov."
+
+#. module: purchase_requisition_bid_selection
+#: view:purchase.requisition:purchase_requisition_bid_selection.view_purchase_requisition_form
+msgid "closed"
+msgstr "closed"
+
+#. module: purchase_requisition_bid_selection
+#: view:purchase.requisition:purchase_requisition_bid_selection.view_purchase_requisition_form
+msgid "draft,in_progress,open,selected,closed,done"
+msgstr "draft,in_progress,open,selected,closed,done"
+
+#. module: purchase_requisition_bid_selection
+#: view:purchase.requisition:purchase_requisition_bid_selection.view_purchase_requisition_form
+msgid "gtk-apply"
+msgstr "gtk-apply"
+
+#. module: purchase_requisition_bid_selection
+#: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
+msgid "of bid"
+msgstr "of bid"
+
+#. module: purchase_requisition_bid_selection
+#: view:purchase.action_modal:purchase_requisition_bid_selection.action_modal_confirm_different_quantity
+#: view:purchase.action_modal:purchase_requisition_bid_selection.modal_confirm_close_selection
+#: view:purchase.action_modal.ask_selection_reasons:purchase_requisition_bid_selection.ask_selection_reasons
+#: view:purchase.action_modal.ask_validity:purchase_requisition_bid_selection.ask_validity
+#: view:purchase.requisition.partner:purchase_requisition_bid_selection.view_purchase_requisition_partner_draftbid
+#: view:update.bid.internal.remark:purchase_requisition_bid_selection.view_update_bid_internal_remark
+#: view:update.remark:purchase_requisition_bid_selection.view_update_remark
+msgid "or"
+msgstr "ali"
+
+#. module: purchase_requisition_bid_selection
+#: view:purchase.order:purchase_requisition_bid_selection.view_purchase_order_form
+msgid "{'invisible': ['|', ('requisition_id','!=',False)]}"
+msgstr "{'invisible': ['|', ('requisition_id','!=',False)]}"
+
+#. module: purchase_requisition_bid_selection
+#: view:purchase.requisition:purchase_requisition_bid_selection.view_purchase_requisition_form
+msgid ""
+"{'invisible': ['|', ('state', 'not in', "
+"('open','selected','closed','done')), ('exclusive', '=', 'exclusive')]}"
+msgstr "{'invisible': ['|', ('state', 'not in', ('open','selected','closed','done')), ('exclusive', '=', 'exclusive')]}"
+
+#. module: purchase_requisition_bid_selection
+#: view:purchase.requisition:purchase_requisition_bid_selection.view_purchase_requisition_form
+msgid ""
+"{'invisible': "
+"['|','|',('bid_tendering_mode','=','open'),('line_ids','=',[]),('state','!=','in_progress')]}"
+msgstr "{'invisible': ['|','|',('bid_tendering_mode','=','open'),('line_ids','=',[]),('state','!=','in_progress')]}"
+
+#. module: purchase_requisition_bid_selection
+#: view:purchase.requisition:purchase_requisition_bid_selection.view_purchase_requisition_form
+msgid ""
+"{'invisible': ['|',('purchase_ids','=',[]),('state', 'in', ('draft'))]}"
+msgstr "{'invisible': ['|',('purchase_ids','=',[]),('state', 'in', ('draft'))]}"
+
+#. module: purchase_requisition_bid_selection
+#: view:purchase.requisition:purchase_requisition_bid_selection.view_purchase_requisition_form
+msgid "{'readonly': [('state','not in',('draft'))]}"
+msgstr "{'readonly': [('state','not in',('draft'))]}"

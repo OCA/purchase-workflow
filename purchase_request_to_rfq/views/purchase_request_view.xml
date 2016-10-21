@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="view_purchase_request_form">
+            <field name="name">purchase.request.form</field>
+            <field name="model">purchase.request</field>
+            <field name="inherit_id"
+                   ref="purchase_request.view_purchase_request_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='line_ids']/tree"
+                       position="inside">
+                    <field name="purchased_qty"/>
+                    <field name="purchase_state"/>
+                </xpath>
+                <xpath expr="//field[@name='line_ids']/form//notebook"
+                       position="inside">
+                    <page name="purchase_lines"
+                          string="Purchase Order Lines">
+                        <group>
+                            <field name="purchased_qty"/>
+                            <field name="purchase_state"/>
+                        </group>
+                        <newline/>
+                        <group>
+                            <field name="purchase_lines" nolabel="1"/>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="purchase_request_line_tree" model="ir.ui.view">
+            <field name="name">purchase.request.line.tree</field>
+            <field name="model">purchase.request.line</field>
+            <field name="inherit_id"
+                   ref="purchase_request.purchase_request_line_tree"/>
+            <field name="arch" type="xml">
+                <field name="date_required" position="after">
+                    <field name="purchased_qty"/>
+                    <field name="purchase_state"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="purchase_request_line_form" model="ir.ui.view">
+            <field name="name">purchase.request.line.form</field>
+            <field name="model">purchase.request.line</field>
+            <field name="inherit_id"
+                   ref="purchase_request.purchase_request_line_form"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page name="purchase_lines"
+                          string="Purchase Order Lines">
+                        <group>
+                            <field name="purchased_qty"/>
+                            <field name="purchase_state"/>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="purchase_lines" nolabel="1"/>
+                            </group>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+        <record id="purchase_request_line_search" model="ir.ui.view">
+            <field name="name">purchase.request.line.search</field>
+            <field name="model">purchase.request.line</field>
+            <field name="inherit_id" ref="purchase_request.purchase_request_line_search"/>
+            <field name="arch" type="xml">
+                    <field name="date_required" position="after">
+                        <filter name="purchase_state_none"
+                                string="Purchasing not started"
+                                domain="[('purchase_state','=','none')]"
+                                help="No RFQ or Purchase has been created"/>
+                        <filter name="purchase_state_draft"
+                                string="Requested for Quotation"
+                                domain="[('purchase_state','=','draft')]"
+                                help="At least an RFQ has been created"/>
+                        <filter name="purchase_state_confirmed"
+                                string="Purchase Confirmed"
+                                domain="[('purchase_state','=','confirmed')]"
+                                help="At least an RFQ has been confirmed"/>
+                        <filter name="purchase_state_done"
+                                string="Purchase Done"
+                                domain="[('purchase_state','=','done')]"
+                                help="At least an RFQ has been completed"/>
+                    </field>
+                    <group position="inside">
+                        <filter string="Purchase Status"
+                                domain="[]" context="{'group_by':'purchase_state'}"/>
+                        <filter string="Request"
+                                domain="[]" context="{'group_by':'request_id'}"/>
+                    </group>
+            </field>
+        </record>
+
+    </data>
+</openerp>
