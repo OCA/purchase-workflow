@@ -62,3 +62,24 @@ class TestPurchaseOrder(common.TransactionCase):
         invoice = self.env['account.invoice'].browse(invoice_ids[0])
         self.assertEqual(invoice.invoice_line[0].discount, 50)
         self.assertEqual(invoice.invoice_line[1].discount, 30)
+
+    def test_make_invoice_from_returned_picking(self):
+        self.purchase_order.invoice_method = 'picking'
+        workflow.trg_validate(
+            self.uid, 'purchase.order', self.purchase_order.id,
+            'purchase_confirm', self.cr)
+        self.purchase_order.picking_ids.do_transfer()
+        picking = self.purchase_order.picking_ids[0]
+        move = picking.move_lines[0] 
+        wiz = self.env['stock.return.picking'].with_context(
+            active_id=picking.id).create(
+            {'invoice_state':'2binvoiced'})
+        wiz.with_context(active_id=picking.id).create_returns()
+        returned_picking = self.env['stock.move'].search(
+            [('origin_returned_move_id', '=', move.id)])[0].picking_id
+        invoice_ids = returned_picking.action_invoice_create(
+            self.env.ref('account.expenses_journal').id, type='in_invoice')
+        invoice = self.env['account.invoice'].browse(invoice_ids[0])
+        self.assertEqual(invoice.invoice_line[0].discount, 50)
+        self.assertEqual(invoice.invoice_line[1].discount, 30)
+        
