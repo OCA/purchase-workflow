@@ -70,10 +70,10 @@ class TestPurchaseOrder(common.TransactionCase):
             'purchase_confirm', self.cr)
         self.purchase_order.picking_ids.do_transfer()
         picking = self.purchase_order.picking_ids[0]
-        move = picking.move_lines[0] 
+        move = picking.move_lines[0]
         wiz = self.env['stock.return.picking'].with_context(
             active_id=picking.id).create(
-            {'invoice_state':'2binvoiced'})
+            {'invoice_state': '2binvoiced'})
         wiz.with_context(active_id=picking.id).create_returns()
         returned_picking = self.env['stock.move'].search(
             [('origin_returned_move_id', '=', move.id)])[0].picking_id
@@ -82,4 +82,3 @@ class TestPurchaseOrder(common.TransactionCase):
         invoice = self.env['account.invoice'].browse(invoice_ids[0])
         self.assertEqual(invoice.invoice_line[0].discount, 50)
         self.assertEqual(invoice.invoice_line[1].discount, 30)
-        
