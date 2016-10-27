@@ -22,9 +22,9 @@
 
 {
     "name": "Discounts in product supplier info",
-    "version": "8.0.1.0.0",
-    "author": "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
-              "Antiun Ingeniería S.L., "
+    "version": "9.0.1.0.0",
+    "author": "Tecnativa - Pedro M. Baeza, "
+              "Akretion - Julien Weste, "
               "Odoo Community Association (OCA)",
     "category": "Purchase Management",
     "website": "www.serviciosbaeza.com",
@@ -36,5 +36,5 @@
     "data": [
         'views/product_supplierinfo_view.xml',
     ],
-    'installable': False,
+    'installable': True,
 }

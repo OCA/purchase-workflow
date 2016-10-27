@@ -19,49 +19,30 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, api
+from openerp import api, models
 
 
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
-    @api.multi
-    def onchange_product_id(
-            self, pricelist_id, product_id, qty, uom_id, partner_id,
-            date_order=False, fiscal_position_id=False,
-            date_planned=False, name=False, price_unit=False, state='draft'):
-        res = super(PurchaseOrderLine, self).onchange_product_id(
-            pricelist_id, product_id, qty, uom_id, partner_id,
-            date_order=date_order, fiscal_position_id=fiscal_position_id,
-            date_planned=date_planned, name=name, price_unit=price_unit,
-            state=state)
-        if not product_id:
-            return res
-        supplierinfo_obj = self.env['product.supplierinfo']
-        product_obj = self.env['product.product']
-        product_uom_obj = self.env['product.uom']
-        pl_pinfo_obj = self.env['pricelist.partnerinfo']
-        # Look for a possible discount
-        product = product_obj.browse(product_id)
-        from_uom = self.env.context.get('uom') or product.uom_id.id
-        qty_in_product_uom = qty
-        partner = self.env['res.partner'].browse(partner_id)
-        sinfos = supplierinfo_obj.search(
-            [('product_tmpl_id', '=', product.product_tmpl_id.id),
-             ('name', 'child_of', partner.commercial_partner_id.id)])
-        if not sinfos:
-            return res
-        seller_uom = sinfos.product_uom.id or False
-        if seller_uom and from_uom and from_uom != seller_uom:
-            qty_in_product_uom = product_uom_obj._compute_qty(
-                from_uom, qty, to_uom_id=seller_uom)
-        pl_pinfos = pl_pinfo_obj.search(
-            [('suppinfo_id', 'in', sinfos.ids)], order="min_quantity")
-        if 'value' not in res:
-            res['value'] = {}
-        for pl_pinfo in pl_pinfos:
-            if pl_pinfo.min_quantity <= qty_in_product_uom:
-                res['value']['discount'] = pl_pinfo.discount
+    @api.onchange(
+        'product_id', 'product_qty', 'product_uom', 'partner_id',
+        'date_order',)
+    def onchange_pol_info(self):
+        if self.product_id:
+            # Look for a possible discount
+            sinfos = self.product_id.seller_ids.filtered(
+                lambda r, s=self: (
+                    r.name in self.partner_id.commercial_partner_id.
+                    child_ids or
+                    r.name == self.partner_id.commercial_partner_id) and (
+                        r.date_start is False or
+                        r.date_start <= self.date_order) and (
+                            r.date_end is False or
+                            r.date_end >= self.date_order
+                ) and r.min_qty <= self.product_qty).sorted(
+                    key=lambda s: s.min_qty)
+            if sinfos:
+                self.discount = sinfos[-1].discount or 0
             else:
-                break
-        return res
+                self.discount = 0

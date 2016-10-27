@@ -24,7 +24,7 @@ import openerp.addons.decimal_precision as dp
 
 
 class PricelistPartnerInfo(models.Model):
-    _inherit = "pricelist.partnerinfo"
+    _inherit = "product.supplierinfo"
 
     discount = fields.Float(
         string='Discount (%)', digits_compute=dp.get_precision('Discount'))
