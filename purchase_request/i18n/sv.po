@@ -6,12 +6,12 @@
 # OCA Transbot <transbot@odoo-community.org>, 2016
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 9.0c\n"
+"Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-17 00:52+0000\n"
-"PO-Revision-Date: 2016-09-17 00:52+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
-"Language-Team: Swedish (https://www.transifex.com/oca/teams/23907/sv/)\n"
+"POT-Creation-Date: 2016-11-17 03:38+0000\n"
+"PO-Revision-Date: 2016-10-22 22:24+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Swedish (http://www.transifex.com/oca/OCA-purchase-workflow-10-0/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -92,12 +92,6 @@ msgid ""
 msgstr ""
 
 #. module: purchase_request
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_message_needaction
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_message_needaction
-msgid "Action Needed"
-msgstr ""
-
-#. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_analytic_account_id
 #: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Analytic Account"
@@ -162,12 +156,6 @@ msgid "Creation date"
 msgstr ""
 
 #. module: purchase_request
-#: model:ir.model.fields,help:purchase_request.field_purchase_request_line_message_last_post
-#: model:ir.model.fields,help:purchase_request.field_purchase_request_message_last_post
-msgid "Date of the last message posted on the record."
-msgstr ""
-
-#. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_date_start
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line_date_start
 msgid "Date when the user initiated the request."
@@ -194,24 +182,6 @@ msgid "Draft"
 msgstr "Preliminär"
 
 #. module: purchase_request
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_message_follower_ids
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_message_follower_ids
-msgid "Followers"
-msgstr ""
-
-#. module: purchase_request
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_message_channel_ids
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_message_channel_ids
-msgid "Followers (Channels)"
-msgstr ""
-
-#. module: purchase_request
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_message_partner_ids
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_message_partner_ids
-msgid "Followers (Partners)"
-msgstr ""
-
-#. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Group By..."
@@ -224,33 +194,9 @@ msgid "ID"
 msgstr "ID"
 
 #. module: purchase_request
-#: model:ir.model.fields,help:purchase_request.field_purchase_request_line_message_unread
-#: model:ir.model.fields,help:purchase_request.field_purchase_request_message_unread
-msgid "If checked new messages require your attention."
-msgstr ""
-
-#. module: purchase_request
-#: model:ir.model.fields,help:purchase_request.field_purchase_request_line_message_needaction
-#: model:ir.model.fields,help:purchase_request.field_purchase_request_message_needaction
-msgid "If checked, new messages require your attention."
-msgstr ""
-
-#. module: purchase_request
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_message_is_follower
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_message_is_follower
-msgid "Is Follower"
-msgstr ""
-
-#. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_is_editable
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_is_editable
 msgid "Is editable"
-msgstr ""
-
-#. module: purchase_request
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_message_last_post
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_message_last_post
-msgid "Last Message Date"
 msgstr ""
 
 #. module: purchase_request
@@ -272,33 +218,9 @@ msgid "Last Updated on"
 msgstr "Senast uppdaterad"
 
 #. module: purchase_request
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_message_ids
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_message_ids
-msgid "Messages"
-msgstr "Meddelanden"
-
-#. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "My requests"
-msgstr ""
-
-#. module: purchase_request
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_message_needaction_counter
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_message_needaction_counter
-msgid "Number of Actions"
-msgstr ""
-
-#. module: purchase_request
-#: model:ir.model.fields,help:purchase_request.field_purchase_request_line_message_needaction_counter
-#: model:ir.model.fields,help:purchase_request.field_purchase_request_message_needaction_counter
-msgid "Number of messages which requires an action"
-msgstr ""
-
-#. module: purchase_request
-#: model:ir.model.fields,help:purchase_request.field_purchase_request_line_message_unread_counter
-#: model:ir.model.fields,help:purchase_request.field_purchase_request_message_unread_counter
-msgid "Number of unread messages"
 msgstr ""
 
 #. module: purchase_request
@@ -540,14 +462,6 @@ msgid "Unassigned Request"
 msgstr ""
 
 #. module: purchase_request
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_message_unread
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_message_unread
 #: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Unread Messages"
-msgstr ""
-
-#. module: purchase_request
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_message_unread_counter
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_message_unread_counter
-msgid "Unread Messages Counter"
 msgstr ""
