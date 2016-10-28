@@ -187,7 +187,7 @@ class PurchaseRequestLine(models.Model):
     product_uom_id = fields.Many2one('product.uom', 'Product Unit of Measure',
                                      track_visibility='onchange')
     product_qty = fields.Float('Quantity', track_visibility='onchange',
-                               digits_compute=dp.get_precision(
+                               digits=dp.get_precision(
                                    'Product Unit of Measure'))
     request_id = fields.Many2one('purchase.request',
                                  'Purchase Request',
