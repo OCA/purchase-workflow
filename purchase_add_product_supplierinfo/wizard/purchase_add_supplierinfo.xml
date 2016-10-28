@@ -15,7 +15,12 @@
                 </field>
                 <footer>
                     <button name="add_product_supplierinfo"
-                            string="Confirm"
+                            string="Add and Confirm"
+                            type="object"
+                            class="oe_highlight"/>
+                    or
+                    <button name="purchase_confirm"
+                            string="Confirm without adding"
                             type="object"
                             class="oe_highlight"/>
                     or

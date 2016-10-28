@@ -38,6 +38,12 @@ class PurchaseAddProductSupplierinfo(models.TransientModel):
                 })
             self.env['product.supplierinfo'].create(vals)
 
+    @api.multi
+    def purchase_confirm(self):
+        purchase = self.env['purchase.order'].browse(
+            self._context['active_id'])
+        purchase.signal_workflow('purchase_confirm')
+
 
 class PurchaseAddProductSupplierinfoLine(models.TransientModel):
     _name = 'purchase.add.product.supplierinfo.line'
