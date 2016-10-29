@@ -3,3 +3,6 @@
 server-tools
 stock-logistics-workflow
 sale-workflow
+partner-contact
+community-data-files
+account-invoicing https://github.com/akretion/account-invoicing 8.0-add-pdf-invoice-import

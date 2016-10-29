@@ -1,16 +1,23 @@
+language: python
+
+python:
+  - "2.7"
+
 sudo: false
 cache: pip
 
 addons:
   apt:
+    sources:
+      - pov-wkhtmltopdf
     packages:
       - expect-dev  # provides unbuffer utility
       - python-lxml # because pip installation is slow
+      - wkhtmltopdf # requires the before_install section below
 
-language: python
-
-python:
-  - "2.7"
+before_install:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
 
 env:
   global:
@@ -38,6 +45,7 @@ install:
   - git clone https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - travis_install_nightly
+  - pip install PyPDF2
 
 script:
   - travis_run_tests
