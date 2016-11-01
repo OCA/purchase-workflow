@@ -28,6 +28,7 @@ addon | version | summary
 [purchase_discount](purchase_discount/) | 8.0.1.1.0 | Purchase order lines with discounts
 [purchase_fiscal_position_update](purchase_fiscal_position_update/) | 8.0.1.0.0 | Changing the fiscal position of a purchase order will auto-update purchase order lines
 [purchase_last_price_info](purchase_last_price_info/) | 8.0.1.0.0 | Product Last Price Info - Purchase
+[purchase_order_line_description](purchase_order_line_description/) | 8.0.1.0.0 | Purchase order line description
 [purchase_order_reorder_lines](purchase_order_reorder_lines/) | 8.0.1.0.1 | Purchase order lines with sequence number
 [purchase_order_revision](purchase_order_revision/) | 8.0.1.0.0 | Purchase order revisions
 [purchase_order_type](purchase_order_type/) | 8.0.1.0.0 | Purchase Order Type
