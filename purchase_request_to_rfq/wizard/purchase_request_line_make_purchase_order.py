@@ -92,19 +92,27 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         po_line_obj = self.env['purchase.order.line']
         product_uom = self.env['product.uom']
         product = item.product_id
-        default_uom_po_id = product.uom_po_id.id
-        qty = product_uom._compute_qty(item.product_uom_id.id,
-                                       item.product_qty,
-                                       default_uom_po_id)
-        supplier_pricelist = \
-            po.partner_id.property_product_pricelist_purchase \
-            and po.partner_id.property_product_pricelist_purchase.id or False
-        vals = po_line_obj.onchange_product_id(
-            supplier_pricelist, product.id, qty, default_uom_po_id,
-            po.partner_id.id, date_order=False,
-            fiscal_position_id=po.partner_id.property_account_position.id,
-            date_planned=item.line_id.date_required,
-            name=False, price_unit=False, state='draft')['value']
+        if product:
+            default_uom_po_id = product.uom_po_id.id
+            qty = product_uom._compute_qty(item.product_uom_id.id,
+                                           item.product_qty,
+                                           default_uom_po_id)
+            supplier_pricelist = \
+                po.partner_id.property_product_pricelist_purchase \
+                and po.partner_id.property_product_pricelist_purchase.id or False
+            vals = po_line_obj.onchange_product_id(
+                supplier_pricelist, product.id, qty, default_uom_po_id,
+                po.partner_id.id, date_order=False,
+                fiscal_position_id=po.partner_id.property_account_position.id,
+                date_planned=item.line_id.date_required,
+                name=False, price_unit=False, state='draft')['value']
+        else:
+            vals = {
+                'name': item.name,
+                'product_uom': item.product_uom_id.id,
+                'product_qty': item.product_qty,
+                'price_unit': 0.0,
+            }
         vals.update({
             'order_id': po.id,
             'product_id': product.id,
@@ -251,7 +259,8 @@ class PurchaseRequestLineMakePurchaseOrderItem(models.TransientModel):
     name = fields.Char(string='Description', required=True)
     product_qty = fields.Float(string='Quantity to purchase',
                                digits_compute=dp.get_precision('Product UoS'))
-    product_uom_id = fields.Many2one('product.uom', string='UoM')
+    product_uom_id = fields.Many2one('product.uom', string='UoM',
+                                     required=True)
 
     @api.onchange('product_id', 'product_uom_id')
     def onchange_product_id(self):
