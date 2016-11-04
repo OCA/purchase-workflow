@@ -427,6 +427,10 @@ class PurchaseCostDistributionLine(models.Model):
     total_volume = fields.Float(
         compute=_compute_total_volume, string='Line volume', store=True,
         help="The line volume in m3.")
+    company_id = fields.Many2one(
+        comodel_name="res.company", related="distribution.company_id",
+        store=True,
+    )
 
     @api.multi
     def name_get(self):
@@ -454,6 +458,10 @@ class PurchaseCostDistributionLineExpense(models.Model):
         string='Expense amount', default=0.0,
         digits_compute=dp.get_precision('Account'))
     cost_ratio = fields.Float('Unit cost', default=0.0)
+    company_id = fields.Many2one(
+        comodel_name="res.company", related="distribution_line.company_id",
+        store=True,
+    )
 
 
 class PurchaseCostDistributionExpense(models.Model):
@@ -497,6 +505,10 @@ class PurchaseCostDistributionExpense(models.Model):
     invoice_id = fields.Many2one(
         comodel_name='account.invoice', string="Invoice")
     display_name = fields.Char(compute="_compute_display_name", store=True)
+    company_id = fields.Many2one(
+        comodel_name="res.company", related="distribution.company_id",
+        store=True,
+    )
 
     @api.one
     @api.depends('distribution', 'type', 'expense_amount')
