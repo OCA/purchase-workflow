@@ -6,10 +6,9 @@
 
 {
     'name': 'Purchase landed costs - Alternative option',
-    'version': '8.0.2.3.0',
+    'version': '8.0.2.4.0',
     "author": "OdooMRP team,"
               "AvanzOSC,"
-              "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
               "Tecnativa,"
               "Joaquín Gutierrez",
     'category': 'Purchase Management',
