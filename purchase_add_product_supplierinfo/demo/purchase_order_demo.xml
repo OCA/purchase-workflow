@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+<record id="purchase_order_8" model="purchase.order">
+    <field name="partner_id" ref="base.res_partner_22"/>
+    <field name="invoice_method">order</field>
+    <field name="location_id" ref="stock.stock_location_stock"/>
+    <field name="pricelist_id" ref="purchase.list0"/>
+    <field name="date_order" eval="time.strftime('%Y')+'-01-01'"/>
+    <field name="state">draft</field>
+</record>
+
+<record id="purchase_order_9" model="purchase.order">
+    <field name="partner_id" ref="base.res_partner_19"/>
+    <field name="invoice_method">order</field>
+    <field name="location_id" ref="stock.stock_location_stock"/>
+    <field name="pricelist_id" ref="purchase.list0"/>
+    <field name="date_order" eval="time.strftime('%Y')+'-01-01'"/>
+    <field name="state">draft</field>
+</record>
+
+<record id="purchase_order_10" model="purchase.order">
+    <field name="partner_id" ref="base.res_partner_1"/>
+    <field name="invoice_method">order</field>
+    <field name="location_id" ref="stock.stock_location_stock"/>
+    <field name="pricelist_id" ref="purchase.list0"/>
+    <field name="date_order" eval="time.strftime('%Y')+'-01-01'"/>
+    <field name="state">draft</field>
+</record>
+
+<record id="purchase_order_11" model="purchase.order">
+    <field name="partner_id" ref="base.res_partner_2"/>
+    <field name="invoice_method">order</field>
+    <field name="location_id" ref="stock.stock_location_stock"/>
+    <field name="pricelist_id" ref="purchase.list0"/>
+    <field name="date_order" eval="time.strftime('%Y')+'-01-01'"/>
+    <field name="state">draft</field>
+</record>
+
+<record id="purchase_order_line_8" model="purchase.order.line">
+    <field name="order_id" ref="purchase_order_8"/>
+    <field name="product_id" ref="product.product_product_4b"/>
+    <field name="name">iPad Retina Display</field>
+    <field name="price_unit">500</field>
+    <field name="product_qty">1</field>
+    <field name="date_order" eval="time.strftime('%Y')+'-01-01'"/>
+    <field name="date_planned" eval="time.strftime('%Y')+'-01-08'"/>
+</record>
+
+<record id="purchase_order_line_9" model="purchase.order.line">
+    <field name="order_id" ref="purchase_order_9"/>
+    <field name="product_id" ref="product.product_product_8"/>
+    <field name="name">iMac</field>
+    <field name="price_unit">1299</field>
+    <field name="product_qty">1</field>
+    <field name="date_order" eval="time.strftime('%Y')+'-01-01'"/>
+    <field name="date_planned" eval="time.strftime('%Y')+'-01-08'"/>
+</record>
+
+<record id="purchase_order_line_10" model="purchase.order.line">
+    <field name="order_id" ref="purchase_order_10"/>
+    <field name="product_id" ref="product.product_product_4b"/>
+    <field name="name">iPad Retina Display</field>
+    <field name="price_unit">500</field>
+    <field name="product_qty">1</field>
+    <field name="date_order" eval="time.strftime('%Y')+'-01-01'"/>
+    <field name="date_planned" eval="time.strftime('%Y')+'-01-08'"/>
+</record>
+
+<record id="purchase_order_line_11" model="purchase.order.line">
+    <field name="order_id" ref="purchase_order_11"/>
+    <field name="product_id" ref="product.product_product_8"/>
+    <field name="name">iMac</field>
+    <field name="price_unit">1299</field>
+    <field name="product_qty">1</field>
+    <field name="date_order" eval="time.strftime('%Y')+'-01-01'"/>
+    <field name="date_planned" eval="time.strftime('%Y')+'-01-08'"/>
+</record>
+
+    </data>
+</openerp>
