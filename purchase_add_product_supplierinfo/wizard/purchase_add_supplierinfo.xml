@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+    <record id="view_purchase_add_supplierinfo_form" model="ir.ui.view">
+        <field name="model">purchase.add.product.supplierinfo</field>
+        <field name="arch" type="xml">
+            <form string="Add supplier to products">
+                <separator string="List of products to update"/>
+                <field name="wizard_line_ids">
+                    <tree create="false" editable="bottom">
+                        <field name="name" readonly="1"/>
+                        <field name="to_variant"/>
+                    </tree>
+                </field>
+                <footer>
+                    <button name="add_product_supplierinfo"
+                            string="Add and Confirm"
+                            type="object"
+                            class="oe_highlight"/>
+                    or
+                    <button name="purchase_confirm"
+                            string="Confirm without adding"
+                            type="object"
+                            class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    </data>
+</openerp>
