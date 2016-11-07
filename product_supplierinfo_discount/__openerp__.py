@@ -7,8 +7,7 @@
 {
     "name": "Discounts in product supplier info",
     "version": "9.0.1.0.0",
-    "author": "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
-              "Antiun Ingeniería S.L., "
+    "author": "Tecnativa, "
               "Odoo Community Association (OCA)",
     "category": "Purchase Management",
     "website": "www.serviciosbaeza.com",

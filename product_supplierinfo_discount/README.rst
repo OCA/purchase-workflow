@@ -4,11 +4,11 @@
 Discounts in product supplier info
 ==================================
 
-This module allows to put a discount in the supplier info form, and propagate
+This module allows to input a discount in the supplier info form, and propagate
 it to purchase order lines:
 
-* The discount is directly put on purchase orders instead of reducing the
-  unit price.
+* The discount appears explicitly in purchase orders instead of being directly
+discounted in price.
 * You can set prices and discounts on the same screen.
 
 Installation
