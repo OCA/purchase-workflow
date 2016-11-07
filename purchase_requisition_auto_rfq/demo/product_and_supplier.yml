@@ -1,20 +1,28 @@
 -
- Kitchen set is sold by Agrolait and China Export
+ Kitchen set product is sold by Agrolait and China Export
 -
  !record {model: product.product, id: kitchenset}:
    name: Kitchen Set
    type: product
+-
+ Kitchen set product template is sold by Agrolait and China Export
+-
+ !record {model: product.template, id: kitchenset_product_template}:
    seller_ids:
      - name: base.res_partner_2
        sequence: 1
      - name: base.res_partner_3
        sequence: 2
 -
- Blanket is sold by China Export and Mediapole
+ Blanket product is sold by China Export and Mediapole
 -
  !record {model: product.product, id: blankets}:
    name: Blankets
    type: product
+-
+ Blanket product template is sold by China Export and Mediapole
+-
+ !record {model: product.template, id: blankets_product_template}:
    seller_ids:
      - name: base.res_partner_3
        sequence: 1
