@@ -1,65 +1,100 @@
-##############################################################################
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# -*- coding: utf-8 -*-
+# © 2014 Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
+#        Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
+# © 2016 ACSONE SA/NV (<http://acsone.eu>)
+# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 import openerp.tests.common as common
+from openerp import fields
 
 
 class TestProductSupplierinfoDiscount(common.TransactionCase):
 
     def setUp(self):
         super(TestProductSupplierinfoDiscount, self).setUp()
+        self.po_model = self.env['purchase.order.line']
         self.supplierinfo_model = self.env['product.supplierinfo']
         self.purchase_order_line_model = self.env['purchase.order.line']
         self.partner_1 = self.env.ref('base.res_partner_1')
         self.partner_3 = self.env.ref('base.res_partner_3')
         self.product = self.env.ref('product.product_product_6')
-        self.supplierinfo = self.supplierinfo_model.create(
-            {'min_qty': 1,
-             'name': self.partner_3.id,
-             'product_tmpl_id': self.product.product_tmpl_id.id,
-             'pricelist_ids': [
-                 (0, 0, {'min_quantity': 1,
-                         'price': 15,
-                         'discount': 10}),
-                 (0, 0, {'min_quantity': 10,
-                         'price': 15,
-                         'discount': 20}),
-             ]}
-        )
+        self.supplierinfo = self.supplierinfo_model.create({
+            'min_qty': 0.0,
+            'name': self.partner_3.id,
+            'product_tmpl_id': self.product.product_tmpl_id.id,
+            'discount': 10,
+        })
+        self.supplierinfo2 = self.supplierinfo_model.create({
+            'min_qty': 10.0,
+            'name': self.partner_3.id,
+            'product_tmpl_id': self.product.product_tmpl_id.id,
+            'discount': 20,
+        })
+        self.purchase_order = self.env['purchase.order'].create(
+            {'partner_id': self.partner_3.id})
+        self.po_line_1 = self.po_model.create(
+            {'order_id': self.purchase_order.id,
+             'product_id': self.product.id,
+             'date_planned': fields.Datetime.now(),
+             'name': 'Test',
+             'product_qty': 1.0,
+             'product_uom': self.env.ref('product.product_uom_categ_unit').id,
+             'price_unit': 10.0})
 
-    def test_purchase_order_partner_3_qty_1(self):
-        res = self.purchase_order_line_model.onchange_product_id(
-            self.partner_3.property_product_pricelist_purchase.id,
-            self.product.id, 1, self.product.uom_id.id, self.partner_3.id)
-        self.assertEqual(
-            res['value']['discount'], 10.0,
-            "Incorrect discount for product 6 with partner 3 and qty 1")
+    def test_001_purchase_order_partner_3_qty_1(self):
+        self.po_line_1._onchange_quantity()
+        self.assertEquals(
+            self.po_line_1.discount, 10,
+            "Incorrect discount for product 6 with partner 3 and qty 1: "
+            "Should be 10%")
 
-    def test_purchase_order_partner_3_qty_10(self):
-        res = self.purchase_order_line_model.onchange_product_id(
-            self.partner_3.property_product_pricelist_purchase.id,
-            self.product.id, 10, self.product.uom_id.id, self.partner_3.id)
-        self.assertEqual(
-            res['value']['discount'], 20.0,
-            "Incorrect discount for product 6 with partner 3 and qty 10")
+    def test_002_purchase_order_partner_3_qty_10(self):
+        self.po_line_1.write({'product_qty': 10})
+        self.po_line_1._onchange_quantity()
+        self.assertEquals(
+            self.po_line_1.discount, 20.0,
+            "Incorrect discount for product 6 with partner 3 and qty 10: "
+            "Should be 20%")
 
-    def test_purchase_order_partner_1_qty_1(self):
-        res = self.purchase_order_line_model.onchange_product_id(
-            self.partner_3.property_product_pricelist_purchase.id,
-            self.product.id, 1, self.product.uom_id.id, self.partner_1.id)
-        self.assertEqual(
-            res['value'].get('discount', 0.0), 0.0,
-            "Incorrect discount for product 6 with partner 1 and qty 1")
+    def test_003_purchase_order_partner_1_qty_1(self):
+        self.po_line_1.write({
+            'partner_id': self.partner_1.id,
+            'product_qty': 1,
+        })
+        self.po_line_1.onchange_product_id()
+        self.assertEquals(
+            self.po_line_1.discount, 0.0, "Incorrect discount for product "
+            "6 with partner 1 and qty 1")
+
+    def test_004_prepare_purchase_order_line(self):
+        vals = {
+            'sequence': 20,
+            'location_id': self.env.ref('stock.stock_location_locations').id,
+            'picking_type_id': self.env.ref('stock.chi_picking_type_in').id,
+            'warehouse_id': self.env.ref('stock.warehouse0').id,
+            'propagate': True,
+            'procure_method': 'make_to_stock',
+            'route_sequence': 5.0,
+            'name': 'YourCompany:  Buy',
+            'route_id': self.env.ref('stock.route_warehouse0_mto').id,
+            'action': 'buy',
+        }
+        procurement_rule = self.env['procurement.rule'].create(vals)
+        vals = {
+            'origin': 'SO012:WH: Stock -> Customers MTO',
+            'product_uom': self.env.ref('product.product_uom_unit').id,
+            'product_qty': 50,
+            'location_id': self.env.ref('stock.stock_location_locations').id,
+            'company_id': self.env.ref('base.main_company').id,
+            'state': 'confirmed',
+            'warehouse_id': self.env.ref('stock.warehouse0').id,
+            'move_dest_id': self.env.ref('stock.stock_location_customers').id,
+            'message_unread_counter': 0,
+            'name': 'WH: Stock -> Customers MTO',
+            'product_id': self.product.id,
+            'date_planned': fields.Datetime.now(),
+            'rule_id': procurement_rule.id,
+        }
+        procurement_order = self.env['procurement.order'].create(vals)
+        res = procurement_order._prepare_purchase_order_line(
+            self.purchase_order, self.supplierinfo)
+        self.assertTrue(res.get('discount'), 'Should have a discount key')
