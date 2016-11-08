@@ -21,6 +21,7 @@ addon | version | summary
 [procurement_batch_generator](procurement_batch_generator/) | 8.0.0.1.0 | Wizard to create procurements from product variants
 [product_by_supplier](product_by_supplier/) | 8.0.1.0.0 | Show products grouped by suppliers
 [product_supplierinfo_discount](product_supplierinfo_discount/) | 8.0.1.0.0 | Discounts in product supplier info
+[purchase_add_product_supplierinfo](purchase_add_product_supplierinfo/) | 8.0.1.0.0 | In the purchase order, allow automatically complete with partner, the supplierinfo list for all products which are not related to this supplier
 [purchase_all_shipments](purchase_all_shipments/) | 8.0.1.0.0 | Purchase All Shipments
 [purchase_commercial_partner](purchase_commercial_partner/) | 8.0.1.0.0 | Add stored related field 'Commercial Supplier' on POs
 [purchase_delivery_address](purchase_delivery_address/) | 8.0.1.1.0 | Deprecated: install purchase_transport_multi_address and stock_transport_multi_address instead
