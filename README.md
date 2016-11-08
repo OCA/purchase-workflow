@@ -18,6 +18,7 @@ Available addons
 addon | version | summary
 --- | --- | ---
 [product_by_supplier](product_by_supplier/) | 9.0.1.0.0 | Show products grouped by suppliers
+[product_supplierinfo_discount](product_supplierinfo_discount/) | 9.0.1.0.0 | Discounts in product supplier info
 [purchase_discount](purchase_discount/) | 9.0.1.0.0 | Purchase order lines with discounts
 [purchase_picking_state](purchase_picking_state/) | 9.0.1.0.0 | Add the status of all the incoming picking in the purchase order
 [purchase_request](purchase_request/) | 9.0.1.0.0 | Purchase Request
@@ -31,7 +32,6 @@ addon | version | summary
 [framework_agreement](framework_agreement/) | 8.0.2.0.0 (unported) | Long Term Agreement (or Framework Agreement) for purchases
 [mrp_smart_purchase](mrp_smart_purchase/) | 0.2 (unported) | Smart MRP Purchase based on supplier price
 [procurement_batch_generator](procurement_batch_generator/) | 8.0.0.1.0 (unported) | Wizard to create procurements from product variants
-[product_supplierinfo_discount](product_supplierinfo_discount/) | 8.0.1.0.0 (unported) | Discounts in product supplier info
 [purchase_all_shipments](purchase_all_shipments/) | 8.0.1.0.0 (unported) | Purchase All Shipments
 [purchase_delivery_address](purchase_delivery_address/) | 8.0.1.1.0 (unported) | Deprecated: install purchase_transport_multi_address and stock_transport_multi_address instead
 [purchase_delivery_term](purchase_delivery_term/) | 0.2 (unported) | Delivery term for purchase orders
