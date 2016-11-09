@@ -98,3 +98,19 @@ class TestProductSupplierinfoDiscount(common.TransactionCase):
         res = procurement_order._prepare_purchase_order_line(
             self.purchase_order, self.supplierinfo)
         self.assertTrue(res.get('discount'), 'Should have a discount key')
+
+    def test_005_default_supplierinfo_discount(self):
+        # Create an original supplierinfo
+        supplierinfo = self.supplierinfo_model.create({
+            'min_qty': 0.0,
+            'name': self.partner_3.id,
+            'product_tmpl_id': self.product.product_tmpl_id.id,
+            'discount': 10,
+        })
+        # Change the partner and raise onchange function
+        self.partner_1.default_supplierinfo_discount = 15
+        supplierinfo.name = self.partner_1
+        supplierinfo.onchange_name()
+        self.assertEquals(
+            supplierinfo.discount, 15, "Incorrect discount for supplierinfo "
+            " after changing partner that has default discount defined.")
