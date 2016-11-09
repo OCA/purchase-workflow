@@ -8,28 +8,28 @@ from openerp import models, api
 class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
 
-    @api.one
+    @api.multi
     def copy(self, default=None):
         if default is None:
             default = {}
-        default['name'] = '/'
+        default['name'] = 'New'
         return super(PurchaseOrder, self).copy(default=default)
 
     @api.model
     def create(self, vals):
-        if vals.get('name', '/') == '/':
+        if vals.get('name', 'New') == 'New':
             vals['name'] = self.env['ir.sequence'].next_by_code(
                 'purchase.rfq') or '/'
         return super(PurchaseOrder, self).create(vals)
 
     @api.multi
-    def wkf_confirm_order(self):
-        if super(PurchaseOrder, self).wkf_confirm_order():
-            for purchase in self:
-                rfq = purchase.name
-                purchase.write({
-                    'origin': rfq,
-                    'name': self.env['ir.sequence'].next_by_code(
-                        'purchase.order')
-                })
-        return True
+    def button_confirm(self):
+        res = super(PurchaseOrder, self).button_confirm()
+        for order in self:
+            rfq = order.name
+            order.write({
+                'origin': rfq,
+                'name': self.env['ir.sequence'].next_by_code(
+                    'purchase.order')
+            })
+        return res

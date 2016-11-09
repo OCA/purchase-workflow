@@ -16,6 +16,9 @@ class TestRFQNumber(TransactionCase):
         self.prod_1 = self.env.ref('product.product_product_5')
         self.prod_2 = self.env.ref('product.product_product_8')
 
+        # Data UOM
+        self.prod_uom = self.env.ref('product.product_uom_unit')
+
         # Data Partner
         self.partner = self.ref('base.res_partner_3')
 
@@ -23,22 +26,22 @@ class TestRFQNumber(TransactionCase):
         self.location = self.ref('stock.stock_location_stock')
 
         # Data Pricelist
-        self.pricelist = self.ref('purchase.list0')
+        self.pricelist = self.ref('product.list0')
 
     def _prepare_purchase_order_data(self):
         date_planned = '2016-01-01'
         data = {
             'partner_id': self.partner,
-            'location_id': self.location,
-            'pricelist_id': self.pricelist,
             'order_line': [
                 (0, 0, {'product_id': self.prod_1.id,
                         'name': self.prod_1.name,
+                        'product_uom': self.prod_uom.id,
                         'date_planned': date_planned,
                         'price_unit': self.prod_1.standard_price,
                         'product_qty': 2.0}),
                 (0, 0, {'product_id': self.prod_2.id,
                         'name': self.prod_2.name,
+                        'product_uom': self.prod_uom.id,
                         'date_planned': date_planned,
                         'price_unit': self.prod_2.standard_price,
                         'product_qty': 5.0})
@@ -61,5 +64,5 @@ class TestRFQNumber(TransactionCase):
         self.assertEqual('RFQ', purchase_order.name[:3])
         # Check Confirm PO
         # Prefix == 'PO'
-        purchase_order.signal_workflow('purchase_confirm')
+        purchase_order.button_confirm()
         self.assertEqual('PO', purchase_order.name[:2])
