@@ -91,11 +91,11 @@ class PurchaseLineInvoiceLine(models.TransientModel):
     po_line_id = fields.Many2one('purchase.order.line', 'Purchase order line',
                                  readonly=True)
     product_qty = fields.Float(
-        'Quantity', digits_compute=dp.get_precision('Product Unit of Measure'),
+        'Quantity', digits=dp.get_precision('Product Unit of Measure'),
         readonly=True)
     price_unit = fields.Float(related='po_line_id.price_unit',
                               string='Unit Price', readonly=True)
     invoiced_qty = fields.Float(
         string='Quantity to invoice',
-        digits_compute=dp.get_precision('Product Unit of Measure'))
+        digits=dp.get_precision('Product Unit of Measure'))
     wizard_id = fields.Many2one('purchase.order.line_invoice', 'Wizard')
