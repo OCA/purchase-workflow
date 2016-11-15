@@ -28,6 +28,8 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
             'product_qty': 5.0,
         }
         purchase_request_line = self.purchase_request_line.create(vals)
+        purchase_request.button_to_approve()
+        purchase_request.button_approved()
         vals = {
             'supplier_id': self.env.ref('base.res_partner_12').id,
         }

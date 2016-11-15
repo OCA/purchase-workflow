@@ -153,6 +153,10 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
 
         for item in self.item_ids:
             line = item.line_id
+            if line.request_state != 'approved':
+                raise exceptions.Warning(
+                    _('Purchase request %s is not approved.')
+                    % line.request_id.name)
             if line.purchase_state == 'done':
                 raise exceptions.Warning(
                     _('The purchase has already been completed.'))
