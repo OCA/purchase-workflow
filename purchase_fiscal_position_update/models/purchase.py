@@ -7,7 +7,7 @@
 from openerp import models, api, _
 
 
-class purchase_order(models.Model):
+class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
     @api.onchange('fiscal_position_id')
