@@ -4,7 +4,7 @@
 # Copyright 2016 - Tecnativa - Angel Moya <odoo@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import models, api, _
+from openerp import models, api
 
 
 class PurchaseOrder(models.Model):
