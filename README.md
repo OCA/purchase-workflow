@@ -20,6 +20,7 @@ addon | version | summary
 [product_by_supplier](product_by_supplier/) | 9.0.1.0.0 | Show products grouped by suppliers
 [product_supplierinfo_discount](product_supplierinfo_discount/) | 9.0.1.0.0 | Discounts in product supplier info
 [purchase_discount](purchase_discount/) | 9.0.1.0.0 | Purchase order lines with discounts
+[purchase_fiscal_position_update](purchase_fiscal_position_update/) | 9.0.1.0.0 | Changing the fiscal position of a purchase order will auto-update purchase order lines
 [purchase_picking_state](purchase_picking_state/) | 9.0.1.0.0 | Add the status of all the incoming picking in the purchase order
 [purchase_request](purchase_request/) | 9.0.1.0.0 | Purchase Request
 [purchase_request_procurement](purchase_request_procurement/) | 9.0.1.0.0 | Purchase Request Procurement
@@ -35,7 +36,6 @@ addon | version | summary
 [purchase_all_shipments](purchase_all_shipments/) | 8.0.1.0.0 (unported) | Purchase All Shipments
 [purchase_delivery_address](purchase_delivery_address/) | 8.0.1.1.0 (unported) | Deprecated: install purchase_transport_multi_address and stock_transport_multi_address instead
 [purchase_delivery_term](purchase_delivery_term/) | 0.2 (unported) | Delivery term for purchase orders
-[purchase_fiscal_position_update](purchase_fiscal_position_update/) | 8.0.1.0.0 (unported) | Changing the fiscal position of a purchase order will auto-update purchase order lines
 [purchase_group_hooks](purchase_group_hooks/) | 0.1 (unported) | Add hooks to the merge PO feature.
 [purchase_group_orders](purchase_group_orders/) | 0.4 (unported) | Purchase Group Orders by Shop and Carrier
 [purchase_landed_costs](purchase_landed_costs/) | 1.0.1 (unported) | Purchase Landed Costs
