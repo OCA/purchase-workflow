@@ -263,7 +263,7 @@ class PurchaseRequestLineMakePurchaseOrderItem(models.TransientModel):
     product_id = fields.Many2one('product.product', string='Product')
     name = fields.Char(string='Description', required=True)
     product_qty = fields.Float(string='Quantity to purchase',
-                               digits_compute=dp.get_precision('Product UoS'))
+                               digits=dp.get_precision('Product UoS'))
     product_uom_id = fields.Many2one('product.uom', string='UoM')
 
     @api.onchange('product_id', 'product_uom_id')
