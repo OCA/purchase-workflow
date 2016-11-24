@@ -3,3 +3,4 @@
 server-tools
 stock-logistics-workflow
 sale-workflow
+web
