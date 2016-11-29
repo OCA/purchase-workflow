@@ -1,0 +1,74 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * product_by_supplier
+# 
+# Translators:
+# César Castro Cruz <ulmroan@gmail.com>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-11-25 03:39+0000\n"
+"PO-Revision-Date: 2016-11-25 03:39+0000\n"
+"Last-Translator: César Castro Cruz <ulmroan@gmail.com>, 2016\n"
+"Language-Team: Galician (https://www.transifex.com/oca/teams/23907/gl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: gl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: product_by_supplier
+#: model:ir.ui.view,arch_db:product_by_supplier.view_product_supplierinfo_search
+msgid "Group by..."
+msgstr "Agrupar por..."
+
+#. module: product_by_supplier
+#: model:ir.model,name:product_by_supplier.model_product_supplierinfo
+msgid "Information about a product vendor"
+msgstr ""
+
+#. module: product_by_supplier
+#: model:ir.ui.view,arch_db:product_by_supplier.view_product_supplierinfo_form1
+#: model:ir.ui.view,arch_db:product_by_supplier.view_product_supplierinfo_search
+#: model:ir.ui.view,arch_db:product_by_supplier.view_product_supplierinfo_tree1
+msgid "Product"
+msgstr "Produto"
+
+#. module: product_by_supplier
+#: model:ir.ui.view,arch_db:product_by_supplier.view_product_supplierinfo_search
+msgid "Product Code"
+msgstr ""
+
+#. module: product_by_supplier
+#: model:ir.ui.menu,name:product_by_supplier.menu_product_supplier_info
+#: model:ir.ui.view,arch_db:product_by_supplier.view_product_supplierinfo_search
+msgid "Product by Suppliers"
+msgstr ""
+
+#. module: product_by_supplier
+#: model:ir.actions.act_window,name:product_by_supplier.action_product_supplier_info
+msgid "Products by Suppliers"
+msgstr ""
+
+#. module: product_by_supplier
+#: model:ir.ui.view,arch_db:product_by_supplier.view_product_supplierinfo_search
+msgid "Supplier"
+msgstr ""
+
+#. module: product_by_supplier
+#: model:ir.ui.view,arch_db:product_by_supplier.view_product_supplierinfo_tree1
+msgid "Supplier Information"
+msgstr ""
+
+#. module: product_by_supplier
+#: model:ir.ui.view,arch_db:product_by_supplier.view_product_supplierinfo_search
+#: model:ir.ui.view,arch_db:product_by_supplier.view_product_supplierinfo_tree1
+msgid "Supplier Product Code"
+msgstr ""
+
+#. module: product_by_supplier
+#: model:ir.ui.view,arch_db:product_by_supplier.view_product_supplierinfo_search
+#: model:ir.ui.view,arch_db:product_by_supplier.view_product_supplierinfo_tree1
+msgid "Supplier Product Name"
+msgstr ""
