@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-15 11:37+0000\n"
-"PO-Revision-Date: 2016-09-17 18:43+0000\n"
+"POT-Creation-Date: 2016-11-16 12:06+0000\n"
+"PO-Revision-Date: 2016-11-25 14:57+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -32,13 +32,13 @@ msgstr "Annuleren"
 #: field:procurement.batch.generator,create_uid:0
 #: field:procurement.batch.generator.line,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator,create_date:0
 #: field:procurement.batch.generator.line,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator,display_name:0
@@ -50,7 +50,7 @@ msgstr "Te tonen naam"
 #: field:procurement.batch.generator,id:0
 #: field:procurement.batch.generator.line,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator.line,incoming_qty:0
@@ -67,13 +67,13 @@ msgstr "Laatst bijgewerkt op"
 #: field:procurement.batch.generator,write_uid:0
 #: field:procurement.batch.generator.line,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator,write_date:0
 #: field:procurement.batch.generator.line,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: procurement_batch_generator
 #: model:ir.model,name:procurement_batch_generator.model_procurement_batch_generator_line
