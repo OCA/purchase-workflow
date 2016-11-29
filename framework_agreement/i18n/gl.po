@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-15 11:37+0000\n"
-"PO-Revision-Date: 2016-09-09 12:25+0000\n"
+"POT-Creation-Date: 2016-11-16 12:06+0000\n"
+"PO-Revision-Date: 2016-11-25 14:58+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Galician (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -238,7 +238,7 @@ msgstr ""
 #: field:framework.agreement.portfolio,__last_update:0
 #: field:framework.agreement.pricelist,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última modificación"
 
 #. module: framework_agreement
 #: field:framework.agreement,write_uid:0

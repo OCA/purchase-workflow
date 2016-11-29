@@ -3,13 +3,14 @@
 # * purchase_request
 # 
 # Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2016
 # Bole <bole@dajmi5.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-30 13:28+0000\n"
-"PO-Revision-Date: 2016-09-30 13:28+0000\n"
+"POT-Creation-Date: 2016-11-16 12:06+0000\n"
+"PO-Revision-Date: 2016-11-16 12:06+0000\n"
 "Last-Translator: Bole <bole@dajmi5.com>, 2016\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -71,7 +72,7 @@ msgstr ""
 #: field:purchase.request,company_id:0
 #: field:purchase.request.line,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Poduzeće"
 
 #. module: purchase_request
 #: field:purchase.request,create_uid:0
@@ -99,7 +100,7 @@ msgstr ""
 #: help:purchase.request,message_last_post:0
 #: help:purchase.request.line,message_last_post:0
 msgid "Date of the last message posted on the record."
-msgstr ""
+msgstr "Datum zadnjeg zapisa"
 
 #. module: purchase_request
 #: help:purchase.request,date_start:0 help:purchase.request.line,date_start:0
@@ -136,7 +137,7 @@ msgstr ""
 #: field:purchase.request,message_follower_ids:0
 #: field:purchase.request.line,message_follower_ids:0
 msgid "Followers"
-msgstr ""
+msgstr "Pratitelji"
 
 #. module: purchase_request
 #: view:purchase.request:purchase_request.view_purchase_request_search
@@ -161,7 +162,7 @@ msgstr "ID"
 #: help:purchase.request,message_unread:0
 #: help:purchase.request.line,message_unread:0
 msgid "If checked new messages require your attention."
-msgstr ""
+msgstr "Ako je odabrano, nove poruke zahtijevaju Vašu pažnju."
 
 #. module: purchase_request
 #: field:purchase.request,message_is_follower:0
@@ -179,7 +180,7 @@ msgstr ""
 #: field:purchase.request,message_last_post:0
 #: field:purchase.request.line,message_last_post:0
 msgid "Last Message Date"
-msgstr ""
+msgstr "Datum zadnje poruke"
 
 #. module: purchase_request
 #: field:purchase.request,__last_update:0
@@ -202,13 +203,13 @@ msgstr "Zadnje ažuriranje"
 #: field:purchase.request,message_ids:0
 #: field:purchase.request.line,message_ids:0
 msgid "Messages"
-msgstr ""
+msgstr "Poruke"
 
 #. module: purchase_request
 #: help:purchase.request,message_ids:0
 #: help:purchase.request.line,message_ids:0
 msgid "Messages and communication history"
-msgstr ""
+msgstr "Poruke i povijest"
 
 #. module: purchase_request
 #: field:purchase.request,picking_type_id:0
@@ -493,4 +494,4 @@ msgstr ""
 #: field:purchase.request,message_unread:0
 #: field:purchase.request.line,message_unread:0
 msgid "Unread Messages"
-msgstr ""
+msgstr "Nepročitane poruke"

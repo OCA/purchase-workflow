@@ -4,11 +4,15 @@
 # 
 # Translators:
 # Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
 # Carles Antoli <carlesantoli@hotmail.com>, 2016
+# Carles Antoli <carlesantoli@hotmail.com>, 2016
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
 # Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2012
 # Kostas Goutoudis <goutoudis@gmail.com>, 2015
 # Hotellook, 2014
+# Kostas Goutoudis <goutoudis@gmail.com>, 2015
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
 # Paolo Valier, 2016
 # Pedro Castro Silva <pedrocs@sossia.pt>, 2015
@@ -19,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-30 13:28+0000\n"
+"POT-Creation-Date: 2016-11-16 12:06+0000\n"
 "PO-Revision-Date: 2016-03-08 10:18+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/it/)\n"
@@ -57,7 +61,7 @@ msgstr "Approvvigionamento"
 #. module: vendor_consignment_stock
 #: model:ir.model,name:vendor_consignment_stock.model_procurement_rule
 msgid "Procurement Rule"
-msgstr ""
+msgstr "Regola d'Approvvigionamento"
 
 #. module: vendor_consignment_stock
 #: model:ir.model,name:vendor_consignment_stock.model_purchase_order
@@ -94,4 +98,4 @@ msgstr ""
 #. module: vendor_consignment_stock
 #: model:ir.model,name:vendor_consignment_stock.model_stock_warehouse
 msgid "Warehouse"
-msgstr ""
+msgstr "Magazzino"

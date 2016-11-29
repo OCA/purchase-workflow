@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-15 11:37+0000\n"
+"POT-Creation-Date: 2016-11-16 12:06+0000\n"
 "PO-Revision-Date: 2016-03-08 10:17+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/pt_PT/)\n"
@@ -40,7 +40,7 @@ msgstr "Criado em"
 #. module: purchase_order_type
 #: field:purchase.order.type,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Nome a Apresentar"
 
 #. module: purchase_order_type
 #: field:purchase.order.type,id:0
@@ -50,7 +50,7 @@ msgstr "ID"
 #. module: purchase_order_type
 #: field:purchase.order.type,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última Modificação Em"
 
 #. module: purchase_order_type
 #: field:purchase.order.type,write_uid:0
@@ -65,7 +65,7 @@ msgstr "Atualizado pela última vez em"
 #. module: purchase_order_type
 #: field:purchase.order.type,name:0
 msgid "Name"
-msgstr ""
+msgstr "Nome"
 
 #. module: purchase_order_type
 #: model:ir.model,name:purchase_order_type.model_res_partner

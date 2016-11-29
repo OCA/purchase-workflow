@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-15 11:37+0000\n"
-"PO-Revision-Date: 2016-09-15 11:37+0000\n"
+"POT-Creation-Date: 2016-11-16 12:06+0000\n"
+"PO-Revision-Date: 2016-11-16 12:06+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: Czech (https://www.transifex.com/oca/teams/23907/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -90,18 +90,18 @@ msgstr ""
 #: field:purchase.request.line.make.purchase.requisition,create_uid:0
 #: field:purchase.request.line.make.purchase.requisition.item,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Vytvořil(a)"
 
 #. module: purchase_request_to_requisition
 #: field:purchase.request.line.make.purchase.requisition,create_date:0
 #: field:purchase.request.line.make.purchase.requisition.item,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Vytvořeno"
 
 #. module: purchase_request_to_requisition
 #: field:purchase.request.line.make.purchase.requisition.item,name:0
 msgid "Description"
-msgstr ""
+msgstr "Popis"
 
 #. module: purchase_request_to_requisition
 #: view:purchase.request.line.make.purchase.requisition:purchase_request_to_requisition.view_purchase_request_line_make_purchase_requisition
@@ -112,7 +112,7 @@ msgstr ""
 #: field:purchase.request.line.make.purchase.requisition,display_name:0
 #: field:purchase.request.line.make.purchase.requisition.item,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Zobrazovaný název"
 
 #. module: purchase_request_to_requisition
 #: selection:purchase.request.line,requisition_state:0
@@ -139,7 +139,7 @@ msgstr ""
 #: field:purchase.request.line.make.purchase.requisition,id:0
 #: field:purchase.request.line.make.purchase.requisition.item,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: purchase_request_to_requisition
 #: field:purchase.request.line.make.purchase.requisition,item_ids:0
@@ -150,19 +150,19 @@ msgstr ""
 #: field:purchase.request.line.make.purchase.requisition,__last_update:0
 #: field:purchase.request.line.make.purchase.requisition.item,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Naposled upraveno"
 
 #. module: purchase_request_to_requisition
 #: field:purchase.request.line.make.purchase.requisition,write_uid:0
 #: field:purchase.request.line.make.purchase.requisition.item,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Naposled upraveno"
 
 #. module: purchase_request_to_requisition
 #: field:purchase.request.line.make.purchase.requisition,write_date:0
 #: field:purchase.request.line.make.purchase.requisition.item,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Naposled upraveno"
 
 #. module: purchase_request_to_requisition
 #: view:purchase.request.line:purchase_request_to_requisition.purchase_request_line_search

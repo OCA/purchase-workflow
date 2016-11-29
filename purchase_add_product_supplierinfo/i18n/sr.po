@@ -1,0 +1,139 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * purchase_add_product_supplierinfo
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-11-16 12:06+0000\n"
+"PO-Revision-Date: 2016-11-16 12:06+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"Language-Team: Serbian (https://www.transifex.com/oca/teams/23907/sr/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sr\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#. module: purchase_add_product_supplierinfo
+#: view:purchase.add.product.supplierinfo:purchase_add_product_supplierinfo.view_purchase_add_supplierinfo_form
+msgid "Add and Confirm"
+msgstr ""
+
+#. module: purchase_add_product_supplierinfo
+#: view:purchase.add.product.supplierinfo:purchase_add_product_supplierinfo.view_purchase_add_supplierinfo_form
+msgid "Add supplier to products"
+msgstr ""
+
+#. module: purchase_add_product_supplierinfo
+#: field:purchase.add.product.supplierinfo.line,to_variant:0
+msgid "Added to the variant"
+msgstr ""
+
+#. module: purchase_add_product_supplierinfo
+#: code:addons/purchase_add_product_supplierinfo/purchase.py:43
+#, python-format
+msgid "Associate the supplier '%s' with the products of this purchase order."
+msgstr ""
+
+#. module: purchase_add_product_supplierinfo
+#: view:purchase.add.product.supplierinfo:purchase_add_product_supplierinfo.view_purchase_add_supplierinfo_form
+msgid "Cancel"
+msgstr "Otkaži"
+
+#. module: purchase_add_product_supplierinfo
+#: view:purchase.add.product.supplierinfo:purchase_add_product_supplierinfo.view_purchase_add_supplierinfo_form
+msgid "Confirm without adding"
+msgstr ""
+
+#. module: purchase_add_product_supplierinfo
+#: field:purchase.add.product.supplierinfo,create_uid:0
+#: field:purchase.add.product.supplierinfo.line,create_uid:0
+msgid "Created by"
+msgstr ""
+
+#. module: purchase_add_product_supplierinfo
+#: field:purchase.add.product.supplierinfo,create_date:0
+#: field:purchase.add.product.supplierinfo.line,create_date:0
+msgid "Created on"
+msgstr "Kreiran"
+
+#. module: purchase_add_product_supplierinfo
+#: field:purchase.add.product.supplierinfo.line,name:0
+msgid "Description"
+msgstr "Opis"
+
+#. module: purchase_add_product_supplierinfo
+#: field:purchase.add.product.supplierinfo,display_name:0
+#: field:purchase.add.product.supplierinfo.line,display_name:0
+msgid "Display Name"
+msgstr ""
+
+#. module: purchase_add_product_supplierinfo
+#: field:purchase.add.product.supplierinfo,id:0
+#: field:purchase.add.product.supplierinfo.line,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_add_product_supplierinfo
+#: field:purchase.add.product.supplierinfo,__last_update:0
+#: field:purchase.add.product.supplierinfo.line,__last_update:0
+msgid "Last Modified on"
+msgstr ""
+
+#. module: purchase_add_product_supplierinfo
+#: field:purchase.add.product.supplierinfo,write_uid:0
+#: field:purchase.add.product.supplierinfo.line,write_uid:0
+msgid "Last Updated by"
+msgstr ""
+
+#. module: purchase_add_product_supplierinfo
+#: field:purchase.add.product.supplierinfo,write_date:0
+#: field:purchase.add.product.supplierinfo.line,write_date:0
+msgid "Last Updated on"
+msgstr ""
+
+#. module: purchase_add_product_supplierinfo
+#: view:purchase.add.product.supplierinfo:purchase_add_product_supplierinfo.view_purchase_add_supplierinfo_form
+msgid "List of products to update"
+msgstr ""
+
+#. module: purchase_add_product_supplierinfo
+#: field:purchase.add.product.supplierinfo.line,product_id:0
+msgid "Product"
+msgstr ""
+
+#. module: purchase_add_product_supplierinfo
+#: model:ir.model,name:purchase_add_product_supplierinfo.model_purchase_order
+msgid "Purchase Order"
+msgstr ""
+
+#. module: purchase_add_product_supplierinfo
+#: field:purchase.add.product.supplierinfo.line,wizard_id:0
+msgid "Wizard Reference"
+msgstr ""
+
+#. module: purchase_add_product_supplierinfo
+#: field:purchase.add.product.supplierinfo,wizard_line_ids:0
+msgid "Wizard lines"
+msgstr ""
+
+#. module: purchase_add_product_supplierinfo
+#: help:purchase.add.product.supplierinfo.line,to_variant:0
+msgid ""
+"if option is checked then supplier is added to the product variant else "
+"supplier is added to the product template"
+msgstr ""
+
+#. module: purchase_add_product_supplierinfo
+#: view:purchase.order:purchase_add_product_supplierinfo.purchase_order_form
+msgid "object"
+msgstr ""
+
+#. module: purchase_add_product_supplierinfo
+#: view:purchase.add.product.supplierinfo:purchase_add_product_supplierinfo.view_purchase_add_supplierinfo_form
+msgid "or"
+msgstr ""

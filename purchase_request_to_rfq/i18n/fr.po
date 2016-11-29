@@ -4,14 +4,13 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
-# Jonathan Nemry (ACSONE) <jonathan.nemry@acsone.eu>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-03 12:24+0000\n"
-"PO-Revision-Date: 2016-07-03 12:24+0000\n"
-"Last-Translator: Jonathan Nemry (ACSONE) <jonathan.nemry@acsone.eu>, 2016\n"
+"POT-Creation-Date: 2016-11-16 12:06+0000\n"
+"PO-Revision-Date: 2016-11-16 12:06+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,11 +32,6 @@ msgstr "<li><b>%s</b>: Quantité recue %s %s</li>"
 
 #. module: purchase_request_to_rfq
 #: view:purchase.request.line:purchase_request_to_rfq.purchase_request_line_search
-msgid "At least an RFQ has been created"
-msgstr "Au moins une demande de prix a été créée"
-
-#. module: purchase_request_to_rfq
-#: view:purchase.request.line:purchase_request_to_rfq.purchase_request_line_search
 msgid "At least an RFQ has been completed"
 msgstr "Au moin une demande de prix a été terminée"
 
@@ -45,6 +39,11 @@ msgstr "Au moin une demande de prix a été terminée"
 #: view:purchase.request.line:purchase_request_to_rfq.purchase_request_line_search
 msgid "At least an RFQ has been confirmed"
 msgstr "Au moins une demande de prix a été confirmée"
+
+#. module: purchase_request_to_rfq
+#: view:purchase.request.line:purchase_request_to_rfq.purchase_request_line_search
+msgid "At least an RFQ has been created"
+msgstr "Au moins une demande de prix a été créée"
 
 #. module: purchase_request_to_rfq
 #: view:purchase.request.line.make.purchase.order:purchase_request_to_rfq.view_purchase_request_line_make_purchase_order
@@ -101,7 +100,7 @@ msgid "Done"
 msgstr "Fait"
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:159
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:165
 #, python-format
 msgid "Enter a positive quantity."
 msgstr "Indiquez une quantité positive."
@@ -259,6 +258,12 @@ msgid "Purchase Status"
 msgstr "Statut d'achat"
 
 #. module: purchase_request_to_rfq
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:158
+#, python-format
+msgid "Purchase request %s is not approved."
+msgstr ""
+
+#. module: purchase_request_to_rfq
 #: view:purchase.request.line:purchase_request_to_rfq.purchase_request_line_search
 msgid "Purchasing not started"
 msgstr "Achat non commencé"
@@ -274,7 +279,7 @@ msgid "Quantity to purchase"
 msgstr "Quantité à acheter"
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:224
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:230
 #: selection:purchase.request.line,purchase_state:0
 #, python-format
 msgid "RFQ"
@@ -304,17 +309,25 @@ msgstr "Fournisseur"
 #. module: purchase_request_to_rfq
 #: code:addons/purchase_request_to_rfq/models/purchase_order.py:19
 #, python-format
-msgid "The following requested items from Purchase Request %s have now been confirmed in Purchase Order %s:"
-msgstr "Les articles suivants de la demande d'achat %s n'ont pas été confirmés dans le bon de commande %s:"
+msgid ""
+"The following requested items from Purchase Request %s have now been "
+"confirmed in Purchase Order %s:"
+msgstr ""
+"Les articles suivants de la demande d'achat %s n'ont pas été confirmés dans "
+"le bon de commande %s:"
 
 #. module: purchase_request_to_rfq
 #: code:addons/purchase_request_to_rfq/models/stock.py:20
 #, python-format
-msgid "The following requested items from Purchase Request %s have now been received in Incoming Shipment %s:"
-msgstr "Les articles suivants de la demande d'achat %s n'ont pas été reçu dans la réception %s"
+msgid ""
+"The following requested items from Purchase Request %s have now been "
+"received in Incoming Shipment %s:"
+msgstr ""
+"Les articles suivants de la demande d'achat %s n'ont pas été reçu dans la "
+"réception %s"
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:156
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:162
 #, python-format
 msgid "The purchase has already been completed."
 msgstr "L'achat est déjà terminé"
@@ -333,28 +346,32 @@ msgstr "Assistant"
 #: code:addons/purchase_request_to_rfq/models/purchase_request.py:135
 #, python-format
 msgid "You cannot delete a record that refers to purchase lines!"
-msgstr "Vous ne pouvez pas supprimer un enregistrement qui fait référence à des lignes d'achat"
+msgstr ""
+"Vous ne pouvez pas supprimer un enregistrement qui fait référence à des "
+"lignes d'achat"
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:173
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:179
 #, python-format
 msgid "You have to enter a Picking Type."
 msgstr "Vous devez entrer un type de préparation"
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:177
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:183
 #, python-format
 msgid "You have to select lines from the same Picking Type."
 msgstr "Vous devez sélectionner des lignes d'un même type de préparation"
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:165
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:171
 #, python-format
 msgid "You have to select lines from the same company."
 msgstr "Vous devez sélectionner  des lignes de la même société."
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:188
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:194
 #, python-format
 msgid "You have to select lines from the same procurement location."
-msgstr "Vous devez sélectionner des lignes depuis un même emplacement d'approvisionnement"
+msgstr ""
+"Vous devez sélectionner des lignes depuis un même emplacement "
+"d'approvisionnement"

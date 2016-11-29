@@ -3,11 +3,22 @@
 # * vendor_consignment_stock
 # 
 # Translators:
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015-2016
+# Antonio Trueba, 2016
+# danimaribeiro <danimaribeiro@gmail.com>, 2016
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012-2014
+# Hotellook, 2014
+# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
+# Jesús Alan Ramos Rodríguez <alan.ramos@jarsa.com.mx>, 2015
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Paolo Valier, 2016
+# Pedro Castro Silva <pedrocs@sossia.pt>, 2015
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-08 10:16+0000\n"
+"POT-Creation-Date: 2016-11-16 12:06+0000\n"
 "PO-Revision-Date: 2016-03-08 10:18+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/es/)\n"
@@ -40,12 +51,12 @@ msgstr ""
 #. module: vendor_consignment_stock
 #: model:ir.model,name:vendor_consignment_stock.model_procurement_order
 msgid "Procurement"
-msgstr ""
+msgstr "Abastecimiento"
 
 #. module: vendor_consignment_stock
 #: model:ir.model,name:vendor_consignment_stock.model_procurement_rule
 msgid "Procurement Rule"
-msgstr ""
+msgstr "Regla de abastecimiento"
 
 #. module: vendor_consignment_stock
 #: model:ir.model,name:vendor_consignment_stock.model_purchase_order
@@ -60,7 +71,7 @@ msgstr ""
 #. module: vendor_consignment_stock
 #: model:ir.model,name:vendor_consignment_stock.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Pedido de venta"
 
 #. module: vendor_consignment_stock
 #: help:stock.warehouse,buy_vci_to_resupply:0
@@ -82,4 +93,4 @@ msgstr ""
 #. module: vendor_consignment_stock
 #: model:ir.model,name:vendor_consignment_stock.model_stock_warehouse
 msgid "Warehouse"
-msgstr ""
+msgstr "Almacén"

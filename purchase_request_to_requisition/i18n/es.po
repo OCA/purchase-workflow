@@ -4,13 +4,15 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
+# Pedro M. Baeza <pedro.baeza@gmail.com>, 2016
+# Iván Todorovich <ivan.todorovich@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-30 13:28+0000\n"
-"PO-Revision-Date: 2016-09-30 13:28+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"POT-Creation-Date: 2016-11-16 12:06+0000\n"
+"PO-Revision-Date: 2016-11-16 12:06+0000\n"
+"Last-Translator: Iván Todorovich <ivan.todorovich@gmail.com>, 2016\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,7 +34,7 @@ msgstr ""
 #. module: purchase_request_to_requisition
 #: view:purchase.request.line:purchase_request_to_requisition.purchase_request_line_search
 msgid "At least a PO has been confirmed"
-msgstr ""
+msgstr "Se ha confirmado al menos un PC"
 
 #. module: purchase_request_to_requisition
 #: view:purchase.request.line:purchase_request_to_requisition.purchase_request_line_search
@@ -68,12 +70,12 @@ msgstr ""
 #. module: purchase_request_to_requisition
 #: view:purchase.request.line.make.purchase.requisition:purchase_request_to_requisition.view_purchase_request_line_make_purchase_requisition
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #. module: purchase_request_to_requisition
 #: selection:purchase.request.line,requisition_state:0
 msgid "Cancelled"
-msgstr ""
+msgstr "Cancelado"
 
 #. module: purchase_request_to_requisition
 #: selection:purchase.request.line,requisition_state:0
@@ -106,7 +108,7 @@ msgstr "Descripción"
 #. module: purchase_request_to_requisition
 #: view:purchase.request.line.make.purchase.requisition:purchase_request_to_requisition.view_purchase_request_line_make_purchase_requisition
 msgid "Details"
-msgstr ""
+msgstr "Detalles"
 
 #. module: purchase_request_to_requisition
 #: field:purchase.request.line.make.purchase.requisition,display_name:0
@@ -117,13 +119,13 @@ msgstr "Nombre mostrado"
 #. module: purchase_request_to_requisition
 #: selection:purchase.request.line,requisition_state:0
 msgid "Draft"
-msgstr ""
+msgstr "Borrador"
 
 #. module: purchase_request_to_requisition
 #: code:addons/purchase_request_to_requisition/wizard/purchase_request_line_make_purchase_requisition.py:96
 #, python-format
 msgid "Enter a positive quantity."
-msgstr ""
+msgstr "Introduzca una cantidad positiva."
 
 #. module: purchase_request_to_requisition
 #: view:purchase.request.line.make.purchase.requisition:purchase_request_to_requisition.view_purchase_request_line_make_purchase_requisition
@@ -144,7 +146,7 @@ msgstr "ID"
 #. module: purchase_request_to_requisition
 #: field:purchase.request.line.make.purchase.requisition,item_ids:0
 msgid "Items"
-msgstr ""
+msgstr "Elementos"
 
 #. module: purchase_request_to_requisition
 #: field:purchase.request.line.make.purchase.requisition,__last_update:0
@@ -198,18 +200,18 @@ msgstr "Producto"
 #. module: purchase_request_to_requisition
 #: model:ir.model,name:purchase_request_to_requisition.model_product_template
 msgid "Product Template"
-msgstr ""
+msgstr "Plantilla producto"
 
 #. module: purchase_request_to_requisition
 #: field:purchase.request.line.make.purchase.requisition.item,request_id:0
 msgid "Purchase Request"
-msgstr ""
+msgstr "Petición de compra"
 
 #. module: purchase_request_to_requisition
 #: model:ir.model,name:purchase_request_to_requisition.model_purchase_request_line
 #: field:purchase.request.line.make.purchase.requisition.item,line_id:0
 msgid "Purchase Request Line"
-msgstr ""
+msgstr "Línea de petición de compra"
 
 #. module: purchase_request_to_requisition
 #: model:ir.model,name:purchase_request_to_requisition.model_purchase_request_line_make_purchase_requisition
@@ -226,12 +228,12 @@ msgstr ""
 #: field:purchase.requisition.line,purchase_request_lines:0
 #, python-format
 msgid "Purchase Request Lines"
-msgstr ""
+msgstr "Líneas de petición de compra"
 
 #. module: purchase_request_to_requisition
 #: view:purchase.requisition:purchase_request_to_requisition.view_purchase_requisition_form
 msgid "Purchase Request lines"
-msgstr ""
+msgstr "Líneas de petición de compra"
 
 #. module: purchase_request_to_requisition
 #: model:ir.model,name:purchase_request_to_requisition.model_purchase_requisition
@@ -269,7 +271,7 @@ msgstr ""
 #. module: purchase_request_to_requisition
 #: view:purchase.request.line:purchase_request_to_requisition.purchase_request_line_search
 msgid "Request"
-msgstr ""
+msgstr "Petición"
 
 #. module: purchase_request_to_requisition
 #: view:purchase.request:purchase_request_to_requisition.view_purchase_request_form
@@ -292,7 +294,7 @@ msgstr ""
 #. module: purchase_request_to_requisition
 #: field:purchase.request.line.make.purchase.requisition.item,product_uom_id:0
 msgid "UoM"
-msgstr ""
+msgstr "UdM"
 
 #. module: purchase_request_to_requisition
 #: field:purchase.request.line.make.purchase.requisition.item,wiz_id:0
@@ -303,13 +305,13 @@ msgstr ""
 #: code:addons/purchase_request_to_requisition/models/purchase_request.py:80
 #, python-format
 msgid "You cannot delete a record that refers to purchase lines!"
-msgstr ""
+msgstr "No puede eliminar un registro que tenga enlazadas líneas de compra"
 
 #. module: purchase_request_to_requisition
 #: code:addons/purchase_request_to_requisition/wizard/purchase_request_line_make_purchase_requisition.py:102
 #, python-format
 msgid "You have to select lines from the same company."
-msgstr ""
+msgstr "Tiene que seleccionar líneas de la misma compañía."
 
 #. module: purchase_request_to_requisition
 #: code:addons/purchase_request_to_requisition/wizard/purchase_request_line_make_purchase_requisition.py:111

@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-30 13:28+0000\n"
-"PO-Revision-Date: 2016-10-04 09:43+0000\n"
+"POT-Creation-Date: 2016-11-16 12:06+0000\n"
+"PO-Revision-Date: 2016-11-25 14:55+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -485,7 +485,7 @@ msgstr ""
 #. module: purchase_requisition_bid_selection
 #: field:purchase.order.line,payment_term_id:0
 msgid "Payment Term"
-msgstr ""
+msgstr "Plazo de pago"
 
 #. module: purchase_requisition_bid_selection
 #: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
@@ -540,7 +540,7 @@ msgstr ""
 #. module: purchase_requisition_bid_selection
 #: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
 msgid "Quantity"
-msgstr ""
+msgstr "Cantidad"
 
 #. module: purchase_requisition_bid_selection
 #: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
@@ -781,7 +781,7 @@ msgstr ""
 #. module: purchase_requisition_bid_selection
 #: view:purchase.action_modal:purchase_requisition_bid_selection.action_modal_confirm_different_quantity
 msgid "Warning"
-msgstr ""
+msgstr "Aviso"
 
 #. module: purchase_requisition_bid_selection
 #: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
@@ -839,7 +839,7 @@ msgstr ""
 #: view:update.bid.internal.remark:purchase_requisition_bid_selection.view_update_bid_internal_remark
 #: view:update.remark:purchase_requisition_bid_selection.view_update_remark
 msgid "or"
-msgstr ""
+msgstr "o"
 
 #. module: purchase_requisition_bid_selection
 #: view:purchase.order:purchase_requisition_bid_selection.view_purchase_order_form

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-30 13:27+0000\n"
-"PO-Revision-Date: 2016-09-25 14:00+0000\n"
+"POT-Creation-Date: 2016-11-16 12:06+0000\n"
+"PO-Revision-Date: 2016-11-25 14:57+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -44,7 +44,7 @@ msgstr "Създадено на"
 #: field:procurement.batch.generator,display_name:0
 #: field:procurement.batch.generator.line,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Име за Показване"
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator,id:0
@@ -124,7 +124,7 @@ msgstr ""
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator.line,partner_id:0
 msgid "Supplier"
-msgstr ""
+msgstr "Доставчик"
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator.line,uom_id:0

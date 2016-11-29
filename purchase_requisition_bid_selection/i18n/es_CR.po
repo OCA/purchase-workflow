@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-15 11:37+0000\n"
+"POT-Creation-Date: 2016-11-16 12:06+0000\n"
 "PO-Revision-Date: 2016-03-08 10:17+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Spanish (Costa Rica) (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/es_CR/)\n"
@@ -239,7 +239,7 @@ msgstr ""
 #: field:update.bid.internal.remark,create_date:0
 #: field:update.remark,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Creado en"
 
 #. module: purchase_requisition_bid_selection
 #: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
@@ -348,7 +348,7 @@ msgstr ""
 #: field:purchase.action_modal.ask_validity,id:0
 #: field:update.bid.internal.remark,id:0 field:update.remark,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: purchase_requisition_bid_selection
 #: view:purchase.order.line:purchase_requisition_bid_selection.view_purchase_order_line_search
@@ -715,7 +715,7 @@ msgstr ""
 #. module: purchase_requisition_bid_selection
 #: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
 msgid "Total"
-msgstr ""
+msgstr "Total"
 
 #. module: purchase_requisition_bid_selection
 #: help:purchase.order,bid_partial:0

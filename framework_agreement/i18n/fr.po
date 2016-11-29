@@ -21,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-15 11:37+0000\n"
-"PO-Revision-Date: 2016-09-17 19:03+0000\n"
+"POT-Creation-Date: 2016-11-16 12:06+0000\n"
+"PO-Revision-Date: 2016-11-25 14:55+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -83,7 +83,7 @@ msgstr ""
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view
 #: selection:framework.agreement,state:0
 msgid "Closed"
-msgstr ""
+msgstr "Fermer"
 
 #. module: framework_agreement
 #: model:ir.model,name:framework_agreement.model_res_company
@@ -121,7 +121,7 @@ msgstr "Créé le"
 #. module: framework_agreement
 #: field:framework.agreement.pricelist,currency_id:0
 msgid "Currency"
-msgstr ""
+msgstr "Devise"
 
 #. module: framework_agreement
 #: code:addons/framework_agreement/model/framework_agreement.py:300
@@ -134,7 +134,7 @@ msgstr ""
 #: view:framework.agreement:framework_agreement.framework_agreement_form_view
 #: view:product.product:framework_agreement.agreement in product view
 msgid "Dates"
-msgstr ""
+msgstr "Dates"
 
 #. module: framework_agreement
 #: view:framework.agreement:framework_agreement.agreement_in_portfolio_form_view
@@ -292,7 +292,7 @@ msgstr ""
 #. module: framework_agreement
 #: field:framework.agreement.portfolio,name:0
 msgid "Name"
-msgstr ""
+msgstr "Nom"
 
 #. module: framework_agreement
 #: field:framework.agreement.line,price:0
@@ -320,7 +320,7 @@ msgstr ""
 #. module: framework_agreement
 #: field:framework.agreement,name:0
 msgid "Number"
-msgstr ""
+msgstr "Numéro"
 
 #. module: framework_agreement
 #: field:res.company,one_agreement_per_product:0
@@ -415,7 +415,7 @@ msgstr "Quantité"
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view
 #: selection:framework.agreement,state:0
 msgid "Running"
-msgstr ""
+msgstr "En cours"
 
 #. module: framework_agreement
 #: field:framework.agreement,shipment_origin_id:0

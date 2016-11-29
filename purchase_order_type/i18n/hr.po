@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-30 13:27+0000\n"
+"POT-Creation-Date: 2016-11-16 12:06+0000\n"
 "PO-Revision-Date: 2016-03-08 10:17+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Croatian (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/hr/)\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. module: purchase_order_type
 #: field:purchase.order.type,active:0
 msgid "Active"
-msgstr ""
+msgstr "Aktivno"
 
 #. module: purchase_order_type
 #: field:purchase.order.type,invoice_method:0
@@ -65,7 +65,7 @@ msgstr "Zadnje ažuriranje"
 #. module: purchase_order_type
 #: field:purchase.order.type,name:0
 msgid "Name"
-msgstr ""
+msgstr "Naziv"
 
 #. module: purchase_order_type
 #: model:ir.model,name:purchase_order_type.model_res_partner
@@ -95,4 +95,4 @@ msgstr ""
 #: view:purchase.order:purchase_order_type.view_purchase_order_filter
 #: field:purchase.order,order_type:0
 msgid "Type"
-msgstr ""
+msgstr "Tip"

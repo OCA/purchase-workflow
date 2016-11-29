@@ -3,14 +3,14 @@
 # * purchase_request
 # 
 # Translators:
-# Kaloyan Naumov <kaloyan@lumnus.net>, 2016
+# OCA Transbot <transbot@odoo-community.org>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-30 13:28+0000\n"
-"PO-Revision-Date: 2016-09-30 13:28+0000\n"
-"Last-Translator: Kaloyan Naumov <kaloyan@lumnus.net>, 2016\n"
+"POT-Creation-Date: 2016-11-16 12:06+0000\n"
+"PO-Revision-Date: 2016-11-16 12:06+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: Bulgarian (https://www.transifex.com/oca/teams/23907/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -99,7 +99,7 @@ msgstr ""
 #: help:purchase.request,message_last_post:0
 #: help:purchase.request.line,message_last_post:0
 msgid "Date of the last message posted on the record."
-msgstr ""
+msgstr "Дата на последното съобщение, публикувано на записа."
 
 #. module: purchase_request
 #: help:purchase.request,date_start:0 help:purchase.request.line,date_start:0
@@ -123,7 +123,7 @@ msgstr ""
 #: field:purchase.request,display_name:0
 #: field:purchase.request.line,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Име за показване"
 
 #. module: purchase_request
 #: view:purchase.request:purchase_request.view_purchase_request_search
@@ -136,7 +136,7 @@ msgstr ""
 #: field:purchase.request,message_follower_ids:0
 #: field:purchase.request.line,message_follower_ids:0
 msgid "Followers"
-msgstr ""
+msgstr "Последователи"
 
 #. module: purchase_request
 #: view:purchase.request:purchase_request.view_purchase_request_search
@@ -161,7 +161,7 @@ msgstr "ID"
 #: help:purchase.request,message_unread:0
 #: help:purchase.request.line,message_unread:0
 msgid "If checked new messages require your attention."
-msgstr ""
+msgstr "Ако е отбелязано, новите съобщения ще изискват внимание."
 
 #. module: purchase_request
 #: field:purchase.request,message_is_follower:0
@@ -179,7 +179,7 @@ msgstr ""
 #: field:purchase.request,message_last_post:0
 #: field:purchase.request.line,message_last_post:0
 msgid "Last Message Date"
-msgstr ""
+msgstr "Дата на последното съобщение"
 
 #. module: purchase_request
 #: field:purchase.request,__last_update:0
@@ -202,13 +202,13 @@ msgstr "Последно обновено на"
 #: field:purchase.request,message_ids:0
 #: field:purchase.request.line,message_ids:0
 msgid "Messages"
-msgstr ""
+msgstr "Съобщения"
 
 #. module: purchase_request
 #: help:purchase.request,message_ids:0
 #: help:purchase.request.line,message_ids:0
 msgid "Messages and communication history"
-msgstr ""
+msgstr "История на събщенията и комуникациите"
 
 #. module: purchase_request
 #: field:purchase.request,picking_type_id:0
@@ -493,4 +493,4 @@ msgstr ""
 #: field:purchase.request,message_unread:0
 #: field:purchase.request.line,message_unread:0
 msgid "Unread Messages"
-msgstr ""
+msgstr "Непрочетени съобщения"

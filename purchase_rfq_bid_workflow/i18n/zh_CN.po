@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-30 13:28+0000\n"
+"POT-Creation-Date: 2016-11-16 12:06+0000\n"
 "PO-Revision-Date: 2016-03-08 10:18+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/zh_CN/)\n"
@@ -54,7 +54,7 @@ msgstr ""
 #: view:purchase.action_modal.cancel_reason:purchase_rfq_bid_workflow.action_modal_cancel_reason
 #: view:purchase.action_modal.datetime:purchase_rfq_bid_workflow.action_modal_bid_date
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #. module: purchase_rfq_bid_workflow
 #: view:purchase.action_modal.cancel_reason:purchase_rfq_bid_workflow.action_modal_cancel_reason
@@ -100,7 +100,7 @@ msgstr ""
 #: field:purchase.action_modal.datetime,display_name:0
 #: field:purchase.cancel_reason,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "显示名称"
 
 #. module: purchase_rfq_bid_workflow
 #: code:addons/purchase_rfq_bid_workflow/model/purchase_order.py:281
@@ -134,7 +134,7 @@ msgstr ""
 #: field:purchase.action_modal.datetime,__last_update:0
 #: field:purchase.cancel_reason,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "最后修改时间"
 
 #. module: purchase_rfq_bid_workflow
 #: field:purchase.action_modal,write_uid:0
@@ -258,7 +258,7 @@ msgstr ""
 #. module: purchase_rfq_bid_workflow
 #: field:purchase.cancel_reason,type:0 field:purchase.order,type:0
 msgid "Type"
-msgstr ""
+msgstr "类型"
 
 #. module: purchase_rfq_bid_workflow
 #: code:addons/purchase_rfq_bid_workflow/model/purchase_order.py:291
@@ -307,7 +307,7 @@ msgstr ""
 #: view:purchase.action_modal.cancel_reason:purchase_rfq_bid_workflow.action_modal_cancel_reason
 #: view:purchase.action_modal.datetime:purchase_rfq_bid_workflow.action_modal_bid_date
 msgid "or"
-msgstr ""
+msgstr "或"
 
 #. module: purchase_rfq_bid_workflow
 #: view:purchase.order:purchase_rfq_bid_workflow.view_purchase_order_form

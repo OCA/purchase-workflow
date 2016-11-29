@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-15 11:37+0000\n"
-"PO-Revision-Date: 2016-09-15 11:37+0000\n"
+"POT-Creation-Date: 2016-11-16 12:06+0000\n"
+"PO-Revision-Date: 2016-11-16 12:06+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: Dutch (Belgium) (https://www.transifex.com/oca/teams/23907/nl_BE/)\n"
 "MIME-Version: 1.0\n"
@@ -70,18 +70,18 @@ msgstr ""
 #: field:purchase.request.line.make.purchase.order,create_uid:0
 #: field:purchase.request.line.make.purchase.order.item,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Gemaakt door"
 
 #. module: purchase_request_to_rfq
 #: field:purchase.request.line.make.purchase.order,create_date:0
 #: field:purchase.request.line.make.purchase.order.item,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Gemaakt op"
 
 #. module: purchase_request_to_rfq
 #: field:purchase.request.line.make.purchase.order.item,name:0
 msgid "Description"
-msgstr ""
+msgstr "Omschrijving"
 
 #. module: purchase_request_to_rfq
 #: view:purchase.request.line.make.purchase.order:purchase_request_to_rfq.view_purchase_request_line_make_purchase_order
@@ -92,7 +92,7 @@ msgstr ""
 #: field:purchase.request.line.make.purchase.order,display_name:0
 #: field:purchase.request.line.make.purchase.order.item,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Schermnaam"
 
 #. module: purchase_request_to_rfq
 #: selection:purchase.request.line,purchase_state:0
@@ -100,7 +100,7 @@ msgid "Done"
 msgstr ""
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:159
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:165
 #, python-format
 msgid "Enter a positive quantity."
 msgstr ""
@@ -125,7 +125,7 @@ msgstr ""
 #: field:purchase.request.line.make.purchase.order,id:0
 #: field:purchase.request.line.make.purchase.order.item,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: purchase_request_to_rfq
 #: field:purchase.request.line.make.purchase.order,item_ids:0
@@ -136,19 +136,19 @@ msgstr ""
 #: field:purchase.request.line.make.purchase.order,__last_update:0
 #: field:purchase.request.line.make.purchase.order.item,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Laatst Aangepast op"
 
 #. module: purchase_request_to_rfq
 #: field:purchase.request.line.make.purchase.order,write_uid:0
 #: field:purchase.request.line.make.purchase.order.item,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: purchase_request_to_rfq
 #: field:purchase.request.line.make.purchase.order,write_date:0
 #: field:purchase.request.line.make.purchase.order.item,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: purchase_request_to_rfq
 #: view:purchase.request.line.make.purchase.order:purchase_request_to_rfq.view_purchase_request_line_make_purchase_order
@@ -258,6 +258,12 @@ msgid "Purchase Status"
 msgstr ""
 
 #. module: purchase_request_to_rfq
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:158
+#, python-format
+msgid "Purchase request %s is not approved."
+msgstr ""
+
+#. module: purchase_request_to_rfq
 #: view:purchase.request.line:purchase_request_to_rfq.purchase_request_line_search
 msgid "Purchasing not started"
 msgstr ""
@@ -273,7 +279,7 @@ msgid "Quantity to purchase"
 msgstr ""
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:224
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:230
 #: selection:purchase.request.line,purchase_state:0
 #, python-format
 msgid "RFQ"
@@ -317,7 +323,7 @@ msgid ""
 msgstr ""
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:156
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:162
 #, python-format
 msgid "The purchase has already been completed."
 msgstr ""
@@ -339,25 +345,25 @@ msgid "You cannot delete a record that refers to purchase lines!"
 msgstr ""
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:173
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:179
 #, python-format
 msgid "You have to enter a Picking Type."
 msgstr ""
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:177
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:183
 #, python-format
 msgid "You have to select lines from the same Picking Type."
 msgstr ""
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:165
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:171
 #, python-format
 msgid "You have to select lines from the same company."
 msgstr ""
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:188
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:194
 #, python-format
 msgid "You have to select lines from the same procurement location."
 msgstr ""

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-15 11:37+0000\n"
-"PO-Revision-Date: 2016-09-16 21:46+0000\n"
+"POT-Creation-Date: 2016-11-16 12:06+0000\n"
+"PO-Revision-Date: 2016-11-25 14:55+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -301,7 +301,7 @@ msgstr ""
 #. module: purchase_rfq_bid_workflow
 #: view:purchase.order:purchase_rfq_bid_workflow.view_purchase_order_form
 msgid "object"
-msgstr ""
+msgstr "objet"
 
 #. module: purchase_rfq_bid_workflow
 #: view:purchase.action_modal.cancel_reason:purchase_rfq_bid_workflow.action_modal_cancel_reason

@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-30 13:28+0000\n"
-"PO-Revision-Date: 2016-10-04 09:43+0000\n"
+"POT-Creation-Date: 2016-11-16 12:06+0000\n"
+"PO-Revision-Date: 2016-11-25 14:57+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -200,7 +200,7 @@ msgstr ""
 #: field:purchase.order.line_cancel_quantity_line,price_unit:0
 #: field:purchase.order.line_invoice.line,price_unit:0
 msgid "Unit Price"
-msgstr ""
+msgstr "Prezzo Unitario"
 
 #. module: purchase_partial_invoicing
 #: view:purchase.order.line:purchase_partial_invoicing.purchase_order_line_search
@@ -216,4 +216,4 @@ msgstr "Wizard"
 #. module: purchase_partial_invoicing
 #: view:purchase.order.line_cancel_quantity:purchase_partial_invoicing.view_purchase_line_cancel
 msgid "or"
-msgstr ""
+msgstr "o"

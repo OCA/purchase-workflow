@@ -3,14 +3,15 @@
 # * purchase_request_to_rfq
 # 
 # Translators:
-# Bole <bole@dajmi5.com>, 2016
+# OCA Transbot <transbot@odoo-community.org>, 2016
+# Goran Kliska <gkliska@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-30 13:28+0000\n"
-"PO-Revision-Date: 2016-09-30 13:28+0000\n"
-"Last-Translator: Bole <bole@dajmi5.com>, 2016\n"
+"POT-Creation-Date: 2016-11-16 12:06+0000\n"
+"PO-Revision-Date: 2016-11-16 12:06+0000\n"
+"Last-Translator: Goran Kliska <gkliska@gmail.com>, 2016\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -53,7 +54,7 @@ msgstr "Odustani"
 #. module: purchase_request_to_rfq
 #: selection:purchase.request.line,purchase_state:0
 msgid "Cancelled"
-msgstr ""
+msgstr "Otkazan"
 
 #. module: purchase_request_to_rfq
 #: selection:purchase.request.line,purchase_state:0
@@ -97,10 +98,10 @@ msgstr "Naziv "
 #. module: purchase_request_to_rfq
 #: selection:purchase.request.line,purchase_state:0
 msgid "Done"
-msgstr ""
+msgstr "Izvršeno"
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:159
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:165
 #, python-format
 msgid "Enter a positive quantity."
 msgstr ""
@@ -258,6 +259,12 @@ msgid "Purchase Status"
 msgstr ""
 
 #. module: purchase_request_to_rfq
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:158
+#, python-format
+msgid "Purchase request %s is not approved."
+msgstr ""
+
+#. module: purchase_request_to_rfq
 #: view:purchase.request.line:purchase_request_to_rfq.purchase_request_line_search
 msgid "Purchasing not started"
 msgstr ""
@@ -273,7 +280,7 @@ msgid "Quantity to purchase"
 msgstr ""
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:224
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:230
 #: selection:purchase.request.line,purchase_state:0
 #, python-format
 msgid "RFQ"
@@ -317,7 +324,7 @@ msgid ""
 msgstr ""
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:156
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:162
 #, python-format
 msgid "The purchase has already been completed."
 msgstr ""
@@ -339,25 +346,25 @@ msgid "You cannot delete a record that refers to purchase lines!"
 msgstr ""
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:173
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:179
 #, python-format
 msgid "You have to enter a Picking Type."
 msgstr ""
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:177
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:183
 #, python-format
 msgid "You have to select lines from the same Picking Type."
 msgstr ""
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:165
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:171
 #, python-format
 msgid "You have to select lines from the same company."
 msgstr ""
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:188
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:194
 #, python-format
 msgid "You have to select lines from the same procurement location."
 msgstr ""

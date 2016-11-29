@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-15 11:37+0000\n"
-"PO-Revision-Date: 2016-09-09 12:24+0000\n"
+"POT-Creation-Date: 2016-11-16 12:06+0000\n"
+"PO-Revision-Date: 2016-11-25 14:57+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -728,7 +728,7 @@ msgstr ""
 #. module: purchase_requisition_bid_selection
 #: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
 msgid "Unit Price"
-msgstr ""
+msgstr "Prezzo Unitario"
 
 #. module: purchase_requisition_bid_selection
 #: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
@@ -835,7 +835,7 @@ msgstr ""
 #: view:update.bid.internal.remark:purchase_requisition_bid_selection.view_update_bid_internal_remark
 #: view:update.remark:purchase_requisition_bid_selection.view_update_remark
 msgid "or"
-msgstr ""
+msgstr "o"
 
 #. module: purchase_requisition_bid_selection
 #: view:purchase.order:purchase_requisition_bid_selection.view_purchase_order_form

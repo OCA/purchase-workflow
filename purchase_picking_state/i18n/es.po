@@ -7,15 +7,25 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-01 00:56+0000\n"
-"PO-Revision-Date: 2016-03-31 07:37+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2016-11-16 12:06+0000\n"
+"PO-Revision-Date: 2016-10-15 02:05+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: purchase_picking_state
+#: help:purchase.order,picking_state:0
+msgid "Overall status based on all pickings"
+msgstr "Estado en general basado en todos los albaranes"
+
+#. module: purchase_picking_state
+#: field:purchase.order,picking_state:0
+msgid "Picking status"
+msgstr "Estado del albarán"
 
 #. module: purchase_picking_state
 #: model:ir.model,name:purchase_picking_state.model_purchase_order

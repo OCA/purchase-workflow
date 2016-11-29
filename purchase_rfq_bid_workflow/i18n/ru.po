@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-15 11:37+0000\n"
+"POT-Creation-Date: 2016-11-16 12:06+0000\n"
 "PO-Revision-Date: 2016-03-08 10:18+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Russian (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/ru/)\n"
@@ -307,7 +307,7 @@ msgstr ""
 #: view:purchase.action_modal.cancel_reason:purchase_rfq_bid_workflow.action_modal_cancel_reason
 #: view:purchase.action_modal.datetime:purchase_rfq_bid_workflow.action_modal_bid_date
 msgid "or"
-msgstr ""
+msgstr "или"
 
 #. module: purchase_rfq_bid_workflow
 #: view:purchase.order:purchase_rfq_bid_workflow.view_purchase_order_form

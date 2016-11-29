@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-30 13:28+0000\n"
-"PO-Revision-Date: 2016-09-30 13:28+0000\n"
+"POT-Creation-Date: 2016-11-16 12:06+0000\n"
+"PO-Revision-Date: 2016-11-16 12:06+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/oca/teams/23907/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -99,7 +99,7 @@ msgstr ""
 #: help:purchase.request,message_last_post:0
 #: help:purchase.request.line,message_last_post:0
 msgid "Date of the last message posted on the record."
-msgstr ""
+msgstr "发布到记录上的最后消息的日期"
 
 #. module: purchase_request
 #: help:purchase.request,date_start:0 help:purchase.request.line,date_start:0
@@ -112,7 +112,7 @@ msgstr ""
 #: field:purchase.request.line,name:0
 #: view:website:purchase_request.report_purchaserequests
 msgid "Description"
-msgstr ""
+msgstr "说明"
 
 #. module: purchase_request
 #: view:website:purchase_request.report_purchaserequests
@@ -123,7 +123,7 @@ msgstr ""
 #: field:purchase.request,display_name:0
 #: field:purchase.request.line,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "显示名称"
 
 #. module: purchase_request
 #: view:purchase.request:purchase_request.view_purchase_request_search
@@ -136,7 +136,7 @@ msgstr ""
 #: field:purchase.request,message_follower_ids:0
 #: field:purchase.request.line,message_follower_ids:0
 msgid "Followers"
-msgstr ""
+msgstr "关注者"
 
 #. module: purchase_request
 #: view:purchase.request:purchase_request.view_purchase_request_search
@@ -161,7 +161,7 @@ msgstr "ID"
 #: help:purchase.request,message_unread:0
 #: help:purchase.request.line,message_unread:0
 msgid "If checked new messages require your attention."
-msgstr ""
+msgstr "查看是否有需要留意的新信息。"
 
 #. module: purchase_request
 #: field:purchase.request,message_is_follower:0
@@ -179,13 +179,13 @@ msgstr ""
 #: field:purchase.request,message_last_post:0
 #: field:purchase.request.line,message_last_post:0
 msgid "Last Message Date"
-msgstr ""
+msgstr "最后消息日期"
 
 #. module: purchase_request
 #: field:purchase.request,__last_update:0
 #: field:purchase.request.line,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "最后修改时间"
 
 #. module: purchase_request
 #: field:purchase.request,write_uid:0 field:purchase.request.line,write_uid:0
@@ -202,13 +202,13 @@ msgstr "上次更新日期"
 #: field:purchase.request,message_ids:0
 #: field:purchase.request.line,message_ids:0
 msgid "Messages"
-msgstr ""
+msgstr "消息"
 
 #. module: purchase_request
 #: help:purchase.request,message_ids:0
 #: help:purchase.request.line,message_ids:0
 msgid "Messages and communication history"
-msgstr ""
+msgstr "消息和通信历史"
 
 #. module: purchase_request
 #: field:purchase.request,picking_type_id:0
@@ -493,4 +493,4 @@ msgstr ""
 #: field:purchase.request,message_unread:0
 #: field:purchase.request.line,message_unread:0
 msgid "Unread Messages"
-msgstr ""
+msgstr "未读消息"

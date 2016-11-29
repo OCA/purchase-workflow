@@ -21,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-30 13:27+0000\n"
-"PO-Revision-Date: 2016-10-04 09:43+0000\n"
+"POT-Creation-Date: 2016-11-16 12:06+0000\n"
+"PO-Revision-Date: 2016-11-25 14:57+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -155,7 +155,7 @@ msgstr "Nome da visualizzare"
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view
 #: selection:framework.agreement,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Bozza"
 
 #. module: framework_agreement
 #: field:framework.agreement,end_date:0
@@ -202,7 +202,7 @@ msgstr ""
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view
 #: view:framework.agreement.portfolio:framework_agreement.portfolio_search_view
 msgid "Group By"
-msgstr ""
+msgstr "Raggruppa per"
 
 #. module: framework_agreement
 #: field:framework.agreement,id:0 field:framework.agreement.line,id:0
@@ -292,7 +292,7 @@ msgstr ""
 #. module: framework_agreement
 #: field:framework.agreement.portfolio,name:0
 msgid "Name"
-msgstr ""
+msgstr "Nome"
 
 #. module: framework_agreement
 #: field:framework.agreement.line,price:0
@@ -382,7 +382,7 @@ msgstr ""
 #. module: framework_agreement
 #: model:ir.model,name:framework_agreement.model_product_pricelist
 msgid "Pricelist"
-msgstr ""
+msgstr "Listino prezzi"
 
 #. module: framework_agreement
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view
@@ -430,7 +430,7 @@ msgstr ""
 #. module: framework_agreement
 #: field:framework.agreement,state:0
 msgid "State"
-msgstr ""
+msgstr "Stato"
 
 #. module: framework_agreement
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view

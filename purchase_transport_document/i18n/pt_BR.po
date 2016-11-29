@@ -3,8 +3,9 @@
 # * purchase_transport_document
 # 
 # Translators:
-# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2016
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
 # Antonio Trueba, 2016
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
 # Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
 # danimaribeiro <danimaribeiro@gmail.com>, 2016
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2012
@@ -12,15 +13,15 @@
 # Isabelle RICHARD <isabellerichard89@gmail.com>, 2015
 # Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
 # John Toro <johntoro@gmail.com>, 2015
-# LS Development <ls.development.nc@gmail.com>, 2016
+# Lixon Jean-Yves <ls.development.nc@gmail.com>, 2016
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
 # SaFi J. <safi2266@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-15 09:25+0000\n"
-"PO-Revision-Date: 2016-05-18 20:51+0000\n"
+"POT-Creation-Date: 2016-11-16 12:06+0000\n"
+"PO-Revision-Date: 2016-11-25 14:55+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -97,7 +98,7 @@ msgstr ""
 #. module: purchase_transport_document
 #: field:transport.document,name:0
 msgid "Name"
-msgstr ""
+msgstr "Nome"
 
 #. module: purchase_transport_document
 #: model:transport.document,name:purchase_transport_document.packing_list

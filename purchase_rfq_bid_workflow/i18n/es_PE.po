@@ -1,0 +1,326 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * purchase_rfq_bid_workflow
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: purchase-workflow (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-11-16 12:06+0000\n"
+"PO-Revision-Date: 2016-03-08 10:18+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Spanish (Peru) (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/es_PE/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es_PE\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: purchase_rfq_bid_workflow
+#: code:addons/purchase_rfq_bid_workflow/model/purchase_order.py:218
+#: selection:purchase.order,type:0
+#, python-format
+msgid "Bid"
+msgstr ""
+
+#. module: purchase_rfq_bid_workflow
+#: view:purchase.order:purchase_rfq_bid_workflow.view_purchase_order_form
+msgid "Bid Encoded"
+msgstr ""
+
+#. module: purchase_rfq_bid_workflow
+#: model:purchase.cancel_reason,name:purchase_rfq_bid_workflow.purchase_cancel_reason_bid_bidnotselected
+msgid "Bid not selected"
+msgstr ""
+
+#. module: purchase_rfq_bid_workflow
+#: code:addons/purchase_rfq_bid_workflow/model/purchase_order.py:259
+#, python-format
+msgid "Bid received and encoded"
+msgstr ""
+
+#. module: purchase_rfq_bid_workflow
+#: view:purchase.action_modal.datetime:purchase_rfq_bid_workflow.action_modal_bid_date
+msgid "Bid received date"
+msgstr ""
+
+#. module: purchase_rfq_bid_workflow
+#: model:purchase.cancel_reason,name:purchase_rfq_bid_workflow.purchase_cancel_reason_bid_validity_expired
+msgid "Bid validity date expired"
+msgstr ""
+
+#. module: purchase_rfq_bid_workflow
+#: view:purchase.action_modal.cancel_reason:purchase_rfq_bid_workflow.action_modal_cancel_reason
+#: view:purchase.action_modal.datetime:purchase_rfq_bid_workflow.action_modal_bid_date
+msgid "Cancel"
+msgstr ""
+
+#. module: purchase_rfq_bid_workflow
+#: view:purchase.action_modal.cancel_reason:purchase_rfq_bid_workflow.action_modal_cancel_reason
+#: view:purchase.action_modal.datetime:purchase_rfq_bid_workflow.action_modal_bid_date
+msgid "Confirm"
+msgstr ""
+
+#. module: purchase_rfq_bid_workflow
+#: view:purchase.order:purchase_rfq_bid_workflow.view_purchase_order_form
+msgid "Convert to PO"
+msgstr ""
+
+#. module: purchase_rfq_bid_workflow
+#: code:addons/purchase_rfq_bid_workflow/model/purchase_order.py:174
+#, python-format
+msgid "Converted to draft Purchase Order"
+msgstr ""
+
+#. module: purchase_rfq_bid_workflow
+#: field:purchase.action_modal,create_uid:0
+#: field:purchase.action_modal.cancel_reason,create_uid:0
+#: field:purchase.action_modal.datetime,create_uid:0
+#: field:purchase.cancel_reason,create_uid:0
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: purchase_rfq_bid_workflow
+#: field:purchase.action_modal,create_date:0
+#: field:purchase.action_modal.cancel_reason,create_date:0
+#: field:purchase.action_modal.datetime,create_date:0
+#: field:purchase.cancel_reason,create_date:0
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: purchase_rfq_bid_workflow
+#: field:purchase.action_modal.datetime,datetime:0
+msgid "Date"
+msgstr ""
+
+#. module: purchase_rfq_bid_workflow
+#: field:purchase.action_modal,display_name:0
+#: field:purchase.action_modal.cancel_reason,display_name:0
+#: field:purchase.action_modal.datetime,display_name:0
+#: field:purchase.cancel_reason,display_name:0
+msgid "Display Name"
+msgstr "Nombre a Mostrar"
+
+#. module: purchase_rfq_bid_workflow
+#: code:addons/purchase_rfq_bid_workflow/model/purchase_order.py:281
+#: code:addons/purchase_rfq_bid_workflow/model/purchase_order.py:290
+#, python-format
+msgid "Error!"
+msgstr ""
+
+#. module: purchase_rfq_bid_workflow
+#: field:purchase.action_modal,id:0
+#: field:purchase.action_modal.cancel_reason,id:0
+#: field:purchase.action_modal.datetime,id:0 field:purchase.cancel_reason,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_rfq_bid_workflow
+#: field:purchase.order,incoterm_address:0
+msgid "Incoterms Place"
+msgstr ""
+
+#. module: purchase_rfq_bid_workflow
+#: help:purchase.order,incoterm_address:0
+msgid ""
+"Incoterms Place of Delivery. International Commercial Terms are a series of "
+"predefined commercial terms used in international transactions."
+msgstr ""
+
+#. module: purchase_rfq_bid_workflow
+#: field:purchase.action_modal,__last_update:0
+#: field:purchase.action_modal.cancel_reason,__last_update:0
+#: field:purchase.action_modal.datetime,__last_update:0
+#: field:purchase.cancel_reason,__last_update:0
+msgid "Last Modified on"
+msgstr "Ultima Modificación en"
+
+#. module: purchase_rfq_bid_workflow
+#: field:purchase.action_modal,write_uid:0
+#: field:purchase.action_modal.cancel_reason,write_uid:0
+#: field:purchase.action_modal.datetime,write_uid:0
+#: field:purchase.cancel_reason,write_uid:0
+msgid "Last Updated by"
+msgstr "Actualizado última vez por"
+
+#. module: purchase_rfq_bid_workflow
+#: field:purchase.action_modal,write_date:0
+#: field:purchase.action_modal.cancel_reason,write_date:0
+#: field:purchase.action_modal.datetime,write_date:0
+#: field:purchase.cancel_reason,write_date:0
+msgid "Last Updated on"
+msgstr "Ultima Actualización"
+
+#. module: purchase_rfq_bid_workflow
+#: model:purchase.cancel_reason,name:purchase_rfq_bid_workflow.purchase_cancel_reason_bid_latereply
+msgid "Late reply"
+msgstr ""
+
+#. module: purchase_rfq_bid_workflow
+#: model:purchase.cancel_reason,name:purchase_rfq_bid_workflow.purchase_cancel_reason_bid_noreply
+msgid "No reply"
+msgstr ""
+
+#. module: purchase_rfq_bid_workflow
+#: field:purchase.cancel_reason,nounlink:0
+msgid "No unlink"
+msgstr ""
+
+#. module: purchase_rfq_bid_workflow
+#: model:purchase.cancel_reason,name:purchase_rfq_bid_workflow.purchase_cancel_reason_purchase_canceled
+msgid "PO canceled"
+msgstr ""
+
+#. module: purchase_rfq_bid_workflow
+#: view:purchase.action_modal.cancel_reason:purchase_rfq_bid_workflow.action_modal_cancel_reason
+#: view:purchase.action_modal.datetime:purchase_rfq_bid_workflow.action_modal_bid_date
+msgid "Please confirm operation"
+msgstr ""
+
+#. module: purchase_rfq_bid_workflow
+#: view:purchase.cancel_reason:purchase_rfq_bid_workflow.view_purchase_cancel_reason_form
+msgid "Purchase Cancel Reason"
+msgstr ""
+
+#. module: purchase_rfq_bid_workflow
+#: model:ir.actions.act_window,name:purchase_rfq_bid_workflow.action_purchase_cancel_reason
+#: model:ir.ui.menu,name:purchase_rfq_bid_workflow.menu_purchase_config_cancel_reason
+#: view:purchase.cancel_reason:purchase_rfq_bid_workflow.view_purchase_cancel_reason_tree
+msgid "Purchase Cancel Reasons"
+msgstr ""
+
+#. module: purchase_rfq_bid_workflow
+#: model:ir.model,name:purchase_rfq_bid_workflow.model_purchase_order
+#: selection:purchase.cancel_reason,type:0 selection:purchase.order,type:0
+msgid "Purchase Order"
+msgstr ""
+
+#. module: purchase_rfq_bid_workflow
+#: model:ir.model,name:purchase_rfq_bid_workflow.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr ""
+
+#. module: purchase_rfq_bid_workflow
+#: model:purchase.cancel_reason,name:purchase_rfq_bid_workflow.purchase_cancel_reason_rfq_canceled
+msgid "RFQ canceled"
+msgstr ""
+
+#. module: purchase_rfq_bid_workflow
+#: selection:purchase.cancel_reason,type:0
+msgid "RFQ/Bid"
+msgstr ""
+
+#. module: purchase_rfq_bid_workflow
+#: field:purchase.cancel_reason,name:0
+msgid "Reason"
+msgstr ""
+
+#. module: purchase_rfq_bid_workflow
+#: field:purchase.action_modal.cancel_reason,reason_id:0
+#: field:purchase.order,cancel_reason_id:0
+msgid "Reason for Cancellation"
+msgstr ""
+
+#. module: purchase_rfq_bid_workflow
+#: view:purchase.order:purchase_rfq_bid_workflow.view_purchase_order_form
+msgid "Reason for Cancellation:"
+msgstr ""
+
+#. module: purchase_rfq_bid_workflow
+#: model:purchase.cancel_reason,name:purchase_rfq_bid_workflow.purchase_cancel_reason_bid_regretfromsupplier
+msgid "Regret from supplier"
+msgstr ""
+
+#. module: purchase_rfq_bid_workflow
+#: code:addons/purchase_rfq_bid_workflow/model/purchase_order.py:216
+#: selection:purchase.order,type:0
+#, python-format
+msgid "Request for Quotation"
+msgstr ""
+
+#. module: purchase_rfq_bid_workflow
+#: code:addons/purchase_rfq_bid_workflow/model/purchase_order.py:293
+#, python-format
+msgid "Request for Quotation printed"
+msgstr ""
+
+#. module: purchase_rfq_bid_workflow
+#: view:purchase.order:purchase_rfq_bid_workflow.view_purchase_order_form
+msgid "Reset to Draft RFQ"
+msgstr ""
+
+#. module: purchase_rfq_bid_workflow
+#: view:purchase.order:purchase_rfq_bid_workflow.view_purchase_order_form
+msgid "Send Draft PO by Email"
+msgstr ""
+
+#. module: purchase_rfq_bid_workflow
+#: field:purchase.cancel_reason,type:0 field:purchase.order,type:0
+msgid "Type"
+msgstr "Tipo"
+
+#. module: purchase_rfq_bid_workflow
+#: code:addons/purchase_rfq_bid_workflow/model/purchase_order.py:291
+#, python-format
+msgid "You cannot print a Request for Quotation without any product line."
+msgstr ""
+
+#. module: purchase_rfq_bid_workflow
+#: code:addons/purchase_rfq_bid_workflow/model/purchase_order.py:282
+#, python-format
+msgid "You cannot send a Request for Quotation without any product line."
+msgstr ""
+
+#. module: purchase_rfq_bid_workflow
+#: view:purchase.order:purchase_rfq_bid_workflow.view_purchase_order_form
+msgid "cancel,draftpo"
+msgstr ""
+
+#. module: purchase_rfq_bid_workflow
+#: code:addons/purchase_rfq_bid_workflow/model/purchase_order.py:221
+#, python-format
+msgid "canceled"
+msgstr ""
+
+#. module: purchase_rfq_bid_workflow
+#: view:purchase.order:purchase_rfq_bid_workflow.view_purchase_order_form
+msgid "draft,confirmed,sent,bid,draftbid,draftpo"
+msgstr ""
+
+#. module: purchase_rfq_bid_workflow
+#: view:purchase.order:purchase_rfq_bid_workflow.view_purchase_order_form
+msgid "draft,sent,bid,draftpo,approved,done"
+msgstr ""
+
+#. module: purchase_rfq_bid_workflow
+#: view:purchase.order:purchase_rfq_bid_workflow.view_purchase_order_form
+msgid "draftpo"
+msgstr ""
+
+#. module: purchase_rfq_bid_workflow
+#: view:purchase.order:purchase_rfq_bid_workflow.view_purchase_order_form
+msgid "object"
+msgstr ""
+
+#. module: purchase_rfq_bid_workflow
+#: view:purchase.action_modal.cancel_reason:purchase_rfq_bid_workflow.action_modal_cancel_reason
+#: view:purchase.action_modal.datetime:purchase_rfq_bid_workflow.action_modal_bid_date
+msgid "or"
+msgstr "o"
+
+#. module: purchase_rfq_bid_workflow
+#: view:purchase.order:purchase_rfq_bid_workflow.view_purchase_order_form
+msgid "sent,draftbid"
+msgstr ""
+
+#. module: purchase_rfq_bid_workflow
+#: view:purchase.order:purchase_rfq_bid_workflow.view_purchase_order_invoice_form
+msgid "{'invisible': [('state', 'in', ['draft','draftbid','draftpo'])]}"
+msgstr ""
+
+#. module: purchase_rfq_bid_workflow
+#: view:purchase.order:purchase_rfq_bid_workflow.view_purchase_order_form
+#: view:purchase.order.line:purchase_rfq_bid_workflow.po_line_onchange_form
+msgid "{'order_type': parent.type}"
+msgstr ""
