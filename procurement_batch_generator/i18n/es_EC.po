@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-15 11:37+0000\n"
-"PO-Revision-Date: 2016-09-09 12:25+0000\n"
+"POT-Creation-Date: 2016-11-16 12:06+0000\n"
+"PO-Revision-Date: 2016-11-25 14:56+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (Ecuador) (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/es_EC/)\n"
 "MIME-Version: 1.0\n"
@@ -32,25 +32,25 @@ msgstr "Cancelar"
 #: field:procurement.batch.generator,create_uid:0
 #: field:procurement.batch.generator.line,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Creado por"
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator,create_date:0
 #: field:procurement.batch.generator.line,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Creado en"
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator,display_name:0
 #: field:procurement.batch.generator.line,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Nombre mostrado"
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator,id:0
 #: field:procurement.batch.generator.line,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID (identificación)"
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator.line,incoming_qty:0
@@ -61,19 +61,19 @@ msgstr ""
 #: field:procurement.batch.generator,__last_update:0
 #: field:procurement.batch.generator.line,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última modificación en"
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator,write_uid:0
 #: field:procurement.batch.generator.line,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Última actualización de"
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator,write_date:0
 #: field:procurement.batch.generator.line,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Última actualización en"
 
 #. module: procurement_batch_generator
 #: model:ir.model,name:procurement_batch_generator.model_procurement_batch_generator_line
