@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-10 12:30+0000\n"
+"POT-Creation-Date: 2016-10-31 17:29+0000\n"
 "PO-Revision-Date: 2015-09-01 21:19+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/es/)\n"
@@ -68,17 +68,17 @@ msgstr ""
 #. module: product_by_supplier
 #: model:ir.model,name:product_by_supplier.model_product_supplierinfo
 msgid "Information about a product supplier"
-msgstr ""
+msgstr "Información sobre el proveedor de un producto"
 
 #. module: product_by_supplier
 #: view:product.supplierinfo:0
 msgid "Supplier"
-msgstr ""
+msgstr "Proveedor"
 
 #. module: product_by_supplier
 #: view:product.supplierinfo:0
 msgid "Pricelist"
-msgstr ""
+msgstr "Tarifa"
 
 #. module: product_by_supplier
 #: model:ir.actions.act_window,name:product_by_supplier.action_product_supplier_info

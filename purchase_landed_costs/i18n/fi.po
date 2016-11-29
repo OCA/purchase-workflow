@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-10 12:30+0000\n"
+"POT-Creation-Date: 2016-10-31 17:29+0000\n"
 "PO-Revision-Date: 2015-09-01 21:20+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Finnish (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/fi/)\n"
@@ -41,7 +41,7 @@ msgstr ""
 #. module: purchase_landed_costs
 #: view:landed.cost.position:0
 msgid "Group By..."
-msgstr ""
+msgstr "Ryhmittele..."
 
 #. module: purchase_landed_costs
 #: help:product.template,landed_cost_type:0
@@ -303,7 +303,7 @@ msgstr "Varastosiirto"
 #. module: purchase_landed_costs
 #: model:ir.model,name:purchase_landed_costs.model_product_template
 msgid "Product Template"
-msgstr ""
+msgstr "Tuotteen malli"
 
 #. module: purchase_landed_costs
 #: help:landed.cost.distribution.type,landed_cost_type:0
@@ -333,7 +333,7 @@ msgstr ""
 #. module: purchase_landed_costs
 #: field:landed.cost.position,partner_id:0
 msgid "Partner"
-msgstr ""
+msgstr "Kumppani"
 
 #. module: purchase_landed_costs
 #: field:purchase.order,landed_cost:0

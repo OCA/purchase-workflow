@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-01 21:19+0000\n"
+"POT-Creation-Date: 2016-10-31 17:29+0000\n"
 "PO-Revision-Date: 2015-09-01 21:19+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/pt_BR/)\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. module: framework_agreement
 #: model:ir.model,name:framework_agreement.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Linha da Ordem de Compra"
 
 #. module: framework_agreement
 #: field:framework.agreement,quantity:0
@@ -72,7 +72,7 @@ msgstr ""
 #. module: framework_agreement
 #: selection:framework.agreement,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Rascunho"
 
 #. module: framework_agreement
 #: selection:framework.agreement,state:0
@@ -87,7 +87,7 @@ msgstr ""
 #. module: framework_agreement
 #: field:framework.agreement,supplier_id:0
 msgid "Supplier"
-msgstr ""
+msgstr "Fornecedor"
 
 #. module: framework_agreement
 #: view:purchase.order:0
@@ -143,7 +143,7 @@ msgstr ""
 #: field:framework.agreement,product_id:0
 #: model:ir.model,name:framework_agreement.model_product_product
 msgid "Product"
-msgstr ""
+msgstr "Produto"
 
 #. module: framework_agreement
 #: code:addons/framework_agreement/model/framework_agreement.py:761
@@ -170,7 +170,7 @@ msgstr ""
 #. module: framework_agreement
 #: field:framework.agreement,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Empresa"
 
 #. module: framework_agreement
 #: field:framework.agreement,start_date:0
@@ -357,7 +357,7 @@ msgstr ""
 #. module: framework_agreement
 #: field:framework.agreement,origin:0
 msgid "Origin"
-msgstr ""
+msgstr "Origem"
 
 #. module: framework_agreement
 #: model:ir.model,name:framework_agreement.model_framework_agreement

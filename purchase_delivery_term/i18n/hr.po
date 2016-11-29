@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-18 03:09+0000\n"
+"POT-Creation-Date: 2016-10-31 17:29+0000\n"
 "PO-Revision-Date: 2015-09-01 21:19+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Croatian (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/hr/)\n"
@@ -60,12 +60,12 @@ msgstr "Proizvod"
 #. module: purchase_delivery_term
 #: field:purchase.order.line.master,name:0
 msgid "Description"
-msgstr ""
+msgstr "Opis"
 
 #. module: purchase_delivery_term
 #: field:purchase.delivery.term,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Poduzeće"
 
 #. module: purchase_delivery_term
 #: field:purchase.delivery.term.line,delay:0
@@ -122,7 +122,7 @@ msgstr ""
 #. module: purchase_delivery_term
 #: field:purchase.delivery.term,name:0
 msgid "Name"
-msgstr ""
+msgstr "Naziv"
 
 #. module: purchase_delivery_term
 #: model:ir.actions.act_window,name:purchase_delivery_term.action_delivery_term_form

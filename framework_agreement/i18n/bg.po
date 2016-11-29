@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-18 03:09+0000\n"
+"POT-Creation-Date: 2016-10-31 17:29+0000\n"
 "PO-Revision-Date: 2015-09-01 21:19+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/bg/)\n"
@@ -87,7 +87,7 @@ msgstr ""
 #. module: framework_agreement
 #: field:framework.agreement,supplier_id:0
 msgid "Supplier"
-msgstr ""
+msgstr "Доставчик"
 
 #. module: framework_agreement
 #: view:purchase.order:0

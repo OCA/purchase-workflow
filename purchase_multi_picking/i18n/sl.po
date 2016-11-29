@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-18 03:09+0000\n"
+"POT-Creation-Date: 2016-10-31 17:29+0000\n"
 "PO-Revision-Date: 2015-09-01 21:20+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/sl/)\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. module: purchase_multi_picking
 #: model:ir.model,name:purchase_multi_picking.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Postavka nabavnega naloga"
 
 #. module: purchase_multi_picking
 #: field:purchase.order.line,picking_group_id:0
@@ -42,7 +42,7 @@ msgstr "Družba"
 #. module: purchase_multi_picking
 #: model:ir.model,name:purchase_multi_picking.model_purchase_order
 msgid "Purchase Order"
-msgstr ""
+msgstr "Nabavni nalog"
 
 #. module: purchase_multi_picking
 #: model:ir.model,name:purchase_multi_picking.model_purchase_order_line_group

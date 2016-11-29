@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-17 12:54+0000\n"
-"PO-Revision-Date: 2015-09-17 12:27+0000\n"
+"POT-Creation-Date: 2016-10-31 17:29+0000\n"
+"PO-Revision-Date: 2016-11-02 09:30+0000\n"
 "Last-Translator: Sylvain LE GAL <sylvain.legal@grap.coop>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,7 @@ msgstr "Commande d'achat"
 #. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_stock_picking
 msgid "Picking List"
-msgstr ""
+msgstr "Opération de manutention"
 
 #. module: purchase_discount
 #: sql_constraint:purchase.order.line:0

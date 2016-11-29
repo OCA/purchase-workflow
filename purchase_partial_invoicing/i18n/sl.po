@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-10 12:30+0000\n"
+"POT-Creation-Date: 2016-10-31 17:29+0000\n"
 "PO-Revision-Date: 2015-09-01 21:20+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/sl/)\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. module: purchase_partial_invoicing
 #: model:ir.model,name:purchase_partial_invoicing.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Postavka nabavnega naloga"
 
 #. module: purchase_partial_invoicing
 #: field:purchase.order.line_invoice.line,po_line_id:0
@@ -43,7 +43,7 @@ msgstr ""
 #. module: purchase_partial_invoicing
 #: field:purchase.order.line_invoice.line,wizard_id:0
 msgid "Wizard"
-msgstr ""
+msgstr "Čarovnik"
 
 #. module: purchase_partial_invoicing
 #: field:purchase.order.line_invoice,line_ids:0
@@ -58,7 +58,7 @@ msgstr ""
 #. module: purchase_partial_invoicing
 #: model:ir.model,name:purchase_partial_invoicing.model_purchase_order
 msgid "Purchase Order"
-msgstr ""
+msgstr "Nabavni nalog"
 
 #. module: purchase_partial_invoicing
 #: field:purchase.order.line_invoice.line,price_unit:0
@@ -73,7 +73,7 @@ msgstr ""
 #. module: purchase_partial_invoicing
 #: model:ir.model,name:purchase_partial_invoicing.model_account_invoice
 msgid "Invoice"
-msgstr ""
+msgstr "Račun"
 
 #. module: purchase_partial_invoicing
 #: code:addons/purchase_partial_invoicing/wizard/po_line_invoice.py:64
