@@ -11,115 +11,115 @@ msgstr ""
 "POT-Creation-Date: 2016-11-16 12:06+0000\n"
 "PO-Revision-Date: 2016-11-16 12:06+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
-"Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
+"Language-Team: Lao (https://www.transifex.com/oca/teams/23907/lo/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: lo\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: purchase_add_product_supplierinfo
 #: view:purchase.add.product.supplierinfo:purchase_add_product_supplierinfo.view_purchase_add_supplierinfo_form
 msgid "Add and Confirm"
-msgstr "Ajouter et Valider"
+msgstr ""
 
 #. module: purchase_add_product_supplierinfo
 #: view:purchase.add.product.supplierinfo:purchase_add_product_supplierinfo.view_purchase_add_supplierinfo_form
 msgid "Add supplier to products"
-msgstr "Ajouter un fournisseur aux produits"
+msgstr ""
 
 #. module: purchase_add_product_supplierinfo
 #: field:purchase.add.product.supplierinfo.line,to_variant:0
 msgid "Added to the variant"
-msgstr "Ajouté à la variante"
+msgstr ""
 
 #. module: purchase_add_product_supplierinfo
 #: code:addons/purchase_add_product_supplierinfo/purchase.py:43
 #, python-format
 msgid "Associate the supplier '%s' with the products of this purchase order."
-msgstr "Associer le fournisseur '%s' avec les produits de cette commande."
+msgstr ""
 
 #. module: purchase_add_product_supplierinfo
 #: view:purchase.add.product.supplierinfo:purchase_add_product_supplierinfo.view_purchase_add_supplierinfo_form
 msgid "Cancel"
-msgstr "Annuler"
+msgstr "ຍົກເລີອກ"
 
 #. module: purchase_add_product_supplierinfo
 #: view:purchase.add.product.supplierinfo:purchase_add_product_supplierinfo.view_purchase_add_supplierinfo_form
 msgid "Confirm without adding"
-msgstr "Valider sans ajouter"
+msgstr ""
 
 #. module: purchase_add_product_supplierinfo
 #: field:purchase.add.product.supplierinfo,create_uid:0
 #: field:purchase.add.product.supplierinfo.line,create_uid:0
 msgid "Created by"
-msgstr "Créé par"
+msgstr ""
 
 #. module: purchase_add_product_supplierinfo
 #: field:purchase.add.product.supplierinfo,create_date:0
 #: field:purchase.add.product.supplierinfo.line,create_date:0
 msgid "Created on"
-msgstr "Créé le"
+msgstr ""
 
 #. module: purchase_add_product_supplierinfo
 #: field:purchase.add.product.supplierinfo.line,name:0
 msgid "Description"
-msgstr "Description"
+msgstr ""
 
 #. module: purchase_add_product_supplierinfo
 #: field:purchase.add.product.supplierinfo,display_name:0
 #: field:purchase.add.product.supplierinfo.line,display_name:0
 msgid "Display Name"
-msgstr "Display Name"
+msgstr ""
 
 #. module: purchase_add_product_supplierinfo
 #: field:purchase.add.product.supplierinfo,id:0
 #: field:purchase.add.product.supplierinfo.line,id:0
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: purchase_add_product_supplierinfo
 #: field:purchase.add.product.supplierinfo,__last_update:0
 #: field:purchase.add.product.supplierinfo.line,__last_update:0
 msgid "Last Modified on"
-msgstr "Modifié le"
+msgstr ""
 
 #. module: purchase_add_product_supplierinfo
 #: field:purchase.add.product.supplierinfo,write_uid:0
 #: field:purchase.add.product.supplierinfo.line,write_uid:0
 msgid "Last Updated by"
-msgstr "Mis à jour par"
+msgstr ""
 
 #. module: purchase_add_product_supplierinfo
 #: field:purchase.add.product.supplierinfo,write_date:0
 #: field:purchase.add.product.supplierinfo.line,write_date:0
 msgid "Last Updated on"
-msgstr "Mis à jour le"
+msgstr ""
 
 #. module: purchase_add_product_supplierinfo
 #: view:purchase.add.product.supplierinfo:purchase_add_product_supplierinfo.view_purchase_add_supplierinfo_form
 msgid "List of products to update"
-msgstr "Liste des produits à mettre à jour"
+msgstr ""
 
 #. module: purchase_add_product_supplierinfo
 #: field:purchase.add.product.supplierinfo.line,product_id:0
 msgid "Product"
-msgstr "Produit"
+msgstr ""
 
 #. module: purchase_add_product_supplierinfo
 #: model:ir.model,name:purchase_add_product_supplierinfo.model_purchase_order
 msgid "Purchase Order"
-msgstr "Bon de commande"
+msgstr ""
 
 #. module: purchase_add_product_supplierinfo
 #: field:purchase.add.product.supplierinfo.line,wizard_id:0
 msgid "Wizard Reference"
-msgstr "Réference du wizard"
+msgstr ""
 
 #. module: purchase_add_product_supplierinfo
 #: field:purchase.add.product.supplierinfo,wizard_line_ids:0
 msgid "Wizard lines"
-msgstr "Lignes du wizard"
+msgstr ""
 
 #. module: purchase_add_product_supplierinfo
 #: help:purchase.add.product.supplierinfo.line,to_variant:0
@@ -127,15 +127,13 @@ msgid ""
 "if option is checked then supplier is added to the product variant else "
 "supplier is added to the product template"
 msgstr ""
-"si l'option est cochée alors le fournisseur est ajouté à la variante du "
-"produit sinon il est ajouté au modèle du produit"
 
 #. module: purchase_add_product_supplierinfo
 #: view:purchase.order:purchase_add_product_supplierinfo.purchase_order_form
 msgid "object"
-msgstr "objet"
+msgstr ""
 
 #. module: purchase_add_product_supplierinfo
 #: view:purchase.add.product.supplierinfo:purchase_add_product_supplierinfo.view_purchase_add_supplierinfo_form
 msgid "or"
-msgstr "ou"
+msgstr "ຫຼື"
