@@ -1,0 +1,69 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * product_supplierinfo_discount
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2016
+# Pedro Castro Silva <pedrocs@sossia.pt>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-01-07 05:37+0000\n"
+"PO-Revision-Date: 2017-01-07 05:37+0000\n"
+"Last-Translator: Pedro Castro Silva <pedrocs@sossia.pt>, 2017\n"
+"Language-Team: Portuguese (Portugal) (https://www.transifex.com/oca/teams/23907/pt_PT/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: pt_PT\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: product_supplierinfo_discount
+#: model:ir.model.fields,field_description:product_supplierinfo_discount.field_res_partner_default_supplierinfo_discount
+msgid "Default Supplier Discount (%)"
+msgstr "Desconto Padrão do Fornecedor (%)"
+
+#. module: product_supplierinfo_discount
+#: model:ir.model.fields,field_description:product_supplierinfo_discount.field_product_supplierinfo_discount
+msgid "Discount (%)"
+msgstr "Desconto (%)"
+
+#. module: product_supplierinfo_discount
+#: model:ir.ui.view,arch_db:product_supplierinfo_discount.res_partner_form_view
+msgid "Discount-related settings are managed on"
+msgstr "As configurações relacionadas com descontos são geridas em"
+
+#. module: product_supplierinfo_discount
+#: model:ir.model,name:product_supplierinfo_discount.model_product_supplierinfo
+msgid "Information about a product vendor"
+msgstr "Informação sobre o fornecedor de um produto"
+
+#. module: product_supplierinfo_discount
+#: model:ir.model,name:product_supplierinfo_discount.model_res_partner
+msgid "Partner"
+msgstr "Parceiro"
+
+#. module: product_supplierinfo_discount
+#: model:ir.model,name:product_supplierinfo_discount.model_procurement_order
+msgid "Procurement"
+msgstr "Aquisições"
+
+#. module: product_supplierinfo_discount
+#: model:ir.model,name:product_supplierinfo_discount.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Linha de Encomenda de Compra"
+
+#. module: product_supplierinfo_discount
+#: model:ir.model.fields,help:product_supplierinfo_discount.field_res_partner_default_supplierinfo_discount
+msgid ""
+"This value will be used as the default one, for each new supplierinfo line "
+"depending on that supplier."
+msgstr ""
+"Este valor será usado como padrão nas linhas de informação relacionadas com "
+"o fornecedor."
+
+#. module: product_supplierinfo_discount
+#: model:ir.ui.view,arch_db:product_supplierinfo_discount.res_partner_form_view
+msgid "the parent company"
+msgstr "empresa-mãe"

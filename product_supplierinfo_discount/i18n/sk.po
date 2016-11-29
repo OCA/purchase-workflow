@@ -1,0 +1,66 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * product_supplierinfo_discount
+# 
+# Translators:
+# gebri <gebri@inmail.sk>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-12-23 01:41+0000\n"
+"PO-Revision-Date: 2016-12-23 01:41+0000\n"
+"Last-Translator: gebri <gebri@inmail.sk>, 2016\n"
+"Language-Team: Slovak (https://www.transifex.com/oca/teams/23907/sk/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sk\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+#. module: product_supplierinfo_discount
+#: model:ir.model.fields,field_description:product_supplierinfo_discount.field_res_partner_default_supplierinfo_discount
+msgid "Default Supplier Discount (%)"
+msgstr ""
+
+#. module: product_supplierinfo_discount
+#: model:ir.model.fields,field_description:product_supplierinfo_discount.field_product_supplierinfo_discount
+msgid "Discount (%)"
+msgstr ""
+
+#. module: product_supplierinfo_discount
+#: model:ir.ui.view,arch_db:product_supplierinfo_discount.res_partner_form_view
+msgid "Discount-related settings are managed on"
+msgstr ""
+
+#. module: product_supplierinfo_discount
+#: model:ir.model,name:product_supplierinfo_discount.model_product_supplierinfo
+msgid "Information about a product vendor"
+msgstr ""
+
+#. module: product_supplierinfo_discount
+#: model:ir.model,name:product_supplierinfo_discount.model_res_partner
+msgid "Partner"
+msgstr "Partner"
+
+#. module: product_supplierinfo_discount
+#: model:ir.model,name:product_supplierinfo_discount.model_procurement_order
+msgid "Procurement"
+msgstr ""
+
+#. module: product_supplierinfo_discount
+#: model:ir.model,name:product_supplierinfo_discount.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr ""
+
+#. module: product_supplierinfo_discount
+#: model:ir.model.fields,help:product_supplierinfo_discount.field_res_partner_default_supplierinfo_discount
+msgid ""
+"This value will be used as the default one, for each new supplierinfo line "
+"depending on that supplier."
+msgstr ""
+
+#. module: product_supplierinfo_discount
+#: model:ir.ui.view,arch_db:product_supplierinfo_discount.res_partner_form_view
+msgid "the parent company"
+msgstr ""
