@@ -19,6 +19,10 @@ route selected by the user.
 This module's main use case is to allow the user to manually handle the choice
 between producing an item and taking it from the inventory.
 
+This module is relevant when the decision of which route to use is made by the
+warehouse staff. Otherwise, in native Odoo, the route could be defined directly
+on the sale order line before confirming the sale.
+
 
 Usage
 =====
@@ -37,11 +41,6 @@ To use this module, you need to:
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
    :target: https://runbot.odoo-community.org/runbot/142/9.0
-
-Known issues / Roadmap
-======================
-
-* ...
 
 Bug Tracker
 ===========
