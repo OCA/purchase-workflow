@@ -14,7 +14,7 @@
         'Manually select the route of a product on a '
         'procurement exception.'
     ),
-    'depends': ['sale_stock', 'purchase'],
+    'depends': ['purchase', 'sale_mrp'],
     'data': [
         'views/procurement_order.xml',
     ],
