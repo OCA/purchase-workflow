@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-16 12:06+0000\n"
-"PO-Revision-Date: 2016-11-25 14:57+0000\n"
+"POT-Creation-Date: 2016-11-29 15:57+0000\n"
+"PO-Revision-Date: 2016-12-01 10:15+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (Switzerland) (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/fr_CH/)\n"
 "MIME-Version: 1.0\n"
@@ -135,7 +135,7 @@ msgstr ""
 #: field:framework.agreement.portfolio,display_name:0
 #: field:framework.agreement.pricelist,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Nom affiché"
 
 #. module: framework_agreement
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view
@@ -238,7 +238,7 @@ msgstr ""
 #: field:framework.agreement.portfolio,__last_update:0
 #: field:framework.agreement.pricelist,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Dernière modification le"
 
 #. module: framework_agreement
 #: field:framework.agreement,write_uid:0
@@ -375,7 +375,7 @@ msgstr ""
 #: field:framework.agreement,product_id:0
 #: model:ir.model,name:framework_agreement.model_product_product
 msgid "Product"
-msgstr ""
+msgstr "Produit"
 
 #. module: framework_agreement
 #: model:ir.model,name:framework_agreement.model_purchase_order

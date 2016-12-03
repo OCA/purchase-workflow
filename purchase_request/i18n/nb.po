@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-16 12:06+0000\n"
-"PO-Revision-Date: 2016-11-16 12:06+0000\n"
+"POT-Creation-Date: 2016-11-29 15:58+0000\n"
+"PO-Revision-Date: 2016-11-29 15:58+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: Norwegian Bokmål (https://www.transifex.com/oca/teams/23907/nb/)\n"
 "MIME-Version: 1.0\n"
@@ -142,7 +142,7 @@ msgstr "Følgere."
 #: view:purchase.request:purchase_request.view_purchase_request_search
 #: view:purchase.request.line:purchase_request.purchase_request_line_search
 msgid "Group By..."
-msgstr ""
+msgstr "Grupper etter ..."
 
 #. module: purchase_request
 #: help:purchase.request,message_summary:0
