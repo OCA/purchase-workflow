@@ -42,12 +42,6 @@ class PurchaseCostDistribution(models.Model):
         self.total_weight = sum([x.total_weight for x in self.cost_lines])
 
     @api.one
-    @api.depends('cost_lines', 'cost_lines.total_weight_net')
-    def _compute_total_weight_net(self):
-        self.total_weight_net = sum([x.total_weight_net for x in
-                                     self.cost_lines])
-
-    @api.one
     @api.depends('cost_lines', 'cost_lines.total_volume')
     def _compute_total_volume(self):
         self.total_volume = sum([x.total_volume for x in self.cost_lines])
@@ -95,10 +89,6 @@ class PurchaseCostDistribution(models.Model):
         compute=_compute_total_weight, string='Total gross weight',
         readonly=True,
         digits_compute=dp.get_precision('Stock Weight'))
-    total_weight_net = fields.Float(
-        compute=_compute_total_weight_net,
-        digits_compute=dp.get_precision('Stock Weight'),
-        string='Total net weight', readonly=True)
     total_volume = fields.Float(
         compute=_compute_total_volume, string='Total volume', readonly=True)
     total_purchase = fields.Float(
@@ -168,13 +158,6 @@ class PurchaseCostDistribution(models.Model):
                                expense_line.affected_lines])
             else:
                 divisor = distribution.total_weight
-        elif expense_line.type.calculation_method == 'weight_net':
-            multiplier = cost_line.total_weight_net
-            if expense_line.affected_lines:
-                divisor = sum([x.total_weight_net for x in
-                               expense_line.affected_lines])
-            else:
-                divisor = distribution.total_weight_net
         elif expense_line.type.calculation_method == 'volume':
             multiplier = cost_line.total_volume
             if expense_line.affected_lines:
@@ -305,11 +288,6 @@ class PurchaseCostDistributionLine(models.Model):
 
     @api.one
     @api.depends('product_id', 'product_qty')
-    def _compute_total_weight_net(self):
-        self.total_weight_net = self.product_weight_net * self.product_qty
-
-    @api.one
-    @api.depends('product_id', 'product_qty')
     def _compute_total_volume(self):
         self.total_volume = self.product_volume * self.product_qty
 
@@ -383,11 +361,6 @@ class PurchaseCostDistributionLine(models.Model):
     product_uom = fields.Many2one(
         comodel_name='product.uom', string='Unit of measure',
         related='move_id.product_uom')
-    product_uos_qty = fields.Float(
-        string='Quantity (UoS)', related='move_id.product_uos_qty')
-    product_uos = fields.Many2one(
-        comodel_name='product.uom', string='Product UoS',
-        related='move_id.product_uos')
     product_price_unit = fields.Float(
         string='Unit price', related='move_id.price_unit')
     expense_lines = fields.One2many(
@@ -399,9 +372,6 @@ class PurchaseCostDistributionLine(models.Model):
     product_weight = fields.Float(
         string='Gross weight', related='product_id.product_tmpl_id.weight',
         help="The gross weight in Kg.")
-    product_weight_net = fields.Float(
-        string='Net weight', related='product_id.product_tmpl_id.weight_net',
-        help="The net weight in Kg.")
     standard_price_old = fields.Float(
         string='Previous cost', compute="_get_standard_price_old", store=True,
         digits_compute=dp.get_precision('Product Price'))
@@ -420,10 +390,6 @@ class PurchaseCostDistributionLine(models.Model):
         compute=_compute_total_weight, string="Line weight", store=True,
         digits_compute=dp.get_precision('Stock Weight'),
         help="The line gross weight in Kg.")
-    total_weight_net = fields.Float(
-        compute=_compute_total_weight_net, string='Line net weight',
-        digits_compute=dp.get_precision('Stock Weight'), store=True,
-        help="The line net weight in Kg.")
     total_volume = fields.Float(
         compute=_compute_total_volume, string='Line volume', store=True,
         help="The line volume in m3.")
