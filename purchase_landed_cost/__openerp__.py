@@ -3,10 +3,9 @@
 # © 2014-2016 Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3
 
-
 {
     'name': 'Purchase landed costs - Alternative option',
-    'version': '8.0.2.4.0',
+    'version': '9.0.1.0.0',
     "author": "OdooMRP team,"
               "AvanzOSC,"
               "Tecnativa,"
@@ -31,10 +30,11 @@
         'security/purchase_landed_cost_security.xml',
         'security/ir.model.access.csv',
     ],
-    'installable': False,
+    'installable': True,
     'images': [
         '/static/description/images/purchase_order_expense_main.png',
         '/static/description/images/purchase_order_expense_line.png',
         '/static/description/images/expenses_types.png',
     ],
+    'license': 'AGPL-3',
 }
