@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-# For copyright and license notices, see __openerp__.py file in root directory
-##############################################################################
+# Copyright 2015 AvanzOsc (http://www.avanzosc.es)
+# Copyright 2015-2016 - Pedro M. Baeza <pedro.baeza@tecnativa.com>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
+
 from openerp import models
 
 
@@ -11,8 +12,9 @@ class PurchaseOrder(models.Model):
     def search(self, cr, uid, args, offset=0, limit=None, order=None,
                context=None, count=False):
         make_po_conditions = {
-            'partner_id', 'state', 'picking_type_id', 'location_id',
-            'company_id', 'dest_address_id'}
+            'partner_id', 'state', 'picking_type_id', 'company_id',
+            'dest_address_id',
+        }
         # Restrict the empty return for these conditions
         if (context and context.get('grouping', 'standard') == 'order' and
                 make_po_conditions.issubset(set(x[0] for x in args))):
@@ -27,10 +29,10 @@ class PurchaseOrderLine(models.Model):
 
     def search(self, cr, uid, args, offset=0, limit=None, order=None,
                context=None, count=False):
-        make_po_conditions = {'order_id', 'product_id', 'product_uom'}
         # Restrict the empty return for these conditions
         if (context and context.get('grouping', 'standard') == 'line' and
-                make_po_conditions.issubset(set(x[0] for x in args))):
+                len(args) == 1 and args[0][0] == 'order_id' and
+                args[0][1] == 'in'):
             return []
         return super(PurchaseOrderLine, self).search(
             cr, uid, args, offset=offset, limit=limit, order=order,
