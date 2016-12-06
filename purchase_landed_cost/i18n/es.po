@@ -89,11 +89,6 @@ msgid "By product weight"
 msgstr "Por el peso del producto"
 
 #. module: purchase_landed_cost
-#: selection:purchase.expense.type,calculation_method:0
-msgid "By product weight net"
-msgstr "Por el peso neto del producto"
-
-#. module: purchase_landed_cost
 #: view:purchase.cost.distribution:purchase_landed_cost.purchase_cost_distribution_form
 msgid "Calculate"
 msgstr "Calcular"
@@ -457,11 +452,6 @@ msgid "Last Updated on"
 msgstr "Última actualización el"
 
 #. module: purchase_landed_cost
-#: field:purchase.cost.distribution.line,total_weight_net:0
-msgid "Line net weight"
-msgstr "Peso neto de la línea"
-
-#. module: purchase_landed_cost
 #: field:purchase.cost.distribution.line,total_volume:0
 msgid "Line volume"
 msgstr "Volumen de la línea"
@@ -476,11 +466,6 @@ msgstr "Peso de la línea"
 #: field:purchase.expense.type,name:0
 msgid "Name"
 msgstr "Nombre"
-
-#. module: purchase_landed_cost
-#: field:purchase.cost.distribution.line,product_weight_net:0
-msgid "Net weight"
-msgstr "Peso neto"
 
 #. module: purchase_landed_cost
 #: field:purchase.cost.distribution.line,standard_price_new:0
@@ -717,19 +702,9 @@ msgid "The line gross weight in Kg."
 msgstr "El peso bruto de la línea en kg."
 
 #. module: purchase_landed_cost
-#: help:purchase.cost.distribution.line,total_weight_net:0
-msgid "The line net weight in Kg."
-msgstr "El peso neto de la línea en kg."
-
-#. module: purchase_landed_cost
 #: help:purchase.cost.distribution.line,total_volume:0
 msgid "The line volume in m3."
 msgstr "El volumen de la línea en m3."
-
-#. module: purchase_landed_cost
-#: help:purchase.cost.distribution.line,product_weight_net:0
-msgid "The net weight in Kg."
-msgstr "El peso neto en kg."
 
 #. module: purchase_landed_cost
 #: help:purchase.cost.distribution.line,product_volume:0
@@ -766,11 +741,6 @@ msgstr "Gastos totales"
 #: field:purchase.cost.distribution,total_weight:0
 msgid "Total gross weight"
 msgstr "Peso bruto total"
-
-#. module: purchase_landed_cost
-#: field:purchase.cost.distribution,total_weight_net:0
-msgid "Total net weight"
-msgstr "Peso neto total"
 
 #. module: purchase_landed_cost
 #: field:purchase.cost.distribution,total_price_unit:0
