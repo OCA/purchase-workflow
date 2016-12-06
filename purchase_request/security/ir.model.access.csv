@@ -3,3 +3,4 @@ access_purchase_request_user,purchase.request,model_purchase_request,group_purch
 access_purchase_request_manager,purchase.request,model_purchase_request,group_purchase_request_manager,1,1,1,1
 access_purchase_request_line_user,purchase.request.line,model_purchase_request_line,group_purchase_request_user,1,1,1,1
 access_purchase_request_line_manager,purchase.request.line,model_purchase_request_line,group_purchase_request_manager,1,1,1,1
+access_stock_move_purchase_request_user,stock.move,stock.model_stock_move,group_purchase_request_user,1,0,0,0
