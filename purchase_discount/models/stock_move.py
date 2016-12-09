@@ -28,4 +28,7 @@ class StockMove(models.Model):
                                                             inv_type)
         if move.purchase_line_id:
             res['discount'] = move.purchase_line_id.discount
+        elif move.origin_returned_move_id.purchase_line_id:
+            res['discount'] = \
+                move.origin_returned_move_id.purchase_line_id.discount
         return res
