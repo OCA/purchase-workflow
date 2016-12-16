@@ -15,7 +15,7 @@ In the search view of RFQ/purchase orders, you can group by *Commercial Supplier
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/142/8.0
+   :target: https://runbot.odoo-community.org/runbot/142/10.0
 
 Known issues / Roadmap
 ======================
