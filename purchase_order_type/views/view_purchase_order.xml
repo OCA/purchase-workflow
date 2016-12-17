@@ -1,43 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
-  <data noupdate="0">
 
     <record id="purchase_order_form" model="ir.ui.view">
-      <field name="name">purchase.order.form</field>
-      <field name="model">purchase.order</field>
-      <field name="inherit_id" ref="purchase.purchase_order_form"/>
-      <field name="arch" type="xml">
-        <field name="partner_id" position="after">
-          <field name="order_type" widget="selection"/>
+        <field name="name">purchase.order.form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="order_type" widget="selection"/>
+            </field>
         </field>
-      </field>
     </record>
 
     <record id="purchase_order_tree" model="ir.ui.view">
-      <field name="name">purchase.order.form</field>
-      <field name="model">purchase.order</field>
-      <field name="inherit_id" ref="purchase.purchase_order_tree"/>
-      <field name="arch" type="xml">
-        <field name="state" position="before">
-          <field name="order_type" invisible="context.get('group_by') == 'order_type'"/>
+        <field name="name">purchase.order.form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_tree"/>
+        <field name="arch" type="xml">
+            <field name="state" position="before">
+                <field name="order_type" invisible="context.get('group_by') == 'order_type'"/>
+            </field>
         </field>
-      </field>
     </record>
 
     <record id="view_purchase_order_filter" model="ir.ui.view">
-      <field name="name">purchase.order.list.select</field>
-      <field name="model">purchase.order</field>
-      <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
-      <field name="arch" type="xml">
-        <field name="partner_id" position="after">
-          <field name="order_type"/>
+        <field name="name">purchase.order.list.select</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="order_type"/>
+            </field>
+            <filter context="{'group_by':'date_order'}" position="after">
+                <filter string="Type"
+                  domain="[]" context="{'group_by': 'order_type'}"/>
+            </filter>
         </field>
-        <xpath expr="//filter[@string='Expected Month']" position="after">
-          <filter string="Type"
-            domain="[]" context="{'group_by': 'order_type'}"/>
-        </xpath>
-      </field>
     </record>
 
-  </data>
 </openerp>
