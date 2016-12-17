@@ -10,11 +10,11 @@ msgstr ""
 "POT-Creation-Date: 2016-12-10 04:52+0000\n"
 "PO-Revision-Date: 2015-09-01 21:20+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: Portuguese (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/pt/)\n"
+"Language-Team: Portuguese (Portugal) (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: pt\n"
+"Language: pt_PT\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: purchase_landed_costs
@@ -54,7 +54,7 @@ msgstr ""
 #. module: purchase_landed_costs
 #: view:landed.cost.position:0
 msgid "Supplier"
-msgstr ""
+msgstr "Fornecedor"
 
 #. module: purchase_landed_costs
 #: field:landed.cost.position,generate_invoice:0
@@ -333,7 +333,7 @@ msgstr ""
 #. module: purchase_landed_costs
 #: field:landed.cost.position,partner_id:0
 msgid "Partner"
-msgstr "Parceiro"
+msgstr ""
 
 #. module: purchase_landed_costs
 #: field:purchase.order,landed_cost:0
