@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-16 12:06+0000\n"
-"PO-Revision-Date: 2016-11-25 14:56+0000\n"
+"POT-Creation-Date: 2016-12-09 09:31+0000\n"
+"PO-Revision-Date: 2016-12-16 12:17+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -117,7 +117,7 @@ msgstr "Erstellt am:"
 #. module: framework_agreement
 #: field:framework.agreement.pricelist,currency_id:0
 msgid "Currency"
-msgstr ""
+msgstr "Währung"
 
 #. module: framework_agreement
 #: code:addons/framework_agreement/model/framework_agreement.py:300
