@@ -72,7 +72,7 @@ class PurchaseRequestLine(models.Model):
         string="Purchase Status",
         selection=lambda self:
         self.env['purchase.order']._fields['state'].selection,
-        stored=True,
+        store=True,
     )
 
     @api.model
