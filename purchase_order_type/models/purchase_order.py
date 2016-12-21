@@ -1,26 +1,10 @@
 # -*- coding: utf-8 -*-
-#
-#
-#    Authors: Guewen Baconnier
-#    Copyright 2015 Camptocamp SA
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-#
+# Copyright 2015 Guewen Baconnier <guewen.baconnier@camptocamp.com>
+# Copyright 2016 Vicent Cubells <vicent.cubells@tecnativa.com>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import models, fields, api
-from openerp.addons.purchase.purchase import purchase_order
+from openerp import api, fields, models
+from openerp.addons.purchase.purchase import PurchaseOrder as purchase_order
 
 
 class PurchaseOrder(models.Model):
@@ -36,19 +20,15 @@ class PurchaseOrder(models.Model):
                                  ondelete='restrict',
                                  default=_default_order_type)
 
-    @api.multi
-    def onchange_partner_id(self, partner_id):
-        res = super(PurchaseOrder, self).onchange_partner_id(partner_id)
-        if partner_id:
-            partner = self.env['res.partner'].browse(partner_id)
-            if partner.purchase_type:
-                res['value'] = res.get('value', {})
-                res['value'].update({
-                    'order_type': partner.purchase_type.id,
-                })
-        return res
+    @api.onchange('partner_id', 'company_id')
+    def onchange_partner_id_purchase_order_type(self):
+        if self.partner_id.purchase_type:
+            self.order_type = self.partner_id.purchase_type.id
 
-    @api.one
     @api.onchange('order_type')
-    def onchange_order_type(self):
-        self.invoice_method = self.order_type.invoice_method
+    def onchange_purchase_order_type(self):
+        if self.order_type:
+            if self.order_type.incoterm_id:
+                self.incoterm_id = self.order_type.incoterm_id.id
+            if self.order_type.picking_type_id:
+                self.picking_type_id = self.order_type.picking_type_id.id

@@ -1,10 +1,14 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
-    :alt: License: AGPL-3
+   :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+   :alt: License: AGPL-3
 
+===================
 Purchase Order Type
 ===================
 
-Adds a configurable *type* on the purchase orders.
+Adds a configurable *type* on the purchase orders, allowing to predefine
+some purchase order fields attached to this type.
+
 This type can be used in filters and groupbys.
 
 Configuration
@@ -12,8 +16,17 @@ Configuration
 
 To configure this module, you need to:
 
-* Go to **Purchases > Configuration > Purchase types**
-* Modify / create the purchase order types
+#. Go to **Purchases > Configuration > Purchase types**
+#. Modify / create the purchase order types
+#. Assign (optionally) a default incoterm for this type.
+#. Assign (optionally) a default picking type for this type (only incoming
+   types).
+
+You can also predefine a purchase order type in the partner:
+
+#. Open a partner in **Purchases > Purchase > Vendors**.
+#. Go to the **Sales & Purchases** page.
+#. Select one type on the field.
 
 Usage
 =====
@@ -21,18 +34,20 @@ Usage
 To use this module, you need to:
 
 * Attribute a type when editing purchase orders
+* Order Type will be autofilled when selecting a partner that has a type set
+  in its data.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/142/8.0
+   :target: https://runbot.odoo-community.org/runbot/142/9.0
 
 Bug Tracker
 ===========
 
-Bugs are tracked on `GitHub Issues <https://github.com/OCA/purchase-workflow/issues>`_.
-In case of trouble, please check there if your issue has already been reported.
-If you spotted it first, help us smashing it by providing a detailed and welcomed feedback
-`here <https://github.com/OCA/purchase-workflow/issues/new?body=module:%20purchase_order_type%0Aversion:%208.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+Bugs are tracked on `GitHub Issues
+<https://github.com/OCA/purchase-workflow/issues>`_. In case of trouble, please
+check there if your issue has already been reported. If you spotted it first,
+help us smashing it by providing a detailed and welcomed feedback.
 
 Known issues / Roadmap
 ======================
@@ -46,6 +61,7 @@ Contributors
 ------------
 
 * Guewen Baconnier <guewen.baconnier@camptocamp.com>
+* Vicent Cubells <vicent.cubells@tecnativa.com>
 
 Maintainer
 ----------

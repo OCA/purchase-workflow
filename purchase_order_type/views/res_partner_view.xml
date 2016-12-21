@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
-    <data>
-        <record model="ir.ui.view" id="res_partner_purchase_type_form_view">
-            <field name="name">res.partner.purchase_type.form</field>
-            <field name="model">res.partner</field>
-            <field name="inherit_id" ref="base.view_partner_form"/>
-            <field name="arch" type="xml">
-                <page name="sales_purchases" position="inside">
-                    <group colspan="2" col="2" attrs="{'invisible':[('supplier', '=', False)]}">
-                        <separator string="Purchase Order Type" colspan="2"/>
-                        <field name="purchase_type"/>
-                    </group>
-                </page>
-            </field>
-        </record>
+<odoo>
 
-    </data>
-</openerp>
+    <record model="ir.ui.view" id="res_partner_purchase_type_form_view">
+        <field name="name">res.partner.purchase_type.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <group name="purchase" position="inside">
+                <field name="purchase_type"
+                       attrs="{'invisible':[('supplier', '=', False)]}"
+                />
+            </group>
+        </field>
+    </record>
+
+</odoo>

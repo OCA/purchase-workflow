@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-  <data noupdate="1">
+<odoo noupdate="1">
 
     <record model="purchase.order.type" id="po_type_regular">
       <field name="name">Regular</field>
@@ -18,5 +17,4 @@
       <field name="name">Planned</field>
     </record>
 
-  </data>
-</openerp>
+</odoo>
