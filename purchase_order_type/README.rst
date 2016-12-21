@@ -6,7 +6,9 @@
 Purchase Order Type
 ===================
 
-Adds a configurable *type* on the purchase orders.
+Adds a configurable *type* on the purchase orders, allowing to predefine
+some purchase order fields attached to this type.
+
 This type can be used in filters and groupbys.
 
 Configuration
@@ -14,10 +16,17 @@ Configuration
 
 To configure this module, you need to:
 
-* Go to **Purchases > Configuration > Purchase types**
-* Modify / create the purchase order types
-* You can also predefine a purchase order type in the partner if you go to tab
-  **Sales & Purchases** and select one.
+#. Go to **Purchases > Configuration > Purchase types**
+#. Modify / create the purchase order types
+#. Assign (optionally) a default incoterm for this type.
+#. Assign (optionally) a default picking type for this type (only incoming
+   types).
+
+You can also predefine a purchase order type in the partner:
+
+#. Open a partner in **Purchases > Purchase > Vendors**.
+#. Go to the **Sales & Purchases** page.
+#. Select one type on the field.
 
 Usage
 =====
