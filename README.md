@@ -21,6 +21,7 @@ addon | version | summary
 [product_supplierinfo_discount](product_supplierinfo_discount/) | 9.0.1.0.0 | Discounts in product supplier info
 [purchase_discount](purchase_discount/) | 9.0.1.0.0 | Purchase order lines with discounts
 [purchase_fiscal_position_update](purchase_fiscal_position_update/) | 9.0.1.0.0 | Changing the fiscal position of a purchase order will auto-update purchase order lines
+[purchase_order_type](purchase_order_type/) | 9.0.1.0.0 | Purchase Order Type
 [purchase_order_variant_mgmt](purchase_order_variant_mgmt/) | 9.0.1.0.0 | Handle the addition/removal of multiple variants from product template into the purchase order
 [purchase_picking_state](purchase_picking_state/) | 9.0.1.0.0 | Add the status of all the incoming picking in the purchase order
 [purchase_request](purchase_request/) | 9.0.1.0.0 | Purchase Request
@@ -45,7 +46,6 @@ addon | version | summary
 [purchase_order_force_number](purchase_order_force_number/) | 0.1 (unported) | Force purchase orders numeration
 [purchase_order_reorder_lines](purchase_order_reorder_lines/) | 8.0.1.0.1 (unported) | Purchase order lines with sequence number
 [purchase_order_revision](purchase_order_revision/) | 8.0.1.0.0 (unported) | Purchase order revisions
-[purchase_order_type](purchase_order_type/) | 8.0.1.0.0 (unported) | Purchase Order Type
 [purchase_origin_address](purchase_origin_address/) | 8.0.1.0.0 (unported) | Deprecated: use purchase_transport_multi_address from OCA/stock-logistics-transport
 [purchase_partial_invoicing](purchase_partial_invoicing/) | 8.0.0.1.0 (unported) | Purchase partial invoicing
 [purchase_partner_invoice_method](purchase_partner_invoice_method/) | 8.0.1.0.0 (unported) | Adds supplier invoicing control on partner form
