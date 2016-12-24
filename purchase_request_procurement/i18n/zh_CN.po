@@ -11,12 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2016-12-17 04:15+0000\n"
 "PO-Revision-Date: 2016-12-17 04:15+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/23907/pt_BR/)\n"
+"Language-Team: Chinese (China) (https://www.transifex.com/oca/teams/23907/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: pt_BR\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: purchase_request_procurement
 #: help:product.template,purchase_request:0
@@ -33,7 +33,7 @@ msgstr ""
 #. module: purchase_request_procurement
 #: model:ir.model,name:purchase_request_procurement.model_procurement_order
 msgid "Procurement"
-msgstr "Aprovisionamento"
+msgstr "补货"
 
 #. module: purchase_request_procurement
 #: model:ir.model,name:purchase_request_procurement.model_product_template
@@ -44,7 +44,7 @@ msgstr ""
 #: model:ir.model,name:purchase_request_procurement.model_purchase_request
 #: field:product.template,purchase_request:0
 msgid "Purchase Request"
-msgstr "Requisição de compra"
+msgstr ""
 
 #. module: purchase_request_procurement
 #: code:addons/purchase_request_procurement/models/procurement.py:64

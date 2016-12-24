@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-16 12:06+0000\n"
-"PO-Revision-Date: 2016-11-25 14:55+0000\n"
+"POT-Creation-Date: 2016-12-17 04:15+0000\n"
+"PO-Revision-Date: 2016-12-23 08:32+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -83,7 +83,7 @@ msgstr "Bon de commande"
 #: view:res.partner:purchase_order_type.res_partner_purchase_type_form_view
 #: field:res.partner,purchase_type:0
 msgid "Purchase Order Type"
-msgstr ""
+msgstr "Type de Commande d'Achat"
 
 #. module: purchase_order_type
 #: model:ir.actions.act_window,name:purchase_order_type.action_purchase_order_type_view
@@ -91,7 +91,7 @@ msgstr ""
 #: view:purchase.order.type:purchase_order_type.view_purchase_order_type_search
 #: view:purchase.order.type:purchase_order_type.view_purchase_order_type_tree
 msgid "Purchase Order Types"
-msgstr ""
+msgstr "Types de Commandes d'Achat"
 
 #. module: purchase_order_type
 #: view:purchase.order:purchase_order_type.view_purchase_order_filter

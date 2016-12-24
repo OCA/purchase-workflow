@@ -3,25 +3,18 @@
 # * purchase_requisition_bid_selection
 # 
 # Translators:
-# danimaribeiro <danimaribeiro@gmail.com>, 2016
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2012
-# Hotellook, 2014
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
-# Rudolf Schnapka <schnapkar@golive-saar.de>, 2015
-# SaFi J. <safi2266@gmail.com>, 2015
-# Thomas A. Jaeger, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-17 04:15+0000\n"
-"PO-Revision-Date: 2016-12-23 08:32+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/es/)\n"
+"PO-Revision-Date: 2016-03-08 10:17+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Spanish (Paraguay) (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/es_PY/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
+"Language: es_PY\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: purchase_requisition_bid_selection
@@ -172,7 +165,7 @@ msgstr ""
 #: view:update.bid.internal.remark:purchase_requisition_bid_selection.view_update_bid_internal_remark
 #: view:update.remark:purchase_requisition_bid_selection.view_update_remark
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr ""
 
 #. module: purchase_requisition_bid_selection
 #: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
@@ -213,7 +206,7 @@ msgstr ""
 #: view:purchase.action_modal.ask_selection_reasons:purchase_requisition_bid_selection.ask_selection_reasons
 #: view:purchase.action_modal.ask_validity:purchase_requisition_bid_selection.ask_validity
 msgid "Confirm"
-msgstr "Confirmar"
+msgstr ""
 
 #. module: purchase_requisition_bid_selection
 #: view:purchase.action_modal:purchase_requisition_bid_selection.modal_confirm_close_selection
@@ -294,7 +287,7 @@ msgstr ""
 #: field:update.bid.internal.remark,display_name:0
 #: field:update.remark,display_name:0
 msgid "Display Name"
-msgstr "Nombre mostrado"
+msgstr ""
 
 #. module: purchase_requisition_bid_selection
 #: view:purchase.order.line:purchase_requisition_bid_selection.view_purchase_order_line_search
@@ -315,7 +308,7 @@ msgstr ""
 #: code:addons/purchase_requisition_bid_selection/model/purchase_requisition.py:260
 #, python-format
 msgid "Error"
-msgstr "Error"
+msgstr ""
 
 #. module: purchase_requisition_bid_selection
 #: code:addons/purchase_requisition_bid_selection/model/purchase_requisition.py:144
@@ -416,7 +409,7 @@ msgstr ""
 #: field:update.bid.internal.remark,__last_update:0
 #: field:update.remark,__last_update:0
 msgid "Last Modified on"
-msgstr "Última modificación el"
+msgstr ""
 
 #. module: purchase_requisition_bid_selection
 #: field:purchase.action_modal.ask_selection_reasons,write_uid:0
@@ -424,7 +417,7 @@ msgstr "Última modificación el"
 #: field:update.bid.internal.remark,write_uid:0
 #: field:update.remark,write_uid:0
 msgid "Last Updated by"
-msgstr "Última actualización por"
+msgstr "Ultima actualización por"
 
 #. module: purchase_requisition_bid_selection
 #: field:purchase.action_modal.ask_selection_reasons,write_date:0
@@ -432,7 +425,7 @@ msgstr "Última actualización por"
 #: field:update.bid.internal.remark,write_date:0
 #: field:update.remark,write_date:0
 msgid "Last Updated on"
-msgstr "Última actualización el"
+msgstr "Ultima actualización en"
 
 #. module: purchase_requisition_bid_selection
 #: view:purchase.order.line:purchase_requisition_bid_selection.view_purchase_order_line_search
@@ -475,17 +468,17 @@ msgstr ""
 #: selection:purchase.requisition,bid_receipt_mode:0
 #: selection:purchase.requisition,bid_tendering_mode:0
 msgid "Open"
-msgstr "Abierto"
+msgstr ""
 
 #. module: purchase_requisition_bid_selection
 #: view:purchase.requisition:purchase_requisition_bid_selection.view_purchase_requisition_form
 msgid "Options"
-msgstr "Opciones"
+msgstr ""
 
 #. module: purchase_requisition_bid_selection
 #: field:purchase.order.line,payment_term_id:0
 msgid "Payment Term"
-msgstr "Plazo de pago"
+msgstr ""
 
 #. module: purchase_requisition_bid_selection
 #: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
@@ -515,12 +508,12 @@ msgstr ""
 #. module: purchase_requisition_bid_selection
 #: model:ir.model,name:purchase_requisition_bid_selection.model_purchase_order
 msgid "Purchase Order"
-msgstr "Orden de Compra"
+msgstr ""
 
 #. module: purchase_requisition_bid_selection
 #: model:ir.model,name:purchase_requisition_bid_selection.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr "Línea orden de compra"
+msgstr ""
 
 #. module: purchase_requisition_bid_selection
 #: model:ir.model,name:purchase_requisition_bid_selection.model_purchase_requisition
@@ -540,7 +533,7 @@ msgstr ""
 #. module: purchase_requisition_bid_selection
 #: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
 msgid "Quantity"
-msgstr "Cantidad"
+msgstr ""
 
 #. module: purchase_requisition_bid_selection
 #: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
@@ -781,7 +774,7 @@ msgstr ""
 #. module: purchase_requisition_bid_selection
 #: view:purchase.action_modal:purchase_requisition_bid_selection.action_modal_confirm_different_quantity
 msgid "Warning"
-msgstr "Aviso"
+msgstr ""
 
 #. module: purchase_requisition_bid_selection
 #: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
@@ -839,7 +832,7 @@ msgstr ""
 #: view:update.bid.internal.remark:purchase_requisition_bid_selection.view_update_bid_internal_remark
 #: view:update.remark:purchase_requisition_bid_selection.view_update_remark
 msgid "or"
-msgstr "o"
+msgstr ""
 
 #. module: purchase_requisition_bid_selection
 #: view:purchase.order:purchase_requisition_bid_selection.view_purchase_order_form

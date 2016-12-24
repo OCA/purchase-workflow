@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-30 13:28+0000\n"
-"PO-Revision-Date: 2016-10-04 09:42+0000\n"
+"POT-Creation-Date: 2016-12-17 04:15+0000\n"
+"PO-Revision-Date: 2016-12-23 08:32+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -211,7 +211,7 @@ msgstr ""
 #: view:purchase.action_modal.ask_selection_reasons:purchase_requisition_bid_selection.ask_selection_reasons
 #: view:purchase.action_modal.ask_validity:purchase_requisition_bid_selection.ask_validity
 msgid "Confirm"
-msgstr ""
+msgstr "Bestätigen"
 
 #. module: purchase_requisition_bid_selection
 #: view:purchase.action_modal:purchase_requisition_bid_selection.modal_confirm_close_selection

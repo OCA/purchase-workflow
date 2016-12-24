@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015
 # Alexsandro Haag <alex@hgsoft.com.br>, 2015
 # Antonio Trueba, 2016
 # Carles Antoli <carlesantoli@hotmail.com>, 2015
@@ -21,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-09 09:32+0000\n"
+"POT-Creation-Date: 2016-12-17 04:15+0000\n"
 "PO-Revision-Date: 2016-03-08 10:18+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/pt_BR/)\n"
@@ -54,7 +55,7 @@ msgstr ""
 #. module: vendor_consignment_stock
 #: model:ir.model,name:vendor_consignment_stock.model_procurement_order
 msgid "Procurement"
-msgstr ""
+msgstr "Aprovisionamento"
 
 #. module: vendor_consignment_stock
 #: model:ir.model,name:vendor_consignment_stock.model_procurement_rule

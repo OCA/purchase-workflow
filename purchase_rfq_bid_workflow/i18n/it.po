@@ -22,8 +22,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-16 12:06+0000\n"
-"PO-Revision-Date: 2016-11-25 14:57+0000\n"
+"POT-Creation-Date: 2016-12-17 04:15+0000\n"
+"PO-Revision-Date: 2016-12-23 08:32+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -75,7 +75,7 @@ msgstr "Annulla"
 #: view:purchase.action_modal.cancel_reason:purchase_rfq_bid_workflow.action_modal_cancel_reason
 #: view:purchase.action_modal.datetime:purchase_rfq_bid_workflow.action_modal_bid_date
 msgid "Confirm"
-msgstr ""
+msgstr "Conferma"
 
 #. module: purchase_rfq_bid_workflow
 #: view:purchase.order:purchase_rfq_bid_workflow.view_purchase_order_form
@@ -229,7 +229,7 @@ msgstr ""
 #. module: purchase_rfq_bid_workflow
 #: field:purchase.cancel_reason,name:0
 msgid "Reason"
-msgstr ""
+msgstr "Motivo"
 
 #. module: purchase_rfq_bid_workflow
 #: field:purchase.action_modal.cancel_reason,reason_id:0

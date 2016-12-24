@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-16 12:06+0000\n"
+"POT-Creation-Date: 2016-12-17 04:15+0000\n"
 "PO-Revision-Date: 2016-03-08 10:18+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/zh_CN/)\n"
@@ -40,7 +40,7 @@ msgstr ""
 #. module: vendor_consignment_stock
 #: model:ir.model,name:vendor_consignment_stock.model_procurement_order
 msgid "Procurement"
-msgstr ""
+msgstr "补货"
 
 #. module: vendor_consignment_stock
 #: model:ir.model,name:vendor_consignment_stock.model_procurement_rule
