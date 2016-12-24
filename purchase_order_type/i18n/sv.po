@@ -3,14 +3,15 @@
 # * purchase_order_type
 # 
 # Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2016
 msgid ""
 msgstr ""
-"Project-Id-Version: purchase-workflow (8.0)\n"
+"Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-16 12:06+0000\n"
-"PO-Revision-Date: 2016-03-08 10:17+0000\n"
-"Last-Translator: <>\n"
-"Language-Team: Swedish (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/sv/)\n"
+"POT-Creation-Date: 2016-12-23 01:41+0000\n"
+"PO-Revision-Date: 2016-12-23 01:41+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"Language-Team: Swedish (https://www.transifex.com/oca/teams/23907/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -18,59 +19,64 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: purchase_order_type
-#: field:purchase.order.type,active:0
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type_active
 msgid "Active"
-msgstr ""
+msgstr "Aktiv"
 
 #. module: purchase_order_type
-#: field:purchase.order.type,invoice_method:0
-msgid "Create Invoice"
-msgstr ""
-
-#. module: purchase_order_type
-#: field:purchase.order.type,create_uid:0
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type_create_uid
 msgid "Created by"
 msgstr "Skapad av"
 
 #. module: purchase_order_type
-#: field:purchase.order.type,create_date:0
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type_create_date
 msgid "Created on"
 msgstr "Skapad den"
 
 #. module: purchase_order_type
-#: field:purchase.order.type,display_name:0
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type_picking_type_id
+msgid "Deliver To"
+msgstr ""
+
+#. module: purchase_order_type
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type_display_name
 msgid "Display Name"
 msgstr "Visa namn"
 
 #. module: purchase_order_type
-#: field:purchase.order.type,id:0
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type_id
 msgid "ID"
 msgstr "ID"
 
 #. module: purchase_order_type
-#: field:purchase.order.type,__last_update:0
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type_incoterm_id
+msgid "Incoterm"
+msgstr ""
+
+#. module: purchase_order_type
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type___last_update
 msgid "Last Modified on"
 msgstr "Senast redigerad"
 
 #. module: purchase_order_type
-#: field:purchase.order.type,write_uid:0
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type_write_uid
 msgid "Last Updated by"
 msgstr "Senast uppdaterad av"
 
 #. module: purchase_order_type
-#: field:purchase.order.type,write_date:0
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type_write_date
 msgid "Last Updated on"
 msgstr "Senast uppdaterad"
 
 #. module: purchase_order_type
-#: field:purchase.order.type,name:0
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type_name
 msgid "Name"
 msgstr "Namn"
 
 #. module: purchase_order_type
 #: model:ir.model,name:purchase_order_type.model_res_partner
 msgid "Partner"
-msgstr ""
+msgstr "Företag"
 
 #. module: purchase_order_type
 #: model:ir.model,name:purchase_order_type.model_purchase_order
@@ -78,21 +84,25 @@ msgid "Purchase Order"
 msgstr ""
 
 #. module: purchase_order_type
-#: view:res.partner:purchase_order_type.res_partner_purchase_type_form_view
-#: field:res.partner,purchase_type:0
+#: model:ir.model.fields,field_description:purchase_order_type.field_res_partner_purchase_type
 msgid "Purchase Order Type"
 msgstr ""
 
 #. module: purchase_order_type
 #: model:ir.actions.act_window,name:purchase_order_type.action_purchase_order_type_view
 #: model:ir.ui.menu,name:purchase_order_type.menu_purchase_order_type
-#: view:purchase.order.type:purchase_order_type.view_purchase_order_type_search
-#: view:purchase.order.type:purchase_order_type.view_purchase_order_type_tree
+#: model:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
+#: model:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_tree
 msgid "Purchase Order Types"
 msgstr ""
 
 #. module: purchase_order_type
-#: view:purchase.order:purchase_order_type.view_purchase_order_filter
-#: field:purchase.order,order_type:0
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_order_type
+#: model:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_filter
 msgid "Type"
 msgstr "Typ"
+
+#. module: purchase_order_type
+#: model:ir.model,name:purchase_order_type.model_purchase_order_type
+msgid "purchase.order.type"
+msgstr ""
