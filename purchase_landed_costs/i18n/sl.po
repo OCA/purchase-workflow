@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-31 17:29+0000\n"
+"POT-Creation-Date: 2016-12-17 04:03+0000\n"
 "PO-Revision-Date: 2015-09-01 21:20+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/sl/)\n"
@@ -36,7 +36,7 @@ msgstr ""
 #. module: purchase_landed_costs
 #: selection:product.template,landed_cost_type:0
 msgid "None"
-msgstr ""
+msgstr "Brez"
 
 #. module: purchase_landed_costs
 #: view:landed.cost.position:0
@@ -278,7 +278,7 @@ msgstr ""
 #: selection:landed.cost.distribution.type,landed_cost_type:0
 #: selection:product.template,landed_cost_type:0
 msgid "Quantity"
-msgstr ""
+msgstr "Količina"
 
 #. module: purchase_landed_costs
 #: view:landed.cost.position:0 field:landed.cost.position,product_id:0
@@ -298,7 +298,7 @@ msgstr ""
 #. module: purchase_landed_costs
 #: model:ir.model,name:purchase_landed_costs.model_stock_move
 msgid "Stock Move"
-msgstr ""
+msgstr "Premik zaloge"
 
 #. module: purchase_landed_costs
 #: model:ir.model,name:purchase_landed_costs.model_product_template
