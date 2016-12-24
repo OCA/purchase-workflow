@@ -11,27 +11,27 @@ msgstr ""
 "POT-Creation-Date: 2016-12-23 01:41+0000\n"
 "PO-Revision-Date: 2016-12-23 01:41+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
-"Language-Team: Macedonian (https://www.transifex.com/oca/teams/23907/mk/)\n"
+"Language-Team: Estonian (https://www.transifex.com/oca/teams/23907/et/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: mk\n"
-"Plural-Forms: nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;\n"
+"Language: et\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type_active
 msgid "Active"
-msgstr "Активно"
+msgstr "Aktiivne"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type_create_uid
 msgid "Created by"
-msgstr "Креирано од"
+msgstr "Loonud"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type_create_date
 msgid "Created on"
-msgstr "Креирано на"
+msgstr "Loodud"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type_picking_type_id
@@ -41,7 +41,7 @@ msgstr ""
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type_display_name
 msgid "Display Name"
-msgstr "Прикажи име"
+msgstr "Näidatav nimi"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type_id
@@ -56,27 +56,27 @@ msgstr ""
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type___last_update
 msgid "Last Modified on"
-msgstr "Последна промена на"
+msgstr "Viimati muudetud"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type_write_uid
 msgid "Last Updated by"
-msgstr "Последно ажурирање од"
+msgstr "Viimati uuendatud"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type_write_date
 msgid "Last Updated on"
-msgstr "Последно ажурирање на"
+msgstr "Viimati uuendatud"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type_name
 msgid "Name"
-msgstr "Име"
+msgstr "Nimi"
 
 #. module: purchase_order_type
 #: model:ir.model,name:purchase_order_type.model_res_partner
 msgid "Partner"
-msgstr "Партнер"
+msgstr "Partner"
 
 #. module: purchase_order_type
 #: model:ir.model,name:purchase_order_type.model_purchase_order
@@ -100,7 +100,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_order_type
 #: model:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_filter
 msgid "Type"
-msgstr "Тип"
+msgstr "Tüüp"
 
 #. module: purchase_order_type
 #: model:ir.model,name:purchase_order_type.model_purchase_order_type
