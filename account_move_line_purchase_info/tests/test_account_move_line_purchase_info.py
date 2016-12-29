@@ -190,8 +190,8 @@ class TestAccountMoveLinePurchaseInfo(common.TransactionCase):
         }).create({})
 
         wizard.makeInvoices()
-        invoice_lines = self.invoice_line_model.search(
-                [('purchase_line_id', '=', po_line.id)])
+        invoice_lines = self.invoice_line_model.search([
+            ('purchase_line_id', '=', po_line.id)])
 
         for line in invoice_lines:
             for aml in line.invoice_id.move_id.line_id:
