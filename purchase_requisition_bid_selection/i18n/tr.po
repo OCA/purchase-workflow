@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-16 12:06+0000\n"
+"POT-Creation-Date: 2016-12-24 04:26+0000\n"
 "PO-Revision-Date: 2016-03-08 10:17+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/tr/)\n"
@@ -287,7 +287,7 @@ msgstr ""
 #: field:update.bid.internal.remark,display_name:0
 #: field:update.remark,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Görünen İsim"
 
 #. module: purchase_requisition_bid_selection
 #: view:purchase.order.line:purchase_requisition_bid_selection.view_purchase_order_line_search
@@ -409,7 +409,7 @@ msgstr ""
 #: field:update.bid.internal.remark,__last_update:0
 #: field:update.remark,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Son değişiklik"
 
 #. module: purchase_requisition_bid_selection
 #: field:purchase.action_modal.ask_selection_reasons,write_uid:0
@@ -473,7 +473,7 @@ msgstr ""
 #. module: purchase_requisition_bid_selection
 #: view:purchase.requisition:purchase_requisition_bid_selection.view_purchase_requisition_form
 msgid "Options"
-msgstr ""
+msgstr "Seçenekler"
 
 #. module: purchase_requisition_bid_selection
 #: field:purchase.order.line,payment_term_id:0
@@ -774,7 +774,7 @@ msgstr ""
 #. module: purchase_requisition_bid_selection
 #: view:purchase.action_modal:purchase_requisition_bid_selection.action_modal_confirm_different_quantity
 msgid "Warning"
-msgstr ""
+msgstr "Uyarı"
 
 #. module: purchase_requisition_bid_selection
 #: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document

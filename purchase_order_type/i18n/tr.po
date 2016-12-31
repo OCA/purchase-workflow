@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-16 12:06+0000\n"
+"POT-Creation-Date: 2016-12-24 04:26+0000\n"
 "PO-Revision-Date: 2016-03-08 10:17+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/tr/)\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. module: purchase_order_type
 #: field:purchase.order.type,active:0
 msgid "Active"
-msgstr ""
+msgstr "Aktif"
 
 #. module: purchase_order_type
 #: field:purchase.order.type,invoice_method:0
@@ -40,7 +40,7 @@ msgstr "Oluşturuldu"
 #. module: purchase_order_type
 #: field:purchase.order.type,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Görünen İsim"
 
 #. module: purchase_order_type
 #: field:purchase.order.type,id:0
@@ -50,7 +50,7 @@ msgstr "ID"
 #. module: purchase_order_type
 #: field:purchase.order.type,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Son değişiklik"
 
 #. module: purchase_order_type
 #: field:purchase.order.type,write_uid:0
@@ -70,7 +70,7 @@ msgstr "Adı"
 #. module: purchase_order_type
 #: model:ir.model,name:purchase_order_type.model_res_partner
 msgid "Partner"
-msgstr ""
+msgstr "İş Ortağı"
 
 #. module: purchase_order_type
 #: model:ir.model,name:purchase_order_type.model_purchase_order
@@ -95,4 +95,4 @@ msgstr ""
 #: view:purchase.order:purchase_order_type.view_purchase_order_filter
 #: field:purchase.order,order_type:0
 msgid "Type"
-msgstr ""
+msgstr "Tipi"

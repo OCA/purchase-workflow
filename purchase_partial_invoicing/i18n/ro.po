@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-16 12:06+0000\n"
+"POT-Creation-Date: 2016-12-24 04:26+0000\n"
 "PO-Revision-Date: 2016-03-08 10:17+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Romanian (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/ro/)\n"
@@ -47,21 +47,21 @@ msgstr ""
 #: field:purchase.order.line_cancel_quantity_line,create_uid:0
 #: field:purchase.order.line_invoice.line,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Creat de"
 
 #. module: purchase_partial_invoicing
 #: field:purchase.order.line_cancel_quantity,create_date:0
 #: field:purchase.order.line_cancel_quantity_line,create_date:0
 #: field:purchase.order.line_invoice.line,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Creat la"
 
 #. module: purchase_partial_invoicing
 #: field:purchase.order.line_cancel_quantity,display_name:0
 #: field:purchase.order.line_cancel_quantity_line,display_name:0
 #: field:purchase.order.line_invoice.line,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Nume Afişat"
 
 #. module: purchase_partial_invoicing
 #: view:purchase.order.line_cancel_quantity:purchase_partial_invoicing.view_purchase_line_cancel
@@ -78,12 +78,12 @@ msgstr ""
 #: field:purchase.order.line_cancel_quantity_line,id:0
 #: field:purchase.order.line_invoice.line,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: purchase_partial_invoicing
 #: model:ir.model,name:purchase_partial_invoicing.model_account_invoice
 msgid "Invoice"
-msgstr ""
+msgstr "Factura"
 
 #. module: purchase_partial_invoicing
 #: field:purchase.order.line,invoiced_qty:0
@@ -100,21 +100,21 @@ msgstr ""
 #: field:purchase.order.line_cancel_quantity_line,__last_update:0
 #: field:purchase.order.line_invoice.line,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima actualizare în"
 
 #. module: purchase_partial_invoicing
 #: field:purchase.order.line_cancel_quantity,write_uid:0
 #: field:purchase.order.line_cancel_quantity_line,write_uid:0
 #: field:purchase.order.line_invoice.line,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultima actualizare făcută de"
 
 #. module: purchase_partial_invoicing
 #: field:purchase.order.line_cancel_quantity,write_date:0
 #: field:purchase.order.line_cancel_quantity_line,write_date:0
 #: field:purchase.order.line_invoice.line,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultima actualizare la"
 
 #. module: purchase_partial_invoicing
 #: field:purchase.order.line_cancel_quantity,line_ids:0

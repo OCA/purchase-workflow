@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-16 12:06+0000\n"
-"PO-Revision-Date: 2016-11-22 12:24+0000\n"
+"POT-Creation-Date: 2016-12-24 04:26+0000\n"
+"PO-Revision-Date: 2016-12-27 08:22+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Russian (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -94,7 +94,7 @@ msgstr ""
 #: field:framework.agreement.portfolio,create_uid:0
 #: field:framework.agreement.pricelist,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Создано"
 
 #. module: framework_agreement
 #: field:framework.agreement,create_date:0
@@ -102,7 +102,7 @@ msgstr ""
 #: field:framework.agreement.portfolio,create_date:0
 #: field:framework.agreement.pricelist,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Создан"
 
 #. module: framework_agreement
 #: field:framework.agreement.pricelist,currency_id:0
@@ -195,7 +195,7 @@ msgstr ""
 #: field:framework.agreement.portfolio,id:0
 #: field:framework.agreement.pricelist,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: framework_agreement
 #: help:res.company,one_agreement_per_product:0
@@ -246,7 +246,7 @@ msgstr ""
 #: field:framework.agreement.portfolio,write_uid:0
 #: field:framework.agreement.pricelist,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Последний раз обновлено"
 
 #. module: framework_agreement
 #: field:framework.agreement,write_date:0
@@ -254,7 +254,7 @@ msgstr ""
 #: field:framework.agreement.portfolio,write_date:0
 #: field:framework.agreement.pricelist,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Последний раз обновлено"
 
 #. module: framework_agreement
 #: field:framework.agreement,delay:0

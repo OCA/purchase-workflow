@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-16 12:06+0000\n"
+"POT-Creation-Date: 2016-12-24 04:26+0000\n"
 "PO-Revision-Date: 2016-03-08 10:17+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Romanian (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/ro/)\n"
@@ -231,7 +231,7 @@ msgstr ""
 #: field:update.bid.internal.remark,create_uid:0
 #: field:update.remark,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Creat de"
 
 #. module: purchase_requisition_bid_selection
 #: field:purchase.action_modal.ask_selection_reasons,create_date:0
@@ -239,7 +239,7 @@ msgstr ""
 #: field:update.bid.internal.remark,create_date:0
 #: field:update.remark,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Creat la"
 
 #. module: purchase_requisition_bid_selection
 #: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
@@ -287,7 +287,7 @@ msgstr ""
 #: field:update.bid.internal.remark,display_name:0
 #: field:update.remark,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Nume Afişat"
 
 #. module: purchase_requisition_bid_selection
 #: view:purchase.order.line:purchase_requisition_bid_selection.view_purchase_order_line_search
@@ -348,7 +348,7 @@ msgstr ""
 #: field:purchase.action_modal.ask_validity,id:0
 #: field:update.bid.internal.remark,id:0 field:update.remark,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: purchase_requisition_bid_selection
 #: view:purchase.order.line:purchase_requisition_bid_selection.view_purchase_order_line_search
@@ -409,7 +409,7 @@ msgstr ""
 #: field:update.bid.internal.remark,__last_update:0
 #: field:update.remark,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima actualizare în"
 
 #. module: purchase_requisition_bid_selection
 #: field:purchase.action_modal.ask_selection_reasons,write_uid:0
@@ -417,7 +417,7 @@ msgstr ""
 #: field:update.bid.internal.remark,write_uid:0
 #: field:update.remark,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultima actualizare făcută de"
 
 #. module: purchase_requisition_bid_selection
 #: field:purchase.action_modal.ask_selection_reasons,write_date:0
@@ -425,7 +425,7 @@ msgstr ""
 #: field:update.bid.internal.remark,write_date:0
 #: field:update.remark,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultima actualizare la"
 
 #. module: purchase_requisition_bid_selection
 #: view:purchase.order.line:purchase_requisition_bid_selection.view_purchase_order_line_search
