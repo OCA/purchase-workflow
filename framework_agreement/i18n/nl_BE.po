@@ -1,0 +1,448 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# * framework_agreement
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: purchase-workflow (7.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-12-24 04:19+0000\n"
+"PO-Revision-Date: 2015-09-01 21:19+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Dutch (Belgium) (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/nl_BE/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: nl_BE\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: framework_agreement
+#: model:ir.model,name:framework_agreement.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr ""
+
+#. module: framework_agreement
+#: field:framework.agreement,quantity:0
+msgid "Negociated quantity"
+msgstr ""
+
+#. module: framework_agreement
+#: view:purchase.order:0
+msgid ""
+"onchange_price(price_unit, parent.framework_agreement_id, product_qty, "
+"parent.pricelist_id, product_id)"
+msgstr ""
+
+#. module: framework_agreement
+#: code:addons/framework_agreement/model/framework_agreement.py:501
+#, python-format
+msgid "Missing Agreement price list"
+msgstr ""
+
+#. module: framework_agreement
+#: code:addons/framework_agreement/model/framework_agreement.py:230
+#, python-format
+msgid "Data are missing"
+msgstr ""
+
+#. module: framework_agreement
+#: view:framework.agreement:0
+msgid "Framework Agreement (LTA)"
+msgstr ""
+
+#. module: framework_agreement
+#: view:framework.agreement:0
+#: field:framework.agreement.pricelist,framework_agreement_line_ids:0
+#: view:product.product:0
+msgid "Price lines"
+msgstr ""
+
+#. module: framework_agreement
+#: field:framework.agreement,delay:0
+msgid "Lead time in days"
+msgstr ""
+
+#. module: framework_agreement
+#: code:addons/framework_agreement/model/framework_agreement.py:231
+#, python-format
+msgid "Please enter dates and price informations"
+msgstr ""
+
+#. module: framework_agreement
+#: selection:framework.agreement,state:0
+msgid "Draft"
+msgstr ""
+
+#. module: framework_agreement
+#: selection:framework.agreement,state:0
+msgid "Closed"
+msgstr ""
+
+#. module: framework_agreement
+#: field:product.product,framework_agreement_ids:0
+msgid "Framework Agreements (LTA)"
+msgstr ""
+
+#. module: framework_agreement
+#: field:framework.agreement,supplier_id:0
+msgid "Supplier"
+msgstr ""
+
+#. module: framework_agreement
+#: view:purchase.order:0
+msgid "onchange_pricelist(pricelist_id, order_line)"
+msgstr ""
+
+#. module: framework_agreement
+#: code:addons/framework_agreement/model/framework_agreement.py:474
+#, python-format
+msgid "Please contact your ERP administrator"
+msgstr ""
+
+#. module: framework_agreement
+#: code:addons/framework_agreement/model/purchase.py:193
+#, python-format
+msgid "You can not change supplier"
+msgstr ""
+
+#. module: framework_agreement
+#: help:res.company,one_agreement_per_product:0
+msgid ""
+"If checked you can have only one framework agreement  per product at the "
+"same time"
+msgstr ""
+
+#. module: framework_agreement
+#: view:purchase.order.line:0
+msgid ""
+"on_change=\"onchange_price(price_unit, parent.framework_agreement_id, "
+"product_qty, parent.pricelist_id)"
+msgstr ""
+
+#. module: framework_agreement
+#: code:addons/framework_agreement/model/framework_agreement.py:556
+#, python-format
+msgid "Please set a pricelist on PO or supplier %s"
+msgstr ""
+
+#. module: framework_agreement
+#: selection:framework.agreement,state:0
+msgid "Running"
+msgstr ""
+
+#. module: framework_agreement
+#: code:addons/framework_agreement/model/purchase.py:149
+#, python-format
+msgid ""
+"If you change the agreement of this order (and eventually the currency), "
+"existing order lines will not be updated."
+msgstr ""
+
+#. module: framework_agreement
+#: field:framework.agreement,product_id:0
+#: model:ir.model,name:framework_agreement.model_product_product
+msgid "Product"
+msgstr ""
+
+#. module: framework_agreement
+#: code:addons/framework_agreement/model/framework_agreement.py:761
+#: code:addons/framework_agreement/model/purchase.py:141
+#: code:addons/framework_agreement/model/purchase.py:183
+#, python-format
+msgid "Invalid date"
+msgstr ""
+
+#. module: framework_agreement
+#: code:addons/framework_agreement/model/framework_agreement.py:762
+#: code:addons/framework_agreement/model/purchase.py:142
+#: code:addons/framework_agreement/model/purchase.py:184
+#, python-format
+msgid "Agreement and purchase date does not match"
+msgstr ""
+
+#. module: framework_agreement
+#: view:purchase.order:0
+msgid ""
+"onchange_product_id(parent.pricelist_id,product_id,product_qty,product_uom,parent.partner_id,parent.date_order,parent.fiscal_position,date_planned,name,price_unit,context,parent.framework_agreement_id)"
+msgstr ""
+
+#. module: framework_agreement
+#: field:framework.agreement,company_id:0
+msgid "Company"
+msgstr ""
+
+#. module: framework_agreement
+#: field:framework.agreement,start_date:0
+msgid "Begin of Agreement"
+msgstr ""
+
+#. module: framework_agreement
+#: field:framework.agreement.pricelist,framework_agreement_id:0
+#: field:purchase.order,framework_agreement_id:0
+#: field:purchase.order.line,framework_agreement_id:0
+msgid "Agreement"
+msgstr ""
+
+#. module: framework_agreement
+#: view:framework.agreement:0
+#: model:ir.actions.act_window,name:framework_agreement.action_framework_agreement
+#: model:ir.ui.menu,name:framework_agreement.action_framework_agreement_menu
+#: view:product.product:0
+#: model:res.currency.rate.type,name:framework_agreement.framework_agreement_currency_type
+msgid "Framework Agreement"
+msgstr ""
+
+#. module: framework_agreement
+#: field:framework.agreement,draft:0
+msgid "Is draft"
+msgstr ""
+
+#. module: framework_agreement
+#: model:ir.model,name:framework_agreement.model_framework_agreement_line
+msgid "Framework agreement line"
+msgstr ""
+
+#. module: framework_agreement
+#: code:addons/framework_agreement/model/framework_agreement.py:764
+#: code:addons/framework_agreement/model/framework_agreement.py:767
+#, python-format
+msgid "User Error"
+msgstr ""
+
+#. module: framework_agreement
+#: code:addons/framework_agreement/model/framework_agreement.py:628
+#, python-format
+msgid ""
+"You have set the price to %s \n"
+" but there is a running agreement with price %s"
+msgstr ""
+
+#. module: framework_agreement
+#: code:addons/framework_agreement/model/framework_agreement.py:765
+#, python-format
+msgid "Wrong product for choosen agreement"
+msgstr ""
+
+#. module: framework_agreement
+#: field:framework.agreement,state:0
+msgid "state"
+msgstr ""
+
+#. module: framework_agreement
+#: model:ir.model,name:framework_agreement.model_product_pricelist
+msgid "Pricelist"
+msgstr ""
+
+#. module: framework_agreement
+#: field:framework.agreement.line,quantity:0
+msgid "Quantity"
+msgstr ""
+
+#. module: framework_agreement
+#: view:purchase.order:0
+msgid "onchange_partner_id(partner_id, framework_agreement_id)"
+msgstr ""
+
+#. module: framework_agreement
+#: field:framework.agreement,available_quantity:0
+msgid "Available quantity"
+msgstr ""
+
+#. module: framework_agreement
+#: code:addons/framework_agreement/model/framework_agreement.py:555
+#, python-format
+msgid "No pricelist found"
+msgstr ""
+
+#. module: framework_agreement
+#: view:product.product:0
+msgid "Purchase"
+msgstr ""
+
+#. module: framework_agreement
+#: view:framework.agreement:0 view:product.product:0
+msgid "Dates"
+msgstr ""
+
+#. module: framework_agreement
+#: code:addons/framework_agreement/model/framework_agreement.py:768
+#, python-format
+msgid "Wrong supplier for choosen agreement"
+msgstr ""
+
+#. module: framework_agreement
+#: sql_constraint:framework.agreement:0
+msgid "Start/end date inversion"
+msgstr ""
+
+#. module: framework_agreement
+#: field:framework.agreement,framework_agreement_pricelist_ids:0
+msgid "Price lists"
+msgstr ""
+
+#. module: framework_agreement
+#: selection:framework.agreement,state:0
+msgid "Consumed"
+msgstr ""
+
+#. module: framework_agreement
+#: view:framework.agreement:0 view:product.product:0
+msgid "Negociated price lists"
+msgstr ""
+
+#. module: framework_agreement
+#: model:ir.model,name:framework_agreement.model_res_company
+msgid "Companies"
+msgstr "Bedrijven"
+
+#. module: framework_agreement
+#: field:framework.agreement,end_date:0
+msgid "End of Agreement"
+msgstr ""
+
+#. module: framework_agreement
+#: model:ir.model,name:framework_agreement.model_purchase_order
+msgid "Purchase Order"
+msgstr ""
+
+#. module: framework_agreement
+#: constraint:framework.agreement:0
+msgid "You can not have overlapping dates for same supplier and product"
+msgstr ""
+
+#. module: framework_agreement
+#: code:addons/framework_agreement/model/framework_agreement.py:701
+#: code:addons/framework_agreement/model/framework_agreement.py:772
+#, python-format
+msgid ""
+"You have ask for a quantity of %s \n"
+" but there is only %s available for current agreement"
+msgstr ""
+
+#. module: framework_agreement
+#: selection:framework.agreement,state:0
+msgid "Future"
+msgstr ""
+
+#. module: framework_agreement
+#: code:addons/framework_agreement/model/framework_agreement.py:633
+#: code:addons/framework_agreement/model/framework_agreement.py:663
+#: code:addons/framework_agreement/model/framework_agreement.py:745
+#: code:addons/framework_agreement/model/framework_agreement.py:776
+#: code:addons/framework_agreement/model/purchase.py:148
+#, python-format
+msgid "Agreement Warning!"
+msgstr ""
+
+#. module: framework_agreement
+#: code:addons/framework_agreement/model/purchase.py:146
+#, python-format
+msgid "Agreement and supplier does not match"
+msgstr ""
+
+#. module: framework_agreement
+#: code:addons/framework_agreement/model/purchase.py:164
+#, python-format
+msgid "Pricelist Warning!"
+msgstr ""
+
+#. module: framework_agreement
+#: view:framework.agreement:0
+#: field:framework.agreement.line,framework_agreement_pricelist_id:0
+#: view:product.product:0
+msgid "Price list"
+msgstr ""
+
+#. module: framework_agreement
+#: field:framework.agreement,origin:0
+msgid "Origin"
+msgstr ""
+
+#. module: framework_agreement
+#: model:ir.model,name:framework_agreement.model_framework_agreement
+msgid "Agreement on price"
+msgstr ""
+
+#. module: framework_agreement
+#: code:addons/framework_agreement/model/purchase.py:194
+#, python-format
+msgid "PO is linked to an agreement"
+msgstr ""
+
+#. module: framework_agreement
+#: model:ir.model,name:framework_agreement.model_framework_agreement_pricelist
+msgid "framework.agreement.pricelist"
+msgstr ""
+
+#. module: framework_agreement
+#: code:addons/framework_agreement/model/framework_agreement.py:502
+#, python-format
+msgid "Please set a price list in currency %s for agreement %s"
+msgstr ""
+
+#. module: framework_agreement
+#: code:addons/framework_agreement/model/framework_agreement.py:472
+#, python-format
+msgid "Many agreements found for the product with id %s at date %s"
+msgstr ""
+
+#. module: framework_agreement
+#: field:framework.agreement,name:0
+msgid "Number"
+msgstr ""
+
+#. module: framework_agreement
+#: code:addons/framework_agreement/model/purchase.py:165
+#, python-format
+msgid ""
+"If you change the pricelist of this order (and eventually the currency), "
+"prices of existing order lines will not be updated."
+msgstr ""
+
+#. module: framework_agreement
+#: code:addons/framework_agreement/model/purchase.py:115
+#, python-format
+msgid "Product not in agreement"
+msgstr ""
+
+#. module: framework_agreement
+#: code:addons/framework_agreement/model/purchase.py:145
+#, python-format
+msgid "Invalid agreement"
+msgstr ""
+
+#. module: framework_agreement
+#: field:framework.agreement.pricelist,currency_id:0
+msgid "Currency"
+msgstr ""
+
+#. module: framework_agreement
+#: view:framework.agreement:0 view:product.product:0
+msgid "Open Agreement"
+msgstr ""
+
+#. module: framework_agreement
+#: view:framework.agreement:0 view:product.product:0
+msgid "Price line"
+msgstr ""
+
+#. module: framework_agreement
+#: view:purchase.order:0
+msgid "onchange_date(framework_agreement_id, date_order)"
+msgstr ""
+
+#. module: framework_agreement
+#: field:res.company,one_agreement_per_product:0
+msgid "One agreement per product"
+msgstr ""
+
+#. module: framework_agreement
+#: view:product.product:0
+msgid "Framework agreements (LTA)"
+msgstr ""
+
+#. module: framework_agreement
+#: field:framework.agreement.line,price:0
+msgid "Price"
+msgstr ""
