@@ -10,12 +10,9 @@
               "Tecnativa, "
               "ACSONE SA/NV,"
               "Odoo Community Association (OCA)",
-    "version": "9.0.1.0.0",
+    "version": "10.0.1.0.0",
     "category": "Purchase Management",
-    "depends": [
-        "stock",
-        "purchase",
-    ],
+    "depends": ["purchase"],
     "data": [
         "views/purchase_discount_view.xml",
         "views/report_purchaseorder.xml",

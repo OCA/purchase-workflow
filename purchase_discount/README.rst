@@ -11,26 +11,17 @@ discount can be also negative, interpreting it as an increment.
 
 It also modifies the purchase order report to include the discount field in it.
 
-Installation
-============
-
-You need an Odoo/OCB installation updated up to at least on 27 august of 2015,
-containing revision `617ef49 <https://github.com/odoo/odoo/commit/617ef49959d027fab52e2be74aa4c0dc3ce60e30>`_
-
 Usage
 =====
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/142/9.0
+   :target: https://runbot.odoo-community.org/runbot/142/10.0
 
 Known issues / Roadmap
 ======================
 
-* Improvement made into 8.0: load price with discount in stock_move when confirm a purchase order
-(https://github.com/OCA/purchase-workflow/commit/e5b578b9e7613c4535fa77768207e8c44acd4822)
-* Issue into the previous 8.0 improvement: Purchase discount not taken into account in the purchase report
-(https://github.com/OCA/purchase-workflow/issues/265)
+With this module, the *price_unit* field of purchase order line stores the gross price instead of the net price, which is a change in the meaning of this field. So this module breaks all the other modules that use the *price_unit* field with it's native meaning.
 
 Bug Tracker
 ===========
@@ -59,9 +50,9 @@ Icon
 Maintainer
 ----------
 
-.. image:: http://odoo-community.org/logo.png
+.. image:: https://odoo-community.org/logo.png
    :alt: Odoo Community Association
-   :target: http://odoo-community.org
+   :target: https://odoo-community.org
 
 This module is maintained by the OCA.
 
@@ -69,4 +60,4 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-To contribute to this module, please visit http://odoo-community.org.
+To contribute to this module, please visit https://odoo-community.org.
