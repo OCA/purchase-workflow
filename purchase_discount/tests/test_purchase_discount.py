@@ -2,8 +2,8 @@
 # © 2015 Pedro M. Baeza
 # © 2016 ACSONE SA/NV (<http://acsone.eu>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-import openerp.tests.common as common
-from openerp import fields
+import odoo.tests.common as common
+from odoo import fields
 
 
 class TestPurchaseOrder(common.TransactionCase):
