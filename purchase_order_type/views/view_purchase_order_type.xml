@@ -36,8 +36,8 @@
     </record>
 
     <menuitem id="menu_purchase_order_type"
-      parent="purchase.menu_purchase_general_settings"
-      sequence="40"
+      parent="purchase.menu_purchase_config"
+      sequence="10"
       action="action_purchase_order_type_view"/>
 
 </odoo>
