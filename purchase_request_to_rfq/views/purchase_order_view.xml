@@ -16,7 +16,7 @@
                         attrs="{'invisible': [('purchase_request_lines', '=', [])]}"
                         name="action_openRequestLineTreeView"
                         type="object"
-                        icon="gtk-open"/>
+                        icon="fa-folder-open-o"/>
                 </xpath>
             </field>
         </record>
@@ -44,7 +44,7 @@
                         attrs="{'invisible': [('purchase_request_lines', '=', [])]}"
                         name="action_openRequestLineTreeView"
                         type="object"
-                        icon="gtk-open"/>
+                        icon="fa-folder-open-o"/>
                 </xpath>
             </field>
         </record>
