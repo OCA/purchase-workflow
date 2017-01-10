@@ -122,7 +122,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             'partner_id': self.supplier_id.id,
             'pricelist_id': supplier_pricelist.id,
             'location_id': location.id,
-            'fiscal_position': supplier.property_account_position_id and
+            'fiscal_position_id': supplier.property_account_position_id and
             supplier.property_account_position_id.id or False,
             'picking_type_id': picking_type.id,
             'company_id': company.id,
