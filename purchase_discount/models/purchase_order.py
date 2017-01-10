@@ -30,3 +30,9 @@ class PurchaseOrderLine(models.Model):
         ('discount_limit', 'CHECK (discount <= 100.0)',
          'Discount must be lower than 100%.'),
     ]
+
+    @api.multi
+    def _get_stock_move_price_unit(self):
+        price_unit = super(PurchaseOrderLine,
+                           self)._get_stock_move_price_unit()
+        return price_unit * (1 - (self.discount / 100))
