@@ -130,12 +130,15 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         return data
 
     @api.model
+    def _get_purchase_line_onchange_fields(self):
+        return ['date_planned', 'product_uom', 'price_unit', 'name',
+                'taxes_id']
+
+    @api.model
     def _execute_purchase_line_onchange(self, vals):
         cls = self.env['purchase.order.line']
         onchanges_dict = {
-            'onchange_product_id':
-                ['date_planned', 'product_uom', 'price_unit', 'name',
-                 'taxes_id'],
+            'onchange_product_id': self._get_purchase_line_onchange_fields(),
         }
         for onchange_method, changed_fields in onchanges_dict.items():
             if any(f not in vals for f in changed_fields):
