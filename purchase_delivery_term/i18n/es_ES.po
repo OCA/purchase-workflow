@@ -10,11 +10,11 @@ msgstr ""
 "POT-Creation-Date: 2017-01-07 05:06+0000\n"
 "PO-Revision-Date: 2015-09-01 21:19+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: Portuguese (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/pt/)\n"
+"Language-Team: Spanish (Spain) (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/es_ES/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: pt\n"
+"Language: es_ES\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: purchase_delivery_term
@@ -55,17 +55,17 @@ msgstr ""
 #. module: purchase_delivery_term
 #: field:purchase.order.line.master,product_id:0
 msgid "Product"
-msgstr "Produto"
+msgstr "Producto"
 
 #. module: purchase_delivery_term
 #: field:purchase.order.line.master,name:0
 msgid "Description"
-msgstr "Descrição"
+msgstr ""
 
 #. module: purchase_delivery_term
 #: field:purchase.delivery.term,company_id:0
 msgid "Company"
-msgstr "Empresa"
+msgstr ""
 
 #. module: purchase_delivery_term
 #: field:purchase.delivery.term.line,delay:0
@@ -122,7 +122,7 @@ msgstr ""
 #. module: purchase_delivery_term
 #: field:purchase.delivery.term,name:0
 msgid "Name"
-msgstr "Nome"
+msgstr ""
 
 #. module: purchase_delivery_term
 #: model:ir.actions.act_window,name:purchase_delivery_term.action_delivery_term_form
@@ -181,7 +181,7 @@ msgstr ""
 #. module: purchase_delivery_term
 #: field:purchase.order.line.master,product_qty:0
 msgid "Quantity"
-msgstr "Quantidade"
+msgstr ""
 
 #. module: purchase_delivery_term
 #: model:ir.model,name:purchase_delivery_term.model_purchase_order_line_master
