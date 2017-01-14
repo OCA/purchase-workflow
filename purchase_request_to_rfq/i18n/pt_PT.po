@@ -4,14 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
-# Pedro Castro Silva <pedrocs@sossia.pt>, 2016
+# Pedro Castro Silva <pedrocs@sossia.pt>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-09 09:32+0000\n"
-"PO-Revision-Date: 2016-12-09 09:32+0000\n"
-"Last-Translator: Pedro Castro Silva <pedrocs@sossia.pt>, 2016\n"
+"POT-Creation-Date: 2017-01-07 05:30+0000\n"
+"PO-Revision-Date: 2017-01-07 05:30+0000\n"
+"Last-Translator: Pedro Castro Silva <pedrocs@sossia.pt>, 2017\n"
 "Language-Team: Portuguese (Portugal) (https://www.transifex.com/oca/teams/23907/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -98,7 +98,7 @@ msgstr "Nome a Apresentar"
 #. module: purchase_request_to_rfq
 #: selection:purchase.request.line,purchase_state:0
 msgid "Done"
-msgstr ""
+msgstr "Concluído"
 
 #. module: purchase_request_to_rfq
 #: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:165
@@ -201,7 +201,7 @@ msgstr ""
 #. module: purchase_request_to_rfq
 #: model:ir.model,name:purchase_request_to_rfq.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Linha de Encomenda de Compra"
 
 #. module: purchase_request_to_rfq
 #: view:purchase.request:purchase_request_to_rfq.view_purchase_request_form

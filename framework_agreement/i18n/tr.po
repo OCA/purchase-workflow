@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-24 04:26+0000\n"
-"PO-Revision-Date: 2016-12-30 18:54+0000\n"
+"POT-Creation-Date: 2017-01-07 05:29+0000\n"
+"PO-Revision-Date: 2017-01-13 09:22+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -368,14 +368,14 @@ msgstr ""
 #. module: framework_agreement
 #: model:ir.model,name:framework_agreement.model_product_pricelist
 msgid "Pricelist"
-msgstr ""
+msgstr "Fiyat Listesi"
 
 #. module: framework_agreement
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view
 #: field:framework.agreement,product_id:0
 #: model:ir.model,name:framework_agreement.model_product_product
 msgid "Product"
-msgstr ""
+msgstr "Ürün"
 
 #. module: framework_agreement
 #: model:ir.model,name:framework_agreement.model_purchase_order

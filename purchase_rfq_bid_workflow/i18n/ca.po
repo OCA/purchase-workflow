@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-16 12:06+0000\n"
+"POT-Creation-Date: 2017-01-07 05:30+0000\n"
 "PO-Revision-Date: 2016-03-08 10:18+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/ca/)\n"
@@ -92,7 +92,7 @@ msgstr "Creat el"
 #. module: purchase_rfq_bid_workflow
 #: field:purchase.action_modal.datetime,datetime:0
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #. module: purchase_rfq_bid_workflow
 #: field:purchase.action_modal,display_name:0
@@ -100,7 +100,7 @@ msgstr ""
 #: field:purchase.action_modal.datetime,display_name:0
 #: field:purchase.cancel_reason,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Veure el nom"
 
 #. module: purchase_rfq_bid_workflow
 #: code:addons/purchase_rfq_bid_workflow/model/purchase_order.py:281
@@ -134,7 +134,7 @@ msgstr ""
 #: field:purchase.action_modal.datetime,__last_update:0
 #: field:purchase.cancel_reason,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Darrera modificació el"
 
 #. module: purchase_rfq_bid_workflow
 #: field:purchase.action_modal,write_uid:0
@@ -258,7 +258,7 @@ msgstr ""
 #. module: purchase_rfq_bid_workflow
 #: field:purchase.cancel_reason,type:0 field:purchase.order,type:0
 msgid "Type"
-msgstr ""
+msgstr "Tipus"
 
 #. module: purchase_rfq_bid_workflow
 #: code:addons/purchase_rfq_bid_workflow/model/purchase_order.py:291

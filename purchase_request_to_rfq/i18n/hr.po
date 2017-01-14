@@ -4,14 +4,13 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
-# Goran Kliska <gkliska@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-16 12:06+0000\n"
-"PO-Revision-Date: 2016-11-16 12:06+0000\n"
-"Last-Translator: Goran Kliska <gkliska@gmail.com>, 2016\n"
+"POT-Creation-Date: 2017-01-07 05:30+0000\n"
+"PO-Revision-Date: 2017-01-07 05:30+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -82,7 +81,7 @@ msgstr "Kreirano"
 #. module: purchase_request_to_rfq
 #: field:purchase.request.line.make.purchase.order.item,name:0
 msgid "Description"
-msgstr ""
+msgstr "Opis"
 
 #. module: purchase_request_to_rfq
 #: view:purchase.request.line.make.purchase.order:purchase_request_to_rfq.view_purchase_request_line_make_purchase_order

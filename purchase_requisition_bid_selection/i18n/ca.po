@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-16 12:06+0000\n"
+"POT-Creation-Date: 2017-01-07 05:30+0000\n"
 "PO-Revision-Date: 2016-03-08 10:17+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/ca/)\n"
@@ -287,7 +287,7 @@ msgstr ""
 #: field:update.bid.internal.remark,display_name:0
 #: field:update.remark,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Veure el nom"
 
 #. module: purchase_requisition_bid_selection
 #: view:purchase.order.line:purchase_requisition_bid_selection.view_purchase_order_line_search
@@ -308,7 +308,7 @@ msgstr ""
 #: code:addons/purchase_requisition_bid_selection/model/purchase_requisition.py:260
 #, python-format
 msgid "Error"
-msgstr ""
+msgstr "Error"
 
 #. module: purchase_requisition_bid_selection
 #: code:addons/purchase_requisition_bid_selection/model/purchase_requisition.py:144
@@ -409,7 +409,7 @@ msgstr ""
 #: field:update.bid.internal.remark,__last_update:0
 #: field:update.remark,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Darrera modificació el"
 
 #. module: purchase_requisition_bid_selection
 #: field:purchase.action_modal.ask_selection_reasons,write_uid:0
@@ -468,7 +468,7 @@ msgstr ""
 #: selection:purchase.requisition,bid_receipt_mode:0
 #: selection:purchase.requisition,bid_tendering_mode:0
 msgid "Open"
-msgstr ""
+msgstr "Obert"
 
 #. module: purchase_requisition_bid_selection
 #: view:purchase.requisition:purchase_requisition_bid_selection.view_purchase_requisition_form

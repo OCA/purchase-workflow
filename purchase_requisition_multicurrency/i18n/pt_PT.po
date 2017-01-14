@@ -1,0 +1,77 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * purchase_requisition_multicurrency
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: purchase-workflow (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-01-07 05:30+0000\n"
+"PO-Revision-Date: 2016-03-08 10:18+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Portuguese (Portugal) (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/pt_PT/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: pt_PT\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: purchase_requisition_multicurrency
+#: field:purchase.requisition,currency_id:0
+msgid "Currency"
+msgstr ""
+
+#. module: purchase_requisition_multicurrency
+#: help:purchase.requisition,date_exchange_rate:0
+msgid ""
+"Defines Exchange rate date of Unit price and subtotal If not set, takes "
+"todays exchange rate."
+msgstr ""
+
+#. module: purchase_requisition_multicurrency
+#: field:purchase.requisition,date_exchange_rate:0
+msgid "Exchange rate reference date"
+msgstr ""
+
+#. module: purchase_requisition_multicurrency
+#: help:purchase.requisition,pricelist_id:0
+msgid ""
+"If set that pricelist will be used to generate the RFQ.Mostely used to ask a"
+" requisition in a given currency."
+msgstr ""
+
+#. module: purchase_requisition_multicurrency
+#: field:purchase.requisition,pricelist_id:0
+msgid "Pricelist"
+msgstr ""
+
+#. module: purchase_requisition_multicurrency
+#: model:ir.model,name:purchase_requisition_multicurrency.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Linha de Encomenda de Compra"
+
+#. module: purchase_requisition_multicurrency
+#: model:ir.model,name:purchase_requisition_multicurrency.model_purchase_requisition
+msgid "Purchase Requisition"
+msgstr ""
+
+#. module: purchase_requisition_multicurrency
+#: field:purchase.order.line,price_subtotal_co:0
+msgid "Subtotal"
+msgstr ""
+
+#. module: purchase_requisition_multicurrency
+#: help:purchase.order.line,price_subtotal_co:0
+msgid "Subtotal in company currency."
+msgstr ""
+
+#. module: purchase_requisition_multicurrency
+#: field:purchase.order.line,price_unit_co:0
+msgid "Unit Price"
+msgstr ""
+
+#. module: purchase_requisition_multicurrency
+#: help:purchase.order.line,price_unit_co:0
+msgid "Unit Price in company currency."
+msgstr ""
