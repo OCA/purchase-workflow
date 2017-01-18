@@ -17,4 +17,3 @@ class ResPartner(models.Model):
             domain = [('partner_id', 'child_of', partner.id)]
             partner.purchase_order_lines_count = self.env[
                 'purchase.order.line'].search_count(domain)
-
