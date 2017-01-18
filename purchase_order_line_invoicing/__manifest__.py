@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
-    'name': 'Purchase Order Lines Invoice',
+    'name': 'Purchase Order Line Invoicing',
     'summary': """
         Invoice purchase order lines""",
     'version': '10.0.1.0.0',
@@ -15,6 +15,6 @@
     ],
     'data': [
         'views/res_partner_views.xml',
-        'wizards/purchase_order_line_invoice_wizard.xml',
+        'wizards/purchase_order_line_invoicing_wizard.xml',
     ],
 }

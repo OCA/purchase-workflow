@@ -2,9 +2,9 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-============================
-Purchase Order Lines Invoice
-============================
+=============================
+Purchase Order Line Invoicing
+=============================
 
 This module allows to invoice lines of multiple purchase orders from a single
  supplier.
