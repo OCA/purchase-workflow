@@ -82,13 +82,15 @@ class Procurement(models.Model):
             search([('procurement_id', '=', procurement.id)])
         # Remove the purchase request lines, if the request is not draft
         # or reject
-        for line in request_lines:
-            if line.request_id.state not in ('draft', 'reject'):
-                raise UserError(_('Can not cancel this procurement as the '
-                                  'related purchase request is in progress '
-                                  'confirmed already. Please cancel the '
-                                  'purchase request first.'))
-            else:
+        approved_lines = request_lines.filtered(
+            lambda r: r.request_state not in ('draft', 'reject'))
+        if approved_lines:
+            raise UserError(_('Can not cancel this procurement as the '
+                              'related purchase request is in progress '
+                              'confirmed already. Please cancel the '
+                              'purchase request first.'))
+        else:
+            for line in request_lines:
                 line.unlink()
         # If the purchase request has not lines, delete it as well
         if len(request.line_ids) == 0:
