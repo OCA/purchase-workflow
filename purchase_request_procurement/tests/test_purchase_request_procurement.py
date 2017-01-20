@@ -2,12 +2,12 @@
 # Copyright 2016 Eficent Business and IT Consulting Services S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp.tests import common
+from openerp.tests.common import TransactionCase
 from openerp import fields
-from openerp.exceptions import ValidationError
+from openerp.exceptions import Warning as UserError
 
 
-class TestPurchaseRequestProcurement(common.TransactionCase):
+class TestPurchaseRequestProcurement(TransactionCase):
 
     def setUp(self):
         super(TestPurchaseRequestProcurement, self).setUp()
@@ -41,7 +41,7 @@ class TestPurchaseRequestProcurement(common.TransactionCase):
         proc.run()
         request = proc.request_id
         request.button_approved()
-        with self.assertRaises(ValidationError):
+        with self.assertRaises(UserError):
             proc.cancel()
 
     def test_2_purchase_request_remove_lines(self):
