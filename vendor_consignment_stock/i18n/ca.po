@@ -1,0 +1,85 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * vendor_consignment_stock
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: purchase-workflow (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-01-14 05:52+0000\n"
+"PO-Revision-Date: 2016-03-08 10:18+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Catalan (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/ca/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: ca\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: vendor_consignment_stock
+#: field:stock.warehouse,buy_vci_pull_id:0
+msgid "BUY VCI rule"
+msgstr ""
+
+#. module: vendor_consignment_stock
+#: code:addons/vendor_consignment_stock/model/rule.py:26
+#: code:addons/vendor_consignment_stock/model/warehouse.py:39
+#: code:addons/vendor_consignment_stock/model/warehouse.py:46
+#: model:stock.location.route,name:vendor_consignment_stock.route_warehouse0_buy_vci
+#, python-format
+msgid "Buy VCI"
+msgstr ""
+
+#. module: vendor_consignment_stock
+#: code:addons/vendor_consignment_stock/model/warehouse.py:42
+#, python-format
+msgid "Can't find any generic Buy VCI route."
+msgstr ""
+
+#. module: vendor_consignment_stock
+#: model:ir.model,name:vendor_consignment_stock.model_procurement_order
+msgid "Procurement"
+msgstr ""
+
+#. module: vendor_consignment_stock
+#: model:ir.model,name:vendor_consignment_stock.model_procurement_rule
+msgid "Procurement Rule"
+msgstr ""
+
+#. module: vendor_consignment_stock
+#: model:ir.model,name:vendor_consignment_stock.model_purchase_order
+msgid "Purchase Order"
+msgstr ""
+
+#. module: vendor_consignment_stock
+#: field:stock.warehouse,buy_vci_to_resupply:0
+msgid "Purchase from VCI to resupply this warehouse"
+msgstr ""
+
+#. module: vendor_consignment_stock
+#: model:ir.model,name:vendor_consignment_stock.model_sale_order
+msgid "Sales Order"
+msgstr "Comandes de venda"
+
+#. module: vendor_consignment_stock
+#: help:stock.warehouse,buy_vci_to_resupply:0
+msgid ""
+"This warehouse can contain Vendor-Supplied-Inventory (VCI) that have to be "
+"bought before being sold."
+msgstr ""
+
+#. module: vendor_consignment_stock
+#: view:purchase.order:vendor_consignment_stock.view_purchase_order_filter
+msgid "VCI"
+msgstr ""
+
+#. module: vendor_consignment_stock
+#: field:purchase.order,is_vci:0
+msgid "Vendor Consignment Inventory"
+msgstr ""
+
+#. module: vendor_consignment_stock
+#: model:ir.model,name:vendor_consignment_stock.model_stock_warehouse
+msgid "Warehouse"
+msgstr ""

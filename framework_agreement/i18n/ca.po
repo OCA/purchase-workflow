@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-07 05:29+0000\n"
-"PO-Revision-Date: 2017-01-13 09:22+0000\n"
+"POT-Creation-Date: 2017-01-14 05:51+0000\n"
+"PO-Revision-Date: 2017-01-17 19:17+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -80,7 +80,7 @@ msgstr ""
 #: field:framework.agreement,company_id:0
 #: field:framework.agreement.portfolio,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Empresa"
 
 #. module: framework_agreement
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view
@@ -278,7 +278,7 @@ msgstr ""
 #. module: framework_agreement
 #: field:framework.agreement.portfolio,name:0
 msgid "Name"
-msgstr ""
+msgstr "Nom"
 
 #. module: framework_agreement
 #: field:framework.agreement.line,price:0
@@ -375,7 +375,7 @@ msgstr ""
 #: field:framework.agreement,product_id:0
 #: model:ir.model,name:framework_agreement.model_product_product
 msgid "Product"
-msgstr ""
+msgstr "Producte"
 
 #. module: framework_agreement
 #: model:ir.model,name:framework_agreement.model_purchase_order
@@ -395,7 +395,7 @@ msgstr ""
 #. module: framework_agreement
 #: field:framework.agreement.line,quantity:0
 msgid "Quantity"
-msgstr ""
+msgstr "Quantitat"
 
 #. module: framework_agreement
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view

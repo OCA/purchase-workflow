@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-24 04:26+0000\n"
-"PO-Revision-Date: 2016-12-27 08:21+0000\n"
+"POT-Creation-Date: 2017-01-14 05:51+0000\n"
+"PO-Revision-Date: 2017-01-19 20:16+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/nb/)\n"
 "MIME-Version: 1.0\n"
@@ -69,7 +69,7 @@ msgstr ""
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view
 #: selection:framework.agreement,state:0
 msgid "Closed"
-msgstr ""
+msgstr "Stengt"
 
 #. module: framework_agreement
 #: model:ir.model,name:framework_agreement.model_res_company
@@ -80,7 +80,7 @@ msgstr "Firmaer"
 #: field:framework.agreement,company_id:0
 #: field:framework.agreement.portfolio,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Firma"
 
 #. module: framework_agreement
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view
@@ -120,7 +120,7 @@ msgstr ""
 #: view:framework.agreement:framework_agreement.framework_agreement_form_view
 #: view:product.product:framework_agreement.agreement in product view
 msgid "Dates"
-msgstr ""
+msgstr "Datoer"
 
 #. module: framework_agreement
 #: view:framework.agreement:framework_agreement.agreement_in_portfolio_form_view
