@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-07 05:06+0000\n"
+"POT-Creation-Date: 2017-01-14 05:44+0000\n"
 "PO-Revision-Date: 2015-09-01 21:19+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/ca/)\n"
@@ -35,7 +35,7 @@ msgstr ""
 #. module: purchase_delivery_term
 #: field:purchase.order.line.master,price_unit:0
 msgid "Unit Price"
-msgstr ""
+msgstr "Preu unitari"
 
 #. module: purchase_delivery_term
 #: field:purchase.order.line,master_line_id:0
@@ -55,7 +55,7 @@ msgstr ""
 #. module: purchase_delivery_term
 #: field:purchase.order.line.master,product_id:0
 msgid "Product"
-msgstr ""
+msgstr "Producte"
 
 #. module: purchase_delivery_term
 #: field:purchase.order.line.master,name:0
@@ -65,7 +65,7 @@ msgstr ""
 #. module: purchase_delivery_term
 #: field:purchase.delivery.term,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Empresa"
 
 #. module: purchase_delivery_term
 #: field:purchase.delivery.term.line,delay:0
@@ -102,7 +102,7 @@ msgstr ""
 #. module: purchase_delivery_term
 #: field:purchase.order.line.master,price_subtotal:0
 msgid "Subtotal"
-msgstr ""
+msgstr "Subtotal"
 
 #. module: purchase_delivery_term
 #: view:purchase.order.line.master:0
@@ -122,7 +122,7 @@ msgstr ""
 #. module: purchase_delivery_term
 #: field:purchase.delivery.term,name:0
 msgid "Name"
-msgstr ""
+msgstr "Nom"
 
 #. module: purchase_delivery_term
 #: model:ir.actions.act_window,name:purchase_delivery_term.action_delivery_term_form
@@ -181,7 +181,7 @@ msgstr ""
 #. module: purchase_delivery_term
 #: field:purchase.order.line.master,product_qty:0
 msgid "Quantity"
-msgstr ""
+msgstr "Quantitat"
 
 #. module: purchase_delivery_term
 #: model:ir.model,name:purchase_delivery_term.model_purchase_order_line_master

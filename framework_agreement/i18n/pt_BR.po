@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-24 04:19+0000\n"
+"POT-Creation-Date: 2017-01-14 05:44+0000\n"
 "PO-Revision-Date: 2015-09-01 21:19+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/pt_BR/)\n"
@@ -77,7 +77,7 @@ msgstr "Rascunho"
 #. module: framework_agreement
 #: selection:framework.agreement,state:0
 msgid "Closed"
-msgstr ""
+msgstr "Fechado"
 
 #. module: framework_agreement
 #: field:product.product,framework_agreement_ids:0
@@ -263,7 +263,7 @@ msgstr ""
 #. module: framework_agreement
 #: view:framework.agreement:0 view:product.product:0
 msgid "Dates"
-msgstr ""
+msgstr "Datas"
 
 #. module: framework_agreement
 #: code:addons/framework_agreement/model/framework_agreement.py:768

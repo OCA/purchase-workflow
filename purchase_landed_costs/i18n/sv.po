@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-07 05:06+0000\n"
+"POT-Creation-Date: 2017-01-14 05:44+0000\n"
 "PO-Revision-Date: 2015-09-01 21:20+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Swedish (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/sv/)\n"
@@ -41,7 +41,7 @@ msgstr ""
 #. module: purchase_landed_costs
 #: view:landed.cost.position:0
 msgid "Group By..."
-msgstr ""
+msgstr "Gruppera efter..."
 
 #. module: purchase_landed_costs
 #: help:product.template,landed_cost_type:0
@@ -111,7 +111,7 @@ msgstr ""
 #. module: purchase_landed_costs
 #: field:landed.cost.position,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Företag"
 
 #. module: purchase_landed_costs
 #: help:landed.cost.position,amount:0
