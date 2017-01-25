@@ -17,9 +17,7 @@ class PurchaseOrderLine(models.Model):
             if line.discount:
                 prices[line.id] = line.price_unit
                 line.price_unit *= (1 - line.discount / 100.0)
-        super(PurchaseOrderLine, self)._compute_amount()
-        # restore prices
-        for line in self:
+            super(PurchaseOrderLine, line)._compute_amount()
             if line.discount:
                 line.price_unit = prices[line.id]
 
