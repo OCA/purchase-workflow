@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-07 05:30+0000\n"
+"POT-Creation-Date: 2017-01-24 15:42+0000\n"
 "PO-Revision-Date: 2016-03-08 10:18+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: French (France) (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/fr_FR/)\n"
@@ -194,7 +194,7 @@ msgstr ""
 #: model:ir.model,name:purchase_rfq_bid_workflow.model_purchase_order
 #: selection:purchase.cancel_reason,type:0 selection:purchase.order,type:0
 msgid "Purchase Order"
-msgstr ""
+msgstr "Bon de commande"
 
 #. module: purchase_rfq_bid_workflow
 #: model:ir.model,name:purchase_rfq_bid_workflow.model_purchase_order_line

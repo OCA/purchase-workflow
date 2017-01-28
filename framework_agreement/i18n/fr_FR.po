@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-24 04:26+0000\n"
-"PO-Revision-Date: 2016-12-27 08:20+0000\n"
+"POT-Creation-Date: 2017-01-24 15:41+0000\n"
+"PO-Revision-Date: 2017-01-24 17:25+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (France) (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/fr_FR/)\n"
 "MIME-Version: 1.0\n"
@@ -380,7 +380,7 @@ msgstr "Produit"
 #. module: framework_agreement
 #: model:ir.model,name:framework_agreement.model_purchase_order
 msgid "Purchase Order"
-msgstr ""
+msgstr "Bon de commande"
 
 #. module: framework_agreement
 #: model:ir.model,name:framework_agreement.model_purchase_order_line
