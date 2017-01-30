@@ -116,11 +116,11 @@ class PurchaseOrderLineInvoiceDetails(models.TransientModel):
         related='purchase_order_line_id.currency_id',
         readonly=True)
     qty_invoiced = fields.Float(
-        related='purchase_order_line_id.qty_invoiced'
-    )
+        related='purchase_order_line_id.qty_invoiced',
+        readonly=True)
     qty_received = fields.Float(
-        related='purchase_order_line_id.qty_received'
-    )
+        related='purchase_order_line_id.qty_received',
+        readonly=True)
     invoice_qty = fields.Float(
-        'Invoice Quantity',
+        'Quantity to Invoice',
         required=True)
