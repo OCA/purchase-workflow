@@ -1,4 +1,4 @@
-<openerp>
+<odoo>
     <data>
         <record id="purchase_order_line_invoice_wizard_form" model="ir.ui.view">
             <field name="name">purchase.order.line.invoice.wizard.form</field>
@@ -52,5 +52,5 @@
             <field eval="'ir.actions.act_window,'+str(action_purchase_order_line_invoice_wizard)" name="value"/>
         </record>
     </data>
-</openerp>
+</odoo>
 
