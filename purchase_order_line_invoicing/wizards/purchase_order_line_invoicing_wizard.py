@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 # Copyright 2017 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from odoo import api, exceptions, fields, models
+from odoo import api, fields, models, _
 from odoo.tools.translate import _
+
+from odoo.exceptions import UserError
 
 
 class PurchaseOrderLineInvoiceWizard(models.TransientModel):
@@ -11,6 +13,13 @@ class PurchaseOrderLineInvoiceWizard(models.TransientModel):
     purchase_order_line_details_ids = fields.One2many(
         comodel_name='purchase.order.line.invoice.details',
         inverse_name='wizard_id')
+
+    @api.model
+    def _check_unique_partner(self, lines):
+        partner = lines.mapped('partner_id')
+        if len(partner) != 1:
+            raise UserError(_(
+                """You have to select line from only one supplier."""))
 
     @api.model
     def default_get(self, fields):
@@ -24,9 +33,9 @@ class PurchaseOrderLineInvoiceWizard(models.TransientModel):
         purchase_lines = self.env['purchase.order.line'].search(domain)
 
         if not purchase_lines:
-            raise exceptions.Warning(_('Please select a least one line to '
-                                       'invoice.'))
+            raise UserError(_('Please select a least one line to invoice.'))
         details = []
+        self._check_unique_partner(purchase_lines)
         for line in purchase_lines:
             details.append(
                 (0, 0, {'purchase_order_line_id': line.id,
