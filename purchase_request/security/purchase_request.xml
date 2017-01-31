@@ -12,7 +12,7 @@
 
     <record id="group_purchase_request_user" model="res.groups">
         <field name="name">Purchase Request User</field>
-        <field name="users" eval="[(4, ref('base.group_user'))]"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
         <field name="category_id" ref="module_category_purchase_request"/>
     </record>
 
