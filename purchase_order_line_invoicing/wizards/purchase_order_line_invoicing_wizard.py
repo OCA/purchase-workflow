@@ -69,8 +69,9 @@ class PurchaseOrderLineInvoiceWizard(models.TransientModel):
             ('company_id', '=', purchase_order[0].company_id.id),
             ('currency_id', '=', purchase_order[0].currency_id.id),
         ]
-        default_journal_id = self.env['account.journal'].search(journal_domain,
-                                                                limit=1)
+        default_journal_id = self.env['account.invoice'].\
+            with_context(type='in_invoice')._default_journal()
+
         invoice_data = {
             'partner_id': purchase_order[0].partner_id.id,
             'type': 'in_invoice',
@@ -78,7 +79,7 @@ class PurchaseOrderLineInvoiceWizard(models.TransientModel):
             'invoice_line_ids': invoice_lines_data
         }
         if default_journal_id:
-            invoice_data['default_journal_id'] = default_journal_id.id
+            invoice_data['journal_id'] = default_journal_id.id
         invoice = self.env['account.invoice'].create(invoice_data)
 
         action = self.env.ref('account.action_invoice_tree2')
