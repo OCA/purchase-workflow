@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-16 12:06+0000\n"
+"POT-Creation-Date: 2017-01-28 05:29+0000\n"
 "PO-Revision-Date: 2016-03-08 10:17+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Dutch (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/nl/)\n"
@@ -206,7 +206,7 @@ msgstr ""
 #: view:purchase.action_modal.ask_selection_reasons:purchase_requisition_bid_selection.ask_selection_reasons
 #: view:purchase.action_modal.ask_validity:purchase_requisition_bid_selection.ask_validity
 msgid "Confirm"
-msgstr ""
+msgstr "Bevestigen"
 
 #. module: purchase_requisition_bid_selection
 #: view:purchase.action_modal:purchase_requisition_bid_selection.modal_confirm_close_selection
