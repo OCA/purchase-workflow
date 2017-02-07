@@ -7,7 +7,7 @@
 			<field name="type">form</field>
 			<field name="inherit_id" ref="account.view_partner_property_form"/>
 			<field name="arch" type="xml">
-				<xpath expr="//field[@name='property_account_payable']/.."
+				<xpath expr="//field[@name='debit']/.."
 					position="inside">
 					<field name="fop_shipping" />
 				</xpath>
