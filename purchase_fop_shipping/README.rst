@@ -7,7 +7,7 @@ Pruchase Free-Of-Paiment shipping
 ===========================
 
 This module allows to define a Free-Of-Paiment (FOP) shipping on supplier.
-FOP shipping is a min order amout to got shipping free from supplier.
+FOP shipping is a min order amount to got shipping free from supplier.
 User can force confirm order if he/she wishes. 
 
 Installation
@@ -18,9 +18,6 @@ You need an Odoo/OCB installation v 10.0.
 Usage
 =====
 
-.. imagedefine https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
-   :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/142/8.0
 
 Bug Tracker
 ===========
