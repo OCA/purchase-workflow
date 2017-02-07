@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# © 2014-2016 Akretion (http://www.akretion.com)
+# © 2017 Akretion (http://www.akretion.com)
 #   @author Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
@@ -31,29 +31,11 @@ class PurchaseOrder(models.Model):
                 record.partner_id.fop_shipping
 
     @api.multi
-    def wkf_confirm_order(self):
-        todo = self.env['purchase.order.line'].browse([])
+    def button_approve(self, force=False):
         for po in self:
             if not po.force_order_under_fop and not po.fop_reached:
                 raise UserError(
                     _('You cannot confirm a purchase order with amount under '
                       'FOP shipping.'))
-            if not any(line.state != 'cancel' for line in po.order_line):
-                raise UserError(
-                    _('You cannot confirm a purchase order without any '
-                      'purchase order line.'))
-            if po.invoice_method == 'picking' and\
-                not any([l.product_id and l.product_id.type in
-                         ('product', 'consu') and
-                         l.state != 'cancel' for l in po.order_line]):
-                raise UserError(
-                    _("You cannot confirm a purchase order with Invoice "
-                        "Control Method 'Based on incoming shipments' that "
-                        "doesn't contain any stockable item."))
-
-            for line in po.order_line:
-                if line.state == 'draft':
-                    todo += line
-        todo.action_confirm()
-        self.write({'state': 'confirmed', 'validator': self._uid})
-        return True
+        result = super(PurchaseOrder, self).button_approve(force=force)
+        return result

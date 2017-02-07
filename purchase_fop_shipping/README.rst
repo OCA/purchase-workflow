@@ -13,8 +13,7 @@ User can force confirm order if he/she wishes.
 Installation
 ============
 
-You need an Odoo/OCB installation updated up to at least on 27 august of 2015,
-containing revision `617ef49 <https://github.com/odoo/odoo/commit/617ef49959d027fab52e2be74aa4c0dc3ce60e30>`_
+You need an Odoo/OCB installation v 10.0.
 
 Usage
 =====
