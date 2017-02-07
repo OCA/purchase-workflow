@@ -4,9 +4,6 @@
 
 import odoo.addons.decimal_precision as dp
 from odoo import _, api, exceptions, fields, models
-from odoo.tools import DEFAULT_SERVER_DATE_FORMAT, \
-    DEFAULT_SERVER_DATETIME_FORMAT
-from datetime import datetime
 
 
 class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
@@ -150,7 +147,6 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
 
     @api.model
     def _prepare_purchase_order_line(self, po, item):
-        po_line_obj = self.env['purchase.order.line']
         product = item.product_id
         # Keep the standard product UOM for purchase order so we should
         # convert the product quantity to this UOM
