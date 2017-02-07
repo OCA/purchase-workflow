@@ -75,7 +75,7 @@
                     <field name="date_required" position="after">
                         <filter name="purchase_state_none"
                                 string="Purchasing not started"
-                                domain="[('purchase_state','=','none')]"
+                                domain="[('purchase_state','=', False)]"
                                 help="No RFQ or Purchase has been created"/>
                         <filter name="purchase_state_draft"
                                 string="Requested for Quotation"
