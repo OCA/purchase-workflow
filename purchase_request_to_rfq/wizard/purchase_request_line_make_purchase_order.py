@@ -87,6 +87,10 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
 
     @api.model
     def default_get(self, fields):
+        """Default values for wizard, if there is more than one supplier on
+        lines the supplier field is empty otherwise is the unique line
+        supplier.
+        """
         res = super(PurchaseRequestLineMakePurchaseOrder, self).default_get(
             fields)
         request_line_obj = self.env['purchase.request.line']
@@ -100,8 +104,12 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
 
         items = []
         self._check_valid_request_line(request_line_ids)
-        for line in request_line_obj.browse(request_line_ids):
+        lines = request_line_obj.browse(request_line_ids)
+        for line in lines:
             items.append([0, 0, self._prepare_item(line)])
+        suppliers = lines.mapped('supplier_id')
+        if len(suppliers) == 1:
+            res['supplier_id'] = suppliers.id
         res['item_ids'] = items
         return res
 
