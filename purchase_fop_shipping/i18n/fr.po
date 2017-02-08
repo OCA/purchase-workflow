@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-09 15:18+0000\n"
-"PO-Revision-Date: 2016-06-09 15:18+0000\n"
+"POT-Creation-Date: 2017-02-08 13:48+0000\n"
+"PO-Revision-Date: 2017-02-08 13:48+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,40 +16,40 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: purchase_fop_shipping
-#: field:purchase.order,force_order_under_fop:0
+#: model:ir.model.fields,field_description:purchase_fop_shipping.field_purchase_order_force_order_under_fop
 msgid "Confirm under FOP"
 msgstr "Confirmer sous Franco"
 
 #. module: purchase_fop_shipping
-#: field:purchase.order,fop_reached:0
+#: model:ir.model.fields,field_description:purchase_fop_shipping.field_purchase_order_fop_reached
 msgid "FOP reached"
 msgstr "Franco atteint"
 
 #. module: purchase_fop_shipping
-#: field:purchase.order,fop_shipping:0
-#: field:res.partner,fop_shipping:0
+#: model:ir.model.fields,field_description:purchase_fop_shipping.field_purchase_order_fop_shipping
+#: model:ir.model.fields,field_description:purchase_fop_shipping.field_res_partner_fop_shipping
 msgid "FOP shipping"
 msgstr "Franco"
 
 #. module: purchase_fop_shipping
-#: help:purchase.order,force_order_under_fop:0
-msgid "Force confirm order under Free-Of-Paiment shipping"
+#: model:ir.model.fields,help:purchase_fop_shipping.field_purchase_order_force_order_under_fop
+msgid "Force confirm order under Free-Of-Payment shipping"
 msgstr "Forcer la confirmation de la commande sous le franco"
 
 #. module: purchase_fop_shipping
-#: help:purchase.order,fop_reached:0
-msgid "Free-Of-Paiment shipping reached"
+#: model:ir.model.fields,help:purchase_fop_shipping.field_purchase_order_fop_reached
+msgid "Free-Of-Payment shipping reached"
 msgstr "Franco atteint"
 
 #. module: purchase_fop_shipping
-#: help:res.partner,fop_shipping:0
+#: model:ir.model.fields,help:purchase_fop_shipping.field_res_partner_fop_shipping
 msgid "Min order amount for FOP shipping"
 msgstr "Franco de commande d'achat"
 
 #. module: purchase_fop_shipping
-#: help:purchase.order,fop_shipping:0
-msgid "Min order amount for Free-Of-Paiment shipping"
-msgstr "Franco de commande d'achat"
+#: model:ir.model.fields,help:purchase_fop_shipping.field_purchase_order_fop_shipping
+msgid "Min order amount for Free-Of-Payment shipping"
+msgstr "Min de commande d'achat pour avoir une livraison gratuite (Franco)"
 
 #. module: purchase_fop_shipping
 #: model:ir.model,name:purchase_fop_shipping.model_res_partner
@@ -59,31 +59,12 @@ msgstr "Partenaire"
 #. module: purchase_fop_shipping
 #: model:ir.model,name:purchase_fop_shipping.model_purchase_order
 msgid "Purchase Order"
-msgstr "Commande d'achat"
+msgstr "Commande fournisseur"
 
 #. module: purchase_fop_shipping
-#: code:addons/purchase_fop_shipping/models/purchase.py:48
+#: code:addons/purchase_fop_shipping/models/purchase.py:38
 #, python-format
-msgid "You cannot confirm a purchase order with InvoiceControl Method 'Based on incoming shipments' thatdoesn't contain any stockable item."
-msgstr "Vous ne pouvez pas confirmer une commande dont la méthode "
-"facturation est basée sur les réception et qui n'a aucun produit stockable."
-
-#. module: purchase_fop_shipping
-#: code:addons/purchase_fop_shipping/models/purchase.py:37
-#, python-format
-msgid "You cannot confirm a purchase order with amount underFOP shipping."
+msgid "You cannot confirm a purchase order with amount under FOP shipping. To force confirm you must belongs to \"FOP shipping Manager\"."
 msgstr "Vous ne pouvez pas confirmer une commande dont le montant est en "
-"dessous du Franco."
-
-#. module: purchase_fop_shipping
-#: code:addons/purchase_fop_shipping/models/purchase.py:41
-#, python-format
-msgid "You cannot confirm a purchase order without anypurchase order line."
-msgstr "Vous ne pouvez pas confirmer une commande d'achat sans aucune ligne."
-
-#. module: purchase_fop_shipping
-#: view:purchase.order:purchase_fop_shipping.origin_type_purchase_order_tree
-msgid "red:fop_reached ==\n"
-"						False;blue:fop_reached == True;grey:state=='cancel'"
-msgstr "red:fop_reached ==\n"
-"						False;blue:fop_reached == True;grey:state=='cancel'"
+"dessous du Franco. Pour forcer les commande en dessous du franco,"
+"vous devez avoir le group \"Franco Manager\""
