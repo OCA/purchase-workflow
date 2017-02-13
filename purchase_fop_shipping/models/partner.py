@@ -10,4 +10,4 @@ class ResPartner(models.Model):
     _inherit = 'res.partner'
 
     fop_shipping = fields.Float(
-        'FOP shipping', help='Min order amount for FOP shipping',)
+        'FOP shipping', help='Min purchase order amount for FOP shipping',)
