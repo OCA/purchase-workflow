@@ -16,12 +16,12 @@ class PurchaseOrder(models.Model):
         compute='_fop_shipping_reached')
     force_order_under_fop = fields.Boolean(
         string='Confirm under FOP',
-        help='Force confirm order under Free-Of-Payment shipping',)
+        help='Force confirm purchase order under Free-Of-Payment shipping',)
     fop_shipping = fields.Float(
         'FOP shipping',
         related='partner_id.fop_shipping',
         readonly=True,
-        help='Min order amount for Free-Of-Payment shipping',)
+        help='Min purchase order amount for Free-Of-Payment shipping',)
 
     @api.multi
     @api.depends('amount_total', 'partner_id.fop_shipping')
