@@ -33,7 +33,7 @@ msgstr "Franco"
 
 #. module: purchase_fop_shipping
 #: model:ir.model.fields,help:purchase_fop_shipping.field_purchase_order_force_order_under_fop
-msgid "Force confirm order under Free-Of-Payment shipping"
+msgid "Force confirm purchase order under Free-Of-Payment shipping"
 msgstr "Forcer la confirmation de la commande sous le franco"
 
 #. module: purchase_fop_shipping
@@ -43,12 +43,12 @@ msgstr "Franco atteint"
 
 #. module: purchase_fop_shipping
 #: model:ir.model.fields,help:purchase_fop_shipping.field_res_partner_fop_shipping
-msgid "Min order amount for FOP shipping"
+msgid "Min purchase order amount for FOP shipping"
 msgstr "Franco de commande d'achat"
 
 #. module: purchase_fop_shipping
 #: model:ir.model.fields,help:purchase_fop_shipping.field_purchase_order_fop_shipping
-msgid "Min order amount for Free-Of-Payment shipping"
+msgid "Min purchase order amount for Free-Of-Payment shipping"
 msgstr "Min de commande d'achat pour avoir une livraison gratuite (Franco)"
 
 #. module: purchase_fop_shipping
