@@ -3,12 +3,12 @@
    :alt: License: AGPL-3
 
 =================================
-Pruchase Free-Of-Paiment shipping
+Purchase Free-Of-Paiment shipping
 =================================
 
 This module allows to define a Free-Of-Paiment (FOP) shipping on supplier.
-FOP shipping is a min order amount to got shipping free from supplier.
-User can force confirm order if he/she wishes.
+FOP shipping is a min purchase order amount to got shipping free from supplier.
+User can force confirm purchase order if he/she wishes.
 
 Configuration
 =============
