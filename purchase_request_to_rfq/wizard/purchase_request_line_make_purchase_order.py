@@ -218,7 +218,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                 if new_qty > po_line.product_qty:
                     po_line.product_qty = new_qty
                     po_line.price_unit = new_price
-                    po_line.purchase_request_lines = [(4, line.id)]
+                po_line.purchase_request_lines = [(4, line.id)]
             else:
                 po_line_data = self._prepare_purchase_order_line(purchase,
                                                                  item)
