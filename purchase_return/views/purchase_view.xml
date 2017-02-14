@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="purchase_order_form" model="ir.ui.view">
+            <field name="name">purchase.order.form</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <div class="oe_title" position="replace">
+                    <field name="type" invisible="1"/>
+                    <div class="oe_title">
+                        <label string="Request for Quotation "
+                               attrs="{'invisible': ['|',('type', '&lt;&gt;', 'purchase'),('state','not in',('draft','sent','bid'))]}"/>
+                        <label string="Purchase Order "
+                               attrs="{'invisible': ['|',('type', '&lt;&gt;', 'purchase'),('state','in',('draft','sent','bid'))]}"/>
+                        <label string="Draft Return PO"
+                               attrs="{'invisible': ['|',('type', '&lt;&gt;', 'return'),('state','not in',('draft','sent','bid'))]}"/>
+                        <label string="Return PO "
+                               attrs="{'invisible': ['|',('type', '&lt;&gt;', 'return'),('state','in',('draft','sent','bid'))]}"/>
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                </div>
+                <field name="order_line" position="attributes">
+                    <attribute name="context">{'type': type}</attribute>
+                </field>
+                <button name="action_view_invoice" position="after">
+                    <button type="object"  name="action_view_invoice_refund"
+                            class="oe_stat_button"
+                            icon="fa-pencil-square-o"
+                            attrs="{'invisible': [('type','!=','return')]}">
+                        <field name="invoice_refund_count" widget="statinfo"
+                               string="Refunds"/>
+                    </button>
+                </button>
+            </field>
+        </record>
+
+        <record id="purchase_order_tree" model="ir.ui.view">
+            <field name="name">purchase.order.tree</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_tree"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="type"/>
+                </field>
+            </field>
+        </record>
+
+       <record id="view_purchase_order_filter" model="ir.ui.view">
+            <field name="name">request.quotation.select</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="type"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="purchase_return" model="ir.actions.act_window">
+            <field name="name">Return Purchase Orders</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.order</field>
+            <field name="context">{'search_default_todo':1, 'type':'return','show_purchase': True}</field>
+            <field name="domain">[('type','=','return')]</field>
+            <field name="view_mode">tree,kanban,form,pivot,graph,calendar</field>
+            <field name="search_view_id" ref="view_purchase_order_filter"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a return PO
+              </p>
+            </field>
+        </record>
+        <menuitem action="purchase_return" id="menu_purchase_return"
+            parent="purchase.menu_procurement_management"/>
+
+
+        <record id="purchase.purchase_rfq" model="ir.actions.act_window">
+            <field name="domain">[('type','=','purchase'),('state','in',('draft','sent','bid','cancel', 'confirmed'))]</field>
+        </record>
+
+        <record id="purchase.purchase_form_action"
+                model="ir.actions.act_window">
+            <field name="domain">[('type','=','purchase'),('state','not in',('draft','sent','bid', 'confirmed'))]</field>
+        </record>
+
+    </data>
+</openerp>
