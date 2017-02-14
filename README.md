@@ -18,6 +18,7 @@ Available addons
 addon | version | summary
 --- | --- | ---
 [purchase_fiscal_position_update](purchase_fiscal_position_update/) | 10.0.1.0.0 | Changing the fiscal position of a purchase order will auto-update purchase order lines
+[purchase_fop_shipping](purchase_fop_shipping/) | 10.0.1.0.0 | Purchase Free-Of-Paiment shipping
 [purchase_request](purchase_request/) | 10.0.1.0.0 | Purchase Request
 
 Unported addons
