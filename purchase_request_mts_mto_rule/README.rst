@@ -8,7 +8,15 @@ This module allow to create a purchase request with MTS + MTO rules from stock_m
 Usage
 =====
 
-* This module works without any configuration
+* To use this module you need to configure product with the following configuration:
+    * Set Route to Make To Order + Make To Stock.
+    * Set Route to Buy or Produce.
+    * Set the product type to stockable.
+    * Set Purchase request field to True.
+* Make a Sale Order with that product and validate it.
+    * If the product has enought stock it make the picking and reserve the products.
+    * If the product don't have stock it will create a Purchase Request.
+    * If the product has stock but is not enought it will create a Purchase Request for the amount required to fullfill the sale order.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
