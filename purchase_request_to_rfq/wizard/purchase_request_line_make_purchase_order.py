@@ -3,7 +3,8 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
 
 import openerp.addons.decimal_precision as dp
-from openerp import _, api, exceptions, fields, models
+from openerp import api, fields, models, _
+from openerp.exceptions import UserError
 
 
 class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
@@ -39,21 +40,25 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         company_id = False
 
         for line in self.env['purchase.request.line'].browse(request_line_ids):
+            if line.cancelled:
+                raise UserError(
+                    _('You cannot create a RFQ from a cancelled purchase '
+                      'request line.'))
 
             if line.request_id.state != 'approved':
-                raise exceptions.Warning(
+                raise UserError(
                     _('Purchase Request %s is not approved') %
                     line.request_id.name)
 
             if line.purchase_state == 'done':
-                raise exceptions.Warning(
+                raise UserError(
                     _('The purchase has already been completed.'))
 
             line_company_id = line.company_id \
                 and line.company_id.id or False
             if company_id is not False \
                     and line_company_id != company_id:
-                raise exceptions.Warning(
+                raise UserError(
                     _('You have to select lines '
                       'from the same company.'))
             else:
@@ -61,11 +66,11 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
 
             line_picking_type = line.request_id.picking_type_id or False
             if not line_picking_type:
-                raise exceptions.Warning(
+                raise UserError(
                     _('You have to enter a Picking Type.'))
             if picking_type is not False \
                     and line_picking_type != picking_type:
-                raise exceptions.Warning(
+                raise UserError(
                     _('You have to select lines '
                       'from the same Picking Type.'))
             else:
@@ -76,7 +81,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
 
             if location is not False and line_location != location and \
                     line_location:
-                raise exceptions.Warning(
+                raise UserError(
                     _('You have to select lines '
                       'from the same procurement location.'))
             else:
@@ -109,10 +114,11 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         res['item_ids'] = items
         return res
 
-    @api.model
+    @api.multi
     def _prepare_purchase_order(self, picking_type, location, company):
+        self.ensure_one()
         if not self.supplier_id:
-            raise exceptions.Warning(
+            raise UserError(
                 _('Enter a supplier.'))
         supplier = self.supplier_id
         data = {
@@ -144,8 +150,9 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                     vals[field] = obj._fields[field].convert_to_write(
                         obj[field])
 
-    @api.model
+    @api.multi
     def _prepare_purchase_order_line(self, po, item):
+        self.ensure_one()
         product = item.product_id
         # Keep the standard product UOM for purchase order so we should
         # convert the product quantity to this UOM
@@ -171,8 +178,9 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         self._execute_purchase_line_onchange(vals)
         return vals
 
-    @api.model
+    @api.multi
     def _get_purchase_line_name(self, order, line):
+        self.ensure_one()
         product_lang = line.product_id.with_context({
             'lang': self.supplier_id.lang,
             'partner_id': self.supplier_id.id,
@@ -184,13 +192,13 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
 
     @api.model
     def _get_order_line_search_domain(self, order, item):
-        vals = self._prepare_purchase_order_line(order, item)
         name = self._get_purchase_line_name(order, item)
         order_line_data = [('order_id', '=', order.id),
                            ('name', '=', name),
                            ('product_id', '=', item.product_id.id or False),
                            ('date_planned', '=', item.line_id.date_required),
-                           ('product_uom', '=', vals['product_uom']),
+                           ('product_uom', '=', item.product_id.uom_po_id.id or
+                            item.product_uom_id.id),
                            ('account_analytic_id', '=',
                             item.line_id.analytic_account_id.id or False),
                            ]
@@ -205,31 +213,30 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
 
     @api.multi
     def make_purchase_order(self):
+        self.ensure_one()
         res = []
         purchase_obj = self.env['purchase.order']
         po_line_obj = self.env['purchase.order.line']
         pr_line_obj = self.env['purchase.request.line']
-        purchase = False
 
         for item in self.item_ids:
             line = item.line_id
             if item.product_qty <= 0.0:
-                raise exceptions.Warning(
+                raise UserError(
                     _('Enter a positive quantity.'))
 
             location = line.request_id.picking_type_id.default_location_dest_id
-            if self.purchase_order_id:
-                purchase = self.purchase_order_id
-            if not purchase:
+            if not self.purchase_order_id:
                 po_data = self._prepare_purchase_order(
                     line.request_id.picking_type_id, location,
                     line.company_id)
-                purchase = purchase_obj.create(po_data)
+                self.purchase_order_id = purchase_obj.create(po_data)
 
             # Look for any other PO line in the selected PO with same
             # product and UoM to sum quantities instead of creating a new
             # po line
-            domain = self._get_order_line_search_domain(purchase, item)
+            domain = self._get_order_line_search_domain(
+                self.purchase_order_id, item)
             available_po_lines = po_line_obj.search(domain)
             new_pr_line = True
             if available_po_lines and not item.keep_description:
@@ -237,8 +244,8 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                 po_line = available_po_lines[0]
                 po_line.purchase_request_lines = [(4, line.id)]
             else:
-                po_line_data = self._prepare_purchase_order_line(purchase,
-                                                                 item)
+                po_line_data = self._prepare_purchase_order_line(
+                    self.purchase_order_id, item)
                 if item.keep_description:
                     po_line_data['name'] = item.name
                 po_line = po_line_obj.create(po_line_data)
@@ -250,10 +257,10 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             # The onchange quantity is altering the scheduled date of the PO
             # lines. We do not want that:
             po_line.date_planned = item.line_id.date_required
-            res.append(purchase.id)
+            res.append(self.purchase_order_id.id)
 
         return {
-            'domain': "[('id','in', ["+','.join(map(str, res))+"])]",
+            'domain': [('id', 'in', res)],
             'name': _('RFQ'),
             'view_type': 'form',
             'view_mode': 'tree,form',
