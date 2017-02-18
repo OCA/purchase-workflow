@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-25 03:39+0000\n"
-"PO-Revision-Date: 2016-11-25 03:39+0000\n"
+"POT-Creation-Date: 2017-02-11 05:34+0000\n"
+"PO-Revision-Date: 2017-02-11 05:34+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -36,7 +36,7 @@ msgstr ""
 #. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_account_invoice_line
 msgid "Invoice Line"
-msgstr ""
+msgstr "Postavka računa"
 
 #. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_purchase_order_line
