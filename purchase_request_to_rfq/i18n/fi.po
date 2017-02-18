@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
+# Miku Laitinen <miku.laitinen@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-16 12:06+0000\n"
-"PO-Revision-Date: 2016-11-16 12:06+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"POT-Creation-Date: 2017-02-11 05:25+0000\n"
+"PO-Revision-Date: 2017-02-11 05:25+0000\n"
+"Last-Translator: Miku Laitinen <miku.laitinen@gmail.com>, 2017\n"
 "Language-Team: Finnish (https://www.transifex.com/oca/teams/23907/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -304,7 +305,7 @@ msgstr ""
 #. module: purchase_request_to_rfq
 #: field:purchase.request.line.make.purchase.order,supplier_id:0
 msgid "Supplier"
-msgstr ""
+msgstr "Toimittaja"
 
 #. module: purchase_request_to_rfq
 #: code:addons/purchase_request_to_rfq/models/purchase_order.py:19

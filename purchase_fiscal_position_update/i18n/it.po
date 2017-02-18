@@ -3,11 +3,13 @@
 # * purchase_fiscal_position_update
 # 
 # Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# Miku Laitinen <miku.laitinen@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-08 10:15+0000\n"
+"POT-Creation-Date: 2017-02-11 05:24+0000\n"
 "PO-Revision-Date: 2016-03-08 10:16+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/it/)\n"
@@ -43,4 +45,4 @@ msgstr ""
 #: code:addons/purchase_fiscal_position_update/purchase.py:49
 #, python-format
 msgid "Warning"
-msgstr ""
+msgstr "Warning"

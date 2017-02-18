@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-07 05:29+0000\n"
-"PO-Revision-Date: 2017-01-13 09:28+0000\n"
+"POT-Creation-Date: 2017-02-11 05:24+0000\n"
+"PO-Revision-Date: 2017-02-16 15:55+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (Spain) (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/es_ES/)\n"
 "MIME-Version: 1.0\n"
@@ -44,7 +44,7 @@ msgstr "Creado en"
 #: field:procurement.batch.generator,display_name:0
 #: field:procurement.batch.generator.line,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Nombre para mostrar"
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator,id:0
@@ -61,7 +61,7 @@ msgstr ""
 #: field:procurement.batch.generator,__last_update:0
 #: field:procurement.batch.generator.line,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última modificación en"
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator,write_uid:0

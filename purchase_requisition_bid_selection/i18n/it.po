@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-17 04:15+0000\n"
-"PO-Revision-Date: 2016-12-23 08:32+0000\n"
+"POT-Creation-Date: 2017-02-11 05:25+0000\n"
+"PO-Revision-Date: 2017-02-17 15:46+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -311,7 +311,7 @@ msgstr ""
 #: code:addons/purchase_requisition_bid_selection/model/purchase_requisition.py:260
 #, python-format
 msgid "Error"
-msgstr ""
+msgstr "Error"
 
 #. module: purchase_requisition_bid_selection
 #: code:addons/purchase_requisition_bid_selection/model/purchase_requisition.py:144
@@ -777,7 +777,7 @@ msgstr ""
 #. module: purchase_requisition_bid_selection
 #: view:purchase.action_modal:purchase_requisition_bid_selection.action_modal_confirm_different_quantity
 msgid "Warning"
-msgstr ""
+msgstr "Warning"
 
 #. module: purchase_requisition_bid_selection
 #: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document

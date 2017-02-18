@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-16 12:06+0000\n"
+"POT-Creation-Date: 2017-02-11 05:25+0000\n"
 "PO-Revision-Date: 2016-03-08 10:17+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Spanish (Spain) (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/es_ES/)\n"
@@ -61,7 +61,7 @@ msgstr "Creado en"
 #: field:purchase.order.line_cancel_quantity_line,display_name:0
 #: field:purchase.order.line_invoice.line,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Nombre para mostrar"
 
 #. module: purchase_partial_invoicing
 #: view:purchase.order.line_cancel_quantity:purchase_partial_invoicing.view_purchase_line_cancel
@@ -100,7 +100,7 @@ msgstr ""
 #: field:purchase.order.line_cancel_quantity_line,__last_update:0
 #: field:purchase.order.line_invoice.line,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última modificación en"
 
 #. module: purchase_partial_invoicing
 #: field:purchase.order.line_cancel_quantity,write_uid:0
