@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-01 21:19+0000\n"
+"POT-Creation-Date: 2017-02-11 05:17+0000\n"
 "PO-Revision-Date: 2015-09-01 21:20+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/it/)\n"
@@ -43,7 +43,7 @@ msgstr ""
 #: code:addons/purchase_fiscal_position_update/purchase.py:67
 #, python-format
 msgid "Warning"
-msgstr ""
+msgstr "Warning"
 
 #. module: purchase_fiscal_position_update
 #: model:ir.model,name:purchase_fiscal_position_update.model_purchase_order
