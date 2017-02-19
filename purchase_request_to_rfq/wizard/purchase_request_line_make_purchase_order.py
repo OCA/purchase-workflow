@@ -35,7 +35,6 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
 
     @api.model
     def _check_valid_request_line(self, request_line_ids):
-        location = False
         picking_type = False
         company_id = False
 
@@ -76,17 +75,6 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             else:
                 picking_type = line_picking_type
 
-            line_location = line.procurement_id and \
-                line.procurement_id.location_id or False
-
-            if location is not False and line_location != location and \
-                    line_location:
-                raise UserError(
-                    _('You have to select lines '
-                      'from the same procurement location.'))
-            else:
-                location = line_location
-
     @api.model
     def default_get(self, fields):
         """Default values for wizard, if there is more than one supplier on
@@ -115,7 +103,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         return res
 
     @api.multi
-    def _prepare_purchase_order(self, picking_type, location, company):
+    def _prepare_purchase_order(self, picking_type, company):
         self.ensure_one()
         if not self.supplier_id:
             raise UserError(
@@ -204,11 +192,6 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                            ]
         if not item.product_id:
             order_line_data.append(('name', '=', item.name))
-        if not item.line_id.procurement_id and \
-                item.line_id.procurement_id.location_id:
-            order_line_data.append(
-                ('location_id', '=',
-                 item.line_id.procurement_id.location_id.id))
         return order_line_data
 
     @api.multi
@@ -225,11 +208,9 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                 raise UserError(
                     _('Enter a positive quantity.'))
 
-            location = line.request_id.picking_type_id.default_location_dest_id
             if not self.purchase_order_id:
                 po_data = self._prepare_purchase_order(
-                    line.request_id.picking_type_id, location,
-                    line.company_id)
+                    line.request_id.picking_type_id, line.company_id)
                 self.purchase_order_id = purchase_obj.create(po_data)
 
             # Look for any other PO line in the selected PO with same
