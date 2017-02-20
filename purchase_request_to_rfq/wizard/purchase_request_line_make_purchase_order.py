@@ -246,6 +246,11 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             'type': 'ir.actions.act_window'
         }
 
+    @api.onchange('supplier_id')
+    def onchange_product_id(self):
+        for item in self.item_ids:
+            item.onchange_product_id()
+
 
 class PurchaseRequestLineMakePurchaseOrderItem(models.TransientModel):
     _name = "purchase.request.line.make.purchase.order.item"
@@ -269,12 +274,20 @@ class PurchaseRequestLineMakePurchaseOrderItem(models.TransientModel):
                                digits_compute=dp.get_precision('Product UoS'))
     product_uom_id = fields.Many2one('product.uom', string='UoM')
 
-    @api.onchange('product_id', 'product_uom_id')
+    @api.onchange('product_id')
     def onchange_product_id(self):
         if self.product_id:
             name = self.product_id.name
-            if self.product_id.code:
-                name = '[%s] %s' % (name, self.product_id.code)
+            sup_info_id = self.env['product.supplierinfo'].search([
+                '|', ('product_id', '=', self.product_id.id),
+                ('product_tmpl_id', '=', self.product_id.product_tmpl_id.id),
+                ('name', '=', self.wiz_id.supplier_id.id)])
+            if sup_info_id:
+                name = '[%s] %s' % (sup_info_id[0].product_code,
+                                    sup_info_id[0].product_name)
+            else:
+                if self.product_id.code:
+                    name = '[%s] %s' % (self.product_id.code, name)
             if self.product_id.description_purchase:
                 name += '\n' + self.product_id.description_purchase
             self.product_uom_id = self.product_id.uom_id.id
