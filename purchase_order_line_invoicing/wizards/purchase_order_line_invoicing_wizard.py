@@ -19,6 +19,21 @@ class PurchaseOrderLineInvoiceWizard(models.TransientModel):
             raise UserError(_(
                 """You have to select line from only one supplier."""))
 
+    def _prepare_default_line_vals(self, purchase_line):
+        return {
+            'purchase_order_line_id': purchase_line.id,
+            'order_id': purchase_line.order_id.id,
+            'product_id': purchase_line.product_id.id,
+            'name': purchase_line.name,
+            'price_unit': purchase_line.price_unit,
+            'product_qty': purchase_line.product_qty,
+            'price_subtotal': purchase_line.price_subtotal,
+            'qty_received': purchase_line.qty_received,
+            'qty_invoiced': purchase_line.qty_invoiced,
+            'invoice_qty':
+                purchase_line.qty_received - purchase_line.qty_invoiced,
+        }
+
     @api.model
     def default_get(self, fields):
         result = super(PurchaseOrderLineInvoiceWizard,
@@ -35,17 +50,9 @@ class PurchaseOrderLineInvoiceWizard(models.TransientModel):
         details = []
         self._check_unique_partner(purchase_lines)
         for line in purchase_lines:
+            vals = self._prepare_default_line_vals(line)
             details.append(
-                (0, 0, {'purchase_order_line_id': line.id,
-                        'order_id': line.order_id.id,
-                        'product_id': line.product_id.id,
-                        'name': line.name,
-                        'price_unit': line.price_unit,
-                        'product_qty': line.product_qty,
-                        'price_subtotal': line.price_subtotal,
-                        'qty_received': line.qty_received,
-                        'qty_invoiced': line.qty_invoiced,
-                        'invoice_qty': line.qty_received - line.qty_invoiced}))
+                (0, 0, vals))
 
         if details:
             result['purchase_order_line_details_ids'] = details
