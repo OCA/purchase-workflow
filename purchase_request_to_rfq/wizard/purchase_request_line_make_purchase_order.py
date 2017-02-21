@@ -155,6 +155,13 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         else:
             price = product.standard_price
 
+        taxes = item.product_id.supplier_taxes_id
+        fpos = po.fiscal_position_id
+        taxes_id = fpos.map_tax(taxes) if fpos else taxes
+        if taxes_id:
+            taxes_id = taxes_id.filtered(
+                lambda x: x.company_id.id == po.company_id.id)
+
         vals = po_line_obj.onchange_product_id()
         vals.update({
             'name': product.name,
@@ -164,7 +171,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             'price_unit': price,
             'product_qty': item.product_qty,
             'account_analytic_id': item.line_id.analytic_account_id.id,
-            'taxes_id': [(6, 0, vals.get('taxes_id', []))],
+            'taxes_id': [(6, 0, taxes_id.ids)],
             'purchase_request_lines': [(4, item.line_id.id)],
             'date_planned':
                 vals.get('date_planned', False) or item.line_id.date_required,
