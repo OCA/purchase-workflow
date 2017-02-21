@@ -278,16 +278,19 @@ class PurchaseRequestLineMakePurchaseOrderItem(models.TransientModel):
     def onchange_product_id(self):
         if self.product_id:
             name = self.product_id.name
+            code = self.product_id.code
             sup_info_id = self.env['product.supplierinfo'].search([
                 '|', ('product_id', '=', self.product_id.id),
                 ('product_tmpl_id', '=', self.product_id.product_tmpl_id.id),
                 ('name', '=', self.wiz_id.supplier_id.id)])
             if sup_info_id:
-                name = '[%s] %s' % (sup_info_id[0].product_code,
-                                    sup_info_id[0].product_name)
+                p_code = sup_info_id[0].product_code
+                p_name = sup_info_id[0].product_name
+                name = '[%s] %s' % (p_code if p_code else code,
+                                    p_name if p_name else name)
             else:
-                if self.product_id.code:
-                    name = '[%s] %s' % (self.product_id.code, name)
+                if code:
+                    name = '[%s] %s' % (code, name)
             if self.product_id.description_purchase:
                 name += '\n' + self.product_id.description_purchase
             self.product_uom_id = self.product_id.uom_id.id
