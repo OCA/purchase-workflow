@@ -4,9 +4,6 @@
 
 import openerp.addons.decimal_precision as dp
 from openerp import _, api, exceptions, fields, models
-from openerp.tools import DEFAULT_SERVER_DATE_FORMAT, \
-    DEFAULT_SERVER_DATETIME_FORMAT
-from datetime import datetime
 
 
 class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
@@ -138,44 +135,40 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         po_line_obj = self.env['purchase.order.line']
         product = item.product_id
         supplier = self.supplier_id
-        pricelist_id = supplier.property_product_pricelist
-
-        if pricelist_id:
-            date_order_str = datetime.strptime(
-                fields.datetime.now().strftime(DEFAULT_SERVER_DATETIME_FORMAT),
-                DEFAULT_SERVER_DATETIME_FORMAT).\
-                strftime(DEFAULT_SERVER_DATE_FORMAT)
-            price = pricelist_id.price_get(prod_id=product.id,
-                                           qty=item.product_qty or 1.0,
-                                           partner=supplier or False,
-                                           context={'uom':
-                                                    product.uom_po_id.id,
-                                                    'date': date_order_str})
-            price = price[pricelist_id.id]
-        else:
-            price = product.standard_price
-
         taxes = item.product_id.supplier_taxes_id
         fpos = po.fiscal_position_id
         taxes_id = fpos.map_tax(taxes) if fpos else taxes
         if taxes_id:
             taxes_id = taxes_id.filtered(
                 lambda x: x.company_id.id == po.company_id.id)
-
+        procurement_uom_po_qty = self.env['product.uom']._compute_qty_obj(
+            item.product_uom_id, item.product_qty, item.product_id.uom_po_id)
+        seller = item.product_id._select_seller(
+            item.product_id,
+            partner_id=supplier,
+            quantity=procurement_uom_po_qty,
+            date=po.date_order and po.date_order[:10],
+            uom_id=item.product_id.uom_po_id)
+        price_unit = self.env['account.tax']._fix_tax_included_price(
+            seller.price, item.product_id.supplier_taxes_id, taxes_id) \
+            if seller else 0.0
+        if (price_unit and seller and po.currency_id and
+                seller.currency_id != po.currency_id):
+            price_unit = seller.currency_id.compute(
+                price_unit, po.currency_id)
         vals = po_line_obj.onchange_product_id()
         vals.update({
             'name': product.name,
             'order_id': po.id,
             'product_id': product.id,
             'product_uom': product.uom_po_id.id,
-            'price_unit': price,
+            'price_unit': price_unit,
             'product_qty': item.product_qty,
             'account_analytic_id': item.line_id.analytic_account_id.id,
             'taxes_id': [(6, 0, taxes_id.ids)],
             'purchase_request_lines': [(4, item.line_id.id)],
             'date_planned':
                 vals.get('date_planned', False) or item.line_id.date_required,
-
         })
         if item.line_id.procurement_id:
             vals['procurement_ids'] = [(4, item.line_id.procurement_id.id)]
