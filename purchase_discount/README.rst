@@ -49,6 +49,7 @@ Contributors
 * OpenERP S.A.
 * Ignacio Ibeas <ignacio@acysos.com>
 * Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
+* Yannick Vaucher <yannick.vaucher@camptocamp.com>
 
 Icon
 ----
