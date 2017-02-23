@@ -163,7 +163,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             'product_id': product.id,
             'product_uom': product.uom_po_id.id,
             'price_unit': price_unit,
-            'product_qty': item.product_qty,
+            'product_qty': procurement_uom_po_qty,
             'account_analytic_id': item.line_id.analytic_account_id.id,
             'taxes_id': [(6, 0, taxes_id.ids)],
             'purchase_request_lines': [(4, item.line_id.id)],
