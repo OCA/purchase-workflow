@@ -34,6 +34,7 @@
                                   <field name="product_qty"/>
                                   <field name="product_uom_id"
                                          groups="product.group_uom"/>
+                                  <field name="keep_description"/>
                               </tree>
                          </field>
                      </group>
