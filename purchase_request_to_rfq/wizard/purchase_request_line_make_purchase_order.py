@@ -123,7 +123,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             'partner_id': self.supplier_id.id,
             'pricelist_id': supplier_pricelist.id,
             'location_id': location.id,
-            'fiscal_position': supplier.property_account_position_id and
+            'fiscal_position_id': supplier.property_account_position_id and
             supplier.property_account_position_id.id or False,
             'picking_type_id': picking_type.id,
             'company_id': company.id,
@@ -131,48 +131,47 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         return data
 
     @api.model
+    def _get_purchase_line_onchange_fields(self):
+        return ['date_planned', 'product_uom', 'price_unit', 'name',
+                'taxes_id']
+
+    @api.model
+    def _execute_purchase_line_onchange(self, vals):
+        cls = self.env['purchase.order.line']
+        onchanges_dict = {
+            'onchange_product_id': self._get_purchase_line_onchange_fields(),
+        }
+        for onchange_method, changed_fields in onchanges_dict.items():
+            if any(f not in vals for f in changed_fields):
+                obj = cls.new(vals)
+                getattr(obj, onchange_method)()
+                for field in changed_fields:
+                    vals[field] = obj._fields[field].convert_to_write(
+                        obj[field])
+
+    @api.model
     def _prepare_purchase_order_line(self, po, item):
-        po_line_obj = self.env['purchase.order.line']
         product = item.product_id
-        supplier = self.supplier_id
-        taxes = item.product_id.supplier_taxes_id
-        fpos = po.fiscal_position_id
-        taxes_id = fpos.map_tax(taxes) if fpos else taxes
-        if taxes_id:
-            taxes_id = taxes_id.filtered(
-                lambda x: x.company_id.id == po.company_id.id)
-        procurement_uom_po_qty = self.env['product.uom']._compute_qty_obj(
-            item.product_uom_id, item.product_qty, item.product_id.uom_po_id)
-        seller = item.product_id._select_seller(
-            item.product_id,
-            partner_id=supplier,
-            quantity=procurement_uom_po_qty,
-            date=po.date_order and po.date_order[:10],
-            uom_id=item.product_id.uom_po_id)
-        price_unit = self.env['account.tax']._fix_tax_included_price(
-            seller.price, item.product_id.supplier_taxes_id, taxes_id) \
-            if seller else 0.0
-        if (price_unit and seller and po.currency_id and
-                seller.currency_id != po.currency_id):
-            price_unit = seller.currency_id.compute(
-                price_unit, po.currency_id)
-        vals = po_line_obj.onchange_product_id()
-        vals.update({
+        # Keep the standard product UOM for purchase order so we should
+        # convert the product quantity to this UOM
+        qty = item.product_uom_id._compute_qty(
+            product.uom_po_id, item.product_qty)
+        # Suggest the supplier min qty as it's done in Odoo core
+        min_qty = item.line_id._get_supplier_min_qty(product, po.partner_id)
+        qty = max(qty, min_qty)
+        vals = {
             'name': product.name,
             'order_id': po.id,
             'product_id': product.id,
             'product_uom': product.uom_po_id.id,
-            'price_unit': price_unit,
-            'product_qty': item.product_qty,
+            'price_unit': 0.0,
+            'product_qty': qty,
             'account_analytic_id': item.line_id.analytic_account_id.id,
-            'taxes_id': [(6, 0, taxes_id.ids)],
             'purchase_request_lines': [(4, item.line_id.id)],
-            'date_planned':
-                vals.get('date_planned', False) or item.line_id.date_required,
-        })
+        }
         if item.line_id.procurement_id:
             vals['procurement_ids'] = [(4, item.line_id.procurement_id.id)]
-
+        self._execute_purchase_line_onchange(vals)
         return vals
 
     @api.model
@@ -223,11 +222,12 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             available_po_lines = po_line_obj.search(domain)
             if available_po_lines:
                 po_line = available_po_lines[0]
-                new_qty, new_price = pr_line_obj._calc_new_qty_price(
-                    line, po_line=po_line)
+                new_qty = pr_line_obj._calc_new_qty(line, po_line=po_line)
                 if new_qty > po_line.product_qty:
                     po_line.product_qty = new_qty
-                    po_line.price_unit = new_price
+                    # Leave the purchase order order to calculate its prices
+                    # itself
+                    po_line._onchange_quantity()
                     po_line.purchase_request_lines = [(4, line.id)]
             else:
                 po_line_data = self._prepare_purchase_order_line(purchase,
@@ -266,7 +266,7 @@ class PurchaseRequestLineMakePurchaseOrderItem(models.TransientModel):
     product_id = fields.Many2one('product.product', string='Product')
     name = fields.Char(string='Description', required=True)
     product_qty = fields.Float(string='Quantity to purchase',
-                               digits_compute=dp.get_precision('Product UoS'))
+                               digits=dp.get_precision('Product UoS'))
     product_uom_id = fields.Many2one('product.uom', string='UoM')
 
     @api.onchange('product_id', 'product_uom_id')
