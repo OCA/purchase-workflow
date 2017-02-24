@@ -220,7 +220,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             # po line
             domain = self._get_order_line_search_domain(purchase, item)
             available_po_lines = po_line_obj.search(domain)
-            if available_po_lines:
+            if available_po_lines and not item.keep_description:
                 po_line = available_po_lines[0]
                 new_qty = pr_line_obj._calc_new_qty(line, po_line=po_line)
                 if new_qty > po_line.product_qty:
@@ -232,6 +232,8 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             else:
                 po_line_data = self._prepare_purchase_order_line(purchase,
                                                                  item)
+                if item.keep_description:
+                    po_line_data['name'] = item.name
                 po_line_obj.create(po_line_data)
             res.append(purchase.id)
 
@@ -268,13 +270,29 @@ class PurchaseRequestLineMakePurchaseOrderItem(models.TransientModel):
     product_qty = fields.Float(string='Quantity to purchase',
                                digits=dp.get_precision('Product UoS'))
     product_uom_id = fields.Many2one('product.uom', string='UoM')
+    keep_description = fields.Boolean(string='Copy descriptions to new PO.',
+                                      help='Set true if you want to keep the '
+                                           'descriptions provided in the '
+                                           'wizard in the new PO.',
+                                      default=False)
 
-    @api.onchange('product_id', 'product_uom_id')
+    @api.onchange('product_id')
     def onchange_product_id(self):
         if self.product_id:
             name = self.product_id.name
-            if self.product_id.code:
-                name = '[%s] %s' % (name, self.product_id.code)
+            code = self.product_id.code
+            sup_info_id = self.env['product.supplierinfo'].search([
+                '|', ('product_id', '=', self.product_id.id),
+                ('product_tmpl_id', '=', self.product_id.product_tmpl_id.id),
+                ('name', '=', self.wiz_id.supplier_id.id)])
+            if sup_info_id:
+                p_code = sup_info_id[0].product_code
+                p_name = sup_info_id[0].product_name
+                name = '[%s] %s' % (p_code if p_code else code,
+                                    p_name if p_name else name)
+            else:
+                if code:
+                    name = '[%s] %s' % (code, name)
             if self.product_id.description_purchase:
                 name += '\n' + self.product_id.description_purchase
             self.product_uom_id = self.product_id.uom_id.id
