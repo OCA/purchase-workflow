@@ -3,13 +3,14 @@
 # * purchase_delivery_term
 # 
 # Translators:
+# Hosni Hadj Taher <hajhasni@hotmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-17 04:03+0000\n"
-"PO-Revision-Date: 2015-09-01 21:19+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2017-02-18 05:34+0000\n"
+"PO-Revision-Date: 2017-02-21 13:44+0000\n"
+"Last-Translator: Hosni Hadj Taher <hajhasni@hotmail.com>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,32 +26,32 @@ msgstr "Ligne de commande d'achat"
 #. module: purchase_delivery_term
 #: help:purchase.delivery.term.line,quantity_perc:0
 msgid "For 20% set '0.2'"
-msgstr ""
+msgstr "Pour 20% mettre '0.2'"
 
 #. module: purchase_delivery_term
 #: model:ir.model,name:purchase_delivery_term.model_purchase_delivery_term_line
 msgid "purchase.delivery.term.line"
-msgstr ""
+msgstr "Achat.livraison.terme.ligne"
 
 #. module: purchase_delivery_term
 #: field:purchase.order.line.master,price_unit:0
 msgid "Unit Price"
-msgstr ""
+msgstr "Prix Unitaire"
 
 #. module: purchase_delivery_term
 #: field:purchase.order.line,master_line_id:0
 msgid "Master Line"
-msgstr ""
+msgstr "Maître Ligne"
 
 #. module: purchase_delivery_term
 #: model:ir.model,name:purchase_delivery_term.model_purchase_delivery_term
 msgid "purchase.delivery.term"
-msgstr ""
+msgstr "Achat.livraison.terme"
 
 #. module: purchase_delivery_term
 #: field:purchase.order.line.master,date_planned:0
 msgid "Scheduled Date"
-msgstr ""
+msgstr "Date Prévue"
 
 #. module: purchase_delivery_term
 #: field:purchase.order.line.master,product_id:0
@@ -70,54 +71,54 @@ msgstr "Société"
 #. module: purchase_delivery_term
 #: field:purchase.delivery.term.line,delay:0
 msgid "Delivery Lead Time"
-msgstr ""
+msgstr "Délai de livraison"
 
 #. module: purchase_delivery_term
 #: field:purchase.delivery.term.line,quantity_perc:0
 msgid "Quantity percentage"
-msgstr ""
+msgstr "Pourcentage de quantité"
 
 #. module: purchase_delivery_term
 #: field:purchase.order.line.master,order_line_ids:0
 msgid "Detailed lines"
-msgstr ""
+msgstr "Lignes détaillées"
 
 #. module: purchase_delivery_term
 #: field:purchase.order.line.master,product_uom:0
 msgid "Product UOM"
-msgstr ""
+msgstr "Produit UOM"
 
 #. module: purchase_delivery_term
 #: help:purchase.delivery.term.line,delay:0
 msgid ""
 "Number of days between the order confirmation and the shipping of the "
 "products from the supplier"
-msgstr ""
+msgstr "Nombre de jours entre la confirmation de la commande et l'expédition des produits auprès du fournisseur"
 
 #. module: purchase_delivery_term
 #: field:purchase.order.line.master,order_id:0
 msgid "Order Reference"
-msgstr ""
+msgstr "Référence de la commande"
 
 #. module: purchase_delivery_term
 #: field:purchase.order.line.master,price_subtotal:0
 msgid "Subtotal"
-msgstr ""
+msgstr "Sous-total"
 
 #. module: purchase_delivery_term
 #: view:purchase.order.line.master:0
 msgid "Master order lines"
-msgstr ""
+msgstr "Maître des lignes de commande"
 
 #. module: purchase_delivery_term
 #: view:purchase.order:0
 msgid "Generate detailed lines"
-msgstr ""
+msgstr "Générer des lignes détaillées"
 
 #. module: purchase_delivery_term
 #: field:purchase.delivery.term.line,term_id:0
 msgid "Term"
-msgstr ""
+msgstr "Terme"
 
 #. module: purchase_delivery_term
 #: field:purchase.delivery.term,name:0
@@ -128,7 +129,7 @@ msgstr "Nom"
 #: model:ir.actions.act_window,name:purchase_delivery_term.action_delivery_term_form
 #: model:ir.ui.menu,name:purchase_delivery_term.menu_action_delivery_term_form
 msgid "Delivery Terms"
-msgstr ""
+msgstr "Conditions de livraison"
 
 #. module: purchase_delivery_term
 #: field:purchase.delivery.term,line_ids:0
@@ -138,13 +139,13 @@ msgstr "Lignes"
 #. module: purchase_delivery_term
 #: view:purchase.order.line.master:0
 msgid "Master order line"
-msgstr ""
+msgstr "Maître de la ligne de commande"
 
 #. module: purchase_delivery_term
 #: view:purchase.order.line.master:0
 #: field:purchase.order.line.master,taxes_id:0
 msgid "Taxes"
-msgstr ""
+msgstr "Taxes"
 
 #. module: purchase_delivery_term
 #: model:ir.model,name:purchase_delivery_term.model_purchase_order
@@ -155,13 +156,13 @@ msgstr "Commande d'achat"
 #: view:purchase.delivery.term:0
 #: field:purchase.order.line.master,delivery_term_id:0
 msgid "Delivery term"
-msgstr ""
+msgstr "Condition de livraison"
 
 #. module: purchase_delivery_term
 #: code:addons/purchase_delivery_term/purchase.py:189
 #, python-format
 msgid "Detailed lines generated yet (for master line '%s'). Remove them first"
-msgstr ""
+msgstr "Lignes détaillées déjà générées (pour maître de la ligne '%s'). Supprimez-les d'abord"
 
 #. module: purchase_delivery_term
 #: code:addons/purchase_delivery_term/purchase.py:188
@@ -176,7 +177,7 @@ msgstr "Erreur"
 #: code:addons/purchase_delivery_term/purchase.py:201
 #, python-format
 msgid "Total percentage of delivery term %s is not equal to 1"
-msgstr ""
+msgstr "Le pourcentage total de la condition de livraison %s n'est pas égal à 1"
 
 #. module: purchase_delivery_term
 #: field:purchase.order.line.master,product_qty:0
@@ -186,12 +187,12 @@ msgstr "Quantité"
 #. module: purchase_delivery_term
 #: model:ir.model,name:purchase_delivery_term.model_purchase_order_line_master
 msgid "purchase.order.line.master"
-msgstr ""
+msgstr "achat.commande.ligne.maître"
 
 #. module: purchase_delivery_term
 #: view:purchase.delivery.term:0
 msgid "Term Lines"
-msgstr ""
+msgstr "Condition des lignes"
 
 #. module: purchase_delivery_term
 #: code:addons/purchase_delivery_term/purchase.py:194
@@ -199,16 +200,16 @@ msgstr ""
 msgid ""
 "Delivery term lines are %d. Order line groups are %d. Please create more "
 "groups"
-msgstr ""
+msgstr "Les lignes de la conditon de livraison sont %d. Les groupes de ligne de commande sont %d. Veuillez créer d'autres groupes"
 
 #. module: purchase_delivery_term
 #: field:purchase.order,master_order_line:0
 msgid "Master Order Lines"
-msgstr ""
+msgstr "Maître des lignes de commande"
 
 #. module: purchase_delivery_term
 #: code:addons/purchase_delivery_term/purchase.py:229
 #, python-format
 msgid ""
 "Order lines total quantity %s is different from master line quantity %s"
-msgstr ""
+msgstr "La quantité totale des lignes de commande %s est différente de la quantité de maître de ligne %s"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-17 04:03+0000\n"
+"POT-Creation-Date: 2017-02-18 05:35+0000\n"
 "PO-Revision-Date: 2015-09-01 21:20+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/fr/)\n"
@@ -63,7 +63,7 @@ msgstr "Bon de commande"
 #. module: purchase_partial_invoicing
 #: field:purchase.order.line_invoice.line,price_unit:0
 msgid "Unit Price"
-msgstr ""
+msgstr "Prix Unitaire"
 
 #. module: purchase_partial_invoicing
 #: model:ir.model,name:purchase_partial_invoicing.model_purchase_order_line_invoice
