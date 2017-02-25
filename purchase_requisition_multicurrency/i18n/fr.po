@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-16 12:06+0000\n"
+"POT-Creation-Date: 2017-02-23 16:24+0000\n"
 "PO-Revision-Date: 2016-03-08 10:18+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/fr/)\n"
@@ -59,7 +59,7 @@ msgstr "Appel d'offres"
 #. module: purchase_requisition_multicurrency
 #: field:purchase.order.line,price_subtotal_co:0
 msgid "Subtotal"
-msgstr ""
+msgstr "Sous-total"
 
 #. module: purchase_requisition_multicurrency
 #: help:purchase.order.line,price_subtotal_co:0
