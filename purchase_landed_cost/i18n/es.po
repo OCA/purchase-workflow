@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-30 11:14+0000\n"
-"PO-Revision-Date: 2016-04-30 11:14+0000\n"
+"POT-Creation-Date: 2017-02-26 18:15+0000\n"
+"PO-Revision-Date: 2017-02-26 18:15+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -107,7 +107,7 @@ msgstr "Coste calculado"
 #: field:purchase.cost.distribution.expense,calculation_method:0
 #: field:purchase.expense.type,calculation_method:0
 msgid "Calculation method"
-msgstr "Metodo de cálculo"
+msgstr "Metodo de calculo"
 
 #. module: purchase_landed_cost
 #: view:import.invoice.line.wizard:purchase_landed_cost.import_invoice_line_wizard_view
@@ -120,6 +120,9 @@ msgstr "Cancelar"
 
 #. module: purchase_landed_cost
 #: field:purchase.cost.distribution,company_id:0
+#: field:purchase.cost.distribution.expense,company_id:0
+#: field:purchase.cost.distribution.line,company_id:0
+#: field:purchase.cost.distribution.line.expense,company_id:0
 #: field:purchase.expense.type,company_id:0
 msgid "Company"
 msgstr "Compañía"
@@ -173,7 +176,7 @@ msgid "Cost documentation"
 msgstr "Documentación del coste"
 
 #. module: purchase_landed_cost
-#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:284
+#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:282
 #, python-format
 msgid "Cost update cannot be undone because there has been a later update. Restore correct price and try again."
 msgstr "La actualización de coste no puede deshacerse porque ha habido una actualización posterior. Restaure el precio correcto y pruebe otra vez."
@@ -223,6 +226,16 @@ msgid "Date"
 msgstr "Fecha"
 
 #. module: purchase_landed_cost
+#: help:purchase.cost.distribution.line.expense,picking_date_done:0
+msgid "Date of Completion"
+msgstr "Date of Completion"
+
+#. module: purchase_landed_cost
+#: field:purchase.cost.distribution.line.expense,picking_date_done:0
+msgid "Date of Transfer"
+msgstr "Date of Transfer"
+
+#. module: purchase_landed_cost
 #: field:purchase.expense.type,default_expense:0
 msgid "Default Expense"
 msgstr "Gasto por defecto"
@@ -242,12 +255,16 @@ msgstr "Actualización directa"
 #: field:import.landed.cost.pickings.wizard,display_name:0
 #: field:picking.import.wizard,display_name:0
 #: field:purchase.cost.distribution,display_name:0
-#: field:purchase.cost.distribution.expense,display_name:0
 #: field:purchase.cost.distribution.line,display_name:0
 #: field:purchase.cost.distribution.line.expense,display_name:0
 #: field:purchase.expense.type,display_name:0
 msgid "Display Name"
 msgstr "Nombre mostrado"
+
+#. module: purchase_landed_cost
+#: field:purchase.cost.distribution.expense,display_name:0
+msgid "Display name"
+msgstr "Display name"
 
 #. module: purchase_landed_cost
 #: field:purchase.cost.distribution.line.expense,distribution_expense:0
@@ -301,8 +318,15 @@ msgid "Expense amount"
 msgstr "Importe del gasto"
 
 #. module: purchase_landed_cost
+#: model:ir.actions.act_window,name:purchase_landed_cost.action_purchase_cost_distribution_line_expense
+#: model:ir.ui.menu,name:purchase_landed_cost.menu_purchase_cost_distribution_line_expense
+msgid "Expense distribution lines"
+msgstr "Líneas de distribución de gasto"
+
+#. module: purchase_landed_cost
 #: field:import.invoice.line.wizard,expense_type:0
 #: field:purchase.cost.distribution.expense,type:0
+#: view:purchase.cost.distribution.line.expense:purchase_landed_cost.view_purchase_cost_distribution_line_expense_search
 #: field:purchase.cost.distribution.line.expense,type:0
 msgid "Expense type"
 msgstr "Tipo de gasto"
@@ -328,6 +352,11 @@ msgstr "Tipos de gastos"
 #: field:purchase.cost.distribution.line,product_weight:0
 msgid "Gross weight"
 msgstr "Peso bruto"
+
+#. module: purchase_landed_cost
+#: view:purchase.cost.distribution.line.expense:purchase_landed_cost.view_purchase_cost_distribution_line_expense_search
+msgid "Group By"
+msgstr "Group By"
 
 #. module: purchase_landed_cost
 #: field:import.invoice.line.wizard,id:0
@@ -473,7 +502,7 @@ msgid "New cost"
 msgstr "Nuevo coste"
 
 #. module: purchase_landed_cost
-#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:216
+#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:191
 #, python-format
 msgid "No valid distribution type."
 msgstr "Tipo de distribución no válida."
@@ -485,6 +514,8 @@ msgstr "Sólo se permite seleccionar aquí los albaranes con gastos."
 
 #. module: purchase_landed_cost
 #: field:purchase.cost.distribution.line,picking_id:0
+#: view:purchase.cost.distribution.line.expense:purchase_landed_cost.view_purchase_cost_distribution_line_expense_search
+#: field:purchase.cost.distribution.line.expense,picking_id:0
 msgid "Picking"
 msgstr "Albarán"
 
@@ -504,12 +535,17 @@ msgid "Picking lines"
 msgstr "Líneas de albarán"
 
 #. module: purchase_landed_cost
+#: view:purchase.cost.distribution.line.expense:purchase_landed_cost.view_purchase_cost_distribution_line_expense_search
+msgid "Picking transfer date"
+msgstr "Fecha de transferencia del albarán"
+
+#. module: purchase_landed_cost
 #: field:import.landed.cost.pickings.wizard,picking_ids:0
 msgid "Pickings"
 msgstr "Albaranes"
 
 #. module: purchase_landed_cost
-#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:156
+#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:212
 #, python-format
 msgid "Please enter an amount for all the expenses"
 msgstr "Introduzca un importe para todos los gastos"
@@ -575,6 +611,11 @@ msgstr "Gasto de distribución de costes de compras"
 #: model:ir.model,name:purchase_landed_cost.model_purchase_cost_distribution_line_expense
 msgid "Purchase cost distribution line expense"
 msgstr "Gastos de la línea de distribución de costes de compras"
+
+#. module: purchase_landed_cost
+#: view:purchase.cost.distribution.line.expense:purchase_landed_cost.view_purchase_cost_distribution_line_expense_tree
+msgid "Purchase cost distribution lines"
+msgstr "Purchase cost distribution lines"
 
 #. module: purchase_landed_cost
 #: model:ir.actions.act_window,name:purchase_landed_cost.action_purchase_cost_distribution
@@ -686,7 +727,7 @@ msgid "Technical field used to record the product cost set by the user during a 
 msgstr "Campo técnico usado para guardar el coste de producto establecido por el usuario durante la confirmación del albarán (Cuando el método de coste usado es 'precio medio' o 'real'). Valor dado en la moneda de la compañía y en la UdM del producto."
 
 #. module: purchase_landed_cost
-#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:222
+#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:197
 #, python-format
 msgid "The cost for the line '%s' can't be distributed because the calculation method doesn't provide valid data"
 msgstr "El coste para la línea '%s' no puede ser distribuido porque el método de cálculo no provee datos válidos"
@@ -704,7 +745,7 @@ msgstr "El peso bruto de la línea en kg."
 #. module: purchase_landed_cost
 #: help:purchase.cost.distribution.line,total_volume:0
 msgid "The line volume in m3."
-msgstr "El volumen de la línea en m3."
+msgstr "El volumen de la línea en mᶟ."
 
 #. module: purchase_landed_cost
 #: help:purchase.cost.distribution.line,product_volume:0
@@ -712,7 +753,7 @@ msgid "The volume in m3."
 msgstr "El volumen en mᶟ."
 
 #. module: purchase_landed_cost
-#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:160
+#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:216
 #, python-format
 msgid "There is no picking lines in the distribution"
 msgstr "No hay líneas de albarán en la distribución"
@@ -794,7 +835,7 @@ msgid "Warehouse information"
 msgstr "Información de almacén"
 
 #. module: purchase_landed_cost
-#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:140
+#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:130
 #, python-format
 msgid "You can't delete a confirmed cost distribution"
 msgstr "No puede eliminar una distribución de costes confirmada"
