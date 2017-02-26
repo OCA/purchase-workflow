@@ -30,7 +30,9 @@
 
     <menuitem id="menu_purchase_cost_distribution"
               action="action_purchase_cost_distribution"
-              parent="menu_purchase_cost_control"/>
+              parent="menu_purchase_cost_control"
+              sequence="10"
+    />
 
     <record id="view_purchase_cost_distribution_tree" model="ir.ui.view">
         <field name="name">purchase.cost.distribution.tree</field>
