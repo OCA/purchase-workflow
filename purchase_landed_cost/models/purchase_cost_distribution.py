@@ -116,7 +116,7 @@ class PurchaseCostDistribution(models.Model):
     def unlink(self):
         for c in self:
             if c.state not in ('draft', 'calculated'):
-                raise exceptions.Warning(
+                raise exceptions.UserError(
                     _("You can't delete a confirmed cost distribution"))
         return super(PurchaseCostDistribution, self).unlink()
 
@@ -170,13 +170,13 @@ class PurchaseCostDistribution(models.Model):
             divisor = (len(expense_line.affected_lines) or
                        len(distribution.cost_lines))
         else:
-            raise exceptions.Warning(
+            raise exceptions.UserError(
                 _('No valid distribution type.'))
         if divisor:
             expense_amount = (expense_line.expense_amount * multiplier /
                               divisor)
         else:
-            raise exceptions.Warning(
+            raise exceptions.UserError(
                 _("The cost for the line '%s' can't be "
                   "distributed because the calculation method "
                   "doesn't provide valid data" % cost_line.type.name))
@@ -191,11 +191,11 @@ class PurchaseCostDistribution(models.Model):
         for distribution in self:
             # Check expense lines for amount 0
             if any([not x.expense_amount for x in distribution.expense_lines]):
-                raise exceptions.Warning(
+                raise exceptions.UserError(
                     _('Please enter an amount for all the expenses'))
             # Check if exist lines in distribution
             if not distribution.cost_lines:
-                raise exceptions.Warning(
+                raise exceptions.UserError(
                     _('There is no picking lines in the distribution'))
             # Calculating expense line
             for cost_line in distribution.cost_lines:
@@ -261,7 +261,7 @@ class PurchaseCostDistribution(models.Model):
                 if self.currency_id.compare_amounts(
                         line.move_id.quant_ids[0].cost,
                         line.standard_price_new) != 0:
-                    raise exceptions.Warning(
+                    raise exceptions.UserError(
                         _('Cost update cannot be undone because there has '
                           'been a later update. Restore correct price and try '
                           'again.'))
@@ -307,13 +307,16 @@ class PurchaseCostDistributionLine(models.Model):
     def _compute_standard_price_new(self):
         self.standard_price_new = self.standard_price_old + self.cost_ratio
 
-    @api.one
-    @api.depends('move_id', 'move_id.picking_id', 'move_id.product_id',
-                 'move_id.product_qty')
-    def _compute_display_name(self):
-        self.name = '%s / %s / %s' % (
-            self.move_id.picking_id.name, self.move_id.product_id.display_name,
-            self.move_id.product_qty)
+    @api.multi
+    @api.depends('distribution', 'distribution.name',
+                 'picking_id', 'picking_id.name',
+                 'product_id', 'product_id.display_name')
+    def _compute_name(self):
+        for record in self:
+            record.name = "%s: %s / %s" % (
+                record.distribution.name, record.picking_id.name,
+                record.product_id.display_name,
+            )
 
     @api.one
     @api.depends('move_id', 'move_id.product_id')
@@ -334,7 +337,8 @@ class PurchaseCostDistributionLine(models.Model):
             self.move_id and self.move_id.get_price_unit(self.move_id) or 0.0)
 
     name = fields.Char(
-        string='Name', compute='_compute_display_name')
+        string='Name', compute='_compute_name', store=True,
+    )
     distribution = fields.Many2one(
         comodel_name='purchase.cost.distribution', string='Cost distribution',
         ondelete='cascade', required=True)
@@ -398,14 +402,6 @@ class PurchaseCostDistributionLine(models.Model):
         store=True,
     )
 
-    @api.multi
-    def name_get(self):
-        res = []
-        for record in self:
-            res.append((record.id, "%s / %s" % (
-                record.picking_id.name, record.product_id.name_get()[0][1])))
-        return res
-
 
 class PurchaseCostDistributionLineExpense(models.Model):
     _name = "purchase.cost.distribution.line.expense"
@@ -413,20 +409,30 @@ class PurchaseCostDistributionLineExpense(models.Model):
 
     distribution_line = fields.Many2one(
         comodel_name='purchase.cost.distribution.line',
-        string='Cost distribution line', ondelete="cascade")
+        string='Cost distribution line', ondelete="cascade",
+    )
+    picking_id = fields.Many2one(
+        comodel_name="stock.picking", store=True, readonly=True,
+        related="distribution_line.picking_id",
+    )
+    picking_date_done = fields.Datetime(
+        related="picking_id.date_done", store=True, readonly=True,
+    )
     distribution_expense = fields.Many2one(
         comodel_name='purchase.cost.distribution.expense',
-        string='Distribution expense', ondelete="cascade")
+        string='Distribution expense', ondelete="cascade",
+    )
     type = fields.Many2one(
-        'purchase.expense.type', string='Expense type',
-        related='distribution_expense.type')
+        'purchase.expense.type', string='Expense type', readonly=True,
+        related='distribution_expense.type', store=True,
+    )
     expense_amount = fields.Float(
-        string='Expense amount', default=0.0,
-        digits_compute=dp.get_precision('Account'))
-    cost_ratio = fields.Float('Unit cost', default=0.0)
+        string='Expense amount', digits_compute=dp.get_precision('Account'),
+    )
+    cost_ratio = fields.Float('Unit cost')
     company_id = fields.Many2one(
         comodel_name="res.company", related="distribution_line.company_id",
-        store=True,
+        store=True, readonly=True,
     )
 
 
@@ -477,12 +483,13 @@ class PurchaseCostDistributionExpense(models.Model):
     )
 
     @api.one
-    @api.depends('distribution', 'type', 'expense_amount')
+    @api.depends('distribution', 'type', 'expense_amount', 'ref')
     def _compute_display_name(self):
-        self.display_name = "%s: %s (%s)" % (
-            self.distribution.name, self.type.name,
+        self.display_name = "%s: %s - %s (%s)" % (
+            self.distribution.name, self.type.name, self.ref,
             formatLang(self.env, self.expense_amount,
-                       currency_obj=self.distribution.currency_id))
+                       currency_obj=self.distribution.currency_id)
+        )
 
     @api.onchange('type')
     def onchange_type(self):
