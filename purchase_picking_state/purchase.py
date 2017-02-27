@@ -19,7 +19,7 @@ class PurchaseOrder(models.Model):
         ]
 
     @api.multi
-    @api.depends('picking_ids', 'picking_ids.state')
+    @api.depends('order_line.move_ids', 'order_line.move_ids.state')
     def _compute_picking_state(self):
         for purchase in self:
             if purchase.picking_ids:
