@@ -237,6 +237,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                 line, po_line=po_line,
                 new_pr_line=new_pr_line)
             po_line.product_qty = new_qty
+            po_line._onchange_quantity()
             res.append(purchase.id)
 
         return {
