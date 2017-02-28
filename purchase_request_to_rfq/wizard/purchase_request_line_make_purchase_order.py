@@ -4,9 +4,6 @@
 
 import openerp.addons.decimal_precision as dp
 from openerp import _, api, exceptions, fields, models
-from openerp.tools import DEFAULT_SERVER_DATE_FORMAT, \
-    DEFAULT_SERVER_DATETIME_FORMAT
-from datetime import datetime
 
 
 class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
@@ -126,7 +123,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             'partner_id': self.supplier_id.id,
             'pricelist_id': supplier_pricelist.id,
             'location_id': location.id,
-            'fiscal_position': supplier.property_account_position_id and
+            'fiscal_position_id': supplier.property_account_position_id and
             supplier.property_account_position_id.id or False,
             'picking_type_id': picking_type.id,
             'company_id': company.id,
@@ -134,51 +131,66 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         return data
 
     @api.model
+    def _get_purchase_line_onchange_fields(self):
+        return ['date_planned', 'product_uom', 'price_unit', 'name',
+                'taxes_id']
+
+    @api.model
+    def _execute_purchase_line_onchange(self, vals):
+        cls = self.env['purchase.order.line']
+        onchanges_dict = {
+            'onchange_product_id': self._get_purchase_line_onchange_fields(),
+        }
+        for onchange_method, changed_fields in onchanges_dict.items():
+            if any(f not in vals for f in changed_fields):
+                obj = cls.new(vals)
+                getattr(obj, onchange_method)()
+                for field in changed_fields:
+                    vals[field] = obj._fields[field].convert_to_write(
+                        obj[field])
+
+    @api.model
     def _prepare_purchase_order_line(self, po, item):
-        po_line_obj = self.env['purchase.order.line']
         product = item.product_id
-        supplier = self.supplier_id
-        pricelist_id = supplier.property_product_pricelist
-
-        if pricelist_id:
-            date_order_str = datetime.strptime(
-                fields.datetime.now().strftime(DEFAULT_SERVER_DATETIME_FORMAT),
-                DEFAULT_SERVER_DATETIME_FORMAT).\
-                strftime(DEFAULT_SERVER_DATE_FORMAT)
-            price = pricelist_id.price_get(prod_id=product.id,
-                                           qty=item.product_qty or 1.0,
-                                           partner=supplier or False,
-                                           context={'uom':
-                                                    product.uom_po_id.id,
-                                                    'date': date_order_str})
-            price = price[pricelist_id.id]
-        else:
-            price = product.standard_price
-
-        vals = po_line_obj.onchange_product_id()
-        vals.update({
+        # Keep the standard product UOM for purchase order so we should
+        # convert the product quantity to this UOM
+        qty = item.product_uom_id._compute_qty(
+            product.uom_po_id, item.product_qty)
+        # Suggest the supplier min qty as it's done in Odoo core
+        min_qty = item.line_id._get_supplier_min_qty(product, po.partner_id)
+        qty = max(qty, min_qty)
+        vals = {
             'name': product.name,
             'order_id': po.id,
             'product_id': product.id,
             'product_uom': product.uom_po_id.id,
-            'price_unit': price,
-            'product_qty': item.product_qty,
+            'price_unit': 0.0,
+            'product_qty': qty,
             'account_analytic_id': item.line_id.analytic_account_id.id,
-            'taxes_id': [(6, 0, vals.get('taxes_id', []))],
             'purchase_request_lines': [(4, item.line_id.id)],
-            'date_planned':
-                vals.get('date_planned', False) or item.line_id.date_required,
-
-        })
+        }
         if item.line_id.procurement_id:
             vals['procurement_ids'] = [(4, item.line_id.procurement_id.id)]
-
+        self._execute_purchase_line_onchange(vals)
         return vals
+
+    @api.model
+    def _get_purchase_line_name(self, order, line):
+        product_lang = line.product_id.with_context({
+            'lang': self.supplier_id.lang,
+            'partner_id': self.supplier_id.id,
+        })
+        name = product_lang.display_name
+        if product_lang.description_purchase:
+            name += '\n' + product_lang.description_purchase
+        return name
 
     @api.model
     def _get_order_line_search_domain(self, order, item):
         vals = self._prepare_purchase_order_line(order, item)
+        name = self._get_purchase_line_name(order, item)
         order_line_data = [('order_id', '=', order.id),
+                           ('name', '=', name),
                            ('product_id', '=', item.product_id.id or False),
                            ('product_uom', '=', vals['product_uom']),
                            ('account_analytic_id', '=',
@@ -221,18 +233,22 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             # po line
             domain = self._get_order_line_search_domain(purchase, item)
             available_po_lines = po_line_obj.search(domain)
-            if available_po_lines:
+            new_pr_line = True
+            if available_po_lines and not item.keep_description:
+                new_pr_line = False
                 po_line = available_po_lines[0]
-                new_qty, new_price = pr_line_obj._calc_new_qty_price(
-                    line, po_line=po_line)
-                if new_qty > po_line.product_qty:
-                    po_line.product_qty = new_qty
-                    po_line.price_unit = new_price
-                    po_line.purchase_request_lines = [(4, line.id)]
+                po_line.purchase_request_lines = [(4, line.id)]
             else:
                 po_line_data = self._prepare_purchase_order_line(purchase,
                                                                  item)
-                po_line_obj.create(po_line_data)
+                if item.keep_description:
+                    po_line_data['name'] = item.name
+                po_line = po_line_obj.create(po_line_data)
+            new_qty = pr_line_obj._calc_new_qty(
+                line, po_line=po_line,
+                new_pr_line=new_pr_line)
+            po_line.product_qty = new_qty
+            po_line._onchange_quantity()
             res.append(purchase.id)
 
         return {
@@ -266,17 +282,33 @@ class PurchaseRequestLineMakePurchaseOrderItem(models.TransientModel):
     product_id = fields.Many2one('product.product', string='Product')
     name = fields.Char(string='Description', required=True)
     product_qty = fields.Float(string='Quantity to purchase',
-                               digits_compute=dp.get_precision('Product UoS'))
+                               digits=dp.get_precision('Product UoS'))
     product_uom_id = fields.Many2one('product.uom', string='UoM')
+    keep_description = fields.Boolean(string='Copy descriptions to new PO',
+                                      help='Set true if you want to keep the '
+                                           'descriptions provided in the '
+                                           'wizard in the new PO.',
+                                      default=False)
 
-    @api.onchange('product_id', 'product_uom_id')
+    @api.onchange('product_id')
     def onchange_product_id(self):
         if self.product_id:
             name = self.product_id.name
-            if self.product_id.code:
-                name = '[%s] %s' % (name, self.product_id.code)
+            code = self.product_id.code
+            sup_info_id = self.env['product.supplierinfo'].search([
+                '|', ('product_id', '=', self.product_id.id),
+                ('product_tmpl_id', '=', self.product_id.product_tmpl_id.id),
+                ('name', '=', self.wiz_id.supplier_id.id)])
+            if sup_info_id:
+                p_code = sup_info_id[0].product_code
+                p_name = sup_info_id[0].product_name
+                name = '[%s] %s' % (p_code if p_code else code,
+                                    p_name if p_name else name)
+            else:
+                if code:
+                    name = '[%s] %s' % (code, name)
             if self.product_id.description_purchase:
                 name += '\n' + self.product_id.description_purchase
             self.product_uom_id = self.product_id.uom_id.id
-            self.product_qty = 1
+            self.product_qty = 1.0
             self.name = name
