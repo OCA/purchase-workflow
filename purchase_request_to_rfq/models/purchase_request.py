@@ -80,7 +80,8 @@ class PurchaseRequestLine(models.Model):
             or False
 
     @api.model
-    def _calc_new_qty_price(self, request_line, po_line=None, cancel=False):
+    def _calc_new_qty_price(self, request_line, po_line=None, cancel=False,
+                            new_pr_line=False):
         uom_obj = self.env['product.uom']
         qty = uom_obj._compute_qty(request_line.product_uom_id.id,
                                    request_line.product_qty,
@@ -102,16 +103,16 @@ class PurchaseRequestLine(models.Model):
                 if supplierinfos:
                     supplierinfo_min_qty = supplierinfos[0].min_qty
 
-        if not supplierinfo_min_qty:
-            qty += po_line.product_qty
-        else:
-            # Recompute quantity by adding existing running procurements.
-            for rl in po_line.purchase_request_lines:
-                qty += uom_obj._compute_qty(rl.product_uom_id.id,
-                                            rl.product_qty,
-                                            rl.product_id.uom_po_id.id)
-            qty = max(qty, supplierinfo_min_qty) if qty > 0.0 else 0.0
-
+        rl_qty = 0.0
+        # Recompute quantity by adding existing running procurements.
+        for rl in po_line.purchase_request_lines:
+            rl_qty += uom_obj._compute_qty(rl.product_uom_id.id,
+                                           rl.product_qty,
+                                           rl.product_id.uom_po_id.id)
+        new_qty = 0.0
+        if not new_pr_line:
+            new_qty = qty + po_line.product_qty
+        qty = max(rl_qty, supplierinfo_min_qty, new_qty)
         price = po_line.price_unit
         if qty != po_line.product_qty:
             pricelist_obj = self.pool['product.pricelist']
