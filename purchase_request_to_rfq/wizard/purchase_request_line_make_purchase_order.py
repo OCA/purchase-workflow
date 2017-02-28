@@ -220,6 +220,10 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             # po line
             domain = self._get_order_line_search_domain(purchase, item)
             available_po_lines = po_line_obj.search(domain)
+            new_pr_line = True
+            if available_po_lines:
+                new_pr_line = False
+
             if available_po_lines and not item.keep_description:
                 po_line = available_po_lines[0]
                 po_line.purchase_request_lines = [(4, line.id)]
@@ -229,11 +233,10 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                 if item.keep_description:
                     po_line_data['name'] = item.name
                 po_line = po_line_obj.create(po_line_data)
-            new_qty, new_price = pr_line_obj._calc_new_qty_price(
+            new_qty = pr_line_obj._calc_new_qty(
                 line, po_line=po_line,
-                new_pr_line=len(available_po_lines) >= 1)
+                new_pr_line=new_pr_line)
             po_line.product_qty = new_qty
-            po_line.price_unit = new_price
             res.append(purchase.id)
 
         return {
