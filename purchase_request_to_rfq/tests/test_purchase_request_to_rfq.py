@@ -88,8 +88,9 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         }
         purchase_request_line = self.purchase_request_line.create(vals)
         vals = {
-            'supplier_id': self.env.ref('base.res_partner_12').id,
+            'supplier_id': self.env.ref('base.res_partner_1').id,
         }
+        purchase_request.button_approved()
         wiz_id = self.wiz.with_context(
             active_model="purchase.request.line",
             active_ids=[purchase_request_line.id],
