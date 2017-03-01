@@ -17,10 +17,21 @@ class ResCompany(models.Model):
     @api.multi
     def _get_vals_for_proc_rule_subcontracting(self):
         self.ensure_one()
+        warehouse = self.env['stock.warehouse'].search(
+            [('company_id', '=', self.id)],
+            limit=1
+        )
+        picking_type = self.env['stock.picking.type'].search(
+            [('code', '=', 'incoming'),
+             ('warehouse_id', '=', warehouse.id)
+             ],
+            limit=1
+        )
         return {'name': 'Subcontracting service rule',
                 'company_id': self.id,
                 'action': 'buy',
                 'is_subcontracting_rule': True,
+                'picking_type_id': picking_type.id,
                 }
 
     @api.multi
