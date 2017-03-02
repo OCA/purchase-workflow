@@ -21,4 +21,5 @@
         'views/product_template.xml',
         'views/company.xml',
     ],
+    "post_init_hook": "post_init_hook",
 }
