@@ -2,7 +2,7 @@
 # © 2016 Chafique DELLI @ Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import models, fields, api
+from odoo import models, fields, api
 
 
 class PurchaseOrder(models.Model):
@@ -19,7 +19,7 @@ class PurchaseOrder(models.Model):
         ]
 
     @api.multi
-    @api.depends('picking_ids', 'picking_ids.state')
+    @api.depends('order_line.move_ids', 'order_line.move_ids.state')
     def _compute_picking_state(self):
         for purchase in self:
             if purchase.picking_ids:
