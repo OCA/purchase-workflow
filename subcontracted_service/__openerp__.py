@@ -19,5 +19,6 @@
     ],
     "data": [
         'views/product_template.xml',
+        'views/company.xml',
     ],
 }
