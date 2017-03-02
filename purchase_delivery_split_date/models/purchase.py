@@ -3,6 +3,9 @@
 # © 2016 Eficent Business and IT Consulting Services, S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+from datetime import datetime
+from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
+
 import logging
 from itertools import groupby
 from openerp import models, api
@@ -20,7 +23,9 @@ class PurchaseOrderLine(models.Model):
         dictionary element with the field that you want to group by. This
         method is designed for extensibility, so that other modules can add
         additional keys or replace them by others."""
-        key = ({'date_planned': line.date_planned},)
+        date = datetime.strptime(
+            line.date_planned, DEFAULT_SERVER_DATETIME_FORMAT)
+        key = ({'date_planned': date.date()},)
         return key
 
     @api.model
