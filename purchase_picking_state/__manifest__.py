@@ -5,13 +5,13 @@
     'name': 'Purchase Picking State',
     'summary': 'Add the status of all the incoming picking'
     ' in the purchase order',
-    'version': '9.0.1.0.0',
+    'version': '10.0.1.0.0',
     'category': 'Purchase Management',
     'website': 'http://akretion.com',
     'author': 'Akretion',
     'license': 'AGPL-3',
     'application': False,
-    'installable': False,
+    'installable': True,
     'depends': [
         'purchase',
     ],
