@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
-    <data>
+<odoo>
         
         <record id="purchase.purchase_rfq" model="ir.actions.act_window">
             <field name="context">{'purchase_rfq': True}</field>
@@ -28,5 +27,4 @@
             </field>
         </record>
 
-    </data>
-</openerp>
+</odoo>
