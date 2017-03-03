@@ -6,33 +6,31 @@
 Trigger procurement for service product
 =======================================
 
-This module adds the functionality of being able to automatically make a
-purchase order (through procurements) when a service product if sold
-to a customer.
+This module adds the functionality of being able to create a procurement
+which contains service products. This is the case of subcontracted services,
+as for instance assemblies.
 
-Installation
-============
-
-To install this module, you need to:
-
-#. Just install it
 
 Configuration
 =============
 
 To configure this module, you need to:
 
-#. configure you service product to check ``property_subcontracted_service``
-in product form if this product should trigger a procurement.
-
-#. add supplier in your product form
+#. Configure your service product with the flag
+   ``property_subcontracted_service`` in product form if this product should
+   trigger a procurement.
+#. Add supplier in your product form.
+#. Additionally and despite a predefined rule is created in each warehouse,
+   you can configure the 'Subcontracting_service procurement rule' for each
+   warehouse through 'Inventory / Configuration / Warehouse Management /
+   Warehouse'.
 
 Usage
 =====
 
 To use this module, you need to:
 
-#. Sell a service product correctly configured
+#. Create a procurement order of a subcontracted service product.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
@@ -59,6 +57,8 @@ Contributors
 ------------
 
 * Damien Crier <damien.crier@camptocamp.com>
+* Jordi Ballester Alomar <jordi.ballester@eficent.com>
+* Lois Rilo <lois.rilo@eficent.com>
 
 Funders
 -------
