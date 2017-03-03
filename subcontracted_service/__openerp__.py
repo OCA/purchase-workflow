@@ -15,11 +15,10 @@
     "installable": True,
     "depends": [
         "purchase",
-        "sale_service",
     ],
     "data": [
         'views/product_template.xml',
-        'views/company.xml',
+        'views/warehouse.xml',
     ],
     "post_init_hook": "post_init_hook",
 }
