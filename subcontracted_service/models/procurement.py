@@ -21,7 +21,7 @@ class ProcurementOrder(models.Model):
         res = super(ProcurementOrder, self)._find_suitable_rule(procurement)
         if procurement._is_subcontracted_service():
             return (
-                procurement.company_id.subcontracting_service_proc_rule_id.id
+                procurement.warehouse_id.subcontracting_service_proc_rule_id.id
             )
         return res
 
