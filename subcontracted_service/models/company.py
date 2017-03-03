@@ -30,7 +30,6 @@ class ResCompany(models.Model):
         return {'name': 'Subcontracting service rule',
                 'company_id': self.id,
                 'action': 'buy',
-                'is_subcontracting_rule': True,
                 'picking_type_id': picking_type.id,
                 }
 
