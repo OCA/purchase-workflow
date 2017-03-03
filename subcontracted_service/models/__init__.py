@@ -2,4 +2,4 @@
 
 from . import product
 from . import procurement
-from . import company
+from . import warehouse
