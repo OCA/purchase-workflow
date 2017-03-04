@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-07 05:29+0000\n"
-"PO-Revision-Date: 2017-01-13 09:26+0000\n"
+"POT-Creation-Date: 2017-02-25 05:42+0000\n"
+"PO-Revision-Date: 2017-03-02 09:10+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
@@ -401,7 +401,7 @@ msgstr ""
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view
 #: selection:framework.agreement,state:0
 msgid "Running"
-msgstr ""
+msgstr "Em execução"
 
 #. module: framework_agreement
 #: field:framework.agreement,shipment_origin_id:0

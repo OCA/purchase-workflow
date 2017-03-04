@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-11 05:24+0000\n"
-"PO-Revision-Date: 2017-02-14 11:14+0000\n"
+"POT-Creation-Date: 2017-02-25 05:42+0000\n"
+"PO-Revision-Date: 2017-02-27 08:24+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -380,12 +380,12 @@ msgstr "Tuote"
 #. module: framework_agreement
 #: model:ir.model,name:framework_agreement.model_purchase_order
 msgid "Purchase Order"
-msgstr ""
+msgstr "Ostotilaus"
 
 #. module: framework_agreement
 #: model:ir.model,name:framework_agreement.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Ostotilausrivi"
 
 #. module: framework_agreement
 #: field:framework.agreement,purchase_line_ids:0

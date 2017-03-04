@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
+# Alan Luo <alanljj@qq.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-16 12:06+0000\n"
-"PO-Revision-Date: 2016-11-16 12:06+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"POT-Creation-Date: 2017-02-25 05:43+0000\n"
+"PO-Revision-Date: 2017-02-25 05:43+0000\n"
+"Last-Translator: Alan Luo <alanljj@qq.com>, 2017\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/oca/teams/23907/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -86,7 +87,7 @@ msgstr "说明"
 #. module: purchase_request_to_rfq
 #: view:purchase.request.line.make.purchase.order:purchase_request_to_rfq.view_purchase_request_line_make_purchase_order
 msgid "Details"
-msgstr ""
+msgstr "详细"
 
 #. module: purchase_request_to_rfq
 #: field:purchase.request.line.make.purchase.order,display_name:0
@@ -97,7 +98,7 @@ msgstr "显示名称"
 #. module: purchase_request_to_rfq
 #: selection:purchase.request.line,purchase_state:0
 msgid "Done"
-msgstr ""
+msgstr "已完成"
 
 #. module: purchase_request_to_rfq
 #: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:165
