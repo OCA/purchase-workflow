@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-11 05:17+0000\n"
+"POT-Creation-Date: 2017-02-25 05:31+0000\n"
 "PO-Revision-Date: 2015-09-01 21:19+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Finnish (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/fi/)\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. module: framework_agreement
 #: model:ir.model,name:framework_agreement.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Ostotilausrivi"
 
 #. module: framework_agreement
 #: field:framework.agreement,quantity:0
@@ -304,7 +304,7 @@ msgstr ""
 #. module: framework_agreement
 #: model:ir.model,name:framework_agreement.model_purchase_order
 msgid "Purchase Order"
-msgstr ""
+msgstr "Ostotilaus"
 
 #. module: framework_agreement
 #: constraint:framework.agreement:0

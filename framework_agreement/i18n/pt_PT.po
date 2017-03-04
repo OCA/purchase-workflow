@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-07 05:06+0000\n"
+"POT-Creation-Date: 2017-02-25 05:31+0000\n"
 "PO-Revision-Date: 2015-09-01 21:19+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/pt_PT/)\n"
@@ -129,7 +129,7 @@ msgstr ""
 #. module: framework_agreement
 #: selection:framework.agreement,state:0
 msgid "Running"
-msgstr ""
+msgstr "Em execução"
 
 #. module: framework_agreement
 #: code:addons/framework_agreement/model/purchase.py:149

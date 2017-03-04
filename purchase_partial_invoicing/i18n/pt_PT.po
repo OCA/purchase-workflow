@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-07 05:06+0000\n"
+"POT-Creation-Date: 2017-02-25 05:31+0000\n"
 "PO-Revision-Date: 2015-09-01 21:20+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/pt_PT/)\n"
@@ -79,7 +79,7 @@ msgstr "Fatura"
 #: code:addons/purchase_partial_invoicing/wizard/po_line_invoice.py:64
 #, python-format
 msgid "Error"
-msgstr ""
+msgstr "Erro"
 
 #. module: purchase_partial_invoicing
 #: field:purchase.order.line_invoice.line,invoiced_qty:0
