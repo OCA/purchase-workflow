@@ -11,25 +11,6 @@
 from openerp import api, fields, models
 
 
-class PurchaseOrderLine(models.Model):
-    _inherit = 'purchase.order.line'
-    _order = 'order_id desc, sequence, id'
-
-    sequence = fields.Integer(help="Gives the sequence of this line when "
-                                   "displaying the purchase order.")
-
-    sequence2 = fields.Integer(help="Shows the sequence of this line in "
-                               "the purchase order.",
-                               related='sequence', readonly=True)
-
-    @api.multi
-    def _create_stock_moves(self, picking):
-        res = super(PurchaseOrderLine, self)._create_stock_moves(picking)
-        for move, line in zip(res, self):
-            move.write({'sequence': line.sequence})
-        return res
-
-
 class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
 
@@ -48,3 +29,62 @@ class PurchaseOrder(models.Model):
 
     max_line_sequence = fields.Integer(string='Max sequence in lines',
                                        compute='compute_max_line_sequence')
+
+    @api.multi
+    def _reset_sequence(self):
+        for rec in self:
+            current_sequence = 1
+            for line in rec.order_line:
+                line.write({'sequence': current_sequence})
+                current_sequence += 1
+
+    @api.multi
+    def write(self, line_values):
+        res = super(PurchaseOrder, self).write(line_values)
+        for rec in self:
+            rec._reset_sequence()
+        return res
+
+    @api.multi
+    def copy(self, default=None):
+        if not default:
+            default = {}
+        self2 = self.with_context(keep_line_sequence=True)
+        return super(PurchaseOrder, self2).copy(default)
+
+
+class PurchaseOrderLine(models.Model):
+    _inherit = 'purchase.order.line'
+    _order = 'order_id desc, sequence, id'
+
+    sequence = fields.Integer(help="Gives the sequence of this line when "
+                                   "displaying the purchase order.",
+                              default=9999)
+
+    sequence2 = fields.Integer(help="Shows the sequence of this line in "
+                               "the purchase order.",
+                               related='sequence', readonly=True)
+
+    @api.multi
+    def _create_stock_moves(self, picking):
+        res = super(PurchaseOrderLine, self)._create_stock_moves(picking)
+        for move, line in zip(res, self):
+            move.write({'sequence': line.sequence})
+        return res
+
+    @api.model
+    def create(self, values):
+        line = super(PurchaseOrderLine, self).create(values)
+        # We do not reset the sequence if we are copying a complete purchase
+        # order
+        if 'keep_line_sequence' not in self.env.context:
+            line.order_id._reset_sequence()
+        return line
+
+    @api.multi
+    def copy(self, default=None):
+        if not default:
+            default = {}
+        if 'keep_line_sequence' not in self.env.context:
+            default['sequence'] = 9999
+        return super(PurchaseOrderLine, self).copy(default)
