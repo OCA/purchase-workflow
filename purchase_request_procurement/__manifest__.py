@@ -14,8 +14,8 @@
         "procurement",
     ],
     "data": [
-        "views/product_view.xml",
-        "views/procurement_view.xml",
+        "views/product_template.xml",
+        "views/procurement_order.xml",
     ],
     'demo': [],
     'test': [

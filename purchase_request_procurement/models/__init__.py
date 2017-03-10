@@ -1,2 +1,2 @@
-from . import procurement
-from . import product
+from . import procurement_order
+from . import product_template
