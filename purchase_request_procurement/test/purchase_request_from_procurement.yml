@@ -11,7 +11,7 @@
     warehouse_id: stock.stock_warehouse_shop0
 -
   !python {model: make.procurement}: |
-    self.make_procurement(cr, uid, [ref('procurement_product_hdd3')], context)
+    self.browse(ref('procurement_product_hdd3')).make_procurement()
 -
   I run the scheduler.
 -
@@ -21,11 +21,11 @@
   I check request details which created after run procurement.
 -
   !python {model: procurement.order}: |
-    procurement_ids = self.search(cr, uid, [('request_id','!=', False)])
-    for procurement in self.browse(cr, uid, procurement_ids, context=context):
+    procurement_ids = self.search([('request_id','!=', False)])
+    for procurement in self.browse(procurement_ids):
         request = procurement.request_id
         assert len(request.line_ids) == 1, "Request Lines should be one."
         line = request.line_ids[0]
-        assert line.product_id.id == procurement.product_id.id, "Product is not correspond."
-        assert line.product_uom_id.id == procurement.product_uom.id, "UOM is not correspond."
-        assert line.product_qty == procurement.product_qty, "Quantity is not correspond."
+        assert line.product_id.id == procurement.product_id.id, "Product does not correspond."
+        assert line.product_uom_id.id == procurement.product_uom.id, "UOM does not correspond."
+        assert line.product_qty == procurement.product_qty, "Quantity does not correspond."

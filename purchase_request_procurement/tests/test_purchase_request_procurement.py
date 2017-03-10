@@ -2,40 +2,43 @@
 # Copyright 2016 Eficent Business and IT Consulting Services S.L.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
 
-from openerp.tests import common
-from openerp import fields
-from openerp.exceptions import ValidationError
+from odoo.tests import common
+from odoo import fields
+from odoo.exceptions import ValidationError
 
 
-class TestPurchaseRequestProcurement(common.TransactionCase):
+class TestPurchaseRequestProcurement(common.SavepointCase):
 
-    def setUp(self):
-        super(TestPurchaseRequestProcurement, self).setUp()
-        self.purchase_request_ = self.env['purchase.request']
-        self.purchase_request_line = self.env['purchase.request.line']
-        self.product_1 = self.env.ref('product.product_product_16')
-        self.product_1.purchase_request = True
-        self.product_2 = self.env.ref('product.product_product_13')
+    @classmethod
+    def setUpClass(cls):
+        super(TestPurchaseRequestProcurement, cls).setUpClass()
+
+        # MODELS
+        cls.purchase_request_ = cls.env['purchase.request']
+        cls.purchase_request_line = cls.env['purchase.request.line']
+
+        # INSTANCES
+        cls.product_1 = cls.env.ref('product.product_product_16')
+        cls.product_1.purchase_request = True
+        cls.product_2 = cls.env.ref('product.product_product_13')
 
     def create_purchase_request(self, name):
-        values = {'company_id': self.env.ref('base.main_company').id,
-                  'date_planned': fields.Datetime.now(),
-                  'name': name,
-                  'product_id': self.product_1.id,
-                  'product_qty': 4,
-                  'product_uom': self.product_1.uom_id.id,
-                  'warehouse_id': self.env.ref('stock.warehouse0').id,
-                  'location_id': self.env.ref('stock.stock_location_stock').id,
-                  'route_ids':
-                      [(
-                       4, self.env.ref('purchase.route_warehouse0_buy').id,
-                       0)],
-                  }
+        values = {
+            'company_id': self.env.ref('base.main_company').id,
+            'date_planned': fields.Datetime.now(),
+            'name': name,
+            'product_id': self.product_1.id,
+            'product_qty': 4,
+            'product_uom': self.product_1.uom_id.id,
+            'warehouse_id': self.env.ref('stock.warehouse0').id,
+            'location_id': self.env.ref('stock.stock_location_stock').id,
+            'route_ids':
+                [(4, self.env.ref('purchase.route_warehouse0_buy').id)],
+        }
 
         return self.env['procurement.order'].create(values)
 
     def test_1_purchase_request_in_progress(self):
-
         proc = self.create_purchase_request('SOME/TEST/0001')
         proc.check()
         proc.run()
