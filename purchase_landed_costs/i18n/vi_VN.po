@@ -10,12 +10,12 @@ msgstr ""
 "POT-Creation-Date: 2017-03-04 05:33+0000\n"
 "PO-Revision-Date: 2015-09-01 21:20+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: Dutch (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/nl/)\n"
+"Language-Team: Vietnamese (Viet Nam) (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/vi_VN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: nl\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: vi_VN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: purchase_landed_costs
 #: code:addons/purchase_landed_costs/purchase.py:586
@@ -87,7 +87,7 @@ msgstr ""
 #. module: purchase_landed_costs
 #: model:ir.model,name:purchase_landed_costs.model_product_product
 msgid "Product"
-msgstr "Product"
+msgstr "Sản phẩm"
 
 #. module: purchase_landed_costs
 #: code:addons/purchase_landed_costs/product.py:69
@@ -142,7 +142,7 @@ msgstr ""
 #. module: purchase_landed_costs
 #: view:landed.cost.position:0 field:landed.cost.position,date_po:0
 msgid "Date"
-msgstr "Datum"
+msgstr ""
 
 #. module: purchase_landed_costs
 #: field:purchase.order,landed_cost_base_value:0
@@ -225,7 +225,7 @@ msgstr ""
 #: code:addons/purchase_landed_costs/purchase.py:585
 #, python-format
 msgid "Error!"
-msgstr "Fout!"
+msgstr ""
 
 #. module: purchase_landed_costs
 #: field:landed.cost.position,amount:0
@@ -333,7 +333,7 @@ msgstr ""
 #. module: purchase_landed_costs
 #: field:landed.cost.position,partner_id:0
 msgid "Partner"
-msgstr "Relatie"
+msgstr ""
 
 #. module: purchase_landed_costs
 #: field:purchase.order,landed_cost:0

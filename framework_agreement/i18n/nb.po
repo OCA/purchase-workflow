@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-14 05:44+0000\n"
+"POT-Creation-Date: 2017-03-04 05:33+0000\n"
 "PO-Revision-Date: 2015-09-01 21:19+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/nb/)\n"
@@ -357,7 +357,7 @@ msgstr ""
 #. module: framework_agreement
 #: field:framework.agreement,origin:0
 msgid "Origin"
-msgstr ""
+msgstr "Opphav"
 
 #. module: framework_agreement
 #: model:ir.model,name:framework_agreement.model_framework_agreement
