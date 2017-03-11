@@ -3,28 +3,18 @@
 # * framework_agreement
 # 
 # Translators:
-# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015
-# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2012
-# Hotellook, 2014
-# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
-# Mohamed HABOU <m.habou@agoradeveloppement.com>, 2016
-# Paolo Valier, 2016
-# Rudolf Schnapka <rs@techno-flex.de>, 2016
-# Thomas A. Jaeger, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-03-04 05:41+0000\n"
-"PO-Revision-Date: 2017-03-10 13:16+0000\n"
+"PO-Revision-Date: 2017-03-06 09:09+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: German (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/de/)\n"
+"Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/nl_NL/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: de\n"
+"Language: nl_NL\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: framework_agreement
@@ -79,18 +69,18 @@ msgstr ""
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view
 #: selection:framework.agreement,state:0
 msgid "Closed"
-msgstr "Abgeschlossen"
+msgstr ""
 
 #. module: framework_agreement
 #: model:ir.model,name:framework_agreement.model_res_company
 msgid "Companies"
-msgstr "Unternehmen"
+msgstr ""
 
 #. module: framework_agreement
 #: field:framework.agreement,company_id:0
 #: field:framework.agreement.portfolio,company_id:0
 msgid "Company"
-msgstr "Unternehmen"
+msgstr ""
 
 #. module: framework_agreement
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view
@@ -104,7 +94,7 @@ msgstr ""
 #: field:framework.agreement.portfolio,create_uid:0
 #: field:framework.agreement.pricelist,create_uid:0
 msgid "Created by"
-msgstr "Erstellt von"
+msgstr ""
 
 #. module: framework_agreement
 #: field:framework.agreement,create_date:0
@@ -112,12 +102,12 @@ msgstr "Erstellt von"
 #: field:framework.agreement.portfolio,create_date:0
 #: field:framework.agreement.pricelist,create_date:0
 msgid "Created on"
-msgstr "Erstellt am:"
+msgstr ""
 
 #. module: framework_agreement
 #: field:framework.agreement.pricelist,currency_id:0
 msgid "Currency"
-msgstr "Währung"
+msgstr ""
 
 #. module: framework_agreement
 #: code:addons/framework_agreement/model/framework_agreement.py:300
@@ -130,7 +120,7 @@ msgstr ""
 #: view:framework.agreement:framework_agreement.framework_agreement_form_view
 #: view:product.product:framework_agreement.agreement in product view
 msgid "Dates"
-msgstr "Daten"
+msgstr ""
 
 #. module: framework_agreement
 #: view:framework.agreement:framework_agreement.agreement_in_portfolio_form_view
@@ -145,13 +135,13 @@ msgstr ""
 #: field:framework.agreement.portfolio,display_name:0
 #: field:framework.agreement.pricelist,display_name:0
 msgid "Display Name"
-msgstr "Anzeigename"
+msgstr ""
 
 #. module: framework_agreement
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view
 #: selection:framework.agreement,state:0
 msgid "Draft"
-msgstr "Entwurf"
+msgstr ""
 
 #. module: framework_agreement
 #: field:framework.agreement,end_date:0
@@ -198,14 +188,14 @@ msgstr ""
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view
 #: view:framework.agreement.portfolio:framework_agreement.portfolio_search_view
 msgid "Group By"
-msgstr "Gruppieren nach"
+msgstr ""
 
 #. module: framework_agreement
 #: field:framework.agreement,id:0 field:framework.agreement.line,id:0
 #: field:framework.agreement.portfolio,id:0
 #: field:framework.agreement.pricelist,id:0
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: framework_agreement
 #: help:res.company,one_agreement_per_product:0
@@ -248,7 +238,7 @@ msgstr ""
 #: field:framework.agreement.portfolio,__last_update:0
 #: field:framework.agreement.pricelist,__last_update:0
 msgid "Last Modified on"
-msgstr "Zuletzt geändert am"
+msgstr ""
 
 #. module: framework_agreement
 #: field:framework.agreement,write_uid:0
@@ -256,7 +246,7 @@ msgstr "Zuletzt geändert am"
 #: field:framework.agreement.portfolio,write_uid:0
 #: field:framework.agreement.pricelist,write_uid:0
 msgid "Last Updated by"
-msgstr "Zuletzt aktualisiert von"
+msgstr ""
 
 #. module: framework_agreement
 #: field:framework.agreement,write_date:0
@@ -264,7 +254,7 @@ msgstr "Zuletzt aktualisiert von"
 #: field:framework.agreement.portfolio,write_date:0
 #: field:framework.agreement.pricelist,write_date:0
 msgid "Last Updated on"
-msgstr "Zuletzt aktualisiert am"
+msgstr ""
 
 #. module: framework_agreement
 #: field:framework.agreement,delay:0
@@ -288,7 +278,7 @@ msgstr ""
 #. module: framework_agreement
 #: field:framework.agreement.portfolio,name:0
 msgid "Name"
-msgstr "Bezeichnung"
+msgstr ""
 
 #. module: framework_agreement
 #: field:framework.agreement.line,price:0
@@ -316,7 +306,7 @@ msgstr ""
 #. module: framework_agreement
 #: field:framework.agreement,name:0
 msgid "Number"
-msgstr "Nummer"
+msgstr ""
 
 #. module: framework_agreement
 #: field:res.company,one_agreement_per_product:0
@@ -333,7 +323,7 @@ msgstr ""
 #. module: framework_agreement
 #: field:framework.agreement,origin:0
 msgid "Origin"
-msgstr "Ursprung"
+msgstr ""
 
 #. module: framework_agreement
 #: field:framework.agreement,payment_term_id:0
@@ -378,24 +368,24 @@ msgstr ""
 #. module: framework_agreement
 #: model:ir.model,name:framework_agreement.model_product_pricelist
 msgid "Pricelist"
-msgstr "Preisliste"
+msgstr ""
 
 #. module: framework_agreement
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view
 #: field:framework.agreement,product_id:0
 #: model:ir.model,name:framework_agreement.model_product_product
 msgid "Product"
-msgstr "Produkt"
+msgstr "Product"
 
 #. module: framework_agreement
 #: model:ir.model,name:framework_agreement.model_purchase_order
 msgid "Purchase Order"
-msgstr "Bestellauftrag"
+msgstr ""
 
 #. module: framework_agreement
 #: model:ir.model,name:framework_agreement.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr "Bestellposition"
+msgstr ""
 
 #. module: framework_agreement
 #: field:framework.agreement,purchase_line_ids:0
@@ -405,13 +395,13 @@ msgstr ""
 #. module: framework_agreement
 #: field:framework.agreement.line,quantity:0
 msgid "Quantity"
-msgstr "Menge"
+msgstr ""
 
 #. module: framework_agreement
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view
 #: selection:framework.agreement,state:0
 msgid "Running"
-msgstr "Laufend"
+msgstr ""
 
 #. module: framework_agreement
 #: field:framework.agreement,shipment_origin_id:0
@@ -426,7 +416,7 @@ msgstr ""
 #. module: framework_agreement
 #: field:framework.agreement,state:0
 msgid "State"
-msgstr "Status"
+msgstr ""
 
 #. module: framework_agreement
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view
@@ -434,7 +424,7 @@ msgstr "Status"
 #: view:framework.agreement.portfolio:framework_agreement.portfolio_search_view
 #: field:framework.agreement.portfolio,supplier_id:0
 msgid "Supplier"
-msgstr "Lieferant"
+msgstr ""
 
 #. module: framework_agreement
 #: sql_constraint:framework.agreement.portfolio:0

@@ -4,14 +4,13 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
-# Alan Luo <alanljj@qq.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-25 05:43+0000\n"
-"PO-Revision-Date: 2017-02-25 05:43+0000\n"
-"Last-Translator: Alan Luo <alanljj@qq.com>, 2017\n"
+"POT-Creation-Date: 2017-03-04 05:41+0000\n"
+"PO-Revision-Date: 2017-03-04 05:41+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/oca/teams/23907/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -180,7 +179,7 @@ msgstr ""
 #. module: purchase_request_to_rfq
 #: field:purchase.request.line.make.purchase.order.item,product_id:0
 msgid "Product"
-msgstr ""
+msgstr "产品"
 
 #. module: purchase_request_to_rfq
 #: view:purchase.request.line:purchase_request_to_rfq.purchase_request_line_search

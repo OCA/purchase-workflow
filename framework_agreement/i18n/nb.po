@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-14 05:51+0000\n"
-"PO-Revision-Date: 2017-01-19 20:16+0000\n"
+"POT-Creation-Date: 2017-03-04 05:41+0000\n"
+"PO-Revision-Date: 2017-03-10 13:16+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/nb/)\n"
 "MIME-Version: 1.0\n"
@@ -323,7 +323,7 @@ msgstr ""
 #. module: framework_agreement
 #: field:framework.agreement,origin:0
 msgid "Origin"
-msgstr ""
+msgstr "Opphav"
 
 #. module: framework_agreement
 #: field:framework.agreement,payment_term_id:0

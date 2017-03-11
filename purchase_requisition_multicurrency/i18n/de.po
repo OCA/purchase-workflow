@@ -4,7 +4,9 @@
 # 
 # Translators:
 # Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015
 # Antonio Trueba, 2016
+# Carles Antoli <carlesantoli@hotmail.com>, 2015
 # Carles Antoli <carlesantoli@hotmail.com>, 2015
 # danimaribeiro <danimaribeiro@gmail.com>, 2016
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2012,2014
@@ -13,14 +15,15 @@
 # Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
 # Maxime Chambreuil <mchambreuil@ursainfosystems.com>, 2015
+# Maxime Chambreuil <mchambreuil@ursainfosystems.com>, 2015
 # Rudolf Schnapka <rs@techno-flex.de>, 2015
 # SaFi J. <safi2266@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-09 09:32+0000\n"
-"PO-Revision-Date: 2016-12-16 12:17+0000\n"
+"POT-Creation-Date: 2017-03-04 05:41+0000\n"
+"PO-Revision-Date: 2017-03-04 21:38+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -56,7 +59,7 @@ msgstr ""
 #. module: purchase_requisition_multicurrency
 #: field:purchase.requisition,pricelist_id:0
 msgid "Pricelist"
-msgstr ""
+msgstr "Preisliste"
 
 #. module: purchase_requisition_multicurrency
 #: model:ir.model,name:purchase_requisition_multicurrency.model_purchase_order_line
