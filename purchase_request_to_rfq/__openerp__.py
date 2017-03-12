@@ -8,7 +8,7 @@
               "Acsone SA/NV,"
               "Odoo Community Association (OCA)",
     "version": "9.0.1.0.0",
-    "website": "www.eficent.com",
+    "website": "http://www.eficent.com/",
     "category": "Purchase Management",
     "depends": [
         "purchase_request",
