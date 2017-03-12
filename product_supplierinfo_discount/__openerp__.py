@@ -11,7 +11,7 @@
               "Antiun Ingeniería S.L., "
               "Odoo Community Association (OCA)",
     "category": "Purchase Management",
-    "website": "www.serviciosbaeza.com",
+    "website": "http://www.serviciosbaeza.com/",
     "license": "AGPL-3",
     "depends": [
         'product',
