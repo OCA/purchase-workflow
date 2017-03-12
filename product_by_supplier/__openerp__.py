@@ -27,7 +27,7 @@
     'summary': 'Show products grouped by suppliers',
     'author': "Elico Corp,"
               "Odoo Community Association (OCA)",
-    'website': 'http://www.elico-corp.com, ',
+    'website': 'http://www.elico-corp.com',
     'license': 'AGPL-3',
     'depends': [
         'product',
