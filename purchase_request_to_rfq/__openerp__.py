@@ -27,7 +27,7 @@
     "contributors": [
         'Jordi Ballester Alomar',
     ],
-    "website": "www.eficent.com",
+    "website": "http://www.eficent.com/",
     "category": "Purchase Management",
     "depends": [
         "purchase_request",
