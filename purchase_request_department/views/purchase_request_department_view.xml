@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+
+    <record id="view_purchase_request_tree" model="ir.ui.view">
+      <field name="name">view_purchase_request_tree</field>
+      <field name="model">purchase.request</field>
+      <field name="inherit_id" ref="purchase_request.view_purchase_request_tree" />
+      <field name="arch" type="xml">
+        <field name="requested_by" position="after">
+          <field name="department_id" />
+        </field>
+      </field>
+    </record>
+
+    <record id="view_purchase_request_form" model="ir.ui.view">
+      <field name="name">view_purchase_request_form</field>
+      <field name="model">purchase.request</field>
+      <field name="inherit_id" ref="purchase_request.view_purchase_request_form" />
+      <field name="arch" type="xml">
+        <field name="requested_by" position="after">
+          <field name="department_id" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+        </field>
+      </field>
+    </record>
+
+    <record id="view_purchase_request_filter" model="ir.ui.view">
+      <field name="name">view_purchase_request_filter</field>
+      <field name="model">purchase.request</field>
+      <field name="inherit_id" ref="purchase_request.view_purchase_request_search" />
+      <field name="arch" type="xml">
+        <xpath expr="//group[1]" position="inside">
+          <filter name="group_department" string="Department" context="{'group_by':'department_id'}"/>
+        </xpath>
+        <field name="requested_by" position="after">
+          <field name="department_id"/>
+        </field>
+      </field>
+    </record>
+
+</openerp>
