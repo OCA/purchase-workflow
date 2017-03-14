@@ -60,12 +60,6 @@ Contributors
 * Jordi Ballester Alomar <jordi.ballester@eficent.com>
 * Lois Rilo <lois.rilo@eficent.com>
 
-Funders
--------
-
-The development of this module has been financially supported by:
-
-* Camptocamp SA
 
 Maintainer
 ----------
