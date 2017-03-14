@@ -22,3 +22,12 @@ class PurchaseRequest(models.Model):
         employees = self.requested_by.employee_ids
         self.department_id = (employees[0].department_id if employees
                               else self.env['hr.department'])
+
+
+class PurchaseRequestLine(models.Model):
+    _inherit = 'purchase.request.line'
+
+    department_id = fields.Many2one(
+        comodel_name='hr.department',
+        related='request_id.department_id',
+        string='Department', readonly=True)
