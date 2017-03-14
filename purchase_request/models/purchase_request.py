@@ -30,7 +30,7 @@ class PurchaseRequest(models.Model):
 
     @api.model
     def _get_default_name(self):
-        return self.env['ir.sequence'].get('purchase.request')
+        return self.env['ir.sequence'].next_by_code('purchase.request')
 
     @api.model
     def _default_picking_type(self):
@@ -241,9 +241,9 @@ class PurchaseRequestLine(models.Model):
         if self.product_id:
             name = self.product_id.name
             if self.product_id.code:
-                name = '[%s] %s' % (name, self.product_id.code)
+                name = '[%s] %s' % (self.product_id.code, name)
             if self.product_id.description_purchase:
                 name += '\n' + self.product_id.description_purchase
             self.product_uom_id = self.product_id.uom_id.id
-            self.product_qty = 1
+            self.product_qty = 1.0
             self.name = name
