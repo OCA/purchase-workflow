@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # © 2014-2016 Numérigraphe SARL
-# © 2016 Eficent Business and IT Consulting Services, S.L.
+# © 2017 Eficent Business and IT Consulting Services, S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp.tests.common import TransactionCase
@@ -10,11 +10,21 @@ class TestDeliverySingle(TransactionCase):
 
     def setUp(self):
         super(TestDeliverySingle, self).setUp()
-        # Products
-        p1 = self.env.ref('product.product_product_15')
-        p2 = self.env.ref('product.product_product_25')
+        self.product_model = self.env['product.product']
 
-        # 2 dates we can use to test the features
+        # Create products:
+        p1 = self.product1 = self.product_model.create({
+            'name': 'Test Product 1',
+            'type': 'product',
+            'default_code': 'PROD1',
+        })
+        p2 = self.product1 = self.product_model.create({
+            'name': 'Test Product 2',
+            'type': 'product',
+            'default_code': 'PROD2',
+        })
+
+        # Two dates which we can use to test the features:
         self.date_sooner = '2015-01-01'
         self.date_later = '2015-12-13'
 
@@ -41,6 +51,7 @@ class TestDeliverySingle(TransactionCase):
                         'product_qty': 1.0})]})
 
     def test_check_single_date(self):
+        """Tests with single date."""
         self.assertEquals(
             len(self.po.picking_ids), 0,
             "There must not be pickings for the PO when draft")
@@ -53,7 +64,7 @@ class TestDeliverySingle(TransactionCase):
             "The picking must be planned at the expected date")
 
     def test_check_multiple_dates(self):
-        # Change the date of the first line
+        """Tests changing the date of the first line."""
         self.po.order_line[0].date_planned = self.date_later
         self.assertEquals(
             len(self.po.picking_ids), 0,
