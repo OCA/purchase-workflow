@@ -30,6 +30,7 @@ addon | version | summary
 [purchase_request_procurement](purchase_request_procurement/) | 9.0.1.0.0 | Purchase Request Procurement
 [purchase_request_to_requisition](purchase_request_to_requisition/) | 9.0.1.0.0 | Purchase Request to Call for Bids
 [purchase_request_to_rfq](purchase_request_to_rfq/) | 9.0.1.0.0 | Purchase Request to RFQ
+[subcontracted_service](subcontracted_service/) | 9.0.1.0.0 | Subcontracted service
 
 Unported addons
 ---------------
