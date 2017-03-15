@@ -3,7 +3,7 @@
 # Copyright 2017 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import models, api
+from odoo import api, models
 
 
 class ProcurementOrder(models.Model):
@@ -16,21 +16,21 @@ class ProcurementOrder(models.Model):
                 self.product_id.property_subcontracted_service or
                 False)
 
-    @api.model
-    def _find_suitable_rule(self, procurement):
-        res = super(ProcurementOrder, self)._find_suitable_rule(procurement)
-        if procurement._is_subcontracted_service():
+    @api.multi
+    def _find_suitable_rule(self):
+        res = super(ProcurementOrder, self)._find_suitable_rule()
+        if self._is_subcontracted_service():
             return (
-                procurement.warehouse_id.subcontracting_service_proc_rule_id.id
+                self.warehouse_id.subcontracting_service_proc_rule_id.id
             )
         return res
 
-    @api.model
-    def _assign(self, procurement):
-        res = super(ProcurementOrder, self)._assign(procurement)
+    @api.multi
+    def _assign(self):
+        res = super(ProcurementOrder, self)._assign()
         if not res:
-            rule_id = self._find_suitable_rule(procurement)
+            rule_id = self._find_suitable_rule()
             if rule_id:
-                procurement.write({'rule_id': rule_id})
+                self.write({'rule_id': rule_id})
                 return True
         return res
