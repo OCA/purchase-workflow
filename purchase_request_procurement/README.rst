@@ -1,18 +1,17 @@
 .. image:: https://img.shields.io/badge/licence-LGPL--3-blue.svg
     :alt: License LGPL-3
 
+============================
 Purchase Request Procurement
 ============================
-This module introduces the following features:
 
-* The possibility to create Purchase Requests on the basis of Procurement
-  Orders.
-
+This module introduces the the possibility to create Purchase Requests on the
+basis of Procurement Orders.
 
 Usage
 =====
 
-* Go to the product form, in tab 'Procurement' and choose 'Purchase Request'.
+* Go to the product form, in tab 'Inventory' and choose 'Purchase Request'.
   When a procurement order is created and the supply method is 'Make to Order'
   the application will now create a Purchase Request.
 
