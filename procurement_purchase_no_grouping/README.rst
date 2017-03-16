@@ -46,6 +46,7 @@ Contributors
 * Ana Juaristi <ajuaristo@gmail.com>
 * Alfredo de la Fuente <alfredodelafuente@avanzosc.es>
 * Alex Comba <alex.comba@agilebg.com>
+* Daniel Rodriguez Lijo <drl.9319@gmail.com>
 
 Maintainer
 ----------

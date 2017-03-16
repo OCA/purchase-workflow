@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-# Copyright 2017 OdooMRP team
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
+##############################################################################
+# For copyright and license notices, see __openerp__.py file in root directory
+##############################################################################
 from openerp import models, api
 
 
@@ -11,5 +11,7 @@ class ProcurementOrder(models.Model):
     @api.multi
     def make_po(self):
         obj = self.with_context(
-            grouping=self.product_id.categ_id.procured_purchase_grouping)
+            grouping=self.product_id.categ_id.procured_purchase_grouping,
+            origin=self.origin,
+        )
         return super(ProcurementOrder, obj).make_po()
