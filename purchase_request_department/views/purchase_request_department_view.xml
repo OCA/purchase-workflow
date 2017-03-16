@@ -67,12 +67,12 @@
       <field name="inherit_id"
              ref="purchase_request.purchase_request_line_search" />
       <field name="arch" type="xml">
-        <xpath expr="//group[1]" position="inside">
-          <filter name="group_department" string="Department" context="{'group_by':'department_id'}"/>
-        </xpath>
         <field name="requested_by" position="after">
           <field name="department_id"/>
         </field>
+        <xpath expr="//group[1]" position="inside">
+          <filter name="group_department" string="Department" context="{'group_by':'department_id'}"/>
+        </xpath>
       </field>
     </record>
 
