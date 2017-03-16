@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
-# Copyright 2016 Eficent Business and IT Consulting Services S.L.
+# Copyright 2017 Eficent Business and IT Consulting Services S.L.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
 
-from openerp import _, api, exceptions, fields, models
+from odoo import api, fields, models
+from odoo.exceptions import UserError
+from odoo import _
 
 
 class PurchaseRequestLine(models.Model):
@@ -57,7 +59,7 @@ class PurchaseRequestLine(models.Model):
     requisition_state = fields.Selection(
         compute='_compute_requisition_state', string="Bid Status",
         type='selection', selection=lambda self: self.env[
-            'purchase.requisition']._columns['state'].selection,
+            'purchase.requisition']._fields['state'].selection,
         store=True)
 
     is_editable = fields.Boolean(compute='_compute_is_editable',
@@ -67,7 +69,7 @@ class PurchaseRequestLine(models.Model):
     def unlink(self):
         for line in self:
             if line.requisition_lines:
-                raise exceptions.Warning(
+                raise UserError(
                     _('You cannot delete a record that refers to purchase '
                       'lines!'))
         return super(PurchaseRequestLine, self).unlink()

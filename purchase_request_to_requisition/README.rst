@@ -23,7 +23,7 @@ Usage
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/142/9.0
+   :target: https://runbot.odoo-community.org/runbot/142/10.0
 
 For further information, please visit:
 
@@ -47,6 +47,7 @@ Contributors
 * Jonathan Nemry <jonathan.nemry@acsone.eu>
 * Aarón Henríquez <ahenriquez@eficent.com>
 * Adrien Peiffer <adrien.peiffer@acsone.eu>
+* Meyomesse Gilles <meyomesse.gilles@gmail.com>
 
 
 Maintainer

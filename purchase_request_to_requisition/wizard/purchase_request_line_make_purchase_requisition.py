@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-# Copyright 2016 Eficent Business and IT Consulting Services S.L.
+# Copyright 2017 Eficent Business and IT Consulting Services S.L.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
 
-import openerp.addons.decimal_precision as dp
-from openerp import api, exceptions, fields, models
-from openerp.tools.translate import _
+from odoo import api, fields, models
+from odoo.exceptions import UserError
+from odoo.tools.translate import _
 
 
 class PurchaseRequestLineMakePurchaseRequisition(models.TransientModel):
@@ -91,13 +91,13 @@ class PurchaseRequestLineMakePurchaseRequisition(models.TransientModel):
         for item in self.item_ids:
             line = item.line_id
             if item.product_qty <= 0.0:
-                raise exceptions.Warning(
+                raise UserError(
                     _('Enter a positive quantity.'))
             line_company_id = line.company_id \
                 and line.company_id.id or False
             if company_id is not False \
                     and line_company_id != company_id:
-                raise exceptions.Warning(
+                raise UserError(
                     _('You have to select lines '
                       'from the same company.'))
             else:
@@ -106,7 +106,7 @@ class PurchaseRequestLineMakePurchaseRequisition(models.TransientModel):
             line_picking_type = line.request_id.picking_type_id
             if picking_type_id is not False \
                     and line_picking_type.id != picking_type_id:
-                raise exceptions.Warning(
+                raise UserError(
                     _('You have to select lines '
                       'from the same picking type.'))
             else:
@@ -146,38 +146,3 @@ class PurchaseRequestLineMakePurchaseRequisition(models.TransientModel):
             'context': False,
             'type': 'ir.actions.act_window'
         }
-
-
-class PurchaseRequestLineMakePurchaseRequisitionItem(models.TransientModel):
-    _name = "purchase.request.line.make.purchase.requisition.item"
-    _description = "Purchase Request Line Make Purchase Requisition Item"
-
-    wiz_id = fields.Many2one(
-        'purchase.request.line.make.purchase.requisition',
-        string='Wizard', required=True, ondelete='cascade',
-        readonly=True)
-    line_id = fields.Many2one('purchase.request.line',
-                              string='Purchase Request Line',
-                              required=True,
-                              readonly=True)
-    request_id = fields.Many2one('purchase.request',
-                                 related='line_id.request_id',
-                                 string='Purchase Request',
-                                 readonly=True)
-    product_id = fields.Many2one('product.product', string='Product')
-    name = fields.Char(string='Description', required=True)
-    product_qty = fields.Float(string='Quantity to Bid',
-                               digits_compute=dp.get_precision('Product UoS'))
-    product_uom_id = fields.Many2one('product.uom', string='UoM')
-
-    @api.onchange('product_id', 'product_uom_id')
-    def onchange_product_id(self):
-        if self.product_id:
-            name = self.product_id.name
-            if self.product_id.code:
-                name = '[%s] %s' % (name, self.product_id.code)
-            if self.product_id.description_purchase:
-                name += '\n' + self.product_id.description_purchase
-            self.product_uom_id = self.product_id.uom_id.id
-            self.product_qty = 1
-            self.name = name
