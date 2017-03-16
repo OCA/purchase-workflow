@@ -14,9 +14,8 @@ from openerp import api, fields, models
 class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
 
-    @api.one
     @api.depends('order_line')
-    def compute_max_line_sequence(self):
+    def _compute_max_line_sequence(self):
         """Allow to know the highest sequence
         entered in purchase order lines.
         Web add 1 to this value for the next sequence
@@ -28,7 +27,7 @@ class PurchaseOrder(models.Model):
             max(self.mapped('order_line.sequence') or [0]) + 1)
 
     max_line_sequence = fields.Integer(string='Max sequence in lines',
-                                       compute='compute_max_line_sequence')
+                                       compute='_compute_max_line_sequence')
 
     @api.multi
     def _reset_sequence(self):
