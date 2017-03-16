@@ -16,33 +16,36 @@ class ProcurementOrder(models.Model):
         copy=False,
     )
 
-    @api.model
-    def _prepare_purchase_request_line(self, purchase_request, procurement):
+    @api.multi
+    def _prepare_purchase_request_line(self):
+        self.ensure_one()
+
         return {
-            'product_id': procurement.product_id.id,
-            'name': procurement.product_id.name,
-            'date_required': procurement.date_planned,
-            'product_uom_id': procurement.product_uom.id,
-            'product_qty': procurement.product_qty,
-            'request_id': purchase_request.id,
-            'procurement_id': procurement.id
+            'product_id': self.product_id.id,
+            'name': self.product_id.name,
+            'date_required': self.date_planned,
+            'product_uom_id': self.product_uom.id,
+            'product_qty': self.product_qty,
+            'request_id': self.request_id.id,
+            'procurement_id': self.id
         }
 
-    @api.model
-    def _prepare_purchase_request(self, procurement):
+    @api.multi
+    def _prepare_purchase_request(self):
+        self.ensure_one()
+
         return {
-            'origin': procurement.origin,
-            'company_id': procurement.company_id.id,
-            'picking_type_id': procurement.rule_id.picking_type_id.id,
+            'origin': self.origin,
+            'company_id': self.company_id.id,
+            'picking_type_id': self.rule_id.picking_type_id.id,
         }
 
-    @api.model
-    def _search_existing_purchase_request(self, procurement):
+    @api.multi
+    def _search_existing_purchase_request(self):
         """
         This method is to be implemented by other modules that can
         provide a criteria to select the appropriate purchase request to be
         extended.
-        :param procurement: procurement.order object
         :return: False
         """
         return False
@@ -56,13 +59,13 @@ class ProcurementOrder(models.Model):
                 and self.product_id.purchase_request:
             # Search for an existing Purchase Request to be considered
             # to be extended.
-            pr = self._search_existing_purchase_request(self)
+            pr = self._search_existing_purchase_request()
             if not pr:
-                request_data = self._prepare_purchase_request(self)
+                request_data = self._prepare_purchase_request()
                 req = purchase_request_model.create(request_data)
                 self.message_post(body=_("Purchase Request created"))
                 self.request_id = req
-            request_line_data = self._prepare_purchase_request_line(req, self)
+            request_line_data = self._prepare_purchase_request_line()
             purchase_request_line_model.create(request_line_data),
             self.message_post(body=_("Purchase Request extended."))
             return True
