@@ -87,7 +87,6 @@ class TestPurchaseOrder(common.TransactionCase):
         invoice.purchase_id = po.id
         invoice.currency_id = self.env.ref('base.INR').id,
         invoice.purchase_order_change()
-        invoice.invoice_line_ids
 
         self.assertEqual(po.order_line[0].sequence,
                          invoice.invoice_line_ids[0].sequence,
