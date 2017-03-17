@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+<data>
+
+    <record model="ir.ui.view" id="purchase_order_form_view">
+        <field name="name">purchase.order.form (in purchase_manual_service_quantity)</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']//field[@name='qty_received']" position="before">
+                <field name="purchase_manual_received_qty" invisible="1" />
+            </xpath>
+            <xpath expr="//field[@name='order_line']//field[@name='qty_received']" position="attributes">
+                <attribute name="attrs">{'readonly': [('purchase_manual_received_qty', '=', False)]}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+
+
+
+</data>
+</odoo>

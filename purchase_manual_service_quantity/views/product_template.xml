@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+<data>
+
+    <record model="ir.ui.view" id="product_template_form_view">
+        <field name="name">product.template.form (in purchase_manual_service_quantity)</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="purchase.view_product_supplier_inherit"/>
+        <field name="arch" type="xml">
+            <field name="purchase_method" position="after">
+                 <div attrs="{'invisible': [('type', '!=', 'service')]}">
+                    <field name="purchase_manual_received_qty"/>
+                    <label for="purchase_manual_received_qty"/>
+                </div>
+            </field>
+        </field>
+    </record>
+
+
+
+
+</data>
+</odoo>
