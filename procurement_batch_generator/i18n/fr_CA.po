@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-03-12 12:13+0000\n"
-"PO-Revision-Date: 2017-03-14 18:36+0000\n"
+"PO-Revision-Date: 2017-03-13 12:52+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Catalan (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/ca/)\n"
+"Language-Team: French (Canada) (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/fr_CA/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ca\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: fr_CA\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: procurement_batch_generator
 #: code:addons/procurement_batch_generator/wizard/procurement_batch_generator.py:75
@@ -26,31 +26,31 @@ msgstr ""
 #. module: procurement_batch_generator
 #: view:procurement.batch.generator:procurement_batch_generator.procurement_batch_generator_form
 msgid "Cancel"
-msgstr "Cancel·la"
+msgstr "Annuler"
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator,create_uid:0
 #: field:procurement.batch.generator.line,create_uid:0
 msgid "Created by"
-msgstr "Creat per"
+msgstr "Créé par"
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator,create_date:0
 #: field:procurement.batch.generator.line,create_date:0
 msgid "Created on"
-msgstr "Creat el"
+msgstr "Créé le"
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator,display_name:0
 #: field:procurement.batch.generator.line,display_name:0
 msgid "Display Name"
-msgstr "Veure el nom"
+msgstr "Afficher le nom"
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator,id:0
 #: field:procurement.batch.generator.line,id:0
 msgid "ID"
-msgstr "ID"
+msgstr "Identifiant"
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator.line,incoming_qty:0
@@ -61,19 +61,19 @@ msgstr ""
 #: field:procurement.batch.generator,__last_update:0
 #: field:procurement.batch.generator.line,__last_update:0
 msgid "Last Modified on"
-msgstr "Darrera modificació el"
+msgstr ""
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator,write_uid:0
 #: field:procurement.batch.generator.line,write_uid:0
 msgid "Last Updated by"
-msgstr "Darrera Actualització per"
+msgstr "Dernière mise à jour par"
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator,write_date:0
 #: field:procurement.batch.generator.line,write_date:0
 msgid "Last Updated on"
-msgstr "Darrera Actualització el"
+msgstr "Dernière mise à jour le"
 
 #. module: procurement_batch_generator
 #: model:ir.model,name:procurement_batch_generator.model_procurement_batch_generator_line
@@ -103,7 +103,7 @@ msgstr ""
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator.line,product_id:0
 msgid "Product"
-msgstr "Producte"
+msgstr ""
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator.line,qty_available:0
@@ -129,7 +129,7 @@ msgstr ""
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator.line,uom_id:0
 msgid "Unit of Measure"
-msgstr "Unitat de mesura"
+msgstr ""
 
 #. module: procurement_batch_generator
 #: view:procurement.batch.generator:procurement_batch_generator.procurement_batch_generator_form
