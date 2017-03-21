@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-# For copyright and license notices, see __openerp__.py file in root directory
-##############################################################################
+# Copyright 2017 OdooMRP team
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from . import models

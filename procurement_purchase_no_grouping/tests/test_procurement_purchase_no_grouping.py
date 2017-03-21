@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# (c) 2015 - 2017 Pedro M. Baeza
+# Copyright 2017 OdooMRP team
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 from openerp.tests.common import TransactionCase
@@ -66,6 +66,22 @@ class TestProcurementPurchaseNoGrouping(TransactionCase):
 
     def test_procurement_no_grouping_order_purchase(self):
         self.category.procured_purchase_grouping = 'order'
+        self.procurement_1.run()
+        self.procurement_2.run()
+        self.assertTrue(self.procurement_1.purchase_id)
+        self.assertTrue(self.procurement_2.purchase_id)
+        self.assertNotEqual(
+            self.procurement_1.purchase_id,
+            self.procurement_2.purchase_id,
+            'Procured purchase orders are the same')
+        self.assertNotEqual(
+            self.procurement_1.purchase_line_id,
+            self.procurement_2.purchase_line_id,
+            'Procured purchase orders lines are the same')
+        return True
+
+    def test_procurement_one_sale_one_purchase(self):
+        self.category.procured_purchase_grouping = 'one_sale_one_purchase'
         self.procurement_1.run()
         self.procurement_2.run()
         self.assertTrue(self.procurement_1.purchase_id)
