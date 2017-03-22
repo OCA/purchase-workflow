@@ -65,7 +65,7 @@ class PurchaseRequestLine(models.Model):
         string="Purchase Status",
         selection=lambda self:
         self.env['purchase.order']._columns['state'].selection,
-        stored=True,
+        store=True,
     )
 
     @api.model
@@ -80,50 +80,44 @@ class PurchaseRequestLine(models.Model):
             or False
 
     @api.model
-    def _calc_new_qty_price(self, request_line, po_line=None, cancel=False):
-        uom_obj = self.env['product.uom']
-        qty = uom_obj._compute_qty(request_line.product_uom_id.id,
-                                   request_line.product_qty,
-                                   request_line.product_id.uom_po_id.id)
+    def _get_supplier_min_qty(self, product, partner_id=False):
+        seller_min_qty = 0.0
+        if partner_id:
+            seller = product.seller_ids \
+                .filtered(lambda r: r.name == partner_id) \
+                .sorted(key=lambda r: r.min_qty)
+        else:
+            seller = product.seller_ids.sorted(key=lambda r: r.min_qty)
+        if seller:
+            seller_min_qty = seller[0].min_qty
+        return seller_min_qty
+
+    @api.model
+    def _calc_new_qty(self, request_line, po_line=None, cancel=False,
+                      new_pr_line=False):
+        uom = request_line.product_uom_id
+        qty = uom._compute_qty(
+            request_line.product_id.uom_po_id, request_line.product_qty)
+
         # Make sure we use the minimum quantity of the partner corresponding
         # to the PO. This does not apply in case of dropshipping
         supplierinfo_min_qty = 0.0
         if not po_line.order_id.dest_address_id:
-            if po_line.product_id.seller_ids and \
-                po_line.product_id.seller_ids[0].id == \
-                    po_line.order_id.partner_id.id:
-                supplierinfo_min_qty = po_line.product_id.seller_ids[0].min_qty
-            else:
-                supplierinfo_obj = self.env['product.supplierinfo']
-                supplierinfos = supplierinfo_obj.search(
-                    [('name', '=', po_line.order_id.partner_id.id),
-                     ('product_tmpl_id', '=',
-                      po_line.product_id.product_tmpl_id.id)])
-                if supplierinfos:
-                    supplierinfo_min_qty = supplierinfos[0].min_qty
+            supplierinfo_min_qty = self._get_supplier_min_qty(
+                po_line.product_id, po_line.order_id.partner_id)
 
-        if not supplierinfo_min_qty:
-            qty += po_line.product_qty
-        else:
-            # Recompute quantity by adding existing running procurements.
-            for rl in po_line.purchase_request_lines:
-                qty += uom_obj._compute_qty(rl.product_uom_id.id,
-                                            rl.product_qty,
-                                            rl.product_id.uom_po_id.id)
-            qty = max(qty, supplierinfo_min_qty) if qty > 0.0 else 0.0
+        rl_qty = 0.0
+        # Recompute quantity by adding existing running procurements.
+        for rl in po_line.purchase_request_lines:
+            rl_qty += rl.product_uom_id._compute_qty(
+                rl.product_id.uom_po_id, rl.product_qty)
+        new_qty = 0.0
+        if not new_pr_line:
+            new_qty = qty + po_line.product_qty
 
-        price = po_line.price_unit
-        if qty != po_line.product_qty:
-            pricelist_obj = self.pool['product.pricelist']
-            pricelist_id = po_line.order_id.partner_id.\
-                property_product_pricelist.id
-            price = pricelist_obj.price_get(
-                self.env.cr, self.env.uid, [pricelist_id],
-                request_line.product_id.id, qty,
-                po_line.order_id.partner_id.id,
-                {'uom': request_line.product_id.uom_po_id.id})[pricelist_id]
+        qty = max(rl_qty, supplierinfo_min_qty, new_qty)
 
-        return qty, price
+        return qty
 
     @api.multi
     def unlink(self):

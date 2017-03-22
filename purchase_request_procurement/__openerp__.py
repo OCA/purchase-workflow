@@ -7,7 +7,7 @@
     "version": "9.0.1.0.0",
     "author": "Eficent Business and IT Consulting Services S.L., "
               "Odoo Community Association (OCA)",
-    "website": "www.eficent.com",
+    "website": "http://www.eficent.com/",
     "category": "Purchase Management",
     "depends": ["purchase_request", "procurement"],
     "data": [
