@@ -40,6 +40,7 @@ class Procurement(models.Model):
             'origin': procurement.origin,
             'company_id': procurement.company_id.id,
             'picking_type_id': procurement.rule_id.picking_type_id.id,
+            'state': 'to_approve'
         }
 
     @api.model
@@ -81,10 +82,11 @@ class Procurement(models.Model):
             # Search for purchase request lines containing the procurement_id
             request_lines = self.env['purchase.request.line'].\
                 search([('procurement_id', '=', procurement.id)])
-            # Remove the purchase request lines, if the request is not draft
-            # or reject
+            # Remove the purchase request lines, if the request is not draft,
+            # to be approved or rejected.
             for line in request_lines:
-                if line.request_id.state not in ('draft', 'reject'):
+                if line.request_id.state not in ('draft',
+                                                 'to_approve', 'rejected'):
                     raise ValidationError(_('Can not cancel this procurement '
                                             'as the related purchase request '
                                             'is in progress confirmed already.'
