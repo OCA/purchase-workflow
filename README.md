@@ -13,6 +13,7 @@ This project aim to deal with modules related to manage purchase and their relat
  - ...
 
 [//]: # (addons)
+
 Available addons
 ----------------
 addon | version | summary
