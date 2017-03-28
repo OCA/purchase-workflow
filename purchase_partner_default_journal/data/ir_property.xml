@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="property_res_partner_default_purchase_journal_id" model="ir.property">
+            <field name="name">Default purchase journal</field>
+            <field name="fields_id" ref="purchase_partner_default_journal.field_res_partner_default_purchase_journal_id" />
+            <field name="value" eval="'account.journal,%s' % obj([]).search([('type', '=', 'purchase'), ('company_id', '=', ref('base.main_company'))], limit=1).id" model="account.journal" />
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+    </data>
+</openerp>
