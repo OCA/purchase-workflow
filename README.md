@@ -33,6 +33,7 @@ addon | version | summary
 [purchase_request_to_rfq](purchase_request_to_rfq/) | 9.0.1.0.0 | Purchase Request to RFQ
 [subcontracted_service](subcontracted_service/) | 9.0.1.0.0 | Subcontracted service
 
+
 Unported addons
 ---------------
 addon | version | summary
