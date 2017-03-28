@@ -2,16 +2,14 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-================================
-Supplier Invoice Allowed Product
-================================
+====================================
+Purchase and Invoice Allowed Product
+====================================
 
-This module adds a restriction in supplier invoices that has the mark "Use only
-allowed products" checked for allowing to select only products that can be
-supplied by the supplier.
+This module adds a restriction in purchase and supplier invoices that has the mark "Order and invoice only supplied products" checked for allowing to select only products that can be supplied by the this supplier.
 
 The restriction can be set by default for each partner, and it's propagated
-to their supplier invoices, but it can be change for each invoice if you want.
+to their supplier invoices and purchase, but it can be change for each invoice and purchase if you want.
 
 Usage
 =====
@@ -34,6 +32,7 @@ Contributors
 ------------
  
 * Chafique Delli <chafique.delli@akretion.com>
+* Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
  
 Maintainer
 ----------

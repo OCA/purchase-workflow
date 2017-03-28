@@ -4,3 +4,5 @@
 
 from . import res_partner
 from . import account_invoice
+from . import product
+from . import purchse_order
