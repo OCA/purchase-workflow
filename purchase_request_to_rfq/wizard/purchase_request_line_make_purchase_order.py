@@ -128,7 +128,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
 
     @api.model
     def _get_purchase_line_onchange_fields(self):
-        return ['date_planned', 'product_uom', 'price_unit', 'name',
+        return ['product_uom', 'price_unit', 'name',
                 'taxes_id']
 
     @api.model
@@ -164,6 +164,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             'product_qty': qty,
             'account_analytic_id': item.line_id.analytic_account_id.id,
             'purchase_request_lines': [(4, item.line_id.id)],
+            'date_planned': item.line_id.date_required
         }
         if item.line_id.procurement_id:
             vals['procurement_ids'] = [(4, item.line_id.procurement_id.id)]
@@ -188,6 +189,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         order_line_data = [('order_id', '=', order.id),
                            ('name', '=', name),
                            ('product_id', '=', item.product_id.id or False),
+                           ('date_planned', '=', item.line_id.date_required),
                            ('product_uom', '=', vals['product_uom']),
                            ('account_analytic_id', '=',
                             item.line_id.analytic_account_id.id or False),
@@ -245,6 +247,9 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                 new_pr_line=new_pr_line)
             po_line.product_qty = new_qty
             po_line._onchange_quantity()
+            # The onchange quantity is altering the scheduled date of the PO
+            # lines. We do not want that:
+            po_line.date_planned = item.line_id.date_required
             res.append(purchase.id)
 
         return {
