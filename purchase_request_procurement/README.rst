@@ -13,7 +13,7 @@ Usage
 =====
 
 * Go to the product form, in tab 'Procurement' and choose 'Purchase Request'.
-  When a procurement order is created and the supply method is 'Make to Order'
+  When a procurement order is created and the supply method is 'Buy'
   the application will now create a Purchase Request.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
