@@ -20,8 +20,11 @@ class ProductProduct(models.Model):
                 commercial_partner_id else seller
             supplierinfos = self.env['product.supplierinfo'].search(
                 [('name', '=', seller.id)])
-            args.append(
+            args += [
+                '|',
                 ('product_tmpl_id', 'in',
-                    [x.product_tmpl_id.id for x in supplierinfos]))
+                    [x.product_tmpl_id.id for x in supplierinfos]),
+                ('id', 'in',
+                    [x.product_id.id for x in supplierinfos])]
         return super(ProductProduct, self).search(
             args, offset=offset, limit=limit, order=order, count=count)
