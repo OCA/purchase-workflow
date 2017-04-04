@@ -40,8 +40,8 @@ class PurchaseOrderLine(models.Model):
     @api.multi
     def _create_stock_moves(self, picking):
         res = super(PurchaseOrderLine, self)._create_stock_moves(picking)
-        for move, line in zip(res, self):
-            if line.order_id.picking_type_id.code == \
-                    'internal' and line.location_dest_id:
-                move.write({'location_dest_id': line.location_dest_id.id})
+        for line in self:
+            if line.location_dest_id:
+                line.move_ids.write(
+                    {'location_dest_id': line.location_dest_id.id})
         return res
