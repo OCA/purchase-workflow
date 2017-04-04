@@ -21,5 +21,4 @@
         "views/purchase_view.xml"
     ],
     'installable': True,
-    'active': False,
 }

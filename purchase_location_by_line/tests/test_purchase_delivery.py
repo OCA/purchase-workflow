@@ -16,9 +16,9 @@ class TestDeliverySingle(TransactionCase):
         p2 = self.env.ref('product.product_product_25')
 
         # Locations
-        l1 = self.env.ref('stock.stock_location_stock')
+        self.l1 = self.env.ref('stock.stock_location_stock')
         self.l2 = self.env['stock.location'].create({
-            'location_id': l1.id,
+            'location_id': self.l1.id,
             'name': 'Shelf 1',
             'usage': 'internal'
         })
@@ -36,21 +36,21 @@ class TestDeliverySingle(TransactionCase):
                         'price_unit': p1.standard_price,
                         'date_planned': self.date_sooner,
                         'product_qty': 42.0,
-                        'location_dest_id': l1.id}),
+                        'location_dest_id': self.l1.id}),
                 (0, 0, {'product_id': p2.id,
                         'product_uom': p1.uom_id.id,
                         'name': p2.name,
                         'price_unit': p2.standard_price,
                         'date_planned': self.date_sooner,
                         'product_qty': 12.0,
-                        'location_dest_id': l1.id}),
+                        'location_dest_id': self.l1.id}),
                 (0, 0, {'product_id': p1.id,
                         'product_uom': p1.uom_id.id,
                         'name': p1.name,
                         'price_unit': p1.standard_price,
                         'date_planned': self.date_sooner,
                         'product_qty': 1.0,
-                        'location_dest_id': l1.id})]})
+                        'location_dest_id': self.l1.id})]})
 
     def test_check_single_date(self):
         self.assertEquals(
@@ -91,6 +91,15 @@ class TestDeliverySingle(TransactionCase):
             sorted_pickings[1].min_date[:10], self.date_later,
             "The second picking must be planned at the latest date")
 
+        l2_picking = self.po.picking_ids.filtered(
+            lambda p: p.location_dest_id == self.l2)
+        self.assertEquals(len(l2_picking), 0, 'There must be 0 picking for '
+                                              'location Shelf 1')
+        l1_picking = self.po.picking_ids.filtered(
+            lambda p: p.location_dest_id == self.l1)
+        self.assertEquals(len(l1_picking), 2, 'There must be 2 pickings for '
+                                              'location Stock')
+
     def test_check_multiple_locations_same_date(self):
         # Change the location of the first line
         self.po.order_line[0].location_dest_id = self.l2
@@ -101,11 +110,16 @@ class TestDeliverySingle(TransactionCase):
 
         self.po.button_confirm()
 
-        len_pickings = len(self.po.picking_ids)
-        self.assertEquals(
-            len_pickings, 2,
-            "There must be 2 pickings for the PO when confirmed. %s found" %
-            len_pickings)
+        l2_picking = self.po.picking_ids.filtered(
+            lambda p: p.location_dest_id == self.l2)
+        self.assertGreaterEqual(len(l2_picking), 1,
+                                'There must be 1 or more '
+                                'pickings for location Shelf 1')
+        l1_picking = self.po.picking_ids.filtered(
+            lambda p: p.location_dest_id == self.l1)
+        self.assertGreaterEqual(len(l1_picking), 1, 'There must be 1 or more '
+                                                    'pickings for '
+                                                    'location Stock')
 
     def test_check_multiple_locations_multiple_dates(self):
         # Change the location of the first line and date of the second line
@@ -118,11 +132,15 @@ class TestDeliverySingle(TransactionCase):
 
         self.po.button_confirm()
 
-        len_pickings = len(self.po.picking_ids)
-        self.assertEquals(
-            len_pickings, 3,
-            "There must be 3 pickings for the PO when confirmed. %s found" %
-            len_pickings)
+        l2_picking = self.po.picking_ids.filtered(
+            lambda p: p.location_dest_id == self.l2)
+        self.assertGreaterEqual(len(l2_picking), 1,
+                                'There must be 1 picking for location Shelf 1')
+        l1_picking = self.po.picking_ids.filtered(
+            lambda p: p.location_dest_id == self.l1)
+        self.assertGreaterEqual(len(l1_picking), 2,
+                                'There must be 2 or more '
+                                'pickings for location Stock')
 
         sorted_pickings = sorted(self.po.picking_ids, key=lambda x: x.min_date)
         self.assertEquals(
