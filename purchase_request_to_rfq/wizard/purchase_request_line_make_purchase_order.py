@@ -112,13 +112,9 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             raise exceptions.Warning(
                 _('Enter a supplier.'))
         supplier = self.supplier_id
-        supplier_pricelist = supplier.property_product_pricelist  \
-            or False
         data = {
             'origin': '',
             'partner_id': self.supplier_id.id,
-            'pricelist_id': supplier_pricelist.id,
-            'location_id': location.id,
             'fiscal_position_id': supplier.property_account_position_id and
             supplier.property_account_position_id.id or False,
             'picking_type_id': picking_type.id,
@@ -283,9 +279,11 @@ class PurchaseRequestLineMakePurchaseOrderItem(models.TransientModel):
     product_id = fields.Many2one('product.product', string='Product')
     name = fields.Char(string='Description', required=True)
     product_qty = fields.Float(string='Quantity to purchase',
-                               digits=dp.get_precision('Product UoS'))
-    product_uom_id = fields.Many2one('product.uom', string='UoM')
-    keep_description = fields.Boolean(string='Copy descriptions to new PO.',
+                               digits=dp.get_precision('Product UoS'),
+                               readonly=True)
+    product_uom_id = fields.Many2one('product.uom', string='UoM',
+                                     readonly=True)
+    keep_description = fields.Boolean(string='Copy descriptions to new PO',
                                       help='Set true if you want to keep the '
                                            'descriptions provided in the '
                                            'wizard in the new PO.',

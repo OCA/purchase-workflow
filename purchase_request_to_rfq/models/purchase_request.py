@@ -102,9 +102,9 @@ class PurchaseRequestLine(models.Model):
     @api.model
     def _calc_new_qty(self, request_line, po_line=None, cancel=False,
                       new_pr_line=False):
+        purchase_uom = po_line.product_uom or request_line.product_id.uom_po_id
         uom = request_line.product_uom_id
-        qty = uom._compute_quantity(request_line.product_qty,
-                                    request_line.product_id.uom_po_id)
+        qty = uom._compute_quantity(request_line.product_qty, purchase_uom)
         # Make sure we use the minimum quantity of the partner corresponding
         # to the PO. This does not apply in case of dropshipping
         supplierinfo_min_qty = 0.0
@@ -115,8 +115,8 @@ class PurchaseRequestLine(models.Model):
         rl_qty = 0.0
         # Recompute quantity by adding existing running procurements.
         for rl in po_line.purchase_request_lines:
-            rl_qty += rl.product_uom_id._compute_qty(
-                rl.product_id.uom_po_id, rl.product_qty)
+            rl_qty += rl.product_uom_id._compute_quantity(
+                rl.product_qty, purchase_uom)
         new_qty = 0.0
         if not new_pr_line:
             new_qty = qty + po_line.product_qty
