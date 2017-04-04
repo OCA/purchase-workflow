@@ -29,4 +29,4 @@ class PurchaseOrderLine(models.Model):
                                          copy=False)
     qty_received = fields.Float(inverse='_set_qty_received')
     purchase_manual_received_qty = fields.Boolean(
-        related='product_id.purchase_manual_received_qty', store=True)
+        related='product_id.purchase_manual_received_qty', store=True, readonly=True)
