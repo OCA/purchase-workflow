@@ -22,8 +22,8 @@ class TestThreeStepReception(common.TransactionCase):
         wh = self.env.ref('stock.warehouse0')
         wh.reception_steps = 'three_steps'
         po = self.env.ref('purchase.purchase_order_1')
-        po.location_id = wh.wh_input_stock_loc_id
-        po.signal_workflow('purchase_confirm')
+        po.picking_type_id = wh.in_type_id
+        po.button_approve()
 
-        self.assertEqual(1, po.shipment_count)
+        self.assertEqual(1, po.picking_count)
         self.assertEqual(3, po.all_shipment_count)
