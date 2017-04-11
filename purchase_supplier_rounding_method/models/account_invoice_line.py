@@ -14,8 +14,9 @@ class AccountInvoiceLine(models.Model):
         """Overwrite price subtotal computation if the partner has a
         supplier rounding method set to 'Round Net Price'"""
         invoice = self.invoice_id
-        if invoice.partner_id.supplier_rounding_method == 'round_net_price'\
-                and invoice.type in ['in_invoice', 'in_refund']:
+        if invoice and invoice.type in ['in_invoice', 'in_refund'] and\
+                invoice.partner_id.supplier_rounding_method\
+                == 'round_net_price':
             price = round(
                 self.price_unit * (1 - (self.discount or 0.0) / 100.0),
                 self.env['decimal.precision'].precision_get('Account'))
@@ -23,8 +24,7 @@ class AccountInvoiceLine(models.Model):
                 price, self.quantity, product=self.product_id,
                 partner=invoice.partner_id)
             self.price_subtotal = taxes['total']
-            if invoice:
-                self.price_subtotal = invoice.currency_id.round(
-                    self.price_subtotal)
+            self.price_subtotal = invoice.currency_id.round(
+                self.price_subtotal)
         else:
             return super(AccountInvoiceLine, self)._compute_price()

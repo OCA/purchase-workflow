@@ -38,8 +38,12 @@ class TestPurchaseSupplierRoundingMethod(common.TransactionCase):
         line.price_unit = 1
         line.discount = 33.33
         self.assertEquals(line.price_subtotal, 670)
+        self.assertEquals(
+            round(line._calc_line_base_price(line), 4), 0.67)
 
         # Change to a normal partner and recompute subtotal
         line.order_id.partner_id = self.browse_ref('base.res_partner_12')
         line.product_qty = 10000
         self.assertEquals(line.price_subtotal, 6667.00)
+        self.assertEquals(
+            round(line._calc_line_base_price(line), 4), 0.6667)
