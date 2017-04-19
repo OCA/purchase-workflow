@@ -35,10 +35,13 @@ class TestPurchasePartnerDefaultJournal(TransactionCase):
             onchange['value']['journal_id']
         )
         # invoice created from order
-        values = self.env['purchase.order'].onchange_dest_address_id(
+        values = self.env['purchase.order'].onchange_partner_id(
             p.id
         )['value']
-        values['partner_id'] = p.id
+        values.update(
+            self.env['purchase.order'].onchange_dest_address_id(p.id)['value'],
+            partner_id=p.id,
+        )
         invoice_data = self.env['purchase.order']._prepare_invoice(
             self.env['purchase.order'].create(values), []
         )
