@@ -35,10 +35,11 @@ class TestPurchasePartnerDefaultJournal(TransactionCase):
             onchange['value']['journal_id']
         )
         # invoice created from order
+        values = self.env['purchase.order'].onchange_dest_address_id(
+            p.id
+        )['value']
+        values['partner_id'] = p.id
         invoice_data = self.env['purchase.order']._prepare_invoice(
-            self.env['purchase.order'].create({
-                'partner_id': p.id,
-            }),
-            []
+            self.env['purchase.order'].create(values), []
         )
         self.assertEqual(journal.id, invoice_data['journal_id'])
