@@ -30,7 +30,7 @@ class PurchaseRequest(models.Model):
 
     @api.model
     def _get_default_name(self):
-        return self.env['ir.sequence'].get('purchase.request')
+        return self.env['ir.sequence'].next_by_code('purchase.request')
 
     @api.model
     def _default_picking_type(self):
@@ -111,7 +111,7 @@ class PurchaseRequest(models.Model):
         self.ensure_one()
         default.update({
             'state': 'draft',
-            'name': self.env['ir.sequence'].get('purchase.request'),
+            'name': self.env['ir.sequence'].next_by_code('purchase.request'),
         })
         return super(PurchaseRequest, self).copy(default)
 
