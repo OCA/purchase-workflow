@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+#---------------------------------------------------------------------------------------------------------
+#   Add analytic account id to purchase orders
+#---------------------------------------------------------------------------------------------------------
+
+       <record id="view_purchase_order_filter_analytic" model="ir.ui.view">
+            <field name="name">purchase.order.list.select</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//search/field[@name='product_id']" position="after">
+                    <field name="account_analytic_ids" groups="analytic.group_analytic_accounting"/>
+                </xpath>
+            </field>
+       </record>
+
+        <record id="purchase_order_line_tree_analytic" model="ir.ui.view">
+            <field name="name">purchase.order.line.tree</field>
+            <field name="model">purchase.order.line</field>
+            <field name="inherit_id" ref="purchase.purchase_order_line_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree//field[@name='name']" position="after">
+                    <field name="account_analytic_id" groups="analytic.group_analytic_accounting"/>
+                    <field name="state"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="purchase_order_line_search_analytic" model="ir.ui.view">
+            <field name="name">purchase.order.line.search</field>
+            <field name="model">purchase.order.line</field>
+            <field name="inherit_id" ref="purchase.purchase_order_line_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="//search/field[@name='partner_id']" position="after">
+                    <field name="account_analytic_id" groups="analytic.group_analytic_accounting"/>
+                </xpath>
+            </field>
+        </record>
+
+
+#---------------------------------------------------------------------------------------------------------
+#   Extend menus
+#---------------------------------------------------------------------------------------------------------
+
+        <record id="purchase_line_form_action_3" model="ir.actions.act_window">
+            <field name="name">Purchase Order Lines</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.order.line</field>           
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="purchase_order_line_search_analytic"/>           
+        </record>
+        <record id="purchase_line_form_action_tree3" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="purchase_order_line_tree_analytic"/>
+            <field name="act_window_id" ref="purchase_line_form_action_3"/>
+        </record>
+        <menuitem
+            action="purchase_line_form_action_3"
+            id="menu_purchase_line_order_analytic"
+            parent="purchase.menu_procurement_management"
+            sequence="7"/>
+
+</odoo>
