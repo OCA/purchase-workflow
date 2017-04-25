@@ -49,6 +49,7 @@ Contributors
 * Aaron Henriquez <ahenriquez@eficent.com>
 * Adrien Peiffer <adrien.peiffer@acsone.eu>
 * Thomas Binsfeld <thomas.binsfeld@acsone.eu>
+* Benjamin Willig <benjamin.willig@acsone.eu>
 
 Maintainer
 ----------
