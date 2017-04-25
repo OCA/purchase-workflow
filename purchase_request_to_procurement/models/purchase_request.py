@@ -46,6 +46,15 @@ class PurchaseRequestLine(models.Model):
         :rparam procurement_order_id: id of the created procurement.order
         """
         self.ensure_one()
+        values = self._prepare_procurement_order_values(
+            location_id=location_id, warehouse_id=warehouse_id)
+        procurement_order_id = self.env['procurement.order'].create(values)
+        return procurement_order_id.id
+
+    @api.multi
+    def _prepare_procurement_order_values(
+            self, location_id=None, warehouse_id=None):
+        self.ensure_one()
         r_id = self.request_id
         if not location_id and r_id.location_id:
             location_id = r_id.location_id.id
@@ -61,8 +70,7 @@ class PurchaseRequestLine(models.Model):
             'product_uom': self.product_uom_id.id,
             'date_planned': self.date_required,
         }
-        procurement_order_id = self.env['procurement.order'].create(vals)
-        return procurement_order_id.id
+        return vals
 
     procurement_state = fields.Selection(
         related='procurement_id.state',
