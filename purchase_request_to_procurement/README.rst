@@ -6,7 +6,8 @@
 Purchase Request To Procurements
 ================================
 
-This module introduces the possiblity to create procurement order from purchase request
+This module introduces the possibility to create procurement order from
+purchase request.
 
 
 Configuration
@@ -18,6 +19,15 @@ To configure this module, you need to:
 
 Usage
 =====
+
+To use this module you need to:
+
+#. Go to *Purchase Request*.
+#. Create a purchase request filling the *Warehouse* and *Location* fields.
+#. Request approval and approve it.
+#. Go to *Purchase Request Lines*.
+#. Select a purchase request line and click in *Action > Create Procurement
+   Order*.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
@@ -43,6 +53,8 @@ Contributors
 ------------
 
 * Jonathan Nemry <jonathan.nemry@acsone.eu>
+* Benjamin Willig <benjamin.willig@acsone.eu>
+* Lois Rilo <lois.rilo@eficent.com>
 
 Maintainer
 ----------
