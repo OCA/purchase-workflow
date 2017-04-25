@@ -43,4 +43,13 @@ class TestPurchaseRequest(common.TransactionCase):
         self.assertEqual(
             purchase_request.state, 'draft',
             'Should be in state draft')
+        purchase_request.button_to_approve()
+        purchase_request.button_done()
+        self.assertEqual(
+            purchase_request.is_editable, False,
+            'Should not be editable')
+        purchase_request.button_rejected()
+        self.assertEqual(
+            purchase_request.is_editable, False,
+            'Should not be editable')
         self.purchase_request_line.unlink()

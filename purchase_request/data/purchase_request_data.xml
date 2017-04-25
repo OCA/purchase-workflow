@@ -26,5 +26,11 @@
             <field name="description">Purchase Request Rejected</field>
         </record>
 
+        <record id="mt_request_done" model="mail.message.subtype">
+            <field name="name">Purchase Request done</field>
+            <field name="res_model">purchase.request</field>
+            <field name="default" eval="True"/>
+            <field name="description">Purchase Request done</field>
+        </record>
     </data>
 </openerp>
