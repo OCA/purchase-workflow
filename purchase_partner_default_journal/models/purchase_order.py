@@ -14,7 +14,8 @@ class PurchaseOrder(models.Model):
             result = super(PurchaseOrder, this).onchange_partner_id()
             if not this.partner_id:
                 return result
-            result.journal_id = self.env['res.partner'].browse().default_purchase_journal_id.id
+            result['journal_id'] = self.env[
+                'res.partner'].browse().default_purchase_journal_id.id
             return result
 
     @api.model
