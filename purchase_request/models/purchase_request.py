@@ -9,7 +9,8 @@ _STATES = [
     ('draft', 'Draft'),
     ('to_approve', 'To be approved'),
     ('approved', 'Approved'),
-    ('rejected', 'Rejected')
+    ('rejected', 'Rejected'),
+    ('done', 'Done')
 ]
 
 
@@ -48,7 +49,7 @@ class PurchaseRequest(models.Model):
     @api.depends('state')
     def _compute_is_editable(self):
         for rec in self:
-            if rec.state in ('to_approve', 'approved', 'rejected'):
+            if rec.state in ('to_approve', 'approved', 'rejected', 'done'):
                 rec.is_editable = False
             else:
                 rec.is_editable = True
@@ -62,6 +63,8 @@ class PurchaseRequest(models.Model):
                 return 'purchase_request.mt_request_approved'
             elif 'state' in init_values and rec.state == 'rejected':
                 return 'purchase_request.mt_request_rejected'
+            elif 'state' in init_values and rec.state == 'done':
+                return 'purchase_request.mt_request_done'
         return super(PurchaseRequest, self)._track_subtype(init_values)
 
     name = fields.Char('Request Reference', size=32, required=True,
@@ -182,7 +185,8 @@ class PurchaseRequestLine(models.Model):
                  'analytic_account_id', 'date_required', 'specifications')
     def _compute_is_editable(self):
         for rec in self:
-            if rec.request_id.state in ('to_approve', 'approved', 'rejected'):
+            if rec.request_id.state in ('to_approve', 'approved', 'rejected',
+                                        'done'):
                 rec.is_editable = False
             else:
                 rec.is_editable = True
