@@ -10,7 +10,7 @@
                 <form string="Purchase Request" version="7.0">
                 <header>
                     <button name="button_draft"
-                            states="to_approve,approved,rejected"
+                            states="to_approve,approved,rejected,done"
                             string="Reset"
                             type="object"
                             groups="purchase_request.group_purchase_request_manager"/>
@@ -23,13 +23,19 @@
                             type="object"
                             class="oe_highlight"
                             groups="purchase_request.group_purchase_request_manager"/>
+                    <button name="button_done"
+                            states="approved"
+                            string="Done"
+                            type="object"
+                            class="oe_highlight"
+                            groups="purchase_request.group_purchase_request_manager"/>
                     <button name="button_rejected"
                             states="to_approve,approved"
                             string="Reject"
                             type="object"
                             groups="purchase_request.group_purchase_request_manager"/>
                     <field name="state" widget="statusbar"
-                           statusbar_visible="draft,to_approve,approved,rejected"
+                           statusbar_visible="draft,to_approve,approved,done,rejected"
                            statusbar_colors='{"approved":"blue"}'/>
                 </header>
                 <sheet>
@@ -174,6 +180,9 @@
                     <filter name="state_rejected" string="Rejected"
                             domain="[('state','=','rejected')]"
                             help="Request is rejected"/>
+                    <filter name="state_done" string="Done"
+                            domain="[('state','=','done')]"
+                            help="Request is done"/>
                     <filter string="Unread Messages"
                             name="message_needaction"
                             domain="[('message_needaction','=',True)]"/>
