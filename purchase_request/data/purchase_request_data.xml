@@ -22,7 +22,14 @@
             <field name="name">Purchase Request rejected</field>
             <field name="res_model">purchase.request</field>
             <field name="default" eval="True"/>
-            <field name="description">Purchase Request Rejected</field>
+            <field name="description">Purchase Request rejected</field>
+        </record>
+
+        <record id="mt_request_done" model="mail.message.subtype">
+            <field name="name">Purchase Request done</field>
+            <field name="res_model">purchase.request</field>
+            <field name="default" eval="True"/>
+            <field name="description">Purchase Request is done</field>
         </record>
 
 </odoo>
