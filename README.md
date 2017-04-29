@@ -21,7 +21,7 @@ addon | version | summary
 [product_by_supplier](product_by_supplier/) | 9.0.1.0.0 | Show products grouped by suppliers
 [product_supplierinfo_discount](product_supplierinfo_discount/) | 9.0.1.0.0 | Discounts in product supplier info
 [purchase_delivery_split_date](purchase_delivery_split_date/) | 9.0.1.0.0 | Purchase Deliveries split by date
-[purchase_discount](purchase_discount/) | 9.0.1.0.1 | Purchase order lines with discounts
+[purchase_discount](purchase_discount/) | 9.0.1.1.0 | Purchase order lines with discounts
 [purchase_fiscal_position_update](purchase_fiscal_position_update/) | 9.0.1.0.0 | Changing the fiscal position of a purchase order will auto-update purchase order lines
 [purchase_location_by_line](purchase_location_by_line/) | 9.0.1.0.0 | Allows to define a specific destination location on each PO line
 [purchase_order_type](purchase_order_type/) | 9.0.1.1.0 | Purchase Order Type
