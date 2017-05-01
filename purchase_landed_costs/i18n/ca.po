@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-11 05:42+0000\n"
+"POT-Creation-Date: 2017-03-18 05:29+0000\n"
 "PO-Revision-Date: 2015-09-01 21:20+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/ca/)\n"
@@ -54,7 +54,7 @@ msgstr ""
 #. module: purchase_landed_costs
 #: view:landed.cost.position:0
 msgid "Supplier"
-msgstr ""
+msgstr "Proveïdor "
 
 #. module: purchase_landed_costs
 #: field:landed.cost.position,generate_invoice:0
@@ -172,7 +172,7 @@ msgstr ""
 #. module: purchase_landed_costs
 #: view:landed.cost.position:0
 msgid "Account"
-msgstr ""
+msgstr "Compte"
 
 #. module: purchase_landed_costs
 #: field:landed.cost.distribution.type,name:0 view:landed.cost.position:0

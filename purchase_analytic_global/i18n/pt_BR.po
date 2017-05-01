@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-01 21:19+0000\n"
+"POT-Creation-Date: 2017-03-18 05:29+0000\n"
 "PO-Revision-Date: 2015-09-01 21:19+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/pt_BR/)\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. module: purchase_analytic_global
 #: field:purchase.order,account_analytic_id:0
 msgid "Analytic Account"
-msgstr ""
+msgstr "Conta analítica"
 
 #. module: purchase_analytic_global
 #: help:purchase.order,account_analytic_id:0
