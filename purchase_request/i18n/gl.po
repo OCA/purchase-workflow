@@ -3,14 +3,13 @@
 # * purchase_request
 # 
 # Translators:
-# César Castro Cruz <ulmroan@gmail.com>, 2016
 # OCA Transbot <transbot@odoo-community.org>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-17 00:52+0000\n"
-"PO-Revision-Date: 2016-09-17 00:52+0000\n"
+"POT-Creation-Date: 2017-04-29 01:00+0000\n"
+"PO-Revision-Date: 2017-04-29 01:00+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: Galician (https://www.transifex.com/oca/teams/23907/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -186,6 +185,13 @@ msgstr "Descrición"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_display_name
 msgid "Display Name"
 msgstr ""
+
+#. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
+#: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
+#: selection:purchase.request,state:0
+msgid "Done"
+msgstr "Realizado"
 
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
@@ -387,6 +393,12 @@ msgid "Purchase Request approved"
 msgstr ""
 
 #. module: purchase_request
+#: model:mail.message.subtype,description:purchase_request.mt_request_done
+#: model:mail.message.subtype,name:purchase_request.mt_request_done
+msgid "Purchase Request done"
+msgstr ""
+
+#. module: purchase_request
 #: model:mail.message.subtype,name:purchase_request.mt_request_rejected
 msgid "Purchase Request rejected"
 msgstr ""
@@ -448,6 +460,11 @@ msgstr ""
 #: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Request is approved"
+msgstr ""
+
+#. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
+msgid "Request is done"
 msgstr ""
 
 #. module: purchase_request

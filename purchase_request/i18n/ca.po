@@ -4,14 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
-# Carles Antoli <carlesantoli@hotmail.com>, 2017
+# Marc Tormo i Bochaca <mtbochaca@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-14 05:59+0000\n"
-"PO-Revision-Date: 2017-01-14 05:59+0000\n"
-"Last-Translator: Carles Antoli <carlesantoli@hotmail.com>, 2017\n"
+"POT-Creation-Date: 2017-04-29 01:00+0000\n"
+"PO-Revision-Date: 2017-04-29 01:00+0000\n"
+"Last-Translator: Marc Tormo i Bochaca <mtbochaca@gmail.com>, 2017\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -96,7 +96,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_message_needaction
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "Acció necessària "
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_analytic_account_id
@@ -188,6 +188,13 @@ msgid "Display Name"
 msgstr "Veure el nom"
 
 #. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
+#: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
+#: selection:purchase.request,state:0
+msgid "Done"
+msgstr "Fet"
+
+#. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 #: selection:purchase.request,state:0
@@ -204,13 +211,13 @@ msgstr "Seguidors"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_message_channel_ids
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_message_channel_ids
 msgid "Followers (Channels)"
-msgstr ""
+msgstr "Seguidors (Canals) "
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_message_partner_ids
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_message_partner_ids
 msgid "Followers (Partners)"
-msgstr ""
+msgstr "Seguidors (Empreses) "
 
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
@@ -234,13 +241,13 @@ msgstr "Si està marcat, hi ha nous missatges "
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line_message_needaction
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_message_needaction
 msgid "If checked, new messages require your attention."
-msgstr ""
+msgstr "Si està marcat, els nous missatges volen la vostra atenció. "
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_message_is_follower
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_message_is_follower
 msgid "Is Follower"
-msgstr ""
+msgstr "És seguidor"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_is_editable
@@ -288,19 +295,19 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_message_needaction_counter
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_message_needaction_counter
 msgid "Number of Actions"
-msgstr ""
+msgstr "Número d'accions "
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line_message_needaction_counter
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_message_needaction_counter
 msgid "Number of messages which requires an action"
-msgstr ""
+msgstr "Número de missatges que requereixen una acció "
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line_message_unread_counter
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_message_unread_counter
 msgid "Number of unread messages"
-msgstr ""
+msgstr "Número de missatges no llegits "
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_picking_type_id
@@ -387,6 +394,12 @@ msgid "Purchase Request approved"
 msgstr ""
 
 #. module: purchase_request
+#: model:mail.message.subtype,description:purchase_request.mt_request_done
+#: model:mail.message.subtype,name:purchase_request.mt_request_done
+msgid "Purchase Request done"
+msgstr ""
+
+#. module: purchase_request
 #: model:mail.message.subtype,name:purchase_request.mt_request_rejected
 msgid "Purchase Request rejected"
 msgstr ""
@@ -448,6 +461,11 @@ msgstr ""
 #: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Request is approved"
+msgstr ""
+
+#. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
+msgid "Request is done"
 msgstr ""
 
 #. module: purchase_request
@@ -551,4 +569,4 @@ msgstr "Missatges sense llegir"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_message_unread_counter
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_message_unread_counter
 msgid "Unread Messages Counter"
-msgstr ""
+msgstr "Comptador de missatges sense llegir"
