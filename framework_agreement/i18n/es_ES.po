@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-11 05:24+0000\n"
-"PO-Revision-Date: 2017-02-16 15:55+0000\n"
+"POT-Creation-Date: 2017-04-21 14:33+0000\n"
+"PO-Revision-Date: 2017-04-25 10:42+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (Spain) (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/es_ES/)\n"
 "MIME-Version: 1.0\n"
@@ -80,7 +80,7 @@ msgstr "Compañías"
 #: field:framework.agreement,company_id:0
 #: field:framework.agreement.portfolio,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Compañía"
 
 #. module: framework_agreement
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view
@@ -141,7 +141,7 @@ msgstr "Nombre para mostrar"
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view
 #: selection:framework.agreement,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Borrador"
 
 #. module: framework_agreement
 #: field:framework.agreement,end_date:0

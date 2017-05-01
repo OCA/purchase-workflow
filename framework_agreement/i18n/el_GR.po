@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-04 05:41+0000\n"
-"PO-Revision-Date: 2017-03-06 09:10+0000\n"
+"POT-Creation-Date: 2017-04-21 14:33+0000\n"
+"PO-Revision-Date: 2017-04-25 10:40+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Greek (Greece) (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/el_GR/)\n"
 "MIME-Version: 1.0\n"
@@ -80,7 +80,7 @@ msgstr "Εταιρίες"
 #: field:framework.agreement,company_id:0
 #: field:framework.agreement.portfolio,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Εταιρεία"
 
 #. module: framework_agreement
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view

@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-12 12:13+0000\n"
-"PO-Revision-Date: 2017-03-12 12:13+0000\n"
+"POT-Creation-Date: 2017-04-21 14:34+0000\n"
+"PO-Revision-Date: 2017-04-21 14:34+0000\n"
 "Last-Translator: Marc Tormo i Bochaca <mtbochaca@gmail.com>, 2017\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -74,7 +74,7 @@ msgstr "Cancel·la"
 #. module: purchase_request_to_requisition
 #: selection:purchase.request.line,requisition_state:0
 msgid "Cancelled"
-msgstr ""
+msgstr "Cancel·lat "
 
 #. module: purchase_request_to_requisition
 #: selection:purchase.request.line,requisition_state:0
@@ -118,7 +118,7 @@ msgstr "Veure el nom"
 #. module: purchase_request_to_requisition
 #: selection:purchase.request.line,requisition_state:0
 msgid "Draft"
-msgstr ""
+msgstr "Esborrany"
 
 #. module: purchase_request_to_requisition
 #: code:addons/purchase_request_to_requisition/wizard/purchase_request_line_make_purchase_requisition.py:96

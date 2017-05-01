@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-16 12:06+0000\n"
-"PO-Revision-Date: 2016-11-16 12:06+0000\n"
+"POT-Creation-Date: 2017-04-21 14:34+0000\n"
+"PO-Revision-Date: 2017-04-21 14:34+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: Mongolian (https://www.transifex.com/oca/teams/23907/mn/)\n"
 "MIME-Version: 1.0\n"
@@ -71,7 +71,7 @@ msgstr ""
 #: field:purchase.request,company_id:0
 #: field:purchase.request.line,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Компани"
 
 #. module: purchase_request
 #: field:purchase.request,create_uid:0
@@ -130,7 +130,7 @@ msgstr "Дэлгэцийн Нэр"
 #: selection:purchase.request,state:0
 #: view:purchase.request.line:purchase_request.purchase_request_line_search
 msgid "Draft"
-msgstr ""
+msgstr "Ноорог"
 
 #. module: purchase_request
 #: field:purchase.request,message_follower_ids:0
@@ -462,7 +462,7 @@ msgstr ""
 #. module: purchase_request
 #: field:purchase.request,state:0
 msgid "Status"
-msgstr ""
+msgstr "Төлөв"
 
 #. module: purchase_request
 #: field:purchase.request,message_summary:0

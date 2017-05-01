@@ -4,14 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
-# Akim Juillerat <akim@grindingrebellion.com>, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-09 09:32+0000\n"
-"PO-Revision-Date: 2016-12-09 09:32+0000\n"
-"Last-Translator: Akim Juillerat <akim@grindingrebellion.com>, 2016\n"
+"POT-Creation-Date: 2017-04-21 14:34+0000\n"
+"PO-Revision-Date: 2017-04-21 14:34+0000\n"
+"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>, 2017\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -74,7 +74,7 @@ msgstr "Abbrechen"
 #. module: purchase_request_to_requisition
 #: selection:purchase.request.line,requisition_state:0
 msgid "Cancelled"
-msgstr ""
+msgstr "Storniert"
 
 #. module: purchase_request_to_requisition
 #: selection:purchase.request.line,requisition_state:0
@@ -107,7 +107,7 @@ msgstr "Beschreibung"
 #. module: purchase_request_to_requisition
 #: view:purchase.request.line.make.purchase.requisition:purchase_request_to_requisition.view_purchase_request_line_make_purchase_requisition
 msgid "Details"
-msgstr ""
+msgstr "Details"
 
 #. module: purchase_request_to_requisition
 #: field:purchase.request.line.make.purchase.requisition,display_name:0
@@ -145,7 +145,7 @@ msgstr "ID"
 #. module: purchase_request_to_requisition
 #: field:purchase.request.line.make.purchase.requisition,item_ids:0
 msgid "Items"
-msgstr ""
+msgstr "Posten"
 
 #. module: purchase_request_to_requisition
 #: field:purchase.request.line.make.purchase.requisition,__last_update:0
@@ -293,7 +293,7 @@ msgstr ""
 #. module: purchase_request_to_requisition
 #: field:purchase.request.line.make.purchase.requisition.item,product_uom_id:0
 msgid "UoM"
-msgstr ""
+msgstr "ME"
 
 #. module: purchase_request_to_requisition
 #: field:purchase.request.line.make.purchase.requisition.item,wiz_id:0

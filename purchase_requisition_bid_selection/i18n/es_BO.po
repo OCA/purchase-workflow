@@ -10,11 +10,11 @@ msgstr ""
 "POT-Creation-Date: 2017-04-21 14:34+0000\n"
 "PO-Revision-Date: 2016-03-08 10:17+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: Portuguese (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/pt/)\n"
+"Language-Team: Spanish (Bolivia) (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/es_BO/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: pt\n"
+"Language: es_BO\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: purchase_requisition_bid_selection
@@ -165,7 +165,7 @@ msgstr ""
 #: view:update.bid.internal.remark:purchase_requisition_bid_selection.view_update_bid_internal_remark
 #: view:update.remark:purchase_requisition_bid_selection.view_update_remark
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr ""
 
 #. module: purchase_requisition_bid_selection
 #: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
@@ -231,7 +231,7 @@ msgstr ""
 #: field:update.bid.internal.remark,create_uid:0
 #: field:update.remark,create_uid:0
 msgid "Created by"
-msgstr "Criado por"
+msgstr ""
 
 #. module: purchase_requisition_bid_selection
 #: field:purchase.action_modal.ask_selection_reasons,create_date:0
@@ -239,7 +239,7 @@ msgstr "Criado por"
 #: field:update.bid.internal.remark,create_date:0
 #: field:update.remark,create_date:0
 msgid "Created on"
-msgstr "Criado em"
+msgstr ""
 
 #. module: purchase_requisition_bid_selection
 #: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
@@ -287,7 +287,7 @@ msgstr ""
 #: field:update.bid.internal.remark,display_name:0
 #: field:update.remark,display_name:0
 msgid "Display Name"
-msgstr "Nome"
+msgstr ""
 
 #. module: purchase_requisition_bid_selection
 #: view:purchase.order.line:purchase_requisition_bid_selection.view_purchase_order_line_search
@@ -348,7 +348,7 @@ msgstr ""
 #: field:purchase.action_modal.ask_validity,id:0
 #: field:update.bid.internal.remark,id:0 field:update.remark,id:0
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: purchase_requisition_bid_selection
 #: view:purchase.order.line:purchase_requisition_bid_selection.view_purchase_order_line_search
@@ -409,7 +409,7 @@ msgstr ""
 #: field:update.bid.internal.remark,__last_update:0
 #: field:update.remark,__last_update:0
 msgid "Last Modified on"
-msgstr "Modificado a última vez por"
+msgstr ""
 
 #. module: purchase_requisition_bid_selection
 #: field:purchase.action_modal.ask_selection_reasons,write_uid:0
@@ -417,7 +417,7 @@ msgstr "Modificado a última vez por"
 #: field:update.bid.internal.remark,write_uid:0
 #: field:update.remark,write_uid:0
 msgid "Last Updated by"
-msgstr "Atualizado pela última vez por"
+msgstr ""
 
 #. module: purchase_requisition_bid_selection
 #: field:purchase.action_modal.ask_selection_reasons,write_date:0
@@ -425,7 +425,7 @@ msgstr "Atualizado pela última vez por"
 #: field:update.bid.internal.remark,write_date:0
 #: field:update.remark,write_date:0
 msgid "Last Updated on"
-msgstr "Atualizado pela última vez em"
+msgstr ""
 
 #. module: purchase_requisition_bid_selection
 #: view:purchase.order.line:purchase_requisition_bid_selection.view_purchase_order_line_search
@@ -533,7 +533,7 @@ msgstr ""
 #. module: purchase_requisition_bid_selection
 #: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
 msgid "Quantity"
-msgstr "Quantidade"
+msgstr ""
 
 #. module: purchase_requisition_bid_selection
 #: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
@@ -832,7 +832,7 @@ msgstr ""
 #: view:update.bid.internal.remark:purchase_requisition_bid_selection.view_update_bid_internal_remark
 #: view:update.remark:purchase_requisition_bid_selection.view_update_remark
 msgid "or"
-msgstr "ou"
+msgstr ""
 
 #. module: purchase_requisition_bid_selection
 #: view:purchase.order:purchase_requisition_bid_selection.view_purchase_order_form

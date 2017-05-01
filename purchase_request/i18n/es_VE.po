@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-16 12:06+0000\n"
-"PO-Revision-Date: 2016-11-16 12:06+0000\n"
+"POT-Creation-Date: 2017-04-21 14:34+0000\n"
+"PO-Revision-Date: 2017-04-21 14:34+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: Spanish (Venezuela) (https://www.transifex.com/oca/teams/23907/es_VE/)\n"
 "MIME-Version: 1.0\n"
@@ -130,7 +130,7 @@ msgstr "Mostrar nombre"
 #: selection:purchase.request,state:0
 #: view:purchase.request.line:purchase_request.purchase_request_line_search
 msgid "Draft"
-msgstr ""
+msgstr "Borrador"
 
 #. module: purchase_request
 #: field:purchase.request,message_follower_ids:0

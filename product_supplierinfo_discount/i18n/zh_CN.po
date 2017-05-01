@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-17 04:15+0000\n"
-"PO-Revision-Date: 2016-12-23 11:34+0000\n"
+"POT-Creation-Date: 2017-04-21 14:33+0000\n"
+"PO-Revision-Date: 2017-04-11 06:27+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. module: product_supplierinfo_discount
 #: field:pricelist.partnerinfo,discount:0
 msgid "Discount (%)"
-msgstr ""
+msgstr "折扣（%）"
 
 #. module: product_supplierinfo_discount
 #: model:ir.model,name:product_supplierinfo_discount.model_procurement_order

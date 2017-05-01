@@ -3,19 +3,19 @@
 # * purchase_request
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2016
+# OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-21 14:34+0000\n"
 "PO-Revision-Date: 2017-04-21 14:34+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
-"Language-Team: Norwegian Bokmål (https://www.transifex.com/oca/teams/23907/nb/)\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Catalan (Spain) (https://www.transifex.com/oca/teams/23907/ca_ES/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: nb\n"
+"Language: ca_ES\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: purchase_request
@@ -71,19 +71,19 @@ msgstr ""
 #: field:purchase.request,company_id:0
 #: field:purchase.request.line,company_id:0
 msgid "Company"
-msgstr "Firma"
+msgstr "Companyia"
 
 #. module: purchase_request
 #: field:purchase.request,create_uid:0
 #: field:purchase.request.line,create_uid:0
 msgid "Created by"
-msgstr "Opprettet av"
+msgstr ""
 
 #. module: purchase_request
 #: field:purchase.request,create_date:0
 #: field:purchase.request.line,create_date:0
 msgid "Created on"
-msgstr "Opprettet den"
+msgstr ""
 
 #. module: purchase_request
 #: view:website:purchase_request.report_purchaserequests
@@ -99,7 +99,7 @@ msgstr ""
 #: help:purchase.request,message_last_post:0
 #: help:purchase.request.line,message_last_post:0
 msgid "Date of the last message posted on the record."
-msgstr "Dato for siste melding på denne posten."
+msgstr ""
 
 #. module: purchase_request
 #: help:purchase.request,date_start:0 help:purchase.request.line,date_start:0
@@ -112,7 +112,7 @@ msgstr ""
 #: field:purchase.request.line,name:0
 #: view:website:purchase_request.report_purchaserequests
 msgid "Description"
-msgstr "Beskrivelse"
+msgstr ""
 
 #. module: purchase_request
 #: view:website:purchase_request.report_purchaserequests
@@ -123,26 +123,26 @@ msgstr ""
 #: field:purchase.request,display_name:0
 #: field:purchase.request.line,display_name:0
 msgid "Display Name"
-msgstr "Visnings navn"
+msgstr ""
 
 #. module: purchase_request
 #: view:purchase.request:purchase_request.view_purchase_request_search
 #: selection:purchase.request,state:0
 #: view:purchase.request.line:purchase_request.purchase_request_line_search
 msgid "Draft"
-msgstr "Utkast"
+msgstr ""
 
 #. module: purchase_request
 #: field:purchase.request,message_follower_ids:0
 #: field:purchase.request.line,message_follower_ids:0
 msgid "Followers"
-msgstr "Følgere."
+msgstr ""
 
 #. module: purchase_request
 #: view:purchase.request:purchase_request.view_purchase_request_search
 #: view:purchase.request.line:purchase_request.purchase_request_line_search
 msgid "Group By..."
-msgstr "Grupper etter ..."
+msgstr ""
 
 #. module: purchase_request
 #: help:purchase.request,message_summary:0
@@ -155,13 +155,13 @@ msgstr ""
 #. module: purchase_request
 #: field:purchase.request,id:0 field:purchase.request.line,id:0
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: purchase_request
 #: help:purchase.request,message_unread:0
 #: help:purchase.request.line,message_unread:0
 msgid "If checked new messages require your attention."
-msgstr "Hvis det er merket nye meldinger så krever dette din oppmerksomhet."
+msgstr ""
 
 #. module: purchase_request
 #: field:purchase.request,message_is_follower:0
@@ -179,36 +179,36 @@ msgstr ""
 #: field:purchase.request,message_last_post:0
 #: field:purchase.request.line,message_last_post:0
 msgid "Last Message Date"
-msgstr "Siste meldingsdato"
+msgstr ""
 
 #. module: purchase_request
 #: field:purchase.request,__last_update:0
 #: field:purchase.request.line,__last_update:0
 msgid "Last Modified on"
-msgstr "Sist oppdatert "
+msgstr ""
 
 #. module: purchase_request
 #: field:purchase.request,write_uid:0 field:purchase.request.line,write_uid:0
 msgid "Last Updated by"
-msgstr "Sist oppdatert av"
+msgstr ""
 
 #. module: purchase_request
 #: field:purchase.request,write_date:0
 #: field:purchase.request.line,write_date:0
 msgid "Last Updated on"
-msgstr "Sist oppdatert"
+msgstr ""
 
 #. module: purchase_request
 #: field:purchase.request,message_ids:0
 #: field:purchase.request.line,message_ids:0
 msgid "Messages"
-msgstr "Meldinger."
+msgstr ""
 
 #. module: purchase_request
 #: help:purchase.request,message_ids:0
 #: help:purchase.request.line,message_ids:0
 msgid "Messages and communication history"
-msgstr "Meldinger og kommunikasjon historie."
+msgstr ""
 
 #. module: purchase_request
 #: field:purchase.request,picking_type_id:0
@@ -460,7 +460,7 @@ msgstr ""
 #. module: purchase_request
 #: field:purchase.request,state:0
 msgid "Status"
-msgstr "Status"
+msgstr "Estat"
 
 #. module: purchase_request
 #: field:purchase.request,message_summary:0
@@ -493,4 +493,4 @@ msgstr ""
 #: field:purchase.request,message_unread:0
 #: field:purchase.request.line,message_unread:0
 msgid "Unread Messages"
-msgstr "Uleste meldinger."
+msgstr ""

@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-04 05:41+0000\n"
-"PO-Revision-Date: 2017-03-10 13:16+0000\n"
+"POT-Creation-Date: 2017-04-21 14:34+0000\n"
+"PO-Revision-Date: 2017-04-20 12:24+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -483,7 +483,7 @@ msgstr "Optionen"
 #. module: purchase_requisition_bid_selection
 #: field:purchase.order.line,payment_term_id:0
 msgid "Payment Term"
-msgstr ""
+msgstr "Zahlungsbedingung"
 
 #. module: purchase_requisition_bid_selection
 #: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
@@ -730,12 +730,12 @@ msgstr ""
 #. module: purchase_requisition_bid_selection
 #: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
 msgid "Unit Price"
-msgstr ""
+msgstr "Einzelpreis"
 
 #. module: purchase_requisition_bid_selection
 #: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
 msgid "Unit price"
-msgstr ""
+msgstr "Einzelpreis"
 
 #. module: purchase_requisition_bid_selection
 #: model:ir.actions.act_window,name:purchase_requisition_bid_selection.action_update_bid_internal_remark

@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-04 05:41+0000\n"
-"PO-Revision-Date: 2017-03-04 05:41+0000\n"
+"POT-Creation-Date: 2017-04-21 14:34+0000\n"
+"PO-Revision-Date: 2017-04-21 14:34+0000\n"
 "Last-Translator: Rudolf Schnapka <rs@techno-flex.de>, 2017\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "MIME-Version: 1.0\n"
@@ -94,7 +94,7 @@ msgstr ""
 #. module: purchase_request
 #: field:purchase.request,date_start:0
 msgid "Creation date"
-msgstr ""
+msgstr "Anlagedatum"
 
 #. module: purchase_request
 #: help:purchase.request,message_last_post:0
@@ -217,7 +217,7 @@ msgstr "Meldungs- und Kommunikationsverlauf"
 #. module: purchase_request
 #: field:purchase.request,picking_type_id:0
 msgid "Picking Type"
-msgstr ""
+msgstr "Kommissionierungsart"
 
 #. module: purchase_request
 #: view:website:purchase_request.report_purchaserequests
@@ -359,7 +359,7 @@ msgstr "Abgelehnt"
 #: field:purchase.request.line,date_required:0
 #: field:purchase.request.line,date_start:0
 msgid "Request Date"
-msgstr ""
+msgstr "Anforderungsdatum"
 
 #. module: purchase_request
 #: field:purchase.request,name:0

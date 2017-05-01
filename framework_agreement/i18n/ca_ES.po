@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-21 14:33+0000\n"
-"PO-Revision-Date: 2017-04-25 10:39+0000\n"
+"PO-Revision-Date: 2017-04-25 10:41+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Arabic (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/ar/)\n"
+"Language-Team: Catalan (Spain) (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/ca_ES/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ar\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"Language: ca_ES\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: framework_agreement
 #: field:framework.agreement.pricelist,framework_agreement_id:0
@@ -74,13 +74,13 @@ msgstr ""
 #. module: framework_agreement
 #: model:ir.model,name:framework_agreement.model_res_company
 msgid "Companies"
-msgstr "الشركات"
+msgstr ""
 
 #. module: framework_agreement
 #: field:framework.agreement,company_id:0
 #: field:framework.agreement.portfolio,company_id:0
 msgid "Company"
-msgstr "الشركة"
+msgstr "Companyia"
 
 #. module: framework_agreement
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view
@@ -94,7 +94,7 @@ msgstr ""
 #: field:framework.agreement.portfolio,create_uid:0
 #: field:framework.agreement.pricelist,create_uid:0
 msgid "Created by"
-msgstr "أنشئ بواسطة"
+msgstr ""
 
 #. module: framework_agreement
 #: field:framework.agreement,create_date:0
@@ -102,7 +102,7 @@ msgstr "أنشئ بواسطة"
 #: field:framework.agreement.portfolio,create_date:0
 #: field:framework.agreement.pricelist,create_date:0
 msgid "Created on"
-msgstr "أنشئ في"
+msgstr ""
 
 #. module: framework_agreement
 #: field:framework.agreement.pricelist,currency_id:0
@@ -135,13 +135,13 @@ msgstr ""
 #: field:framework.agreement.portfolio,display_name:0
 #: field:framework.agreement.pricelist,display_name:0
 msgid "Display Name"
-msgstr "اسم العرض"
+msgstr ""
 
 #. module: framework_agreement
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view
 #: selection:framework.agreement,state:0
 msgid "Draft"
-msgstr "مسوّدة"
+msgstr ""
 
 #. module: framework_agreement
 #: field:framework.agreement,end_date:0
@@ -188,14 +188,14 @@ msgstr ""
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view
 #: view:framework.agreement.portfolio:framework_agreement.portfolio_search_view
 msgid "Group By"
-msgstr "تجميع حسب"
+msgstr ""
 
 #. module: framework_agreement
 #: field:framework.agreement,id:0 field:framework.agreement.line,id:0
 #: field:framework.agreement.portfolio,id:0
 #: field:framework.agreement.pricelist,id:0
 msgid "ID"
-msgstr "المعرف"
+msgstr ""
 
 #. module: framework_agreement
 #: help:res.company,one_agreement_per_product:0
@@ -238,7 +238,7 @@ msgstr ""
 #: field:framework.agreement.portfolio,__last_update:0
 #: field:framework.agreement.pricelist,__last_update:0
 msgid "Last Modified on"
-msgstr "آخر تعديل في"
+msgstr ""
 
 #. module: framework_agreement
 #: field:framework.agreement,write_uid:0
@@ -246,7 +246,7 @@ msgstr "آخر تعديل في"
 #: field:framework.agreement.portfolio,write_uid:0
 #: field:framework.agreement.pricelist,write_uid:0
 msgid "Last Updated by"
-msgstr "آخر تحديث بواسطة"
+msgstr ""
 
 #. module: framework_agreement
 #: field:framework.agreement,write_date:0
@@ -254,7 +254,7 @@ msgstr "آخر تحديث بواسطة"
 #: field:framework.agreement.portfolio,write_date:0
 #: field:framework.agreement.pricelist,write_date:0
 msgid "Last Updated on"
-msgstr "آخر تحديث في"
+msgstr ""
 
 #. module: framework_agreement
 #: field:framework.agreement,delay:0
@@ -278,7 +278,7 @@ msgstr ""
 #. module: framework_agreement
 #: field:framework.agreement.portfolio,name:0
 msgid "Name"
-msgstr "الاسم"
+msgstr ""
 
 #. module: framework_agreement
 #: field:framework.agreement.line,price:0

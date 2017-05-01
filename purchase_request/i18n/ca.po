@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-12 12:13+0000\n"
-"PO-Revision-Date: 2017-03-12 12:13+0000\n"
+"POT-Creation-Date: 2017-04-21 14:34+0000\n"
+"PO-Revision-Date: 2017-04-21 14:34+0000\n"
 "Last-Translator: Marc Tormo i Bochaca <mtbochaca@gmail.com>, 2017\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -131,13 +131,13 @@ msgstr "Veure el nom"
 #: selection:purchase.request,state:0
 #: view:purchase.request.line:purchase_request.purchase_request_line_search
 msgid "Draft"
-msgstr ""
+msgstr "Esborrany"
 
 #. module: purchase_request
 #: field:purchase.request,message_follower_ids:0
 #: field:purchase.request.line,message_follower_ids:0
 msgid "Followers"
-msgstr ""
+msgstr "Seguidors"
 
 #. module: purchase_request
 #: view:purchase.request:purchase_request.view_purchase_request_search
@@ -203,7 +203,7 @@ msgstr "Darrera Actualització el"
 #: field:purchase.request,message_ids:0
 #: field:purchase.request.line,message_ids:0
 msgid "Messages"
-msgstr ""
+msgstr "Missatges"
 
 #. module: purchase_request
 #: help:purchase.request,message_ids:0
@@ -461,7 +461,7 @@ msgstr ""
 #. module: purchase_request
 #: field:purchase.request,state:0
 msgid "Status"
-msgstr ""
+msgstr "Estat"
 
 #. module: purchase_request
 #: field:purchase.request,message_summary:0

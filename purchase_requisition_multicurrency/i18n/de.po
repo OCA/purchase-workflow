@@ -22,8 +22,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-04 05:41+0000\n"
-"PO-Revision-Date: 2017-03-04 21:38+0000\n"
+"POT-Creation-Date: 2017-04-21 14:34+0000\n"
+"PO-Revision-Date: 2017-04-10 14:34+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -84,7 +84,7 @@ msgstr ""
 #. module: purchase_requisition_multicurrency
 #: field:purchase.order.line,price_unit_co:0
 msgid "Unit Price"
-msgstr ""
+msgstr "Einzelpreis"
 
 #. module: purchase_requisition_multicurrency
 #: help:purchase.order.line,price_unit_co:0

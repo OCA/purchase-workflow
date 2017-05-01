@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-12 12:13+0000\n"
-"PO-Revision-Date: 2017-03-14 18:33+0000\n"
+"POT-Creation-Date: 2017-04-21 14:33+0000\n"
+"PO-Revision-Date: 2017-04-25 10:39+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -74,7 +74,7 @@ msgstr ""
 #. module: framework_agreement
 #: model:ir.model,name:framework_agreement.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Empreses"
 
 #. module: framework_agreement
 #: field:framework.agreement,company_id:0
@@ -141,7 +141,7 @@ msgstr "Veure el nom"
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view
 #: selection:framework.agreement,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Esborrany"
 
 #. module: framework_agreement
 #: field:framework.agreement,end_date:0
@@ -424,7 +424,7 @@ msgstr "Estat"
 #: view:framework.agreement.portfolio:framework_agreement.portfolio_search_view
 #: field:framework.agreement.portfolio,supplier_id:0
 msgid "Supplier"
-msgstr ""
+msgstr "Proveïdor "
 
 #. module: framework_agreement
 #: sql_constraint:framework.agreement.portfolio:0
