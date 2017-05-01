@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-23 16:23+0000\n"
-"PO-Revision-Date: 2017-02-25 00:44+0000\n"
+"POT-Creation-Date: 2017-04-21 14:33+0000\n"
+"PO-Revision-Date: 2017-04-19 11:44+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -108,7 +108,7 @@ msgstr "Produkt"
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator.line,qty_available:0
 msgid "Quantity Available"
-msgstr ""
+msgstr "Verfügbare Menge"
 
 #. module: procurement_batch_generator
 #: model:ir.actions.act_window,name:procurement_batch_generator.procurement_batch_generator_tree_action
