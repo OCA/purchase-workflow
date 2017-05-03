@@ -56,11 +56,6 @@ class PurchaseOrder(models.Model):
         related='state',
         help="A dummy state used for Quotation",
     )
-    invoice_method = fields.Selection(
-        [('manual', 'Based on Purchase Order lines'),
-         ('order', 'Based on generated draft invoice'),
-         ('picking', 'Based on incoming shipments'), ]
-    )
 
     @api.model
     def create(self, vals):

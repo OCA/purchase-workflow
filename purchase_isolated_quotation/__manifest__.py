@@ -27,7 +27,7 @@ This module separate quotation and purchase order
 by adding order_type as 'quotation' or 'purchase_order' in purchase.order model.
 
 Quotation will have only 2 state, Draft and Done.
-Sales Order state will be as normal.
+Purchase Order state will be as normal.
     """,
     'website': 'http://ecosoft.co.th',
     'depends': ['purchase', ],
