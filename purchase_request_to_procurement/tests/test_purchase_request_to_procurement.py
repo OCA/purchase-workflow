@@ -32,10 +32,13 @@ class TestPurchaseRequestToProcurement(TransactionCase):
             p_order.name,
             purchase_request.name,
             'Should have the same name')
-        self.assertFalse(
-            p_order.location_id, 'Should not have location')
-        self.assertFalse(
-            p_order.warehouse_id, 'Should not have warehouse')
+        self.assertTrue(
+            p_order.location_id, 'Procurements must be created with a '
+                                 'location always. Even if not explicitly '
+                                 'defined.')
+        self.assertTrue(
+            p_order.warehouse_id, 'Procurements must be created with a '
+                                  'warehouse always.')
         vals = {
             'location_id': self.env['stock.location'].search([], limit=1).id,
             'warehouse_id': self.env['stock.warehouse'].search([], limit=1).id,
