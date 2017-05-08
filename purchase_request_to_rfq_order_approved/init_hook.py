@@ -10,10 +10,10 @@ logger = logging.getLogger(__name__)
 
 def post_init_hook(cr, registry):
     """
-    The objective of this hook is to update the field purchase_state in 
+    The objective of this hook is to update the field purchase_state in
     existing purchase request lines
     """
-    update_field_purchase_state(cr )
+    update_field_purchase_state(cr)
 
 
 def update_field_purchase_state(cr):
