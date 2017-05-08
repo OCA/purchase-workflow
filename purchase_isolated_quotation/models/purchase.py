@@ -87,7 +87,7 @@ class PurchaseOrder(models.Model):
             'view_mode': 'form',
             'view_id': False,
             'res_model': 'purchase.order',
-            'context': { 'order_type': 'purchase_order', },
+            'context': {'order_type': 'purchase_order', },
             'type': 'ir.actions.act_window',
             'nodestroy': False,
             'target': 'current',
