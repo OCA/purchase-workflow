@@ -9,14 +9,14 @@ class PurchaseRequest(models.Model):
 
     _inherit = 'purchase.request'
 
-    @api.onchange('warehouse_id')
-    def onchange_warehouse_id(self):
+    @api.onchange('picking_type_id', 'warehouse_id')
+    def onchange_picking_type_id(self):
+        """Fill the warehouse and the location with the defaults of the
+        selected picking type.
         """
-        When changing the warehouse: take the related lot_stock_id just
-        like Odoo does into stock.procurement
-        """
-        if self.warehouse_id:
-            self.location_id = self.warehouse_id.lot_stock_id.id
+        if self.picking_type_id:
+            self.warehouse_id = self.picking_type_id.warehouse_id
+            self.location_id = self.picking_type_id.default_location_dest_id
 
     location_id = fields.Many2one(
         comodel_name='stock.location', string='Location',
@@ -60,6 +60,10 @@ class PurchaseRequestLine(models.Model):
             location_id = r_id.location_id.id
         if not warehouse_id and r_id.warehouse_id:
             warehouse_id = r_id.warehouse_id.id
+        # Totally ensure that you have a location:
+        if not location_id:
+            warehouse_id = r_id.picking_type_id.warehouse_id.id
+            location_id = r_id.picking_type_id.default_location_dest_id.id
         name = self.name or r_id.name
         vals = {
             'name': name,
