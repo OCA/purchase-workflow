@@ -13,7 +13,7 @@ Usage
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/repo/github-com-oca-purchase-workflow-142
+   :target: https://runbot.odoo-community.org/runbot/142/9.0
 
 
 Bug Tracker
@@ -31,7 +31,7 @@ Credits
 Contributors
 ------------
 
-Gisela Mora gisela.mora@eficent.com
+Gisela Mora <gisela.mora@eficent.com>
 Eficent. http://www.eficent.com/
 
 
