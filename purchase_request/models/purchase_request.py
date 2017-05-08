@@ -244,7 +244,7 @@ class PurchaseRequestLine(models.Model):
 
     procurement_id = fields.Many2one('procurement.order',
                                      'Procurement Order',
-                                     readonly=True)
+                                     readonly=True, copy=False)
 
     @api.onchange('product_id')
     def onchange_product_id(self):
