@@ -10,7 +10,7 @@
                     <button name="add_product"
                             string="Add product"
                             type="object"
-                            attrs="{'invisible': ['|', ('lock','=', True), ('state', 'not in', ('draft', 'sent'))]}"
+                            attrs="{'invisible': [('state', 'not in', ('draft', 'sent'))]}"
                             class="oe_highlight"/>
                 </field>
                 <field name="order_line" position="attributes">
