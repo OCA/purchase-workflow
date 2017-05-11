@@ -41,7 +41,8 @@ class TestPurchaseIsolatedQuotation(TransactionCase):
     def setUp(self):
         super(TestPurchaseIsolatedQuotation, self).setUp()
         self.partner = self.env.ref('base.res_partner_2')
-        vals = {'partner_id': self.partner.id,
-                'order_type': 'quotation',
-                }
+        vals = {
+            'partner_id': self.partner.id,
+            'order_type': 'quotation',
+        }
         self.quotation = self.env['purchase.order'].create(vals)
