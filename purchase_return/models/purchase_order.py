@@ -10,12 +10,11 @@ from openerp import api, models, fields
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
-    type = fields.Selection([
-            ('purchase', 'Purchase Order'),
-            ('return', 'Return PO'),
-        ], readonly=True, index=True, change_default=True,
-        default=lambda self: self.env.context.get('type', 'purchase'),
-        track_visibility='always')
+    type = fields.Selection([('purchase', 'Purchase Order'),
+                             ('return', 'Return PO')],
+                            readonly=True, index=True, change_default=True,
+                            default=lambda self: self.env.context.
+                            get('type', 'purchase'), track_visibility='always')
 
     @api.multi
     def action_view_invoice_refund(self):
@@ -28,8 +27,8 @@ class PurchaseOrder(models.Model):
         result = action.read()[0]
         refunds = self.invoice_ids.filtered(lambda x: x.type == 'in_refund')
         # override the context to get rid of the default filtering
-        result['context'] = {'type': 'in_refund', 'default_purchase_id':
-            self.id}
+        result['context'] = {'type': 'in_refund',
+                             'default_purchase_id': self.id}
 
         if not refunds:
             # Choose a default account journal in the
@@ -72,7 +71,7 @@ class PurchaseOrder(models.Model):
         if self.env.context.get('type', False) == 'return':
             type_obj = self.env['stock.picking.type']
             company_id = self.env.context.get('company_id') or \
-                         self.env.user.company_id.id
+                self.env.user.company_id.id
             types = type_obj.search([('code', '=', 'outgoing'),
                                      ('warehouse_id.company_id', '=',
                                       company_id)])

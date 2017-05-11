@@ -8,7 +8,7 @@ Purchase Invoice Status
 
 This module extends the functionality of purchase orders in order to handle
 the invoice status in purchase orders equivalently of how it is done in sales
- orders.
+orders.
 
 Usage
 =====

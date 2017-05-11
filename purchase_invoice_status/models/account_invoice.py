@@ -4,7 +4,7 @@
 #           <contact@eficent.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import api, models, fields
+from openerp import api, models
 
 
 class AccountInvoice(models.Model):
@@ -12,10 +12,10 @@ class AccountInvoice(models.Model):
 
     @api.onchange('state', 'partner_id', 'invoice_line_ids')
     def _onchange_allowed_purchase_ids(self):
-        '''
+        """
         The purpose of the method is to define a domain for the available
         purchase orders.
-        '''
+        """
         result = super(AccountInvoice, self)._onchange_allowed_purchase_ids()
         result['domain']['purchase_id'] += [
             ('state', 'not in', ['done', 'cancel'])]
