@@ -8,8 +8,8 @@
                 <form string="Products">
                     <!-- Part1. context['mode']=product : select first the desired products-->
                     <group invisible="context.get('mode') != 'product'">
-                        <field name="partner_id" invisible="1"/>
-                        <field name="products" domain="[('seller_ids.name', 'in', [partner_id])]" nolabel="1"/>
+                        <field name="products"
+                               domain="[('seller_ids.name', 'in', [partner_id])]" nolabel="1"/>
                     </group>
                     <!-- Part2. context['mode']=quantity : secondly select
                         the corresponding quantity for each previously selected products-->
@@ -20,6 +20,9 @@
                                 <field name="quantity"/>
                             </tree>
                         </field>
+                    </group>
+                    <group name="technical">
+                        <field name="partner_id" invisible="1"/>
                     </group>
                     <footer>
                         <button name="create_items" string="Set quantities" type="object"

@@ -7,11 +7,11 @@ import openerp.tests.common as common
 class TestPurchase(common.TransactionCase):
 
     def setUp(self):
-        super(TestPurchase, self).setUp(self)
+        super(TestPurchase, self).setUp()
         self.model_pip = self.env['purchase.import.products']
-        self.product_35 = self.env.ref("product.product_product_35")
-        self.product_36 = self.env.ref("product.product_product_36")
-        self.supplier = self.env.ref("base.res_partner_8")
+        self.product_35 = self.env.ref("product.product_product_9")
+        self.product_36 = self.env.ref("product.product_product_11")
+        self.supplier = self.env.ref("base.res_partner_12")
 
     def test_import_product_no_quantity(self):
         """ Create PO
@@ -21,8 +21,6 @@ class TestPurchase(common.TransactionCase):
 
         po = self.env["purchase.order"].create({
             'partner_id': self.supplier.id,
-            'location_id': self.env.ref("stock.stock_location_stock").id,
-            'pricelist_id': self.env.ref('purchase.list0').id
         })
 
         products = [(6, 0, [self.product_35.id, self.product_36.id])]

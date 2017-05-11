@@ -2,10 +2,14 @@
 # © 2016 Denis Roussel, ACSONE SA/NV (<http://acsone.eu>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import api, fields, models
-from openerp.exceptions import Warning as UserError
-from openerp.tools.translate import _
-import openerp.addons.decimal_precision as dp
+from odoo import api, fields, models
+from odoo.exceptions import Warning as UserError
+from odoo.tools.translate import _
+from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
+import odoo.addons.decimal_precision as dp
+
+
+from datetime import datetime
 
 UNIT = dp.get_precision('Product Unit of Measure')
 
@@ -52,35 +56,16 @@ class PurchaseImportProducts(models.TransientModel):
         the right quantity
         @rtype: dict
         """
-        quantity = 1.0
-        if item.quantity:
-            quantity = item.quantity
-        pol = self.env['purchase.order.line']
-        position = purchase.fiscal_position.id
-        date_order = purchase.date_order
-        uom = item.product_id.uom_po_id
-        suppliers = item.product_id.seller_ids.filtered(
-            lambda r: r.name == purchase.partner_id)
-        for supplier in suppliers:
-            uom = supplier.product_uom
-            break
-        onchange_f = pol._model.onchange_product_id
-        product = item.product_id
-        vals = onchange_f(
-            self.env.cr, self.env.uid, [], purchase.pricelist_id.id,
-            product.id, quantity, uom.id, purchase.partner_id.id,
-            date_order=date_order, fiscal_position_id=position,
-            date_planned=False, name=False, price_unit=False,
-            state=purchase.state, context=self.env.context)
-        if 'value' in vals:
-            taxes = vals['value']['taxes_id']
-            vals['value'].update({
-                'order_id': purchase.id,
-                'product_id': product.id,
-                'taxes_id': [(6, 0, taxes)]
-            })
-            vals = vals['value']
-        return vals
+        return {
+            'order_id': purchase.id,
+            'name': item.product_id.name,
+            'product_id': item.product_id.id,
+            'product_qty': item.quantity or 1,
+            'product_uom': item.product_id.uom_po_id.id,
+            'price_unit': 0.0,
+            'date_planned': datetime.today().strftime(
+                DEFAULT_SERVER_DATETIME_FORMAT),
+        }
 
     @api.multi
     def select_products(self):
@@ -92,7 +77,9 @@ class PurchaseImportProducts(models.TransientModel):
         purchase_id = po_obj.browse(self.env.context.get('active_id'))
         for item in self.items:
             vals = self._get_line_values(purchase_id, item)
-            self.env['purchase.order.line'].create(vals)
+            po_line = self.env['purchase.order.line'].create(vals)
+            po_line.onchange_product_id()
+            po_line.product_qty = item.quantity
         return {'type': 'ir.actions.act_window_close', }
 
 
@@ -105,5 +92,5 @@ class PurchaseImportProductsItem(models.TransientModel):
         comodel_name='product.product', string='Product',
         required=True, ondelete='cascade')
     quantity = fields.Float(
-        digits_compute=dp.get_precision('Product Unit of Measure'),
+        digits=dp.get_precision('Product Unit of Measure'),
         default=1.0, string='Quantity', required=True, ondelete='cascade')
