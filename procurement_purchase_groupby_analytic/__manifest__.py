@@ -21,7 +21,7 @@
 
 {
     "name": "Procurement purchase group by Analytic",
-    "version": "8.0.1.0.1",
+    "version": "10.0.1.0.0",
     'author': "Acsone, Odoo Community Association (OCA)",
     "category": "Other",
     "website": "http://www.acsone.eu",

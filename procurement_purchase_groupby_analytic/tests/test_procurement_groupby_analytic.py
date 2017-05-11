@@ -42,15 +42,17 @@ class TestProcurementGroupbyOrder(common.TransactionCase):
              'location_src_id': loc_supplier_id,
              'picking_type_id': self.env["stock.picking.type"].search([])[0].id
              })
-        self.product = self.env.ref('product.product_product_36')
-        self.project = self.env.ref('account.analytic_project_1')
+        self.product = self.env.ref('product.product_product_9')
+        self.project = self.env['account.analytic.account'].create({
+            'name': 'Account Analytic for Tests'
+        })
         self.partner = self.env.ref('base.res_partner_3')
 
     def test_procurement(self):
         """ Create sale order :
-                * product.product_product_36
+                * product.product_product_9
             Create sale order :
-                * product.product_product_36
+                * product.product_product_9
                 * analytic account
             Confirm sale order
             Check there is two po
@@ -72,8 +74,8 @@ class TestProcurementGroupbyOrder(common.TransactionCase):
              'product_id': self.product.id,
              'route_id': self.buy_route.id})
 
-        so1.signal_workflow('order_confirm')
-        so2.signal_workflow('order_confirm')
+        so1.action_confirm()
+        so2.action_confirm()
 
         po1 = so1.procurement_group_id.procurement_ids.purchase_id
         po2 = so2.procurement_group_id.procurement_ids.purchase_id
@@ -83,9 +85,9 @@ class TestProcurementGroupbyOrder(common.TransactionCase):
                          self.project.id)
 
     def test_procurement_mto(self):
-        """ set prodcut.product_product_36 as mto
+        """ set prodcut.product_product_9 as mto
             Create sale order :
-                * product.product_product_36
+                * product.product_product_9
                 * analytic account
             Confirm sale order
             Check there is one po
@@ -98,9 +100,10 @@ class TestProcurementGroupbyOrder(common.TransactionCase):
              'project_id': self.project.id})
         self.env['sale.order.line'].create(
             {'order_id': so.id,
-             'product_id': self.product.id})
+             'product_id': self.product.id,
+             'route_id': self.buy_route.id})
 
-        so.signal_workflow('order_confirm')
+        so.action_confirm()
 
         self.env['procurement.order'].run_scheduler()
 
@@ -111,11 +114,11 @@ class TestProcurementGroupbyOrder(common.TransactionCase):
                          self.project.id)
 
     def test_multi_procurement(self):
-        """ set prodcut.product_product_36 as mto
-            set product.product_product_46 same supplier
+        """ set prodcut.product_product_9 as mto
+            set product.product_product_11 same supplier
             Create sale order :
-                * product.product_product_36
-                * product.product_product_46
+                * product.product_product_9
+                * product.product_product_11
                 * analytic account
             Confirm sale order
             Check there is one po
@@ -123,7 +126,7 @@ class TestProcurementGroupbyOrder(common.TransactionCase):
         """
         self.product.route_ids = [(
             4, self.env.ref('stock.route_warehouse0_mto').id)]
-        product2 = self.env.ref('product.product_product_46')
+        product2 = self.env.ref('product.product_product_11')
         product2.route_ids = [(
             4, self.env.ref('stock.route_warehouse0_mto').id)]
         product2.seller_ids.name = self.product.seller_ids.name
@@ -134,12 +137,14 @@ class TestProcurementGroupbyOrder(common.TransactionCase):
              'project_id': self.project.id})
         self.env['sale.order.line'].create(
             {'order_id': so.id,
-             'product_id': self.product.id})
+             'product_id': self.product.id,
+             'route_id': self.buy_route.id})
         self.env['sale.order.line'].create(
             {'order_id': so.id,
-             'product_id': product2.id})
+             'product_id': product2.id,
+             'route_id': self.buy_route.id})
 
-        so.signal_workflow('order_confirm')
+        so.action_confirm()
 
         self.env['procurement.order'].run_scheduler()
 
