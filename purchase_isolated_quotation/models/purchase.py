@@ -62,7 +62,8 @@ class PurchaseOrder(models.Model):
         if (vals.get('order_type', False) or
             self._context.get('order_type', 'quotation')) == 'quotation' \
                 and vals.get('name', '/') == '/':
-            vals['name'] = self.env['ir.sequence'].get('purchase.quotation') or '/'
+            vals['name'] = self.env['ir.sequence'].get('purchase.quotation') \
+                or '/'
         return super(PurchaseOrder, self).create(vals)
 
     @api.multi
