@@ -8,7 +8,7 @@ class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
 
 
-    @api.multi
+    @api.onchange('partner_id', 'company_id')
     def onchange_partner_id(self):
         for this in self:
             result = super(PurchaseOrder, this).onchange_partner_id()

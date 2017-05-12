@@ -23,9 +23,7 @@ class TestPurchasePartnerDefaultJournal(TransactionCase):
             journal,
         )
         # invoice onchange
-        onchange = self.env['account.invoice'].onchange_partner_id(
-            'in_invoice', p.id
-        )
+        onchange = p._onchange_partner_id()
         self.assertEqual(
             journal.id,
             onchange['value']['journal_id']
