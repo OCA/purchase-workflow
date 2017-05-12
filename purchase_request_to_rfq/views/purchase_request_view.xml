@@ -58,7 +58,8 @@
                             <field name="purchase_state"/>
                         </group>
                         <field name="purchase_lines" mode="tree"
-                               attrs="{'readonly': [('purchase_state', 'in', ('cancel'))]}">
+                               attrs="{'readonly': [('purchase_state', 'in', ('cancel'))]}"
+                               domain="[('product_id', '=', product_id)]">
                             <form string="Purchase Order Lines" create="false" readonly="1">
                                 <sheet>
                                     <label for="order_id" readonly="1" class="oe_edit_only"/>
