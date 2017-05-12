@@ -86,3 +86,14 @@ class TestPurchaseRequestToProcurement(TransactionCase):
             line.procurement_id.id,
             procurement_ids[0],
             'Should be the same procurement order id')
+
+    def test_view_methods(self):
+        """Tests the methods to handle views."""
+        vals = {
+            'picking_type_id': self.env.ref('stock.picking_type_in').id,
+            'requested_by': SUPERUSER_ID,
+        }
+        purchase_request = self.purchase_request.create(vals)
+        purchase_request.onchange_picking_type_id()
+        self.assertTrue(purchase_request.warehouse_id)
+        self.assertTrue(purchase_request.location_id)
