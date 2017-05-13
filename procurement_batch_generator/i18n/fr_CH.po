@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-29 15:57+0000\n"
-"PO-Revision-Date: 2016-12-01 10:15+0000\n"
+"POT-Creation-Date: 2017-05-01 21:46+0000\n"
+"PO-Revision-Date: 2017-05-11 14:15+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (Switzerland) (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/fr_CH/)\n"
 "MIME-Version: 1.0\n"
@@ -134,7 +134,7 @@ msgstr ""
 #. module: procurement_batch_generator
 #: view:procurement.batch.generator:procurement_batch_generator.procurement_batch_generator_form
 msgid "Validate"
-msgstr ""
+msgstr "Valider"
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator.line,warehouse_id:0

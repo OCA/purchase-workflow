@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-21 14:34+0000\n"
-"PO-Revision-Date: 2017-04-21 14:34+0000\n"
+"POT-Creation-Date: 2017-05-01 21:46+0000\n"
+"PO-Revision-Date: 2017-05-01 21:46+0000\n"
 "Last-Translator: Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2017\n"
 "Language-Team: Finnish (https://www.transifex.com/oca/teams/23907/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -350,7 +350,7 @@ msgstr ""
 #: selection:purchase.request,state:0
 #: view:purchase.request.line:purchase_request.purchase_request_line_search
 msgid "Rejected"
-msgstr ""
+msgstr "Hylätty"
 
 #. module: purchase_request
 #: field:purchase.request.line,date_required:0
