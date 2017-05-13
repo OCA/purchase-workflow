@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-18 05:29+0000\n"
+"POT-Creation-Date: 2017-05-01 21:36+0000\n"
 "PO-Revision-Date: 2015-09-01 21:19+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Russian (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/ru/)\n"
@@ -35,7 +35,7 @@ msgstr ""
 #. module: purchase_delivery_term
 #: field:purchase.order.line.master,price_unit:0
 msgid "Unit Price"
-msgstr ""
+msgstr "Цена"
 
 #. module: purchase_delivery_term
 #: field:purchase.order.line,master_line_id:0
@@ -55,7 +55,7 @@ msgstr ""
 #. module: purchase_delivery_term
 #: field:purchase.order.line.master,product_id:0
 msgid "Product"
-msgstr ""
+msgstr "Товар/Услуга"
 
 #. module: purchase_delivery_term
 #: field:purchase.order.line.master,name:0
@@ -102,7 +102,7 @@ msgstr ""
 #. module: purchase_delivery_term
 #: field:purchase.order.line.master,price_subtotal:0
 msgid "Subtotal"
-msgstr ""
+msgstr "Итого"
 
 #. module: purchase_delivery_term
 #: view:purchase.order.line.master:0
@@ -181,7 +181,7 @@ msgstr ""
 #. module: purchase_delivery_term
 #: field:purchase.order.line.master,product_qty:0
 msgid "Quantity"
-msgstr ""
+msgstr "Кол-во"
 
 #. module: purchase_delivery_term
 #: model:ir.model,name:purchase_delivery_term.model_purchase_order_line_master
