@@ -232,7 +232,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             res.append(purchase.id)
 
         return {
-            'domain': "[('id','in', ["+','.join(map(str, res))+"])]",
+            'domain': [('id', 'in', res)],
             'name': _('RFQ'),
             'view_type': 'form',
             'view_mode': 'tree,form',
