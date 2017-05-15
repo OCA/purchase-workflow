@@ -1,36 +1,18 @@
 # -*- coding: utf-8 -*-
-#
-#
-#    Copyright (C) 2012 Ecosoft (<http://www.ecosoft.co.th>)
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-#
-
-from openerp import models, fields, api, _
+# Copyright (C) 2012 Ecosoft (<http://www.ecosoft.co.th>)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+from odoo import models, fields, api, _
+from odoo.exceptions import UserError
 
 
 class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
 
-    order_type = fields.Selection(
-        [('quotation', 'Quotation'),
-         ('purchase_order', 'Purchase Order'), ],
-        string='Order Type',
+    is_order = fields.Boolean( # False is quotation, True is PO.
+        string='Order type',
         readonly=True,
         index=True,
-        default=lambda self: self._context.get('order_type', 'quotation'),
+        default=lambda self: self._context.get('is_order', False),
     )
     quote_id = fields.Many2one(
         'purchase.order',
@@ -59,20 +41,23 @@ class PurchaseOrder(models.Model):
 
     @api.model
     def create(self, vals):
-        if (vals.get('order_type', False) or
-            self._context.get('order_type', 'quotation')) == 'quotation' \
-                and vals.get('name', '/') == '/':
-            vals['name'] = self.env['ir.sequence'].get('purchase.quotation') \
-                or '/'
+        is_order = vals.get('is_order', False) or \
+            self._context.get('is_order', False)
+        if not is_order and vals.get('name', '/') == '/':
+            Seq = self.env['ir.sequence']
+            vals['name'] = Seq.next_by_code('purchase.quotation') or '/'
         return super(PurchaseOrder, self).create(vals)
 
     @api.multi
-    def action_button_convert_to_order(self):
-        assert len(self) == 1, \
-            'This option should only be used for a single id at a time.'
+    def action_convert_to_order(self):
+        self.ensure_one()
+        if self.is_order:
+            raise UserError(
+                _('Only quotation can convert to order'))
+        Seq = self.env['ir.sequence']
         order = self.copy({
-            'name': self.env['ir.sequence'].get('purchase.order') or '/',
-            'order_type': 'purchase_order',
+            'name': Seq.next_by_code('purchase.order') or '/',
+            'is_order': True,
             'quote_id': self.id,
             'partner_ref': self.partner_ref
         })
@@ -81,6 +66,7 @@ class PurchaseOrder(models.Model):
             self.button_done()
         return self.open_purchase_order()
 
+    @api.model
     def open_purchase_order(self):
         return {
             'name': _('Purchase Order'),
@@ -88,10 +74,10 @@ class PurchaseOrder(models.Model):
             'view_mode': 'form',
             'view_id': False,
             'res_model': 'purchase.order',
-            'context': {'order_type': 'purchase_order', },
+            'context': {'is_order': True, },
             'type': 'ir.actions.act_window',
-            'nodestroy': False,
+            'nodestroy': True,
             'target': 'current',
-            'domain': "[('order_type', '=', 'purchase_order')]",
+            'domain': "[('is_order', '=', 'True')]",
             'res_id': self.order_id and self.order_id.id or False,
         }
