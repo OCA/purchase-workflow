@@ -2,24 +2,15 @@
 # Copyright 2016 Eficent Business and IT Consulting Services S.L.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
 
-from openerp import _, api, fields, models
-from openerp.exceptions import ValidationError
+from openerp import api, fields, models, _
 
 
 class Procurement(models.Model):
     _inherit = 'procurement.order'
 
-    request_id = fields.Many2one('purchase.request',
-                                 ondelete='restrict',
-                                 string='Latest Purchase Request')
-
-    @api.multi
-    def copy(self, default=None):
-        if default is None:
-            default = {}
-        self.ensure_one()
-        default['request_id'] = False
-        return super(Procurement, self).copy(default)
+    request_id = fields.Many2one(
+        comodel_name='purchase.request', ondelete='restrict',
+        string='Latest Purchase Request', copy=False)
 
     @api.model
     def _prepare_purchase_request_line(self, purchase_request, procurement):
@@ -62,11 +53,11 @@ class Procurement(models.Model):
             pr = self._search_existing_purchase_request(procurement)
             if not pr:
                 request_data = self._prepare_purchase_request(procurement)
-                req = request_obj.create(request_data)
+                pr = request_obj.create(request_data)
                 procurement.message_post(body=_("Purchase Request created"))
-                procurement.request_id = req.id
+                procurement.request_id = pr.id
             request_line_data = self._prepare_purchase_request_line(
-                req, procurement)
+                pr, procurement)
             request_line_obj.create(request_line_data),
             procurement.message_post(body=_("Purchase Request extended."))
             return True
@@ -77,24 +68,15 @@ class Procurement(models.Model):
         result = super(Procurement, self).propagate_cancels()
         # Remove the reference to the request_id from the procurement order
         for procurement in self:
-            request = procurement.request_id
-            procurement.write({'request_id': None})
             # Search for purchase request lines containing the procurement_id
-            request_lines = self.env['purchase.request.line'].\
-                search([('procurement_id', '=', procurement.id)])
-            # Remove the purchase request lines, if the request is not draft,
-            # to be approved or rejected.
-            for line in request_lines:
-                if line.request_id.state not in ('draft',
-                                                 'to_approve', 'rejected'):
-                    raise ValidationError(_('Can not cancel this procurement '
-                                            'as the related purchase request '
-                                            'is in progress confirmed already.'
-                                            ' Please cancel the purchase'
-                                            ' request first.'))
-                else:
-                    line.unlink()
-            # If the purchase request has not lines, delete it as well
-            if len(request.line_ids) == 0:
-                request.unlink()
+            #  and cancel them.
+            proc_request_lines = self.env['purchase.request.line'].search([
+                ('procurement_id', '=', procurement.id)])
+            if proc_request_lines and not self.env.context.get(
+                    'from_purchase_request'):
+                proc_request_lines.do_cancel()
+                for prl in proc_request_lines:
+                    prl.message_post(
+                        body=_("Related procurement has been cancelled."))
+            procurement.write({'request_id': None})
         return result

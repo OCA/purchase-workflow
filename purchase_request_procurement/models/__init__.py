@@ -4,3 +4,5 @@
 
 from . import procurement
 from . import product
+from . import purchase_request
+from . import purchase_request_line
