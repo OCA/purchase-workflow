@@ -171,9 +171,22 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         return vals
 
     @api.model
+    def _get_purchase_line_name(self, order, line):
+        product_lang = line.product_id.with_context({
+            'lang': self.supplier_id.lang,
+            'partner_id': self.supplier_id.id,
+        })
+        name = product_lang.display_name
+        if product_lang.description_purchase:
+            name += '\n' + product_lang.description_purchase
+        return name
+
+    @api.model
     def _get_order_line_search_domain(self, order, item):
         vals = self._prepare_purchase_order_line(order, item)
+        name = self._get_purchase_line_name(order, item)
         order_line_data = [('order_id', '=', order.id),
+                           ('name', '=', name),
                            ('product_id', '=', item.product_id.id or False),
                            ('product_uom', '=', vals['product_uom']),
                            ('account_analytic_id', '=',
@@ -216,21 +229,22 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             # po line
             domain = self._get_order_line_search_domain(purchase, item)
             available_po_lines = po_line_obj.search(domain)
+            new_pr_line = True
             if available_po_lines and not item.keep_description:
+                new_pr_line = False
                 po_line = available_po_lines[0]
-                new_qty = pr_line_obj._calc_new_qty(line, po_line=po_line)
-                if new_qty > po_line.product_qty:
-                    po_line.product_qty = new_qty
-                    # Leave the purchase order order to calculate its prices
-                    # itself
-                    po_line._onchange_quantity()
-                    po_line.purchase_request_lines = [(4, line.id)]
+                po_line.purchase_request_lines = [(4, line.id)]
             else:
                 po_line_data = self._prepare_purchase_order_line(purchase,
                                                                  item)
                 if item.keep_description:
                     po_line_data['name'] = item.name
-                po_line_obj.create(po_line_data)
+                po_line = po_line_obj.create(po_line_data)
+            new_qty = pr_line_obj._calc_new_qty(
+                line, po_line=po_line,
+                new_pr_line=new_pr_line)
+            po_line.product_qty = new_qty
+            po_line._onchange_quantity()
             res.append(purchase.id)
 
         return {
@@ -292,5 +306,5 @@ class PurchaseRequestLineMakePurchaseOrderItem(models.TransientModel):
             if self.product_id.description_purchase:
                 name += '\n' + self.product_id.description_purchase
             self.product_uom_id = self.product_id.uom_id.id
-            self.product_qty = 1
+            self.product_qty = 1.0
             self.name = name
