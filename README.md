@@ -24,6 +24,7 @@ addon | version | summary
 [purchase_picking_state](purchase_picking_state/) | 10.0.1.0.0 | Add the status of all the incoming picking in the purchase order
 [purchase_request](purchase_request/) | 10.0.1.0.0 | Purchase Request
 [purchase_request_to_procurement](purchase_request_to_procurement/) | 10.0.1.0.0 | This module introduces the possiblity to create procurement order from purchase request
+[purchase_request_to_rfq](purchase_request_to_rfq/) | 10.0.1.0.0 | Purchase Request to RFQ
 
 
 Unported addons
