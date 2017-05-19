@@ -4,7 +4,7 @@
 
 {
     'name': "Purchase Request Procurement",
-    'version': "10.0.1.0.0",
+    'version': "10.0.1.0.1",
     'author': "Eficent Business and IT Consulting Services S.L., "
               "Odoo Community Association (OCA)",
     'website': "www.eficent.com",
