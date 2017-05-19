@@ -108,7 +108,7 @@ class ProcurementOrder(models.Model):
                 [('procurement_id', '=', procurement.id)])
             # Remove the purchase request lines, if the request is not draft
             # or reject, otherwise, raise ValidationError
-            if any(l.request_id.state not in ('draft', 'reject')
+            if any(l.request_id.state not in ('draft', 'rejected')
                    for l in request_lines):
                 raise ValidationError(_(
                     "Cannot cancel this procurement as the related "
