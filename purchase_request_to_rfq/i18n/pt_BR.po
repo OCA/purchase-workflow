@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-21 14:34+0000\n"
-"PO-Revision-Date: 2017-04-21 14:34+0000\n"
+"POT-Creation-Date: 2017-05-13 05:48+0000\n"
+"PO-Revision-Date: 2017-05-13 05:48+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/23907/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -86,7 +86,7 @@ msgstr "Descrição"
 #. module: purchase_request_to_rfq
 #: view:purchase.request.line.make.purchase.order:purchase_request_to_rfq.view_purchase_request_line_make_purchase_order
 msgid "Details"
-msgstr ""
+msgstr "Detalhes"
 
 #. module: purchase_request_to_rfq
 #: field:purchase.request.line.make.purchase.order,display_name:0
