@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-18 05:29+0000\n"
+"POT-Creation-Date: 2017-05-13 05:40+0000\n"
 "PO-Revision-Date: 2015-09-01 21:20+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Dutch (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/nl/)\n"
@@ -42,7 +42,7 @@ msgstr "Bedrijf"
 #. module: purchase_multi_picking
 #: model:ir.model,name:purchase_multi_picking.model_purchase_order
 msgid "Purchase Order"
-msgstr ""
+msgstr "Inkooporder"
 
 #. module: purchase_multi_picking
 #: model:ir.model,name:purchase_multi_picking.model_purchase_order_line_group
