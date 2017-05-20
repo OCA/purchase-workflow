@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-26 00:58+0000\n"
-"PO-Revision-Date: 2017-04-26 00:58+0000\n"
+"POT-Creation-Date: 2017-05-18 07:33+0000\n"
+"PO-Revision-Date: 2017-05-18 07:33+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/23907/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr ""
 #. module: purchase_request_to_procurement
 #: model:ir.ui.view,arch_db:purchase_request_to_procurement.purchase_request_line_make_procurement_order_form_view
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #. module: purchase_request_to_procurement
 #: model:ir.actions.act_window,name:purchase_request_to_procurement.purchase_request_line_make_procurement_order_act_window
