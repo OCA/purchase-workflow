@@ -62,10 +62,9 @@
         <field name="inherit_id" ref="product.product_supplierinfo_form_view"/>
         <field name="priority">99</field>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='product_name']" position="before">
-                <field name="product_tmpl_id" string="Product"
-                invisible="context.get('from_product_form')"
-                required="not context.get('from_product_form')"/>
+            <xpath expr="//field[@name='product_tmpl_id']" position="attributes">
+                <attribute name="invisible">context.get('from_product_form')</attribute>
+                <attribute name="required">not context.get('from_product_form')</attribute>
             </xpath>
         </field>
     </record>
