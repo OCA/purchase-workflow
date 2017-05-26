@@ -8,8 +8,7 @@
         <field name="arch" type="xml">
             <group name="purchase" position="inside">
                 <field name="purchase_type"
-                       attrs="{'invisible':[('supplier', '=', False)]}"
-                />
+                       attrs="{'invisible':[('supplier', '=', False)]}"/>
             </group>
         </field>
     </record>
