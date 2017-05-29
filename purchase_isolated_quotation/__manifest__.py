@@ -8,6 +8,7 @@
     'category': 'Purchase',
     'website': 'http://ecosoft.co.th',
     'depends': ['purchase', ],
+    'license': 'AGPL-3',
     'images': [],
     'data': [
         'data/ir_sequence_data.xml',
@@ -18,5 +19,3 @@
     'uninstall_hook': 'uninstall_hook',
     'post_init_hook': 'post_init_hook',
 }
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

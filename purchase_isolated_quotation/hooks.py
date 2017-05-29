@@ -18,7 +18,11 @@ def uninstall_hook(cr, registry):
     """ Restore purchase.order action, remove context value """
     with api.Environment.manage():
         env = api.Environment(cr, SUPERUSER_ID, {})
-        for action_id in ['purchase.action_quotations', 'purchase.action_orders']:
+        purchase_action = [
+            'purchase.action_quotations',
+            'purchase.action_orders',
+            ]
+        for action_id in purchase_action:
             action = env.ref(action_id)
             ctx = ast.literal_eval(action.context)
             del ctx['is_order']
