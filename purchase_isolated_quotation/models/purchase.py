@@ -8,7 +8,7 @@ from odoo.exceptions import UserError
 class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
 
-    is_order = fields.Boolean( # False is quotation, True is PO.
+    is_order = fields.Boolean(  # False is quotation, True is PO.
         string='Order type',
         readonly=True,
         index=True,
