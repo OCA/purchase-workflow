@@ -15,7 +15,7 @@ class TestPurchaseIsolatedQuotation(TransactionCase):
           - New purchase.order of order_type = 'purchase_order' created
         - Quotation can refer to Order and Order can refer to Quotation
         """
-        self.quotation.action_button_convert_to_order()
+        self.quotation.action_convert_to_order()
         self.assertEqual(self.quotation.state, 'done')
         self.purchase_order = self.quotation.order_id
         self.assertTrue(self.purchase_order.is_order)
