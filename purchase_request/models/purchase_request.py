@@ -236,7 +236,7 @@ class PurchaseRequestLine(models.Model):
                                      'Procurement Order',
                                      readonly=True)
 
-    @api.onchange('product_id', 'product_uom_id')
+    @api.onchange('product_id')
     def onchange_product_id(self):
         if self.product_id:
             name = self.product_id.name
