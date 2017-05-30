@@ -91,9 +91,8 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         res = super(PurchaseRequestLineMakePurchaseOrder, self).default_get(
             fields)
         request_line_obj = self.env['purchase.request.line']
-        request_line_ids = self.env.context['active_ids'] or []
-        active_model = self.env.context['active_model']
-
+        request_line_ids = self.env.context.get('active_ids', False)
+        active_model = self.env.context.get('active_model', False)
         if not request_line_ids:
             return res
         assert active_model == 'purchase.request.line', \
