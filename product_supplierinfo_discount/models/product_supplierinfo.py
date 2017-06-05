@@ -4,19 +4,20 @@
 # © 2016 ACSONE SA/NV (<http://acsone.eu>)
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-from openerp import models, fields, api
-import openerp.addons.decimal_precision as dp
+from odoo import models, fields, api
+import odoo.addons.decimal_precision as dp
 
 
 class ProductSupplierInfo(models.Model):
     _inherit = 'product.supplierinfo'
 
     discount = fields.Float(
-        string='Discount (%)', digits_compute=dp.get_precision('Discount'))
+        string='Discount (%)', digits=dp.get_precision('Discount'))
 
     @api.onchange('name')
     @api.multi
     def onchange_name(self):
+        """ Apply the default supplier discount of the selected supplier """
         for supplierinfo in self.filtered('name'):
             supplierinfo.discount =\
                 supplierinfo.name.default_supplierinfo_discount
