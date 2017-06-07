@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="purchase_order_form" model="ir.ui.view">
+            <field name="name">purchase.order.form</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase_landed_costs.c2c_purchase_order_landed_cost_view" />
+            <field name="arch" type="xml" >
+                <field name="order_line" position="attributes">
+                    <attribute name="attrs">{'readonly': [('pricelist_id', '=', False)]}</attribute>
+                    <attribute name="context">{'pricelist_id': pricelist_id}</attribute>
+                </field>
+                <xpath expr="//field[@name='order_line']/tree" position="attributes">
+                    <attribute name="editable"></attribute>
+                </xpath>
+                <field name="landed_cost_line_ids" position="attributes">
+                    <attribute name="attrs">{'readonly': [('pricelist_id', '=', False)]}</attribute>
+                    <attribute name="context">{'pricelist_id': pricelist_id}</attribute>
+                </field>
+                <xpath expr="//field[@name='landed_cost_line_ids']/tree/field[@name='amount']" position="before">
+                    <field
+                        name="amount_currency"
+                        on_change="onchange_amount_currency(amount_currency, currency_id, date_po, context)"
+                    />
+                    <field
+                        name="currency_id"
+                        on_change="onchange_amount_currency(amount_currency, currency_id, date_po, context)"
+                    />           
+                </xpath>
+                <xpath expr="//field[@name='landed_cost_line_ids']/tree/field[@name='amount']" position="after">
+                    <field name="invoice_id" readonly="True" />
+                    <button name="open_invoice" type="object" attrs="{'invisible': [('invoice_id', '=', False)]}" string="Invoice" icon="gtk-open" />
+                    
+                    <field name="date_po" invisible="True" />        
+                </xpath>
+   
+                <xpath expr="//field[@name='landed_cost_line_ids']/tree/field[@name='partner_id']" position="attributes">
+                    <attribute name="on_change">onchange_partner_id(partner_id)</attribute>         
+                </xpath>
+            </field>
+        </record>
+
+        <record id="purchase_order_line_form" model="ir.ui.view">
+            <field name="name">purchase.order.line.form</field>
+            <field name="model">purchase.order.line</field>
+            <field name="inherit_id" ref="purchase_landed_costs.purchase_oder_line_landed_cost_view" />
+            <field name="arch" type="xml" >
+                <field name="product_id" position="attributes">
+                    <attribute name="attrs">{'readonly': [('state', '!=', 'draft')]}</attribute>
+                </field>
+                <field name="product_qty" position="attributes">
+                    <attribute name="attrs">{'readonly': [('state', '!=', 'draft')]}</attribute>
+                </field>
+                <field name="price_unit" position="attributes">
+                    <attribute name="attrs">{'readonly': [('state', '!=', 'draft')]}</attribute>
+                </field>
+                <field name="taxes_id" position="attributes">
+                    <attribute name="attrs">{'readonly': [('state', '!=', 'draft')]}</attribute>
+                </field>
+                <field name="date_planned" position="attributes">
+                    <attribute name="attrs">{'readonly': [('state', '!=', 'draft')]}</attribute>
+                </field>
+                <field name="name" position="attributes">
+                    <attribute name="attrs">{'readonly': [('state', '!=', 'draft')]}</attribute>
+                </field>
+                <field name="product_id" position="after">
+                    <field name="state" invisible="True" />
+                </field>
+                <field name="landed_cost_line_ids" position="attributes">
+                    <attribute name="context">{'pricelist_id': context['pricelist_id']}</attribute>
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="c2c_landed_cost_tree">
+            <field name="name">c2clanded.cost.tree</field>
+            <field name="model">landed.cost.position</field>
+            <field name="inherit_id" ref="purchase_landed_costs.c2c_landed_cost_tree" />
+            <field name="arch" type="xml">
+                <field name="partner_id" position="attributes">
+                    <attribute name="on_change">onchange_partner_id(partner_id)</attribute>
+                </field>
+                <field name="amount" position="before">
+                    <field
+                        name="amount_currency"
+                        on_change="onchange_amount_currency(amount_currency, currency_id, date_po, context)"
+                    />
+                    <field
+                        name="currency_id"
+                        on_change="onchange_amount_currency(amount_currency, currency_id, date_po, context)"
+                    />
+                </field>
+                <field name="amount" position="after">
+                    <field name="invoice_id" readonly="True" />
+                    <button name="open_invoice" type="object" attrs="{'invisible': [('invoice_id', '=', False)]}" string="Invoice" icon="gtk-open" />
+                    <field name="date_po" invisible="True" />
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="c2c_landed_cost_form">
+            <field name="name">c2clanded.cost.form</field>
+            <field name="model">landed.cost.position</field>
+            <field name="inherit_id" ref="purchase_landed_costs.c2c_landed_cost_form" />
+            <field name="arch" type="xml">
+                <field name="partner_id" position="attributes">
+                    <attribute name="on_change">onchange_partner_id(partner_id)</attribute>
+                </field>
+                <field name="amount" position="before">
+                    <field
+                        name="amount_currency"
+                        on_change="onchange_amount_currency(amount_currency, currency_id, date_po, context)"
+                    />
+                    <field
+                        name="currency_id"
+                        on_change="onchange_amount_currency(amount_currency, currency_id, date_po, context)"
+                    />
+                </field>
+                <field name="amount" position="after">
+                    <field name="invoice_id" readonly="True" />
+                    <button name="open_invoice" type="object" attrs="{'invisible': [('invoice_id', '=', False)]}" string="Invoice" icon="gtk-open" />
+                    <field name="date_po" invisible="True" />
+                </field>
+            </field>
+        </record>
+
+
+
+        <record model="ir.ui.view" id="landed_cost_tree">
+          <field name="name">landed.cost.tree</field>
+          <field name="model">landed.cost.position</field>
+          <field name="priority">50</field>
+          <field name="type">tree</field>
+          <field name="arch" type="xml">
+            <tree string="Landing Costs" editable="bottom" create="false">
+                  <field name="purchase_order_id"/>
+                  <field name="generate_invoice"/>
+                  <field name="product_id" context="{'landed_cost_type':'per_unit'}" on_change="onchange_product_id(product_id)"/>
+                  <field name="account_id" invisible="1"/>
+                  <field name="partner_id" on_change="onchange_partner_id(partner_id)" />
+                  <field
+                      name="amount_currency"
+                      on_change="onchange_amount_currency(amount_currency, currency_id, date_po, context)"
+                  />
+                  <field
+                      name="currency_id"
+                      on_change="onchange_amount_currency(amount_currency, currency_id, date_po, context)"
+                  />
+                  <field name="amount"/>
+                  <field name="po_currency_id"/>
+                  <field name="distribution_type_id" domain="[('apply_on','=','line')]"  widget="selection"/>
+                  <field name="invoice_id" readonly="True" />
+                  <button name="open_invoice" type="object" attrs="{'invisible': [('invoice_id', '=', False)]}" string="Invoice" icon="gtk-open" />
+                  <field name="date_po" invisible="True" />
+            </tree>
+          </field>
+        </record>
+
+
+        <record id="po_landed_costs_extended" model="ir.actions.act_window">
+            <field name="name">Landed Costs</field>
+            <field name="res_model">landed.cost.position</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="landed_cost_tree"></field>
+        </record>
+
+        <menuitem action="po_landed_costs_extended" id="menu_action_landed_cost" parent="purchase.menu_procurement_management_invoice" sequence="100"/>
+    </data>
+</openerp>
