@@ -1,0 +1,133 @@
+# -*- coding: utf-8 -*-
+##############################################################################
+#
+#    Copyright (C) 2015 Eficent (<http://www.eficent.com/>)
+#              <contact@eficent.com>
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
+from openerp.osv import fields, orm
+from openerp.tools.translate import _
+
+
+class PurchaseRequisition(orm.Model):
+    _inherit = "purchase.requisition"
+
+    def _purchase_request_confirm_message_content(self, cr, uid, pr,
+                                                  request, request_dict,
+                                                  context=None):
+        if not request_dict:
+            request_dict = {}
+        title = _('Bid confirmation %s for your Request %s') % (
+            pr.name, request.name)
+        message = '<h3>%s</h3><ul>' % title
+        message += _('The following requested items from Purchase Request %s '
+                     'have now being sent to Suppliers using Purchase Bid '
+                     '%s:') % (
+            request.name, pr.name)
+
+        for line in request_dict.values():
+            message += _(
+                '<li><b>%s</b>: Total bid quantity %s %s</li>'
+            ) % (line['name'],
+                 line['product_qty'],
+                 line['product_uom_id'],
+                 )
+        message += '</ul>'
+        return message
+
+    def _purchase_request_confirm_message(self, cr, uid, ids, context=None):
+        request_obj = self.pool['purchase.request']
+        for pr in self.browse(cr, uid, ids, context=context):
+            requests_dict = {}
+            for line in pr.line_ids:
+                for request_line in line.purchase_request_lines:
+                    request_id = request_line.request_id.id
+                    if request_id not in requests_dict:
+                        requests_dict[request_id] = {}
+                    data = {
+                        'name': request_line.name,
+                        'product_qty': line.product_qty,
+                        'product_uom_id': line.product_uom_id.name,
+                    }
+                    requests_dict[request_id][request_line.id] = data
+            for request_id in requests_dict.keys():
+                request = request_obj.browse(cr, uid, request_id,
+                                             context=context)
+                message = self._purchase_request_confirm_message_content(
+                    cr, uid, pr, request, requests_dict[request_id],
+                    context=context)
+                request_obj.message_post(cr, uid, [request_id],
+                                         body=message)
+        return True
+
+    def tender_in_progress(self, cr, uid, ids, context=None):
+        res = super(PurchaseRequisition, self).tender_in_progress(
+            cr, uid, ids, context=context)
+        self._purchase_request_confirm_message(
+                cr, uid, ids, context=context)
+        return res
+
+
+class PurchaseRequisitionLine(orm.Model):
+    _inherit = "purchase.requisition.line"
+
+    def _has_purchase_request_lines(self, cr, uid, ids, field_names, arg,
+                                    context=None):
+        res = {}
+        for line in self.browse(cr, uid, ids, context=context):
+            if line.purchase_request_lines:
+                res[line.id] = True
+            else:
+                res[line.id] = False
+        return res
+
+    _columns = {
+        'purchase_request_lines': fields.many2many(
+            'purchase.request.line',
+            'purchase_request_purchase_requisition_line_rel',
+            'purchase_requisition_line_id',
+            'purchase_request_line_id',
+            'Purchase Request Lines', readonly=True),
+        'has_purchase_request_lines': fields.function(
+            _has_purchase_request_lines, type='boolean',
+            string="Has Purchase Request Lines")
+    }
+
+    def copy(self, cr, uid, id, default=None, context=None):
+        if default is None:
+            default = {}
+        default.update({
+            'purchase_request_lines': [],
+        })
+        return super(PurchaseRequisitionLine, self).copy(
+            cr, uid, id, default, context)
+
+    def action_openRequestLineTreeView(self, cr, uid, ids, context=None):
+        """
+        :return dict: dictionary value for created view
+        """
+        if context is None:
+            context = {}
+        requisition_line = self.browse(cr, uid, ids[0], context)
+        res = self.pool.get('ir.actions.act_window').for_xml_id(
+            cr, uid, 'purchase_request',
+            'purchase_request_line_form_action', context)
+        request_line_ids = [request_line.id for request_line
+                            in requisition_line.purchase_request_lines]
+        res['domain'] = "[('id', 'in', ["+','.join(
+            map(str, request_line_ids))+"])]"
+        res['nodestroy'] = False
+        return res
