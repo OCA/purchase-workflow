@@ -8,9 +8,12 @@
         <field name="arch" type="xml">
             <form string="Select incoming shipment wizard">
                 <group>
-                    <field name="prev_pickings" invisible="1"/>
+                    <field name="prev_pickings" invisible="1" widget="many2many_tags"/>
                     <field name="supplier"/>
-                    <field name="pickings"/>
+                    <field name="pickings" widget="many2many_tags"
+                           domain="[('partner_id', 'child_of', supplier),
+               ('location_id.usage', '=', 'supplier'),
+               ('state', '=', 'done')]"/>
                 </group>
                 <footer>
                     <button string="Import"
