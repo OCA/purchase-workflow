@@ -25,6 +25,7 @@ Contributors:
 -------------
 * Joaquín Gutierrez <joaquing.pedrosa@gmail.com>
 * Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
+* Santi Argüeso <santi@comunitea.com>
 
 Icon:
 -----

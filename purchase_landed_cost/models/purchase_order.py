@@ -3,7 +3,7 @@
 # © 2014-2016 Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3
 
-from openerp import models, api
+from odoo import models, api
 
 
 class PurchaseOrder(models.Model):

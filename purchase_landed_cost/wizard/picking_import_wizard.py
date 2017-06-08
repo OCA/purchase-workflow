@@ -15,7 +15,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, fields, api
+from odoo import models, fields, api
 
 
 class PickingImportWizard(models.TransientModel):
@@ -45,11 +45,7 @@ class PickingImportWizard(models.TransientModel):
     pickings = fields.Many2many(
         comodel_name='stock.picking',
         relation='distribution_import_picking_rel', column1='wizard_id',
-        column2='picking_id', string='Incoming shipments',
-        domain="[('partner_id', 'child_of', supplier),"
-               "('location_id.usage', '=', 'supplier'),"
-               "('state', '=', 'done'),"
-               "('id', 'not in', prev_pickings[0][2])]", required=True)
+        column2='picking_id', string='Incoming shipments', required=True)
     prev_pickings = fields.Many2many(comodel_name='stock.picking')
 
     def _prepare_distribution_line(self, move):
