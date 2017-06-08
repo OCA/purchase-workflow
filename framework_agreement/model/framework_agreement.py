@@ -417,11 +417,10 @@ class framework_agreement(models.Model):
         return Cheapest(cheapest_agreement, enough)
 
     @api.model
-    def get_product_agreement(self, product_id, supplier_id,
-                              lookup_dt, qty=None):
+    def get_product_agreement(self, product_id, supplier, lookup_dt, qty=None):
         """Get the matching agreement for a given product/supplier at date
         :param product_id: id of the product
-        :param supplier_id: supplier to look for agreement
+        :param supplier: supplier to look for agreement
         :param lookup_dt: date string of the lookup date
         :param qty: quantity that should be available if parameter is
         passed and qty is insuffisant no aggrement would be returned
@@ -430,7 +429,7 @@ class framework_agreement(models.Model):
 
         """
         search_args = [('product_id', '=', product_id),
-                       ('supplier_id', '=', supplier_id),
+                       ('supplier_id', '=', supplier.id),
                        ('start_date', '<=', lookup_dt),
                        ('end_date', '>=', lookup_dt),
                        ('draft', '=', False)]
