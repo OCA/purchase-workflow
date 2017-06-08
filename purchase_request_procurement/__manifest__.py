@@ -4,20 +4,16 @@
 
 {
     "name": "Purchase Request Procurement",
-    "version": "9.0.1.0.0",
+    "version": "10.0.1.0.0",
     "author": "Eficent Business and IT Consulting Services S.L., "
               "Odoo Community Association (OCA)",
-    "website": "www.eficent.com",
+    "website": "http://www.eficent.com/",
     "category": "Purchase Management",
     "depends": ["purchase_request", "procurement"],
     "data": [
         "views/product_view.xml",
         "views/procurement_view.xml",
     ],
-    'demo': [],
-    'test': [
-        "test/purchase_request_from_procurement.yml",
-    ],
     "license": 'LGPL-3',
-    'installable': False
+    'installable': True
 }

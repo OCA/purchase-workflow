@@ -22,28 +22,27 @@ class Procurement(models.Model):
         return super(Procurement, self).copy(default)
 
     @api.model
-    def _prepare_purchase_request_line(self, purchase_request, procurement):
+    def _prepare_purchase_request_line(self, purchase_request):
         return {
-            'product_id': procurement.product_id.id,
-            'name': procurement.product_id.name,
-            'date_required': procurement.date_planned,
-            'product_uom_id': procurement.product_uom.id,
-            'product_qty': procurement.product_qty,
+            'product_id': self.product_id.id,
+            'name': self.product_id.name,
+            'date_required': self.date_planned,
+            'product_uom_id': self.product_uom.id,
+            'product_qty': self.product_qty,
             'request_id': purchase_request.id,
-            'procurement_id': procurement.id
+            'procurement_id': self.id
         }
 
     @api.model
-    def _prepare_purchase_request(self, procurement):
-
+    def _prepare_purchase_request(self):
         return {
-            'origin': procurement.origin,
-            'company_id': procurement.company_id.id,
-            'picking_type_id': procurement.rule_id.picking_type_id.id,
+            'origin': self.origin,
+            'company_id': self.company_id.id,
+            'picking_type_id': self.rule_id.picking_type_id.id,
         }
 
     @api.model
-    def _search_existing_purchase_request(self, procurement):
+    def _search_existing_purchase_request(self):
         """This method is to be implemented by other modules that can
         provide a criteria to select the appropriate purchase request to be
         extended.
@@ -51,25 +50,25 @@ class Procurement(models.Model):
         return False
 
     @api.model
-    def _run(self, procurement):
+    def _run(self):
         request_obj = self.env['purchase.request']
         request_line_obj = self.env['purchase.request.line']
-        if procurement.rule_id and procurement.rule_id.action == 'buy' \
-                and procurement.product_id.purchase_request:
+        if self.rule_id and self.rule_id.action == 'buy' \
+                and self.product_id.purchase_request:
             # Search for an existing Purchase Request to be considered
             # to be extended.
-            pr = self._search_existing_purchase_request(procurement)
+            pr = self._search_existing_purchase_request()
             if not pr:
-                request_data = self._prepare_purchase_request(procurement)
+                request_data = self._prepare_purchase_request()
                 req = request_obj.create(request_data)
-                procurement.message_post(body=_("Purchase Request created"))
-                procurement.request_id = req.id
+                self.message_post(body=_("Purchase Request created"))
+                self.request_id = req.id
             request_line_data = self._prepare_purchase_request_line(
-                req, procurement)
+                req)
             request_line_obj.create(request_line_data),
-            procurement.message_post(body=_("Purchase Request extended."))
+            self.message_post(body=_("Purchase Request extended."))
             return True
-        return super(Procurement, self)._run(procurement)
+        return super(Procurement, self)._run()
 
     @api.multi
     def propagate_cancels(self):
