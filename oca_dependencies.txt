@@ -2,5 +2,6 @@
 # add a github url if you need a forked version
 server-tools
 stock-logistics-workflow
+stock-logistics-warehouse
 sale-workflow
 web
