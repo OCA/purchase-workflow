@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+    <!-- ************* file_load Tree View  *************** -->
+        <record id="product_supplierinfo_load_tree_view" model="ir.ui.view">
+            <field name="name">product.supplierinfo.load.tree.view</field>
+            <field name="model">product.supplierinfo.load</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="File Loads">
+                    <field name="name" />
+                    <field name="date" />
+                </tree>
+            </field>
+        </record>
+
+    <!-- ************* file_load form View  *************** -->
+        <record id="product_supplierinfo_load_form_view" model="ir.ui.view">
+            <field name="name">product.supplierinfo.load.form.view</field>
+            <field name="model">product.supplierinfo.load</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="File Load">
+                <header>
+                    <button name="%(action_import_file)d" string="Load File" class="oe_highlight" type="action"/>
+                    <button class="oe_highlight" name="process_lines" string="Proccess" type="object"/>
+                </header>
+                    <group col="6">
+                        <field name="name"/>
+                        <field name="file_name"/>
+                        <field name="date"/>
+                        <field name="process"/>
+                        <field name="fails" />
+                        <field name="supplier"  domain="[('supplier', '=', True)]"/>
+                    </group>
+                    <field name="file_lines" nolabel="1">
+                    <tree string="Import Lines" colors="red:fail==True;green:fail==False" editable="bottom">
+                        <field name="supplier" />
+                        <field name="code" />
+                        <field name="sequence"/>
+                        <field name="supplier_code"/>
+                        <field name="info"/>
+                        <field name="delay"/>
+                        <field name="price"/>
+                        <field name="min_qty"/>
+                        <field name="fail"/>
+                        <field name="fail_reason" />
+                    </tree>
+                    </field>
+                </form>
+            </field>
+        </record>
+
+            <!-- ************* file_load search View  *************** -->
+        <record id="product_supplierinfo_load_search_view" model="ir.ui.view">
+            <field name="name">product.supplierinfo.load.search.view</field>
+            <field name="model">product.supplierinfo.load</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Search File load">
+                    <group>
+                        <field name="date" />
+                        <field name="file_name" />
+                    </group>
+                </search>
+                </field>
+         </record>
+
+       <record id="action_supplierinfo_load" model="ir.actions.act_window">
+            <field name="name">action.supplierinfo.load</field>
+            <field name="res_model">product.supplierinfo.load</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+       </record>
+
+       <act_window name="Fail Lines"
+            domain="[('file_load', '=', active_id),
+                       ('fail', '=', True)]"
+            context="{'file_load':active_id}"
+            res_model="product.supplierinfo.load.line"
+            src_model="product.supplierinfo.load"
+            id="act_fail_lines"/>
+
+    <menuitem action="action_supplierinfo_load"
+     id="menu_file_load" name="Load File" parent="purchase.menu_purchase_config_purchase" sequence="30"/>
+    </data>
+</openerp>
