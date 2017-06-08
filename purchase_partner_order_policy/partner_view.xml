@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+<data>
+
+
+<record id="view_partner_property_form" model="ir.ui.view">
+    <field name="name">supplier_partner_order_policy.partner_form</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="account.view_partner_property_form"/>
+    <field name="arch" type="xml">
+        <field name="property_payment_term" position="after">
+            <field name="supplier_order_policy" attrs="{'invisible':[('supplier','=',False)]}"/>
+        </field>
+    </field>
+</record>
+
+
+</data>
+</openerp>
