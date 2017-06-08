@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!--  Adapt the buttons in the form view to handle the new workflow and the state "Over Budget" -->
+        <record id="purchase_order_form_over_budget" model="ir.ui.view">
+            <field name="name">purchase.order.form.over_budget</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form" />
+            <field name="model">purchase.order</field>
+            <field name="arch" type="xml">
+                <data>
+                    <!-- Tweak the button "Confirm" to start a wizard when Budget Lines are exhausted  -->
+                    <xpath expr="//button[@name='purchase_confirm']" position="attributes">
+                        <attribute name="name">button_confirm</attribute>
+                        <attribute name="type">object</attribute>
+                    </xpath>
+                    <!-- Add a button to confirm over-budget POs
+                         Let users cancel over-budget POs -->
+                    <xpath expr="//button[@name='purchase_cancel']" position="after">
+                        <button name="purchase_cancel" states="over_budget" string="Cancel Order"/>
+                        <button name="purchase_confirm_overbudget" states="over_budget" string="Override Budgets" class="oe_highlight"/>
+                    </xpath>
+                </data>
+            </field>
+        </record>
+        
+        <!--  Add the state "Over Budget" to the "Draft" search filter and list -->
+        <record id="purchase.purchase_rfq" model="ir.actions.act_window">
+            <field name="domain">[('state','in',('draft','sent','confirmed','over_budget'))]</field>
+        </record>
+    </data>
+</openerp>

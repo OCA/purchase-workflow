@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_budget_purchase_user,Purchase users can read budgets,account_budget.model_crossovered_budget_lines,purchase.group_purchase_user,1,0,0,0
+access_budget_purchase_user_manager,Purchase managers can read budgets,account_budget.model_crossovered_budget_lines,purchase.group_purchase_manager,1,0,0,0

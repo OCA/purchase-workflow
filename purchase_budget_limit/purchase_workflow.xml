@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- New activity for purchase orders when Budget Lines are exhausted -->
+        <!-- Whenever a PO is Over-budget, the signal "purchase_confirm_overbudget" must be sent to override -->
+        <record id="act_over_budget" model="workflow.activity">
+            <field name="wkf_id" ref="purchase.purchase_order" />
+            <field name="name">over_budget</field>
+            <field name="kind">function</field>
+            <field name="action">write({'state': 'over_budget'})</field>
+        </record>
+        <record id="trans_draft_over_budget" model="workflow.transition">
+            <field name="act_from" ref="purchase.act_draft"/>
+            <field name="act_to" ref="act_over_budget"/>
+            <field name="signal">purchase_confirm</field>
+            <field name="condition">exhausted_budget_lines()</field>
+        </record>
+        <record id="trans_over_budget_confirm" model="workflow.transition">
+            <field name="act_from" ref="act_over_budget"/>
+            <field name="act_to" ref="purchase.act_confirmed"/>
+            <field name="signal">purchase_confirm_overbudget</field>
+        </record>
+        <record id="trans_over_budget_cancel" model="workflow.transition">
+            <field name="act_from" ref="act_over_budget"/>
+            <field name="act_to" ref="purchase.act_cancel"/>
+            <field name="signal">purchase_cancel</field>
+        </record>
+        
+        <!-- only move from draft to confirm if budgets are OK -->
+        <record id="purchase.trans_draft_confirmed" model="workflow.transition">
+            <field name="condition">not exhausted_budget_lines()</field>
+        </record>
+    </data>
+</openerp>
