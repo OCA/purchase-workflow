@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data noupdate="1">
+        <!-- Sequences for purchase.order -->
+        <record id="seq_purchase_quotation" model="ir.sequence">
+            <field name="name">Quotation</field>
+            <field name="code">purchase.quotation</field>
+            <field name="prefix">RFQ</field>
+            <field name="padding">8</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <!-- Change padding -->
+        <record id="purchase.seq_purchase_order" model="ir.sequence">
+            <field name="padding">8</field>
+        </record>
+</data>
+</odoo>
