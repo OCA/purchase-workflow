@@ -3,7 +3,7 @@
 
     <menuitem id="menu_purchase_cost_control"
               name="Costs distributions"
-              parent="base.menu_purchase_root"
+              parent="purchase.menu_purchase_root"
               sequence="9"/>
 
     <record id="action_purchase_cost_distribution"
