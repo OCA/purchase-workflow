@@ -5,11 +5,12 @@
 
 {
     'name': 'Purchase landed costs - Alternative option',
-    'version': '9.0.1.1.0',
+    'version': '10.0.1.0.0',
     "author": "OdooMRP team,"
               "AvanzOSC,"
               "Tecnativa,"
-              "Joaquín Gutierrez",
+              "Joaquín Gutierrez,"
+              "Odoo Community Association (OCA)",
     'category': 'Purchase Management',
     'website': 'http://www.odoomrp.com',
     'summary': 'Purchase cost distribution',
