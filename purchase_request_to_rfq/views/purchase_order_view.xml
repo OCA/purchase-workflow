@@ -13,7 +13,7 @@
                        position="inside">
                     <field name="purchase_request_lines" invisible="1"/>
                     <button string="Purchase Request lines"
-                        attrs="{'invisible': [('purchase_request_lines', '=', [])]}"
+                        attrs="{'invisible': [('purchase_request_lines', '=', False)]}"
                         name="action_openRequestLineTreeView"
                         type="object"
                         icon="gtk-open"/>
@@ -41,7 +41,7 @@
                 <xpath expr="//tree" position="inside">
                     <field name="purchase_request_lines" invisible="1"/>
                     <button string="Purchase Request lines"
-                        attrs="{'invisible': [('purchase_request_lines', '=', [])]}"
+                        attrs="{'invisible': [('purchase_request_lines', '=', False)]}"
                         name="action_openRequestLineTreeView"
                         type="object"
                         icon="gtk-open"/>
