@@ -2,7 +2,7 @@
 # © 2016 Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3
 
-from openerp.report import report_sxw
+from odoo.report import report_sxw
 
 
 def formatLang(env, value, digits=None, grouping=True, monetary=False,

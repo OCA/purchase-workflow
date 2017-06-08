@@ -4,8 +4,8 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3
 
 
-from openerp import models, fields, exceptions, api, _
-# NOTE: In v9, this should be `from openerp.tools.misc import formatLang`
+from odoo import models, fields, exceptions, api, _
+# NOTE: In v9, this should be `from odoo.tools.misc import formatLang`
 from .format_lang_wrapper import formatLang
 import openerp.addons.decimal_precision as dp
 
@@ -15,42 +15,54 @@ class PurchaseCostDistribution(models.Model):
     _description = "Purchase landed costs distribution"
     _order = 'name desc'
 
-    @api.one
+    @api.multi
     @api.depends('total_expense', 'total_purchase')
     def _compute_amount_total(self):
-        self.amount_total = self.total_purchase + self.total_expense
+        for distribution in self:
+            distribution.amount_total = distribution.total_purchase + \
+                distribution.total_expense
 
-    @api.one
+    @api.multi
     @api.depends('cost_lines', 'cost_lines.total_amount')
     def _compute_total_purchase(self):
-        self.total_purchase = sum([x.total_amount for x in self.cost_lines])
+        for distribution in self:
+            distribution.total_purchase = sum([x.total_amount for x in
+                                               distribution.cost_lines])
 
-    @api.one
+    @api.multi
     @api.depends('cost_lines', 'cost_lines.product_price_unit')
     def _compute_total_price_unit(self):
-        self.total_price_unit = sum([x.product_price_unit for x in
-                                     self.cost_lines])
+        for distribution in self:
+            distribution.total_price_unit = sum([x.product_price_unit for x in
+                                                 distribution.cost_lines])
 
-    @api.one
+    @api.multi
     @api.depends('cost_lines', 'cost_lines.product_qty')
     def _compute_total_uom_qty(self):
-        self.total_uom_qty = sum([x.product_qty for x in self.cost_lines])
+        for distribution in self:
+            distribution.total_uom_qty = sum([x.product_qty for x in
+                                              distribution.cost_lines])
 
-    @api.one
+    @api.multi
     @api.depends('cost_lines', 'cost_lines.total_weight')
     def _compute_total_weight(self):
-        self.total_weight = sum([x.total_weight for x in self.cost_lines])
+        for distribution in self:
+            distribution.total_weight = sum([x.total_weight for x in
+                                             distribution.cost_lines])
 
-    @api.one
+    @api.multi
     @api.depends('cost_lines', 'cost_lines.total_volume')
     def _compute_total_volume(self):
-        self.total_volume = sum([x.total_volume for x in self.cost_lines])
+        for distribution in self:
+            distribution.total_volume = sum([x.total_volume for x in
+                                             distribution.cost_lines])
 
-    @api.one
+    @api.multi
     @api.depends('expense_lines', 'expense_lines.expense_amount')
     def _compute_total_expense(self):
-        self.total_expense = sum([x.expense_amount for x in
-                                  self.expense_lines])
+        for distribution in self:
+            distribution.total_expense = sum([x.expense_amount for x in
+                                              distribution.expense_lines])
 
     def _expense_lines_default(self):
         expenses = self.env['purchase.expense.type'].search(
@@ -59,7 +71,7 @@ class PurchaseCostDistribution(models.Model):
                 for x in expenses]
 
     name = fields.Char(string='Distribution number', required=True,
-                       select=True, default='/')
+                       index=True, default='/')
     company_id = fields.Many2one(
         comodel_name='res.company', string='Company', required=True,
         default=(lambda self: self.env['res.company']._company_default_get(
@@ -78,31 +90,31 @@ class PurchaseCostDistribution(models.Model):
         [('direct', 'Direct Update')], string='Cost Update Type',
         default='direct', required=True)
     date = fields.Date(
-        string='Date', required=True, readonly=True, select=True,
+        string='Date', required=True, readonly=True, index=True,
         states={'draft': [('readonly', False)]},
         default=fields.Date.context_today)
     total_uom_qty = fields.Float(
         compute=_compute_total_uom_qty, readonly=True,
-        digits_compute=dp.get_precision('Product UoS'),
+        digits=dp.get_precision('Product UoS'),
         string='Total quantity')
     total_weight = fields.Float(
         compute=_compute_total_weight, string='Total gross weight',
         readonly=True,
-        digits_compute=dp.get_precision('Stock Weight'))
+        digits=dp.get_precision('Stock Weight'))
     total_volume = fields.Float(
         compute=_compute_total_volume, string='Total volume', readonly=True)
     total_purchase = fields.Float(
         compute=_compute_total_purchase,
-        digits_compute=dp.get_precision('Account'), string='Total purchase')
+        digits=dp.get_precision('Account'), string='Total purchase')
     total_price_unit = fields.Float(
         compute=_compute_total_price_unit, string='Total price unit',
-        digits_compute=dp.get_precision('Product Price'))
+        digits=dp.get_precision('Product Price'))
     amount_total = fields.Float(
         compute=_compute_amount_total,
-        digits_compute=dp.get_precision('Account'), string='Total')
+        digits=dp.get_precision('Account'), string='Total')
     total_expense = fields.Float(
         compute=_compute_total_expense,
-        digits_compute=dp.get_precision('Account'), string='Total expenses')
+        digits=dp.get_precision('Account'), string='Total expenses')
     note = fields.Text(string='Documentation for this order')
     cost_lines = fields.One2many(
         comodel_name='purchase.cost.distribution.line', ondelete="cascade",
@@ -239,8 +251,9 @@ class PurchaseCostDistribution(models.Model):
             # warehouse manager may not have the right to write on products
             product.sudo().write({'standard_price': new_std_price})
 
-    @api.one
+    @api.multi
     def action_done(self):
+        self.ensure_one()
         for line in self.cost_lines:
             if self.cost_update_type == 'direct':
                 line.move_id.quant_ids._price_update(line.standard_price_new)
@@ -254,8 +267,9 @@ class PurchaseCostDistribution(models.Model):
         self.write({'state': 'draft'})
         return True
 
-    @api.one
+    @api.multi
     def action_cancel(self):
+        self.ensure_one()
         for line in self.cost_lines:
             if self.cost_update_type == 'direct':
                 if self.currency_id.compare_amounts(
@@ -276,65 +290,82 @@ class PurchaseCostDistributionLine(models.Model):
     _name = "purchase.cost.distribution.line"
     _description = "Purchase cost distribution Line"
 
-    @api.one
+    @api.multi
     @api.depends('product_price_unit', 'product_qty')
     def _compute_total_amount(self):
-        self.total_amount = self.product_price_unit * self.product_qty
+        for dist_line in self:
+            dist_line.total_amount = dist_line.product_price_unit * \
+                dist_line.product_qty
 
-    @api.one
+    @api.multi
     @api.depends('product_id', 'product_qty')
     def _compute_total_weight(self):
-        self.total_weight = self.product_weight * self.product_qty
+        for dist_line in self:
+            dist_line.total_weight = dist_line.product_weight * \
+                dist_line.product_qty
 
-    @api.one
+    @api.multi
     @api.depends('product_id', 'product_qty')
     def _compute_total_volume(self):
-        self.total_volume = self.product_volume * self.product_qty
+        for dist_line in self:
+            dist_line.total_volume = dist_line.product_volume * \
+                dist_line.product_qty
 
-    @api.one
+    @api.multi
     @api.depends('expense_lines', 'expense_lines.cost_ratio')
     def _compute_cost_ratio(self):
-        self.cost_ratio = sum([x.cost_ratio for x in self.expense_lines])
+        for dist_line in self:
+            dist_line.cost_ratio = sum([x.cost_ratio for x in
+                                        dist_line.expense_lines])
 
-    @api.one
+    @api.multi
     @api.depends('expense_lines', 'expense_lines.expense_amount')
     def _compute_expense_amount(self):
-        self.expense_amount = sum([x.expense_amount for x in
-                                   self.expense_lines])
+        for dist_line in self:
+            dist_line.expense_amount = sum([x.expense_amount for x in
+                                            dist_line.expense_lines])
 
-    @api.one
+    @api.multi
     @api.depends('standard_price_old', 'cost_ratio')
     def _compute_standard_price_new(self):
-        self.standard_price_new = self.standard_price_old + self.cost_ratio
+        for dist_line in self:
+            dist_line.standard_price_new = dist_line.standard_price_old + \
+                dist_line.cost_ratio
 
     @api.multi
     @api.depends('distribution', 'distribution.name',
                  'picking_id', 'picking_id.name',
                  'product_id', 'product_id.display_name')
     def _compute_name(self):
-        for record in self:
-            record.name = "%s: %s / %s" % (
-                record.distribution.name, record.picking_id.name,
-                record.product_id.display_name,
+        for dist_line in self:
+            dist_line.name = "%s: %s / %s" % (
+                dist_line.distribution.name, dist_line.picking_id.name,
+                dist_line.product_id.display_name,
             )
 
-    @api.one
+    @api.multi
     @api.depends('move_id', 'move_id.product_id')
-    def _get_product_id(self):
-        # Cannot be done via related field due to strange bug in update chain
-        self.product_id = self.move_id.product_id.id
+    def _compute_product_id(self):
+        for dist_line in self:
+            # Cannot be done via related
+            # field due to strange bug in update chain
+            dist_line.product_id = dist_line.move_id.product_id.id
 
-    @api.one
+    @api.multi
     @api.depends('move_id', 'move_id.product_qty')
     def _get_product_qty(self):
-        # Cannot be done via related field due to strange bug in update chain
-        self.product_qty = self.move_id.product_qty
+        for dist_line in self:
+            # Cannot be done via related
+            #  field due to strange bug in update chain
+            dist_line.product_qty = dist_line.move_id.product_qty
 
-    @api.one
+    @api.multi
     @api.depends('move_id')
-    def _get_standard_price_old(self):
-        self.standard_price_old = (
-            self.move_id and self.move_id.get_price_unit(self.move_id) or 0.0)
+    def _compute_standard_price_old(self):
+        for dist_line in self:
+            dist_line.standard_price_old = (
+                dist_line.move_id and dist_line.move_id.get_price_unit() or
+                0.0)
 
     name = fields.Char(
         string='Name', compute='_compute_name', store=True,
@@ -359,7 +390,7 @@ class PurchaseCostDistributionLine(models.Model):
         store=True)
     product_id = fields.Many2one(
         comodel_name='product.product', string='Product', store=True,
-        compute='_get_product_id')
+        compute='_compute_product_id')
     product_qty = fields.Float(
         string='Quantity', compute='_get_product_qty', store=True)
     product_uom = fields.Many2one(
@@ -377,22 +408,23 @@ class PurchaseCostDistributionLine(models.Model):
         string='Gross weight', related='product_id.product_tmpl_id.weight',
         help="The gross weight in Kg.")
     standard_price_old = fields.Float(
-        string='Previous cost', compute="_get_standard_price_old", store=True,
-        digits_compute=dp.get_precision('Product Price'))
+        string='Previous cost', compute="_compute_standard_price_old",
+        store=True,
+        digits=dp.get_precision('Product Price'))
     expense_amount = fields.Float(
-        string='Cost amount', digits_compute=dp.get_precision('Account'),
+        string='Cost amount', digits=dp.get_precision('Account'),
         compute='_compute_expense_amount')
     cost_ratio = fields.Float(
         string='Unit cost', compute='_compute_cost_ratio')
     standard_price_new = fields.Float(
-        string='New cost', digits_compute=dp.get_precision('Product Price'),
+        string='New cost', digits=dp.get_precision('Product Price'),
         compute='_compute_standard_price_new')
     total_amount = fields.Float(
         compute=_compute_total_amount, string='Amount line',
-        digits_compute=dp.get_precision('Account'))
+        digits=dp.get_precision('Account'))
     total_weight = fields.Float(
         compute=_compute_total_weight, string="Line weight", store=True,
-        digits_compute=dp.get_precision('Stock Weight'),
+        digits=dp.get_precision('Stock Weight'),
         help="The line gross weight in Kg.")
     total_volume = fields.Float(
         compute=_compute_total_volume, string='Line volume', store=True,
@@ -427,7 +459,7 @@ class PurchaseCostDistributionLineExpense(models.Model):
         related='distribution_expense.type', store=True,
     )
     expense_amount = fields.Float(
-        string='Expense amount', digits_compute=dp.get_precision('Account'),
+        string='Expense amount', digits=dp.get_precision('Account'),
     )
     cost_ratio = fields.Float('Unit cost')
     company_id = fields.Many2one(
@@ -439,21 +471,22 @@ class PurchaseCostDistributionLineExpense(models.Model):
 class PurchaseCostDistributionExpense(models.Model):
     _name = "purchase.cost.distribution.expense"
     _description = "Purchase cost distribution expense"
-    _rec_name = "display_name"
 
-    @api.one
+    @api.multi
     @api.depends('distribution', 'distribution.cost_lines')
     def _get_imported_lines(self):
-        self.imported_lines = self.env['purchase.cost.distribution.line']
-        self.imported_lines |= self.distribution.cost_lines
+        for record in self:
+            record.imported_lines = record.env[
+                'purchase.cost.distribution.line']
+            record.imported_lines |= record.distribution.cost_lines
 
     distribution = fields.Many2one(
         comodel_name='purchase.cost.distribution', string='Cost distribution',
-        select=True, ondelete="cascade", required=True)
+        index=True, ondelete="cascade", required=True)
     ref = fields.Char(string="Reference")
     type = fields.Many2one(
         comodel_name='purchase.expense.type', string='Expense type',
-        select=True, ondelete="restrict")
+        index=True, ondelete="restrict")
     calculation_method = fields.Selection(
         string='Calculation method', related='type.calculation_method',
         readonly=True)
@@ -468,7 +501,7 @@ class PurchaseCostDistributionExpense(models.Model):
              "distributed across. Leave it blank to use all imported lines.",
         domain="[('id', 'in', imported_lines[0][2])]")
     expense_amount = fields.Float(
-        string='Expense amount', digits_compute=dp.get_precision('Account'),
+        string='Expense amount', digits=dp.get_precision('Account'),
         required=True)
     invoice_line = fields.Many2one(
         comodel_name='account.invoice.line', string="Supplier invoice line",
@@ -482,14 +515,15 @@ class PurchaseCostDistributionExpense(models.Model):
         store=True,
     )
 
-    @api.one
+    @api.multi
     @api.depends('distribution', 'type', 'expense_amount', 'ref')
     def _compute_display_name(self):
-        self.display_name = "%s: %s - %s (%s)" % (
-            self.distribution.name, self.type.name, self.ref,
-            formatLang(self.env, self.expense_amount,
-                       currency_obj=self.distribution.currency_id)
-        )
+        for record in self:
+            record.display_name = "%s: %s - %s (%s)" % (
+                record.distribution.name, record.type.name, record.ref,
+                formatLang(record.env, record.expense_amount,
+                           currency_obj=record.distribution.currency_id)
+            )
 
     @api.onchange('type')
     def onchange_type(self):
