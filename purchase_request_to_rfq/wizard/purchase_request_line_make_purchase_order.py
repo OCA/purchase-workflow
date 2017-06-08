@@ -266,6 +266,11 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             'type': 'ir.actions.act_window'
         }
 
+    @api.onchange('supplier_id')
+    def onchange_product_id(self):
+        for item in self.item_ids:
+            item.onchange_product_id()
+
 
 class PurchaseRequestLineMakePurchaseOrderItem(models.TransientModel):
     _name = "purchase.request.line.make.purchase.order.item"
