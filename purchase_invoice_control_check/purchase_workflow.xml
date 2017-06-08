@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="trans_cancel_picking" model="workflow.transition">
+            <field name="act_from" ref="purchase.act_invoice_end"/>
+            <field name="act_to" ref="purchase.act_cancel"/>
+            <field name="signal">purchase_cancel</field>
+            <field name="condition">check_has_non_stockable()</field>
+        </record>
+    </data>
+</openerp>
