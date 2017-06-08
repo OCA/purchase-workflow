@@ -1,0 +1,205 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# 	* purchase_internal_validation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-08-27 14:20+0000\n"
+"PO-Revision-Date: 2015-08-27 10:28-0500\n"
+"Last-Translator: Maxime Chambreuil <maxime.chambreuil@savoirfairelinux.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 1.5.4\n"
+
+#. module: purchase_internal_validation
+#: code:addons/purchase_internal_validation/models/purchase_order.py:73
+#, python-format
+msgid "Purchase order '%s' is waiting for validation."
+msgstr "Le bon de commande '%s' est en attente de validation."
+
+#. module: purchase_internal_validation
+#: view:purchase.order:0
+msgid "Confirm"
+msgstr "Confirmer"
+
+#. module: purchase_internal_validation
+#: field:purchase.internal.validation.installer,limit_amount:0
+msgid "Maximum Purchase Amount"
+msgstr "Montant d'achat maximal"
+
+#. module: purchase_internal_validation
+#: model:ir.actions.server,name:purchase_internal_validation.purchase_waiting_validation
+msgid "Notify the purchase manager group of a new purchase order to val"
+msgstr ""
+"Notifier les responsables des achats d'un nouveau bon de commande à valider"
+
+#. module: purchase_internal_validation
+#: view:purchase.order:0
+msgid "Print"
+msgstr "Imprimer"
+
+#. module: purchase_internal_validation
+#: model:ir.actions.server,subject:purchase_internal_validation.purchase_refused
+msgid "[[object.name]] refused"
+msgstr "[[object.name]] refusé"
+
+#. module: purchase_internal_validation
+#: code:addons/purchase_internal_validation/models/purchase_order.py:68
+#, python-format
+msgid ""
+"You can not wait for purchase order to be validated without Purchase Order "
+"Lines."
+msgstr ""
+"Vous ne pouvez pas attende la validation d'un bon commande qui n'a pas de "
+"ligne."
+
+#. module: purchase_internal_validation
+#: model:ir.actions.server,message:purchase_internal_validation.purchase_refused
+msgid ""
+"Hello,\n"
+"\n"
+"The purchase order [[object.name]] has been refused:\n"
+"[[object.get_action_url()]]\n"
+"\n"
+"Thank you.\n"
+"--\n"
+"Odoo"
+msgstr ""
+"Bonjour,\n"
+"\n"
+"Le bon de commande [[object.name]] a été refusé :\n"
+"[[object.get_action_url()]]\n"
+"\n"
+"Merci.\n"
+"--\n"
+"Odoo"
+
+#. module: purchase_internal_validation
+#: view:purchase.order:0
+msgid "Confirm Order"
+msgstr "Confirmer la commande"
+
+#. module: purchase_internal_validation
+#: model:ir.actions.server,message:purchase_internal_validation.purchase_waiting_validation
+msgid ""
+"Hello,\n"
+"\n"
+"The purchase order [[object.name]] is waiting for your validation:\n"
+"[[object.get_action_url()]]\n"
+"\n"
+"Thank you.\n"
+"--\n"
+"Odoo"
+msgstr ""
+"Bonjour,\n"
+"\n"
+"Le bon de commande [[object.name]] est en attente de validation :\n"
+"[[object.get_action_url()]]\n"
+"\n"
+"Merci.\n"
+"--\n"
+"Odoo"
+
+#. module: purchase_internal_validation
+#: view:purchase.order:0
+msgid "Validate"
+msgstr "Valider"
+
+#. module: purchase_internal_validation
+#: model:ir.actions.server,name:purchase_internal_validation.purchase_refused
+msgid "Notify the buyer that the purchase order has been refused"
+msgstr "Notifier l'acheteur que le bon de commande a été refusé"
+
+#. module: purchase_internal_validation
+#: model:ir.model,name:purchase_internal_validation.model_purchase_internal_validation_installer
+msgid "purchase.internal.validation.installer"
+msgstr "purchase.internal.validation.installer"
+
+#. module: purchase_internal_validation
+#: view:purchase.order:0
+msgid "Cancel Order"
+msgstr "Annuler la commande"
+
+#. module: purchase_internal_validation
+#: view:purchase.order:0
+msgid "Refuse"
+msgstr "Refuser"
+
+#. module: purchase_internal_validation
+#: view:purchase.order:0
+msgid "Send by Email"
+msgstr "Envoyer par courriel"
+
+#. module: purchase_internal_validation
+#: model:ir.model,name:purchase_internal_validation.model_purchase_order
+msgid "Purchase Order"
+msgstr "Bon de commande"
+
+#. module: purchase_internal_validation
+#: model:ir.actions.act_window,name:purchase_internal_validation.action_config_purchase_limit_amount
+#: view:purchase.internal.validation.installer:0
+msgid "Configure Limit Amount for Purchase"
+msgstr "Configurer le montant limite pour les achats"
+
+#. module: purchase_internal_validation
+#: code:addons/purchase_internal_validation/models/purchase_order.py:67
+#, python-format
+msgid "Error"
+msgstr "Erreur"
+
+#. module: purchase_internal_validation
+#: view:purchase.internal.validation.installer:0
+msgid "Define minimum amount after which purchase needs to be validated."
+msgstr "Defínissez le  montant au delà duquel les achats doivent être validés."
+
+#. module: purchase_internal_validation
+#: view:purchase.internal.validation.installer:0
+msgid "Purchase Application Configuration"
+msgstr "Configuration de l'application des achats"
+
+#. module: purchase_internal_validation
+#: model:ir.actions.server,subject:purchase_internal_validation.purchase_waiting_validation
+msgid "New PO to validate"
+msgstr "Nouveau bon de commande à valider"
+
+#. module: purchase_internal_validation
+#: view:purchase.internal.validation.installer:0
+msgid "res_config_contents"
+msgstr "res_config_contents"
+
+#. module: purchase_internal_validation
+#: help:purchase.internal.validation.installer,limit_amount:0
+msgid "Maximum amount after which internal validation of purchase is required."
+msgstr ""
+"Montant maximal au delà duquel une validation interne de la commande est "
+"obligatoire."
+
+#. module: purchase_internal_validation
+#: view:purchase.order:0
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: purchase_internal_validation
+#: selection:purchase.order,state:0
+msgid "Waiting for Validation"
+msgstr ""
+
+#. module: purchase_internal_validation
+#: selection:purchase.order,state:0
+msgid "Waiting for Correction"
+msgstr ""
+
+#. module: purchase_internal_validation
+#: selection:purchase.order,state:0
+msgid "Waiting"
+msgstr ""
+
+#. module: purchase_internal_validation
+#: selection:purchase.order,state:0
+msgid "Validated"
+msgstr ""
