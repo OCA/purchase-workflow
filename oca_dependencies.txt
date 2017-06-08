@@ -1,6 +1,6 @@
 # list the OCA project dependencies, one per line
 # add a github url if you need a forked version
 server-tools
-stock-logistics-workflow
+stock-logistics-workflow https://github.com/yvaucher/stock-logistics-workflow 8.0-port-stock-picking-split
 sale-workflow
 product-variant
