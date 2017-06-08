@@ -2,7 +2,7 @@
 # © 2014-2015 Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3
 
-from openerp import fields, models
+from odoo import fields, models
 
 
 class AccountInvoice(models.Model):
