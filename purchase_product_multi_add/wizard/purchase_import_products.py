@@ -5,11 +5,8 @@
 from odoo import api, fields, models
 from odoo.exceptions import Warning as UserError
 from odoo.tools.translate import _
-from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 import odoo.addons.decimal_precision as dp
 
-
-from datetime import datetime
 
 UNIT = dp.get_precision('Product Unit of Measure')
 
@@ -63,8 +60,7 @@ class PurchaseImportProducts(models.TransientModel):
             'product_qty': item.quantity or 1,
             'product_uom': item.product_id.uom_po_id.id,
             'price_unit': 0.0,
-            'date_planned': datetime.today().strftime(
-                DEFAULT_SERVER_DATETIME_FORMAT),
+            'date_planned': fields.Datetime.now()
         }
 
     @api.multi
