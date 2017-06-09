@@ -149,3 +149,35 @@ class TestDeliverySingle(TransactionCase):
         self.assertEquals(
             sorted_pickings[2].min_date[:10], self.date_later,
             "The second picking must be planned at the latest date")
+
+    def test_check_multiple_locations_multiple_dates_02(self):
+        # Leave some locations in the PO line empty
+        self.po.order_line[0].location_dest_id = self.l2
+        self.po.order_line[1].location_dest_id = False
+        self.po.order_line[2].location_dest_id = False
+        self.po.order_line[1].date_planned = self.date_later
+
+        self.assertEquals(
+            len(self.po.picking_ids), 0,
+            "There must not be pickings for the PO when draft")
+
+        self.po.button_confirm()
+
+        l2_picking = self.po.picking_ids.filtered(
+            lambda p: p.location_dest_id == self.l2)
+        self.assertGreaterEqual(len(l2_picking), 1,
+                                'There must be 1 picking for location Shelf 1')
+        default_location_picking = self.po.picking_ids.filtered(
+            lambda p: p.location_dest_id ==
+            self.po.picking_type_id.default_location_dest_id)
+        self.assertGreaterEqual(len(default_location_picking), 2,
+                                'There must be 2 or more '
+                                'pickings for the default location of the PO')
+
+        sorted_pickings = sorted(self.po.picking_ids, key=lambda x: x.min_date)
+        self.assertEquals(
+            sorted_pickings[0].min_date[:10], self.date_sooner,
+            "The first picking must be planned at the soonest date")
+        self.assertEquals(
+            sorted_pickings[2].min_date[:10], self.date_later,
+            "The second picking must be planned at the latest date")
