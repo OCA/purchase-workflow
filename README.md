@@ -24,12 +24,14 @@ addon | version | summary
 [purchase_discount](purchase_discount/) | 9.0.1.1.0 | Purchase order lines with discounts
 [purchase_fiscal_position_update](purchase_fiscal_position_update/) | 9.0.1.0.0 | Changing the fiscal position of a purchase order will auto-update purchase order lines
 [purchase_location_by_line](purchase_location_by_line/) | 9.0.1.0.0 | Allows to define a specific destination location on each PO line
+[purchase_order_approved](purchase_order_approved/) | 9.0.1.0.0 | Add a new state 'Approved' in purchase orders.
 [purchase_order_type](purchase_order_type/) | 9.0.1.1.0 | Purchase Order Type
 [purchase_order_variant_mgmt](purchase_order_variant_mgmt/) | 9.0.1.0.0 | Handle the addition/removal of multiple variants from product template into the purchase order
 [purchase_picking_state](purchase_picking_state/) | 9.0.1.0.0 | Add the status of all the incoming picking in the purchase order
 [purchase_request](purchase_request/) | 9.0.1.0.0 | Purchase Request
 [purchase_request_department](purchase_request_department/) | 9.0.1.0.0 | Purchase Request Department
 [purchase_request_procurement](purchase_request_procurement/) | 9.0.1.0.0 | Purchase Request Procurement
+[purchase_request_to_procurement](purchase_request_to_procurement/) | 9.0.1.0.0 | This module introduces the possiblity to create procurement order from purchase request
 [purchase_request_to_requisition](purchase_request_to_requisition/) | 9.0.1.0.0 | Purchase Request to Call for Bids
 [purchase_request_to_rfq](purchase_request_to_rfq/) | 9.0.1.0.0 | Purchase Request to RFQ
 [subcontracted_service](subcontracted_service/) | 9.0.1.0.0 | Subcontracted service
