@@ -5,14 +5,14 @@
     <record id="purchase_request_line_search" model="ir.ui.view">
         <field name="name">purchase.request.line.search</field>
         <field name="model">purchase.request.line</field>
-        <field name="inherit_id" ref="purchase_request.purchase_request_line_search"/>
+        <field name="inherit_id" ref="purchase_request_to_rfq.purchase_request_line_search"/>
         <field name="arch" type="xml">
-            <field name="date_required" position="after">
-            <filter name="purchase_state_approved"
-                    string="Purchase Approved"
-                    domain="[('purchase_state','=', 'approved')]"
-                    help="At least a PO has been approved"/>
-            </field>
+            <filter name="purchase_state_draft" position="after">
+                <filter name="purchase_state_approved"
+                        string="Purchase Approved"
+                        domain="[('purchase_state','=', 'approved')]"
+                        help="At least a PO has been approved"/>
+            </filter>
         </field>
     </record>
 </openerp>

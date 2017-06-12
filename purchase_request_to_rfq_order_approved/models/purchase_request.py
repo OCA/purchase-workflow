@@ -2,7 +2,7 @@
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
 
-from openerp import models, api
+from openerp import api, fields, models
 
 
 class PurchaseRequestLine(models.Model):
@@ -14,6 +14,7 @@ class PurchaseRequestLine(models.Model):
         super(PurchaseRequestLine, self)._compute_purchase_state()
         for rec in self:
             if rec.purchase_lines:
-                if any([po_line.order_id.state == 'approved' for po_line in
-                        rec.purchase_lines]):
+                if any([po_line.state == 'approved' for po_line in
+                        rec.purchase_lines]) and not any([po_line.state in ['purchase', 'done']
+                                                          for po_line in rec.purchase_lines]):
                     rec.purchase_state = 'approved'
