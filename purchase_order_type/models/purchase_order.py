@@ -7,6 +7,7 @@
 from odoo import api, fields, models
 from odoo.addons.purchase.models.purchase import PurchaseOrder as purchase_order
 
+
 class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
 
@@ -23,12 +24,12 @@ class PurchaseOrder(models.Model):
     @api.onchange('partner_id', 'company_id')
     def onchange_partner_id_purchase_order_type(self):
         if self.partner_id.purchase_type:
-            self.order_type = self.partner_id.purchase_type.id
+            self.order_type = self.partner_id.purchase_type
 
     @api.onchange('order_type')
     def onchange_purchase_order_type(self):
         if self.order_type:
             if self.order_type.incoterm_id:
-                self.incoterm_id = self.order_type.incoterm_id.id
+                self.incoterm_id = self.order_type.incoterm_id
             if self.order_type.picking_type_id:
-                self.picking_type_id = self.order_type.picking_type_id.id
+                self.picking_type_id = self.order_type.picking_type_id

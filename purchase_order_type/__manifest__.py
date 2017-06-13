@@ -9,17 +9,16 @@
     "version": "10.0.1.0.0",
     "category": "Purchase Management",
     "website": "http://www.camptocamp.com",
-    "author": "Camptocamp,"
-              "Tecnativa,"
-              "Odoo Community Association (OCA)"
-              "Comunitea",
+    "author": "Camptocamp, "
+              "Tecnativa, "
+              "Comunitea, "
+              "Odoo Community Association (OCA), ",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
     "depends": [
         "purchase",
     ],
-
     "data": [
         "security/ir.model.access.csv",
         "views/view_purchase_order_type.xml",
