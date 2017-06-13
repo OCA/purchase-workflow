@@ -34,6 +34,7 @@ addon | version | summary
 [purchase_request_to_procurement](purchase_request_to_procurement/) | 9.0.1.0.0 | This module introduces the possiblity to create procurement order from purchase request
 [purchase_request_to_requisition](purchase_request_to_requisition/) | 9.0.1.0.0 | Purchase Request to Call for Bids
 [purchase_request_to_rfq](purchase_request_to_rfq/) | 9.0.1.0.0 | Purchase Request to RFQ
+[purchase_request_to_rfq_order_approved](purchase_request_to_rfq_order_approved/) | 9.0.1.0.0 | Purchase Request to RFQ Order Approved
 [subcontracted_service](subcontracted_service/) | 9.0.1.0.0 | Subcontracted service
 
 
