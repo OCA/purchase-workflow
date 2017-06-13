@@ -9,7 +9,6 @@ from odoo.addons.purchase.models.purchase \
     import PurchaseOrder as purchase_order
 
 
-
 class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
 
