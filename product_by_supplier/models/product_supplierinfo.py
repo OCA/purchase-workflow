@@ -26,3 +26,5 @@ class ProductSupplierinfo(models.Model):
     _inherit = 'product.supplierinfo'
 
     delay = fields.Integer(group_operator='avg')
+    active = fields.Boolean(
+        string="Active", related='product_tmpl_id.active', store=True)
