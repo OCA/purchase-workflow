@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 from . import model
 
-from openerp import SUPERUSER_ID
+from odoo import SUPERUSER_ID
+from odoo.api import Environment
 
 
 def workaround_create_initial_rules(cr, registry):
-    """Work around https://github.com/odoo/odoo/issues/4853."""
-    WH = registry['stock.warehouse']
-    wh_ids = WH.search(cr, SUPERUSER_ID, [('buy_vci_to_resupply', '=', True)])
-    WH.write(cr, SUPERUSER_ID, wh_ids, {'buy_vci_to_resupply': True})
+    env = Environment(cr, SUPERUSER_ID, {})
+    WH = env['stock.warehouse']
+    whs = WH.search([('buy_vci_to_resupply', '=', True)])
+    whs.write({'buy_vci_to_resupply': True})
