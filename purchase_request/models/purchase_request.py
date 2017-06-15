@@ -134,6 +134,7 @@ class PurchaseRequest(models.Model):
     def button_draft(self):
         for rec in self:
             rec.state = 'draft'
+            rec.line_ids.do_uncancel()
         return True
 
     @api.multi
@@ -152,7 +153,22 @@ class PurchaseRequest(models.Model):
     def button_rejected(self):
         for rec in self:
             rec.state = 'rejected'
+            rec.line_ids.do_cancel()
         return True
+
+    @api.multi
+    def button_done(self):
+        for rec in self:
+            rec.state = 'done'
+        return True
+
+    @api.multi
+    def check_auto_reject(self):
+        """When all lines are cancelled the purchase request should be
+        auto-rejected."""
+        for pr in self:
+            if not pr.line_ids.filtered(lambda l: l.cancelled is False):
+                pr.write({'state': 'rejected'})
 
 
 class PurchaseRequestLine(models.Model):
@@ -231,10 +247,11 @@ class PurchaseRequestLine(models.Model):
     supplier_id = fields.Many2one('res.partner',
                                   string='Preferred supplier',
                                   compute="_compute_supplier_id")
-
     procurement_id = fields.Many2one('procurement.order',
                                      'Procurement Order',
-                                     readonly=True)
+                                     readonly=True, copy=False)
+    cancelled = fields.Boolean(
+        string="Cancelled", readonly=True, default=False)
 
     @api.onchange('product_id')
     def onchange_product_id(self):
@@ -247,3 +264,21 @@ class PurchaseRequestLine(models.Model):
             self.product_uom_id = self.product_id.uom_id.id
             self.product_qty = 1
             self.name = name
+
+    @api.multi
+    def do_cancel(self):
+        """Actions to perform when cancelling a purchase request line."""
+        self.write({'cancelled': True})
+
+    @api.multi
+    def do_uncancel(self):
+        """Actions to perform when uncancelling a purchase request line."""
+        self.write({'cancelled': False})
+
+    @api.multi
+    def write(self, vals):
+        res = super(PurchaseRequestLine, self).write(vals)
+        if vals.get('cancelled'):
+            requests = self.mapped('request_id')
+            requests.check_auto_reject()
+        return res
