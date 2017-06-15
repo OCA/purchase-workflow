@@ -68,7 +68,7 @@
                     <notebook>
                         <page string="Products">
                             <field name="line_ids">
-                                <tree>
+                                <tree decoration-muted="cancelled == True">
                                     <field name="product_id"/>
                                     <field name="name"/>
                                     <field name="product_qty"/>
@@ -76,6 +76,7 @@
                                     <field name="analytic_account_id"
                                            groups="analytic.group_analytic_accounting"/>
                                     <field name="date_required"/>
+                                    <field name="cancelled"/>
                                     <field name="is_editable" invisible="1"/>
                                 </tree>
                                 <form>
@@ -97,6 +98,7 @@
                                                            groups="product.group_uom"
                                                            class="oe_inline"
                                                            attrs="{'readonly': [('is_editable','=', False)]}"/>
+                                                    <field name="cancelled" invisible="1"/>
                                                 </div>
                                                 <field name="analytic_account_id"
                                                        groups="analytic.group_analytic_accounting"
@@ -226,7 +228,8 @@
             <field name="name">purchase.request.line.tree</field>
             <field name="model">purchase.request.line</field>
             <field name="arch" type="xml">
-                <tree string="Purchase Request Lines" create="false">
+                <tree string="Purchase Request Lines" create="false"
+                      decoration-muted="cancelled == True">
                     <field name="request_id"/>
                     <field name="request_state"/>
                     <field name="requested_by"/>
@@ -239,6 +242,7 @@
                     <field name="analytic_account_id"
                            groups="analytic.group_analytic_accounting"/>
                     <field name="supplier_id"/>
+                    <field name="cancelled"/>
                 </tree>
             </field>
         </record>
@@ -292,6 +296,7 @@
                                        attrs="{'readonly': [('is_editable','=', False)]}"/>
                                 <field name="date_required"
                                        attrs="{'readonly': [('is_editable','=', False)]}"/>
+                                <field name="cancelled"/>
                                 <field name="procurement_id"/>
                             </group>
                         </group>
@@ -326,6 +331,7 @@
                     <field name="date_required"/>
                     <field name="analytic_account_id"/>
                     <field name="procurement_id"/>
+                    <field name="cancelled" invisible="1"/>
                     <filter name="request_state_draft" string="Draft"
                             domain="[('request_state','=','draft')]"
                             help="Request is to be approved"/>
@@ -342,6 +348,9 @@
                             help="Assigned to me"/>
                     <filter domain="[('requested_by','=', uid)]"
                             help="My requests"/>
+                    <filter name="uncancelled"
+                            domain="[('cancelled','=', False)]"
+                            string="Uncancelled"/>
                     <group expand="0" string="Group By...">
                         <filter string="Product"
                                 domain="[]" context="{'group_by' : 'product_id'}" />
