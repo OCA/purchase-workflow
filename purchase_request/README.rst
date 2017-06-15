@@ -14,7 +14,8 @@ The person creating the requisition determines what and how much to order,
 and the requested date.
 
 "Indirectly" means that the purchase request initiated by the application
-automatically, for example, from procurement orders.
+automatically, for example, from procurement orders (the module
+purchase_request_procurement is also needed for this feature).
 
 A purchase request is an instruction to Purchasing to procure a certain
 quantity of materials services, so that they are available at a
@@ -32,7 +33,7 @@ Requests', and also from the 'Purchase' menu.
 
 Users can access to the list of Purchase Requests or Purchase Request Lines.
 
-It is possible to filter requests by it's approval status.
+It is possible to filter requests by its approval status.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
