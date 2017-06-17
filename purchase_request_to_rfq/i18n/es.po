@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-30 20:43+0000\n"
-"PO-Revision-Date: 2017-05-30 20:43+0000\n"
+"POT-Creation-Date: 2017-06-13 03:10+0000\n"
+"PO-Revision-Date: 2017-06-13 03:10+0000\n"
 "Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>, 2017\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "MIME-Version: 1.0\n"
@@ -91,7 +91,7 @@ msgid "Display Name"
 msgstr "Nombre mostrado"
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:221
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:218
 #, python-format
 msgid "Enter a positive quantity."
 msgstr "Introduzca una cantidad positiva."
@@ -278,7 +278,7 @@ msgid "Quantity to purchase"
 msgstr "Cantidad a comprar"
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:260
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:257
 #, python-format
 msgid "RFQ"
 msgstr "SdP"
