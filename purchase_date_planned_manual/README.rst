@@ -8,19 +8,19 @@ Purchase Date Planned Manual
 
 This module makes the system to always respect the planned (or scheduled)
 date set by the user when creating a Purchase order or the day set in the
-procurement order if the line is created from one.
+procurement order if the line is created from there.
 
-Additionally, this module modify the PO view to colour in red the lines that
-are predicted to arrive late comparing its scheduled date and the vendor lead
-time.
+Additionally, this module modifies the PO views and sets in red the lines
+that are predicted to arrive late compared to the scheduled date and vendor
+lead time.
 
 Usage
 =====
 
-To use this module, you need to:
+To use this module you could follow any of the two options below:
 
 #. Go to 'Purchase' and create a purchase order.
-#. Set the scheduled date manually in the PO lines.
+#. Manually set the scheduled date in the PO lines.
 #. This date will never be modified by the system and the lines that are
    expected to be late are highlighted in red.
 

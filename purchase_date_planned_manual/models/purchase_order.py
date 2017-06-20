@@ -36,7 +36,7 @@ class PurchaseOrderLine(models.Model):
                 'draft')
 
     predicted_arrival_late = fields.Boolean(
-        string='Possibly late?',
+        string='Planned to be late',
         compute=_compute_predicted_arrival_late,
         help='True if the arrival at scheduled date is planned to be late. '
              'Takes into account the vendor lead time and the company margin '
@@ -53,9 +53,8 @@ class PurchaseOrderLine(models.Model):
 
     @api.multi
     def action_delayed_line(self):
-        raise UserError(_('This line is scheduled for: %s. \n However, '
-                          'it is predicted to arrive later.') %
-                        self.date_planned)
+        raise UserError(_('This line is scheduled for: %s. \n However it is '
+                          'now planned to arrive late.') % self.date_planned)
 
 
 class PurchaseOrder(models.Model):
