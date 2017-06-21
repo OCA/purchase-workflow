@@ -3,16 +3,15 @@
 #   (<http://www.eficent.com>)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from openerp import api, fields, models
+from odoo import api, fields, models
 
 
 class PurchaseOrderLine(models.Model):
     _inherit = 'purchase.order.line'
 
-    location_dest_id = fields.Many2one('stock.location',
-                                       'Destination',
-                                       domain=[('usage', 'in',
-                                                ['internal', 'transit'])])
+    location_dest_id = fields.Many2one(
+        'stock.location', 'Destination', domain=[('usage', 'in',
+                                                  ['internal', 'transit'])])
 
     @api.model
     def _first_picking_copy_vals(self, key, lines):
