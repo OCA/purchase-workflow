@@ -3,7 +3,8 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
 
 import openerp.addons.decimal_precision as dp
-from openerp import _, api, exceptions, fields, models
+from openerp import api, fields, models, _
+from openerp.exceptions import UserError
 
 
 class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
@@ -39,21 +40,25 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         company_id = False
 
         for line in self.env['purchase.request.line'].browse(request_line_ids):
+            if line.cancelled:
+                raise UserError(
+                    _('You cannot create a RFQ from a cancelled purchase '
+                      'request line.'))
 
             if line.request_id.state != 'approved':
-                raise exceptions.Warning(
+                raise UserError(
                     _('Purchase Request %s is not approved') %
                     line.request_id.name)
 
             if line.purchase_state == 'done':
-                raise exceptions.Warning(
+                raise UserError(
                     _('The purchase has already been completed.'))
 
             line_company_id = line.company_id \
                 and line.company_id.id or False
             if company_id is not False \
                     and line_company_id != company_id:
-                raise exceptions.Warning(
+                raise UserError(
                     _('You have to select lines '
                       'from the same company.'))
             else:
@@ -61,11 +66,11 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
 
             line_picking_type = line.request_id.picking_type_id or False
             if not line_picking_type:
-                raise exceptions.Warning(
+                raise UserError(
                     _('You have to enter a Picking Type.'))
             if picking_type is not False \
                     and line_picking_type != picking_type:
-                raise exceptions.Warning(
+                raise UserError(
                     _('You have to select lines '
                       'from the same Picking Type.'))
             else:
@@ -76,7 +81,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
 
             if location is not False and line_location != location and \
                     line_location:
-                raise exceptions.Warning(
+                raise UserError(
                     _('You have to select lines '
                       'from the same procurement location.'))
             else:
@@ -112,7 +117,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
     @api.model
     def _prepare_purchase_order(self, picking_type, location, company):
         if not self.supplier_id:
-            raise exceptions.Warning(
+            raise UserError(
                 _('Enter a supplier.'))
         supplier = self.supplier_id
         data = {
@@ -214,7 +219,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         for item in self.item_ids:
             line = item.line_id
             if item.product_qty <= 0.0:
-                raise exceptions.Warning(
+                raise UserError(
                     _('Enter a positive quantity.'))
 
             location = line.request_id.picking_type_id.default_location_dest_id

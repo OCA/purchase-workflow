@@ -9,9 +9,8 @@ class StockPicking(models.Model):
     _inherit = "stock.picking"
 
     @api.model
-    def _purchase_request_picking_confirm_message_content(self, picking,
-                                                          request,
-                                                          request_dict):
+    def _purchase_request_picking_confirm_message_content(
+            self, picking, request, request_dict):
         if not request_dict:
             request_dict = {}
         title = _('Receipt confirmation %s for your Request %s') % (

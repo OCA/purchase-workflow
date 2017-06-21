@@ -1,22 +1,29 @@
-.. image:: https://img.shields.io/badge/licence-LGPL--3-blue.svg
-    :alt: License LGPL-3
+.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
+   :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+   :alt: License: AGPL-3
 
+=======================
 Purchase Request to RFQ
 =======================
+
 This module adds the possibility to create or update Requests for
 Quotation (RFQ) from Purchase Request Lines.
 
-
 Usage
 =====
-Go to the Purchase Request Lines from the menu entry 'Purchase Requests',
-and also from the 'Purchase' menu.
 
-Select the lines that you wish to initiate the RFQ for, then go to 'More'
-and press 'Create RFQ'.
+To use this module you need to:
 
-You can choose to select an existing RFQ or create a new one. In the later,
-you have to choose a supplier.
+#. Go to the Purchase Request Lines either from the *Purchase Requests*
+   or *Purchase* menus.
+#. Select the lines that you wish to initiate the RFQ for, then go to *More*
+   and press *Create RFQ*.
+#. In the wizard that raises you can choose to select an existing RFQ or
+   create a new one. In the second case, you additionally have to choose a
+   supplier.
+
+Consolidation logic for RFQ
+---------------------------
 
 In case that you chose to select an existing RFQ, the application will search
 for existing lines matching the request line, and will add the extra
@@ -25,6 +32,19 @@ if it exists for the supplier of that RFQ.
 
 In case that you create a new RFQ, the request lines will also be
 consolidated into as few as possible lines in the RFQ.
+
+Cancel Logic
+------------
+
+Note the following behaviors:
+
+* When you cancel a PO related to a purchase request, only incoming shipments
+  will be cancelled.
+* If you are using this module in conjunction with
+  `purchase_request_procurement` and the purchase request was originated
+  after a chain of moves/procurements, they will be all respected when
+  cancelling a PO. Cancel de purchase request if you want to totally cancel
+  this chain.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
@@ -50,6 +70,7 @@ Contributors
 * Jonathan Nemry <jonathan.nemry@acsone.eu>
 * Aaron Henriquez <ahenriquez@eficent.com>
 * Adrien Peiffer <adrien.peiffer@acsone.eu>
+* Lois Rilo <lois.rilo@eficent.com>
 
 
 Maintainer
