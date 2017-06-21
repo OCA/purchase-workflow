@@ -3,7 +3,7 @@
 #   (<http://www.eficent.com>)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from openerp.tests.common import TransactionCase
+from odoo.tests.common import TransactionCase
 import time
 
 
@@ -12,7 +12,7 @@ class TestDeliverySingle(TransactionCase):
     def setUp(self):
         super(TestDeliverySingle, self).setUp()
         # Products
-        p1 = self.env.ref('product.product_product_15')
+        p1 = self.env.ref('product.product_product_13')
         p2 = self.env.ref('product.product_product_25')
 
         # Locations
