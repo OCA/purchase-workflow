@@ -11,7 +11,6 @@ from openerp import _, api, exceptions, fields, models
 
 
 class PurchaseRequestLine(models.Model):
-
     _inherit = "purchase.request.line"
 
     @api.multi
