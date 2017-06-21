@@ -76,7 +76,7 @@
                                     <field name="analytic_account_id"
                                            groups="analytic.group_analytic_accounting"/>
                                     <field name="date_required"/>
-                                    <field name="cancelled"/>
+                                    <field name="cancelled" invisible="1"/>
                                     <field name="is_editable" invisible="1"/>
                                 </tree>
                                 <form>
@@ -98,7 +98,6 @@
                                                            groups="product.group_uom"
                                                            class="oe_inline"
                                                            attrs="{'readonly': [('is_editable','=', False)]}"/>
-                                                    <field name="cancelled" invisible="1"/>
                                                 </div>
                                                 <field name="analytic_account_id"
                                                        groups="analytic.group_analytic_accounting"
@@ -106,6 +105,7 @@
                                                        attrs="{'readonly': [('is_editable','=', False)]}"/>
                                                 <field name="date_required"
                                                        attrs="{'readonly': [('is_editable','=', False)]}"/>
+                                                <field name="cancelled"/>
                                                 <field name="procurement_id"/>
                                             </group>
                                         </group>
@@ -242,7 +242,7 @@
                     <field name="analytic_account_id"
                            groups="analytic.group_analytic_accounting"/>
                     <field name="supplier_id"/>
-                    <field name="cancelled"/>
+                    <field name="cancelled" invisible="1"/>
                 </tree>
             </field>
         </record>
