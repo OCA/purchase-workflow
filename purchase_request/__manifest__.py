@@ -6,7 +6,10 @@
     "name": "Purchase Request",
     "author": "Eficent Business and IT Consulting Services S.L., "
               "Odoo Community Association (OCA)",
-    "version": "10.0.1.0.0",
+    "version": "10.0.1.0.1",
+    "summary": "Use this module to have notification of requirements of "
+               "materials and/or external services and keep track of such "
+               "requirements.",
     "category": "Purchase Management",
     "depends": [
         "purchase",
