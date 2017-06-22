@@ -14,7 +14,8 @@ class PurchaseRequestLineMakeProcurementOrder(models.TransientModel):
     def _get_domain(self):
         return [
             ('request_state', '=', 'approved'),
-            ('product_id', '!=', False)]
+            ('product_id', '!=', False),
+            ('cancelled', '=', False)]
 
     @api.model
     def _get_default_request_line(self):

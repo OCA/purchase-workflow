@@ -75,6 +75,7 @@ class PurchaseRequestLine(models.Model):
             'product_qty': self.product_qty,
             'product_uom': self.product_uom_id.id,
             'date_planned': self.date_required,
+            'request_id': self.request_id.id,
         }
         return vals
 
