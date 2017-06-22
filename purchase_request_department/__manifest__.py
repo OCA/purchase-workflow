@@ -6,7 +6,7 @@
     "name": "Purchase Request Department",
     "author": "Eficent, "
               "Odoo Community Association (OCA)",
-    "version": "9.0.1.0.0",
+    "version": "10.0.1.0.0",
     "category": "Purchase Management",
     "post_init_hook": "post_init_hook",
     "depends": [
