@@ -2,10 +2,10 @@
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
 
-from openerp.tests import common
+from odoo.tests.common import TransactionCase
 
 
-class TestPurchaseRequest(common.TransactionCase):
+class TestPurchaseRequest(TransactionCase):
 
     def setUp(self):
         super(TestPurchaseRequest, self).setUp()
