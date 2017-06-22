@@ -7,7 +7,7 @@
     'summary': """
         This module introduces the possiblity to
         create procurement order from purchase request""",
-    'version': '9.0.1.0.0',
+    'version': '9.0.1.0.1',
     'license': 'AGPL-3',
     'author': 'ACSONE SA/NV,Odoo Community Association (OCA)',
     'website': 'https://acsone.eu/',
