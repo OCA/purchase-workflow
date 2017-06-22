@@ -21,12 +21,14 @@ addon | version | summary
 [product_by_supplier](product_by_supplier/) | 10.0.1.0.0 | Show products grouped by suppliers
 [purchase_allowed_product](purchase_allowed_product/) | 10.0.1.0.0 | This module allows to select only products that can be supplied by the supplier
 [purchase_commercial_partner](purchase_commercial_partner/) | 10.0.1.0.0 | Add stored related field 'Commercial Supplier' on POs
+[purchase_delivery_split_date](purchase_delivery_split_date/) | 10.0.1.0.0 | Allows Purchase Order you confirm to generate one Incoming Shipment for each expected date indicated in the Purchase Order Lines
 [purchase_fiscal_position_update](purchase_fiscal_position_update/) | 10.0.1.0.0 | Changing the fiscal position of a purchase order will auto-update purchase order lines
 [purchase_fop_shipping](purchase_fop_shipping/) | 10.0.1.0.0 | Purchase Free-Of-Paiment shipping
 [purchase_picking_state](purchase_picking_state/) | 10.0.1.0.0 | Add the status of all the incoming picking in the purchase order
 [purchase_request](purchase_request/) | 10.0.1.0.0 | Purchase Request
 [purchase_request_to_procurement](purchase_request_to_procurement/) | 10.0.1.0.0 | This module introduces the possiblity to create procurement order from purchase request
 [purchase_request_to_rfq](purchase_request_to_rfq/) | 10.0.1.0.0 | Purchase Request to RFQ
+[subcontracted_service](subcontracted_service/) | 10.0.1.0.0 | Subcontracted service
 
 
 Unported addons
