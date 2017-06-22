@@ -7,10 +7,42 @@ from odoo import api, fields, models
 import odoo.addons.decimal_precision as dp
 
 
+class PurchaseOrder(models.Model):
+    _inherit = "purchase.order"
+
+    @api.depends('order_line.price_total')
+    def _amount_all(self):
+        # Method copy-pasted from odoo/addons/purchase © Odoo S.A.
+        for order in self:
+            amount_untaxed = amount_tax = 0.0
+            for line in order.order_line:
+                amount_untaxed += line.price_subtotal
+                # FORWARDPORT UP TO 10.0
+                if (
+                    order.company_id.tax_calculation_rounding_method ==
+                    'round_globally'
+                ):
+                    # purchase_discount modif below: price_unit uses discount
+                    price_unit = line.price_unit * (1 - line.discount / 100.0)
+                    taxes = line.taxes_id.compute_all(
+                        price_unit, line.order_id.currency_id,
+                        line.product_qty, product=line.product_id,
+                        partner=line.order_id.partner_id)
+                    amount_tax += sum(
+                        t.get('amount', 0.0) for t in taxes.get('taxes', []))
+                else:
+                    amount_tax += line.price_tax
+            order.update({
+                'amount_untaxed': order.currency_id.round(amount_untaxed),
+                'amount_tax': order.currency_id.round(amount_tax),
+                'amount_total': amount_untaxed + amount_tax,
+            })
+
+
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
-    @api.depends('discount')
+    @api.depends('product_qty', 'price_unit', 'taxes_id', 'discount')
     def _compute_amount(self):
         prices = {}
         for line in self:
