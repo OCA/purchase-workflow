@@ -20,6 +20,7 @@ addon | version | summary
 --- | --- | ---
 [product_by_supplier](product_by_supplier/) | 9.0.1.0.0 | Show products grouped by suppliers
 [product_supplierinfo_discount](product_supplierinfo_discount/) | 9.0.1.0.0 | Discounts in product supplier info
+[purchase_date_planned_manual](purchase_date_planned_manual/) | 9.0.1.0.0 | This module makes the system to always respect the planned (or scheduled) date in PO lines.
 [purchase_delivery_split_date](purchase_delivery_split_date/) | 9.0.1.0.0 | Purchase Deliveries split by date
 [purchase_discount](purchase_discount/) | 9.0.1.1.0 | Purchase order lines with discounts
 [purchase_fiscal_position_update](purchase_fiscal_position_update/) | 9.0.1.0.0 | Changing the fiscal position of a purchase order will auto-update purchase order lines
@@ -28,7 +29,7 @@ addon | version | summary
 [purchase_order_type](purchase_order_type/) | 9.0.1.1.0 | Purchase Order Type
 [purchase_order_variant_mgmt](purchase_order_variant_mgmt/) | 9.0.1.0.0 | Handle the addition/removal of multiple variants from product template into the purchase order
 [purchase_picking_state](purchase_picking_state/) | 9.0.1.0.0 | Add the status of all the incoming picking in the purchase order
-[purchase_request](purchase_request/) | 9.0.1.0.0 | Purchase Request
+[purchase_request](purchase_request/) | 9.0.1.0.1 | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
 [purchase_request_department](purchase_request_department/) | 9.0.1.0.0 | Purchase Request Department
 [purchase_request_procurement](purchase_request_procurement/) | 9.0.1.0.0 | Purchase Request Procurement
 [purchase_request_to_procurement](purchase_request_to_procurement/) | 9.0.1.0.0 | This module introduces the possiblity to create procurement order from purchase request
