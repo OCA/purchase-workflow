@@ -2,11 +2,11 @@
 # © 2015-17 Eficent Business and IT Consulting Services S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-from openerp.tests import common
-from openerp import fields
+from openerp.tests.common import TransactionCase
+from openerp.fields import Datetime
 
 
-class TestAnalyticSearch(common.TransactionCase):
+class TestAnalyticSearch(TransactionCase):
 
     def setUp(self):
         super(TestAnalyticSearch, self).setUp()
@@ -18,7 +18,7 @@ class TestAnalyticSearch(common.TransactionCase):
         self.product_uom_model = self.env['product.uom']
 
         pa_dict = {
-            'name': 'Pepito',
+            'name': 'Partner 1',
             'supplier': True,
         }
         self.partner = partner_model.sudo().create(pa_dict)
@@ -40,7 +40,7 @@ class TestAnalyticSearch(common.TransactionCase):
         self.analytic_account_1 = \
             analytic_account_model.sudo().create(ac_dict)
         pl_dict1 = {
-            'date_planned': fields.Datetime.now(),
+            'date_planned': Datetime.now(),
             'name': 'PO01',
             'order_id': self.purchase_order_1.id,
             'product_id': self.product.id,
@@ -54,7 +54,7 @@ class TestAnalyticSearch(common.TransactionCase):
 
         # PURCHASE ORDER NUM 2
         pa_dict2 = {
-            'name': 'Juanito',
+            'name': 'Partner 2',
             'supplier': True,
         }
         self.partner2 = partner_model.sudo().create(pa_dict2)
@@ -63,9 +63,16 @@ class TestAnalyticSearch(common.TransactionCase):
         }
         self.purchase_order_2 = self.purchase_order_model.create(po_dict2)
 
-    def test_filter_analytic_account(self):
+    def test_filter_analytic_accounts(self):
         found = self.purchase_order_model.search([
             ('account_analytic_ids', '=', self.analytic_account_1.id)])
-        self.assertEqual(found, self.purchase_order_1,
-                         'Expected %s and got %s' % (self.purchase_order_1,
-                                                     found))
+        self.assertEqual(
+            found, self.purchase_order_1,
+            'Expected %s and got %s' % (self.purchase_order_1, found))
+
+    def test_compute_analytic_accounts(self):
+        self.assertDictContainsSubset(
+            {self.purchase_order_1.id: [self.analytic_account_1.id]},
+            self.purchase_order_1._compute_analytic_accounts(),
+            'Method \'_compute_analytic_accounts\' does not work as expected.'
+        )

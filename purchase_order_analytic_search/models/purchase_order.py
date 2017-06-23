@@ -2,7 +2,7 @@
 # © 2015 Eficent Business and IT Consulting Services S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-from openerp import models, fields, api
+from openerp import api, fields, models
 
 
 class PurchaseOrder(models.Model):
@@ -11,7 +11,7 @@ class PurchaseOrder(models.Model):
 
     @api.multi
     @api.depends('order_line.account_analytic_id')
-    def _get_analytic_accounts(self):
+    def _compute_analytic_accounts(self):
         res = {}
         for purchase in self:
             res[purchase.id] = []
@@ -34,6 +34,6 @@ class PurchaseOrder(models.Model):
     account_analytic_ids = \
         fields.Many2many(comodel_name='account.analytic.account',
                          string='Analytic Account',
-                         compute=_get_analytic_accounts,
-                         search=_search_analytic_accounts,
+                         compute='_compute_analytic_accounts',
+                         search='_search_analytic_accounts',
                          readonly=True)
