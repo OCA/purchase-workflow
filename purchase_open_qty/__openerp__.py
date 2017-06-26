@@ -4,9 +4,9 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 {
-    "name": "Purchase Date Planned Manual",
-    "summary": "This module makes the system to always respect the planned "
-               "(or scheduled) date in PO lines.",
+    "name": "Purchase Open Qty",
+    "summary": "Allows to identify the purchase orders that have quantities "
+               "pending to invoice or to receive.",
     "version": "9.0.1.0.0",
     "author": "Eficent, "
               "Odoo Community Association (OCA)",
@@ -14,8 +14,9 @@
     "category": "Purchases",
     "depends": ["purchase"],
     "data": [
-        'views/purchase_order_view.xml',
+        'views/purchase_view.xml',
     ],
+    'pre_init_hook': 'pre_init_hook',
     "license": "AGPL-3",
     "installable": True,
     "application": False,

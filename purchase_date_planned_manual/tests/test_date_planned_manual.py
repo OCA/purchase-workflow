@@ -8,9 +8,9 @@ from datetime import timedelta, datetime
 from openerp.exceptions import UserError
 
 
-class SomethingCase(TransactionCase):
+class TestDatePlannedManual(TransactionCase):
     def setUp(self, *args, **kwargs):
-        super(SomethingCase, self).setUp(*args, **kwargs)
+        super(TestDatePlannedManual, self).setUp(*args, **kwargs)
         self.po_model = self.env['purchase.order']
         self.pol_model = self.env['purchase.order.line']
         self.proc_model = self.env['procurement.order']
