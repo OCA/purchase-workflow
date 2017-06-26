@@ -4,6 +4,7 @@
 
 from openerp.tests import common
 from openerp.tools import SUPERUSER_ID
+from openerp import fields
 
 
 class TestPurchaseRequestToRfq(common.TransactionCase):
@@ -12,19 +13,34 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         super(TestPurchaseRequestToRfq, self).setUp()
         self.purchase_request = self.env['purchase.request']
         self.purchase_request_line = self.env['purchase.request.line']
-        self.wiz =\
-            self.env['purchase.request.line.make.purchase.order']
+        self.wiz = self.env['purchase.request.line.make.purchase.order']
         self.purchase_order = self.env['purchase.order']
 
-    def test_purchase_request_to_purchase_rfq(self):
-        vals = {
+        self.product = self.env.ref('product.product_product_13')
+        self.partner = self.env.ref('base.res_partner_1')
+
+        self.pr_vals = {
             'picking_type_id': self.env.ref('stock.picking_type_in').id,
             'requested_by': SUPERUSER_ID,
         }
-        purchase_request = self.purchase_request.create(vals)
+        proc_vals = {
+            'name': 'test procurement',
+            'date_planned': fields.Datetime.now(),
+            'product_id': self.product.id,
+            'product_qty': 4.0,
+            'product_uom': self.product.uom_id.id,
+            'warehouse_id': self.env.ref('stock.warehouse0').id,
+            'location_id': self.env.ref('stock.stock_location_stock').id,
+            'route_ids': [
+                (4, self.env.ref('purchase.route_warehouse0_buy').id, 0)],
+        }
+        self.proc = self.env['procurement.order'].create(proc_vals)
+
+    def test_purchase_request_to_purchase_rfq(self):
+        purchase_request = self.purchase_request.create(self.pr_vals)
         vals = {
             'request_id': purchase_request.id,
-            'product_id': self.env.ref('product.product_product_13').id,
+            'product_id': self.product.id,
             'product_uom_id': self.env.ref('product.product_uom_unit').id,
             'product_qty': 5.0,
         }
@@ -55,14 +71,10 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
     def test_bug_is_editable_multiple_lines(self):
         # Check that reading multiple lines is still possible
         # https://github.com/OCA/purchase-workflow/pull/291
-        vals = {
-            'picking_type_id': self.env.ref('stock.picking_type_in').id,
-            'requested_by': SUPERUSER_ID,
-        }
-        purchase_request = self.purchase_request.create(vals)
+        purchase_request = self.purchase_request.create(self.pr_vals)
         vals = {
             'request_id': purchase_request.id,
-            'product_id': self.env.ref('product.product_product_13').id,
+            'product_id': self.product.id,
             'product_uom_id': self.env.ref('product.product_uom_unit').id,
             'product_qty': 5.0,
         }
@@ -74,12 +86,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         self.purchase_request_line.new({}).is_editable
 
     def test_purchase_request_to_purchase_rfq_minimum_order_qty(self):
-
-        vals = {
-            'picking_type_id': self.env.ref('stock.picking_type_in').id,
-            'requested_by': SUPERUSER_ID,
-        }
-        purchase_request = self.purchase_request.create(vals)
+        purchase_request = self.purchase_request.create(self.pr_vals)
         vals = {
             'request_id': purchase_request.id,
             'product_id': self.env.ref('product.product_product_8').id,
@@ -117,11 +124,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
             'The PO should cross-reference to the purchase request.')
 
     def test_purchase_request_to_purchase_rfq_multiple_PO(self):
-        vals = {
-            'picking_type_id': self.env.ref('stock.picking_type_in').id,
-            'requested_by': SUPERUSER_ID,
-        }
-        purchase_request1 = self.purchase_request.create(vals)
+        purchase_request1 = self.purchase_request.create(self.pr_vals)
         vals = {
             'picking_type_id': self.env.ref('stock.picking_type_in').id,
             'requested_by': SUPERUSER_ID,
@@ -172,11 +175,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         product = self.env.ref('product.product_product_6')
         product.uom_po_id = self.env.ref('product.product_uom_dozen')
 
-        vals = {
-            'picking_type_id': self.env.ref('stock.picking_type_in').id,
-            'requested_by': SUPERUSER_ID,
-        }
-        purchase_request1 = self.purchase_request.create(vals)
+        purchase_request1 = self.purchase_request.create(self.pr_vals)
         vals = {
             'picking_type_id': self.env.ref('stock.picking_type_in').id,
             'requested_by': SUPERUSER_ID,
@@ -223,3 +222,44 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         self.assertEquals(po_line.product_uom,
                           self.env.ref('product.product_uom_dozen'),
                           'The purchase UoM should be Dozen(s).')
+
+    def test_po_cancellation(self):
+        """Tests the cancellation of a purchase order without lines related
+        to a purchase request."""
+        po = self.proc.purchase_id
+        po.button_confirm()
+        po.button_cancel()
+        self.assertEqual(po.state, 'cancel', "PO hasn't been cancelled.")
+        self.assertEqual(self.proc.state, 'cancel',
+                         "procurement hasn't been cancelled.")
+
+    def test_mixed_po_cancellation(self):
+        """Tests cancellation of purchase order with a line related to a
+        purchase request."""
+        purchase_request = self.purchase_request.create(self.pr_vals)
+        vals = {
+            'request_id': purchase_request.id,
+            'product_id': self.product.id,
+            'product_uom_id': self.env.ref('product.product_uom_unit').id,
+            'product_qty': 5.0,
+        }
+        purchase_request_line = self.purchase_request_line.create(vals)
+        purchase_request.button_to_approve()
+        purchase_request.button_approved()
+        po = self.proc.purchase_id
+        vals = {
+            'purchase_order_id': po.id,
+        }
+        wiz_id = self.wiz.with_context(
+            active_model="purchase.request.line",
+            active_ids=[purchase_request_line.id],
+            active_id=purchase_request_line.id,).create(vals)
+        wiz_id.make_purchase_order()
+        self.assertGreaterEqual(len(po.order_line), 2)
+        po.button_confirm()
+        po.button_cancel()
+        self.assertEqual(po.state, 'cancel', "PO hasn't been cancelled.")
+        self.assertEqual(self.proc.state, 'cancel',
+                         "procurement hasn't been cancelled.")
+        self.assertFalse(purchase_request_line.cancelled)
+        self.assertNotEqual(purchase_request.state, 'cancel')

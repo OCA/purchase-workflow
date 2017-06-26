@@ -114,7 +114,6 @@ class PurchaseOrder(models.Model):
                     lambda r: r.state != 'cancel'):
                 pick.action_cancel()
             # Post a msg in purchase requests:
-            # TODO: msg to PR
             request_po_lines = order.order_line.filtered(
                 lambda pol: pol.purchase_request_lines)
             for line in request_po_lines:
