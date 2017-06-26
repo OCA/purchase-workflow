@@ -2,15 +2,15 @@
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp.tests.common import TransactionCase
-from openerp import fields
-from datetime import timedelta, datetime
-from openerp.exceptions import UserError
+from datetime import datetime, timedelta
+from odoo import fields
+from odoo.tests.common import TransactionCase
+from odoo.exceptions import UserError
 
 
-class SomethingCase(TransactionCase):
+class TestDatePlannedManual(TransactionCase):
     def setUp(self, *args, **kwargs):
-        super(SomethingCase, self).setUp(*args, **kwargs)
+        super(TestDatePlannedManual, self).setUp(*args, **kwargs)
         self.po_model = self.env['purchase.order']
         self.pol_model = self.env['purchase.order.line']
         self.proc_model = self.env['procurement.order']
