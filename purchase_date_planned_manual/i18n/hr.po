@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * purchase_date_planned_manual
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
@@ -12,11 +12,12 @@ msgstr ""
 "PO-Revision-Date: 2017-06-23 00:46+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
+"Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: hr\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #. module: purchase_date_planned_manual
 #: model:ir.ui.view,arch_db:purchase_date_planned_manual.view_purchase_order_form
@@ -34,17 +35,12 @@ msgid "Procurement"
 msgstr "Nabava"
 
 #. module: purchase_date_planned_manual
-#: model:ir.model,name:purchase_date_planned_manual.model_purchase_order
-msgid "Purchase Order"
-msgstr ""
-
-#. module: purchase_date_planned_manual
 #: model:ir.model,name:purchase_date_planned_manual.model_purchase_order_line
 msgid "Purchase Order Line"
 msgstr ""
 
 #. module: purchase_date_planned_manual
-#: code:addons/purchase_date_planned_manual/models/purchase_order.py:56
+#: code:addons/purchase_date_planned_manual/models/purchase_order.py:51
 #, python-format
 msgid ""
 "This line is scheduled for: %s. \n"
