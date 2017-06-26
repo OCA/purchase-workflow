@@ -7,10 +7,10 @@
     "name": "Purchase Date Planned Manual",
     "summary": "This module makes the system to always respect the planned "
                "(or scheduled) date in PO lines.",
-    "version": "9.0.1.0.0",
+    "version": "10.0.1.0.0",
     "author": "Eficent, "
               "Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/sale-workflow",
+    "website": "https://github.com/OCA/purchase-workflow",
     "category": "Purchases",
     "depends": ["purchase"],
     "data": [
