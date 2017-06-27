@@ -85,8 +85,7 @@ class PurchaseOrder(models.Model):
         """
         po_from_request = self.filtered(
             lambda po: po.mapped('order_line.purchase_request_lines'))
-        remaining_po = self.filtered(
-            lambda po: not po.mapped('order_line.purchase_request_lines'))
+        remaining_po = self - po_from_request
         po_from_request.cancel_po_from_request()
         return super(PurchaseOrder, remaining_po).button_cancel()
 
@@ -124,10 +123,10 @@ class PurchaseOrder(models.Model):
                     req.message_post(body=message, subtype='mail.mt_comment')
             # Search for lines not created from a Purchase request and end
             # the process
-            no_request_po_lines = order.order_line.filtered(
-                lambda pol: not pol.purchase_request_lines)
             # TODO: remove PO from procurement ?!
             if not self.env.context.get('cancel_procurement'):
+                no_request_po_lines = order.order_line.filtered(
+                    lambda pol: not pol.purchase_request_lines)
                 procurements = no_request_po_lines.mapped('procurement_ids')
                 procurements.filtered(lambda r: r.state not in (
                     'cancel', 'exception') and r.rule_id.propagate).write(
