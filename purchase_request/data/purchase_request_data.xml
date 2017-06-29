@@ -3,7 +3,6 @@
      License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
 <odoo>
 
-    <data>
         <!-- Request-related subtypes for messaging / Chatter -->
         <record id="mt_request_to_approve" model="mail.message.subtype">
             <field name="name">Purchase Request to be approved</field>
@@ -26,5 +25,4 @@
             <field name="description">Purchase Request Rejected</field>
         </record>
 
-    </data>
 </odoo>
