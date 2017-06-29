@@ -54,7 +54,7 @@ class TestPurchaseRequest(common.TransactionCase):
         # Add a second line to the PR:
         vals = {
             'request_id': purchase_request.id,
-            'product_id': self.env.ref('product.product_product_14').id,
+            'product_id': self.env.ref('product.product_product_16').id,
             'product_uom_id': self.env.ref('product.product_uom_unit').id,
             'product_qty': 5.0,
         }
