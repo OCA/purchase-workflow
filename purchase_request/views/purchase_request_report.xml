@@ -2,7 +2,7 @@
 <!-- Copyright 2016 Eficent Business and IT Consulting Services S.L.
      License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
 <odoo>
-    <data>
+
         <report 
             string="Purchase Request"
             id="action_report_purchase_requests"
@@ -11,5 +11,5 @@
             name="purchase_request.report_purchaserequests"
             file="purchase_request.report_purchaserequests"
          />
-    </data>
+
 </odoo>
