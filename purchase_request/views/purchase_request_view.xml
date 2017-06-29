@@ -251,7 +251,7 @@
             <field name="model">purchase.request.line</field>
             <field name="priority" eval="20"/>
             <field name="arch" type="xml">
-                <form string="Purchase Request Line" version="7.0">
+                <form string="Purchase Request Line">
                     <sheet>
                         <h1>
                             <field name="request_id"/>
