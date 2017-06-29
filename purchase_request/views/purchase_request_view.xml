@@ -2,7 +2,7 @@
 <!-- Copyright 2016 Eficent Business and IT Consulting Services S.L.
      License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
 <odoo>
-    <data>
+
         <record model="ir.ui.view" id="view_purchase_request_form">
             <field name="name">purchase.request.form</field>
             <field name="model">purchase.request</field>
@@ -436,5 +436,4 @@
             action="purchase_request_line_form_action"
             />
 
-    </data>
 </odoo>
