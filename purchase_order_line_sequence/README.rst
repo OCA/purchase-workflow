@@ -6,28 +6,16 @@
 Purchase order lines with sequence number
 =========================================
 
-Provides a new field on the purchase order form, allowing to manage the order of the purchase order lines.
+Provides a new field sequence on the purchase order, which allows to manage the order of its purchase order lines.
+The sequence then is propagated to the Invoice lines and the Stock Moves.
 
-
-Installation
-============
-
-To install this module, you need to install its dependant module:
-
- * stock_picking_line_sequence (https://github.com/OCA/stock-logistics-workflow/)
- * account_invoice_line_sequence (https://github.com/OCA/account-invoicing/)
-
-Configuration
-=============
-
-No configuration is required. 
 
 Usage
 =====
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/142/9.0
+   :target: https://runbot.odoo-community.org/runbot/142/10.0
 
 
 Bug Tracker
@@ -66,5 +54,5 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-To contribute to this module, please visit http://odoo-community.org.
+To contribute to this module, please visit https://odoo-community.org.
 
