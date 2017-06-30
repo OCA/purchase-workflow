@@ -251,7 +251,7 @@ class PurchaseRequestLine(models.Model):
                                      'Procurement Order',
                                      readonly=True, copy=False)
     cancelled = fields.Boolean(
-        string="Cancelled", readonly=True, default=False)
+        string="Cancelled", readonly=True, default=False, copy=False)
 
     @api.onchange('product_id')
     def onchange_product_id(self):
