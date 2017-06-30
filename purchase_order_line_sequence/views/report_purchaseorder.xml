@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
-        <template id="report_purchase_order_sequence_qweb" inherit_id="purchase.report_purchaseorder_document">
-            <xpath expr="//table[@class='table table-condensed']/thead/tr/th[1]" position="before">
-                <th><strong>Sequence</strong></th>
-            </xpath>
-            <xpath expr="//table[@class='table table-condensed']/tbody/tr/td[1]" position="before">
-                 <td>
-                    <span t-field="line.sequence2"/>
-                 </td>
-            </xpath>
-        </template>
-    </data>
-</openerp>
+<odoo>
+    <template id="report_purchase_order_sequence_qweb" inherit_id="purchase.report_purchaseorder_document">
+        <xpath expr="//table[@class='table table-condensed']/thead/tr/th[1]" position="before">
+            <th><strong>Sequence</strong></th>
+        </xpath>
+        <xpath expr="//table[@class='table table-condensed']/tbody/tr/td[1]" position="before">
+             <td>
+                <span t-field="line.sequence2"/>
+             </td>
+        </xpath>
+    </template>
+</odoo>
