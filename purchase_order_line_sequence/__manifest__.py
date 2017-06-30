@@ -6,7 +6,8 @@
 
 {
     'name': 'Purchase order lines with sequence number',
-    'summary': '',
+    'summary': 'Adds sequence to PO lines and propagates it to'
+               'Invoice lines and Stock Moves',
     'version': '10.0.1.0.1',
     'category': 'Purchase Management',
     'author': "Camptocamp, "
