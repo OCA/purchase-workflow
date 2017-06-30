@@ -3,18 +3,16 @@
      License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
 
 <odoo>
-    <data>
 
-        <record model="ir.ui.view" id="procurement_form_view">
-            <field name="name">procurement.form.inherit</field>
-            <field name="model">procurement.order</field>
-            <field name="inherit_id" ref="procurement.procurement_form_view"/>
-            <field name="arch" type="xml">
-                <field name="origin" position="after">
-                    <field name="request_id"/>
-                </field>
+    <record model="ir.ui.view" id="procurement_form_view">
+        <field name="name">procurement.form.inherit</field>
+        <field name="model">procurement.order</field>
+        <field name="inherit_id" ref="procurement.procurement_form_view"/>
+        <field name="arch" type="xml">
+            <field name="origin" position="after">
+                <field name="request_id"/>
             </field>
-        </record>
+        </field>
+    </record>
 
-    </data>
 </odoo>
