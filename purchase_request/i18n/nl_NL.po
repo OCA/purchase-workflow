@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-22 02:44+0000\n"
-"PO-Revision-Date: 2017-06-23 10:00+0000\n"
+"POT-Creation-Date: 2017-06-24 06:31+0000\n"
+"PO-Revision-Date: 2017-06-24 13:43+0000\n"
 "Last-Translator: Peter Hageman <hageman.p@gmail.com>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-purchase-workflow-10-0/language/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgstr "<strong>Toegewezen aan:</strong><br/>"
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.report_purchaserequests
 msgid "<strong>Creation Date:</strong><br/>"
-msgstr ""
+msgstr "<strong>Aanmaakdatum:</strong><br/>"
 
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.report_purchaserequests
