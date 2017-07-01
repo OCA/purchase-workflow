@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-31 17:29+0000\n"
-"PO-Revision-Date: 2016-10-25 19:38+0000\n"
+"POT-Creation-Date: 2017-06-24 06:32+0000\n"
+"PO-Revision-Date: 2017-06-27 01:53+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -168,7 +168,7 @@ msgstr "Lineas de costos de importación"
 #. module: purchase_landed_costs
 #: view:landed.cost.position:0
 msgid "Purchase"
-msgstr ""
+msgstr "Compras"
 
 #. module: purchase_landed_costs
 #: view:landed.cost.position:0

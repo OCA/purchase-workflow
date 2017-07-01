@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-31 17:29+0000\n"
+"POT-Creation-Date: 2017-06-24 06:32+0000\n"
 "PO-Revision-Date: 2015-09-01 21:20+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/es/)\n"
@@ -48,7 +48,7 @@ msgstr ""
 #. module: purchase_partial_invoicing
 #: field:purchase.order.line_invoice,line_ids:0
 msgid "Lines"
-msgstr ""
+msgstr "Líneas"
 
 #. module: purchase_partial_invoicing
 #: field:purchase.order.line,all_invoices_approved:0
