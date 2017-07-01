@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-04 05:41+0000\n"
-"PO-Revision-Date: 2017-03-06 09:09+0000\n"
+"POT-Creation-Date: 2017-06-17 06:44+0000\n"
+"PO-Revision-Date: 2017-06-30 08:53+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -135,7 +135,7 @@ msgstr ""
 #: field:framework.agreement.portfolio,display_name:0
 #: field:framework.agreement.pricelist,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Weergavenaam"
 
 #. module: framework_agreement
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view
@@ -195,7 +195,7 @@ msgstr ""
 #: field:framework.agreement.portfolio,id:0
 #: field:framework.agreement.pricelist,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: framework_agreement
 #: help:res.company,one_agreement_per_product:0
@@ -238,7 +238,7 @@ msgstr ""
 #: field:framework.agreement.portfolio,__last_update:0
 #: field:framework.agreement.pricelist,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Laatst gewijzigd op"
 
 #. module: framework_agreement
 #: field:framework.agreement,write_uid:0
