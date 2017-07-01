@@ -41,8 +41,6 @@ class PurchaseOrder(models.Model):
 
     @api.multi
     def copy(self, default=None):
-        if not default:
-            default = {}
         return super(PurchaseOrder,
                      self.with_context(keep_line_sequence=True)).copy(default)
 
@@ -69,8 +67,8 @@ class PurchaseOrderLine(models.Model):
     @api.model
     def create(self, values):
         line = super(PurchaseOrderLine, self).create(values)
-        # We + reset the sequence if we are copying a complete purchase
+        # We do reset the sequence if we are copying a complete purchase
         # order
-        if 'keep_line_sequence' not in self.env.context:
+        if self.env.context.get('keep_line_sequence'):
             line.order_id._reset_sequence()
         return line

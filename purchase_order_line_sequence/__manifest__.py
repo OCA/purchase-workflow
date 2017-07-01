@@ -8,7 +8,7 @@
     'name': 'Purchase order lines with sequence number',
     'summary': 'Adds sequence to PO lines and propagates it to'
                'Invoice lines and Stock Moves',
-    'version': '10.0.1.0.1',
+    'version': '10.0.1.0.0',
     'category': 'Purchase Management',
     'author': "Camptocamp, "
               "Eficent, "
