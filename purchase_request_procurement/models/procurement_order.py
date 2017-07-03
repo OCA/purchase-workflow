@@ -3,7 +3,6 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
 
 from odoo import _, api, fields, models, exceptions
-from odoo.exceptions import ValidationError
 
 
 class ProcurementOrder(models.Model):
