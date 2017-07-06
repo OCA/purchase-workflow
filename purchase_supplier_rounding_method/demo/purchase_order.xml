@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (C) 2017 - Today: GRAP (http://www.grap.coop)
+@author Sylvain LE GAL (https://twitter.com/legalsylvain)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+
+<openerp><data>
+
+    <record id="purchase_order_1" model="purchase.order">
+        <field name="company_id" ref="base.main_company"/>
+        <field name="partner_id" ref="res_partner_rounding"/>
+        <field name="picking_type_id" ref="stock.picking_type_in"/>
+        <field name="location_id" ref="stock.stock_location_stock"/>
+        <field name="invoice_method">order</field>
+        <field name="pricelist_id" ref="purchase.list0"/>
+    </record>
+
+    <record id="purchase_order_1_line_a" model="purchase.order.line">
+        <field name="order_id" ref="purchase_order_1"/>
+        <field name="product_id" ref="product.product_product_39"/>
+        <field name="price_unit" eval="11.0" />
+        <field name="product_qty" eval="123.0" />
+        <field name="discount" eval="66.17" />
+        <field name="name">My Product</field>
+        <field name="date_planned" eval="time.strftime('%Y')+'-01-30'"/>
+    </record>
+
+</data></openerp>

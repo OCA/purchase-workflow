@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (C) 2017 - Today: GRAP (http://www.grap.coop)
+@author Sylvain LE GAL (https://twitter.com/legalsylvain)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+
+<openerp><data>
+
+    <record id="invoice_1" model="account.invoice">
+        <field name="partner_id" ref="res_partner_rounding"/>
+        <field name="journal_id" ref="account.expenses_journal"/>
+        <field name="type">in_invoice</field>
+        <field name="account_id" ref="account.a_pay"/>
+    </record>
+
+    <record id="invoice_1_line_a" model="account.invoice.line">
+        <field name="invoice_id" ref="invoice_1"/>
+        <field name="account_id" ref="account.a_expense"/>
+        <field name="quantity" eval="223.0" />
+        <field name="price_unit" eval="12.17" />
+        <field name="discount" eval="12.45" />
+        <field name="product_id" ref="product.product_product_39"/>
+        <field name="name">My Product</field>
+    </record>
+
+</data></openerp>
