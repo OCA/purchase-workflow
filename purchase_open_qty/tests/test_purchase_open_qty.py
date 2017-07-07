@@ -50,18 +50,15 @@ class TestPurchaseOpenQty(TransactionCase):
         }
         self.purchase_order_line_1 = \
             purchase_order_line_model.sudo().create(pl_dict1)
+        self.purchase_order_1.button_confirm()
 
     def test_compute_qty_to_invoice_and_receive(self):
-        self.purchase_order_line_1._compute_qty_invoiced()
         self.assertEqual(self.purchase_order_line_1.qty_to_invoice, 5.0,
                          "Expected 5 as qty_to_invoice in the PO line")
-        self.purchase_order_line_1._compute_qty_received()
         self.assertEqual(self.purchase_order_line_1.qty_to_receive, 5.0,
                          "Expected 5 as qty_to_receive in the PO line")
-        self.purchase_order_1._compute_qty_to_invoice()
         self.assertEqual(self.purchase_order_1.qty_to_invoice, 5.0,
                          "Expected 5 as qty_to_invoice in the PO")
-        self.purchase_order_1._compute_qty_to_receive()
         self.assertEqual(self.purchase_order_1.qty_to_receive, 5.0,
                          "Expected 5 as qty_to_receive in the PO")
 
