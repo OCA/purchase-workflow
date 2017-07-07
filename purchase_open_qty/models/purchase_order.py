@@ -10,9 +10,8 @@ import openerp.addons.decimal_precision as dp
 class PurchaseOrderLine(models.Model):
     _inherit = 'purchase.order.line'
 
-    @api.depends('invoice_lines.invoice_id.state', 'product_qty')
-    def _compute_qty_invoiced(self):
-        super(PurchaseOrderLine, self)._compute_qty_invoiced()
+    @api.depends('product_qty', 'qty_invoiced')
+    def _compute_qty_to_invoice(self):
         for line in self:
             line.qty_to_invoice = line.product_qty - line.qty_invoiced
 
@@ -22,7 +21,7 @@ class PurchaseOrderLine(models.Model):
         for line in self:
             line.qty_to_receive = line.product_qty - line.qty_received
 
-    qty_to_invoice = fields.Float(compute='_compute_qty_invoiced',
+    qty_to_invoice = fields.Float(compute='_compute_qty_to_invoice',
                                   digits=dp.get_precision(
                                       'Product Unit of Measure'),
                                   copy=False,
