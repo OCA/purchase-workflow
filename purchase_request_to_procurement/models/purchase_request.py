@@ -30,6 +30,8 @@ class PurchaseRequestLine(models.Model):
 
     _inherit = 'purchase.request.line'
 
+    product_id = fields.Many2one(domain=[])
+
     @api.multi
     def _generate_procurement_order(
             self, location_id=None, warehouse_id=None):
