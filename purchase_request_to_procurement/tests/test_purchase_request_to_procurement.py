@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from openerp.tests.common import TransactionCase
-from openerp.tools import SUPERUSER_ID
+from openerp import SUPERUSER_ID
 
 
 class TestPurchaseRequestToProcurement(TransactionCase):
