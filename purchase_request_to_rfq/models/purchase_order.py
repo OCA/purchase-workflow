@@ -185,3 +185,22 @@ class PurchaseOrderLine(models.Model):
              )
         message += '</ul>'
         return message
+
+    @api.multi
+    def _po_line_unlink_purchase_request_message_content(self):
+        self.ensure_one()
+        title = _('Line %s of Purchase Order %s was removed') % (
+            self.name, self.order_id.name)
+        message = '<b>%s</b><br/>' % title
+        return message
+
+    @api.multi
+    def unlink(self):
+        for line in self:
+            message = \
+                line._po_line_unlink_purchase_request_message_content()
+            requests = line.purchase_request_lines.mapped('request_id')
+            for req in requests:
+                req.message_post(body=message, subtype='mail.mt_comment')
+
+        return super(PurchaseOrderLine, self).unlink()
