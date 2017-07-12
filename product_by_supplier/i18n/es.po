@@ -93,3 +93,8 @@ msgstr "Nombre producto proveedor"
 #: view:product.template:product_by_supplier.product_template_form_view
 msgid "{'from_product_form':True}"
 msgstr "{'from_product_form':True}"
+
+#. module: product_by_supplier
+#: view:product.supplierinfo:product_by_supplier.view_product_supplierinfo_search
+msgid "Active Products"
+msgstr "Productos activos"
