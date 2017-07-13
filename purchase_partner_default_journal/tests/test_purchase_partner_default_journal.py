@@ -4,7 +4,9 @@
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
 from datetime import datetime
 from openerp.tests import common
-from openerp.addons.account.tests.account_test_classes import AccountingTestCase
+from openerp.addons.account.tests.account_test_classes \
+        import AccountingTestCase
+
 
 class TestPurchasePartnerDefaultJournal(AccountingTestCase):
     def test_purchase_partner_default_journal(self):
@@ -13,14 +15,13 @@ class TestPurchasePartnerDefaultJournal(AccountingTestCase):
         self.assertTrue(p.default_purchase_journal_id)
         # check if changing this cascades to the children
         self.product_id_1 = self.env.ref('product.product_product_8')
-	self.product_id_2 = self.env.ref('product.product_product_11')
+        self.product_id_2 = self.env.ref('product.product_product_11')
         journal = self.env['account.journal'].create({
             'name': 'default purchase journal',
             'code': 'def',
             'type': 'purchase',
         })
         p.default_purchase_journal_id = journal
-
         self.assertEqual(
             self.env.ref('base.res_partner_address_1')
             .default_purchase_journal_id,
@@ -51,17 +52,17 @@ class TestPurchasePartnerDefaultJournal(AccountingTestCase):
                 })],
         }
 
-	self.po = self.env['purchase.order'].create(po_vals)
+        self.po = self.env['purchase.order'].create(po_vals)
         invoice = self.env['account.invoice'].with_context(
             type='in_invoice').create({
                 'partner_id': p.id,
                 'purchase_id': self.po.id,
-                'account_id': p.property_account_payable_id.id,
-	})
+                'account_id': p.property_account_payable_id.id, }
+            )
         # need to trigger onchange before journal is correct
-        onchange = invoice._onchange_partner_id()
+        invoice._onchange_partner_id()
         # invoice onchange
         self.assertEqual(
             journal.id,
-            onchange['value']['journal_id']
+            invoice.journal_id.id
         )
