@@ -11,8 +11,15 @@ class AccountInvoice(models.Model):
     @api.multi
     def _onchange_partner_id(self):
         result = super(AccountInvoice, self)._onchange_partner_id()
-        if self.partner_id and self.partner_id.type == 'in_invoice':
-            result['value'].update(
-                journal_id=self.partner_id.default_purchase_journal_id.id
-            )
+        if self.partner_id and self.type == 'in_invoice':
+            # in case of an empty onchange value key is not there
+            if 'value' not in result.keys():
+                result['value']={
+                    'journal_id':
+                        self.partner_id.default_purchase_journal_id.id
+                }
+            else:
+                result['value'].update(
+                    journal_id=self.partner_id.default_purchase_journal_id.id
+                )
         return result
