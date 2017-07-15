@@ -3,87 +3,85 @@
 # * purchase_request
 # 
 # Translators:
-# Ana-Maria Olujić <ana-maria.olujic@slobodni-programi.hr>, 2016
-# Bole <bole@dajmi5.com>, 2016-2017
-# storm_mpildek <matija.pildek@storm.hr>, 2017
+# Henry Garcia <henry@yaroslab.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-11 12:53+0000\n"
-"PO-Revision-Date: 2017-07-12 11:56+0000\n"
-"Last-Translator: storm_mpildek <matija.pildek@storm.hr>\n"
-"Language-Team: Croatian (http://www.transifex.com/oca/OCA-purchase-workflow-10-0/language/hr/)\n"
+"POT-Creation-Date: 2017-07-15 06:42+0000\n"
+"PO-Revision-Date: 2017-08-13 22:25+0000\n"
+"Last-Translator: Henry Garcia <henry@yaroslab.com>\n"
+"Language-Team: Spanish (Peru) (http://www.transifex.com/oca/OCA-purchase-workflow-10-0/language/es_PE/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: hr\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Language: es_PE\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.report_purchaserequests
 msgid "<strong>Analytic Account</strong>"
-msgstr "<strong>Konto analitike</strong>"
+msgstr "Cuenta Analítica"
 
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.report_purchaserequests
 msgid "<strong>Assigned to:</strong><br/>"
-msgstr "<strong>Dodijeljeno:</strong><br/>"
+msgstr "Asignado a:"
 
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.report_purchaserequests
 msgid "<strong>Creation Date:</strong><br/>"
-msgstr "<strong>Datum kreiranja:</strong><br/>"
+msgstr "Fecha de creación:"
 
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.report_purchaserequests
 msgid "<strong>Description:</strong><br/>"
-msgstr "<strong>Opis:</strong><br/>"
+msgstr "Descripción:"
 
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.report_purchaserequests
 msgid "<strong>Description</strong>"
-msgstr "<strong>Opis</strong><br/>"
+msgstr "Descripción:"
 
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.report_purchaserequests
 msgid "<strong>Picking Type:</strong><br/>"
-msgstr ""
+msgstr "Tipo de Solicitud:"
 
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.report_purchaserequests
 msgid "<strong>Product UoM</strong>"
-msgstr ""
+msgstr "Unidad de Medida"
 
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.report_purchaserequests
 msgid "<strong>Qty</strong>"
-msgstr "<strong>Količina</strong>"
+msgstr "Cantidad"
 
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.report_purchaserequests
 msgid "<strong>Request Reference:</strong><br/>"
-msgstr ""
+msgstr "Referencia de Solicitud:"
 
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.report_purchaserequests
 msgid "<strong>Requested Date</strong>"
-msgstr ""
+msgstr "Fecha Solicitada"
 
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.report_purchaserequests
 msgid "<strong>Requested by:</strong><br/>"
-msgstr ""
+msgstr "Solicitado por:"
 
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.report_purchaserequests
 msgid "<strong>Source:</strong><br/>"
-msgstr "<strong>Izvor:</strong><br/>"
+msgstr "Origen:"
 
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.report_purchaserequests
 msgid "<strong>Specifications</strong>"
-msgstr "<strong>Specifikacija</strong>"
+msgstr "Especificaciones:"
 
 #. module: purchase_request
 #: model:ir.actions.act_window,help:purchase_request.purchase_request_form_action
@@ -91,103 +89,103 @@ msgid ""
 "A purchase request is an instruction to Purchasing to procure\n"
 "                a certain quantity of materials services, so that they are\n"
 "                available at a certain point in time."
-msgstr ""
+msgstr "Una solicitud de compra es una instrucción de compra para adquirir una cierta cantidad de servicios de materiales, de modo que estén disponibles en un determinado momento."
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_analytic_account_id
 #: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Analytic Account"
-msgstr "Analitički konto"
+msgstr "Cuenta Analitica"
 
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Approve"
-msgstr "Odobri"
+msgstr "Aprobar"
 
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 #: selection:purchase.request,state:0
 msgid "Approved"
-msgstr "Odobreno"
+msgstr "Aprobado"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_assigned_to
 msgid "Approver"
-msgstr "Odobrio"
+msgstr "Aprobador"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_assigned_to
 #: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Assigned to"
-msgstr "Dodijeljeno"
+msgstr "Asignado a"
 
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Assigned to me"
-msgstr "Dodijeljeno meni"
+msgstr "Asignado a mí"
 
 #. module: purchase_request
 #: model:ir.actions.act_window,help:purchase_request.purchase_request_form_action
 msgid "Click to start a new purchase request process."
-msgstr "Kliknite za pokretanje novog zahtjeva za nabavom"
+msgstr "Haga clic en para iniciar un nuevo proceso de solicitud de compra."
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_company_id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_company_id
 msgid "Company"
-msgstr "Poduzeće"
+msgstr "Compañía"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_create_uid
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_create_uid
 msgid "Created by"
-msgstr "Kreirao"
+msgstr "Creado por"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_create_date
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_create_date
 msgid "Created on"
-msgstr "Kreirano "
+msgstr "Creado en"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_date_start
 msgid "Creation date"
-msgstr "Datum kreiranja"
+msgstr "Fecha de creación"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_date_start
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line_date_start
 msgid "Date when the user initiated the request."
-msgstr "Datum kad je korisnik pokrenuo zahtijev."
+msgstr "Fecha en que el usuario inició la solicitud."
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_description
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_description
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_name
 msgid "Description"
-msgstr "Opis"
+msgstr "Descripción"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_display_name
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_display_name
 msgid "Display Name"
-msgstr "Prikaži naziv"
+msgstr "Nombre a mostrar"
 
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 #: selection:purchase.request,state:0
 msgid "Draft"
-msgstr "Skica"
+msgstr "Borrador"
 
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Group By..."
-msgstr "Grupiraj po..."
+msgstr "Agrupar por"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_id
@@ -199,68 +197,68 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_is_editable
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_is_editable
 msgid "Is editable"
-msgstr "Moguće uređivati"
+msgstr "Es editable"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request___last_update
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line___last_update
 msgid "Last Modified on"
-msgstr "Zadnja izmjena na"
+msgstr "Última modificación"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_write_uid
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_write_uid
 msgid "Last Updated by"
-msgstr "Zadnje ažuriranje izvršio"
+msgstr "Última actualización realizada por"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_write_date
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_write_date
 msgid "Last Updated on"
-msgstr "Zadnje ažuriranje na"
+msgstr "Última actualización"
 
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "My requests"
-msgstr "Moji zahtjevi"
+msgstr "Mis solicitudes"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_picking_type_id
 msgid "Picking Type"
-msgstr ""
+msgstr "Tipo solicitud"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_supplier_id
 msgid "Preferred supplier"
-msgstr "Preferirani dobavljač"
+msgstr "Proveedor preferido"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_procurement_id
 msgid "Procurement Order"
-msgstr "Nalog za nabavu"
+msgstr "Orden de adquisición"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_product_id
 #: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Product"
-msgstr "Proizvod"
+msgstr "Producto"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_product_uom_id
 msgid "Product Unit of Measure"
-msgstr "Jedinica mjere proizvoda"
+msgstr "Unidad de Medida de Producto"
 
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.report_purchaserequests
 #: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Products"
-msgstr "Proizvodi"
+msgstr "Productos"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_ids
 msgid "Products to Purchase"
-msgstr "Proizvodi za nabavu"
+msgstr "Productos a comprar"
 
 #. module: purchase_request
 #: model:ir.actions.report.xml,name:purchase_request.action_report_purchase_requests
@@ -272,13 +270,13 @@ msgstr "Proizvodi za nabavu"
 #: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 #: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_tree
 msgid "Purchase Request"
-msgstr "Zahtjev za nabavu"
+msgstr "Solicitud de compra"
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_purchase_request_line
 #: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_form
 msgid "Purchase Request Line"
-msgstr "Stavka zahtjeva za nabavu"
+msgstr "Linea de solicitud de compra"
 
 #. module: purchase_request
 #: model:ir.actions.act_window,name:purchase_request.purchase_request_line_form_action
@@ -286,39 +284,39 @@ msgstr "Stavka zahtjeva za nabavu"
 #: model:ir.ui.menu,name:purchase_request.menu_purchase_request_line_act
 #: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_tree
 msgid "Purchase Request Lines"
-msgstr "Stavke zahtjeva za nabavu"
+msgstr "Lineas de solicitud de compra"
 
 #. module: purchase_request
 #: model:res.groups,name:purchase_request.group_purchase_request_manager
 msgid "Purchase Request Manager"
-msgstr "Voditelj nabave"
+msgstr "Administrador de solicitud de compra"
 
 #. module: purchase_request
 #: model:mail.message.subtype,description:purchase_request.mt_request_rejected
 msgid "Purchase Request Rejected"
-msgstr "Zahtjev za nabavu odbijen"
+msgstr "Solicitud compra rechazada"
 
 #. module: purchase_request
 #: model:res.groups,name:purchase_request.group_purchase_request_user
 msgid "Purchase Request User"
-msgstr "Korisnik nabave"
+msgstr "Usuario de la solicitud de compra"
 
 #. module: purchase_request
 #: model:mail.message.subtype,description:purchase_request.mt_request_approved
 #: model:mail.message.subtype,name:purchase_request.mt_request_approved
 msgid "Purchase Request approved"
-msgstr "Zahtjev za nabavu odobren"
+msgstr "Solicitud de compra aprobada"
 
 #. module: purchase_request
 #: model:mail.message.subtype,name:purchase_request.mt_request_rejected
 msgid "Purchase Request rejected"
-msgstr "Zahtjev za nabau odbijen"
+msgstr "Solicitud de compra rechazada"
 
 #. module: purchase_request
 #: model:mail.message.subtype,description:purchase_request.mt_request_to_approve
 #: model:mail.message.subtype,name:purchase_request.mt_request_to_approve
 msgid "Purchase Request to be approved"
-msgstr "Zahtjevi nabave za odobriti"
+msgstr "Solicitud de compra para ser aprobada"
 
 #. module: purchase_request
 #: model:ir.actions.act_window,name:purchase_request.action_purchase_request_line_product_tree
@@ -327,73 +325,73 @@ msgstr "Zahtjevi nabave za odobriti"
 #: model:ir.ui.menu,name:purchase_request.menu_purchase_request_act
 #: model:ir.ui.menu,name:purchase_request.menu_purchase_request_pro_mgt
 msgid "Purchase Requests"
-msgstr "Zahtjevi za nabavom"
+msgstr "Solicitudes de compra"
 
 #. module: purchase_request
 #: model:ir.ui.menu,name:purchase_request.parent_menu_purchase_request
 msgid "Purchase requests"
-msgstr "Zahtjevi za nabavom"
+msgstr "Solicitudes de compra"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_product_qty
 msgid "Quantity"
-msgstr "Količina"
+msgstr "Cantidad"
 
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Reject"
-msgstr "Odbij"
+msgstr "Rechazar"
 
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 #: selection:purchase.request,state:0
 msgid "Rejected"
-msgstr "Odbijeno"
+msgstr "Rechazado"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_date_required
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_date_start
 msgid "Request Date"
-msgstr "Datum zahtjeva"
+msgstr "Fecha de solicitud"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_name
 msgid "Request Reference"
-msgstr "Referenca zahtjeva"
+msgstr "Referencia de solicitud"
 
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Request approval"
-msgstr "Zatraži odobrenje"
+msgstr "Solicitar aprobación"
 
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Request is approved"
-msgstr "Zahtjev je odobren"
+msgstr "Solicitud está aprobada"
 
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Request is rejected"
-msgstr "Zahtjev je odbijen"
+msgstr "Solicitud es rechazada"
 
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Request is to be approved"
-msgstr "Zahtejv čeka odobrenje"
+msgstr "Solicitud debe ser aprobada"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_request_state
 msgid "Request state"
-msgstr "Status zahtjeva"
+msgstr "Estado de la solicitud"
 
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Request status"
-msgstr ""
+msgstr "Estado de la solicitud"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_requested_by
@@ -401,69 +399,69 @@ msgstr ""
 #: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Requested by"
-msgstr ""
+msgstr "Solicitado por"
 
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Reset"
-msgstr ""
+msgstr "Rechazar"
 
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Search Purchase Request"
-msgstr ""
+msgstr "Buscar solicitud de compra"
 
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Source"
-msgstr "Izvor"
+msgstr "Origen"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_origin
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_origin
 msgid "Source Document"
-msgstr "Izvorni dokument"
+msgstr "Documento de origen"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_specifications
 #: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_form
 #: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Specifications"
-msgstr "Specifikacije"
+msgstr "Especificaciones"
 
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Start Date"
-msgstr "Datum početka"
+msgstr "Fecha de inicio"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_state
 msgid "Status"
-msgstr "Status"
+msgstr "Estado"
 
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "To Approve"
-msgstr "Odobriti"
+msgstr "Aprobar"
 
 #. module: purchase_request
 #: selection:purchase.request,state:0
 msgid "To be approved"
-msgstr "Za odobrenje"
+msgstr "Para ser aprobado"
 
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Unassigned"
-msgstr ""
+msgstr "Sin asignar"
 
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Unassigned Request"
-msgstr ""
+msgstr "Solicitud sin asignar"
 
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Unread Messages"
-msgstr "Nepročitane poruke"
+msgstr "Mensajes no leídos"
