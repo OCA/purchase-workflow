@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-13 05:48+0000\n"
-"PO-Revision-Date: 2017-05-13 05:48+0000\n"
+"POT-Creation-Date: 2017-07-07 03:00+0000\n"
+"PO-Revision-Date: 2017-07-07 03:00+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/23907/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -53,7 +53,7 @@ msgstr "Cancelar"
 #. module: purchase_request_to_rfq
 #: selection:purchase.request.line,purchase_state:0
 msgid "Cancelled"
-msgstr ""
+msgstr "Cancelado"
 
 #. module: purchase_request_to_rfq
 #: selection:purchase.request.line,purchase_state:0
