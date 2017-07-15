@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
+# Bole <bole@dajmi5.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-26 00:58+0000\n"
-"PO-Revision-Date: 2017-04-26 00:58+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"POT-Creation-Date: 2017-07-11 12:53+0000\n"
+"PO-Revision-Date: 2017-07-11 12:53+0000\n"
+"Last-Translator: Bole <bole@dajmi5.com>, 2017\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,12 +22,12 @@ msgstr ""
 #. module: purchase_request_to_procurement
 #: model:ir.ui.view,arch_db:purchase_request_to_procurement.purchase_request_line_make_procurement_order_form_view
 msgid "Cancel"
-msgstr ""
+msgstr "Odustani"
 
 #. module: purchase_request_to_procurement
 #: model:ir.actions.act_window,name:purchase_request_to_procurement.purchase_request_line_make_procurement_order_act_window
 msgid "Create Procurement Order"
-msgstr ""
+msgstr "Kreiraj nalog za nabavu"
 
 #. module: purchase_request_to_procurement
 #: model:ir.model.fields,field_description:purchase_request_to_procurement.field_purchase_request_line_make_procurement_order_create_uid
@@ -51,7 +52,7 @@ msgstr "ID"
 #. module: purchase_request_to_procurement
 #: model:ir.model.fields,field_description:purchase_request_to_procurement.field_purchase_request_line_make_procurement_order_purchase_request_line_m2m_ids
 msgid "Items"
-msgstr ""
+msgstr "Stavke"
 
 #. module: purchase_request_to_procurement
 #: model:ir.model.fields,field_description:purchase_request_to_procurement.field_purchase_request_line_make_procurement_order___last_update
@@ -71,46 +72,46 @@ msgstr "Zadnje ažuriranje na"
 #. module: purchase_request_to_procurement
 #: model:ir.model.fields,field_description:purchase_request_to_procurement.field_purchase_request_location_id
 msgid "Location"
-msgstr ""
+msgstr "Lokacija"
 
 #. module: purchase_request_to_procurement
 #: model:ir.ui.view,arch_db:purchase_request_to_procurement.purchase_request_line_make_procurement_order_form_view
 msgid "Make Procurement"
-msgstr ""
+msgstr "Kreiraj nabavu"
 
 #. module: purchase_request_to_procurement
 #: model:ir.ui.view,arch_db:purchase_request_to_procurement.purchase_request_form_view
 #: model:ir.ui.view,arch_db:purchase_request_to_procurement.purchase_request_line_form_view
 msgid "Procurement Order"
-msgstr ""
+msgstr "Nalog za nabavu"
 
 #. module: purchase_request_to_procurement
 #: model:ir.model.fields,field_description:purchase_request_to_procurement.field_purchase_request_line_procurement_state
 msgid "Procurement State"
-msgstr ""
+msgstr "Status nabave"
 
 #. module: purchase_request_to_procurement
 #: model:ir.model,name:purchase_request_to_procurement.model_purchase_request
 msgid "Purchase Request"
-msgstr ""
+msgstr "Zahtjev za nabavu"
 
 #. module: purchase_request_to_procurement
 #: model:ir.model,name:purchase_request_to_procurement.model_purchase_request_line
 msgid "Purchase Request Line"
-msgstr ""
+msgstr "Stavka zahtjeva za nabavu"
 
 #. module: purchase_request_to_procurement
 #: model:ir.model,name:purchase_request_to_procurement.model_purchase_request_line_make_procurement_order
 #: model:ir.ui.view,arch_db:purchase_request_to_procurement.purchase_request_line_make_procurement_order_form_view
 msgid "Purchase Request Line Make Procurement Order"
-msgstr ""
+msgstr "Stavka zahtjeva u nabavi Kreiraj nalog za nabavu"
 
 #. module: purchase_request_to_procurement
 #: model:ir.model.fields,field_description:purchase_request_to_procurement.field_purchase_request_warehouse_id
 msgid "Warehouse"
-msgstr ""
+msgstr "Skladište"
 
 #. module: purchase_request_to_procurement
 #: model:ir.ui.view,arch_db:purchase_request_to_procurement.purchase_request_line_make_procurement_order_form_view
 msgid "or"
-msgstr ""
+msgstr "ili"
