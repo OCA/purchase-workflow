@@ -13,7 +13,7 @@ class PurchaseOrder(models.Model):
     fop_reached = fields.Boolean(
         string='FOP reached',
         help='Free-Of-Payment shipping reached',
-        compute='_compute_fop_reached',
+        compute='_compute_fop_shipping_reached'
     )
     force_order_under_fop = fields.Boolean(
         string='Confirm under FOP',
@@ -22,15 +22,16 @@ class PurchaseOrder(models.Model):
     fop_shipping = fields.Float(
         string='FOP shipping',
         related='partner_id.fop_shipping',
+        related_sudo=False,
         readonly=True,
         help='Min purchase order amount for Free-Of-Payment shipping',
     )
 
     @api.depends(
         'amount_total',
-        'partner_id.fop_shipping'
+        'partner_id.fop_shipping',
     )
-    def _compute_fop_reached(self):
+    def _compute_fop_shipping_reached(self):
         for record in self:
             record.fop_reached = record.amount_total >\
                 record.partner_id.fop_shipping
