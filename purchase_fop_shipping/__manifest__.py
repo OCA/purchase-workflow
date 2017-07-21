@@ -13,7 +13,6 @@
     'depends': [
         'purchase',
     ],
-    'website': 'http://www.akretion.com/',
     'data': [
         'security/res_groups.xml',
         'views/purchase_order.xml',
