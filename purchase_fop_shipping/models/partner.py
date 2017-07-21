@@ -9,5 +9,7 @@ class ResPartner(models.Model):
     _inherit = "res.partner"
 
     fop_shipping = fields.Float(
-        string="FOP shipping", help="Min purchase order amount for FOP shipping",
+        string="FOP shipping",
+        help="Min purchase order amount for FOP shipping",
+        company_dependent=True,
     )
