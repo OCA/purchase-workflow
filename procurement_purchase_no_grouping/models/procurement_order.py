@@ -11,7 +11,12 @@ class ProcurementOrder(models.Model):
 
     @api.multi
     def make_po(self):
-        obj = self.with_context(
-            grouping=self.product_id.categ_id.procured_purchase_grouping,
-        )
-        return super(ProcurementOrder, obj).make_po()
+        grouping = self.product_id.categ_id.procured_purchase_grouping
+        obj = self.with_context(grouping=grouping)
+        res = super(ProcurementOrder, obj).make_po()
+        # Force triggers re-execution because search has block it
+        if grouping == 'line':
+            for po_line in self.browse(res).mapped('purchase_line_id'):
+                po_line.write(po_line._convert_to_write(
+                    po_line._convert_to_cache(po_line.read()[0])))
+        return res
