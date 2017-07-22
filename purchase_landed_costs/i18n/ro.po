@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-18 05:29+0000\n"
+"POT-Creation-Date: 2017-07-01 06:56+0000\n"
 "PO-Revision-Date: 2015-09-01 21:20+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Romanian (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/ro/)\n"
@@ -132,7 +132,7 @@ msgstr ""
 #: model:ir.model,name:purchase_landed_costs.model_purchase_order_line
 #: field:landed.cost.position,purchase_order_line_id:0
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Linie comandă achiziție"
 
 #. module: purchase_landed_costs
 #: help:landed.cost.distribution.type,apply_on:0
@@ -213,7 +213,7 @@ msgstr ""
 #: model:ir.model,name:purchase_landed_costs.model_purchase_order
 #: field:landed.cost.position,purchase_order_id:0
 msgid "Purchase Order"
-msgstr ""
+msgstr "Comandă achiziție"
 
 #. module: purchase_landed_costs
 #: field:purchase.order.line,landed_cost_line_ids:0
