@@ -68,6 +68,8 @@ class PurchaseOrder(models.Model):
                     'unrevisioned_name': self.unrevisioned_name,
                     }
         old_revision = super(PurchaseOrder, self).copy(default=defaults)
+        for line in old_revision.order_line:
+            line.write({'state': 'cancel'})
         self.action_cancel_draft()
         msg = _('New revision created: %s') % self.name
         self.message_post(body=msg)
