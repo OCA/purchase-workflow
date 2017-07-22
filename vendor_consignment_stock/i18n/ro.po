@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-03 06:37+0000\n"
+"POT-Creation-Date: 2017-07-15 06:48+0000\n"
 "PO-Revision-Date: 2016-03-08 10:18+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Romanian (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/ro/)\n"
@@ -40,7 +40,7 @@ msgstr ""
 #. module: vendor_consignment_stock
 #: model:ir.model,name:vendor_consignment_stock.model_procurement_order
 msgid "Procurement"
-msgstr ""
+msgstr "Aprovizionare"
 
 #. module: vendor_consignment_stock
 #: model:ir.model,name:vendor_consignment_stock.model_procurement_rule
@@ -50,7 +50,7 @@ msgstr ""
 #. module: vendor_consignment_stock
 #: model:ir.model,name:vendor_consignment_stock.model_purchase_order
 msgid "Purchase Order"
-msgstr ""
+msgstr "Comandă achiziție"
 
 #. module: vendor_consignment_stock
 #: field:stock.warehouse,buy_vci_to_resupply:0
