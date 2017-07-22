@@ -5,7 +5,7 @@
 
 {
     "name": "Procurement Purchase No Grouping",
-    "version": "9.0.1.0.0",
+    "version": "9.0.1.0.1",
     "author": "AvanzOSC,"
               "Tecnativa,"
               "Odoo Communtity Association (OCA)",
