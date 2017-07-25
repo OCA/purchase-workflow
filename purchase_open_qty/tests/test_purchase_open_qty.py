@@ -2,8 +2,8 @@
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp.tests.common import TransactionCase
-from openerp.fields import Datetime
+from odoo.tests.common import TransactionCase
+from odoo.fields import Datetime
 
 
 class TestPurchaseOpenQty(TransactionCase):
