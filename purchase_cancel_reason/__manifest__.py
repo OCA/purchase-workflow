@@ -10,7 +10,7 @@
  'complexity': 'normal',
  'website': "http://www.camptocamp.com",
  'depends': [
-     'purchase',],
+     'purchase'],
  'data': ['wizard/purchase_cancel_reason_view.xml',
           'views/purchase_order.xml',
           'security/ir.model.access.csv',
