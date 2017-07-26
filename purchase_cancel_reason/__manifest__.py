@@ -8,7 +8,7 @@
  'category': 'Purchase',
  'license': 'AGPL-3',
  'complexity': 'normal',
- 'website': "http://www.camptocamp.com",
+ 'website': "https://github.com/OCA/purchase-workflow",
  'depends': [
      'purchase'],
  'data': ['wizard/purchase_cancel_reason_view.xml',
