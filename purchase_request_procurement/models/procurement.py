@@ -70,13 +70,14 @@ class Procurement(models.Model):
         for procurement in self:
             # Search for purchase request lines containing the procurement_id
             #  and cancel them.
-            proc_request_lines = self.env['purchase.request.line'].search([
-                ('procurement_id', '=', procurement.id)])
+            proc_request_lines = \
+                self.env['purchase.request.line'].sudo().search([
+                    ('procurement_id', '=', procurement.id)])
             if proc_request_lines and not self.env.context.get(
                     'from_purchase_request'):
-                proc_request_lines.do_cancel()
+                proc_request_lines.sudo().do_cancel()
                 for prl in proc_request_lines:
-                    prl.message_post(
+                    prl.sudo().message_post(
                         body=_("Related procurement has been cancelled."))
             procurement.write({'request_id': None})
         return result
