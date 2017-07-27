@@ -2,7 +2,8 @@
 # Copyright 2016 Eficent Business and IT Consulting Services S.L.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
 
-from openerp import api, fields, models
+from openerp import api, fields, models, _
+from openerp.exceptions import UserError
 import openerp.addons.decimal_precision as dp
 
 _STATES = [
@@ -67,6 +68,14 @@ class PurchaseRequest(models.Model):
                 return 'purchase_request.mt_request_done'
         return super(PurchaseRequest, self)._track_subtype(init_values)
 
+    @api.multi
+    @api.constrains('picking_type_id')
+    def _check_picking_type_id(self):
+        for rec in self:
+            if rec.picking_type_id.code != 'incoming':
+                raise UserError(_(
+                    "Picking type operation must be 'Suppliers'."))
+
     name = fields.Char('Request Reference', size=32, required=True,
                        default=_get_default_name,
                        track_visibility='onchange')
@@ -103,10 +112,10 @@ class PurchaseRequest(models.Model):
     is_editable = fields.Boolean(string="Is editable",
                                  compute="_compute_is_editable",
                                  readonly=True)
-
-    picking_type_id = fields.Many2one('stock.picking.type',
-                                      'Picking Type', required=True,
-                                      default=_default_picking_type)
+    picking_type_id = fields.Many2one(
+        comodel_name='stock.picking.type', string='Picking Type',
+        required=True, default=_default_picking_type,
+        domain="[('code', '=', 'incoming')]")
 
     @api.multi
     def copy(self, default=None):
