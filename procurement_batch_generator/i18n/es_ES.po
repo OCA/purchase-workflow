@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-11 05:24+0000\n"
-"PO-Revision-Date: 2017-02-16 15:55+0000\n"
+"POT-Creation-Date: 2017-07-22 06:53+0000\n"
+"PO-Revision-Date: 2017-07-24 07:44+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (Spain) (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/es_ES/)\n"
 "MIME-Version: 1.0\n"
@@ -139,7 +139,7 @@ msgstr ""
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator.line,warehouse_id:0
 msgid "Warehouse"
-msgstr ""
+msgstr "Almacén"
 
 #. module: procurement_batch_generator
 #: model:ir.model,name:procurement_batch_generator.model_procurement_batch_generator
