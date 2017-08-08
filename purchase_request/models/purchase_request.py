@@ -178,7 +178,8 @@ class PurchaseRequest(models.Model):
         for rec in self:
             if not rec.assigned_to:
                 continue
-            rec.message_subscribe_users(user_ids=[rec.assigned_to.id])
+            rec.message_subscribe_users(
+                user_ids=[rec.assigned_to.id], subtype_ids=None)
 
 
 class PurchaseRequestLine(models.Model):
