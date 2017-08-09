@@ -173,13 +173,13 @@ class PurchaseRequest(models.Model):
                 pr.write({'state': 'rejected'})
 
     @api.multi
-    def _subscribe_assigned_to_user(self):
+    def _subscribe_assigned_to_user(self, subtype_ids=None):
         """If the assigned to user is set on the PR, subscribe him."""
         for rec in self:
             if not rec.assigned_to:
                 continue
             rec.message_subscribe_users(
-                user_ids=[rec.assigned_to.id], subtype_ids=None)
+                user_ids=[rec.assigned_to.id], subtype_ids=subtype_ids)
 
 
 class PurchaseRequestLine(models.Model):
