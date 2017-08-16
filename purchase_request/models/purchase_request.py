@@ -135,35 +135,25 @@ class PurchaseRequest(models.Model):
 
     @api.multi
     def button_draft(self):
-        for rec in self:
-            rec.state = 'draft'
-            rec.line_ids.do_uncancel()
-        return True
+        self.mapped('line_ids').do_uncancel()
+        return self.write({'state': 'draft'})
 
     @api.multi
     def button_to_approve(self):
-        for rec in self:
-            rec.state = 'to_approve'
-        return True
+        return self.write({'state': 'to_approve'})
 
     @api.multi
     def button_approved(self):
-        for rec in self:
-            rec.state = 'approved'
-        return True
+        return self.write({'state': 'approved'})
 
     @api.multi
     def button_rejected(self):
-        for rec in self:
-            rec.state = 'rejected'
-            rec.line_ids.do_cancel()
-        return True
+        self.mapped('line_ids').do_cancel()
+        return self.write({'state': 'rejected'})
 
     @api.multi
     def button_done(self):
-        for rec in self:
-            rec.state = 'done'
-        return True
+        return self.write({'state': 'done'})
 
     @api.multi
     def check_auto_reject(self):
