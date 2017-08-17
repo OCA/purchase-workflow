@@ -3,7 +3,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
 
 from openerp import api, fields, models, _
-from openerp.exceptions import UserError
+from openerp.exceptions import ValidationError
 import openerp.addons.decimal_precision as dp
 
 _STATES = [
@@ -73,7 +73,7 @@ class PurchaseRequest(models.Model):
     def _check_picking_type_id(self):
         for rec in self:
             if rec.picking_type_id.code != 'incoming':
-                raise UserError(_(
+                raise ValidationError(_(
                     "Picking type operation must be 'Suppliers'."))
 
     name = fields.Char('Request Reference', size=32, required=True,
