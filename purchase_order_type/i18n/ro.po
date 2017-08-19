@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-15 06:47+0000\n"
+"POT-Creation-Date: 2017-07-29 06:57+0000\n"
 "PO-Revision-Date: 2016-03-08 10:17+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Romanian (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/ro/)\n"
@@ -65,7 +65,7 @@ msgstr "Ultima actualizare la"
 #. module: purchase_order_type
 #: field:purchase.order.type,name:0
 msgid "Name"
-msgstr ""
+msgstr "Nume"
 
 #. module: purchase_order_type
 #: model:ir.model,name:purchase_order_type.model_res_partner
