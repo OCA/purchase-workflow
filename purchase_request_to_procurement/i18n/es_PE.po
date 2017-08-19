@@ -1,0 +1,116 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * purchase_request_to_procurement
+# 
+# Translators:
+# Henry Garcia <henry@yaroslab.com>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-07-15 06:42+0000\n"
+"PO-Revision-Date: 2017-07-15 06:42+0000\n"
+"Last-Translator: Henry Garcia <henry@yaroslab.com>, 2017\n"
+"Language-Team: Spanish (Peru) (https://www.transifex.com/oca/teams/23907/es_PE/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es_PE\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: purchase_request_to_procurement
+#: model:ir.ui.view,arch_db:purchase_request_to_procurement.purchase_request_line_make_procurement_order_form_view
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: purchase_request_to_procurement
+#: model:ir.actions.act_window,name:purchase_request_to_procurement.purchase_request_line_make_procurement_order_act_window
+msgid "Create Procurement Order"
+msgstr "Crear orden de aquisición"
+
+#. module: purchase_request_to_procurement
+#: model:ir.model.fields,field_description:purchase_request_to_procurement.field_purchase_request_line_make_procurement_order_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: purchase_request_to_procurement
+#: model:ir.model.fields,field_description:purchase_request_to_procurement.field_purchase_request_line_make_procurement_order_create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: purchase_request_to_procurement
+#: model:ir.model.fields,field_description:purchase_request_to_procurement.field_purchase_request_line_make_procurement_order_display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: purchase_request_to_procurement
+#: model:ir.model.fields,field_description:purchase_request_to_procurement.field_purchase_request_line_make_procurement_order_id
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_request_to_procurement
+#: model:ir.model.fields,field_description:purchase_request_to_procurement.field_purchase_request_line_make_procurement_order_purchase_request_line_m2m_ids
+msgid "Items"
+msgstr "Artículos"
+
+#. module: purchase_request_to_procurement
+#: model:ir.model.fields,field_description:purchase_request_to_procurement.field_purchase_request_line_make_procurement_order___last_update
+msgid "Last Modified on"
+msgstr "Última modificación"
+
+#. module: purchase_request_to_procurement
+#: model:ir.model.fields,field_description:purchase_request_to_procurement.field_purchase_request_line_make_procurement_order_write_uid
+msgid "Last Updated by"
+msgstr "Última actualización"
+
+#. module: purchase_request_to_procurement
+#: model:ir.model.fields,field_description:purchase_request_to_procurement.field_purchase_request_line_make_procurement_order_write_date
+msgid "Last Updated on"
+msgstr "Última actualización"
+
+#. module: purchase_request_to_procurement
+#: model:ir.model.fields,field_description:purchase_request_to_procurement.field_purchase_request_location_id
+msgid "Location"
+msgstr "Ubicación"
+
+#. module: purchase_request_to_procurement
+#: model:ir.ui.view,arch_db:purchase_request_to_procurement.purchase_request_line_make_procurement_order_form_view
+msgid "Make Procurement"
+msgstr "Hacer adquisiciones"
+
+#. module: purchase_request_to_procurement
+#: model:ir.ui.view,arch_db:purchase_request_to_procurement.purchase_request_form_view
+#: model:ir.ui.view,arch_db:purchase_request_to_procurement.purchase_request_line_form_view
+msgid "Procurement Order"
+msgstr "Orden de adquisición"
+
+#. module: purchase_request_to_procurement
+#: model:ir.model.fields,field_description:purchase_request_to_procurement.field_purchase_request_line_procurement_state
+msgid "Procurement State"
+msgstr "Estado de adquisiciones"
+
+#. module: purchase_request_to_procurement
+#: model:ir.model,name:purchase_request_to_procurement.model_purchase_request
+msgid "Purchase Request"
+msgstr "Solicitud de compra"
+
+#. module: purchase_request_to_procurement
+#: model:ir.model,name:purchase_request_to_procurement.model_purchase_request_line
+msgid "Purchase Request Line"
+msgstr "Lineas de solicitud de compra"
+
+#. module: purchase_request_to_procurement
+#: model:ir.model,name:purchase_request_to_procurement.model_purchase_request_line_make_procurement_order
+#: model:ir.ui.view,arch_db:purchase_request_to_procurement.purchase_request_line_make_procurement_order_form_view
+msgid "Purchase Request Line Make Procurement Order"
+msgstr "Realizar pedido de aprovicionaminto "
+
+#. module: purchase_request_to_procurement
+#: model:ir.model.fields,field_description:purchase_request_to_procurement.field_purchase_request_warehouse_id
+msgid "Warehouse"
+msgstr "Almacén"
+
+#. module: purchase_request_to_procurement
+#: model:ir.ui.view,arch_db:purchase_request_to_procurement.purchase_request_line_make_procurement_order_form_view
+msgid "or"
+msgstr "o"
