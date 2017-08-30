@@ -2,15 +2,11 @@
 # Copyright 2016 Eficent Business and IT Consulting Services S.L.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
 
-from openerp import api, fields, models, _
+from openerp import api, models, _
 
 
 class Procurement(models.Model):
     _inherit = 'procurement.order'
-
-    request_id = fields.Many2one(
-        comodel_name='purchase.request', ondelete='restrict',
-        string='Latest Purchase Request', copy=False)
 
     @api.model
     def _prepare_purchase_request_line(self, purchase_request, procurement):
