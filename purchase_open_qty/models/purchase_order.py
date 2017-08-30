@@ -10,23 +10,38 @@ import openerp.addons.decimal_precision as dp
 class PurchaseOrderLine(models.Model):
     _inherit = 'purchase.order.line'
 
-    @api.depends('product_qty', 'qty_invoiced')
+    @api.depends('product_qty', 'qty_invoiced',
+                 'invoice_lines.invoice_id.state')
     def _compute_qty_to_invoice(self):
         for line in self:
-            line.qty_to_invoice = line.product_qty - line.qty_invoiced
+            if line.product_id.purchase_method == 'receive':
+                qty = line.qty_received - line.qty_invoiced
+                if qty >= 0.0:
+                    line.qty_to_invoice = qty
+                else:
+                    line.qty_to_invoice = 0.0
+            else:
+                line.qty_to_invoice = line.product_qty - line.qty_invoiced
 
     @api.depends('order_id.state', 'move_ids.state', 'product_qty')
-    def _compute_qty_received(self):
-        super(PurchaseOrderLine, self)._compute_qty_received()
+    def _compute_qty_to_receive(self):
         for line in self:
-            line.qty_to_receive = line.product_qty - line.qty_received
+            total = 0.0
+            for move in line.move_ids.filtered(
+                    lambda m: m.state not in ('cancel', 'done')):
+                if move.product_uom != line.product_uom:
+                    total += move.product_uom._compute_quantity(
+                        move.product_uom_qty, line.product_uom)
+                else:
+                    total += move.product_uom_qty
+            line.qty_to_receive = total
 
     qty_to_invoice = fields.Float(compute='_compute_qty_to_invoice',
                                   digits=dp.get_precision(
                                       'Product Unit of Measure'),
                                   copy=False,
                                   string="Qty to Bill", store=True)
-    qty_to_receive = fields.Float(compute='_compute_qty_received',
+    qty_to_receive = fields.Float(compute='_compute_qty_to_receive',
                                   digits=dp.get_precision(
                                       'Product Unit of Measure'),
                                   copy=False,
