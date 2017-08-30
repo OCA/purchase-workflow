@@ -31,6 +31,7 @@ class TestPurchaseOpenQty(TransactionCase):
         pr_dict = {
             'name': 'Product Test',
             'uom_id': uom_id,
+            'purchase_method': 'purchase',
         }
         self.product = prod_model.sudo().create(pr_dict)
         ac_dict = {
