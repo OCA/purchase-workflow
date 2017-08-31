@@ -3,10 +3,10 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
 
 {
-    "name": "Minimum Purchase Order Value per Vendor",
+    "name": "Purchase Minimum Amount",
     "author": "Eficent, Odoo Community Association (OCA)",
     "version": "10.0.1.0.0",
-    "website": "http://www.eficent.com",
+    "website": "https://github.com/OCA/purchase-workflow",
     "depends": [
     ],
     "data": [
