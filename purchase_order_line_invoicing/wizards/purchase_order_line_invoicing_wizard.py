@@ -66,16 +66,13 @@ class PurchaseOrderLineInvoiceWizard(models.TransientModel):
             line_data = self.env[
                 'account.invoice']._prepare_invoice_line_from_po_line(
                 line.purchase_order_line_id)
+            line_data['invoice_line_tax_ids'] = [
+                (6, 0, line_data['invoice_line_tax_ids'])]
             line_data['quantity'] = line.invoice_qty
             invoice_lines_data.append((0, 0, line_data))
             if line.purchase_order_line_id.order_id not in purchase_order:
                 purchase_order += line.purchase_order_line_id.order_id
 
-        journal_domain = [
-            ('type', '=', 'purchase'),
-            ('company_id', '=', purchase_order[0].company_id.id),
-            ('currency_id', '=', purchase_order[0].currency_id.id),
-        ]
         default_journal_id = self.env['account.invoice'].\
             with_context(type='in_invoice')._default_journal()
 
