@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-04 05:33+0000\n"
+"POT-Creation-Date: 2017-08-19 07:13+0000\n"
 "PO-Revision-Date: 2015-09-01 21:20+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/nl_NL/)\n"
@@ -36,7 +36,7 @@ msgstr ""
 #. module: purchase_landed_costs
 #: selection:product.template,landed_cost_type:0
 msgid "None"
-msgstr ""
+msgstr "Geen"
 
 #. module: purchase_landed_costs
 #: view:landed.cost.position:0
@@ -54,7 +54,7 @@ msgstr ""
 #. module: purchase_landed_costs
 #: view:landed.cost.position:0
 msgid "Supplier"
-msgstr ""
+msgstr "Leverancier"
 
 #. module: purchase_landed_costs
 #: field:landed.cost.position,generate_invoice:0
@@ -132,7 +132,7 @@ msgstr ""
 #: model:ir.model,name:purchase_landed_costs.model_purchase_order_line
 #: field:landed.cost.position,purchase_order_line_id:0
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Inkooporderregel"
 
 #. module: purchase_landed_costs
 #: help:landed.cost.distribution.type,apply_on:0

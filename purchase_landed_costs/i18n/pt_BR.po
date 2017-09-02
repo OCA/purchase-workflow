@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-07 05:06+0000\n"
+"POT-Creation-Date: 2017-08-19 07:13+0000\n"
 "PO-Revision-Date: 2015-09-01 21:20+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/pt_BR/)\n"
@@ -172,7 +172,7 @@ msgstr ""
 #. module: purchase_landed_costs
 #: view:landed.cost.position:0
 msgid "Account"
-msgstr ""
+msgstr "Conta"
 
 #. module: purchase_landed_costs
 #: field:landed.cost.distribution.type,name:0 view:landed.cost.position:0
@@ -303,7 +303,7 @@ msgstr "Movimentação de estoque"
 #. module: purchase_landed_costs
 #: model:ir.model,name:purchase_landed_costs.model_product_template
 msgid "Product Template"
-msgstr ""
+msgstr "Modelo Produto"
 
 #. module: purchase_landed_costs
 #: help:landed.cost.distribution.type,landed_cost_type:0

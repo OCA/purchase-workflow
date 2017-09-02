@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-11 05:42+0000\n"
+"POT-Creation-Date: 2017-08-19 07:12+0000\n"
 "PO-Revision-Date: 2015-09-01 21:19+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/ca/)\n"
@@ -144,7 +144,7 @@ msgstr ""
 #: view:purchase.order.line.master:0
 #: field:purchase.order.line.master,taxes_id:0
 msgid "Taxes"
-msgstr ""
+msgstr "Impostos"
 
 #. module: purchase_delivery_term
 #: model:ir.model,name:purchase_delivery_term.model_purchase_order

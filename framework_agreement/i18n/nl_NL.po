@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-04 05:33+0000\n"
+"POT-Creation-Date: 2017-08-19 07:12+0000\n"
 "PO-Revision-Date: 2015-09-01 21:19+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/nl_NL/)\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. module: framework_agreement
 #: model:ir.model,name:framework_agreement.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Inkooporderregel"
 
 #. module: framework_agreement
 #: field:framework.agreement,quantity:0
@@ -87,7 +87,7 @@ msgstr ""
 #. module: framework_agreement
 #: field:framework.agreement,supplier_id:0
 msgid "Supplier"
-msgstr ""
+msgstr "Leverancier"
 
 #. module: framework_agreement
 #: view:purchase.order:0
