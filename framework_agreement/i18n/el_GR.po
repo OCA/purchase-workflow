@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-29 06:56+0000\n"
-"PO-Revision-Date: 2017-08-11 11:55+0000\n"
+"POT-Creation-Date: 2017-08-19 07:42+0000\n"
+"PO-Revision-Date: 2017-08-21 07:17+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Greek (Greece) (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/el_GR/)\n"
 "MIME-Version: 1.0\n"
@@ -107,7 +107,7 @@ msgstr "Δημιουργήθηκε στις"
 #. module: framework_agreement
 #: field:framework.agreement.pricelist,currency_id:0
 msgid "Currency"
-msgstr ""
+msgstr "Νόμισμα"
 
 #. module: framework_agreement
 #: code:addons/framework_agreement/model/framework_agreement.py:300

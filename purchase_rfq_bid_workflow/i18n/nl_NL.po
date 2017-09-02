@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-17 06:46+0000\n"
+"POT-Creation-Date: 2017-08-19 07:44+0000\n"
 "PO-Revision-Date: 2016-03-08 10:18+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/nl_NL/)\n"
@@ -54,7 +54,7 @@ msgstr ""
 #: view:purchase.action_modal.cancel_reason:purchase_rfq_bid_workflow.action_modal_cancel_reason
 #: view:purchase.action_modal.datetime:purchase_rfq_bid_workflow.action_modal_bid_date
 msgid "Cancel"
-msgstr ""
+msgstr "Verwijderen"
 
 #. module: purchase_rfq_bid_workflow
 #: view:purchase.action_modal.cancel_reason:purchase_rfq_bid_workflow.action_modal_cancel_reason
@@ -79,7 +79,7 @@ msgstr ""
 #: field:purchase.action_modal.datetime,create_uid:0
 #: field:purchase.cancel_reason,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: purchase_rfq_bid_workflow
 #: field:purchase.action_modal,create_date:0
@@ -87,7 +87,7 @@ msgstr ""
 #: field:purchase.action_modal.datetime,create_date:0
 #: field:purchase.cancel_reason,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: purchase_rfq_bid_workflow
 #: field:purchase.action_modal.datetime,datetime:0
@@ -142,7 +142,7 @@ msgstr "Laatst gewijzigd op"
 #: field:purchase.action_modal.datetime,write_uid:0
 #: field:purchase.cancel_reason,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: purchase_rfq_bid_workflow
 #: field:purchase.action_modal,write_date:0
@@ -150,7 +150,7 @@ msgstr ""
 #: field:purchase.action_modal.datetime,write_date:0
 #: field:purchase.cancel_reason,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: purchase_rfq_bid_workflow
 #: model:purchase.cancel_reason,name:purchase_rfq_bid_workflow.purchase_cancel_reason_bid_latereply
@@ -199,7 +199,7 @@ msgstr ""
 #. module: purchase_rfq_bid_workflow
 #: model:ir.model,name:purchase_rfq_bid_workflow.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Inkooporderregel"
 
 #. module: purchase_rfq_bid_workflow
 #: model:purchase.cancel_reason,name:purchase_rfq_bid_workflow.purchase_cancel_reason_rfq_canceled

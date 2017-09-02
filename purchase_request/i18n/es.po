@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-01 21:46+0000\n"
-"PO-Revision-Date: 2017-05-01 21:46+0000\n"
+"POT-Creation-Date: 2017-08-19 07:43+0000\n"
+"PO-Revision-Date: 2017-08-19 07:43+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "MIME-Version: 1.0\n"
@@ -405,7 +405,7 @@ msgstr "Estado de la petición"
 #. module: purchase_request
 #: view:website:purchase_request.report_purchaserequests
 msgid "Requested Date"
-msgstr ""
+msgstr "Fecha solicitada"
 
 #. module: purchase_request
 #: view:purchase.request:purchase_request.view_purchase_request_search

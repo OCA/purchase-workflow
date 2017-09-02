@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-17 06:45+0000\n"
+"POT-Creation-Date: 2017-08-19 07:43+0000\n"
 "PO-Revision-Date: 2016-03-08 10:17+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/nl_NL/)\n"
@@ -25,7 +25,7 @@ msgstr ""
 #. module: purchase_partial_invoicing
 #: view:purchase.order.line_cancel_quantity:purchase_partial_invoicing.view_purchase_line_cancel
 msgid "Cancel"
-msgstr ""
+msgstr "Verwijderen"
 
 #. module: purchase_partial_invoicing
 #: model:ir.actions.act_window,name:purchase_partial_invoicing.action_view_purchase_line_cancel
@@ -47,14 +47,14 @@ msgstr ""
 #: field:purchase.order.line_cancel_quantity_line,create_uid:0
 #: field:purchase.order.line_invoice.line,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: purchase_partial_invoicing
 #: field:purchase.order.line_cancel_quantity,create_date:0
 #: field:purchase.order.line_cancel_quantity_line,create_date:0
 #: field:purchase.order.line_invoice.line,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: purchase_partial_invoicing
 #: field:purchase.order.line_cancel_quantity,display_name:0
@@ -83,7 +83,7 @@ msgstr "ID"
 #. module: purchase_partial_invoicing
 #: model:ir.model,name:purchase_partial_invoicing.model_account_invoice
 msgid "Invoice"
-msgstr ""
+msgstr "Factuur"
 
 #. module: purchase_partial_invoicing
 #: field:purchase.order.line,invoiced_qty:0
@@ -107,14 +107,14 @@ msgstr "Laatst gewijzigd op"
 #: field:purchase.order.line_cancel_quantity_line,write_uid:0
 #: field:purchase.order.line_invoice.line,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: purchase_partial_invoicing
 #: field:purchase.order.line_cancel_quantity,write_date:0
 #: field:purchase.order.line_cancel_quantity_line,write_date:0
 #: field:purchase.order.line_invoice.line,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: purchase_partial_invoicing
 #: field:purchase.order.line_cancel_quantity,line_ids:0
@@ -135,7 +135,7 @@ msgstr ""
 #. module: purchase_partial_invoicing
 #: model:ir.model,name:purchase_partial_invoicing.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Inkooporderregel"
 
 #. module: purchase_partial_invoicing
 #: model:ir.model,name:purchase_partial_invoicing.model_purchase_order_line_invoice

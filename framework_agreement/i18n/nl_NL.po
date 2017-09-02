@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-17 06:44+0000\n"
-"PO-Revision-Date: 2017-06-30 08:53+0000\n"
+"POT-Creation-Date: 2017-08-19 07:42+0000\n"
+"PO-Revision-Date: 2017-08-29 08:01+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -94,7 +94,7 @@ msgstr ""
 #: field:framework.agreement.portfolio,create_uid:0
 #: field:framework.agreement.pricelist,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: framework_agreement
 #: field:framework.agreement,create_date:0
@@ -102,7 +102,7 @@ msgstr ""
 #: field:framework.agreement.portfolio,create_date:0
 #: field:framework.agreement.pricelist,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: framework_agreement
 #: field:framework.agreement.pricelist,currency_id:0
@@ -246,7 +246,7 @@ msgstr "Laatst gewijzigd op"
 #: field:framework.agreement.portfolio,write_uid:0
 #: field:framework.agreement.pricelist,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: framework_agreement
 #: field:framework.agreement,write_date:0
@@ -254,7 +254,7 @@ msgstr ""
 #: field:framework.agreement.portfolio,write_date:0
 #: field:framework.agreement.pricelist,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: framework_agreement
 #: field:framework.agreement,delay:0
@@ -328,7 +328,7 @@ msgstr ""
 #. module: framework_agreement
 #: field:framework.agreement,payment_term_id:0
 msgid "Payment Term"
-msgstr ""
+msgstr "Betalingsconditie"
 
 #. module: framework_agreement
 #: field:framework.agreement,portfolio_id:0
@@ -385,7 +385,7 @@ msgstr ""
 #. module: framework_agreement
 #: model:ir.model,name:framework_agreement.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Inkooporderregel"
 
 #. module: framework_agreement
 #: field:framework.agreement,purchase_line_ids:0
@@ -424,7 +424,7 @@ msgstr ""
 #: view:framework.agreement.portfolio:framework_agreement.portfolio_search_view
 #: field:framework.agreement.portfolio,supplier_id:0
 msgid "Supplier"
-msgstr ""
+msgstr "Leverancier"
 
 #. module: framework_agreement
 #: sql_constraint:framework.agreement.portfolio:0

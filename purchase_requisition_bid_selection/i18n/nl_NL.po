@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-17 06:46+0000\n"
+"POT-Creation-Date: 2017-08-19 07:44+0000\n"
 "PO-Revision-Date: 2016-03-08 10:17+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/nl_NL/)\n"
@@ -165,7 +165,7 @@ msgstr ""
 #: view:update.bid.internal.remark:purchase_requisition_bid_selection.view_update_bid_internal_remark
 #: view:update.remark:purchase_requisition_bid_selection.view_update_remark
 msgid "Cancel"
-msgstr ""
+msgstr "Verwijderen"
 
 #. module: purchase_requisition_bid_selection
 #: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
@@ -231,7 +231,7 @@ msgstr ""
 #: field:update.bid.internal.remark,create_uid:0
 #: field:update.remark,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: purchase_requisition_bid_selection
 #: field:purchase.action_modal.ask_selection_reasons,create_date:0
@@ -239,7 +239,7 @@ msgstr ""
 #: field:update.bid.internal.remark,create_date:0
 #: field:update.remark,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: purchase_requisition_bid_selection
 #: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
@@ -417,7 +417,7 @@ msgstr "Laatst gewijzigd op"
 #: field:update.bid.internal.remark,write_uid:0
 #: field:update.remark,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: purchase_requisition_bid_selection
 #: field:purchase.action_modal.ask_selection_reasons,write_date:0
@@ -425,7 +425,7 @@ msgstr ""
 #: field:update.bid.internal.remark,write_date:0
 #: field:update.remark,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: purchase_requisition_bid_selection
 #: view:purchase.order.line:purchase_requisition_bid_selection.view_purchase_order_line_search
@@ -478,7 +478,7 @@ msgstr ""
 #. module: purchase_requisition_bid_selection
 #: field:purchase.order.line,payment_term_id:0
 msgid "Payment Term"
-msgstr ""
+msgstr "Betalingsconditie"
 
 #. module: purchase_requisition_bid_selection
 #: view:website:purchase_requisition_bid_selection.report_purchaserequisitions_document
@@ -513,7 +513,7 @@ msgstr ""
 #. module: purchase_requisition_bid_selection
 #: model:ir.model,name:purchase_requisition_bid_selection.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Inkooporderregel"
 
 #. module: purchase_requisition_bid_selection
 #: model:ir.model,name:purchase_requisition_bid_selection.model_purchase_requisition

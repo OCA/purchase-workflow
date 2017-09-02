@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-17 06:44+0000\n"
-"PO-Revision-Date: 2017-06-17 06:44+0000\n"
+"POT-Creation-Date: 2017-08-19 07:43+0000\n"
+"PO-Revision-Date: 2017-08-19 07:43+0000\n"
 "Last-Translator: Peter Hageman <hageman.p@gmail.com>, 2017\n"
 "Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/23907/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -43,7 +43,7 @@ msgstr ""
 #. module: purchase_add_product_supplierinfo
 #: view:purchase.add.product.supplierinfo:purchase_add_product_supplierinfo.view_purchase_add_supplierinfo_form
 msgid "Cancel"
-msgstr ""
+msgstr "Verwijderen"
 
 #. module: purchase_add_product_supplierinfo
 #: view:purchase.add.product.supplierinfo:purchase_add_product_supplierinfo.view_purchase_add_supplierinfo_form
@@ -54,18 +54,18 @@ msgstr ""
 #: field:purchase.add.product.supplierinfo,create_uid:0
 #: field:purchase.add.product.supplierinfo.line,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: purchase_add_product_supplierinfo
 #: field:purchase.add.product.supplierinfo,create_date:0
 #: field:purchase.add.product.supplierinfo.line,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: purchase_add_product_supplierinfo
 #: field:purchase.add.product.supplierinfo.line,name:0
 msgid "Description"
-msgstr ""
+msgstr "Omschrijving"
 
 #. module: purchase_add_product_supplierinfo
 #: field:purchase.add.product.supplierinfo,display_name:0
@@ -89,13 +89,13 @@ msgstr "Laatst gewijzigd op"
 #: field:purchase.add.product.supplierinfo,write_uid:0
 #: field:purchase.add.product.supplierinfo.line,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: purchase_add_product_supplierinfo
 #: field:purchase.add.product.supplierinfo,write_date:0
 #: field:purchase.add.product.supplierinfo.line,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: purchase_add_product_supplierinfo
 #: view:purchase.add.product.supplierinfo:purchase_add_product_supplierinfo.view_purchase_add_supplierinfo_form

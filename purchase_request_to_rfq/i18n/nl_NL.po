@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-17 06:46+0000\n"
-"PO-Revision-Date: 2017-06-17 06:46+0000\n"
+"POT-Creation-Date: 2017-08-19 07:44+0000\n"
+"PO-Revision-Date: 2017-08-19 07:44+0000\n"
 "Last-Translator: Peter Hageman <hageman.p@gmail.com>, 2017\n"
 "Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/23907/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -49,7 +49,7 @@ msgstr ""
 #. module: purchase_request_to_rfq
 #: view:purchase.request.line.make.purchase.order:purchase_request_to_rfq.view_purchase_request_line_make_purchase_order
 msgid "Cancel"
-msgstr ""
+msgstr "Verwijderen"
 
 #. module: purchase_request_to_rfq
 #: selection:purchase.request.line,purchase_state:0
@@ -71,18 +71,18 @@ msgstr ""
 #: field:purchase.request.line.make.purchase.order,create_uid:0
 #: field:purchase.request.line.make.purchase.order.item,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: purchase_request_to_rfq
 #: field:purchase.request.line.make.purchase.order,create_date:0
 #: field:purchase.request.line.make.purchase.order.item,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: purchase_request_to_rfq
 #: field:purchase.request.line.make.purchase.order.item,name:0
 msgid "Description"
-msgstr ""
+msgstr "Omschrijving"
 
 #. module: purchase_request_to_rfq
 #: view:purchase.request.line.make.purchase.order:purchase_request_to_rfq.view_purchase_request_line_make_purchase_order
@@ -143,13 +143,13 @@ msgstr "Laatst gewijzigd op"
 #: field:purchase.request.line.make.purchase.order,write_uid:0
 #: field:purchase.request.line.make.purchase.order.item,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: purchase_request_to_rfq
 #: field:purchase.request.line.make.purchase.order,write_date:0
 #: field:purchase.request.line.make.purchase.order.item,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: purchase_request_to_rfq
 #: view:purchase.request.line.make.purchase.order:purchase_request_to_rfq.view_purchase_request_line_make_purchase_order
@@ -201,7 +201,7 @@ msgstr ""
 #. module: purchase_request_to_rfq
 #: model:ir.model,name:purchase_request_to_rfq.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Inkooporderregel"
 
 #. module: purchase_request_to_rfq
 #: view:purchase.request:purchase_request_to_rfq.view_purchase_request_form
@@ -305,7 +305,7 @@ msgstr ""
 #. module: purchase_request_to_rfq
 #: field:purchase.request.line.make.purchase.order,supplier_id:0
 msgid "Supplier"
-msgstr ""
+msgstr "Leverancier"
 
 #. module: purchase_request_to_rfq
 #: code:addons/purchase_request_to_rfq/models/purchase_order.py:19

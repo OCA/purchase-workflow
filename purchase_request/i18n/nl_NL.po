@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-17 06:45+0000\n"
-"PO-Revision-Date: 2017-06-17 06:45+0000\n"
+"POT-Creation-Date: 2017-08-19 07:43+0000\n"
+"PO-Revision-Date: 2017-08-19 07:43+0000\n"
 "Last-Translator: Peter Hageman <hageman.p@gmail.com>, 2017\n"
 "Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/23907/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -78,13 +78,13 @@ msgstr ""
 #: field:purchase.request,create_uid:0
 #: field:purchase.request.line,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: purchase_request
 #: field:purchase.request,create_date:0
 #: field:purchase.request.line,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: purchase_request
 #: view:website:purchase_request.report_purchaserequests
@@ -113,7 +113,7 @@ msgstr ""
 #: field:purchase.request.line,name:0
 #: view:website:purchase_request.report_purchaserequests
 msgid "Description"
-msgstr ""
+msgstr "Omschrijving"
 
 #. module: purchase_request
 #: view:website:purchase_request.report_purchaserequests
@@ -191,13 +191,13 @@ msgstr "Laatst gewijzigd op"
 #. module: purchase_request
 #: field:purchase.request,write_uid:0 field:purchase.request.line,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: purchase_request
 #: field:purchase.request,write_date:0
 #: field:purchase.request.line,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: purchase_request
 #: field:purchase.request,message_ids:0
@@ -433,7 +433,7 @@ msgstr ""
 #. module: purchase_request
 #: view:purchase.request:purchase_request.view_purchase_request_search
 msgid "Source"
-msgstr ""
+msgstr "Bron"
 
 #. module: purchase_request
 #: field:purchase.request,origin:0 field:purchase.request.line,origin:0

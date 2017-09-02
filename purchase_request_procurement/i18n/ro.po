@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-15 06:48+0000\n"
-"PO-Revision-Date: 2017-07-15 06:48+0000\n"
+"POT-Creation-Date: 2017-08-19 07:44+0000\n"
+"PO-Revision-Date: 2017-08-19 07:44+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Romanian (https://www.transifex.com/oca/teams/23907/ro/)\n"
 "MIME-Version: 1.0\n"
@@ -38,7 +38,7 @@ msgstr "Aprovizionare"
 #. module: purchase_request_procurement
 #: model:ir.model,name:purchase_request_procurement.model_product_template
 msgid "Product Template"
-msgstr ""
+msgstr "Produs șablon"
 
 #. module: purchase_request_procurement
 #: model:ir.model,name:purchase_request_procurement.model_purchase_request

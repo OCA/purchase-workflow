@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-17 06:44+0000\n"
-"PO-Revision-Date: 2017-06-30 08:53+0000\n"
+"POT-Creation-Date: 2017-08-19 07:42+0000\n"
+"PO-Revision-Date: 2017-08-29 08:01+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -26,19 +26,19 @@ msgstr ""
 #. module: procurement_batch_generator
 #: view:procurement.batch.generator:procurement_batch_generator.procurement_batch_generator_form
 msgid "Cancel"
-msgstr ""
+msgstr "Verwijderen"
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator,create_uid:0
 #: field:procurement.batch.generator.line,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator,create_date:0
 #: field:procurement.batch.generator.line,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator,display_name:0
@@ -67,13 +67,13 @@ msgstr "Laatst gewijzigd op"
 #: field:procurement.batch.generator,write_uid:0
 #: field:procurement.batch.generator.line,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator,write_date:0
 #: field:procurement.batch.generator.line,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: procurement_batch_generator
 #: model:ir.model,name:procurement_batch_generator.model_procurement_batch_generator_line
@@ -124,7 +124,7 @@ msgstr ""
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator.line,partner_id:0
 msgid "Supplier"
-msgstr ""
+msgstr "Leverancier"
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator.line,uom_id:0

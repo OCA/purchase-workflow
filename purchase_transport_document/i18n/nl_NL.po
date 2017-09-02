@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-17 06:46+0000\n"
+"POT-Creation-Date: 2017-08-19 07:44+0000\n"
 "PO-Revision-Date: 2016-03-08 10:18+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/nl_NL/)\n"
@@ -40,12 +40,12 @@ msgstr ""
 #. module: purchase_transport_document
 #: field:transport.document,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: purchase_transport_document
 #: field:transport.document,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: purchase_transport_document
 #: model:transport.document,name:purchase_transport_document.delivery_note
@@ -70,12 +70,12 @@ msgstr "Laatst gewijzigd op"
 #. module: purchase_transport_document
 #: field:transport.document,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: purchase_transport_document
 #: field:transport.document,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: purchase_transport_document
 #: model:transport.document,name:purchase_transport_document.multimodal_bill_of_lading

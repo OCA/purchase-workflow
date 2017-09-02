@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-17 06:45+0000\n"
-"PO-Revision-Date: 2017-06-17 06:45+0000\n"
+"POT-Creation-Date: 2017-08-19 07:44+0000\n"
+"PO-Revision-Date: 2017-08-19 07:44+0000\n"
 "Last-Translator: Peter Hageman <hageman.p@gmail.com>, 2017\n"
 "Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/23907/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -69,7 +69,7 @@ msgstr ""
 #. module: purchase_request_to_requisition
 #: view:purchase.request.line.make.purchase.requisition:purchase_request_to_requisition.view_purchase_request_line_make_purchase_requisition
 msgid "Cancel"
-msgstr ""
+msgstr "Verwijderen"
 
 #. module: purchase_request_to_requisition
 #: selection:purchase.request.line,requisition_state:0
@@ -91,18 +91,18 @@ msgstr ""
 #: field:purchase.request.line.make.purchase.requisition,create_uid:0
 #: field:purchase.request.line.make.purchase.requisition.item,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: purchase_request_to_requisition
 #: field:purchase.request.line.make.purchase.requisition,create_date:0
 #: field:purchase.request.line.make.purchase.requisition.item,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: purchase_request_to_requisition
 #: field:purchase.request.line.make.purchase.requisition.item,name:0
 msgid "Description"
-msgstr ""
+msgstr "Omschrijving"
 
 #. module: purchase_request_to_requisition
 #: view:purchase.request.line.make.purchase.requisition:purchase_request_to_requisition.view_purchase_request_line_make_purchase_requisition
@@ -157,13 +157,13 @@ msgstr "Laatst gewijzigd op"
 #: field:purchase.request.line.make.purchase.requisition,write_uid:0
 #: field:purchase.request.line.make.purchase.requisition.item,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: purchase_request_to_requisition
 #: field:purchase.request.line.make.purchase.requisition,write_date:0
 #: field:purchase.request.line.make.purchase.requisition.item,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: purchase_request_to_requisition
 #: view:purchase.request.line:purchase_request_to_requisition.purchase_request_line_search
