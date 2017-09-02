@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-27 00:57+0000\n"
-"PO-Revision-Date: 2017-06-27 00:57+0000\n"
+"POT-Creation-Date: 2017-08-29 03:23+0000\n"
+"PO-Revision-Date: 2017-08-29 03:23+0000\n"
 "Last-Translator: Peter Hageman <hageman.p@gmail.com>, 2017\n"
 "Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/23907/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -64,7 +64,7 @@ msgstr ""
 #. module: purchase_request_to_requisition
 #: model:ir.ui.view,arch_db:purchase_request_to_requisition.view_purchase_request_line_make_purchase_requisition
 msgid "Cancel"
-msgstr ""
+msgstr "Verwijderen"
 
 #. module: purchase_request_to_requisition
 #: model:ir.actions.act_window,name:purchase_request_to_requisition.action_purchase_request_line_make_purchase_requisition
@@ -76,18 +76,18 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition_create_uid
 #: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition_item_create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: purchase_request_to_requisition
 #: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition_create_date
 #: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition_item_create_date
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: purchase_request_to_requisition
 #: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition_item_name
 msgid "Description"
-msgstr ""
+msgstr "Omschrijving"
 
 #. module: purchase_request_to_requisition
 #: model:ir.ui.view,arch_db:purchase_request_to_requisition.view_purchase_request_line_make_purchase_requisition
@@ -137,13 +137,13 @@ msgstr "Laatst gewijzigd op"
 #: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition_item_write_uid
 #: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition_write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: purchase_request_to_requisition
 #: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition_item_write_date
 #: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition_write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: purchase_request_to_requisition
 #: model:ir.ui.view,arch_db:purchase_request_to_requisition.purchase_request_line_search
