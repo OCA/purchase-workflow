@@ -4,14 +4,13 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
-# Mario Gielissen <mario@openworx.nl>, 2017
 # Peter Hageman <hageman.p@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-27 00:57+0000\n"
-"PO-Revision-Date: 2017-06-27 00:57+0000\n"
+"POT-Creation-Date: 2017-08-29 03:23+0000\n"
+"PO-Revision-Date: 2017-08-29 03:23+0000\n"
 "Last-Translator: Peter Hageman <hageman.p@gmail.com>, 2017\n"
 "Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/23907/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -155,13 +154,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_create_uid
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_create_date
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_create_date
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_date_start
@@ -185,7 +184,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_description
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_name
 msgid "Description"
-msgstr ""
+msgstr "Omschrijving"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_display_name
@@ -277,13 +276,13 @@ msgstr "Laatst gewijzigd op"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_write_uid
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_write_date
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_message_ids
@@ -318,6 +317,12 @@ msgstr ""
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_picking_type_id
 msgid "Picking Type"
+msgstr ""
+
+#. module: purchase_request
+#: code:addons/purchase_request/models/purchase_request.py:76
+#, python-format
+msgid "Picking type operation must be 'Suppliers'."
 msgstr ""
 
 #. module: purchase_request
@@ -518,7 +523,7 @@ msgstr ""
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Source"
-msgstr ""
+msgstr "Bron"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_origin
