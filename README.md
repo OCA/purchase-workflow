@@ -29,6 +29,7 @@ addon | version | summary
 [purchase_request](purchase_request/) | 10.0.1.0.1 | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
 [purchase_request_to_procurement](purchase_request_to_procurement/) | 10.0.1.0.0 | This module introduces the possiblity to create procurement order from purchase request
 [purchase_request_to_rfq](purchase_request_to_rfq/) | 10.0.1.0.0 | Purchase Request to RFQ
+[purchase_triple_discount](purchase_triple_discount/) | 10.0.1.0.0 | Manage triple discount on purchase order lines
 [subcontracted_service](subcontracted_service/) | 10.0.1.0.0 | Subcontracted service
 
 
