@@ -2,8 +2,9 @@
 #   @author Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo.exceptions import UserError
 from odoo import models, fields, api, _
+from odoo.exceptions import UserError
+from odoo.tools import float_compare
 
 
 class PurchaseOrder(models.Model):
@@ -32,9 +33,18 @@ class PurchaseOrder(models.Model):
         'partner_id.fop_shipping',
     )
     def _compute_fop_shipping_reached(self):
+        digit_precision = self.env['decimal.precision'].precision_get(
+            'Account'
+        )
         for record in self:
-            record.fop_reached = record.amount_total >\
-                record.partner_id.fop_shipping
+            record.fop_reached = (
+                float_compare(
+                    record.amount_total,
+                    record.partner_id.fop_shipping,
+                    precision_digits=digit_precision,
+                )
+                >= 0
+            )
 
     def button_approve(self, force=False):
         self._check_fop_shipping()
