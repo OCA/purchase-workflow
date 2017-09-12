@@ -4,6 +4,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo.exceptions import Warning as UserError
+from odoo.tools import float_compare
 from odoo import models, fields, api, _
 
 
@@ -28,9 +29,13 @@ class PurchaseOrder(models.Model):
     @api.multi
     @api.depends('amount_total', 'partner_id.fop_shipping')
     def _compute_fop_shipping_reached(self):
+        digit_precision = self.env['decimal.precision'].precision_get(
+            'Account')
         for record in self:
-            record.fop_reached = record.amount_total >\
-                record.partner_id.fop_shipping
+            if float_compare(
+                record.amount_total, record.partner_id.fop_shipping,
+                precision_digits=digit_precision) == 1:
+                record.fop_reached = True
 
     @api.multi
     def button_approve(self, force=False):

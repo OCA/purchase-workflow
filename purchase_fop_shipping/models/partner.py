@@ -4,6 +4,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import models, fields
+import odoo.addons.decimal_precision as dp
 
 
 class ResPartner(models.Model):
@@ -11,4 +12,5 @@ class ResPartner(models.Model):
 
     fop_shipping = fields.Float(
         'FOP shipping', help='Min purchase order amount for FOP shipping',
-        company_dependent=True)
+        company_dependent=True,
+        digits = dp.get_precision('Account'))

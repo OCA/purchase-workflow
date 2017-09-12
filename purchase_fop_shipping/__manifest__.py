@@ -11,7 +11,7 @@
     'license': 'AGPL-3',
     'category': 'Purchase',
     'depends': ['purchase'],
-    'website': 'http://www.akretion.com/',
+    'website': 'https://github.com/OCA/purchase-workflow',
     'data': [
         'security/purchase_group.xml',
         'views/purchase_view.xml',
