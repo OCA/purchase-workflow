@@ -53,7 +53,7 @@ def store_field_qty_to_receive_and_invoice(cr):
         SET qty_to_invoice = pol.qty_received - pol.qty_invoiced
         FROM product_product p
         JOIN product_template t ON p.product_tmpl_id = t.id
-        WHERE t.purchase_method = 'receive'
+        WHERE t.purchase_method = 'receive' AND pol.product_id = p.id
         """
     )
     cr.execute(
@@ -62,7 +62,7 @@ def store_field_qty_to_receive_and_invoice(cr):
         SET qty_to_invoice = pol.product_qty - pol.qty_invoiced
         FROM product_product p
         JOIN product_template t ON p.product_tmpl_id = t.id
-        WHERE t.purchase_method != 'receive'
+        WHERE t.purchase_method != 'receive' AND pol.product_id = p.id
         """
     )
     cr.execute(
