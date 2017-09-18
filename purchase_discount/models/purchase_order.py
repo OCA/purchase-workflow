@@ -7,6 +7,34 @@ from openerp import api, fields, models
 import openerp.addons.decimal_precision as dp
 
 
+class PurchaseOrder(models.Model):
+    _inherit = "purchase.order"
+
+    @api.depends('order_line.price_total')
+    def _amount_all(self):
+        orders = self.filtered(lambda x: (
+            x.company_id.tax_calculation_rounding_method == 'round_globally'))
+        orders._amount_all_round_globally()
+        super(PurchaseOrder, self - orders)._amount_all()
+
+    def _amount_all_round_globally(self):
+        for order in self:
+            amount_untaxed = amount_tax = 0.0
+            for line in order.order_line:
+                amount_untaxed += line.price_subtotal
+                price = line.price_unit * (1 - (line.discount or 0.0) / 100.0)
+                taxes = line.taxes_id.compute_all(
+                    price, line.order_id.currency_id, line.product_qty,
+                    product=line.product_id, partner=line.order_id.partner_id)
+                amount_tax += sum(
+                    t.get('amount', 0.0) for t in taxes.get('taxes', []))
+            order.update({
+                'amount_untaxed': order.currency_id.round(amount_untaxed),
+                'amount_tax': order.currency_id.round(amount_tax),
+                'amount_total': amount_untaxed + amount_tax,
+            })
+
+
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
