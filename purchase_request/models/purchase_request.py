@@ -247,9 +247,3 @@ class PurchaseRequestLine(models.Model):
             self.product_uom_id = self.product_id.uom_id.id
             self.product_qty = 1
             self.name = name
-
-class AccountAnalyticAccont(models.Model):
-    _inherit = 'account.analytic.account'
-
-    type = fields.Selection([('n', 'Normal'), ('v', u'View')], default='n', required=True, string=u'Type')
-
