@@ -18,6 +18,7 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
+[procurement_purchase_no_grouping](procurement_purchase_no_grouping/) | 10.0.1.0.0 | Procurement Purchase No Grouping
 [product_by_supplier](product_by_supplier/) | 10.0.1.0.0 | Show products grouped by suppliers
 [purchase_allowed_product](purchase_allowed_product/) | 10.0.1.0.0 | This module allows to select only products that can be supplied by the supplier
 [purchase_commercial_partner](purchase_commercial_partner/) | 10.0.1.0.0 | Add stored related field 'Commercial Supplier' on POs
@@ -28,6 +29,7 @@ addon | version | summary
 [purchase_open_qty](purchase_open_qty/) | 10.0.1.0.0 | Allows to identify the purchase orders that have quantities pending to invoice or to receive.
 [purchase_picking_state](purchase_picking_state/) | 10.0.1.0.0 | Add the status of all the incoming picking in the purchase order
 [purchase_request](purchase_request/) | 10.0.1.0.1 | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
+[purchase_request_procurement](purchase_request_procurement/) | 10.0.1.0.1 | Purchase Request Procurement
 [purchase_request_to_procurement](purchase_request_to_procurement/) | 10.0.1.0.0 | This module introduces the possiblity to create procurement order from purchase request
 [purchase_request_to_rfq](purchase_request_to_rfq/) | 10.0.1.0.0 | Purchase Request to RFQ
 [purchase_triple_discount](purchase_triple_discount/) | 10.0.1.0.0 | Manage triple discount on purchase order lines
@@ -57,7 +59,6 @@ addon | version | summary
 [purchase_origin_address](purchase_origin_address/) | 8.0.1.0.0 (unported) | Deprecated: use purchase_transport_multi_address from OCA/stock-logistics-transport
 [purchase_partial_invoicing](purchase_partial_invoicing/) | 8.0.0.1.0 (unported) | Purchase partial invoicing
 [purchase_partner_invoice_method](purchase_partner_invoice_method/) | 8.0.1.0.0 (unported) | Adds supplier invoicing control on partner form
-[purchase_request_procurement](purchase_request_procurement/) | 9.0.1.0.0 (unported) | Purchase Request Procurement
 [purchase_requisition_auto_rfq](purchase_requisition_auto_rfq/) | 8.0.0.2.0 (unported) | Automatically create RFQ from a purchase requisition
 [purchase_requisition_auto_rfq_bid_selection](purchase_requisition_auto_rfq_bid_selection/) | 8.0.0.1.0 (unported) | Bridge module for PR Auto RFQ / Bid Selection
 [purchase_requisition_bid_selection](purchase_requisition_bid_selection/) | 8.0.2.1.0 (unported) | Purchase Requisition Bid Selection
