@@ -28,7 +28,7 @@ class PurchaseOrder(models.Model):
         ondelete='restrict',
         copy=False,
     )
-    state2 = fields.Selection(
+    state_rfq = fields.Selection(
         [('draft', 'Draft'),
          ('sent', 'Mail Sent'),
          ('cancel', 'Cancelled'),
@@ -36,7 +36,7 @@ class PurchaseOrder(models.Model):
         string='Status',
         readonly=True,
         related='state',
-        help="A dummy state used for Quotation",
+        help="A dummy state used for RFQ",
     )
 
     @api.model
