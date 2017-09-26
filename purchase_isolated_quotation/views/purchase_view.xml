@@ -20,7 +20,7 @@
                             type="object"
                             states="draft"
                             string="Cancel Quotation"/>
-                    <field name="state2"
+                    <field name="state_rfq"
                             widget="statusbar"
                             statusbar_visible="draft,done"
                             invisible="context.get('is_order', 'purchase') == True"/>
