@@ -327,7 +327,7 @@ msgid ""
 "The following requested items from Purchase Request %s have now been "
 "confirmed in Purchase Order %s:"
 msgstr ""
-"Les articles suivants de la demande d'achat %s n'ont pas été confirmés dans "
+"Les articles suivants de la demande d'achat %s ont été confirmés dans "
 "le bon de commande %s:"
 
 #. module: purchase_request_to_rfq
@@ -337,7 +337,7 @@ msgid ""
 "The following requested items from Purchase Request %s have now been "
 "received in Incoming Shipment %s:"
 msgstr ""
-"Les articles suivants de la demande d'achat %s n'ont pas été reçu dans la "
+"Les articles suivants de la demande d'achat %s ont été reçus dans la "
 "réception %s"
 
 #. module: purchase_request_to_rfq
