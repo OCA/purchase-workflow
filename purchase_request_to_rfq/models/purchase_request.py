@@ -18,7 +18,7 @@ class PurchaseRequestLine(models.Model):
     @api.depends('purchase_lines')
     def _compute_is_editable(self):
         super(PurchaseRequestLine, self)._compute_is_editable()
-        for rec in self.filtered(lambda p: p in self and p.purchase_lines):
+        for rec in self.filtered(lambda p: p.purchase_lines):
             rec.is_editable = False
 
     @api.multi
@@ -100,10 +100,11 @@ class PurchaseRequestLine(models.Model):
         return seller_min_qty
 
     @api.model
-    def _calc_new_qty(self, request_line, po_line=None, cancel=False):
+    def _calc_new_qty(self, request_line, po_line=None, cancel=False,
+                      new_pr_line=False):
+        purchase_uom = po_line.product_uom or request_line.product_id.uom_po_id
         uom = request_line.product_uom_id
-        qty = uom._compute_quantity(request_line.product_qty,
-                                    request_line.product_id.uom_po_id)
+        qty = uom._compute_quantity(request_line.product_qty, purchase_uom)
         # Make sure we use the minimum quantity of the partner corresponding
         # to the PO. This does not apply in case of dropshipping
         supplierinfo_min_qty = 0.0
@@ -111,14 +112,17 @@ class PurchaseRequestLine(models.Model):
             supplierinfo_min_qty = self._get_supplier_min_qty(
                 po_line.product_id, po_line.order_id.partner_id)
 
-        if not supplierinfo_min_qty:
-            qty += po_line.product_qty
-        else:
-            # Recompute quantity by adding existing running procurements.
-            for rl in po_line.purchase_request_lines:
-                qty += rl.product_uom_id._compute_quantity(
-                    rl.product_qty, rl.product_id.uom_po_id)
-            qty = max(qty, supplierinfo_min_qty) if qty > 0.0 else 0.0
+        rl_qty = 0.0
+        # Recompute quantity by adding existing running procurements.
+        for rl in po_line.purchase_request_lines:
+            rl_qty += rl.product_uom_id._compute_quantity(
+                rl.product_qty, purchase_uom)
+        new_qty = 0.0
+        if not new_pr_line:
+            new_qty = qty + po_line.product_qty
+
+        qty = max(rl_qty, supplierinfo_min_qty, new_qty)
+
         return qty
 
     @api.multi
