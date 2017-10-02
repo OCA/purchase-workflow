@@ -131,15 +131,14 @@ class PurchaseRequest(models.Model):
     def create(self, vals):
         request = super(PurchaseRequest, self).create(vals)
         if vals.get('assigned_to'):
-            request.message_subscribe_users(user_ids=[request.assigned_to.id])
+            request._subscribe_assigned_to_user()
         return request
 
     @api.multi
     def write(self, vals):
         res = super(PurchaseRequest, self).write(vals)
-        for request in self:
-            if vals.get('assigned_to'):
-                self.message_subscribe_users(user_ids=[request.assigned_to.id])
+        if vals.get('assigned_to'):
+            self._subscribe_assigned_to_user()
         return res
 
     @api.multi
@@ -181,6 +180,15 @@ class PurchaseRequest(models.Model):
         for pr in self:
             if not pr.line_ids.filtered(lambda l: l.cancelled is False):
                 pr.write({'state': 'rejected'})
+
+    @api.multi
+    def _subscribe_assigned_to_user(self, subtype_ids=None):
+        """If the assigned to user is set on the PR, subscribe him."""
+        for rec in self:
+            if not rec.assigned_to:
+                continue
+            rec.message_subscribe_users(
+                user_ids=[rec.assigned_to.id], subtype_ids=subtype_ids)
 
 
 class PurchaseRequestLine(models.Model):
