@@ -16,6 +16,17 @@ class PurchaseOrder(models.Model):
         return res
 
     @api.multi
+    def button_draft(self):
+        res = super(PurchaseOrder, self).button_draft()
+        self._reset_ordered_cancelled_qty()
+        return res
+
+    @api.multi
     def _update_lines_ordered_qty(self):
         for rec in self:
             rec.order_line._update_ordered_qty()
+
+    @api.multi
+    def _reset_ordered_cancelled_qty(self):
+        for rec in self:
+            rec.order_line._reset_ordered_cancelled_qty()

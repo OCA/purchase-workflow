@@ -44,7 +44,8 @@ class PurchaseOrderLine(models.Model):
     @api.multi
     def _inverse_cancelled_qty(self):
         for rec in self:
-            rec.product_qty = rec.ordered_qty - rec.cancelled_qty
+            if rec.state in ('purchase', 'done'):
+                rec.product_qty = rec.ordered_qty - rec.cancelled_qty
 
     @api.multi
     @api.constrains('cancelled_qty', 'ordered_qty')
@@ -79,3 +80,11 @@ class PurchaseOrderLine(models.Model):
                 rec.write({
                     'ordered_qty': rec.product_qty,
                 })
+
+    @api.multi
+    def _reset_ordered_cancelled_qty(self):
+        lines_to_reset = self.filtered(lambda rec: rec.state == 'draft')
+        lines_to_reset.write({
+            'ordered_qty': 0,
+            'cancelled_qty': 0,
+        })

@@ -69,3 +69,11 @@ class TestPurchaseCancelQty(TransactionCase):
             po_line_2.ordered_qty, po_line_2.product_qty,
             msg="Ordered quantity should have been initialized with "
                 "product quantity.")
+
+        purchase_order.button_cancel()
+        purchase_order.button_draft()
+
+        self.assertTrue(all([
+            line.cancelled_qty == 0 and line.ordered_qty == 0
+            for line in purchase_order.order_line
+        ]))
