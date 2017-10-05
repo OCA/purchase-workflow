@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-# © 2015 Eficent Business and IT Consulting Services S.L.
+# Copyright 2015 Eficent Business and IT Consulting Services S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-from openerp import api, fields, models
+from odoo import api, fields, models
 
 
 class PurchaseOrder(models.Model):
@@ -31,9 +31,10 @@ class PurchaseOrder(models.Model):
         res.append(('id', 'in', order_ids))
         return res
 
-    account_analytic_ids = \
-        fields.Many2many(comodel_name='account.analytic.account',
-                         string='Analytic Account',
-                         compute='_compute_analytic_accounts',
-                         search='_search_analytic_accounts',
-                         readonly=True)
+    account_analytic_ids = fields.Many2many(
+        comodel_name='account.analytic.account',
+        string='Analytic Account',
+        compute='_compute_analytic_accounts',
+        search='_search_analytic_accounts',
+        readonly=True
+    )
