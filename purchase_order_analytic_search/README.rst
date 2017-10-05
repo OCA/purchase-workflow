@@ -26,7 +26,7 @@ Purchases' user rights.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/142/9.0
+   :target: https://runbot.odoo-community.org/runbot/142/10.0
 
 
 Bug Tracker
@@ -49,7 +49,7 @@ Contributors
 ------------
 
 * Gisela Mora <gisela.mora@eficent.com>
-
+* Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
 
 Maintainer
 ----------
