@@ -3,7 +3,7 @@
 #           (http://www.eficent.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from openerp import api, fields, models
+from odoo import api, fields, models
 
 
 class PurchaseOrderLine(models.Model):
@@ -25,5 +25,7 @@ class PurchaseOrderLine(models.Model):
                     line.product_supplier_code = code
         return True
 
-    product_supplier_code = fields.Char(string='Product Supplier Code',
-                                        compute=_compute_product_supplier_code)
+    product_supplier_code = fields.Char(
+        string='Product Supplier Code',
+        compute=_compute_product_supplier_code
+    )
