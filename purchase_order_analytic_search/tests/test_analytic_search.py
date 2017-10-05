@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-# © 2015-17 Eficent Business and IT Consulting Services S.L.
+# Copyright 2015-17 Eficent Business and IT Consulting Services S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-from openerp.tests.common import TransactionCase
-from openerp.fields import Datetime
+from odoo.tests.common import TransactionCase
+from odoo.fields import Datetime
 
 
 class TestAnalyticSearch(TransactionCase):
