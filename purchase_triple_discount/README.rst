@@ -42,6 +42,11 @@ Bugs are tracked on `GitHub Issues
 check there if your issue has already been reported. If you spotted it first,
 help us smash it by providing detailed and welcomed feedback.
 
+Known issues / Roadmap
+======================
+
+* Include second and third discount in purchase order report.
+
 Credits
 =======
 
