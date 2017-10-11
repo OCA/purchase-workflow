@@ -4,7 +4,7 @@
     <record id="purchase_order_triple_discount_form_view" model="ir.ui.view">
         <field name="name">purchase.order.triple.discount.form</field>
         <field name="model">purchase.order</field>
-        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="inherit_id" ref="purchase_discount.purchase_order_form" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='order_line']//tree//field[@name='discount']"
                    position="after">
