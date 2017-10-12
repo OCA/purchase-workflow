@@ -35,7 +35,7 @@ addon | version | summary
 [purchase_request](purchase_request/) | 9.0.1.0.2 | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
 [purchase_request_department](purchase_request_department/) | 9.0.1.0.0 | Purchase Request Department
 [purchase_request_procurement](purchase_request_procurement/) | 9.0.1.0.1 | Purchase Request Procurement
-[purchase_request_to_procurement](purchase_request_to_procurement/) | 9.0.1.0.0 | This module introduces the possiblity to create procurement order from purchase request
+[purchase_request_to_procurement](purchase_request_to_procurement/) | 9.0.1.0.1 | This module introduces the possiblity to create procurement order from purchase request
 [purchase_request_to_requisition](purchase_request_to_requisition/) | 9.0.1.0.0 | Purchase Request to Call for Bids
 [purchase_request_to_rfq](purchase_request_to_rfq/) | 9.0.1.0.0 | Purchase Request to RFQ
 [purchase_request_to_rfq_order_approved](purchase_request_to_rfq_order_approved/) | 9.0.1.0.0 | Purchase Request to RFQ Order Approved
