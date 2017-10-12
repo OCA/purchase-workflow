@@ -29,12 +29,13 @@ addon | version | summary
 [purchase_minimum_amount](purchase_minimum_amount/) | 10.0.1.0.0 | Purchase Minimum Amount
 [purchase_open_qty](purchase_open_qty/) | 10.0.1.0.0 | Allows to identify the purchase orders that have quantities pending to invoice or to receive.
 [purchase_order_approval_block](purchase_order_approval_block/) | 10.0.1.0.0 | Purchase Order Approval Block
+[purchase_order_revision](purchase_order_revision/) | 10.0.1.0.0 | Purchase order revisions
 [purchase_picking_state](purchase_picking_state/) | 10.0.1.0.0 | Add the status of all the incoming picking in the purchase order
 [purchase_request](purchase_request/) | 10.0.1.0.1 | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
 [purchase_request_procurement](purchase_request_procurement/) | 10.0.1.0.1 | Purchase Request Procurement
 [purchase_request_to_procurement](purchase_request_to_procurement/) | 10.0.1.0.0 | This module introduces the possiblity to create procurement order from purchase request
 [purchase_request_to_rfq](purchase_request_to_rfq/) | 10.0.1.0.0 | Purchase Request to RFQ
-[purchase_triple_discount](purchase_triple_discount/) | 10.0.1.0.0 | Manage triple discount on purchase order lines
+[purchase_triple_discount](purchase_triple_discount/) | 10.0.1.1.0 | Manage triple discount on purchase order lines
 [subcontracted_service](subcontracted_service/) | 10.0.1.0.0 | Subcontracted service
 
 
@@ -56,7 +57,6 @@ addon | version | summary
 [purchase_multi_picking](purchase_multi_picking/) | 0.2 (unported) | Multi Pickings from Purchase Orders
 [purchase_order_force_number](purchase_order_force_number/) | 0.1 (unported) | Force purchase orders numeration
 [purchase_order_reorder_lines](purchase_order_reorder_lines/) | 8.0.1.0.1 (unported) | Purchase order lines with sequence number
-[purchase_order_revision](purchase_order_revision/) | 8.0.1.0.0 (unported) | Purchase order revisions
 [purchase_order_type](purchase_order_type/) | 8.0.1.0.0 (unported) | Purchase Order Type
 [purchase_origin_address](purchase_origin_address/) | 8.0.1.0.0 (unported) | Deprecated: use purchase_transport_multi_address from OCA/stock-logistics-transport
 [purchase_partial_invoicing](purchase_partial_invoicing/) | 8.0.0.1.0 (unported) | Purchase partial invoicing
