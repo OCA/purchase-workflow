@@ -2,7 +2,8 @@
 # Copyright 2016 Eficent Business and IT Consulting Services S.L.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
 
-from odoo import api, fields, models
+from odoo import api, fields, models, _
+from odoo.exceptions import UserError
 import odoo.addons.decimal_precision as dp
 
 _STATES = [
@@ -103,10 +104,27 @@ class PurchaseRequest(models.Model):
     is_editable = fields.Boolean(string="Is editable",
                                  compute="_compute_is_editable",
                                  readonly=True)
-
+    to_approve_allowed = fields.Boolean(
+        compute='_compute_to_approve_allowed')
     picking_type_id = fields.Many2one('stock.picking.type',
                                       'Picking Type', required=True,
                                       default=_default_picking_type)
+
+    @api.multi
+    @api.depends(
+        'state',
+        'line_ids.product_qty',
+        'line_ids.cancelled',
+    )
+    def _compute_to_approve_allowed(self):
+        for rec in self:
+            rec.to_approve_allowed = (
+                rec.state == 'draft' and
+                any([
+                    not line.cancelled and line.product_qty
+                    for line in rec.line_ids
+                ])
+            )
 
     @api.multi
     def copy(self, default=None):
@@ -140,6 +158,7 @@ class PurchaseRequest(models.Model):
 
     @api.multi
     def button_to_approve(self):
+        self.to_approve_allowed_check()
         return self.write({'state': 'to_approve'})
 
     @api.multi
@@ -162,6 +181,14 @@ class PurchaseRequest(models.Model):
         for pr in self:
             if not pr.line_ids.filtered(lambda l: l.cancelled is False):
                 pr.write({'state': 'rejected'})
+
+    @api.multi
+    def to_approve_allowed_check(self):
+        for rec in self:
+            if not rec.to_approve_allowed:
+                raise UserError(
+                    _("You can't request an approval for a purchase request "
+                      "which is empty. (%s)") % rec.name)
 
 
 class PurchaseRequestLine(models.Model):
