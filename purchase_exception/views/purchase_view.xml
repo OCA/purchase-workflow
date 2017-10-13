@@ -1,0 +1,73 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="action_purchase_test_tree" model="ir.actions.act_window">
+              <field name="name">Purchase Exception Rules</field>
+              <field name="res_model">exception.rule</field>
+              <field name="view_type">form</field>
+              <field name="view_mode">tree,form</field>
+              <field name="view_id" ref="base_exception.view_exception_rule_tree"/>
+              <field name="domain">[('rule_group', '=', 'purchase')]</field>
+              <field name="context">{'active_test': False, 'default_rule_group' : 'purchase'}</field>
+          </record>
+
+    <menuitem
+            id="menu_purchase_exception_parent"
+            parent="purchase.menu_product_in_config_purchase"
+            sequence="20"
+            name="Exceptions"
+    />
+
+
+    <menuitem
+            action="action_purchase_test_tree"
+            id="menu_purchase_test"
+            parent="menu_purchase_exception_parent"
+    />
+
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">purchase_exception.view_order_form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <group>
+                <field name="main_exception_id" options='{"no_open": True}'
+                       class="oe_inline" string="Error:"
+                       attrs="{'invisible':[('main_exception_id','=', False)]}"/>
+                </group>
+            </field>
+            <xpath expr="//field[@name='date_order']/.." position="inside">
+                <field name="ignore_exception" states="purchase" groups='base_exception.group_exception_rule_manager'/>
+            </xpath>
+            <xpath expr="//field[@name='company_id']"
+                    position="after">
+                <!-- <newline /> -->
+                <field name="exception_ids" widget="many2many_tags" readonly="True"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_order_tree" model="ir.ui.view">
+        <field name="name">purchase_exception.view_order_tree</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_tree"/>
+        <field name="arch" type="xml">
+            <field name="state" position="after">
+                <field name="main_exception_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_purchase_order_filter" model="ir.ui.view">
+        <field name="name">purchase_exception.view_purchases_order_filter</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.view_purchase_order_filter" />
+        <field name="arch" type="xml">
+            <filter name="activities_my" position="after">
+                <separator orientation="vertical"/>
+                <filter icon="terp-emblem-important" name="tofix" string="Blocked in draft" domain="[('main_exception_id','!=',False)]"/>
+            </filter>
+        </field>
+    </record>
+
+</odoo>
