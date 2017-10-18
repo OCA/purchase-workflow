@@ -16,7 +16,7 @@ Usage
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/142/10.0
+   :target: https://runbot.odoo-community.org/runbot/142/11.0
 
 Known issues / Roadmap
 ======================
@@ -39,7 +39,7 @@ Contributors
 
 * OpenERP S.A.
 * Ignacio Ibeas <ignacio@acysos.com>
-* Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
+* Pedro M. Baeza <pedro.baeza@tecnativa.com>
 
 Icon
 ----
