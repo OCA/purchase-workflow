@@ -34,29 +34,17 @@ class PurchaseOrderLine(models.Model):
     @api.depends('discount')
     def _compute_amount(self):
         for line in self:
+            price_unit = False
             # This is always executed for allowing other modules to use this
             # with different conditions than discount != 0
-            price_unit = line._get_discounted_price_unit()
-            context_changed = False
-            if price_unit != line.price_unit:
-                prec = line.order_id.currency_id.decimal_places
-                company = line.order_id.company_id
-                if company.tax_calculation_rounding_method == 'round_globally':
-                    prec += 5
-                base = round(price_unit * line.product_qty, prec)
-                obj = line.with_context(base_values=(base, base, base))
-                context_changed = True
-            else:
-                obj = line
-            super(PurchaseOrderLine, obj)._compute_amount()
-            if context_changed:
-                # We need to update results back, as each recordset has a
-                # different environment and thus the values are not considered
-                line.update({
-                    'price_tax': obj.price_tax,
-                    'price_total': obj.price_total,
-                    'price_subtotal': obj.price_subtotal,
-                })
+            price = line._get_discounted_price_unit()
+            if price != line.price_unit:
+                # Only change value if it's different
+                price_unit = line.price_unit
+                line.price_unit = price
+            super(PurchaseOrderLine, line)._compute_amount()
+            if price_unit:
+                line.price_unit = price_unit
 
     discount = fields.Float(
         string='Discount (%)', digits=dp.get_precision('Discount'),
