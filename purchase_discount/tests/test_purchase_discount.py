@@ -75,6 +75,11 @@ class TestPurchaseOrder(common.SavepointCase):
         self.assertEqual(moves[0].price_unit, 5,)
         self.assertEqual(moves[1].price_unit, 161)
         self.assertEqual(moves[2].price_unit, 10)
+        # Change price to launch a recalculation of totals
+        self.po_line_1.discount = 60
+        self.assertEqual(self.po_line_1.price_subtotal, 4.0)
+        self.assertEqual(self.purchase_order.amount_untaxed, 1624.0)
+        self.assertEqual(self.purchase_order.amount_tax, 243)
 
     def test_report_price_unit(self):
         rec = self.env['purchase.report'].search([
