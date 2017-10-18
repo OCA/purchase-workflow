@@ -38,7 +38,7 @@ class PurchaseOrderLine(models.Model):
             # This is always executed for allowing other modules to use this
             # with different conditions than discount != 0
             price = line._get_discounted_price_unit()
-            if price != self.price_unit:
+            if price != line.price_unit:
                 # Only change value if it's different
                 price_unit = line.price_unit
                 line.price_unit = price
