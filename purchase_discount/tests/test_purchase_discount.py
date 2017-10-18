@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2016 ACSONE SA/NV (<http://acsone.eu>)
-# Copyright 2015-2017 Tecnativa - Pedro M. Baeza
+# Copyright 2015-2018 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import odoo.tests.common as common
@@ -87,3 +87,13 @@ class TestPurchaseOrder(common.SavepointCase):
         ])
         self.assertEqual(rec.price_total, 5)
         self.assertEqual(rec.discount, 50)
+
+    def test_invoice(self):
+        invoice = self.env['account.invoice'].new({
+            'partner_id': self.env.ref('base.res_partner_3').id,
+            'purchase_id': self.purchase_order.id,
+        })
+        invoice.purchase_order_change()
+        self.assertEqual(invoice.invoice_line_ids[0].discount, 50)
+        self.assertEqual(invoice.invoice_line_ids[1].discount, 30)
+        self.assertEqual(invoice.invoice_line_ids[2].discount, 0)
