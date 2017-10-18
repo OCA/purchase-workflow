@@ -8,26 +8,6 @@ from odoo import api, fields, models
 import odoo.addons.decimal_precision as dp
 
 
-class PurchaseOrder(models.Model):
-    _inherit = "purchase.order"
-
-    @api.depends('order_line.price_total')
-    def _amount_all(self):
-        orders2recalculate = self.filtered(lambda x: (
-            x.company_id.tax_calculation_rounding_method ==
-            'round_globally' and any(x.mapped('order_line.discount'))
-        ))
-        for order in orders2recalculate:
-            vals = {}
-            for line in order.order_line.filtered('discount'):
-                vals[line] = line.price_unit
-                line.price_unit = line._get_discounted_price_unit()
-            super(PurchaseOrder, order)._amount_all()
-            for line in vals.keys():
-                line.discount = vals[line]
-        super(PurchaseOrder, self - orders2recalculate)._amount_all()
-
-
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
