@@ -123,7 +123,7 @@ class PurchaseRequest(models.Model):
         self.ensure_one()
         default.update({
             'state': 'draft',
-            'name': self.env['ir.sequence'].get('purchase.request'),
+            'name': self._get_default_name(),
         })
         return super(PurchaseRequest, self).copy(default)
 
