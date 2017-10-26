@@ -15,6 +15,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         self.purchase_request_line = self.env['purchase.request.line']
         self.wiz = self.env['purchase.request.line.make.purchase.order']
         self.purchase_order = self.env['purchase.order']
+        self.po_line = self.env['purchase.order.line']
 
         self.product = self.env.ref('product.product_product_13')
         self.partner = self.env.ref('base.res_partner_1')
@@ -226,12 +227,21 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
     def test_po_cancellation(self):
         """Tests the cancellation of a purchase order without lines related
         to a purchase request."""
-        po = self.proc.purchase_id
+        if self.registry.get('purchase.requisition') is not None:
+            req_id = self.proc.requisition_id.id
+            req_wiz = self.env['purchase.requisition.partner'].create(
+                {'partner_ids': [(6, 0, self.partner.ids)]})
+            req_wiz.with_context(active_ids=[req_id]).create_order()
+            po = self.purchase_order.search(
+                [('requisition_id', '=', req_id)], limit=1)
+        else:
+            po = self.proc.purchase_id
         po.button_confirm()
         po.button_cancel()
         self.assertEqual(po.state, 'cancel', "PO hasn't been cancelled.")
-        self.assertEqual(self.proc.state, 'cancel',
-                         "procurement hasn't been cancelled.")
+        if self.registry.get('purchase.requisition') is None:
+            self.assertEqual(self.proc.state, 'cancel',
+                             "procurement hasn't been cancelled.")
 
     def test_mixed_po_cancellation(self):
         """Tests cancellation of purchase order with a line related to a
@@ -246,7 +256,21 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         purchase_request_line = self.purchase_request_line.create(vals)
         purchase_request.button_to_approve()
         purchase_request.button_approved()
-        po = self.proc.purchase_id
+        if self.registry.get('purchase.requisition') is not None:
+            po = self.purchase_order.create({
+                'partner_id': self.partner.id,
+            })
+            self.po_line.create({
+                'date_planned': fields.Datetime.now(),
+                'name': 'test po line',
+                'order_id': po.id,
+                'product_id': self.product.id,
+                'product_uom': self.product.uom_id.id,
+                'price_unit': 1.0,
+                'product_qty': 5.0,
+            })
+        else:
+            po = self.proc.purchase_id
         vals = {
             'purchase_order_id': po.id,
         }
@@ -259,7 +283,8 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         po.button_confirm()
         po.button_cancel()
         self.assertEqual(po.state, 'cancel', "PO hasn't been cancelled.")
-        self.assertEqual(self.proc.state, 'cancel',
-                         "procurement hasn't been cancelled.")
+        if self.registry.get('purchase.requisition') is None:
+            self.assertEqual(self.proc.state, 'cancel',
+                             "procurement hasn't been cancelled.")
         self.assertFalse(purchase_request_line.cancelled)
         self.assertNotEqual(purchase_request.state, 'cancel')
