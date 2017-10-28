@@ -3,20 +3,20 @@
 # * purchase_request_procurement
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2016
+# Jan Prokop <jprokop@creativehome.sk>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-23 08:23+0000\n"
 "PO-Revision-Date: 2017-10-23 08:23+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
-"Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
+"Last-Translator: Jan Prokop <jprokop@creativehome.sk>, 2017\n"
+"Language-Team: Slovak (https://www.transifex.com/oca/teams/23907/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: sk\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #. module: purchase_request_procurement
 #: model:ir.model.fields,help:purchase_request_procurement.field_product_template_purchase_request
@@ -24,41 +24,39 @@ msgid ""
 "Check this box to generate purchase request instead of generating requests "
 "for quotation from procurement."
 msgstr ""
-"Marque esta casilla para generar una petición de compra en lugar de generar "
-"una solicitud de presupuesto desde el abastecimiento."
 
 #. module: purchase_request_procurement
 #: model:ir.model,name:purchase_request_procurement.model_procurement_order
 msgid "Procurement"
-msgstr "Abastecimiento"
+msgstr "Obstarávanie"
 
 #. module: purchase_request_procurement
 #: model:ir.model,name:purchase_request_procurement.model_product_template
 msgid "Product Template"
-msgstr "Plantilla producto"
+msgstr ""
 
 #. module: purchase_request_procurement
 #: model:ir.model,name:purchase_request_procurement.model_purchase_request
 #: model:ir.model.fields,field_description:purchase_request_procurement.field_product_template_purchase_request
 msgid "Purchase Request"
-msgstr "Petición de compra"
+msgstr ""
 
 #. module: purchase_request_procurement
 #: model:ir.model,name:purchase_request_procurement.model_purchase_request_line
 msgid "Purchase Request Line"
-msgstr "Línea de petición de compra"
+msgstr ""
 
 #. module: purchase_request_procurement
 #: code:addons/purchase_request_procurement/models/procurement.py:53
 #, python-format
 msgid "Purchase Request created"
-msgstr "Petición de compra creada"
+msgstr ""
 
 #. module: purchase_request_procurement
 #: code:addons/purchase_request_procurement/models/procurement.py:58
 #, python-format
 msgid "Purchase Request extended."
-msgstr "Petición de compra extendida."
+msgstr ""
 
 #. module: purchase_request_procurement
 #: code:addons/purchase_request_procurement/models/procurement.py:77

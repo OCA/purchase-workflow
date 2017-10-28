@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-23 00:46+0000\n"
-"PO-Revision-Date: 2017-06-23 00:46+0000\n"
+"POT-Creation-Date: 2017-10-23 08:23+0000\n"
+"PO-Revision-Date: 2017-10-23 08:23+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/23907/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -284,6 +284,11 @@ msgid "Last Updated on"
 msgstr "Última atualização em"
 
 #. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_procurement_order_request_id
+msgid "Latest Purchase Request"
+msgstr ""
+
+#. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_message_ids
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_message_ids
 msgid "Messages"
@@ -319,9 +324,20 @@ msgid "Picking Type"
 msgstr "Local destino"
 
 #. module: purchase_request
+#: code:addons/purchase_request/models/purchase_request.py:76
+#, python-format
+msgid "Picking type operation must be 'Suppliers'."
+msgstr ""
+
+#. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_supplier_id
 msgid "Preferred supplier"
 msgstr "Fornecedor"
+
+#. module: purchase_request
+#: model:ir.model,name:purchase_request.model_procurement_order
+msgid "Procurement"
+msgstr "Aprovisionamento"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_procurement_id

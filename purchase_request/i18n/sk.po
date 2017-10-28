@@ -4,14 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
-# gebri <gebri@inmail.sk>, 2017
+# Jan Prokop <jprokop@creativehome.sk>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-29 01:00+0000\n"
-"PO-Revision-Date: 2017-04-29 01:00+0000\n"
-"Last-Translator: gebri <gebri@inmail.sk>, 2017\n"
+"POT-Creation-Date: 2017-10-23 08:23+0000\n"
+"PO-Revision-Date: 2017-10-23 08:23+0000\n"
+"Last-Translator: Jan Prokop <jprokop@creativehome.sk>, 2017\n"
 "Language-Team: Slovak (https://www.transifex.com/oca/teams/23907/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -133,6 +133,11 @@ msgstr ""
 #: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Assigned to me"
 msgstr ""
+
+#. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_cancelled
+msgid "Cancelled"
+msgstr "Zrušené"
 
 #. module: purchase_request
 #: model:ir.actions.act_window,help:purchase_request.purchase_request_form_action
@@ -280,6 +285,11 @@ msgid "Last Updated on"
 msgstr "Naposledy upravené"
 
 #. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_procurement_order_request_id
+msgid "Latest Purchase Request"
+msgstr ""
+
+#. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_message_ids
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_message_ids
 msgid "Messages"
@@ -315,9 +325,20 @@ msgid "Picking Type"
 msgstr ""
 
 #. module: purchase_request
+#: code:addons/purchase_request/models/purchase_request.py:76
+#, python-format
+msgid "Picking type operation must be 'Suppliers'."
+msgstr ""
+
+#. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_supplier_id
 msgid "Preferred supplier"
 msgstr ""
+
+#. module: purchase_request
+#: model:ir.model,name:purchase_request.model_procurement_order
+msgid "Procurement"
+msgstr "Obstarávanie"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_procurement_id
@@ -328,7 +349,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_product_id
 #: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Product"
-msgstr ""
+msgstr "Produkt"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_product_uom_id
@@ -530,7 +551,7 @@ msgstr ""
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Start Date"
-msgstr ""
+msgstr "Počiatočný dátum"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_state
@@ -556,6 +577,11 @@ msgstr ""
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Unassigned Request"
+msgstr ""
+
+#. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
+msgid "Uncancelled"
 msgstr ""
 
 #. module: purchase_request
