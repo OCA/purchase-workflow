@@ -7,7 +7,9 @@
 # leemannd <denis.leemann@camptocamp.com>, 2017
 # dglucose <eric.lemesre@gmail.com>, 2016
 # François Kortleven <frkor@smile.fr>, 2016
+# guillaume bauer <guillaume.bauer@syentys.com>, 2017
 # Jonathan Nemry (ACSONE) <jonathan.nemry@acsone.eu>, 2016
+# leemannd <denis.leemann@camptocamp.com>, 2017
 # Maxime Chambreuil <mchambreuil@ursainfosystems.com>, 2016
 # OCA Transbot <transbot@odoo-community.org>, 2016
 # Stéphane Bidoul (ACSONE), 2016
@@ -16,9 +18,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-07 04:59+0000\n"
-"PO-Revision-Date: 2017-01-30 23:05+0000\n"
-"Last-Translator: leemannd <denis.leemann@camptocamp.com>\n"
+"POT-Creation-Date: 2017-07-15 06:42+0000\n"
+"PO-Revision-Date: 2017-09-23 04:22+0000\n"
+"Last-Translator: guillaume bauer <guillaume.bauer@syentys.com>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-purchase-workflow-10-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -54,42 +56,42 @@ msgstr "<strong>Description</strong>"
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.report_purchaserequests
 msgid "<strong>Picking Type:</strong><br/>"
-msgstr ""
+msgstr "<strong>Type de prélèvement:</strong><br/>"
 
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.report_purchaserequests
 msgid "<strong>Product UoM</strong>"
-msgstr ""
+msgstr "<strong>Unité de Mesure</strong>"
 
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.report_purchaserequests
 msgid "<strong>Qty</strong>"
-msgstr ""
+msgstr "<strong>Qté</strong>"
 
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.report_purchaserequests
 msgid "<strong>Request Reference:</strong><br/>"
-msgstr ""
+msgstr "<strong>Demande de référence:</strong><br/>"
 
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.report_purchaserequests
 msgid "<strong>Requested Date</strong>"
-msgstr ""
+msgstr "<strong>Date demandée</strong>"
 
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.report_purchaserequests
 msgid "<strong>Requested by:</strong><br/>"
-msgstr ""
+msgstr "<strong>Demandé par:</strong><br/>"
 
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.report_purchaserequests
 msgid "<strong>Source:</strong><br/>"
-msgstr ""
+msgstr "<strong>Origine:</strong><br/>"
 
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.report_purchaserequests
 msgid "<strong>Specifications</strong>"
-msgstr ""
+msgstr "<strong>Caractéristiques</strong>"
 
 #. module: purchase_request
 #: model:ir.actions.act_window,help:purchase_request.purchase_request_form_action
@@ -97,7 +99,7 @@ msgid ""
 "A purchase request is an instruction to Purchasing to procure\n"
 "                a certain quantity of materials services, so that they are\n"
 "                available at a certain point in time."
-msgstr ""
+msgstr "Une demande d'achat est une instruction d'achat pour se procurer\nune certaine quantité de matériaux, de sorte qu'ils soient\ndisponible à un certain moment."
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_analytic_account_id
@@ -133,12 +135,12 @@ msgstr "Assigné à"
 #: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Assigned to me"
-msgstr ""
+msgstr "M'est assigné"
 
 #. module: purchase_request
 #: model:ir.actions.act_window,help:purchase_request.purchase_request_form_action
 msgid "Click to start a new purchase request process."
-msgstr ""
+msgstr "Cliquez pour démarrer une nouvelle demande d'achat."
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_company_id
@@ -229,7 +231,7 @@ msgstr "Dernière mise à jour le"
 #: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "My requests"
-msgstr ""
+msgstr "Mes demandes"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_picking_type_id
