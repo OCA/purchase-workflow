@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-17 04:15+0000\n"
+"POT-Creation-Date: 2017-10-28 01:50+0000\n"
 "PO-Revision-Date: 2016-03-08 10:16+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Slovak (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/sk/)\n"
@@ -32,7 +32,7 @@ msgstr ""
 #: view:product.supplierinfo:product_by_supplier.view_product_supplierinfo_search
 #: view:product.supplierinfo:product_by_supplier.view_product_supplierinfo_tree1
 msgid "Product"
-msgstr ""
+msgstr "Produkt"
 
 #. module: product_by_supplier
 #: view:product.supplierinfo:product_by_supplier.view_product_supplierinfo_search

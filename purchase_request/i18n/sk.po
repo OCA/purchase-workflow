@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
+# Jan Prokop <jprokop@creativehome.sk>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-21 14:34+0000\n"
-"PO-Revision-Date: 2017-04-21 14:34+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"POT-Creation-Date: 2017-10-28 01:51+0000\n"
+"PO-Revision-Date: 2017-10-28 01:51+0000\n"
+"Last-Translator: Jan Prokop <jprokop@creativehome.sk>, 2017\n"
 "Language-Team: Slovak (https://www.transifex.com/oca/teams/23907/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -234,7 +235,7 @@ msgstr ""
 #: view:purchase.request.line:purchase_request.purchase_request_line_search
 #: field:purchase.request.line,product_id:0
 msgid "Product"
-msgstr ""
+msgstr "Produkt"
 
 #. module: purchase_request
 #: field:purchase.request.line,product_uom_id:0
@@ -455,7 +456,7 @@ msgstr ""
 #. module: purchase_request
 #: view:purchase.request:purchase_request.view_purchase_request_search
 msgid "Start Date"
-msgstr ""
+msgstr "Počiatočný dátum"
 
 #. module: purchase_request
 #: field:purchase.request,state:0

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-01 21:46+0000\n"
-"PO-Revision-Date: 2017-05-11 14:14+0000\n"
+"POT-Creation-Date: 2017-10-28 01:50+0000\n"
+"PO-Revision-Date: 2017-09-22 21:14+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -401,7 +401,7 @@ msgstr "Määrä"
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view
 #: selection:framework.agreement,state:0
 msgid "Running"
-msgstr ""
+msgstr "Käynnissä"
 
 #. module: framework_agreement
 #: field:framework.agreement,shipment_origin_id:0
