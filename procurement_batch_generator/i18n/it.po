@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-22 06:53+0000\n"
-"PO-Revision-Date: 2017-07-25 11:38+0000\n"
+"POT-Creation-Date: 2017-10-28 01:50+0000\n"
+"PO-Revision-Date: 2017-10-16 11:28+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -134,7 +134,7 @@ msgstr "Unità di Misura"
 #. module: procurement_batch_generator
 #: view:procurement.batch.generator:procurement_batch_generator.procurement_batch_generator_form
 msgid "Validate"
-msgstr ""
+msgstr "Conferma"
 
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator.line,warehouse_id:0
