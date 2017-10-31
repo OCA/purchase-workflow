@@ -10,9 +10,8 @@
               "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
     "category": "Purchases",
-    "depends": ['purchase','web_tree_image'],
+    "depends": ['purchase', 'web_tree_image'],
     "data": [
-        # web_tree_image by OCA web
         'views/purchase_order_views.xml',
     ],
     "license": "AGPL-3",
