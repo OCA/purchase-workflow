@@ -1,8 +1,6 @@
- <!-- -*- coding: utf-8 -*- -->
- <!--© 2017-->
- <!--@Lucky Kurniawan <kurniawanluckyy@gmail.com>-->
- <!--License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).-->
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+
     <record id="purchase_order_form_views_product_image" model="ir.ui.view">
         <field name="name">purchase.order.form.views.product.image</field>
         <field name="model">purchase.order</field>
@@ -13,4 +11,5 @@
             </xpath>
         </field>
     </record>
+
 </odoo>
