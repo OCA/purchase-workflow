@@ -13,7 +13,7 @@
     "data": [
         'views/purchase_order_views.xml',
     ],
-    'qweb': ['static/src/xml/widget.xml',],
+    'qweb': ['static/src/xml/widget.xml', ],
     "license": "AGPL-3",
     "installable": True,
     "application": False,
