@@ -8,4 +8,5 @@ from odoo import fields, models
 class PurchaseOrderLine(models.Model):
     _inherit = 'purchase.order.line'
 
-    product_image = fields.Binary(related='product_id.product_tmpl_id.image_medium')
+    product_image = fields.Binary(
+        related='product_id.product_tmpl_id.image_medium')
