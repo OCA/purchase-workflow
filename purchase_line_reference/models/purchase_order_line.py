@@ -16,5 +16,5 @@ class PurchaseOrderLine(models.Model):
 
     @api.model
     def _get_references(self):
-        all_models = self.env['ir.model'].search([])
-        return [(m.model, m.name) for m in all_models]
+        models = self.env['res.request.link'].search([])
+        return [(model.object, model.name) for model in models]
