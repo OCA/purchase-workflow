@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * purchase_allowed_product
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
@@ -12,11 +12,17 @@ msgstr ""
 "PO-Revision-Date: 2017-06-01 02:48+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Romanian (https://www.transifex.com/oca/teams/23907/ro/)\n"
+"Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ro\n"
-"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
+"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?"
+"2:1));\n"
+
+#. module: purchase_allowed_product
+#: model:ir.model,name:purchase_allowed_product.model_res_partner
+msgid "Contact"
+msgstr ""
 
 #. module: purchase_allowed_product
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_supplied_product_mixin_display_name
@@ -63,11 +69,6 @@ msgstr "Ultima actualizare în"
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_res_partner_use_only_supplied_product
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_res_users_use_only_supplied_product
 msgid "Order and invoice only supplied products"
-msgstr ""
-
-#. module: purchase_allowed_product
-#: model:ir.model,name:purchase_allowed_product.model_res_partner
-msgid "Partner"
 msgstr ""
 
 #. module: purchase_allowed_product
