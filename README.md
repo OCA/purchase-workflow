@@ -28,6 +28,7 @@ addon | version | summary
 [purchase_fiscal_position_update](purchase_fiscal_position_update/) | 9.0.1.0.0 | Changing the fiscal position of a purchase order will auto-update purchase order lines
 [purchase_location_by_line](purchase_location_by_line/) | 9.0.1.0.0 | Allows to define a specific destination location on each PO line
 [purchase_open_qty](purchase_open_qty/) | 9.0.1.0.2 | Allows to identify the purchase orders that have quantities pending to invoice or to receive.
+[purchase_order_analytic_search](purchase_order_analytic_search/) | 9.0.1.0.0 | Search purchase orders by analytic account. New menu entry in Purchasing to list purchase order lines.
 [purchase_order_approved](purchase_order_approved/) | 9.0.1.0.0 | Add a new state 'Approved' in purchase orders.
 [purchase_order_type](purchase_order_type/) | 9.0.1.1.0 | Purchase Order Type
 [purchase_order_variant_mgmt](purchase_order_variant_mgmt/) | 9.0.1.0.0 | Handle the addition/removal of multiple variants from product template into the purchase order
@@ -37,7 +38,7 @@ addon | version | summary
 [purchase_request_procurement](purchase_request_procurement/) | 9.0.1.0.1 | Purchase Request Procurement
 [purchase_request_to_procurement](purchase_request_to_procurement/) | 9.0.1.0.1 | This module introduces the possiblity to create procurement order from purchase request
 [purchase_request_to_requisition](purchase_request_to_requisition/) | 9.0.1.0.0 | Purchase Request to Call for Bids
-[purchase_request_to_rfq](purchase_request_to_rfq/) | 9.0.1.0.0 | Purchase Request to RFQ
+[purchase_request_to_rfq](purchase_request_to_rfq/) | 9.0.1.0.1 | This module adds the possibility to create or update Requests for Quotation (RFQ) from Purchase Request Lines.
 [purchase_request_to_rfq_order_approved](purchase_request_to_rfq_order_approved/) | 9.0.1.0.0 | Purchase Request to RFQ Order Approved
 [subcontracted_service](subcontracted_service/) | 9.0.1.0.0 | Subcontracted service
 
