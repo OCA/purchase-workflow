@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
+# Wahyu Setiawan <wahyusetiaaa@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-25 03:39+0000\n"
-"PO-Revision-Date: 2016-11-25 03:39+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"POT-Creation-Date: 2017-11-09 03:52+0000\n"
+"PO-Revision-Date: 2017-11-09 03:52+0000\n"
+"Last-Translator: Wahyu Setiawan <wahyusetiaaa@gmail.com>, 2017\n"
 "Language-Team: Indonesian (https://www.transifex.com/oca/teams/23907/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -134,6 +135,11 @@ msgid "Assigned to me"
 msgstr ""
 
 #. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_cancelled
+msgid "Cancelled"
+msgstr "Dibatalkan"
+
+#. module: purchase_request
 #: model:ir.actions.act_window,help:purchase_request.purchase_request_form_action
 msgid "Click to start a new purchase request process."
 msgstr ""
@@ -187,11 +193,18 @@ msgid "Display Name"
 msgstr "Nama Tampilan"
 
 #. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
+#: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
+#: selection:purchase.request,state:0
+msgid "Done"
+msgstr ""
+
+#. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 #: selection:purchase.request,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Draf"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_message_follower_ids
@@ -272,6 +285,11 @@ msgid "Last Updated on"
 msgstr "Diperbaharui pada"
 
 #. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_procurement_order_request_id
+msgid "Latest Purchase Request"
+msgstr ""
+
+#. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_message_ids
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_message_ids
 msgid "Messages"
@@ -307,8 +325,19 @@ msgid "Picking Type"
 msgstr ""
 
 #. module: purchase_request
+#: code:addons/purchase_request/models/purchase_request.py:76
+#, python-format
+msgid "Picking type operation must be 'Suppliers'."
+msgstr ""
+
+#. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_supplier_id
 msgid "Preferred supplier"
+msgstr ""
+
+#. module: purchase_request
+#: model:ir.model,name:purchase_request.model_procurement_order
+msgid "Procurement"
 msgstr ""
 
 #. module: purchase_request
@@ -386,6 +415,12 @@ msgid "Purchase Request approved"
 msgstr ""
 
 #. module: purchase_request
+#: model:mail.message.subtype,description:purchase_request.mt_request_done
+#: model:mail.message.subtype,name:purchase_request.mt_request_done
+msgid "Purchase Request done"
+msgstr ""
+
+#. module: purchase_request
 #: model:mail.message.subtype,name:purchase_request.mt_request_rejected
 msgid "Purchase Request rejected"
 msgstr ""
@@ -447,6 +482,11 @@ msgstr ""
 #: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Request is approved"
+msgstr ""
+
+#. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
+msgid "Request is done"
 msgstr ""
 
 #. module: purchase_request
@@ -537,6 +577,11 @@ msgstr ""
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Unassigned Request"
+msgstr ""
+
+#. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
+msgid "Uncancelled"
 msgstr ""
 
 #. module: purchase_request
