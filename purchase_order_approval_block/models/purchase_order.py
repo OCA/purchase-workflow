@@ -1,7 +1,5 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
-# Copyright 2017 Serpent Consulting Services Pvt. Ltd.
-# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models, _
 
@@ -55,18 +53,6 @@ class PurchaseOrder(models.Model):
 
     @api.multi
     def button_release_approval_block(self):
-        for order in self.with_context(force_po_approval_block_release=True):
+        for order in self:
             order.approval_block_id = False
         return True
-
-    @api.multi
-    def _check_order_release(self):
-        self.ensure_one()
-        if self.approval_block_id:
-            return True
-
-    @api.multi
-    def button_confirm(self):
-        self.filtered(lambda o: o.state in ['draft', 'sent'] and
-                      o.approval_blocked).write({'state': 'to approve'})
-        return super(PurchaseOrder, self).button_confirm()

@@ -1,7 +1,5 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
-# Copyright 2017 Serpent Consulting Services Pvt. Ltd.
-# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 import time
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
@@ -36,11 +34,6 @@ class TestPurchaseOrderApprovalBlock(TransactionCase):
                                           self.company1)
         # Create a PO Block Reason
         self._create_block_reason()
-        # Create a PO
-        self.purchase1 = self._create_purchase(
-            [(self.product1, 1),
-             (self.product2, 5),
-             (self.product3, 8)])
 
     def _create_block_reason(self):
         self.po_approval_block_reason = self.po_block_obj.create({
@@ -81,7 +74,6 @@ class TestPurchaseOrderApprovalBlock(TransactionCase):
             lines.append((0, 0, line_values))
         purchase = self.po_obj.create({
             'partner_id': self.partner1.id,
-            'approval_block_id': self.po_approval_block_reason.id,
             'order_line': lines,
             'company_id': self.company1.id,
         })
