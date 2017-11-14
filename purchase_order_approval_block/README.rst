@@ -1,5 +1,6 @@
 .. image:: https://img.shields.io/badge/licence-LGPL--3-blue.svg
-    :alt: License LGPL-3
+   :target: https://www.gnu.org/licenses/lgpl-3.0-standalone.html
+   :alt: License LGPL-3
 
 =============================
 Purchase Order Approval Block
@@ -58,7 +59,7 @@ set or released.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/142/10.0
+   :target: https://runbot.odoo-community.org/runbot/142/11.0
 
 Bug Tracker
 ===========
@@ -70,6 +71,11 @@ help us smashing it by providing a detailed and welcomed feedback.
 
 Credits
 =======
+
+Images
+------
+
+* Odoo Community Association: `Icon <https://odoo-community.org/logo.png>`_.
 
 Contributors
 ------------
