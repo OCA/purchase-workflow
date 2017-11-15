@@ -61,30 +61,35 @@ class PurchaseOrderLineInvoiceWizard(models.TransientModel):
     def create_invoice(self):
         self.ensure_one()
         invoice_lines_data = []
-        purchase_order = self.env['purchase.order']
+        purchase_order = self.purchase_order_line_details_ids.mapped(
+            'purchase_order_line_id.order_id')
+        invoice_data = {
+            'partner_id': purchase_order[0].partner_id.id,
+            'type': 'in_invoice',
+            'origin': ','.join(purchase_order.mapped('name')),
+        }
+        journal_domain = [
+            ('type', '=', 'purchase'),
+            ('company_id', '=', purchase_order[0].company_id.id),
+            ('currency_id', '=', purchase_order[0].currency_id.id),
+        ]
+        default_journal_id = self.env['account.journal'].search(
+            journal_domain, limit=1)
+        if default_journal_id:
+            invoice_data['journal_id'] = default_journal_id.id
+        invoice = self.env['account.invoice'].create(invoice_data)
+
         for line in self.purchase_order_line_details_ids:
-            line_data = self.env[
-                'account.invoice']._prepare_invoice_line_from_po_line(
+            line_data = invoice._prepare_invoice_line_from_po_line(
                 line.purchase_order_line_id)
             line_data['invoice_line_tax_ids'] = [
                 (6, 0, line_data['invoice_line_tax_ids'])]
             line_data['quantity'] = line.invoice_qty
             invoice_lines_data.append((0, 0, line_data))
-            if line.purchase_order_line_id.order_id not in purchase_order:
-                purchase_order += line.purchase_order_line_id.order_id
 
-        default_journal_id = self.env['account.invoice'].\
-            with_context(type='in_invoice')._default_journal()
-
-        invoice_data = {
-            'partner_id': purchase_order[0].partner_id.id,
-            'type': 'in_invoice',
-            'origin': ','.join(purchase_order.mapped('name')),
+        invoice.write({
             'invoice_line_ids': invoice_lines_data
-        }
-        if default_journal_id:
-            invoice_data['journal_id'] = default_journal_id.id
-        invoice = self.env['account.invoice'].create(invoice_data)
+        })
 
         action = self.env.ref('account.action_invoice_tree2')
         result = action.read()[0]
