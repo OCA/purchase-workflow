@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-28 08:36+0000\n"
-"PO-Revision-Date: 2017-10-28 08:36+0000\n"
+"POT-Creation-Date: 2017-11-11 07:26+0000\n"
+"PO-Revision-Date: 2017-11-11 07:26+0000\n"
 "Last-Translator: Wahyu Setiawan <wahyusetiaaa@gmail.com>, 2017\n"
 "Language-Team: Indonesian (https://www.transifex.com/oca/teams/23907/id/)\n"
 "MIME-Version: 1.0\n"
@@ -143,7 +143,7 @@ msgstr "Pengikut"
 #: view:purchase.request:purchase_request.view_purchase_request_search
 #: view:purchase.request.line:purchase_request.purchase_request_line_search
 msgid "Group By..."
-msgstr ""
+msgstr "Dikelompokan berdasarkan .."
 
 #. module: purchase_request
 #: help:purchase.request,message_summary:0
