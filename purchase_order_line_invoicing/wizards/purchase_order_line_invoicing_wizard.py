@@ -30,6 +30,7 @@ class PurchaseOrderLineInvoiceWizard(models.TransientModel):
             'price_subtotal': purchase_line.price_subtotal,
             'qty_received': purchase_line.qty_received,
             'qty_invoiced': purchase_line.qty_invoiced,
+            'currency_id': purchase_line.currency_id.id,
             'invoice_qty': max(
                 purchase_line.qty_received - purchase_line.qty_invoiced, 0),
         }
