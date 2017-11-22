@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
-# © 2017 Akretion (http://www.akretion.com)
+# Copyright 2017 Akretion (http://www.akretion.com)
 # Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, models, fields
 
@@ -48,7 +47,7 @@ class PurchaseOrder(models.Model):
 
     @api.multi
     def button_confirm(self):
-        if self.detect_exceptions():
+        if self.detect_exceptions() and not self.ignore_exception:
             return self._popup_exceptions()
         else:
             return super(PurchaseOrder, self).button_confirm()
@@ -56,10 +55,10 @@ class PurchaseOrder(models.Model):
     @api.multi
     def button_draft(self):
         res = super(PurchaseOrder, self).button_draft()
-        orders = self.filtered(lambda s: s.ignore_exception)
-        orders.write({
-            'ignore_exception': False,
-        })
+        for rec in self:
+            rec.exception_ids = False
+            rec.main_exception_id = False
+            rec.ignore_exception = False
         return res
 
     def _purchase_get_lines(self):
