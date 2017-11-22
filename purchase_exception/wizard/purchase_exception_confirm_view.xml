@@ -1,36 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_purchase_exception_confirm" model="ir.ui.view">
-        <field name="name">Purchase Exceptions</field>
-        <field name="model">purchase.exception.confirm</field>
-        <field name="arch" type="xml">
-            <form string="Blocked in draft due to exceptions">
-                <group>
-                    <field name="exception_ids" nolabel="1" colspan="4">
-                        <tree string="Purchase Exceptions">
-                            <field name="name"/>
-                            <field name="description"/>
-                        </tree>
-                    </field>
-                </group>
-                <newline/>
-                <field name="ignore" 
-                        groups='base_exception.group_exception_rule_manager'/>
-                <footer>
-                    <button name="action_confirm" string="_Close"
-                        colspan="1" type="object" class="btn-primary" />
-                </footer>
-            </form>
-        </field>
-    </record>
-
     <record id="action_purchase_exception_confirm" model="ir.actions.act_window">
-        <field name="name">Blocked in draft due to exceptions</field>
+        <field name="name">Outstanding exceptions to manage</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">purchase.exception.confirm</field>
         <field name="view_type">form</field>
         <field name="view_mode">form</field>
-        <field name="view_id" ref="view_purchase_exception_confirm"/>
+        <field name="view_id" ref="base_exception.view_exception_rule_confirm"/>
         <field name="target">new</field>
     </record>
 </odoo>
