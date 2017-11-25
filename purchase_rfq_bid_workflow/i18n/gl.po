@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-07 05:30+0000\n"
+"POT-Creation-Date: 2017-11-18 07:27+0000\n"
 "PO-Revision-Date: 2016-03-08 10:18+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Galician (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/gl/)\n"
@@ -258,7 +258,7 @@ msgstr ""
 #. module: purchase_rfq_bid_workflow
 #: field:purchase.cancel_reason,type:0 field:purchase.order,type:0
 msgid "Type"
-msgstr ""
+msgstr "Tipo"
 
 #. module: purchase_rfq_bid_workflow
 #: code:addons/purchase_rfq_bid_workflow/model/purchase_order.py:291

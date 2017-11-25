@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-21 14:34+0000\n"
-"PO-Revision-Date: 2017-04-21 14:34+0000\n"
+"POT-Creation-Date: 2017-11-18 07:27+0000\n"
+"PO-Revision-Date: 2017-11-18 07:27+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: Galician (https://www.transifex.com/oca/teams/23907/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -41,7 +41,7 @@ msgstr ""
 #. module: purchase_request
 #: view:purchase.request:purchase_request.view_purchase_request_form
 msgid "Approve"
-msgstr ""
+msgstr "Aprobar"
 
 #. module: purchase_request
 #: view:purchase.request:purchase_request.view_purchase_request_search
@@ -337,7 +337,7 @@ msgstr ""
 #. module: purchase_request
 #: field:purchase.request.line,product_qty:0
 msgid "Quantity"
-msgstr ""
+msgstr "Cantidade"
 
 #. module: purchase_request
 #: view:purchase.request:purchase_request.view_purchase_request_form
@@ -493,4 +493,4 @@ msgstr ""
 #: field:purchase.request,message_unread:0
 #: field:purchase.request.line,message_unread:0
 msgid "Unread Messages"
-msgstr ""
+msgstr "Mensaxes sen ler"
