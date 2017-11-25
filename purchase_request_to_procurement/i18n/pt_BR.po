@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-18 07:33+0000\n"
-"PO-Revision-Date: 2017-05-18 07:33+0000\n"
+"POT-Creation-Date: 2017-11-24 07:53+0000\n"
+"PO-Revision-Date: 2017-11-24 07:53+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/23907/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -41,7 +41,7 @@ msgstr "Criado em"
 #. module: purchase_request_to_procurement
 #: model:ir.model.fields,field_description:purchase_request_to_procurement.field_purchase_request_line_make_procurement_order_display_name
 msgid "Display Name"
-msgstr "Nome para Mostrar"
+msgstr "Mostrar Nome"
 
 #. module: purchase_request_to_procurement
 #: model:ir.model.fields,field_description:purchase_request_to_procurement.field_purchase_request_line_make_procurement_order_id
@@ -61,12 +61,12 @@ msgstr "Última Modificação em"
 #. module: purchase_request_to_procurement
 #: model:ir.model.fields,field_description:purchase_request_to_procurement.field_purchase_request_line_make_procurement_order_write_uid
 msgid "Last Updated by"
-msgstr "Última atualização por"
+msgstr "Última Atualização por"
 
 #. module: purchase_request_to_procurement
 #: model:ir.model.fields,field_description:purchase_request_to_procurement.field_purchase_request_line_make_procurement_order_write_date
 msgid "Last Updated on"
-msgstr "Última atualização em"
+msgstr "Última Atualização em"
 
 #. module: purchase_request_to_procurement
 #: model:ir.model.fields,field_description:purchase_request_to_procurement.field_purchase_request_location_id

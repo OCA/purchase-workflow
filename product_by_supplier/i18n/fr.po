@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-18 07:33+0000\n"
-"PO-Revision-Date: 2017-05-18 07:33+0000\n"
+"POT-Creation-Date: 2017-11-24 07:53+0000\n"
+"PO-Revision-Date: 2017-11-24 07:53+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -33,7 +33,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:product_by_supplier.view_product_supplierinfo_search
 #: model:ir.ui.view,arch_db:product_by_supplier.view_product_supplierinfo_tree1
 msgid "Product"
-msgstr "Article"
+msgstr "Produit"
 
 #. module: product_by_supplier
 #: model:ir.ui.view,arch_db:product_by_supplier.view_product_supplierinfo_search

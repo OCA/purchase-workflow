@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-15 06:42+0000\n"
-"PO-Revision-Date: 2017-07-15 06:42+0000\n"
+"POT-Creation-Date: 2017-11-24 07:53+0000\n"
+"PO-Revision-Date: 2017-11-24 07:53+0000\n"
 "Last-Translator: Henry Garcia <henry@yaroslab.com>, 2017\n"
 "Language-Team: Spanish (Peru) (https://www.transifex.com/oca/teams/23907/es_PE/)\n"
 "MIME-Version: 1.0\n"
@@ -61,7 +61,7 @@ msgstr "Última modificación"
 #. module: purchase_request_to_procurement
 #: model:ir.model.fields,field_description:purchase_request_to_procurement.field_purchase_request_line_make_procurement_order_write_uid
 msgid "Last Updated by"
-msgstr "Última actualización"
+msgstr "Última actualización realizada por"
 
 #. module: purchase_request_to_procurement
 #: model:ir.model.fields,field_description:purchase_request_to_procurement.field_purchase_request_line_make_procurement_order_write_date
@@ -97,7 +97,7 @@ msgstr "Solicitud de compra"
 #. module: purchase_request_to_procurement
 #: model:ir.model,name:purchase_request_to_procurement.model_purchase_request_line
 msgid "Purchase Request Line"
-msgstr "Lineas de solicitud de compra"
+msgstr "Linea de solicitud de compra"
 
 #. module: purchase_request_to_procurement
 #: model:ir.model,name:purchase_request_to_procurement.model_purchase_request_line_make_procurement_order
