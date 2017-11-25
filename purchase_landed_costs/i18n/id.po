@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-11 06:44+0000\n"
+"POT-Creation-Date: 2017-11-18 06:41+0000\n"
 "PO-Revision-Date: 2015-09-01 21:20+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Indonesian (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/id/)\n"
@@ -333,7 +333,7 @@ msgstr ""
 #. module: purchase_landed_costs
 #: field:landed.cost.position,partner_id:0
 msgid "Partner"
-msgstr ""
+msgstr "Mitra"
 
 #. module: purchase_landed_costs
 #: field:purchase.order,landed_cost:0

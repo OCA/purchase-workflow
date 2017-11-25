@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-19 07:13+0000\n"
+"POT-Creation-Date: 2017-11-18 06:41+0000\n"
 "PO-Revision-Date: 2015-09-01 21:20+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Romanian (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/ro/)\n"
@@ -278,7 +278,7 @@ msgstr ""
 #: selection:landed.cost.distribution.type,landed_cost_type:0
 #: selection:product.template,landed_cost_type:0
 msgid "Quantity"
-msgstr ""
+msgstr "Cantitate"
 
 #. module: purchase_landed_costs
 #: view:landed.cost.position:0 field:landed.cost.position,product_id:0
