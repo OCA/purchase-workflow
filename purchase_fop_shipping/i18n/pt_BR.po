@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-03 03:41+0000\n"
-"PO-Revision-Date: 2017-03-03 03:41+0000\n"
+"POT-Creation-Date: 2017-11-24 07:53+0000\n"
+"PO-Revision-Date: 2017-11-24 07:53+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/23907/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -31,6 +31,7 @@ msgstr ""
 #. module: purchase_fop_shipping
 #: model:ir.model.fields,field_description:purchase_fop_shipping.field_purchase_order_fop_shipping
 #: model:ir.model.fields,field_description:purchase_fop_shipping.field_res_partner_fop_shipping
+#: model:ir.model.fields,field_description:purchase_fop_shipping.field_res_users_fop_shipping
 msgid "FOP shipping"
 msgstr ""
 
@@ -46,6 +47,7 @@ msgstr ""
 
 #. module: purchase_fop_shipping
 #: model:ir.model.fields,help:purchase_fop_shipping.field_res_partner_fop_shipping
+#: model:ir.model.fields,help:purchase_fop_shipping.field_res_users_fop_shipping
 msgid "Min purchase order amount for FOP shipping"
 msgstr ""
 
@@ -62,7 +64,7 @@ msgstr ""
 #. module: purchase_fop_shipping
 #: model:ir.model,name:purchase_fop_shipping.model_purchase_order
 msgid "Purchase Order"
-msgstr "Ordem de compra"
+msgstr "Ordem de Compra"
 
 #. module: purchase_fop_shipping
 #: code:addons/purchase_fop_shipping/models/purchase.py:38
