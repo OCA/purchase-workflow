@@ -191,11 +191,11 @@ class PurchaseCostDistribution(models.Model):
             raise exceptions.UserError(
                 _("The cost for the line '%s' can't be "
                   "distributed because the calculation method "
-                  "doesn't provide valid data" % cost_line.type.name))
+                  "doesn't provide valid data" % expense_line.type.name))
         return {
             'distribution_expense': expense_line.id,
-            'expense_amount':       expense_amount,
-            'cost_ratio':           expense_amount / cost_line.product_qty,
+            'expense_amount': expense_amount,
+            'cost_ratio': expense_amount / cost_line.product_qty,
         }
 
     @api.multi
