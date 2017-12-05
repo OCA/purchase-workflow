@@ -78,7 +78,8 @@ class PurchaseOrderLineInvoiceWizard(models.TransientModel):
             journal_domain, limit=1)
         if default_journal_id:
             invoice_data['journal_id'] = default_journal_id.id
-        invoice = self.env['account.invoice'].create(invoice_data)
+        invoice = self.env['account.invoice'].with_context(type='in_invoice').\
+            create(invoice_data)
 
         for line in self.purchase_order_line_details_ids:
             line_data = invoice._prepare_invoice_line_from_po_line(
