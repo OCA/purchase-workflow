@@ -1,28 +1,12 @@
-# -*- encoding: utf-8 -*-
-##############################################################################
-#
-#    Procurement Batch Generator module for Odoo
-#    Copyright (C) 2014-2015 Akretion (http://www.akretion.com)
-#    @author Alexis de Lattre <alexis.delattre@akretion.com>
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# -*- coding: utf-8 -*-
+# © 2014-2017 Akretion (http://www.akretion.com)
+# @author Alexis de Lattre <alexis.delattre@akretion.com>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import models, fields, api, _
-import openerp.addons.decimal_precision as dp
-from openerp.exceptions import Warning
+from odoo import api, fields, models, _
+import odoo.addons.decimal_precision as dp
+from odoo.tools import float_is_zero
+from odoo.exceptions import UserError
 
 
 class ProcurementBatchGenerator(models.TransientModel):
@@ -42,9 +26,10 @@ class ProcurementBatchGenerator(models.TransientModel):
         today = fields.Date.context_today(self)
         for product in self.env['product.product'].browse(
                 self.env.context['active_ids']):
+            part_id = product.seller_ids and product.seller_ids[0].id or False
             res.append({
                 'product_id': product.id,
-                'partner_id': product.seller_id.id or False,
+                'partner_id': part_id,
                 'qty_available': product.qty_available,
                 'outgoing_qty': product.outgoing_qty,
                 'incoming_qty': product.incoming_qty,
@@ -63,23 +48,23 @@ class ProcurementBatchGenerator(models.TransientModel):
     def validate(self):
         self.ensure_one()
         wiz = self[0]
-        assert wiz.line_ids, 'wizard must have some lines'
-        new_po_ids = []
+        if not wiz.line_ids:
+            raise UserError(_('There are no lines!'))
+        poo = self.env['procurement.order']
+        procs = poo
+        prec = self.env['decimal.precision'].precision_get(
+            'Product Unit of Measure')
         for line in wiz.line_ids:
-            if not line.procurement_qty:
+            if float_is_zero(line.procurement_qty, precision_digits=prec):
                 continue
-            procurement = self.env['procurement.order'].create(
-                line._prepare_procurement_order())
-            new_po_ids.append(procurement.id)
-        if not new_po_ids:
-            raise Warning(_('All requested quantities are null.'))
-        self.pool['procurement.order'].signal_workflow(
-            self._cr, self._uid, new_po_ids, 'button_confirm')
-        self.pool['procurement.order'].run(
-            self._cr, self._uid, new_po_ids, context=self.env.context)
+            proc = poo.create(line._prepare_procurement_order())
+            procs += proc
+        if not procs:
+            raise UserError(_('All requested quantities are null.'))
+        # No need to run() the procurements ?
         action = self.env['ir.actions.act_window'].for_xml_id(
             'procurement', 'procurement_action')
-        action['domain'] = [('id', 'in', new_po_ids)]
+        action['domain'] = [('id', 'in', procs.ids)]
         return action
 
 
@@ -109,17 +94,21 @@ class ProcurementBatchGeneratorLine(models.TransientModel):
     warehouse_id = fields.Many2one(
         'stock.warehouse', string='Warehouse', required=True)
     date_planned = fields.Date(string='Planned Date', required=True)
+    route_ids = fields.Many2many(
+        'stock.location.route', string='Preferred Routes')
 
     @api.multi
     def _prepare_procurement_order(self):
         self.ensure_one()
         vals = {
-            'name': u'INT: ' + unicode(self.env.user.login),
+            'name': u'INT: %s' % self.env.user.login,
+            'date_planned': self.date_planned,
             'product_id': self.product_id.id,
             'product_qty': self.procurement_qty,
             'product_uom': self.uom_id.id,
+            'warehouse_id': self.warehouse_id.id,
             'location_id': self.warehouse_id.lot_stock_id.id,
             'company_id': self.warehouse_id.company_id.id,
-            'date_planned': self.date_planned,
+            'route_ids': [(6, 0, self.route_ids.ids)],
             }
         return vals
