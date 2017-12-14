@@ -26,10 +26,11 @@ class ProcurementBatchGenerator(models.TransientModel):
         today = fields.Date.context_today(self)
         for product in self.env['product.product'].browse(
                 self.env.context['active_ids']):
-            part_id = product.seller_ids and product.seller_ids[0].id or False
+            partner_id = product.seller_ids and\
+                product.seller_ids[0].name.id or False
             res.append({
                 'product_id': product.id,
-                'partner_id': part_id,
+                'partner_id': partner_id,
                 'qty_available': product.qty_available,
                 'outgoing_qty': product.outgoing_qty,
                 'incoming_qty': product.incoming_qty,
