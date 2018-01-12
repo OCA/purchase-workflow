@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-# (c) 2015 Alex Comba - Agile Business Group
+# Copyright 2015 Alex Comba - Agile Business Group
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 {
     'name': "Purchase order line description",
-    'version': '8.0.1.0.0',
+    'version': '10.0.1.0.0',
     'category': 'Purchase Management',
     'author': "Agile Business Group, Odoo Community Association (OCA)",
     'website': 'http://www.agilebg.com',
