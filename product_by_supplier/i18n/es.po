@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-18 06:41+0000\n"
+"POT-Creation-Date: 2017-12-02 09:19+0000\n"
 "PO-Revision-Date: 2015-09-01 21:19+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/es/)\n"
@@ -25,7 +25,7 @@ msgstr ""
 #. module: product_by_supplier
 #: field:product.supplierinfo,qty_available:0
 msgid "Quantity On Hand"
-msgstr ""
+msgstr "Stock real"
 
 #. module: product_by_supplier
 #: model:ir.model,name:product_by_supplier.model_product_product
