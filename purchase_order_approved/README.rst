@@ -26,14 +26,14 @@ The new state diagram is depicted below:
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/142/9.0
+   :target: https://runbot.odoo-community.org/runbot/142/10.0
 
 Configuration
 =============
 
 To configure this module:
 
-#. Go to 'Settings > Companies'.
+#. Go to 'Purchases > Configuration > Settings'.
 #. In the *Logistics* section in the *Configuration* tab you can set the *Use 
    State 'Approved' in Purchase Orders*.
 
