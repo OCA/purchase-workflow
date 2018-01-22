@@ -6,14 +6,15 @@
     "name": "Purchase Request to RFQ Order Approved",
     "author": "Eficent, "
               "Odoo Community Association (OCA)",
-    "version": "9.0.1.0.0",
+    "version": "10.0.1.0.0",
     "website": "http://www.eficent.com/",
     "category": "Purchase Management",
     "depends": [
         "purchase_request_to_rfq",
-        "purchase_order_approved"],
+        "purchase_order_approved",
+    ],
     "data": [
-        "views/purchase_request_view.xml"
+        "views/purchase_request_view.xml",
     ],
     "license": 'LGPL-3',
     "installable": True,
