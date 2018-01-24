@@ -13,17 +13,29 @@ class TestPurchaseRequestProcurement(common.SavepointCase):
         super(TestPurchaseRequestProcurement, self).setUp()
         self.pr_model = self.env['purchase.request']
         self.prl_model = self.env['purchase.request.line']
+        self.product_uom_model = self.env['product.uom']
+
+        self.uom_unit_categ = self.env.ref('product.product_uom_categ_unit')
+
         self.product_1 = self.env.ref('product.product_product_16')
         self.product_1.purchase_request = True
         self.product_2 = self.env.ref('product.product_product_13')
 
-    def create_procurement_order(self, name):
+        self.uom_unit = self.env.ref('product.product_uom_unit')
+        self.uom_ten = self.product_uom_model.create({
+            'name': "Ten",
+            'category_id': self.uom_unit_categ.id,
+            'factor_inv': 10,
+            'uom_type': 'bigger',
+        })
+
+    def create_procurement_order(self, name, product, qty):
         values = {
             'name': name,
             'date_planned': fields.Datetime.now(),
-            'product_id': self.product_1.id,
-            'product_qty': 4.0,
-            'product_uom': self.product_1.uom_id.id,
+            'product_id': product.id,
+            'product_qty': qty,
+            'product_uom': product.uom_id.id,
             'warehouse_id': self.env.ref('stock.warehouse0').id,
             'location_id': self.env.ref('stock.stock_location_stock').id,
             'route_ids': [
@@ -35,7 +47,7 @@ class TestPurchaseRequestProcurement(common.SavepointCase):
     def test_cancel_purchase_request(self):
         """Test if when a PR is cancelled, the linked procurements that
         are not yet cancelled become cancelled."""
-        proc = self.create_procurement_order('TEST/0001')
+        proc = self.create_procurement_order('TEST/0001', self.product_1, 4)
         proc.run()
         request = proc.request_id
         self.assertFalse(request.line_ids[0].cancelled)
@@ -52,7 +64,7 @@ class TestPurchaseRequestProcurement(common.SavepointCase):
     def test_cancel_procurement(self):
         """Tests if the PR lines that are linked to a procurement are
         cancelled when a procurement is cancelled."""
-        proc = self.create_procurement_order('TEST/0002')
+        proc = self.create_procurement_order('TEST/0002', self.product_1, 4)
         proc.run()
         pr_line = proc.request_id.line_ids[0]
         self.assertFalse(pr_line.cancelled)
@@ -65,10 +77,22 @@ class TestPurchaseRequestProcurement(common.SavepointCase):
     def test_cancel_line_with_done_procurement(self):
         """Tests that it isn't allowed to cancel or reset a PR with lines
         realted to done procurements."""
-        proc = self.create_procurement_order('TEST/0003')
+        proc = self.create_procurement_order('TEST/0003', self.product_1, 4)
         request = proc.request_id
         proc.write({'state': 'done'})
         with self.assertRaises(UserError):
             request.button_rejected()
         with self.assertRaises(UserError):
             request.button_draft()
+
+    def test_product_uom_po_id(self):
+        product = self.product_1
+        product.write({
+            'uom_id': self.uom_unit.id,
+            'uom_po_id': self.uom_ten.id,
+        })
+        proc = self.create_procurement_order('TEST/0004', self.product_1, 100)
+        request = proc.request_id
+        line = request.line_ids[0]
+        self.assertEqual(line.product_uom_id, self.uom_ten)
+        self.assertEqual(line.product_qty, 10)
