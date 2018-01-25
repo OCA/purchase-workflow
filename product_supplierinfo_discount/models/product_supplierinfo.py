@@ -4,8 +4,8 @@
 # © 2016 ACSONE SA/NV (<http://acsone.eu>)
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-from openerp import models, fields, api
-import openerp.addons.decimal_precision as dp
+from odoo import models, fields, api
+import odoo.addons.decimal_precision as dp
 
 
 class ProductSupplierInfo(models.Model):
