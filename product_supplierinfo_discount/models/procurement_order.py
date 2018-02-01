@@ -15,7 +15,6 @@ class ProcurementOrder(models.Model):
         res = super(ProcurementOrder, self)._prepare_purchase_order_line(
             po, supplier)
         seller = self.product_id._select_seller(
-            # self.product_id,
             partner_id=supplier.name,
             quantity=self.product_qty,
             date=po.date_order and po.date_order[:10],

@@ -18,7 +18,6 @@ class PurchaseOrderLine(models.Model):
         res = super(PurchaseOrderLine, self)._onchange_quantity()
         if self.product_id:
             product_supplierinfo = self.product_id._select_seller(
-                # self.product_id,
                 partner_id=self.partner_id, quantity=self.product_qty,
                 date=self.order_id.date_order and
                 self.order_id.date_order[:10],
