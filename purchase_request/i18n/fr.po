@@ -179,7 +179,7 @@ msgstr "Date à laquelle l'utilisateur a initié la demande"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_description
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_name
 msgid "Description"
-msgstr "Descriptions"
+msgstr "Description"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_display_name
