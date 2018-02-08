@@ -35,9 +35,7 @@ class PurchaseOrder(models.Model):
 
     @api.multi
     def button_approve(self):
-        for purchase in self:
-            if purchase.company_id.purchase_approve_active:
-                purchase.write({'state': 'approved'})
-                return {}
-            else:
-                super(PurchaseOrder, purchase).button_approve()
+        approve_purchases = self.filtered(
+            lambda p: p.company_id.purchase_approve_active)
+        approve_purchases.write({'state': 'approved'})
+        return super(PurchaseOrder, self - approve_purchases).button_approve()
