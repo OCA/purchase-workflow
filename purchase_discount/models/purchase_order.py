@@ -13,19 +13,33 @@ class PurchaseOrder(models.Model):
 
     @api.depends('order_line.price_total')
     def _amount_all(self):
+        """In the case that taxes rounding is set to globally, Odoo requires
+        again the line price unit, and currently ORM mixes values, so the only
+        way to get a proper value is to overwrite that part, losing
+        inheritability.
+        """
         orders2recalculate = self.filtered(lambda x: (
             x.company_id.tax_calculation_rounding_method ==
             'round_globally' and any(x.mapped('order_line.discount'))
         ))
+        super(PurchaseOrder, self)._amount_all()
         for order in orders2recalculate:
-            vals = {}
-            for line in order.order_line.filtered('discount'):
-                vals[line] = line.price_unit
-                line.price_unit = line._get_discounted_price_unit()
-            super(PurchaseOrder, order)._amount_all()
-            for line in vals.keys():
-                line.price_unit = vals[line]
-        super(PurchaseOrder, self - orders2recalculate)._amount_all()
+            amount_tax = 0
+            for line in order.order_line:
+                taxes = line.taxes_id.compute_all(
+                    line._get_discounted_price_unit(),
+                    line.order_id.currency_id,
+                    line.product_qty,
+                    product=line.product_id,
+                    partner=line.order_id.partner_id,
+                )
+                amount_tax += sum(
+                    t.get('amount', 0.0) for t in taxes.get('taxes', [])
+                )
+            order.update({
+                'amount_tax': order.currency_id.round(amount_tax),
+                'amount_total': order.amount_untaxed + amount_tax,
+            })
 
 
 class PurchaseOrderLine(models.Model):

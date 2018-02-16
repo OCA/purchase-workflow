@@ -11,6 +11,8 @@ class TestPurchaseOrder(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
         super(TestPurchaseOrder, cls).setUpClass()
+        cls.company = cls.env.user.company_id
+        cls.company.tax_calculation_rounding_method = 'round_per_line'
         cls.product_1 = cls.env['product.product'].create({
             'name': 'Test product 1',
         })
@@ -87,3 +89,10 @@ class TestPurchaseOrder(common.SavepointCase):
         ])
         self.assertEqual(rec.price_total, 5)
         self.assertEqual(rec.discount, 50)
+
+
+class TestPurchaseOrderRoundGlobally(TestPurchaseOrder):
+    @classmethod
+    def setUpClass(cls):
+        super(TestPurchaseOrderRoundGlobally, cls).setUpClass()
+        cls.company.tax_calculation_rounding_method = 'round_globally'
