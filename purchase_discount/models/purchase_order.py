@@ -24,7 +24,7 @@ class PurchaseOrder(models.Model):
                 line.price_unit = line._get_discounted_price_unit()
             super(PurchaseOrder, order)._amount_all()
             for line in vals.keys():
-                line.discount = vals[line]
+                line.price_unit = vals[line]
         super(PurchaseOrder, self - orders2recalculate)._amount_all()
 
 
