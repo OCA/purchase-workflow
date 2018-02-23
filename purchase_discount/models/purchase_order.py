@@ -71,18 +71,15 @@ class PurchaseOrderLine(models.Model):
     def _get_stock_move_price_unit(self):
         """Get correct price with discount replacing current price_unit
         value before calling super and restoring it later for assuring
-        maximum inheritability. We have to also switch temporarily the order
-        state for avoiding an infinite recursion.
+        maximum inheritability.
         """
         price_unit = False
         price = self._get_discounted_price_unit()
         if price != self.price_unit:
             # Only change value if it's different
-            self.order_id.state = 'draft'
             price_unit = self.price_unit
             self.price_unit = price
         price = super(PurchaseOrderLine, self)._get_stock_move_price_unit()
         if price_unit:
             self.price_unit = price_unit
-            self.order_id.state = 'purchase'
         return price
