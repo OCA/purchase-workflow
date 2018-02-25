@@ -14,9 +14,7 @@ class ProductSupplierInfo(models.Model):
     discount = fields.Float(
         string='Discount (%)', digits_compute=dp.get_precision('Discount'))
 
-    @api.multi
     @api.onchange('name')
     def onchange_name(self):
         for supplierinfo in self.filtered('name'):
-            supplierinfo.discount =\
-                supplierinfo.name.default_supplierinfo_discount
+            supplierinfo.discount = supplierinfo.name.default_supplierinfo_discount
