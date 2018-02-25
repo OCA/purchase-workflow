@@ -17,4 +17,5 @@ class ProductSupplierInfo(models.Model):
     @api.onchange('name')
     def onchange_name(self):
         for supplierinfo in self.filtered('name'):
-            supplierinfo.discount = supplierinfo.name.default_supplierinfo_discount
+            supplierinfo.discount =\
+                supplierinfo.name.default_supplierinfo_discount
