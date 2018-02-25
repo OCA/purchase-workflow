@@ -12,7 +12,7 @@ class ProductSupplierInfo(models.Model):
     _inherit = 'product.supplierinfo'
 
     discount = fields.Float(
-        string='Discount (%)', digits_compute=dp.get_precision('Discount'))
+        string='Discount (%)', digits=dp.get_precision('Discount'))
 
     @api.onchange('name')
     def onchange_name(self):
