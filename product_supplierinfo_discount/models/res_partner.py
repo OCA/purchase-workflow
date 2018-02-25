@@ -12,6 +12,6 @@ class ResPartner(models.Model):
 
     default_supplierinfo_discount = fields.Float(
         string='Default Supplier Discount (%)',
-        digits_compute=dp.get_precision('Discount'),
+        digits=dp.get_precision('Discount'),
         help="This value will be used as the default one, for each new"
         " supplierinfo line depending on that supplier.")
