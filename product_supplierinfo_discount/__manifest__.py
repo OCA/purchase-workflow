@@ -1,33 +1,19 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (c) 2014 Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
-#                       Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# © 2014 Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
+#        Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
+# © 2016 ACSONE SA/NV (<http://acsone.eu>)
+# © 2016 GRAP (http://www.grap.coop)
+#        Sylvain LE GAL (https://twitter.com/legalsylvain)
+# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 {
     "name": "Discounts in product supplier info",
-    "version": "8.0.1.0.0",
-    "author": "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
-              "Antiun Ingeniería S.L., "
+    "version": "10.0.1.0.0",
+    "author": "Tecnativa, "
+              "GRAP, "
               "Odoo Community Association (OCA)",
     "category": "Purchase Management",
-    "website": "www.serviciosbaeza.com",
+    "website": "http://www.serviciosbaeza.com/",
     "license": "AGPL-3",
     "depends": [
         'product',
@@ -35,6 +21,7 @@
     ],
     "data": [
         'views/product_supplierinfo_view.xml',
+        'views/res_partner_view.xml',
     ],
-    'installable': False,
+    'installable': True,
 }
