@@ -10,12 +10,12 @@ msgstr ""
 "POT-Creation-Date: 2018-01-16 10:32+0000\n"
 "PO-Revision-Date: 2018-03-02 21:12+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Croatian (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/hr/)\n"
+"Language-Team: Spanish (Peru) (http://www.transifex.com/oca/OCA-purchase-workflow-7-0/language/es_PE/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: hr\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Language: es_PE\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: purchase_landed_costs
 #: code:addons/purchase_landed_costs/purchase.py:586
@@ -41,7 +41,7 @@ msgstr ""
 #. module: purchase_landed_costs
 #: view:landed.cost.position:0
 msgid "Group By..."
-msgstr "Grupiraj po..."
+msgstr ""
 
 #. module: purchase_landed_costs
 #: help:product.template,landed_cost_type:0
@@ -87,7 +87,7 @@ msgstr ""
 #. module: purchase_landed_costs
 #: model:ir.model,name:purchase_landed_costs.model_product_product
 msgid "Product"
-msgstr "Proizvod"
+msgstr ""
 
 #. module: purchase_landed_costs
 #: code:addons/purchase_landed_costs/product.py:69
@@ -111,7 +111,7 @@ msgstr ""
 #. module: purchase_landed_costs
 #: field:landed.cost.position,company_id:0
 msgid "Company"
-msgstr "Poduzeće"
+msgstr ""
 
 #. module: purchase_landed_costs
 #: help:landed.cost.position,amount:0
@@ -132,7 +132,7 @@ msgstr ""
 #: model:ir.model,name:purchase_landed_costs.model_purchase_order_line
 #: field:landed.cost.position,purchase_order_line_id:0
 msgid "Purchase Order Line"
-msgstr "Stavka naloga za nabavu"
+msgstr "Linea de orden de compra"
 
 #. module: purchase_landed_costs
 #: help:landed.cost.distribution.type,apply_on:0
@@ -142,7 +142,7 @@ msgstr ""
 #. module: purchase_landed_costs
 #: view:landed.cost.position:0 field:landed.cost.position,date_po:0
 msgid "Date"
-msgstr "Datum"
+msgstr ""
 
 #. module: purchase_landed_costs
 #: field:purchase.order,landed_cost_base_value:0
@@ -197,7 +197,7 @@ msgstr ""
 #: selection:landed.cost.distribution.type,landed_cost_type:0
 #: selection:product.template,landed_cost_type:0
 msgid "Value"
-msgstr "Vrijednost"
+msgstr ""
 
 #. module: purchase_landed_costs
 #: view:landed.cost.position:0
@@ -298,12 +298,12 @@ msgstr ""
 #. module: purchase_landed_costs
 #: model:ir.model,name:purchase_landed_costs.model_stock_move
 msgid "Stock Move"
-msgstr "Skladišni prenos"
+msgstr ""
 
 #. module: purchase_landed_costs
 #: model:ir.model,name:purchase_landed_costs.model_product_template
 msgid "Product Template"
-msgstr "Predložak proizvoda"
+msgstr ""
 
 #. module: purchase_landed_costs
 #: help:landed.cost.distribution.type,landed_cost_type:0
@@ -333,7 +333,7 @@ msgstr ""
 #. module: purchase_landed_costs
 #: field:landed.cost.position,partner_id:0
 msgid "Partner"
-msgstr "Partner"
+msgstr ""
 
 #. module: purchase_landed_costs
 #: field:purchase.order,landed_cost:0
