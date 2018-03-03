@@ -1,0 +1,45 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * purchase_minimum_amount
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-02-23 17:50+0000\n"
+"PO-Revision-Date: 2018-02-23 17:50+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
+"Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: purchase_minimum_amount
+#: model:ir.model,name:purchase_minimum_amount.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: purchase_minimum_amount
+#: model:ir.model.fields,field_description:purchase_minimum_amount.field_res_partner_minimum_po_amount
+#: model:ir.model.fields,field_description:purchase_minimum_amount.field_res_users_minimum_po_amount
+msgid "Minimum Purchase Amount"
+msgstr ""
+
+#. module: purchase_minimum_amount
+#: model:ir.model.fields,field_description:purchase_minimum_amount.field_purchase_order_minimum_po_amount
+msgid "Purchase Minimum Amount"
+msgstr ""
+
+#. module: purchase_minimum_amount
+#: model:ir.model,name:purchase_minimum_amount.model_purchase_order
+msgid "Purchase Order"
+msgstr ""
+
+#. module: purchase_minimum_amount
+#: model:ir.model,name:purchase_minimum_amount.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Bestellposition"
