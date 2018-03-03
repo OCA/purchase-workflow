@@ -11,28 +11,28 @@ msgstr ""
 "POT-Creation-Date: 2018-03-03 03:48+0000\n"
 "PO-Revision-Date: 2018-03-03 03:48+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
-"Language-Team: French (Belgium) (https://www.transifex.com/oca/teams/23907/fr_BE/)\n"
+"Language-Team: Dutch (Belgium) (https://www.transifex.com/oca/teams/23907/nl_BE/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr_BE\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: nl_BE\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: purchase_cancel_reason
 #: model:ir.model,name:purchase_cancel_reason.model_purchase_order_cancel
 msgid " Ask a reason for the purchase order cancellation."
-msgstr " Demande une cause de l'annulation de la commande."
+msgstr ""
 
 #. module: purchase_cancel_reason
 #: model:ir.ui.view,arch_db:purchase_cancel_reason.purchase_order_form
 #: model:ir.ui.view,arch_db:purchase_cancel_reason.view_purchase_order_cancel
 msgid "Cancel"
-msgstr "Annuler"
+msgstr ""
 
 #. module: purchase_cancel_reason
 #: model:ir.ui.view,arch_db:purchase_cancel_reason.purchase_order_form
 msgid "Cancellation reason:"
-msgstr "Cause de l'annulation:"
+msgstr ""
 
 #. module: purchase_cancel_reason
 #: model:ir.ui.view,arch_db:purchase_cancel_reason.view_purchase_order_cancel
@@ -40,31 +40,29 @@ msgid ""
 "Choose the reason for the cancellation of the\n"
 "                purchase order."
 msgstr ""
-"Veuillez choisir la cause de l'annulation\n"
-"                de la commande."
 
 #. module: purchase_cancel_reason
 #: model:ir.ui.view,arch_db:purchase_cancel_reason.view_purchase_order_cancel
 msgid "Confirm"
-msgstr "Confirmer"
+msgstr ""
 
 #. module: purchase_cancel_reason
 #: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_create_uid
 #: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason_create_uid
 msgid "Created by"
-msgstr "Créé par"
+msgstr "Gemaakt door"
 
 #. module: purchase_cancel_reason
 #: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_create_date
 #: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason_create_date
 msgid "Created on"
-msgstr "Créé le"
+msgstr "Gemaakt op"
 
 #. module: purchase_cancel_reason
 #: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_display_name
 #: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason_display_name
 msgid "Display Name"
-msgstr "Nom affiché"
+msgstr ""
 
 #. module: purchase_cancel_reason
 #: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_id
@@ -75,72 +73,72 @@ msgstr "ID"
 #. module: purchase_cancel_reason
 #: model:purchase.order.cancel.reason,name:purchase_cancel_reason.cancel_reason_only_quotation
 msgid "Just for Quotation"
-msgstr "Juste pour une offre"
+msgstr ""
 
 #. module: purchase_cancel_reason
 #: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel___last_update
 #: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason___last_update
 msgid "Last Modified on"
-msgstr "Dernière modification le"
+msgstr ""
 
 #. module: purchase_cancel_reason
 #: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason_write_uid
 #: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_write_uid
 msgid "Last Updated by"
-msgstr "Derniere fois mis à jour par"
+msgstr "Laatst bijgewerkt door"
 
 #. module: purchase_cancel_reason
 #: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason_write_date
 #: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_write_date
 msgid "Last Updated on"
-msgstr "Dernière mis à jour le"
+msgstr "Laatst bijgewerkt op"
 
 #. module: purchase_cancel_reason
 #: model:purchase.order.cancel.reason,name:purchase_cancel_reason.cancel_reason_other_provider
 msgid "Other Service Provider selected"
-msgstr "Autre fournisseur sélectionné"
+msgstr ""
 
 #. module: purchase_cancel_reason
 #: model:ir.model,name:purchase_cancel_reason.model_purchase_order
 msgid "Purchase Order"
-msgstr "Commande fournisseur"
+msgstr ""
 
 #. module: purchase_cancel_reason
 #: model:ir.actions.act_window,name:purchase_cancel_reason.action_purchase_order_cancel_reason
 #: model:ir.model,name:purchase_cancel_reason.model_purchase_order_cancel_reason
 msgid "Purchase Order Cancel Reason"
-msgstr "Cause d'annulation pour un bon de commande"
+msgstr ""
 
 #. module: purchase_cancel_reason
 #: model:ir.ui.menu,name:purchase_cancel_reason.menu_purchase_order_cancel_reason
 #: model:ir.ui.view,arch_db:purchase_cancel_reason.view_purchase_order_cancel_reason_form
 #: model:ir.ui.view,arch_db:purchase_cancel_reason.view_purchase_order_cancel_reason_tree
 msgid "Purchase Order Cancel Reasons"
-msgstr "Cause d'annulation pour un bon de commande"
+msgstr ""
 
 #. module: purchase_cancel_reason
 #: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason_id
 #: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason_name
 msgid "Reason"
-msgstr "Cause"
+msgstr ""
 
 #. module: purchase_cancel_reason
 #: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason_id_4682
 msgid "Reason for cancellation"
-msgstr "Cause de l'annulation"
+msgstr ""
 
 #. module: purchase_cancel_reason
 #: model:ir.actions.act_window,name:purchase_cancel_reason.action_purchase_order_cancel
 #: model:ir.ui.view,arch_db:purchase_cancel_reason.view_purchase_order_cancel
 msgid "Reason for the cancellation"
-msgstr "Cause de l'annulation"
+msgstr ""
 
 #. module: purchase_cancel_reason
 #: model:purchase.order.cancel.reason,name:purchase_cancel_reason.cancel_reason_no_service_needed
 msgid "Service no longer needed"
-msgstr "Le service n'est plus nécessaire"
+msgstr ""
 
 #. module: purchase_cancel_reason
 #: model:ir.ui.view,arch_db:purchase_cancel_reason.view_purchase_order_cancel
 msgid "or"
-msgstr "ou"
+msgstr ""
