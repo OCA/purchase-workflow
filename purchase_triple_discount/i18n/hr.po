@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-24 07:53+0000\n"
-"PO-Revision-Date: 2017-11-24 07:53+0000\n"
+"POT-Creation-Date: 2018-03-03 03:48+0000\n"
+"PO-Revision-Date: 2018-03-03 03:48+0000\n"
 "Last-Translator: Bole <bole@dajmi5.com>, 2017\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -21,22 +21,22 @@ msgstr ""
 #. module: purchase_triple_discount
 #: model:ir.model.fields,field_description:purchase_triple_discount.field_purchase_order_line_discount2
 msgid "Disc. 2 (%)"
-msgstr ""
+msgstr "Pop. 2 (%)"
 
 #. module: purchase_triple_discount
 #: model:ir.model.fields,field_description:purchase_triple_discount.field_purchase_order_line_discount3
 msgid "Disc. 3 (%)"
-msgstr ""
+msgstr "Pop. 3(%)"
 
 #. module: purchase_triple_discount
 #: sql_constraint:purchase.order.line:0
 msgid "Discount 2 must be lower than 100%."
-msgstr ""
+msgstr "Popust 2 mora biti manje od 100%."
 
 #. module: purchase_triple_discount
 #: sql_constraint:purchase.order.line:0
 msgid "Discount 3 must be lower than 100%."
-msgstr ""
+msgstr "Popust 3 mora biti manje od 100%."
 
 #. module: purchase_triple_discount
 #: model:ir.model,name:purchase_triple_discount.model_account_invoice
