@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-17 00:52+0000\n"
-"PO-Revision-Date: 2016-09-17 00:52+0000\n"
+"POT-Creation-Date: 2018-02-23 15:53+0000\n"
+"PO-Revision-Date: 2018-02-23 15:53+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -37,6 +37,11 @@ msgstr "La remise doit être inférieure à 100%."
 #: model:ir.model,name:purchase_discount.model_account_invoice_line
 msgid "Invoice Line"
 msgstr "Ligne de facuration"
+
+#. module: purchase_discount
+#: model:ir.model,name:purchase_discount.model_purchase_order
+msgid "Purchase Order"
+msgstr "Commande d'achat"
 
 #. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_purchase_order_line

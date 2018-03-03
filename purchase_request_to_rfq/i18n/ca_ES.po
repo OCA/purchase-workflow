@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
+# Carlos Hormigo, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-25 03:39+0000\n"
-"PO-Revision-Date: 2016-11-25 03:39+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"POT-Creation-Date: 2018-02-23 15:53+0000\n"
+"PO-Revision-Date: 2018-02-23 15:53+0000\n"
+"Last-Translator: Carlos Hormigo, 2018\n"
 "Language-Team: Catalan (Spain) (https://www.transifex.com/oca/teams/23907/ca_ES/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,13 +20,19 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/models/purchase_order.py:25
+#: code:addons/purchase_request_to_rfq/models/purchase_order.py:26
 #, python-format
 msgid "<li><b>%s</b>: Ordered quantity %s %s, Planned date %s</li>"
 msgstr ""
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/models/stock.py:25
+#: code:addons/purchase_request_to_rfq/models/purchase_order.py:180
+#, python-format
+msgid "<li><b>%s</b>: Quantity %s %s</li>"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: code:addons/purchase_request_to_rfq/models/stock.py:24
 #, python-format
 msgid "<li><b>%s</b>: Received quantity %s %s</li>"
 msgstr ""
@@ -51,6 +58,11 @@ msgid "Cancel"
 msgstr "Cancel·la"
 
 #. module: purchase_request_to_rfq
+#: model:ir.model.fields,field_description:purchase_request_to_rfq.field_purchase_request_line_make_purchase_order_item_keep_description
+msgid "Copy descriptions to new PO"
+msgstr ""
+
+#. module: purchase_request_to_rfq
 #: model:ir.actions.act_window,name:purchase_request_to_rfq.action_purchase_request_line_make_purchase_order
 #: model:ir.ui.view,arch_db:purchase_request_to_rfq.view_purchase_request_line_make_purchase_order
 msgid "Create RFQ"
@@ -60,18 +72,18 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_request_to_rfq.field_purchase_request_line_make_purchase_order_create_uid
 #: model:ir.model.fields,field_description:purchase_request_to_rfq.field_purchase_request_line_make_purchase_order_item_create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creat per"
 
 #. module: purchase_request_to_rfq
 #: model:ir.model.fields,field_description:purchase_request_to_rfq.field_purchase_request_line_make_purchase_order_create_date
 #: model:ir.model.fields,field_description:purchase_request_to_rfq.field_purchase_request_line_make_purchase_order_item_create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creat a"
 
 #. module: purchase_request_to_rfq
 #: model:ir.model.fields,field_description:purchase_request_to_rfq.field_purchase_request_line_make_purchase_order_item_name
 msgid "Description"
-msgstr ""
+msgstr "Descripció"
 
 #. module: purchase_request_to_rfq
 #: model:ir.ui.view,arch_db:purchase_request_to_rfq.view_purchase_request_line_make_purchase_order
@@ -82,16 +94,16 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_request_to_rfq.field_purchase_request_line_make_purchase_order_display_name
 #: model:ir.model.fields,field_description:purchase_request_to_rfq.field_purchase_request_line_make_purchase_order_item_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nom visible"
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:200
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:223
 #, python-format
 msgid "Enter a positive quantity."
 msgstr ""
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:112
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:121
 #, python-format
 msgid "Enter a supplier."
 msgstr ""
@@ -99,6 +111,16 @@ msgstr ""
 #. module: purchase_request_to_rfq
 #: model:ir.ui.view,arch_db:purchase_request_to_rfq.view_purchase_request_line_make_purchase_order
 msgid "Existing RFQ to update:"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: model:ir.ui.view,arch_db:purchase_request_to_rfq.purchase_order_line_search_sub
+msgid "Group By"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: model:ir.ui.view,arch_db:purchase_request_to_rfq.purchase_order_line_search_sub
+msgid "Hide cancelled lines"
 msgstr ""
 
 #. module: purchase_request_to_rfq
@@ -116,18 +138,29 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_request_to_rfq.field_purchase_request_line_make_purchase_order___last_update
 #: model:ir.model.fields,field_description:purchase_request_to_rfq.field_purchase_request_line_make_purchase_order_item___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Darrera modificació en"
 
 #. module: purchase_request_to_rfq
 #: model:ir.model.fields,field_description:purchase_request_to_rfq.field_purchase_request_line_make_purchase_order_item_write_uid
 #: model:ir.model.fields,field_description:purchase_request_to_rfq.field_purchase_request_line_make_purchase_order_write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Darrera actualització per"
 
 #. module: purchase_request_to_rfq
 #: model:ir.model.fields,field_description:purchase_request_to_rfq.field_purchase_request_line_make_purchase_order_item_write_date
 #: model:ir.model.fields,field_description:purchase_request_to_rfq.field_purchase_request_line_make_purchase_order_write_date
 msgid "Last Updated on"
+msgstr "Darrera actualització el"
+
+#. module: purchase_request_to_rfq
+#: code:addons/purchase_request_to_rfq/models/purchase_order.py:192
+#, python-format
+msgid "Line %s of Purchase Order %s was removed"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: model:ir.ui.view,arch_db:purchase_request_to_rfq.purchase_order_line_form2_sub
+msgid "Manual Invoices"
 msgstr ""
 
 #. module: purchase_request_to_rfq
@@ -141,7 +174,12 @@ msgid "No RFQ or Purchase has been created"
 msgstr ""
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/models/purchase_order.py:17
+#: model:ir.ui.view,arch_db:purchase_request_to_rfq.purchase_order_line_search_sub
+msgid "Order Reference"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: code:addons/purchase_request_to_rfq/models/purchase_order.py:18
 #, python-format
 msgid "Order confirmation %s for your Request %s"
 msgstr ""
@@ -168,12 +206,20 @@ msgid "Purchase Order"
 msgstr ""
 
 #. module: purchase_request_to_rfq
+#: code:addons/purchase_request_to_rfq/models/purchase_order.py:175
+#, python-format
+msgid "Purchase Order %s cancelled"
+msgstr ""
+
+#. module: purchase_request_to_rfq
 #: model:ir.model,name:purchase_request_to_rfq.model_purchase_order_line
 msgid "Purchase Order Line"
 msgstr ""
 
 #. module: purchase_request_to_rfq
 #: model:ir.model.fields,field_description:purchase_request_to_rfq.field_purchase_request_line_purchase_lines
+#: model:ir.ui.view,arch_db:purchase_request_to_rfq.purchase_order_line_form2_sub
+#: model:ir.ui.view,arch_db:purchase_request_to_rfq.purchase_order_line_tree_sub
 #: model:ir.ui.view,arch_db:purchase_request_to_rfq.purchase_request_line_form
 #: model:ir.ui.view,arch_db:purchase_request_to_rfq.view_purchase_request_form
 msgid "Purchase Order Lines"
@@ -185,13 +231,13 @@ msgid "Purchase Request"
 msgstr ""
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/models/purchase_order.py:67
+#: code:addons/purchase_request_to_rfq/models/purchase_order.py:68
 #, python-format
 msgid "Purchase Request %s has already been completed"
 msgstr ""
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:48
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:50
 #, python-format
 msgid "Purchase Request %s is not approved"
 msgstr ""
@@ -213,9 +259,10 @@ msgid "Purchase Request Line Make Purchase Order Item"
 msgstr ""
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/models/purchase_order.py:100
+#: code:addons/purchase_request_to_rfq/models/purchase_order.py:165
 #: model:ir.model.fields,field_description:purchase_request_to_rfq.field_purchase_order_line_purchase_request_lines
 #: model:ir.ui.view,arch_db:purchase_request_to_rfq.purchase_order_line_form2
+#: model:ir.ui.view,arch_db:purchase_request_to_rfq.purchase_order_line_form2_sub
 #, python-format
 msgid "Purchase Request Lines"
 msgstr ""
@@ -248,13 +295,13 @@ msgid "Quantity to purchase"
 msgstr ""
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:232
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:262
 #, python-format
 msgid "RFQ"
 msgstr ""
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/models/stock.py:17
+#: code:addons/purchase_request_to_rfq/models/stock.py:16
 #, python-format
 msgid "Receipt confirmation %s for your Request %s"
 msgstr ""
@@ -270,12 +317,35 @@ msgid "Requested for Quotation"
 msgstr ""
 
 #. module: purchase_request_to_rfq
+#: model:ir.ui.view,arch_db:purchase_request_to_rfq.purchase_order_line_search_sub
+msgid "Search Purchase Order Line"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: model:ir.model.fields,help:purchase_request_to_rfq.field_purchase_request_line_make_purchase_order_item_keep_description
+msgid ""
+"Set true if you want to keep the descriptions provided in the wizard in the "
+"new PO."
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: model:ir.ui.view,arch_db:purchase_request_to_rfq.purchase_order_line_form2_sub
+msgid "Stock Moves"
+msgstr ""
+
+#. module: purchase_request_to_rfq
 #: model:ir.model.fields,field_description:purchase_request_to_rfq.field_purchase_request_line_make_purchase_order_supplier_id
 msgid "Supplier"
 msgstr ""
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/models/purchase_order.py:20
+#: code:addons/purchase_request_to_rfq/models/purchase_order.py:177
+#, python-format
+msgid "The following requested item from this Purchase Request is affected:"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: code:addons/purchase_request_to_rfq/models/purchase_order.py:21
 #, python-format
 msgid ""
 "The following requested items from Purchase Request %s have now been "
@@ -283,7 +353,7 @@ msgid ""
 msgstr ""
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/models/stock.py:20
+#: code:addons/purchase_request_to_rfq/models/stock.py:19
 #, python-format
 msgid ""
 "The following requested items from Purchase Request %s have now been "
@@ -291,7 +361,7 @@ msgid ""
 msgstr ""
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:53
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:55
 #, python-format
 msgid "The purchase has already been completed."
 msgstr ""
@@ -302,8 +372,30 @@ msgid "Transfer"
 msgstr ""
 
 #. module: purchase_request_to_rfq
+#: code:addons/purchase_request_to_rfq/models/purchase_order.py:104
+#, python-format
+msgid ""
+"Unable to cancel purchase order %s as some receptions have already been "
+"done."
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: code:addons/purchase_request_to_rfq/models/purchase_order.py:109
+#, python-format
+msgid ""
+"Unable to cancel this purchase order. You must first cancel related vendor "
+"bills."
+msgstr ""
+
+#. module: purchase_request_to_rfq
 #: model:ir.model.fields,field_description:purchase_request_to_rfq.field_purchase_request_line_make_purchase_order_item_product_uom_id
 msgid "UoM"
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: model:ir.ui.view,arch_db:purchase_request_to_rfq.purchase_order_line_search_sub
+#: model:ir.ui.view,arch_db:purchase_request_to_rfq.purchase_order_line_tree_sub
+msgid "Vendor"
 msgstr ""
 
 #. module: purchase_request_to_rfq
@@ -312,31 +404,37 @@ msgid "Wizard"
 msgstr ""
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/models/purchase_request.py:132
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:45
+#, python-format
+msgid "You cannot create a RFQ from a cancelled purchase request line."
+msgstr ""
+
+#. module: purchase_request_to_rfq
+#: code:addons/purchase_request_to_rfq/models/purchase_request.py:125
 #, python-format
 msgid "You cannot delete a record that refers to purchase lines!"
 msgstr ""
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:68
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:70
 #, python-format
 msgid "You have to enter a Picking Type."
 msgstr ""
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:72
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:74
 #, python-format
 msgid "You have to select lines from the same Picking Type."
 msgstr ""
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:60
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:62
 #, python-format
 msgid "You have to select lines from the same company."
 msgstr ""
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:83
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:85
 #, python-format
 msgid "You have to select lines from the same procurement location."
 msgstr ""

@@ -1,0 +1,29 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * product_supplier_code_purchase
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-02-23 15:52+0000\n"
+"PO-Revision-Date: 2018-02-23 15:52+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
+"Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: hr\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+
+#. module: product_supplier_code_purchase
+#: model:ir.model.fields,field_description:product_supplier_code_purchase.field_purchase_order_line_product_supplier_code
+msgid "Product Supplier Code"
+msgstr ""
+
+#. module: product_supplier_code_purchase
+#: model:ir.model,name:product_supplier_code_purchase.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Stavka naloga za nabavu"
