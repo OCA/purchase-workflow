@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-16 12:06+0000\n"
+"POT-Creation-Date: 2018-03-02 21:10+0000\n"
 "PO-Revision-Date: 2016-03-08 10:18+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Catalan (Spain) (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/ca_ES/)\n"
@@ -79,7 +79,7 @@ msgstr ""
 #: field:purchase.action_modal.datetime,create_uid:0
 #: field:purchase.cancel_reason,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Creat per"
 
 #. module: purchase_rfq_bid_workflow
 #: field:purchase.action_modal,create_date:0
@@ -87,7 +87,7 @@ msgstr ""
 #: field:purchase.action_modal.datetime,create_date:0
 #: field:purchase.cancel_reason,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Creat a"
 
 #. module: purchase_rfq_bid_workflow
 #: field:purchase.action_modal.datetime,datetime:0
@@ -100,7 +100,7 @@ msgstr ""
 #: field:purchase.action_modal.datetime,display_name:0
 #: field:purchase.cancel_reason,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Nom visible"
 
 #. module: purchase_rfq_bid_workflow
 #: code:addons/purchase_rfq_bid_workflow/model/purchase_order.py:281
@@ -134,7 +134,7 @@ msgstr ""
 #: field:purchase.action_modal.datetime,__last_update:0
 #: field:purchase.cancel_reason,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Darrera modificació en"
 
 #. module: purchase_rfq_bid_workflow
 #: field:purchase.action_modal,write_uid:0
@@ -142,7 +142,7 @@ msgstr ""
 #: field:purchase.action_modal.datetime,write_uid:0
 #: field:purchase.cancel_reason,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Darrera actualització per"
 
 #. module: purchase_rfq_bid_workflow
 #: field:purchase.action_modal,write_date:0
@@ -150,7 +150,7 @@ msgstr ""
 #: field:purchase.action_modal.datetime,write_date:0
 #: field:purchase.cancel_reason,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Darrera actualització el"
 
 #. module: purchase_rfq_bid_workflow
 #: model:purchase.cancel_reason,name:purchase_rfq_bid_workflow.purchase_cancel_reason_bid_latereply
@@ -258,7 +258,7 @@ msgstr ""
 #. module: purchase_rfq_bid_workflow
 #: field:purchase.cancel_reason,type:0 field:purchase.order,type:0
 msgid "Type"
-msgstr ""
+msgstr "Tipus"
 
 #. module: purchase_rfq_bid_workflow
 #: code:addons/purchase_rfq_bid_workflow/model/purchase_order.py:291

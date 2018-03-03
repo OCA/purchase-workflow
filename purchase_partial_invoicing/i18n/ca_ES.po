@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-16 12:06+0000\n"
+"POT-Creation-Date: 2018-03-02 21:09+0000\n"
 "PO-Revision-Date: 2016-03-08 10:17+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Catalan (Spain) (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/ca_ES/)\n"
@@ -47,21 +47,21 @@ msgstr ""
 #: field:purchase.order.line_cancel_quantity_line,create_uid:0
 #: field:purchase.order.line_invoice.line,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Creat per"
 
 #. module: purchase_partial_invoicing
 #: field:purchase.order.line_cancel_quantity,create_date:0
 #: field:purchase.order.line_cancel_quantity_line,create_date:0
 #: field:purchase.order.line_invoice.line,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Creat a"
 
 #. module: purchase_partial_invoicing
 #: field:purchase.order.line_cancel_quantity,display_name:0
 #: field:purchase.order.line_cancel_quantity_line,display_name:0
 #: field:purchase.order.line_invoice.line,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Nom visible"
 
 #. module: purchase_partial_invoicing
 #: view:purchase.order.line_cancel_quantity:purchase_partial_invoicing.view_purchase_line_cancel
@@ -100,27 +100,27 @@ msgstr ""
 #: field:purchase.order.line_cancel_quantity_line,__last_update:0
 #: field:purchase.order.line_invoice.line,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Darrera modificació en"
 
 #. module: purchase_partial_invoicing
 #: field:purchase.order.line_cancel_quantity,write_uid:0
 #: field:purchase.order.line_cancel_quantity_line,write_uid:0
 #: field:purchase.order.line_invoice.line,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Darrera actualització per"
 
 #. module: purchase_partial_invoicing
 #: field:purchase.order.line_cancel_quantity,write_date:0
 #: field:purchase.order.line_cancel_quantity_line,write_date:0
 #: field:purchase.order.line_invoice.line,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Darrera actualització el"
 
 #. module: purchase_partial_invoicing
 #: field:purchase.order.line_cancel_quantity,line_ids:0
 #: field:purchase.order.line_invoice,line_ids:0
 msgid "Lines"
-msgstr ""
+msgstr "Linies"
 
 #. module: purchase_partial_invoicing
 #: view:purchase.order.line:purchase_partial_invoicing.purchase_order_line_search
