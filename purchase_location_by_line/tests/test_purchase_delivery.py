@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # © 2016 Eficent Business and IT Consulting Services S.L.
 #   (<http://www.eficent.com>)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
@@ -64,7 +63,7 @@ class TestDeliverySingle(TransactionCase):
             "There must be 1 picking for the PO when confirmed")
 
         self.assertEquals(
-            self.po.picking_ids[0].min_date[:10], self.date_sooner,
+            self.po.picking_ids[0].scheduled_date[:10], self.date_sooner,
             "The picking must be planned at the expected date")
 
     def test_check_multiple_dates(self):
@@ -83,12 +82,13 @@ class TestDeliverySingle(TransactionCase):
             "There must be 2 pickings for the PO when confirmed. %s found"
             % len_pickings)
 
-        sorted_pickings = sorted(self.po.picking_ids, key=lambda x: x.min_date)
+        sorted_pickings = sorted(
+            self.po.picking_ids, key=lambda x: x.scheduled_date)
         self.assertEquals(
-            sorted_pickings[0].min_date[:10], self.date_sooner,
+            sorted_pickings[0].scheduled_date[:10], self.date_sooner,
             "The first picking must be planned at the soonest date")
         self.assertEquals(
-            sorted_pickings[1].min_date[:10], self.date_later,
+            sorted_pickings[1].scheduled_date[:10], self.date_later,
             "The second picking must be planned at the latest date")
 
         l2_picking = self.po.picking_ids.filtered(
@@ -142,12 +142,13 @@ class TestDeliverySingle(TransactionCase):
                                 'There must be 2 or more '
                                 'pickings for location Stock')
 
-        sorted_pickings = sorted(self.po.picking_ids, key=lambda x: x.min_date)
+        sorted_pickings = sorted(
+            self.po.picking_ids, key=lambda x: x.scheduled_date)
         self.assertEquals(
-            sorted_pickings[0].min_date[:10], self.date_sooner,
+            sorted_pickings[0].scheduled_date[:10], self.date_sooner,
             "The first picking must be planned at the soonest date")
         self.assertEquals(
-            sorted_pickings[2].min_date[:10], self.date_later,
+            sorted_pickings[2].scheduled_date[:10], self.date_later,
             "The second picking must be planned at the latest date")
 
     def test_check_multiple_locations_multiple_dates_02(self):
@@ -174,10 +175,11 @@ class TestDeliverySingle(TransactionCase):
                                 'There must be 2 or more '
                                 'pickings for the default location of the PO')
 
-        sorted_pickings = sorted(self.po.picking_ids, key=lambda x: x.min_date)
+        sorted_pickings = sorted(
+            self.po.picking_ids, key=lambda x: x.scheduled_date)
         self.assertEquals(
-            sorted_pickings[0].min_date[:10], self.date_sooner,
+            sorted_pickings[0].scheduled_date[:10], self.date_sooner,
             "The first picking must be planned at the soonest date")
         self.assertEquals(
-            sorted_pickings[2].min_date[:10], self.date_later,
+            sorted_pickings[2].scheduled_date[:10], self.date_later,
             "The second picking must be planned at the latest date")
