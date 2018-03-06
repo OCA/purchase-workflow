@@ -159,10 +159,14 @@
       </field>
     </record>
 
+<<<<<<< HEAD
     <!-- Analysis -->
 
 
         <record id="view_landed_cost_search" model="ir.ui.view">
+=======
+    <record id="view_landed_cost_search" model="ir.ui.view">
+>>>>>>> [FIX] XML Views
         <field name="name">landed.cost.position.search</field>
         <field name="model">landed.cost.position</field>
         <field name="arch" type="xml">
