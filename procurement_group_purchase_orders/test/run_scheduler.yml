@@ -1,0 +1,58 @@
+-
+  In order to test procurement group purchase orders
+  I have to ensure that I can create multiple procurement orders for the
+  same supplier, and at the time of running the scheduler, the application
+  will create only one RFQ.
+-
+  I create a first procurement order.
+-
+  !record {model: procurement.order, id: procurement_order_1}:
+    location_id: stock.stock_location_stock
+    name: Test scheduler for RFQ
+    procure_method: make_to_order
+    product_id: product.product_product_45
+    product_qty: 15.0
+-
+  I confirm on first procurement order.
+-
+  !workflow {model: procurement.order, action: button_confirm, ref: procurement_order_1}
+-
+  I create a second procurement order.
+-
+  !record {model: procurement.order, id: procurement_order_2}:
+    location_id: stock.stock_location_stock
+    name: Test scheduler for RFQ
+    procure_method: make_to_order
+    product_id: product.product_product_45
+    product_qty: 15.0
+-
+  I confirm on second procurement order.
+-
+  !workflow {model: procurement.order, action: button_confirm, ref:
+  procurement_order_2}
+-
+  I run the scheduler.
+-
+  !python {model: procurement.order}: |
+    self.run_scheduler(cr, uid)
+-
+  I check Generated RFQ. I expect only one
+-
+  !python {model: procurement.order}: |
+    procurement_1 = self.browse(cr, uid, ref('procurement_order_1'))
+    procurement_2 = self.browse(cr, uid, ref('procurement_order_1'))
+    assert procurement_1.purchase_id, 'RFQ should be generated!'
+    assert procurement_2.purchase_id, 'RFQ should be generated!'
+    assert procurement_1.purchase_id == procurement_2.purchase_id, 'RFQ should be the same for both procurements!'
+-
+  I delete the line for procurement 1 from the purchase order and check that the move and the procurement are cancelled
+-
+  !python {model: procurement.order}: |
+    procurement_1 = self.browse(cr, uid, ref('procurement_order_1'))
+    procurement_2 = self.browse(cr, uid, ref('procurement_order_2'))
+    move_1 = procurement_1.purchase_id.order_line[0].move_dest_id
+    procurement_1.purchase_id.order_line[0].unlink()
+    assert move_1.state == 'cancel', 'Move should be cancelled'
+    procurement_1.refresh()
+    assert procurement_1.state == 'cancel', 'Procurement should be cancelled'
+    assert procurement_2.state != 'cancel', 'Procurement should not be cancelled'
