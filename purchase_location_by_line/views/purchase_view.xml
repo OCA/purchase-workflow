@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field name="name">purchase.order.form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <field name='date_planned' position="after">
+                <field name="location_dest_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="purchase_order_line_form2" model="ir.ui.view">
+        <field name="name">purchase.order.line.form</field>
+        <field name="model">purchase.order.line</field>
+        <field name="inherit_id" ref="purchase.purchase_order_line_form2"/>
+        <field name="arch" type="xml">
+            <field name='date_planned' position="after">
+                <field name="location_dest_id"/>
+            </field>
+        </field>
+    </record>    
+
+    <record id="purchase_order_line_tree" model="ir.ui.view">
+        <field name="name">purchase.order.line.tree</field>
+        <field name="model">purchase.order.line</field>
+        <field name="inherit_id" ref="purchase.purchase_order_line_tree"/>
+        <field name="arch" type="xml">
+            <field name='date_planned' position="after">
+                <field name="location_dest_id"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
