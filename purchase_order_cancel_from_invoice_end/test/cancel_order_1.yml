@@ -1,0 +1,60 @@
+-
+  In order to test the cancel flow when invoice control is set to Based on incoming shipment, I start it from canceling confirmed purchase order after cancelling the incoming shipment
+-
+  I confirm the purchase order.
+-
+  !workflow {model: purchase.order, action: purchase_confirm, ref: purchase_order_c_2}
+-
+  I cancel  receptions related to this order if order shipped.
+-
+  !python {model: purchase.order}: |
+    order = self.browse(cr, uid, ref("purchase_order_c_2"))
+    self.pool.get('stock.picking').action_cancel(cr, uid, [picking.id for picking in  order.picking_ids])
+-
+  I check order status in "Except Picking".
+-
+  !python {model: purchase.order}: |
+    order = self.browse(cr, uid, ref("purchase_order_c_2"))
+    assert order.state == "except_picking", "order should be in Except Picking state after cancel shipment"
+-
+  I manually correct the purchase order.
+-
+  !workflow {model: purchase.order, action: picking_ok, ref: purchase_order_c_2}
+-
+  I check order status in "Purchase Order".
+-
+  !python {model: purchase.order}: |
+    order = self.browse(cr, uid, ref("purchase_order_c_2"))
+    assert order.state == "approved", "order should be in Purchase Order state after cancel shipment"
+-
+  I check order status of purchase order lines in "Confirmed".
+-
+  !python {model: purchase.order}: |
+    purchase_order = self.browse(cr, uid, ref("purchase_order_c_2"))
+    for purchase_line in purchase_order.order_line:
+      assert purchase_line.state == "confirmed", "order should be in Confirmed state"
+-
+  Now I am able to cancel purchase order.
+-
+  !python {model: purchase.order}: |
+    self.action_cancel(cr, uid, [ref("purchase_order_c_2")])
+-
+  I check that order is cancelled.
+-
+  !assert {model: purchase.order, id: purchase_order_c_2}:
+    - state == 'cancel'
+-
+  Now again set cancelled order to draft.
+-
+  !python {model: purchase.order}: |
+    self.action_cancel_draft(cr, uid, [ref("purchase_order_c_2")])
+-
+  Now I again to cancel draft order.
+-
+  !python {model: purchase.order}: |
+    self.action_cancel(cr, uid, [ref("purchase_order_c_2")])
+-
+  I check that order is cancelled.
+-
+  !assert {model: purchase.order, id: purchase_order_c_2}:
+    - state == 'cancel'
