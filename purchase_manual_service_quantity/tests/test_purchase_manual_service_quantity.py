@@ -48,14 +48,6 @@ class TestPurchaseManualServiceQuantity(TransactionCase):
         self.purchase_line = self.cls_purchase_order_line.create(
             purchase_line_vals)
 
-    def test_1(self):
-        self.common_test()
-        self.assertAlmostEqual(self.purchase_line.qty_received, 0, places=2)
-        self.purchase.button_confirm()
-        with self.assertRaises(UserError), self.cr.savepoint():
-            self.purchase_line.qty_received = 1.0
-        self.assertAlmostEqual(self.purchase_line.qty_received, 1, places=2)
-
     def test_2(self):
         self.product01.purchase_manual_received_qty = True
         self.common_test()
