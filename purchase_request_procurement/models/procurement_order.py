@@ -18,13 +18,15 @@ class ProcurementOrder(models.Model):
     @api.multi
     def _prepare_purchase_request_line(self):
         self.ensure_one()
-
+        product = self.product_id
+        procurement_uom_po_qty = self.product_uom._compute_quantity(
+            self.product_qty, product.uom_po_id)
         return {
-            'product_id': self.product_id.id,
-            'name': self.product_id.name,
+            'product_id': product.id,
+            'name': product.name,
             'date_required': self.date_planned,
-            'product_uom_id': self.product_uom.id,
-            'product_qty': self.product_qty,
+            'product_uom_id': product.uom_po_id.id,
+            'product_qty': procurement_uom_po_qty,
             'request_id': self.request_id.id,
             'procurement_id': self.id
         }

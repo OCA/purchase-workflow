@@ -13,19 +13,33 @@ class PurchaseOrder(models.Model):
 
     @api.depends('order_line.price_total')
     def _amount_all(self):
+        """In the case that taxes rounding is set to globally, Odoo requires
+        again the line price unit, and currently ORM mixes values, so the only
+        way to get a proper value is to overwrite that part, losing
+        inheritability.
+        """
         orders2recalculate = self.filtered(lambda x: (
             x.company_id.tax_calculation_rounding_method ==
             'round_globally' and any(x.mapped('order_line.discount'))
         ))
+        super(PurchaseOrder, self)._amount_all()
         for order in orders2recalculate:
-            vals = {}
-            for line in order.order_line.filtered('discount'):
-                vals[line] = line.price_unit
-                line.price_unit = line._get_discounted_price_unit()
-            super(PurchaseOrder, order)._amount_all()
-            for line in vals.keys():
-                line.discount = vals[line]
-        super(PurchaseOrder, self - orders2recalculate)._amount_all()
+            amount_tax = 0
+            for line in order.order_line:
+                taxes = line.taxes_id.compute_all(
+                    line._get_discounted_price_unit(),
+                    line.order_id.currency_id,
+                    line.product_qty,
+                    product=line.product_id,
+                    partner=line.order_id.partner_id,
+                )
+                amount_tax += sum(
+                    t.get('amount', 0.0) for t in taxes.get('taxes', [])
+                )
+            order.update({
+                'amount_tax': order.currency_id.round(amount_tax),
+                'amount_total': order.amount_untaxed + amount_tax,
+            })
 
 
 class PurchaseOrderLine(models.Model):
@@ -34,29 +48,17 @@ class PurchaseOrderLine(models.Model):
     @api.depends('discount')
     def _compute_amount(self):
         for line in self:
+            price_unit = False
             # This is always executed for allowing other modules to use this
             # with different conditions than discount != 0
-            price_unit = line._get_discounted_price_unit()
-            context_changed = False
-            if price_unit != line.price_unit:
-                prec = line.order_id.currency_id.decimal_places
-                company = line.order_id.company_id
-                if company.tax_calculation_rounding_method == 'round_globally':
-                    prec += 5
-                base = round(price_unit * line.product_qty, prec)
-                obj = line.with_context(base_values=(base, base, base))
-                context_changed = True
-            else:
-                obj = line
-            super(PurchaseOrderLine, obj)._compute_amount()
-            if context_changed:
-                # We need to update results back, as each recordset has a
-                # different environment and thus the values are not considered
-                line.update({
-                    'price_tax': obj.price_tax,
-                    'price_total': obj.price_total,
-                    'price_subtotal': obj.price_subtotal,
-                })
+            price = line._get_discounted_price_unit()
+            if price != line.price_unit:
+                # Only change value if it's different
+                price_unit = line.price_unit
+                line.price_unit = price
+            super(PurchaseOrderLine, line)._compute_amount()
+            if price_unit:
+                line.price_unit = price_unit
 
     discount = fields.Float(
         string='Discount (%)', digits=dp.get_precision('Discount'),
@@ -83,18 +85,15 @@ class PurchaseOrderLine(models.Model):
     def _get_stock_move_price_unit(self):
         """Get correct price with discount replacing current price_unit
         value before calling super and restoring it later for assuring
-        maximum inheritability. We have to also switch temporarily the order
-        state for avoiding an infinite recursion.
+        maximum inheritability.
         """
         price_unit = False
         price = self._get_discounted_price_unit()
         if price != self.price_unit:
             # Only change value if it's different
-            self.order_id.state = 'draft'
             price_unit = self.price_unit
             self.price_unit = price
         price = super(PurchaseOrderLine, self)._get_stock_move_price_unit()
         if price_unit:
             self.price_unit = price_unit
-            self.order_id.state = 'purchase'
         return price

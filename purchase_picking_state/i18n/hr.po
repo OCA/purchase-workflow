@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-03 03:41+0000\n"
-"PO-Revision-Date: 2017-03-03 03:41+0000\n"
+"POT-Creation-Date: 2018-03-03 03:48+0000\n"
+"PO-Revision-Date: 2018-03-03 03:48+0000\n"
 "Last-Translator: Bole <bole@dajmi5.com>, 2017\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -21,12 +21,12 @@ msgstr ""
 #. module: purchase_picking_state
 #: model:ir.model.fields,help:purchase_picking_state.field_purchase_order_picking_state
 msgid "Overall status based on all pickings"
-msgstr ""
+msgstr "Sveopći status baziran na svim otpremama"
 
 #. module: purchase_picking_state
 #: model:ir.model.fields,field_description:purchase_picking_state.field_purchase_order_picking_state
 msgid "Picking status"
-msgstr ""
+msgstr "Status otpreme"
 
 #. module: purchase_picking_state
 #: model:ir.model,name:purchase_picking_state.model_purchase_order

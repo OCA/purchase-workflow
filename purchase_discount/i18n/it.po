@@ -3,14 +3,14 @@
 # * purchase_discount
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2016
+# OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 9.0c\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-25 03:39+0000\n"
-"PO-Revision-Date: 2016-11-25 03:39+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"POT-Creation-Date: 2017-11-24 07:53+0000\n"
+"PO-Revision-Date: 2017-11-24 07:53+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,6 +25,7 @@ msgstr ""
 
 #. module: purchase_discount
 #: model:ir.model.fields,field_description:purchase_discount.field_purchase_order_line_discount
+#: model:ir.model.fields,field_description:purchase_discount.field_purchase_report_discount
 msgid "Discount (%)"
 msgstr ""
 
@@ -34,11 +35,21 @@ msgid "Discount must be lower than 100%."
 msgstr ""
 
 #. module: purchase_discount
-#: model:ir.model,name:purchase_discount.model_account_invoice_line
-msgid "Invoice Line"
-msgstr "Riga fattura"
+#: model:ir.model,name:purchase_discount.model_account_invoice
+msgid "Invoice"
+msgstr ""
+
+#. module: purchase_discount
+#: model:ir.model,name:purchase_discount.model_purchase_order
+msgid "Purchase Order"
+msgstr "Ordine Acquisto"
 
 #. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_purchase_order_line
 msgid "Purchase Order Line"
 msgstr "Riga Ordine d'Acquisto"
+
+#. module: purchase_discount
+#: model:ir.model,name:purchase_discount.model_purchase_report
+msgid "Purchases Orders"
+msgstr ""

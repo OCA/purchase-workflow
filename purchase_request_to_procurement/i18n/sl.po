@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-18 07:33+0000\n"
-"PO-Revision-Date: 2017-05-18 07:33+0000\n"
+"POT-Creation-Date: 2017-11-24 07:53+0000\n"
+"PO-Revision-Date: 2017-11-24 07:53+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -61,7 +61,7 @@ msgstr "Zadnjič spremenjeno"
 #. module: purchase_request_to_procurement
 #: model:ir.model.fields,field_description:purchase_request_to_procurement.field_purchase_request_line_make_procurement_order_write_uid
 msgid "Last Updated by"
-msgstr "Zadnjič posodobil"
+msgstr "Zadnji posodobil"
 
 #. module: purchase_request_to_procurement
 #: model:ir.model.fields,field_description:purchase_request_to_procurement.field_purchase_request_line_make_procurement_order_write_date
@@ -92,12 +92,12 @@ msgstr ""
 #. module: purchase_request_to_procurement
 #: model:ir.model,name:purchase_request_to_procurement.model_purchase_request
 msgid "Purchase Request"
-msgstr "Zahteva po nabavi"
+msgstr "Nabavni zahtevek"
 
 #. module: purchase_request_to_procurement
 #: model:ir.model,name:purchase_request_to_procurement.model_purchase_request_line
 msgid "Purchase Request Line"
-msgstr "Postavka zahteve po nabavi"
+msgstr "Postavka nabavnega zahtevka"
 
 #. module: purchase_request_to_procurement
 #: model:ir.model,name:purchase_request_to_procurement.model_purchase_request_line_make_procurement_order

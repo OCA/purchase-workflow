@@ -32,10 +32,13 @@ class TestPurchaseRequestToProcurement(TransactionCase):
             p_order.name,
             purchase_request.name,
             'Should have the same name')
-        self.assertFalse(
-            p_order.location_id, 'Should not have location')
-        self.assertFalse(
-            p_order.warehouse_id, 'Should not have warehouse')
+        self.assertTrue(
+            p_order.location_id, 'Procurements must be created with a '
+                                 'location always. Even if not explicitly '
+                                 'defined.')
+        self.assertTrue(
+            p_order.warehouse_id, 'Procurements must be created with a '
+                                  'warehouse always.')
         vals = {
             'location_id': self.env['stock.location'].search([], limit=1).id,
             'warehouse_id': self.env['stock.warehouse'].search([], limit=1).id,
@@ -83,3 +86,14 @@ class TestPurchaseRequestToProcurement(TransactionCase):
             line.procurement_id.id,
             procurement_ids[0],
             'Should be the same procurement order id')
+
+    def test_view_methods(self):
+        """Tests the methods to handle views."""
+        vals = {
+            'picking_type_id': self.env.ref('stock.picking_type_in').id,
+            'requested_by': SUPERUSER_ID,
+        }
+        purchase_request = self.purchase_request.create(vals)
+        purchase_request.onchange_picking_type_id()
+        self.assertTrue(purchase_request.warehouse_id)
+        self.assertTrue(purchase_request.location_id)

@@ -21,19 +21,23 @@ addon | version | summary
 [procurement_purchase_no_grouping](procurement_purchase_no_grouping/) | 10.0.1.0.0 | Procurement Purchase No Grouping
 [product_by_supplier](product_by_supplier/) | 10.0.1.0.0 | Show products grouped by suppliers
 [purchase_allowed_product](purchase_allowed_product/) | 10.0.1.0.0 | This module allows to select only products that can be supplied by the supplier
+[purchase_cancel_reason](purchase_cancel_reason/) | 10.0.1.0.0 | Purchase Cancel Reason
 [purchase_commercial_partner](purchase_commercial_partner/) | 10.0.1.0.0 | Add stored related field 'Commercial Supplier' on POs
 [purchase_delivery_split_date](purchase_delivery_split_date/) | 10.0.1.0.0 | Allows Purchase Order you confirm to generate one Incoming Shipment for each expected date indicated in the Purchase Order Lines
-[purchase_discount](purchase_discount/) | 10.0.1.0.0 | Purchase order lines with discounts
+[purchase_discount](purchase_discount/) | 10.0.1.0.3 | Purchase order lines with discounts
 [purchase_fiscal_position_update](purchase_fiscal_position_update/) | 10.0.1.0.0 | Changing the fiscal position of a purchase order will auto-update purchase order lines
 [purchase_fop_shipping](purchase_fop_shipping/) | 10.0.1.0.0 | Purchase Free-Of-Paiment shipping
+[purchase_location_by_line](purchase_location_by_line/) | 10.0.1.0.0 | Allows to define a specific destination location on each PO line
+[purchase_minimum_amount](purchase_minimum_amount/) | 10.0.1.0.0 | Purchase Minimum Amount
 [purchase_open_qty](purchase_open_qty/) | 10.0.1.0.0 | Allows to identify the purchase orders that have quantities pending to invoice or to receive.
 [purchase_order_approval_block](purchase_order_approval_block/) | 10.0.1.0.0 | Purchase Order Approval Block
+[purchase_order_revision](purchase_order_revision/) | 10.0.1.0.0 | Purchase order revisions
 [purchase_picking_state](purchase_picking_state/) | 10.0.1.0.0 | Add the status of all the incoming picking in the purchase order
-[purchase_request](purchase_request/) | 10.0.1.0.1 | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
+[purchase_request](purchase_request/) | 10.0.1.0.2 | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
 [purchase_request_procurement](purchase_request_procurement/) | 10.0.1.0.1 | Purchase Request Procurement
 [purchase_request_to_procurement](purchase_request_to_procurement/) | 10.0.1.0.0 | This module introduces the possiblity to create procurement order from purchase request
 [purchase_request_to_rfq](purchase_request_to_rfq/) | 10.0.1.0.0 | Purchase Request to RFQ
-[purchase_triple_discount](purchase_triple_discount/) | 10.0.1.0.0 | Manage triple discount on purchase order lines
+[purchase_triple_discount](purchase_triple_discount/) | 10.0.1.1.0 | Manage triple discount on purchase order lines
 [subcontracted_service](subcontracted_service/) | 10.0.1.0.0 | Subcontracted service
 
 
@@ -55,7 +59,6 @@ addon | version | summary
 [purchase_multi_picking](purchase_multi_picking/) | 0.2 (unported) | Multi Pickings from Purchase Orders
 [purchase_order_force_number](purchase_order_force_number/) | 0.1 (unported) | Force purchase orders numeration
 [purchase_order_reorder_lines](purchase_order_reorder_lines/) | 8.0.1.0.1 (unported) | Purchase order lines with sequence number
-[purchase_order_revision](purchase_order_revision/) | 8.0.1.0.0 (unported) | Purchase order revisions
 [purchase_order_type](purchase_order_type/) | 8.0.1.0.0 (unported) | Purchase Order Type
 [purchase_origin_address](purchase_origin_address/) | 8.0.1.0.0 (unported) | Deprecated: use purchase_transport_multi_address from OCA/stock-logistics-transport
 [purchase_partial_invoicing](purchase_partial_invoicing/) | 8.0.0.1.0 (unported) | Purchase partial invoicing
