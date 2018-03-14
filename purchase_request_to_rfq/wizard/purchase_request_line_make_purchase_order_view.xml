@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 Eficent Business and IT Consulting Services S.L.
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
+<odoo>
+    <data>
+        <record id="view_purchase_request_line_make_purchase_order" model="ir.ui.view">
+            <field name="name">Purchase Request Line Make Purchase Order</field>
+            <field name="model">purchase.request.line.make.purchase.order</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                 <form string="Create RFQ">
+                     <separator string="Existing RFQ to update:"/>
+                     <newline/>
+                     <group>
+                        <field name="purchase_order_id"/>
+                     </group>
+                     <newline/>
+                     <separator
+                             string="New PO details:"/>
+                     <newline/>
+                     <group>
+                         <field name="supplier_id"/>
+                     </group>
+                     <newline/>
+                     <group>
+                         <field name="item_ids" nolabel="1" colspan="2">
+                              <tree string="Details" create="false" editable="bottom">
+                                  <field name="line_id"
+                                       options="{'no_open': true}"
+                                       invisible="1"/>
+                                  <field name="request_id"/>
+                                  <field name="product_id"/>
+                                  <field name="name"/>
+                                  <field name="product_qty"/>
+                                  <field name="product_uom_id"
+                                         groups="product.group_uom"/>
+                                  <field name="keep_description"/>
+                              </tree>
+                         </field>
+                     </group>
+                     <newline/>
+                     <footer>
+                         <button name="make_purchase_order"
+                                 string="Create RFQ" type="object"
+                                 class="oe_highlight"/>
+                         <button special="cancel" string="Cancel" class="oe_link"/>
+                     </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_purchase_request_line_make_purchase_order" model="ir.actions.act_window">
+            <field name="name">Create RFQ</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.request.line.make.purchase.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_purchase_request_line_make_purchase_order"/>
+            <field name="target">new</field>
+        </record>
+
+        <record model="ir.values" id="purchase_request_line_make_purchase_order">
+            <field name="model_id" ref="model_purchase_request_line" />
+            <field name="name">Create RFQ</field>
+            <field name="key2">client_action_multi</field>
+            <field name="value" eval="'ir.actions.act_window,' + str(ref('action_purchase_request_line_make_purchase_order'))" />
+            <field name="key">action</field>
+            <field name="model">purchase.request.line</field>
+        </record>
+   
+    </data>
+</odoo>
+

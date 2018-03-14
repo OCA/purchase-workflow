@@ -1,0 +1,184 @@
+<?xml version="1.0"?>
+<!-- Copyright 2016 Eficent Business and IT Consulting Services S.L.
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_purchase_request_form">
+            <field name="name">purchase.request.form</field>
+            <field name="model">purchase.request</field>
+            <field name="inherit_id"
+                   ref="purchase_request.view_purchase_request_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='line_ids']/tree"
+                       position="inside">
+                    <field name="purchased_qty"/>
+                    <field name="purchase_state"/>
+                </xpath>
+                <xpath expr="//field[@name='line_ids']/form//notebook"
+                       position="inside">
+                    <page name="purchase_lines"
+                          string="Purchase Order Lines">
+                        <group>
+                            <field name="purchased_qty"/>
+                            <field name="purchase_state"/>
+                        </group>
+                        <newline/>
+                        <group>
+                            <field name="purchase_lines" nolabel="1"/>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="purchase_request_line_tree" model="ir.ui.view">
+            <field name="name">purchase.request.line.tree</field>
+            <field name="model">purchase.request.line</field>
+            <field name="inherit_id"
+                   ref="purchase_request.purchase_request_line_tree"/>
+            <field name="arch" type="xml">
+                <field name="date_required" position="after">
+                    <field name="purchased_qty"/>
+                    <field name="purchase_state"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="purchase_request_line_form" model="ir.ui.view">
+            <field name="name">purchase.request.line.form</field>
+            <field name="model">purchase.request.line</field>
+            <field name="inherit_id"
+                   ref="purchase_request.purchase_request_line_form"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page name="purchase_lines"
+                          string="Purchase Order Lines">
+                        <group>
+                            <field name="purchased_qty"/>
+                            <field name="purchase_state"/>
+                        </group>
+                        <field name="purchase_lines" mode="tree"
+                               attrs="{'readonly': [('purchase_state', 'in', ('cancel'))]}"
+                               domain="[('product_id', '=', product_id)]"
+                               context="{'form_view_ref' : 'purchase_request_to_rfq.purchase_order_line_form2_sub',
+                                         'tree_view_ref' : 'purchase_request_to_rfq.purchase_order_line_tree_sub',
+                                         'search_view_ref' : 'purchase_request_to_rfq.purchase_order_line_search_sub'}"/>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+        <record id="purchase_order_line_form2_sub" model="ir.ui.view">
+            <field name="name">purchase.order.line.form2</field>
+            <field name="model">purchase.order.line</field>
+            <field name="arch" type="xml">
+                <form string="Purchase Order Lines" create="false" readonly="1">
+                    <sheet>
+                        <label for="order_id" readonly="1" class="oe_edit_only"/>
+                        <h1>
+                            <field name="order_id" readonly="1" class="oe_inline"/>
+                            <label string="," readonly="1" attrs="{'invisible':[('date_order','=',False)]}"/>
+                            <field name="date_order" readonly="1" class="oe_inline"/>
+                        </h1>
+                        <label for="partner_id" readonly="1" class="oe_edit_only"/>
+                        <h2><field name="partner_id" readonly="1"/></h2>
+                        <group>
+                            <group>
+                                <field name="product_id" readonly="1"/>
+                                <label for="product_qty" readonly="1"/>
+                                <div>
+                                    <field name="product_qty" readonly="1" class="oe_inline"/>
+                                    <field name="product_uom" readonly="1" groups="product.group_uom" class="oe_inline"/>
+                                </div>
+                                <field name="price_unit" widget="monetary" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="taxes_id" widget="many2many_tags"
+                                    domain="[('type_tax_use', '=', 'purchase')]" readonly="1"/>
+                                <field name="date_planned" widget="date" readonly="1"/>
+                                <field name="company_id" readonly="1" groups="base.group_multi_company" options="{'no_create': True}"/>
+                                <field name="account_analytic_id" readonly="1" colspan="4" groups="purchase.group_analytic_accounting"/>
+                            </group>
+                        </group>
+                        <field name="name" readonly="1"/>
+                        <separator string="Manual Invoices"/>
+                        <field name="invoice_lines" readonly="1"/>
+                        <separator string="Stock Moves"/>
+                        <field name="move_ids" readonly="1"/>
+                        <separator string="Purchase Request Lines"/>
+                        <field name="purchase_request_lines" readonly="1"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="purchase_order_line_tree_sub" model="ir.ui.view">
+            <field name="name">purchase.order.line.tree</field>
+            <field name="model">purchase.order.line</field>
+            <field name="arch" type="xml">
+                <tree string="Purchase Order Lines" create="true">
+                    <field name="order_id"/>
+                    <field name="name"/>
+                    <field name="partner_id" string="Vendor"/>
+                    <field name="product_id"/>
+                    <field name="price_unit"/>
+                    <field name="product_qty"/>
+                    <field name="product_uom" groups="product.group_uom"/>
+                    <field name="price_subtotal" widget="monetary"/>
+                    <field name="date_planned"  widget="date"/>
+                    <field name="purchase_request_lines" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="purchase_order_line_search_sub" model="ir.ui.view">
+            <field name="name">purchase.order.line.search</field>
+            <field name="model">purchase.order.line</field>
+            <field name="arch" type="xml">
+                <search string="Search Purchase Order Line" create="false">
+                    <field name="order_id"/>
+                    <field name="product_id"/>
+                    <field name="partner_id" string="Vendor" filter_domain="[('partner_id', 'child_of', self)]"/>
+                    <filter name="hide_cancelled" string="Hide cancelled lines" domain="[('state', '!=', 'cancel')]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Order Reference" domain="[]" context="{'group_by': 'order_id'}"/>
+                        <filter name="groupby_supplier" string="Vendor" domain="[]" context="{'group_by': 'partner_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="purchase_request_line_search" model="ir.ui.view">
+            <field name="name">purchase.request.line.search</field>
+            <field name="model">purchase.request.line</field>
+            <field name="inherit_id" ref="purchase_request.purchase_request_line_search"/>
+            <field name="arch" type="xml">
+                    <field name="date_required" position="after">
+                        <filter name="purchase_state_none"
+                                string="Purchasing not started"
+                                domain="[('purchase_state','=', False)]"
+                                help="No RFQ or Purchase has been created"/>
+                        <filter name="purchase_state_draft"
+                                string="Requested for Quotation"
+                                domain="[('purchase_state','=','draft')]"
+                                help="At least a Draft PO has been created"/>
+                        <filter name="purchase_state_confirmed"
+                                string="Purchase Confirmed"
+                                domain="[('purchase_state','=','confirmed')]"
+                                help="At least a PO has been confirmed"/>
+                        <filter name="purchase_state_done"
+                                string="Purchase Done"
+                                domain="[('purchase_state','=','done')]"
+                                help="At least a PO has been completed"/>
+                    </field>
+                    <group position="inside">
+                        <filter string="Purchase Status"
+                                domain="[]" context="{'group_by':'purchase_state'}"/>
+                        <filter string="Request"
+                                domain="[]" context="{'group_by':'request_id'}"/>
+                    </group>
+            </field>
+        </record>
+
+    </data>
+</odoo>

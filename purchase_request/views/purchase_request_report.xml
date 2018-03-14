@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 Eficent Business and IT Consulting Services S.L.
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
+<odoo>
+
+        <report 
+            string="Purchase Request"
+            id="action_report_purchase_requests"
+            model="purchase.request"
+            report_type="qweb-pdf"
+            name="purchase_request.report_purchaserequests"
+            file="purchase_request.report_purchaserequests"
+         />
+
+</odoo>

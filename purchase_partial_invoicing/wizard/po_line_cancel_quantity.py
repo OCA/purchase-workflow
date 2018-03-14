@@ -18,7 +18,7 @@
 #
 ##############################################################################
 
-from openerp import models, fields, api, exceptions, _
+from openerp import models, fields, api, exceptions, _, workflow
 import openerp.addons.decimal_precision as dp
 
 
@@ -61,6 +61,8 @@ class PurchaseLineCancelQuantity(models.TransientModel):
                     _("""Quantity to cancel is greater
                     than quantity already cancelled"""))
             line.po_line_id.cancelled_qty += line.cancelled_qty
+            workflow.trg_write(self._uid, 'purchase.order',
+                               line.po_line_id.order_id.id, self._cr)
 
 
 class PurchaseLineCancelQuantityLine(models.TransientModel):

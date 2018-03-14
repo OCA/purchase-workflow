@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2010-2013 Elico Corp. <lin.yu@elico-corp.com>
+     Copyright 2017 Eficent Business and IT Consulting Services S.L.
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="product_template_form_view" model="ir.ui.view">
+        <field name="name">product.template.common.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id"
+               ref="purchase.view_product_supplier_inherit"/>
+        <field name="arch" type="xml">
+            <field name="seller_ids" position="attributes">
+                <attribute name="context">{'from_product_form':True}</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_product_supplierinfo_search" model="ir.ui.view">
+        <field name="name">product.supplierinfo.search</field>
+        <field name="model">product.supplierinfo</field>
+        <field name="arch" type="xml">
+            <search string="Product by Suppliers">
+                <field name="name" string="Supplier"/>
+                <field name="product_code" string="Supplier Product Code"/>
+                <field name="product_name" string="Supplier Product Name"/>
+                <field name="product_tmpl_id" />
+                <group expand='1' string='Group by...'>
+                   <filter string='Product Code' name='supplier_code' icon="terp-stock_symbol-selection"
+                        domain="[]" context="{'group_by' : 'product_code'}" />
+                   <filter string='Product' name='product' icon="terp-stock_symbol-selection" domain="[]"
+                        context="{'group_by' : 'product_tmpl_id'}" />
+                   <filter string='Supplier' name='supplier' icon="terp-stock_symbol-selection" domain="[]"
+                        context="{'group_by' : 'name'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_product_supplierinfo_tree1" model="ir.ui.view">
+        <field name="name">product.supplierinfo.tree1</field>
+        <field name="model">product.supplierinfo</field>
+        <field name="priority">90</field>
+        <field name="arch" type="xml">
+            <tree string="Supplier Information" editable="top">
+                <field name="sequence" widget="handle"/>
+                <field name="product_code" string="Supplier Product Code"/>
+                <field name="product_name" string="Supplier Product Name"/>
+                <field name="product_tmpl_id" string="Product"/>
+                <field name="name"/>
+                <field name="delay"/>
+                <field name="min_qty"/>
+                <field name="company_id" groups="base.group_multi_company" widget="selection"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_product_supplierinfo_form1" model="ir.ui.view">
+        <field name="name">product.supplierinfo.form1</field>
+        <field name="model">product.supplierinfo</field>
+        <field name="inherit_id" ref="product.product_supplierinfo_form_view"/>
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_name']" position="before">
+                <field name="product_tmpl_id" string="Product"
+                invisible="context.get('from_product_form')"
+                required="not context.get('from_product_form')"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_product_supplier_info" model="ir.actions.act_window">
+        <field name="name">Products by Suppliers</field>
+        <field name="res_model">product.supplierinfo</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_product_supplierinfo_tree1"/>
+        <field name="search_view_id" ref="view_product_supplierinfo_search"/>
+        <field name="context">{'search_default_supplier':1,'group_by':[]}</field>
+    </record>
+
+    <menuitem
+        id="menu_product_supplier_info"
+        name="Product by Suppliers"
+        sequence="25"
+        action="action_product_supplier_info"
+        parent="purchase.menu_procurement_management"/>
+
+</odoo>

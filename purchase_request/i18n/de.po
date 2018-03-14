@@ -1,0 +1,469 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * purchase_request
+# 
+# Translators:
+# Niki Waibel, 2016
+# OCA Transbot <transbot@odoo-community.org>, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: purchase-workflow (10.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-11-17 03:38+0000\n"
+"PO-Revision-Date: 2016-11-01 19:20+0000\n"
+"Last-Translator: Niki Waibel\n"
+"Language-Team: German (http://www.transifex.com/oca/OCA-purchase-workflow-10-0/language/de/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: de\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.report_purchaserequests
+msgid "<strong>Analytic Account</strong>"
+msgstr "<strong>Analytisches Konto</strong>"
+
+#. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.report_purchaserequests
+msgid "<strong>Assigned to:</strong><br/>"
+msgstr "<strong>Zuwiesen an:</strong><br/>"
+
+#. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.report_purchaserequests
+msgid "<strong>Creation Date:</strong><br/>"
+msgstr "<strong>Erstellungsdatum:</strong><br/>"
+
+#. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.report_purchaserequests
+msgid "<strong>Description:</strong><br/>"
+msgstr "<strong>Beschreibung:</strong><br/>"
+
+#. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.report_purchaserequests
+msgid "<strong>Description</strong>"
+msgstr "<strong>Beschreibung</strong>"
+
+#. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.report_purchaserequests
+msgid "<strong>Picking Type:</strong><br/>"
+msgstr "<strong>Abholart:</strong><br/>"
+
+#. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.report_purchaserequests
+msgid "<strong>Product UoM</strong>"
+msgstr "<strong>Produkt Maßeinheiten</strong>"
+
+#. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.report_purchaserequests
+msgid "<strong>Qty</strong>"
+msgstr "<strong>Stk</strong>"
+
+#. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.report_purchaserequests
+msgid "<strong>Request Reference:</strong><br/>"
+msgstr "<strong>Anfragereferenz:</strong><br/>"
+
+#. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.report_purchaserequests
+msgid "<strong>Requested Date</strong>"
+msgstr "<strong>Anfragedatum</strong>"
+
+#. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.report_purchaserequests
+msgid "<strong>Requested by:</strong><br/>"
+msgstr "<strong>Angefragt von:</strong><br/>"
+
+#. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.report_purchaserequests
+msgid "<strong>Source:</strong><br/>"
+msgstr "<strong>Herkunft:</strong><br/>"
+
+#. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.report_purchaserequests
+msgid "<strong>Specifications</strong>"
+msgstr "<strong>Spezifikationen</strong>"
+
+#. module: purchase_request
+#: model:ir.actions.act_window,help:purchase_request.purchase_request_form_action
+msgid ""
+"A purchase request is an instruction to Purchasing to procure\n"
+"                a certain quantity of materials services, so that they are\n"
+"                available at a certain point in time."
+msgstr "Ein Kaufanfrage ist eine Anweisung um den Einkauf zu organisieren\neine bestimmte Menge an Material-Leistungen, sodass diese\nzu einem bestimmten Zeitpunkt verfügbar sind."
+
+#. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_analytic_account_id
+#: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
+msgid "Analytic Account"
+msgstr "Kostenstelle"
+
+#. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
+msgid "Approve"
+msgstr "Freigeben"
+
+#. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
+#: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
+#: selection:purchase.request,state:0
+msgid "Approved"
+msgstr "Freigegeben"
+
+#. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_assigned_to
+msgid "Approver"
+msgstr "Genehmiger"
+
+#. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_assigned_to
+#: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
+#: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
+msgid "Assigned to"
+msgstr "Zugewiesen an"
+
+#. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
+#: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
+msgid "Assigned to me"
+msgstr "Zugewiesen an mich"
+
+#. module: purchase_request
+#: model:ir.actions.act_window,help:purchase_request.purchase_request_form_action
+msgid "Click to start a new purchase request process."
+msgstr "Klicken um einen neuen Bestellvorgang zu starten."
+
+#. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_company_id
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_company_id
+msgid "Company"
+msgstr "Unternehmen"
+
+#. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_create_uid
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_create_uid
+msgid "Created by"
+msgstr "Erstellt von"
+
+#. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_create_date
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_create_date
+msgid "Created on"
+msgstr "Erstellt am:"
+
+#. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_date_start
+msgid "Creation date"
+msgstr "Erstellungsdatum"
+
+#. module: purchase_request
+#: model:ir.model.fields,help:purchase_request.field_purchase_request_date_start
+#: model:ir.model.fields,help:purchase_request.field_purchase_request_line_date_start
+msgid "Date when the user initiated the request."
+msgstr "Datum an dem der Benutzer die Anfrage gestellt hat."
+
+#. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_description
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_description
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_name
+msgid "Description"
+msgstr "Beschreibung"
+
+#. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_display_name
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_display_name
+msgid "Display Name"
+msgstr "Anzeigebezeichnung"
+
+#. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
+#: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
+#: selection:purchase.request,state:0
+msgid "Draft"
+msgstr "Entwurf"
+
+#. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
+#: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
+msgid "Group By..."
+msgstr "Gruppiere"
+
+#. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_id
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_id
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_is_editable
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_is_editable
+msgid "Is editable"
+msgstr "Ist editierbar"
+
+#. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request___last_update
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line___last_update
+msgid "Last Modified on"
+msgstr "Zuletzt geändert am"
+
+#. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_write_uid
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_write_uid
+msgid "Last Updated by"
+msgstr "Zuletzt aktualisiert von"
+
+#. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_write_date
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_write_date
+msgid "Last Updated on"
+msgstr "Zuletzt aktualisiert am"
+
+#. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
+#: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
+msgid "My requests"
+msgstr "Meine Anfragen"
+
+#. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_picking_type_id
+msgid "Picking Type"
+msgstr "Kommissionsart"
+
+#. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_supplier_id
+msgid "Preferred supplier"
+msgstr "Bevorzugter Lieferant"
+
+#. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_procurement_id
+msgid "Procurement Order"
+msgstr "Fertigungsauftrag"
+
+#. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_product_id
+#: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
+msgid "Product"
+msgstr "Produkt"
+
+#. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_product_uom_id
+msgid "Product Unit of Measure"
+msgstr "Maßeinheit des Produkts"
+
+#. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.report_purchaserequests
+#: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
+msgid "Products"
+msgstr "Produkte"
+
+#. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_ids
+msgid "Products to Purchase"
+msgstr "Zu kaufende Produkte"
+
+#. module: purchase_request
+#: model:ir.actions.report.xml,name:purchase_request.action_report_purchase_requests
+#: model:ir.model,name:purchase_request.model_purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_request_id
+#: model:ir.module.category,name:purchase_request.module_category_purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.report_purchaserequests
+#: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
+#: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
+#: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_tree
+msgid "Purchase Request"
+msgstr "Kaufanfrage"
+
+#. module: purchase_request
+#: model:ir.model,name:purchase_request.model_purchase_request_line
+#: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_form
+msgid "Purchase Request Line"
+msgstr "Kaufanfragezeile"
+
+#. module: purchase_request
+#: model:ir.actions.act_window,name:purchase_request.purchase_request_line_form_action
+#: model:ir.ui.menu,name:purchase_request.menu_purchase_request_line
+#: model:ir.ui.menu,name:purchase_request.menu_purchase_request_line_act
+#: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_tree
+msgid "Purchase Request Lines"
+msgstr "Kaufanfragezeilen"
+
+#. module: purchase_request
+#: model:res.groups,name:purchase_request.group_purchase_request_manager
+msgid "Purchase Request Manager"
+msgstr "Einkaufsmanager"
+
+#. module: purchase_request
+#: model:mail.message.subtype,description:purchase_request.mt_request_rejected
+msgid "Purchase Request Rejected"
+msgstr "Kaufanfrage abgewiesen"
+
+#. module: purchase_request
+#: model:res.groups,name:purchase_request.group_purchase_request_user
+msgid "Purchase Request User"
+msgstr "Kaufanfrage Benutzer"
+
+#. module: purchase_request
+#: model:mail.message.subtype,description:purchase_request.mt_request_approved
+#: model:mail.message.subtype,name:purchase_request.mt_request_approved
+msgid "Purchase Request approved"
+msgstr "Kaufanfrage genehmigt"
+
+#. module: purchase_request
+#: model:mail.message.subtype,name:purchase_request.mt_request_rejected
+msgid "Purchase Request rejected"
+msgstr "Kaufanfrage abgewiesen"
+
+#. module: purchase_request
+#: model:mail.message.subtype,description:purchase_request.mt_request_to_approve
+#: model:mail.message.subtype,name:purchase_request.mt_request_to_approve
+msgid "Purchase Request to be approved"
+msgstr "Kaufanfrage ist zu genehmigen"
+
+#. module: purchase_request
+#: model:ir.actions.act_window,name:purchase_request.action_purchase_request_line_product_tree
+#: model:ir.actions.act_window,name:purchase_request.purchase_request_form_action
+#: model:ir.ui.menu,name:purchase_request.menu_purchase_request
+#: model:ir.ui.menu,name:purchase_request.menu_purchase_request_act
+#: model:ir.ui.menu,name:purchase_request.menu_purchase_request_pro_mgt
+msgid "Purchase Requests"
+msgstr "Kaufanfragen"
+
+#. module: purchase_request
+#: model:ir.ui.menu,name:purchase_request.parent_menu_purchase_request
+msgid "Purchase requests"
+msgstr "Kaufanfragen"
+
+#. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_product_qty
+msgid "Quantity"
+msgstr "Menge"
+
+#. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
+msgid "Reject"
+msgstr "Ablehnen"
+
+#. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
+#: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
+#: selection:purchase.request,state:0
+msgid "Rejected"
+msgstr "Abgelehnt"
+
+#. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_date_required
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_date_start
+msgid "Request Date"
+msgstr "Anfragedatum"
+
+#. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_name
+msgid "Request Reference"
+msgstr "Anfragereferenz"
+
+#. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
+msgid "Request approval"
+msgstr "Anfragegenehmigung"
+
+#. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
+#: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
+msgid "Request is approved"
+msgstr "Anfrage ist genehmigt"
+
+#. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
+#: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
+msgid "Request is rejected"
+msgstr "Anfrage ist abgelehnt"
+
+#. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
+#: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
+msgid "Request is to be approved"
+msgstr "Anfrage ist zu genehmigen"
+
+#. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_request_state
+msgid "Request state"
+msgstr "Anfragestatus"
+
+#. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
+msgid "Request status"
+msgstr "Anfragestatus"
+
+#. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_requested_by
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_requested_by
+#: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
+#: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
+msgid "Requested by"
+msgstr "Angefragt von"
+
+#. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
+msgid "Reset"
+msgstr "Zurücksetzen"
+
+#. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
+#: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
+msgid "Search Purchase Request"
+msgstr "Durchsuche Kaufanfragen"
+
+#. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
+msgid "Source"
+msgstr "Herkunft"
+
+#. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_origin
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_origin
+msgid "Source Document"
+msgstr "Quelldokument"
+
+#. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_specifications
+#: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_form
+#: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
+msgid "Specifications"
+msgstr "Spezifikationen"
+
+#. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
+msgid "Start Date"
+msgstr "Anfangsdatum"
+
+#. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_state
+msgid "Status"
+msgstr "Status"
+
+#. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
+#: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
+msgid "To Approve"
+msgstr "Zu genehmigen"
+
+#. module: purchase_request
+#: selection:purchase.request,state:0
+msgid "To be approved"
+msgstr "Zu genehmigen"
+
+#. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
+msgid "Unassigned"
+msgstr "Nicht zugewiesen"
+
+#. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
+msgid "Unassigned Request"
+msgstr "Nicht zugewiesene Anfrage"
+
+#. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
+msgid "Unread Messages"
+msgstr "Ungelesene Meldungen"

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 Eficent Business and IT Consulting Services S.L.
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
+<odoo>
+
+<template id="report_purchaserequests">
+    <t t-call="report.html_container">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="report.external_layout">
+                <div class="page">
+                    <div class="oe_structure"/>
+
+                    <h2>Purchase Request <span t-field="o.name"/></h2>
+
+                    <div class="row mt32 mb32">
+                        <div class="col-xs-3">
+                            <strong>Request Reference:</strong><br/>
+                            <span t-field="o.name"/>
+                        </div>
+                        <div class="col-xs-3">
+                            <strong>Creation Date:</strong><br/>
+                            <span t-field="o.date_start"/>
+                        </div>
+                        <div class="col-xs-3">
+                            <strong>Source:</strong><br/>
+                            <span t-field="o.origin"/>
+                        </div>
+                        <div class="col-xs-3">
+                            <strong>Description:</strong><br/>
+                            <span t-field="o.description"/>
+                        </div>
+                        <div class="col-xs-3">
+                            <strong>Requested by:</strong><br/>
+                            <span t-field="o.requested_by"/>
+                        </div>
+                        <div class="col-xs-3">
+                            <strong>Assigned to:</strong><br/>
+                            <span t-field="o.assigned_to"/>
+                        </div>
+                        <div class="col-xs-3">
+                            <strong>Picking Type:</strong><br/>
+                            <span t-field="o.picking_type_id"/>
+                        </div>
+                    </div>
+
+                    <t t-if="o.line_ids">
+                        <h3>Products</h3>
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th><strong>Description</strong></th>
+                                    <th groups="analytic.group_analytic_accounting">
+                                        <strong>Analytic Account</strong>
+                                    </th>
+                                    <th class="text-right"><strong>Qty</strong></th>
+                                    <th class="text-center" groups="product.group_uom">
+                                        <strong>Product UoM</strong>
+                                    </th>
+                                    <th class="text-right"><strong>Requested Date</strong></th>
+                                    <th><strong>Specifications</strong></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="o.line_ids" t-as="line_ids">
+                                    <td>
+                                        <span t-field="line_ids.name"/>
+                                    </td>
+                                    <td groups="analytic.group_analytic_accounting">
+                                        <span t-field="line_ids.analytic_account_id"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="line_ids.product_qty"/>
+                                    </td>
+                                    <t>
+                                        <td class="text-center" groups="product.group_uom">
+                                            <span t-field="line_ids.product_uom_id.category_id.name"/>
+                                        </td>
+                                    </t>
+                                    <td class="text-right">
+                                        <span t-field="line_ids.date_required"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line_ids.specifications"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </t>
+                    <div class="oe_structure"/>
+                </div>
+            </t>
+        </t>
+    </t>
+</template>
+
+</odoo>

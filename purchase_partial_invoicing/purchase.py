@@ -56,7 +56,8 @@ class PurchaseOrderLine(models.Model):
 
     cancelled_qty = fields.Float(
         string='Cancelled Quantity',
-        digits_compute=dp.get_precision('Product Unit of Measure'))
+        digits_compute=dp.get_precision('Product Unit of Measure'),
+        copy=False)
 
     fully_invoiced = fields.Boolean(
         compute='_compute_fully_invoiced', copy=False, store=True)
