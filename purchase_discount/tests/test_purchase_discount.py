@@ -18,8 +18,13 @@ class TestPurchaseOrder(common.SavepointCase):
             'name': 'Test product 2',
         })
         po_model = cls.env['purchase.order.line']
-        # Make sure currency is EUR for not having troubles with rates
-        cls.env.user.company_id.currency_id = cls.env.ref('base.EUR')
+        # Set the Exchange rate for the currency of the company to 1
+        # to avoid issues with rates
+        cls.env['res.currency.rate'].create({
+            'currency_id': cls.env.user.company_id.currency_id.id,
+            'rate': 1.00,
+            'name': fields.Date.today()
+            })
         cls.purchase_order = cls.env['purchase.order'].create({
             'partner_id': cls.env.ref('base.res_partner_3').id,
         })
