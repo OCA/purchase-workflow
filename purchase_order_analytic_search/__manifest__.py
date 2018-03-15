@@ -9,7 +9,7 @@
     "version": "10.0.1.0.0",
     "website": "https://odoo-community.org/",
     "category": "Purchase Workflow",
-    "author": "Eficent, Odoo Community Association (OCA)",
+    "author": "Eficent, Camptocamp, Odoo Community Association (OCA)",
     "license": "LGPL-3",
     "installable": True,
     "depends": [
