@@ -31,8 +31,7 @@ class StockPicking(models.Model):
         return message
 
     @api.multi
-    def do_transfer(self):
-        super(StockPicking, self).do_transfer()
+    def _post_purchase_request_picking_confirm_message(self):
         request_obj = self.env['purchase.request']
         for picking in self:
             requests_dict = {}
@@ -58,3 +57,9 @@ class StockPicking(models.Model):
                     self._purchase_request_picking_confirm_message_content(
                         picking, request, requests_dict[request_id])
                 request.message_post(body=message, subtype='mail.mt_comment')
+
+    @api.multi
+    def do_transfer(self):
+        res = super(StockPicking, self).do_transfer()
+        self._post_purchase_request_picking_confirm_message()
+        return res
