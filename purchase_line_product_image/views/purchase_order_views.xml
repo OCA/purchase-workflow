@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="purchase_order_form_views_product_image" model="ir.ui.view">
+        <field name="name">purchase.order.form.views.product.image</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/tree/field[@name='name']" position="after">
+                <field name="product_image" widget="image" class="oe_avatar" string="Image"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
