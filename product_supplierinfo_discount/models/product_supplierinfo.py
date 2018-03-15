@@ -21,3 +21,15 @@ class ProductSupplierInfo(models.Model):
         for supplierinfo in self.filtered('name'):
             supplierinfo.discount =\
                 supplierinfo.name.default_supplierinfo_discount
+
+    @api.model
+    def create(self, vals):
+        """ Insert discount from context from purchase.order's
+        _add_supplier_to_product method """
+        if ('discount_map' in self.env.context and
+                not vals.get('discount') and
+                vals['product_tmpl_id'] in self.env.context['discount_map']):
+
+            vals['discount'] = self.env.context['discount_map'][
+                vals['product_tmpl_id']]
+        return super(ProductSupplierInfo, self).create(vals)
