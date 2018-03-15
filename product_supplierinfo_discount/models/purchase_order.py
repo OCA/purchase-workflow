@@ -6,6 +6,21 @@
 from odoo import api, fields, models
 
 
+class PurchaseOrder(models.Model):
+    _inherit = 'purchase.order'
+
+    @api.multi
+    def _add_supplier_to_product(self):
+        """ Insert a mapping of products to discounts to be picked up
+        in supplierinfo's create() """
+        self.ensure_one()
+        discount_map = dict(
+            [(line.product_id.product_tmpl_id.id, line.discount)
+             for line in self.order_line.filtered('discount')])
+        return super(PurchaseOrder, self.with_context(
+            discount_map=discount_map))._add_supplier_to_product()
+
+
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
