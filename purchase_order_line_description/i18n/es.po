@@ -1,0 +1,52 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* purchase_order_line_description
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-01-12 19:08+0000\n"
+"PO-Revision-Date: 2018-01-12 19:08+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_order_line_description
+#: model:ir.model.fields,help:purchase_order_line_description.field_purchase_config_settings_group_use_product_description_per_po_line
+msgid ""
+"Allows you to use only product purchase description on the purchase order "
+"lines."
+msgstr "Le permite usar solamente la descripción de compra en las líneas de "
+"los pedidos de compra."
+
+#. module: purchase_order_line_description
+#: model:ir.model.fields,field_description:purchase_order_line_description.field_purchase_config_settings_group_use_product_description_per_po_line
+msgid "Order lines description"
+msgstr "Descripción de las líneas del pedido"
+
+#. module: purchase_order_line_description
+#: model:ir.model,name:purchase_order_line_description.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Línea orden de compra"
+
+#. module: purchase_order_line_description
+#: model:res.groups,name:purchase_order_line_description.group_use_product_description_per_po_line
+msgid "Use only product purchase description on order lines"
+msgstr "Usar solamente la descripción de compra del producto en las líneas de "
+"pedido"
+
+#. module: purchase_order_line_description
+#: selection:purchase.config.settings,group_use_product_description_per_po_line:0
+msgid "Use the product name on the purchase order lines"
+msgstr "Usar el nombre de producto en las líneas del pedido de compra"
+
+#. module: purchase_order_line_description
+#: selection:purchase.config.settings,group_use_product_description_per_po_line:0
+msgid "Use the product purchase description on the purchase order lines"
+msgstr "Usar la descripción de compra del producto en las líneas del pedido de "
+"compra"
+

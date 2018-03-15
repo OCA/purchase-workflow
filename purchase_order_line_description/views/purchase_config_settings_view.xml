@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2015 Alex Comba - Agile Business Group
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+
+<odoo>
+
+    <record id="view_purchase_configuration" model="ir.ui.view">
+        <field name="name">purchase settings</field>
+        <field name="model">purchase.config.settings</field>
+        <field name="inherit_id" ref="purchase.view_purchase_configuration"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='group_warning_purchase']" position="after">
+                <field name="group_use_product_description_per_po_line" widget="radio"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
