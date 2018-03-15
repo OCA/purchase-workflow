@@ -3,7 +3,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.tests.common import TransactionCase
-from odoo.exceptions import UserError
 
 
 def execute_onchange(cls, vals, onchanges_dict):
