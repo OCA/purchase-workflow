@@ -31,7 +31,8 @@ addon | version | summary
 [purchase_line_product_image](purchase_line_product_image/) | 10.0.1.0.0 | Show Product Image at Purchase Order Line.
 [purchase_location_by_line](purchase_location_by_line/) | 10.0.1.0.0 | Allows to define a specific destination location on each PO line
 [purchase_minimum_amount](purchase_minimum_amount/) | 10.0.1.0.0 | Purchase Minimum Amount
-[purchase_open_qty](purchase_open_qty/) | 10.0.1.0.0 | Allows to identify the purchase orders that have quantities pending to invoice or to receive.
+[purchase_open_qty](purchase_open_qty/) | 10.0.1.1.0 | Allows to identify the purchase orders that have quantities pending to invoice or to receive.
+[purchase_order_analytic_search](purchase_order_analytic_search/) | 10.0.1.0.0 | Search purchase orders by analytic account. New menu entry in Purchasing to list purchase order lines.
 [purchase_order_approval_block](purchase_order_approval_block/) | 10.0.1.0.0 | Purchase Order Approval Block
 [purchase_order_line_description](purchase_order_line_description/) | 10.0.1.0.0 | Purchase order line description
 [purchase_order_revision](purchase_order_revision/) | 10.0.1.0.0 | Purchase order revisions
