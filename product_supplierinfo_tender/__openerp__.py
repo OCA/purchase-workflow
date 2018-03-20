@@ -7,7 +7,8 @@
     "summary": "Introduces a Tendering Process for Supplier Price agreements",
     "version": "9.0.1.1.0",
     "category": "Generic Modules",
-    "author": "Eficent Business and IT Consulting Services S.L.",
+    "author": "Eficent Business and IT Consulting Services S.L., "
+              "Odoo Community Association (OCA)",
     "website": "https://www.odoo-community.org",
     "license": "LGPL-3",
     "depends": ['purchase',

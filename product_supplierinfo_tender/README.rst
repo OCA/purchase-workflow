@@ -43,8 +43,10 @@ Configuration
 =============
 
 Two user groups are provided by default:
+
 * `Pricelist Tenders / User`. Can create Tenders and Bids, but cannot approve
- them or set them back to draft once they are cancelled.
+them or set them back to draft once they are cancelled.
+
 * `Pricelist Tenders / Manager`. Can completely manage Tenders and Bids.
 
 None of the above roles can create or change standalone Supplier Pricelists,
@@ -75,7 +77,7 @@ Usage
 Other remarks:
 
 * A Supplier Pricelist can only be throughout the process if the associated Bid
-  is open.
+is open.
 * Once a Bid is closed, if the Supplier Pricelist was not approved, it's
 status will become `Closed`.
 
