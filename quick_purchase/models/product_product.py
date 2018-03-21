@@ -5,7 +5,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 
-from openerp import api, fields, models
+from odoo import api, fields, models
 
 
 class ProductProduct(models.Model):
@@ -15,11 +15,11 @@ class ProductProduct(models.Model):
         compute='_compute_purchase_qty',
         inverse='_inverse_set_purchase_qty',
         oldname='purchase_qty',
-        help="Set this quantity to create a new purchase line"
-        " for this product or update the existing one."
+        help="Set this quantity to create a new purchase line "
+             "for this product or update the existing one."
     )
     po_line_ids = fields.One2many(
-        'purchase.order.line', 'product_id',
+        comodel_name='purchase.order.line', inverse_name='product_id',
         help='Technical: used to compute quantities to purchase.',
     )
 
@@ -37,42 +37,31 @@ class ProductProduct(models.Model):
         ], limit=1)
 
     def _add_purchase_line(self, purchase):
-        po_line_obj = self.env['purchase.order.line']
         vals = self._prepare_purchase_line(purchase)
-        po_line = po_line_obj.new(vals)
-        onchange_vals = po_line.onchange_product_id(
-            purchase.pricelist_id.id, po_line.product_id.id,
-            po_line.product_qty, po_line.product_uom.id,
-            purchase.partner_id.id, purchase.date_order,
-            purchase.fiscal_position.id)
-        vals.update(onchange_vals['value'])
-        if vals.get('taxes_id'):
-            vals.update({'taxes_id': [(6, 0, vals['taxes_id'])]})
-        po_line = po_line_obj.create(vals)
-        return True
+        line = self.env['purchase.order.line'].new(vals)
+        vals = self._complete_purchase_line_vals(line, vals)
+        if not vals.get('price_unit'):
+            vals['price_unit'] = 0.0
+        self.env['purchase.order.line'].create(vals)
 
     def _update_purchase_line(self, purchase_line):
         if self.qty_to_purchase:
             # apply the on change to update price unit if depends on qty
-            onchange_vals = purchase_line.onchange_product_id(
-                purchase_line.order_id.pricelist_id.id,
-                purchase_line.product_id.id,
-                self.qty_to_purchase, purchase_line.product_uom.id,
-                purchase_line.order_id.partner_id.id,
-                purchase_line.order_id.date_order,
-                purchase_line.order_id.fiscal_position.id)
-            vals = onchange_vals['value']
-            if vals.get('taxes_id'):
-                vals.update(
-                    {'taxes_id': [(6, 0, vals['taxes_id'])]})
+            vals = {'product_qty': self.qty_to_purchase}
+            self._complete_purchase_line_vals(purchase_line, vals)
             purchase_line.write(vals)
         else:
             purchase_line.unlink()
-        return True
+
+    def _complete_purchase_line_vals(self, line, vals):
+        vals = line.play_onchanges(vals, ['product_id'])
+        if vals.get('taxes_id'):
+            vals['taxes_id'] = [(6, 0, vals['taxes_id'])]
+        return vals
 
     def _inverse_set_purchase_qty(self):
-        purchase_id = self.env.context.get('purchase_id')
-        purchase = self.env['purchase.order'].browse(purchase_id)
+        purchase = self.env['purchase.order'].browse(
+            self.env.context.get('purchase_id'))
         for product in self:
             purchase_line = self._get_purchase_line(purchase)
             if purchase_line:
@@ -84,9 +73,8 @@ class ProductProduct(models.Model):
     def _compute_purchase_qty(self):
         if not self.env.context.get('purchase_id'):
             return
-        po_line_obj = self.env['purchase.order.line']
         for product in self:
-            po_lines = po_line_obj.search([
+            po_lines = self.env['purchase.order.line'].search([
                 ('order_id', '=', self.env.context.get('purchase_id')),
                 ('product_id', '=', product.id),
             ])
@@ -96,36 +84,23 @@ class ProductProduct(models.Model):
 
     @api.model
     def search(self, args, offset=0, limit=None, order=None, count=False):
-        if self.env.context.get('in_current_purchase') and\
-                self.env.context.get('purchase_id'):
-            pol_obj = self.env['purchase.order.line']
-
-            po_lines = pol_obj.search(
-                [('order_id', '=',
-                    self.env.context.get('purchase_id'))])
+        purchase = self.env['purchase.order'].browse(
+            self.env.context.get('purchase_id'))
+        if self.env.context.get('in_current_purchase') and purchase:
+            po_lines = self.env['purchase.order.line'].search(
+                [('order_id', '=', purchase.id)])
             args.append(
                 (('id', 'in', po_lines.mapped('product_id').ids)))
-        if self.env.context.get('use_only_supplied_product') and\
-                self.env.context.get('purchase_id'):
-            po_obj = self.env['purchase.order']
-            purchase = po_obj.browse(self.env.context.get('purchase_id'))
+        if self.env.context.get('use_only_supplied_product') and purchase:
             seller = purchase.partner_id
             seller = seller.commercial_partner_id or seller
             supplierinfos = self.env['product.supplierinfo'].search(
                 [('name', '=', seller.id)])
-            # the module product_variant_supplierinfo add a field
-            # product_id to product.supplierinfo
-            if hasattr(supplierinfos, 'product_id'):
-                args += [
-                    '|',
-                    ('product_tmpl_id', 'in',
-                        [x.product_tmpl_id.id for x in supplierinfos]),
-                    ('id', 'in',
-                        [x.product_id.id for x in supplierinfos])]
-            else:
-                args += [
-                    ('product_tmpl_id', 'in',
-                        [x.product_tmpl_id.id for x in supplierinfos])]
-
+            args += [
+                '|',
+                ('product_tmpl_id', 'in',
+                    [x.product_tmpl_id.id for x in supplierinfos]),
+                ('id', 'in',
+                    [x.product_id.id for x in supplierinfos])]
         return super(ProductProduct, self).search(
             args, offset=offset, limit=limit, order=order, count=count)

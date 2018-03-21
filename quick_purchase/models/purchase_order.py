@@ -5,7 +5,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import ast
-from openerp import api, models
+from odoo import api, models
 
 
 class PurchaseOrder(models.Model):
@@ -14,7 +14,7 @@ class PurchaseOrder(models.Model):
     @api.multi
     def add_product(self):
         self.ensure_one()
-        action = self.env.ref('quick_purchase.product_product_action')
+        action = self.env.ref('purchase.product_product_action')
         context = ast.literal_eval(action.context or "{}").copy()
         context.update({'purchase_id': self.id})
         result = action.read()[0]
