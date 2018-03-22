@@ -40,6 +40,7 @@ addon | version | summary
 [purchase_request_to_requisition](purchase_request_to_requisition/) | 9.0.1.0.0 | Purchase Request to Call for Bids
 [purchase_request_to_rfq](purchase_request_to_rfq/) | 9.0.1.0.1 | This module adds the possibility to create or update Requests for Quotation (RFQ) from Purchase Request Lines.
 [purchase_request_to_rfq_order_approved](purchase_request_to_rfq_order_approved/) | 9.0.1.0.0 | Purchase Request to RFQ Order Approved
+[purchase_tier_validation](purchase_tier_validation/) | 9.0.1.0.0 | Extends the functionality of Purchase Orders to support a tier validation process.
 [subcontracted_service](subcontracted_service/) | 9.0.1.0.0 | Subcontracted service
 
 
