@@ -34,3 +34,36 @@ msgstr "Etat de la réception"
 #: model:ir.model,name:purchase_picking_state.model_purchase_order
 msgid "Purchase Order"
 msgstr "Bon de commande"
+
+#. module: purchase_picking_state
+#: code:addons/purchase_picking_state/purchase.py:16
+#, python-format
+msgid "Not Received"
+msgstr "Non reçu"
+
+#. module: purchase_picking_state
+#: model:ir.model.fields,help:purchase_picking_state.field_purchase_order_picking_state
+msgid "Overall status based on all pickings"
+msgstr "Statut général basé sur l'ensemble des bons de réception"
+
+#. module: purchase_picking_state
+#: code:addons/purchase_picking_state/purchase.py:17
+#, python-format
+msgid "Partially Received"
+msgstr "Partiellement reçu"
+
+#. module: purchase_picking_state
+#: model:ir.model.fields,field_description:purchase_picking_state.field_purchase_order_picking_state
+msgid "Picking status"
+msgstr "Etat de la réception"
+
+#. module: purchase_picking_state
+#: model:ir.model,name:purchase_picking_state.model_purchase_order
+msgid "Purchase Order"
+msgstr "Bon de commande"
+
+#. module: purchase_picking_state
+#: code:addons/purchase_picking_state/purchase.py:18
+#, python-format
+msgid "Transferred"
+msgstr "Transféré"
