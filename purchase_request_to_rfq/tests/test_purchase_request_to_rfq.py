@@ -71,6 +71,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         vals = {
             'supplier_id': self.env.ref('base.res_partner_16').id,
         }
+        purchase_request.button_approved()
         wiz_id = self.wiz.with_context(
             active_model="purchase.request.line",
             active_ids=[purchase_request_line.id],
