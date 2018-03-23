@@ -58,7 +58,7 @@ class TestLandedCostCompanyPercentage(common.TransactionCase):
                 })],
         }
         # Update company record with landed costs information
-        self.company1.write({'journal_id': self.journal.id,
+        self.company1.write({'landed_cost_journal_id': self.journal.id,
                              'landed_cost_company_line': [(0, 0, {
                                  'product_id': self.transportation_product.id,
                                  'percentage': 5.0})]})

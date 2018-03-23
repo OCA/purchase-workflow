@@ -7,7 +7,7 @@ from odoo import fields, models
 class ResCompany(models.Model):
     _inherit = 'res.company'
 
-    journal_id = fields.Many2one(
+    landed_cost_journal_id = fields.Many2one(
         comodel_name='account.journal',
         string='Landed Costs Journal',
     )

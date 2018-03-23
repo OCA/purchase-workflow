@@ -1,7 +1,8 @@
 # Copyright (C) 2018 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, models
+from odoo import api, models, _
+from odoo.exceptions import UserError
 
 
 class StockPicking(models.Model):
@@ -26,9 +27,12 @@ class StockPicking(models.Model):
         return cost_lines
 
     def _prepare_landed_cost(self, amount):
+        if not self.company_id.landed_cost_journal_id:
+            raise UserError(_("You have to set a Landed Costs Journal for the "
+                              "company: %s") % self.company_id.name)
         return {
             'picking_ids': [(6, 0, [self.id])],
-            'account_journal_id': self.company_id.journal_id.id,
+            'account_journal_id': self.company_id.landed_cost_journal_id.id,
             'cost_lines': self._prepare_landed_cost_lines(
                 self.company_id, amount)
         }
