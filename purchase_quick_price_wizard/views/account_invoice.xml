@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- View on Invoice.order-->
+        <record model="ir.ui.view" id="account_invoice_form_view">
+            <field name="name">account.invoice.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='price_unit']" position="after">
+                    <button name="action_view_supplier_price" string="Supplier price" type="object" icon="fa-external-link" class="oe_edit_only"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>
