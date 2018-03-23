@@ -11,16 +11,21 @@
             <button name="button_confirm" position="before">
                 <button name="request_validation"
                     string="Request Validation"
-                    attrs="{'invisible': [('need_validation', '!=', True)]}"
-                    type="object"
-                    states="draft"/>
+                    attrs="{'invisible': ['|','|',('need_validation', '!=', True),('rejected','=',True),('state','not in',['draft','sent'])]}"
+                    type="object"/>
+                <button name="restart_validation"
+                    string="Restart Validation"
+                    attrs="{'invisible': ['|','|',('review_ids', '=', []),('rejected','=',False),('state','not in',['draft','sent'])]}"
+                    type="object"/>
             </button>
             <header position="after">
                 <field name="need_validation" invisible="1"/>
                 <field name="validated" invisible="1"/>
                 <field name="rejected" invisible="1"/>
                 <div class="alert alert-warning"
-                     attrs="{'invisible': ['|', '|', ('validated', '=', True), ('state', '!=', 'draft'),('rejected', '=', True)]}"
+                     attrs="{'invisible': ['|', '|', '|',
+                     ('validated', '=', True), ('state', 'not in', ['draft','sent']),
+                     ('rejected', '=', True), ('review_ids', '=', [])]}"
                      style="margin-bottom:0px;">
                     <p><i class="fa fa-info-circle"/>This PO needs to be
                         validated.
@@ -28,24 +33,22 @@
                             string="Validate"
                             attrs="{'invisible': [('review_ids', '=', [])]}"
                             type="object"
-                            states="draft"
                             class="oe_inline oe_button btn-success"
                             icon="fa-thumbs-up"/>
                         <button name="reject_tier"
                             string="Reject"
                             type="object"
-                            states="draft"
                             class="btn-icon btn-danger"
                             icon="fa-thumbs-down"/>
                     </p>
                 </div>
                 <div class="alert alert-success"
-                     attrs="{'invisible': ['|', '|', ('validated', '!=', True), ('state', '!=', 'draft'), ('review_ids', '=', [])]}"
+                     attrs="{'invisible': ['|', '|', ('validated', '!=', True), ('state', 'not in', ['draft','sent']), ('review_ids', '=', [])]}"
                      style="margin-bottom:0px;">
                     <p><i class="fa fa-thumbs-up"/> Operation has been <b>validated</b>!</p>
                 </div>
                 <div class="alert alert-danger"
-                     attrs="{'invisible': ['|', '|', ('rejected', '!=', True), ('state', '!=', 'draft'), ('review_ids', '=', [])]}"
+                     attrs="{'invisible': ['|', '|', ('rejected', '!=', True), ('state', 'not in', ['draft','sent']), ('review_ids', '=', [])]}"
                      style="margin-bottom:0px;">
                     <p><i class="fa fa-thumbs-down"/> Operation has been <b>rejected</b>.</p>
                 </div>
@@ -65,7 +68,7 @@
         <field name="arch" type="xml">
             <filter name="message_needaction" position="after">
                 <filter name="needs_review" string="Needs my Review"
-                        domain="[('reviewer_ids','in',uid)]"
+                        domain="[('reviewer_ids','in',uid), ('state', 'not in', ['done', 'cancel'])]"
                         help="My Purchases to review"/>
                 <filter name="tier_validated" string="Validated"
                         domain="[('validated', '=', True)]"
