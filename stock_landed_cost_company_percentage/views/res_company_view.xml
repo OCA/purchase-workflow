@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<odoo>
+<!-- Copyright 2018 Open Source Integrators
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+    <!-- Company form view -->
+    <record id="view_company_form" model="ir.ui.view">
+        <field name="name">Company Landed Costs</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <page position="after">
+                <group string="Landed Costs" name="landed_cost">
+                    <group name="landed_cost_info">
+                        <field name="landed_cost_journal_id"/>
+                        <field name="landed_cost_company_line">
+                            <tree string="Landed Cost Lines" editable="bottom">
+                                <field name="product_id" context="{'default_landed_cost_ok': True}"/>
+                                <field name="percentage"/>
+                            </tree>
+                        </field>
+                    </group>
+                </group>
+            </page>
+        </field>
+    </record>
+</odoo>
