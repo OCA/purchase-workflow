@@ -115,12 +115,8 @@ class PurchaseOrder(models.Model):
             # Post a msg in purchase requests:
             request_po_lines = order.order_line.filtered(
                 lambda pol: pol.purchase_request_lines)
-            for line in request_po_lines:
-                message = \
-                    line._po_line_purchase_request_cancel_message_content()
-                requests = line.purchase_request_lines.mapped('request_id')
-                for req in requests:
-                    req.message_post(body=message, subtype='mail.mt_comment')
+            self._post_po_line_purchase_request_cancel_message(
+                request_po_lines)
             # Search for lines not created from a Purchase request and end
             # the process
             # TODO: remove PO from procurement ?!
@@ -139,6 +135,15 @@ class PurchaseOrder(models.Model):
                 moves.filtered(
                     lambda r: r.state != 'cancel').action_cancel()
         self.write({'state': 'cancel'})
+
+    @api.model
+    def _post_po_line_purchase_request_cancel_message(self, request_po_lines):
+        for line in request_po_lines:
+            message = \
+                line._po_line_purchase_request_cancel_message_content()
+            requests = line.purchase_request_lines.mapped('request_id')
+            for req in requests:
+                req.message_post(body=message, subtype='mail.mt_comment')
 
 
 class PurchaseOrderLine(models.Model):
