@@ -67,7 +67,7 @@ class PurchaseOrderLine(models.Model):
     @api.model
     def create(self, values):
         line = super(PurchaseOrderLine, self).create(values)
-        # We do not reset the sequence if we are copying a complete purchase order
+        # We do not reset the sequence when copying an entire purchase order
         if not self.env.context.get('keep_line_sequence'):
             line.order_id._reset_sequence()
         return line
