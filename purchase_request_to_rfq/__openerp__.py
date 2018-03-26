@@ -7,7 +7,7 @@
     "author": "Eficent, "
               "Acsone SA/NV,"
               "Odoo Community Association (OCA)",
-    "version": "9.0.1.0.1",
+    "version": "9.0.1.0.2",
     "summary": "This module adds the possibility to create or update Requests "
                "for Quotation (RFQ) from Purchase Request Lines.",
     "website": "http://www.eficent.com/",
