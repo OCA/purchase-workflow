@@ -104,3 +104,16 @@ class ProductProduct(models.Model):
                     [x.product_id.id for x in supplierinfos])]
         return super(ProductProduct, self).search(
             args, offset=offset, limit=limit, order=order, count=count)
+
+    @api.multi
+    def button_return_purchase(self):
+        self.ensure_one()
+        purchase_id = self.env.context.get('purchase_id')
+        if purchase_id:
+            return {
+                'name': _('Purchase'),
+                'type': 'ir.actions.act_window',
+                'res_model': 'purchase.order',
+                'view_mode': 'form',
+                'res_id': purchase_id,
+            }
