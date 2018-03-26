@@ -13,6 +13,7 @@
                 <field name="qty_to_purchase"/>
                 <field name="incoming_qty" readonly="1"/>
                 <field name="qty_available" readonly="1"/>
+                <button name="button_return_purchase" string="Return" type="object"/>
             </tree>
         </field>
     </record>
