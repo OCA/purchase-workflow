@@ -13,9 +13,6 @@
                             attrs="{'invisible': [('state', 'not in', ('draft', 'sent'))]}"
                             class="oe_highlight"/>
                 </field>
-                <field name="order_line" position="attributes">
-                    <attribute name="create">0</attribute>
-                </field>
             </field>
         </record>
 
