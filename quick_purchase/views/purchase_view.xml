@@ -7,13 +7,12 @@
         <field name="arch" type="xml">
             <field name="order_line" position="before">
                 <button name="add_product"
-                        string="Add product"
+                        string="Add"
                         type="object"
                         attrs="{'invisible': [('state', 'not in', ('draft', 'sent'))]}"
                         class="oe_highlight"/>
             </field>
         </field>
     </record>
-
 
 </odoo>
