@@ -6,65 +6,61 @@
 Quick Purchase
 ==============
 This module gives the possibility
-to add easily product into the purchase order (mass line add/update).
+to easily add products into the purchase order (mass add/update lines).
 
 Usage
 =====
 
 
-Inside a purchase order, you can click on "Add products", to open a product tree view, then update "qty to purchase" field.
+**Inside a purchase order, you can click on "Add" button ...**
 
-.. image:: quick_purchase/static/description/01_purchase_order_create.png
+.. image:: quick_purchase/static/description/po.png
     :width: 800 px
     :alt: Purchase order create
 
 |
 
-.. image:: static/description/01_purchase_order_create.png
+.. image:: static/description/po.png
     :width: 800 px
     :alt: Purchase order create
 
-|
+----
 
-.. image:: quick_purchase/static/description/02_purchase_order_add_product.png
+**... to open a product tree view, then update "Qty to purchase" field.**
+
+.. image:: quick_purchase/static/description/po-product.png
     :width: 800 px
     :alt: Purchase order Add product
 
 |
 
-.. image:: static/description/02_purchase_order_add_product.png
+.. image:: static/description/po-product
     :width: 800 px
-    :alt: Purchase order Add product.
+    :alt: Purchase order Add product
+
+----
+
+**The update of "Qty to purchase" will add new purchase line or update the existing line.**
+
+**If qty to purchase is 0, purchase line will be deleted if it exists.**
 
 |
 
-The update of "qty to purchase" will add new purchase line or update the existing line. If qty to purchase is 0 it purchase line will deleted if it exists.
 
-|
-
-.. image:: quick_purchase/static/description/03_purchase_order_updated.png
+.. image:: quick_purchase/static/description/filter.png
     :width: 800 px
-    :alt: Purchase order updated
+    :alt: Filter helpers.
 
 |
 
-.. image:: static/description/03_purchase_order_updated.png
+.. image:: static/description/filter.png
     :width: 800 px
-    :alt: Purchase order updated
+    :alt: Filter helpers.
 
-|
 
-.. image:: quick_purchase/static/description/04_purchase_order_update_product_qty.png
-    :width: 800 px
-    :alt: Purchase order update product qty.
+**Return button or breadcrumb allow to go back to purchase order**
 
-|
-
-.. image:: static/description/04_purchase_order_update_product_qty.png
-    :width: 800 px
-    :alt: Purchase order update product qty.
-
-|
+----
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
@@ -90,6 +86,7 @@ Contributors
 
 * Sébastien BEAU <sebastien.beau@akretion.com>
 * Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
+* David BEAL <david.beal@akretion.com>
 
 Maintainer
 ----------
