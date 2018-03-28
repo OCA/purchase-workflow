@@ -11,8 +11,8 @@
                 <field name="default_code" readonly="1"/>
                 <field name="name" readonly="1"/>
                 <field name="qty_to_purchase"/>
-                <field name="incoming_qty" readonly="1"/>
-                <field name="qty_available" readonly="1"/>
+                <field name="incoming_qty"/>
+                <field name="qty_available"/>
                 <button name="button_return_purchase" string="Return" type="object"/>
             </tree>
         </field>
