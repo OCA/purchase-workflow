@@ -53,6 +53,7 @@ addon | version | summary
 [purchase_rfq_number](purchase_rfq_number/) | 8.0.1.0.0 | Adds a sequence on purchase RFQ
 [purchase_supplier_rounding_method](purchase_supplier_rounding_method/) | 8.0.1.0.0 | Supplier Rounding Method
 [purchase_transport_document](purchase_transport_document/) | 8.0.0.1.0 | Add a new Transport Document object in the Purchase Order
+[quick_purchase](quick_purchase/) | 8.0.1.0.0 | Quick Purchase order
 [vendor_consignment_stock](vendor_consignment_stock/) | 8.0.0.2.0 | Manage stock in our warehouse that is owned by a vendor
 
 
