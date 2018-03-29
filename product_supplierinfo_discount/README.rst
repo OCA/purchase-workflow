@@ -69,6 +69,7 @@ Contributors
 * Jonathan Nemry <jonathan.nemry@acsone.eu>
 * Sylvain LE GAL (https://twitter.com/legalsylvain)
 * Stefan Rijnhart <stefan@opener.amsterdam>
+* Darko Nikolovski <darko@versada.eu>
 
 Maintainer
 ----------

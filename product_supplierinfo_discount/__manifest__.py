@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # © 2014 Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
 #        Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 # © 2016 ACSONE SA/NV (<http://acsone.eu>)
@@ -8,7 +7,7 @@
 
 {
     "name": "Discounts in product supplier info",
-    "version": "10.0.1.0.0",
+    "version": "11.0.1.0.0",
     "author": "Tecnativa, "
               "GRAP, "
               "Odoo Community Association (OCA)",

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # © 2014 Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
 #        Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 # © 2016 ACSONE SA/NV (<http://acsone.eu>)
@@ -42,7 +41,7 @@ class TestProductSupplierinfoDiscount(TransactionCase):
 
     def test_001_purchase_order_partner_3_qty_1(self):
         self.po_line_1._onchange_quantity()
-        self.assertEquals(
+        self.assertEqual(
             self.po_line_1.discount, 10,
             "Incorrect discount for product 6 with partner 3 and qty 1: "
             "Should be 10%")
@@ -50,7 +49,7 @@ class TestProductSupplierinfoDiscount(TransactionCase):
     def test_002_purchase_order_partner_3_qty_10(self):
         self.po_line_1.write({'product_qty': 10})
         self.po_line_1._onchange_quantity()
-        self.assertEquals(
+        self.assertEqual(
             self.po_line_1.discount, 20.0,
             "Incorrect discount for product 6 with partner 3 and qty 10: "
             "Should be 20%")
@@ -61,7 +60,7 @@ class TestProductSupplierinfoDiscount(TransactionCase):
             'product_qty': 1,
         })
         self.po_line_1.onchange_product_id()
-        self.assertEquals(
+        self.assertEqual(
             self.po_line_1.discount, 0.0, "Incorrect discount for product "
             "6 with partner 1 and qty 1")
 
@@ -79,23 +78,15 @@ class TestProductSupplierinfoDiscount(TransactionCase):
             'action': 'buy',
         }
         procurement_rule = self.env['procurement.rule'].create(vals)
-        vals = {
-            'origin': 'SO012:WH: Stock -> Customers MTO',
-            'product_uom': self.env.ref('product.product_uom_unit').id,
-            'product_qty': 50,
-            'location_id': self.env.ref('stock.stock_location_locations').id,
-            'company_id': self.env.ref('base.main_company').id,
-            'state': 'confirmed',
+        values = {
             'warehouse_id': self.env.ref('stock.warehouse0').id,
-            'move_dest_id': self.env.ref('stock.stock_location_customers').id,
-            'message_unread_counter': 0,
-            'name': 'WH: Stock -> Customers MTO',
-            'product_id': self.product.id,
             'date_planned': fields.Datetime.now(),
-            'rule_id': procurement_rule.id,
+            'company_id': self.env.ref('base.main_company').id,
         }
-        procurement_order = self.env['procurement.order'].create(vals)
-        res = procurement_order._prepare_purchase_order_line(
+        product_qty = 50
+        product_uom = self.env.ref('product.product_uom_unit')
+        res = procurement_rule._prepare_purchase_order_line(
+            self.product, product_qty, product_uom, values,
             self.purchase_order, self.supplierinfo)
         self.assertTrue(res.get('discount'), 'Should have a discount key')
 
@@ -111,7 +102,7 @@ class TestProductSupplierinfoDiscount(TransactionCase):
         self.partner_1.default_supplierinfo_discount = 15
         supplierinfo.name = self.partner_1
         supplierinfo.onchange_name()
-        self.assertEquals(
+        self.assertEqual(
             supplierinfo.discount, 15, "Incorrect discount for supplierinfo "
             " after changing partner that has default discount defined.")
 

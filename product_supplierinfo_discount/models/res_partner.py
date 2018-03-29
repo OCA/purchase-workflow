@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # © 2016 GRAP (http://www.grap.coop)
 #        Sylvain LE GAL (https://twitter.com/legalsylvain)
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
