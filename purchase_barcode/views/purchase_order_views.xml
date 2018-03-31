@@ -6,7 +6,8 @@
 		<field name="inherit_id" ref="purchase.purchase_order_form" />
 		<field name="arch" type="xml">
 			<form position="inside">
-                <field name="_barcode_scanned" widget="purchase_barcode_handler"/>
+                <field name="_barcode_scanned"
+					   widget="purchase_barcode_handler"/>
             </form>
 		</field>
 	</record>

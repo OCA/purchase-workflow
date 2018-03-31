@@ -3,7 +3,8 @@
     <data>
         <template id="assets_backend" name="lucky_purchase_barcode_assets" inherit_id="web.assets_backend">
             <xpath expr="." position="inside">
-                <script type="text/javascript" src="/purchase_order_barcode/static/src/js/purchase_barcode_handler.js"/>
+                <script type="text/javascript"
+                        src="/purchase_order_barcode/static/src/js/purchase_barcode_handler.js"/>
             </xpath>
         </template>
     </data>
