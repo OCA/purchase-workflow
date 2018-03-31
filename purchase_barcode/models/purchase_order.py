@@ -10,7 +10,9 @@ from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
-    _barcode_scanned = fields.Char("Barcode Scanned", help="Value of the last barcode scanned.", store=False)
+    _barcode_scanned = fields.Char("Barcode Scanned",
+                                   help="Value of the last barcode scanned.",
+                                   store=False)
 
     @api.model
     def po_barcode(self, barcode, po_id):
@@ -18,8 +20,12 @@ class PurchaseOrder(models.Model):
         if not purchase_order:
             # with asumtation Purchase Order is created
             raise UserError(_('Please Choose Your Vendor And Fix Your Purchase Order'))
-        product_id = self.env['product.product'].search([('barcode', '=', barcode)])
-        purchase_order_line = purchase_order.order_line.search([('product_id', '=', product_id.id)], limit=1)
+        product_id = self.env['product.product'].search([
+            ('barcode', '=', barcode)
+        ])
+        purchase_order_line = purchase_order.order_line.search([
+            ('product_id', '=', product_id.id)
+        ], limit=1)
         if purchase_order_line:
             purchase_order_line.product_qty = purchase_order_line.product_qty + 1
         else:

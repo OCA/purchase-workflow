@@ -24,7 +24,7 @@ odoo.define('purchase_order_barcode.PurchaseBarcodeHandler', function (require) 
         },
         on_barcode_scanned: function(barcode) {
             var self = this;
-            var po_id = self.view.datarecord.id
+            var po_id = self.view.datarecord.id;
             self.po_model.call('po_barcode',[barcode, po_id]).then(function () {
                 self.getParent().reload();
             });
