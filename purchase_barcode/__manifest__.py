@@ -6,7 +6,7 @@
     "name": "Purchase Barcode",
     "summary": "Add Product With Barcode at Purchase Order",
     "version": "10.0.1.0.0",
-    "author": "Lucky Kurniawan ",
+    "author": "Lucky Kurniawan, Odoo Community Association (OCA)",
     "website": "https://github.com/kurniawanlucky/Odoo10.0",
     "category": "Purchase",
     "depends": ['purchase', 'barcodes'],

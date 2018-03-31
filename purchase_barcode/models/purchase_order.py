@@ -16,10 +16,14 @@ class PurchaseOrder(models.Model):
 
     @api.model
     def po_barcode(self, barcode, po_id):
-        purchase_order = self.env['purchase.order'].search([('id', '=', po_id)])
+        purchase_order = self.env['purchase.order'].search([
+            ('id', '=', po_id)
+        ])
         if not purchase_order:
             # with asumtation Purchase Order is created
-            raise UserError(_('Please Choose Your Vendor And Fix Your Purchase Order'))
+            raise UserError(_(
+                'Please Choose Your Vendor And Fix Your Purchase Order'
+            ))
         product_id = self.env['product.product'].search([
             ('barcode', '=', barcode)
         ])
@@ -27,8 +31,10 @@ class PurchaseOrder(models.Model):
             ('product_id', '=', product_id.id)
         ], limit=1)
         if purchase_order_line:
-            purchase_order_line.product_qty = purchase_order_line.product_qty + 1
+            product_qty = purchase_order_line.product_qty
+            purchase_order_line.product_qty = product_qty + 1
         else:
+            date = datetime.today().strftime(DEFAULT_SERVER_DATETIME_FORMAT)
             line_values = {
                 'name': product_id.name,
                 'product_id': product_id.id,
@@ -36,6 +42,6 @@ class PurchaseOrder(models.Model):
                 'product_uom': product_id.product_tmpl_id.uom_id.id,
                 'price_unit': product_id.product_tmpl_id.list_price,
                 'order_id': purchase_order.id,
-                'date_planned': datetime.today().strftime(DEFAULT_SERVER_DATETIME_FORMAT),
+                'date_planned': date,
             }
             purchase_order.update({'order_line': [(0, 0, line_values)]})
