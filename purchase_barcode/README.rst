@@ -5,7 +5,7 @@
 Purchase Order Barcode
 ======================
 
-With Odoo <a href="https://github.com/kurniawanlucky/Odoo10.0">Purchase Barcode</a>,
+With Odoo <a href="https://github.com/OCA/purchase-workflow">Purchase Barcode</a>,
 You will be able to Add Product using barcode scanner and Make sure your product have barcode.
 
 This module helps you use the barcode scanner to add Product.

@@ -16,7 +16,7 @@ class PurchaseOrder(models.Model):
 
     @api.model
     def po_barcode(self, barcode, po_id):
-        purchase_order = self.env['purchase.order'].search([
+        purchase_order = self.search([
             ('id', '=', po_id)
         ])
         if not purchase_order:
@@ -31,8 +31,8 @@ class PurchaseOrder(models.Model):
             ('product_id', '=', product_id.id)
         ], limit=1)
         if purchase_order_line:
-            product_qty = purchase_order_line.product_qty
-            purchase_order_line.product_qty = product_qty + 1
+            product_qty = purchase_order_line.product_qty + 1
+            purchase_order_line.product_qty = product_qty
         else:
             date = datetime.today().strftime(DEFAULT_SERVER_DATETIME_FORMAT)
             line_values = {
