@@ -9,23 +9,19 @@ from odoo import api, fields, models
 class PurchaseOrderLine(models.Model):
     _inherit = 'purchase.order.line'
 
-    @api.multi
-    def _compute_product_supplier_code(self):
-        product_supplierinfo_obj = self.env['product.supplierinfo']
-        for line in self:
-            partner = line.order_id.partner_id
-            product = line.product_id
-            if product and partner:
-                supplier_info = product_supplierinfo_obj.search([
-                    '|', ('product_tmpl_id', '=', product.product_tmpl_id.id),
-                    ('product_id', '=', product.id),
-                    ('name', '=', partner.id)], limit=1)
-                if supplier_info:
-                    code = supplier_info.product_code or ''
-                    line.product_supplier_code = code
-        return True
-
     product_supplier_code = fields.Char(
         string='Product Supplier Code',
-        compute=_compute_product_supplier_code
+        compute='_compute_product_supplier_code'
     )
+
+    @api.multi
+    @api.depends('product_id.seller_ids.name', 'partner_id',
+                 'product_id.seller_ids.product_code')
+    def _compute_product_supplier_code(self):
+        for line in self:
+            supplier_info = line.product_id.seller_ids.filtered(
+                lambda s: (s.product_id == line.product_id and
+                           s.name == line.partner_id))
+            if supplier_info:
+                code = supplier_info[0].product_code or ''
+                line.product_supplier_code = code
