@@ -9,7 +9,7 @@
                 code defined in the product.""",
     "version": "10.0.1.0.0",
     "author": "Eficent, Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/sale-workflow",
+    "website": "https://github.com/OCA/purchase-workflow",
     "category": "Purchase Management",
     "license": "AGPL-3",
     "depends": [
