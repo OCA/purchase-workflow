@@ -44,6 +44,7 @@ Contributors
 * Jordi Ballester <jordi.ballester@eficent.com>
 * Lois Rilo Antelo <lois.rilo@eficent.com>
 * Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
+* Aaron Henriquez <ahenriquez@eficent.com>
 
 Maintainer
 ----------
