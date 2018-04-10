@@ -6,7 +6,7 @@
 
 {
     'name': 'Product by supplier info',
-    'version': '10.0.1.0.0',
+    'version': '10.0.1.1.0',
     'category': 'purchase',
     'summary': 'Show products grouped by suppliers',
     'author': "Elico Corp,"
