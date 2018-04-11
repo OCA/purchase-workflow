@@ -19,7 +19,7 @@ Available addons
 addon | version | summary
 --- | --- | ---
 [procurement_purchase_no_grouping](procurement_purchase_no_grouping/) | 9.0.1.0.1 | Procurement Purchase No Grouping
-[product_by_supplier](product_by_supplier/) | 9.0.1.0.0 | Show products grouped by suppliers
+[product_by_supplier](product_by_supplier/) | 9.0.1.1.0 | Show products grouped by suppliers
 [product_supplier_code_purchase](product_supplier_code_purchase/) | 9.0.1.0.0 | This module adds to the purchase order line the supplier code defined in the product.
 [product_supplierinfo_discount](product_supplierinfo_discount/) | 9.0.1.0.0 | Discounts in product supplier info
 [purchase_date_planned_manual](purchase_date_planned_manual/) | 9.0.1.0.0 | This module makes the system to always respect the planned (or scheduled) date in PO lines.
