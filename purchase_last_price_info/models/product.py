@@ -12,7 +12,7 @@ class ProductProduct(models.Model):
     last_supplier_id = fields.Many2one(
         comodel_name='res.partner', string='Last Supplier',
         compute='_compute_last_purchase')
-    
+
     @api.multi
     def _compute_last_purchase(self):
         """ Get last purchase price, last purchase date and last supplier """
