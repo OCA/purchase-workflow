@@ -1,28 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-	<record id="product.product_last_info_page_form_view" model="ir.ui.view">
-		<field name="name">product.last.info.page.form</field>
-		<field name="model">product.product</field>
-		<field name="inherit_id" ref="product.product_normal_form_view" />
-		<field name="arch" type="xml">
-			<notebook position="inside">
-				<page string="Last Price Info" name="last_price_info" />
-			</notebook>
-		</field>
-	</record>
 
 	<record id="product_last_purchase_info_form_view" model="ir.ui.view">
 		<field name="name">product.last.purchase.info.form</field>
 		<field name="model">product.product</field>
-		<field name="inherit_id" ref="product.product_last_info_page_form_view" />
+		<field name="inherit_id" ref="product.product_normal_form_view" />
+		<field name="priority" eval="30" />
 		<field name="arch" type="xml">
-			<page name="last_price_info" position="inside">
+			<group name="vendors" position="before">
 				<group string="Purchase" name="last_purchase_info">
 					<field name="last_supplier_id" />
 					<field name="last_purchase_date" />
 					<field name="last_purchase_price" />
 				</group>
-			</page>
+			</group>
 		</field>
 	</record>
 
