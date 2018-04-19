@@ -38,7 +38,8 @@ class PurchaseReport(models.Model):
         recreating it. Query is returned all in upper case and with final ';'.
         """
         super(PurchaseReport, self).init()
-        self._cr.execute("SELECT pg_get_viewdef(%s, true)", (self._table,))
+#         self._cr.execute("SELECT pg_get_viewdef(%s, true)", (self._table,))
+        self._cr.execute("SELECT pg_get_viewdef(%s, true)", (['purchase_report'])
         view_def = self._cr.fetchone()[0]
         if view_def[-1] == ';':  # Remove trailing semicolon
             view_def = view_def[:-1]
