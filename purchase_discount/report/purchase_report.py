@@ -44,7 +44,7 @@ class PurchaseReport(models.Model):
             view_def = view_def[:-1]
         view_def = view_def.replace(
             "FROM purchase_order_line",
-            "{} FROM purchase_order_line".format(
+            "{0} FROM purchase_order_line".format(
                 self._select_purchase_discount()
             ),
         )
@@ -56,6 +56,6 @@ class PurchaseReport(models.Model):
         )
         # Re-create view
         tools.drop_view_if_exists(self._cr, self._table)
-        self._cr.execute("create or replace view {} as ({})".format(
+        self._cr.execute("create or replace view {0} as ({1})".format(
             self._table, view_def,
         ))
