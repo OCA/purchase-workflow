@@ -56,6 +56,6 @@ class PurchaseReport(models.Model):
         )
         # Re-create view
         tools.drop_view_if_exists(self._cr, self._table)
-        self._cr.execute("create or replace view {0} as ({1})".format(
-            self._table, view_def,
+        self._cr.execute("create or replace view %s as %s" % (
+            self._table, view_def
         ))
