@@ -6,7 +6,7 @@
     'version': '11.0.1.0.0',
     'category': 'Purchase Management',
     'website': 'http://akretion.com',
-    'author': 'Akretion',
+    'author': 'Akretion, Odoo Community Association (OCA)',
     'license': 'AGPL-3',
     'application': False,
     'installable': True,
