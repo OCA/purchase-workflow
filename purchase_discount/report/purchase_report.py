@@ -44,7 +44,7 @@ class PurchaseReport(models.Model):
             view_def = view_def[:-1]
         view_def = view_def.replace(
             "FROM purchase_order_line",
-            "{0} FROM purchase_order_line".format(
+            "%s FROM purchase_order_line" % (
                 self._select_purchase_discount()
             ),
         )
