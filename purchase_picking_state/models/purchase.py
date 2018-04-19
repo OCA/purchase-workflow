@@ -1,3 +1,6 @@
+"""
+Purchase Picking State - Purchase Order
+"""
 # © 2016 Chafique DELLI @ Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
@@ -5,10 +8,16 @@ from odoo import models, fields, api
 
 
 class PurchaseOrder(models.Model):
+    """
+    Purchase Order
+    """
     _inherit = 'purchase.order'
 
     @api.model
     def get_picking_state(self):
+        """
+        get picking state
+        """
         return [
             ('draft', ''),
             ('cancel', 'Cancelled'),
@@ -20,6 +29,9 @@ class PurchaseOrder(models.Model):
     @api.multi
     @api.depends('order_line.move_ids', 'order_line.move_ids.state')
     def _compute_picking_state(self):
+        """
+        compute picking state
+        """
         for purchase in self:
             if purchase.picking_ids:
                 pickings_state = set(
