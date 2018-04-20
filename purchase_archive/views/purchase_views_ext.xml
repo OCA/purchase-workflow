@@ -1,0 +1,33 @@
+<odoo>
+    <data>
+        <record id="purchase_order_form" model="ir.ui.view">
+            <field name="name">purchase.order.form</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <button name="action_view_invoice" position="after">
+                    <button name="toggle_active" type="object"
+                            class="oe_stat_button" icon="fa-archive"
+                            states="draft,done,cancel">
+                        <field name="active" widget="boolean_button"
+                            options='{"terminology": "archive"}'/>
+                    </button>
+                </button>
+            </field>
+        </record>
+
+        <record id="view_purchase_order_filter" model="ir.ui.view">
+            <field name="name">request.quotation.select</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+            <field name="arch" type="xml">
+                <filter name="activities_upcoming_all" position="after">
+                    <separator/>
+                    <filter string="Archived" name="archived" domain="[('active', '=', False)]"/>
+                </filter>
+            </field>
+        </record>
+
+    </data>
+</odoo>
+
