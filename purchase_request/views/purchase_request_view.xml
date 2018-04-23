@@ -39,6 +39,16 @@
                            statusbar_colors='{"approved":"blue"}'/>
                 </header>
                 <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button type="object"
+                            name="action_view_purchase_request_line"
+                            class="oe_stat_button"
+                            attrs="{'invisible':[('line_count', '=', 0)]}"
+                            icon="fa-list">
+                            <field name="line_count" widget="statinfo"
+                                   string="Lines"/>
+                        </button>
+                    </div>
                     <div class="oe_edit_only">
                         <label for="name" class="oe_inline"/>
                         <label for="origin" class="oe_inline"/>
