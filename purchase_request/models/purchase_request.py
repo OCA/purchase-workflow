@@ -110,6 +110,29 @@ class PurchaseRequest(models.Model):
                                       'Picking Type', required=True,
                                       default=_default_picking_type)
 
+    line_count = fields.Integer(
+        string='Purchase Request Line count',
+        compute='_compute_line_count',
+        readonly=True
+    )
+
+    @api.depends('line_ids')
+    def _compute_line_count(self):
+        self.line_count = len(self.mapped('line_ids'))
+
+    @api.multi
+    def action_view_purchase_request_line(self):
+        action = self.env.ref(
+            'purchase_request.purchase_request_line_form_action').read()[0]
+        lines = self.mapped('line_ids')
+        if len(lines) > 1:
+            action['domain'] = [('id', 'in', lines.ids)]
+        elif lines:
+            action['views'] = [(self.env.ref(
+                'purchase_request.purchase_request_line_form').id, 'form')]
+            action['res_id'] = lines.id
+        return action
+
     @api.multi
     @api.depends(
         'state',
