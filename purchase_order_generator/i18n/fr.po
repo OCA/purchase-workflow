@@ -1,0 +1,300 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_order_generator
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-07-06 20:24+0000\n"
+"PO-Revision-Date: 2015-07-06 16:25-0500\n"
+"Last-Translator: Agathe Mollé <agathe.molle@savoirfairelinux.com>\n"
+"Language-Team: Savoir-faire Linux <support@savoirfairelinux.com>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#. module: purchase_order_generator
+#: help:purchase.order.generator.configuration,interval:0
+#: help:purchase.order.generator.configuration,recurrence_type:0
+msgid ""
+"A purchase order line will be generated every x days/weeks/months/years (x "
+"is the interval)."
+msgstr ""
+"Une ligne de bon de commande sera générée pour chaque x jours/semaines/mois/"
+"années (x est l'intervalle)."
+
+#. module: purchase_order_generator
+#: view:stock.transfer_details:purchase_order_generator.view_stock_enter_transfer_details
+msgid "Apply and Generate related Purchase Order"
+msgstr "Appliquer et Générer un bon de commande relatif"
+
+#. module: purchase_order_generator
+#: view:purchase.order.generator:purchase_order_generator.purchase_order_generator_view
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: purchase_order_generator
+#: field:purchase.order.generator,configurator_id:0
+msgid "Configuration Model"
+msgstr "Modèle de configuration"
+
+#. module: purchase_order_generator
+#: help:purchase.order.generator,configurator_id:0
+msgid "Configuration Model that will be used to generate purchase order lines."
+msgstr ""
+"Modèle de configuration utilisé pour générer des lignes de bon de commande."
+
+#. module: purchase_order_generator
+#: model:ir.actions.act_window,name:purchase_order_generator.action_purchase_order_generator_configuration
+#: field:purchase.order,configurator_id:0
+#: view:purchase.order.generator.configuration:purchase_order_generator.purchase_order_generator_configuration_form_view
+#: field:purchase.order.generator.configuration.line,configurator_id:0
+msgid "Configurator"
+msgstr "Configurateur"
+
+#. module: purchase_order_generator
+#: view:purchase.order.generator.configuration:purchase_order_generator.purchase_order_generator_configuration_form_view
+msgid "Configurator Lines"
+msgstr "Lignes de configurateur"
+
+#. module: purchase_order_generator
+#: view:purchase.order.generator.configuration:purchase_order_generator.purchase_order_generator_configuration_list_view
+msgid "Configurator List"
+msgstr "Liste de configurateurs"
+
+#. module: purchase_order_generator
+#: field:purchase.order.generator,create_uid:0
+#: field:purchase.order.generator.configuration,create_uid:0
+#: field:purchase.order.generator.configuration.line,create_uid:0
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: purchase_order_generator
+#: field:purchase.order.generator,create_date:0
+#: field:purchase.order.generator.configuration,create_date:0
+#: field:purchase.order.generator.configuration.line,create_date:0
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: purchase_order_generator
+#: field:purchase.order.generator,date:0
+msgid "Date"
+msgstr "Date"
+
+#. module: purchase_order_generator
+#: selection:purchase.order.generator.configuration,recurrence_type:0
+msgid "Day(s)"
+msgstr "Jour(s)"
+
+#. module: purchase_order_generator
+#: field:purchase.order.generator,destination_location_id:0
+msgid "Destination Location"
+msgstr "Emplacement de destination"
+
+#. module: purchase_order_generator
+#: model:product.template,name:purchase_order_generator.demo_product_egg_product_template
+msgid "Egg"
+msgstr "Oeuf"
+
+#. module: purchase_order_generator
+#: model:ir.ui.menu,name:purchase_order_generator.menu_purchase_order_generator_configuration
+msgid "Generator Configuration"
+msgstr "Configuration du générateur"
+
+#. module: purchase_order_generator
+#: field:purchase.order.generator,id:0
+#: field:purchase.order.generator.configuration,id:0
+#: field:purchase.order.generator.configuration.line,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_order_generator
+#: field:purchase.order.generator,initial_quantity:0
+msgid "Initial Quantity"
+msgstr "Quantité initiale"
+
+#. module: purchase_order_generator
+#: help:purchase.order.generator,date:0
+msgid ""
+"Initial date to which we apply the time deltas defined in the configurator."
+msgstr ""
+"Date initiale à laquelle on applique les intervalles de temps définis dans "
+"le configurateur."
+
+#. module: purchase_order_generator
+#: help:purchase.order.generator,initial_quantity:0
+msgid ""
+"Initial quantity used to compute each purchase order line quantities. It is "
+"multiplied by the ratios defined in the configurator."
+msgstr ""
+"Quantité initiale utilisée pour calculer les quantités de chaque ligne de "
+"bon de commande. Elle est multipliée par les ratios définis dans le "
+"configurateur."
+
+#. module: purchase_order_generator
+#: field:purchase.order.generator,write_uid:0
+#: field:purchase.order.generator.configuration,write_uid:0
+#: field:purchase.order.generator.configuration.line,write_uid:0
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: purchase_order_generator
+#: field:purchase.order.generator,write_date:0
+#: field:purchase.order.generator.configuration,write_date:0
+#: field:purchase.order.generator.configuration.line,write_date:0
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: purchase_order_generator
+#: model:purchase.order.generator.configuration,name:purchase_order_generator.demo_po_generator_configuration
+msgid "Laying cycle"
+msgstr "Cycle de ponte"
+
+#. module: purchase_order_generator
+#: help:purchase.order,configurator_id:0
+msgid ""
+"Link to a purchase order generator configuration, if the purchase order has "
+"been created thanks to a purchase order generator."
+msgstr ""
+"Lien vers le modèle de configuration du générateur de bon de commande, si ce "
+"bon de commande a été créé automatiquement par un générateur de bon de "
+"commande."
+
+#. module: purchase_order_generator
+#: selection:purchase.order.generator.configuration,recurrence_type:0
+msgid "Month(s)"
+msgstr "Mois"
+
+#. module: purchase_order_generator
+#: field:purchase.order.generator.configuration,name:0
+msgid "Name"
+msgstr "Nom"
+
+#. module: purchase_order_generator
+#: model:ir.model,name:purchase_order_generator.model_stock_transfer_details
+msgid "Picking wizard"
+msgstr "Assistant de préparation"
+
+#. module: purchase_order_generator
+#: field:purchase.order.generator.configuration.line,product_id:0
+msgid "Product"
+msgstr "Produit"
+
+#. module: purchase_order_generator
+#: model:ir.model,name:purchase_order_generator.model_purchase_order
+msgid "Purchase Order"
+msgstr "Bon de commande"
+
+#. module: purchase_order_generator
+#: model:ir.actions.act_window,name:purchase_order_generator.action_purchase_order_generator
+#: model:ir.model,name:purchase_order_generator.model_purchase_order_generator
+#: model:ir.ui.menu,name:purchase_order_generator.menu_purchase_order_generator
+#: model:ir.ui.menu,name:purchase_order_generator.submenu_purchase_order_generator
+#: view:purchase.order.generator:purchase_order_generator.purchase_order_generator_view
+msgid "Purchase Order Generator"
+msgstr "Générateur de bon de commande"
+
+#. module: purchase_order_generator
+#: model:ir.model,name:purchase_order_generator.model_purchase_order_generator_configuration
+msgid "Purchase Order Generator Configuration"
+msgstr "Configuration de générateur de bon de commande"
+
+#. module: purchase_order_generator
+#: model:ir.model,name:purchase_order_generator.model_purchase_order_generator_configuration_line
+msgid "Purchase Order Generator Configuration Line"
+msgstr "Ligne de configuration de générateur de bon de commande"
+
+#. module: purchase_order_generator
+#: field:purchase.order.generator.configuration,line_ids:0
+msgid "Purchase Order Generator Configuration Lines"
+msgstr "Lignes de configuration de générateur de bon de commande"
+
+#. module: purchase_order_generator
+#: field:purchase.order.generator.configuration.line,quantity_ratio:0
+msgid "Quantity Ratio"
+msgstr "Ratio de quantité"
+
+#. module: purchase_order_generator
+#: field:purchase.order.generator.configuration,recurrence_type:0
+msgid "Recurrence Type"
+msgstr "Type de récurrence"
+
+#. module: purchase_order_generator
+#: view:purchase.order.generator.configuration:purchase_order_generator.purchase_order_generator_configuration_form_view
+#: field:purchase.order.generator.configuration,interval:0
+msgid "Repeat every"
+msgstr "Répéter tous(tes) les"
+
+#. module: purchase_order_generator
+#: field:purchase.order.generator.configuration.line,sequence:0
+msgid "Sequence"
+msgstr "Séquence"
+
+#. module: purchase_order_generator
+#: field:purchase.order.generator,partner_id:0
+msgid "Supplier"
+msgstr "Fournisseur"
+
+#. module: purchase_order_generator
+#: help:purchase.order.generator,partner_id:0
+msgid "Supplier of the purchase order which will be generated."
+msgstr "Fournisseur du bon de commande qui va être généré."
+
+#. module: purchase_order_generator
+#: sql_constraint:purchase.order.generator.configuration:0
+msgid "The configurator name must be unique !"
+msgstr "Le nom du configurateur doit être unique !"
+
+#. module: purchase_order_generator
+#: help:purchase.order.generator.configuration.line,sequence:0
+msgid ""
+"The planned date of the purchase order line generated will be obtained by "
+"adding sequence*interval days/weeks/months/years to the initial date."
+msgstr ""
+"La date prévue de la ligne de bon de commande générée est obtenue en "
+"ajoutant séquence*intervalle jours/semaines/mois/années à la date initiale."
+
+#. module: purchase_order_generator
+#: help:purchase.order.generator.configuration.line,product_id:0
+msgid "The product that will be purchased"
+msgstr "Le produit qui va être acheté."
+
+#. module: purchase_order_generator
+#: help:purchase.order.generator.configuration.line,quantity_ratio:0
+msgid ""
+"The quantity of the purchase order line generated will be obtained by "
+"multiplying this ratio and an initial quantity defined in the wizard."
+msgstr ""
+"La quantité associée à la ligne de bon de commande générée sera obtenue en "
+"multipliant ce ratio et une quantité initiale définie dans l'assistant."
+
+#. module: purchase_order_generator
+#: view:purchase.order.generator:purchase_order_generator.purchase_order_generator_view
+msgid "Validate"
+msgstr "Valider"
+
+#. module: purchase_order_generator
+#: selection:purchase.order.generator.configuration,recurrence_type:0
+msgid "Week(s)"
+msgstr "Semaine(s)"
+
+#. module: purchase_order_generator
+#: help:purchase.order.generator,destination_location_id:0
+msgid "Where the products will be transferred."
+msgstr "Là où les produits seront transférés."
+
+#. module: purchase_order_generator
+#: selection:purchase.order.generator.configuration,recurrence_type:0
+msgid "Year(s)"
+msgstr "Année(s)"
+
+#. module: purchase_order_generator
+#: view:purchase.order.generator:purchase_order_generator.purchase_order_generator_view
+#: view:stock.transfer_details:purchase_order_generator.view_stock_enter_transfer_details
+msgid "or"
+msgstr "ou"

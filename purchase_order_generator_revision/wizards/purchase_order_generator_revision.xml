@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+      <record id="purchase_order_generator_revision_view" model="ir.ui.view">
+        <field name="name">Purchase Order Generator Revision</field>
+        <field name="model">purchase.order.generator.revision</field>
+        <field name="arch" type="xml">
+          <form string="Purchase Order Generator Revision">
+            <group>
+              <group>>
+                <field name="order_id" domain="[('state', '=', 'approved')]"/>
+                <field name="configurator_id"/>
+              </group>
+              <group>
+                <field name="target"/>
+                <field name="new_target"/>
+              </group>
+              <group>
+                <field name="received_qty"/>
+                <field name="effective_date"/>
+              </group>
+              <group>
+                <field name="revision_factor"/>
+                <field name="revision_qty"/>
+              </group>
+            </group>
+            <group>
+              <field name="description"/>
+            </group>
+
+            <footer>
+              <button string="Validate" name="validate" type="object"
+                      class="oe_highlight"/>
+              or
+              <button string="Cancel" class="oe_link" special="cancel"/>
+            </footer>
+          </form>
+        </field>
+      </record>
+
+      <record id="purchase_order_generator_revision_action" model="ir.actions.act_window">
+        <field name="name">Purchase Order Generator Revision</field>
+        <field name="res_model">purchase.order.generator.revision</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="purchase_order_generator_revision_view"/>
+        <field name="target">new</field>
+      </record>
+
+      <menuitem
+              id="purchase_order_generator_revision_action_submenu"
+              name="Purchase Order Generator Revision"
+              parent="purchase_order_generator.menu_purchase_order_generator"
+              action="purchase_order_generator_revision_action"/>
+
+    </data>
+</openerp>
