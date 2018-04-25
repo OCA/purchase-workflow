@@ -1,5 +1,8 @@
-# -*- coding: utf-8 -*-
-# Copyright 2016 Eficent Business and IT Consulting Services S.L.
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
-
+from . import orderpoint
 from . import purchase_request
+from . import procurement_rule
+from . import product_template
+from . import purchase_order
+from . import stock_move
+from . import stock_picking
+
