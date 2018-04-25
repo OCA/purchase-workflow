@@ -1,15 +1,15 @@
-# -*- coding: utf-8 -*-
 # Author: Damien Crier
 # Copyright 2017 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo.tests.common import TransactionCase
+from odoo import fields
 
 
 class TestSubcontractedService(TransactionCase):
     def setUp(self):
         super(TestSubcontractedService, self).setUp()
-        self.procurement_obj = self.env['procurement.order']
+        self.procurement_group_obj = self.env['procurement.group']
         self.obj_warehouse = self.env['stock.warehouse']
 
         # 1. find a supplier
@@ -50,14 +50,24 @@ class TestSubcontractedService(TransactionCase):
         """Test if the subcontracting service procurement rule is correctly
         assigned when creating a procurement for a subcontracted service
         product."""
+        values = {
+            'warehouse_id': self.test_wh,
+            'company_id': self.test_wh.company_id,
+            'date_planned': fields.Date.today(),
+            'group_id': self.test_wh.
+            subcontracting_service_proc_rule_id.group_id,
+        }
         self.pdt_service.property_subcontracted_service = True
-        proc = self.procurement_obj.create({
-            'name': 'Test procurement',
-            'product_id': self.pdt_service.id,
-            'product_qty': 1.0,
-            'product_uom': self.pdt_service.uom_id.id,
-            'warehouse_id': self.test_wh.id
-        })
-        self.assertEqual(
-            proc.rule_id, self.test_wh.subcontracting_service_proc_rule_id,
-            'Procurement Rule assigned incorrectly.')
+        self.procurement_group_obj.run(
+            self.pdt_service, 1,
+            self.pdt_service.uom_id,
+            self.test_wh.lot_stock_id, 'test', 'test', values)
+        po_line = self.env['purchase.order.line'].search(
+            [('product_id', '=', self.pdt_service.id)], limit=1)
+        self.assertEqual(len(po_line), 1)
+        self.assertEqual(po_line.product_qty, 1)
+        self.assertEqual(po_line.product_uom, self.pdt_service.uom_id)
+        self.assertEqual(po_line.order_id.group_id,
+                         self.test_wh.
+                         subcontracting_service_proc_rule_id.group_id)
+        self.assertEqual(po_line.company_id, self.test_wh.company_id)
