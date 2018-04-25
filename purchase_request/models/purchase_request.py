@@ -1,10 +1,12 @@
-# -*- coding: utf-8 -*-
-# Copyright 2016 Eficent Business and IT Consulting Services S.L.
+# Copyright 2018 Eficent Business and IT Consulting Services S.L.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
 
 from odoo import api, fields, models, _
-from odoo.exceptions import UserError
 import odoo.addons.decimal_precision as dp
+from odoo.exceptions import UserError
+
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
 
 _STATES = [
     ('draft', 'Draft'),
@@ -19,7 +21,7 @@ class PurchaseRequest(models.Model):
 
     _name = 'purchase.request'
     _description = 'Purchase Request'
-    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _inherit = ['mail.thread', 'mail.activity.mixin']
 
     @api.model
     def _company_get(self):
@@ -55,23 +57,10 @@ class PurchaseRequest(models.Model):
             else:
                 rec.is_editable = True
 
-    @api.multi
-    def _track_subtype(self, init_values):
-        for rec in self:
-            if 'state' in init_values and rec.state == 'to_approve':
-                return 'purchase_request.mt_request_to_approve'
-            elif 'state' in init_values and rec.state == 'approved':
-                return 'purchase_request.mt_request_approved'
-            elif 'state' in init_values and rec.state == 'rejected':
-                return 'purchase_request.mt_request_rejected'
-            elif 'state' in init_values and rec.state == 'done':
-                return 'purchase_request.mt_request_done'
-        return super(PurchaseRequest, self)._track_subtype(init_values)
-
-    name = fields.Char('Request Reference', size=32, required=True,
+    name = fields.Char('Request Reference', required=True,
                        default=_get_default_name,
                        track_visibility='onchange')
-    origin = fields.Char('Source Document', size=32)
+    origin = fields.Char('Source Document')
     date_start = fields.Date('Creation date',
                              help="Date when the user initiated the "
                                   "request.",
@@ -82,8 +71,11 @@ class PurchaseRequest(models.Model):
                                    required=True,
                                    track_visibility='onchange',
                                    default=_get_default_requested_by)
-    assigned_to = fields.Many2one('res.users', 'Approver',
-                                  track_visibility='onchange')
+    assigned_to = fields.Many2one(
+        'res.users', 'Approver', track_visibility='onchange',
+        domain=lambda self: [('groups_id', 'in', self.env.ref(
+            'purchase_request.group_purchase_request_manager').id)]
+    )
     description = fields.Text('Description')
     company_id = fields.Many2one('res.company', 'Company',
                                  required=True,
@@ -109,7 +101,8 @@ class PurchaseRequest(models.Model):
     picking_type_id = fields.Many2one('stock.picking.type',
                                       'Picking Type', required=True,
                                       default=_default_picking_type)
-
+    group_id = fields.Many2one('procurement.group', string="Procurement Group",
+                               copy=False)
     line_count = fields.Integer(
         string='Purchase Request Line count',
         compute='_compute_line_count',
@@ -130,7 +123,7 @@ class PurchaseRequest(models.Model):
         elif lines:
             action['views'] = [(self.env.ref(
                 'purchase_request.purchase_request_line_form').id, 'form')]
-            action['res_id'] = lines.id
+            action['res_id'] = lines.ids[0]
         return action
 
     @api.multi
@@ -218,32 +211,9 @@ class PurchaseRequestLine(models.Model):
 
     _name = "purchase.request.line"
     _description = "Purchase Request Line"
-    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _inherit = ['mail.thread', 'mail.activity.mixin']
 
-    @api.multi
-    @api.depends('product_id', 'name', 'product_uom_id', 'product_qty',
-                 'analytic_account_id', 'date_required', 'specifications')
-    def _compute_is_editable(self):
-        for rec in self:
-            if rec.request_id.state in ('to_approve', 'approved', 'rejected',
-                                        'done'):
-                rec.is_editable = False
-            else:
-                rec.is_editable = True
-
-    @api.multi
-    def _compute_supplier_id(self):
-        for rec in self:
-            if rec.product_id:
-                if rec.product_id.seller_ids:
-                    rec.supplier_id = rec.product_id.seller_ids[0].name
-
-    product_id = fields.Many2one(
-        'product.product', 'Product',
-        domain=[('purchase_ok', '=', True)],
-        track_visibility='onchange')
-    name = fields.Char('Description', size=256,
-                       track_visibility='onchange')
+    name = fields.Char('Description', track_visibility='onchange')
     product_uom_id = fields.Many2one('product.uom', 'Product Unit of Measure',
                                      track_visibility='onchange')
     product_qty = fields.Float('Quantity', track_visibility='onchange',
@@ -274,8 +244,7 @@ class PurchaseRequestLine(models.Model):
                               string='Description', readonly=True,
                               store=True)
     origin = fields.Char(related='request_id.origin',
-                         size=32, string='Source Document', readonly=True,
-                         store=True)
+                         string='Source Document', readonly=True, store=True)
     date_required = fields.Date(string='Request Date', required=True,
                                 track_visibility='onchange',
                                 default=fields.Date.context_today)
@@ -291,11 +260,54 @@ class PurchaseRequestLine(models.Model):
     supplier_id = fields.Many2one('res.partner',
                                   string='Preferred supplier',
                                   compute="_compute_supplier_id")
-    procurement_id = fields.Many2one('procurement.order',
-                                     'Procurement Order',
-                                     readonly=True, copy=False)
     cancelled = fields.Boolean(
         string="Cancelled", readonly=True, default=False, copy=False)
+
+    purchased_qty = fields.Float(string='Quantity in RFQ or PO',
+                                 compute="_compute_purchased_qty")
+    purchase_lines = fields.Many2many(
+        'purchase.order.line', 'purchase_request_purchase_order_line_rel',
+        'purchase_request_line_id',
+        'purchase_order_line_id', 'Purchase Order Lines',
+        readonly=True, copy=False)
+    purchase_state = fields.Selection(
+        compute="_compute_purchase_state",
+        string="Purchase Status",
+        selection=lambda self:
+        self.env['purchase.order']._fields['state'].selection,
+        store=True,
+    )
+    move_dest_ids = fields.One2many('stock.move',
+                                    'created_purchase_request_line_id',
+                                    'Downstream Moves')
+
+    orderpoint_id = fields.Many2one('stock.warehouse.orderpoint', 'Orderpoint')
+
+    @api.multi
+    @api.depends('product_id', 'name', 'product_uom_id', 'product_qty',
+                 'analytic_account_id', 'date_required', 'specifications',
+                 'purchase_lines')
+    def _compute_is_editable(self):
+        for rec in self:
+            if rec.request_id.state in ('to_approve', 'approved', 'rejected',
+                                        'done'):
+                rec.is_editable = False
+            else:
+                rec.is_editable = True
+        for rec in self.filtered(lambda p: p.purchase_lines):
+            rec.is_editable = False
+
+    @api.multi
+    def _compute_supplier_id(self):
+        for rec in self:
+            if rec.product_id:
+                if rec.product_id.seller_ids:
+                    rec.supplier_id = rec.product_id.seller_ids[0].name
+
+    product_id = fields.Many2one(
+        'product.product', 'Product',
+        domain=[('purchase_ok', '=', True)],
+        track_visibility='onchange')
 
     @api.onchange('product_id')
     def onchange_product_id(self):
@@ -326,3 +338,95 @@ class PurchaseRequestLine(models.Model):
             requests = self.mapped('request_id')
             requests.check_auto_reject()
         return res
+
+    @api.multi
+    def _compute_purchased_qty(self):
+        for rec in self:
+            rec.purchased_qty = 0.0
+            for line in rec.purchase_lines.filtered(
+                    lambda x: x.state != 'cancel'):
+                if rec.product_uom_id and\
+                        line.product_uom != rec.product_uom_id:
+                    rec.purchased_qty += line.product_uom._compute_quantity(
+                        line.product_qty, rec.product_uom_id)
+                else:
+                    rec.purchased_qty += line.product_qty
+
+    @api.multi
+    @api.depends('purchase_lines.state', 'purchase_lines.order_id.state')
+    def _compute_purchase_state(self):
+        for rec in self:
+            temp_purchase_state = False
+            if rec.purchase_lines:
+                if any([po_line.state == 'done' for po_line in
+                        rec.purchase_lines]):
+                    temp_purchase_state = 'done'
+                elif all([po_line.state == 'cancel' for po_line in
+                          rec.purchase_lines]):
+                    temp_purchase_state = 'cancel'
+                elif any([po_line.state == 'purchase' for po_line in
+                          rec.purchase_lines]):
+                    temp_purchase_state = 'purchase'
+                elif any([po_line.state == 'to approve' for po_line in
+                          rec.purchase_lines]):
+                    temp_purchase_state = 'to approve'
+                elif any([po_line.state == 'sent' for po_line in
+                          rec.purchase_lines]):
+                    temp_purchase_state = 'sent'
+                elif all([po_line.state in ('draft', 'cancel') for po_line in
+                          rec.purchase_lines]):
+                    temp_purchase_state = 'draft'
+            rec.purchase_state = temp_purchase_state
+
+    @api.model
+    def _planned_date(self, request_line, delay=0.0):
+        company = request_line.company_id
+        date_planned = datetime.strptime(
+            request_line.date_required, '%Y-%m-%d') - \
+            relativedelta(days=company.po_lead)
+        if delay:
+            date_planned -= relativedelta(days=delay)
+        return date_planned and date_planned.strftime('%Y-%m-%d') \
+            or False
+
+    @api.model
+    def _get_supplier_min_qty(self, product, partner_id=False):
+        seller_min_qty = 0.0
+        if partner_id:
+            seller = product.seller_ids \
+                .filtered(lambda r: r.name == partner_id) \
+                .sorted(key=lambda r: r.min_qty)
+        else:
+            seller = product.seller_ids.sorted(key=lambda r: r.min_qty)
+        if seller:
+            seller_min_qty = seller[0].min_qty
+        return seller_min_qty
+
+    @api.model
+    def _calc_new_qty(self, request_line, po_line=None,
+                      new_pr_line=False):
+        purchase_uom = po_line.product_uom or request_line.product_id.uom_po_id
+        uom = request_line.product_uom_id
+        qty = uom._compute_quantity(request_line.product_qty, purchase_uom)
+        # Make sure we use the minimum quantity of the partner corresponding
+        # to the PO. This does not apply in case of dropshipping
+        supplierinfo_min_qty = 0.0
+        if not po_line.order_id.dest_address_id:
+            supplierinfo_min_qty = self._get_supplier_min_qty(
+                po_line.product_id, po_line.order_id.partner_id)
+
+        rl_qty = 0.0
+        # Recompute quantity by adding existing running procurements.
+        for rl in po_line.purchase_request_lines:
+            rl_qty += rl.product_uom_id._compute_quantity(
+                rl.product_qty, purchase_uom)
+        qty = max(rl_qty, supplierinfo_min_qty)
+        return qty
+
+    @api.multi
+    def unlink(self):
+        if self.mapped('purchase_lines'):
+            raise UserError(
+                _('You cannot delete a record that refers to purchase '
+                  'lines!'))
+        return super(PurchaseRequestLine, self).unlink()
