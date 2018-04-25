@@ -1,14 +1,24 @@
-.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
+.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-=======================================
-Trigger procurement for service product
-=======================================
+======================
+Subcontracted services
+======================
 
-This module adds the functionality of being able to create a procurement
-which contains service products. This is the case of subcontracted services,
-as for instance assemblies.
+This module allows a user to indicate that a service is subcontracted.
+It provides the ability to create purchases from procurement processes.
+
+This is a base module, upon specific modules for sale / manufacuturing, modules
+will need to rely on. By itself it does not provide any function to the end user.
+
+Possible uses of this module can be:
+
+* Add subcontracted services to BOMs. When a manufacturing order is created a
+  PO is triggered for the service to be subcontracted. See
+
+* Add subcontracted services to sales order. When the SO is confirmed, it
+  creates a PO for the service.
 
 
 Configuration
@@ -28,13 +38,9 @@ To configure this module, you need to:
 Usage
 =====
 
-To use this module, you need to:
-
-#. Create a procurement order of a subcontracted service product.
-
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/142/10.0
+   :target: https://runbot.odoo-community.org/runbot/142/11.0
 
 
 Bug Tracker
@@ -51,7 +57,7 @@ Credits
 Images
 ------
 
-* Odoo Community Association: `Icon <https://github.com/OCA/maintainer-tools/blob/master/template/module/static/description/icon.svg>`_.
+* Odoo Community Association: `Icon <https://github.com/OCA/maintainer-tools/blob/master/template/module/static/description/icon.png>`_.
 
 Contributors
 ------------
