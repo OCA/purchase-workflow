@@ -1,0 +1,56 @@
+---Fields in module 'purchase_request'---
+purchase_request / purchase.request         / activity_ids (one2many)       : NEW relation: mail.activity
+purchase_request / purchase.request         / website_message_ids (one2many): NEW relation: mail.message
+# NOTHING TO DO
+
+purchase_request / purchase.request.line    / activity_ids (one2many)       : NEW relation: mail.activity
+purchase_request / purchase.request.line    / move_dest_ids (one2many)      : NEW relation: stock.move
+purchase_request / purchase.request.line    / website_message_ids (one2many): NEW relation: mail.message
+# NOTHING TO DO
+
+purchase_request / purchase.request.line    / group_id (many2one)           : NEW relation: procurement.group
+purchase_request / purchase.request.line    / procurement_id (many2one)     : DEL relation: procurement.order
+# DONE: post-migration: filled group_id from procurement_group
+
+purchase_request / stock.move               / created_purchase_request_line_id (many2one): NEW relation: purchase.request.line
+# DONE: post-migration: filled created_purchase_request_line_id from purchase_request_line
+
+purchase_request / purchase.request.line    / orderpoint_id (many2one)      : NEW relation: stock.warehouse.orderpoint
+# DONE: post-migration: filled created_purchase_request_line_orderpoint_id from purchase_request_line
+
+---XML records in module 'purchase_request'---
+NEW ir.actions.act_window: purchase_request.action_purchase_request_line_make_purchase_order
+DEL ir.actions.act_window: purchase_request_to_rfq.action_purchase_request_line_make_purchase_order
+NEW ir.model.access: purchase_request.access_purchase_order_line_manager
+NEW ir.model.access: purchase_request.access_purchase_order_line_user
+NEW ir.model.access: purchase_request.access_purchase_order_manager
+NEW ir.model.access: purchase_request.access_purchase_order_user
+DEL ir.model.access: purchase_request_to_rfq.access_purchase_order_line_manager
+DEL ir.model.access: purchase_request_to_rfq.access_purchase_order_line_user
+DEL ir.model.access: purchase_request_to_rfq.access_purchase_order_manager
+DEL ir.model.access: purchase_request_to_rfq.access_purchase_order_user
+NEW ir.ui.view: purchase_request.product_template_form_view_inherit
+NEW ir.ui.view: purchase_request.purchase_order_form
+NEW ir.ui.view: purchase_request.purchase_order_line_form2
+NEW ir.ui.view: purchase_request.purchase_order_line_form2_sub
+NEW ir.ui.view: purchase_request.purchase_order_line_search_sub
+NEW ir.ui.view: purchase_request.purchase_order_line_tree
+NEW ir.ui.view: purchase_request.purchase_order_line_tree_sub
+NEW ir.ui.view: purchase_request.report_purchase_request
+NEW ir.ui.view: purchase_request.view_purchase_request_line_make_purchase_order
+DEL ir.ui.view: purchase_request.report_purchaserequests
+DEL ir.ui.view: purchase_request_procurement.procurement_form_view
+DEL ir.ui.view: purchase_request_procurement.product_template_form_view_inherit
+DEL ir.ui.view: purchase_request_to_rfq.purchase_order_form
+DEL ir.ui.view: purchase_request_to_rfq.purchase_order_line_form2
+DEL ir.ui.view: purchase_request_to_rfq.purchase_order_line_form2_sub
+DEL ir.ui.view: purchase_request_to_rfq.purchase_order_line_search_sub
+DEL ir.ui.view: purchase_request_to_rfq.purchase_order_line_tree
+DEL ir.ui.view: purchase_request_to_rfq.purchase_order_line_tree_sub
+DEL ir.ui.view: purchase_request_to_rfq.purchase_request_line_form
+DEL ir.ui.view: purchase_request_to_rfq.purchase_request_line_search
+DEL ir.ui.view: purchase_request_to_rfq.purchase_request_line_tree
+DEL ir.ui.view: purchase_request_to_rfq.view_purchase_request_form
+DEL ir.ui.view: purchase_request_to_rfq.view_purchase_request_line_make_purchase_order
+DEL ir.values: purchase_request_to_rfq.purchase_request_line_make_purchase_order
+# NOTHING TO DO
