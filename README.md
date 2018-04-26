@@ -38,7 +38,7 @@ addon | version | summary
 [purchase_order_line_description](purchase_order_line_description/) | 10.0.1.0.0 | Purchase order line description
 [purchase_order_revision](purchase_order_revision/) | 10.0.1.0.0 | Purchase order revisions
 [purchase_picking_state](purchase_picking_state/) | 10.0.1.0.0 | Add the status of all the incoming picking in the purchase order
-[purchase_request](purchase_request/) | 10.0.1.0.2 | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
+[purchase_request](purchase_request/) | 10.0.1.1.0 | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
 [purchase_request_procurement](purchase_request_procurement/) | 10.0.1.0.1 | Purchase Request Procurement
 [purchase_request_to_procurement](purchase_request_to_procurement/) | 10.0.1.0.0 | This module introduces the possiblity to create procurement order from purchase request
 [purchase_request_to_rfq](purchase_request_to_rfq/) | 10.0.1.0.0 | Purchase Request to RFQ
