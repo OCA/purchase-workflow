@@ -13,6 +13,7 @@ setuptools.setup(
         'odoo11-addon-purchase_minimum_amount',
         'odoo11-addon-purchase_order_approval_block',
         'odoo11-addon-stock_landed_cost_company_percentage',
+        'odoo11-addon-subcontracted_service',
     ],
     classifiers=[
         'Programming Language :: Python',
