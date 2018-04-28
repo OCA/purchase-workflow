@@ -1,21 +1,19 @@
-# -*- coding: utf-8 -*-
-# © 2016 Chafique DELLI @ Akretion
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# Copyright 2016 Chafique DELLI @ Akretion
+# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
+
 {
     'name': 'Purchase Picking State',
-    'summary': 'Add the status of all the incoming picking'
-    ' in the purchase order',
-    'version': '10.0.1.0.0',
-    'category': 'Purchase Management',
-    'website': 'http://akretion.com',
-    'author': 'Akretion',
+    'version': '11.0.1.0.0',
+    'author': 'Akretion, '
+              'Odoo Community Association (OCA)',
     'license': 'AGPL-3',
-    'application': False,
-    'installable': True,
+    'category': 'Purchase Management',
+    'website': 'https://github.com/OCA/purchase-workflow',
     'depends': [
         'purchase',
     ],
     'data': [
-        'purchase_view.xml',
-    ]
+        'views/purchase_view.xml',
+    ],
+    'installable': True,
 }
