@@ -1,0 +1,178 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* purchase_amendment
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-04-02 11:30+0000\n"
+"PO-Revision-Date: 2015-04-02 11:30+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_amendment
+#: code:addons/purchase_amendment/model/purchase_order_amendment.py:90
+#, python-format
+msgid "<li><b>%s</b>: %s Ordered, %s Received, %s Canceled, %s Amended</li>"
+msgstr ""
+
+#. module: purchase_amendment
+#: view:purchase.order.amendment:purchase_amendment.view_purchase_order_amendment
+msgid "After amended, the purchase order will recreate the incoming shipments\n"
+"            based on the new quantities."
+msgstr ""
+
+#. module: purchase_amendment
+#: view:purchase.order:purchase_amendment.purchase_order_form
+#: field:purchase.order.amendment.item,amend_qty:0
+msgid "Amend"
+msgstr ""
+
+#. module: purchase_amendment
+#: field:purchase.order.line,amend_id:0
+msgid "Amend Line"
+msgstr ""
+
+#. module: purchase_amendment
+#: field:purchase.order.line,amended_by_ids:0
+msgid "Amended by lines"
+msgstr ""
+
+#. module: purchase_amendment
+#: field:purchase.order.amendment.item,amendment_id:0
+msgid "Amendment"
+msgstr ""
+
+#. module: purchase_amendment
+#: view:purchase.order.amendment:purchase_amendment.view_purchase_order_amendment
+msgid "Amendment Details"
+msgstr ""
+
+#. module: purchase_amendment
+#: code:addons/purchase_amendment/model/purchase_order_amendment.py:54
+#, python-format
+msgid "An invoiced order cannot be amended."
+msgstr ""
+
+#. module: purchase_amendment
+#: field:purchase.order.amendment.item,canceled_qty:0
+msgid "Canceled Moves"
+msgstr ""
+
+#. module: purchase_amendment
+#: field:purchase.order.amendment,create_uid:0
+#: field:purchase.order.amendment.item,create_uid:0
+msgid "Created by"
+msgstr ""
+
+#. module: purchase_amendment
+#: field:purchase.order.amendment,create_date:0
+#: field:purchase.order.amendment.item,create_date:0
+msgid "Created on"
+msgstr ""
+
+#. module: purchase_amendment
+#: view:purchase.order.amendment:purchase_amendment.view_purchase_order_amendment
+msgid "Details"
+msgstr ""
+
+#. module: purchase_amendment
+#: code:addons/purchase_amendment/model/purchase_order_amendment.py:118
+#, python-format
+msgid "Enter the amendment details"
+msgstr ""
+
+#. module: purchase_amendment
+#: field:purchase.order.amendment,id:0
+#: field:purchase.order.amendment.item,id:0
+msgid "ID"
+msgstr ""
+
+#. module: purchase_amendment
+#: field:purchase.order.amendment,item_ids:0
+msgid "Items"
+msgstr ""
+
+#. module: purchase_amendment
+#: field:purchase.order.amendment,write_uid:0
+#: field:purchase.order.amendment.item,write_uid:0
+msgid "Last Updated by"
+msgstr ""
+
+#. module: purchase_amendment
+#: field:purchase.order.amendment,write_date:0
+#: field:purchase.order.amendment.item,write_date:0
+msgid "Last Updated on"
+msgstr ""
+
+#. module: purchase_amendment
+#: field:purchase.order.amendment.item,purchase_line_id:0
+msgid "Line"
+msgstr ""
+
+#. module: purchase_amendment
+#: code:addons/purchase_amendment/model/purchase_order_amendment.py:87
+#, python-format
+msgid "Order amendment"
+msgstr ""
+
+#. module: purchase_amendment
+#: model:ir.model,name:purchase_amendment.model_purchase_order
+#: field:purchase.order.amendment,purchase_id:0
+msgid "Purchase Order"
+msgstr ""
+
+#. module: purchase_amendment
+#: model:ir.model,name:purchase_amendment.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr ""
+
+#. module: purchase_amendment
+#: model:ir.actions.act_window,name:purchase_amendment.action_order_line_grouped_tree
+#: model:ir.ui.menu,name:purchase_amendment.menu_purchase_order_line
+msgid "Purchase Order Lines by State"
+msgstr ""
+
+#. module: purchase_amendment
+#: field:purchase.order.amendment,reason:0
+msgid "Reason"
+msgstr ""
+
+#. module: purchase_amendment
+#: code:addons/purchase_amendment/model/purchase_order_amendment.py:101
+#: view:purchase.order.amendment:purchase_amendment.view_purchase_order_amendment
+#, python-format
+msgid "Reason for amending"
+msgstr ""
+
+#. module: purchase_amendment
+#: field:purchase.order.amendment.item,received_qty:0
+msgid "Received"
+msgstr ""
+
+#. module: purchase_amendment
+#: view:purchase.order.amendment:purchase_amendment.view_purchase_order_amendment
+msgid "_Apply"
+msgstr ""
+
+#. module: purchase_amendment
+#: view:purchase.order.amendment:purchase_amendment.view_purchase_order_amendment
+msgid "_Cancel"
+msgstr ""
+
+#. module: purchase_amendment
+#: view:purchase.order:purchase_amendment.purchase_order_form
+#: view:purchase.order.line:purchase_amendment.purchase_order_line_tree
+msgid "grey:state == 'cancel'"
+msgstr ""
+
+#. module: purchase_amendment
+#: view:purchase.order.amendment:purchase_amendment.view_purchase_order_amendment
+msgid "or"
+msgstr ""
+
