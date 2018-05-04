@@ -10,14 +10,12 @@
     'version': '10.0.1.0.0',
     'license': 'AGPL-3',
     'author': 'ACSONE SA/NV,Odoo Community Association (OCA)',
-    'website': 'http://acsone.eu',
+    'website': 'http://github.com/OCA/purchase-workflow',
     'depends': [
         'purchase',
     ],
     'data': [
         'views/product_template.xml',
         'views/purchase_order.xml',
-    ],
-    'demo': [
     ],
 }

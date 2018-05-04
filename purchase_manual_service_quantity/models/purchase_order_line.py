@@ -9,6 +9,17 @@ class PurchaseOrderLine(models.Model):
 
     _inherit = 'purchase.order.line'
 
+    qty_received_manually = fields.Float(
+        string="Manually Received Qty",
+        copy=False,
+    )
+    qty_received = fields.Float(inverse='_inverse_qty_received')
+    purchase_manual_received_qty = fields.Boolean(
+        related='product_id.purchase_manual_received_qty',
+        store=True,
+        readonly=True,
+    )
+
     @api.depends('order_id.state', 'move_ids.state')
     def _compute_qty_received(self):
         for line in self:
@@ -23,12 +34,3 @@ class PurchaseOrderLine(models.Model):
             if line.product_id.type in ['service'] and \
                     line.product_id.purchase_manual_received_qty:
                 line.qty_received_manually = line.qty_received
-
-    qty_received_manually = fields.Float(string="Manually Received Qty",
-                                         copy=False)
-    qty_received = fields.Float(inverse='_inverse_qty_received')
-    purchase_manual_received_qty = fields.Boolean(
-        related='product_id.purchase_manual_received_qty',
-        store=True,
-        readonly=True
-    )
