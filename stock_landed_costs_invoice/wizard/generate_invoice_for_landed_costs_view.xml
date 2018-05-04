@@ -1,0 +1,30 @@
+<openerp>
+    <data>
+        <!--  Make the invoice-->
+        <record id="view_stock_landed_cost_generate_invoice" model="ir.ui.view">
+            <field name="name">Create invoices</field>
+            <field name="model">landed.cost.generate.invoice</field>
+            <field name="arch" type="xml">
+                <form string="Select Landed Costs" version="7.0">
+                    <group>
+                        <label string="Do you want to generate the selected Landed Costs?"/>
+                        <field name="invoice_date" />
+                    </group>
+                    <footer>
+                        <button name="make_invoices" string="Confirm" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+    <act_window name="Create invoices"
+            res_model="landed.cost.generate.invoice"
+            src_model="stock.landed.cost"
+            view_mode="form"
+            target="new"
+            key2="client_action_multi"
+            id="action_stock_landed_costs_generate_invoice"/>
+    </data>
+</openerp>
