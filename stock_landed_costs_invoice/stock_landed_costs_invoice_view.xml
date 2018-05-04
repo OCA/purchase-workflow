@@ -1,0 +1,22 @@
+<openerp>
+    <data>
+        <!-- inheriting Stock Landed Cost Form View -->
+        <record id='view_stock_landed_cost_form_inherit' model='ir.ui.view'>
+            <field name="name">stock.landed.cost.form.inherit</field>
+            <field name="model">stock.landed.cost</field>
+            <field name="inherit_id" ref="stock_landed_costs.view_stock_landed_cost_form" />
+            <field name="arch" type="xml">
+                <field name="cost_lines" position="attributes">
+                    <attribute name="context">{'default_partner_id': partner_id}</attribute>
+                </field>
+                <field name="date" position="before">
+                    <field name="partner_id" />
+                </field>
+                <xpath expr="//field[@name='cost_lines']/tree/field[@name='product_id']" position="before">
+                    <field name="generate_invoice" />
+                    <field name="partner_id" />
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
