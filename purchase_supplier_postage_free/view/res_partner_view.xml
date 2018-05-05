@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data noupdate="0">
+    <record id="view_partner_property_form" model="ir.ui.view">
+      <field name="name">res.partner.purchase.postage.free.form.inherit</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="purchase.view_partner_property_form"/>
+      <field name="priority">36</field>
+      <field name="arch" type="xml">
+        <field name="property_product_pricelist_purchase" position="after">
+          <field name="free_postage"
+            attrs="{'invisible': [('supplier', '=', False)]}"
+            groups="product.group_purchase_pricelist"/>
+        </field>
+      </field>
+    </record>
+
+  </data>
+</openerp>

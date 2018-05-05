@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data noupdate="0">
+    <record id="purchase_order_form" model="ir.ui.view">
+      <field name="name">purchase.order.form</field>
+      <field name="model">purchase.order</field>
+      <field name="inherit_id" ref="purchase.purchase_order_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//group[@class='oe_subtotal_footer oe_right']" position="after">
+          <div class="oe_left" style="width: 300px;">
+            <group>
+              <field name="free_postage_reached" invisible="1"/>
+              <field name="free_postage"
+                widget="monetary" options="{'currency_field': 'currency_id'}"/>
+              <span colspan="2"
+                attrs="{'invisible': [('free_postage_reached', '=', False)]}">
+                <span class="oe_kanban_status oe_kanban_status_green"/>
+                <label string="Amount has been reached"/>
+              </span>
+              <span colspan="2"
+                attrs="{'invisible': [('free_postage_reached', '=', True)]}">
+                <span class="oe_kanban_status oe_kanban_status_red"/>
+                <field name="free_postage_diff" class="oe_inline" nolabel="1"
+                  widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                <label string="until amount is reached" class="oe_inline"/>
+              </span>
+            </group>
+          </div>
+        </xpath>
+      </field>
+    </record>
+
+    <record id="purchase_order_tree" model="ir.ui.view">
+      <field name="name">purchase.order.tree</field>
+      <field name="model">purchase.order</field>
+      <field name="inherit_id" ref="purchase.purchase_order_tree"/>
+      <field name="arch" type="xml">
+        <field name="state" position="after">
+          <field name="free_postage_reached" invisible="context.get('search_no_free_postage') or context.get('search_free_postage')"/>
+          <field name="free_postage" invisible="not context.get('search_no_free_postage')"/>
+          <field name="free_postage_diff" invisible="not context.get('search_no_free_postage')"/>
+        </field>
+      </field>
+    </record>
+
+    <record id="view_request_for_quotation_filter" model="ir.ui.view">
+      <field name="name">request.quotation.select</field>
+      <field name="model">purchase.order</field>
+      <field name="inherit_id" ref="purchase.view_request_for_quotation_filter"/>
+      <field name="arch" type="xml">
+        <filter name="not_invoiced" position="after">
+          <filter name="free_postage_reached"
+            context="{'search_free_postage': 1}"
+            string="Free Postage"
+            domain="[('free_postage_reached', '=', True)]" help="Purchase orders having an untaxed amount greater than the Free Postage threshold."/>
+          <filter name="free_postage_not_reached"
+            context="{'search_no_free_postage': 1}"
+            string="No Free Postage"
+            domain="[('free_postage_reached', '=', False)]" help="Purchase orders having an untaxed amount below the Free Postage threshold."/>
+        </filter>
+      </field>
+    </record>
+
+    <record id="view_purchase_order_filter" model="ir.ui.view">
+      <field name="name">purchase.order.list.select</field>
+      <field name="model">purchase.order</field>
+      <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+      <field name="arch" type="xml">
+        <filter name="not_invoiced" position="after">
+          <filter name="free_postage_reached"
+            context="{'search_free_postage': 1}"
+            string="Free Postage"
+            domain="[('free_postage_reached', '=', True)]" help="Purchase orders having an untaxed amount greater than the Free Postage threshold."/>
+          <filter name="free_postage_not_reached"
+            context="{'search_no_free_postage': 1}"
+            string="No Free Postage"
+            domain="[('free_postage_reached', '=', False)]" help="Purchase orders having an untaxed amount below the Free Postage threshold."/>
+        </filter>
+      </field>
+    </record>
+
+  </data>
+</openerp>
