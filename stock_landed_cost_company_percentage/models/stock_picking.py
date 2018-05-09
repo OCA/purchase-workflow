@@ -3,6 +3,7 @@
 
 from odoo import api, models, _
 from odoo.exceptions import UserError
+from odoo.tools import config
 
 
 class StockPicking(models.Model):
@@ -38,17 +39,23 @@ class StockPicking(models.Model):
         }
 
     def _create_landed_cost(self):
-        for pick in self:
-            # Only applicable for Receipts
-            if pick.picking_type_code == 'incoming':
-                total_amount = sum(
-                    [x.qty_done * x.move_id.purchase_line_id.price_unit for x
-                     in pick.move_line_ids])
-                # Create landed cost & validate it
-                landed_cost = self.env['stock.landed.cost'].create(
-                    pick._prepare_landed_cost(total_amount))
-                landed_cost.compute_landed_cost()
-                landed_cost.button_validate()
+        check_stock_landed_cost_company_percentage = (
+            (config['test_enable'] and
+             self.env.context.get(
+                 'test_stock_landed_cost_company_percentage')) or
+            not config['test_enable'])
+        if check_stock_landed_cost_company_percentage:
+            for pick in self:
+                # Only applicable for Receipts
+                if pick.picking_type_code == 'incoming':
+                    total_amount = sum(
+                        [x.qty_done * x.move_id.purchase_line_id.price_unit for
+                         x in pick.move_line_ids])
+                    # Create landed cost & validate it
+                    landed_cost = self.env['stock.landed.cost'].create(
+                        pick._prepare_landed_cost(total_amount))
+                    landed_cost.compute_landed_cost()
+                    landed_cost.button_validate()
         return True
 
     @api.multi
