@@ -68,7 +68,7 @@
         <field name="arch" type="xml">
             <filter name="message_needaction" position="after">
                 <filter name="needs_review" string="Needs my Review"
-                        domain="[('reviewer_ids','in',uid)]"
+                        domain="[('reviewer_ids','in',uid), ('state', 'not in', ['done', 'cancel'])]"
                         help="My Purchases to review"/>
                 <filter name="tier_validated" string="Validated"
                         domain="[('validated', '=', True)]"
