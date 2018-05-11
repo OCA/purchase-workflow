@@ -13,10 +13,16 @@
                   string="Cancel" type="action" groups="base.group_user"/>
             </xpath>
             <xpath expr="/form/sheet/div/h1" position="after">
-                <h2 attrs="{'invisible': [('state', '!=', 'cancel')]}">
+                <div attrs="{'invisible': [('state', '!=', 'cancel')]}">
                     <label for="cancel_reason_id" string="Cancellation reason:"/>
                     <field name="cancel_reason_id" class="oe_inline" options='{"no_open": True}'/>
-                </h2>
+                    <div>
+                        <label for="description" class="oe_inline"/>
+                    </div>
+                    <div>
+                        <field name="description" class="oe_inline"/>
+                    </div>
+                </div>
             </xpath>
         </field>
     </record>

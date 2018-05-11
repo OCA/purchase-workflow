@@ -13,6 +13,7 @@ class PurchaseOrder(models.Model):
         string="Reason for cancellation",
         readonly=True,
         ondelete="restrict")
+    description = fields.Text(string="Description", readonly=True, ondelete="restrict")
 
 
 class PurchaseOrderCancelReason(models.Model):
