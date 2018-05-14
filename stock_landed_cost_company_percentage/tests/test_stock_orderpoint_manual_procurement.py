@@ -130,7 +130,9 @@ class TestLandedCostCompanyPercentage(common.TransactionCase):
         self.picking = self.po.picking_ids[0]
         self.picking.force_assign()
         self.picking.move_line_ids.write({'qty_done': 5.0})
-        self.picking.button_validate()
+        self.picking.with_context(
+            test_stock_landed_cost_company_percentage=True
+        ).button_validate()
 
         landed_cost_record = self.landed_cost_model.search(
             [('picking_ids', '=', self.picking.id)])
