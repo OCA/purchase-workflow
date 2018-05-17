@@ -8,6 +8,9 @@ from odoo import fields
 
 
 class TestPurchaseOrder(common.SavepointCase):
+    at_install = False
+    post_install = True
+
     @classmethod
     def setUpClass(cls):
         super(TestPurchaseOrder, cls).setUpClass()
@@ -77,9 +80,12 @@ class TestPurchaseOrder(common.SavepointCase):
     def test_move_price_unit(self):
         self.purchase_order.button_confirm()
         moves = self.purchase_order.picking_ids.move_lines
-        self.assertEqual(moves[0].price_unit, 5,)
-        self.assertEqual(moves[1].price_unit, 161)
-        self.assertEqual(moves[2].price_unit, 10)
+        move = moves.filtered(lambda x: x.purchase_line_id == self.po_line_1)
+        self.assertEqual(move.price_unit, 5,)
+        move = moves.filtered(lambda x: x.purchase_line_id == self.po_line_2)
+        self.assertEqual(move.price_unit, 161)
+        move = moves.filtered(lambda x: x.purchase_line_id == self.po_line_3)
+        self.assertEqual(move.price_unit, 10)
         # Change price to launch a recalculation of totals
         self.po_line_1.discount = 60
         self.assertEqual(self.po_line_1.price_subtotal, 4.0)
@@ -99,6 +105,15 @@ class TestPurchaseOrder(common.SavepointCase):
             'purchase_id': self.purchase_order.id,
         })
         invoice.purchase_order_change()
-        self.assertEqual(invoice.invoice_line_ids[0].discount, 50)
-        self.assertEqual(invoice.invoice_line_ids[1].discount, 30)
-        self.assertEqual(invoice.invoice_line_ids[2].discount, 0)
+        line = invoice.invoice_line_ids.filtered(
+            lambda x: x.purchase_line_id == self.po_line_1
+        )
+        self.assertEqual(line.discount, 50)
+        line = invoice.invoice_line_ids.filtered(
+            lambda x: x.purchase_line_id == self.po_line_2
+        )
+        self.assertEqual(line.discount, 30)
+        line = invoice.invoice_line_ids.filtered(
+            lambda x: x.purchase_line_id == self.po_line_3
+        )
+        self.assertEqual(line.discount, 0)
