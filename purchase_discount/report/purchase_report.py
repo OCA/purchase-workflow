@@ -30,7 +30,7 @@ class PurchaseReport(models.Model):
         :rtype: str
         :return: SQL expression for discounted unit price.
         """
-        return '(1 - l.discount / 100) * l.price_unit '
+        return '(1.0 - COALESCE(l.discount, 0.0) / 100.0) * l.price_unit '
 
     @api.model_cr
     def init(self):
