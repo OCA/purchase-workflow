@@ -25,7 +25,7 @@ addon | version | summary
 [purchase_cancel_reason](purchase_cancel_reason/) | 10.0.1.0.0 | Purchase Cancel Reason
 [purchase_commercial_partner](purchase_commercial_partner/) | 10.0.1.0.0 | Add stored related field 'Commercial Supplier' on POs
 [purchase_delivery_split_date](purchase_delivery_split_date/) | 10.0.1.0.0 | Allows Purchase Order you confirm to generate one Incoming Shipment for each expected date indicated in the Purchase Order Lines
-[purchase_discount](purchase_discount/) | 10.0.1.0.3 | Purchase order lines with discounts
+[purchase_discount](purchase_discount/) | 10.0.1.0.4 | Purchase order lines with discounts
 [purchase_fiscal_position_update](purchase_fiscal_position_update/) | 10.0.1.0.0 | Changing the fiscal position of a purchase order will auto-update purchase order lines
 [purchase_fop_shipping](purchase_fop_shipping/) | 10.0.1.0.0 | Purchase Free-Of-Paiment shipping
 [purchase_line_product_image](purchase_line_product_image/) | 10.0.1.0.0 | Show Product Image at Purchase Order Line.
