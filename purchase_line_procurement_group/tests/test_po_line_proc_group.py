@@ -69,8 +69,8 @@ class TestPOLineProcurementGroup(SavepointCase):
         cls.lighter.write({
             'route_ids': [(4, wh_wh2_route.id)]
         })
-        _create_orderpoint(cls.lighter, 15, 30, warehouse.lot_stock_id)
         _create_orderpoint(cls.lighter, 10, 20, wh2.lot_stock_id)
+        _create_orderpoint(cls.lighter, 15, 30, warehouse.lot_stock_id)
 
     def test_po_line_proc_group(self):
         self.env['procurement.group'].run_scheduler()
