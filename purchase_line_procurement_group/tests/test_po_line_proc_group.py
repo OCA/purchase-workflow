@@ -72,6 +72,10 @@ class TestPOLineProcurementGroup(SavepointCase):
         _create_orderpoint(cls.lighter, 15, 30, warehouse.lot_stock_id)
         _create_orderpoint(cls.lighter, 10, 20, wh2.lot_stock_id)
 
+        # Force parent store computation after creation of WH2 because location
+        # quantities are computed using parent_left _right in domain
+        cls.env['stock.location']._parent_store_compute()
+
     def test_po_line_proc_group(self):
         self.env['procurement.group'].run_scheduler()
         po = self.env['purchase.order'].search([
