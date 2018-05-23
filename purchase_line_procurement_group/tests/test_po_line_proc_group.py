@@ -69,8 +69,8 @@ class TestPOLineProcurementGroup(SavepointCase):
         cls.lighter.write({
             'route_ids': [(4, wh_wh2_route.id)]
         })
-        _create_orderpoint(cls.lighter, 40, 80, warehouse.lot_stock_id)
         _create_orderpoint(cls.lighter, 10, 20, wh2.lot_stock_id)
+        _create_orderpoint(cls.lighter, 15, 30, warehouse.lot_stock_id)
 
     def test_po_line_proc_group(self):
         self.env['procurement.group'].run_scheduler()
@@ -82,4 +82,4 @@ class TestPOLineProcurementGroup(SavepointCase):
             if line.procurement_group_id == self.wh_wh2_pg:
                 self.assertAlmostEqual(line.product_qty, 20)
             else:
-                self.assertAlmostEqual(line.product_qty, 80)
+                self.assertAlmostEqual(line.product_qty, 30)
