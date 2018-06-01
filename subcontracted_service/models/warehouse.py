@@ -20,12 +20,17 @@ class StockWarehouse(models.Model):
     @api.multi
     def _get_vals_for_proc_rule_subcontracting(self):
         self.ensure_one()
-        picking_type = self.env['stock.picking.type'].search(
-            [('code', '=', 'incoming'),
-             ('warehouse_id', '=', self.id)
-             ],
-            limit=1
-        )
+        picking_type = self.in_type_id
+        if not picking_type:
+            picking_type = self.env['stock.picking.type'].search(
+                [('code', '=', 'incoming'),
+                 '|',
+                 ('warehouse_id', '=', self.id),
+                 ('warehouse_id', '=', False),
+                 ],
+                order='warehouse_id asc',
+                limit=1
+            )
         return {'name': '%s: Subcontracting service rule' % self.name,
                 'company_id': self.company_id.id,
                 'action': 'buy',
