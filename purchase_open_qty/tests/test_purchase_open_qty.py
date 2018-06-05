@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -109,8 +108,8 @@ class TestPurchaseOpenQty(TransactionCase):
         # Now we receive the products
         for picking in self.purchase_order_2.picking_ids:
             picking.force_assign()
-            picking.pack_operation_product_ids.write({'qty_done': 5.0})
-            picking.do_new_transfer()
+            picking.move_lines.write({'quantity_done': 5.0})
+            picking.button_validate()
 
         self.assertEqual(self.purchase_order_line_2.qty_to_invoice, 5.0,
                          "Expected 5 as qty_to_invoice in the PO line")
