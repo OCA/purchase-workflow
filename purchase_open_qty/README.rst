@@ -16,7 +16,7 @@ To use this module, you need to go to Purchase Orders and select the new filters
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/142/10.0
+   :target: https://runbot.odoo-community.org/runbot/142/11.0
 
 Bug Tracker
 ===========
@@ -38,6 +38,7 @@ Contributors
 ------------
 
 * Miquel Raïch <miquel.raich@eficent.com>
+* Andreas Dian Sukarno Putro <andreasdian777@gmail.com>
 
 Maintainer
 ----------
