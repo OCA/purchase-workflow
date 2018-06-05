@@ -15,21 +15,13 @@ In the search view of RFQ/purchase orders, you can group by *Commercial Supplier
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/142/10.0
+   :target: https://runbot.odoo-community.org/runbot/142/11.0
 
 Known issues / Roadmap
 ======================
 
 Add commercial_partner_id in purchase.report. This is not easy because the
 SQL view which is the basis of purchase.report cannot be inherited.
-
-Bug Tracker
-===========
-
-Bugs are tracked on `GitHub Issues
-<https://github.com/OCA/purchase-workflow/issues>`_. In case of trouble, please
-check there if your issue has already been reported. If you spotted it first,
-help us smashing it by providing a detailed and welcomed feedback.
 
 Credits
 =======
@@ -38,6 +30,7 @@ Contributors
 ------------
 
 * Alexis de Lattre <alexis.delattre@akretion.com>
+* Andreas Dian Sukarno Putro <andreasdian777@gmail.com>
 
 Maintainer
 ----------
