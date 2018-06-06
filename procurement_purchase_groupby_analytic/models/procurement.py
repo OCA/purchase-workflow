@@ -30,23 +30,30 @@ class ProcurementOrder(models.Model):
         compute='_compute_analytic_id',
         comodel_name='account.analytic.account')
 
-    @api.one
-    @api.depends('sale_line_id.order_id.project_id', 'group_id')
-    def _compute_analytic_id(self):
-        analytic = None
-        if self.sale_line_id:
-            analytic = self.sale_line_id.order_id.project_id.id
-        elif self.group_id:
-            so = self.env['sale.order'].search(
-                [('procurement_group_id', '=', self.group_id.id)])
-            if so and len(so) == 1:
-                analytic = so.project_id.id
-        self.account_analytic_id = analytic
+    @api.multi
+    def _get_sale_order_domain(self):
+        return [('procurement_group_id', 'in', self.mapped('group_id.id'))]
 
     @api.multi
-    def _run(self):
-        return super(ProcurementOrder, self.with_context(
-            account_analytic_id=self.account_analytic_id.id))._run()
+    @api.depends('sale_line_id.order_id.project_id', 'group_id')
+    def _compute_analytic_id(self):
+        procurements = self.filtered(lambda p: p.sale_line_id or p.group_id)
+        procurements_w_group = procurements.filtered(lambda p: p.group_id)
+        # Avoid multiple searches in loop
+        sale_orders = self.env['sale.order'].search(
+            procurements_w_group._get_sale_order_domain()
+        )
+        for procurement in procurements:
+            analytic = None
+            if procurement.sale_line_id:
+                analytic = procurement.sale_line_id.order_id.project_id
+            elif procurement.group_id:
+                so = sale_orders.filtered(
+                    lambda s, p=procurement: s.procurement_group_id ==
+                    p.group_id)
+                if so and len(so) == 1:
+                    analytic = so.project_id
+            procurement.account_analytic_id = analytic
 
     @api.multi
     def _prepare_purchase_order_line(self, po, supplier):
@@ -56,6 +63,17 @@ class ProcurementOrder(models.Model):
         """
         line_vals = super(ProcurementOrder, self)._prepare_purchase_order_line(
             po, supplier)
-        line_vals['account_analytic_id'] = self.account_analytic_id \
-            and self.account_analytic_id.id
+        if self.account_analytic_id:
+            line_vals['account_analytic_id'] = self.account_analytic_id.id
         return line_vals
+
+    @api.multi
+    def _make_po_get_domain(self, partner):
+        self.ensure_one()
+        res = super(ProcurementOrder, self)._make_po_get_domain(
+            partner=partner)
+        if self.account_analytic_id:
+            res += (('order_line.account_analytic_id',
+                    '=',
+                    self.account_analytic_id.id),)
+        return res
