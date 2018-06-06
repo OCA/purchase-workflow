@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -34,8 +33,9 @@ class PurchaseOrder(models.Model):
         super(PurchaseOrder, self).button_approve()
 
     @api.multi
-    def button_approve(self):
+    def button_approve(self, force=False):
         approve_purchases = self.filtered(
             lambda p: p.company_id.purchase_approve_active)
         approve_purchases.write({'state': 'approved'})
-        return super(PurchaseOrder, self - approve_purchases).button_approve()
+        return super(PurchaseOrder, self - approve_purchases).button_approve(
+            force=force)
