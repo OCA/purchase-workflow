@@ -30,7 +30,7 @@ Run procurement,
 Current behavior (without this module): add products in existing
 purchase order.
 
-Excepted behavior (with this module): get a separate purchase order for
+Expected behaviour (with this module): get a separate purchase order for
 these products (because it is not the same analytic account).
 
 For further information, please visit:
@@ -54,6 +54,7 @@ Contributors
 
 * Laetitia Gangloff <laetitia.gangloff@acsone.eu>
 * Cédric Pigeon <cedric.pigeon@acsone.eu>
+* Denis Roussel <denis.roussel@acsone.eu>
 
 Maintainer
 ----------

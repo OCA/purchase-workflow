@@ -1,25 +1,8 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Authors: Laetitia Gangloff
-#    Copyright (c) 2015 Acsone SA/NV (http://www.acsone.eu)
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# Copyright 2015 ACSONE SA/NV
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-import openerp.tests.common as common
+import odoo.tests.common as common
 
 
 class TestProcurementGroupbyOrder(common.TransactionCase):
@@ -34,14 +17,14 @@ class TestProcurementGroupbyOrder(common.TransactionCase):
              'sale_selectable': True})
         loc_customer_id = self.env.ref('stock.stock_location_customers').id
         loc_supplier_id = self.env.ref('stock.stock_location_suppliers').id
-        self.env['procurement.rule'].create(
-            {'name': 'Buy products',
-             'action': 'buy',
-             'route_id': self.buy_route.id,
-             'location_id': loc_customer_id,
-             'location_src_id': loc_supplier_id,
-             'picking_type_id': self.env["stock.picking.type"].search([])[0].id
-             })
+        self.env['procurement.rule'].create({
+            'name': 'Buy products',
+            'action': 'buy',
+            'route_id': self.buy_route.id,
+            'location_id': loc_customer_id,
+            'location_src_id': loc_supplier_id,
+            'picking_type_id': self.env["stock.picking.type"].search([])[0].id,
+        })
         self.product = self.env.ref('product.product_product_9')
         self.project = self.env['account.analytic.account'].create({
             'name': 'Account Analytic for Tests'
