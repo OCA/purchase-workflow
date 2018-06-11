@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2018 brain-tec AG - Raúl Martín
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
@@ -22,4 +21,3 @@
              'security/ir.model.access.csv'
              ],
 }
-
