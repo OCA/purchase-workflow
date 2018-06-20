@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * purchase_fop_shipping
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
@@ -12,10 +12,10 @@ msgstr ""
 "PO-Revision-Date: 2017-11-24 07:53+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: purchase_fop_shipping
@@ -70,8 +70,8 @@ msgstr "Bon de commande"
 #: code:addons/purchase_fop_shipping/models/purchase.py:38
 #, python-format
 msgid ""
-"You cannot confirm a purchase order with amount under FOP shipping. To force"
-" confirm you must belongs to \"FOP shipping Manager\"."
+"You cannot confirm a purchase order with amount under FOP shipping. To force "
+"confirm you must belongs to \"FOP shipping Manager\"."
 msgstr ""
 "Vous ne pouvez pas confirmer une commande dont le montant est en dessous du "
 "Franco. Pour forcer les commande en dessous du franco,vous devez avoir le "
