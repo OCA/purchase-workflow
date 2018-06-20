@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * purchase_request
-# 
+#
 # Translators:
 # Kostas Goutoudis <goutoudis@gmail.com>, 2016
 # OCA Transbot <transbot@odoo-community.org>, 2016
@@ -12,11 +12,12 @@ msgstr ""
 "POT-Creation-Date: 2016-11-17 03:38+0000\n"
 "PO-Revision-Date: 2016-10-22 22:23+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Greek (Greece) (http://www.transifex.com/oca/OCA-purchase-workflow-10-0/language/el_GR/)\n"
+"Language-Team: Greek (Greece) (http://www.transifex.com/oca/OCA-purchase-"
+"workflow-10-0/language/el_GR/)\n"
+"Language: el_GR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: el_GR\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: purchase_request
@@ -129,6 +130,11 @@ msgid "Assigned to me"
 msgstr ""
 
 #. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_cancelled
+msgid "Cancelled"
+msgstr ""
+
+#. module: purchase_request
 #: model:ir.actions.act_window,help:purchase_request.purchase_request_form_action
 msgid "Click to start a new purchase request process."
 msgstr ""
@@ -176,6 +182,13 @@ msgid "Display Name"
 msgstr ""
 
 #. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
+#: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
+#: selection:purchase.request,state:0
+msgid "Done"
+msgstr ""
+
+#. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 #: selection:purchase.request,state:0
@@ -217,6 +230,11 @@ msgstr "Τελευταία ενημέρωση από"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_write_date
 msgid "Last Updated on"
 msgstr "Τελευταία ενημέρωση στις"
+
+#. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
+msgid "Lines"
+msgstr ""
 
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
@@ -280,6 +298,11 @@ msgid "Purchase Request Line"
 msgstr ""
 
 #. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_count
+msgid "Purchase Request Line count"
+msgstr ""
+
+#. module: purchase_request
 #: model:ir.actions.act_window,name:purchase_request.purchase_request_line_form_action
 #: model:ir.ui.menu,name:purchase_request.menu_purchase_request_line
 #: model:ir.ui.menu,name:purchase_request.menu_purchase_request_line_act
@@ -290,11 +313,6 @@ msgstr ""
 #. module: purchase_request
 #: model:res.groups,name:purchase_request.group_purchase_request_manager
 msgid "Purchase Request Manager"
-msgstr ""
-
-#. module: purchase_request
-#: model:mail.message.subtype,description:purchase_request.mt_request_rejected
-msgid "Purchase Request Rejected"
 msgstr ""
 
 #. module: purchase_request
@@ -309,6 +327,17 @@ msgid "Purchase Request approved"
 msgstr ""
 
 #. module: purchase_request
+#: model:mail.message.subtype,name:purchase_request.mt_request_done
+msgid "Purchase Request done"
+msgstr ""
+
+#. module: purchase_request
+#: model:mail.message.subtype,description:purchase_request.mt_request_done
+msgid "Purchase Request is done"
+msgstr ""
+
+#. module: purchase_request
+#: model:mail.message.subtype,description:purchase_request.mt_request_rejected
 #: model:mail.message.subtype,name:purchase_request.mt_request_rejected
 msgid "Purchase Request rejected"
 msgstr ""
@@ -370,6 +399,11 @@ msgstr ""
 #: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Request is approved"
+msgstr ""
+
+#. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
+msgid "Request is done"
 msgstr ""
 
 #. module: purchase_request
@@ -448,6 +482,11 @@ msgid "To Approve"
 msgstr ""
 
 #. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_to_approve_allowed
+msgid "To approve allowed"
+msgstr ""
+
+#. module: purchase_request
 #: selection:purchase.request,state:0
 msgid "To be approved"
 msgstr ""
@@ -463,6 +502,18 @@ msgid "Unassigned Request"
 msgstr ""
 
 #. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
+msgid "Uncancelled"
+msgstr ""
+
+#. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Unread Messages"
 msgstr "Αδιάβαστα Μυνήματα"
+
+#. module: purchase_request
+#: code:addons/purchase_request/models/purchase_request.py:213
+#, python-format
+msgid ""
+"You can't request an approval for a purchase request which is empty. (%s)"
+msgstr ""
