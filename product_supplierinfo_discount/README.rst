@@ -54,11 +54,6 @@ will be put automatically.
    :alt: Try me on Runbot
    :target: https://runbot.odoo-community.org/runbot/142/10.0
 
-Known issues / Roadmap
-======================
-
-* ...
-
 Credits
 =======
 
