@@ -1,22 +1,17 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * purchase_fop_shipping
+#	* purchase_fop_shipping
 #
-# Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-03 03:41+0000\n"
-"PO-Revision-Date: 2017-03-03 03:41+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
-"Language: de\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
 
 #. module: purchase_fop_shipping
 #: model:ir.model.fields,field_description:purchase_fop_shipping.field_purchase_order_force_order_under_fop
@@ -64,12 +59,11 @@ msgstr ""
 #. module: purchase_fop_shipping
 #: model:ir.model,name:purchase_fop_shipping.model_purchase_order
 msgid "Purchase Order"
-msgstr "Bestellauftrag"
+msgstr ""
 
 #. module: purchase_fop_shipping
 #: code:addons/purchase_fop_shipping/models/purchase.py:38
 #, python-format
-msgid ""
-"You cannot confirm a purchase order with amount under FOP shipping. To force "
-"confirm you must belongs to \"FOP shipping Manager\"."
+msgid "You cannot confirm a purchase order with amount under FOP shipping. To force confirm you must belongs to \"FOP shipping Manager\"."
 msgstr ""
+
