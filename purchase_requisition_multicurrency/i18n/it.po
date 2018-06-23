@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * purchase_requisition_multicurrency
-# 
+#
 # Translators:
 # Armando Vulcano Junior <vulcano@uol.com.br>, 2015
 # bossnm11 <bossnm11@gmail.com>, 2014
@@ -33,11 +33,12 @@ msgstr ""
 "POT-Creation-Date: 2017-08-19 07:44+0000\n"
 "PO-Revision-Date: 2017-08-21 07:16+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Italian (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/it/)\n"
+"Language-Team: Italian (http://www.transifex.com/oca/OCA-purchase-"
+"workflow-8-0/language/it/)\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: purchase_requisition_multicurrency
@@ -60,8 +61,8 @@ msgstr ""
 #. module: purchase_requisition_multicurrency
 #: help:purchase.requisition,pricelist_id:0
 msgid ""
-"If set that pricelist will be used to generate the RFQ.Mostely used to ask a"
-" requisition in a given currency."
+"If set that pricelist will be used to generate the RFQ.Mostely used to ask a "
+"requisition in a given currency."
 msgstr ""
 
 #. module: purchase_requisition_multicurrency
