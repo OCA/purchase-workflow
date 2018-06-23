@@ -1,22 +1,17 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * purchase_request_to_requisition
+#	* purchase_request_to_requisition
 #
-# Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-24 04:26+0000\n"
-"PO-Revision-Date: 2016-12-24 04:26+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
-"Language-Team: Hindi (https://www.transifex.com/oca/teams/23907/hi/)\n"
-"Language: hi\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
 
 #. module: purchase_request_to_requisition
 #: code:addons/purchase_request_to_requisition/models/purchase_requisition.py:26
@@ -68,7 +63,7 @@ msgstr ""
 #. module: purchase_request_to_requisition
 #: view:purchase.request.line.make.purchase.requisition:purchase_request_to_requisition.view_purchase_request_line_make_purchase_requisition
 msgid "Cancel"
-msgstr "रद्द"
+msgstr ""
 
 #. module: purchase_request_to_requisition
 #: selection:purchase.request.line,requisition_state:0
@@ -284,9 +279,7 @@ msgstr ""
 #. module: purchase_request_to_requisition
 #: code:addons/purchase_request_to_requisition/models/purchase_requisition.py:20
 #, python-format
-msgid ""
-"The following requested items from Purchase Request %s have now being sent "
-"to Suppliers using Purchase Bid %s:"
+msgid "The following requested items from Purchase Request %s have now being sent to Suppliers using Purchase Bid %s:"
 msgstr ""
 
 #. module: purchase_request_to_requisition
@@ -316,3 +309,4 @@ msgstr ""
 #, python-format
 msgid "You have to select lines from the same picking type."
 msgstr ""
+
