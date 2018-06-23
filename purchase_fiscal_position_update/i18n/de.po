@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * purchase_fiscal_position_update
-# 
+#
 # Translators:
 # Hotellook, 2014
 msgid ""
@@ -11,11 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2017-02-23 16:23+0000\n"
 "PO-Revision-Date: 2016-03-08 10:16+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: German (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/de/)\n"
+"Language-Team: German (http://www.transifex.com/oca/OCA-purchase-"
+"workflow-8-0/language/de/)\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: purchase_fiscal_position_update
@@ -27,7 +28,8 @@ msgstr "Bestellauftrag"
 #: code:addons/purchase_fiscal_position_update/purchase.py:51
 #, python-format
 msgid ""
-"The Purchase Order Lines were not updated to the new Fiscal Position because they don't have Products.\n"
+"The Purchase Order Lines were not updated to the new Fiscal Position because "
+"they don't have Products.\n"
 "You should update the Taxes of each Purchase Order Line manually."
 msgstr ""
 
@@ -35,7 +37,8 @@ msgstr ""
 #: code:addons/purchase_fiscal_position_update/purchase.py:57
 #, python-format
 msgid ""
-"The following Purchase Order Lines were not updated to the new Fiscal Position because they don't have a Product:\n"
+"The following Purchase Order Lines were not updated to the new Fiscal "
+"Position because they don't have a Product:\n"
 "- %s\n"
 "You should update the Taxes of these Purchase Order Lines manually."
 msgstr ""
