@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * purchase_requisition_bid_selection
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
@@ -10,11 +10,12 @@ msgstr ""
 "POT-Creation-Date: 2018-03-02 21:10+0000\n"
 "PO-Revision-Date: 2018-03-02 21:12+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Spanish (Peru) (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/es_PE/)\n"
+"Language-Team: Spanish (Peru) (http://www.transifex.com/oca/OCA-purchase-"
+"workflow-8-0/language/es_PE/)\n"
+"Language: es_PE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es_PE\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: purchase_requisition_bid_selection
@@ -27,14 +28,18 @@ msgstr ""
 msgid ""
 "- Open : The bids can be opened when received and encoded. \n"
 "- Closed : The bids can be marked as received but they have to be opened \n"
-"all at the same time after an opening ceremony (probably specific to public sector)."
+"all at the same time after an opening ceremony (probably specific to public "
+"sector)."
 msgstr ""
 
 #. module: purchase_requisition_bid_selection
 #: help:purchase.requisition,bid_tendering_mode:0
 msgid ""
-"- Restricted : you select yourself the bidders and generate a RFQ for each of those. \n"
-"- Open : anybody can bid (you have to advertise the call for bids) and you directly encode the bids you received. You are still able to generate RFQ if you want to contact usual bidders."
+"- Restricted : you select yourself the bidders and generate a RFQ for each "
+"of those. \n"
+"- Open : anybody can bid (you have to advertise the call for bids) and you "
+"directly encode the bids you received. You are still able to generate RFQ if "
+"you want to contact usual bidders."
 msgstr ""
 
 #. module: purchase_requisition_bid_selection
@@ -175,8 +180,7 @@ msgstr ""
 #. module: purchase_requisition_bid_selection
 #: code:addons/purchase_requisition_bid_selection/model/purchase_requisition.py:234
 #, python-format
-msgid ""
-"Canceled by the call for bids associated to this request for quotation."
+msgid "Canceled by the call for bids associated to this request for quotation."
 msgstr ""
 
 #. module: purchase_requisition_bid_selection
@@ -324,7 +328,8 @@ msgstr ""
 #. module: purchase_requisition_bid_selection
 #: view:purchase.action_modal:purchase_requisition_bid_selection.action_modal_confirm_different_quantity
 msgid ""
-"For some lines, the selected quantity does not match the requested quantity.\n"
+"For some lines, the selected quantity does not match the requested "
+"quantity.\n"
 "            Please confirm the operation."
 msgstr ""
 
@@ -606,8 +611,10 @@ msgstr ""
 #. module: purchase_requisition_bid_selection
 #: help:purchase.requisition,req_validity:0
 msgid ""
-"Requested validity period requested to the bidder, i.e. please send bids that stay valid until that date.\n"
-" The bidder is allowed to send a bid with another validity end date that gets encoded in the bid."
+"Requested validity period requested to the bidder, i.e. please send bids "
+"that stay valid until that date.\n"
+" The bidder is allowed to send a bid with another validity end date that "
+"gets encoded in the bid."
 msgstr ""
 
 #. module: purchase_requisition_bid_selection
@@ -709,7 +716,8 @@ msgstr ""
 msgid ""
 "This tender has no eligible bids\n"
 "\n"
-"              To be valid, a bid must have Eligible bid checked and be in state \"Draft Bid\" or \"Bid encoded\""
+"              To be valid, a bid must have Eligible bid checked and be in "
+"state \"Draft Bid\" or \"Bid encoded\""
 msgstr ""
 
 #. module: purchase_requisition_bid_selection
@@ -849,14 +857,13 @@ msgstr ""
 #. module: purchase_requisition_bid_selection
 #: view:purchase.requisition:purchase_requisition_bid_selection.view_purchase_requisition_form
 msgid ""
-"{'invisible': "
-"['|','|',('bid_tendering_mode','=','open'),('line_ids','=',[]),('state','!=','in_progress')]}"
+"{'invisible': ['|','|',('bid_tendering_mode','=','open'),('line_ids','=',[]),"
+"('state','!=','in_progress')]}"
 msgstr ""
 
 #. module: purchase_requisition_bid_selection
 #: view:purchase.requisition:purchase_requisition_bid_selection.view_purchase_requisition_form
-msgid ""
-"{'invisible': ['|',('purchase_ids','=',[]),('state', 'in', ('draft'))]}"
+msgid "{'invisible': ['|',('purchase_ids','=',[]),('state', 'in', ('draft'))]}"
 msgstr ""
 
 #. module: purchase_requisition_bid_selection
