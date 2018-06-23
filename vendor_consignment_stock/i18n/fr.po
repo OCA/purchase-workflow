@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * vendor_consignment_stock
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
@@ -10,11 +10,12 @@ msgstr ""
 "POT-Creation-Date: 2016-03-08 10:16+0000\n"
 "PO-Revision-Date: 2016-03-08 10:18+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: French (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/fr/)\n"
+"Language-Team: French (http://www.transifex.com/oca/OCA-purchase-"
+"workflow-8-0/language/fr/)\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: vendor_consignment_stock
@@ -67,7 +68,9 @@ msgstr "Sales Order"
 msgid ""
 "This warehouse can contain Vendor-Supplied-Inventory (VCI) that have to be "
 "bought before being sold."
-msgstr "This warehouse can contain Vendor-Supplied-Inventory (VCI) that have to be bought before being sold."
+msgstr ""
+"This warehouse can contain Vendor-Supplied-Inventory (VCI) that have to be "
+"bought before being sold."
 
 #. module: vendor_consignment_stock
 #: view:purchase.order:vendor_consignment_stock.view_purchase_order_filter
