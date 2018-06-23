@@ -1,22 +1,17 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * purchase_rfq_bid_workflow
+#	* purchase_rfq_bid_workflow
 #
-# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: purchase-workflow (8.0)\n"
+"Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-16 12:06+0000\n"
-"PO-Revision-Date: 2016-03-08 10:18+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: Greek (Greece) (http://www.transifex.com/oca/OCA-purchase-"
-"workflow-8-0/language/el_GR/)\n"
-"Language: el_GR\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
 
 #. module: purchase_rfq_bid_workflow
 #: code:addons/purchase_rfq_bid_workflow/model/purchase_order.py:218
@@ -55,7 +50,7 @@ msgstr ""
 #: view:purchase.action_modal.cancel_reason:purchase_rfq_bid_workflow.action_modal_cancel_reason
 #: view:purchase.action_modal.datetime:purchase_rfq_bid_workflow.action_modal_bid_date
 msgid "Cancel"
-msgstr "Άκυρο"
+msgstr ""
 
 #. module: purchase_rfq_bid_workflow
 #: view:purchase.action_modal.cancel_reason:purchase_rfq_bid_workflow.action_modal_cancel_reason
@@ -80,7 +75,7 @@ msgstr ""
 #: field:purchase.action_modal.datetime,create_uid:0
 #: field:purchase.cancel_reason,create_uid:0
 msgid "Created by"
-msgstr "Δημιουργήθηκε από "
+msgstr ""
 
 #. module: purchase_rfq_bid_workflow
 #: field:purchase.action_modal,create_date:0
@@ -88,12 +83,12 @@ msgstr "Δημιουργήθηκε από "
 #: field:purchase.action_modal.datetime,create_date:0
 #: field:purchase.cancel_reason,create_date:0
 msgid "Created on"
-msgstr "Δημιουργήθηκε στις"
+msgstr ""
 
 #. module: purchase_rfq_bid_workflow
 #: field:purchase.action_modal.datetime,datetime:0
 msgid "Date"
-msgstr "Ημερομηνία"
+msgstr ""
 
 #. module: purchase_rfq_bid_workflow
 #: field:purchase.action_modal,display_name:0
@@ -113,9 +108,10 @@ msgstr ""
 #. module: purchase_rfq_bid_workflow
 #: field:purchase.action_modal,id:0
 #: field:purchase.action_modal.cancel_reason,id:0
-#: field:purchase.action_modal.datetime,id:0 field:purchase.cancel_reason,id:0
+#: field:purchase.action_modal.datetime,id:0
+#: field:purchase.cancel_reason,id:0
 msgid "ID"
-msgstr "Κωδικός"
+msgstr ""
 
 #. module: purchase_rfq_bid_workflow
 #: field:purchase.order,incoterm_address:0
@@ -124,9 +120,7 @@ msgstr ""
 
 #. module: purchase_rfq_bid_workflow
 #: help:purchase.order,incoterm_address:0
-msgid ""
-"Incoterms Place of Delivery. International Commercial Terms are a series of "
-"predefined commercial terms used in international transactions."
+msgid "Incoterms Place of Delivery. International Commercial Terms are a series of predefined commercial terms used in international transactions."
 msgstr ""
 
 #. module: purchase_rfq_bid_workflow
@@ -143,7 +137,7 @@ msgstr ""
 #: field:purchase.action_modal.datetime,write_uid:0
 #: field:purchase.cancel_reason,write_uid:0
 msgid "Last Updated by"
-msgstr "Τελευταία ενημέρωση από"
+msgstr ""
 
 #. module: purchase_rfq_bid_workflow
 #: field:purchase.action_modal,write_date:0
@@ -151,7 +145,7 @@ msgstr "Τελευταία ενημέρωση από"
 #: field:purchase.action_modal.datetime,write_date:0
 #: field:purchase.cancel_reason,write_date:0
 msgid "Last Updated on"
-msgstr "Τελευταία ενημέρωση στις"
+msgstr ""
 
 #. module: purchase_rfq_bid_workflow
 #: model:purchase.cancel_reason,name:purchase_rfq_bid_workflow.purchase_cancel_reason_bid_latereply
@@ -193,7 +187,8 @@ msgstr ""
 
 #. module: purchase_rfq_bid_workflow
 #: model:ir.model,name:purchase_rfq_bid_workflow.model_purchase_order
-#: selection:purchase.cancel_reason,type:0 selection:purchase.order,type:0
+#: selection:purchase.cancel_reason,type:0
+#: selection:purchase.order,type:0
 msgid "Purchase Order"
 msgstr ""
 
@@ -257,7 +252,8 @@ msgid "Send Draft PO by Email"
 msgstr ""
 
 #. module: purchase_rfq_bid_workflow
-#: field:purchase.cancel_reason,type:0 field:purchase.order,type:0
+#: field:purchase.cancel_reason,type:0
+#: field:purchase.order,type:0
 msgid "Type"
 msgstr ""
 
@@ -325,3 +321,4 @@ msgstr ""
 #: view:purchase.order.line:purchase_rfq_bid_workflow.po_line_onchange_form
 msgid "{'order_type': parent.type}"
 msgstr ""
+
