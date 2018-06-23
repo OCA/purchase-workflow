@@ -1,29 +1,21 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * purchase_request_procurement
+#	* purchase_request_procurement
 #
-# Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-19 07:44+0000\n"
-"PO-Revision-Date: 2017-08-19 07:44+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
-"Language-Team: Chinese (China) (https://www.transifex.com/oca/teams/23907/"
-"zh_CN/)\n"
-"Language: zh_CN\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: \n"
 
 #. module: purchase_request_procurement
 #: help:product.template,purchase_request:0
-msgid ""
-"Check this box to generate purchase request instead of generating requests "
-"for quotation from procurement."
+msgid "Check this box to generate purchase request instead of generating requests for quotation from procurement."
 msgstr ""
 
 #. module: purchase_request_procurement
@@ -34,12 +26,12 @@ msgstr ""
 #. module: purchase_request_procurement
 #: model:ir.model,name:purchase_request_procurement.model_procurement_order
 msgid "Procurement"
-msgstr "补货"
+msgstr ""
 
 #. module: purchase_request_procurement
 #: model:ir.model,name:purchase_request_procurement.model_product_template
 msgid "Product Template"
-msgstr "产品模板"
+msgstr ""
 
 #. module: purchase_request_procurement
 #: model:ir.model,name:purchase_request_procurement.model_purchase_request
@@ -62,6 +54,6 @@ msgstr ""
 #. module: purchase_request_procurement
 #: code:addons/purchase_request_procurement/models/purchase_request.py:20
 #, python-format
-msgid ""
-"You cannot delete purchase request that is referenced by a procurement order!"
+msgid "You cannot delete purchase request that is referenced by a procurement order!"
 msgstr ""
+
