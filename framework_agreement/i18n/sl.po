@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * framework_agreement
-# 
+#
 # Translators:
 # Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2016
 # Antonio Trueba, 2016
@@ -21,12 +21,14 @@ msgstr ""
 "POT-Creation-Date: 2016-05-14 02:42+0000\n"
 "PO-Revision-Date: 2016-05-12 05:25+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
-"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/sl/)\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-purchase-"
+"workflow-8-0/language/sl/)\n"
+"Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
 
 #. module: framework_agreement
 #: field:framework.agreement.pricelist,framework_agreement_id:0
@@ -211,9 +213,10 @@ msgstr "ID"
 #. module: framework_agreement
 #: help:res.company,one_agreement_per_product:0
 msgid ""
-"If checked you can have only one framework agreement per product at the same"
-" time."
-msgstr "Če je označeno, imate lahko le po en okvirni sporazum na proizvod istočasno."
+"If checked you can have only one framework agreement per product at the same "
+"time."
+msgstr ""
+"Če je označeno, imate lahko le po en okvirni sporazum na proizvod istočasno."
 
 #. module: framework_agreement
 #: field:framework.agreement,incoterm_id:0
@@ -230,7 +233,9 @@ msgstr "Incoterm naslov"
 msgid ""
 "International Commercial Terms are a series of predefined commercial terms "
 "used in international transactions."
-msgstr "Mednarodni komercialni termini \"incoterms\" so zbirka terminov v uporabi pri mednarodnih transakcijah."
+msgstr ""
+"Mednarodni komercialni termini \"incoterms\" so zbirka terminov v uporabi "
+"pri mednarodnih transakcijah."
 
 #. module: framework_agreement
 #: code:addons/framework_agreement/model/purchase.py:198
@@ -312,7 +317,8 @@ msgstr "Dogovorjena količina"
 #: code:addons/framework_agreement/model/framework_agreement.py:516
 #, python-format
 msgid "No pricelist foundPlease set a pricelist on PO or supplier %s"
-msgstr "Ni najdenega cenika. Določite cenik za nabavni nalog ali dobavitelja %s"
+msgstr ""
+"Ni najdenega cenika. Določite cenik za nabavni nalog ali dobavitelja %s"
 
 #. module: framework_agreement
 #: field:framework.agreement,name:0
@@ -448,7 +454,9 @@ msgstr "Obstaja lahko le en portfelj na dobavitelja in družbo."
 msgid ""
 "There can only be one agreement for a given supplier, incoterm, incoterm "
 "address and product"
-msgstr "Obstaja lahko le en sporazum na danega dobavitelja, incoterm, incoterm naslov in proizvod"
+msgstr ""
+"Obstaja lahko le en sporazum na danega dobavitelja, incoterm, incoterm "
+"naslov in proizvod"
 
 #. module: framework_agreement
 #: code:addons/framework_agreement/model/framework_agreement.py:349
@@ -461,7 +469,9 @@ msgstr "Za proizvod %s že obstaja tekoč dogovor"
 #, python-format
 msgid ""
 "You cannot change the supplier: the PO is linked to an agreement portfolio."
-msgstr "Ni mogoče spremeniti dobavitelja: nabavni nalog je vezan na portfelj sporazumov."
+msgstr ""
+"Ni mogoče spremeniti dobavitelja: nabavni nalog je vezan na portfelj "
+"sporazumov."
 
 #. module: framework_agreement
 #: code:addons/framework_agreement/model/purchase.py:168
@@ -469,14 +479,18 @@ msgstr "Ni mogoče spremeniti dobavitelja: nabavni nalog je vezan na portfelj sp
 msgid ""
 "You have set the price to %s \n"
 " but there is a running agreement with price %s"
-msgstr "Določili ste ceno za %s ,\n a že obstaja tekoč sporazum s ceno %s"
+msgstr ""
+"Določili ste ceno za %s ,\n"
+" a že obstaja tekoč sporazum s ceno %s"
 
 #. module: framework_agreement
 #: view:purchase.order:framework_agreement.add_onchange_on_pruchase_order_form
 msgid ""
 "{'agreement_id': framework_agreement_id, 'incoterm_id': parent.incoterm_id, "
 "'currency_id': parent.currency_id, 'portfolio_id': parent.portfolio_id}"
-msgstr "{'agreement_id': framework_agreement_id, 'incoterm_id': parent.incoterm_id, 'currency_id': parent.currency_id, 'portfolio_id': parent.portfolio_id}"
+msgstr ""
+"{'agreement_id': framework_agreement_id, 'incoterm_id': parent.incoterm_id, "
+"'currency_id': parent.currency_id, 'portfolio_id': parent.portfolio_id}"
 
 #. module: framework_agreement
 #: view:purchase.order:framework_agreement.add_onchange_on_pruchase_order_form

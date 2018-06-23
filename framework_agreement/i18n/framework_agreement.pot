@@ -1,22 +1,17 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * framework_agreement
+#	* framework_agreement
 #
-# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: purchase-workflow (8.0)\n"
+"Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-29 06:56+0000\n"
-"PO-Revision-Date: 2017-08-11 11:57+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Hungarian (http://www.transifex.com/oca/OCA-purchase-"
-"workflow-8-0/language/hu/)\n"
-"Language: hu\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
 
 #. module: framework_agreement
 #: field:framework.agreement.pricelist,framework_agreement_id:0
@@ -81,7 +76,7 @@ msgstr ""
 #: field:framework.agreement,company_id:0
 #: field:framework.agreement.portfolio,company_id:0
 msgid "Company"
-msgstr "Vállalat"
+msgstr ""
 
 #. module: framework_agreement
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view
@@ -95,7 +90,7 @@ msgstr ""
 #: field:framework.agreement.portfolio,create_uid:0
 #: field:framework.agreement.pricelist,create_uid:0
 msgid "Created by"
-msgstr "Készítette"
+msgstr ""
 
 #. module: framework_agreement
 #: field:framework.agreement,create_date:0
@@ -103,7 +98,7 @@ msgstr "Készítette"
 #: field:framework.agreement.portfolio,create_date:0
 #: field:framework.agreement.pricelist,create_date:0
 msgid "Created on"
-msgstr "Létrehozás dátuma"
+msgstr ""
 
 #. module: framework_agreement
 #: field:framework.agreement.pricelist,currency_id:0
@@ -136,13 +131,13 @@ msgstr ""
 #: field:framework.agreement.portfolio,display_name:0
 #: field:framework.agreement.pricelist,display_name:0
 msgid "Display Name"
-msgstr "Név megjelenítése"
+msgstr ""
 
 #. module: framework_agreement
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view
 #: selection:framework.agreement,state:0
 msgid "Draft"
-msgstr "Tervezet"
+msgstr ""
 
 #. module: framework_agreement
 #: field:framework.agreement,end_date:0
@@ -189,20 +184,19 @@ msgstr ""
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view
 #: view:framework.agreement.portfolio:framework_agreement.portfolio_search_view
 msgid "Group By"
-msgstr "Csoportosítás..."
+msgstr ""
 
 #. module: framework_agreement
-#: field:framework.agreement,id:0 field:framework.agreement.line,id:0
+#: field:framework.agreement,id:0
+#: field:framework.agreement.line,id:0
 #: field:framework.agreement.portfolio,id:0
 #: field:framework.agreement.pricelist,id:0
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: framework_agreement
 #: help:res.company,one_agreement_per_product:0
-msgid ""
-"If checked you can have only one framework agreement per product at the same "
-"time."
+msgid "If checked you can have only one framework agreement per product at the same time."
 msgstr ""
 
 #. module: framework_agreement
@@ -217,9 +211,7 @@ msgstr ""
 
 #. module: framework_agreement
 #: help:framework.agreement,incoterm_id:0
-msgid ""
-"International Commercial Terms are a series of predefined commercial terms "
-"used in international transactions."
+msgid "International Commercial Terms are a series of predefined commercial terms used in international transactions."
 msgstr ""
 
 #. module: framework_agreement
@@ -239,7 +231,7 @@ msgstr ""
 #: field:framework.agreement.portfolio,__last_update:0
 #: field:framework.agreement.pricelist,__last_update:0
 msgid "Last Modified on"
-msgstr "Utolsó frissítés dátuma"
+msgstr ""
 
 #. module: framework_agreement
 #: field:framework.agreement,write_uid:0
@@ -247,7 +239,7 @@ msgstr "Utolsó frissítés dátuma"
 #: field:framework.agreement.portfolio,write_uid:0
 #: field:framework.agreement.pricelist,write_uid:0
 msgid "Last Updated by"
-msgstr "Utoljára frissítve, által"
+msgstr ""
 
 #. module: framework_agreement
 #: field:framework.agreement,write_date:0
@@ -255,7 +247,7 @@ msgstr "Utoljára frissítve, által"
 #: field:framework.agreement.portfolio,write_date:0
 #: field:framework.agreement.pricelist,write_date:0
 msgid "Last Updated on"
-msgstr "Utoljára frissítve "
+msgstr ""
 
 #. module: framework_agreement
 #: field:framework.agreement,delay:0
@@ -271,15 +263,13 @@ msgstr ""
 #. module: framework_agreement
 #: code:addons/framework_agreement/model/framework_agreement.py:466
 #, python-format
-msgid ""
-"Missing Agreement price list Please set a price list in currency %s for "
-"agreement %s"
+msgid "Missing Agreement price list Please set a price list in currency %s for agreement %s"
 msgstr ""
 
 #. module: framework_agreement
 #: field:framework.agreement.portfolio,name:0
 msgid "Name"
-msgstr "Név"
+msgstr ""
 
 #. module: framework_agreement
 #: field:framework.agreement.line,price:0
@@ -417,7 +407,7 @@ msgstr ""
 #. module: framework_agreement
 #: field:framework.agreement,state:0
 msgid "State"
-msgstr "Állapot"
+msgstr ""
 
 #. module: framework_agreement
 #: view:framework.agreement:framework_agreement.framework_agreement_search_view
@@ -435,9 +425,7 @@ msgstr ""
 #. module: framework_agreement
 #: code:addons/framework_agreement/model/framework_agreement.py:355
 #, python-format
-msgid ""
-"There can only be one agreement for a given supplier, incoterm, incoterm "
-"address and product"
+msgid "There can only be one agreement for a given supplier, incoterm, incoterm address and product"
 msgstr ""
 
 #. module: framework_agreement
@@ -449,26 +437,23 @@ msgstr ""
 #. module: framework_agreement
 #: code:addons/framework_agreement/model/purchase.py:80
 #, python-format
-msgid ""
-"You cannot change the supplier: the PO is linked to an agreement portfolio."
+msgid "You cannot change the supplier: the PO is linked to an agreement portfolio."
 msgstr ""
 
 #. module: framework_agreement
 #: code:addons/framework_agreement/model/purchase.py:168
 #, python-format
-msgid ""
-"You have set the price to %s \n"
+msgid "You have set the price to %s \n"
 " but there is a running agreement with price %s"
 msgstr ""
 
 #. module: framework_agreement
 #: view:purchase.order:framework_agreement.add_onchange_on_pruchase_order_form
-msgid ""
-"{'agreement_id': framework_agreement_id, 'incoterm_id': parent.incoterm_id, "
-"'currency_id': parent.currency_id, 'portfolio_id': parent.portfolio_id}"
+msgid "{'agreement_id': framework_agreement_id, 'incoterm_id': parent.incoterm_id, 'currency_id': parent.currency_id, 'portfolio_id': parent.portfolio_id}"
 msgstr ""
 
 #. module: framework_agreement
 #: view:purchase.order:framework_agreement.add_onchange_on_pruchase_order_form
 msgid "{'portfolio_id': portfolio_id}"
 msgstr ""
+
