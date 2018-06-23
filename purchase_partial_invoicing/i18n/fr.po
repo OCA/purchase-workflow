@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * purchase_partial_invoicing
-# 
+#
 # Translators:
 # Jonathan Nemry (ACSONE) <jonathan.nemry@acsone.eu>, 2016
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
@@ -13,11 +13,12 @@ msgstr ""
 "POT-Creation-Date: 2016-07-22 23:40+0000\n"
 "PO-Revision-Date: 2016-07-22 08:21+0000\n"
 "Last-Translator: Jonathan Nemry (ACSONE) <jonathan.nemry@acsone.eu>\n"
-"Language-Team: French (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/fr/)\n"
+"Language-Team: French (http://www.transifex.com/oca/OCA-purchase-"
+"workflow-8-0/language/fr/)\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: purchase_partial_invoicing
@@ -168,7 +169,9 @@ msgstr "Quantité à annuler"
 msgid ""
 "Quantity to cancel is greater\n"
 "                    than available quantity"
-msgstr "Quantité à annuler est plus grande\nque la quantité disponible"
+msgstr ""
+"Quantité à annuler est plus grande\n"
+"que la quantité disponible"
 
 #. module: purchase_partial_invoicing
 #: code:addons/purchase_partial_invoicing/wizard/po_line_cancel_quantity.py:61
@@ -176,7 +179,9 @@ msgstr "Quantité à annuler est plus grande\nque la quantité disponible"
 msgid ""
 "Quantity to cancel is greater\n"
 "                    than quantity already cancelled"
-msgstr "Quantité à annuler est plus grande\nque la quantité déjà annulée"
+msgstr ""
+"Quantité à annuler est plus grande\n"
+"que la quantité déjà annulée"
 
 #. module: purchase_partial_invoicing
 #: field:purchase.order.line_invoice.line,invoiced_qty:0
@@ -189,7 +194,9 @@ msgstr "Quantité à facturer"
 msgid ""
 "Quantity to invoice is greater\n"
 "                    than available quantity"
-msgstr "Quantité à facturer est plus grande\nque la quantité disponible"
+msgstr ""
+"Quantité à facturer est plus grande\n"
+"que la quantité disponible"
 
 #. module: purchase_partial_invoicing
 #: view:purchase.order.line_cancel_quantity:purchase_partial_invoicing.view_purchase_line_cancel
