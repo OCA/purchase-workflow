@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * purchase_request
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
 msgid ""
@@ -11,11 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2017-04-21 14:34+0000\n"
 "PO-Revision-Date: 2017-04-21 14:34+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
-"Language-Team: Chinese (Taiwan) (https://www.transifex.com/oca/teams/23907/zh_TW/)\n"
+"Language-Team: Chinese (Taiwan) (https://www.transifex.com/oca/teams/23907/"
+"zh_TW/)\n"
+"Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: purchase_request
@@ -24,7 +25,8 @@ msgid ""
 "<p class=\"oe_view_nocontent_create\">\n"
 "                Click to start a new purchase request process.\n"
 "              </p><p>\n"
-"                A purchase request is an instruction to Purchasing to procure\n"
+"                A purchase request is an instruction to Purchasing to "
+"procure\n"
 "                a certain quantity of materials services, so that they are\n"
 "                available at a certain point in time.\n"
 "              </p>\n"

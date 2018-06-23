@@ -1,31 +1,24 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * purchase_request
+#	* purchase_request
 #
-# Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-21 14:34+0000\n"
-"PO-Revision-Date: 2017-04-21 14:34+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
-"Language-Team: Mongolian (https://www.transifex.com/oca/teams/23907/mn/)\n"
-"Language: mn\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
 
 #. module: purchase_request
 #: model:ir.actions.act_window,help:purchase_request.purchase_request_form_action
-msgid ""
-"<p class=\"oe_view_nocontent_create\">\n"
+msgid "<p class=\"oe_view_nocontent_create\">\n"
 "                Click to start a new purchase request process.\n"
 "              </p><p>\n"
-"                A purchase request is an instruction to Purchasing to "
-"procure\n"
+"                A purchase request is an instruction to Purchasing to procure\n"
 "                a certain quantity of materials services, so that they are\n"
 "                available at a certain point in time.\n"
 "              </p>\n"
@@ -72,19 +65,19 @@ msgstr ""
 #: field:purchase.request,company_id:0
 #: field:purchase.request.line,company_id:0
 msgid "Company"
-msgstr "Компани"
+msgstr ""
 
 #. module: purchase_request
 #: field:purchase.request,create_uid:0
 #: field:purchase.request.line,create_uid:0
 msgid "Created by"
-msgstr "Үүсгэгч"
+msgstr ""
 
 #. module: purchase_request
 #: field:purchase.request,create_date:0
 #: field:purchase.request.line,create_date:0
 msgid "Created on"
-msgstr "Үүсгэсэн"
+msgstr ""
 
 #. module: purchase_request
 #: view:website:purchase_request.report_purchaserequests
@@ -100,10 +93,11 @@ msgstr ""
 #: help:purchase.request,message_last_post:0
 #: help:purchase.request.line,message_last_post:0
 msgid "Date of the last message posted on the record."
-msgstr "Бичлэгт хамгийн сүүлд илгээгдсэн зурвасын огноо."
+msgstr ""
 
 #. module: purchase_request
-#: help:purchase.request,date_start:0 help:purchase.request.line,date_start:0
+#: help:purchase.request,date_start:0
+#: help:purchase.request.line,date_start:0
 msgid "Date when the user initiated the request."
 msgstr ""
 
@@ -113,7 +107,7 @@ msgstr ""
 #: field:purchase.request.line,name:0
 #: view:website:purchase_request.report_purchaserequests
 msgid "Description"
-msgstr "Тодорхойлолт"
+msgstr ""
 
 #. module: purchase_request
 #: view:website:purchase_request.report_purchaserequests
@@ -124,20 +118,20 @@ msgstr ""
 #: field:purchase.request,display_name:0
 #: field:purchase.request.line,display_name:0
 msgid "Display Name"
-msgstr "Дэлгэцийн Нэр"
+msgstr ""
 
 #. module: purchase_request
 #: view:purchase.request:purchase_request.view_purchase_request_search
 #: selection:purchase.request,state:0
 #: view:purchase.request.line:purchase_request.purchase_request_line_search
 msgid "Draft"
-msgstr "Ноорог"
+msgstr ""
 
 #. module: purchase_request
 #: field:purchase.request,message_follower_ids:0
 #: field:purchase.request.line,message_follower_ids:0
 msgid "Followers"
-msgstr "Дагагчид"
+msgstr ""
 
 #. module: purchase_request
 #: view:purchase.request:purchase_request.view_purchase_request_search
@@ -148,22 +142,20 @@ msgstr ""
 #. module: purchase_request
 #: help:purchase.request,message_summary:0
 #: help:purchase.request.line,message_summary:0
-msgid ""
-"Holds the Chatter summary (number of messages, ...). This summary is "
-"directly in html format in order to be inserted in kanban views."
+msgid "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
 msgstr ""
 
 #. module: purchase_request
-#: field:purchase.request,id:0 field:purchase.request.line,id:0
+#: field:purchase.request,id:0
+#: field:purchase.request.line,id:0
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: purchase_request
 #: help:purchase.request,message_unread:0
 #: help:purchase.request.line,message_unread:0
 msgid "If checked new messages require your attention."
 msgstr ""
-"Хэрэв тэмдэглэгдсэн бол таныг шинэ зурвасуудад анхаарал хандуулахыг шаардана."
 
 #. module: purchase_request
 #: field:purchase.request,message_is_follower:0
@@ -181,36 +173,37 @@ msgstr ""
 #: field:purchase.request,message_last_post:0
 #: field:purchase.request.line,message_last_post:0
 msgid "Last Message Date"
-msgstr "Сүүлийн зурвасын огноо"
+msgstr ""
 
 #. module: purchase_request
 #: field:purchase.request,__last_update:0
 #: field:purchase.request.line,__last_update:0
 msgid "Last Modified on"
-msgstr "Сүүлийн засвар хийсэн огноо"
+msgstr ""
 
 #. module: purchase_request
-#: field:purchase.request,write_uid:0 field:purchase.request.line,write_uid:0
+#: field:purchase.request,write_uid:0
+#: field:purchase.request.line,write_uid:0
 msgid "Last Updated by"
-msgstr "Сүүлийн засвар хийсэн"
+msgstr ""
 
 #. module: purchase_request
 #: field:purchase.request,write_date:0
 #: field:purchase.request.line,write_date:0
 msgid "Last Updated on"
-msgstr "Сүүлийн засвар хийсэн огноо"
+msgstr ""
 
 #. module: purchase_request
 #: field:purchase.request,message_ids:0
 #: field:purchase.request.line,message_ids:0
 msgid "Messages"
-msgstr "Зурвасууд"
+msgstr ""
 
 #. module: purchase_request
 #: help:purchase.request,message_ids:0
 #: help:purchase.request.line,message_ids:0
 msgid "Messages and communication history"
-msgstr "Зурвас болон харилцсан түүх"
+msgstr ""
 
 #. module: purchase_request
 #: field:purchase.request,picking_type_id:0
@@ -437,7 +430,8 @@ msgid "Source"
 msgstr ""
 
 #. module: purchase_request
-#: field:purchase.request,origin:0 field:purchase.request.line,origin:0
+#: field:purchase.request,origin:0
+#: field:purchase.request.line,origin:0
 msgid "Source Document"
 msgstr ""
 
@@ -462,7 +456,7 @@ msgstr ""
 #. module: purchase_request
 #: field:purchase.request,state:0
 msgid "Status"
-msgstr "Төлөв"
+msgstr ""
 
 #. module: purchase_request
 #: field:purchase.request,message_summary:0
@@ -495,4 +489,5 @@ msgstr ""
 #: field:purchase.request,message_unread:0
 #: field:purchase.request.line,message_unread:0
 msgid "Unread Messages"
-msgstr "Уншаагүй Зурвасууд"
+msgstr ""
+
