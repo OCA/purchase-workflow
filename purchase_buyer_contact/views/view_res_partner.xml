@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!--
+    Copyright (C) 2016-Today: La Louve (<http://www.lalouve.net/>)
+    @author: Julien Weste
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+
+<odoo>
+    <record model="ir.ui.view" id="view_partner_form_buyer">
+        <field name="model">res.partner</field>
+        <field name="name">res.partner.form.buyer</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="groups_id" eval="[(4, ref('purchase.group_purchase_manager'))]"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='purchase']/field" position="after">
+                <group name="buyer_info" attrs="{'invisible': [('supplier','=',False)]}" string="Buyer Info">
+                    <field name="customer_code"/>
+                    <field name="buyer_partner_id" options="{'no_create_edit': True, 'no_create': True}"/>
+                    <field name="buyer_email"/>
+                    <field name="buyer_phone"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+
