@@ -32,6 +32,7 @@ setuptools.setup(
         'odoo10-addon-purchase_request_procurement',
         'odoo10-addon-purchase_request_to_procurement',
         'odoo10-addon-purchase_request_to_rfq',
+        'odoo10-addon-purchase_request_to_rfq_order_approved',
         'odoo10-addon-purchase_triple_discount',
         'odoo10-addon-subcontracted_service',
     ],
