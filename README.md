@@ -20,6 +20,7 @@ addon | version | summary
 --- | --- | ---
 [procurement_purchase_no_grouping](procurement_purchase_no_grouping/) | 10.0.1.0.0 | Procurement Purchase No Grouping
 [product_by_supplier](product_by_supplier/) | 10.0.1.0.0 | Show products grouped by suppliers
+[product_supplier_code_purchase](product_supplier_code_purchase/) | 10.0.1.0.0 | This module adds to the purchase order line the supplier code defined in the product.
 [product_supplierinfo_discount](product_supplierinfo_discount/) | 10.0.1.0.0 | Discounts in product supplier info
 [purchase_allowed_product](purchase_allowed_product/) | 10.0.1.0.0 | This module allows to select only products that can be supplied by the supplier
 [purchase_cancel_reason](purchase_cancel_reason/) | 10.0.1.0.0 | Purchase Cancel Reason
