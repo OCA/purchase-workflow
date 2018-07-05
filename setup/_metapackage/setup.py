@@ -10,6 +10,7 @@ setuptools.setup(
     install_requires=[
         'odoo10-addon-procurement_purchase_no_grouping',
         'odoo10-addon-product_by_supplier',
+        'odoo10-addon-product_supplier_code_purchase',
         'odoo10-addon-product_supplierinfo_discount',
         'odoo10-addon-purchase_allowed_product',
         'odoo10-addon-purchase_cancel_reason',
