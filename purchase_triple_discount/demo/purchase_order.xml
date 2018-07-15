@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (C) 2018 - Today: GRAP (http://www.grap.coop)
+@author: Sylvain LE GAL (https://twitter.com/legalsylvain)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+<openerp><data>
+
+    <record id="order" model="purchase.order">
+        <field name="name">Purchase Order</field>
+        <field name="partner_id" ref="base.res_partner_1"/>
+        <field name="location_id" ref="stock.stock_location_stock"/>
+        <field name="pricelist_id" ref="purchase.list0"/>
+    </record>
+
+    <record id="order_line1" model="purchase.order.line">
+        <field name="name">Line 1</field>
+        <field name="order_id" ref="order"/>
+        <field name="product_qty">1.0</field>
+        <field name="product_id" ref="product.product_product_7"/>
+        <field name="product_uom" ref="product.product_uom_unit"/>
+        <field name="taxes_id" eval="[(6, 0, [ref('account_invoice_triple_discount.tax')])]"/>
+        <field name="price_unit">600</field>
+        <field name="date_planned">2018-01-19</field>
+    </record>
+
+    <record id="order_line2" model="purchase.order.line">
+        <field name="name">Line 2</field>
+        <field name="order_id" ref="order"/>
+        <field name="product_qty">10.0</field>
+        <field name="product_id" ref="product.product_product_28"/>
+        <field name="product_uom" ref="product.product_uom_unit"/>
+        <field name="taxes_id" eval="[(6, 0, [ref('account_invoice_triple_discount.tax')])]"/>
+        <field name="price_unit">60</field>
+        <field name="date_planned">2018-01-19</field>
+    </record>
+
+</data></openerp>

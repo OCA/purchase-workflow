@@ -4,3 +4,4 @@ server-tools
 stock-logistics-workflow
 sale-workflow
 product-variant
+account-invoicing

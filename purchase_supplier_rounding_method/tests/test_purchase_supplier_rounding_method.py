@@ -10,10 +10,23 @@ class TestPurchaseSupplierRoundingMethod(common.TransactionCase):
 
     def setUp(self):
         super(TestPurchaseSupplierRoundingMethod, self).setUp()
+        self.module_obj = self.env['ir.module.module']
 
     def test_1_account_invoice_rounding_method(self):
         """Test 'Normal' and 'Round Net Price' supplier rounding method
-        on a Suupplier Invoice"""
+        on a Supplier Invoice"""
+        # Because of incompatibility between this module and the
+        # module account_invoice_triple_discount, this test is realized
+        # only if the other module is not installed.
+        # This test is called after, in the glue module
+        # purchase_supplier_rounding_method_triple_discount
+        # that fixes the incompatibility
+        if not self.module_obj.search([
+                ('name', '=', 'account_invoice_triple_discount'),
+                ('state', '=', 'installed')]):
+            self._test_1_account_invoice_rounding_method()
+
+    def _test_1_account_invoice_rounding_method(self):
         # Set a Net price to 0.6667
         line = self.browse_ref(
             'purchase_supplier_rounding_method.invoice_1_line_a')
