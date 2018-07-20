@@ -27,7 +27,8 @@ class ProcurementOrder(models.Model):
             'date_required': self.date_planned,
             'product_uom_id': product.uom_po_id.id,
             'product_qty': procurement_uom_po_qty,
-            'request_id': self.request_id.id,
+            'request_id': self.request_id.id, 
+            'analytic_account_id': self.account_analytic_id.id,            
             'procurement_id': self.id
         }
 
