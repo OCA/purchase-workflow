@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * subcontracted_service
-# 
+#
 # Translators:
 # Henry Garcia <henry@yaroslab.com>, 2017
 msgid ""
@@ -11,22 +11,19 @@ msgstr ""
 "POT-Creation-Date: 2017-07-15 06:42+0000\n"
 "PO-Revision-Date: 2017-07-15 06:42+0000\n"
 "Last-Translator: Henry Garcia <henry@yaroslab.com>, 2017\n"
-"Language-Team: Spanish (Peru) (https://www.transifex.com/oca/teams/23907/es_PE/)\n"
+"Language-Team: Spanish (Peru) (https://www.transifex.com/oca/teams/23907/"
+"es_PE/)\n"
+"Language: es_PE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es_PE\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: subcontracted_service
-#: model:ir.model,name:subcontracted_service.model_procurement_order
-msgid "Procurement"
+#: model:ir.model,name:subcontracted_service.model_procurement_group
+#, fuzzy
+msgid "Procurement Requisition"
 msgstr "Aquisiciones"
-
-#. module: subcontracted_service
-#: model:ir.model,name:subcontracted_service.model_product_product
-msgid "Product"
-msgstr "Producto"
 
 #. module: subcontracted_service
 #: model:ir.model,name:subcontracted_service.model_product_template
@@ -53,3 +50,6 @@ msgstr "Regla de Adquisición de Servicios de Subcontratación"
 #: model:ir.model,name:subcontracted_service.model_stock_warehouse
 msgid "Warehouse"
 msgstr "Almacén"
+
+#~ msgid "Product"
+#~ msgstr "Producto"
