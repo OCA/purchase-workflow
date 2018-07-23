@@ -1,6 +1,6 @@
 # Copyright 2018 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from odoo import models, fields
+from odoo import models, fields, api
 
 
 class PurchaseOrderLine(models.Model):
@@ -14,5 +14,13 @@ class PurchaseOrderLine(models.Model):
         """Do no merge PO lines if procurement group is different."""
         if values.get('group_id') != self.procurement_group_id:
             return False
-        super()._merge_in_existing_line(product_id, product_qty, product_uom,
-                                        location_id, name, origin, values)
+        return super()._merge_in_existing_line(
+            product_id, product_qty, product_uom, location_id, name, origin,
+            values)
+
+    @api.multi
+    def _prepare_stock_moves(self, picking):
+        res = super()._prepare_stock_moves(picking)
+        res[0]['group_id'] = (
+            self.procurement_group_id.id or self.order_id.group_id.id)
+        return res
