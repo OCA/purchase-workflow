@@ -22,8 +22,8 @@ Known issues / Roadmap
 ======================
 
 * The module 'purchase_stock_picking_return_invoicing_open_qty' (OCA/account-invoicing)
-is a glue module that will be automatically installed in case the module
-'purchase_stock_picking_return_invoicing' (OCA/account-invoicing) is also installed.
+  is a glue module that will be automatically installed in case the module
+  'purchase_stock_picking_return_invoicing' (OCA/account-invoicing) is also installed.
 
 Bug Tracker
 ===========
