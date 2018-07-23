@@ -56,6 +56,7 @@ class PurchaseReport(models.Model):
         )
         # Re-create view
         tools.drop_view_if_exists(self._cr, self._table)
+        # pylint: disable=sql-injection
         self._cr.execute("create or replace view {} as ({})".format(
             self._table, view_def,
         ))
