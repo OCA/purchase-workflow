@@ -51,6 +51,20 @@ class PurchaseOrder(models.Model):
         self2 = self.with_context(keep_line_sequence=True)
         return super(PurchaseOrder, self2).copy(default)
 
+    @api.multi
+    def _create_picking(self):
+        res = super(PurchaseOrder, self)._create_picking()
+        for order in self:
+            if any([ptype in ['product', 'consu'] for ptype in
+                    order.order_line.mapped('product_id.type')]):
+                picking = order.picking_ids.filtered(
+                    lambda x: x.state not in ('done', 'cancel'))[0]
+                for move, line in zip(
+                        sorted(picking.move_lines,
+                               key=lambda m: m.id), order.order_line):
+                    move.write({'sequence': line.sequence})
+        return res
+
 
 class PurchaseOrderLine(models.Model):
     _inherit = 'purchase.order.line'
