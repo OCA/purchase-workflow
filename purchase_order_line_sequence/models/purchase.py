@@ -26,6 +26,20 @@ class PurchaseOrder(models.Model):
                                        compute='_compute_max_line_sequence')
 
     @api.multi
+    def _create_picking(self):
+        res = super(PurchaseOrder, self)._create_picking()
+        for order in self:
+            if any([ptype in ['product', 'consu'] for ptype in
+                    order.order_line.mapped('product_id.type')]):
+                picking = order.picking_ids.filtered(
+                    lambda x: x.state not in ('done', 'cancel'))[0]
+                for move, line in zip(
+                        sorted(picking.move_lines,
+                               key=lambda m: m.id), order.order_line):
+                    move.write({'sequence': line.sequence})
+        return res
+
+    @api.multi
     def _reset_sequence(self):
         for rec in self:
             current_sequence = 1
