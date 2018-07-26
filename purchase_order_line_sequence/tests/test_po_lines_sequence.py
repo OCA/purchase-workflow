@@ -82,6 +82,8 @@ class TestPurchaseOrder(common.TransactionCase):
     def test_invoice_sequence(self):
 
         po = self._create_purchase_order()
+        po.button_confirm()
+        po.picking_ids.do_transfer()
 
         invoice = self.Invoice.create({'partner_id': self.partner_id.id})
         invoice.purchase_id = po.id
