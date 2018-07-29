@@ -36,6 +36,7 @@ class TestPurchaseRequestProcurement(common.SavepointCase):
             'product_id': product.id,
             'product_qty': qty,
             'product_uom': product.uom_id.id,
+            'analytic_account_id': self.account_analytic_id.id,
             'warehouse_id': self.env.ref('stock.warehouse0').id,
             'location_id': self.env.ref('stock.stock_location_stock').id,
             'route_ids': [
