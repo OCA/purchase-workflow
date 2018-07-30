@@ -60,7 +60,7 @@ msgstr ""
 
 #. module: purchase_cancel_reason
 #: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_id
-#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason_id_4692
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason_id_4942
 msgid "ID"
 msgstr ""
 
@@ -117,7 +117,7 @@ msgid "Reason"
 msgstr ""
 
 #. module: purchase_cancel_reason
-#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason_id_4684
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason_id_4934
 msgid "Reason for cancellation"
 msgstr ""
 
