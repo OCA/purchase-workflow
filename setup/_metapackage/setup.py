@@ -20,6 +20,7 @@ setuptools.setup(
         'odoo9-addon-purchase_open_qty',
         'odoo9-addon-purchase_order_analytic_search',
         'odoo9-addon-purchase_order_approved',
+        'odoo9-addon-purchase_order_line_sequence',
         'odoo9-addon-purchase_order_type',
         'odoo9-addon-purchase_order_variant_mgmt',
         'odoo9-addon-purchase_picking_state',
