@@ -37,6 +37,7 @@ addon | version | summary
 [purchase_order_approval_block](purchase_order_approval_block/) | 10.0.1.0.0 | Purchase Order Approval Block
 [purchase_order_approved](purchase_order_approved/) | 10.0.1.0.0 | Add a new state 'Approved' in purchase orders.
 [purchase_order_line_description](purchase_order_line_description/) | 10.0.1.0.0 | Purchase order line description
+[purchase_order_line_sequence](purchase_order_line_sequence/) | 10.0.1.0.0 | Adds sequence to PO lines and propagates it toInvoice lines and Stock Moves
 [purchase_order_revision](purchase_order_revision/) | 10.0.1.0.0 | Purchase order revisions
 [purchase_picking_state](purchase_picking_state/) | 10.0.1.0.0 | Add the status of all the incoming picking in the purchase order
 [purchase_request](purchase_request/) | 10.0.1.1.0 | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
@@ -64,7 +65,6 @@ addon | version | summary
 [purchase_last_price_info](purchase_last_price_info/) | 8.0.1.0.0 (unported) | Product Last Price Info - Purchase
 [purchase_multi_picking](purchase_multi_picking/) | 0.2 (unported) | Multi Pickings from Purchase Orders
 [purchase_order_force_number](purchase_order_force_number/) | 0.1 (unported) | Force purchase orders numeration
-[purchase_order_reorder_lines](purchase_order_reorder_lines/) | 8.0.1.0.1 (unported) | Purchase order lines with sequence number
 [purchase_order_type](purchase_order_type/) | 8.0.1.0.0 (unported) | Purchase Order Type
 [purchase_origin_address](purchase_origin_address/) | 8.0.1.0.0 (unported) | Deprecated: use purchase_transport_multi_address from OCA/stock-logistics-transport
 [purchase_partial_invoicing](purchase_partial_invoicing/) | 8.0.0.1.0 (unported) | Purchase partial invoicing
