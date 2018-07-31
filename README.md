@@ -30,6 +30,7 @@ addon | version | summary
 [purchase_open_qty](purchase_open_qty/) | 9.0.1.0.2 | Allows to identify the purchase orders that have quantities pending to invoice or to receive.
 [purchase_order_analytic_search](purchase_order_analytic_search/) | 9.0.1.0.0 | Search purchase orders by analytic account. New menu entry in Purchasing to list purchase order lines.
 [purchase_order_approved](purchase_order_approved/) | 9.0.1.0.0 | Add a new state 'Approved' in purchase orders.
+[purchase_order_line_sequence](purchase_order_line_sequence/) | 9.0.1.0.1 | Purchase order lines with sequence number
 [purchase_order_type](purchase_order_type/) | 9.0.1.1.0 | Purchase Order Type
 [purchase_order_variant_mgmt](purchase_order_variant_mgmt/) | 9.0.1.0.0 | Handle the addition/removal of multiple variants from product template into the purchase order
 [purchase_picking_state](purchase_picking_state/) | 9.0.1.0.0 | Add the status of all the incoming picking in the purchase order
@@ -60,7 +61,6 @@ addon | version | summary
 [purchase_last_price_info](purchase_last_price_info/) | 8.0.1.0.0 (unported) | Product Last Price Info - Purchase
 [purchase_multi_picking](purchase_multi_picking/) | 0.2 (unported) | Multi Pickings from Purchase Orders
 [purchase_order_force_number](purchase_order_force_number/) | 0.1 (unported) | Force purchase orders numeration
-[purchase_order_reorder_lines](purchase_order_reorder_lines/) | 8.0.1.0.1 (unported) | Purchase order lines with sequence number
 [purchase_order_revision](purchase_order_revision/) | 8.0.1.0.0 (unported) | Purchase order revisions
 [purchase_origin_address](purchase_origin_address/) | 8.0.1.0.0 (unported) | Deprecated: use purchase_transport_multi_address from OCA/stock-logistics-transport
 [purchase_partial_invoicing](purchase_partial_invoicing/) | 8.0.0.1.0 (unported) | Purchase partial invoicing
