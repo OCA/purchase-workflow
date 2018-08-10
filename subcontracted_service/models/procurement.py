@@ -21,7 +21,7 @@ class ProcurementOrder(models.Model):
         res = super(ProcurementOrder, self)._find_suitable_rule()
         if self._is_subcontracted_service():
             return (
-                self.warehouse_id.subcontracting_service_proc_rule_id.id
+                self.warehouse_id.subcontracting_service_proc_rule_id
             )
         return res
 
@@ -31,10 +31,6 @@ class ProcurementOrder(models.Model):
         if not res:
             rule_id = self._find_suitable_rule()
             if rule_id:
-                self.write({'rule_id': rule_id})
-                if isinstance(rule_id, int):
-                    self.write({'rule_id': rule_id})
-                else:
-                    self.write({'rule_id': rule_id.id})
+                self.write({'rule_id': rule_id.id})
                 return True
         return res
