@@ -31,6 +31,10 @@ class ProcurementOrder(models.Model):
         if not res:
             rule_id = self._find_suitable_rule()
             if rule_id:
-                self.write({'rule_id': rule_id.id})
+                self.write({'rule_id': rule_id})
+                if isinstance(rule_id, int):
+                    self.write({'rule_id': rule_id})
+                else:
+                    self.write({'rule_id': rule_id.id})
                 return True
         return res
