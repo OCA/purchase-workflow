@@ -24,7 +24,6 @@ msgid "Information about a product vendor"
 msgstr ""
 
 #. module: product_by_supplier
-#: model:ir.ui.view,arch_db:product_by_supplier.view_product_supplierinfo_form1
 #: model:ir.ui.view,arch_db:product_by_supplier.view_product_supplierinfo_search
 #: model:ir.ui.view,arch_db:product_by_supplier.view_product_supplierinfo_tree1
 msgid "Product"
