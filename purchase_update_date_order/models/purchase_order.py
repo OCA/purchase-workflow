@@ -34,4 +34,4 @@ class PurchaseOrder(models.Model):
             if min_date:
                 order.date_order = min_date
             else:
-                order.date_order = order.create_date
+                order.date_order = order.date_order or fields.Datetime.now()
