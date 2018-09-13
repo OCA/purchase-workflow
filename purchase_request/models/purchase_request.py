@@ -268,8 +268,7 @@ class PurchaseRequestLine(models.Model):
                                   string='Assigned to',
                                   store=True, readonly=True)
     date_start = fields.Date(related='request_id.date_start',
-                             string='Request Date', readonly=True,
-                             store=True)
+                             store=True, readonly=True)
     description = fields.Text(related='request_id.description',
                               string='Description', readonly=True,
                               store=True)
