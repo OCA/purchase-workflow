@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2018 Tecnativa - Sergio Teruel
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="product_category_form_view" model="ir.ui.view">
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <group name="purchase_requisition_group" string="Purchase Requisition Grouped">
+                    <field name="purchase_requisition_group_id"/>
+                </group>
+             </xpath>
+        </field>
+    </record>
+
+    <record id="product_template_form_view_inherit" model="ir.ui.view">
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="purchase_requisition.product_template_form_view_inherit"/>
+        <field name="arch" type="xml">
+            <field name='purchase_requisition' position="after">
+                <field name="purchase_requisition_group_id"
+                       attrs="{'invisible': [('purchase_requisition', '!=', 'tenders')]}"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
