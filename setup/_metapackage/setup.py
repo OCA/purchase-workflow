@@ -15,6 +15,7 @@ setuptools.setup(
         'odoo10-addon-purchase_allowed_product',
         'odoo10-addon-purchase_cancel_reason',
         'odoo10-addon-purchase_commercial_partner',
+        'odoo10-addon-purchase_date_planned_manual',
         'odoo10-addon-purchase_delivery_split_date',
         'odoo10-addon-purchase_discount',
         'odoo10-addon-purchase_fiscal_position_update',
