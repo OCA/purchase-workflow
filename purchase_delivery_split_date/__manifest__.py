@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
-# © 2014-2016 Numérigraphe SARL
-# © 2017 Eficent Business and IT Consulting Services, S.L.
+# Copyright 2014-2016 Numérigraphe SARL
+# Copyright 2017 Eficent Business and IT Consulting Services, S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
     "name": "Purchase Delivery Split Date",
-    "version": "10.0.1.0.0",
+    "version": "11.0.1.0.0",
     "summary": "Allows Purchase Order you confirm to generate one Incoming "
                "Shipment for each expected date indicated in the Purchase "
                "Order Lines",
