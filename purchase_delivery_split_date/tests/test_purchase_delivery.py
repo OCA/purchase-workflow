@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-# © 2014-2016 Numérigraphe SARL
-# © 2017 Eficent Business and IT Consulting Services, S.L.
+# Copyright 2014-2016 Numérigraphe SARL
+# Copyright 2017 Eficent Business and IT Consulting Services, S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp.tests.common import TransactionCase
@@ -18,7 +18,7 @@ class TestDeliverySingle(TransactionCase):
             'type': 'product',
             'default_code': 'PROD1',
         })
-        p2 = self.product1 = self.product_model.create({
+        p2 = self.product2 = self.product_model.create({
             'name': 'Test Product 2',
             'type': 'product',
             'default_code': 'PROD2',
@@ -60,7 +60,7 @@ class TestDeliverySingle(TransactionCase):
             len(self.po.picking_ids), 1,
             "There must be 1 picking for the PO when confirmed")
         self.assertEquals(
-            self.po.picking_ids[0].min_date[:10], self.date_sooner,
+            self.po.picking_ids[0].scheduled_date[:10], self.date_sooner,
             "The picking must be planned at the expected date")
 
     def test_check_multiple_dates(self):
@@ -75,10 +75,40 @@ class TestDeliverySingle(TransactionCase):
             "There must be 2 pickings for the PO when confirmed. %s found"
             % len(self.po.picking_ids))
 
-        sorted_pickings = sorted(self.po.picking_ids, key=lambda x: x.min_date)
+        sorted_pickings = sorted(
+            self.po.picking_ids, key=lambda x: x.scheduled_date)
         self.assertEquals(
-            sorted_pickings[0].min_date[:10], self.date_sooner,
+            sorted_pickings[0].scheduled_date[:10], self.date_sooner,
             "The first picking must be planned at the soonest date")
         self.assertEquals(
-            sorted_pickings[1].min_date[:10], self.date_later,
+            sorted_pickings[1].scheduled_date[:10], self.date_later,
             "The second picking must be planned at the latest date")
+
+    def test_check_multiple_dates_after_confirm(self):
+        """We introduced changes to dates in the PO lines after
+        confirmation. The pickings should be reorganized so as to be
+        grouped by the scheduled date."""
+        self.assertEquals(
+            len(self.po.picking_ids), 0,
+            "There must not be pickings for the PO when draft")
+        self.po.button_confirm()
+        self.assertEquals(
+            len(self.po.picking_ids), 1,
+            "There must be 1 picking for the PO when confirmed")
+        self.po.order_line[0].date_planned = self.date_later
+        self.assertEquals(
+            len(self.po.picking_ids), 2,
+            "There must be 2 pickings for the PO when confirmed. %s found"
+            % len(self.po.picking_ids))
+        sorted_pickings = sorted(self.po.picking_ids,
+                                 key=lambda x: x.scheduled_date)
+        self.assertEquals(
+            sorted_pickings[0].scheduled_date[:10], self.date_sooner,
+            "The first picking must be planned at the soonest date")
+        self.assertEquals(
+            sorted_pickings[1].scheduled_date[:10], self.date_later,
+            "The second picking must be planned at the latest date")
+        self.po.order_line[0].date_planned = self.date_sooner
+        self.assertEquals(
+            len(self.po.picking_ids), 1,
+            "There must be 1 picking for the PO when confirmed")
