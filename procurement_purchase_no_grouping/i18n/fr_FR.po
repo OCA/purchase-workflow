@@ -35,19 +35,14 @@ msgid "Procured purchase grouping"
 msgstr ""
 
 #. module: procurement_purchase_no_grouping
-#: model:ir.model,name:procurement_purchase_no_grouping.model_procurement_order
-msgid "Procurement"
+#: model:ir.model,name:procurement_purchase_no_grouping.model_procurement_rule
+msgid "Procurement Rule"
 msgstr ""
 
 #. module: procurement_purchase_no_grouping
 #: model:ir.model,name:procurement_purchase_no_grouping.model_product_category
 msgid "Product Category"
 msgstr ""
-
-#. module: procurement_purchase_no_grouping
-#: model:ir.model,name:procurement_purchase_no_grouping.model_purchase_order
-msgid "Purchase Order"
-msgstr "Bon de commande"
 
 #. module: procurement_purchase_no_grouping
 #: model:ir.model,name:procurement_purchase_no_grouping.model_purchase_order_line
@@ -70,3 +65,6 @@ msgstr ""
 #: selection:product.category,procured_purchase_grouping:0
 msgid "Standard grouping"
 msgstr ""
+
+#~ msgid "Purchase Order"
+#~ msgstr "Bon de commande"
