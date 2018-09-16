@@ -1,14 +1,13 @@
-# -*- coding: utf-8 -*-
-# © 2014-2016 Numérigraphe SARL
-# © 2017 Eficent Business and IT Consulting Services, S.L.
+# Copyright 2014-2016 Numérigraphe SARL
+# Copyright 2017 Eficent Business and IT Consulting Services, S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from datetime import datetime
-from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
+from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 import logging
 from itertools import groupby
-from openerp import models, api
+from odoo import models, api
 
 _logger = logging.getLogger(__name__)
 
@@ -44,16 +43,14 @@ class PurchaseOrderLine(models.Model):
         """Group the receptions in one picking per group key"""
         moves = self.env['stock.move']
         # Group the order lines by group key
-        order_lines = sorted(self,
-                             key=lambda l: self._get_group_keys(
-                                 l.order_id, l, picking=picking))
+        order_lines = sorted(self, key=lambda l: l.order_id)
         date_groups = groupby(order_lines, lambda l: self._get_group_keys(
             l.order_id, l, picking=picking))
 
         # If a picking is provided, use it for the first group only
         if picking:
             first_picking = picking
-            key, lines = date_groups.next()
+            key, lines = next(date_groups)
             po_lines = self.env['purchase.order.line']
             for line in list(lines):
                 po_lines += line
