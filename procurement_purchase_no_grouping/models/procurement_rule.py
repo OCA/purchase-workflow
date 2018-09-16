@@ -20,5 +20,5 @@ class ProcurementRule(models.Model):
 
     def _make_po_get_domain(self, values, partner):
         if self.env.context.get('grouping', 'standard') == 'order':
-            return [('id', '=', 0)]
+            return (('id', '=', 0), )
         return super()._make_po_get_domain(values, partner)
