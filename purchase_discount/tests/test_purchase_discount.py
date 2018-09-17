@@ -8,8 +8,9 @@ from odoo import fields
 
 
 class TestPurchaseOrder(common.HttpCase):
+    """ HttpCase as a workaround for problems with wkhtmltopdf """
     at_install = False
-    post_install = False
+    post_install = True
 
     def setUp(self):
         super(TestPurchaseOrder, self).setUp()
@@ -23,7 +24,10 @@ class TestPurchaseOrder(common.HttpCase):
         })
         po_model = self.env['purchase.order.line']
         # Make sure currency is EUR for not having troubles with rates
-        self.env.user.company_id.currency_id = self.env.ref('base.EUR')
+        self.env.cr.execute(
+            "UPDATE res_company SET currency_id = %s WHERE id = %s",
+            (self.env.ref('base.EUR').id, self.env.user.company_id.id))
+        self.env.user.company_id.refresh()
         self.purchase_order = self.env['purchase.order'].create({
             'partner_id': self.env.ref('base.res_partner_3').id,
         })
@@ -91,6 +95,23 @@ class TestPurchaseOrder(common.HttpCase):
         ])
         self.assertEqual(rec.price_total, 5)
         self.assertEqual(rec.discount, 50)
+
+    def test_rounding(self):
+        """ Check that the unit price is not rounded after discount is applied
+        as this can lead to differences with the created invoice. """
+        po_line = self.env['purchase.order.line'].new({
+            'order_id': self.purchase_order.id,
+            'product_id': self.product_2.id,
+            'date_planned': fields.Datetime.now(),
+            'name': 'Test',
+            'product_qty': 195.0,
+            'product_uom': self.product_2.uom_id.id,
+            'discount': 7,
+            'taxes_id': [],
+            'price_unit': 14.49,
+        })
+        po_line._compute_amount()
+        self.assertEqual(po_line.price_subtotal, 2627.76)
 
 
 class TestPurchaseOrderRoundGlobally(TestPurchaseOrder):
