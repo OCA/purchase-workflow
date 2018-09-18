@@ -24,7 +24,7 @@ addon | version | summary
 [product_supplierinfo_discount](product_supplierinfo_discount/) | 9.0.1.0.0 | Discounts in product supplier info
 [purchase_date_planned_manual](purchase_date_planned_manual/) | 9.0.1.0.0 | This module makes the system to always respect the planned (or scheduled) date in PO lines.
 [purchase_delivery_split_date](purchase_delivery_split_date/) | 9.0.1.0.0 | Purchase Deliveries split by date
-[purchase_discount](purchase_discount/) | 9.0.1.1.0 | Purchase order lines with discounts
+[purchase_discount](purchase_discount/) | 9.0.1.1.1 | Purchase order lines with discounts
 [purchase_fiscal_position_update](purchase_fiscal_position_update/) | 9.0.1.0.0 | Changing the fiscal position of a purchase order will auto-update purchase order lines
 [purchase_location_by_line](purchase_location_by_line/) | 9.0.1.0.0 | Allows to define a specific destination location on each PO line
 [purchase_open_qty](purchase_open_qty/) | 9.0.1.0.2 | Allows to identify the purchase orders that have quantities pending to invoice or to receive.
