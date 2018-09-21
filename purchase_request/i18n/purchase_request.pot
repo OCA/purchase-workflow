@@ -346,12 +346,8 @@ msgstr ""
 #: model:ir.ui.menu,name:purchase_request.menu_purchase_request
 #: model:ir.ui.menu,name:purchase_request.menu_purchase_request_act
 #: model:ir.ui.menu,name:purchase_request.menu_purchase_request_pro_mgt
-msgid "Purchase Requests"
-msgstr ""
-
-#. module: purchase_request
 #: model:ir.ui.menu,name:purchase_request.parent_menu_purchase_request
-msgid "Purchase requests"
+msgid "Purchase Requests"
 msgstr ""
 
 #. module: purchase_request
