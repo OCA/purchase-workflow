@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
-# © 2014 Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
+# Copyright 2014 Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
 #        Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
-# © 2016 ACSONE SA/NV (<http://acsone.eu>)
+# Copyright 2016 ACSONE SA/NV (<http://acsone.eu>)
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 from odoo.tests.common import TransactionCase
 from odoo import fields
@@ -11,7 +10,6 @@ class TestProductSupplierinfoDiscount(TransactionCase):
 
     def setUp(self):
         super(TestProductSupplierinfoDiscount, self).setUp()
-        self.po_model = self.env['purchase.order.line']
         self.supplierinfo_model = self.env['product.supplierinfo']
         self.purchase_order_line_model = self.env['purchase.order.line']
         self.partner_1 = self.env.ref('base.res_partner_1')
@@ -31,7 +29,7 @@ class TestProductSupplierinfoDiscount(TransactionCase):
         })
         self.purchase_order = self.env['purchase.order'].create(
             {'partner_id': self.partner_3.id})
-        self.po_line_1 = self.po_model.create(
+        self.po_line_1 = self.purchase_order_line_model.create(
             {'order_id': self.purchase_order.id,
              'product_id': self.product.id,
              'date_planned': fields.Datetime.now(),
@@ -66,7 +64,7 @@ class TestProductSupplierinfoDiscount(TransactionCase):
             "6 with partner 1 and qty 1")
 
     def test_004_prepare_purchase_order_line(self):
-        vals = {
+        procurement_rule = self.env['procurement.rule'].create({
             'sequence': 20,
             'location_id': self.env.ref('stock.stock_location_locations').id,
             'picking_type_id': self.env.ref('stock.chi_picking_type_in').id,
@@ -77,9 +75,8 @@ class TestProductSupplierinfoDiscount(TransactionCase):
             'name': 'YourCompany:  Buy',
             'route_id': self.env.ref('stock.route_warehouse0_mto').id,
             'action': 'buy',
-        }
-        procurement_rule = self.env['procurement.rule'].create(vals)
-        vals = {
+        })
+        po_line_vals = {
             'origin': 'SO012:WH: Stock -> Customers MTO',
             'product_uom': self.env.ref('product.product_uom_unit').id,
             'product_qty': 50,
@@ -94,9 +91,10 @@ class TestProductSupplierinfoDiscount(TransactionCase):
             'date_planned': fields.Datetime.now(),
             'rule_id': procurement_rule.id,
         }
-        procurement_order = self.env['procurement.order'].create(vals)
-        res = procurement_order._prepare_purchase_order_line(
-            self.purchase_order, self.supplierinfo)
+        res = procurement_rule._prepare_purchase_order_line(
+            self.product, 50, self.env.ref('product.product_uom_unit'),
+            po_line_vals, self.purchase_order, self.supplierinfo,
+        )
         self.assertTrue(res.get('discount'), 'Should have a discount key')
 
     def test_005_default_supplierinfo_discount(self):
@@ -120,13 +118,13 @@ class TestProductSupplierinfoDiscount(TransactionCase):
         partner = self.env.ref('base.res_partner_3')
         product = self.env.ref('product.product_product_8')
         self.assertFalse(
-            self.env['product.supplierinfo'].search([
+            self.supplierinfo_model.search([
                 ('name', '=', partner.id),
                 ('product_tmpl_id', '=', product.product_tmpl_id.id)]))
         order = self.env['purchase.order'].create({
             'partner_id': partner.id,
         })
-        self.env['purchase.order.line'].create({
+        self.purchase_order_line_model.create({
             'date_planned': fields.Datetime.now(),
             'discount': 40,
             'name': product.name,
@@ -137,7 +135,7 @@ class TestProductSupplierinfoDiscount(TransactionCase):
             'order_id': order.id,
         })
         order.button_confirm()
-        seller = self.env['product.supplierinfo'].search([
+        seller = self.supplierinfo_model.search([
             ('name', '=', partner.id),
             ('product_tmpl_id', '=', product.product_tmpl_id.id)])
         self.assertTrue(seller)
