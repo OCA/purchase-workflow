@@ -8,6 +8,7 @@ setuptools.setup(
     description="Meta package for oca-purchase-workflow Odoo addons",
     version=version,
     install_requires=[
+        'odoo11-addon-product_supplierinfo_discount',
         'odoo11-addon-purchase_discount',
         'odoo11-addon-purchase_exception',
         'odoo11-addon-purchase_line_procurement_group',
