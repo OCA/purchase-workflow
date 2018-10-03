@@ -20,6 +20,7 @@ setuptools.setup(
         'odoo10-addon-purchase_discount',
         'odoo10-addon-purchase_fiscal_position_update',
         'odoo10-addon-purchase_fop_shipping',
+        'odoo10-addon-purchase_landed_cost',
         'odoo10-addon-purchase_line_product_image',
         'odoo10-addon-purchase_location_by_line',
         'odoo10-addon-purchase_minimum_amount',
