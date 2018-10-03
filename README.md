@@ -30,6 +30,7 @@ addon | version | summary
 [purchase_discount](purchase_discount/) | 10.0.1.0.4 | Purchase order lines with discounts
 [purchase_fiscal_position_update](purchase_fiscal_position_update/) | 10.0.1.0.0 | Changing the fiscal position of a purchase order will auto-update purchase order lines
 [purchase_fop_shipping](purchase_fop_shipping/) | 10.0.1.0.0 | Purchase Free-Of-Paiment shipping
+[purchase_landed_cost](purchase_landed_cost/) | 10.0.1.0.0 | Purchase cost distribution
 [purchase_line_product_image](purchase_line_product_image/) | 10.0.1.0.0 | Show Product Image at Purchase Order Line.
 [purchase_location_by_line](purchase_location_by_line/) | 10.0.1.0.0 | Allows to define a specific destination location on each PO line
 [purchase_minimum_amount](purchase_minimum_amount/) | 10.0.1.0.0 | Purchase Minimum Amount
@@ -62,7 +63,6 @@ addon | version | summary
 [purchase_delivery_term](purchase_delivery_term/) | 0.2 (unported) | Delivery term for purchase orders
 [purchase_group_hooks](purchase_group_hooks/) | 0.1 (unported) | Add hooks to the merge PO feature.
 [purchase_group_orders](purchase_group_orders/) | 0.4 (unported) | Purchase Group Orders by Shop and Carrier
-[purchase_landed_costs](purchase_landed_costs/) | 1.0.1 (unported) | Purchase Landed Costs
 [purchase_last_price_info](purchase_last_price_info/) | 8.0.1.0.0 (unported) | Product Last Price Info - Purchase
 [purchase_multi_picking](purchase_multi_picking/) | 0.2 (unported) | Multi Pickings from Purchase Orders
 [purchase_order_force_number](purchase_order_force_number/) | 0.1 (unported) | Force purchase orders numeration
