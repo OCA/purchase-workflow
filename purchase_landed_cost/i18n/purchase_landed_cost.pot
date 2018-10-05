@@ -6,6 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-10-23 16:33+0000\n"
+"PO-Revision-Date: 2018-10-23 16:33+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -156,7 +158,7 @@ msgid "Cost documentation"
 msgstr ""
 
 #. module: purchase_landed_cost
-#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:279
+#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:306
 #, python-format
 msgid "Cost update cannot be undone because there has been a later update. Restore correct price and try again."
 msgstr ""
@@ -481,7 +483,7 @@ msgid "New cost"
 msgstr ""
 
 #. module: purchase_landed_cost
-#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:186
+#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:198
 #, python-format
 msgid "No valid distribution type."
 msgstr ""
@@ -519,7 +521,7 @@ msgid "Pickings"
 msgstr ""
 
 #. module: purchase_landed_cost
-#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:207
+#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:219
 #, python-format
 msgid "Please enter an amount for all the expenses"
 msgstr ""
@@ -691,7 +693,7 @@ msgid "Technical field used to record the product cost set by the user during a 
 msgstr ""
 
 #. module: purchase_landed_cost
-#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:192
+#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:204
 #, python-format
 msgid "The cost for the line '%s' can't be distributed because the calculation method doesn't provide valid data"
 msgstr ""
@@ -717,7 +719,7 @@ msgid "The volume in m3."
 msgstr ""
 
 #. module: purchase_landed_cost
-#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:211
+#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:223
 #, python-format
 msgid "There is no picking lines in the distribution"
 msgstr ""
@@ -826,6 +828,12 @@ msgstr ""
 #: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:132
 #, python-format
 msgid "You can't delete a confirmed cost distribution"
+msgstr ""
+
+#. module: purchase_landed_cost
+#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:150
+#, python-format
+msgid "You can't delete a cost line if it's an affected line of any expense line."
 msgstr ""
 
 #. module: purchase_landed_cost
