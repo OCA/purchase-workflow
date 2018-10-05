@@ -139,6 +139,21 @@ class PurchaseCostDistribution(models.Model):
                 'purchase.cost.distribution')
         return super(PurchaseCostDistribution, self).create(vals)
 
+    @api.multi
+    def write(self, vals):
+        for command in vals.get('cost_lines', []):
+            if command[0] in (2, 3, 5):
+                if command[0] == 5:
+                    to_check = self.mapped('cost_lines').ids
+                else:
+                    to_check = [command[1]]
+                lines = self.mapped('expense_lines.affected_lines').ids
+                if any(i in lines for i in to_check):
+                    raise exceptions.UserError(
+                        _("You can't delete a cost line if it's an "
+                          "affected line of any expense line."))
+        return super(PurchaseCostDistribution, self).write(vals)
+
     @api.model
     def _prepare_expense_line(self, expense_line, cost_line):
         distribution = cost_line.distribution
