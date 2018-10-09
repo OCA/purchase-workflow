@@ -94,6 +94,7 @@ class PurchaseManageVariant(models.TransientModel):
                 # This should be done later for handling supplier quantities
                 order_line.product_qty = line.product_uom_qty
                 order_line._onchange_quantity()
+                # FIXME: BUG: no `product_id` here
                 order_line_vals = order_line._convert_to_write(
                     order_line._cache)
                 purchase_order.order_line.create(order_line_vals)
