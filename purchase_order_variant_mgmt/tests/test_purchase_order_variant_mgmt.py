@@ -1,15 +1,15 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016 Pedro M. Baeza <pedro.baeza@tecnativa.com>
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from openerp.tests import common
+from odoo.tests import common
 
 
 class TestPurchaseOrderVariantMgmt(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
-        super(TestPurchaseOrderVariantMgmt, cls).setUpClass()
+        super().setUpClass()
         cls.partner = cls.env['res.partner'].create({'name': 'Test partner'})
+        cls.company = cls.env['res.company'].create({'name': 'Test company'})
         cls.attribute1 = cls.env['product.attribute'].create({
             'name': 'Test Attribute 1',
             'value_ids': [
@@ -38,7 +38,10 @@ class TestPurchaseOrderVariantMgmt(common.SavepointCase):
             ],
         })
         assert len(cls.product_tmpl.product_variant_ids) == 4
-        order = cls.env['purchase.order'].new({'partner_id': cls.partner.id})
+        order = cls.env['purchase.order'].new({
+            'partner_id': cls.partner.id,
+            'company_id': cls.company.id,
+        })
         order.onchange_partner_id()
         cls.order = order.create(order._convert_to_write(order._cache))
         cls.Wizard = cls.env['purchase.manage.variant'].with_context(

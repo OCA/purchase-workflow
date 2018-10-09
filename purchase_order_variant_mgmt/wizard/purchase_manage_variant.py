@@ -1,28 +1,33 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016 Pedro M. Baeza <pedro.baeza@tecnativa.com>
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-import openerp.addons.decimal_precision as dp
-from openerp import api, fields, models
+import odoo.addons.decimal_precision as dp
+from odoo import api, fields, models
 
 
 class PurchaseManageVariant(models.TransientModel):
     _name = 'purchase.manage.variant'
 
     product_tmpl_id = fields.Many2one(
-        comodel_name='product.template', string="Template", required=True)
+        comodel_name='product.template',
+        string="Template",
+        required=True,
+    )
     # This is a many2many because Odoo fails to fill one2many in onchanges
     variant_line_ids = fields.Many2many(
-        comodel_name='purchase.manage.variant.line', string="Variant Lines")
+        comodel_name='purchase.manage.variant.line',
+        string="Variant Lines",
+    )
 
     # HACK: https://github.com/OCA/server-tools/pull/492#issuecomment-237594285
     @api.multi
     def onchange(self, values, field_name, field_onchange):  # pragma: no cover
         if "variant_line_ids" in field_onchange:
-            for sub in ("product_id", "disabled", "value_x", "value_y",
+            for sub in ("product_id", "disabled",
+                        "value_x", "value_y",
                         "product_uom_qty"):
-                field_onchange.setdefault("variant_line_ids." + sub, u"")
-        return super(PurchaseManageVariant, self).onchange(
+                field_onchange.setdefault("variant_line_ids." + sub, "")
+        return super().onchange(
             values, field_name, field_onchange)
 
     @api.onchange('product_tmpl_id')
@@ -99,9 +104,18 @@ class PurchaseManageVariantLine(models.TransientModel):
     _name = 'purchase.manage.variant.line'
 
     product_id = fields.Many2one(
-        comodel_name='product.product', string="Variant", readonly=True)
+        comodel_name='product.product',
+        string="Variant",
+        readonly=True,
+    )
     disabled = fields.Boolean()
-    value_x = fields.Many2one(comodel_name='product.attribute.value')
-    value_y = fields.Many2one(comodel_name='product.attribute.value')
+    value_x = fields.Many2one(
+        comodel_name='product.attribute.value',
+    )
+    value_y = fields.Many2one(
+        comodel_name='product.attribute.value',
+    )
     product_uom_qty = fields.Float(
-        string="Quantity", digits_compute=dp.get_precision('Product UoS'))
+        string="Quantity",
+        digits=dp.get_precision('Product UoS'),
+    )

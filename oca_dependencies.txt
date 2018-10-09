@@ -1,1 +1,2 @@
 server-tools
+web https://github.com/arkostyuk/web.git 11.0-fix-web_widget_x2many_2d_matrix-propagate-user-attrs
