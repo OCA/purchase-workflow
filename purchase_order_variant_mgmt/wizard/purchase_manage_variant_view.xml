@@ -8,10 +8,12 @@
     <field name="arch" type="xml">
       <form string="Manage Product Variants">
         <group>
+          <field name="id"/>
+          <field name="purchase_order_id"/>
           <field name="product_tmpl_id"
+                 required="True"
                  domain="[('attribute_line_ids', '!=', False)]"
-                 options="{'no_create': True}"
-          />
+                 options="{'no_create': True}"/>
         </group>
         <field name="variant_line_ids"
                widget="x2many_2d_matrix"

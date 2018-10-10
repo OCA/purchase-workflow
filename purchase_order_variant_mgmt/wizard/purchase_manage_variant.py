@@ -8,15 +8,23 @@ from odoo import api, fields, models
 class PurchaseManageVariant(models.TransientModel):
     _name = 'purchase.manage.variant'
 
+    # TODO: revise usage of `store` here - maybe, product_ids
+    # would be there w/o this stuff
     product_tmpl_id = fields.Many2one(
+        store=True,
         comodel_name='product.template',
         string="Template",
-        required=True,
+        # skip required=True since we need to create a wizard w/o it
     )
     # This is a many2many because Odoo fails to fill one2many in onchanges
     variant_line_ids = fields.Many2many(
+        store=True,
         comodel_name='purchase.manage.variant.line',
         string="Variant Lines",
+    )
+    purchase_order_id = fields.Many2one(
+        store=True,
+        comodel_name='purchase.order',
     )
 
     # HACK: https://github.com/OCA/server-tools/pull/492#issuecomment-237594285
@@ -31,16 +39,9 @@ class PurchaseManageVariant(models.TransientModel):
             values, field_name, field_onchange)
 
     @api.onchange('product_tmpl_id')
-    def _onchange_product_tmpl_id(self):
+    def _onchange_product_tmpl_id(self, reassign_quantities=True):
         self.variant_line_ids = [(6, 0, [])]
         template = self.product_tmpl_id
-        context = self.env.context
-        record = self.env[context['active_model']].browse(
-            context['active_id'])
-        if context['active_model'] == 'purchase.order.line':
-            purchase_order = record.order_id
-        else:
-            purchase_order = record
         num_attrs = len(template.attribute_line_ids)
         if not template or not num_attrs:
             return
@@ -55,29 +56,26 @@ class PurchaseManageVariant(models.TransientModel):
                     values += value_y
                 product = template.product_variant_ids.filtered(
                     lambda x: not(values - x.attribute_value_ids))[:1]
-                order_line = purchase_order.order_line.filtered(
+                order_line = self.purchase_order_id.order_line.filtered(
                     lambda x: x.product_id == product)[:1]
-                lines.append((0, 0, {
-                    'product_id': product,
+                vals = {
+                    'product_id': product.id,
                     'disabled': not bool(product),
-                    'value_x': value_x,
-                    'value_y': value_y,
-                    'product_uom_qty': order_line.product_qty,
-                }))
+                    'value_x': value_x.id,
+                    'value_y': value_y.id,
+                }
+                if reassign_quantities:
+                    vals['product_uom_qty'] = order_line.product_qty
+                lines.append((0, 0, vals))
         self.variant_line_ids = lines
 
     @api.multi
     def button_transfer_to_order(self):
-        context = self.env.context
-        record = self.env[context['active_model']].browse(context['active_id'])
-        if context['active_model'] == 'purchase.order.line':
-            purchase_order = record.order_id
-        else:
-            purchase_order = record
         OrderLine = self.env['purchase.order.line']
         lines2unlink = OrderLine
+        self._onchange_product_tmpl_id(reassign_quantities=False)
         for line in self.variant_line_ids:
-            order_line = purchase_order.order_line.filtered(
+            order_line = self.purchase_order_id.order_line.filtered(
                 lambda x: x.product_id == line.product_id)
             if order_line:
                 if not line.product_uom_qty:
@@ -88,16 +86,15 @@ class PurchaseManageVariant(models.TransientModel):
             elif line.product_uom_qty:
                 order_line = OrderLine.new({
                     'product_id': line.product_id.id,
-                    'order_id': purchase_order.id,
+                    'order_id': self.purchase_order_id.id,
                 })
                 order_line.onchange_product_id()
                 # This should be done later for handling supplier quantities
                 order_line.product_qty = line.product_uom_qty
                 order_line._onchange_quantity()
-                # FIXME: BUG: no `product_id` here
                 order_line_vals = order_line._convert_to_write(
                     order_line._cache)
-                purchase_order.order_line.create(order_line_vals)
+                self.purchase_order_id.order_line.create(order_line_vals)
         lines2unlink.unlink()
 
 

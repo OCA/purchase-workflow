@@ -9,8 +9,8 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='order_line']" position="before">
                 <div class="oe_button_box" name="button_box">
-                    <button name="%(action_purchase_manage_variant)d"
-                            type="action"
+                    <button name="action_manage_variants"
+                            type="object"
                             string="Add or Modify Variants"
                             class="oe_edit_only"
                             states="draft,sent"
@@ -23,8 +23,8 @@
                 <field name="product_attribute_value_ids" invisible="1"/>
                 <!-- Not working until https://github.com/odoo/odoo/pull/13558 -->
                 <!-- Also https://github.com/odoo/odoo/pull/13635 is needed for correct template selection -->
-                <button name="%(action_purchase_manage_variant)d"
-                        type="action"
+                <button name="action_manage_variants"
+                        type="object"
                         string="Modify Variants"
                         icon="fa-th"
                         class="oe_edit_only"
