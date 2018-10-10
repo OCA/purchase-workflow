@@ -8,6 +8,9 @@ from odoo import fields
 
 
 class TestPurchaseOrder(common.SavepointCase):
+    at_install = False
+    post_install = True
+
     @classmethod
     def setUpClass(cls):
         super(TestPurchaseOrder, cls).setUpClass()
