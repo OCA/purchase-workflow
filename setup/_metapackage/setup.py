@@ -33,6 +33,7 @@ setuptools.setup(
         'odoo10-addon-purchase_order_revision',
         'odoo10-addon-purchase_picking_state',
         'odoo10-addon-purchase_request',
+        'odoo10-addon-purchase_request_department',
         'odoo10-addon-purchase_request_procurement',
         'odoo10-addon-purchase_request_to_procurement',
         'odoo10-addon-purchase_request_to_rfq',
