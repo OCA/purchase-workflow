@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
 #   (http://www.eficent.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
@@ -6,6 +5,7 @@
 from dateutil.relativedelta import relativedelta
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError
+from odoo.fields import Datetime as Dt
 
 
 class PurchaseOrderLine(models.Model):
@@ -48,5 +48,7 @@ class PurchaseOrderLine(models.Model):
 
     @api.multi
     def action_delayed_line(self):
-        raise UserError(_('This line is scheduled for: %s. \n However it is '
-                          'now planned to arrive late.') % self.date_planned)
+        raise UserError(_(
+            'This line is scheduled for: %s. \n However it is now planned to '
+            'arrive late.') % Dt.to_string(Dt.context_timestamp(
+                self, Dt.from_string(self.date_planned))))
