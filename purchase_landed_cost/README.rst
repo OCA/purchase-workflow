@@ -23,7 +23,7 @@ Purchase landed costs - Alternative option
     :target: https://runbot.odoo-community.org/runbot/142/11.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 This module manages your purchase expenses
 ==========================================
@@ -32,8 +32,8 @@ The functionality of this module is to provide a way to manage your purchase
 costs more easily than the official module (*stock_landed_cost*) and allow to
 distribute them with a lot of methods.
 
-Main features:
---------------
+**Main features:**
+
 * Possibility to assign landed cost afterwards in a separate screen.
 * Management of expense types with preconfigured calculation methods.
 * Distribution of costs based on weight, volume, product price, etc.
@@ -47,11 +47,6 @@ Main features:
 
 .. contents::
    :local:
-
-Usage
-=====
-
-* Do something.
 
 Known issues / Roadmap
 ======================
@@ -73,9 +68,8 @@ Credits
 =======
 
 Authors
--------
+~~~~~~~
 
-* OdooMRP team
 * AvanzOSC
 * Tecnativa
 * Joaquín Gutierrez

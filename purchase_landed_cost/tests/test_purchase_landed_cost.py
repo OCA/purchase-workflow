@@ -44,20 +44,6 @@ class TestPurchaseLandedCost(common.SavepointCase):
             'type': 'product',
             'property_cost_method': 'average',
         })
-            'standard_price': 3.0,
-            'property_cost_method': 'average',
-        })
-        cls.service = cls.env['product.product'].create({
-            'name': 'Service',
-            'type': 'service',
-            'standard_price': 10.0,
-        })
-        categ_unit = cls.env.ref('product.product_uom_categ_unit')
-        cls.uom_unit = cls.env['product.uom'].create({
-            'name': 'Test-Unit',
-            'category_id': categ_unit.id,
-            'rounding': 1.0,
-        })
         cls.supplier = cls.env['res.partner'].create({
             'name': 'Supplier',
             'supplier': True,
@@ -75,6 +61,9 @@ class TestPurchaseLandedCost(common.SavepointCase):
         })
         cls.purchase_order.button_confirm()
         cls.picking = cls.purchase_order.picking_ids
+        cls.env['stock.immediate.transfer'].create({
+            'pick_ids': [(4, cls.picking.id)],
+        }).process()
         cls.picking.action_done()
         user_type = cls.env.ref('account.data_account_type_expenses')
         account = cls.env['account.account'].create({
@@ -141,12 +130,15 @@ class TestPurchaseLandedCost(common.SavepointCase):
         order2.order_line.price_unit = 2
         order2.button_confirm()
         picking2 = order2.picking_ids
+        self.env['stock.immediate.transfer'].create({
+            'pick_ids': [(4, picking2.id)],
+        }).process()
         picking2.action_done()
         wiz = self.env['picking.import.wizard'].with_context(
             active_id=self.distribution.id,
         ).create({
             'supplier': self.supplier.id,
-            'pickings': [(6, 0, [(self.picking + picking2).ids])],
+            'pickings': [(6, 0, (self.picking + picking2).ids)],
         })
         wiz.action_import_picking()
         self.assertEqual(len(self.distribution.cost_lines.ids), 2)
@@ -157,6 +149,10 @@ class TestPurchaseLandedCost(common.SavepointCase):
         self.assertAlmostEqual(self.product.standard_price, 2.5)
         self.distribution.action_done()
         self.assertAlmostEqual(self.product.standard_price, 3.5)
+        self.assertAlmostEqual(self.picking.move_lines.price_unit, 4)
+        self.assertAlmostEqual(self.picking.move_lines.value, 20)
+        self.assertAlmostEqual(picking2.move_lines.price_unit, 3)
+        self.assertAlmostEqual(picking2.move_lines.value, 15)
         self.distribution.action_cancel()
         self.assertAlmostEqual(self.product.standard_price, 2.5)
 
@@ -165,17 +161,19 @@ class TestPurchaseLandedCost(common.SavepointCase):
         order2.order_line.price_unit = 2
         order2.button_confirm()
         picking2 = order2.picking_ids
-        picking2.action_done()
         order3 = self.purchase_order.copy()
         order3.order_line.price_unit = 1
         order3.button_confirm()
         picking3 = order3.picking_ids
-        picking3.action_done()
+        self.env['stock.immediate.transfer'].create({
+            'pick_ids': [(6, 0, (picking2 + picking3).ids)],
+        }).process()
+        (picking2 + picking3).action_done()
         wiz = self.env['picking.import.wizard'].with_context(
             active_id=self.distribution.id,
         ).create({
             'supplier': self.supplier.id,
-            'pickings': [(6, 0, [(picking2 + picking3).ids])],
+            'pickings': [(6, 0, (picking2 + picking3).ids)],
         })
         wiz.action_import_picking()
         self.assertAlmostEqual(self.distribution.total_uom_qty, 10.0)
