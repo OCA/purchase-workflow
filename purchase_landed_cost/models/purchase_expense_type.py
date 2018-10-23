@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
-# © 2013 Joaquín Gutierrez
-# © 2014-2016 Pedro M. Baeza <pedro.baeza@tecnativa.com>
+# Copyright 2013 Joaquín Gutierrez
+# Copyright 2014-2016 Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3
 
-from odoo import models, fields
+from odoo import fields, models
 
 
 class PurchaseExpenseType(models.Model):
