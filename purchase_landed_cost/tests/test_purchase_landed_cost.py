@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
 # Copyright 2018 Tecnativa - Vicent Cubells
+# Copyright 2018 Tecnativa - Pedro M. Baeza
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 from odoo.exceptions import UserError
@@ -43,6 +43,20 @@ class TestPurchaseLandedCost(common.SavepointCase):
             'name': 'Product',
             'type': 'product',
             'property_cost_method': 'average',
+        })
+            'standard_price': 3.0,
+            'property_cost_method': 'average',
+        })
+        cls.service = cls.env['product.product'].create({
+            'name': 'Service',
+            'type': 'service',
+            'standard_price': 10.0,
+        })
+        categ_unit = cls.env.ref('product.product_uom_categ_unit')
+        cls.uom_unit = cls.env['product.uom'].create({
+            'name': 'Test-Unit',
+            'category_id': categ_unit.id,
+            'rounding': 1.0,
         })
         cls.supplier = cls.env['res.partner'].create({
             'name': 'Supplier',

@@ -1,13 +1,12 @@
-# -*- coding: utf-8 -*-
-# © 2013 Joaquín Gutierrez
-# © 2014-2016 Pedro M. Baeza <pedro.baeza@tecnativa.com>
+# Copyright 2013 Joaquín Gutierrez
+# Copyright 2014-2016 Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3
 
 
-from odoo import models, fields, exceptions, api, _
-# NOTE: In v9, this should be `from odoo.tools.misc import formatLang`
-from .format_lang_wrapper import formatLang
-import openerp.addons.decimal_precision as dp
+from odoo import _, api, fields, models
+from odoo.addons import decimal_precision as dp
+from odoo.exceptions import UserError
+from odoo.tools.misc import formatLang
 
 
 class PurchaseCostDistribution(models.Model):
@@ -128,7 +127,7 @@ class PurchaseCostDistribution(models.Model):
     def unlink(self):
         for c in self:
             if c.state not in ('draft', 'calculated'):
-                raise exceptions.UserError(
+                raise UserError(
                     _("You can't delete a confirmed cost distribution"))
         return super(PurchaseCostDistribution, self).unlink()
 
@@ -197,13 +196,12 @@ class PurchaseCostDistribution(models.Model):
             divisor = (len(expense_line.affected_lines) or
                        len(distribution.cost_lines))
         else:
-            raise exceptions.UserError(
-                _('No valid distribution type.'))
+            raise UserError(_('No valid distribution type.'))
         if divisor:
             expense_amount = (expense_line.expense_amount * multiplier /
                               divisor)
         else:
-            raise exceptions.UserError(
+            raise UserError(
                 _("The cost for the line '%s' can't be "
                   "distributed because the calculation method "
                   "doesn't provide valid data" % expense_line.type.name))
@@ -218,11 +216,11 @@ class PurchaseCostDistribution(models.Model):
         for distribution in self:
             # Check expense lines for amount 0
             if any([not x.expense_amount for x in distribution.expense_lines]):
-                raise exceptions.UserError(
+                raise UserError(
                     _('Please enter an amount for all the expenses'))
             # Check if exist lines in distribution
             if not distribution.cost_lines:
-                raise exceptions.UserError(
+                raise UserError(
                     _('There is no picking lines in the distribution'))
             # Calculating expense line
             for cost_line in distribution.cost_lines:
@@ -303,7 +301,7 @@ class PurchaseCostDistribution(models.Model):
                     line.move_id.location_id.usage != 'supplier'):
                 continue
             if self.currency_id.compare_amounts(
-                    line.move_id.quant_ids[0].cost,
+                    line.move_id.product_id.standard_price,
                     line.standard_price_new) != 0:
                 raise exceptions.UserError(
                     _('Cost update cannot be undone because there has '
@@ -399,7 +397,7 @@ class PurchaseCostDistributionLine(models.Model):
     def _compute_standard_price_old(self):
         for dist_line in self:
             dist_line.standard_price_old = (
-                dist_line.move_id and dist_line.move_id.get_price_unit() or
+                dist_line.move_id and dist_line.move_id._get_price_unit() or
                 0.0)
 
     name = fields.Char(
