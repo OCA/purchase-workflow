@@ -155,7 +155,7 @@
                             <button name="%(action_import_invoice_line_wizard)d"
                                     string="Import invoice line"
                                     states="draft" type="action"/>
-                            <field name="expense_lines">
+                            <field name="expense_lines" options="{'reload_on_button': true}">
                                 <tree string="Cost distribution expenses"
                                       editable="bottom">
                                     <field name="type"/>
@@ -285,9 +285,8 @@
         <field name="model">purchase.cost.distribution.expense</field>
         <field name="arch" type="xml">
             <tree string="Cost distribution expenses"
-                  options="{'reload_on_button': true}"
                   editable="bottom"
-                  create="0">
+                  create="false">
                 <field name="invoice_line"
                        options="{'no_create': true, 'create_edit': false}"
                        domain="[('invoice_id', '=', parent.id)]"

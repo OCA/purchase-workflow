@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# © 2014-2015 Pedro M. Baeza <pedro.baeza@tecnativa.com>
+# Copyright 2014-2015 Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3
 
 from odoo import fields, models
