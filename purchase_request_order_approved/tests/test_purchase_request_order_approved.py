@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016 Eficent Business and IT Consulting Services S.L.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
 
@@ -15,37 +14,40 @@ class TestPurchaseRequestToRfqOrderApproved(common.TransactionCase):
         self.wiz =\
             self.env['purchase.request.line.make.purchase.order']
         self.purchase_order = self.env['purchase.order']
+        self.product_product_6 = self.env.ref('product.product_product_6')
+        self.product_uom_unit = self.env.ref('product.product_uom_unit')
+        self.picking_type_in = self.env.ref('stock.picking_type_in')
 
     def test_purchase_request_to_purchase_rfq_multiple_PO(self):
         vals = {
-            'picking_type_id': self.env.ref('stock.picking_type_in').id,
+            'picking_type_id': self.picking_type_in.id,
             'requested_by': SUPERUSER_ID,
         }
         purchase_request1 = self.purchase_request.create(vals)
         purchase_request1.company_id.purchase_approve_active = True
         vals = {
-            'picking_type_id': self.env.ref('stock.picking_type_in').id,
+            'picking_type_id': self.picking_type_in.id,
             'requested_by': SUPERUSER_ID,
         }
         purchase_request2 = self.purchase_request.create(vals)
         vals = {
             'request_id': purchase_request1.id,
-            'product_id': self.env.ref('product.product_product_6').id,
-            'product_uom_id': self.env.ref('product.product_uom_unit').id,
+            'product_id': self.product_product_6.id,
+            'product_uom_id': self.product_uom_unit.id,
             'product_qty': 2.0,
         }
         purchase_request_line1 = self.purchase_request_line.create(vals)
         vals = {
             'request_id': purchase_request2.id,
-            'product_id': self.env.ref('product.product_product_6').id,
-            'product_uom_id': self.env.ref('product.product_uom_unit').id,
+            'product_id': self.product_product_6.id,
+            'product_uom_id': self.product_uom_unit.id,
             'product_qty': 1.0,
         }
         purchase_request_line2 = self.purchase_request_line.create(vals)
         vals = {
             'request_id': purchase_request2.id,
-            'product_id': self.env.ref('product.product_product_6').id,
-            'product_uom_id': self.env.ref('product.product_uom_unit').id,
+            'product_id': self.product_product_6.id,
+            'product_uom_id': self.product_uom_unit.id,
             'product_qty': 1.0,
         }
         purchase_request_line3 = self.purchase_request_line.create(vals)
