@@ -9,6 +9,7 @@
                "Shipment for each expected date indicated in the Purchase "
                "Order Lines",
     "author": "Numérigraphe, Eficent, Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/purchase-workflow",
     "category": "Purchase Management",
     "license": "AGPL-3",
     "depends": [
