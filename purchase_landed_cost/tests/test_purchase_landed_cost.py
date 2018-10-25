@@ -11,28 +11,29 @@ class TestPurchaseLandedCost(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
         super(TestPurchaseLandedCost, cls).setUpClass()
-        cls.type_amount = cls.env['purchase.expense.type'].create({
+        expense_type_obj = cls.env['purchase.expense.type']
+        cls.type_amount = expense_type_obj.create({
             'name': 'Type Amount',
             'calculation_method': 'amount',
             'default_amount': True,
         })
-        cls.type_price = cls.env['purchase.expense.type'].create({
+        cls.type_price = expense_type_obj.create({
             'name': 'Type Price',
             'calculation_method': 'price',
         })
-        cls.type_qty = cls.env['purchase.expense.type'].create({
+        cls.type_qty = expense_type_obj.create({
             'name': 'Type Qty',
             'calculation_method': 'qty',
         })
-        cls.type_weight = cls.env['purchase.expense.type'].create({
+        cls.type_weight = expense_type_obj.create({
             'name': 'Type Weight',
             'calculation_method': 'weight',
         })
-        cls.type_volume = cls.env['purchase.expense.type'].create({
+        cls.type_volume = expense_type_obj.create({
             'name': 'Type Volume',
             'calculation_method': 'volume',
         })
-        cls.type_equal = cls.env['purchase.expense.type'].create({
+        cls.type_equal = expense_type_obj.create({
             'name': 'Type Equal',
             'calculation_method': 'equal',
         })
