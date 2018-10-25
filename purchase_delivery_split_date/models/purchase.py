@@ -43,10 +43,11 @@ class PurchaseOrderLine(models.Model):
         """Group the receptions in one picking per group key"""
         moves = self.env['stock.move']
         # Group the order lines by group key
-        order_lines = sorted(self, key=lambda l: l.order_id)
+        order_lines = sorted(self, key=lambda l: l.date_planned)
         date_groups = groupby(order_lines, lambda l: self._get_group_keys(
             l.order_id, l, picking=picking))
 
+        first_picking = False
         # If a picking is provided, use it for the first group only
         if picking:
             first_picking = picking
@@ -57,8 +58,6 @@ class PurchaseOrderLine(models.Model):
             picking._update_picking_from_group_key(key)
             moves += super(PurchaseOrderLine, po_lines)._create_stock_moves(
                 first_picking)
-        else:
-            first_picking = False
 
         for key, lines in date_groups:
             # If a picking is provided, clone it for each key for modularity
