@@ -1,11 +1,7 @@
-[ This file must be present and contains the usage instructions
-  for end-users. As all other rst files included in the README,
-  it MUST NOT contain reStructuredText sections
-  only body text (paragraphs, lists, tables, etc). Should you need
-  a more elaborate structure to explain the addon, please create a
-  Sphinx documentation (which may include this file as a "quick start"
-  section). ]
 
-To use this module, you need to:
+When a Purchase Order is confirmed, shipments will be grouped by same scheduled date.
 
-#. Go to ...
+.. figure:: https://raw.githubusercontent.com/OCA/purchase-workflow/11.0/purchase_delivery_split_date/static/description/split_delivery.png
+   :alt: Purchase Order Split Shipments
+   :width: 80 %
+   :align: center
