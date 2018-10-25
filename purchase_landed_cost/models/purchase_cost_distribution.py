@@ -1,5 +1,6 @@
 # Copyright 2013 Joaquín Gutierrez
-# Copyright 2014-2016 Pedro M. Baeza <pedro.baeza@tecnativa.com>
+# Copyright 2018 Tecnativa - Vicent Cubells
+# Copyright 2014-2018 Tecnativa - Pedro M. Baeza
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3
 
 
@@ -125,8 +126,8 @@ class PurchaseCostDistribution(models.Model):
 
     @api.multi
     def unlink(self):
-        for c in self:
-            if c.state not in ('draft', 'calculated'):
+        for record in self:
+            if record.state not in ('draft', 'calculated'):
                 raise UserError(
                     _("You can't delete a confirmed cost distribution"))
         return super(PurchaseCostDistribution, self).unlink()
@@ -532,7 +533,7 @@ class PurchaseCostDistributionExpense(models.Model):
         string='Affected lines',
         help="Put here specific lines that this expense is going to be "
              "distributed across. Leave it blank to use all imported lines.",
-        domain="[('id', 'in', imported_lines[0][2])]")
+        domain="[('id', 'in', imported_lines)]")
     expense_amount = fields.Float(
         string='Expense amount', digits=dp.get_precision('Account'),
         required=True)
