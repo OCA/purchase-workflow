@@ -1,3 +1,6 @@
+# Copyright 2013 Joaquín Gutierrez
+# Copyright 2014-2016 Tecnativa - Pedro M. Baeza
+# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3
 from odoo import api, models
 
 
