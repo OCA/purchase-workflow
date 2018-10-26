@@ -1,0 +1,40 @@
+<odoo>
+
+    <record model="ir.ui.view" id="picking_import_wizard_view">
+        <field name="name">picking.import.wizard.form</field>
+        <field name="model">picking.import.wizard</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Select incoming shipment wizard">
+                <group>
+                    <field name="prev_pickings" invisible="1" widget="many2many_tags"/>
+                    <field name="supplier"/>
+                    <field name="pickings" widget="many2many_tags"
+                           domain="[('partner_id', 'child_of', supplier),
+               ('location_id.usage', '=', 'supplier'),
+               ('state', '=', 'done')]"/>
+                </group>
+                <footer>
+                    <button string="Import"
+                            name="action_import_picking"
+                            type="object"
+                            class="oe_highlight"/>
+                    or
+                    <button string="Cancel"
+                            class="oe_link"
+                            special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_picking_import_wizard" model="ir.actions.act_window">
+        <field name="name">Import incoming shipment</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">picking.import.wizard</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>
