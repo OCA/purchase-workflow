@@ -102,6 +102,15 @@ class TestPurchaseOrder(common.SavepointCase):
             'purchase_id': self.purchase_order.id,
         })
         invoice.purchase_order_change()
-        self.assertEqual(invoice.invoice_line_ids[0].discount, 50)
-        self.assertEqual(invoice.invoice_line_ids[1].discount, 30)
-        self.assertEqual(invoice.invoice_line_ids[2].discount, 0)
+        line = invoice.invoice_line_ids.filtered(
+            lambda x: x.purchase_line_id == self.po_line_1
+        )
+        self.assertEqual(line.discount, 50)
+        line = invoice.invoice_line_ids.filtered(
+            lambda x: x.purchase_line_id == self.po_line_2
+        )
+        self.assertEqual(line.discount, 30)
+        line = invoice.invoice_line_ids.filtered(
+            lambda x: x.purchase_line_id == self.po_line_3
+        )
+        self.assertEqual(line.discount, 0)
