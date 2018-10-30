@@ -80,9 +80,12 @@ class TestPurchaseOrder(common.SavepointCase):
     def test_move_price_unit(self):
         self.purchase_order.button_confirm()
         moves = self.purchase_order.picking_ids.move_lines
-        self.assertEqual(moves[0].price_unit, 5,)
-        self.assertEqual(moves[1].price_unit, 161)
-        self.assertEqual(moves[2].price_unit, 10)
+        move = moves.filtered(lambda x: x.purchase_line_id == self.po_line_1)
+        self.assertEqual(move.price_unit, 5,)
+        move = moves.filtered(lambda x: x.purchase_line_id == self.po_line_2)
+        self.assertEqual(move.price_unit, 161)
+        move = moves.filtered(lambda x: x.purchase_line_id == self.po_line_3)
+        self.assertEqual(move.price_unit, 10)
         # Change price to launch a recalculation of totals
         self.po_line_1.discount = 60
         self.assertEqual(self.po_line_1.price_subtotal, 4.0)
