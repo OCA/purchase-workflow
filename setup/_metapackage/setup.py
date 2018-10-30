@@ -15,6 +15,7 @@ setuptools.setup(
         'odoo11-addon-purchase_landed_cost',
         'odoo11-addon-purchase_line_procurement_group',
         'odoo11-addon-purchase_minimum_amount',
+        'odoo11-addon-purchase_open_qty',
         'odoo11-addon-purchase_order_approval_block',
         'odoo11-addon-purchase_order_approved',
         'odoo11-addon-purchase_order_line_stock_available',
