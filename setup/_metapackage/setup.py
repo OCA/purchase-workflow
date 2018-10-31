@@ -18,6 +18,7 @@ setuptools.setup(
         'odoo11-addon-purchase_open_qty',
         'odoo11-addon-purchase_order_approval_block',
         'odoo11-addon-purchase_order_approved',
+        'odoo11-addon-purchase_order_archive',
         'odoo11-addon-purchase_order_line_stock_available',
         'odoo11-addon-stock_landed_cost_company_percentage',
         'odoo11-addon-subcontracted_service',
