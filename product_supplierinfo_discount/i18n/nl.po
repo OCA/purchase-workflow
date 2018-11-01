@@ -9,35 +9,36 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-25 03:39+0000\n"
-"PO-Revision-Date: 2016-11-25 03:39+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"PO-Revision-Date: 2018-11-02 14:00+0000\n"
+"Last-Translator: JordyBlankestijn <jblankestijn@erpopen.nl>\n"
 "Language-Team: Dutch (https://www.transifex.com/oca/teams/23907/nl/)\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.2.2\n"
 
 #. module: product_supplierinfo_discount
 #: model:ir.model.fields,field_description:product_supplierinfo_discount.field_res_partner_default_supplierinfo_discount
 #: model:ir.model.fields,field_description:product_supplierinfo_discount.field_res_users_default_supplierinfo_discount
 msgid "Default Supplier Discount (%)"
-msgstr ""
+msgstr "Standaard leveranciers korting (%)"
 
 #. module: product_supplierinfo_discount
 #: model:ir.model.fields,field_description:product_supplierinfo_discount.field_product_supplierinfo_discount
 msgid "Discount (%)"
-msgstr ""
+msgstr "Korting (%)"
 
 #. module: product_supplierinfo_discount
 #: model:ir.ui.view,arch_db:product_supplierinfo_discount.res_partner_form_view
 msgid "Discount-related settings are managed on"
-msgstr ""
+msgstr "Kortings gerelateerde instellingen zijn ingesteld op"
 
 #. module: product_supplierinfo_discount
 #: model:ir.model,name:product_supplierinfo_discount.model_product_supplierinfo
 msgid "Information about a product vendor"
-msgstr ""
+msgstr "Informatie over een productleverancier"
 
 #. module: product_supplierinfo_discount
 #: model:ir.model,name:product_supplierinfo_discount.model_res_partner
@@ -47,17 +48,17 @@ msgstr "Relatie"
 #. module: product_supplierinfo_discount
 #: model:ir.model,name:product_supplierinfo_discount.model_procurement_order
 msgid "Procurement"
-msgstr ""
+msgstr "Verwerving"
 
 #. module: product_supplierinfo_discount
 #: model:ir.model,name:product_supplierinfo_discount.model_purchase_order
 msgid "Purchase Order"
-msgstr ""
+msgstr "Inkooporder"
 
 #. module: product_supplierinfo_discount
 #: model:ir.model,name:product_supplierinfo_discount.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Inkooporderregel"
 
 #. module: product_supplierinfo_discount
 #: model:ir.model.fields,help:product_supplierinfo_discount.field_res_partner_default_supplierinfo_discount
@@ -66,8 +67,10 @@ msgid ""
 "This value will be used as the default one, for each new supplierinfo line "
 "depending on that supplier."
 msgstr ""
+"Deze waarde wordt als standaard gebruiker voor elke nieuwe "
+"leveranciersprijslijstregel."
 
 #. module: product_supplierinfo_discount
 #: model:ir.ui.view,arch_db:product_supplierinfo_discount.res_partner_form_view
 msgid "the parent company"
-msgstr ""
+msgstr "het bovenliggende bedrijf"
