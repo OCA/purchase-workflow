@@ -14,6 +14,10 @@ class StockWarehouse(models.Model):
         string="Subcontracting Service Procurement Rule"
     )
 
+    def _get_buy_route(self):
+        return self.env.ref('purchase.route_warehouse0_buy',
+                            raise_if_not_found=False).id
+
     @api.multi
     def _get_vals_for_proc_rule_subcontracting(self):
         self.ensure_one()
@@ -27,6 +31,7 @@ class StockWarehouse(models.Model):
                 'company_id': self.company_id.id,
                 'action': 'buy',
                 'picking_type_id': picking_type.id,
+                'route_id': self._get_buy_route(),
                 }
 
     @api.multi
