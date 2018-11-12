@@ -31,8 +31,10 @@ class PurchaseOrderLine(models.Model):
             for move in line.move_ids.filtered(
                     lambda m: m.state not in ('cancel', 'done')):
                 if move.product_uom != line.product_uom:
-                    total += move.product_uom._compute_quantity(
-                        move.product_uom_qty, line.product_uom)
+                    total += move.product_uom._compute_qty_obj(
+                        from_unit=move.product_uom,
+                        qty=move.product_uom_qty,
+                        to_unit=line.product_uom)
                 else:
                     total += move.product_uom_qty
             line.qty_to_receive = total
