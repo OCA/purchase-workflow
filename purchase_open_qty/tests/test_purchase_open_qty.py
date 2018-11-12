@@ -40,11 +40,12 @@ class TestPurchaseOpenQty(TransactionCase):
             'partner_id': self.partner.id,
         }
         self.purchase_order_1 = self.purchase_order_model.create(po_dict)
-        uom_id = self.product_uom_model.search([
-            ('name', '=', 'Unit(s)')])[0].id
+        self.units_uom = self.env.ref('product.product_uom_unit')
+        self.dozens_uom = self.env.ref('product.product_uom_dozen')
         pr_dict = {
             'name': 'Product Test',
-            'uom_id': uom_id,
+            'uom_id': self.units_uom.id,
+            'uom_po_id': self.dozens_uom.id,
             'purchase_method': 'purchase',
         }
         self.product = prod_model.sudo().create(pr_dict)
@@ -54,7 +55,7 @@ class TestPurchaseOpenQty(TransactionCase):
             'name': 'PO01',
             'order_id': self.purchase_order_1.id,
             'product_id': self.product.id,
-            'product_uom': uom_id,
+            'product_uom': self.dozens_uom.id,
             'price_unit': 1.0,
             'product_qty': 5.0,
             'account_analytic_id': self.analytic_account_1.id,
@@ -70,7 +71,8 @@ class TestPurchaseOpenQty(TransactionCase):
         self.purchase_order_2 = self.purchase_order_model.create(po_dict2)
         pr_dict2 = {
             'name': 'Product Test 2',
-            'uom_id': uom_id,
+            'uom_id': self.units_uom.id,
+            'uom_po_id': self.dozens_uom.id,
             'purchase_method': 'receive',
         }
         self.product2 = prod_model.sudo().create(pr_dict2)
@@ -79,7 +81,7 @@ class TestPurchaseOpenQty(TransactionCase):
             'name': 'PO02',
             'order_id': self.purchase_order_2.id,
             'product_id': self.product2.id,
-            'product_uom': uom_id,
+            'product_uom': self.dozens_uom.id,
             'price_unit': 1.0,
             'product_qty': 5.0,
             'account_analytic_id': self.analytic_account_1.id,
@@ -110,7 +112,7 @@ class TestPurchaseOpenQty(TransactionCase):
         # Now we receive the products
         for picking in self.purchase_order_2.picking_ids:
             picking.force_assign()
-            picking.pack_operation_product_ids.write({'qty_done': 5.0})
+            picking.pack_operation_product_ids.write({'qty_done': 12*5.0})
             picking.do_new_transfer()
 
         self.assertEqual(self.purchase_order_line_2.qty_to_invoice, 5.0,
