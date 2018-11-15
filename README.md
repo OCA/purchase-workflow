@@ -30,7 +30,7 @@ addon | version | summary
 [purchase_discount](purchase_discount/) | 10.0.1.0.4 | Purchase order lines with discounts
 [purchase_fiscal_position_update](purchase_fiscal_position_update/) | 10.0.1.0.0 | Changing the fiscal position of a purchase order will auto-update purchase order lines
 [purchase_fop_shipping](purchase_fop_shipping/) | 10.0.1.0.0 | Purchase Free-Of-Paiment shipping
-[purchase_landed_cost](purchase_landed_cost/) | 10.0.1.0.0 | Purchase cost distribution
+[purchase_landed_cost](purchase_landed_cost/) | 10.0.2.0.0 | Purchase cost distribution
 [purchase_line_product_image](purchase_line_product_image/) | 10.0.1.0.0 | Show Product Image at Purchase Order Line.
 [purchase_location_by_line](purchase_location_by_line/) | 10.0.1.0.0 | Allows to define a specific destination location on each PO line
 [purchase_minimum_amount](purchase_minimum_amount/) | 10.0.1.0.0 | Purchase Minimum Amount
