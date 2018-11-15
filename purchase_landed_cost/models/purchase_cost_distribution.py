@@ -139,6 +139,21 @@ class PurchaseCostDistribution(models.Model):
                 'purchase.cost.distribution')
         return super(PurchaseCostDistribution, self).create(vals)
 
+    @api.multi
+    def write(self, vals):
+        for command in vals.get('cost_lines', []):
+            if command[0] in (2, 3, 5):
+                if command[0] == 5:
+                    to_check = self.mapped('cost_lines').ids
+                else:
+                    to_check = [command[1]]
+                lines = self.mapped('expense_lines.affected_lines').ids
+                if any(i in lines for i in to_check):
+                    raise exceptions.UserError(
+                        _("You can't delete a cost line if it's an "
+                          "affected line of any expense line."))
+        return super(PurchaseCostDistribution, self).write(vals)
+
     @api.model
     def _prepare_expense_line(self, expense_line, cost_line):
         distribution = cost_line.distribution
@@ -223,43 +238,50 @@ class PurchaseCostDistribution(models.Model):
             distribution.state = 'calculated'
         return True
 
-    def _product_price_update(self, move, new_price):
+    def _product_price_update(self, product, vals_list):
         """Method that mimicks stock.move's product_price_update_before_done
         method behaviour, but taking into account that calculations are made
-        on an already done move, and prices sources are given as parameters.
+        on an already done moves, and prices sources are given as parameters.
         """
-        if (move.location_id.usage == 'supplier' and
-                move.product_id.cost_method == 'average'):
-            product = move.product_id
-            qty_available = product.product_tmpl_id.qty_available
-            product_avail = qty_available - move.product_qty
-            if product_avail <= 0:
-                new_std_price = new_price
-            else:
-                domain_quant = [
-                    ('product_id', 'in',
-                     product.product_tmpl_id.product_variant_ids.ids),
-                    ('id', 'not in', move.quant_ids.ids),
-                    ('location_id.usage', '=', 'internal')]
-                quants = self.env['stock.quant'].search(domain_quant)
-                current_valuation = sum([(q.cost * q.qty) for q in quants])
-                # Get the standard price
-                new_std_price = (
-                    (current_valuation + new_price * move.product_qty) /
-                    qty_available)
-            # Write the standard price, as SUPERUSER_ID, because a
-            # warehouse manager may not have the right to write on products
-            product.sudo().write({'standard_price': new_std_price})
+        moves_total_qty = 0
+        moves_total_diff_price = 0
+        for move, price_diff in vals_list:
+            moves_total_qty += move.product_qty
+            moves_total_diff_price += move.product_qty * price_diff
+        prev_qty_available = product.qty_available - moves_total_qty
+        if prev_qty_available <= 0:
+            prev_qty_available = 0
+        total_available = prev_qty_available + moves_total_qty
+        new_std_price = (
+            (total_available * product.standard_price +
+             moves_total_diff_price) / total_available
+        )
+        # Write the standard price, as SUPERUSER_ID, because a
+        # warehouse manager may not have the right to write on products
+        product.sudo().write({'standard_price': new_std_price})
 
     @api.multi
     def action_done(self):
+        """Perform all moves that touch the same product in batch."""
         self.ensure_one()
+        if self.cost_update_type != 'direct':
+            return
+        d = {}
         for line in self.cost_lines:
-            if self.cost_update_type == 'direct':
-                line.move_id.quant_ids._price_update(line.standard_price_new)
-                self._product_price_update(
-                    line.move_id, line.standard_price_new)
-                line.move_id.product_price_update_after_done()
+            product = line.move_id.product_id
+            if (product.cost_method != 'average' or
+                    line.move_id.location_id.usage != 'supplier'):
+                continue
+            line.move_id.quant_ids._price_update(line.standard_price_new)
+            d.setdefault(product, [])
+            d[product].append(
+                (line.move_id,
+                 line.standard_price_new - line.standard_price_old),
+            )
+        for product, vals_list in d.items():
+            self._product_price_update(product, vals_list)
+            for vals in vals_list:
+                vals[0].product_price_update_after_done()
         self.state = 'done'
 
     @api.multi
@@ -269,21 +291,34 @@ class PurchaseCostDistribution(models.Model):
 
     @api.multi
     def action_cancel(self):
+        """Perform all moves that touch the same product in batch."""
         self.ensure_one()
-        for line in self.cost_lines:
-            if self.cost_update_type == 'direct':
-                if self.currency_id.compare_amounts(
-                        line.move_id.quant_ids[0].cost,
-                        line.standard_price_new) != 0:
-                    raise exceptions.UserError(
-                        _('Cost update cannot be undone because there has '
-                          'been a later update. Restore correct price and try '
-                          'again.'))
-                line.move_id.quant_ids._price_update(line.standard_price_old)
-                self._product_price_update(
-                    line.move_id, line.standard_price_old)
-                line.move_id.product_price_update_after_done()
         self.state = 'draft'
+        if self.cost_update_type != 'direct':
+            return
+        d = {}
+        for line in self.cost_lines:
+            product = line.move_id.product_id
+            if (product.cost_method != 'average' or
+                    line.move_id.location_id.usage != 'supplier'):
+                continue
+            if self.currency_id.compare_amounts(
+                    line.move_id.quant_ids[0].cost,
+                    line.standard_price_new) != 0:
+                raise exceptions.UserError(
+                    _('Cost update cannot be undone because there has '
+                      'been a later update. Restore correct price and try '
+                      'again.'))
+            line.move_id.quant_ids._price_update(line.standard_price_old)
+            d.setdefault(product, [])
+            d[product].append(
+                (line.move_id,
+                 line.standard_price_old - line.standard_price_new),
+            )
+        for product, vals_list in d.items():
+            self._product_price_update(product, vals_list)
+            for vals in vals_list:
+                vals[0].product_price_update_after_done()
 
 
 class PurchaseCostDistributionLine(models.Model):
