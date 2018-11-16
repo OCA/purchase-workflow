@@ -49,7 +49,7 @@ addon | version | summary
 [purchase_request_to_rfq](purchase_request_to_rfq/) | 10.0.1.0.0 | Purchase Request to RFQ
 [purchase_request_to_rfq_order_approved](purchase_request_to_rfq_order_approved/) | 10.0.1.0.0 | Purchase Request to RFQ Order Approved
 [purchase_triple_discount](purchase_triple_discount/) | 10.0.1.1.0 | Manage triple discount on purchase order lines
-[subcontracted_service](subcontracted_service/) | 10.0.1.0.0 | Subcontracted service
+[subcontracted_service](subcontracted_service/) | 10.0.2.0.0 | Subcontracted service
 
 
 Unported addons
