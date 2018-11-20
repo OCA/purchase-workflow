@@ -161,7 +161,7 @@ msgid "Cost documentation"
 msgstr ""
 
 #. module: purchase_landed_cost
-#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:279
+#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:308
 #, python-format
 msgid ""
 "Cost update cannot be undone because there has been a later update. Restore "
@@ -493,7 +493,7 @@ msgid "New cost"
 msgstr ""
 
 #. module: purchase_landed_cost
-#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:186
+#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:200
 #, python-format
 msgid "No valid distribution type."
 msgstr ""
@@ -533,7 +533,7 @@ msgid "Pickings"
 msgstr "Separação"
 
 #. module: purchase_landed_cost
-#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:207
+#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:221
 #, python-format
 msgid "Please enter an amount for all the expenses"
 msgstr ""
@@ -545,8 +545,9 @@ msgstr ""
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_picking_import_wizard_prev_pickings
-msgid "Prev pickings"
-msgstr ""
+#, fuzzy
+msgid "Prev Pickings"
+msgstr "Separação"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_standard_price_old
@@ -714,7 +715,7 @@ msgid ""
 msgstr ""
 
 #. module: purchase_landed_cost
-#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:192
+#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:206
 #, python-format
 msgid ""
 "The cost for the line '%s' can't be distributed because the calculation "
@@ -742,7 +743,7 @@ msgid "The volume in m3."
 msgstr ""
 
 #. module: purchase_landed_cost
-#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:211
+#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:225
 #, python-format
 msgid "There is no picking lines in the distribution"
 msgstr ""
@@ -856,6 +857,13 @@ msgstr ""
 #: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:132
 #, python-format
 msgid "You can't delete a confirmed cost distribution"
+msgstr ""
+
+#. module: purchase_landed_cost
+#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:153
+#, python-format
+msgid ""
+"You can't delete a cost line if it's an affected line of any expense line."
 msgstr ""
 
 #. module: purchase_landed_cost
