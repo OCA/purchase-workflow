@@ -10,7 +10,8 @@
               "Tecnativa, "
               "ACSONE SA/NV, "
               "Odoo Community Association (OCA)",
-    "version": "12.0.1.0.1",
+    "version": "12.0.1.0.0",
+    "license": "AGPL-3",
     "category": "Purchase Management",
     "depends": [
         "purchase_stock",
@@ -19,7 +20,6 @@
         "views/purchase_discount_view.xml",
         "views/report_purchaseorder.xml",
     ],
-    "license": 'AGPL-3',
-    'installable': True,
-    'images': ['images/purchase_discount.png'],
+    "images": ["images/purchase_discount.png"],
+    "installable": True,
 }
