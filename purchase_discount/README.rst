@@ -16,12 +16,14 @@ Usage
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/142/11.0
+   :target: https://runbot.odoo-community.org/runbot/142/12.0
 
 Known issues / Roadmap
 ======================
 
-With this module, the *price_unit* field of purchase order line stores the gross price instead of the net price, which is a change in the meaning of this field. So this module breaks all the other modules that use the *price_unit* field with it's native meaning.
+With this module, the *price_unit* field of purchase order line stores the gross price instead of the net price,
+which is a change in the meaning of this field. So this module breaks all the other modules that use the
+*price_unit* field with it's native meaning.
 
 Bug Tracker
 ===========
@@ -40,6 +42,7 @@ Contributors
 * OpenERP S.A.
 * Ignacio Ibeas <ignacio@acysos.com>
 * Pedro M. Baeza <pedro.baeza@tecnativa.com>
+* Sudhir Arya <sudhir@erpharbor.com>
 
 Icon
 ----
