@@ -5,19 +5,6 @@
 from odoo import api, models, fields
 
 
-class ExceptionRule(models.Model):
-    _inherit = 'exception.rule'
-
-    rule_group = fields.Selection(
-        selection_add=[('purchase', 'Purchase')],
-    )
-    model = fields.Selection(
-        selection_add=[
-            ('purchase.order', 'Purchase order'),
-            ('purchase.order.line', 'Purchase order line'),
-        ])
-
-
 class PurchaseOrder(models.Model):
     _inherit = ['purchase.order', 'base.exception']
     _name = 'purchase.order'
@@ -49,16 +36,15 @@ class PurchaseOrder(models.Model):
     def button_confirm(self):
         if self.detect_exceptions() and not self.ignore_exception:
             return self._popup_exceptions()
-        else:
-            return super(PurchaseOrder, self).button_confirm()
+        return super(PurchaseOrder, self).button_confirm()
 
     @api.multi
     def button_draft(self):
         res = super(PurchaseOrder, self).button_draft()
-        for rec in self:
-            rec.exception_ids = False
-            rec.main_exception_id = False
-            rec.ignore_exception = False
+        for order in self:
+            order.exception_ids = False
+            order.main_exception_id = False
+            order.ignore_exception = False
         return res
 
     def _purchase_get_lines(self):
