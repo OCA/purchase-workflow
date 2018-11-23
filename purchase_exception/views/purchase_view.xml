@@ -1,27 +1,27 @@
 <?xml version="1.0" ?>
 <odoo>
+
     <record id="action_purchase_test_tree" model="ir.actions.act_window">
-              <field name="name">Purchase Exception Rules</field>
-              <field name="res_model">exception.rule</field>
-              <field name="view_type">form</field>
-              <field name="view_mode">tree,form</field>
-              <field name="view_id" ref="base_exception.view_exception_rule_tree"/>
-              <field name="domain">[('rule_group', '=', 'purchase')]</field>
-              <field name="context">{'active_test': False, 'default_rule_group' : 'purchase'}</field>
-          </record>
+        <field name="name">Purchase Exception Rules</field>
+        <field name="res_model">exception.rule</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="base_exception.view_exception_rule_tree"/>
+        <field name="domain">[('rule_group', '=', 'purchase')]</field>
+        <field name="context">{'active_test': False, 'default_rule_group' : 'purchase'}</field>
+    </record>
 
     <menuitem
-            id="menu_purchase_exception_parent"
-            parent="purchase.menu_product_in_config_purchase"
-            sequence="20"
-            name="Exceptions"
+        id="menu_purchase_exception_parent"
+        parent="purchase.menu_product_in_config_purchase"
+        sequence="20"
+        name="Exceptions"
     />
 
-
     <menuitem
-            action="action_purchase_test_tree"
-            id="menu_purchase_test"
-            parent="menu_purchase_exception_parent"
+        action="action_purchase_test_tree"
+        id="menu_purchase_test"
+        parent="menu_purchase_exception_parent"
     />
 
     <record id="view_order_form" model="ir.ui.view">
@@ -31,7 +31,8 @@
         <field name="arch" type="xml">
             <header position="after">
                 <div groups="purchase.group_purchase_user"
-                     class="alert alert-danger alert-dismissable" role="alert" style="margin-bottom:0px;" attrs="{'invisible':[('main_exception_id','=', False)]}">
+                     class="alert alert-danger alert-dismissable" role="alert"
+                     style="margin-bottom:0px;" attrs="{'invisible':[('main_exception_id','=', False)]}">
                     <bold>You have an outstanding
                     exception to manage:
                     <field name="main_exception_id" options='{"no_open": True}'/></bold>
@@ -42,7 +43,6 @@
             </xpath>
             <xpath expr="//field[@name='company_id']"
                     position="after">
-                <!-- <newline /> -->
                 <field name="exception_ids" widget="many2many_tags" readonly="True"/>
             </xpath>
         </field>
@@ -66,7 +66,8 @@
         <field name="arch" type="xml">
             <filter name="activities_my" position="after">
                 <separator orientation="vertical"/>
-                <filter icon="terp-emblem-important" name="tofix" string="Blocked in draft" domain="[('main_exception_id','!=',False)]"/>
+                <filter icon="terp-emblem-important" name="tofix"
+                        string="Blocked in Draft" domain="[('main_exception_id','!=',False)]"/>
             </filter>
         </field>
     </record>
