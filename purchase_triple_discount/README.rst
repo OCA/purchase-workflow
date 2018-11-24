@@ -59,6 +59,7 @@ Contributors
 ------------
 
 * David Vidal <david.vidal@tecnativa.com>
+* Krunal Prajapati <krunal267@gmail.com>
 
 Maintainer
 ----------

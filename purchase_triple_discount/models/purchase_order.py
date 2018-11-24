@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Tecnativa - David Vidal
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -33,8 +32,7 @@ class PurchaseOrderLine(models.Model):
     ]
 
     def _get_discounted_price_unit(self):
-        price_unit = super(
-            PurchaseOrderLine, self)._get_discounted_price_unit()
+        price_unit = super(PurchaseOrderLine, self)._get_discounted_price_unit()
         if self.discount2:
             price_unit *= (1 - self.discount2 / 100.0)
         if self.discount3:
