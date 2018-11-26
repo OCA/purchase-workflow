@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Camptocamp SA - Damien Crier, Alexandre Fayolle
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
 # Copyright 2017 Serpent Consulting Services Pvt. Ltd.
@@ -63,19 +62,21 @@ class PurchaseOrderLine(models.Model):
     _inherit = 'purchase.order.line'
     _order = 'sequence, id'
 
-    sequence = fields.Integer(help="Gives the sequence of the line when "
+    sequence = fields.Integer('Hidden Sequence',
+                              help="Gives the sequence of the line when "
                                    "displaying the purchase order.",
                               default=9999)
 
-    sequence2 = fields.Integer(help="Displays the sequence of the line in "
+    sequence2 = fields.Integer('Sequence',
+                               help="Displays the sequence of the line in "
                                     "the purchase order.",
                                related='sequence', readonly=True)
 
     @api.multi
-    def _create_stock_moves(self, picking):
-        res = super(PurchaseOrderLine, self)._create_stock_moves(picking)
+    def _prepare_stock_moves(self, picking):
+        res = super(PurchaseOrderLine, self)._prepare_stock_moves(picking)
         for move, line in zip(res, self):
-            move.write({'sequence': line.sequence})
+            move.update(sequence=line.sequence)
         return res
 
     @api.model
