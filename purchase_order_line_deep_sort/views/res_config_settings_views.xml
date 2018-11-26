@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.purchase.sort</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="purchase.res_config_settings_view_form_purchase"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='group_warning_purchase']/../.." position="after">
+                <div class="col-xs-12 col-md-6 o_setting_box" title="Select a default sort criteria for purchase order lines.">
+                    <div class="o_setting_left_pane"/>
+                    <div class="o_setting_right_pane">
+                        <label string='Default Sort Criteria'/>
+                        <div class="text-muted">
+                            Default sort criteria for purchase order lines
+                        </div>
+                        <div class="content-group">
+                            <div class="row mt16">
+                                <label string="Line Order" for="default_po_line_order" class="col-md-3 o_light_label"/>
+                                <field name="default_po_line_order"/>
+                            </div>
+                            <div class="row mt16" attrs="{'invisible': [('default_po_line_order', '=', False)]}">
+                                <label string="Direction" for="default_po_line_direction" class="col-md-3 o_light_label"/>
+                                <field name="default_po_line_direction" attrs="{'required': [('default_po_line_order', '!=', False)]}"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
