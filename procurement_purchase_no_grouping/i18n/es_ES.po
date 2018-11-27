@@ -1,0 +1,72 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * procurement_purchase_no_grouping
+#
+# Translators:
+# Daniel <dani_dca@hotmail.com>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-07-26 11:55+0000\n"
+"PO-Revision-Date: 2017-07-26 11:55+0000\n"
+"Last-Translator: Daniel <dani_dca@hotmail.com>, 2017\n"
+"Language-Team: Spanish (Spain) (https://www.transifex.com/oca/teams/23907/"
+"es_ES/)\n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: procurement_purchase_no_grouping
+#: selection:product.category,procured_purchase_grouping:0
+msgid "No line grouping"
+msgstr ""
+
+#. module: procurement_purchase_no_grouping
+#: selection:product.category,procured_purchase_grouping:0
+msgid "No order grouping"
+msgstr ""
+
+#. module: procurement_purchase_no_grouping
+#: model:ir.model.fields,field_description:procurement_purchase_no_grouping.field_product_category_procured_purchase_grouping
+msgid "Procured purchase grouping"
+msgstr ""
+
+#. module: procurement_purchase_no_grouping
+#: model:ir.model,name:procurement_purchase_no_grouping.model_procurement_order
+msgid "Procurement"
+msgstr ""
+
+#. module: procurement_purchase_no_grouping
+#: model:ir.model,name:procurement_purchase_no_grouping.model_product_category
+msgid "Product Category"
+msgstr "Categoría de producto"
+
+#. module: procurement_purchase_no_grouping
+#: model:ir.model,name:procurement_purchase_no_grouping.model_purchase_order
+msgid "Purchase Order"
+msgstr ""
+
+#. module: procurement_purchase_no_grouping
+#: model:ir.model,name:procurement_purchase_no_grouping.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr ""
+
+#. module: procurement_purchase_no_grouping
+#: model:ir.model.fields,help:procurement_purchase_no_grouping.field_product_category_procured_purchase_grouping
+msgid ""
+"Select the behaviour for grouping procured purchases for the the products of "
+"this category:\n"
+"* Standard grouping (default): Procurements will generate purchase orders as "
+"always, grouping lines and orders when possible.\n"
+"* No line grouping: If there are any open purchase order for the same "
+"supplier, it will be reused, but lines won't be merged.\n"
+"* No order grouping: This option will prevent any kind of grouping."
+msgstr ""
+
+#. module: procurement_purchase_no_grouping
+#: selection:product.category,procured_purchase_grouping:0
+msgid "Standard grouping"
+msgstr ""
