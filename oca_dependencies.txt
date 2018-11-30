@@ -2,3 +2,4 @@ server-tools
 product-attribute
 server-ux
 hr
+web
