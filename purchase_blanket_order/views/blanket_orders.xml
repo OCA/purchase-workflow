@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- # Copyright (C) 2018 Eficent Business and IT Consulting Services S.L.
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="view_purchase_blanket_order_tree" model="ir.ui.view">
+        <field name="name">purchase.blanket.order.tree</field>
+        <field name="model">purchase.blanket.order</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="validity_date"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_purchase_blanket_order_form" model="ir.ui.view">
+        <field name="name">purchase.blanket.order.form</field>
+        <field name="model">purchase.blanket.order</field>
+        <field name="arch" type="xml">
+            <form string="Blanket Order">
+                <header>
+                    <button name="%(action_create_purchase_order)d" string="Create Purchase Order"
+                        type="action" class="btn-primary"
+                        attrs="{'invisible': [('state', '!=', 'open')]}"/>
+                    <button name="action_confirm" states="draft" string="Confirm" class="btn-primary o_purchase_confirm" type="object" />
+                    <field name="state" widget="statusbar" statusbar_visible="draft,open,expired"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_purchase_orders"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-list-alt">
+                            <field name="purchase_count" widget="statinfo" string="RFQ/Orders"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group name="Group Top">
+                        <group name="Group Top-Left">
+                            <field name="partner_id" domain="[('supplier','=',True)]"
+                                   attrs="{'required': [('state', '=', 'draft')]}"
+                                   context="{'search_default_supplier':1, 'show_address': 1}"
+                                   options='{"always_reload": True}'/>
+                            <field name="payment_term_id"/>
+                        </group>
+                        <group name="Group Top-Right">
+                            <field name="user_id"/>
+                            <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <group name="Group Bottom">
+                        <group name="Group Bottom-Left">
+                            <field name="date_order" attrs="{'required': [('state', '=', 'draft')]}"/>
+                            <field name="date_deliver"/>
+                        </group>
+                        <group name="Group Bottom-Right">
+                            <field name="validity_date" attrs="{'required': [('state', '=', 'draft')]}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Order Lines">
+                            <field name="lines_ids" mode="tree"
+                                attrs="{'readonly': [('state', 'in', ('open','expired'))]}">
+                                <tree editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="product_id"
+                                        context="{'partner_id':parent.partner_id, 'quantity':original_qty, 'company_id': parent.company_id}"
+                                       />
+                                    <field name="product_uom"/>
+                                    <field name="price_unit"/>
+                                    <field name="original_qty"
+                                        string="Original Qty"
+                                        context="{'partner_id':parent.partner_id, 'quantity':original_qty, 'company_id': parent.company_id}"
+                                    />
+                                    <field name="ordered_qty"/>
+                                    <field name="invoiced_qty"/>
+                                    <field name="received_qty"/>
+                                    <field name="remaining_qty"/>
+                                </tree>
+                            </field>
+                            <separator string="Terms and Conditions"/>
+                            <field name="note" class="oe_inline" placeholder="Setup default terms and conditions in your company settings."/>
+                            <div class="oe_clear"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_purchase_blanket_order_search" model="ir.ui.view">
+        <field name="name">purchase.blanket.order.search</field>
+        <field name="model">purchase.blanket.order</field>
+        <field name="arch" type="xml">
+            <search>
+                <filter name="original_qty"
+                        string="Original Qty"
+                        domain="[('original_qty','>',0.0)]"/>
+                <filter name="ordered_qty"
+                        string="Ordered Qty"
+                        domain="[('ordered_qty','>',0.0)]"/>
+                <filter name="invoiced_qty"
+                        string="Invoiced Qty"
+                        domain="[('invoiced_qty','>',0.0)]"/>
+                <filter name="received_qty"
+                        string="Received Qty"
+                        domain="[('received_qty','>',0.0)]"/>
+                <filter name="remaining_qty"
+                        string="Remaining Qty"
+                        domain="[('remaining_qty','>',0.0)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="act_open_purchase_blanket_order_view">
+        <field name="name">Blanket Orders</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">purchase.blanket.order</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_purchase_blanket_order_search"/>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a blanket order that can be converted into a purchase order.
+              </p><p>
+                Use this menu to search within your blanket orders. For each blanket order,
+                you can track the related discussion with the vendor, control
+                the products received and control the vendor bills.
+              </p>
+            </field>
+    </record>
+
+    <menuitem id="menu_purchase_blanket_order_config"
+        parent="purchase.menu_procurement_management"
+        groups="purchase.group_purchase_manager"
+        sequence="8"
+        action="act_open_purchase_blanket_order_view"/>
+</odoo>
