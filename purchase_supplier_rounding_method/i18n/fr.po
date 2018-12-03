@@ -39,7 +39,7 @@ msgstr "Ligne de commande d'achat"
 #. module: purchase_supplier_rounding_method
 #: selection:res.partner,supplier_rounding_method:0
 msgid "Round Net Price"
-msgstr "Prix net arrrondi"
+msgstr "Prix net arrondi"
 
 #. module: purchase_supplier_rounding_method
 #: field:res.partner,supplier_rounding_method:0
