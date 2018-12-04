@@ -10,7 +10,7 @@
               "AvanzOSC, "
               "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
               "Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/purchase-workflow/tree/10.0/purchase_last_price_info",
+    "website": "https://github.com/OCA/purchase-workflow",
     "contributors": [
         "Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>",
         "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
