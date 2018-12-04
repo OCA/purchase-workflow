@@ -13,7 +13,6 @@ class TestPurchaseOpenQty(TransactionCase):
         partner_model = self.env['res.partner']
         prod_model = self.env['product.product']
         analytic_account_model = self.env['account.analytic.account']
-        self.product_uom_model = self.env['product.uom']
 
         # partners
         pa_dict = {
@@ -39,8 +38,8 @@ class TestPurchaseOpenQty(TransactionCase):
             'partner_id': self.partner.id,
         }
         self.purchase_order_1 = self.purchase_order_model.create(po_dict)
-        uom_id = self.product_uom_model.search([
-            ('name', '=', 'Unit(s)')])[0].id
+        uom_id = prod_model.uom_id.search([
+            ('name', '=', 'Unit(s)')], limit=1).id
         pr_dict = {
             'name': 'Product Test',
             'uom_id': uom_id,
@@ -107,9 +106,13 @@ class TestPurchaseOpenQty(TransactionCase):
 
         # Now we receive the products
         for picking in self.purchase_order_2.picking_ids:
-            picking.force_assign()
+            picking.action_confirm()
             picking.move_lines.write({'quantity_done': 5.0})
             picking.button_validate()
+
+        # The value is computed when you run it as at user but not in the test
+        self.purchase_order_2._compute_qty_to_invoice()
+        self.purchase_order_2._compute_qty_to_receive()
 
         self.assertEqual(self.purchase_order_line_2.qty_to_invoice, 5.0,
                          "Expected 5 as qty_to_invoice in the PO line")
@@ -121,8 +124,42 @@ class TestPurchaseOpenQty(TransactionCase):
                          "Expected 0 as qty_to_receive in the PO")
 
     def test_search_qty_to_invoice_and_receive(self):
-        found = self.purchase_order_model.search(
-            ['|', ('qty_to_invoice', '>', 0.0), ('qty_to_receive', '>', 0.0)])
+
+        # Ordered order
+        found_invoice1 = self.purchase_order_1._search_qty_to_invoice(
+            '=',
+            '5.0')
         self.assertTrue(
-            self.purchase_order_1.id in found.ids,
-            'Expected PO %s in POs %s' % (self.purchase_order_1.id, found.ids))
+            self.purchase_order_1.id in found_invoice1[0][2],
+            'Expected PO %s in POs %s' % (self.purchase_order_1.id,
+                                          found_invoice1[0][2]))
+        # Delivered order
+        found_invoice2 = self.purchase_order_2._search_qty_to_invoice(
+            '=',
+            '0.0')
+        self.assertTrue(
+            self.purchase_order_2.id in found_invoice2[0][2],
+            'Expected PO %s in POs %s' % (self.purchase_order_2.id,
+                                          found_invoice1[0][2]))
+
+        # Ordered order
+        found_receive1 = self.purchase_order_1._search_qty_to_receive(
+            '=',
+            '5.0'
+        )
+        self.assertTrue(
+            self.purchase_order_1.id in found_receive1[0][2],
+            'Expected PO %s in POs %s' % (self.purchase_order_1.id,
+                                          found_receive1[0][2])
+        )
+
+        # Delivered order
+        found_receive2 = self.purchase_order_2._search_qty_to_receive(
+            '=',
+            '5.0'
+        )
+        self.assertTrue(
+            self.purchase_order_2.id in found_receive2[0][2],
+            'Expected PO %s in POs %s' % (self.purchase_order_2.id,
+                                          found_receive2[0][2])
+        )
