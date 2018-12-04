@@ -8,7 +8,7 @@ class ProductProduct(models.Model):
     _inherit = 'product.product'
 
     @api.multi
-    def _get_last_purchase(self):
+    def _compute_last_purchase(self):
         """ Get last purchase price, last purchase date and last supplier """
         for product in self:
             line = self.env['purchase.order.line'].search([
@@ -21,15 +21,15 @@ class ProductProduct(models.Model):
 
     last_purchase_price = fields.Float(
         string='Last Purchase Price',
-        compute='_get_last_purchase',
+        compute='_compute_last_purchase',
         digits=dp.get_precision('Product Price')
     )
     last_purchase_date = fields.Date(
         string='Last Purchase Date',
-        compute='_get_last_purchase'
+        compute='_compute_last_purchase'
     )
     last_supplier_id = fields.Many2one(
         comodel_name='res.partner',
         string='Last Supplier',
-        compute='_get_last_purchase'
+        compute='_compute_last_purchase'
     )
