@@ -7,7 +7,7 @@
         <field name="name">purchase.request.form</field>
         <field name="model">purchase.request</field>
         <field name="arch" type="xml">
-            <form string="Purchase Request" version="7.0">
+            <form string="Purchase Request">
             <header>
                 <button name="button_draft"
                         states="to_approve,approved,rejected,done"
@@ -123,7 +123,6 @@
                                             <field name="date_required"
                                                    attrs="{'readonly': [('is_editable','=', False)]}"/>
                                             <field name="cancelled"/>
-                                            <!--<field name="procurement_id"/>-->
                                         </group>
                                     </group>
                                     <group>
