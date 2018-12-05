@@ -12,7 +12,8 @@
                  <separator string="Existing RFQ to update:"/>
                  <newline/>
                  <group>
-                    <field name="purchase_order_id"/>
+                    <field name="purchase_order_id"
+                        domain="[('partner_id', '=', supplier_id)]"/>
                     <field name="sync_data_planned"/>
                  </group>
                  <newline/>
