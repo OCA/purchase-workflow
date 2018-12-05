@@ -1,3 +1,4 @@
+
 When this module is installed, each Purchase Order you confirm will
 generate one Incoming Shipment for each schedule date indicated in the
 Purchase Order Lines.

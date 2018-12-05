@@ -23,8 +23,9 @@ class PurchaseOrderLine(models.Model):
         method is designed for extensibility, so that other modules can add
         additional keys or replace them by others."""
         date = datetime.strptime(
-            line.date_planned, DEFAULT_SERVER_DATETIME_FORMAT)
-        key = ({'date_planned': date.date()},)
+            str(line.date_planned), DEFAULT_SERVER_DATETIME_FORMAT)
+        # Split date value to obtain only the attributes year, month and day
+        key = ({'date_planned': str(date).split(" ")[0]},)
         return key
 
     @api.model
