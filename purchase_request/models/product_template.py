@@ -10,6 +10,5 @@ class ProductTemplate(models.Model):
     purchase_request = fields.Boolean(
         string='Purchase Request',
         help="Check this box to generate purchase request instead of "
-             "generating requests for quotation from procurement.",
-        default=False,
+             "generating requests for quotation from procurement."
     )
