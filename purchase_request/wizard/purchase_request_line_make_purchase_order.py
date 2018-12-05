@@ -13,7 +13,8 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
 
     supplier_id = fields.Many2one('res.partner', string='Supplier',
                                   required=False,
-                                  domain=[('supplier', '=', True)])
+                                  domain=[('supplier', '=', True),
+                                          ('is_company', '=', True)])
     item_ids = fields.One2many(
         'purchase.request.line.make.purchase.order.item',
         'wiz_id', string='Items')
