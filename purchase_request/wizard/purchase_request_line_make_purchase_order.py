@@ -4,7 +4,7 @@
 
 from odoo import api, fields, models, _
 import odoo.addons.decimal_precision as dp
-from odoo.exceptions import UserError, Warning
+from odoo.exceptions import UserError
 
 
 class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
@@ -20,7 +20,6 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         'wiz_id', string='Items')
     purchase_order_id = fields.Many2one('purchase.order',
                                         string='Purchase Order',
-                                        required=False,
                                         domain=[('state', '=', 'draft')])
     sync_data_planned = fields.Boolean(
         string="Merge on PO lines with equal Scheduled Date")
@@ -44,19 +43,19 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         for line in self.env['purchase.request.line'].browse(request_line_ids):
 
             if line.request_id.state != 'approved':
-                raise Warning(
+                raise UserError(
                     _('Purchase Request %s is not approved') %
                     line.request_id.name)
 
             if line.purchase_state == 'done':
-                raise Warning(
+                raise UserError(
                     _('The purchase has already been completed.'))
 
             line_company_id = line.company_id \
                 and line.company_id.id or False
             if company_id is not False \
                     and line_company_id != company_id:
-                raise Warning(
+                raise UserError(
                     _('You have to select lines '
                       'from the same company.'))
             else:
@@ -105,7 +104,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
     @api.model
     def _prepare_purchase_order(self, picking_type, group_id, company, origin):
         if not self.supplier_id:
-            raise Warning(
+            raise UserError(
                 _('Enter a supplier.'))
         supplier = self.supplier_id
         data = {
@@ -160,8 +159,6 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             'date_planned': item.line_id.date_required,
             'move_dest_ids': [(4, x.id) for x in item.line_id.move_dest_ids]
         }
-        # if item.line_id.procurement_id:
-        #     vals['procurement_ids'] = [(4, item.line_id.procurement_id.id)]
         self._execute_purchase_line_onchange(vals)
         return vals
 
@@ -206,7 +203,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         for item in self.item_ids:
             line = item.line_id
             if item.product_qty <= 0.0:
-                raise Warning(
+                raise UserError(
                     _('Enter a positive quantity.'))
             if self.purchase_order_id:
                 purchase = self.purchase_order_id
@@ -279,8 +276,8 @@ class PurchaseRequestLineMakePurchaseOrderItem(models.TransientModel):
     keep_description = fields.Boolean(string='Copy descriptions to new PO',
                                       help='Set true if you want to keep the '
                                            'descriptions provided in the '
-                                           'wizard in the new PO.',
-                                      default=False)
+                                           'wizard in the new PO.'
+                                      )
 
     @api.onchange('product_id')
     def onchange_product_id(self):
