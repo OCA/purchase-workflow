@@ -12,7 +12,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
     _description = "Purchase Request Line Make Purchase Order"
 
     supplier_id = fields.Many2one('res.partner', string='Supplier',
-                                  required=False,
+                                  required=True,
                                   domain=[('supplier', '=', True),
                                           ('is_company', '=', True)])
     item_ids = fields.One2many(
