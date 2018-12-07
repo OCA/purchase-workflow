@@ -5,8 +5,8 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from datetime import datetime
-from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
-from odoo.tests import common
+from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
+from openerp.tests import common
 
 
 class TestPurchaseOrder(common.TransactionCase):

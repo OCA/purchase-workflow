@@ -8,7 +8,7 @@
     'name': 'Purchase order lines with sequence number',
     'summary': 'Adds sequence to PO lines and propagates it to'
                'Invoice lines and Stock Moves',
-    'version': '10.0.1.0.0',
+    'version': '8.0.1.0.0',
     'category': 'Purchase Management',
     'author': "Camptocamp, "
               "Eficent, "
@@ -16,11 +16,14 @@
               "Odoo Community Association (OCA)",
     'website': 'http://www.camptocamp.com',
     'depends': [
-        'purchase', 'stock_picking_line_sequence',
+        'purchase',
+        'stock_picking_line_sequence',
     ],
-    'data': ['views/purchase_view.xml',
-             'views/report_purchaseorder.xml',
-             'views/report_purchasequotation.xml'],
+    'data': [
+        'views/purchase_view.xml',
+        'views/report_purchaseorder.xml',
+        'views/report_purchasequotation.xml'
+    ],
     'post_init_hook': 'post_init_hook',
     'installable': True,
     'auto_install': False,
