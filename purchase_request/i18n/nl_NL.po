@@ -355,12 +355,8 @@ msgstr "Goed te keuren Offertes"
 #: model:ir.ui.menu,name:purchase_request.menu_purchase_request
 #: model:ir.ui.menu,name:purchase_request.menu_purchase_request_act
 #: model:ir.ui.menu,name:purchase_request.menu_purchase_request_pro_mgt
-msgid "Purchase Requests"
-msgstr "Offertes"
-
-#. module: purchase_request
 #: model:ir.ui.menu,name:purchase_request.parent_menu_purchase_request
-msgid "Purchase requests"
+msgid "Purchase Requests"
 msgstr "Offertes"
 
 #. module: purchase_request
@@ -518,3 +514,6 @@ msgstr ""
 msgid ""
 "You can't request an approval for a purchase request which is empty. (%s)"
 msgstr ""
+
+#~ msgid "Purchase requests"
+#~ msgstr "Offertes"
