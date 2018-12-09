@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-07 23:04+0000\n"
+"POT-Creation-Date: 2018-10-23 16:33+0000\n"
 "PO-Revision-Date: 2015-08-15 18:33+0200\n"
 "Last-Translator: Matjaz Mozetic <m.mozetic@matmoz.si>\n"
 "Language-Team: \n"
@@ -163,7 +163,7 @@ msgid "Cost documentation"
 msgstr "Stroškovna dokumentacija"
 
 #. module: purchase_landed_cost
-#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:279
+#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:306
 #, python-format
 msgid ""
 "Cost update cannot be undone because there has been a later update. Restore "
@@ -505,7 +505,7 @@ msgid "New cost"
 msgstr "Stroški iztovarjanja"
 
 #. module: purchase_landed_cost
-#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:186
+#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:198
 #, python-format
 msgid "No valid distribution type."
 msgstr "Ni veljavnega tipa distribucije."
@@ -545,7 +545,7 @@ msgid "Pickings"
 msgstr "Zbirnik"
 
 #. module: purchase_landed_cost
-#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:207
+#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:219
 #, python-format
 msgid "Please enter an amount for all the expenses"
 msgstr "Vnesite znesek za vse izdatke"
@@ -731,7 +731,7 @@ msgid ""
 msgstr ""
 
 #. module: purchase_landed_cost
-#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:192
+#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:204
 #, python-format
 msgid ""
 "The cost for the line '%s' can't be distributed because the calculation "
@@ -761,7 +761,7 @@ msgid "The volume in m3."
 msgstr "Prostornina postavke v m3."
 
 #. module: purchase_landed_cost
-#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:211
+#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:223
 #, python-format
 msgid "There is no picking lines in the distribution"
 msgstr "V distribuciji ni postavk zbirnika"
@@ -885,6 +885,13 @@ msgstr ""
 #, python-format
 msgid "You can't delete a confirmed cost distribution"
 msgstr "Ne morete izbrisati potrjene distribucije stroškov"
+
+#. module: purchase_landed_cost
+#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:150
+#, python-format
+msgid ""
+"You can't delete a cost line if it's an affected line of any expense line."
+msgstr ""
 
 #. module: purchase_landed_cost
 #: model:ir.model,name:purchase_landed_cost.model_import_landed_cost_pickings_wizard
