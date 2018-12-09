@@ -151,6 +151,7 @@ msgstr ""
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_date_start
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_date_start
 msgid "Creation date"
 msgstr ""
 
@@ -369,7 +370,6 @@ msgstr ""
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_date_required
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_date_start
 msgid "Request Date"
 msgstr ""
 
