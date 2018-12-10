@@ -20,14 +20,15 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: purchase_order_line_description
-#: model:ir.model.fields,help:purchase_order_line_description.field_purchase_config_settings_group_use_product_description_per_po_line
+#: model:ir.model.fields,help:purchase_order_line_description.field_res_config_settings_group_use_product_description_per_po_line
+#: model:ir.ui.view,arch_db:purchase_order_line_description.view_purchase_configuration
 msgid ""
 "Allows you to use only product purchase description on the purchase order "
 "lines."
 msgstr ""
 
 #. module: purchase_order_line_description
-#: model:ir.model.fields,field_description:purchase_order_line_description.field_purchase_config_settings_group_use_product_description_per_po_line
+#: model:ir.model.fields,field_description:purchase_order_line_description.field_res_config_settings_group_use_product_description_per_po_line
 msgid "Order lines description"
 msgstr ""
 
@@ -42,16 +43,16 @@ msgid "Use only product purchase description on order lines"
 msgstr ""
 
 #. module: purchase_order_line_description
-#: selection:purchase.config.settings,group_use_product_description_per_po_line:0
+#: selection:res.config.settings,group_use_product_description_per_po_line:0
 msgid "Use the product name on the purchase order lines"
 msgstr ""
 
 #. module: purchase_order_line_description
-#: selection:purchase.config.settings,group_use_product_description_per_po_line:0
+#: selection:res.config.settings,group_use_product_description_per_po_line:0
 msgid "Use the product purchase description on the purchase order lines"
 msgstr ""
 
 #. module: purchase_order_line_description
-#: model:ir.model,name:purchase_order_line_description.model_purchase_config_settings
-msgid "purchase.config.settings"
+#: model:ir.model,name:purchase_order_line_description.model_res_config_settings
+msgid "res.config.settings"
 msgstr ""
