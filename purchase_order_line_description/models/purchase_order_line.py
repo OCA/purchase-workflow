@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2015 Alex Comba - Agile Business Group
 # Copyright 2017 Tecnativa - vicent.cubells@tecnativa.com
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
