@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2013 Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 # Copyright 2015 Alexandre Fayolle <alexandre.fayolle@camptocamp.com>
 # Copyright 2017 Vicent Cubells <vicent.cubells@tecnativa.com>
@@ -68,7 +67,7 @@ class PurchaseOrder(models.Model):
     def create(self, values):
         if 'unrevisioned_name' not in values:
             if values.get('name', '/') == '/':
-                seq = self.env['ir.sequence']
-                values['name'] = seq.next_by_code('purchase.order') or '/'
+                values['name'] = self.env['ir.sequence'].next_by_code(
+                    'purchase.order') or '/'
             values['unrevisioned_name'] = values['name']
         return super(PurchaseOrder, self).create(values)

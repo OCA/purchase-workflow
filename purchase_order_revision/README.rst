@@ -44,6 +44,7 @@ Contributors
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Alexandre Fayolle <alexandre.fayolle@camptocamp.com>
 * Vicent Cubells <vicent.cubells@tecnativa.com>
+* Ramón Bajona <ramon.bajona@guadaltech.es>`
 
 Maintainer
 ----------
