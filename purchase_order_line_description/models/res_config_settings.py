@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2015 Alex Comba - Agile Business Group
 # Copyright 2017 Tecnativa - vicent.cubells@tecnativa.com
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
@@ -6,9 +5,9 @@
 from odoo import fields, models
 
 
-class PurchaseConfigSettings(models.TransientModel):
-    _name = 'purchase.config.settings'
-    _inherit = 'purchase.config.settings'
+class ResConfigSettings(models.TransientModel):
+    _name = 'res.config.settings'
+    _inherit = 'res.config.settings'
 
     group_use_product_description_per_po_line = fields.Selection(
         selection=[
