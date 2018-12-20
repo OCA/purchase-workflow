@@ -58,6 +58,16 @@ class PurchaseOrder(models.Model):
         return super(PurchaseOrder,
                      self.with_context(keep_line_sequence=True)).copy(default)
 
+    def _create_stock_moves(
+            self, cr, uid, order, order_lines, picking_id=False, context=None):
+        res = super(PurchaseOrder, self)._create_stock_moves(
+            cr, uid, order, order_lines, picking_id=picking_id, context=context)
+        for line in order_lines:
+            # in case of purchase there should only be one move since the
+            # source destination is a generator
+            line.move_ids.write({'sequence': line.sequence})
+        return res
+
 
 class PurchaseOrderLine(models.Model):
     _inherit = 'purchase.order.line'
@@ -70,13 +80,6 @@ class PurchaseOrderLine(models.Model):
     sequence2 = fields.Integer(help="Displays the sequence of the line in "
                                     "the purchase order.",
                                related='sequence', readonly=True)
-
-    @api.multi
-    def _create_stock_moves(self, picking):
-        res = super(PurchaseOrderLine, self)._create_stock_moves(picking)
-        for move, line in zip(res, self):
-            move.write({'sequence': line.sequence})
-        return res
 
     @api.model
     def create(self, values):

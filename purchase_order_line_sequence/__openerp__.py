@@ -14,7 +14,7 @@
               "Eficent, "
               "Serpent CS, "
               "Odoo Community Association (OCA)",
-    'website': 'http://www.camptocamp.com',
+    'website': 'https://github.com/OCA/purchase-workflow',
     'depends': [
         'purchase',
         'stock_picking_line_sequence',
