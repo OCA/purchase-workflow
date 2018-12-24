@@ -1,0 +1,1 @@
+Glue module that allows purchase request on service products.
