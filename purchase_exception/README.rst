@@ -39,7 +39,6 @@ Contributors
 ------------
 
 * Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
-* Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
 
 Maintainer
 ----------
