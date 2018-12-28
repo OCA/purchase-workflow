@@ -30,7 +30,8 @@ class ProcurementRule(models.Model):
     def _prepare_purchase_request(self, origin, values):
         gpo = self.group_propagation_option
         group_id = (gpo == 'fixed' and self.group_id.id) or \
-                   (gpo == 'propagate' and values['group_id'].id) or False
+                   (gpo == 'propagate' and values.get('group_id')
+                    and values['group_id'].id) or False
         return {
             'origin': origin,
             'company_id': values['company_id'].id,
