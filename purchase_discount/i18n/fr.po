@@ -49,3 +49,8 @@ msgstr "Ligne de commande d'achat"
 #: model:ir.model,name:purchase_discount.model_purchase_report
 msgid "Purchases Orders"
 msgstr "Commandes d'achat"
+
+#. module: purchase_discount
+#: model:ir.model,name:purchase_discount.model_stock_move
+msgid "Stock Move"
+msgstr ""
