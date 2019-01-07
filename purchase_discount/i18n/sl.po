@@ -50,3 +50,8 @@ msgstr "Postavka nabavnega naloga"
 #, fuzzy
 msgid "Purchases Orders"
 msgstr "Postavka nabavnega naloga"
+
+#. module: purchase_discount
+#: model:ir.model,name:purchase_discount.model_stock_move
+msgid "Stock Move"
+msgstr ""
