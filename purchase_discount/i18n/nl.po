@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* purchase_discount
+# 	* purchase_discount
 #
 msgid ""
 msgstr ""
@@ -43,4 +43,9 @@ msgstr ""
 #. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_purchase_report
 msgid "Purchases Orders"
+msgstr ""
+
+#. module: purchase_discount
+#: model:ir.model,name:purchase_discount.model_stock_move
+msgid "Stock Move"
 msgstr ""
