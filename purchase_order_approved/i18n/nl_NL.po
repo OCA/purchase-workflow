@@ -22,6 +22,13 @@ msgstr ""
 #. module: purchase_order_approved
 #: model:ir.ui.view,arch_db:purchase_order_approved.view_purchase_configuration
 msgid ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" groups=\"base.group_multi_company\"/>"
+msgstr ""
+
+#. module: purchase_order_approved
+#: model:ir.ui.view,arch_db:purchase_order_approved.view_purchase_configuration
+msgid ""
 "Adds an extra state in purchase orders previous to 'Purchase Order' state."
 msgstr ""
 
