@@ -44,3 +44,8 @@ msgstr ""
 msgid "Purchases Orders"
 msgstr ""
 
+#. module: purchase_discount
+#: model:ir.model,name:purchase_discount.model_stock_move
+msgid "Stock Move"
+msgstr ""
+
