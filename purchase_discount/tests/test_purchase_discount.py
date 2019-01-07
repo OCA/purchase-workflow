@@ -16,6 +16,7 @@ class TestPurchaseOrder(common.SavepointCase):
         super(TestPurchaseOrder, cls).setUpClass()
         cls.product_1 = cls.env['product.product'].create({
             'name': 'Test product 1',
+            'cost_method': 'average',
         })
         cls.product_2 = cls.env['product.product'].create({
             'name': 'Test product 2',
@@ -76,21 +77,26 @@ class TestPurchaseOrder(common.SavepointCase):
         self.assertEqual(self.po_line_3.price_subtotal, 10.0)
         self.assertEqual(self.purchase_order.amount_untaxed, 1625.0)
         self.assertEqual(self.purchase_order.amount_tax, 243)
-
-    def test_move_price_unit(self):
-        self.purchase_order.button_confirm()
-        moves = self.purchase_order.picking_ids.move_lines
-        move = moves.filtered(lambda x: x.purchase_line_id == self.po_line_1)
-        self.assertEqual(move.price_unit, 5,)
-        move = moves.filtered(lambda x: x.purchase_line_id == self.po_line_2)
-        self.assertEqual(move.price_unit, 161)
-        move = moves.filtered(lambda x: x.purchase_line_id == self.po_line_3)
-        self.assertEqual(move.price_unit, 10)
         # Change price to launch a recalculation of totals
         self.po_line_1.discount = 60
         self.assertEqual(self.po_line_1.price_subtotal, 4.0)
         self.assertEqual(self.purchase_order.amount_untaxed, 1624.0)
         self.assertEqual(self.purchase_order.amount_tax, 243)
+
+    def test_move_price_unit(self):
+        self.purchase_order.button_confirm()
+        picking = self.purchase_order.picking_ids
+        moves = picking.move_lines
+        move1 = moves.filtered(lambda x: x.purchase_line_id == self.po_line_1)
+        self.assertEqual(move1.price_unit, 5,)
+        move2 = moves.filtered(lambda x: x.purchase_line_id == self.po_line_2)
+        self.assertEqual(move2.price_unit, 161)
+        move3 = moves.filtered(lambda x: x.purchase_line_id == self.po_line_3)
+        self.assertEqual(move3.price_unit, 10)
+        # Confirm the picking to see the cost price
+        move1.move_line_ids.qty_done = 1
+        picking.action_done()
+        self.assertAlmostEqual(self.product_1.standard_price, 5.0)
 
     def test_report_price_unit(self):
         rec = self.env['purchase.report'].search([
