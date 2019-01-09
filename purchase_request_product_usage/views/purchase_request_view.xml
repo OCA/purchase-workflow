@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!-- Copyright 2018 Eficent Business and IT Consulting Services S.L.
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
+<odoo>
+
+    <record model="ir.ui.view" id="view_purchase_request_form">
+        <field name="name">purchase.request.form</field>
+        <field name="model">purchase.request</field>
+        <field name="inherit_id" ref="purchase_request.view_purchase_request_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='line_ids']/tree/field[@name='name']"
+                   position="after">
+                <field name="usage_id" groups="purchase_product_usage.group_purchase_product_usage"/>
+            </xpath>
+            <xpath expr="//field[@name='line_ids']/form/sheet/group/group/field[@name='name']"
+                   position="after">
+                <field name="usage_id" groups="purchase_product_usage.group_purchase_product_usage"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="purchase_request_line_form">
+        <field name="name">purchase.request.line.form</field>
+        <field name="model">purchase.request.line</field>
+        <field name="inherit_id" ref="purchase_request.purchase_request_line_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/group/group/field[@name='name']" position="after">
+                <field name="usage_id" groups="purchase_product_usage.group_purchase_product_usage"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="purchase_request_line_search" model="ir.ui.view">
+        <field name="name">purchase.request.line.search</field>
+        <field name="model">purchase.request.line</field>
+        <field name="inherit_id" ref="purchase_request.purchase_request_line_search"/>
+        <field name="arch" type="xml">
+            <field name="product_id" position="after">
+                <field name="usage_id" groups="purchase_product_usage.group_purchase_product_usage"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
