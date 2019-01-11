@@ -39,7 +39,7 @@ In this new *Approved* state:
 
 The new state diagram is depicted below:
 
-.. image:: https://raw.githubusercontent.com/OCA/purchase-workflow/11.0/purchase_order_approved/purchase_order_approved/static/description/schema.png
+.. image:: https://raw.githubusercontent.com/OCA/purchase-workflow/11.0/purchase_order_approved/static/description/schema.png
    :width: 500 px
    :alt: New states diagram
 
