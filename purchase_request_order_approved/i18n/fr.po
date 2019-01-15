@@ -18,17 +18,17 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#. module: purchase_request_to_rfq_order_approved
-#: model:ir.ui.view,arch_db:purchase_request_to_rfq_order_approved.purchase_request_line_search
+#. module: purchase_request_order_approved
+#: model:ir.ui.view,arch_db:purchase_request_order_approved.purchase_request_line_search
 msgid "At least a Purchase Order has been approved"
 msgstr ""
 
-#. module: purchase_request_to_rfq_order_approved
-#: model:ir.ui.view,arch_db:purchase_request_to_rfq_order_approved.purchase_request_line_search
+#. module: purchase_request_order_approved
+#: model:ir.ui.view,arch_db:purchase_request_order_approved.purchase_request_line_search
 msgid "Purchase Approved"
 msgstr ""
 
-#. module: purchase_request_to_rfq_order_approved
-#: model:ir.model,name:purchase_request_to_rfq_order_approved.model_purchase_request_line
+#. module: purchase_request_order_approved
+#: model:ir.model,name:purchase_request_order_approved.model_purchase_request_line
 msgid "Purchase Request Line"
 msgstr "Ligne de demande d'achat"
