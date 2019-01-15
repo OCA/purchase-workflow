@@ -19,17 +19,17 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
 "%100==4 ? 2 : 3);\n"
 
-#. module: purchase_request_to_rfq_order_approved
-#: model:ir.ui.view,arch_db:purchase_request_to_rfq_order_approved.purchase_request_line_search
+#. module: purchase_request_order_approved
+#: model:ir.ui.view,arch_db:purchase_request_order_approved.purchase_request_line_search
 msgid "At least a Purchase Order has been approved"
 msgstr ""
 
-#. module: purchase_request_to_rfq_order_approved
-#: model:ir.ui.view,arch_db:purchase_request_to_rfq_order_approved.purchase_request_line_search
+#. module: purchase_request_order_approved
+#: model:ir.ui.view,arch_db:purchase_request_order_approved.purchase_request_line_search
 msgid "Purchase Approved"
 msgstr ""
 
-#. module: purchase_request_to_rfq_order_approved
-#: model:ir.model,name:purchase_request_to_rfq_order_approved.model_purchase_request_line
+#. module: purchase_request_order_approved
+#: model:ir.model,name:purchase_request_order_approved.model_purchase_request_line
 msgid "Purchase Request Line"
 msgstr "Postavka zahteve po nabavi"
