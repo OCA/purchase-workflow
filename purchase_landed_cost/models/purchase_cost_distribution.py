@@ -428,7 +428,7 @@ class PurchaseCostDistributionLine(models.Model):
     product_qty = fields.Float(
         string='Quantity', compute='_get_product_qty', store=True)
     product_uom = fields.Many2one(
-        comodel_name='product.uom', string='Unit of measure',
+        comodel_name='uom.uom', string='Unit of measure',
         related='move_id.product_uom')
     product_price_unit = fields.Float(
         string='Unit price', related='move_id.price_unit')

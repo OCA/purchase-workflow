@@ -4,7 +4,7 @@
 
 {
     'name': 'Purchase landed costs - Alternative option',
-    'version': '11.0.1.0.0',
+    'version': '12.0.1.0.0',
     "author": "AvanzOSC,"
               "Tecnativa,"
               "Joaquín Gutierrez,"
@@ -15,7 +15,7 @@
     'summary': 'Purchase cost distribution',
     'depends': [
         'stock_account',
-        'purchase',
+        'purchase_stock',
     ],
     'data': [
         'data/purchase_cost_distribution_sequence.xml',
