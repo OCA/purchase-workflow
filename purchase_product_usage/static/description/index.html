@@ -368,13 +368,16 @@ ul.auto-toc {
 !! changes will be overwritten.                   !!
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 <p><a class="reference external" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external" href="https://github.com/OCA/purchase-workflow/tree/11.0/purchase_product_usage"><img alt="OCA/purchase-workflow" src="https://img.shields.io/badge/github-OCA%2Fpurchase--workflow-lightgray.png?logo=github" /></a> <a class="reference external" href="https://translation.odoo-community.org/projects/purchase-workflow-11-0/purchase-workflow-11-0-purchase_product_usage"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external" href="https://runbot.odoo-community.org/runbot/142/11.0"><img alt="Try me on Runbot" src="https://img.shields.io/badge/runbot-Try%20me-875A7B.png" /></a></p>
-<p>When purchasing, companies may need to specify in the different GL accounts
-depending on the usage the company is going to give to the part. Usages can be
-very diverse as for example: internal use, marketing use, testing use. So a
-product “Paper” could potentially be a marketing expense, or an office expense.</p>
-<p>With this module, we can define different usages in the company for products.
-Purchase Users can specify the use the company expect to use the product for,
-and use the specific account for that.</p>
+<p>When purchasing, users can indicate a usage from a list, for every item in the
+purchase order.</p>
+<p>Usages can be associated with specific accounts. When the supplier invoice is
+created from that purchase order line, the account defined for that usage
+will be proposed, instead of the product’s default expense account. This
+proposal will only be effective if the product is a consumable or a service.</p>
+<p>Usages can be very diverse, like internal use, marketing use, testing use.
+So a product “Paper” could potentially translate to marketing expense,
+or an office expense, irrespective of what is the expense account defined in
+the product “Paper”.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -391,7 +394,12 @@ and use the specific account for that.</p>
 </div>
 <div class="section" id="configuration">
 <h1><a class="toc-backref" href="#id1">Configuration</a></h1>
-<p>Create the different usages in configuration</p>
+<p>In order to be able to define usages, assign users to the group
+“Define Purchase Product Usages”. The group is proposed by default to users
+in the group “Purchase Manager”</p>
+<p>Go to <em>Purchases / Configuration / Purchase Product Usages</em> and define
+the usages, indicating the description and optionally the code, default
+product and account to use.</p>
 </div>
 <div class="section" id="usage">
 <h1><a class="toc-backref" href="#id2">Usage</a></h1>
