@@ -39,7 +39,6 @@ So a product "Paper" could potentially translate to marketing expense,
 or an office expense, irrespective of what is the expense account defined in
 the product "Paper".
 
-
 **Table of contents**
 
 .. contents::
@@ -56,7 +55,6 @@ in the group "Purchase Manager"
 Go to *Purchases / Configuration / Purchase Product Usages* and define
 the usages, indicating the description and optionally the code, default
 product and account to use.
-
 
 Usage
 =====
