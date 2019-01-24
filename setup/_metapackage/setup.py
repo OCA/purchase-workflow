@@ -25,6 +25,7 @@ setuptools.setup(
         'odoo11-addon-purchase_order_line_description',
         'odoo11-addon-purchase_order_line_stock_available',
         'odoo11-addon-purchase_order_secondary_unit',
+        'odoo11-addon-purchase_product_usage',
         'odoo11-addon-purchase_request',
         'odoo11-addon-purchase_request_department',
         'odoo11-addon-purchase_request_order_approved',
