@@ -7,8 +7,10 @@
 -->
 
 <odoo>
+
     <record id="minimum_amount_block_reason" model="purchase.approval.block.reason">
         <field name="name">Minimum Amount per Vendor</field>
         <field name="description">Set total minimum amount (before taxes) for a vendor.</field>
     </record>
+
 </odoo>
