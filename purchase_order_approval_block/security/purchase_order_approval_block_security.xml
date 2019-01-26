@@ -6,6 +6,7 @@
 -->
 
 <odoo>
+
     <record id="group_rfq_approval_block" model="res.groups">
         <field name="name">Release RFQ with approval block</field>
         <field name="category_id" ref="base.module_category_hidden"/>
@@ -14,7 +15,9 @@
             The user will be able to release an RFQ blocked for approval.
         </field>
     </record>
+
     <record id="purchase.group_purchase_manager" model="res.groups">
         <field name="implied_ids" eval="[(4, ref('group_rfq_approval_block'))]"/>
     </record>
+
 </odoo>
