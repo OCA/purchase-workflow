@@ -21,10 +21,11 @@ class TestPurchaseOrderLineDescription(common.SavepointCase):
         group_id = cls.env.ref('purchase_order_line_description.'
                                'group_use_product_description_per_po_line')
         res_users_purchase_user = cls.env.ref('purchase.group_purchase_user')
-        cls.test_user = cls.env['res.users'].create(
-            {'name': 'test', 'login': 'test',
-             'groups_id':
-             [(6, 0, [res_users_purchase_user.id])]})
+        cls.test_user = cls.env['res.users'].create({
+            'name': 'test',
+            'login': 'test',
+            'groups_id': [(6, 0, [res_users_purchase_user.id])]
+        })
         # add group_use_product_description_per_po_line to test_user
         cls.test_user.write({'groups_id': [(4, group_id.id)]})
         cls.order = cls.env['purchase.order'].create({
@@ -34,7 +35,7 @@ class TestPurchaseOrderLineDescription(common.SavepointCase):
                 'name': cls.product.name,
                 'price_unit': 79.80,
                 'product_qty': 15.0,
-                'product_uom': cls.env.ref('product.product_uom_unit').id,
+                'product_uom': cls.env.ref('uom.product_uom_unit').id,
                 'date_planned': fields.Date.today(),
             })]
         })
