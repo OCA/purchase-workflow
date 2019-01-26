@@ -6,6 +6,7 @@
 -->
 
 <odoo>
+
     <record id="purchase_approval_block_reason_tree_view" model="ir.ui.view">
         <field name="name">purchase.approval.block.reason.tree</field>
         <field name="model">purchase.approval.block.reason</field>
@@ -47,4 +48,5 @@
               name="Purchase Approval Block Reasons"
               parent="purchase.menu_purchase_config"
               action="action_purchase_approval_block_reason"/>
+
 </odoo>

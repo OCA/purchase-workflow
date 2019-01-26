@@ -1,5 +1,5 @@
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
-# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 from odoo.addons.purchase_order_approval_block.tests.\
     test_purchase_order_approval_block import TestPurchaseOrderApprovalBlock
@@ -37,7 +37,8 @@ class TestPoApprovalBlockReason(TestPurchaseOrderApprovalBlock):
         purchase.approval_block_id = self.po_approval_block_reason.id
         # The purchase user validates the RFQ with block, and is now to approve
         purchase.sudo(self.user2_id).button_confirm()
-        self.assertEquals(purchase.state, 'to approve')
+        purchase.company_id.po_double_validation = False
+        self.assertEquals(purchase.state, 'draft')
 
         # Simulation the opening of the wizard purchase_exception_confirm and
         # set ignore_exception to True
@@ -62,7 +63,7 @@ class TestPoApprovalBlockReason(TestPurchaseOrderApprovalBlock):
         purchase.approval_block_id = self.po_approval_block_reason.id
         # The purchase user validates the RFQ with block, and is now to approve
         purchase.sudo(self.user2_id).button_confirm()
-        self.assertEquals(purchase.state, 'to approve')
+        self.assertEquals(purchase.state, 'draft')
 
         purchase.sudo(self.user2_id).button_approve()
 
