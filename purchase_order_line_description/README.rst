@@ -78,6 +78,8 @@ Contributors
 
   * Vicent Cubells
 
+* Nikul Chaudhary <nikulchaudhary2112@gmail.com>
+
 Maintainers
 ~~~~~~~~~~~
 
