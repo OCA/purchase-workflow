@@ -88,6 +88,7 @@ Contributors
 * Jordi Ballester Alomar <jordi.ballester@eficent.com>
 * Roser Garcia <roser.garcia@eficent.com>
 * Darshan Patel <darshan.patel.serpentcs@gmail.com>
+* Nikul Chaudhary <nikulchaudhary2112@gmail.com>
 
 Maintainer
 ----------
