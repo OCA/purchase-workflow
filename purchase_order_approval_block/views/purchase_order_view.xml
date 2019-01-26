@@ -6,6 +6,7 @@
 -->
 
 <odoo>
+
     <record id="purchase_order_form" model="ir.ui.view">
         <field name="name">purchase.order.form.block.reason</field>
         <field name="model">purchase.order</field>
@@ -44,4 +45,5 @@
             </filter>
         </field>
     </record>
+
 </odoo>
