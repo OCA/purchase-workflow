@@ -97,7 +97,7 @@ class TestPoAmountBlock(TransactionCase):
 
         # Release the PO by pressing the button and then confirming the order
         purchase1.sudo(self.user2_id).button_release_approval_block()
-        purchase1.sudo(self.user1_id).button_confirm()
+        purchase1.sudo().button_confirm()
         self.assertEquals(purchase1.state, 'purchase')
 
     def test_po_amount_block_2(self):
@@ -122,5 +122,5 @@ class TestPoAmountBlock(TransactionCase):
             purchase1.approval_block_id,
             self.env['purchase.approval.block.reason'])
 
-        purchase1.sudo(self.user1_id).button_confirm()
+        purchase1.sudo().button_confirm()
         self.assertEquals(purchase1.state, 'purchase')

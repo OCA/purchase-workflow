@@ -8,4 +8,4 @@ from odoo import fields, models
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 
-    minimum_po_amount = fields.Float(string="Minimum Purchase Amount")
+    minimum_po_amount = fields.Float("Minimum Purchase Amount")

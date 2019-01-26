@@ -11,7 +11,6 @@ class PurchaseOrder(models.Model):
     minimum_po_amount = fields.Float(
         related='partner_id.minimum_po_amount',
         string="Purchase Minimum Amount",
-        readonly=True,
     )
 
     @api.multi
