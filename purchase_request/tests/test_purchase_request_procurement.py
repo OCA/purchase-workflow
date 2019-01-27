@@ -55,6 +55,7 @@ class TestPurchaseRequestProcurement(common.SavepointCase):
             'warehouse_id': self.env.ref('stock.warehouse0'),
             'route_ids': self.env.ref('purchase.route_warehouse0_buy'),
             'company_id': self.env.ref('base.main_company'),
+            'requested_by': self.env.ref('1'),
         }
         return self.env['procurement.group'].run(
             product, qty,
