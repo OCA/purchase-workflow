@@ -37,6 +37,7 @@ class ProcurementRule(models.Model):
             'company_id': values['company_id'].id,
             'picking_type_id': self.picking_type_id.id,
             'group_id': group_id or False,
+            'requested_by': values['group_id'].create_uid.id,
         }
 
     @api.model
