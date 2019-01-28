@@ -27,6 +27,7 @@ class BlanketOrderWizard(models.TransientModel):
         lines = [(0, 0, {
             'blanket_line_id': l.id,
             'product_id': l.product_id.id,
+            'date_schedule': l.date_schedule,
             'remaining_qty': l.remaining_qty,
             'qty': l.remaining_qty,
         }) for l in blanket_order.lines_ids]
@@ -51,9 +52,12 @@ class BlanketOrderWizard(models.TransientModel):
                 raise UserError(
                     _('You can\'t order more than the remaining quantities'))
 
+            date_planned = line.blanket_line_id.date_schedule
+
             vals = {'product_id': line.product_id.id,
                     'name': line.product_id.name,
-                    'date_planned': line.blanket_line_id.order_id.date_order,
+                    'date_planned': date_planned if date_planned else
+                    line.blanket_line_id.order_id.date_order,
                     'product_uom': line.blanket_line_id.product_uom.id,
                     'sequence': line.blanket_line_id.sequence,
                     'price_unit': line.blanket_line_id.price_unit,
@@ -98,6 +102,8 @@ class BlanketOrderWizardLine(models.TransientModel):
         'product.product',
         related='blanket_line_id.product_id',
         string='Product', readonly=True)
+    date_schedule = fields.Date(
+        related='blanket_line_id.date_schedule', readonly=True)
     remaining_qty = fields.Float(
         related='blanket_line_id.remaining_qty', readonly=True)
     qty = fields.Float(string='Quantity to Order', required=True)
