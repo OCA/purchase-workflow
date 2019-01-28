@@ -50,10 +50,6 @@ class BlanketOrder(models.Model):
         string='Ordering Date',
         default=fields.Datetime.now,
         states={'draft': [('readonly', False)]})
-    date_deliver = fields.Datetime(
-        readonly=True,
-        string='Delivery Date',
-        states={'draft': [('readonly', False)]})
     note = fields.Text(
         readonly=True,
         states={'draft': [('readonly', False)]})
@@ -69,19 +65,19 @@ class BlanketOrder(models.Model):
     # Fields use to filter in tree view
     original_qty = fields.Float(
         string='Original quantity', compute='_compute_original_qty',
-        search='_search_original_qty', default=0.0)
+        search='_search_original_qty')
     ordered_qty = fields.Float(
         string='Ordered quantity', compute='_compute_ordered_qty',
-        search='_search_ordered_qty', default=0.0)
+        search='_search_ordered_qty')
     invoiced_qty = fields.Float(
         string='Invoiced quantity', compute='_compute_invoiced_qty',
-        search='_search_invoiced_qty', default=0.0)
+        search='_search_invoiced_qty')
     remaining_qty = fields.Float(
         string='Remaining quantity', compute='_compute_remaining_qty',
-        search='_search_remaining_qty', default=0.0)
+        search='_search_remaining_qty')
     received_qty = fields.Float(
         string='Delivered quantity', compute='_compute_received_qty',
-        search='_search_received_qty', default=0.0)
+        search='_search_received_qty')
 
     @api.multi
     def _get_purchase_orders(self):
@@ -270,8 +266,9 @@ class BlanketOrderLine(models.Model):
     product_uom = fields.Many2one(
         'product.uom', string='Unit of Measure', required=True)
     price_unit = fields.Float(string='Price', required=True)
+    date_schedule = fields.Date(string='Scheduled Date')
     original_qty = fields.Float(
-        string='Original quantity', required=True, default=1,
+        string='Original quantity', required=True, default=1.0,
         digits=dp.get_precision('Product Unit of Measure'))
     ordered_qty = fields.Float(
         string='Ordered quantity', compute='_compute_quantities',
