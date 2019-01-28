@@ -9,6 +9,7 @@
                     <field name="lines_ids" nolabel="1">
                         <tree create="false" editable="bottom">
                             <field name="product_id"/>
+                            <field name="date_schedule"/>
                             <field name="remaining_qty"/>
                             <field name="qty"/>
                         </tree>
