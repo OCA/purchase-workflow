@@ -11,10 +11,15 @@ class PurchaseOrderLine(models.Model):
 
     @api.depends('product_qty', 'qty_invoiced',
                  'invoice_lines.invoice_id.state',
-                 'order_id.state', 'move_ids.state', 'qty_received')
+                 'order_id.state', 'order_id.invoice_status',
+                 'move_ids.state', 'qty_received')
     def _compute_qty_to_invoice(self):
         for line in self:
-            if line.product_id.purchase_method == 'receive':
+            # If the invoice status has been forced to invoiced,
+            # then respect it. See module purchase_force_invoiced.
+            if getattr(line.order_id, 'force_invoiced', None):
+                line.qty_to_invoice = 0.0
+            elif line.product_id.purchase_method == 'receive':
                 qty = line.qty_received - line.qty_invoiced
                 if qty >= 0.0:
                     line.qty_to_invoice = qty
