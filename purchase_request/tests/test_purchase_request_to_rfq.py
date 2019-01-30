@@ -1,4 +1,4 @@
-# Copyright 2018 Eficent Business and IT Consulting Services S.L.
+# Copyright 2018-2019 Eficent Business and IT Consulting Services S.L.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
 
 from odoo.tests import common
@@ -24,7 +24,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         vals = {
             'request_id': purchase_request.id,
             'product_id': self.env.ref('product.product_product_13').id,
-            'product_uom_id': self.env.ref('product.product_uom_unit').id,
+            'product_uom_id': self.env.ref('uom.product_uom_unit').id,
             'product_qty': 5.0,
         }
         purchase_request_line = self.purchase_request_line.create(vals)
@@ -62,7 +62,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         vals = {
             'request_id': purchase_request.id,
             'product_id': self.env.ref('product.product_product_13').id,
-            'product_uom_id': self.env.ref('product.product_uom_unit').id,
+            'product_uom_id': self.env.ref('uom.product_uom_unit').id,
             'product_qty': 5.0,
         }
         purchase_request_line = self.purchase_request_line.create(vals)
@@ -81,7 +81,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         vals = {
             'request_id': purchase_request.id,
             'product_id': self.env.ref('product.product_product_8').id,
-            'product_uom_id': self.env.ref('product.product_uom_unit').id,
+            'product_uom_id': self.env.ref('uom.product_uom_unit').id,
             'product_qty': 1.0,
         }
         purchase_request_line = self.purchase_request_line.create(vals)
@@ -128,21 +128,21 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         vals = {
             'request_id': purchase_request1.id,
             'product_id': self.env.ref('product.product_product_6').id,
-            'product_uom_id': self.env.ref('product.product_uom_unit').id,
+            'product_uom_id': self.env.ref('uom.product_uom_unit').id,
             'product_qty': 1.0,
         }
         purchase_request_line1 = self.purchase_request_line.create(vals)
         vals = {
             'request_id': purchase_request2.id,
             'product_id': self.env.ref('product.product_product_6').id,
-            'product_uom_id': self.env.ref('product.product_uom_unit').id,
+            'product_uom_id': self.env.ref('uom.product_uom_unit').id,
             'product_qty': 1.0,
         }
         purchase_request_line2 = self.purchase_request_line.create(vals)
         vals = {
             'request_id': purchase_request2.id,
             'product_id': self.env.ref('product.product_product_6').id,
-            'product_uom_id': self.env.ref('product.product_uom_unit').id,
+            'product_uom_id': self.env.ref('uom.product_uom_unit').id,
             'product_qty': 1.0,
         }
         purchase_request_line3 = self.purchase_request_line.create(vals)
@@ -168,7 +168,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
 
     def test_purchase_request_to_purchase_rfq_multiple_PO_purchaseUoM(self):
         product = self.env.ref('product.product_product_6')
-        product.uom_po_id = self.env.ref('product.product_uom_dozen')
+        product.uom_po_id = self.env.ref('uom.product_uom_dozen')
 
         vals = {
             'picking_type_id': self.env.ref('stock.picking_type_in').id,
@@ -183,21 +183,21 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         vals = {
             'request_id': purchase_request1.id,
             'product_id': product.id,
-            'product_uom_id': self.env.ref('product.product_uom_unit').id,
+            'product_uom_id': self.env.ref('uom.product_uom_unit').id,
             'product_qty': 12.0,
         }
         purchase_request_line1 = self.purchase_request_line.create(vals)
         vals = {
             'request_id': purchase_request2.id,
             'product_id': product.id,
-            'product_uom_id': self.env.ref('product.product_uom_unit').id,
+            'product_uom_id': self.env.ref('uom.product_uom_unit').id,
             'product_qty': 12.0,
         }
         purchase_request_line2 = self.purchase_request_line.create(vals)
         vals = {
             'request_id': purchase_request2.id,
             'product_id': self.env.ref('product.product_product_6').id,
-            'product_uom_id': self.env.ref('product.product_uom_unit').id,
+            'product_uom_id': self.env.ref('uom.product_uom_unit').id,
             'product_qty': 12.0,
         }
         purchase_request_line3 = self.purchase_request_line.create(vals)
@@ -219,7 +219,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         po_line = purchase_request_line1.purchase_lines[0]
         self.assertEquals(po_line.product_qty, 2.0, 'Quantity should be 2')
         self.assertEquals(po_line.product_uom,
-                          self.env.ref('product.product_uom_dozen'),
+                          self.env.ref('uom.product_uom_dozen'),
                           'The purchase UoM should be Dozen(s).')
 
     def test_purchase_request_to_rfq_minimum_order_qty_existing_po(self):
@@ -243,7 +243,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         vals = {
             'request_id': purchase_request1.id,
             'product_id': product.id,
-            'product_uom_id': self.env.ref('product.product_uom_unit').id,
+            'product_uom_id': self.env.ref('uom.product_uom_unit').id,
             'product_qty': 3.0,
         }
         purchase_request_line1 = self.purchase_request_line.create(vals)
@@ -267,7 +267,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         vals = {
             'request_id': purchase_request2.id,
             'product_id': product.id,
-            'product_uom_id': self.env.ref('product.product_uom_unit').id,
+            'product_uom_id': self.env.ref('uom.product_uom_unit').id,
             'product_qty': 3.0,
         }
         purchase_request_line2 = self.purchase_request_line.create(vals)

@@ -1,11 +1,11 @@
-# Copyright 2018 Eficent Business and IT Consulting Services S.L.
+# Copyright 2018-2019 Eficent Business and IT Consulting Services S.L.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
 
 from odoo import api, fields, models
 
 
-class ProcurementRule(models.Model):
-    _inherit = 'procurement.rule'
+class StockRule(models.Model):
+    _inherit = 'stock.rule'
 
     @api.model
     def _prepare_purchase_request_line(self, request_id, product_id,
@@ -78,7 +78,7 @@ class ProcurementRule(models.Model):
             self.create_purchase_request(product_id, product_qty,
                                          product_uom, origin, values)
             return
-        return super(ProcurementRule, self)._run_buy(
+        return super(StockRule, self)._run_buy(
             product_id, product_qty, product_uom, location_id, name,
             origin, values)
 

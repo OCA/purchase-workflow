@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright 2018 Eficent Business and IT Consulting Services S.L.
+<!-- Copyright 2018-2019 Eficent Business and IT Consulting Services S.L.
      License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
 <odoo>
 
@@ -53,7 +53,7 @@
                                         <strong>Analytic Account</strong>
                                     </th>
                                     <th class="text-right"><strong>Qty</strong></th>
-                                    <th class="text-center" groups="product.group_uom">
+                                    <th class="text-center" groups="uom.group_uom">
                                         <strong>Product UoM</strong>
                                     </th>
                                     <th><strong>Estimated Cost</strong></th>
@@ -73,7 +73,7 @@
                                         <span t-field="line_ids.product_qty"/>
                                     </td>
                                     <t>
-                                        <td class="text-center" groups="product.group_uom">
+                                        <td class="text-center" groups="uom.group_uom">
                                             <span t-field="line_ids.product_uom_id.category_id.name"/>
                                         </td>
                                     </t>
