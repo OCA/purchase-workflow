@@ -1,10 +1,11 @@
 You use this module if you wish to give notification of requirements of
 materials and/or external services and keep track of such requirements.
 
-Requests can be created either directly or indirectly. "Directly" means that
-someone from the requesting department enters a purchase request manually.
+Requests can be created either directly or indirectly.
+"Directly" means that someone from the requesting department enters a purchase
+request manually.
 
-The person creating the requisition determines what and how much to order,
+The person creating the request determines what and how much to order,
 and the requested date.
 
 "Indirectly" means that the purchase request initiated by the application
@@ -14,7 +15,7 @@ A purchase request is an instruction to Purchasing to procure a certain
 quantity of materials services, so that they are available at a
 certain point in time.
 
-A line of a requisition contains the quantity and requested date of the
+A line of a request contains the quantity and requested date of the
 material to be supplied or the quantity of the service to be performed. You
 can indicate the service specifications if needed.
 
