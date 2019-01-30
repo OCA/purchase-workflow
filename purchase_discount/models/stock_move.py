@@ -18,7 +18,7 @@ class StockMove(models.Model):
             price = po_line._get_discounted_price_unit()
             if price != po_line.price_unit:
                 # Only change value if it's different
-                price_unit = self.price_unit
+                price_unit = po_line.price_unit
                 po_line.price_unit = price
         res = super()._get_price_unit()
         if price_unit:
