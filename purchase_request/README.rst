@@ -117,6 +117,7 @@ Contributors
 * Adrien Peiffer <adrien.peiffer@acsone.eu>
 * Lois Rilo <lois.rilo@eficent.com>
 * Héctor Villarreal <hector.villarreal@eficent.com>
+* Ben Cai <ben.cai@elico-corp.com>
 
 Other credits
 ~~~~~~~~~~~~~

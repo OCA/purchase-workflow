@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<!-- Copyright 2018 Eficent Business and IT Consulting Services S.L.
+<!-- Copyright 2018-2019 Eficent Business and IT Consulting Services S.L.
      License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
 <odoo>
 
@@ -88,7 +88,7 @@
                                 <field name="product_id"/>
                                 <field name="name"/>
                                 <field name="product_qty"/>
-                                <field name="product_uom_id" groups="product.group_uom"/>
+                                <field name="product_uom_id" groups="uom.group_uom"/>
                                 <field name="analytic_account_id"
                                        groups="analytic.group_analytic_accounting"/>
                                 <field name="date_required"/>
@@ -116,7 +116,7 @@
                                                        class="oe_inline"
                                                        attrs="{'readonly': [('is_editable','=', False)]}"/>
                                                 <field name="product_uom_id"
-                                                       groups="product.group_uom"
+                                                       groups="uom.group_uom"
                                                        class="oe_inline"
                                                        attrs="{'readonly': [('is_editable','=', False)]}"/>
                                             </div>
@@ -214,22 +214,25 @@
                 <filter string="Unread Messages"
                         name="message_needaction"
                         domain="[('message_needaction','=',True)]"/>
-                <filter domain="[('assigned_to','=', uid)]"
+                <filter name="assigned_to_me"
+                        domain="[('assigned_to','=', uid)]"
                         help="Assigned to me"/>
-                <filter domain="[('requested_by','=', uid)]"
+                <filter name="my_requests"
+                        domain="[('requested_by','=', uid)]"
                         help="My requests"/>
                 <field name="requested_by" />
                 <field name="assigned_to" />
                 <field name="picking_type_id"/>
                 <group expand="0" string="Group By...">
-                    <filter string="Requested by" icon="terp-personal"
+                    <filter name="requested_by" string="Requested by" icon="terp-personal"
                             domain="[]"
                             context="{'group_by':'requested_by'}"/>
-                    <filter string="Assigned to" icon="terp-personal"
+                    <filter name="assigned_to"
+                            string="Assigned to" icon="terp-personal"
                             domain="[]"
                             context="{'group_by':'assigned_to'}"/>
-                    <filter string="Source" icon="terp-gtk-jump-to-rtl" domain="[]" context="{'group_by':'origin'}"/>
-                    <filter string="Start Date" icon="terp-go-month" domain="[]" context="{'group_by':'date_start'}"/>
+                    <filter name="source" string="Source" icon="terp-gtk-jump-to-rtl" domain="[]" context="{'group_by':'origin'}"/>
+                    <filter name="start_date" string="Start Date" icon="terp-go-month" domain="[]" context="{'group_by':'date_start'}"/>
                 </group>
             </search>
         </field>
@@ -279,7 +282,7 @@
                 <field name="product_id"/>
                 <field name="name"/>
                 <field name="product_qty"/>
-                <field name="product_uom_id" groups="product.group_uom"/>
+                <field name="product_uom_id" groups="uom.group_uom"/>
                 <field name="analytic_account_id"
                        groups="analytic.group_analytic_accounting"/>
                 <field name="supplier_id"/>
@@ -330,7 +333,7 @@
                                        class="oe_inline"
                                        attrs="{'readonly': [('is_editable','=', False)]}"/>
                                 <field name="product_uom_id"
-                                       groups="product.group_uom"
+                                       groups="uom.group_uom"
                                        class="oe_inline"
                                        attrs="{'readonly': [('is_editable','=', False)]}"/>
                             </div>
@@ -418,31 +421,31 @@
                 <filter name="request_state_rejected" string="Rejected"
                         domain="[('request_state','=','rejected')]"
                         help="Request is rejected"/>
-                <filter domain="[('assigned_to','=', uid)]"
+                <filter name="assigned_to_me" domain="[( 'assigned_to','=', uid)]"
                         help="Assigned to me"/>
-                <filter domain="[('requested_by','=', uid)]"
+                <filter name="my_requests" domain="[('requested_by','=', uid)]"
                         help="My requests"/>
                 <filter name="uncancelled"
                         domain="[('cancelled','=', False)]"
                         string="Uncancelled"/>
                 <group expand="0" string="Group By...">
-                    <filter string="Product"
+                    <filter name="product" string="Product"
                             domain="[]" context="{'group_by' : 'product_id'}" />
-                    <filter string="Requested by"
+                    <filter name="requested_by" string="Requested by"
                             domain="[]"
                             context="{'group_by':'requested_by'}"/>
-                    <filter string="Assigned to"
+                    <filter name="assigned_to" string="Assigned to"
                             domain="[]"
                             context="{'group_by':'assigned_to'}"/>
-                    <filter string="Request status"
+                    <filter name="request_status" string="Request status"
                             domain="[]"
                             context="{'group_by':'request_state'}"/>
-                    <filter string="Analytic Account"
+                    <filter name="analytic_account" string="Analytic Account"
                             domain="[]"
                             context="{'group_by':'analytic_account_id'}"/>
-                    <filter string="Purchase Status"
+                    <filter name="purchase_status" string="Purchase Status"
                             domain="[]" context="{'group_by':'purchase_state'}"/>
-                    <filter string="Request"
+                    <filter name="request" string="Request"
                             domain="[]" context="{'group_by':'request_id'}"/>
                 </group>
             </search>
@@ -495,7 +498,7 @@
                     <label for="order_id" readonly="1" class="oe_edit_only"/>
                     <h1>
                         <field name="order_id" readonly="1" class="oe_inline"/>
-                        <label string="," readonly="1" attrs="{'invisible':[('date_order','=',False)]}"/>
+                        <label for="date_order" string="," readonly="1" attrs="{'invisible':[('date_order','=',False)]}"/>
                         <field name="date_order" readonly="1" class="oe_inline"/>
                     </h1>
                     <label for="partner_id" readonly="1" class="oe_edit_only"/>
@@ -506,7 +509,7 @@
                             <label for="product_qty" readonly="1"/>
                             <div>
                                 <field name="product_qty" readonly="1" class="oe_inline"/>
-                                <field name="product_uom" readonly="1" groups="product.group_uom" class="oe_inline"/>
+                                <field name="product_uom" readonly="1" groups="uom.group_uom" class="oe_inline"/>
                             </div>
                             <field name="price_unit" widget="monetary" readonly="1"/>
                         </group>
@@ -515,7 +518,7 @@
                                 domain="[('type_tax_use', '=', 'purchase')]" readonly="1"/>
                             <field name="date_planned" widget="date" readonly="1"/>
                             <field name="company_id" readonly="1" groups="base.group_multi_company" options="{'no_create': True}"/>
-                            <field name="account_analytic_id" readonly="1" colspan="4" groups="purchase.group_analytic_accounting"/>
+                            <field name="account_analytic_id" readonly="1" colspan="4" groups="analytic.group_analytic_accounting"/>
                         </group>
                     </group>
                     <field name="name" readonly="1"/>
@@ -541,7 +544,7 @@
                 <field name="product_id"/>
                 <field name="price_unit"/>
                 <field name="product_qty"/>
-                <field name="product_uom" groups="product.group_uom"/>
+                <field name="product_uom" groups="uom.group_uom"/>
                 <field name="price_subtotal" widget="monetary"/>
                 <field name="date_planned"  widget="date"/>
                 <field name="purchase_request_lines" invisible="1"/>
@@ -556,11 +559,21 @@
             <search string="Search Purchase Order Line">
                 <field name="order_id"/>
                 <field name="product_id"/>
-                <field name="partner_id" string="Vendor" filter_domain="[('partner_id', 'child_of', self)]"/>
-                <filter name="hide_cancelled" string="Hide cancelled lines" domain="[('state', '!=', 'cancel')]"/>
+                <field name="partner_id"
+                       string="Vendor"
+                       filter_domain="[('partner_id', 'child_of', self)]"/>
+                <filter name="hide_cancelled"
+                        string="Hide cancelled lines"
+                        domain="[('state', '!=', 'cancel')]"/>
                 <group expand="0" string="Group By">
-                    <filter string="Order Reference" domain="[]" context="{'group_by': 'order_id'}"/>
-                    <filter name="groupby_supplier" string="Vendor" domain="[]" context="{'group_by': 'partner_id'}"/>
+                    <filter name="order_reference"
+                            string="Order Reference"
+                            domain="[]"
+                            context="{'group_by': 'order_id'}"/>
+                    <filter name="groupby_supplier"
+                            string="Vendor"
+                            domain="[]"
+                            context="{'group_by': 'partner_id'}"/>
                 </group>
             </search>
         </field>

@@ -1,4 +1,4 @@
-# Copyright 2018 Eficent Business and IT Consulting Services S.L.
+# Copyright 2018-2019 Eficent Business and IT Consulting Services S.L.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
 
 from odoo import api, fields, models, _
@@ -153,10 +153,17 @@ class PurchaseRequest(models.Model):
         return super(PurchaseRequest, self).copy(default)
 
     @api.model
+    def _get_partner_id(self, request):
+        user_id = request.assigned_to
+        user_id = user_id or self.env.user
+        return user_id.partner_id.id
+
+    @api.model
     def create(self, vals):
         request = super(PurchaseRequest, self).create(vals)
         if vals.get('assigned_to'):
-            request.message_subscribe_users(user_ids=[request.assigned_to.id])
+            partner_id = self._get_partner_id(request)
+            request.message_subscribe(partner_ids=[partner_id])
         return request
 
     @api.multi
@@ -164,7 +171,8 @@ class PurchaseRequest(models.Model):
         res = super(PurchaseRequest, self).write(vals)
         for request in self:
             if vals.get('assigned_to'):
-                self.message_subscribe_users(user_ids=[request.assigned_to.id])
+                partner_id = self._get_partner_id(request)
+                request.message_subscribe(partner_ids=[partner_id])
         return res
 
     @api.multi
@@ -214,7 +222,7 @@ class PurchaseRequestLine(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     name = fields.Char('Description', track_visibility='onchange')
-    product_uom_id = fields.Many2one('product.uom', 'Product Unit of Measure',
+    product_uom_id = fields.Many2one('uom.uom', 'Product Unit of Measure',
                                      track_visibility='onchange')
     product_qty = fields.Float('Quantity', track_visibility='onchange',
                                digits=dp.get_precision(
@@ -225,26 +233,25 @@ class PurchaseRequestLine(models.Model):
     company_id = fields.Many2one('res.company',
                                  related='request_id.company_id',
                                  string='Company',
-                                 store=True, readonly=True)
+                                 store=True)
     analytic_account_id = fields.Many2one('account.analytic.account',
                                           'Analytic Account',
                                           track_visibility='onchange')
     requested_by = fields.Many2one('res.users',
                                    related='request_id.requested_by',
                                    string='Requested by',
-                                   store=True, readonly=True)
+                                   store=True)
     assigned_to = fields.Many2one('res.users',
                                   related='request_id.assigned_to',
                                   string='Assigned to',
-                                  store=True, readonly=True)
+                                  store=True)
     date_start = fields.Date(related='request_id.date_start',
-                             string='Request Date', readonly=True,
                              store=True)
     description = fields.Text(related='request_id.description',
-                              string='Description', readonly=True,
-                              store=True)
+                              string='PR Description',
+                              store=True, readonly=False)
     origin = fields.Char(related='request_id.origin',
-                         string='Source Document', readonly=True, store=True)
+                         string='Source Document', store=True)
     date_required = fields.Date(string='Request Date', required=True,
                                 track_visibility='onchange',
                                 default=fields.Date.context_today)
@@ -253,7 +260,6 @@ class PurchaseRequestLine(models.Model):
                                  readonly=True)
     specifications = fields.Text(string='Specifications')
     request_state = fields.Selection(string='Request state',
-                                     readonly=True,
                                      related='request_id.state',
                                      selection=_STATES,
                                      store=True)
