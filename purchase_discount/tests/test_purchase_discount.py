@@ -97,6 +97,9 @@ class TestPurchaseOrder(common.SavepointCase):
         move1.move_line_ids.qty_done = 1
         picking.action_done()
         self.assertAlmostEqual(self.product_1.standard_price, 5.0)
+        # Check data in PO remains the same - This is due to the hack
+        self.assertAlmostEqual(self.po_line_1.price_unit, 10.0)
+        self.assertAlmostEqual(self.po_line_1.discount, 50.0)
 
     def test_report_price_unit(self):
         rec = self.env['purchase.report'].search([
