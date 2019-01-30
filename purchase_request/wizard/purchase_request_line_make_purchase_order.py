@@ -1,10 +1,11 @@
-# Copyright 2018 Eficent Business and IT Consulting Services S.L.
+# Copyright 2018-2019 Eficent Business and IT Consulting Services S.L.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
 
 
 from odoo import api, fields, models, _
 import odoo.addons.decimal_precision as dp
 from odoo.exceptions import UserError
+from datetime import datetime
 
 
 class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
@@ -147,6 +148,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         # Suggest the supplier min qty as it's done in Odoo core
         min_qty = item.line_id._get_supplier_min_qty(product, po.partner_id)
         qty = max(qty, min_qty)
+        date_required = item.line_id.date_required
         vals = {
             'name': product.name,
             'order_id': po.id,
@@ -156,7 +158,8 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             'product_qty': qty,
             'account_analytic_id': item.line_id.analytic_account_id.id,
             'purchase_request_lines': [(4, item.line_id.id)],
-            'date_planned': item.line_id.date_required,
+            'date_planned': datetime(date_required.year, date_required.month,
+                                     date_required.day),
             'move_dest_ids': [(4, x.id) for x in item.line_id.move_dest_ids]
         }
         self._execute_purchase_line_onchange(vals)
@@ -185,8 +188,11 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                             item.line_id.analytic_account_id.id or False),
                            ]
         if self.sync_data_planned:
+            date_required = item.line_id.date_required
             order_line_data += [
-                ('date_planned', '=', item.line_id.date_required)
+                ('date_planned', '=',
+                 datetime(date_required.year, date_required.month,
+                          date_required.day))
             ]
         if not item.product_id:
             order_line_data.append(('name', '=', item.name))
@@ -239,7 +245,12 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             po_line._onchange_quantity()
             # The onchange quantity is altering the scheduled date of the PO
             # lines. We do not want that:
-            po_line.date_planned = item.line_id.date_required
+            date_required = item.line_id.date_required
+            po_line.date_planned = datetime(
+                date_required.year,
+                date_required.month,
+                date_required.day,
+            )
             res.append(purchase.id)
 
         return {
@@ -266,13 +277,14 @@ class PurchaseRequestLineMakePurchaseOrderItem(models.TransientModel):
                               string='Purchase Request Line')
     request_id = fields.Many2one('purchase.request',
                                  related='line_id.request_id',
-                                 string='Purchase Request')
+                                 string='Purchase Request',
+                                 readonly=False)
     product_id = fields.Many2one('product.product', string='Product',
-                                 related='line_id.product_id')
+                                 related='line_id.product_id', readonly=False)
     name = fields.Char(string='Description', required=True)
     product_qty = fields.Float(string='Quantity to purchase',
                                digits=dp.get_precision('Product UoS'))
-    product_uom_id = fields.Many2one('product.uom', string='UoM')
+    product_uom_id = fields.Many2one('uom.uom', string='UoM')
     keep_description = fields.Boolean(string='Copy descriptions to new PO',
                                       help='Set true if you want to keep the '
                                            'descriptions provided in the '

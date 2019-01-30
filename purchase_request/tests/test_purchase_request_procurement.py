@@ -1,4 +1,4 @@
-# Copyright 2018 Eficent Business and IT Consulting Services S.L.
+# Copyright 2018-2019 Eficent Business and IT Consulting Services S.L.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
 
 from odoo.tests import common
@@ -13,15 +13,15 @@ class TestPurchaseRequestProcurement(common.SavepointCase):
         # Get required Model
         self.pr_model = self.env['purchase.request']
         self.prl_model = self.env['purchase.request.line']
-        self.product_uom_model = self.env['product.uom']
+        self.product_uom_model = self.env['uom.uom']
         self.location = self.env.ref('stock.stock_location_stock')
 
         # Get required Model data
-        self.uom_unit_categ = self.env.ref('product.product_uom_categ_unit')
+        self.uom_unit_categ = self.env.ref('uom.product_uom_categ_unit')
         self.product_1 = self.env.ref('product.product_product_16')
         self.product_1.purchase_request = True
         self.product_2 = self.env.ref('product.product_product_13')
-        self.uom_unit = self.env.ref('product.product_uom_unit')
+        self.uom_unit = self.env.ref('uom.product_uom_unit')
 
         # Create UoM
         self.uom_ten = self.product_uom_model.create({
@@ -53,7 +53,7 @@ class TestPurchaseRequestProcurement(common.SavepointCase):
         values = {
             'date_planned': fields.Datetime.now(),
             'warehouse_id': self.env.ref('stock.warehouse0'),
-            'route_ids': self.env.ref('purchase.route_warehouse0_buy'),
+            'route_ids': self.env.ref('purchase_stock.route_warehouse0_buy'),
             'company_id': self.env.ref('base.main_company'),
         }
         return self.env['procurement.group'].run(
