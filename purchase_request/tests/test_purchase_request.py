@@ -1,4 +1,4 @@
-# Copyright 2018 Eficent Business and IT Consulting Services S.L.
+# Copyright 2018-2019 Eficent Business and IT Consulting Services S.L.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
 
 from odoo.exceptions import UserError
@@ -20,7 +20,7 @@ class TestPurchaseRequest(common.TransactionCase):
         vals = {
             'request_id': self.purchase_request.id,
             'product_id': self.env.ref('product.product_product_13').id,
-            'product_uom_id': self.env.ref('product.product_uom_unit').id,
+            'product_uom_id': self.env.ref('uom.product_uom_unit').id,
             'product_qty': 5.0,
         }
         self.purchase_request_line_obj.create(vals)
@@ -63,7 +63,7 @@ class TestPurchaseRequest(common.TransactionCase):
         vals = {
             'request_id': purchase_request.id,
             'product_id': self.env.ref('product.product_product_16').id,
-            'product_uom_id': self.env.ref('product.product_uom_unit').id,
+            'product_uom_id': self.env.ref('uom.product_uom_unit').id,
             'product_qty': 5.0,
         }
         self.purchase_request_line_obj.create(vals)
@@ -97,7 +97,7 @@ class TestPurchaseRequest(common.TransactionCase):
             'product_id': self.env.ref(
                 'product.product_product_16').id,
             'product_uom_id': self.env.ref(
-                'product.product_uom_unit').id,
+                'uom.product_uom_unit').id,
             'product_qty': 0.0,
             'request_id': request.id,
         })
