@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright 2018 Eficent Business and IT Consulting Services S.L.
+<!-- Copyright 2018-2019 Eficent Business and IT Consulting Services S.L.
      License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
 <odoo>
 
@@ -35,7 +35,7 @@
                               <field name="name"/>
                               <field name="product_qty"/>
                               <field name="product_uom_id"
-                                     groups="product.group_uom"/>
+                                     groups="uom.group_uom"/>
                               <field name="keep_description"/>
                           </tree>
                      </field>
