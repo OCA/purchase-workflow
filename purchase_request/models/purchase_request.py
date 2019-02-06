@@ -88,7 +88,7 @@ class PurchaseRequest(models.Model):
                                track_visibility='onchange')
     product_id = fields.Many2one('product.product',
                                  related='line_ids.product_id',
-                                 string='Product')
+                                 string='Product', readonly=True)
     state = fields.Selection(selection=_STATES,
                              string='Status',
                              index=True,
