@@ -8,8 +8,10 @@
         <field name="name">purchase.blanket.order.tree</field>
         <field name="model">purchase.blanket.order</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree decoration-info="state in ('draft','to_approve')"
+                  decoration-muted="state in ('expired')">
                 <field name="name"/>
+                <field name="user_id"/>
                 <field name="partner_id"/>
                 <field name="validity_date"/>
                 <field name="state"/>
@@ -26,6 +28,7 @@
                     <button name="%(action_create_purchase_order)d" string="Create Purchase Order"
                         type="action" class="btn-primary"
                         attrs="{'invisible': [('state', '!=', 'open')]}"/>
+                    <button name="set_to_draft" states="open,expired,done" string="To Draft" class="btn-secondary" type="object" />
                     <button name="action_confirm" states="draft" string="Confirm" class="btn-primary o_purchase_confirm" type="object" />
                     <field name="state" widget="statusbar" statusbar_visible="draft,open,expired"/>
                 </header>
@@ -36,6 +39,13 @@
                             class="oe_stat_button"
                             icon="fa-list-alt">
                             <field name="purchase_count" widget="statinfo" string="RFQ/Orders"/>
+                        </button>
+                        <button type="object"
+                            name="action_view_purchase_blanket_order_line"
+                            class="oe_stat_button"
+                            attrs="{'invisible':[('line_count', '=', 0)]}"
+                            icon="fa-list">
+                            <field name="line_count" widget="statinfo" string="Lines"/>
                         </button>
                     </div>
                     <div class="oe_title">
@@ -66,10 +76,10 @@
                     </group>
                     <notebook>
                         <page string="Order Lines">
-                            <field name="lines_ids" mode="tree"
-                                attrs="{'readonly': [('state', 'in', ('open','expired'))]}">
+                            <field name="line_ids" attrs="{'readonly': [('state', 'in', ('open','expired'))]}">
                                 <tree editable="bottom">
                                     <field name="sequence" widget="handle"/>
+                                    <field name="name" invisible="1"/>
                                     <field name="product_id"
                                         context="{'partner_id':parent.partner_id, 'quantity':original_qty, 'company_id': parent.company_id}"
                                        />
@@ -94,6 +104,7 @@
                 </sheet>
                 <div class="oe_chatter">
                     <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
                     <field name="message_ids" widget="mail_thread"/>
                 </div>
             </form>
@@ -144,9 +155,132 @@
             </field>
     </record>
 
+    <record id="purchase_blanket_order_line_tree" model="ir.ui.view">
+        <field name="name">purchase.blanket.order.line.tree</field>
+        <field name="model">purchase.blanket.order.line</field>
+        <field name="arch" type="xml">
+            <tree string="Blanket Order Lines" create="false">
+                <field name="sequence" widget="handle"/>
+                <field name="name" invisible="1"/>
+                <field name="order_id"/>
+                <field name="product_id"
+                    context="{'partner_id':parent.partner_id, 'quantity':original_qty, 'company_id': parent.company_id}"
+                   />
+                <field name="product_uom" invisible="1"/>
+                <field name="price_unit"/>
+                <field name="date_schedule"/>
+                <field name="original_qty"
+                    string="Original Qty"
+                    context="{'partner_id':parent.partner_id, 'quantity':original_qty, 'company_id': parent.company_id}"
+                />
+                <field name="ordered_qty"/>
+                <field name="invoiced_qty"/>
+                <field name="received_qty"/>
+                <field name="remaining_qty"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="purchase_request_line_form" model="ir.ui.view">
+        <field name="name">purchase.request.line.form</field>
+        <field name="model">purchase.blanket.order.line</field>
+        <field name="priority" eval="20"/>
+        <field name="arch" type="xml">
+            <form string="Purchase Request Line" duplicate="false">
+                <sheet>
+                    <h1>
+                        <field name="order_id"/>
+                    </h1>
+                    <group>
+                        <group>
+                            <group>
+                                <field name="product_id" readonly="1"/>
+                                <field name="price_unit" readonly="1"/>
+                                <field name="partner_id" readonly="1"/>
+                                <field name="date_schedule" readonly="1"/>
+                            </group>
+                        </group>
+                        <group>
+                            <label for="original_qty"/>
+                            <div>
+                                <field name="original_qty"
+                                       class="oe_inline" readonly="1"/>
+                                <field name="product_uom"
+                                       groups="product.group_uom"
+                                       class="oe_inline" readonly="1"/>
+                            </div>
+                            <label for="ordered_qty"/>
+                            <div>
+                                <field name="ordered_qty"
+                                       class="oe_inline" readonly="1"/>
+                                <field name="product_uom"
+                                       groups="product.group_uom"
+                                       class="oe_inline" readonly="1"/>
+                            </div>
+                            <label for="invoiced_qty"/>
+                            <div>
+                                <field name="invoiced_qty"
+                                       class="oe_inline" readonly="1"/>
+                                <field name="product_uom"
+                                       groups="product.group_uom"
+                                       class="oe_inline" readonly="1"/>
+                            </div>
+                            <label for="remaining_qty"/>
+                            <div>
+                                <field name="remaining_qty"
+                                       class="oe_inline" readonly="1"/>
+                                <field name="product_uom"
+                                       groups="product.group_uom"
+                                       class="oe_inline" readonly="1"/>
+                            </div>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="purchase_lines" string="Purchase Order Lines">
+                            <field name="purchase_lines" mode="tree"
+                                   readonly="1"
+                                   domain="[('product_id', '=', product_id)]"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                  <field name="message_follower_ids" widget="mail_followers"/>
+                  <field name="activity_ids" widget="mail_activity"/>
+                  <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="purchase_blanket_order_line_search" model="ir.ui.view">
+        <field name="name">purchase.blanket.order.line.search</field>
+        <field name="model">purchase.blanket.order.line</field>
+        <field name="arch" type="xml">
+            <search string="Search Purchase Request">
+                <field name="product_id"/>
+                <field name="date_schedule"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="act_open_purchase_blanket_order_lines_view_tree"
+            model="ir.actions.act_window">
+        <field name="name">Blanket Order Lines</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">purchase.blanket.order.line</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="purchase_blanket_order_line_search"/>
+    </record>
+
     <menuitem id="menu_purchase_blanket_order_config"
         parent="purchase.menu_procurement_management"
         groups="purchase.group_purchase_manager"
         sequence="8"
         action="act_open_purchase_blanket_order_view"/>
+
+    <menuitem
+        action="act_open_purchase_blanket_order_lines_view_tree"
+        id="menu_purchase_request_line"
+        parent="purchase.menu_procurement_management"/>
 </odoo>
