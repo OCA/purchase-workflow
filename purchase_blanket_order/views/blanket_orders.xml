@@ -28,7 +28,8 @@
                     <button name="%(action_create_purchase_order)d" string="Create Purchase Order"
                         type="action" class="btn-primary"
                         attrs="{'invisible': [('state', '!=', 'open')]}"/>
-                    <button name="set_to_draft" states="open,expired,done" string="To Draft" class="btn-secondary" type="object" />
+                    <button name="set_to_draft" states="expired,done" string="To Draft" class="btn-secondary" type="object" />
+                    <button name="action_cancel" states="open" string="Cancel" class="btn-secondary" type="object" />
                     <button name="action_confirm" states="draft" string="Confirm" class="btn-primary o_purchase_confirm" type="object" />
                     <field name="state" widget="statusbar" statusbar_visible="draft,open,expired"/>
                 </header>
@@ -181,12 +182,12 @@
         </field>
     </record>
 
-    <record id="purchase_request_line_form" model="ir.ui.view">
-        <field name="name">purchase.request.line.form</field>
+    <record id="purchase_blanket_order_line_form" model="ir.ui.view">
+        <field name="name">purchase.blanket.order.line.form</field>
         <field name="model">purchase.blanket.order.line</field>
         <field name="priority" eval="20"/>
         <field name="arch" type="xml">
-            <form string="Purchase Request Line" duplicate="false">
+            <form string="Purchase Blanket Order Line" duplicate="false">
                 <sheet>
                     <h1>
                         <field name="order_id"/>
@@ -256,7 +257,7 @@
         <field name="name">purchase.blanket.order.line.search</field>
         <field name="model">purchase.blanket.order.line</field>
         <field name="arch" type="xml">
-            <search string="Search Purchase Request">
+            <search string="Search Purchase Blanket Order Line">
                 <field name="product_id"/>
                 <field name="date_schedule"/>
             </search>
@@ -281,6 +282,7 @@
 
     <menuitem
         action="act_open_purchase_blanket_order_lines_view_tree"
-        id="menu_purchase_request_line"
+        id="menu_purchase_blanket_order_line"
+        sequence="9"
         parent="purchase.menu_procurement_management"/>
 </odoo>
