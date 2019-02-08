@@ -61,18 +61,18 @@ class TestPurchaseBlanketOrders(common.TransactionCase):
                 'price_unit': 0.0,  # will be updated later
             })],
         })
-        blanket_order.onchange_partner_id()
-        blanket_order.line_ids[0].onchange_product()
+        blanket_order.sudo().onchange_partner_id()
+        blanket_order.line_ids[0].sudo().onchange_product()
 
         self.assertEqual(blanket_order.state, 'draft')
         self.assertEqual(blanket_order.line_ids[0].price_unit, 30.0)
 
         # date in the past
         with self.assertRaises(UserError):
-            blanket_order.action_confirm()
+            blanket_order.sudo().action_confirm()
 
         blanket_order.validity_date = fields.Date.to_string(self.tomorrow)
-        blanket_order.action_confirm()
+        blanket_order.sudo().action_confirm()
 
         self.assertEqual(blanket_order.state, 'open')
 
@@ -89,20 +89,20 @@ class TestPurchaseBlanketOrders(common.TransactionCase):
                 'price_unit': 30.0,
             })],
         })
-        blanket_order.onchange_partner_id()
-        blanket_order.action_confirm()
+        blanket_order.sudo().onchange_partner_id()
+        blanket_order.sudo().action_confirm()
 
         wizard1 = self.blanket_order_wiz_obj.with_context(
             active_id=blanket_order.id,
             active_model='purchase.blanket.order').create({})
         wizard1.line_ids[0].write({'qty': 10.0})
-        wizard1.create_purchase_order()
+        wizard1.sudo().create_purchase_order()
 
         wizard2 = self.blanket_order_wiz_obj.with_context(
             active_id=blanket_order.id,
             active_model='purchase.blanket.order').create({})
         wizard2.line_ids[0].write({'qty': 10.0})
-        wizard2.create_purchase_order()
+        wizard2.sudo().create_purchase_order()
 
         self.assertEqual(blanket_order.state, 'done')
 
@@ -133,8 +133,8 @@ class TestPurchaseBlanketOrders(common.TransactionCase):
                 })
             ],
         })
-        blanket_order.onchange_partner_id()
-        blanket_order.action_confirm()
+        blanket_order.sudo().onchange_partner_id()
+        blanket_order.sudo().action_confirm()
 
         bo_lines = self.blanket_order_line_obj.search([])
         self.assertEqual(len(bo_lines), 2)
@@ -144,7 +144,7 @@ class TestPurchaseBlanketOrders(common.TransactionCase):
         self.assertEqual(len(wizard1.line_ids), 2)
         wizard1.line_ids[0].write({'qty': 10.0})
         wizard1.line_ids[1].write({'qty': 20.0})
-        wizard1.create_purchase_order()
+        wizard1.sudo().create_purchase_order()
 
         self.assertEqual(bo_lines[0].remaining_qty, 10.0)
         self.assertEqual(bo_lines[1].remaining_qty, 30.0)

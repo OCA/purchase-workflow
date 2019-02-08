@@ -40,8 +40,7 @@ class BlanketOrderWizard(models.TransientModel):
                 raise UserError(
                     _('The purchase has already been completed.'))
 
-            line_company_id = line.company_id \
-                              and line.company_id.id or False
+            line_company_id = line.company_id and line.company_id.id or False
             if company_id is not False \
                     and line_company_id != company_id:
                 raise UserError(
@@ -88,6 +87,9 @@ class BlanketOrderWizard(models.TransientModel):
     def create_purchase_order(self):
 
         order_lines_by_supplier = defaultdict(list)
+        currency_id = 0
+        user_id = 0
+        payment_term_id = 0
         for line in self.line_ids:
             if line.qty == 0.0:
                 continue
@@ -109,6 +111,21 @@ class BlanketOrderWizard(models.TransientModel):
                     'product_qty': line.qty}
             order_lines_by_supplier[line.partner_id.id].append((0, 0, vals))
 
+            if currency_id == 0:
+                currency_id = line.blanket_line_id.order_id.currency_id.id
+            elif currency_id != line.blanket_line_id.order_id.currency_id.id:
+                currency_id = False
+
+            if user_id == 0:
+                user_id = line.blanket_line_id.user_id.id
+            elif user_id != line.blanket_line_id.user_id.id:
+                user_id = False
+
+            if payment_term_id == 0:
+                payment_term_id = line.blanket_line_id.payment_term_id.id
+            elif payment_term_id != line.blanket_line_id.payment_term_id.id:
+                payment_term_id = False
+
         if not order_lines_by_supplier:
             raise UserError(_('An order can\'t be empty'))
 
@@ -117,18 +134,16 @@ class BlanketOrderWizard(models.TransientModel):
             order_vals = {
                 'partner_id': int(supplier),
             }
-            order_vals.update(self.env['purchase.order'].onchange(
-                order_vals, 'partner_id', {'partner_id': 'true'})['value'])
             if self.blanket_order_id:
                 order_vals.update({
                     'origin': self.blanket_order_id.name,
-                    'currency_id': self.blanket_order_id.currency_id.id,
-                    'payment_term_id': (
-                        self.blanket_order_id.payment_term_id.id
-                        if self.blanket_order_id.payment_term_id
-                        else False),
                 })
             order_vals.update({
+                'user_id': user_id if user_id else False,
+                'currency_id': currency_id if currency_id else False,
+                'payment_term_id': (payment_term_id
+                                    if payment_term_id
+                                    else False),
                 'order_line': order_lines_by_supplier[supplier],
             })
             purchase_order = self.env['purchase.order'].create(order_vals)
