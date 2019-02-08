@@ -6,10 +6,12 @@
         <field name="arch" type="xml">
             <form string="Create Purchase Order">
                 <group>
-                    <field name="lines_ids" nolabel="1">
+                    <field name="line_ids" nolabel="1">
                         <tree create="false" editable="bottom">
                             <field name="product_id"/>
+                            <field name="partner_id"/>
                             <field name="date_schedule"/>
+                            <field name="price_unit"/>
                             <field name="remaining_qty"/>
                             <field name="qty"/>
                         </tree>
@@ -25,11 +27,12 @@
     </record>
 
     <record id="action_create_purchase_order" model="ir.actions.act_window">
-        <field name="name">Create Purchase Order</field>
+        <field name="name">Create RFQ</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">purchase.blanket.order.wizard</field>
         <field name="view_type">form</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
+        <field name="binding_model_id" ref="purchase_blanket_order.model_purchase_blanket_order_line" />
     </record>
 </odoo>
