@@ -26,10 +26,11 @@ class BlanketOrder(models.Model):
     )
     partner_id = fields.Many2one(
         'res.partner', string='Vendor', readonly=True,
+        track_visibility='always',
         states={'draft': [('readonly', False)]})
     line_ids = fields.One2many(
         'purchase.blanket.order.line', 'order_id', string='Order lines',
-        copy=True)
+        track_visibility='always', copy=True)
     line_count = fields.Integer(
         string='Purchase Blanket Order Line count',
         compute='_compute_line_count',
@@ -40,16 +41,18 @@ class BlanketOrder(models.Model):
     payment_term_id = fields.Many2one(
         'account.payment.term', string='Payment Terms', readonly=True,
         states={'draft': [('readonly', False)]})
-    confirmed = fields.Boolean()
+    confirmed = fields.Boolean(copy=False)
     state = fields.Selection(selection=[
         ('draft', 'Draft'),
         ('open', 'Open'),
         ('done', 'Done'),
         ('expired', 'Expired'),
-    ], compute='_compute_state', store=True, copy=False)
+    ], compute='_compute_state', store=True, copy=False,
+        track_visibility='always',)
     validity_date = fields.Date(
         readonly=True,
         states={'draft': [('readonly', False)]},
+        track_visibility='always',
         help="Date until which the blanket order will be valid, after this "
              "date the blanket order will be marked as expired")
     date_order = fields.Datetime(
@@ -184,6 +187,12 @@ class BlanketOrder(models.Model):
             raise UserError(e)
 
     @api.multi
+    def set_to_draft(self):
+        for order in self:
+            order.write({'state': 'draft'})
+        return True
+
+    @api.multi
     def action_confirm(self):
         self._validate()
         for order in self:
@@ -193,6 +202,12 @@ class BlanketOrder(models.Model):
                     force_company=order.company_id.id)
             name = sequence_obj.next_by_code('purchase.blanket.order')
             order.write({'confirmed': True, 'name': name})
+        return True
+
+    @api.multi
+    def action_cancel(self):
+        for order in self:
+            order.write({'state': 'expired'})
         return True
 
     @api.multi
@@ -276,10 +291,6 @@ class BlanketOrder(models.Model):
         res.append(('id', 'in', order_ids.ids))
         return res
 
-    @api.multi
-    def set_to_draft(self):
-        return self.write({'state': 'draft'})
-
 
 class BlanketOrderLine(models.Model):
     _name = 'purchase.blanket.order.line'
@@ -323,6 +334,12 @@ class BlanketOrderLine(models.Model):
     partner_id = fields.Many2one(
         related='order_id.partner_id',
         string='Vendor',
+        readonly=True)
+    user_id = fields.Many2one(
+        related='order_id.user_id', string='Responsible',
+        readonly=True)
+    payment_term_id = fields.Many2one(
+        related='order_id.payment_term_id', string='Payment Terms',
         readonly=True)
 
     def name_get(self):
@@ -416,11 +433,3 @@ class BlanketOrderLine(models.Model):
                     _("Quantity must be greater than zero")
         except AssertionError as e:
             raise UserError(e)
-
-    @api.model
-    def search(self, args, offset=0, limit=None, order=None, count=False):
-        """Add search argument for field type if the context says so. This
-        should be in old API because context argument is not the last one.
-        """
-        return super(BlanketOrderLine, self).search(
-            args, offset=offset, limit=limit, order=order, count=count)
