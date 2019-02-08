@@ -4,7 +4,7 @@
 # Copyright 2017 Serpent Consulting Services Pvt. Ltd.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from openerp import _, api, fields, models
+from openerp import api, fields, models
 
 
 class PurchaseOrder(models.Model):
@@ -74,15 +74,15 @@ class PurchaseOrderLine(models.Model):
     _order = 'sequence, id'
 
     sequence = fields.Integer(
-        string=_("Sequence"),
-        help=_("Gives the sequence of the line when displaying the purchase "
-               "order."),
+        string="Sequence",
+        help="Gives the sequence of the line when displaying the purchase "
+             "order.",
         default=9999,
     )
 
     sequence2 = fields.Integer(
-        string=_("Sequence2"),
-        help=_("Displays the sequence of the line in the purchase order."),
+        string="Sequence2",
+        help="Displays the sequence of the line in the purchase order.",
         related='sequence',
         readonly=True,
     )
