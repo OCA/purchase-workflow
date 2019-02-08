@@ -18,10 +18,12 @@ class PurchaseOrder(models.Model):
         if self.partner_id:
             if self.order_line:
                 for line in self.order_line:
-                    if line.blanket_order_line.partner_id != self.partner_id:
-                        raise ValidationError(_(
-                            'The vendor must be equal to the blanket order '
-                            'lines vendor'))
+                    if line.blanket_order_line:
+                        if line.blanket_order_line.partner_id != \
+                                self.partner_id:
+                            raise ValidationError(_(
+                                'The vendor must be equal to the blanket order'
+                                ' lines vendor'))
 
 
 class PurchaseOrderLine(models.Model):
