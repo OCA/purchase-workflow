@@ -22,6 +22,9 @@ class TestPurchaseRequestProcurement(common.SavepointCase):
         self.product_1.purchase_request = True
         self.product_2 = self.env.ref('product.product_product_13')
         self.uom_unit = self.env.ref('product.product_uom_unit')
+        self.purchase_request_user_group = \
+            self.env.ref('purchase_request.group_purchase_request_user')
+
 
         # Create UoM
         self.uom_ten = self.product_uom_model.create({
@@ -39,6 +42,11 @@ class TestPurchaseRequestProcurement(common.SavepointCase):
             'company_id': False,
         })
 
+        # Create Purchase Request User
+        self.purchase_request_user = self._create_user(
+            'stock_request_user',
+            [self.purchase_request_user_group.id])
+
         # Add supplier to product_1
         self.product_1.write({
             'seller_ids': [(0, 0, {
@@ -49,13 +57,24 @@ class TestPurchaseRequestProcurement(common.SavepointCase):
         })
         self.origin = 'Test'
 
+    def _create_user(self, name, group_ids):
+        return self.env['res.users'].with_context(
+            {'no_reset_password': True}).create(
+            {'name': name,
+             'password': 'demo',
+             'login': name,
+             'email': '@'.join([name, '@test.com']),
+             'groups_id': [(6, 0, group_ids)],
+             })
+
+
     def procurement_group_run(self, name, product, qty):
         values = {
             'date_planned': fields.Datetime.now(),
             'warehouse_id': self.env.ref('stock.warehouse0'),
             'route_ids': self.env.ref('purchase.route_warehouse0_buy'),
             'company_id': self.env.ref('base.main_company'),
-            'requested_by': self.env.ref('1'),
+            'requested_by': self.purchase_request_user,
         }
         return self.env['procurement.group'].run(
             product, qty,
