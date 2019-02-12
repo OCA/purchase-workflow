@@ -1,42 +1,33 @@
-# -*- coding: utf-8 -*-
-#
-#
-#    Authors: Guewen Baconnier
-#    Copyright 2015 Camptocamp SA
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-#
+# Copyright (C) 2015 Camptocamp SA
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from openerp import models, fields, api
+from odoo import api, fields, models
 
 
 class PurchaseOrderType(models.Model):
     _name = 'purchase.order.type'
+    _description = 'Type of purchase order'
+    _order = 'sequence'
 
     @api.model
-    def _get_selection_invoice_method(self):
-        return self.env['purchase.order'].fields_get(
-            allfields=['invoice_method'])['invoice_method']['selection']
+    def _get_domain_sequence_id(self):
+        seq_type = self.env.ref('purchase.seq_purchase_order')
+        return [('code', '=', seq_type.code)]
 
-    def default_invoice_method(self):
-        default_dict = self.env[
-            'purchase.order'].default_get(['invoice_method'])
-        return default_dict.get('invoice_method')
+    @api.model
+    def _default_sequence_id(self):
+        seq_type = self.env.ref('purchase.seq_purchase_order')
+        return seq_type.id
 
     name = fields.Char(required=True)
     active = fields.Boolean(default=True)
-    invoice_method = fields.Selection(
-        selection='_get_selection_invoice_method', string='Create Invoice',
-        required=True, default=default_invoice_method)
+    description = fields.Text(string='Description', translate=True)
+    sequence_id = fields.Many2one(
+        comodel_name='ir.sequence', string='Entry Sequence', copy=False,
+        domain=_get_domain_sequence_id, default=_default_sequence_id,
+        required=True)
+    payment_term_id = fields.Many2one(
+        comodel_name='account.payment.term', string='Payment Terms')
+    incoterm_id = fields.Many2one(
+        comodel_name='stock.incoterms', string='Incoterm')
+    sequence = fields.Integer(default=10)
