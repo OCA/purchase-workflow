@@ -33,8 +33,6 @@ This usage will then be subsequently added to the purchase order.
 For more information about purchase product usage please review the module
 'Purchase Product Usage'.
 
-
-
 **Table of contents**
 
 .. contents::
