@@ -23,13 +23,10 @@ class TestQuickPurchase(TransactionCase):
         self.product_id_2 = self.env.ref('product.product_product_11')
         po_vals = {
             'partner_id': self.partner_id.id,
-            'location_id': self.env.ref('stock.stock_location_locations').id,
         }
-        self.po = self.PurchaseOrder.new(po_vals)
-        onchange_vals = self.po.onchange_partner_id(
-            self.po.partner_id.id)
-        po_vals.update(onchange_vals['value'])
         self.po = self.PurchaseOrder.create(po_vals)
+        self.po.play_onchanges(
+            {'partner_id': self.partner_id.id}, ['partner_id'])
         # test add purchase order line
         self.product_id_1.with_context(
             {'purchase_id': self.po.id}).qty_to_purchase = 5.0
@@ -67,7 +64,7 @@ class TestQuickPurchase(TransactionCase):
 
         # test that add_product open the right action
         product_act_origin = self.env.ref(
-            'quick_purchase.product_product_action')
+            'purchase.product_product_action')
         product_act_from_po = self.po.add_product()
         self.assertEqual(
             product_act_from_po['type'], 'ir.actions.act_window')
