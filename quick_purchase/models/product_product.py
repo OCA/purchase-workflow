@@ -61,7 +61,7 @@ class ProductProduct(models.Model):
 
     def _inverse_set_purchase_qty(self):
         purchase = self.env['purchase.order'].browse(
-            self.env.context.get('purchase_id'))
+            self._context.get('purchase_id'))
         for product in self:
             purchase_line = self._get_purchase_line(purchase)
             if purchase_line:
