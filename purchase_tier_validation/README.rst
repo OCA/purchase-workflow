@@ -65,6 +65,7 @@ Contributors
 ------------
 
 * Lois Rilo <lois.rilo@eficent.com>
+* Naglis Jonaitis <naglis@versada.eu>
 
 Do not contact contributors directly about support or help with technical issues.
 
