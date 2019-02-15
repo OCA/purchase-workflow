@@ -23,6 +23,7 @@
                 <field name="validated" invisible="1"/>
                 <field name="rejected" invisible="1"/>
                 <div class="alert alert-warning"
+                     role="alert"
                      attrs="{'invisible': ['|', '|', '|',
                      ('validated', '=', True), ('state', 'not in', ['draft','sent','to approve']),
                      ('rejected', '=', True), ('review_ids', '=', [])]}"
@@ -45,11 +46,13 @@
                     </p>
                 </div>
                 <div class="alert alert-success"
+                     role="alert"
                      attrs="{'invisible': ['|', '|', ('validated', '!=', True), ('state', 'not in', ['draft','sent','to approve']), ('review_ids', '=', [])]}"
                      style="margin-bottom:0px;">
                     <p><i class="fa fa-thumbs-up"/> Operation has been <b>validated</b>!</p>
                 </div>
                 <div class="alert alert-danger"
+                     role="alert"
                      attrs="{'invisible': ['|', '|', ('rejected', '!=', True), ('state', 'not in', ['draft','sent','to approve']), ('review_ids', '=', [])]}"
                      style="margin-bottom:0px;">
                     <p><i class="fa fa-thumbs-down"/> Operation has been <b>rejected</b>.</p>
@@ -66,7 +69,7 @@
         <field name="model">purchase.order</field>
         <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
         <field name="arch" type="xml">
-            <filter name="message_needaction" position="after">
+            <filter name="invoiced" position="after">
                 <filter name="needs_review" string="Needs my Review"
                         domain="[('reviewer_ids','in',uid), ('state', 'not in', ['done', 'cancel','to approve'])]"
                         help="My Purchases to review"/>
