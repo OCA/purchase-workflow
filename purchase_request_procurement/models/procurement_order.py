@@ -92,6 +92,8 @@ class ProcurementOrder(models.Model):
             req = purchase_request_model.create(request_data)
             self.message_post(body=_("Purchase Request created"))
             self.request_id = req
+        else:
+            self.request_id = pr
         request_line_data = self._prepare_purchase_request_line()
         purchase_request_line_model.create(request_line_data),
         self.message_post(body=_("Purchase Request extended."))
