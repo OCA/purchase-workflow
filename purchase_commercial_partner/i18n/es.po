@@ -19,8 +19,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: purchase_commercial_partner
-#: model:ir.model.fields,field_description:purchase_commercial_partner.field_purchase_order_commercial_partner_id
-#: model:ir.ui.view,arch_db:purchase_commercial_partner.view_purchase_order_filter
+#: model:ir.model.fields,field_description:purchase_commercial_partner.field_purchase_order__commercial_partner_id
+#: model_terms:ir.ui.view,arch_db:purchase_commercial_partner.view_purchase_order_filter
 msgid "Commercial Vendor"
 msgstr ""
 
