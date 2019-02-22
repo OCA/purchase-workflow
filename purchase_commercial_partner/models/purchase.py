@@ -10,4 +10,4 @@ class PurchaseOrder(models.Model):
 
     commercial_partner_id = fields.Many2one(
         'res.partner', related='partner_id.commercial_partner_id', store=True,
-        index=True, string='Commercial Vendor', readonly=True)
+        index=True, string='Commercial Vendor')
