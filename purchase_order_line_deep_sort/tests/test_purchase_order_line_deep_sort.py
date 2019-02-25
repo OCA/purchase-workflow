@@ -12,17 +12,18 @@ class TestPurchaseOrderLineDeepSort(common.SavepointCase):
 
         po_model = cls.env['purchase.order']
         cls.po_line_model = cls.env['purchase.order.line']
-        cls.product_1 = cls.env['product.product'].create({
+        cls.product_obj = cls.env['product.product']
+        cls.product_1 = cls.product_obj.create({
             'name': 'Test product 1',
             'default_code': 'CDE',
             'standard_price': 7.5,
         })
-        cls.product_2 = cls.env['product.product'].create({
+        cls.product_2 = cls.product_obj.create({
             'name': 'Test product 2',
             'default_code': 'BCD',
             'standard_price': 7.3,
         })
-        cls.product_3 = cls.env['product.product'].create({
+        cls.product_3 = cls.product_obj.create({
             'name': 'Test product 3',
             'default_code': 'ABC',
             'standard_price': 7.4,
