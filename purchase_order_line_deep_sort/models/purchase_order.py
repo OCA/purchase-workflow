@@ -1,4 +1,5 @@
 # Copyright 2018 Tecnativa - Vicent Cubells <vicent.cubells@tecnativa.com>
+# Copyright 2019 Tecnativa - Pedro M. Baeza
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3
 
 from odoo import api, fields, models
@@ -27,13 +28,22 @@ class PurchaseOrder(models.Model):
 
     @api.multi
     def _sort_purchase_line(self):
+        def resolve_subfields(obj, line_order):
+            subfields = line_order.split('.')
+            res = obj
+            for subfield in subfields:
+                res = getattr(res, subfield)
+            return res
+
         if not self.line_order and not self.line_direction:
             return
-        order = self.line_order
         reverse = self.line_direction == 'desc'
         sequence = 0
-        key = eval("lambda p: p.%s" % order)
-        for line in self.order_line.sorted(key=key, reverse=reverse):
+        sorted_lines = self.order_line.sorted(
+            key=lambda p: resolve_subfields(p, self.line_order),
+            reverse=reverse,
+        )
+        for line in sorted_lines:
             sequence += 10
             line.sequence = sequence
 
