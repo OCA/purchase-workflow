@@ -54,24 +54,25 @@
                             <field name="name" readonly="1"/>
                         </h1>
                     </div>
-                    <group name="Group Top">
-                        <group name="Group Top-Left">
+                    <group name="group_top">
+                        <group name="group_top_left">
                             <field name="partner_id" domain="[('supplier','=',True)]"
                                    attrs="{'required': [('state', '=', 'draft')]}"
                                    context="{'search_default_supplier':1, 'show_address': 1}"
                                    options='{"always_reload": True}'/>
                             <field name="payment_term_id"/>
                         </group>
-                        <group name="Group Top-Right">
+                        <group name="group_top_right">
+                            <field name="currency_id" groups="base.group_multi_currency" options="{'no_create': True}"/>
                             <field name="user_id"/>
-                            <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
+                            <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
                         </group>
                     </group>
-                    <group name="Group Bottom">
-                        <group name="Group Bottom-Left">
+                    <group name="group_bottom">
+                        <group name="group_bottom_left">
                             <field name="date_order" attrs="{'required': [('state', '=', 'draft')]}"/>
                         </group>
-                        <group name="Group Bottom-Right">
+                        <group name="group_bottom_right">
                             <field name="validity_date" attrs="{'required': [('state', '=', 'draft')]}"/>
                         </group>
                     </group>
@@ -82,19 +83,19 @@
                                     <field name="sequence" widget="handle"/>
                                     <field name="name" invisible="1"/>
                                     <field name="product_id"
-                                        context="{'partner_id':parent.partner_id, 'quantity':original_qty, 'company_id': parent.company_id}"
+                                        context="{'partner_id':parent.partner_id, 'quantity':original_uom_qty, 'company_id': parent.company_id}"
                                        />
+                                    <field name="original_uom_qty"
+                                        string="Original Qty"
+                                        context="{'partner_id':parent.partner_id, 'quantity':original_uom_qty, 'company_id': parent.company_id}"
+                                    />
                                     <field name="product_uom"/>
                                     <field name="price_unit"/>
                                     <field name="date_schedule"/>
-                                    <field name="original_qty"
-                                        string="Original Qty"
-                                        context="{'partner_id':parent.partner_id, 'quantity':original_qty, 'company_id': parent.company_id}"
-                                    />
-                                    <field name="ordered_qty"/>
-                                    <field name="invoiced_qty"/>
-                                    <field name="received_qty"/>
-                                    <field name="remaining_qty"/>
+                                    <field name="ordered_uom_qty"/>
+                                    <field name="invoiced_uom_qty"/>
+                                    <field name="received_uom_qty"/>
+                                    <field name="remaining_uom_qty"/>
                                 </tree>
                             </field>
                             <separator string="Terms and Conditions"/>
@@ -117,21 +118,30 @@
         <field name="model">purchase.blanket.order</field>
         <field name="arch" type="xml">
             <search>
-                <filter name="original_qty"
+                <filter name="state_open"
+                        string="Open"
+                        domain="[('state','=', 'open')]"/>
+                <filter name="original_uom_qty"
                         string="Original Qty"
-                        domain="[('original_qty','>',0.0)]"/>
-                <filter name="ordered_qty"
+                        domain="[('original_uom_qty','>',0.0)]"/>
+                <filter name="ordered_uom_qty"
                         string="Ordered Qty"
-                        domain="[('ordered_qty','>',0.0)]"/>
-                <filter name="invoiced_qty"
+                        domain="[('ordered_uom_qty','>',0.0)]"/>
+                <filter name="invoiced_uom_qty"
                         string="Invoiced Qty"
-                        domain="[('invoiced_qty','>',0.0)]"/>
-                <filter name="received_qty"
+                        domain="[('invoiced_uom_qty','>',0.0)]"/>
+                <filter name="received_uom_qty"
                         string="Received Qty"
-                        domain="[('received_qty','>',0.0)]"/>
-                <filter name="remaining_qty"
+                        domain="[('received_uom_qty','>',0.0)]"/>
+                <filter name="remaining_uom_qty"
                         string="Remaining Qty"
-                        domain="[('remaining_qty','>',0.0)]"/>
+                        domain="[('remaining_uom_qty','>',0.0)]"/>
+                <group>
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="product_id"/>
+                    <field name="state"/>
+                </group>
             </search>
         </field>
     </record>
@@ -165,19 +175,19 @@
                 <field name="name" invisible="1"/>
                 <field name="order_id"/>
                 <field name="product_id"
-                    context="{'partner_id':parent.partner_id, 'quantity':original_qty, 'company_id': parent.company_id}"
+                    context="{'partner_id':parent.partner_id, 'quantity':original_uom_qty, 'company_id': parent.company_id}"
                    />
                 <field name="product_uom" invisible="1"/>
                 <field name="price_unit"/>
                 <field name="date_schedule"/>
-                <field name="original_qty"
+                <field name="original_uom_qty"
                     string="Original Qty"
-                    context="{'partner_id':parent.partner_id, 'quantity':original_qty, 'company_id': parent.company_id}"
+                    context="{'partner_id':parent.partner_id, 'quantity':original_uom_qty, 'company_id': parent.company_id}"
                 />
-                <field name="ordered_qty"/>
-                <field name="invoiced_qty"/>
-                <field name="received_qty"/>
-                <field name="remaining_qty"/>
+                <field name="ordered_uom_qty"/>
+                <field name="invoiced_uom_qty"/>
+                <field name="received_uom_qty"/>
+                <field name="remaining_uom_qty"/>
             </tree>
         </field>
     </record>
@@ -202,25 +212,33 @@
                             </group>
                         </group>
                         <group>
-                            <label for="original_qty"/>
+                            <label for="original_uom_qty"/>
                             <div>
-                                <field name="original_qty"
+                                <field name="original_uom_qty"
                                        class="oe_inline" readonly="1"/>
                                 <field name="product_uom"
                                        groups="product.group_uom"
                                        class="oe_inline" readonly="1"/>
                             </div>
-                            <label for="ordered_qty"/>
+                            <label for="ordered_uom_qty"/>
                             <div>
-                                <field name="ordered_qty"
+                                <field name="ordered_uom_qty"
                                        class="oe_inline" readonly="1"/>
                                 <field name="product_uom"
                                        groups="product.group_uom"
                                        class="oe_inline" readonly="1"/>
                             </div>
-                            <label for="invoiced_qty"/>
+                            <label for="invoiced_uom_qty"/>
                             <div>
-                                <field name="invoiced_qty"
+                                <field name="invoiced_uom_qty"
+                                       class="oe_inline" readonly="1"/>
+                                <field name="product_uom"
+                                       groups="product.group_uom"
+                                       class="oe_inline" readonly="1"/>
+                            </div>
+                            <label for="remaining_uom_qty"/>
+                            <div>
+                                <field name="remaining_uom_qty"
                                        class="oe_inline" readonly="1"/>
                                 <field name="product_uom"
                                        groups="product.group_uom"
@@ -229,9 +247,6 @@
                             <label for="remaining_qty"/>
                             <div>
                                 <field name="remaining_qty"
-                                       class="oe_inline" readonly="1"/>
-                                <field name="product_uom"
-                                       groups="product.group_uom"
                                        class="oe_inline" readonly="1"/>
                             </div>
                         </group>
