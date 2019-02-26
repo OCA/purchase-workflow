@@ -1,5 +1,7 @@
 # Copyright (C) 2018 Eficent Business and IT Consulting Services S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+from datetime import datetime
+
 from odoo import fields, models, api, _
 from odoo.exceptions import UserError
 from odoo.tools import float_is_zero
@@ -36,8 +38,12 @@ class BlanketOrder(models.Model):
         compute='_compute_line_count',
         readonly=True
     )
+    product_id = fields.Many2one('product.product',
+                                 related='line_ids.product_id',
+                                 string='Product')
     currency_id = fields.Many2one(
-        'res.currency', related='company_id.currency_id', readonly=True)
+        'res.currency', required=True,
+        default=lambda self: self.env.user.company_id.currency_id.id)
     payment_term_id = fields.Many2one(
         'account.payment.term', string='Payment Terms', readonly=True,
         states={'draft': [('readonly', False)]})
@@ -75,21 +81,21 @@ class BlanketOrder(models.Model):
     purchase_count = fields.Integer(compute='_compute_purchase_count')
 
     # Fields use to filter in tree view
-    original_qty = fields.Float(
-        string='Original quantity', compute='_compute_original_qty',
-        search='_search_original_qty')
-    ordered_qty = fields.Float(
-        string='Ordered quantity', compute='_compute_ordered_qty',
-        search='_search_ordered_qty')
-    invoiced_qty = fields.Float(
-        string='Invoiced quantity', compute='_compute_invoiced_qty',
-        search='_search_invoiced_qty')
-    remaining_qty = fields.Float(
-        string='Remaining quantity', compute='_compute_remaining_qty',
-        search='_search_remaining_qty')
-    received_qty = fields.Float(
-        string='Delivered quantity', compute='_compute_received_qty',
-        search='_search_received_qty')
+    original_uom_qty = fields.Float(
+        string='Original quantity', compute='_compute_uom_qty',
+        search='_search_original_uom_qty')
+    ordered_uom_qty = fields.Float(
+        string='Ordered quantity', compute='_compute_uom_qty',
+        search='_search_ordered_uom_qty')
+    invoiced_uom_qty = fields.Float(
+        string='Invoiced quantity', compute='_compute_uom_qty',
+        search='_search_invoiced_uom_qty')
+    remaining_uom_qty = fields.Float(
+        string='Remaining quantity', compute='_compute_uom_qty',
+        search='_search_remaining_uom_qty')
+    received_uom_qty = fields.Float(
+        string='Received quantity', compute='_compute_uom_qty',
+        search='_search_received_uom_qty')
 
     @api.multi
     def _get_purchase_orders(self):
@@ -107,7 +113,7 @@ class BlanketOrder(models.Model):
 
     @api.multi
     @api.depends(
-        'line_ids.remaining_qty',
+        'line_ids.remaining_uom_qty',
         'validity_date',
         'confirmed',
     )
@@ -120,31 +126,19 @@ class BlanketOrder(models.Model):
                 order.state = 'draft'
             elif order.validity_date <= today:
                 order.state = 'expired'
-            elif float_is_zero(sum(order.line_ids.mapped('remaining_qty')),
+            elif float_is_zero(sum(order.line_ids.mapped('remaining_uom_qty')),
                                precision_digits=precision):
                 order.state = 'done'
             else:
                 order.state = 'open'
 
-    def _compute_original_qty(self):
+    def _compute_uom_qty(self):
         for bo in self:
-            bo.original_qty = sum(bo.mapped('order_id.original_qty'))
-
-    def _compute_ordered_qty(self):
-        for bo in self:
-            bo.ordered_qty = sum(bo.mapped('order_id.ordered_qty'))
-
-    def _compute_invoiced_qty(self):
-        for bo in self:
-            bo.invoiced_qty = sum(bo.mapped('order_id.invoiced_qty'))
-
-    def _compute_received_qty(self):
-        for bo in self:
-            bo.received_qty = sum(bo.mapped('order_id.received_qty'))
-
-    def _compute_remaining_qty(self):
-        for bo in self:
-            bo.remaining_qty = sum(bo.mapped('order_id.remaining_qty'))
+            bo.original_uom_qty = sum(bo.mapped('line_ids.original_uom_qty'))
+            bo.ordered_uom_qty = sum(bo.mapped('line_ids.ordered_uom_qty'))
+            bo.invoiced_uom_qty = sum(bo.mapped('line_ids.invoiced_uom_qty'))
+            bo.received_uom_qty = sum(bo.mapped('line_ids.received_uom_qty'))
+            bo.remaining_uom_qty = sum(bo.mapped('line_ids.remaining_uom_qty'))
 
     @api.multi
     @api.onchange('partner_id')
@@ -242,51 +236,51 @@ class BlanketOrder(models.Model):
         expired_orders.recompute()
 
     @api.model
-    def _search_original_qty(self, operator, value):
+    def _search_original_uom_qty(self, operator, value):
         bo_line_obj = self.env['purchase.blanket.order.line']
         res = []
         bo_lines = bo_line_obj.search(
-            [('original_qty', operator, value)])
+            [('original_uom_qty', operator, value)])
         order_ids = bo_lines.mapped('order_id')
         res.append(('id', 'in', order_ids.ids))
         return res
 
     @api.model
-    def _search_ordered_qty(self, operator, value):
+    def _search_ordered_uom_qty(self, operator, value):
         bo_line_obj = self.env['purchase.blanket.order.line']
         res = []
         bo_lines = bo_line_obj.search(
-            [('ordered_qty', operator, value)])
+            [('ordered_uom_qty', operator, value)])
         order_ids = bo_lines.mapped('order_id')
         res.append(('id', 'in', order_ids.ids))
         return res
 
     @api.model
-    def _search_invoiced_qty(self, operator, value):
+    def _search_invoiced_uom_qty(self, operator, value):
         bo_line_obj = self.env['purchase.blanket.order.line']
         res = []
         bo_lines = bo_line_obj.search(
-            [('invoiced_qty', operator, value)])
+            [('invoiced_uom_qty', operator, value)])
         order_ids = bo_lines.mapped('order_id')
         res.append(('id', 'in', order_ids.ids))
         return res
 
     @api.model
-    def _search_received_qty(self, operator, value):
+    def _search_received_uom_qty(self, operator, value):
         bo_line_obj = self.env['purchase.blanket.order.line']
         res = []
         bo_lines = bo_line_obj.search(
-            [('received_qty', operator, value)])
+            [('received_uom_qty', operator, value)])
         order_ids = bo_lines.mapped('order_id')
         res.append(('id', 'in', order_ids.ids))
         return res
 
     @api.model
-    def _search_remaining_qty(self, operator, value):
+    def _search_remaining_uom_qty(self, operator, value):
         bo_line_obj = self.env['purchase.blanket.order.line']
         res = []
         bo_lines = bo_line_obj.search(
-            [('remaining_qty', operator, value)])
+            [('remaining_uom_qty', operator, value)])
         order_ids = bo_lines.mapped('order_id')
         res.append(('id', 'in', order_ids.ids))
         return res
@@ -305,21 +299,25 @@ class BlanketOrderLine(models.Model):
         'product.product', string='Product', required=True)
     product_uom = fields.Many2one(
         'product.uom', string='Unit of Measure', required=True)
-    price_unit = fields.Float(string='Price', required=True)
+    price_unit = fields.Float(string='Price', required=True,
+                              digits=dp.get_precision('Product Price'))
     date_schedule = fields.Date(string='Scheduled Date')
-    original_qty = fields.Float(
+    original_uom_qty = fields.Float(
         string='Original quantity', required=True, default=1.0,
         digits=dp.get_precision('Product Unit of Measure'))
-    ordered_qty = fields.Float(
+    ordered_uom_qty = fields.Float(
         string='Ordered quantity', compute='_compute_quantities',
         store=True)
-    invoiced_qty = fields.Float(
+    invoiced_uom_qty = fields.Float(
         string='Invoiced quantity', compute='_compute_quantities',
         store=True)
-    remaining_qty = fields.Float(
+    remaining_uom_qty = fields.Float(
         string='Remaining quantity', compute='_compute_quantities',
         store=True)
-    received_qty = fields.Float(
+    remaining_qty = fields.Float(
+        string='Remaining quantity in base UoM', compute='_compute_quantities',
+        store=True)
+    received_uom_qty = fields.Float(
         string='Received quantity', compute='_compute_quantities',
         store=True)
     purchase_lines = fields.One2many(
@@ -330,7 +328,7 @@ class BlanketOrderLine(models.Model):
         'res.company', related='order_id.company_id', store=True,
         readonly=True)
     currency_id = fields.Many2one(
-        'res.currency', related='company_id.currency_id', readonly=True)
+        'res.currency', related='order_id.currency_id', readonly=True)
     partner_id = fields.Many2one(
         related='order_id.partner_id',
         string='Vendor',
@@ -342,15 +340,24 @@ class BlanketOrderLine(models.Model):
         related='order_id.payment_term_id', string='Payment Terms',
         readonly=True)
 
+    def _format_date(self, date):
+        # format date following user language
+        lang_model = self.env['res.lang']
+        lang = lang_model._lang_get(self.env.user.lang)
+        date_format = lang.date_format
+        return datetime.strftime(
+            fields.Date.from_string(date), date_format)
+
     def name_get(self):
-        """Return special label when showing fields in chart update wizard."""
         result = []
         if self.env.context.get('from_purchase_order'):
             for record in self:
-                res = "[%s] - Date Scheduled: %s (remaining: %s)" % (
-                    record.order_id.name,
-                    record.date_schedule,
-                    str(record.remaining_qty))
+                res = "[%s]" % record.order_id.name
+                if record.date_schedule:
+                    formatted_date = self._format_date(record.date_schedule)
+                    res += ' - %s: %s' % (
+                        _('Date Scheduled'), formatted_date)
+                res += ' (%s: %s)' % (_('remaining'), record.remaining_uom_qty)
                 result.append((record.id, res))
             return result
         return super(BlanketOrderLine, self).name_get()
@@ -360,7 +367,7 @@ class BlanketOrderLine(models.Model):
 
         seller = product._select_seller(
             partner_id=self.order_id.partner_id,
-            quantity=self.original_qty,
+            quantity=self.original_uom_qty,
             date=self.order_id.date_order and self.order_id.date_order[:10],
             uom_id=self.product_uom)
 
@@ -384,7 +391,7 @@ class BlanketOrderLine(models.Model):
         return price_unit
 
     @api.multi
-    @api.onchange('product_id', 'original_qty')
+    @api.onchange('product_id', 'original_uom_qty')
     def onchange_product(self):
         precision = self.env['decimal.precision'].precision_get(
             'Product Unit of Measure')
@@ -405,23 +412,34 @@ class BlanketOrderLine(models.Model):
         'purchase_lines.order_id.state',
         'purchase_lines.blanket_order_line',
         'purchase_lines.product_qty',
+        'purchase_lines.product_uom',
         'purchase_lines.qty_received',
         'purchase_lines.qty_invoiced',
-        'original_qty',
+        'original_uom_qty',
+        'product_uom',
     )
     def _compute_quantities(self):
         for line in self:
             purchase_lines = line.purchase_lines
-            line.ordered_qty = sum(l.product_qty for l in purchase_lines if
-                                   l.order_id.state != 'cancel' and
-                                   l.product_id == line.product_id)
-            line.invoiced_qty = sum(l.qty_invoiced for l in purchase_lines if
-                                    l.order_id.state != 'cancel' and
-                                    l.product_id == line.product_id)
-            line.received_qty = sum(l.qty_received for l in purchase_lines if
-                                    l.order_id.state != 'cancel' and
-                                    l.product_id == line.product_id)
-            line.remaining_qty = max(line.original_qty - line.ordered_qty, 0.0)
+            line.ordered_uom_qty = sum(
+                l.product_uom._compute_quantity(
+                    l.product_qty, line.product_uom)
+                for l in purchase_lines if l.order_id.state != 'cancel' and
+                l.product_id == line.product_id)
+            line.invoiced_uom_qty = sum(
+                l.product_uom._compute_quantity(
+                    l.qty_invoiced, line.product_uom)
+                for l in purchase_lines if l.order_id.state != 'cancel' and
+                l.product_id == line.product_id)
+            line.received_uom_qty = sum(
+                l.product_uom._compute_quantity(
+                    l.qty_received, line.product_uom)
+                for l in purchase_lines if l.order_id.state != 'cancel' and
+                l.product_id == line.product_id)
+            line.remaining_uom_qty = line.original_uom_qty - \
+                line.ordered_uom_qty
+            line.remaining_qty = line.product_id.uom_id._compute_quantity(
+                line.remaining_uom_qty, line.product_uom)
 
     @api.multi
     def _validate(self):
@@ -429,7 +447,7 @@ class BlanketOrderLine(models.Model):
             for line in self:
                 assert line.price_unit > 0.0, \
                     _("Price must be greater than zero")
-                assert line.original_qty > 0.0, \
+                assert line.original_uom_qty > 0.0, \
                     _("Quantity must be greater than zero")
         except AssertionError as e:
             raise UserError(e)
