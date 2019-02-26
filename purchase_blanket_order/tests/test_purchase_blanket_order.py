@@ -57,7 +57,7 @@ class TestPurchaseBlanketOrders(common.TransactionCase):
             'line_ids': [(0, 0, {
                 'product_id': self.product.id,
                 'product_uom': self.product.uom_id.id,
-                'original_qty': 20.0,
+                'original_uom_qty': 20.0,
                 'price_unit': 0.0,  # will be updated later
             })],
         })
@@ -85,7 +85,7 @@ class TestPurchaseBlanketOrders(common.TransactionCase):
             'line_ids': [(0, 0, {
                 'product_id': self.product.id,
                 'product_uom': self.product.uom_id.id,
-                'original_qty': 20.0,
+                'original_uom_qty': 20.0,
                 'price_unit': 30.0,
             })],
         })
@@ -123,12 +123,12 @@ class TestPurchaseBlanketOrders(common.TransactionCase):
                 (0, 0, {
                     'product_id': self.product.id,
                     'product_uom': self.product.uom_id.id,
-                    'original_qty': 20.0,
+                    'original_uom_qty': 20.0,
                     'price_unit': 30.0,
                 }), (0, 0, {
                     'product_id': self.product2.id,
                     'product_uom': self.product2.uom_id.id,
-                    'original_qty': 50.0,
+                    'original_uom_qty': 50.0,
                     'price_unit': 60.0,
                 })
             ],
@@ -146,5 +146,5 @@ class TestPurchaseBlanketOrders(common.TransactionCase):
         wizard1.line_ids[1].write({'qty': 20.0})
         wizard1.sudo().create_purchase_order()
 
-        self.assertEqual(bo_lines[0].remaining_qty, 10.0)
-        self.assertEqual(bo_lines[1].remaining_qty, 30.0)
+        self.assertEqual(bo_lines[0].remaining_uom_qty, 10.0)
+        self.assertEqual(bo_lines[1].remaining_uom_qty, 30.0)

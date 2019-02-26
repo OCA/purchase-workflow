@@ -23,9 +23,17 @@
                     <strong>Validity Date:</strong>
                     <p t-field="doc.validity_date"/>
                 </div>
+                <div t-if="doc.payment_term_id" class="col-xs-3">
+                    <strong>Payment Terms:</strong>
+                    <p t-field="doc.payment_term_id"/>
+                </div>
                 <div t-if="doc.user_id.name" class="col-xs-3">
                     <strong>Purchase person:</strong>
                     <p t-field="doc.user_id"/>
+                </div>
+                <div t-if="doc.currency_id" class="col-xs-3">
+                    <strong>Currency:</strong>
+                    <p t-field="doc.currency_id"/>
                 </div>
             </div>
 
@@ -34,18 +42,22 @@
                     <tr>
                         <th>Product</th>
                         <th class="text-right">Unit Price</th>
+                        <th class="text-center">Scheduled Date</th>
                         <th class="text-right">Original Qty</th>
                     </tr>
                </thead>
                <tbody class="purchase_tbody">
-                    <t t-foreach="doc.lines_ids" t-as="l">
+                    <t t-foreach="doc.line_ids" t-as="l">
                         <tr>
                             <td><span t-field="l.product_id"/></td>
                             <td class="text-right">
                                 <span t-field="l.price_unit"/>
                             </td>
+                            <td class="text-center">
+                                <span t-field="l.date_schedule"/>
+                            </td>
                             <td class="text-right">
-                                <span t-field="l.original_qty"/>
+                                <span t-field="l.original_uom_qty"/>
                                 <span t-field="l.product_uom" groups="product.group_uom"/>
                             </td>
                         </tr>
