@@ -88,7 +88,6 @@ class BlanketOrderWizard(models.TransientModel):
 
         order_lines_by_supplier = defaultdict(list)
         currency_id = 0
-        user_id = 0
         payment_term_id = 0
         for line in self.line_ids:
             if line.qty == 0.0:
@@ -108,18 +107,14 @@ class BlanketOrderWizard(models.TransientModel):
                     'sequence': line.blanket_line_id.sequence,
                     'price_unit': line.blanket_line_id.price_unit,
                     'blanket_order_line': line.blanket_line_id.id,
-                    'product_qty': line.qty}
+                    'product_qty': line.qty,
+                    'taxes_id': [(6, 0, line.taxes_id.ids)]}
             order_lines_by_supplier[line.partner_id.id].append((0, 0, vals))
 
             if currency_id == 0:
                 currency_id = line.blanket_line_id.order_id.currency_id.id
             elif currency_id != line.blanket_line_id.order_id.currency_id.id:
                 currency_id = False
-
-            if user_id == 0:
-                user_id = line.blanket_line_id.user_id.id
-            elif user_id != line.blanket_line_id.user_id.id:
-                user_id = False
 
             if payment_term_id == 0:
                 payment_term_id = line.blanket_line_id.payment_term_id.id
@@ -128,6 +123,10 @@ class BlanketOrderWizard(models.TransientModel):
 
         if not order_lines_by_supplier:
             raise UserError(_('An order can\'t be empty'))
+
+        if not currency_id:
+            raise UserError(_('Can not create Purchase Order from Blanket '
+                              'Order lines with different currencies'))
 
         res = []
         for supplier in order_lines_by_supplier:
@@ -139,7 +138,6 @@ class BlanketOrderWizard(models.TransientModel):
                     'origin': self.blanket_order_id.name,
                 })
             order_vals.update({
-                'user_id': user_id if user_id else False,
                 'currency_id': currency_id if currency_id else False,
                 'payment_term_id': (payment_term_id
                                     if payment_term_id
@@ -177,8 +175,14 @@ class BlanketOrderWizardLine(models.TransientModel):
     qty = fields.Float(string='Quantity to Order', required=True)
     price_unit = fields.Float(
         related='blanket_line_id.price_unit', readonly=True)
+    currency_id = fields.Many2one(
+        'res.currency', related='blanket_line_id.currency_id'
+    )
     partner_id = fields.Many2one(
         'res.partner',
         related='blanket_line_id.partner_id',
         string='Vendor', readonly=True,
     )
+    taxes_id = fields.Many2many(
+        'account.tax', related="blanket_line_id.taxes_id",
+        readonly=True)
