@@ -48,60 +48,22 @@ class PurchaseOrderLine(models.Model):
         'Blanket Order Line',
         copy=False)
 
-    @api.multi
-    def _get_assigned_bo_line(self):
-        self.ensure_one()
-        eligible_bo_lines = self.get_eligible_bo_lines()
-        if eligible_bo_lines:
-            if not self.blanket_order_line or self.blanket_order_line \
-                    not in eligible_bo_lines or \
-                    self.blanket_order_line.product_id != self.product_id:
-                self.blanket_order_line = \
-                    self.get_assigned_bo_line(eligible_bo_lines)
-                if self.blanket_order_line.date_schedule:
-                    self.date_planned = self.blanket_order_line.date_schedule
-        else:
-            self.blanket_order_line = False
-        return {'domain': {'blanket_order_line': [
-            ('id', 'in', eligible_bo_lines.ids)]}}
-
-    @api.onchange('product_id', 'partner_id')
-    def onchange_product_id(self):
-        res = super(PurchaseOrderLine, self).onchange_product_id()
-        # If product has changed remove the relation with blanket order line
-        if self.product_id:
-            return self._get_assigned_bo_line()
-        return res
-
-    @api.onchange('product_qty', 'product_uom')
-    def _onchange_quantity(self):
-        res = super(PurchaseOrderLine, self)._onchange_quantity()
-        if self.product_id:
-            return self._get_assigned_bo_line()
-        return res
-
-    @api.onchange('blanket_order_line')
-    def onchange_blanket_order_line(self):
-        if self.blanket_order_line:
-            self.product_id = self.blanket_order_line.product_id
-            self.order_id.partner_id = self.blanket_order_line.partner_id
-            if self.blanket_order_line.date_schedule:
-                self.date_schedule = self.blanket_order_line.date_schedule
-
-    def get_assigned_bo_line(self, bo_lines):
+    def _get_assigned_bo_line(self, bo_lines):
         # We get the blanket order line with enough quantity and closest
         # scheduled date
         assigned_bo_line = False
-        today = date.today()
+        date_planned = fields.Date.from_string(self.date_planned) or \
+            date.today()
         date_delta = timedelta(days=365)
         for line in bo_lines:
             date_schedule = fields.Date.from_string(line.date_schedule)
-            if date_schedule and date_schedule - today < date_delta:
+            if date_schedule and \
+                    abs(date_schedule - date_planned) < date_delta:
                 assigned_bo_line = line
-                date_delta = date_schedule - today
+                date_delta = abs(date_schedule - date_planned)
         return assigned_bo_line
 
-    def get_eligible_bo_lines(self):
+    def _get_eligible_bo_lines(self):
         base_qty = self.product_uom._compute_quantity(
             self.product_qty, self.product_id.uom_id)
         filters = [
@@ -112,3 +74,53 @@ class PurchaseOrderLine(models.Model):
             filters.append(
                 ('partner_id', '=', self.order_id.partner_id.id))
         return self.env['purchase.blanket.order.line'].search(filters)
+
+    @api.multi
+    def get_assigned_bo_line(self):
+        self.ensure_one()
+        eligible_bo_lines = self._get_eligible_bo_lines()
+        if eligible_bo_lines:
+            if not self.blanket_order_line or self.blanket_order_line \
+                    not in eligible_bo_lines:
+                self.blanket_order_line = \
+                    self._get_assigned_bo_line(eligible_bo_lines)
+        else:
+            self.blanket_order_line = False
+        return {'domain': {'blanket_order_line': [
+            ('id', 'in', eligible_bo_lines.ids)]}}
+
+    @api.onchange('product_id', 'partner_id')
+    def onchange_product_id(self):
+        res = super(PurchaseOrderLine, self).onchange_product_id()
+        # If product has changed remove the relation with blanket order line
+        if self.product_id:
+            return self.get_assigned_bo_line()
+        return res
+
+    @api.onchange('product_qty', 'product_uom')
+    def _onchange_quantity(self):
+        res = super(PurchaseOrderLine, self)._onchange_quantity()
+        if self.product_id:
+            return self.get_assigned_bo_line()
+        return res
+
+    @api.onchange('blanket_order_line')
+    def onchange_blanket_order_line(self):
+        if self.blanket_order_line:
+            self.product_id = self.blanket_order_line.product_id
+            if self.blanket_order_line.date_schedule:
+                self.date_planned = self.blanket_order_line.date_schedule
+            if self.blanket_order_line.price_unit:
+                self.price_unit = self.blanket_order_line.price_unit
+
+    @api.constrains('date_planned')
+    def check_date_planned(self):
+        for line in self:
+            date_planned = fields.Date.to_string(
+                fields.Date.from_string(self.date_planned))
+            if line.blanket_order_line and \
+                    line.blanket_order_line.date_schedule and \
+                    line.blanket_order_line.date_schedule != date_planned:
+                    raise ValidationError(_(
+                        'Schedule dates defined on the Purchase Order Line '
+                        'and on the Blanket Order Line do not match.'))
