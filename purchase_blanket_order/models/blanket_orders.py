@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from datetime import datetime
 
-from odoo import fields, models, api, _
+from odoo import fields, models, api, SUPERUSER_ID, _
 from odoo.exceptions import UserError
 from odoo.tools import float_is_zero
 
@@ -21,6 +21,19 @@ class BlanketOrder(models.Model):
     @api.model
     def _default_company(self):
         return self.env.user.company_id
+
+    @api.depends('line_ids.price_total')
+    def _amount_all(self):
+        for order in self:
+            amount_untaxed = amount_tax = 0.0
+            for line in order.line_ids:
+                amount_untaxed += line.price_subtotal
+                amount_tax += line.price_tax
+            order.update({
+                'amount_untaxed': order.currency_id.round(amount_untaxed),
+                'amount_tax': order.currency_id.round(amount_tax),
+                'amount_total': amount_untaxed + amount_tax,
+            })
 
     name = fields.Char(
         default='Draft',
@@ -79,6 +92,17 @@ class BlanketOrder(models.Model):
         readonly=True,
         states={'draft': [('readonly', False)]})
     purchase_count = fields.Integer(compute='_compute_purchase_count')
+
+    fiscal_position_id = fields.Many2one('account.fiscal.position',
+                                         string='Fiscal Position')
+
+    amount_untaxed = fields.Monetary(string='Untaxed Amount', store=True,
+                                     readonly=True, compute='_amount_all',
+                                     track_visibility='always')
+    amount_tax = fields.Monetary(string='Taxes', store=True, readonly=True,
+                                 compute='_amount_all')
+    amount_total = fields.Monetary(string='Total', store=True, readonly=True,
+                                   compute='_amount_all')
 
     # Fields use to filter in tree view
     original_uom_qty = fields.Float(
@@ -149,12 +173,21 @@ class BlanketOrder(models.Model):
         """
         if not self.partner_id:
             self.payment_term_id = False
+            self.fiscal_position_id = False
             return
 
         self.payment_term_id = \
             (self.partner_id.property_supplier_payment_term_id and
              self.partner_id.property_supplier_payment_term_id.id or
              False)
+
+        self.fiscal_position_id = self.env[
+            'account.fiscal.position'].with_context(
+            company_id=self.company_id.id).get_fiscal_position(
+            self.partner_id.id)
+
+        self.currency_id = self.partner_id.property_purchase_currency_id.id \
+            or self.env.user.company_id.currency_id.id
 
         if self.partner_id.user_id:
             self.user_id = self.partner_id.user_id.id
@@ -291,6 +324,22 @@ class BlanketOrderLine(models.Model):
     _description = 'Blanket Order Line'
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
+    @api.depends('original_uom_qty', 'price_unit', 'taxes_id')
+    def _compute_amount(self):
+        for line in self:
+            taxes = line.taxes_id.compute_all(
+                line.price_unit,
+                line.order_id.currency_id,
+                line.original_uom_qty,
+                product=line.product_id,
+                partner=line.order_id.partner_id)
+            line.update({
+                'price_tax': sum(
+                    t.get('amount', 0.0) for t in taxes.get('taxes', [])),
+                'price_total': taxes['total_included'],
+                'price_subtotal': taxes['total_excluded'],
+            })
+
     name = fields.Char('Description', track_visibility='onchange')
     sequence = fields.Integer()
     order_id = fields.Many2one(
@@ -301,6 +350,9 @@ class BlanketOrderLine(models.Model):
         'product.uom', string='Unit of Measure', required=True)
     price_unit = fields.Float(string='Price', required=True,
                               digits=dp.get_precision('Product Price'))
+    taxes_id = fields.Many2many('account.tax', string='Taxes',
+                                domain=['|', ('active', '=', False),
+                                        ('active', '=', True)])
     date_schedule = fields.Date(string='Scheduled Date')
     original_uom_qty = fields.Float(
         string='Original quantity', required=True, default=1.0,
@@ -339,6 +391,13 @@ class BlanketOrderLine(models.Model):
     payment_term_id = fields.Many2one(
         related='order_id.payment_term_id', string='Payment Terms',
         readonly=True)
+
+    price_subtotal = fields.Monetary(compute='_compute_amount',
+                                     string='Subtotal', store=True)
+    price_total = fields.Monetary(compute='_compute_amount', string='Total',
+                                  store=True)
+    price_tax = fields.Float(compute='_compute_amount', string='Tax',
+                             store=True)
 
     def _format_date(self, date):
         # format date following user language
@@ -406,6 +465,15 @@ class BlanketOrderLine(models.Model):
             if self.product_id.description_purchase:
                 name += '\n' + self.product_id.description_purchase
             self.name = name
+
+            fpos = self.order_id.fiscal_position_id
+            if self.env.uid == SUPERUSER_ID:
+                company_id = self.env.user.company_id.id
+                self.taxes_id = fpos.map_tax(
+                    self.product_id.supplier_taxes_id.filtered(
+                        lambda r: r.company_id.id == company_id))
+            else:
+                self.taxes_id = fpos.map_tax(self.product_id.supplier_taxes_id)
 
     @api.multi
     @api.depends(
