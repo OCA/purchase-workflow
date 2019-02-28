@@ -44,6 +44,7 @@
                         <th class="text-right">Unit Price</th>
                         <th class="text-center">Scheduled Date</th>
                         <th class="text-right">Original Qty</th>
+                        <th class="text-right">Amount</th>
                     </tr>
                </thead>
                <tbody class="purchase_tbody">
@@ -60,10 +61,42 @@
                                 <span t-field="l.original_uom_qty"/>
                                 <span t-field="l.product_uom" groups="product.group_uom"/>
                             </td>
+                            <td class="text-right">
+                                <span t-field="l.price_subtotal"
+                                    t-options='{"widget": "monetary", "display_currency": l.currency_id}'/>
+                            </td>
                         </tr>
                     </t>
                 </tbody>
             </table>
+
+            <div class="row">
+                <div class="col-xs-4 pull-right">
+                    <table class="table table-condensed">
+                        <tr class="border-black">
+                            <td><strong>Subtotal</strong></td>
+                            <td class="text-right">
+                                <span t-field="doc.amount_untaxed"
+                                    t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Taxes</td>
+                            <td class="text-right">
+                                <span t-field="doc.amount_tax"
+                                    t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                            </td>
+                        </tr>
+                        <tr class="border-black">
+                            <td><strong>Total</strong></td>
+                            <td class="text-right">
+                                <span t-field="doc.amount_total"
+                                    t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
 
             <p t-field="doc.note" />
             <div class="oe_structure"/>
