@@ -72,7 +72,7 @@ class PurchaseOrderLine(models.Model):
         if price_unit:
             self.price_unit = price_unit
         return price
-        
+
     @api.onchange('product_qty', 'product_uom')
     def _onchange_quantity(self):
         """
