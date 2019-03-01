@@ -51,9 +51,11 @@ class BlanketOrder(models.Model):
         compute='_compute_line_count',
         readonly=True
     )
-    product_id = fields.Many2one('product.product',
-                                 related='line_ids.product_id',
-                                 string='Product')
+    product_id = fields.Many2one(
+        'product.product',
+        related='line_ids.product_id',
+        string='Product',
+    )
     currency_id = fields.Many2one(
         'res.currency', required=True,
         default=lambda self: self.env.user.company_id.currency_id.id)
@@ -74,12 +76,14 @@ class BlanketOrder(models.Model):
         track_visibility='always',
         help="Date until which the blanket order will be valid, after this "
              "date the blanket order will be marked as expired")
-    date_order = fields.Datetime(
+    date_start = fields.Datetime(
         readonly=True,
         required=True,
-        string='Ordering Date',
+        string='Start Date',
         default=fields.Datetime.now,
-        states={'draft': [('readonly', False)]})
+        states={'draft': [('readonly', False)]},
+        help="Blanket Order starting date."
+    )
     note = fields.Text(
         readonly=True,
         states={'draft': [('readonly', False)]})
@@ -193,6 +197,15 @@ class BlanketOrder(models.Model):
             self.user_id = self.partner_id.user_id.id
 
     @api.multi
+    def unlink(self):
+        for order in self:
+            if order.state not in ('draft', 'cancel'):
+                raise UserError(_(
+                    'You can not delete an open blanket order! '
+                    'Try to cancel it before.'))
+        return super(BlanketOrder, self).unlink()
+
+    @api.multi
     def copy_data(self, default=None):
         if default is None:
             default = {}
@@ -234,6 +247,13 @@ class BlanketOrder(models.Model):
     @api.multi
     def action_cancel(self):
         for order in self:
+            if order.purchase_count > 0:
+                for po in order._get_purchase_orders():
+                    if po.state not in ('cancel'):
+                        raise UserError(_(
+                            'You can not delete a blanket order with opened '
+                            'purchase orders! '
+                            'Try to cancel them before.'))
             order.write({'state': 'expired'})
         return True
 
@@ -345,7 +365,8 @@ class BlanketOrderLine(models.Model):
     order_id = fields.Many2one(
         'purchase.blanket.order', required=True, ondelete='cascade')
     product_id = fields.Many2one(
-        'product.product', string='Product', required=True)
+        'product.product', string='Product', required=True,
+        domain=[('purchase_ok', '=', True)])
     product_uom = fields.Many2one(
         'product.uom', string='Unit of Measure', required=True)
     price_unit = fields.Float(string='Price', required=True,
@@ -359,19 +380,19 @@ class BlanketOrderLine(models.Model):
         digits=dp.get_precision('Product Unit of Measure'))
     ordered_uom_qty = fields.Float(
         string='Ordered quantity', compute='_compute_quantities',
-        store=True)
+        store=True, digits=dp.get_precision('Product Unit of Measure'))
     invoiced_uom_qty = fields.Float(
         string='Invoiced quantity', compute='_compute_quantities',
-        store=True)
+        store=True, digits=dp.get_precision('Product Unit of Measure'))
     remaining_uom_qty = fields.Float(
         string='Remaining quantity', compute='_compute_quantities',
-        store=True)
+        store=True, digits=dp.get_precision('Product Unit of Measure'))
     remaining_qty = fields.Float(
         string='Remaining quantity in base UoM', compute='_compute_quantities',
-        store=True)
+        store=True, digits=dp.get_precision('Product Unit of Measure'))
     received_uom_qty = fields.Float(
         string='Received quantity', compute='_compute_quantities',
-        store=True)
+        store=True, digits=dp.get_precision('Product Unit of Measure'))
     purchase_lines = fields.One2many(
         comodel_name='purchase.order.line',
         inverse_name='blanket_order_line',
@@ -416,7 +437,9 @@ class BlanketOrderLine(models.Model):
                     formatted_date = self._format_date(record.date_schedule)
                     res += ' - %s: %s' % (
                         _('Date Scheduled'), formatted_date)
-                res += ' (%s: %s)' % (_('remaining'), record.remaining_uom_qty)
+                res += ' (%s: %s %s)' % (_('remaining'),
+                                         record.remaining_uom_qty,
+                                         record.product_uom.name)
                 result.append((record.id, res))
             return result
         return super(BlanketOrderLine, self).name_get()
@@ -427,7 +450,7 @@ class BlanketOrderLine(models.Model):
         seller = product._select_seller(
             partner_id=self.order_id.partner_id,
             quantity=self.original_uom_qty,
-            date=self.order_id.date_order and self.order_id.date_order[:10],
+            date=self.order_id.date_start and self.order_id.date_start[:10],
             uom_id=self.product_uom)
 
         if not seller:
@@ -456,7 +479,8 @@ class BlanketOrderLine(models.Model):
             'Product Unit of Measure')
         if self.product_id:
             name = self.product_id.name
-            self.product_uom = self.product_id.uom_id.id
+            if not self.product_uom:
+                self.product_uom = self.product_id.uom_id.id
             if self.order_id.partner_id and \
                     float_is_zero(self.price_unit, precision_digits=precision):
                 self.price_unit = self._get_display_price(self.product_id)
@@ -506,8 +530,8 @@ class BlanketOrderLine(models.Model):
                 l.product_id == line.product_id)
             line.remaining_uom_qty = line.original_uom_qty - \
                 line.ordered_uom_qty
-            line.remaining_qty = line.product_id.uom_id._compute_quantity(
-                line.remaining_uom_qty, line.product_uom)
+            line.remaining_qty = line.product_uom._compute_quantity(
+                line.remaining_uom_qty, line.product_id.uom_id)
 
     @api.multi
     def _validate(self):

@@ -70,7 +70,7 @@
                     </group>
                     <group name="group_bottom">
                         <group name="group_bottom_left">
-                            <field name="date_order" attrs="{'required': [('state', '=', 'draft')]}"/>
+                            <field name="date_start" attrs="{'required': [('state', '=', 'draft')]}"/>
                         </group>
                         <group name="group_bottom_right">
                             <field name="validity_date" attrs="{'required': [('state', '=', 'draft')]}"/>
@@ -89,7 +89,7 @@
                                         string="Original Qty"
                                         context="{'partner_id':parent.partner_id, 'quantity':original_uom_qty, 'company_id': parent.company_id}"
                                     />
-                                    <field name="product_uom"/>
+                                    <field name="product_uom" groups="product.group_uom"/>
                                     <field name="price_unit"/>
                                     <field name="date_schedule"/>
                                     <field name="ordered_uom_qty"/>
