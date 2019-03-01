@@ -55,24 +55,33 @@ class PurchaseOrderLine(models.Model):
         date_planned = fields.Date.from_string(self.date_planned) or \
             date.today()
         date_delta = timedelta(days=365)
-        for line in bo_lines:
+        for line in bo_lines.filtered(lambda l: l.date_schedule):
             date_schedule = fields.Date.from_string(line.date_schedule)
             if date_schedule and \
                     abs(date_schedule - date_planned) < date_delta:
                 assigned_bo_line = line
                 date_delta = abs(date_schedule - date_planned)
-        return assigned_bo_line
+        if assigned_bo_line:
+            return assigned_bo_line
+        non_date_bo_lines = bo_lines.filtered(lambda l: not l.date_schedule)
+        if non_date_bo_lines:
+            return non_date_bo_lines[0]
 
-    def _get_eligible_bo_lines(self):
-        base_qty = self.product_uom._compute_quantity(
-            self.product_qty, self.product_id.uom_id)
+    def _get_eligible_bo_lines_domain(self, base_qty):
         filters = [
             ('product_id', '=', self.product_id.id),
             ('remaining_qty', '>=', base_qty),
+            ('currency_id', '=', self.order_id.currency_id.id),
             ('order_id.state', '=', 'open')]
         if self.order_id.partner_id:
             filters.append(
                 ('partner_id', '=', self.order_id.partner_id.id))
+        return filters
+
+    def _get_eligible_bo_lines(self):
+        base_qty = self.product_uom._compute_quantity(
+            self.product_qty, self.product_id.uom_id)
+        filters = self._get_eligible_bo_lines_domain(base_qty)
         return self.env['purchase.blanket.order.line'].search(filters)
 
     @api.multi
@@ -86,6 +95,7 @@ class PurchaseOrderLine(models.Model):
                     self._get_assigned_bo_line(eligible_bo_lines)
         else:
             self.blanket_order_line = False
+        self.onchange_blanket_order_line()
         return {'domain': {'blanket_order_line': [
             ('id', 'in', eligible_bo_lines.ids)]}}
 
@@ -100,18 +110,29 @@ class PurchaseOrderLine(models.Model):
     @api.onchange('product_qty', 'product_uom')
     def _onchange_quantity(self):
         res = super(PurchaseOrderLine, self)._onchange_quantity()
-        if self.product_id:
+        if self.product_id and not self.env.context.get(
+                'skip_blanket_find', False):
             return self.get_assigned_bo_line()
         return res
 
     @api.onchange('blanket_order_line')
     def onchange_blanket_order_line(self):
-        if self.blanket_order_line:
-            self.product_id = self.blanket_order_line.product_id
-            if self.blanket_order_line.date_schedule:
-                self.date_planned = self.blanket_order_line.date_schedule
-            if self.blanket_order_line.price_unit:
-                self.price_unit = self.blanket_order_line.price_unit
+        bol = self.blanket_order_line
+        if bol:
+            self.product_id = bol.product_id
+            if bol.date_schedule:
+                self.date_planned = bol.date_schedule
+            if bol.product_uom != self.product_uom:
+                price_unit = bol.product_uom._compute_price(
+                    bol.price_unit, self.product_uom)
+            else:
+                price_unit = bol.price_unit
+            self.price_unit = price_unit
+            if bol.taxes_id:
+                self.taxes_id = bol.taxes_id
+        else:
+            self._compute_tax_id()
+            self.with_context(skip_blanket_find=True)._onchange_quantity()
 
     @api.constrains('date_planned')
     def check_date_planned(self):
@@ -124,3 +145,13 @@ class PurchaseOrderLine(models.Model):
                     raise ValidationError(_(
                         'Schedule dates defined on the Purchase Order Line '
                         'and on the Blanket Order Line do not match.'))
+
+    @api.constrains('currency_id')
+    def check_currency(self):
+        for line in self:
+            blanket_currency = line.blanket_order_line.order_id.currency_id
+            if blanket_currency and line.order_id.currency_id != \
+                    blanket_currency:
+                raise ValidationError(_(
+                    'The currency of the blanket order must match with that '
+                    'of the purchase order.'))
