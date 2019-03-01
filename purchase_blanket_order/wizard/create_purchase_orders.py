@@ -29,16 +29,17 @@ class BlanketOrderWizard(models.TransientModel):
             'Product Unit of Measure')
         company_id = False
 
+        if float_is_zero(sum(bo_lines.mapped('remaining_uom_qty')),
+                         precision_digits=precision):
+            raise UserError(
+                _('All lines have already been completed.'))
+
         for line in bo_lines:
 
             if line.order_id.state != 'open':
                 raise UserError(
                     _('Purchase Blanket Order %s is not open') %
                     line.order_id.name)
-
-            if float_is_zero(line.remaining_qty, precision_digits=precision):
-                raise UserError(
-                    _('The purchase has already been completed.'))
 
             line_company_id = line.company_id and line.company_id.id or False
             if company_id is not False \
@@ -66,11 +67,12 @@ class BlanketOrderWizard(models.TransientModel):
             'blanket_line_id': l.id,
             'product_id': l.product_id.id,
             'date_schedule': l.date_schedule,
-            'remaining_qty': l.remaining_qty,
+            'remaining_uom_qty': l.remaining_uom_qty,
             'price_unit': l.price_unit,
-            'qty': l.remaining_qty,
+            'product_uom': l.product_uom,
+            'qty': l.remaining_uom_qty,
             'partner_id': l.partner_id,
-        }) for l in bo_lines]
+        }) for l in bo_lines if l.remaining_uom_qty > 0]
         return lines
 
     blanket_order_id = fields.Many2one(
@@ -93,7 +95,7 @@ class BlanketOrderWizard(models.TransientModel):
             if line.qty == 0.0:
                 continue
 
-            if line.qty > line.remaining_qty:
+            if line.qty > line.remaining_uom_qty:
                 raise UserError(
                     _('You can\'t order more than the remaining quantities'))
 
@@ -102,8 +104,8 @@ class BlanketOrderWizard(models.TransientModel):
             vals = {'product_id': line.product_id.id,
                     'name': line.product_id.name,
                     'date_planned': date_planned if date_planned else
-                    line.blanket_line_id.order_id.date_order,
-                    'product_uom': line.blanket_line_id.product_uom.id,
+                    line.blanket_line_id.order_id.date_start,
+                    'product_uom': line.product_uom.id,
                     'sequence': line.blanket_line_id.sequence,
                     'price_unit': line.blanket_line_id.price_unit,
                     'blanket_order_line': line.blanket_line_id.id,
@@ -168,10 +170,14 @@ class BlanketOrderWizardLine(models.TransientModel):
         'product.product',
         related='blanket_line_id.product_id',
         string='Product', readonly=True)
+    product_uom = fields.Many2one(
+        'product.uom',
+        related='blanket_line_id.product_uom',
+        string='Unit of Measure', readonly=True)
     date_schedule = fields.Date(
         related='blanket_line_id.date_schedule', readonly=True)
-    remaining_qty = fields.Float(
-        related='blanket_line_id.remaining_qty', readonly=True)
+    remaining_uom_qty = fields.Float(
+        related='blanket_line_id.remaining_uom_qty', readonly=True)
     qty = fields.Float(string='Quantity to Order', required=True)
     price_unit = fields.Float(
         related='blanket_line_id.price_unit', readonly=True)
