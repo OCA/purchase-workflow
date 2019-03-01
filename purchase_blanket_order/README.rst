@@ -107,12 +107,13 @@ Credits
 Authors
 ~~~~~~~
 
-* Eficent S.L.
+* Eficent
 
 Contributors
 ~~~~~~~~~~~~
 
 * Adrià Gil Sorribes <adria.gil@eficent.com>
+* Jordi Ballester Alomar <jordi.ballester@eficent.com>
 
 Maintainers
 ~~~~~~~~~~~
