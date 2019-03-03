@@ -437,6 +437,7 @@ msgstr ""
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item_product_id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_product_id
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_product_id
 #: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Product"
 msgstr "Produto"
@@ -891,7 +892,7 @@ msgid "Wizard"
 msgstr ""
 
 #. module: purchase_request
-#: code:addons/purchase_request/models/purchase_request.py:206
+#: code:addons/purchase_request/models/purchase_request.py:209
 #, python-format
 msgid ""
 "You can't request an approval for a purchase request which is empty. (%s)"
@@ -906,7 +907,7 @@ msgid ""
 msgstr ""
 
 #. module: purchase_request
-#: code:addons/purchase_request/models/purchase_request.py:430
+#: code:addons/purchase_request/models/purchase_request.py:433
 #, python-format
 msgid "You cannot delete a record that refers to purchase lines!"
 msgstr ""
