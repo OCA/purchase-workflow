@@ -12,6 +12,9 @@ class ProductProduct(models.Model):
         res = super()._prepare_sellers(params)
         if not params:
             return res
-        currency_id = params.get('supplier').currency_id.id
+        if params.get('supplier'):
+            currency_id = params.get('supplier').currency_id.id
+        else:
+            currency_id = params.get('order_id').partner_id.currency_id.id
         return res.with_context(currency_id=currency_id).filtered(
             lambda s: s.currency_id.id == currency_id)
