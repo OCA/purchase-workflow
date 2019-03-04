@@ -13,6 +13,26 @@ class PurchaseOrder(models.Model):
         """ Insert a mapping of products to discounts to be picked up
         in supplierinfo's create() """
         self.ensure_one()
+        partner = (
+            self.partner_id if not self.partner_id.parent_id else
+            self.partner_id.parent_id)
+        for line in self.order_line:
+            supplierinfo = line.product_id.seller_ids.filtered(
+                lambda x: x.name == partner)
+            if not supplierinfo:
+                continue
+            currency = (
+                partner.property_purchase_currency_id or
+                self.env.user.company_id.currency_id)
+            price = self.currency_id.compute(
+                line.price_unit, currency, round=False)
+            vals = {}
+            if price != supplierinfo.price:
+                vals['price'] = price
+            if line.discount != supplierinfo.discount:
+                vals['discount'] = line.discount
+            if vals:
+                supplierinfo.write(vals)
         discount_map = dict(
             [(line.product_id.product_tmpl_id.id, line.discount)
              for line in self.order_line.filtered('discount')])

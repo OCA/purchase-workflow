@@ -69,6 +69,9 @@ here the desired discount for that quantity.
 When you make a purchase order for that supplier and that product, discount
 will be put automatically.
 
+If the supplier already has a supplier info for a product, it will be updated
+if the discount or the price changes.
+
 Bug Tracker
 ===========
 
@@ -98,7 +101,7 @@ Contributors
 
   * Pedro M. Baeza
   * Vicent Cubells <vicent.cubells@tecnativa.com>
-
+  * David Vidal
 
 Maintainers
 ~~~~~~~~~~~

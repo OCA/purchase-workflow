@@ -5,4 +5,4 @@
 
   * Pedro M. Baeza
   * Vicent Cubells <vicent.cubells@tecnativa.com>
-
+  * David Vidal
