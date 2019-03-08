@@ -6,6 +6,7 @@ from odoo import api, fields, models
 
 class ImportLandedCostPickingsWizard(models.TransientModel):
     _name = 'import.landed.cost.pickings.wizard'
+    _description = 'Import landed cost pickings'
 
     possible_picking_ids = fields.Many2many(
         comodel_name="stock.picking", string="Possible pickings")
