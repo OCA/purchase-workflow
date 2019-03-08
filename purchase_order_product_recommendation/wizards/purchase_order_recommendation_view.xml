@@ -13,12 +13,14 @@
                         <field name="date_begin"/>
                         <field name="date_end"/>
                         <field name="line_amount"/>
+                        <field name="show_all_partner_products"/>
                     </group>
                     <group>
                         <field name="line_ids" nolabel="1">
                             <tree decoration-info="purchase_line_id != False"
                                   decoration-success="units_included &gt; 0 and not purchase_line_id"
                                   decoration-danger="units_virtual_available &lt; 0 and units_included &lt; abs(units_virtual_available)"
+                                  decoration-muted="units_received == 0 and units_delivered == 0"
                                   create="0" delete="0" editable="top">
                                 <field name="currency_id" invisible="1"/>
                                 <field name="purchase_line_id" invisible="1"/>
