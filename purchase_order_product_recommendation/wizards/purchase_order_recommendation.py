@@ -36,10 +36,15 @@ class PurchaseOrderRecommendation(models.TransientModel):
     )
     line_amount = fields.Integer(
         string='Number of recommendations',
-        default=0,
+        default=15,
         required=True,
         help='Stablish a limit on how many recommendations you want to get.'
              'Leave it as 0 to set no limit',
+    )
+    show_all_partner_products = fields.Boolean(
+        string='Show all products',
+        default=False,
+        help='Show all products with supplier infos for this supplier',
     )
 
     @api.model
@@ -94,7 +99,15 @@ class PurchaseOrderRecommendation(models.TransientModel):
             'product_id_count': x['product_id_count'],
             'qty_done': x['qty_done']
         } for x in found_lines]
-        return {l['id']: l for l in found_lines}
+        found_lines = {l['id']: l for l in found_lines}
+        # Show all products with supplier infos belonging to a partner
+        if self.show_all_partner_products:
+            for product in products.filtered(
+                    lambda p: p.id not in found_lines.keys()):
+                found_lines.update({
+                    product.id: {'product_id': product},
+                })
+        return found_lines
 
     @api.model
     def _prepare_wizard_line(self, vals, order_line=False):
@@ -122,15 +135,17 @@ class PurchaseOrderRecommendation(models.TransientModel):
         }
 
     @api.multi
-    @api.onchange('order_id', 'date_begin', 'date_end', 'line_amount')
+    @api.onchange('order_id', 'date_begin', 'date_end', 'line_amount',
+                  'show_all_partner_products')
     def _generate_recommendations(self):
         """Generate lines according to received and delivered items"""
         self.line_ids = False
         # Get quantities received from suppliers
         found_dict = self._find_move_line(src='supplier', dst='internal')
         for product, line in found_dict.items():
-            found_dict[product]['qty_received'] = line['qty_done']
-            found_dict[product]['times_received'] = line['product_id_count']
+            found_dict[product]['qty_received'] = line.get('qty_done', 0)
+            found_dict[product]['times_received'] = line.get(
+                'product_id_count', 0)
         # Get quantities delivered to customers
         found_delivered_dict = self._find_move_line(
             src='internal', dst='customer')
@@ -138,8 +153,9 @@ class PurchaseOrderRecommendation(models.TransientModel):
         for product, line in found_delivered_dict.items():
             if not found_dict.get(product):
                 found_dict[product] = line
-            found_dict[product]['qty_delivered'] = line['qty_done']
-            found_dict[product]['times_delivered'] = line['product_id_count']
+            found_dict[product]['qty_delivered'] = line.get('qty_done', 0)
+            found_dict[product]['times_delivered'] = line.get(
+                'product_id_count', 0)
         RecomendationLine = self.env['purchase.order.recommendation.line']
         existing_product_ids = []
         # Add products from purchase order lines
@@ -163,6 +179,7 @@ class PurchaseOrderRecommendation(models.TransientModel):
             i += 1
             if i == self.line_amount:
                 break
+        self.line_ids = self.line_ids.sorted(key=lambda x: x.product_id.name)
 
     @api.multi
     def action_accept(self):
