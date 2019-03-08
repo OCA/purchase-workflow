@@ -24,11 +24,20 @@ class ImportInvoiceLine(models.TransientModel):
     @api.multi
     def action_import_invoice_line(self):
         self.ensure_one()
+        dist_id = self.env.context['active_id']
+        distribution = self.env['purchase.cost.distribution'].browse(dist_id)
+        currency_from = self.invoice_line.company_id.currency_id
+        amount = self.invoice_line.price_subtotal
+        currency_to = distribution.currency_id
+        company = distribution.company_id or self.env.user.company_id
+        cost_date = distribution.date or fields.Date.today()
+        expense_amount = currency_from._convert(amount, currency_to, company,
+                                                cost_date)
         self.env['purchase.cost.distribution.expense'].create({
-            'distribution': self.env.context['active_id'],
+            'distribution': dist_id,
             'invoice_line': self.invoice_line.id,
             'invoice_id': self.invoice_line.invoice_id.id,
             'ref': self.invoice_line.name,
-            'expense_amount': self.invoice_line.price_subtotal,
+            'expense_amount': expense_amount,
             'type': self.expense_type.id,
         })
