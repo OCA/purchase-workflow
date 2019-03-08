@@ -428,7 +428,7 @@ class PurchaseCostDistributionLine(models.Model):
     product_qty = fields.Float(
         string='Quantity', compute='_get_product_qty', store=True)
     product_uom = fields.Many2one(
-        comodel_name='product.uom', string='Unit of measure',
+        comodel_name='uom.uom', string='Unit of measure',
         related='move_id.product_uom')
     product_price_unit = fields.Float(
         string='Unit price', related='move_id.price_unit')
@@ -467,6 +467,20 @@ class PurchaseCostDistributionLine(models.Model):
         comodel_name="res.company", related="distribution.company_id",
         store=True,
     )
+
+    @api.model
+    def get_action_purchase_cost_distribution(self):
+        xml_id = 'purchase_landed_cost.action_purchase_cost_distribution'
+        action = self.env.ref(xml_id).read()[0]
+        distributions = self.mapped('distribution')
+        if len(distributions) == 1:
+            form = self.env.ref(
+                'purchase_landed_cost.purchase_cost_distribution_form')
+            action['views'] = [(form.id, 'form')]
+            action['res_id'] = distributions.id
+        else:
+            action['domain'] = [('id', 'in', distributions.ids)]
+        return action
 
 
 class PurchaseCostDistributionLineExpense(models.Model):
@@ -561,13 +575,27 @@ class PurchaseCostDistributionExpense(models.Model):
 
     @api.onchange('type')
     def onchange_type(self):
+        """set expense_amount in the currency of the distribution"""
         if self.type and self.type.default_amount:
-            self.expense_amount = self.type.default_amount
+            currency_from = self.type.company_id.currency_id
+            amount = self.type.default_amount
+            currency_to = self.distribution.currency_id
+            company = self.company_id or self.env.user.company_id
+            cost_date = self.distribution.date or fields.Date.today()
+            self.expense_amount = currency_from._convert(amount, currency_to,
+                                                         company, cost_date)
 
     @api.onchange('invoice_line')
     def onchange_invoice_line(self):
+        """set expense_amount in the currency of the distribution"""
         self.invoice_id = self.invoice_line.invoice_id.id
-        self.expense_amount = self.invoice_line.price_subtotal
+        currency_from = self.invoice_line.company_id.currency_id
+        amount = self.invoice_line.price_subtotal
+        currency_to = self.distribution.currency_id
+        company = self.company_id or self.env.user.company_id
+        cost_date = self.distribution.date or fields.Date.today()
+        self.expense_amount = currency_from._convert(amount, currency_to,
+                                                     company, cost_date)
 
     @api.multi
     def button_duplicate(self):
