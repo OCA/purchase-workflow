@@ -92,6 +92,9 @@
                                 <field name="analytic_account_id"
                                        groups="analytic.group_analytic_accounting"/>
                                 <field name="date_required"/>
+                                <field name="estimated_cost" widget="monetary"/>
+                                <field name="currency_id" invisible="1"/>
+                                <field name="company_id" groups="base.group_multi_company" widget="selection"/>
                                 <field name="cancelled" invisible="1"/>
                                 <field name="is_editable" invisible="1"/>
                                 <field name="purchased_qty"/>
@@ -122,6 +125,9 @@
                                                    attrs="{'readonly': [('is_editable','=', False)]}"/>
                                             <field name="date_required"
                                                    attrs="{'readonly': [('is_editable','=', False)]}"/>
+                                            <field name="estimated_cost" widget="monetary"
+                                                   attrs="{'readonly': [('is_editable','=', False)]}"/>
+                                            <field name="currency_id" invisible="1"/>
                                             <field name="cancelled"/>
                                         </group>
                                     </group>
@@ -266,6 +272,8 @@
                 <field name="requested_by"/>
                 <field name="assigned_to"/>
                 <field name="date_required"/>
+                <field name="estimated_cost" widget="monetary"/>
+                <field name="currency_id" invisible="1"/>
                 <field name="purchased_qty"/>
                 <field name="purchase_state"/>
                 <field name="product_id"/>
@@ -275,6 +283,7 @@
                 <field name="analytic_account_id"
                        groups="analytic.group_analytic_accounting"/>
                 <field name="supplier_id"/>
+                <field name="company_id" groups="base.group_multi_company" widget="selection"/>
                 <field name="cancelled" invisible="1"/>
             </tree>
         </field>
@@ -331,8 +340,10 @@
                                    attrs="{'readonly': [('is_editable','=', False)]}"/>
                             <field name="date_required"
                                    attrs="{'readonly': [('is_editable','=', False)]}"/>
+                            <field name="estimated_cost" widget="monetary"
+                                   attrs="{'readonly': [('is_editable','=', False)]}"/>
+                            <field name="currency_id" invisible="1"/>
                             <field name="cancelled"/>
-                            <!--<field name="procurement_id"/>-->
                         </group>
                     </group>
                     <group>
