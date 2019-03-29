@@ -56,6 +56,7 @@
                                     <th class="text-center" groups="product.group_uom">
                                         <strong>Product UoM</strong>
                                     </th>
+                                    <th><strong>Estimated Cost</strong></th>
                                     <th class="text-right"><strong>Requested Date</strong></th>
                                     <th><strong>Specifications</strong></th>
                                 </tr>
@@ -76,6 +77,9 @@
                                             <span t-field="line_ids.product_uom_id.category_id.name"/>
                                         </td>
                                     </t>
+                                    <td>
+                                        <span t-field="line_ids.estimated_cost"/>
+                                    </td>
                                     <td class="text-right">
                                         <span t-field="line_ids.date_required"/>
                                     </td>
