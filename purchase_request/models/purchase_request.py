@@ -283,6 +283,14 @@ class PurchaseRequestLine(models.Model):
 
     orderpoint_id = fields.Many2one('stock.warehouse.orderpoint', 'Orderpoint')
 
+    estimated_cost = fields.Monetary(
+        string='Estimated Cost', currency_field='currency_id', default=0.0,
+        help='Estimated cost of Purchase Request Line, not propagated to PO.')
+    currency_id = fields.Many2one(
+        related='company_id.currency_id',
+        readonly=True,
+    )
+
     @api.multi
     @api.depends('product_id', 'name', 'product_uom_id', 'product_qty',
                  'analytic_account_id', 'date_required', 'specifications',
