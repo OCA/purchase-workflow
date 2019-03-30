@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2004-2009 Tiny SPRL (<http://tiny.be>).
 # Copyright 2016 ACSONE SA/NV (<http://acsone.eu>)
 # Copyright 2015-2017 Tecnativa - Pedro M. Baeza
@@ -26,6 +25,7 @@ class PurchaseOrder(models.Model):
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
+    # adding discount to depends
     @api.depends('discount')
     def _compute_amount(self):
         return super(PurchaseOrderLine, self)._compute_amount()
