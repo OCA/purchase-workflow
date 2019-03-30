@@ -10,3 +10,5 @@
   * Vicent Cubells <vicent.cubells@tecnativa.com>
 
 * Sudhir Arya <sudhir@erpharbor.com>
+* Lorenzo Battistini <https://github.com/eLBati>
+* Luisa Miguéns <luisa.miguens@solvos.es>
