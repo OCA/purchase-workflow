@@ -13,18 +13,12 @@ class PurchaseOrderLine(models.Model):
 
     @api.depends('discount')
     def _compute_amount(self):
-        for line in self:
-            price_unit = False
-            # This is always executed for allowing other modules to use this
-            # with different conditions than discount != 0
-            price = line._get_discounted_price_unit()
-            if price != line.price_unit:
-                # Only change value if it's different
-                price_unit = line.price_unit
-                line.price_unit = price
-            super(PurchaseOrderLine, line)._compute_amount()
-            if price_unit:
-                line.price_unit = price_unit
+        return super(PurchaseOrderLine, self)._compute_amount()
+
+    def _prepare_compute_all_values(self):
+        vals = super(PurchaseOrderLine, self)._prepare_compute_all_values()
+        vals.update({'price_unit': self._get_discounted_price_unit()})
+        return vals
 
     discount = fields.Float(
         string='Discount (%)', digits=dp.get_precision('Discount'),
