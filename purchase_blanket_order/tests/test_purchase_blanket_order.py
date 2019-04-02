@@ -1,4 +1,4 @@
-# Copyright (C) 2018 Eficent Business and IT Consulting Services S.L.
+# Copyright (C) 2018 ForgeFlow S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from datetime import date, timedelta
 
@@ -33,7 +33,7 @@ class TestPurchaseBlanketOrders(common.TransactionCase):
             'standard_price': 35.0,
             'seller_ids': [(6, 0, [seller.id])],
             'type': 'consu',
-            'uom_id': self.env.ref('product.product_uom_unit').id,
+            'uom_id': self.env.ref('uom.product_uom_unit').id,
             'default_code': 'PROD_DEL01',
         })
         self.product2 = self.env['product.product'].create({
@@ -41,7 +41,7 @@ class TestPurchaseBlanketOrders(common.TransactionCase):
             'categ_id': self.env.ref('product.product_category_1').id,
             'standard_price': 50.0,
             'type': 'consu',
-            'uom_id': self.env.ref('product.product_uom_unit').id,
+            'uom_id': self.env.ref('uom.product_uom_unit').id,
             'default_code': 'PROD_DEL02',
         })
 
@@ -80,7 +80,7 @@ class TestPurchaseBlanketOrders(common.TransactionCase):
         blanket_order.sudo().action_confirm()
 
         blanket_order.sudo().action_cancel()
-        self.assertEqual(blanket_order.state, 'expired')
+        self.assertEqual(blanket_order.state, 'cancel')
         blanket_order.sudo().set_to_draft()
         self.assertEqual(blanket_order.state, 'draft')
         blanket_order.sudo().action_confirm()

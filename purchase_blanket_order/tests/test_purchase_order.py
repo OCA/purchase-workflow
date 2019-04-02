@@ -1,4 +1,4 @@
-# Copyright (C) 2018 Eficent Business and IT Consulting Services S.L.
+# Copyright (C) 2018 ForgeFlow S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from datetime import date, timedelta
 
@@ -33,7 +33,7 @@ class TestPurchaseOrder(common.TransactionCase):
             'standard_price': 35.0,
             'seller_ids': [(6, 0, [seller.id])],
             'type': 'consu',
-            'uom_id': self.env.ref('product.product_uom_unit').id,
+            'uom_id': self.env.ref('uom.product_uom_unit').id,
             'default_code': 'PROD_DEL01',
         })
         self.product_2 = self.env['product.product'].create({
@@ -42,7 +42,7 @@ class TestPurchaseOrder(common.TransactionCase):
             'standard_price': 35.0,
             'seller_ids': [(6, 0, [seller.id])],
             'type': 'consu',
-            'uom_id': self.env.ref('product.product_uom_unit').id,
+            'uom_id': self.env.ref('uom.product_uom_unit').id,
             'default_code': 'PROD_DEL02',
         })
         self.validity = date.today() + timedelta(days=365)

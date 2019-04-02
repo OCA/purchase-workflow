@@ -1,4 +1,4 @@
-# Copyright (C) 2018 Eficent Business and IT Consulting Services S.L.
+# Copyright (C) 2018 ForgeFlow S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from datetime import datetime
 
@@ -23,7 +23,7 @@ class BlanketOrder(models.Model):
         return self.env.user.company_id
 
     @api.depends('line_ids.price_total')
-    def _amount_all(self):
+    def _compute_amount_all(self):
         for order in self:
             amount_untaxed = amount_tax = 0.0
             for line in order.line_ids:
@@ -68,6 +68,7 @@ class BlanketOrder(models.Model):
         ('open', 'Open'),
         ('done', 'Done'),
         ('expired', 'Expired'),
+        ('cancel', 'Cancelled'),
     ], compute='_compute_state', store=True, copy=False,
         track_visibility='always',)
     validity_date = fields.Date(
@@ -101,12 +102,12 @@ class BlanketOrder(models.Model):
                                          string='Fiscal Position')
 
     amount_untaxed = fields.Monetary(string='Untaxed Amount', store=True,
-                                     readonly=True, compute='_amount_all',
+                                     readonly=True, compute='_compute_amount_all',
                                      track_visibility='always')
     amount_tax = fields.Monetary(string='Taxes', store=True, readonly=True,
-                                 compute='_amount_all')
+                                 compute='_compute_amount_all')
     amount_total = fields.Monetary(string='Total', store=True, readonly=True,
-                                   compute='_amount_all')
+                                   compute='_compute_amount_all')
 
     # Fields use to filter in tree view
     original_uom_qty = fields.Float(
@@ -201,8 +202,8 @@ class BlanketOrder(models.Model):
         for order in self:
             if order.state not in ('draft', 'cancel'):
                 raise UserError(_(
-                    'You can not delete an open blanket order! '
-                    'Try to cancel it before.'))
+                    'You can not delete an %s blanket order! '
+                    'Try to cancel it before.') % order.state)
         return super(BlanketOrder, self).unlink()
 
     @api.multi
@@ -254,7 +255,7 @@ class BlanketOrder(models.Model):
                             'You can not delete a blanket order with opened '
                             'purchase orders! '
                             'Try to cancel them before.'))
-            order.write({'state': 'expired'})
+            order.write({'state': 'cancel'})
         return True
 
     @api.multi
@@ -368,7 +369,7 @@ class BlanketOrderLine(models.Model):
         'product.product', string='Product', required=True,
         domain=[('purchase_ok', '=', True)])
     product_uom = fields.Many2one(
-        'product.uom', string='Unit of Measure', required=True)
+        'uom.uom', string='Unit of Measure', required=True)
     price_unit = fields.Float(string='Price', required=True,
                               digits=dp.get_precision('Product Price'))
     taxes_id = fields.Many2many('account.tax', string='Taxes',
@@ -450,7 +451,7 @@ class BlanketOrderLine(models.Model):
         seller = product._select_seller(
             partner_id=self.order_id.partner_id,
             quantity=self.original_uom_qty,
-            date=self.order_id.date_start and self.order_id.date_start[:10],
+            date=str(fields.Date.to_date(self.order_id.date_start)),
             uom_id=self.product_uom)
 
         if not seller:

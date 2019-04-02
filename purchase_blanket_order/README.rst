@@ -14,13 +14,13 @@ Purchase Blanket Orders
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fpurchase--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/purchase-workflow/tree/11.0/purchase_blanket_order
+    :target: https://github.com/OCA/purchase-workflow/tree/12.0/purchase_blanket_order
     :alt: OCA/purchase-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/purchase-workflow-11-0/purchase-workflow-11-0-purchase_blanket_order
+    :target: https://translation.odoo-community.org/projects/purchase-workflow-12-0/purchase-workflow-12-0-purchase_blanket_order
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/142/11.0
+    :target: https://runbot.odoo-community.org/runbot/142/12.0
     :alt: Try me on Runbot
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
@@ -42,7 +42,7 @@ A new menu in the Purchase area is created, allowing users to create new blanket
 
 To create a new Purchase Blanket Order go to the purchase menu in the Purchase section:
 
-.. image:: /purchase_blanket_order/static/description/BO_menu.png
+.. image:: https://raw.githubusercontent.com/purchase_blanket_order/static/description/BO_menu.png
     :alt: Blanket Orders menu
 
 Hitting the button create will open the form view in which we can introduce the following
@@ -57,27 +57,27 @@ information:
     * Original, Ordered, Invoiced, Received and Remaining quantities
 * Terms and Conditions of the Blanket Order
 
-.. image:: /purchase_blanket_order/static/description/BO_form.png
+.. image:: https://raw.githubusercontent.com/purchase_blanket_order/static/description/BO_form.png
     :alt: Blanket Orders form
 
 From the form, once the Blanket Order has been confirmed and its state is open, the user can
 create a Purchase Order, check the Purchase Orders associated to the Blanket Order and/or
 see the Blanket Order lines associated to the BO.
 
-.. image:: /purchase_blanket_order/static/description/BO_actions.png
+.. image:: https://raw.githubusercontent.com/purchase_blanket_order/static/description/BO_actions.png
     :alt: Actions that can be done from Blanket Order
 
 Hitting the button Create Purchase Order will open a wizard that will ask for the amount of each
 product in the BO lines for which the Purchase Order will be created.
 
-.. image:: /purchase_blanket_order/static/description/PO_from_BO.png
+.. image:: https://raw.githubusercontent.com/purchase_blanket_order/static/description/PO_from_BO.png
     :alt: Create Purchase Order from Blanket Order
 
 Installing this module will add an additional menu which will show all the blanket order lines
 currently defined in the system. From this list the user can create customized Purchase Orders
 selecting the lines for which the PO (or POs if the vendors are different) is (are) created.
 
-.. image:: /purchase_blanket_order/static/description/BO_lines.png
+.. image:: https://raw.githubusercontent.com/purchase_blanket_order/static/description/BO_lines.png
     :alt: Blanket Order lines and actions
 
 In the Purchase Order form one field is added in the PO lines, the Blanket Order line field. This
@@ -88,7 +88,7 @@ factors:
 * Closer Validity date
 * Remaining quantity > Quantity introduced in the Purchase Order line
 
-.. image:: /purchase_blanket_order/static/description/PO_BOLine.png
+.. image:: https://raw.githubusercontent.com/purchase_blanket_order/static/description/PO_BOLine.png
     :alt: New field added in Purchase Order Line
 
 Bug Tracker
@@ -97,7 +97,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/purchase-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/purchase-workflow/issues/new?body=module:%20purchase_blanket_order%0Aversion:%2011.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/purchase-workflow/issues/new?body=module:%20purchase_blanket_order%0Aversion:%2012.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -107,13 +107,14 @@ Credits
 Authors
 ~~~~~~~
 
-* Eficent
+* ForgeFlow
 
 Contributors
 ~~~~~~~~~~~~
 
-* Adrià Gil Sorribes <adria.gil@eficent.com>
-* Jordi Ballester Alomar <jordi.ballester@eficent.com>
+* Adrià Gil Sorribes <adria.gil@forgeflow.com>
+* Jordi Ballester Alomar <jordi.ballester@forgeflow.com>
+* Héctor Villarreal Ortega <hector.villarreal@forgeflow.com>
 
 Maintainers
 ~~~~~~~~~~~
@@ -128,6 +129,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/11.0/purchase_blanket_order>`_ project on GitHub.
+This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/12.0/purchase_blanket_order>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

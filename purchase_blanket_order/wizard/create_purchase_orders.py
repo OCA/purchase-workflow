@@ -1,4 +1,4 @@
-# Copyright (C) 2018 Eficent Business and IT Consulting Services S.L.
+# Copyright (C) 2018 ForgeFlow S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo import fields, models, api, _
 from odoo.tools import float_is_zero
@@ -162,6 +162,7 @@ class BlanketOrderWizard(models.TransientModel):
 
 class BlanketOrderWizardLine(models.TransientModel):
     _name = 'purchase.blanket.order.wizard.line'
+    _description = 'Blanket Order Wizard Line'
 
     wizard_id = fields.Many2one('purchase.blanket.order.wizard')
     blanket_line_id = fields.Many2one(
@@ -171,7 +172,7 @@ class BlanketOrderWizardLine(models.TransientModel):
         related='blanket_line_id.product_id',
         string='Product', readonly=True)
     product_uom = fields.Many2one(
-        'product.uom',
+        'uom.uom',
         related='blanket_line_id.product_uom',
         string='Unit of Measure', readonly=True)
     date_schedule = fields.Date(

@@ -1,4 +1,4 @@
-# Copyright (C) 2018 Eficent Business and IT Consulting Services S.L.
+# Copyright (C) 2018 ForgeFlow S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo import api, fields, models, _
 from datetime import date, timedelta
@@ -38,6 +38,18 @@ class PurchaseOrder(models.Model):
                     raise ValidationError(_(
                         'The vendor must be equal to the blanket order'
                         ' lines vendor'))
+
+    @api.constrains('currency_id')
+    def check_currency(self):
+        for rec in self:
+            if any(
+                line.blanket_order_line.order_id.currency_id != rec.currency_id
+                for line in rec.order_line.filtered(
+                    lambda x: x.blanket_order_line)
+            ):
+                raise ValidationError(_(
+                    'The currency of the blanket order must match with that '
+                    'of the purchase order.'))
 
 
 class PurchaseOrderLine(models.Model):
@@ -121,7 +133,8 @@ class PurchaseOrderLine(models.Model):
         if bol:
             self.product_id = bol.product_id
             if bol.date_schedule:
-                self.date_planned = bol.date_schedule
+                self.date_planned = fields.Datetime.to_datetime(
+                    bol.date_schedule)
             if bol.product_uom != self.product_uom:
                 price_unit = bol.product_uom._compute_price(
                     bol.price_unit, self.product_uom)
@@ -137,20 +150,10 @@ class PurchaseOrderLine(models.Model):
     @api.constrains('date_planned')
     def check_date_planned(self):
         for line in self:
-            date_planned = fields.Date.to_string(
-                fields.Date.from_string(self.date_planned))
+            date_planned = fields.Date.to_date(self.date_planned)
             if line.blanket_order_line and \
                     line.blanket_order_line.date_schedule and \
                     line.blanket_order_line.date_schedule != date_planned:
                     raise ValidationError(_(
                         'Schedule dates defined on the Purchase Order Line '
                         'and on the Blanket Order Line do not match.'))
-
-    @api.constrains('order_id.currency_id')
-    def check_currency(self):
-        for line in self:
-            if line.order_id.currency_id != \
-                    line.blanket_order_line.order_id.currency_id:
-                raise ValidationError(_(
-                    'The currency of the blanket order must match with that '
-                    'of the purchase order.'))
