@@ -11,7 +11,7 @@ class ImportLandedCostPickingsWizard(models.TransientModel):
         comodel_name="stock.picking", string="Possible pickings")
     picking_ids = fields.Many2many(
         comodel_name="stock.picking", string="Pickings",
-        domain="[('id', 'in', possible_picking_ids[0][2])]")
+        domain="[('id', 'in', possible_picking_ids)]")
 
     @api.model
     def default_get(self, fields_list):
