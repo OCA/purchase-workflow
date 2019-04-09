@@ -3,13 +3,13 @@
 {
     "name": "Purchase Line Procurement Group",
     "summary": "Group purchase order line according to procurement group",
-    "version": "11.0.1.1.0",
+    "version": "12.0.1.0.0",
     "category": "Purchase",
     "website": "https://github.com/OCA/purchase-workflow",
     "author": "Camptocamp, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "depends": [
-        "purchase",
+        "purchase_stock",
     ],
     "data": [
         "views/purchase.xml",
