@@ -12,7 +12,7 @@ class PurchaseOrderLine(models.Model):
     def _merge_in_existing_line(self, product_id, product_qty, product_uom,
                                 location_id, name, origin, values):
         """Do no merge PO lines if procurement group is different."""
-        if values.get('group_id') != self.procurement_group_id:
+        if values.get('group_id') != (self.procurement_group_id or False):
             return False
         return super()._merge_in_existing_line(
             product_id, product_qty, product_uom, location_id, name, origin,
