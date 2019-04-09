@@ -3,9 +3,9 @@
 from odoo import models, api
 
 
-class ProcurementRule(models.Model):
+class StockRule(models.Model):
 
-    _inherit = 'procurement.rule'
+    _inherit = 'stock.rule'
 
     @api.multi
     def _prepare_purchase_order_line(self, product_id, product_qty,
