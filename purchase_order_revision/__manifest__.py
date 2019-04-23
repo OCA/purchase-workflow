@@ -13,7 +13,7 @@
         'purchase',
     ],
     'data': [
-        'view/purchase_order.xml',
+        'views/purchase_order.xml',
     ],
     'installable': True,
     'post_init_hook': 'populate_unrevisioned_name',

@@ -55,9 +55,9 @@ class PurchaseOrder(models.Model):
     def copy(self, default=None):
         if default is None:
             default = {}
-        if default.get('name', '/') == '/':
+        if default.get('name', 'New') == 'New':
             seq = self.env['ir.sequence']
-            default['name'] = seq.next_by_code('purchase.order') or '/'
+            default['name'] = seq.next_by_code('purchase.order') or 'New'
             default['revision_number'] = 0
             default['unrevisioned_name'] = default['name']
         return super(PurchaseOrder, self).copy(default=default)
