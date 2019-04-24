@@ -3,6 +3,8 @@
 
 from odoo.tests import common
 
+from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
+
 
 class TestPurchaseOrderLineDeepSort(common.SavepointCase):
 
@@ -124,11 +126,15 @@ class TestPurchaseOrderLineDeepSort(common.SavepointCase):
         })
         lines = self.po_line_model.search([('order_id', '=', self.po.id)])
         self._check_value(lines, self.product_1, self.product_2)
-        self.assertEqual(lines[1].date_planned[:10], '2018-11-03')
+        self.assertEqual(
+            lines[1].date_planned.strftime(DEFAULT_SERVER_DATE_FORMAT),
+            '2018-11-03')
         self.po.write({'line_direction': 'desc'})
         lines = self.po_line_model.search([('order_id', '=', self.po.id)])
         self._check_value(lines, self.product_2, self.product_1)
-        self.assertEqual(lines[1].date_planned[:10], '2018-11-03')
+        self.assertEqual(
+            lines[1].date_planned.strftime(DEFAULT_SERVER_DATE_FORMAT),
+            '2018-11-03')
 
     def test_line_by_price_unit(self):
         """ Test if lines are ordered by purchase line price"""

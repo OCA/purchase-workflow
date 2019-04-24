@@ -9,9 +9,9 @@ class ResConfigSettings(models.TransientModel):
 
     default_po_line_order = fields.Selection(
         related='company_id.default_po_line_order',
-        string="Line Order",
+        string="Line Order"
     )
     default_po_line_direction = fields.Selection(
         related='company_id.default_po_line_direction',
-        string="Sort Direction",
+        string="Sort Direction"
     )
