@@ -228,7 +228,8 @@ class PurchaseRequestLine(models.Model):
                                    'Product Unit of Measure'))
     request_id = fields.Many2one('purchase.request',
                                  'Purchase Request',
-                                 ondelete='cascade', readonly=True)
+                                 ondelete='cascade', readonly=True,
+                                 index=True)
     company_id = fields.Many2one('res.company',
                                  related='request_id.company_id',
                                  string='Company',
