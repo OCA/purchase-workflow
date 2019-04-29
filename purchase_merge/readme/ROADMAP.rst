@@ -1,0 +1,1 @@
+* it could be improved by using [https://github.com/OCA/openupgradelib/blob/master/openupgradelib/openupgrade_merge_records.py](https://github.com/OCA/openupgradelib/blob/master/openupgradelib/openupgrade_merge_records.py)
