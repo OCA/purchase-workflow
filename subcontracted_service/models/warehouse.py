@@ -1,5 +1,6 @@
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
 #   (http://www.eficent.com)
+# Copyright 2019 Rubén Bravo <rubenred18@gmail.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models
@@ -9,18 +10,19 @@ class StockWarehouse(models.Model):
     _inherit = 'stock.warehouse'
 
     subcontracting_service_proc_rule_id = fields.Many2one(
-        comodel_name='procurement.rule',
+        comodel_name='stock.rule',
         string="Subcontracting Service Procurement Rule"
     )
 
     def _get_buy_route(self):
-        return self.env.ref('purchase.route_warehouse0_buy',
+        return self.env.ref('purchase_stock.route_warehouse0_buy',
                             raise_if_not_found=False).id
 
     @api.multi
     def _get_vals_for_proc_rule_subcontracting(self):
         self.ensure_one()
         picking_type = self.in_type_id
+
         if not picking_type:
             picking_type = self.env['stock.picking.type'].search(
                 [('code', '=', 'incoming'),
@@ -36,16 +38,16 @@ class StockWarehouse(models.Model):
                 'action': 'buy',
                 'picking_type_id': picking_type.id,
                 'route_id': self._get_buy_route(),
+                'location_id': picking_type.default_location_dest_id.id,
                 }
 
     @api.multi
     def _set_subcontracting_service_proc_rule(self):
         for rec in self:
-            if rec.subcontracting_service_proc_rule_id:
-                continue
-            vals = rec._get_vals_for_proc_rule_subcontracting()
-            rule = self.env['procurement.rule'].create(vals)
-            rec.subcontracting_service_proc_rule_id = rule.id
+            if not rec.subcontracting_service_proc_rule_id:
+                vals = rec._get_vals_for_proc_rule_subcontracting()
+                rule = self.env['stock.rule'].create(vals)
+                rec.subcontracting_service_proc_rule_id = rule.id
         return True
 
     @api.model
