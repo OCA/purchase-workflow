@@ -163,7 +163,6 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         }
         if item.line_id.procurement_id:
             vals['procurement_ids'] = [(4, item.line_id.procurement_id.id)]
-        self._execute_purchase_line_onchange(vals)
         return vals
 
     @api.model
@@ -180,6 +179,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
     @api.model
     def _get_order_line_search_domain(self, order, item):
         vals = self._prepare_purchase_order_line(order, item)
+        self._execute_purchase_line_onchange(vals)
         name = self._get_purchase_line_name(order, item)
         order_line_data = [('order_id', '=', order.id),
                            ('name', '=', name),
@@ -215,36 +215,36 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             location = line.request_id.picking_type_id.default_location_dest_id
             if self.purchase_order_id:
                 purchase = self.purchase_order_id
+                # Look for any other PO line in the selected PO with same
+                # product and UoM to sum quantities instead of creating a new
+                # po line
+                domain = self._get_order_line_search_domain(purchase, item)
+                available_po_lines = po_line_obj.search(domain)
+
             if not purchase:
                 po_data = self._prepare_purchase_order(
                     line.request_id.picking_type_id, location,
                     line.company_id)
                 purchase = purchase_obj.create(po_data)
+                available_po_lines = po_line_obj.browse(False)
 
-            # Look for any other PO line in the selected PO with same
-            # product and UoM to sum quantities instead of creating a new
-            # po line
-            domain = self._get_order_line_search_domain(purchase, item)
-            available_po_lines = po_line_obj.search(domain)
-            new_pr_line = True
             if available_po_lines and not item.keep_description:
-                new_pr_line = False
                 po_line = available_po_lines[0]
                 po_line.purchase_request_lines = [(4, line.id)]
+                new_qty = pr_line_obj._calc_new_qty(
+                    line, po_line=po_line,
+                    new_pr_line=False)
+                po_line.product_qty = new_qty
+                po_line._onchange_quantity()
+                # The onchange quantity is altering the scheduled date of the PO
+                # lines. We do not want that:
+                po_line.date_planned = item.line_id.date_required
             else:
                 po_line_data = self._prepare_purchase_order_line(purchase,
                                                                  item)
                 if item.keep_description:
                     po_line_data['name'] = item.name
                 po_line = po_line_obj.create(po_line_data)
-            new_qty = pr_line_obj._calc_new_qty(
-                line, po_line=po_line,
-                new_pr_line=new_pr_line)
-            po_line.product_qty = new_qty
-            po_line._onchange_quantity()
-            # The onchange quantity is altering the scheduled date of the PO
-            # lines. We do not want that:
-            po_line.date_planned = item.line_id.date_required
             res.append(purchase.id)
 
         return {
