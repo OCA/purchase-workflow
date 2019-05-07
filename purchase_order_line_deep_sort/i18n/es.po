@@ -102,6 +102,13 @@ msgid "Purchase Order"
 msgstr "Pedido de compra"
 
 #. module: purchase_order_line_deep_sort
+#: model:ir.model,name:purchase_order_line_deep_sort.model_purchase_order_line
+#, fuzzy
+#| msgid "Purchase Order"
+msgid "Purchase Order Line"
+msgstr "Pedido de compra"
+
+#. module: purchase_order_line_deep_sort
 #: model:ir.ui.view,arch_db:purchase_order_line_deep_sort.res_config_settings_view_form
 msgid "Select a default sort criteria for purchase order lines."
 msgstr ""
