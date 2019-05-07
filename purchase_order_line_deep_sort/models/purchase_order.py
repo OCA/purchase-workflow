@@ -1,5 +1,6 @@
 # Copyright 2018 Tecnativa - Vicent Cubells <vicent.cubells@tecnativa.com>
 # Copyright 2019 Tecnativa - Pedro M. Baeza
+# Copyright 2019 Tecnativa - Sergio Teruel
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3
 
 from odoo import api, fields, models
@@ -45,6 +46,8 @@ class PurchaseOrder(models.Model):
         )
         for line in sorted_lines:
             sequence += 10
+            if line.sequence == sequence:
+                continue
             line.sequence = sequence
 
     @api.multi
@@ -60,3 +63,13 @@ class PurchaseOrder(models.Model):
         purchase = super(PurchaseOrder, self).create(values)
         purchase._sort_purchase_line()
         return purchase
+
+
+class PurchaseOrderLine(models.Model):
+    _inherit = 'purchase.order.line'
+
+    @api.model
+    def create(self, vals):
+        line = super(PurchaseOrderLine, self).create(vals)
+        line.order_id._sort_purchase_line()
+        return line
