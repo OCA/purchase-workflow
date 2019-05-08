@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* purchase_tier_validation
+# 	* purchase_tier_validation
 #
 msgid ""
 msgstr ""
@@ -18,7 +18,8 @@ msgstr ""
 
 #. module: purchase_tier_validation
 #: model:ir.ui.view,arch_db:purchase_tier_validation.purchase_order_form
-msgid "<i class=\"fa fa-info-circle\"/>This PO needs to be\n"
+msgid ""
+"<i class=\"fa fa-info-circle\"/>This PO needs to be\n"
 "                        validated."
 msgstr ""
 "<i class=\"fa fa-info-circle\"/>Esta PO debe ser\n"
@@ -71,11 +72,6 @@ msgstr "Reiniciar Validación"
 
 #. module: purchase_tier_validation
 #: model:ir.ui.view,arch_db:purchase_tier_validation.purchase_order_form
-msgid "Reviews"
-msgstr "Revisiones"
-
-#. module: purchase_tier_validation
-#: model:ir.ui.view,arch_db:purchase_tier_validation.purchase_order_form
 msgid "Validate"
 msgstr "Validar"
 
@@ -88,3 +84,6 @@ msgstr "Validada"
 #: model:ir.model,name:purchase_tier_validation.model_tier_definition
 msgid "tier.definition"
 msgstr "tier.definition"
+
+#~ msgid "Reviews"
+#~ msgstr "Revisiones"
