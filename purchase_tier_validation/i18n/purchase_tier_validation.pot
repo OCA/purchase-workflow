@@ -66,11 +66,6 @@ msgstr ""
 
 #. module: purchase_tier_validation
 #: model:ir.ui.view,arch_db:purchase_tier_validation.purchase_order_form
-msgid "Reviews"
-msgstr ""
-
-#. module: purchase_tier_validation
-#: model:ir.ui.view,arch_db:purchase_tier_validation.purchase_order_form
 msgid "Validate"
 msgstr ""
 
