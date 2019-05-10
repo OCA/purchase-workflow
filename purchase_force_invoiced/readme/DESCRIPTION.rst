@@ -1,8 +1,8 @@
 This module adds the possibility for users to force the invoice status of the
 purchase orders to 'No Bill to Receive', even when not all the
-quantities ordered or delivered have been invoiced.
+quantities, ordered or delivered, have been invoiced.
 
-This feature useful in the following scenario:
+This feature is useful in the following scenario:
 
 * The supplier disputes the quantities to be billed for, after the
   products have been delivered to her/him, and you agree to reduce the
