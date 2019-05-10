@@ -348,8 +348,8 @@ ul.auto-toc {
 <p><a class="reference external" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external" href="https://github.com/OCA/purchase-workflow/tree/11.0/purchase_force_invoiced"><img alt="OCA/purchase-workflow" src="https://img.shields.io/badge/github-OCA%2Fpurchase--workflow-lightgray.png?logo=github" /></a> <a class="reference external" href="https://translation.odoo-community.org/projects/purchase-workflow-11-0/purchase-workflow-11-0-purchase_force_invoiced"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external" href="https://runbot.odoo-community.org/runbot/142/11.0"><img alt="Try me on Runbot" src="https://img.shields.io/badge/runbot-Try%20me-875A7B.png" /></a></p>
 <p>This module adds the possibility for users to force the invoice status of the
 purchase orders to ‘No Bill to Receive’, even when not all the
-quantities ordered or delivered have been invoiced.</p>
-<p>This feature useful in the following scenario:</p>
+quantities, ordered or delivered, have been invoiced.</p>
+<p>This feature is useful in the following scenario:</p>
 <ul class="simple">
 <li>The supplier disputes the quantities to be billed for, after the
 products have been delivered to her/him, and you agree to reduce the
@@ -376,10 +376,10 @@ orders to appear in your ‘Waiting Bills’ list.</li>
 <ol class="arabic simple">
 <li>Create a purchase order and confirm it.</li>
 <li>Receive the products/services.</li>
-<li>Create an vendor bill and reduce the invoiced quantity. The purchase order
+<li>Create a vendor bill and reduce the invoiced quantity. The purchase order
 invoicing status is ‘Waiting Bills’.</li>
-<li>Lock the Purchase Order, to change the status of it to ‘Done’.</li>
-<li>Check the field ‘Force Invoiced’. Now the quantities of the PO</li>
+<li>Lock the Purchase Order and change its status to ‘Done’.</li>
+<li>Check the field ‘Force Invoiced’.</li>
 </ol>
 </div>
 <div class="section" id="bug-tracker">
