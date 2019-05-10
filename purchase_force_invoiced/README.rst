@@ -27,9 +27,9 @@ Purchase Force Invoiced
 
 This module adds the possibility for users to force the invoice status of the
 purchase orders to 'No Bill to Receive', even when not all the
-quantities ordered or delivered have been invoiced.
+quantities, ordered or delivered, have been invoiced.
 
-This feature useful in the following scenario:
+This feature is useful in the following scenario:
 
 * The supplier disputes the quantities to be billed for, after the
   products have been delivered to her/him, and you agree to reduce the
@@ -49,10 +49,10 @@ Usage
 
 #. Create a purchase order and confirm it.
 #. Receive the products/services.
-#. Create an vendor bill and reduce the invoiced quantity. The purchase order
+#. Create a vendor bill and reduce the invoiced quantity. The purchase order
    invoicing status is 'Waiting Bills'.
-#. Lock the Purchase Order, to change the status of it to 'Done'.
-#. Check the field 'Force Invoiced'. Now the quantities of the PO
+#. Lock the Purchase Order and change its status to 'Done'.
+#. Check the field 'Force Invoiced'.
 
 Bug Tracker
 ===========

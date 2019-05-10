@@ -5,7 +5,7 @@
 {
     'name': 'Purchase Force Invoiced',
     'summary': 'Allows to force the billing status of the purchase order to '
-               'Invoiced',
+               '"Invoiced"',
     'version': '11.0.1.0.0',
     "author": "Eficent,"
               "Odoo Community Association (OCA)",
