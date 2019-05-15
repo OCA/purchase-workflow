@@ -163,6 +163,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         }
         if item.line_id.procurement_id:
             vals['procurement_ids'] = [(4, item.line_id.procurement_id.id)]
+        self._execute_purchase_line_onchange(vals)
         return vals
 
     @api.model
@@ -179,7 +180,6 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
     @api.model
     def _get_order_line_search_domain(self, order, item):
         vals = self._prepare_purchase_order_line(order, item)
-        self._execute_purchase_line_onchange(vals)
         name = self._get_purchase_line_name(order, item)
         order_line_data = [('order_id', '=', order.id),
                            ('name', '=', name),
