@@ -58,6 +58,11 @@ msgstr ""
 
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.report_purchase_request
+msgid "<strong>Estimated Cost</strong>"
+msgstr ""
+
+#. module: purchase_request
+#: model:ir.ui.view,arch_db:purchase_request.report_purchase_request
 msgid "<strong>Picking Type:</strong><br/>"
 msgstr ""
 
@@ -230,6 +235,11 @@ msgid "Creation date"
 msgstr ""
 
 #. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_currency_id
+msgid "Currency"
+msgstr ""
+
+#. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_date_start
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line_date_start
 msgid "Date when the user initiated the request."
@@ -285,6 +295,16 @@ msgstr ""
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:108
 #, python-format
 msgid "Enter a supplier."
+msgstr ""
+
+#. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_estimated_cost
+msgid "Estimated Cost"
+msgstr ""
+
+#. module: purchase_request
+#: model:ir.model.fields,help:purchase_request.field_purchase_request_line_estimated_cost
+msgid "Estimated cost of Purchase Request Line, not propagated to PO."
 msgstr ""
 
 #. module: purchase_request
@@ -881,7 +901,7 @@ msgid ""
 msgstr ""
 
 #. module: purchase_request
-#: code:addons/purchase_request/models/purchase_request.py:433
+#: code:addons/purchase_request/models/purchase_request.py:441
 #, python-format
 msgid "You cannot delete a record that refers to purchase lines!"
 msgstr ""
