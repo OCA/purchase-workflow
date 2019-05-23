@@ -28,7 +28,7 @@ class TestPurchaseOrder(common.SavepointCase):
             'currency_id': cls.env.user.company_id.currency_id.id,
             'rate': 1.00,
             'name': fields.Date.today()
-            })
+        })
         cls.purchase_order = cls.env['purchase.order'].create({
             'partner_id': cls.env.ref('base.res_partner_3').id,
         })
@@ -69,6 +69,21 @@ class TestPurchaseOrder(common.SavepointCase):
             'discount': 0,
             'taxes_id': [(6, 0, [cls.tax.id])],
             'price_unit': 10.0,
+        })
+        # Purchase order to check invoice amounts
+        cls.purchase_order_check_amount = cls.env['purchase.order'].create({
+            'partner_id': cls.env.ref('base.res_partner_3').id,
+        })
+        cls.po_line_check_amount = po_model.create({
+            'order_id': cls.purchase_order_check_amount.id,
+            'product_id': cls.product_2.id,
+            'date_planned': fields.Datetime.now(),
+            'name': 'Test',
+            'product_qty': 50.0,
+            'product_uom': cls.product_2.uom_id.id,
+            'discount': 1,
+            'taxes_id': [(6, 0, [cls.tax.id])],
+            'price_unit': 25.1,
         })
 
     def test_purchase_order_vals(self):
@@ -126,3 +141,17 @@ class TestPurchaseOrder(common.SavepointCase):
             lambda x: x.purchase_line_id == self.po_line_3
         )
         self.assertEqual(line.discount, 0)
+
+    def test_invoice_subtotals(self):
+        invoice = self.env['account.invoice'].new({
+            'partner_id': self.env.ref('base.res_partner_3').id,
+            'purchase_id': self.purchase_order_check_amount.id,
+        })
+        invoice.purchase_order_change()
+        line = invoice.invoice_line_ids.filtered(
+            lambda x: x.purchase_line_id == self.po_line_check_amount
+        )
+        line.quantity = self.po_line_check_amount.product_qty
+        self.assertEqual(line.discount, 1)
+        self.assertAlmostEqual(line.price_subtotal,
+                               self.po_line_check_amount.price_subtotal)
