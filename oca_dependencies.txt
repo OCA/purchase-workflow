@@ -1,0 +1,2 @@
+#TODO: REMOVE ME
+packaging_uom https://github.com/acsone/product-attribute 12.0-add-packaging_uom-dro
