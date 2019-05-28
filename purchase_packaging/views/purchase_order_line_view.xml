@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright 2015-2017 ACSONE SA/NV (<http://acsone.eu>)
+<!-- Copyright 2015-2019 ACSONE SA/NV (<http://acsone.eu>)
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
     <record id="purchase_order_line_view_form_inherit_purchase_packaging" model="ir.ui.view">
@@ -15,7 +15,7 @@
                     <field name="product_tmpl_id" invisible="1"/>
                     <field name="packaging_id" domain="[('product_tmpl_id','=',product_tmpl_id)]" groups="product.group_stock_packaging"/>
                     <field name="product_purchase_qty"/>
-                    <field name="product_purchase_uom_id" groups="product.group_uom"/>
+                    <field name="product_purchase_uom_id" groups="uom.group_uom"/>
                 </label>
                 <field name="product_uom" position="attributes">
                     <attribute name="attrs">{'readonly' : [('packaging_id', '!=', False)]}</attribute>

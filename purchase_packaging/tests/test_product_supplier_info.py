@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# Copyright 2015-2017 ACSONE SA/NV (<http://acsone.eu>)
+# Copyright 2015-2019 ACSONE SA/NV (<http://acsone.eu>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import odoo.tests.common as common
 
@@ -13,12 +12,13 @@ class TestProductSupplierInfo(common.TransactionCase):
         super(TestProductSupplierInfo, self).setUp()
         self.product_supplier_info = self.env.ref(
             'product.product_supplierinfo_1')
-        self.product_tmpl_id = self.product_supplier_info.product_tmpl_id
+        self.product_id = self.product_supplier_info.product_tmpl_id.\
+            product_variant_ids[0]
         self.product_supplier_info.product_tmpl_id.uom_po_id = self.env.ref(
-            'product.product_uom_unit')
+            'uom.product_uom_unit')
         self.product_packaging_dozen = self.env['product.packaging'].create(
-            {'product_tmpl_id': self.product_tmpl_id.id,
-             'uom_id': self.env.ref('product.product_uom_dozen').id,
+            {'product_id': self.product_id.id,
+             'uom_id': self.env.ref('uom.product_uom_dozen').id,
              'name': 'Packaging Dozen'}
         )
 
@@ -28,8 +28,8 @@ class TestProductSupplierInfo(common.TransactionCase):
             Check product_uom of product_supplierinfo_30 is product_uom_dozen
         """
         self.assertEqual(self.product_supplier_info.product_uom.id,
-                         self.env.ref('product.product_uom_unit').id)
+                         self.env.ref('uom.product_uom_unit').id)
         self.product_supplier_info.write(
             {'packaging_id': self.product_packaging_dozen.id})
         self.assertEqual(self.product_supplier_info.product_uom.id,
-                         self.env.ref('product.product_uom_dozen').id)
+                         self.env.ref('uom.product_uom_dozen').id)

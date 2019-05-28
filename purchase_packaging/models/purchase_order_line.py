@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# Copyright 2015-2017 ACSONE SA/NV (<http://acsone.eu>)
+# Copyright 2015-2019 ACSONE SA/NV (<http://acsone.eu>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo import api, fields, models
 import odoo.addons.decimal_precision as dp
@@ -10,32 +9,31 @@ class PurchaseOrderLine(models.Model):
 
     @api.model
     def _default_product_purchase_uom_id(self):
-        return self.env.ref('product.product_uom_unit')
+        return self.env.ref('uom.product_uom_unit')
 
     product_tmpl_id = fields.Many2one(
         related='product_id.product_tmpl_id',
         comodel_name='product.template',
-        readonly=True
     )
     packaging_id = fields.Many2one(
         'product.packaging',
-        'Packaging'
+        'Packaging',
     )
     product_purchase_qty = fields.Float(
         'Purchase quantity',
         digits=dp.get_precision('Product Unit of Measure'),
-        required=True, default=lambda *a: 1.0
+        required=True, default=lambda *a: 1.0,
     )
     product_purchase_uom_id = fields.Many2one(
-        'product.uom',
+        'uom.uom',
         'Purchase Unit of Measure',
         required=True,
-        default=_default_product_purchase_uom_id
+        default=lambda self: self._default_product_purchase_uom_id(),
     )
     product_qty = fields.Float(
         compute="_compute_product_qty",
         string='Quantity',
-        inverse='_inverse_product_qty'
+        inverse='_inverse_product_qty',
     )
 
     @api.multi
@@ -44,8 +42,8 @@ class PurchaseOrderLine(models.Model):
         return self.product_id._select_seller(
             partner_id=self.order_id.partner_id,
             quantity=self.product_qty,
-            date=self.order_id.date_order and fields.Date.to_string(
-                fields.Date.from_string(self.order_id.date_order)) or None,
+            date=self.order_id.date_order and self.order_id.date_order.date()
+            or None,
             uom_id=self.product_uom)
 
     @api.multi
@@ -57,7 +55,7 @@ class PurchaseOrderLine(models.Model):
         Compute the total quantity
         """
         uom_categories = self.mapped("product_purchase_uom_id.category_id")
-        uom_obj = self.env['product.uom']
+        uom_obj = self.env['uom.uom']
         to_uoms = uom_obj.search(
             [('category_id',
               'in',
@@ -74,7 +72,7 @@ class PurchaseOrderLine(models.Model):
         """ If product_quantity is set compute the purchase_qty
         """
         uom_categories = self.mapped("product_purchase_uom_id.category_id")
-        uom_obj = self.env['product.uom']
+        uom_obj = self.env['uom.uom']
         from_uoms = uom_obj.search(
             [('category_id',
               'in',
@@ -137,7 +135,7 @@ class PurchaseOrderLine(models.Model):
             self.product_purchase_uom_id = supplier.min_qty_uom_id
             domain['product_purchase_uom_id'] = \
                 [('id', '=', supplier.min_qty_uom_id.id)]
-            to_uom = self.env['product.uom'].search([
+            to_uom = self.env['uom.uom'].search([
                 ('category_id', '=',
                  supplier.min_qty_uom_id.category_id.id),
                 ('uom_type', '=', 'reference')], limit=1)
@@ -152,14 +150,6 @@ class PurchaseOrderLine(models.Model):
             else:
                 res['domain'] = domain  # pragma: no cover not aware of super
         return res
-
-    @api.multi
-    def _prepare_stock_moves(self, picking):
-        self.ensure_one()
-        val = super(PurchaseOrderLine, self)._prepare_stock_moves(picking)
-        for v in val:
-            v['product_packaging'] = self.packaging_id.id
-        return val
 
     @api.model
     def update_vals(self, vals):
@@ -177,7 +167,7 @@ class PurchaseOrderLine(models.Model):
     def create(self, vals):
         if 'product_qty' not in vals and 'product_purchase_qty' in vals:
             # compute product_qty to avoid inverse computation and reset to 1
-            uom_obj = self.env['product.uom']
+            uom_obj = self.env['uom.uom']
             product_purchase_uom = uom_obj.browse(
                 vals['product_purchase_uom_id'])
             to_uom = uom_obj.search(
