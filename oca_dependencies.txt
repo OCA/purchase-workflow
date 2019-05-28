@@ -1,4 +1,5 @@
 product-attribute
 account-invoicing
+product-attribute
 server-tools
 server-ux

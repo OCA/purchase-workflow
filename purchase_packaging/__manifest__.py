@@ -1,15 +1,18 @@
-# -*- coding: utf-8 -*-
 # Copyright 2015-2017 ACSONE SA/NV (<http://acsone.eu>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     "name": "Purchase Packaging",
-    "version": "10.0.1.0.6",
+    "version": "12.0.1.0.0",
     "author": 'ACSONE SA/NV, '
               'Odoo Community Association (OCA)',
-    "category": "Warehouse",
-    "website": "http://www.acsone.eu",
-    'summary': "In purchase, use package",
+    "category": "Purchases",
+    "development_status": "Production/Stable",
+    "maintainers": ["rousseldenis"],
+    "website": "http://github.com/OCA/purchase-workflow",
+    "summary": "In purchases, use product packages",
+
     "depends": [
+        "uom",
         "product",
         "purchase",
         "packaging_uom",

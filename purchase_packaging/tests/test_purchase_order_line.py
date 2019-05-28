@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# Copyright 2015-2017 ACSONE SA/NV (<http://acsone.eu>)
+# Copyright 2015-2019 ACSONE SA/NV (<http://acsone.eu>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import odoo.tests.common as common
 
@@ -13,22 +12,23 @@ class TestPurchaseOrderLine(common.TransactionCase):
         super(TestPurchaseOrderLine, self).setUp()
         self.product_supplier_info = self.env.ref(
             'product.product_supplierinfo_1')
-        self.product_tmpl_id = self.product_supplier_info.product_tmpl_id
+        self.product_tmpl_id = self.product_supplier_info.\
+            product_tmpl_id.product_variant_ids[0]
         self.product_supplier_info.product_tmpl_id.uom_po_id = self.env.ref(
-            'product.product_uom_unit')
+            'uom.product_uom_unit')
         self.product_supplier_info.min_qty = 1
         self.product_packaging_dozen = self.env['product.packaging'].create({
-            'product_tmpl_id': self.product_tmpl_id.id,
-            'uom_id': self.env.ref('product.product_uom_dozen').id,
+            'product_id': self.product_tmpl_id.id,
+            'uom_id': self.env.ref('uom.product_uom_dozen').id,
             'name': 'Packaging Dozen'
         })
         self.product_packaging_unit = self.env['product.packaging'].create({
             'product_tmpl_id': self.product_tmpl_id.id,
-            'uom_id': self.env.ref('product.product_uom_unit').id,
+            'uom_id': self.env.ref('uom.product_uom_unit').id,
             'name': 'Packaging Unit'
         })
-        self.product_uom_8 = self.env['product.uom'].create({
-            'category_id': self.env.ref('product.product_uom_categ_unit').id,
+        self.product_uom_8 = self.env['uom.uom'].create({
+            'category_id': self.env.ref('uom.product_uom_categ_unit').id,
             'name': 'COL8',
             'factor_inv': 8,
             'uom_type': 'bigger',
@@ -72,18 +72,10 @@ class TestPurchaseOrderLine(common.TransactionCase):
         self.assertAlmostEqual(po_line.product_qty, 16)
         self.assertTrue(po_line.price_unit)
         self.assertEqual(po_line.product_uom.id,
-                         self.env.ref('product.product_uom_dozen').id)
+                         self.env.ref('uom.product_uom_dozen').id)
         values = po_line._convert_to_write(
             {name: po_line[name] for name in po_line._cache})
         po.order_line.create(values)
-        # check that all the packaging informations are on the created picking
-        po._create_picking()
-        sm = po.picking_ids[0].move_lines[0]
-        self.assertEqual(sm.product_packaging.id,
-                         self.product_packaging_dozen.id)
-        self.assertEqual(sm.product_uom.id,
-                         self.env.ref('product.product_uom_dozen').id)
-        self.assertAlmostEqual(sm.product_uom_qty, 16)
 
     def test_po_line_no_product(self):
         self.product_supplier_info.min_qty_uom_id = self.product_uom_8

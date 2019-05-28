@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# Copyright 2015-2017 ACSONE SA/NV (<http://acsone.eu>)
+# Copyright 2015-2019 ACSONE SA/NV (<http://acsone.eu>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo import api, fields, models
 
@@ -9,7 +8,7 @@ class ProductSupplierinfo(models.Model):
 
     @api.model
     def _default_min_qty_uom_id(self):
-        return self.env.ref('product.product_uom_unit')
+        return self.env.ref('uom.product_uom_unit')
 
     packaging_id = fields.Many2one(
         'product.packaging',
@@ -21,10 +20,10 @@ class ProductSupplierinfo(models.Model):
         related=False
     )
     min_qty_uom_id = fields.Many2one(
-        'product.uom',
+        'uom.uom',
         'Minimal Unit of Measure Quantity',
         required=True,
-        default=_default_min_qty_uom_id
+        default=lambda self: self._default_min_qty_uom_id(),
     )
 
     @api.multi

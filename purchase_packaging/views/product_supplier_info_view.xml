@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright 2015-2017 ACSONE SA/NV (<http://acsone.eu>)
+<!-- Copyright 2015-2019 ACSONE SA/NV (<http://acsone.eu>)
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
         <record id="product_supplierinfo_view_tree_inherit_purchase_packaging" model="ir.ui.view">
@@ -8,7 +8,7 @@
             <field name="inherit_id" ref="product.product_supplierinfo_tree_view"/>
             <field name="arch" type="xml">
                 <field name="min_qty" position="after">
-                    <field name="min_qty_uom_id" groups="product.group_uom"/>
+                    <field name="min_qty_uom_id" groups="uom.group_uom"/>
                     <field name="packaging_id" groups="product.group_stock_packaging"/>
                 </field>
             </field>
@@ -20,7 +20,7 @@
             <field name="inherit_id" ref="product.product_supplierinfo_form_view"/>
             <field name="arch" type="xml">
                 <field name="min_qty" position="after">
-                    <span> x <field name="min_qty_uom_id" groups="product.group_uom"/></span>
+                    <span> x <field name="min_qty_uom_id" groups="uom.group_uom"/></span>
                 </field>
                 <field name="product_uom" position="before">
                 <span> of </span>
