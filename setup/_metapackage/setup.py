@@ -11,6 +11,7 @@ setuptools.setup(
         'odoo12-addon-purchase_delivery_split_date',
         'odoo12-addon-purchase_line_procurement_group',
         'odoo12-addon-purchase_order_archive',
+        'odoo12-addon-purchase_tier_validation',
     ],
     classifiers=[
         'Programming Language :: Python',
