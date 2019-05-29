@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -14,33 +14,33 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: purchase_tier_validation
-#: model:ir.ui.view,arch_db:purchase_tier_validation.purchase_order_form
+#: model_terms:ir.ui.view,arch_db:purchase_tier_validation.purchase_order_form
 msgid "<i class=\"fa fa-info-circle\"/>This PO needs to be\n"
 "                        validated."
 msgstr ""
 
 #. module: purchase_tier_validation
-#: model:ir.ui.view,arch_db:purchase_tier_validation.purchase_order_form
+#: model_terms:ir.ui.view,arch_db:purchase_tier_validation.purchase_order_form
 msgid "<i class=\"fa fa-thumbs-down\"/> Operation has been <b>rejected</b>."
 msgstr ""
 
 #. module: purchase_tier_validation
-#: model:ir.ui.view,arch_db:purchase_tier_validation.purchase_order_form
+#: model_terms:ir.ui.view,arch_db:purchase_tier_validation.purchase_order_form
 msgid "<i class=\"fa fa-thumbs-up\"/> Operation has been <b>validated</b>!"
 msgstr ""
 
 #. module: purchase_tier_validation
-#: model:ir.ui.view,arch_db:purchase_tier_validation.view_purchase_order_filter
+#: model_terms:ir.ui.view,arch_db:purchase_tier_validation.view_purchase_order_filter
 msgid "My Purchases to review"
 msgstr ""
 
 #. module: purchase_tier_validation
-#: model:ir.ui.view,arch_db:purchase_tier_validation.view_purchase_order_filter
+#: model_terms:ir.ui.view,arch_db:purchase_tier_validation.view_purchase_order_filter
 msgid "Needs my Review"
 msgstr ""
 
 #. module: purchase_tier_validation
-#: model:ir.ui.view,arch_db:purchase_tier_validation.view_purchase_order_filter
+#: model_terms:ir.ui.view,arch_db:purchase_tier_validation.view_purchase_order_filter
 msgid "POs validated and ready to be confirmed"
 msgstr ""
 
@@ -50,32 +50,32 @@ msgid "Purchase Order"
 msgstr ""
 
 #. module: purchase_tier_validation
-#: model:ir.ui.view,arch_db:purchase_tier_validation.purchase_order_form
+#: model_terms:ir.ui.view,arch_db:purchase_tier_validation.purchase_order_form
 msgid "Reject"
 msgstr ""
 
 #. module: purchase_tier_validation
-#: model:ir.ui.view,arch_db:purchase_tier_validation.purchase_order_form
+#: model_terms:ir.ui.view,arch_db:purchase_tier_validation.purchase_order_form
 msgid "Request Validation"
 msgstr ""
 
 #. module: purchase_tier_validation
-#: model:ir.ui.view,arch_db:purchase_tier_validation.purchase_order_form
+#: model_terms:ir.ui.view,arch_db:purchase_tier_validation.purchase_order_form
 msgid "Restart Validation"
 msgstr ""
 
 #. module: purchase_tier_validation
-#: model:ir.ui.view,arch_db:purchase_tier_validation.purchase_order_form
+#: model:ir.model,name:purchase_tier_validation.model_tier_definition
+msgid "Tier Definition"
+msgstr ""
+
+#. module: purchase_tier_validation
+#: model_terms:ir.ui.view,arch_db:purchase_tier_validation.purchase_order_form
 msgid "Validate"
 msgstr ""
 
 #. module: purchase_tier_validation
-#: model:ir.ui.view,arch_db:purchase_tier_validation.view_purchase_order_filter
+#: model_terms:ir.ui.view,arch_db:purchase_tier_validation.view_purchase_order_filter
 msgid "Validated"
-msgstr ""
-
-#. module: purchase_tier_validation
-#: model:ir.model,name:purchase_tier_validation.model_tier_definition
-msgid "tier.definition"
 msgstr ""
 
