@@ -31,7 +31,7 @@
                                    options="{'no_open': true}"
                                    invisible="1"/>
                               <field name="request_id" readonly="1"/>
-                              <field name="product_id" readonly="1"/>
+                              <field name="product_id"/>
                               <field name="name"/>
                               <field name="product_qty"/>
                               <field name="product_uom_id"
