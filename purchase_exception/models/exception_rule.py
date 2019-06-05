@@ -8,9 +8,8 @@ from odoo import models, fields
 class ExceptionRule(models.Model):
     _inherit = 'exception.rule'
 
-    rule_group = fields.Selection(
-        selection_add=[('purchase', 'Purchase')],
-    )
+    purchase_ids = fields.Many2many(
+        comodel_name="purchase.order", string="Purchases")
     model = fields.Selection(
         selection_add=[
             ('purchase.order', 'Purchase order'),
