@@ -4,11 +4,10 @@
     <record id="action_purchase_test_tree" model="ir.actions.act_window">
         <field name="name">Purchase Exception Rules</field>
         <field name="res_model">exception.rule</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="view_id" ref="base_exception.view_exception_rule_tree"/>
-        <field name="domain">[('rule_group', '=', 'purchase')]</field>
-        <field name="context">{'active_test': False, 'default_rule_group' : 'purchase'}</field>
+        <field name="domain">[('model', 'in', ['purchase.order', 'purchase.order.line'])]</field>
+        <field name="context">{'active_test': False, 'default_model' : 'purchase.order'}</field>
     </record>
 
     <menuitem
