@@ -20,7 +20,6 @@
         <field name="name">No email on vendor</field>
         <field name="description">No Email for Vendor</field>
         <field name="sequence">50</field>
-        <field name="rule_group">purchase</field>
         <field name="model">purchase.order</field>
         <field name="code">if not purchase.partner_id.email:
             failed=True</field>
@@ -31,7 +30,6 @@
         <field name="name">Quantity not negative</field>
         <field name="description">Purchase line quantity must be positive</field>
         <field name="sequence">50</field>
-        <field name="rule_group">purchase</field>
         <field name="model">purchase.order.line</field>
         <field name="code">if purchase_line.product_qty &lt; 0:
             failed=True</field>
