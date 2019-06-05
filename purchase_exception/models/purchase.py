@@ -2,7 +2,11 @@
 # Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, models, fields
+import logging
+
+from odoo import api, models
+
+logger = logging.getLogger(__name__)
 
 
 class PurchaseOrder(models.Model):
@@ -10,16 +14,35 @@ class PurchaseOrder(models.Model):
     _name = 'purchase.order'
     _order = 'main_exception_id asc, date_order desc, name desc'
 
-    rule_group = fields.Selection(
-        selection_add=[('purchase', 'Purchase')],
-        default='purchase',
-    )
-
     @api.model
     def test_all_draft_orders(self):
         order_set = self.search([('state', '=', 'draft')])
-        order_set.test_exceptions()
+        order_set.detect_exceptions()
         return True
+
+    @api.model
+    def _exception_rule_eval_context(self, rec):
+        # TODO remove in v13
+        # We keep this only for backward compatibility
+        res = super()._exception_rule_eval_context(rec)
+        if res.get("purchase"):
+            logger.warning("""
+                For a full compatibility with future versions of this module,
+                please use 'self' instead of 'purchase' in your
+                custom exceptions rules.
+                """)
+        res['purchase'] = rec
+        return res
+
+    @api.model
+    def _reverse_field(self):
+        return 'purchase_ids'
+
+    def detect_exceptions(self):
+        all_exceptions = super().detect_exceptions()
+        lines = self.mapped('order_line')
+        all_exceptions += lines.detect_exceptions()
+        return all_exceptions
 
     @api.constrains('ignore_exception', 'order_line', 'state')
     def purchase_check_exception(self):
