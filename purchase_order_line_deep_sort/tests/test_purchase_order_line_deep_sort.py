@@ -157,3 +157,24 @@ class TestPurchaseOrderLineDeepSort(common.SavepointCase):
         lines = self.po_line_model.search([('order_id', '=', self.po.id)])
         self._check_value(lines, self.product_2, self.product_3)
         self.assertAlmostEqual(lines[1].product_qty, 3.0)
+
+    def test_product_sort_false_values(self):
+        """
+        Test purchase order lines sorted lines with False values and
+        string values (default_code).
+        Test sort lines with numeric values with False values
+        """
+        self.product_2.default_code = False
+        self.po.write({
+            'line_order': 'product_id.default_code',
+            'line_direction': 'asc',
+        })
+        lines = self.po_line_model.search([('order_id', '=', self.po.id)])
+        self.assertEqual(lines[0].product_id, self.product_2)
+        self.po.write({
+            'line_order': 'price_unit',
+            'line_direction': 'asc',
+        })
+        self.po_line_3.price_unit = 0.0
+        lines = self.po_line_model.search([('order_id', '=', self.po.id)])
+        self.assertEqual(lines[0], self.po_line_3)
