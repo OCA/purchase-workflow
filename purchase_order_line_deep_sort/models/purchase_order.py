@@ -32,8 +32,12 @@ class PurchaseOrder(models.Model):
         def resolve_subfields(obj, line_order):
             subfields = line_order.split('.')
             res = obj
+            str_fields = ('text', 'varchar', 'timestamp', 'date')
             for subfield in subfields:
-                res = getattr(res, subfield)
+                if res._fields[subfield].column_type[0] in str_fields:
+                    res = getattr(res, subfield) or ''
+                else:
+                    res = getattr(res, subfield)
             return res
 
         if not self.line_order and not self.line_direction:
