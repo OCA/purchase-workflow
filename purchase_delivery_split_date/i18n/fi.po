@@ -1,0 +1,29 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * purchase_delivery_split_date
+#
+# Translators:
+# Timo Talvitie <timo.talvitie@vizucom.com>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-03-02 12:10+0000\n"
+"PO-Revision-Date: 2017-03-02 12:10+0000\n"
+"Last-Translator: Timo Talvitie <timo.talvitie@vizucom.com>, 2017\n"
+"Language-Team: Finnish (https://www.transifex.com/oca/teams/23907/fi/)\n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: purchase_delivery_split_date
+#: model:ir.model,name:purchase_delivery_split_date.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Ostotilausrivi"
+
+#. module: purchase_delivery_split_date
+#: model:ir.model,name:purchase_delivery_split_date.model_stock_picking
+msgid "Transfer"
+msgstr ""
