@@ -70,10 +70,6 @@ class PurchaseOrder(models.Model):
             order.ignore_exception = False
         return res
 
-    def _purchase_get_lines(self):
-        self.ensure_one()
-        return self.order_line
-
     @api.model
     def _get_popup_action(self):
         action = self.env.ref(
