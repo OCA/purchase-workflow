@@ -21,7 +21,7 @@
         <field name="description">No Email for Vendor</field>
         <field name="sequence">50</field>
         <field name="model">purchase.order</field>
-        <field name="code">if not purchase.partner_id.email:
+        <field name="code">if not self.partner_id.email:
             failed=True</field>
         <field name="active" eval="False"/>
     </record>
@@ -31,7 +31,7 @@
         <field name="description">Purchase line quantity must be positive</field>
         <field name="sequence">50</field>
         <field name="model">purchase.order.line</field>
-        <field name="code">if purchase_line.product_qty &lt; 0:
+        <field name="code">if self.product_qty &lt; 0:
             failed=True</field>
         <field name="active" eval="False"/>
     </record>
