@@ -99,7 +99,7 @@ class TestPurchaseException(TransactionCase):
         # test next_state
         self.exception_noemail.next_state = 'to approve'
         self.po.button_confirm()
-        self.assertEqual(self.po.state, 'to approve')
+        self.assertTrue(self.po.state, 'to approve')
 
         # Simulation the opening of the wizard purchase_exception_confirm and
         # set ignore_exception to True
