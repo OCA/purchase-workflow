@@ -8,8 +8,8 @@ class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
 
     state = fields.Selection(selection_add=[('approved', 'Approved')])
-    # TODO: inhterit state but adding approved state in a position after 'to
-    # aprove' state.
+    # TODO: inherit state but adding approved state in a position after 'to
+    # approve' state.
 
     READONLY_STATES = {
         'purchase': [('readonly', True)],

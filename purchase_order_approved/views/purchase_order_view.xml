@@ -20,4 +20,8 @@
         </field>
     </record>
 
+    <record id="purchase.purchase_form_action" model="ir.actions.act_window">
+        <field name="domain">[('state','in',('approved', 'purchase', 'done'))]</field>
+    </record>
+
 </odoo>
