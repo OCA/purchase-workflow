@@ -3,15 +3,15 @@
 {
     "name": "Purchase Order Approved",
     "summary": "Add a new state 'Approved' in purchase orders.",
-    "version": "11.0.1.0.0",
+    "version": "12.0.1.0.0",
     "category": "Purchases",
-    "website": "https://odoo-community.org/",
+    "website": "https://github.com/OCA/purchase-workflow",
     "author": "Eficent, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
     "depends": [
-        "purchase",
+        "purchase_stock",
     ],
     "data": [
         "views/purchase_order_view.xml",
