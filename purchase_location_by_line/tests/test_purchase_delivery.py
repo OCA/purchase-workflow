@@ -63,7 +63,7 @@ class TestDeliverySingle(TransactionCase):
             "There must be 1 picking for the PO when confirmed")
 
         self.assertEquals(
-            self.po.picking_ids[0].scheduled_date[:10], self.date_sooner,
+            str(self.po.picking_ids[0].scheduled_date)[:10], self.date_sooner,
             "The picking must be planned at the expected date")
 
     def test_check_multiple_dates(self):
@@ -85,10 +85,10 @@ class TestDeliverySingle(TransactionCase):
         sorted_pickings = sorted(
             self.po.picking_ids, key=lambda x: x.scheduled_date)
         self.assertEquals(
-            sorted_pickings[0].scheduled_date[:10], self.date_sooner,
+            str(sorted_pickings[0].scheduled_date)[:10], self.date_sooner,
             "The first picking must be planned at the soonest date")
         self.assertEquals(
-            sorted_pickings[1].scheduled_date[:10], self.date_later,
+            str(sorted_pickings[1].scheduled_date)[:10], self.date_later,
             "The second picking must be planned at the latest date")
 
         l2_picking = self.po.picking_ids.filtered(
@@ -145,10 +145,10 @@ class TestDeliverySingle(TransactionCase):
         sorted_pickings = sorted(
             self.po.picking_ids, key=lambda x: x.scheduled_date)
         self.assertEquals(
-            sorted_pickings[0].scheduled_date[:10], self.date_sooner,
+            str(sorted_pickings[0].scheduled_date)[:10], self.date_sooner,
             "The first picking must be planned at the soonest date")
         self.assertEquals(
-            sorted_pickings[2].scheduled_date[:10], self.date_later,
+            str(sorted_pickings[2].scheduled_date)[:10], self.date_later,
             "The second picking must be planned at the latest date")
 
     def test_check_multiple_locations_multiple_dates_02(self):
@@ -178,8 +178,8 @@ class TestDeliverySingle(TransactionCase):
         sorted_pickings = sorted(
             self.po.picking_ids, key=lambda x: x.scheduled_date)
         self.assertEquals(
-            sorted_pickings[0].scheduled_date[:10], self.date_sooner,
+            str(sorted_pickings[0].scheduled_date)[:10], self.date_sooner,
             "The first picking must be planned at the soonest date")
         self.assertEquals(
-            sorted_pickings[2].scheduled_date[:10], self.date_later,
+            str(sorted_pickings[2].scheduled_date)[:10], self.date_later,
             "The second picking must be planned at the latest date")
