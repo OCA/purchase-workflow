@@ -30,13 +30,8 @@ msgid "No order grouping"
 msgstr ""
 
 #. module: procurement_purchase_no_grouping
-#: model:ir.model.fields,field_description:procurement_purchase_no_grouping.field_product_category_procured_purchase_grouping
+#: model:ir.model.fields,field_description:procurement_purchase_no_grouping.field_product_category__procured_purchase_grouping
 msgid "Procured purchase grouping"
-msgstr ""
-
-#. module: procurement_purchase_no_grouping
-#: model:ir.model,name:procurement_purchase_no_grouping.model_procurement_rule
-msgid "Procurement Rule"
 msgstr ""
 
 #. module: procurement_purchase_no_grouping
@@ -50,7 +45,7 @@ msgid "Purchase Order Line"
 msgstr "Linha de Encomenda de Compra"
 
 #. module: procurement_purchase_no_grouping
-#: model:ir.model.fields,help:procurement_purchase_no_grouping.field_product_category_procured_purchase_grouping
+#: model:ir.model.fields,help:procurement_purchase_no_grouping.field_product_category__procured_purchase_grouping
 msgid ""
 "Select the behaviour for grouping procured purchases for the the products of "
 "this category:\n"
@@ -64,4 +59,9 @@ msgstr ""
 #. module: procurement_purchase_no_grouping
 #: selection:product.category,procured_purchase_grouping:0
 msgid "Standard grouping"
+msgstr ""
+
+#. module: procurement_purchase_no_grouping
+#: model:ir.model,name:procurement_purchase_no_grouping.model_stock_rule
+msgid "Stock Rule"
 msgstr ""
