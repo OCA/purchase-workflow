@@ -5,14 +5,14 @@
 
 {
     'name': 'Procurement Purchase No Grouping',
-    'version': '11.0.1.0.0',
+    'version': '12.0.1.0.0',
     'author': 'AvanzOSC,'
               'Tecnativa,'
               'Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/purchase-workflow',
     'category': 'Procurements',
     'depends': [
-        'purchase',
+        'purchase_stock',
     ],
     'data': [
         'views/product_category_view.xml',
