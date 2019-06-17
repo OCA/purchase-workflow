@@ -30,8 +30,9 @@ class TestProcurementPurchaseNoGrouping(common.SavepointCase):
         cls.location = cls.env.ref('stock.stock_location_stock')
         cls.picking_type = cls.env.ref('stock.picking_type_in')
         cls.origin = 'Test procurement_purchase_no_grouping'
-        cls.stock_location_route = cls.env.ref('purchase.route_warehouse0_buy')
-        cls.procurement_rule = cls.stock_location_route.pull_ids[0]
+        cls.stock_location_route = cls.env.ref(
+            'purchase_stock.route_warehouse0_buy')
+        cls.stock_rule = cls.stock_location_route.rule_ids[0]
         cls.values = {
             # FIXME: Core doesn't find correctly supplier if not recordset
             'company_id': cls.env.user.company_id,
@@ -39,7 +40,7 @@ class TestProcurementPurchaseNoGrouping(common.SavepointCase):
         }
 
     def _run_procurement(self):
-        self.procurement_rule._run_buy(
+        self.stock_rule._run_buy(
             self.product, 1, self.product.uom_id, self.location, False,
             self.origin, self.values,
         )
