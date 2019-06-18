@@ -46,6 +46,14 @@ class PurchaseOrderRecommendation(models.TransientModel):
         default=False,
         help='Show all products with supplier infos for this supplier',
     )
+    warehouse_ids = fields.Many2many(
+        comodel_name='stock.warehouse',
+        string='Warehouse',
+        help='Constrain search to an specific warehouse',
+    )
+    warehouse_count = fields.Integer(
+        default=lambda self: len(self.env['stock.warehouse'].search([])),
+    )
 
     @api.model
     def _default_order_id(self):
@@ -71,18 +79,19 @@ class PurchaseOrderRecommendation(models.TransientModel):
         product_tmpls = supplierinfos.mapped('product_tmpl_id')
         products = supplierinfos.mapped('product_id')
         products |= product_tmpls.mapped('product_variant_ids')
+        domain = [
+            ('product_id', 'in', products.ids),
+            ('date', '>=', '{} 00:00:00'.format(self.date_begin)),
+            ('date', '<=', '{} 23:59:59'.format(self.date_end)),
+            ('location_id.usage', '=', src),
+            ('location_dest_id.usage', '=', dst),
+            ('state', '=', 'done'),
+        ]
+        if self.warehouse_ids:
+            domain += [('picking_id.picking_type_id.warehouse_id', 'in',
+                        self.warehouse_ids.ids)]
         found_lines = self.env['stock.move.line'].read_group(
-            [
-                ('product_id', 'in', products.ids),
-                ('date', '>=', '{} 00:00:00'.format(self.date_begin)),
-                ('date', '<=', '{} 23:59:59'.format(self.date_end)),
-                ('location_id.usage', '=', src),
-                ('location_dest_id.usage', '=', dst),
-                ('state', '=', 'done'),
-            ],
-            ['product_id', 'qty_done'],
-            ['product_id'],
-        )
+            domain, ['product_id', 'qty_done'], ['product_id'])
         # Manual ordering that circumvents ORM limitations
         found_lines = sorted(
             found_lines,
@@ -136,7 +145,7 @@ class PurchaseOrderRecommendation(models.TransientModel):
 
     @api.multi
     @api.onchange('order_id', 'date_begin', 'date_end', 'line_amount',
-                  'show_all_partner_products')
+                  'show_all_partner_products', 'warehouse_ids')
     def _generate_recommendations(self):
         """Generate lines according to received and delivered items"""
         self.line_ids = False
