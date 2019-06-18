@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!-- Copyright 2016 Eficent Business and IT Consulting Services S.L.
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
+<odoo>
+
+        <record model="ir.ui.view" id="view_purchase_request_form">
+            <field name="name">purchase.request.form</field>
+            <field name="model">purchase.request</field>
+            <field name="inherit_id"
+                   ref="purchase_request.view_purchase_request_form"/>
+            <field name="arch" type="xml">
+                <field name="assigned_to" position="after">
+                <field name="group_id"
+                   attrs="{'readonly': [('is_editable','=', False)]}"/>
+                </field>
+            </field>
+        </record>
+
+</odoo>

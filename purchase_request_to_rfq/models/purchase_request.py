@@ -10,6 +10,33 @@ from dateutil.relativedelta import relativedelta
 from odoo import _, api, exceptions, fields, models
 
 
+class PurchaseRequest(models.Model):
+    _inherit = "purchase.request"
+
+    purchase_count = fields.Integer(
+        string='Purchases count',
+        compute='_compute_purchase_count',
+        readonly=True
+    )
+    @api.depends('line_ids')
+    def _compute_purchase_count(self):
+        self.purchase_count = len(self.mapped(
+            'line_ids.purchase_lines.order_id'))
+
+    @api.multi
+    def action_view_purchase_order(self):
+        action = self.env.ref(
+            'purchase.purchase_rfq').read()[0]
+        lines = self.mapped('line_ids.purchase_lines.order_id')
+        if len(lines) > 1:
+            action['domain'] = [('id', 'in', lines.ids)]
+        elif lines:
+            action['views'] = [(self.env.ref(
+                'purchase.purchase_order_form').id, 'form')]
+            action['res_id'] = lines.id
+        return action
+
+
 class PurchaseRequestLine(models.Model):
 
     _inherit = "purchase.request.line"

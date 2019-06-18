@@ -103,3 +103,18 @@ class PurchaseOrderLine(models.Model):
                 'view_type': 'form',
                 'view_mode': 'tree,form',
                 'domain': domain}
+
+    @api.multi
+    def _prepare_stock_moves(self, picking):
+        self.ensure_one()
+        val = super(PurchaseOrderLine, self)._prepare_stock_moves(picking)
+        for v in val:
+            all_list = []
+            for prl in self.env['purchase.order.line'].browse(
+                    v['purchase_line_id']).purchase_request_lines:
+                all_list.append(
+                    (0, 0,
+                     {'requested_product_uom_qty': v['product_uom_qty'],
+                      'purchase_request_line_id': prl.id}))
+            v['purchase_request_allocation_ids'] = all_list
+        return val

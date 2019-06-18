@@ -9,6 +9,16 @@
             <field name="inherit_id"
                    ref="purchase_request.view_purchase_request_form"/>
             <field name="arch" type="xml">
+                <xpath expr="//form/sheet/div[@class='oe_button_box']" position="inside">
+                    <button type="object"
+                        name="action_view_purchase_order"
+                        class="oe_stat_button"
+                        attrs="{'invisible':[('purchase_count', '=', 0)]}"
+                        icon="fa-shopping-cart">
+                        <field name="purchase_count" widget="statinfo"
+                               string="Purchase Orders"/>
+                    </button>
+                </xpath>
                 <xpath expr="//field[@name='line_ids']/tree"
                        position="inside">
                     <field name="purchased_qty"/>

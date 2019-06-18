@@ -122,3 +122,13 @@ class TestPurchaseRequest(common.TransactionCase):
         pr_lines.write({'product_qty': 4})
         pr.button_to_approve()
         self.assertEqual(pr.state, 'to_approve')
+
+    def test_allocation(self):
+        pr = self.purchase_request
+        pr_lines = pr.line_ids
+        self.assertEqual(pr_lines.qty_in_progress, 0)
+        self.assertEqual(pr_lines.qty_done, 0)
+        self.assertEqual(pr_lines.qty_cancelled, 0)
+        self.assertEqual(pr_lines.qty_in_progress, 0)
+        self.assertEqual(pr_lines.qty_done, 0)
+        self.assertEqual(pr_lines.qty_cancelled, 0)

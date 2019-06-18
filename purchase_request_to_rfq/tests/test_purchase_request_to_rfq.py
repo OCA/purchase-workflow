@@ -222,3 +222,39 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         self.assertEquals(po_line.product_uom,
                           self.env.ref('product.product_uom_dozen'),
                           'The purchase UoM should be Dozen(s).')
+
+    def test_purchase_request_allocation(self):
+        vals = {
+            'picking_type_id': self.env.ref('stock.picking_type_in').id,
+            'requested_by': SUPERUSER_ID,
+        }
+        purchase_request1 = self.purchase_request.create(vals)
+        vals = {
+            'request_id': purchase_request1.id,
+            'product_id': self.env.ref('product.product_product_6').id,
+            'product_uom_id': self.env.ref('product.product_uom_unit').id,
+            'product_qty': 2.0,
+        }
+        purchase_request_line1 = self.purchase_request_line.create(vals)
+        vals = {
+            'supplier_id': self.env.ref('base.res_partner_1').id,
+        }
+        purchase_request1.button_approved()
+        wiz_id = self.wiz.with_context(
+            active_model="purchase.request.line",
+            active_ids=[purchase_request_line1.id]).create(vals)
+        wiz_id.make_purchase_order()
+        po_line = purchase_request_line1.purchase_lines[0]
+        purchase = po_line.order_id
+        purchase.button_confirm()
+        picking = purchase.picking_ids[0]
+        picking.pack_operation_product_ids[0].write({'qty_done': 0.5})
+        # picking.action_assign()
+        backorder_wiz_id = picking.do_new_transfer()['res_id']
+        backorder_wiz = self.env['stock.backorder.confirmation'].browse(
+            [backorder_wiz_id])
+        backorder_wiz.process()
+        self.assertEqual(purchase_request_line1.qty_in_progress, 2.0)
+        self.assertEqual(purchase_request_line1.qty_done, 0.5)
+        purchase.picking_ids[0].action_cancel()
+        self.assertEqual(purchase_request_line1.qty_cancelled, 1.5)

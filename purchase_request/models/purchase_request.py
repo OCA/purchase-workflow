@@ -5,6 +5,7 @@
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError
 import odoo.addons.decimal_precision as dp
+from odoo.tools.float_utils import float_compare
 
 _STATES = [
     ('draft', 'Draft'),
@@ -115,10 +116,24 @@ class PurchaseRequest(models.Model):
         compute='_compute_line_count',
         readonly=True
     )
+    move_count = fields.Integer(
+        string='Stock Move count',
+        compute='_compute_move_count',
+        readonly=True
+    )
+    product_id = fields.Many2one('product.product',
+                                 related='line_ids.product_id',
+                                 readonly=True,
+                                 string='Product')
 
     @api.depends('line_ids')
     def _compute_line_count(self):
         self.line_count = len(self.mapped('line_ids'))
+
+    @api.depends('line_ids')
+    def _compute_move_count(self):
+        self.move_count = len(self.mapped(
+            'line_ids.purchase_request_allocation_ids.stock_move_id'))
 
     @api.multi
     def action_view_purchase_request_line(self):
@@ -130,6 +145,20 @@ class PurchaseRequest(models.Model):
         elif lines:
             action['views'] = [(self.env.ref(
                 'purchase_request.purchase_request_line_form').id, 'form')]
+            action['res_id'] = lines.id
+        return action
+
+    @api.multi
+    def action_view_stock_move(self):
+        action = self.env.ref(
+            'stock.stock_move_action').read()[0]
+        lines = self.mapped(
+            'line_ids.purchase_request_allocation_ids.stock_move_id')
+        if len(lines) > 1:
+            action['domain'] = [('id', 'in', lines.ids)]
+        elif lines:
+            action['views'] = [(self.env.ref(
+                'stock.view_move_form').id, 'form')]
             action['res_id'] = lines.id
         return action
 
@@ -212,6 +241,11 @@ class PurchaseRequest(models.Model):
                 raise UserError(
                     _("You can't request an approval for a purchase request "
                       "which is empty. (%s)") % rec.name)
+
+    def check_done(self):
+        if all(prl.is_done for prl in self.line_ids):
+            self.button_done()
+        return
 
 
 class PurchaseRequestLine(models.Model):
@@ -296,6 +330,14 @@ class PurchaseRequestLine(models.Model):
     cancelled = fields.Boolean(
         string="Cancelled", readonly=True, default=False, copy=False)
 
+    purchase_request_allocation_ids = fields.One2many(
+        comodel_name='purchase.request.allocation',
+        inverse_name='purchase_request_line_id',
+        string='Purchase Request Allocation')
+
+    is_done = fields.Boolean('Purchase Request Line is satisfied',
+                             readonly=True)
+
     @api.onchange('product_id')
     def onchange_product_id(self):
         if self.product_id:
@@ -325,3 +367,57 @@ class PurchaseRequestLine(models.Model):
             requests = self.mapped('request_id')
             requests.check_auto_reject()
         return res
+
+    qty_in_progress = fields.Float(
+        'Qty In Progress', digits=dp.get_precision('Product Unit of Measure'),
+        readonly=True, compute='_compute_qty', store=True,
+        help="Quantity in progress.",
+    )
+    qty_done = fields.Float(
+        'Qty Done', digits=dp.get_precision('Product Unit of Measure'),
+        readonly=True, compute='_compute_qty', store=True,
+        help="Quantity completed",
+    )
+    qty_cancelled = fields.Float(
+        'Qty Cancelled', digits=dp.get_precision('Product Unit of Measure'),
+        readonly=True, compute='_compute_qty', store=True,
+        help="Quantity cancelled",
+    )
+
+    @api.depends('purchase_request_allocation_ids',
+                 'purchase_request_allocation_ids.stock_move_id.state',
+                 'purchase_request_allocation_ids.stock_move_id')
+    def _compute_qty(self):
+        for request in self:
+            done_qty = sum(request.purchase_request_allocation_ids.mapped(
+                'allocated_product_qty'))
+            open_qty = sum(
+                request.purchase_request_allocation_ids.mapped(
+                    'open_product_qty'))
+            request.qty_done = request.product_id.uom_id._compute_quantity(
+                done_qty, request.product_uom_id)
+            request.qty_in_progress = \
+                request.product_id.uom_id._compute_quantity(
+                    open_qty, request.product_uom_id)
+            request.qty_cancelled = max(
+                0, request.product_id.uom_id._compute_quantity(
+                    request.product_qty - done_qty - open_qty,
+                    request.product_uom_id
+                )) if request.purchase_request_allocation_ids else 0
+
+    def set_done(self):
+        self.write({'is_done': True})
+
+    def check_done(self):
+        precision = self.env['decimal.precision'].precision_get(
+            'Product Unit of Measure')
+        for request in self:
+            allocated_qty = sum(
+                request.purchase_request_allocation_ids.mapped(
+                'allocated_product_qty'))
+            qty_done = request.product_id.uom_id._compute_quantity(
+                allocated_qty, request.product_uom_id)
+            if float_compare(qty_done, request.product_qty,
+                             precision_digits=precision) >= 0:
+                request.set_done()
+        return True

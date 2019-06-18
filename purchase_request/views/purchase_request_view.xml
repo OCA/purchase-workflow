@@ -48,6 +48,15 @@
                             <field name="line_count" widget="statinfo"
                                    string="Lines"/>
                         </button>
+                        <button type="object"
+                            name="action_view_stock_move"
+                            class="oe_stat_button"
+                            attrs="{'invisible':[('move_count', '=', 0)]}"
+                            groups="stock.group_stock_manager"
+                            icon="fa-truck">
+                            <field name="move_count" widget="statinfo"
+                                   string="Stock Moves"/>
+                        </button>
                     </div>
                     <div class="oe_edit_only">
                         <label for="name" class="oe_inline"/>
@@ -121,6 +130,8 @@
                                                 <field name="date_required"
                                                        attrs="{'readonly': [('is_editable','=', False)]}"/>
                                                 <field name="cancelled"/>
+                                                <field name="qty_in_progress"/>
+                                                <field name="qty_done"/>
                                                 <field name="procurement_id"/>
                                             </group>
                                         </group>
@@ -173,6 +184,7 @@
                 <search string="Search Purchase Request">
                     <field name="name" string="Purchase Request"/>
                     <separator/>
+                    <field name="product_id"/>
                     <field name="state"/>
                     <filter name="unassigned" string="Unassigned"
                             domain="[('assigned_to','=', False)]"
@@ -247,7 +259,8 @@
             <field name="model">purchase.request.line</field>
             <field name="arch" type="xml">
                 <tree string="Purchase Request Lines" create="false"
-                      decoration-muted="cancelled == True">
+                    decoration-muted="cancelled == True"
+                    decoration-info="request_state in ('draft', 'to_approve')">
                     <field name="request_id"/>
                     <field name="request_state"/>
                     <field name="requested_by"/>
@@ -256,6 +269,8 @@
                     <field name="product_id"/>
                     <field name="name"/>
                     <field name="product_qty"/>
+                    <field name="qty_in_progress"/>
+                    <field name="qty_done"/>
                     <field name="product_uom_id" groups="product.group_uom"/>
                     <field name="analytic_account_id"
                            groups="analytic.group_analytic_accounting"/>
@@ -316,6 +331,8 @@
                                        attrs="{'readonly': [('is_editable','=', False)]}"/>
                                 <field name="cancelled"/>
                                 <field name="procurement_id"/>
+                                <field name="qty_in_progress"/>
+                                <field name="qty_done"/>
                             </group>
                         </group>
                         <group>
@@ -404,7 +421,6 @@
             <field name="res_model">purchase.request.line</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
-            <field name="domain">[('request_state','!=','draft')]</field>
             <field name="search_view_id" ref="purchase_request_line_search"/>
         </record>
 
