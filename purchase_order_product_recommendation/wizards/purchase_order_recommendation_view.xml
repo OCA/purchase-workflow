@@ -10,8 +10,13 @@
                 <sheet>
                     <group>
                         <field name="order_id" invisible="1"/>
+                        <field name="warehouse_count" invisible="1"/>
                         <field name="date_begin"/>
                         <field name="date_end"/>
+                        <field name="warehouse_ids"
+                               widget="many2many_tags"
+                               options="{'no_open': True, 'no_create': True}"
+                               attrs="{'invisible': [('warehouse_count', '&lt;', 2)]}"/>
                         <field name="line_amount"/>
                         <field name="show_all_partner_products"/>
                     </group>
