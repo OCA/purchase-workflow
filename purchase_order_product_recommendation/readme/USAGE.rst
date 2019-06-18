@@ -11,3 +11,6 @@ supplier. Then it computes how many times those products have been delivered to
 customer locations, and finally it makes a simple estimation of how many
 quantites would be necesary to order given the forcasted stock and the computed
 demand.
+
+If you have multiple warehouses, you can also constrain the recommendations to
+the deliveries of specific ones.
