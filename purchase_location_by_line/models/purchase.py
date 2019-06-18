@@ -51,7 +51,8 @@ class PurchaseOrderLine(models.Model):
                 default_picking_location_id)
 
             location = line.location_dest_id or default_picking_location
-            if location:
+            if location and \
+                    line.move_ids.mapped('location_dest_id') != location:
                 line.move_ids.write(
                     {'location_dest_id': location.id})
         return res
