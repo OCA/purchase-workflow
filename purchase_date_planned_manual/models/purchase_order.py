@@ -52,3 +52,23 @@ class PurchaseOrderLine(models.Model):
             'This line is scheduled for: %s. \n However it is now planned to '
             'arrive late.') % Dt.to_string(Dt.context_timestamp(
                 self, Dt.from_string(self.date_planned))))
+
+    def _merge_in_existing_line(self, product_id, product_qty, product_uom,
+                                location_id, name, origin, values):
+        if self.date_planned == values.get('date_planned'):
+            return super(PurchaseOrderLine, self)._merge_in_existing_line(
+                product_id, product_qty, product_uom,
+                location_id, name, origin, values)
+        return False
+
+
+class ProcurementRule(models.Model):
+    _inherit = 'procurement.rule'
+
+    def _prepare_purchase_order_line(
+            self, product_id, product_qty, product_uom, values, po, supplier):
+        res = super(ProcurementRule, self)._prepare_purchase_order_line(
+            product_id, product_qty, product_uom, values, po, supplier)
+        if values.get('date_planned'):
+            res['date_planned'] = values.get('date_planned')
+        return res
