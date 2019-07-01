@@ -7,6 +7,7 @@ from odoo import api, fields, models
 
 class ProductUsage(models.Model):
     _name = "purchase.product.usage"
+    _description = "Product Usage"
 
     name = fields.Char('Description', required=True)
     code = fields.Char('Code')
