@@ -16,12 +16,14 @@
         "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
         "Ana Juaristi <anajuaristi@avanzosc.es>",
         "Carlos Lopez Mite <celm1990@hotmail.com>",
+        "Adria Gil Sorribes <adria.gil@eficent.com>",
     ],
     "depends": [
         "purchase",
     ],
     "data": [
-        "views/product_view.xml",
+        "views/product_views.xml",
     ],
     "installable": True,
+    "post_init_hook": "set_last_price_info",
 }
