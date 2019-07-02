@@ -22,12 +22,17 @@ class PurchaseOrder(models.Model):
             request.name, self.name)
 
         for line in request_dict.values():
+            if line['request_line'].product_id:
+                display_name = line['request_line'].product_id.display_name
+            else:
+                display_name = line['request_line'].name
+
             message += _(
                 '<li><b>%s</b>: Ordered quantity %s %s, Planned date %s</li>'
-            ) % (line['name'],
-                 line['product_qty'],
-                 line['product_uom'],
-                 line['date_planned'],
+            ) % (display_name,
+                 line['line'].product_qty,
+                 line['line'].product_uom.name,
+                 line['line'].order_id.date_planned,
                  )
         message += '</ul>'
         return message
@@ -42,12 +47,9 @@ class PurchaseOrder(models.Model):
                     request_id = request_line.request_id.id
                     if request_id not in requests_dict:
                         requests_dict[request_id] = {}
-                    date_planned = "%s" % line.date_planned
                     data = {
-                        'name': request_line.name,
-                        'product_qty': line.product_qty,
-                        'product_uom': line.product_uom.name,
-                        'date_planned': date_planned,
+                        'request_line': request_line,
+                        'line': line,
                     }
                     requests_dict[request_id][request_line.id] = data
             for request_id in requests_dict:
