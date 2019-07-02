@@ -2,9 +2,8 @@
 #   (http://www.eficent.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models
+from odoo import api, fields, models, _
 from odoo.tools import float_compare
-from odoo.tools.safe_eval import safe_eval
 import odoo.addons.decimal_precision as dp
 
 
@@ -57,47 +56,61 @@ class PurchaseOrder(models.Model):
 
     def _compute_qty_to_invoice(self):
         for po in self:
-            po.qty_to_invoice = sum(po.mapped('order_line.qty_to_invoice'))
+            qty_to_invoice = sum(po.mapped('order_line.qty_to_invoice'))
+            po.pending_qty_to_invoice = qty_to_invoice > 0.0
+            po.qty_to_invoice = qty_to_invoice
 
     def _compute_qty_to_receive(self):
         for po in self:
-            po.qty_to_receive = sum(po.mapped('order_line.qty_to_receive'))
-
-    @api.model
-    def _search_qty_to_invoice(self, operator, value):
-        res = []
-        order_ids = []
-        # To evaluate the operation 'is equal to', change the operator value
-        if operator == '=':
-            operator = '=='
-        for po in self.search([]):
-            qty_to_invoice = sum(po.mapped('order_line.qty_to_invoice'))
-            flag = safe_eval(str(qty_to_invoice) + operator +
-                             str(value))
-            if flag:
-                order_ids.append(po.id)
-        res.append(('id', 'in', order_ids))
-        return res
-
-    @api.model
-    def _search_qty_to_receive(self, operator, value):
-        res = []
-        order_ids = []
-        # To evaluate the operation 'is equal to', change the operator value
-        if operator == '=':
-            operator = '=='
-        for po in self.search([]):
             qty_to_receive = sum(po.mapped('order_line.qty_to_receive'))
-            flag = safe_eval(str(qty_to_receive) + operator +
-                             str(value))
-            if flag:
-                order_ids.append(po.id)
-        res.append(('id', 'in', order_ids))
-        return res
+            po.pending_qty_to_receive = qty_to_receive > 0.0
+            po.qty_to_receive = qty_to_receive
 
-    qty_to_invoice = fields.Float(compute='_compute_qty_to_invoice',
-                                  search='_search_qty_to_invoice',
-                                  string="Qty to Bill")
-    qty_to_receive = fields.Float(compute='_compute_qty_to_receive',
-                                  search='_search_qty_to_receive',
-                                  string="Qty to Receive")
+    @api.model
+    def _search_pending_qty_to_receive(self, operator, value):
+        if operator != '=' or not isinstance(value, bool):
+            raise ValueError(_("Unsupported search operator"))
+        po_line_obj = self.env['purchase.order.line']
+        po_lines = po_line_obj.search(
+            [('qty_to_receive', '>', 0.0)])
+        orders = po_lines.mapped('order_id')
+        if value:
+            return [('id', 'in', orders.ids)]
+        else:
+            return [('id', 'not in', orders.ids)]
+
+    @api.model
+    def _search_pending_qty_to_invoice(self, operator, value):
+        if operator != '=' or not isinstance(value, bool):
+            raise ValueError(_("Unsupported search operator"))
+        po_line_obj = self.env['purchase.order.line']
+        po_lines = po_line_obj.search(
+            [('qty_to_invoice', '>', 0.0)])
+        orders = po_lines.mapped('order_id')
+        if value:
+            return [('id', 'in', orders.ids)]
+        else:
+            return [('id', 'not in', orders.ids)]
+
+    qty_to_invoice = fields.Float(
+        compute='_compute_qty_to_invoice',
+        search='_search_qty_to_invoice',
+        string="Qty to Bill",
+        default=0.0,
+    )
+    pending_qty_to_invoice = fields.Boolean(
+        compute='_compute_qty_to_invoice',
+        search='_search_pending_qty_to_invoice',
+        string="Pending Qty to Bill",
+    )
+    qty_to_receive = fields.Float(
+        compute='_compute_qty_to_receive',
+        search='_search_qty_to_receive',
+        string="Qty to Receive",
+        default=0.0,
+    )
+    pending_qty_to_receive = fields.Boolean(
+        compute='_compute_qty_to_receive',
+        search='_search_pending_qty_to_receive',
+        string="Pending Qty to Receive",
+    )
