@@ -124,42 +124,16 @@ class TestPurchaseOpenQty(TransactionCase):
                          "Expected 0 as qty_to_receive in the PO")
 
     def test_search_qty_to_invoice_and_receive(self):
-
-        # Ordered order
-        found_invoice1 = self.purchase_order_1._search_qty_to_invoice(
-            '=',
-            '5.0')
+        found = self.purchase_order_model.search(
+            ['|', ('pending_qty_to_invoice', '=', True),
+             ('pending_qty_to_receive', '=', True)])
         self.assertTrue(
-            self.purchase_order_1.id in found_invoice1[0][2],
-            'Expected PO %s in POs %s' % (self.purchase_order_1.id,
-                                          found_invoice1[0][2]))
-        # Delivered order
-        found_invoice2 = self.purchase_order_2._search_qty_to_invoice(
-            '=',
-            '0.0')
-        self.assertTrue(
-            self.purchase_order_2.id in found_invoice2[0][2],
-            'Expected PO %s in POs %s' % (self.purchase_order_2.id,
-                                          found_invoice1[0][2]))
-
-        # Ordered order
-        found_receive1 = self.purchase_order_1._search_qty_to_receive(
-            '=',
-            '5.0'
-        )
-        self.assertTrue(
-            self.purchase_order_1.id in found_receive1[0][2],
-            'Expected PO %s in POs %s' % (self.purchase_order_1.id,
-                                          found_receive1[0][2])
-        )
-
-        # Delivered order
-        found_receive2 = self.purchase_order_2._search_qty_to_receive(
-            '=',
-            '5.0'
-        )
-        self.assertTrue(
-            self.purchase_order_2.id in found_receive2[0][2],
-            'Expected PO %s in POs %s' % (self.purchase_order_2.id,
-                                          found_receive2[0][2])
-        )
+            self.purchase_order_1.id in found.ids,
+            'Expected PO %s in POs %s' % (self.purchase_order_1.id, found.ids))
+        found = self.purchase_order_model.search(
+            ['|', ('pending_qty_to_invoice', '=', False),
+             ('pending_qty_to_receive', '=', False)])
+        self.assertFalse(
+            self.purchase_order_2.id not in found.ids,
+            'Expected PO %s not to be in POs %s' % (
+                self.purchase_order_2.id, found.ids))
