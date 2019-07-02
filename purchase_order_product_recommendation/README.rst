@@ -55,7 +55,7 @@ quantites would be necesary to order given the forcasted stock and the computed
 demand.
 
 If you have multiple warehouses, you can also constrain the recommendations to
-an specific warehouse deliveries.
+the deliveries of specific ones.
 
 Bug Tracker
 ===========
