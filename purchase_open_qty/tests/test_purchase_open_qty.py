@@ -122,7 +122,15 @@ class TestPurchaseOpenQty(TransactionCase):
 
     def test_search_qty_to_invoice_and_receive(self):
         found = self.purchase_order_model.search(
-            ['|', ('qty_to_invoice', '>', 0.0), ('qty_to_receive', '>', 0.0)])
+            ['|', ('pending_qty_to_invoice', '=', True),
+             ('pending_qty_to_receive', '=', True)])
         self.assertTrue(
             self.purchase_order_1.id in found.ids,
             'Expected PO %s in POs %s' % (self.purchase_order_1.id, found.ids))
+        found = self.purchase_order_model.search(
+            ['|', ('pending_qty_to_invoice', '=', False),
+             ('pending_qty_to_receive', '=', False)])
+        self.assertFalse(
+            self.purchase_order_1.id in found.ids,
+            'Expected PO %s not to be in POs %s' % (
+                self.purchase_order_1.id, found.ids))
