@@ -32,26 +32,24 @@ class StockPicking(models.Model):
     @api.multi
     def action_done(self):
         super(StockPicking, self).action_done()
-        for picking in self:
+        for picking in self.filtered(
+                lambda p: p.picking_type_id.code == 'incoming'):
             purchase_dict = {}
-            if picking.picking_type_id.code != 'incoming':
-                continue
-            for move in picking.move_lines:
-                if move.purchase_line_id:
-                    pol_id = move.purchase_line_id
-                    if pol_id.id not in purchase_dict:
-                        purchase_dict[pol_id.id] = {}
-                    data = {
-                        'purchase_line': pol_id,
-                        'stock_move': move,
-                    }
-                    purchase_dict[pol_id.id][pol_id.id] = data
-            for purchase_line_id in purchase_dict:
-                po = self.env['purchase.order.line'].sudo().browse(
-                    purchase_line_id).order_id
+            for move in picking.move_lines.filtered('purchase_line_id'):
+                pol_id = move.purchase_line_id
+                if pol_id.order_id not in purchase_dict.keys():
+                    purchase_dict[pol_id.order_id] = {}
+                if pol_id.id not in purchase_dict[pol_id.order_id].keys():
+                    purchase_dict[pol_id.order_id][pol_id.id] = {}
+                data = {
+                    'purchase_line': pol_id,
+                    'stock_move': move,
+                }
+                purchase_dict[pol_id.order_id][pol_id.id] = data
+            for po in purchase_dict.keys():
                 message = \
                     self._purchase_order_picking_confirm_message_content(
-                        picking, purchase_dict[purchase_line_id])
+                        picking, purchase_dict[po])
                 po.message_post(
                     body=message,
                     subtype='purchase_reception_notify.mt_purchase_reception')
