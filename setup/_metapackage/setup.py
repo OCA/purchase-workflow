@@ -12,6 +12,7 @@ setuptools.setup(
         'odoo12-addon-purchase_delivery_split_date',
         'odoo12-addon-purchase_exception',
         'odoo12-addon-purchase_line_procurement_group',
+        'odoo12-addon-purchase_open_qty',
         'odoo12-addon-purchase_order_approved',
         'odoo12-addon-purchase_order_archive',
         'odoo12-addon-purchase_tier_validation',
