@@ -1,4 +1,4 @@
-# Copyright 2018 Eficent Business and IT Consulting Services S.L.
+# Copyright 2019 Eficent Business and IT Consulting Services S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl-3.0).
 
 {
@@ -14,5 +14,6 @@
     ],
     "data": ["data/mail.xml",
              ],
-    "installable": True
+    "installable": True,
+    "post_init_hook": "post_init_hook",
 }
