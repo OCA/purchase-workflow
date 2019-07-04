@@ -52,8 +52,8 @@ class TestPurchaseReceptionNotify(TransactionCase):
         for picking in self.purchase_order.picking_ids:
             picking.move_lines.write({'quantity_done': 5.0})
             picking.button_validate()
-        self.assertTrue(
-            'Receipt confirmation %s'
-            % picking.name in
-            self.purchase_order_line.order_id.message_ids[0].body,
-            "PO user not notified")
+            self.assertTrue(
+                'Receipt confirmation %s'
+                % picking.name in
+                self.purchase_order_line.order_id.message_ids[0].body,
+                "PO user not notified")
