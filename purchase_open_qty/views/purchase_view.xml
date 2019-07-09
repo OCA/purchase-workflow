@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Copyright 2017 Eficent Business and IT Consulting Services S.L.-->
+   <!--(http://www.eficent.com)-->
+<!--License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).-->
+<odoo>
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field name="name">purchase.order.form -- open qty fields</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <field name="qty_received" position="before">
+                <field name="qty_to_receive" attrs="{'column_invisible': [('parent.state', 'not in', ('purchase', 'done'))]}"/>
+            </field>
+            <field name="qty_invoiced" position="before">
+                <field name="qty_to_invoice" attrs="{'column_invisible': [('parent.state', 'not in', ('purchase', 'done'))]}"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_purchase_order_filter" model="ir.ui.view">
+        <field name="name">request.quotation.select -- open qty filters</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+        <field name="arch" type="xml">
+            <filter name="invoiced" position="after">
+                <filter name="pending_qty_to_invoice" string="Pending Qty to Bill" domain="[('pending_qty_to_invoice','=',True)]"/>
+                <filter name="pending_qty_to_receive" string="Pending Qty to Receive" domain="[('pending_qty_to_receive','=',True)]"/>
+            </filter>
+        </field>
+    </record>
+    <record id="purchase_order_line_search" model="ir.ui.view">
+        <field name="name">purchase.order.line.search - purchase_open_qty</field>
+        <field name="model">purchase.order.line</field>
+        <field name="inherit_id" ref="purchase.purchase_order_line_search"/>
+        <field name="arch" type="xml">
+            <filter name="hide_cancelled" position="after">
+                <filter name="pending_qty_to_invoice"
+                        string="Pending Qty to Bill"
+                        domain="[('pending_qty_to_invoice','=',True)]"/>
+                <filter name="pending_qty_to_receive"
+                        string="Pending Qty to Receive"
+                        domain="[('pending_qty_to_receive','=',True)]"/>
+            </filter>
+        </field>
+    </record>
+</odoo>

@@ -1,2 +1,3 @@
-server-ux
 product-attribute
+server-tools
+server-ux
