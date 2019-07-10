@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -14,42 +14,42 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: purchase_product_usage
-#: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_product_usage_account_id
+#: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_product_usage__account_id
 msgid "Account"
 msgstr ""
 
 #. module: purchase_product_usage
-#: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_product_usage_active
+#: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_product_usage__active
 msgid "Active"
 msgstr ""
 
 #. module: purchase_product_usage
-#: model:ir.ui.view,arch_db:purchase_product_usage.view_purchase_product_usage_search
+#: model_terms:ir.ui.view,arch_db:purchase_product_usage.view_purchase_product_usage_search
 msgid "Archived"
 msgstr ""
 
 #. module: purchase_product_usage
-#: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_product_usage_code
+#: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_product_usage__code
 msgid "Code"
 msgstr ""
 
 #. module: purchase_product_usage
-#: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_product_usage_company_id
+#: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_product_usage__company_id
 msgid "Company"
 msgstr ""
 
 #. module: purchase_product_usage
-#: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_product_usage_create_uid
+#: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_product_usage__create_uid
 msgid "Created by"
 msgstr ""
 
 #. module: purchase_product_usage
-#: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_product_usage_create_date
+#: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_product_usage__create_date
 msgid "Created on"
 msgstr ""
 
 #. module: purchase_product_usage
-#: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_product_usage_product_id
+#: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_product_usage__product_id
 msgid "Default Product"
 msgstr ""
 
@@ -59,22 +59,22 @@ msgid "Define Purchase Product Usages"
 msgstr ""
 
 #. module: purchase_product_usage
-#: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_product_usage_name
+#: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_product_usage__name
 msgid "Description"
 msgstr ""
 
 #. module: purchase_product_usage
-#: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_product_usage_display_name
+#: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_product_usage__display_name
 msgid "Display Name"
 msgstr ""
 
 #. module: purchase_product_usage
-#: model:ir.model.fields,help:purchase_product_usage.field_purchase_product_usage_account_id
+#: model:ir.model.fields,help:purchase_product_usage.field_purchase_product_usage__account_id
 msgid "Expense account for vendor bills"
 msgstr ""
 
 #. module: purchase_product_usage
-#: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_product_usage_id
+#: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_product_usage__id
 msgid "ID"
 msgstr ""
 
@@ -84,22 +84,27 @@ msgid "Invoice"
 msgstr ""
 
 #. module: purchase_product_usage
-#: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_product_usage___last_update
+#: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_product_usage____last_update
 msgid "Last Modified on"
 msgstr ""
 
 #. module: purchase_product_usage
-#: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_product_usage_write_uid
+#: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_product_usage__write_uid
 msgid "Last Updated by"
 msgstr ""
 
 #. module: purchase_product_usage
-#: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_product_usage_write_date
+#: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_product_usage__write_date
 msgid "Last Updated on"
 msgstr ""
 
 #. module: purchase_product_usage
-#: model:ir.ui.view,arch_db:purchase_product_usage.purchase_product_usage_form
+#: model:ir.model,name:purchase_product_usage.model_purchase_product_usage
+msgid "Product Usage"
+msgstr ""
+
+#. module: purchase_product_usage
+#: model_terms:ir.ui.view,arch_db:purchase_product_usage.purchase_product_usage_form
 msgid "Product usage"
 msgstr ""
 
@@ -111,27 +116,22 @@ msgstr ""
 #. module: purchase_product_usage
 #: model:ir.actions.act_window,name:purchase_product_usage.action_purchase_product_usage
 #: model:ir.ui.menu,name:purchase_product_usage.menu_purchase_product_usage
-#: model:ir.ui.view,arch_db:purchase_product_usage.purchase_product_usage_tree
+#: model_terms:ir.ui.view,arch_db:purchase_product_usage.purchase_product_usage_tree
 msgid "Purchase Product Usages"
 msgstr ""
 
 #. module: purchase_product_usage
-#: model:ir.model.fields,help:purchase_product_usage.field_purchase_product_usage_product_id
+#: model:ir.model.fields,help:purchase_product_usage.field_purchase_product_usage__product_id
 msgid "Purchase this product by default"
 msgstr ""
 
 #. module: purchase_product_usage
-#: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_order_line_usage_id
+#: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_order_line__usage_id
 msgid "Usage"
 msgstr ""
 
 #. module: purchase_product_usage
-#: model:ir.ui.view,arch_db:purchase_product_usage.view_purchase_product_usage_search
+#: model_terms:ir.ui.view,arch_db:purchase_product_usage.view_purchase_product_usage_search
 msgid "Usages"
-msgstr ""
-
-#. module: purchase_product_usage
-#: model:ir.model,name:purchase_product_usage.model_purchase_product_usage
-msgid "purchase.product.usage"
 msgstr ""
 
