@@ -35,6 +35,7 @@ setuptools.setup(
         'odoo11-addon-purchase_request_order_approved',
         'odoo11-addon-purchase_request_product_usage',
         'odoo11-addon-purchase_request_tier_validation',
+        'odoo11-addon-purchase_request_usage_department',
         'odoo11-addon-purchase_tier_validation',
         'odoo11-addon-stock_landed_cost_company_percentage',
         'odoo11-addon-subcontracted_service',
