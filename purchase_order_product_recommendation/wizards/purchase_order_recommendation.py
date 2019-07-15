@@ -74,8 +74,8 @@ class PurchaseOrderRecommendation(models.TransientModel):
             from and to given location types"""
         supplierinfo_obj = self.env['product.supplierinfo'].with_context(
             prefetch_fields=False)
-        supplierinfos = supplierinfo_obj.search([
-            ('name', '=', self.order_id.partner_id.id)])
+        partner = self.order_id.partner_id.commercial_partner_id
+        supplierinfos = supplierinfo_obj.search([('name', '=', partner.id)])
         product_tmpls = supplierinfos.mapped('product_tmpl_id')
         products = supplierinfos.mapped('product_id')
         products |= product_tmpls.mapped('product_variant_ids')
