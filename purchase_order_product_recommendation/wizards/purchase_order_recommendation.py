@@ -122,8 +122,18 @@ class PurchaseOrderRecommendation(models.TransientModel):
     def _prepare_wizard_line(self, vals, order_line=False):
         """Used to create the wizard line"""
         product_id = order_line and order_line.product_id or vals['product_id']
-        units_available = product_id.qty_available
-        units_virtual_available = product_id.qty_available
+        if self.warehouse_ids:
+            units_available = sum([
+                product_id.with_context(warehouse=wh).qty_available
+                for wh in self.warehouse_ids.ids
+            ])
+            units_virtual_available = sum([
+                product_id.with_context(warehouse=wh).virtual_available
+                for wh in self.warehouse_ids.ids
+            ])
+        else:
+            units_available = product_id.qty_available
+            units_virtual_available = product_id.virtual_available
         qty_to_order = abs(
             min(0, units_virtual_available - vals.get('qty_delivered', 0)))
         vals['is_modified'] = bool(qty_to_order)

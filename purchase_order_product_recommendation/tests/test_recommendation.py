@@ -113,6 +113,18 @@ class RecommendationCase(SavepointCase):
         cls.move_line.write({
             'state': 'done',
         })
+        # Total stock available for prod3 is 5 units split in two warehouses
+        quant_obj = cls.env['stock.quant']
+        quant_obj.create({
+            'product_id': cls.prod_3.id,
+            'location_id': cls.wh1.lot_stock_id.id,
+            'quantity': 2.0,
+        })
+        quant_obj.create({
+            'product_id': cls.prod_3.id,
+            'location_id': cls.wh2.lot_stock_id.id,
+            'quantity': 3.0,
+        })
         # Create a purchase order for the same customer
         cls.new_po = cls.env["purchase.order"].create({
             "partner_id": cls.partner.id,
@@ -141,8 +153,10 @@ class RecommendationCase(SavepointCase):
         self.assertEqual(wizard.line_ids[0].product_id, self.prod_2)
         self.assertEqual(wizard.line_ids[1].times_delivered, 1)
         self.assertEqual(wizard.line_ids[1].units_delivered, 13)
-        self.assertEqual(wizard.line_ids[1].units_included, 13)
+        self.assertEqual(wizard.line_ids[1].units_included, 8)
         self.assertEqual(wizard.line_ids[1].product_id, self.prod_3)
+        self.assertEqual(wizard.line_ids[1].units_available, 5)
+        self.assertEqual(wizard.line_ids[1].units_virtual_available, 5)
         # Only 1 product if limited as such
         wizard.line_amount = 1
         wizard._generate_recommendations()
@@ -161,8 +175,10 @@ class RecommendationCase(SavepointCase):
         self.assertEqual(wizard.line_ids[0].product_id, self.prod_2)
         self.assertEqual(wizard.line_ids[1].times_delivered, 1)
         self.assertEqual(wizard.line_ids[1].units_delivered, 13)
-        self.assertEqual(wizard.line_ids[1].units_included, 13)
+        self.assertEqual(wizard.line_ids[1].units_included, 10)
         self.assertEqual(wizard.line_ids[1].product_id, self.prod_3)
+        self.assertEqual(wizard.line_ids[1].units_available, 3)
+        self.assertEqual(wizard.line_ids[1].units_virtual_available, 3)
         # Just delivered to WH1
         wizard.warehouse_ids = self.wh1
         wizard._generate_recommendations()
@@ -176,6 +192,8 @@ class RecommendationCase(SavepointCase):
         self.assertEqual(wizard.line_ids[1].units_included, 0)
         self.assertEqual(wizard.line_ids[1].product_id, self.prod_3)
         self.assertEqual(len(wizard.line_ids), 2)
+        self.assertEqual(wizard.line_ids[1].units_available, 2)
+        self.assertEqual(wizard.line_ids[1].units_virtual_available, 2)
         # Delivered to both warehouses
         wizard.warehouse_ids |= self.wh2
         wizard._generate_recommendations()
@@ -185,5 +203,7 @@ class RecommendationCase(SavepointCase):
         self.assertEqual(wizard.line_ids[0].product_id, self.prod_2)
         self.assertEqual(wizard.line_ids[1].times_delivered, 1)
         self.assertEqual(wizard.line_ids[1].units_delivered, 13)
-        self.assertEqual(wizard.line_ids[1].units_included, 13)
+        self.assertEqual(wizard.line_ids[1].units_included, 8)
         self.assertEqual(wizard.line_ids[1].product_id, self.prod_3)
+        self.assertEqual(wizard.line_ids[1].units_available, 5)
+        self.assertEqual(wizard.line_ids[1].units_virtual_available, 5)
