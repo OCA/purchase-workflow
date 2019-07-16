@@ -27,6 +27,11 @@ msgid "Cancel"
 msgstr "Cancelar"
 
 #. module: purchase_order_product_recommendation
+#: model:ir.model.fields,help:purchase_order_product_recommendation.field_purchase_order_recommendation_warehouse_ids
+msgid "Constrain search to an specific warehouse"
+msgstr ""
+
+#. module: purchase_order_product_recommendation
 #: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_create_uid
 #: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line_create_uid
 msgid "Created by"
@@ -203,7 +208,7 @@ msgstr ""
 "si no desea límite"
 
 #. module: purchase_order_product_recommendation
-#: code:addons/purchase_order_product_recommendation/wizards/purchase_order_recommendation.py:53
+#: code:addons/purchase_order_product_recommendation/wizards/purchase_order_recommendation.py:61
 #, python-format
 msgid "This wizard is only valid for purchases"
 msgstr "Este asistente solo es válido para compras"
