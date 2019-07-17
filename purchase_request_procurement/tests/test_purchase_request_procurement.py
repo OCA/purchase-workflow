@@ -96,3 +96,18 @@ class TestPurchaseRequestProcurement(common.SavepointCase):
         line = request.line_ids[0]
         self.assertEqual(line.product_uom_id, self.uom_ten)
         self.assertEqual(line.product_qty, 10)
+
+    def test_purchase_request_state(self):
+        """Test procurement state should be done when PR is done"""
+        proc = self.create_procurement_order('TEST/0001', self.product_1, 4)
+        proc.run()
+        proc.check()
+        # when PR is not done, proc should still be running
+        self.assertEquals(proc.state, 'running')
+
+        request = proc.request_id
+        request.button_approved()
+        proc.check()
+        self.assertEquals(proc.state, 'running')
+        request.button_done()
+        self.assertEquals(proc.state, 'done')

@@ -60,6 +60,12 @@ class ProcurementOrder(models.Model):
         return super(ProcurementOrder, self)._run()
 
     @api.multi
+    def _check(self):
+        if self.request_id:
+            return self.request_id.state in ['rejected', 'done']
+        return super(ProcurementOrder, self)._check()
+
+    @api.multi
     def is_create_purchase_request_allowed(self):
         """
         Tell if current procurement order should

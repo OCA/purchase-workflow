@@ -83,6 +83,7 @@ Contributors
 * Thomas Binsfeld <thomas.binsfeld@acsone.eu>
 * Benjamin Willig <benjamin.willig@acsone.eu>
 * Lois Rilo Antelo <lois.rilo@eficent.com>
+* Raphaël Reverdy <raphael.reverdy@akretion.com>
 
 Maintainer
 ----------

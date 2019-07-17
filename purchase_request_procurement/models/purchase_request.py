@@ -35,3 +35,9 @@ class PurchaseRequest(models.Model):
     def button_draft(self):
         self._check_reset_allowed()
         return super(PurchaseRequest, self).button_draft()
+
+    @api.multi
+    def button_done(self):
+        res = super(PurchaseRequest, self).button_done()
+        self.line_ids._check_procurement()
+        return res

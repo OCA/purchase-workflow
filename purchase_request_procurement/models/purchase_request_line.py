@@ -30,3 +30,10 @@ class PurchaseRequestLine(models.Model):
         lines = self.filtered(lambda l: l.procurement_id.state != 'cancel')
         res = super(PurchaseRequestLine, lines).do_uncancel()
         return res
+
+    @api.multi
+    def _check_procurement(self):
+        """Purchase request has been approved
+
+        Update procurements state."""
+        self.mapped('procurement_id').check()
