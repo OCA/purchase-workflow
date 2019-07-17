@@ -138,6 +138,13 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                     vals[field] = obj._fields[field].convert_to_write(
                         obj[field], obj)
 
+    def create_allocation(self, po_line, pr_line):
+        vals = {'requested_product_uom_qty': po_line.product_uom_qty,
+                'purchase_request_line_id': pr_line.id,
+                'purchase_line_id': po_line.id,
+                }
+        self.env['purchase.request.allocation'].create(vals)
+
     @api.model
     def _prepare_purchase_order_line(self, po, item):
         product = item.product_id
@@ -232,12 +239,14 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                 po_line = available_po_lines[0]
                 po_line.purchase_request_lines = [(4, line.id)]
                 po_line.move_dest_ids |= line.move_dest_ids
+                self.create_allocation(po_line, line)
             else:
                 po_line_data = self._prepare_purchase_order_line(purchase,
                                                                  item)
                 if item.keep_description:
                     po_line_data['name'] = item.name
                 po_line = po_line_obj.create(po_line_data)
+                self.create_allocation(po_line, line)
             new_qty = pr_line_obj._calc_new_qty(
                 line, po_line=po_line,
                 new_pr_line=new_pr_line)

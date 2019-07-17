@@ -25,6 +25,7 @@
         "views/purchase_request_report.xml",
         "views/product_template.xml",
         "views/purchase_order_view.xml",
+        "views/stock_move_views.xml",
         "wizard/purchase_request_line_make_purchase_order_view.xml",
     ],
     'demo': [
