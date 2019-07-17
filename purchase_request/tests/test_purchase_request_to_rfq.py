@@ -14,6 +14,18 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         self.wiz =\
             self.env['purchase.request.line.make.purchase.order']
         self.purchase_order = self.env['purchase.order']
+        vendor = self.env['res.partner'].create({
+            'name': 'Partner #2',
+        })
+        supplierinfo_service = self.env['product.supplierinfo'].create({
+            'name': vendor.id,
+        })
+        self.service_product = self.env['product.product'].create({
+            'name': 'Product Service Test',
+            'seller_ids': [(6, 0, [supplierinfo_service.id])],
+            'type': 'service',
+            'service_to_purchase': True,
+        })
 
     def test_purchase_request_to_purchase_rfq(self):
         vals = {
