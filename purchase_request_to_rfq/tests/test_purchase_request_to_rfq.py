@@ -4,6 +4,7 @@
 
 from odoo.tests import common
 from odoo.tools import SUPERUSER_ID
+from odoo import fields
 
 
 class TestPurchaseRequestToRfq(common.TransactionCase):
@@ -222,3 +223,52 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         self.assertEquals(po_line.product_uom,
                           self.env.ref('product.product_uom_dozen'),
                           'The purchase UoM should be Dozen(s).')
+
+    def test_purchase_request_remove_order_line(self):
+        """We should be able to remove order lines
+        without distrubing the procurement."""
+        product = self.env.ref('product.product_product_13')
+        qty = 3
+        vals = {
+            'name': 'test proc',
+            'date_planned': fields.Datetime.now(),
+            'product_id': product.id,
+            'product_qty': qty,
+            'product_uom': product.uom_id.id,
+            'warehouse_id': self.env.ref('stock.warehouse0').id,
+            'location_id': self.env.ref('stock.stock_location_stock').id,
+            'route_ids': [
+                (4, self.env.ref('purchase.route_warehouse0_buy').id, 0)],
+            'company_id': self.env.ref('base.main_company').id,
+        }
+        proc = self.env['procurement.order'].create(vals)
+
+        vals = {
+            'picking_type_id': self.env.ref('stock.picking_type_in').id,
+            'requested_by': SUPERUSER_ID,
+        }
+        purchase_request = self.purchase_request.create(vals)
+
+        vals = {
+            'request_id': purchase_request.id,
+            'product_id': product.id,
+            'product_uom_id': product.uom_id.id,
+            'product_qty': qty,
+            'procurement_id': proc.id
+        }
+        purchase_request_line = self.purchase_request_line.create(vals)
+        purchase_request.button_to_approve()
+        purchase_request.button_approved()
+
+        vals = {
+            'supplier_id': self.env.ref('base.res_partner_12').id,
+        }
+        wiz_id = self.wiz.with_context(
+            active_model="purchase.request.line",
+            active_ids=[purchase_request_line.id],
+            active_id=purchase_request_line.id,).create(vals)
+        wiz_id.make_purchase_order()
+
+        self.assertEquals(proc.state, 'running')
+        purchase_request_line.purchase_lines.unlink()
+        self.assertEquals(proc.state, 'running')
