@@ -85,6 +85,11 @@ class PurchaseOrderLine(models.Model):
         'purchase_request_line_id',
         'Purchase Request Lines', readonly=True, copy=False)
 
+    purchase_request_allocation_ids = fields.One2many(
+        comodel_name='purchase.request.allocation',
+        inverse_name='purchase_line_id',
+        string='Purchase Request Allocation')
+
     @api.multi
     def action_openRequestLineTreeView(self):
         """
@@ -102,3 +107,95 @@ class PurchaseOrderLine(models.Model):
                 'view_type': 'form',
                 'view_mode': 'tree,form',
                 'domain': domain}
+
+    @api.multi
+    def _prepare_stock_moves(self, picking):
+        self.ensure_one()
+        val = super(PurchaseOrderLine, self)._prepare_stock_moves(picking)
+        all_list = []
+        for v in val:
+            all_ids = self.env['purchase.request.allocation'].search(
+                [('purchase_line_id', '=', v['purchase_line_id'])]
+            )
+            for all_id in all_ids:
+                all_list.append((4, all_id.id))
+            v['purchase_request_allocation_ids'] = all_list
+        return val
+
+    @api.multi
+    def update_service_allocations(self):
+        for rec in self:
+            allocation = self.env['purchase.request.allocation'].search(
+                [('purchase_line_id', '=', rec.id),
+                 ('purchase_line_id.product_id.type', '=', 'service')]
+            )
+            if not allocation:
+                return
+            qty_left = rec.qty_received - allocation[0].prev_allocated_qty
+            for alloc in allocation:
+                allocated_product_qty = alloc.allocated_product_qty
+                if not qty_left:
+                    alloc.purchase_request_line_id._compute_qty()
+                    break
+                if alloc.open_product_qty <= qty_left:
+                    allocated_product_qty += alloc.open_product_qty
+                    qty_left -= alloc.open_product_qty
+                    alloc._notify_allocation(alloc.open_product_qty)
+                else:
+                    allocated_product_qty += qty_left
+                    alloc._notify_allocation(qty_left)
+                    qty_left = 0
+                alloc.prev_allocated_qty = rec.qty_received
+                alloc.write({'prev_allocated_qty': rec.qty_received})
+                alloc.write({'allocated_product_qty': allocated_product_qty})
+
+                message_data = self._prepare_request_message_data(
+                    alloc,
+                    alloc.purchase_request_line_id,
+                    allocated_product_qty)
+                message = \
+                    self._purchase_request_confirm_done_message_content(
+                        message_data)
+                alloc.purchase_request_line_id.request_id.message_post(
+                    body=message, subtype='mail.mt_comment')
+
+                alloc.purchase_request_line_id._compute_qty()
+        return True
+
+    @api.model
+    def _purchase_request_confirm_done_message_content(self, message_data):
+        title = _('Service confirmation for Request %s') % (
+            message_data['request_name'])
+        message = '<h3>%s</h3>' % title
+        message += _('The following requested services from Purchase'
+                     ' Request %s requested by %s '
+                     'have now been received:') % (
+            message_data['request_name'], message_data['requestor'])
+        message += '<ul>'
+        message += _(
+            '<li><b>%s</b>: Received quantity %s %s</li>'
+        ) % (message_data['product_name'],
+             message_data['product_qty'],
+             message_data['product_uom'],
+             )
+        message += '</ul>'
+        return message
+
+    def _prepare_request_message_data(
+            self, alloc, request_line, allocated_qty):
+        return {
+            'request_name': request_line.request_id.name,
+            'product_name': request_line.product_id.name_get()[0][1],
+            'product_qty': allocated_qty,
+            'product_uom': alloc.product_uom_id.name,
+            'requestor': request_line.request_id.requested_by.partner_id.name,
+        }
+
+    @api.multi
+    def write(self, vals):
+        #  it is done here instead of method _update_received_qty
+        #  to make sure this work for services
+        res = super(PurchaseOrderLine, self).write(vals)
+        if vals.get('qty_received', False):
+            self.update_service_allocations()
+        return res
