@@ -7,6 +7,7 @@ from odoo.exceptions import UserError
 
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
+from odoo.tools.float_utils import float_compare
 
 _STATES = [
     ('draft', 'Draft'),
@@ -22,6 +23,7 @@ class PurchaseRequest(models.Model):
     _name = 'purchase.request'
     _description = 'Purchase Request'
     _inherit = ['mail.thread', 'mail.activity.mixin']
+    _order = 'id desc'
 
     @api.model
     def _company_get(self):
@@ -111,6 +113,53 @@ class PurchaseRequest(models.Model):
         compute='_compute_line_count',
         readonly=True
     )
+    move_count = fields.Integer(
+        string='Stock Move count',
+        compute='_compute_move_count',
+        readonly=True
+    )
+    purchase_count = fields.Integer(
+        string='Purchases count',
+        compute='_compute_purchase_count',
+        readonly=True
+    )
+
+    @api.depends('line_ids')
+    def _compute_purchase_count(self):
+        self.purchase_count = len(self.mapped(
+            'line_ids.purchase_lines.order_id'))
+
+    @api.multi
+    def action_view_purchase_order(self):
+        action = self.env.ref(
+            'purchase.purchase_rfq').read()[0]
+        lines = self.mapped('line_ids.purchase_lines.order_id')
+        if len(lines) > 1:
+            action['domain'] = [('id', 'in', lines.ids)]
+        elif lines:
+            action['views'] = [(self.env.ref(
+                'purchase.purchase_order_form').id, 'form')]
+            action['res_id'] = lines.id
+        return action
+
+    @api.depends('line_ids')
+    def _compute_move_count(self):
+        self.move_count = len(self.mapped(
+            'line_ids.purchase_request_allocation_ids.stock_move_id'))
+
+    @api.multi
+    def action_view_stock_move(self):
+        action = self.env.ref(
+            'stock.stock_move_action').read()[0]
+        lines = self.mapped(
+            'line_ids.purchase_request_allocation_ids.stock_move_id')
+        if len(lines) > 1:
+            action['domain'] = [('id', 'in', lines.ids)]
+        elif lines:
+            action['views'] = [(self.env.ref(
+                'stock.view_move_form').id, 'form')]
+            action['res_id'] = lines.id
+        return action
 
     @api.depends('line_ids')
     def _compute_line_count(self):
@@ -223,6 +272,7 @@ class PurchaseRequestLine(models.Model):
     _name = "purchase.request.line"
     _description = "Purchase Request Line"
     _inherit = ['mail.thread', 'mail.activity.mixin']
+    _order = 'id desc'
 
     name = fields.Char('Description', track_visibility='onchange')
     product_uom_id = fields.Many2one('uom.uom', 'Product Unit of Measure',
@@ -291,6 +341,72 @@ class PurchaseRequestLine(models.Model):
                                     'Downstream Moves')
 
     orderpoint_id = fields.Many2one('stock.warehouse.orderpoint', 'Orderpoint')
+    purchase_request_allocation_ids = fields.One2many(
+        comodel_name='purchase.request.allocation',
+        inverse_name='purchase_request_line_id',
+        string='Purchase Request Allocation')
+
+    qty_in_progress = fields.Float(
+        'Qty In Progress', digits=dp.get_precision('Product Unit of Measure'),
+        readonly=True, compute='_compute_qty', store=True,
+        help="Quantity in progress.",
+    )
+    qty_done = fields.Float(
+        'Qty Done', digits=dp.get_precision('Product Unit of Measure'),
+        readonly=True, compute='_compute_qty', store=True,
+        help="Quantity completed",
+    )
+    qty_cancelled = fields.Float(
+        'Qty Cancelled', digits=dp.get_precision('Product Unit of Measure'),
+        readonly=True, compute='_compute_qty', store=True,
+        help="Quantity cancelled",
+    )
+
+    @api.depends('purchase_request_allocation_ids',
+                 'purchase_request_allocation_ids.stock_move_id.state',
+                 'purchase_request_allocation_ids.stock_move_id',
+                 'purchase_request_allocation_ids.purchase_line_id.state',
+                 'purchase_request_allocation_ids.purchase_line_id')
+    def _compute_qty(self):
+        for request in self:
+            done_qty = sum(request.purchase_request_allocation_ids.mapped(
+                'allocated_product_qty'))
+            open_qty = sum(
+                request.purchase_request_allocation_ids.mapped(
+                    'open_product_qty'))
+            if request.product_uom_id:
+                request.qty_done = request.product_id.uom_id._compute_quantity(
+                    done_qty, request.product_uom_id)
+                request.qty_in_progress = \
+                    request.product_id.uom_id._compute_quantity(
+                        open_qty, request.product_uom_id)
+                request.qty_cancelled = max(
+                    0, request.product_id.uom_id._compute_quantity(
+                        request.product_qty - done_qty - open_qty,
+                        request.product_uom_id
+                    )) if request.purchase_request_allocation_ids else 0
+            else:
+                request.qty_done = done_qty
+                request.qty_in_progress = open_qty
+                request.qty_cancelled = request.product_qty - done_qty - \
+                    open_qty
+
+    def check_done(self):
+        precision = self.env['decimal.precision'].precision_get(
+            'Product Unit of Measure')
+        for request in self:
+            allocated_qty = sum(
+                request.purchase_request_allocation_ids.mapped(
+                    'allocated_product_qty'))
+            if request.product_uom_id:
+                qty_done = request.product_id.uom_id._compute_quantity(
+                    allocated_qty, request.product_uom_id)
+            else:
+                qty_done = allocated_qty
+            if float_compare(qty_done, request.product_qty,
+                             precision_digits=precision) >= 0:
+                request.set_done()
+        return True
 
     estimated_cost = fields.Monetary(
         string='Estimated Cost', currency_field='currency_id', default=0.0,

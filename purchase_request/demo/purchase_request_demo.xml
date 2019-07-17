@@ -8,4 +8,9 @@
                    name="groups_id"/>
         </record>
 
+        <record id="base.user_admin" model="res.users">
+            <field eval="[(4, ref('group_purchase_request_manager'))]"
+                   name="groups_id"/>
+        </record>
+
 </odoo>
