@@ -48,6 +48,23 @@
                         <field name="line_count" widget="statinfo"
                                string="Lines"/>
                     </button>
+                    <button type="object"
+                        name="action_view_purchase_order"
+                        class="oe_stat_button"
+                        attrs="{'invisible':[('purchase_count', '=', 0)]}"
+                        icon="fa-shopping-cart">
+                        <field name="purchase_count" widget="statinfo"
+                               string="Purchase Orders"/>
+                    </button>
+                    <button type="object"
+                        name="action_view_stock_move"
+                        class="oe_stat_button"
+                        attrs="{'invisible':[('move_count', '=', 0)]}"
+                        groups="stock.group_stock_manager"
+                        icon="fa-truck">
+                        <field name="move_count" widget="statinfo"
+                               string="Stock Moves"/>
+                    </button>
                 </div>
                 <div class="oe_edit_only">
                     <label for="name" class="oe_inline"/>
@@ -88,6 +105,8 @@
                                 <field name="product_id"/>
                                 <field name="name"/>
                                 <field name="product_qty"/>
+                                <field name="qty_in_progress"/>
+                                <field name="qty_done"/>
                                 <field name="product_uom_id" groups="uom.group_uom"/>
                                 <field name="analytic_account_id"
                                        groups="analytic.group_analytic_accounting"/>
@@ -142,8 +161,12 @@
                                         <page name="purchase_lines"
                                           string="Purchase Order Lines">
                                             <group>
-                                                <field name="purchased_qty"/>
-                                                <field name="purchase_state"/>
+                                                <group name="purchase_state">
+                                                    <field name="purchased_qty"/>
+                                                    <field name="purchase_state"/>
+                                                    <field name="qty_in_progress"/>
+                                                    <field name="qty_done"/>
+                                                </group>
                                             </group>
                                             <newline/>
                                             <group>
