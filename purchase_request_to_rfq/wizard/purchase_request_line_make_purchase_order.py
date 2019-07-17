@@ -161,8 +161,6 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             'purchase_request_lines': [(4, item.line_id.id)],
             'date_planned': item.line_id.date_required
         }
-        if item.line_id.procurement_id:
-            vals['procurement_ids'] = [(4, item.line_id.procurement_id.id)]
         self._execute_purchase_line_onchange(vals)
         return vals
 
