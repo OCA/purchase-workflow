@@ -414,7 +414,7 @@ class PurchaseRequestLine(models.Model):
         for request in self:
             allocated_qty = sum(
                 request.purchase_request_allocation_ids.mapped(
-                'allocated_product_qty'))
+                    'allocated_product_qty'))
             qty_done = request.product_id.uom_id._compute_quantity(
                 allocated_qty, request.product_uom_id)
             if float_compare(qty_done, request.product_qty,

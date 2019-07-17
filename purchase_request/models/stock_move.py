@@ -66,7 +66,8 @@ class StockMove(models.Model):
                     message = \
                         self._stock_request_confirm_done_message_content(
                             message_data)
-                    request.message_post(body=message, subtype='mail.mt_comment')
+                    request.message_post(
+                        body=message, subtype='mail.mt_comment')
                     request.check_done()
 
         return self

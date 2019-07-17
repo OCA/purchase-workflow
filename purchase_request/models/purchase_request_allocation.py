@@ -43,8 +43,8 @@ class PurchaseRequestAllocation(models.Model):
     )
     requested_product_qty = fields.Float(
         'Requested Quantity',
-        help='Quantity of the purchase request line allocated to the stock move, '
-             'in the default UoM of the product',
+        help='Quantity of the purchase request line allocated to the stock'
+             'move, in the default UoM of the product',
         compute='_compute_requested_product_qty'
     )
     allocated_product_qty = fields.Float(

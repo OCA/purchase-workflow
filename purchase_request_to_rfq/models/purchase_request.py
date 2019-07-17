@@ -18,6 +18,7 @@ class PurchaseRequest(models.Model):
         compute='_compute_purchase_count',
         readonly=True
     )
+
     @api.depends('line_ids')
     def _compute_purchase_count(self):
         self.purchase_count = len(self.mapped(
