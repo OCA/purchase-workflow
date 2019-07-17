@@ -227,6 +227,12 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
     def test_purchase_request_remove_order_line(self):
         """We should be able to remove order lines
         without distrubing the procurement."""
+
+        pr_proc_module = self.env['ir.module.module'].search(
+            [['name', '=', 'purchase_request_procurement']])
+        if pr_proc_module.state not in ('to upgrade', 'installed'):
+            # this test only make sense when both modules are installed
+            return
         product = self.env.ref('product.product_product_13')
         qty = 3
         vals = {
