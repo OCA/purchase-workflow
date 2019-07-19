@@ -59,7 +59,7 @@ class TestPurchaseRequest(TransactionCase):
         prl_test = {
             'request_id': self.purchase_request.id,
             'product_id': self.env.ref('product.product_product_13').id,
-            'product_uom_id': self.env.ref('product.product_uom_unit').id,
+            'product_uom_id': self.env.ref('uom.product_uom_unit').id,
             'product_qty': 5.0,
         }
         self.purchase_request_line = self.prl_model.create(prl_test)
