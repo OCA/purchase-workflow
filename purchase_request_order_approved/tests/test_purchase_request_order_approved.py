@@ -15,7 +15,7 @@ class TestPurchaseRequestToRfqOrderApproved(common.TransactionCase):
             self.env['purchase.request.line.make.purchase.order']
         self.purchase_order = self.env['purchase.order']
         self.product_product_6 = self.env.ref('product.product_product_6')
-        self.product_uom_unit = self.env.ref('product.product_uom_unit')
+        self.product_uom_unit = self.env.ref('uom.product_uom_unit')
         self.picking_type_in = self.env.ref('stock.picking_type_in')
 
     def test_purchase_request_to_purchase_rfq_multiple_PO(self):
