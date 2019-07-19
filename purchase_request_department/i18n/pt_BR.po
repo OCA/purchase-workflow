@@ -20,10 +20,10 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: purchase_request_department
-#: model:ir.model.fields,field_description:purchase_request_department.field_purchase_request_department_id
-#: model:ir.model.fields,field_description:purchase_request_department.field_purchase_request_line_department_id
-#: model:ir.ui.view,arch_db:purchase_request_department.purchase_request_line_search
-#: model:ir.ui.view,arch_db:purchase_request_department.view_purchase_request_search
+#: model:ir.model.fields,field_description:purchase_request_department.field_purchase_request__department_id
+#: model:ir.model.fields,field_description:purchase_request_department.field_purchase_request_line__department_id
+#: model_terms:ir.ui.view,arch_db:purchase_request_department.purchase_request_line_search
+#: model_terms:ir.ui.view,arch_db:purchase_request_department.view_purchase_request_search
 msgid "Department"
 msgstr "Departamento"
 
