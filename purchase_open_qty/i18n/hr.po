@@ -20,12 +20,14 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #. module: purchase_open_qty
+#: model:ir.model.fields,field_description:purchase_open_qty.field_purchase_order_pending_qty_to_invoice
 #: model:ir.ui.view,arch_db:purchase_open_qty.purchase_order_line_search
 #: model:ir.ui.view,arch_db:purchase_open_qty.view_purchase_order_filter
 msgid "Pending Qty to Bill"
 msgstr "Obračun u tijeku"
 
 #. module: purchase_open_qty
+#: model:ir.model.fields,field_description:purchase_open_qty.field_purchase_order_pending_qty_to_receive
 #: model:ir.ui.view,arch_db:purchase_open_qty.purchase_order_line_search
 #: model:ir.ui.view,arch_db:purchase_open_qty.view_purchase_order_filter
 msgid "Pending Qty to Receive"
@@ -52,3 +54,10 @@ msgstr "Kol za račun"
 #: model:ir.model.fields,field_description:purchase_open_qty.field_purchase_order_qty_to_receive
 msgid "Qty to Receive"
 msgstr "Kol za zaprimanje"
+
+#. module: purchase_open_qty
+#: code:addons/purchase_open_qty/models/purchase_order.py:94
+#: code:addons/purchase_open_qty/models/purchase_order.py:107
+#, python-format
+msgid "Unsupported search operator"
+msgstr ""

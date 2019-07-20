@@ -20,12 +20,14 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: purchase_open_qty
+#: model:ir.model.fields,field_description:purchase_open_qty.field_purchase_order_pending_qty_to_invoice
 #: model:ir.ui.view,arch_db:purchase_open_qty.purchase_order_line_search
 #: model:ir.ui.view,arch_db:purchase_open_qty.view_purchase_order_filter
 msgid "Pending Qty to Bill"
 msgstr ""
 
 #. module: purchase_open_qty
+#: model:ir.model.fields,field_description:purchase_open_qty.field_purchase_order_pending_qty_to_receive
 #: model:ir.ui.view,arch_db:purchase_open_qty.purchase_order_line_search
 #: model:ir.ui.view,arch_db:purchase_open_qty.view_purchase_order_filter
 msgid "Pending Qty to Receive"
@@ -51,4 +53,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_open_qty.field_purchase_order_line_qty_to_receive
 #: model:ir.model.fields,field_description:purchase_open_qty.field_purchase_order_qty_to_receive
 msgid "Qty to Receive"
+msgstr ""
+
+#. module: purchase_open_qty
+#: code:addons/purchase_open_qty/models/purchase_order.py:94
+#: code:addons/purchase_open_qty/models/purchase_order.py:107
+#, python-format
+msgid "Unsupported search operator"
 msgstr ""
