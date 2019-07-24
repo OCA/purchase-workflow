@@ -2,7 +2,7 @@
 # Copyright 2016-2017 Eficent Business and IT Consulting Services S.L.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
 
-from odoo import _, api, fields, models, exceptions
+from odoo import _, api, models
 
 
 class ProcurementOrder(models.Model):
@@ -14,18 +14,24 @@ class ProcurementOrder(models.Model):
             request_lines = self.request_id.line_ids.filtered(
                 lambda x: x.procurement_id.id == self.id)
             if not self.move_ids:
-                if request_lines.purchase_state not in ('purchase', 'done', 'cancel'):
+                if request_lines.purchase_state not in (
+                    'purchase', 'done', 'cancel'
+                ):
                     return False
                 else:
                     return True
-            move_all_done_or_cancel = all(move.state in ['done', 'cancel'] for move in self.move_ids)
-            move_all_cancel = all(move.state == 'cancel' for move in self.move_ids)
+            move_all_done_or_cancel = all(
+                move.state in ['done', 'cancel'] for move in self.move_ids)
+            move_all_cancel = all(
+                move.state == 'cancel' for move in self.move_ids)
             if not move_all_done_or_cancel:
                 return False
             elif move_all_done_or_cancel and not move_all_cancel:
                 return True
             else:
-                self.message_post(body=_('All stock moves have been cancelled for this procurement.'))
+                self.message_post(body=_(
+                    'All stock moves have been cancelled for this procurement.'
+                ))
                 self.write({'state': 'cancel'})
                 return False
         return super(ProcurementOrder, self)._check()
