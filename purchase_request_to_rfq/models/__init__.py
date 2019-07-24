@@ -4,4 +4,5 @@
 
 from . import purchase_request
 from . import purchase_order
+from . import procurement_order
 from . import stock
