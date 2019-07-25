@@ -19,7 +19,7 @@ purchase_request / purchase.request.allocation / purchase_line_id (many2one)   :
 purchase_request / purchase.request.allocation / purchase_request_line_id (many2one): NEW relation: purchase.request.line, required
 purchase_request / purchase.request.allocation / requested_product_uom_qty (float): NEW
 purchase_request / purchase.request.allocation / stock_move_id (many2one)      : NEW relation: stock.move
-# TODO: to fill, because the three new computed fields in purchase.request.line need them
+# DONE: filled, because the three new computed fields in purchase.request.line need them
 
 purchase_request / purchase.order.line      / purchase_request_allocation_ids (one2many): NEW relation: purchase.request.allocation
 purchase_request / purchase.request.line    / purchase_request_allocation_ids (one2many): NEW relation: purchase.request.allocation
