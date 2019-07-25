@@ -42,7 +42,7 @@ addon | version | summary
 [purchase_order_line_sequence](purchase_order_line_sequence/) | 10.0.1.0.0 | Adds sequence to PO lines and propagates it toInvoice lines and Stock Moves
 [purchase_order_revision](purchase_order_revision/) | 10.0.1.0.0 | Purchase order revisions
 [purchase_picking_state](purchase_picking_state/) | 10.0.1.0.0 | Add the status of all the incoming picking in the purchase order
-[purchase_request](purchase_request/) | 10.0.1.1.1 | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
+[purchase_request](purchase_request/) | 10.0.1.1.2 | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
 [purchase_request_department](purchase_request_department/) | 10.0.1.0.0 | Purchase Request Department
 [purchase_request_procurement](purchase_request_procurement/) | 10.0.1.0.1 | Purchase Request Procurement
 [purchase_request_to_procurement](purchase_request_to_procurement/) | 10.0.1.0.0 | This module introduces the possiblity to create procurement order from purchase request
