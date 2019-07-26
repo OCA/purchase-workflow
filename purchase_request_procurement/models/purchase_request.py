@@ -2,21 +2,24 @@
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
 
-from odoo import api, models, _
-from odoo.exceptions import UserError
+from odoo import api, fields, models, _
+from odoo.exceptions import ValidationError
 
 
 class PurchaseRequest(models.Model):
 
     _inherit = 'purchase.request'
 
+    group_id = fields.Many2one(
+        'procurement.group', string="Procurement Group", copy=False)
+
     @api.multi
     def _check_rejected_allowed(self):
         if any([s == 'done' for s in self.mapped(
                 'line_ids.procurement_id.state')]):
-            raise UserError(
-                _('You cannot reject a purchase request with lines related to '
-                  'done procurement orders.'))
+            raise ValidationError(
+                _('You cannot reject a purchase request with lines related '
+                  'to done procurement orders.'))
 
     @api.multi
     def button_rejected(self):
@@ -27,9 +30,9 @@ class PurchaseRequest(models.Model):
     def _check_reset_allowed(self):
         if any([s == 'done' for s in self.mapped(
                 'line_ids.procurement_id.state')]):
-            raise UserError(
-                _('You cannot set back to draft a purchase request with lines '
-                  'related to done procurement orders.'))
+            raise ValidationError(
+                _('You cannot set back to draft a purchase request with '
+                  'lines related to done procurement orders.'))
 
     @api.multi
     def button_draft(self):

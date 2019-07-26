@@ -4,7 +4,7 @@
 
 from odoo.tests import common
 from odoo import fields
-from odoo.exceptions import UserError
+from odoo.exceptions import ValidationError
 
 
 class TestPurchaseRequestProcurement(common.SavepointCase):
@@ -76,13 +76,14 @@ class TestPurchaseRequestProcurement(common.SavepointCase):
 
     def test_cancel_line_with_done_procurement(self):
         """Tests that it isn't allowed to cancel or reset a PR with lines
-        realted to done procurements."""
+        related to done procurements."""
         proc = self.create_procurement_order('TEST/0003', self.product_1, 4)
+        proc.run()
         request = proc.request_id
         proc.write({'state': 'done'})
-        with self.assertRaises(UserError):
+        with self.assertRaises(ValidationError):
             request.button_rejected()
-        with self.assertRaises(UserError):
+        with self.assertRaises(ValidationError):
             request.button_draft()
 
     def test_product_uom_po_id(self):
