@@ -36,8 +36,8 @@ class TestPurchaseRequest(TransactionCase):
             'name': 'User test',
             'login': 'u@example.com',
             'email': 'u@example.com',
-            'groups_id': [(4, self.env.ref(
-                'purchase_request.group_purchase_request_user').id)]
+            'groups_id': [(4, self.ref(
+                'purchase_request.group_purchase_request_user'))]
         }
         self.user_dep_usage = self.usr_model.create(user_dict)
         employee_dict = {
@@ -75,7 +75,7 @@ class TestPurchaseRequest(TransactionCase):
         self.prl_test = {
             'request_id': self.purchase_request.id,
             'product_id': self.env.ref('product.product_product_13').id,
-            'product_uom_id': self.env.ref('product.product_uom_unit').id,
+            'product_uom_id': self.env.ref('uom.product_uom_unit').id,
             'product_qty': 5.0,
         }
         self.purchase_request_line = self.prl_model.sudo(
