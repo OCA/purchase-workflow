@@ -2,7 +2,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from datetime import datetime, timedelta
-from odoo import fields
 from odoo.fields import first
 from odoo.tests.common import TransactionCase
 from odoo.exceptions import UserError
@@ -16,8 +15,8 @@ class TestDatePlannedManual(TransactionCase):
         self.pol_model = self.env['purchase.order.line']
         self.pp_model = self.env['product.product']
         # Create some partner, products and supplier info:
-        self.route_buy_id = self.env.ref('purchase.route_warehouse0_buy')
-        self.rule = first(self.route_buy_id.pull_ids)
+        self.route_buy_id = self.env.ref('purchase_stock.route_warehouse0_buy')
+        self.rule = first(self.route_buy_id.rule_ids)
         self.partner = self.env['res.partner'].create({
             'name': 'Test supplier',
             'supplier': True,
@@ -41,14 +40,13 @@ class TestDatePlannedManual(TransactionCase):
             'partner_id': self.partner.id,
             'picking_type_id': self.rule.picking_type_id.id,
         })
-        next_week_time = datetime.now() + timedelta(days=7)
-        self.next_week_time = fields.Datetime.to_string(next_week_time)
+        self.next_week_time = datetime.now() + timedelta(days=7)
 
     def test_manually_set_pol_date(self):
         """Tests the manual modification of scheduled date in purchase order
         lines."""
         last_week_time = datetime.now() - timedelta(days=7)
-        last_week_time = fields.Datetime.to_string(last_week_time)
+        last_week_time = last_week_time
         po_line_1 = self.pol_model.create({
             'order_id': self.purchase_order.id,
             'product_id': self.product_1.id,
