@@ -26,14 +26,12 @@ class PurchaseOrderLine(models.Model):
             seller = line.product_id._select_seller(
                 partner_id=line.partner_id,
                 quantity=line.product_qty,
-                date=line.order_id.date_order and
-                line.order_id.date_order[:10],
+                date=line.order_id.date_order.date(),
                 uom_id=line.product_uom)
-            order_date = fields.Datetime.from_string(line.order_id.date_order)
+            order_date = line.order_id.date_order
             po_lead = line.order_id.company_id.po_lead
             delta = po_lead + seller.delay if seller else po_lead
-            date_expected = fields.Datetime.to_string(
-                order_date + relativedelta(days=delta))
+            date_expected = order_date + relativedelta(days=delta)
             line.predicted_arrival_late = (
                 date_expected > line.date_planned and line.order_id.state ==
                 'draft')
@@ -42,7 +40,7 @@ class PurchaseOrderLine(models.Model):
     def _get_date_planned(self, seller, po=False):
         """Do not change the scheduled date if we already have one."""
         if self.date_planned:
-            return fields.Datetime.from_string(self.date_planned)
+            return self.date_planned
         else:
             return super(PurchaseOrderLine, self)._get_date_planned(seller, po)
 
@@ -51,7 +49,7 @@ class PurchaseOrderLine(models.Model):
         raise UserError(_(
             'This line is scheduled for: %s. \n However it is now planned to '
             'arrive late.') % Dt.to_string(Dt.context_timestamp(
-                self, Dt.from_string(self.date_planned))))
+                self, self.date_planned)))
 
     def _merge_in_existing_line(self, product_id, product_qty, product_uom,
                                 location_id, name, origin, values):
@@ -62,12 +60,12 @@ class PurchaseOrderLine(models.Model):
         return False
 
 
-class ProcurementRule(models.Model):
-    _inherit = 'procurement.rule'
+class StockRule(models.Model):
+    _inherit = 'stock.rule'
 
     def _prepare_purchase_order_line(
             self, product_id, product_qty, product_uom, values, po, supplier):
-        res = super(ProcurementRule, self)._prepare_purchase_order_line(
+        res = super(StockRule, self)._prepare_purchase_order_line(
             product_id, product_qty, product_uom, values, po, supplier)
         if values.get('date_planned'):
             res['date_planned'] = values.get('date_planned')
