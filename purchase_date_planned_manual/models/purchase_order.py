@@ -19,6 +19,7 @@ class PurchaseOrderLine(models.Model):
              'for lead times.')
 
     @api.multi
+    @api.depends('order_id.state')
     def _compute_predicted_arrival_late(self):
         """Colour the lines in red if the products are predicted to arrive
         late."""
