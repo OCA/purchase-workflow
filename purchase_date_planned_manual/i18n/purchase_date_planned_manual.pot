@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -14,12 +14,12 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: purchase_date_planned_manual
-#: model:ir.ui.view,arch_db:purchase_date_planned_manual.view_purchase_order_form
+#: model_terms:ir.ui.view,arch_db:purchase_date_planned_manual.view_purchase_order_form
 msgid "Arriving late"
 msgstr ""
 
 #. module: purchase_date_planned_manual
-#: model:ir.model.fields,field_description:purchase_date_planned_manual.field_purchase_order_line_predicted_arrival_late
+#: model:ir.model.fields,field_description:purchase_date_planned_manual.field_purchase_order_line__predicted_arrival_late
 msgid "Planned to be late"
 msgstr ""
 
@@ -29,14 +29,19 @@ msgid "Purchase Order Line"
 msgstr ""
 
 #. module: purchase_date_planned_manual
-#: code:addons/purchase_date_planned_manual/models/purchase_order.py:51
+#: model:ir.model,name:purchase_date_planned_manual.model_stock_rule
+msgid "Stock Rule"
+msgstr ""
+
+#. module: purchase_date_planned_manual
+#: code:addons/purchase_date_planned_manual/models/purchase_order.py:50
 #, python-format
 msgid "This line is scheduled for: %s. \n"
 " However it is now planned to arrive late."
 msgstr ""
 
 #. module: purchase_date_planned_manual
-#: model:ir.model.fields,help:purchase_date_planned_manual.field_purchase_order_line_predicted_arrival_late
+#: model:ir.model.fields,help:purchase_date_planned_manual.field_purchase_order_line__predicted_arrival_late
 msgid "True if the arrival at scheduled date is planned to be late. Takes into account the vendor lead time and the company margin for lead times."
 msgstr ""
 
