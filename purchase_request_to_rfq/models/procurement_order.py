@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2016-2017 Eficent Business and IT Consulting Services S.L.
+# Copyright 2019 Akretion
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
 
-from odoo import _, api, models
+from odoo import api, models
 
 
 class ProcurementOrder(models.Model):
@@ -10,28 +10,30 @@ class ProcurementOrder(models.Model):
 
     @api.multi
     def _check(self):
-        if self.request_id:
-            request_lines = self.request_id.line_ids.filtered(
+        po_line = self.purchase_line_id
+        if po_line.purchase_request_lines:
+            request_lines = po_line.purchase_request_lines.filtered(
                 lambda x: x.procurement_id.id == self.id)
             if not self.move_ids:
-                if request_lines.purchase_state not in (
+                if request_lines.purchase_state in (
                     'purchase', 'done', 'cancel'
                 ):
-                    return False
-                else:
                     return True
+                else:
+                    return False
+
             move_all_done_or_cancel = all(
                 move.state in ['done', 'cancel'] for move in self.move_ids)
             move_all_cancel = all(
                 move.state == 'cancel' for move in self.move_ids)
             if not move_all_done_or_cancel:
                 return False
-            elif move_all_done_or_cancel and not move_all_cancel:
-                return True
-            else:
-                self.message_post(body=_(
-                    'All stock moves have been cancelled for this procurement.'
-                ))
-                self.write({'state': 'cancel'})
+            if move_all_cancel:
+                # if a PO has been canceled after validation.
+                # the procurement should be still running.
+                # no need to be in exception here because
+                # the purchase state is managed on the purchase request
                 return False
+            else:
+                return True
         return super(ProcurementOrder, self)._check()
