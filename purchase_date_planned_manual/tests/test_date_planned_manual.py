@@ -72,8 +72,10 @@ class TestDatePlannedManual(TransactionCase):
         self.purchase_order.button_confirm()
         self.assertEqual(po_line_1.date_planned, last_week_time,
                          "Scheduled date should have benn respected.")
+        self.assertNotEquals(po_line_1.order_id.state, 'draft',
+                             "state should not be draft'.")
         self.assertFalse(po_line_1.predicted_arrival_late,
-                         "prediceted_arrival_late should be false when not in "
+                         "predicted_arrival_late should be false when not in "
                          "state 'draft'.")
         with self.assertRaises(UserError):
             po_line_1.action_delayed_line()
