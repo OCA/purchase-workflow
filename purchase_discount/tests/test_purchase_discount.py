@@ -204,7 +204,7 @@ class TestProductSupplierinfoDiscount(TransactionCase):
             'product_uom': self.env.ref('uom.product_uom_unit').id,
             'product_qty': 50,
             'location_id': self.env.ref('stock.stock_location_locations').id,
-            'company_id': self.env.ref('base.main_company').id,
+            'company_id': self.env.ref('base.main_company'),
             'state': 'confirmed',
             'warehouse_id': self.env.ref('stock.warehouse0').id,
             'move_dest_id': self.env.ref('stock.stock_location_customers').id,
