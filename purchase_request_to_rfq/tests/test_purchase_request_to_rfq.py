@@ -227,7 +227,11 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
     def test_purchase_request_remove_order_line(self):
         """We should be able to remove order lines
         without distrubing the procurement."""
-
+        pr_proc_module = self.env['ir.module.module'].search(
+            [['name', '=', 'purchase_request_procurement']])
+        if pr_proc_module.state not in ('to upgrade', 'installed'):
+            # this test only make sense when both modules are installed
+            return
         product = self.env.ref('product.product_product_13')
         qty = 3
         vals = {
@@ -278,7 +282,11 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
     def test_purchase_request_remove_confirmed_order_line(self):
         """We should be able to remove confirmed order lines
         without distrubing the procurement."""
-
+        pr_proc_module = self.env['ir.module.module'].search(
+            [['name', '=', 'purchase_request_procurement']])
+        if pr_proc_module.state not in ('to upgrade', 'installed'):
+            # this test only make sense when both modules are installed
+            return
         product = self.env.ref('product.product_product_13')
         qty = 3
         vals = {
@@ -322,6 +330,10 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
             active_id=purchase_request_line.id,).create(vals)
         wiz_id.make_purchase_order()
         po = purchase_request_line.purchase_lines.order_id
+        pol = purchase_request_line.purchase_lines
+        self.assertFalse(pol.procurement_ids, 'no proc on order line')
         po.button_confirm()
+        self.assertFalse(pol.procurement_ids, 'no proc on order line')
         po.button_cancel()
+        self.assertFalse(pol.procurement_ids, 'no proc on order line')
         self.assertEquals(proc.state, 'running')

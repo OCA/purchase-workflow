@@ -114,3 +114,32 @@ class ProcurementOrder(models.Model):
                         body=_("Related procurement has been cancelled."))
             procurement.write({'request_id': None})
         return result
+
+    @api.multi
+    def _check(self):
+        if self.request_id:
+            request_lines = self.request_id.line_ids.filtered(
+                lambda x: x.procurement_id.id == self.id)
+            if not self.move_ids:
+                if request_lines.purchase_state in (
+                    'purchase', 'done', 'cancel'
+                ):
+                    return True
+                else:
+                    return False
+
+            move_all_done_or_cancel = all(
+                move.state in ['done', 'cancel'] for move in self.move_ids)
+            move_all_cancel = all(
+                move.state == 'cancel' for move in self.move_ids)
+            if not move_all_done_or_cancel:
+                return False
+            if move_all_cancel:
+                # if a PO has been canceled after validation.
+                # the procurement should be still running.
+                # no need to be in exception here because
+                # the purchase state is managed on the purchase request
+                return False
+            else:
+                return True
+        return super(ProcurementOrder, self)._check()
