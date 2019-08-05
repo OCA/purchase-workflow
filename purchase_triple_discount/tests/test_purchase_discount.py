@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# Copyright 2017 Tecnativa - David Vidal
+# Copyright 2017-19 Tecnativa - David Vidal
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.tests import common
@@ -10,8 +9,12 @@ class TestPurchaseOrder(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
         super(TestPurchaseOrder, cls).setUpClass()
+        cls.supplierinfo_obj = cls.env['product.supplierinfo']
         cls.partner = cls.env['res.partner'].create({
             'name': 'Mr. Odoo',
+        })
+        cls.partner2 = cls.env['res.partner'].create({
+            'name': 'Mrs. Odoo',
         })
         cls.product1 = cls.env['product.product'].create({
             'name': 'Test Product 1',
@@ -21,6 +24,20 @@ class TestPurchaseOrder(common.SavepointCase):
             'name': 'Test Product 2',
             'purchase_method': 'purchase',
         })
+        cls.supplierinfo = cls.supplierinfo_obj.create({
+            'min_qty': 0.0,
+            'name': cls.partner2.id,
+            'product_tmpl_id': cls.product1.product_tmpl_id.id,
+            'discount': 10,
+            'discount2': 20,
+            'discount3': 30,
+        })
+        cls.supplierinfo2 = cls.supplierinfo_obj.create({
+            'min_qty': 10.0,
+            'name': cls.partner2.id,
+            'product_tmpl_id': cls.product1.product_tmpl_id.id,
+            'discount3': 50,
+        })
         cls.tax = cls.env['account.tax'].create({
             'name': 'TAX 15%',
             'amount_type': 'percent',
@@ -28,7 +45,10 @@ class TestPurchaseOrder(common.SavepointCase):
             'amount': 15.0,
         })
         cls.order = cls.env['purchase.order'].create({
-            'partner_id': cls.partner.id
+            'partner_id': cls.partner.id,
+        })
+        cls.order2 = cls.env['purchase.order'].create({
+            'partner_id': cls.partner2.id,
         })
         po_line = cls.env['purchase.order.line']
         cls.po_line1 = po_line.create({
@@ -50,6 +70,16 @@ class TestPurchaseOrder(common.SavepointCase):
             'product_uom': cls.product2.uom_id.id,
             'taxes_id': [(6, 0, [cls.tax.id])],
             'price_unit': 60.0,
+        })
+        cls.po_line3 = po_line.create({
+            'order_id': cls.order2.id,
+            'product_id': cls.product1.id,
+            'date_planned': '2020-01-01 00:00:00',
+            'name': 'Line 1',
+            'product_qty': 1.0,
+            'product_uom': cls.product1.uom_id.id,
+            'taxes_id': [(6, 0, [cls.tax.id])],
+            'price_unit': 600.0,
         })
 
     def test_01_purchase_order_classic_discount(self):
@@ -123,3 +153,52 @@ class TestPurchaseOrder(common.SavepointCase):
         self.assertEqual(self.po_line2.discount3,
                          self.invoice.invoice_line_ids[1].discount3)
         self.assertEqual(self.order.amount_total, self.invoice.amount_total)
+
+    def test_05_purchase_order_default_discounts(self):
+        self.po_line3._onchange_quantity()
+        self.assertEquals(self.po_line3.discount, 10)
+        self.assertEquals(self.po_line3.discount2, 20)
+        self.assertEquals(self.po_line3.discount3, 30)
+        self.po_line3.product_qty = 10
+        self.po_line3._onchange_quantity()
+        self.assertFalse(self.po_line3.discount)
+        self.assertFalse(self.po_line3.discount2)
+        self.assertEquals(self.po_line3.discount3, 50)
+
+    def test_06_default_supplier_discounts(self):
+        self.partner2.default_supplierinfo_discount = 11
+        self.partner2.default_supplierinfo_discount2 = 22
+        self.partner2.default_supplierinfo_discount3 = 33
+        supplierinfo = self.supplierinfo_obj.new({
+            'min_qty': 0.0,
+            'name': self.partner2.id,
+            'product_tmpl_id': self.product1.product_tmpl_id.id,
+            'discount': 10,
+        })
+        supplierinfo.onchange_name()
+        self.assertEquals(supplierinfo.discount, 11)
+        self.assertEquals(supplierinfo.discount2, 22)
+        self.assertEquals(supplierinfo.discount3, 33)
+
+    def test_07_supplierinfo_from_purchaseorder(self):
+        self.order2.order_line.create({
+            'order_id': self.order2.id,
+            'product_id': self.product2.id,
+            'date_planned': '2020-01-01 00:00:00',
+            'name': 'Line 2',
+            'product_qty': 1.0,
+            'product_uom': self.product2.uom_id.id,
+            'taxes_id': [(6, 0, [self.tax.id])],
+            'price_unit': 999.0,
+            'discount': 11.11,
+            'discount2': 22.22,
+            'discount3': 33.33,
+        })
+        self.order2.button_confirm()
+        seller = self.supplierinfo_obj.search([
+            ('name', '=', self.partner2.id),
+            ('product_tmpl_id', '=', self.product2.product_tmpl_id.id)])
+        self.assertTrue(seller)
+        self.assertEqual(seller.discount, 11.11)
+        self.assertEqual(seller.discount2, 22.22)
+        self.assertEqual(seller.discount3, 33.33)
