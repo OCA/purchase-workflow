@@ -37,20 +37,20 @@ it to purchase order lines:
   discounted in price.
 * You can set prices and discounts on the same screen.
 
-.. image:: /purchase_discount/static/description/product_supplierinfo_form.png
+.. image:: https://raw.githubusercontent.com/OCA/purchase-workflow/12.0/purchase_discount/static/description/product_supplierinfo_form.png
 
 
 * A new field default_supplierinfo_discount is added on res.partner model.
   This value will be used as the default one, on each supplierinfo of that
   supplier.
 
-.. image:: /purchase_discount/static/description/res_partner_company_form.png
+.. image:: https://raw.githubusercontent.com/OCA/purchase-workflow/12.0/purchase_discount/static/description/res_partner_company_form.png
 
 
 Note: this setting is a new 'company' setting, unavailable for related
 partners, as accounting-related Settings.
 
-.. image:: /purchase_discount/static/description/res_partner_individual_form.png
+.. image:: https://raw.githubusercontent.com/OCA/purchase-workflow/12.0/purchase_discount/static/description/res_partner_individual_form.png
 
 **Table of contents**
 
@@ -67,10 +67,6 @@ here the desired discount for that quantity.
 
 When you make a purchase order for that supplier and that product, discount
 will be put automatically.
-
-.. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
-   :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/142/12.0
 
 Known issues / Roadmap
 ======================
@@ -98,6 +94,7 @@ Authors
 * Acysos S.L.
 * Tecnativa
 * ACSONE SA/NV
+* GRAP
 
 Contributors
 ~~~~~~~~~~~~
