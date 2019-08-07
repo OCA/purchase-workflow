@@ -9,10 +9,8 @@ class ProcurementRule(models.Model):
     @api.multi
     def _prepare_purchase_order_line(self, product_id, product_qty,
                                      product_uom, values, po, partner):
-        """
-        Apply the discount to the created purchase order
-        """
-        res = super(ProcurementRule, self)._prepare_purchase_order_line(
+        """Apply the discount to the created purchase order"""
+        res = super()._prepare_purchase_order_line(
             product_id, product_qty, product_uom, values, po, partner)
         date = None
         if po.date_order:
@@ -22,6 +20,15 @@ class ProcurementRule(models.Model):
             partner_id=partner,
             quantity=product_qty,
             date=date, uom_id=product_uom)
-        if seller:
-            res['discount'] = seller.discount
+        res.update(self._prepare_purchase_order_line_from_seller(seller))
         return res
+
+    @api.model
+    def _prepare_purchase_order_line_from_seller(self, seller):
+        """Overload this function to prepare other data from seller,
+        like in purchase_triple_discount module"""
+        if not seller:
+            return {}
+        return {
+            'discount': seller.discount,
+        }
