@@ -31,4 +31,4 @@ class ProductSupplierInfo(models.Model):
 
             vals['discount'] = self.env.context['discount_map'][
                 vals['product_tmpl_id']]
-        return super(ProductSupplierInfo, self).create(vals)
+        return super().create(vals)
