@@ -8,6 +8,7 @@
               "Acysos S.L., "
               "Tecnativa, "
               "ACSONE SA/NV,"
+              "GRAP,"
               "Odoo Community Association (OCA)",
     "version": "12.0.1.0.0",
     "category": "Purchase Management",
