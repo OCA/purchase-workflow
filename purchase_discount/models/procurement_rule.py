@@ -1,6 +1,6 @@
 # Copyright 2016 ACSONE SA/NV (<http://acsone.eu>)
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
-from odoo import api, fields, models
+from odoo import api, models
 
 
 class ProcurementRule(models.Model):
@@ -14,8 +14,7 @@ class ProcurementRule(models.Model):
             product_id, product_qty, product_uom, values, po, partner)
         date = None
         if po.date_order:
-            date = fields.Date.to_string(
-                fields.Date.from_string(po.date_order))
+            date = po.date_order.date()
         seller = product_id._select_seller(
             partner_id=partner,
             quantity=product_qty,
