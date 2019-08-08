@@ -2,7 +2,7 @@
 
     <record model="ir.ui.view" id="res_partner_form_view">
          <field name="model">res.partner</field>
-         <field name="inherit_id" ref="product_supplierinfo_discount.res_partner_form_view"/>
+         <field name="inherit_id" ref="purchase_discount.res_partner_form_view"/>
          <field name="arch" type="xml">
             <field name="default_supplierinfo_discount" position="after">
                 <field name="default_supplierinfo_discount2"

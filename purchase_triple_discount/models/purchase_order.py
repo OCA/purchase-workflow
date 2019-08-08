@@ -19,15 +19,16 @@ class PurchaseOrder(models.Model):
              for line in self.order_line.filtered('discount3')])
         return super(PurchaseOrder, self.with_context(
             discount2_map=discount2_map, discount3_map=discount3_map)
-            )._add_supplier_to_product()
+        )._add_supplier_to_product()
 
 
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
+    # adding discount2 and discount3 to depends
     @api.depends('discount2', 'discount3')
     def _compute_amount(self):
-        super(PurchaseOrderLine, self)._compute_amount()
+        super()._compute_amount()
 
     discount2 = fields.Float(
         'Disc. 2 (%)',
@@ -47,30 +48,17 @@ class PurchaseOrderLine(models.Model):
     ]
 
     def _get_discounted_price_unit(self):
-        price_unit = super(
-            PurchaseOrderLine, self)._get_discounted_price_unit()
+        price_unit = super()._get_discounted_price_unit()
         if self.discount2:
             price_unit *= (1 - self.discount2 / 100.0)
         if self.discount3:
             price_unit *= (1 - self.discount3 / 100.0)
         return price_unit
 
-    @api.onchange('product_qty', 'product_uom')
-    def _onchange_quantity(self):
-        """
-        Check if a discount is defined into the supplier info and if so then
-        apply it to the current purchase order line
-        """
-        res = super(PurchaseOrderLine, self)._onchange_quantity()
-        if self.product_id:
-            date = None
-            if self.order_id.date_order:
-                date = fields.Date.to_string(
-                    fields.Date.from_string(self.order_id.date_order))
-            product_supplierinfo = self.product_id._select_seller(
-                partner_id=self.partner_id, quantity=self.product_qty,
-                date=date, uom_id=self.product_uom)
-            if product_supplierinfo:
-                self.discount2 = product_supplierinfo.discount2
-                self.discount3 = product_supplierinfo.discount3
-        return res
+    @api.model
+    def _apply_value_from_seller(self, seller):
+        super()._apply_value_from_seller(seller)
+        if not seller:
+            return
+        self.discount2 = seller.discount2
+        self.discount3 = seller.discount3
