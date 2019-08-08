@@ -11,6 +11,9 @@ class StockMove(models.Model):
         """Get correct price with discount replacing current price_unit
         value before calling super and restoring it later for assuring
         maximum inheritability.
+
+        HACK: This is needed while https://github.com/odoo/odoo/pull/29983
+        is not merged.
         """
         price_unit = False
         po_line = self.purchase_line_id
