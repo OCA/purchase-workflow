@@ -1,6 +1,6 @@
 # Copyright 2004-2009 Tiny SPRL (<http://tiny.be>).
 # Copyright 2016 ACSONE SA/NV (<http://acsone.eu>)
-# Copyright 2015-2017 Tecnativa - Pedro M. Baeza
+# Copyright 2015-2019 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
@@ -61,6 +61,9 @@ class PurchaseOrderLine(models.Model):
         """Get correct price with discount replacing current price_unit
         value before calling super and restoring it later for assuring
         maximum inheritability.
+
+        HACK: This is needed while https://github.com/odoo/odoo/pull/29983
+        is not merged.
         """
         price_unit = False
         price = self._get_discounted_price_unit()
@@ -83,8 +86,7 @@ class PurchaseOrderLine(models.Model):
         if self.product_id:
             date = None
             if self.order_id.date_order:
-                date = fields.Date.to_string(
-                    fields.Date.from_string(self.order_id.date_order))
+                date = self.order_id.date_order.date()
             seller = self.product_id._select_seller(
                 partner_id=self.partner_id, quantity=self.product_qty,
                 date=date, uom_id=self.product_uom)
