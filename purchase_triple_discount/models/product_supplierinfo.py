@@ -40,4 +40,4 @@ class ProductSupplierInfo(models.Model):
                 vals['product_tmpl_id'] in self.env.context['discount3_map']):
             vals['discount3'] = self.env.context['discount3_map'][
                 vals['product_tmpl_id']]
-        return super(ProductSupplierInfo, self).create(vals)
+        return super().create(vals)
