@@ -10,6 +10,7 @@ setuptools.setup(
     install_requires=[
         'odoo12-addon-procurement_purchase_no_grouping',
         'odoo12-addon-purchase_delivery_split_date',
+        'odoo12-addon-purchase_discount',
         'odoo12-addon-purchase_exception',
         'odoo12-addon-purchase_force_invoiced',
         'odoo12-addon-purchase_line_procurement_group',
