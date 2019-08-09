@@ -1,4 +1,5 @@
 # Copyright 2017-19 Tecnativa - David Vidal
+# Copyright 2019 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.tests import common
@@ -202,3 +203,16 @@ class TestPurchaseOrder(common.SavepointCase):
         self.assertEqual(seller.discount, 11.11)
         self.assertEqual(seller.discount2, 22.22)
         self.assertEqual(seller.discount3, 33.33)
+
+    def test_08_purchase_report(self):
+        self.po_line2.write({
+            'discount2': 50,
+            'discount3': 20,
+        })
+        self.order.currency_id.rate_ids.unlink()  # for avoiding rate convers.
+        rec = self.env['purchase.report'].search([
+            ('product_id', '=', self.product2.id),
+        ])
+        self.assertEqual(rec.discount2, 50)
+        self.assertEqual(rec.discount3, 20)
+        self.assertEqual(rec.price_total, 240)
