@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: purchase_location_by_line
-#: model:ir.model.fields,field_description:purchase_location_by_line.field_purchase_order_line_location_dest_id
+#: model:ir.model.fields,field_description:purchase_location_by_line.field_purchase_order_line__location_dest_id
 msgid "Destination"
 msgstr ""
 
