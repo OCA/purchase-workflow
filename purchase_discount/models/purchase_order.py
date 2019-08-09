@@ -12,14 +12,15 @@ class PurchaseOrder(models.Model):
 
     @api.multi
     def _add_supplier_to_product(self):
-        """ Insert a mapping of products to discounts to be picked up
+        """ Insert a mapping of products to PO lines to be picked up
         in supplierinfo's create() """
         self.ensure_one()
-        discount_map = dict(
-            [(line.product_id.product_tmpl_id.id, line.discount)
-             for line in self.order_line.filtered('discount')])
+        po_line_map = dict([
+            (line.product_id.product_tmpl_id.id, line)
+            for line in self.order_line
+        ])
         return super(PurchaseOrder, self.with_context(
-            discount_map=discount_map))._add_supplier_to_product()
+            po_line_map=po_line_map))._add_supplier_to_product()
 
 
 class PurchaseOrderLine(models.Model):
