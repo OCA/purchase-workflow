@@ -1,6 +1,5 @@
-# Copyright 2014 Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
-#        Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 # Copyright 2016 ACSONE SA/NV (<http://acsone.eu>)
+# Copyright 2014-2019 Tecnativa - Pedro M. Baeza
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 from odoo import models, fields, api
@@ -22,19 +21,22 @@ class ProductSupplierInfo(models.Model):
                 supplierinfo.name.default_supplierinfo_discount
 
     @api.model
-    def _discount_mapping_fields(self):
+    def _get_po_to_supplierinfo_synced_fields(self):
+        """Overwrite this method for adding other fields to be synchronized
+        with product.supplierinfo.
+        """
         return ['discount']
 
-    @api.model
-    def create(self, vals):
-        """ Insert discount from context from purchase.order's
+    @api.model_create_multi
+    def create(self, vals_list):
+        """ Insert discount (or others) from context from purchase.order's
         _add_supplier_to_product method """
-        for field in self._discount_mapping_fields():
-            field_map = '%s_map' % field
-            template_id = vals['product_tmpl_id']
-            if template_id in self.env.context.get(field_map, [])\
-                    and not vals.get(field, False):
-
-                vals[field] = self.env.context[field_map][template_id]
-
-        return super().create(vals)
+        for vals in vals_list:
+            product_tmpl_id = vals['product_tmpl_id']
+            po_line_map = self.env.context.get('po_line_map', {})
+            if product_tmpl_id in po_line_map:
+                po_line = po_line_map[product_tmpl_id]
+                for field in self._get_po_to_supplierinfo_synced_fields():
+                    if not vals.get(field):
+                        vals[field] = po_line[field]
+        return super().create(vals_list)
