@@ -183,3 +183,13 @@ class TestDeliverySingle(TransactionCase):
         self.assertEquals(
             sorted_pickings[2].scheduled_date[:10], self.date_later,
             "The second picking must be planned at the latest date")
+
+    def test_modify_confirmed(self):
+        # if all moves contain the location no need to update
+
+        self.po.button_confirm()
+        self.po.order_line[0].write({'product_qty': 43})
+        self.assertEqual(
+            self.po.order_line[0].move_ids.mapped('location_dest_id'),
+            self.l1
+        )
