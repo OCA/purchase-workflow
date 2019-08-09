@@ -27,17 +27,7 @@ class ProductSupplierInfo(models.Model):
         return super().onchange_name()
 
     @api.model
-    def create(self, vals):
-        """Insert discounts 2 and 3 from context from purchase.order's
-        _add_supplier_to_product method"""
-        if ('discount2_map' in self.env.context and
-                not vals.get('discount2') and
-                vals['product_tmpl_id'] in self.env.context['discount2_map']):
-            vals['discount2'] = self.env.context['discount2_map'][
-                vals['product_tmpl_id']]
-        if ('discount3_map' in self.env.context and
-                not vals.get('discount3') and
-                vals['product_tmpl_id'] in self.env.context['discount3_map']):
-            vals['discount3'] = self.env.context['discount3_map'][
-                vals['product_tmpl_id']]
-        return super().create(vals)
+    def _discount_mapping_fields(self):
+        res = super()._discount_mapping_fields()
+        res += ['discount2', 'discount3']
+        return res
