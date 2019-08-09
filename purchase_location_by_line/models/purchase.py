@@ -52,6 +52,6 @@ class PurchaseOrderLine(models.Model):
 
             location = line.location_dest_id or default_picking_location
             if location:
-                line.move_ids.write(
+                line.move_ids.filtered(lambda m: m.state != 'done').write(
                     {'location_dest_id': location.id})
         return res
