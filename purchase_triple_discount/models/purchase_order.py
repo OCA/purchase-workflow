@@ -4,24 +4,6 @@ from odoo import api, fields, models
 from odoo.addons import decimal_precision as dp
 
 
-class PurchaseOrder(models.Model):
-    _inherit = 'purchase.order'
-
-    def _add_supplier_to_product(self):
-        """Insert a mapping of products to discounts to be picked up
-        in supplierinfo's create()"""
-        self.ensure_one()
-        discount2_map = dict(
-            [(line.product_id.product_tmpl_id.id, line.discount2)
-             for line in self.order_line.filtered('discount2')])
-        discount3_map = dict(
-            [(line.product_id.product_tmpl_id.id, line.discount3)
-             for line in self.order_line.filtered('discount3')])
-        return super(PurchaseOrder, self.with_context(
-            discount2_map=discount2_map, discount3_map=discount3_map)
-        )._add_supplier_to_product()
-
-
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
