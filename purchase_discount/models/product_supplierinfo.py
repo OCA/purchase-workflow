@@ -22,13 +22,19 @@ class ProductSupplierInfo(models.Model):
                 supplierinfo.name.default_supplierinfo_discount
 
     @api.model
+    def _discount_mapping_fields(self):
+        return ['discount']
+
+    @api.model
     def create(self, vals):
         """ Insert discount from context from purchase.order's
         _add_supplier_to_product method """
-        if ('discount_map' in self.env.context and
-                not vals.get('discount') and
-                vals['product_tmpl_id'] in self.env.context['discount_map']):
+        for field in self._discount_mapping_fields():
+            field_map = '%s_map' % field
+            template_id = vals['product_tmpl_id']
+            if template_id in self.env.context.get(field_map, [])\
+                    and not vals.get(field, False):
 
-            vals['discount'] = self.env.context['discount_map'][
-                vals['product_tmpl_id']]
+                vals[field] = self.env.context[field_map][template_id]
+
         return super().create(vals)
