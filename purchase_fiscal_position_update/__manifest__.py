@@ -5,7 +5,7 @@
 
 {
     'name': 'Purchase Fiscal Position Update',
-    'version': '11.0.1.0.0',
+    'version': '12.0.1.0.0',
     'category': 'Purchase Management',
     'license': 'AGPL-3',
     'summary': 'Changing the fiscal position of a purchase order will '
