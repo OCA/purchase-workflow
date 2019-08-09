@@ -1,5 +1,6 @@
 # Copyright 2019 GRAP (http://www.grap.coop)
 # Sylvain LE GAL (https://twitter.com/legalsylvain)
+# Copyright 2019 Tecnativa - Pedro M. Baeza
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 from odoo import fields, models
@@ -13,7 +14,6 @@ class PurchaseReport(models.Model):
         string='Discount 2 (%)', digits=dp.get_precision('Discount'),
         group_operator="avg",
     )
-
     discount3 = fields.Float(
         string='Discount 3 (%)', digits=dp.get_precision('Discount'),
         group_operator="avg",
@@ -37,6 +37,6 @@ class PurchaseReport(models.Model):
         :return: SQL expression for discounted unit price.
         """
         return """
-            (1.0 - COALESCE(l.discount, 0.0) / 100.0) *
-            (1.0 - COALESCE(l.discount2, 0.0) / 100.0) *
-            (1.0 - COALESCE(l.discount3, 0.0) / 100.0) * l.price_unit """
+            ((100 - COALESCE(l.discount, 0.0)) *
+             (100 - COALESCE(l.discount2, 0.0)) *
+             (100 - COALESCE(l.discount3, 0.0))) / 1000000 * l.price_unit"""
