@@ -57,4 +57,7 @@ class StockPicking(models.Model):
                 message = \
                     self._purchase_request_picking_confirm_message_content(
                         picking, request, requests_dict[request_id])
-                request.message_post(body=message, subtype='mail.mt_comment')
+                request.sudo().message_post(
+                    body=message,
+                    subtype='mail.mt_comment',
+                    author_id=self.env.user.partner_id.id)
