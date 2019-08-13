@@ -19,6 +19,7 @@ setuptools.setup(
         'odoo12-addon-purchase_order_archive',
         'odoo12-addon-purchase_product_usage',
         'odoo12-addon-purchase_tier_validation',
+        'odoo12-addon-purchase_triple_discount',
     ],
     classifiers=[
         'Programming Language :: Python',

@@ -1,0 +1,16 @@
+<odoo>
+
+    <record model="ir.ui.view" id="res_partner_form_view">
+         <field name="model">res.partner</field>
+         <field name="inherit_id" ref="purchase_discount.res_partner_form_view"/>
+         <field name="arch" type="xml">
+            <field name="default_supplierinfo_discount" position="after">
+                <field name="default_supplierinfo_discount2"
+                        attrs="{'invisible': [('is_company', '=', False), ('parent_id', '!=', False)]}"/>
+                <field name="default_supplierinfo_discount3"
+                        attrs="{'invisible': [('is_company', '=', False), ('parent_id', '!=', False)]}"/>
+            </field>
+         </field>
+     </record>
+
+</odoo>
