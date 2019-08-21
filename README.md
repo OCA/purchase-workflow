@@ -23,6 +23,7 @@ addon | version | summary
 [product_supplier_code_purchase](product_supplier_code_purchase/) | 10.0.1.0.0 | This module adds to the purchase order line the supplier code defined in the product.
 [product_supplierinfo_discount](product_supplierinfo_discount/) | 10.0.1.0.0 | Discounts in product supplier info
 [purchase_allowed_product](purchase_allowed_product/) | 10.0.1.0.0 | This module allows to select only products that can be supplied by the supplier
+[purchase_cancel_qty](purchase_cancel_qty/) | 10.0.1.0.0 | Allow purchase users to define cancelled quantity on purchase order lines
 [purchase_cancel_reason](purchase_cancel_reason/) | 10.0.1.0.0 | Purchase Cancel Reason
 [purchase_commercial_partner](purchase_commercial_partner/) | 10.0.1.0.1 | Add stored related field 'Commercial Supplier' on POs
 [purchase_date_planned_manual](purchase_date_planned_manual/) | 10.0.1.0.0 | This module makes the system to always respect the planned (or scheduled) date in PO lines.
