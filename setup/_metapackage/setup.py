@@ -13,6 +13,7 @@ setuptools.setup(
         'odoo10-addon-product_supplier_code_purchase',
         'odoo10-addon-product_supplierinfo_discount',
         'odoo10-addon-purchase_allowed_product',
+        'odoo10-addon-purchase_cancel_qty',
         'odoo10-addon-purchase_cancel_reason',
         'odoo10-addon-purchase_commercial_partner',
         'odoo10-addon-purchase_date_planned_manual',
