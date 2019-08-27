@@ -17,22 +17,22 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         vendor = self.env['res.partner'].create({
             'name': 'Partner #2',
         })
-        supplierinfo_service = self.env['product.supplierinfo'].create({
-            'name': vendor.id,
-        })
-        supplierinfo_product = self.env['product.supplierinfo'].create({
-            'name': vendor.id,
-        })
         self.service_product = self.env['product.product'].create({
             'name': 'Product Service Test',
-            'seller_ids': [(6, 0, [supplierinfo_service.id])],
             'type': 'service',
             'service_to_purchase': True,
         })
         self.product_product = self.env['product.product'].create({
             'name': 'Product Product Test',
-            'seller_ids': [(6, 0, [supplierinfo_product.id])],
             'type': 'product'
+        })
+        self.env['product.supplierinfo'].create({
+            'name': vendor.id,
+            'product_tmpl_id': self.service_product.product_tmpl_id.id,
+        })
+        self.env['product.supplierinfo'].create({
+            'name': vendor.id,
+            'product_tmpl_id': self.product_product.product_tmpl_id.id,
         })
 
     def test_purchase_request_allocation(self):
