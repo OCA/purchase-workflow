@@ -17,14 +17,14 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         vendor = self.env['res.partner'].create({
             'name': 'Partner #2',
         })
-        supplierinfo_service = self.env['product.supplierinfo'].create({
-            'name': vendor.id,
-        })
         self.service_product = self.env['product.product'].create({
             'name': 'Product Service Test',
-            'seller_ids': [(6, 0, [supplierinfo_service.id])],
             'type': 'service',
             'service_to_purchase': True,
+        })
+        self.env['product.supplierinfo'].create({
+            'name': vendor.id,
+            'product_tmpl_id': self.service_product.product_tmpl_id.id,
         })
 
     def test_purchase_request_to_purchase_rfq(self):
