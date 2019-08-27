@@ -393,6 +393,9 @@
                                              'tree_view_ref' : 'purchase_order_line_tree_sub',
                                              'search_view_ref' : 'purchase_order_line_search_sub'}"/>
                         </page>
+                        <page name="allocations" string="Allocations">
+                            <field name="purchase_request_allocation_ids"/>
+                        </page>
                     </notebook>
                 </sheet>
                 <div class="oe_chatter">

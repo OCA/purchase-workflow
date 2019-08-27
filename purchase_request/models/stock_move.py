@@ -48,7 +48,7 @@ class StockMove(models.Model):
                         'mail.mail_activity_data_todo').id
                 except ValueError:
                     activity_type_id = False
-                self.env['mail.activity'].create({
+                self.env['mail.activity'].sudo().create({
                     'activity_type_id': activity_type_id,
                     'note': _('A sale/manufacturing order that generated this '
                               'purchase request has been cancelled/deleted. '

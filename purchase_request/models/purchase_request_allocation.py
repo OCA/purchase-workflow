@@ -52,10 +52,6 @@ class PurchaseRequestAllocation(models.Model):
              'move, in the default UoM of the product',
         compute='_compute_requested_product_qty'
     )
-    prev_allocated_qty = fields.Float(
-        'Qty received in PO lines (UoM)',
-        help='Service Quantity of the purchase order line previously'
-             ' allocated')
 
     allocated_product_qty = fields.Float(
         'Allocated Quantity',
