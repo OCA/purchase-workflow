@@ -67,7 +67,7 @@ msgstr "Nume Afişat"
 
 #. module: purchase_cancel_reason
 #: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_id
-#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason_id_5158
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason_id_5181
 msgid "ID"
 msgstr "ID"
 
@@ -124,7 +124,7 @@ msgid "Reason"
 msgstr ""
 
 #. module: purchase_cancel_reason
-#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason_id_5150
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason_id_5173
 msgid "Reason for cancellation"
 msgstr ""
 
