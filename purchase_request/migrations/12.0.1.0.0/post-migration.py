@@ -26,7 +26,7 @@ def create_service_allocation(env, po_line, pr_line, qty):
     return alloc
 
 
-def allocate_stockable(ml, ml_done=None):
+def allocate_from_stock_move(ml, ml_done=None):
     #  done here because open_product_qty is zero so cannot call method in
     #  stock_move_line
     if ml_done is None:
@@ -49,7 +49,7 @@ def allocate_stockable(ml, ml_done=None):
     return ml_done
 
 
-def create_allocations(env):
+def allocate_stockable(env):
     cr = env.cr
     #  First allocate stockable and consumables
     logger.info('Allocating purchase request for stockables '
@@ -86,7 +86,7 @@ def create_allocations(env):
             #  cannot call super, open_qty is zero
             sm = env['stock.move'].browse(sm_id)
             if sm.state == 'done':
-                ml_done = allocate_stockable(sm.move_line_ids, ml_done)
+                ml_done = allocate_from_stock_move(sm.move_line_ids, ml_done)
         else:
             # we allocated what is in the PR line
             create_allocation(
@@ -95,7 +95,7 @@ def create_allocations(env):
         purchase_request_line._compute_qty()
 
 
-def create_service_allocations(env):
+def allocate_service(env):
     cr = env.cr
     #  Allocate services
     logger.info('Allocating purchase request for services')
@@ -118,7 +118,7 @@ def create_service_allocations(env):
             env, purchase_order_line_id, purchase_request_line_id,
             product_qty)
         pol = env['purchase.order.line'].browse(purchase_order_line_id)
-        pol.with_context(no_notify=True).update_service_allocations()
+        pol.with_context(no_notify=True).update_service_allocations(0.0)
         alloc._compute_open_product_qty()
         env['purchase.request.line'].browse(
             purchase_request_line_id)._compute_qty()
@@ -126,5 +126,5 @@ def create_service_allocations(env):
 
 @openupgrade.migrate(use_env=True)
 def migrate(env, version):
-    create_allocations(env)
-    create_service_allocations(env)
+    allocate_stockable(env)
+    allocate_service(env)
