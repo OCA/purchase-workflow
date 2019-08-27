@@ -364,6 +364,7 @@ msgstr "Assistent"
 
 #. module: purchase_request_to_rfq
 #: code:addons/purchase_request_to_rfq/models/purchase_request.py:132
+#: code:addons/purchase_request_to_rfq/models/purchase_request.py:135
 #, python-format
 msgid "You cannot delete a record that refers to purchase lines!"
 msgstr ""
