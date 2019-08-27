@@ -123,7 +123,7 @@ class PurchaseOrderLine(models.Model):
         return val
 
     @api.multi
-    def update_service_allocations(self):
+    def update_service_allocations(self, prev_qty_received):
         for rec in self:
             allocation = self.env['purchase.request.allocation'].search(
                 [('purchase_line_id', '=', rec.id),
@@ -131,7 +131,7 @@ class PurchaseOrderLine(models.Model):
             )
             if not allocation:
                 return
-            qty_left = rec.qty_received - allocation[0].prev_allocated_qty
+            qty_left = rec.qty_received - prev_qty_received
             for alloc in allocation:
                 allocated_product_qty = alloc.allocated_product_qty
                 if not qty_left:
@@ -145,8 +145,6 @@ class PurchaseOrderLine(models.Model):
                     allocated_product_qty += qty_left
                     alloc._notify_allocation(qty_left)
                     qty_left = 0
-                alloc.prev_allocated_qty = rec.qty_received
-                alloc.write({'prev_allocated_qty': rec.qty_received})
                 alloc.write({'allocated_product_qty': allocated_product_qty})
 
                 message_data = self._prepare_request_message_data(
@@ -195,7 +193,8 @@ class PurchaseOrderLine(models.Model):
     def write(self, vals):
         #  it is done here instead of method _update_received_qty
         #  to make sure this work for services
+        prev_qty_received = self.qty_received
         res = super(PurchaseOrderLine, self).write(vals)
         if vals.get('qty_received', False):
-            self.update_service_allocations()
+            self.update_service_allocations(prev_qty_received)
         return res
