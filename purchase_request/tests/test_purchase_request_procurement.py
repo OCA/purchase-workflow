@@ -47,7 +47,7 @@ class TestPurchaseRequestProcurement(common.SavepointCase):
                 'company_id': False,
             })]
         })
-        self.origin = 'Test'
+        self.origin = 'Test Purchase Request Procurement'
 
     def procurement_group_run(self, name, product, qty):
         values = {
@@ -59,14 +59,16 @@ class TestPurchaseRequestProcurement(common.SavepointCase):
         return self.env['procurement.group'].run(
             product, qty,
             product.uom_id, self.location,
-            name, 'Test', values)
+            name, 'Test Purchase Request Procurement', values)
 
     def test_procure_purchase_request(self):
-        has_route = self.procurement_group_run('Test', self.product_1, 10)
+        has_route = self.procurement_group_run(
+            'Test Purchase Request Procurement', self.product_1, 10)
         self.assertTrue(has_route)
-        pr = self.env['purchase.request'].search([('origin', '=', 'Test')])
+        pr = self.env['purchase.request'].search(
+            [('origin', '=', 'Test Purchase Request Procurement')])
         self.assertTrue(pr.to_approve_allowed)
-        self.assertEquals(pr.origin, 'Test')
+        self.assertEquals(pr.origin, 'Test Purchase Request Procurement')
         prl = self.env['purchase.request.line'].search(
             [('request_id', '=', pr.id)])
         self.assertEquals(prl.request_id, pr)
