@@ -277,9 +277,10 @@ class PurchaseRequestLineMakePurchaseOrderItem(models.TransientModel):
                                  readonly=True)
     product_id = fields.Many2one('product.product', string='Product')
     name = fields.Char(string='Description', required=True)
-    product_qty = fields.Float(string='Quantity to purchase',
-                               digits=dp.get_precision('Product UoS'),
-                               readonly=True)
+    product_qty = fields.Float(
+        string='Quantity to purchase',
+        digits=dp.get_precision('Product Unit of Measure'),
+        readonly=True)
     product_uom_id = fields.Many2one('product.uom', string='UoM',
                                      readonly=True)
     keep_description = fields.Boolean(string='Copy descriptions to new PO',
