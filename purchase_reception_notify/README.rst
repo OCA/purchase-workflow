@@ -33,7 +33,6 @@ notifications. This subtype is internal activated by default when subscribing.
 The old purchase orders will be updated to assign this new subtype to the
 existing followers, as long as they are still active employees.
 
-
 **Table of contents**
 
 .. contents::
