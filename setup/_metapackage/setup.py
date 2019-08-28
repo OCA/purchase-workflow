@@ -17,6 +17,7 @@ setuptools.setup(
         'odoo11-addon-purchase_exception',
         'odoo11-addon-purchase_force_invoiced',
         'odoo11-addon-purchase_landed_cost',
+        'odoo11-addon-purchase_last_price_info',
         'odoo11-addon-purchase_line_procurement_group',
         'odoo11-addon-purchase_location_by_line',
         'odoo11-addon-purchase_minimum_amount',
