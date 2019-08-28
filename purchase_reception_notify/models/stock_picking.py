@@ -50,6 +50,7 @@ class StockPicking(models.Model):
                 message = \
                     self._purchase_order_picking_confirm_message_content(
                         picking, purchase_dict[po])
-                po.message_post(
+                po.sudo().message_post(
                     body=message,
-                    subtype='purchase_reception_notify.mt_purchase_reception')
+                    subtype='purchase_reception_notify.mt_purchase_reception',
+                    author_id=self.env.user.partner_id.id)
