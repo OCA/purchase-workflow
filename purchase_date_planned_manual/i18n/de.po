@@ -29,6 +29,13 @@ msgid "Planned to be late"
 msgstr ""
 
 #. module: purchase_date_planned_manual
+#: model:ir.model,name:purchase_date_planned_manual.model_procurement_rule
+#, fuzzy
+#| msgid "Procurement"
+msgid "Procurement Rule"
+msgstr "Beschaffung"
+
+#. module: purchase_date_planned_manual
 #: model:ir.model,name:purchase_date_planned_manual.model_purchase_order_line
 msgid "Purchase Order Line"
 msgstr "Bestellposition"
@@ -47,9 +54,6 @@ msgid ""
 "True if the arrival at scheduled date is planned to be late. Takes into "
 "account the vendor lead time and the company margin for lead times."
 msgstr ""
-
-#~ msgid "Procurement"
-#~ msgstr "Beschaffung"
 
 #~ msgid "Purchase Order"
 #~ msgstr "Bestellauftrag"

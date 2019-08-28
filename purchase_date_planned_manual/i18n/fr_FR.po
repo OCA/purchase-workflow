@@ -30,6 +30,11 @@ msgid "Planned to be late"
 msgstr ""
 
 #. module: purchase_date_planned_manual
+#: model:ir.model,name:purchase_date_planned_manual.model_procurement_rule
+msgid "Procurement Rule"
+msgstr ""
+
+#. module: purchase_date_planned_manual
 #: model:ir.model,name:purchase_date_planned_manual.model_purchase_order_line
 msgid "Purchase Order Line"
 msgstr ""
