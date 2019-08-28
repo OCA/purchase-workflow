@@ -20,6 +20,23 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: purchase_triple_discount
+#: model:ir.model,name:purchase_triple_discount.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: purchase_triple_discount
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_res_partner_default_supplierinfo_discount2
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_res_users_default_supplierinfo_discount2
+msgid "Default Supplier Discount 2 (%)"
+msgstr ""
+
+#. module: purchase_triple_discount
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_res_partner_default_supplierinfo_discount3
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_res_users_default_supplierinfo_discount3
+msgid "Default Supplier Discount 3 (%)"
+msgstr ""
+
+#. module: purchase_triple_discount
 #: model:ir.model.fields,field_description:purchase_triple_discount.field_purchase_order_line_discount2
 msgid "Disc. 2 (%)"
 msgstr "Rem. 2 (%)"
@@ -30,9 +47,23 @@ msgid "Disc. 3 (%)"
 msgstr "Rem. 3 (%)"
 
 #. module: purchase_triple_discount
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_product_supplierinfo_discount2
+#, fuzzy
+#| msgid "Disc. 2 (%)"
+msgid "Discount 2 (%)"
+msgstr "Rem. 2 (%)"
+
+#. module: purchase_triple_discount
 #: sql_constraint:purchase.order.line:0
 msgid "Discount 2 must be lower than 100%."
 msgstr "La remise 2 doit être inférieure à 100%."
+
+#. module: purchase_triple_discount
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_product_supplierinfo_discount3
+#, fuzzy
+#| msgid "Disc. 3 (%)"
+msgid "Discount 3 (%)"
+msgstr "Rem. 3 (%)"
 
 #. module: purchase_triple_discount
 #: sql_constraint:purchase.order.line:0
@@ -40,11 +71,38 @@ msgid "Discount 3 must be lower than 100%."
 msgstr "La remise 3 doit être inférieure à 100%."
 
 #. module: purchase_triple_discount
+#: model:ir.model,name:purchase_triple_discount.model_product_supplierinfo
+msgid "Information about a product vendor"
+msgstr ""
+
+#. module: purchase_triple_discount
 #: model:ir.model,name:purchase_triple_discount.model_account_invoice
 msgid "Invoice"
 msgstr "Facture"
 
 #. module: purchase_triple_discount
+#: model:ir.model,name:purchase_triple_discount.model_procurement_rule
+msgid "Procurement Rule"
+msgstr ""
+
+#. module: purchase_triple_discount
+#: model:ir.model,name:purchase_triple_discount.model_purchase_order
+#, fuzzy
+#| msgid "Purchase Order Line"
+msgid "Purchase Order"
+msgstr "Ligne de commande d'achat"
+
+#. module: purchase_triple_discount
 #: model:ir.model,name:purchase_triple_discount.model_purchase_order_line
 msgid "Purchase Order Line"
 msgstr "Ligne de commande d'achat"
+
+#. module: purchase_triple_discount
+#: model:ir.model.fields,help:purchase_triple_discount.field_res_partner_default_supplierinfo_discount2
+#: model:ir.model.fields,help:purchase_triple_discount.field_res_partner_default_supplierinfo_discount3
+#: model:ir.model.fields,help:purchase_triple_discount.field_res_users_default_supplierinfo_discount2
+#: model:ir.model.fields,help:purchase_triple_discount.field_res_users_default_supplierinfo_discount3
+msgid ""
+"This value will be used as the default one, for each new supplierinfo line "
+"depending on that supplier."
+msgstr ""
