@@ -10,6 +10,7 @@ msgstr ""
 "PO-Revision-Date: 2019-08-08 08:11+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -44,6 +45,7 @@ msgstr "Rem. 3 (%)"
 
 #. module: purchase_triple_discount
 #: model:ir.model.fields,field_description:purchase_triple_discount.field_product_supplierinfo__discount2
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_purchase_report__discount2
 msgid "Discount 2 (%)"
 msgstr "Remise 2 (%)"
 
@@ -54,6 +56,7 @@ msgstr "La remise 2 doit être inférieure à 100%."
 
 #. module: purchase_triple_discount
 #: model:ir.model.fields,field_description:purchase_triple_discount.field_product_supplierinfo__discount3
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_purchase_report__discount3
 msgid "Discount 3 (%)"
 msgstr "Remise 3 (%)"
 
@@ -68,14 +71,16 @@ msgid "Invoice"
 msgstr "Facture"
 
 #. module: purchase_triple_discount
-#: model:ir.model,name:purchase_triple_discount.model_purchase_order
-msgid "Purchase Order"
-msgstr "Commande fournisseur"
-
-#. module: purchase_triple_discount
 #: model:ir.model,name:purchase_triple_discount.model_purchase_order_line
 msgid "Purchase Order Line"
 msgstr "Ligne de commande d'achat"
+
+#. module: purchase_triple_discount
+#: model:ir.model,name:purchase_triple_discount.model_purchase_report
+#, fuzzy
+#| msgid "Purchase Order"
+msgid "Purchase Report"
+msgstr "Commande fournisseur"
 
 #. module: purchase_triple_discount
 #: model:ir.model,name:purchase_triple_discount.model_stock_rule
@@ -92,6 +97,7 @@ msgstr "Liste de prix du fournisseur"
 #: model:ir.model.fields,help:purchase_triple_discount.field_res_partner__default_supplierinfo_discount3
 #: model:ir.model.fields,help:purchase_triple_discount.field_res_users__default_supplierinfo_discount2
 #: model:ir.model.fields,help:purchase_triple_discount.field_res_users__default_supplierinfo_discount3
-msgid "This value will be used as the default one, for each new supplierinfo line depending on that supplier."
+msgid ""
+"This value will be used as the default one, for each new supplierinfo line "
+"depending on that supplier."
 msgstr ""
-
