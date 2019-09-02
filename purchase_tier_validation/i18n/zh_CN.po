@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2019-09-02 14:40+0000\n"
+"PO-Revision-Date: 2019-09-02 19:23+0000\n"
 "Last-Translator: 黎伟杰 <674416404@qq.com>\n"
 "Language-Team: none\n"
 "Language: zh_CN\n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid "<i class=\"fa fa-info-circle\"/>This PO needs to be\n"
 "                        validated."
 msgstr ""
-"<i class=\"fa fa-info-circle\"/>这个PO需要\n"
+"<i class=\"fa fa-info-circle\"/>这个采购订单需要\n"
 "                        验证。"
 
 #. module: purchase_tier_validation
@@ -42,12 +42,12 @@ msgstr "查看我的采购"
 #. module: purchase_tier_validation
 #: model_terms:ir.ui.view,arch_db:purchase_tier_validation.view_purchase_order_filter
 msgid "Needs my Review"
-msgstr "需要我审核的"
+msgstr "需要我审查的"
 
 #. module: purchase_tier_validation
 #: model_terms:ir.ui.view,arch_db:purchase_tier_validation.view_purchase_order_filter
 msgid "POs validated and ready to be confirmed"
-msgstr "PO已验证，待确认"
+msgstr "采购订单已验证，待确认"
 
 #. module: purchase_tier_validation
 #: model:ir.model,name:purchase_tier_validation.model_purchase_order
@@ -72,7 +72,7 @@ msgstr "重新启动验证"
 #. module: purchase_tier_validation
 #: model:ir.model,name:purchase_tier_validation.model_tier_definition
 msgid "Tier Definition"
-msgstr "层级验证"
+msgstr "层定义"
 
 #. module: purchase_tier_validation
 #: model_terms:ir.ui.view,arch_db:purchase_tier_validation.purchase_order_form
