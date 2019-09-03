@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2019-09-02 14:40+0000\n"
+"PO-Revision-Date: 2019-09-03 04:23+0000\n"
 "Last-Translator: 黎伟杰 <674416404@qq.com>\n"
 "Language-Team: none\n"
 "Language: zh_CN\n"
@@ -89,7 +89,7 @@ msgstr "取消"
 #. module: purchase_landed_cost
 #: model_terms:ir.actions.act_window,help:purchase_landed_cost.action_purchase_cost_distribution
 msgid "Click to create a draft purchase expenses distribution."
-msgstr "单击创建采购费用分配草稿。"
+msgstr "单击创建采购费用分摊草稿。"
 
 #. module: purchase_landed_cost
 #: model_terms:ir.actions.act_window,help:purchase_landed_cost.action_purchase_expense_type
@@ -125,28 +125,28 @@ msgstr "成本金额"
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__distribution
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
 msgid "Cost distribution"
-msgstr "成本分配"
+msgstr "成本分摊"
 
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_expense_invoice_form
 msgid "Cost distribution expenses"
-msgstr "成本分配费用"
+msgstr "成本分摊费用"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_expense__distribution_line
 msgid "Cost distribution line"
-msgstr "成本分配行"
+msgstr "成本分摊行"
 
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_form
 msgid "Cost distribution line information"
-msgstr "成本分配行信息"
+msgstr "成本分摊行信息"
 
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
 msgid "Cost distribution notes..."
-msgstr "成本分配说明..."
+msgstr "成本分摊说明..."
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_expense_type__note
@@ -162,7 +162,7 @@ msgstr "无法撤消成本更新，因为有更新。恢复正确的价格并重
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
 msgid "Costs distribution picking lines"
-msgstr "成本分配拣货行"
+msgstr "成本分摊拣货行"
 
 #. module: purchase_landed_cost
 #: model:ir.ui.menu,name:purchase_landed_cost.menu_purchase_cost_control
@@ -229,7 +229,7 @@ msgid "Define the type of the calculation of each purchase expense\n"
 "                used for calculating the distribution between lines."
 msgstr ""
 "定义每个购买费用的计算类型\n"
-"                用于计算行之间的分布。"
+"                用于计算行之间的分摊。"
 
 #. module: purchase_landed_cost
 #: selection:purchase.cost.distribution,cost_update_type:0
@@ -251,17 +251,17 @@ msgstr "显示名称"
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_expense__distribution_expense
 msgid "Distribution expense"
-msgstr "分配费用"
+msgstr "分摊费用"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__cost_lines
 msgid "Distribution lines"
-msgstr "分配行"
+msgstr "分摊行"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__name
 msgid "Distribution number"
-msgstr "分配号码"
+msgstr "分摊号码"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__note
@@ -303,7 +303,7 @@ msgstr "费用金额"
 #: model:ir.actions.act_window,name:purchase_landed_cost.action_purchase_cost_distribution_line_expense
 #: model:ir.ui.menu,name:purchase_landed_cost.menu_purchase_cost_distribution_line_expense
 msgid "Expense distribution lines"
-msgstr "费用分配行"
+msgstr "费用分摊行"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_import_invoice_line_wizard__expense_type
@@ -322,7 +322,7 @@ msgstr "费用"
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__expense_lines
 msgid "Expenses distribution lines"
-msgstr "费用分配行"
+msgstr "费用分摊行"
 
 #. module: purchase_landed_cost
 #: model:ir.actions.act_window,name:purchase_landed_cost.action_purchase_expense_type
@@ -494,7 +494,7 @@ msgstr "新的成本"
 #: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:200
 #, python-format
 msgid "No valid distribution type."
-msgstr "没有有效的分配类型。"
+msgstr "没有有效的分摊类型。"
 
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.import_landed_cost_pickings_wizard_view
@@ -574,27 +574,27 @@ msgstr "采购订单"
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_calendar
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_graph
 msgid "Purchase cost distribution"
-msgstr "采购成本分配"
+msgstr "采购成本分摊"
 
 #. module: purchase_landed_cost
 #: model:ir.model,name:purchase_landed_cost.model_purchase_cost_distribution_line
 msgid "Purchase cost distribution Line"
-msgstr "采购成本分配行"
+msgstr "采购成本分摊行"
 
 #. module: purchase_landed_cost
 #: model:ir.model,name:purchase_landed_cost.model_purchase_cost_distribution_expense
 msgid "Purchase cost distribution expense"
-msgstr "采购成本分配费用"
+msgstr "采购成本分摊费用"
 
 #. module: purchase_landed_cost
 #: model:ir.model,name:purchase_landed_cost.model_purchase_cost_distribution_line_expense
 msgid "Purchase cost distribution line expense"
-msgstr "采购成本分配行费用"
+msgstr "采购成本分摊行费用"
 
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_expense_tree
 msgid "Purchase cost distribution lines"
-msgstr "采购成本分配行"
+msgstr "采购成本分摊行"
 
 #. module: purchase_landed_cost
 #: model:ir.actions.act_window,name:purchase_landed_cost.action_purchase_cost_distribution
@@ -621,7 +621,7 @@ msgstr "采购信息"
 #. module: purchase_landed_cost
 #: model:ir.model,name:purchase_landed_cost.model_purchase_cost_distribution
 msgid "Purchase landed costs distribution"
-msgstr "采购到岸成本分配"
+msgstr "采购到岸成本分摊"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__purchase_id
@@ -676,7 +676,7 @@ msgstr "选择供应商发票行向导"
 #. module: purchase_landed_cost
 #: model:ir.model.fields,help:purchase_landed_cost.field_purchase_expense_type__default_expense
 msgid "Specify if the expense will be automatically added in a purchase cost distribution."
-msgstr "指定费用是否将自动添加到采购成本分配中。"
+msgstr "指定费用是否将自动添加到采购成本分摊中。"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__state
@@ -731,12 +731,12 @@ msgstr "体积以立方为单位。"
 #: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:225
 #, python-format
 msgid "There is no picking lines in the distribution"
-msgstr "在分配中没有拣货行"
+msgstr "在分摊中没有拣货行"
 
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
 msgid "This will undo the product price update (only if current value matches with the calculated price in this distribution). Do you want to continue?"
-msgstr "这将撤消产品价格更新（仅当当前值与此分配中的计算价格匹配时）。你想继续吗？"
+msgstr "这将撤消产品价格更新（仅当当前值与此分摊中的计算价格匹配时）。你想继续吗？"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__amount_total
@@ -820,7 +820,7 @@ msgid "Use this menu to create types of purchase expenses.\n"
 msgstr ""
 "使用此菜单可以创建购买费用类型。\n"
 "                默认标记的类型将添加到成本中\n"
-"               自动分配。"
+"               自动分摊。"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__product_volume
@@ -849,7 +849,7 @@ msgstr "您可以通过名称，TIN，电子邮件或内部参考找到供应商
 #: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:132
 #, python-format
 msgid "You can't delete a confirmed cost distribution"
-msgstr "您无法删除已确认的费用分配"
+msgstr "您无法删除已确认的费用分摊"
 
 #. module: purchase_landed_cost
 #: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:153
