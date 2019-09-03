@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="purchase_order_triple_discount_form_view" model="ir.ui.view">
+        <field name="name">purchase.order.triple.discount.form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase_discount.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']//tree//field[@name='discount']"
+                   position="after">
+                <field name="discount2"/>
+                <field name="discount3"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']//form//field[@name='discount']"
+                   position="after">
+                <field name="discount2"/>
+                <field name="discount3"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
