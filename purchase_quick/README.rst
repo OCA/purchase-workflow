@@ -14,10 +14,10 @@ Quick Purchase order
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fpurchase--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/purchase-workflow/tree/12.0/quick_purchase
+    :target: https://github.com/OCA/purchase-workflow/tree/12.0/purchase_quick
     :alt: OCA/purchase-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/purchase-workflow-12-0/purchase-workflow-12-0-quick_purchase
+    :target: https://translation.odoo-community.org/projects/purchase-workflow-12-0/purchase-workflow-12-0-purchase_quick
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
     :target: https://runbot.odoo-community.org/runbot/142/12.0
@@ -38,13 +38,13 @@ Usage
 
 Inside a purchase order, you can click on "Add products", to open a product tree view, then update "qty to purchase" field.
 
-.. image:: https://raw.githubusercontent.com/OCA/purchase-workflow/12.0/quick_purchase/static/description/01_purchase_order_create.png
+.. image:: https://raw.githubusercontent.com/OCA/purchase-workflow/12.0/purchase_quick/static/description/01_purchase_order_create.png
     :width: 800 px
     :alt: Purchase order create
 
 |
 
-.. image:: https://raw.githubusercontent.com/OCA/purchase-workflow/12.0/quick_purchase/static/description/02_purchase_order_add_product.png
+.. image:: https://raw.githubusercontent.com/OCA/purchase-workflow/12.0/purchase_quick/static/description/02_purchase_order_add_product.png
     :width: 800 px
     :alt: Purchase order Add product
 
@@ -54,13 +54,13 @@ The update of "qty to purchase" will add new purchase line or update the existin
 
 |
 
-.. image:: https://raw.githubusercontent.com/OCA/purchase-workflow/12.0/quick_purchase/static/description/03_purchase_order_updated.png
+.. image:: https://raw.githubusercontent.com/OCA/purchase-workflow/12.0/purchase_quick/static/description/03_purchase_order_updated.png
     :width: 800 px
     :alt: Purchase order updated
 
 |
 
-.. image:: https://raw.githubusercontent.com/OCA/purchase-workflow/12.0/quick_purchase/static/description/04_purchase_order_update_product_qty.png
+.. image:: https://raw.githubusercontent.com/OCA/purchase-workflow/12.0/purchase_quick/static/description/04_purchase_order_update_product_qty.png
     :width: 800 px
     :alt: Purchase order update product qty.
 
@@ -77,7 +77,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/purchase-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/purchase-workflow/issues/new?body=module:%20quick_purchase%0Aversion:%2012.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/purchase-workflow/issues/new?body=module:%20purchase_quick%0Aversion:%2012.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -94,6 +94,7 @@ Contributors
 
 * Sébastien BEAU <sebastien.beau@akretion.com>
 * Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
+* Pierrick Brun <pierrick.brun@akretion.com>
 
 Maintainers
 ~~~~~~~~~~~
@@ -108,6 +109,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/12.0/quick_purchase>`_ project on GitHub.
+This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/12.0/purchase_quick>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
