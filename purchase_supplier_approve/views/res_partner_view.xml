@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2019 RGB Consulting - Domantas Sidorenkovas
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <act_window id="action_approve_wizard"
+                name="Approve supplier"
+                src_model="res.partner"
+                res_model="supplier.approval.wizard"
+                view_mode="form"
+                target="new"
+                key2="client_action_multi"/>
+
+    <record id="res_partner_view_form_inherit" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <group name="purchase" position="inside">
+                <label for="supplier_approval" attrs="{'invisible': [('supplier', '=', False)]}"/>
+                <div class="o_row" attrs="{'invisible': [('supplier', '=', False)]}">
+                    <field name="supplier_approval"/>
+                    <button name="%(action_approve_wizard)d" type="action" icon="fa-cogs"
+                            groups="purchase_supplier_approve.group_purchase_supplier_approval"/>
+                </div>
+            </group>
+        </field>
+    </record>
+</odoo>

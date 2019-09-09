@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2019 RGB Consulting - Domantas Sidorenkovas
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="supplier_approval_wizard_view_form" model="ir.ui.view">
+        <field name="name">supplier.approval.wizard.form</field>
+        <field name="model">supplier.approval.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Approve">
+                <group>
+                    <field name="supplier_approval"/>
+                </group>
+                <footer>
+                    <button name="confirm_button" type="object" string="Confirm" class="oe_highlight"/>
+                    <button string="Cancel" class="oe_right" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2019 RGB Consulting - Domantas Sidorenkovas
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="group_purchase_supplier_approval" model="res.groups">
+        <field name="name">Suppliers approval</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+    </record>
+</odoo>
