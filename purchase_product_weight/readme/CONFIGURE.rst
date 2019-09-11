@@ -2,7 +2,7 @@
 Create a product of type consumable or product with:
 
 * a value in field 'weight';
-* set True to field 'compute_price_on_weight';
+* set True on field 'compute_price_on_weight';
 * add a Seller with a price.
 
 Then create a purchase order with the product created, unit price will be
