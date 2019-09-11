@@ -1,0 +1,63 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* purchase_product_weight
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-09-11 07:59+0000\n"
+"PO-Revision-Date: 2019-09-11 07:59+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_product_weight
+#: model:ir.ui.view,arch_db:purchase_product_weight.product_supplierinfo_weight_form_view
+msgid "<span class=\"oe_inline\" attrs=\"{'invisible': [('compute_price_on_weight', '=', False)]}\"> kg </span>"
+msgstr "<span class=\"oe_inline\" attrs=\"{'invisible': [('compute_price_on_weight', '=', False)]}\"> kg </span>"
+
+#. module: purchase_product_weight
+#: model:ir.model.fields,field_description:purchase_product_weight.field_delivery_carrier_compute_price_on_weight
+#: model:ir.model.fields,field_description:purchase_product_weight.field_product_product_compute_price_on_weight
+#: model:ir.model.fields,field_description:purchase_product_weight.field_product_supplierinfo_compute_price_on_weight
+#: model:ir.model.fields,field_description:purchase_product_weight.field_product_template_compute_price_on_weight
+msgid "Compute price on weight"
+msgstr "Prezzo a peso"
+
+#. module: purchase_product_weight
+#: model:ir.model,name:purchase_product_weight.model_product_supplierinfo
+msgid "Information about a product vendor"
+msgstr "Informazioni sul fornitore del prodotto"
+
+#. module: purchase_product_weight
+#: model:ir.model.fields,help:purchase_product_weight.field_delivery_carrier_compute_price_on_weight
+#: model:ir.model.fields,help:purchase_product_weight.field_product_product_compute_price_on_weight
+#: model:ir.model.fields,help:purchase_product_weight.field_product_supplierinfo_compute_price_on_weight
+#: model:ir.model.fields,help:purchase_product_weight.field_product_template_compute_price_on_weight
+msgid "Price is computed on weight of product and not on default u.m."
+msgstr "Il prezzo è calcolato sul peso del prodotto e non sull'unità di misura in acquisto"
+
+#. module: purchase_product_weight
+#: model:ir.model,name:purchase_product_weight.model_product_product
+msgid "Product"
+msgstr "Prodotto"
+
+#. module: purchase_product_weight
+#: model:ir.model,name:purchase_product_weight.model_product_template
+msgid "Product Template"
+msgstr "Modello prodotto"
+
+#. module: purchase_product_weight
+#: model:ir.model,name:purchase_product_weight.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Riga Ordine d'Acquisto"
+
+#. module: purchase_product_weight
+#: model:ir.model.fields,field_description:purchase_product_weight.field_purchase_order_line_weight_total
+msgid "Total weight"
+msgstr "Peso totale"
+
