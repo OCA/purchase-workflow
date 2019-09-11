@@ -1,12 +1,12 @@
 
-Create a product of type consumable of product with:
+Create a product of type consumable or product with:
 
 * a value in field 'weight';
 * set True to field 'compute_price_on_weight';
 * add a Seller with a price.
 
 Then create a purchase order with the product created, unit price will be
-computed with: seller price * product weight.
+computed with: 'seller price' * 'product weight'.
 
 As weight can variate, a computed field 'total weight' will be added to
 purchase order line, and if this value is changed the unit price will be
