@@ -3,7 +3,7 @@
 {
     "name": "Purchase Order Approved",
     "summary": "Add a new state 'Approved' in purchase orders.",
-    "version": "12.0.1.0.0",
+    "version": "12.0.1.0.1",
     "category": "Purchases",
     "website": "https://github.com/OCA/purchase-workflow",
     "author": "Eficent, Odoo Community Association (OCA)",
