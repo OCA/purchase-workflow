@@ -8,8 +8,11 @@ class PurchaseOrderLine(models.Model):
     _inherit = 'purchase.order.line'
 
     weight_total = fields.Float(string='Total weight')
+    product_weight = fields.Float(
+        related='product_id.weight',
+        string='Product Weight')
 
-    @api.onchange('product_id', 'product_id.weight', 'product_qty')
+    @api.onchange('product_id', 'product_weight', 'product_qty')
     def _compute_total_weight(self):
         for line in self:
             line.weight_total = line.product_id.weight * \
