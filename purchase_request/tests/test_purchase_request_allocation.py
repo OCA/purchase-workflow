@@ -98,6 +98,8 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         purchase.picking_ids[0].action_cancel()
         self.assertEqual(purchase_request_line1.qty_cancelled, 0.0)
         self.assertEqual(purchase_request_line2.qty_cancelled, 1.0)
+        self.assertEqual(purchase_request_line1.pending_qty_to_receive, 0.0)
+        self.assertEqual(purchase_request_line2.pending_qty_to_receive, 1.0)
 
     def test_purchase_request_allocation_services(self):
         vals = {
@@ -129,3 +131,4 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         self.assertEqual(purchase_request_line1.qty_done, 0.5)
         purchase.button_cancel()
         self.assertEqual(purchase_request_line1.qty_cancelled, 1.5)
+        self.assertEqual(purchase_request_line1.pending_qty_to_receive, 1.5)
