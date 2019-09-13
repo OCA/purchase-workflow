@@ -23,6 +23,7 @@ setuptools.setup(
         'odoo12-addon-purchase_quick',
         'odoo12-addon-purchase_tier_validation',
         'odoo12-addon-purchase_triple_discount',
+        'odoo12-addon-subcontracted_service',
     ],
     classifiers=[
         'Programming Language :: Python',
