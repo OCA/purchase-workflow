@@ -32,7 +32,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             'request_id': line.request_id.id,
             'product_id': line.product_id.id,
             'name': line.name or line.product_id.name,
-            'product_qty': line.product_qty,
+            'product_qty': line.pending_qty_to_receive,
             'product_uom_id': line.product_uom_id.id,
         }
 
@@ -75,6 +75,24 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                 picking_type = line_picking_type
 
     @api.model
+    def check_group(self, request_lines):
+        if len(list(set(request_lines.mapped('request_id.group_id')))) > 1:
+            raise UserError(
+                _('You cannot create a single purchase order from '
+                  'purchase requests that have different procurement group.'))
+
+    @api.model
+    def get_items(self, request_line_ids):
+        request_line_obj = self.env['purchase.request.line']
+        items = []
+        request_lines = request_line_obj.browse(request_line_ids)
+        self._check_valid_request_line(request_line_ids)
+        self.check_group(request_lines)
+        for line in request_lines:
+            items.append([0, 0, self._prepare_item(line)])
+        return items
+
+    @api.model
     def default_get(self, fields):
         res = super(PurchaseRequestLineMakePurchaseOrder, self).default_get(
             fields)
@@ -85,18 +103,8 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             return res
         assert active_model == 'purchase.request.line', \
             'Bad context propagation'
-        items = []
-        groups = []
-        self._check_valid_request_line(request_line_ids)
+        res['item_ids'] = self.get_items(request_line_ids)
         request_lines = request_line_obj.browse(request_line_ids)
-        for line in request_lines:
-            items.append([0, 0, self._prepare_item(line)])
-            groups.append(line.request_id.group_id.id)
-        if len(list(set(groups))) > 1:
-            raise UserError(
-                _('You cannot create a single purchase order from '
-                  'purchase requests that have different procurement group.'))
-        res['item_ids'] = items
         supplier_ids = request_lines.mapped('supplier_id').ids
         if len(supplier_ids) == 1:
             res['supplier_id'] = supplier_ids[0]
