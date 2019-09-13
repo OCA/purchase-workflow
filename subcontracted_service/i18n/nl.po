@@ -21,7 +21,9 @@ msgstr ""
 
 #. module: subcontracted_service
 #: model:ir.model,name:subcontracted_service.model_procurement_group
-msgid "Procurement Requisition"
+#, fuzzy
+#| msgid "Procurement Requisition"
+msgid "Procurement Group"
 msgstr "Inkoopaanvraag"
 
 #. module: subcontracted_service
@@ -30,18 +32,18 @@ msgid "Product Template"
 msgstr "Productsjabloon"
 
 #. module: subcontracted_service
-#: model:ir.model.fields,field_description:subcontracted_service.field_product_product_property_subcontracted_service
-#: model:ir.model.fields,field_description:subcontracted_service.field_product_template_property_subcontracted_service
+#: model:ir.model.fields,field_description:subcontracted_service.field_product_product__property_subcontracted_service
+#: model:ir.model.fields,field_description:subcontracted_service.field_product_template__property_subcontracted_service
 msgid "Subcontracted Service"
 msgstr "Uitbestede dienst"
 
 #. module: subcontracted_service
-#: model:ir.ui.view,arch_db:subcontracted_service.view_warehouse
+#: model_terms:ir.ui.view,arch_db:subcontracted_service.view_warehouse
 msgid "Subcontracting"
 msgstr "Uitbesteden"
 
 #. module: subcontracted_service
-#: model:ir.model.fields,field_description:subcontracted_service.field_stock_warehouse_subcontracting_service_proc_rule_id
+#: model:ir.model.fields,field_description:subcontracted_service.field_stock_warehouse__subcontracting_service_proc_rule_id
 msgid "Subcontracting Service Procurement Rule"
 msgstr "Uitbesteding dienst verwervingsregel"
 
