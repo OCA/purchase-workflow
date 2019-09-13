@@ -83,22 +83,13 @@ class PurchaseRequestAllocation(models.Model):
                  'purchase_line_id.state')
     def _compute_open_product_qty(self):
         for rec in self:
-            if rec.product_id.type == 'service':
-                if rec.purchase_line_id.state in ['cancel', 'done']:
-                    rec.open_product_qty = 0.0
-                else:
-                    rec.open_product_qty = \
-                        rec.requested_product_qty - rec.allocated_product_qty
-                    if rec.open_product_qty < 0.0:
-                        rec.open_product_qty = 0.0
+            if rec.purchase_line_id.state in ['cancel', 'done']:
+                rec.open_product_qty = 0.0
             else:
-                if rec.stock_move_id.state in ['cancel', 'done']:
+                rec.open_product_qty = \
+                    rec.requested_product_qty - rec.allocated_product_qty
+                if rec.open_product_qty < 0.0:
                     rec.open_product_qty = 0.0
-                else:
-                    rec.open_product_qty = \
-                        rec.requested_product_qty - rec.allocated_product_qty
-                    if rec.open_product_qty < 0.0:
-                        rec.open_product_qty = 0.0
 
     def _split(self, new_stock_move_id):
         new_stock_move = self.env['stock.move'].browse(new_stock_move_id)
