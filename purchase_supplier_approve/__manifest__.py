@@ -5,7 +5,8 @@
     'version': '12.0.1.0.0',
     'category': 'Purchase',
     'depends': ['purchase'],
-    'author': "RGB Consulting",
+    'author': "RGB Consulting,"
+              "Odoo Community Association (OCA)",
     'license': 'AGPL-3',
     'website': "https://github.com/OCA/purchase-workflow",
     'data': [
