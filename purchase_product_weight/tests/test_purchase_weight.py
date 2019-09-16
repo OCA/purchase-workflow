@@ -54,15 +54,15 @@ class PurchaseOrder(TransactionCase):
                          msg="Order line was not created")
         self.assertAlmostEqual(purchase_order.order_line[0].price_unit,
                                5 * 0.15)
-        purchase_order.order_line[0]._compute_total_weight()
+        purchase_order.order_line[0]._onchange_total_weight()
         self.assertAlmostEqual(purchase_order.order_line[0].weight_total,
                                20 * 0.15)
 
         purchase_order.order_line[0].product_qty = 25
-        purchase_order.order_line[0]._compute_total_weight()
+        purchase_order.order_line[0]._onchange_total_weight()
         purchase_order.order_line[0]._onchange_quantity()
         self.assertAlmostEqual(purchase_order.order_line[0].price_unit,
                                5 * 0.15)
-        purchase_order.order_line[0]._compute_total_weight()
+        purchase_order.order_line[0]._onchange_total_weight()
         self.assertAlmostEqual(purchase_order.order_line[0].weight_total,
                                25 * 0.15)

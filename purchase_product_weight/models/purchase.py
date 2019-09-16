@@ -1,18 +1,14 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
-from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 
 class PurchaseOrderLine(models.Model):
     _inherit = 'purchase.order.line'
 
     weight_total = fields.Float(string='Total weight')
-    product_weight = fields.Float(
-        related='product_id.weight',
-        string='Product Weight')
 
-    @api.onchange('product_id', 'product_weight', 'product_qty')
+    @api.onchange('product_id', 'product_qty')
     def _onchange_total_weight(self):
         for line in self:
             line.weight_total = line.product_id.weight * \
