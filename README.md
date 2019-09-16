@@ -33,7 +33,7 @@ addon | version | summary
 [purchase_fop_shipping](purchase_fop_shipping/) | 10.0.1.0.0 | Purchase Free-Of-Paiment shipping
 [purchase_landed_cost](purchase_landed_cost/) | 10.0.2.0.0 | Purchase cost distribution
 [purchase_line_product_image](purchase_line_product_image/) | 10.0.1.0.0 | Show Product Image at Purchase Order Line.
-[purchase_location_by_line](purchase_location_by_line/) | 10.0.1.0.0 | Allows to define a specific destination location on each PO line
+[purchase_location_by_line](purchase_location_by_line/) | 10.0.1.0.1 | Allows to define a specific destination location on each PO line
 [purchase_minimum_amount](purchase_minimum_amount/) | 10.0.1.0.0 | Purchase Minimum Amount
 [purchase_open_qty](purchase_open_qty/) | 10.0.1.1.0 | Allows to identify the purchase orders that have quantities pending to invoice or to receive.
 [purchase_order_analytic_search](purchase_order_analytic_search/) | 10.0.1.0.0 | Search purchase orders by analytic account. New menu entry in Purchasing to list purchase order lines.
