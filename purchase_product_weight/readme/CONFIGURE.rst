@@ -12,6 +12,6 @@ As weight can variate, a computed field 'total weight' will be added to
 purchase order line, and if this value is changed the unit price will be
 re-computed on 'total weight' / 'product qty'.
 
-In this way, all other logic remains untouched, but the user can have a simply
-solution to manage product with price on weight but with a different u.m. on
+In this way, all other logic remains untouched, but the user can have a simple
+solution to manage product with price on weight but with a different unit of measure on
 warehouse (m., m2, etc.)
