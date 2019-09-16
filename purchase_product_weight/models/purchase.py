@@ -13,7 +13,7 @@ class PurchaseOrderLine(models.Model):
         string='Product Weight')
 
     @api.onchange('product_id', 'product_weight', 'product_qty')
-    def _compute_total_weight(self):
+    def _onchange_total_weight(self):
         for line in self:
             line.weight_total = line.product_id.weight * \
                 line.product_qty
@@ -30,10 +30,6 @@ class PurchaseOrderLine(models.Model):
                 date=self.order_id.date_order and
                 self.order_id.date_order[:10],
                 uom_id=self.product_uom)
-
-            if seller or not self.date_planned:
-                self.date_planned = self._get_date_planned(seller).strftime(
-                    DEFAULT_SERVER_DATETIME_FORMAT)
 
             if not seller:
                 return
