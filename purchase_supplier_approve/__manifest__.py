@@ -7,6 +7,7 @@
     'depends': ['purchase'],
     'author': 'RGB Consulting, '
               'Odoo Community Association (OCA)',
+    'maintainers': ['admin-rgbconsulting'],
     'license': 'AGPL-3',
     'website': 'https://github.com/OCA/purchase-workflow',
     'data': [
@@ -14,4 +15,5 @@
         'views/res_partner_view.xml',
         'wizard/supplier_approval_wizard.xml',
     ],
+
 }

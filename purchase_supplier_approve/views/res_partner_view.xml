@@ -8,7 +8,9 @@
                 res_model="supplier.approval.wizard"
                 view_mode="form"
                 target="new"
-                key2="client_action_multi"/>
+                key2="client_action_multi"
+                groups="purchase_supplier_approve.group_purchase_supplier_approval"
+    />
 
     <record id="res_partner_view_form_inherit" model="ir.ui.view">
         <field name="name">res.partner.form.inherit</field>
