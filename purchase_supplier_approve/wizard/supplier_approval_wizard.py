@@ -5,26 +5,28 @@ from odoo import api, fields, models
 
 
 class SupplierValidationWizard(models.TransientModel):
-    _name = "supplier.approval.wizard"
-    _description = "Supplier Validation Wizard"
+    _name = 'supplier.approval.wizard'
+    _description = 'Supplier Validation Wizard'
 
-    def _default_partner(self):
+    supplier_approve_status = fields.Selection([
+        ('pending_approve', 'Pending approval'),
+        ('approved', 'Approved'),
+        ('not_approved', 'Not approved'),
+    ], default='pending_approve')
+
+    def _get_partner(self):
         return self.env['res.partner'].browse(self._context.get('active_id'))
 
-    partner_id = fields.Many2one(comodel_name='res.partner',
-                                 default=_default_partner, string='Supplier')
-
-    supplier_approval = fields.Selection([
-        ('pda', 'Pending approval'),
-        ('apd', 'Approved'),
-        ('nad', 'Not approved'),
-    ], default='pda', track_visibility='onchange')
-
-    @api.onchange('partner_id')
-    def _onchange_partner_id(self):
-        if self.partner_id:
-            self.supplier_approval = self.partner_id.supplier_approval
+    @api.model
+    def default_get(self, fields):
+        result = super(SupplierValidationWizard, self).default_get(fields)
+        partner_id = self._get_partner()
+        if partner_id:
+            result[
+                'supplier_approve_status'] = partner_id.supplier_approve_status
+        return result
 
     @api.multi
     def confirm_button(self):
-        self.partner_id.supplier_approval = self.supplier_approval
+        partner_id = self._get_partner()
+        partner_id.supplier_approve_status = self.supplier_approve_status

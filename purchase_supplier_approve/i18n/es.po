@@ -16,6 +16,18 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: purchase_supplier_approve
+#: model:ir.model.fields,help:purchase_supplier_approve.field_res_partner__supplier_approve_status
+#: model:ir.model.fields,help:purchase_supplier_approve.field_res_users__supplier_approve_status
+msgid " * The 'Pending approval' is the default state. In this state the supplier is still pending approval.\n"
+" * The 'Approved' state indicates that this supplier is approved and his purchase quotations can be confirmed.\n"
+" * The 'Not approved' state is used to specify that the supplier information was rejected.\n"
+""
+msgstr " * 'Pendiente de homologación' es el estado por defecto. En este estado el proveedor está aún pendiente de aprobación.\n"
+" * El estado 'Homologado' indica que este proveedor está homologado y sus presupuestos de compra pueden ser confirmados.\n"
+" * El estado 'No homologado' es usado para especificar que la información del proveedor fue rechazada.\n"
+""
+
+#. module: purchase_supplier_approve
 #: model_terms:ir.ui.view,arch_db:purchase_supplier_approve.supplier_approval_wizard_view_form
 msgid "Approve"
 msgstr "Homologar"
@@ -26,8 +38,8 @@ msgid "Approve supplier"
 msgstr "Homologar proveedor"
 
 #. module: purchase_supplier_approve
-#: selection:res.partner,supplier_approval:0
-#: selection:supplier.approval.wizard,supplier_approval:0
+#: selection:res.partner,supplier_approve_status:0
+#: selection:supplier.approval.wizard,supplier_approve_status:0
 msgid "Approved"
 msgstr "Homologado"
 
@@ -82,14 +94,14 @@ msgid "Last Updated on"
 msgstr "Última actualización en"
 
 #. module: purchase_supplier_approve
-#: selection:res.partner,supplier_approval:0
-#: selection:supplier.approval.wizard,supplier_approval:0
+#: selection:res.partner,supplier_approve_status:0
+#: selection:supplier.approval.wizard,supplier_approve_status:0
 msgid "Not approved"
 msgstr "No homologado"
 
 #. module: purchase_supplier_approve
-#: selection:res.partner,supplier_approval:0
-#: selection:supplier.approval.wizard,supplier_approval:0
+#: selection:res.partner,supplier_approve_status:0
+#: selection:supplier.approval.wizard,supplier_approve_status:0
 msgid "Pending approval"
 msgstr "Pendiente de homologación"
 
@@ -99,16 +111,11 @@ msgid "Purchase Order"
 msgstr "Pedido de compra"
 
 #. module: purchase_supplier_approve
-#: model:ir.model.fields,field_description:purchase_supplier_approve.field_supplier_approval_wizard__partner_id
-msgid "Supplier"
-msgstr "Proveedor"
-
-#. module: purchase_supplier_approve
-#: model:ir.model.fields,field_description:purchase_supplier_approve.field_res_partner__supplier_approval
-#: model:ir.model.fields,field_description:purchase_supplier_approve.field_res_users__supplier_approval
-#: model:ir.model.fields,field_description:purchase_supplier_approve.field_supplier_approval_wizard__supplier_approval
-msgid "Supplier Approval"
-msgstr "Homologación de Proveedor"
+#: model:ir.model.fields,field_description:purchase_supplier_approve.field_res_partner__supplier_approve_status
+#: model:ir.model.fields,field_description:purchase_supplier_approve.field_res_users__supplier_approve_status
+#: model:ir.model.fields,field_description:purchase_supplier_approve.field_supplier_approval_wizard__supplier_approve_status
+msgid "Supplier Approve Status"
+msgstr "Estado de Homologación del Proveedor"
 
 #. module: purchase_supplier_approve
 #: model:ir.model,name:purchase_supplier_approve.model_supplier_approval_wizard
@@ -121,7 +128,7 @@ msgid "Suppliers approval"
 msgstr "Homologación de Proveedor"
 
 #. module: purchase_supplier_approve
-#: code:addons/purchase_supplier_approve/models/purchase.py:14
+#: code:addons/purchase_supplier_approve/models/purchase.py:15
 #, python-format
 msgid "You cannot confirm a purchase order if the supplier is not approved."
 msgstr "No puedes confirmar un pedido de compra si el proveedor no está homologado"

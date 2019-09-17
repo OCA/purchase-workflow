@@ -16,9 +16,9 @@
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
             <group name="purchase" position="inside">
-                <label for="supplier_approval" attrs="{'invisible': [('supplier', '=', False)]}"/>
+                <label for="supplier_approve_status" attrs="{'invisible': [('supplier', '=', False)]}"/>
                 <div class="o_row" attrs="{'invisible': [('supplier', '=', False)]}">
-                    <field name="supplier_approval"/>
+                    <field name="supplier_approve_status"/>
                     <button name="%(action_approve_wizard)d" type="action" icon="fa-cogs"
                             groups="purchase_supplier_approve.group_purchase_supplier_approval"/>
                 </div>

@@ -16,6 +16,18 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: purchase_supplier_approve
+#: model:ir.model.fields,help:purchase_supplier_approve.field_res_partner__supplier_approve_status
+#: model:ir.model.fields,help:purchase_supplier_approve.field_res_users__supplier_approve_status
+msgid " * The 'Pending approval' is the default state. In this state the supplier is still pending approval.\n"
+" * The 'Approved' state indicates that this supplier is approved and his purchase quotations can be confirmed.\n"
+" * The 'Not approved' state is used to specify that the supplier information was rejected.\n"
+""
+msgstr " * 'Pendent d'homologació' és l'estat per defecte. En aquest estat el proveïdor està encara pendent d'aprovació.\n"
+" * L'estat 'Homologat' indica que aquest proveïdor està homologat i els seus pressupostos de compra poden ser confirmats.\n"
+" * L'estat 'No homologat' és usat per a especificar que la informació del proveïdor va ser rebutjada.\n"
+""
+
+#. module: purchase_supplier_approve
 #: model_terms:ir.ui.view,arch_db:purchase_supplier_approve.supplier_approval_wizard_view_form
 msgid "Approve"
 msgstr "Homologar"
@@ -26,8 +38,8 @@ msgid "Approve supplier"
 msgstr "Homologar proveïdor"
 
 #. module: purchase_supplier_approve
-#: selection:res.partner,supplier_approval:0
-#: selection:supplier.approval.wizard,supplier_approval:0
+#: selection:res.partner,supplier_approve_status:0
+#: selection:supplier.approval.wizard,supplier_approve_status:0
 msgid "Approved"
 msgstr "Homologat"
 
@@ -82,14 +94,14 @@ msgid "Last Updated on"
 msgstr "Darrera Actualització el"
 
 #. module: purchase_supplier_approve
-#: selection:res.partner,supplier_approval:0
-#: selection:supplier.approval.wizard,supplier_approval:0
+#: selection:res.partner,supplier_approve_status:0
+#: selection:supplier.approval.wizard,supplier_approve_status:0
 msgid "Not approved"
 msgstr "No homologat"
 
 #. module: purchase_supplier_approve
-#: selection:res.partner,supplier_approval:0
-#: selection:supplier.approval.wizard,supplier_approval:0
+#: selection:res.partner,supplier_approve_status:0
+#: selection:supplier.approval.wizard,supplier_approve_status:0
 msgid "Pending approval"
 msgstr "Pendent d'homologació"
 
@@ -99,16 +111,11 @@ msgid "Purchase Order"
 msgstr "Comanda de compra"
 
 #. module: purchase_supplier_approve
-#: model:ir.model.fields,field_description:purchase_supplier_approve.field_supplier_approval_wizard__partner_id
-msgid "Supplier"
-msgstr "Proveïdor"
-
-#. module: purchase_supplier_approve
-#: model:ir.model.fields,field_description:purchase_supplier_approve.field_res_partner__supplier_approval
-#: model:ir.model.fields,field_description:purchase_supplier_approve.field_res_users__supplier_approval
-#: model:ir.model.fields,field_description:purchase_supplier_approve.field_supplier_approval_wizard__supplier_approval
-msgid "Supplier Approval"
-msgstr "Homologació de Proveïdor"
+#: model:ir.model.fields,field_description:purchase_supplier_approve.field_res_partner__supplier_approve_status
+#: model:ir.model.fields,field_description:purchase_supplier_approve.field_res_users__supplier_approve_status
+#: model:ir.model.fields,field_description:purchase_supplier_approve.field_supplier_approval_wizard__supplier_approve_status
+msgid "Supplier Approve Status"
+msgstr ""
 
 #. module: purchase_supplier_approve
 #: model:ir.model,name:purchase_supplier_approve.model_supplier_approval_wizard
@@ -121,7 +128,7 @@ msgid "Suppliers approval"
 msgstr "Homologació de Proveïdor"
 
 #. module: purchase_supplier_approve
-#: code:addons/purchase_supplier_approve/models/purchase.py:14
+#: code:addons/purchase_supplier_approve/models/purchase.py:15
 #, python-format
 msgid "You cannot confirm a purchase order if the supplier is not approved."
 msgstr "No pots confirmar una comanda de compra si el proveïdor no està homologat"

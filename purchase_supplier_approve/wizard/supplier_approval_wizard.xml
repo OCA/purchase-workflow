@@ -8,7 +8,7 @@
         <field name="arch" type="xml">
             <form string="Approve">
                 <group>
-                    <field name="supplier_approval"/>
+                    <field name="supplier_approve_status"/>
                 </group>
                 <footer>
                     <button name="confirm_button" type="object" string="Confirm" class="oe_highlight"/>
