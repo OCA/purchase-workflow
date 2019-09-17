@@ -1,3 +1,5 @@
+# Copyright (C) 2019-Today: La Louve (<https://cooplalouve.fr>)
+# Copyright (C) 2019-Today: Druidoo (<https://www.druidoo.io>)
 # Copyright 2014 Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
 #        Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 # Copyright 2016 ACSONE SA/NV (<http://acsone.eu>)
@@ -33,8 +35,7 @@ class PurchaseOrderLine(models.Model):
         if self.product_id:
             date = None
             if self.order_id.date_order:
-                date = fields.Date.to_string(
-                    fields.Date.from_string(self.order_id.date_order))
+                date = self.order_id.date_order
             product_supplierinfo = self.product_id._select_seller(
                 partner_id=self.partner_id, quantity=self.product_qty,
                 date=date, uom_id=self.product_uom)

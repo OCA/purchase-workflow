@@ -1,3 +1,5 @@
+# Copyright (C) 2019-Today: La Louve (<https://cooplalouve.fr>)
+# Copyright (C) 2019-Today: Druidoo (<https://www.druidoo.io>)
 # Copyright 2016 GRAP (http://www.grap.coop)
 #        Sylvain LE GAL (https://twitter.com/legalsylvain)
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html

@@ -1,3 +1,5 @@
+# Copyright (C) 2019-Today: La Louve (<https://cooplalouve.fr>)
+# Copyright (C) 2019-Today: Druidoo (<https://www.druidoo.io>)
 # Copyright 2014 Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
 #        Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 # Copyright 2016 ACSONE SA/NV (<http://acsone.eu>)
@@ -7,8 +9,9 @@
 
 {
     "name": "Discounts in product supplier info",
-    "version": "11.0.1.0.0",
-    "author": "Tecnativa, "
+    "version": "12.0.1.0.0",
+    "author": "Druidoo, "
+              "Tecnativa, "
               "GRAP, "
               "Odoo Community Association (OCA)",
     "category": "Purchase Management",
@@ -19,8 +22,6 @@
         'purchase_discount',
     ],
     "data": [
-        'views/product_supplierinfo_view.xml',
-        'views/res_partner_view.xml',
     ],
     "installable": True,
 }

@@ -1,3 +1,5 @@
+# Copyright (C) 2019-Today: La Louve (<https://cooplalouve.fr>)
+# Copyright (C) 2019-Today: Druidoo (<https://www.druidoo.io>)
 # Copyright 2014 Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
 #        Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 # Copyright 2016 ACSONE SA/NV (<http://acsone.eu>)
@@ -35,7 +37,7 @@ class TestProductSupplierinfoDiscount(TransactionCase):
              'date_planned': fields.Datetime.now(),
              'name': 'Test',
              'product_qty': 1.0,
-             'product_uom': self.env.ref('product.product_uom_categ_unit').id,
+             'product_uom': self.env.ref('uom.product_uom_categ_unit').id,
              'price_unit': 10.0})
 
     def test_001_purchase_order_partner_3_qty_1(self):
@@ -64,7 +66,7 @@ class TestProductSupplierinfoDiscount(TransactionCase):
             "6 with partner 1 and qty 1")
 
     def test_004_prepare_purchase_order_line(self):
-        procurement_rule = self.env['procurement.rule'].create({
+        stock_rule = self.env['stock.rule'].create({
             'sequence': 20,
             'location_id': self.env.ref('stock.stock_location_locations').id,
             'picking_type_id': self.env.ref('stock.chi_picking_type_in').id,
@@ -78,10 +80,10 @@ class TestProductSupplierinfoDiscount(TransactionCase):
         })
         po_line_vals = {
             'origin': 'SO012:WH: Stock -> Customers MTO',
-            'product_uom': self.env.ref('product.product_uom_unit').id,
+            'product_uom': self.env.ref('uom.product_uom_unit').id,
             'product_qty': 50,
             'location_id': self.env.ref('stock.stock_location_locations').id,
-            'company_id': self.env.ref('base.main_company').id,
+            'company_id': self.env.ref('base.main_company'),
             'state': 'confirmed',
             'warehouse_id': self.env.ref('stock.warehouse0').id,
             'move_dest_id': self.env.ref('stock.stock_location_customers').id,
@@ -89,11 +91,11 @@ class TestProductSupplierinfoDiscount(TransactionCase):
             'name': 'WH: Stock -> Customers MTO',
             'product_id': self.product.id,
             'date_planned': fields.Datetime.now(),
-            'rule_id': procurement_rule.id,
+            'rule_id': stock_rule.id,
         }
-        res = procurement_rule._prepare_purchase_order_line(
-            self.product, 50, self.env.ref('product.product_uom_unit'),
-            po_line_vals, self.purchase_order, self.supplierinfo,
+        res = stock_rule._prepare_purchase_order_line(
+            self.product, 50, self.env.ref('uom.product_uom_unit'),
+            po_line_vals, self.purchase_order, self.supplierinfo.name,
         )
         self.assertTrue(res.get('discount'), 'Should have a discount key')
 

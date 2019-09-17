@@ -85,12 +85,14 @@ Credits
 Authors
 ~~~~~~~
 
+* Druidoo
 * Tecnativa
 * GRAP
 
 Contributors
 ~~~~~~~~~~~~
 
+* Druidoo <https://www.druidoo.io>
 * Jonathan Nemry <jonathan.nemry@acsone.eu>
 * Sylvain LE GAL (https://twitter.com/legalsylvain)
 * Stefan Rijnhart <stefan@opener.amsterdam>
