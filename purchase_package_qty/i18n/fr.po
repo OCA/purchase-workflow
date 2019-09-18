@@ -1,0 +1,232 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#   * purchase_package_qty
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-10-22 17:29+0000\n"
+"PO-Revision-Date: 2016-10-22 17:29+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_package_qty
+#: model:ir.ui.view,arch_db:purchase_package_qty.report_inventory_package
+msgid "<strong>Package Qty</strong>"
+msgstr "<strong>Colisage</strong>"
+
+#. module: purchase_package_qty
+#: model:ir.model.fields,field_description:purchase_package_qty.field_product_template_default_seller_id
+msgid "Default seller id"
+msgstr "Default seller id"
+
+#. module: purchase_package_qty
+#: model:ir.model.fields,field_description:purchase_package_qty.field_stock_pack_operation_qty_done_package
+msgid "Done (package)"
+msgstr "Colis reçus"
+
+#. module: purchase_package_qty
+#: model:ir.model.fields,help:purchase_package_qty.field_product_supplierinfo_indicative_package
+msgid "If checked, the system will not force you to purchasea strict multiple of package quantity"
+msgstr "Si la case est cochée, le logiciel ne vous forcera pas à acheter une quantité multiple du conditionnement."
+
+#. module: purchase_package_qty
+#: model:ir.model.fields,field_description:purchase_package_qty.field_product_supplierinfo_indicative_package
+#: model:ir.model.fields,field_description:purchase_package_qty.field_purchase_order_line_indicative_package
+#: model:ir.model.fields,field_description:purchase_package_qty.field_stock_move_indicative_package
+msgid "Indicative Package"
+msgstr "Conditionnement indicatif"
+
+#. module: purchase_package_qty
+#: model:ir.model,name:purchase_package_qty.model_product_supplierinfo
+msgid "Information about a product vendor"
+msgstr "Information sur le vendeur de l'article"
+
+#. module: purchase_package_qty
+#: model:ir.model,name:purchase_package_qty.model_stock_inventory
+msgid "Inventory"
+msgstr "Inventaire"
+
+#. module: purchase_package_qty
+#: model:ir.model,name:purchase_package_qty.model_stock_inventory_line
+msgid "Inventory Line"
+msgstr "Ligne d'inventaire"
+
+#. module: purchase_package_qty
+#: model:ir.model,name:purchase_package_qty.model_account_invoice
+msgid "Invoice"
+msgstr "Facture"
+
+#. module: purchase_package_qty
+#: model:ir.model,name:purchase_package_qty.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "Ligne de facuration"
+
+#. module: purchase_package_qty
+#: model:ir.model.fields,field_description:purchase_package_qty.field_account_invoice_line_product_qty_package
+#: model:ir.model.fields,field_description:purchase_package_qty.field_purchase_order_line_product_qty_package
+#: model:ir.model.fields,field_description:purchase_package_qty.field_stock_move_product_qty_package
+#: model:ir.model.fields,field_description:purchase_package_qty.field_stock_pack_operation_product_qty_package
+msgid "Number of packages"
+msgstr "Nombre de colis"
+
+#. module: purchase_package_qty
+#: model:ir.ui.view,arch_db:purchase_package_qty.stock_picking_form_view_package
+msgid "Pack. Qty"
+msgstr "Cond."
+
+#. module: purchase_package_qty
+#: code:addons/purchase_package_qty/model/purchase_order_line.py:144
+#, python-format
+msgid "Package Error!"
+msgstr "Erreur de condtionnement !"
+
+#. module: purchase_package_qty
+#: model:ir.model.fields,field_description:purchase_package_qty.field_purchase_order_line_package_price
+msgid "Package Price"
+msgstr "Prix du colis"
+
+#. module: purchase_package_qty
+#: model:ir.model.fields,field_description:purchase_package_qty.field_account_invoice_line_package_qty
+#: model:ir.model.fields,field_description:purchase_package_qty.field_product_supplierinfo_package_qty
+#: model:ir.model.fields,field_description:purchase_package_qty.field_purchase_order_line_package_qty
+#: model:ir.model.fields,field_description:purchase_package_qty.field_stock_inventory_line_package_qty
+#: model:ir.model.fields,field_description:purchase_package_qty.field_stock_move_package_qty
+#: model:ir.model.fields,field_description:purchase_package_qty.field_stock_pack_operation_package_qty
+msgid "Package Qty"
+msgstr "Colisage"
+
+#. module: purchase_package_qty
+#: model:ir.model,name:purchase_package_qty.model_stock_pack_operation
+msgid "Packing Operation"
+msgstr "Colisage"
+
+#. module: purchase_package_qty
+#: model:ir.model.fields,field_description:purchase_package_qty.field_product_supplierinfo_base_price
+msgid "Price"
+msgstr "Prix"
+
+#. module: purchase_package_qty
+#: model:ir.model.fields,field_description:purchase_package_qty.field_account_invoice_line_price_policy
+#: model:ir.model.fields,field_description:purchase_package_qty.field_product_supplierinfo_price_policy
+#: model:ir.model.fields,field_description:purchase_package_qty.field_purchase_order_line_price_policy
+msgid "Price Policy"
+msgstr "Tarification"
+
+#. module: purchase_package_qty
+#: model:ir.ui.view,arch_db:purchase_package_qty.product_supplierinfo_form_view_package
+msgid "Price per unit"
+msgstr "Prix par unité"
+
+#. module: purchase_package_qty
+#: model:ir.model,name:purchase_package_qty.model_product_template
+msgid "Product Template"
+msgstr "Modèle d'article"
+
+#. module: purchase_package_qty
+#: model:ir.model,name:purchase_package_qty.model_purchase_order
+msgid "Purchase Order"
+msgstr "Commande fournisseur"
+
+#. module: purchase_package_qty
+#: model:ir.model,name:purchase_package_qty.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Ligne de commande d'achat"
+
+#. module: purchase_package_qty
+#: model:ir.model,name:purchase_package_qty.model_stock_move
+msgid "Stock Move"
+msgstr "Mouvement de stock"
+
+#. module: purchase_package_qty
+#: model:ir.model.fields,help:purchase_package_qty.field_account_invoice_line_product_qty_package
+#: model:ir.model.fields,help:purchase_package_qty.field_purchase_order_line_product_qty_package
+#: model:ir.model.fields,help:purchase_package_qty.field_stock_move_product_qty_package
+#: model:ir.model.fields,help:purchase_package_qty.field_stock_pack_operation_product_qty_package
+msgid "The number of packages you'll buy."
+msgstr "Nombre de colis à acheter."
+
+#. module: purchase_package_qty
+#: model:ir.model.fields,help:purchase_package_qty.field_stock_pack_operation_qty_done_package
+msgid "The number of packages you've received."
+msgstr "Le nombre de colis que vous avez reçus."
+
+#. module: purchase_package_qty
+#: code:addons/purchase_package_qty/model/product_supplierinfo.py:108
+#, python-format
+msgid "The package quantity cannot be 0."
+msgstr "Le colisage ne peut être égal à 0."
+
+#. module: purchase_package_qty
+#: model:ir.model.fields,help:purchase_package_qty.field_product_supplierinfo_base_price
+msgid "The price to purchase a product"
+msgstr "Le prix pour l'achat d'un article"
+
+#. module: purchase_package_qty
+#: model:ir.model.fields,help:purchase_package_qty.field_account_invoice_line_package_qty
+#: model:ir.model.fields,help:purchase_package_qty.field_purchase_order_line_package_qty
+#: model:ir.model.fields,help:purchase_package_qty.field_stock_move_package_qty
+#: model:ir.model.fields,help:purchase_package_qty.field_stock_pack_operation_package_qty
+msgid "The quantity of products in the supplier package."
+msgstr "La quantité du produit dans le colisage du fournisseur."
+
+#. module: purchase_package_qty
+#: model:ir.model.fields,help:purchase_package_qty.field_product_supplierinfo_package_qty
+#: model:ir.model.fields,help:purchase_package_qty.field_stock_inventory_line_package_qty
+msgid "The quantity of products in the supplier package. You will always have to buy a multiple of this quantity."
+msgstr "La quantité de produit conditionnée par le fournisseur. Vous devez toujours acheter un multiple de cette quantité."
+
+#. module: purchase_package_qty
+#: code:addons/purchase_package_qty/model/purchase_order_line.py:194
+#, python-format
+msgid "The selected supplier only sells this product by %s %s"
+msgstr "Le fournisseur sélectionné ne vend ce produit que par %s %s"
+
+#. module: purchase_package_qty
+#: model:ir.model,name:purchase_package_qty.model_stock_picking
+msgid "Transfer"
+msgstr "Transfert"
+
+#. module: purchase_package_qty
+#: model:ir.model.fields,field_description:purchase_package_qty.field_purchase_order_line_unit_price
+msgid "Unit Price"
+msgstr "Prix unitaire"
+
+#. module: purchase_package_qty
+#: code:addons/purchase_package_qty/model/purchase_order_line.py:193
+#, python-format
+msgid "Warning!"
+msgstr "Avertissement!"
+
+#. module: purchase_package_qty
+#: code:addons/purchase_package_qty/model/purchase_order_line.py:153
+#, python-format
+msgid "You have to buy a multiple of the package qty or change the package settings in the supplierinfo of the product for the following line: \n"
+" - Product: %s; \n"
+" - Quantity: %s; \n"
+" - Unit Price: %s; \n"
+" - Package quantity: %s;"
+msgstr "You have to buy a multiple of the package qty or change the package settings in the supplierinfo of the product for the following line: \n"
+" - Product: %s; \n"
+" - Quantity: %s; \n"
+" - Unit Price: %s; \n"
+" - Package quantity: %s;"
+
+#. module: purchase_package_qty
+#: selection:account.invoice.line,price_policy:0
+#: selection:product.supplierinfo,price_policy:0
+#: selection:purchase.order.line,price_policy:0
+msgid "per Package"
+msgstr "par Colis"
+
+#. module: purchase_package_qty
+#: selection:account.invoice.line,price_policy:0
+#: selection:product.supplierinfo,price_policy:0
+#: selection:purchase.order.line,price_policy:0
+msgid "per UOM"
+msgstr "par UdM"
