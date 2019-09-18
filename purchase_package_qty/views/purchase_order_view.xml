@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="purchase_order_form_package">
+             <field name="model">purchase.order</field>
+             <field name="inherit_id" ref="purchase.purchase_order_form" />
+             <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_qty']" position="before">
+                    <field name="product_qty_package"/>
+                    <field name="package_qty"/>
+                    <field name="indicative_package" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='price_unit']" position="after">
+                    <field name="price_policy"/>
+                </xpath>
+             </field>
+        </record>
+    </data>
+</openerp>
