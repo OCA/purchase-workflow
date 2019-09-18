@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="report_inventory_package" inherit_id="stock.report_inventory">
+            <xpath expr="//table[@class='table table-condensed'][2]/thead/tr//th[1]" position="after">
+                <th><strong>Package Qty</strong></th>
+            </xpath>
+            <xpath expr="//table[@class='table table-condensed'][2]/tr//td[1]" position="after">
+                <td><span t-field="line.package_qty"/></td>
+            </xpath>
+        </template>
+    </data>
+</openerp>
