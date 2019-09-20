@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- ********************************************************************** -->
 <!--Purchase - Package Quantity Module for Odoo                             -->
+<!--Copyright (C) 2019-Today: La Louve (<https://cooplalouve.fr>)           -->
+<!--Copyright (C) 2019-Today: Druidoo (<https://www.druidoo.io>)            -->
 <!--Copyright (C) 2016-Today Akretion (https://www.akretion.com)            -->
+<!--License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).      -->
 <!--@author Julien Weste                                                    -->
 <!--@author Sylvain LE GAL (https://twitter.com/legalsylvain)               -->
 
@@ -18,8 +21,6 @@
 <!--You should have received a copy of the GNU Affero General Public License-->
 <!--along with this program.  If not, see <http://www.gnu.org/licenses/>.   -->
 <!-- ********************************************************************** -->
-<openerp>
-  <data noupdate="0">
+<odoo>
     <function model="product.supplierinfo" name="_init_package_qty"/>
-  </data>
-</openerp>
+</odoo>

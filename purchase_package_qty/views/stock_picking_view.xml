@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- ********************************************************************** -->
 <!--Purchase - Package Quantity Module for Odoo                             -->
+<!--Copyright (C) 2019-Today: La Louve (<https://cooplalouve.fr>)           -->
+<!--Copyright (C) 2019-Today: Druidoo (<https://www.druidoo.io>)            -->
 <!--Copyright (C) 2016-Today Akretion (https://www.akretion.com)            -->
+<!--License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).      -->
 <!--@author Julien Weste                                                    -->
 <!--@author Sylvain LE GAL (https://twitter.com/legalsylvain)               -->
 
@@ -19,21 +22,26 @@
 <!--along with this program.  If not, see <http://www.gnu.org/licenses/>.   -->
 <!-- ********************************************************************** -->
 
-<openerp>
-    <data>
-        <record id="stock_picking_form_view_package" model="ir.ui.view">
-            <field name="name">stock.picking.form.view.package</field>
-            <field name="model">stock.picking</field>
-            <field name="inherit_id" ref="stock.view_picking_form" />
-            <field name="arch" type="xml">
-                <xpath expr="//field[@name='pack_operation_product_ids']/tree/field[@name='product_qty']" position="before">
-                    <field name="product_qty_package"/>
-                    <field name="package_qty" readonly="True" string="Pack. Qty"/>
-                </xpath>
-                <xpath expr="//field[@name='pack_operation_product_ids']/tree/field[@name='qty_done']" position="before">
-                    <field name="qty_done_package"/>
-                </xpath>
-            </field>
-        </record>
-    </data>
-</openerp>
+<odoo>
+    <record id="stock_picking_form_view_package" model="ir.ui.view">
+        <field name="name">stock.picking.form.view.package</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='move_ids_without_package']/tree/field
+                [@name='product_uom_qty']" position="before">
+                <field name="product_qty_package"/>
+                <field name="package_qty" readonly="True"
+                       string="Pack. Qty"/>
+            </xpath>
+            <xpath expr="//field[@name='move_ids_without_package']/tree/field
+                [@name='product_uom_qty']" position="attributes">
+                <attribute name="force_save">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='move_ids_without_package']/tree/field
+                [@name='quantity_done']" position="before">
+                <field name="qty_done_package"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
