@@ -1,8 +1,10 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Purchase - Package Quantity Module for Odoo
+#    Copyright (C) 2019-Today: La Louve (<https://cooplalouve.fr>)
+#    Copyright (C) 2019-Today: Druidoo (<https://www.druidoo.io>)
 #    Copyright (C) 2016-Today Akretion (https://www.akretion.com)
+#    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 #    @author Julien WESTE
 #    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
 #
@@ -21,7 +23,7 @@
 #
 ##############################################################################
 
-from openerp import api, models
+from odoo import api, models
 
 
 class StockPicking(models.Model):
@@ -50,8 +52,8 @@ class StockPicking(models.Model):
             product = self.env['product.product'].browse(
                 pack['product_id'])
             uom = self.env['product.uom'].browse(pack['product_uom_id'])
-            psi = self.env['product.product']._select_seller(
-                product, picking.partner_id, pack['product_qty'],
+            psi = product._select_seller(
+                picking.partner_id, pack['product_qty'],
                 uom_id=uom)
             psi = psi and psi[0] or False
             if psi:

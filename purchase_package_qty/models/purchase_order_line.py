@@ -1,8 +1,10 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Purchase - Package Quantity Module for Odoo
+#    Copyright (C) 2019-Today: La Louve (<https://cooplalouve.fr>)
+#    Copyright (C) 2019-Today: Druidoo (<https://www.druidoo.io>)
 #    Copyright (C) 2016-Today Akretion (https://www.akretion.com)
+#    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 #    @author Julien WESTE
 #    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
 #
@@ -22,10 +24,9 @@
 ##############################################################################
 
 from math import ceil
-
-from openerp.osv.osv import except_osv
-from openerp import api, fields, models, _
+from odoo import api, fields, models, _
 import openerp.addons.decimal_precision as dp
+from odoo.exceptions import Warning
 
 
 class PurchaseOrderLine(models.Model):
@@ -52,7 +53,7 @@ class PurchaseOrderLine(models.Model):
                 'price_subtotal': taxes['total_excluded'],
             })
 
-    @api.model
+    @api.multi
     def _get_supplierinfovals(self, partner=False):
         if not partner:
             return False
@@ -103,7 +104,7 @@ class PurchaseOrderLine(models.Model):
     product_qty = fields.Float(
         string='Quantity',
         digits=dp.get_precision('Product Unit of Measure'),
-        required=True, _prefetch=False)       
+        required=True, _prefetch=False)
     price_policy = fields.Selection(
         [('uom', 'per UOM'), ('package', 'per Package')], "Price Policy",
         default='uom', required=True)
@@ -128,14 +129,14 @@ class PurchaseOrderLine(models.Model):
 
     # Constraints section
     # TODO: Rewrite me in _contraint, if the Orm V8 allows param in message.
-    @api.one
     @api.constrains('order_id', 'product_id', 'product_qty')
     def _check_purchase_qty(self):
         for pol in self:
             if pol.order_id.state not in ('draft', 'sent'):
                 continue
             if not pol.product_id:
-                return True
+                # return True
+                continue
             supplier_id = pol.order_id.partner_id.id
             found = False
             for psi in pol.product_id.seller_ids:
@@ -145,13 +146,12 @@ class PurchaseOrderLine(models.Model):
                     found = True
                     break
             if not found:
-                return True
+                # return True
+                continue
             if not indicative:
                 if (int(pol.product_qty / package_qty) !=
                         pol.product_qty / package_qty):
-                    raise except_osv(
-                        _("Package Error!"),
-                        _(
+                    raise Warning(
                             """You have to buy a multiple of the package"""
                             """ qty or change the package settings in the"""
                             """ supplierinfo of the product for the"""
@@ -161,12 +161,12 @@ class PurchaseOrderLine(models.Model):
                             """ \n - Unit Price: %s;"""
                             """ \n - Package quantity: %s;""" % (
                                 pol.product_id.name, pol.product_qty,
-                                pol.price_unit, package_qty)))
+                                pol.price_unit, package_qty))
 
     @api.model
     def create(self, vals):
         res = super(PurchaseOrderLine, self).create(vals)
-        self._check_purchase_qty([res])
+        res._check_purchase_qty()
         return res
 
     @api.multi
@@ -196,10 +196,9 @@ class PurchaseOrderLine(models.Model):
             return
         super(PurchaseOrderLine, self)._onchange_quantity()
         seller = self.product_id._select_seller(
-            self.product_id,
             partner_id=self.partner_id,
             quantity=self.product_qty,
-            date=self.order_id.date_order and self.order_id.date_order[:10],
+            date=self.order_id.date_order and self.order_id.date_order.date(),
             uom_id=self.product_uom)
         if not seller:
             return
