@@ -34,7 +34,7 @@
                 <field name="indicative_package"/>
                 <label for="base_price"/>
                 <div>
-                    <field name="base_price" class="oe_inline"/>
+                    <field name="base_price" required="1" class="oe_inline"/>
                     <field name="price_policy" class="oe_inline"/>
                 </div>
             </xpath>
