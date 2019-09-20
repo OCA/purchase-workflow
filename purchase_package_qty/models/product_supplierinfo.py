@@ -23,10 +23,7 @@
 #
 ##############################################################################
 
-from lxml import etree
-
-from odoo import models, fields, api, SUPERUSER_ID, _
-from odoo.osv.orm import setup_modifiers
+from odoo import models, fields, api, _
 from odoo.addons import decimal_precision as dp
 
 

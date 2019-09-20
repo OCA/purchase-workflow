@@ -18,7 +18,7 @@ class TestPurchasePackageQty(TransactionCase):
         self.purchase_order_line_model = self.env['purchase.order.line']
         self.partner_1 = self.env.ref('base.res_partner_1')
         self.partner_2 = self.env.ref('base.res_partner_2')
-        self.product = self.env.ref('product.product_product_6')
+        self.product = self.env.ref('product.product_product_4d')
 
         self.supplierinfo = self.supplierinfo_model.create({
             'min_qty': 0.0,
