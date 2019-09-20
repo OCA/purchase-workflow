@@ -29,8 +29,6 @@ from . import product_supplierinfo
 from . import purchase_order_line
 from . import purchase_order
 from . import stock_move
-# from . import stock_picking
-# from . import stock_pack_operation
 from . import account_invoice
 from . import account_invoice_line
 from . import stock_inventory
