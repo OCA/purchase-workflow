@@ -1,8 +1,10 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Purchase - Package Quantity Module for Odoo
+#    Copyright (C) 2019-Today: La Louve (<https://cooplalouve.fr>)
+#    Copyright (C) 2019-Today: Druidoo (<https://www.druidoo.io>)
 #    Copyright (C) 2016-Today Akretion (https://www.akretion.com)
+#    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 #    @author Julien WESTE
 #    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
 #
@@ -21,15 +23,15 @@
 #
 ##############################################################################
 
-from openerp import api, models, fields
-from openerp.addons import decimal_precision as dp
+from odoo import api, models, fields
+from odoo.addons import decimal_precision as dp
 
 
 class StockInventoryLine(models.Model):
     _inherit = 'stock.inventory.line'
 
     package_qty = fields.Float(
-        'Package Qty', digits_compute=dp.get_precision('Product UoM'),
+        'Package Qty', digits=dp.get_precision('Product UoM'),
         help="""The quantity of products in the supplier package."""
         """ You will always have to buy a multiple of this quantity.""",
         default=1)
@@ -38,18 +40,15 @@ class StockInventoryLine(models.Model):
 class StockInventory(models.Model):
     _inherit = 'stock.inventory'
 
-    @api.model
-    def _get_inventory_lines(self, inventory):
-        vals = super(StockInventory, self)._get_inventory_lines(inventory)
+    @api.multi
+    def _get_inventory_lines_values(self):
+        vals = super(StockInventory, self)._get_inventory_lines_values()
         product_obj = self.env['product.product']
         new_val = []
         for val in vals:
             product_id = val['product_id']
-            # if product_id == 47:
-            #     import pdb; pdb.set_trace()
-            product = self.env['product.product'].browse(product_id)
-            seller = product_obj._select_seller(
-                product_id=product, quantity=1)
+            product = product_obj.browse(product_id)
+            seller = product._select_seller(quantity=1)
             val['package_qty'] = seller.package_qty or 1
             new_val.append(val)
         return new_val

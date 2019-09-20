@@ -1,8 +1,10 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Purchase - Package Quantity Module for Odoo
+#    Copyright (C) 2019-Today: La Louve (<https://cooplalouve.fr>)
+#    Copyright (C) 2019-Today: Druidoo (<https://www.druidoo.io>)
 #    Copyright (C) 2016-Today Akretion (https://www.akretion.com)
+#    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 #    @author Julien WESTE
 #    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
 #
@@ -21,18 +23,27 @@
 #
 ##############################################################################
 
-from openerp import api, fields, models
-
-
-class ProductTemplate(models.Model):
-    _inherit = 'product.template'
-
-    @api.depends('seller_ids',)
-    @api.multi
-    def _compute_default_seller_id(self):
-        for pt in self:
-            pt.default_seller_id = pt.seller_ids and pt.seller_ids[0] or False
-
-    default_seller_id = fields.Many2one(
-        string='Default seller id', comodel_name='product.supplierinfo',
-        compute='_compute_default_seller_id',)
+{
+    'name': 'Purchase - Package Quantity',
+    'version': '12.0.1.0.0',
+    'category': 'Purchase',
+    'author': 'GRAP, Druidoo',
+    'website': 'https://cooplalouve.fr',
+    'license': 'AGPL-3',
+    'depends': [
+        'account',
+        'base',
+        'product',
+        'purchase_discount',
+    ],
+    'data': [
+        'views/product_supplierinfo_view.xml',
+        'views/purchase_order_view.xml',
+        'views/stock_picking_view.xml',
+        'views/account_invoice_view.xml',
+        'views/report_stockinventory.xml',
+        'views/stock_inventory_view.xml',
+        'views/report_invoice.xml',
+        'data/function.xml',
+    ],
+}
