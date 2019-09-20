@@ -52,7 +52,6 @@ class AccountInvoiceLine(models.Model):
     def onchange_package_qty(self):
         self.quantity = self.package_qty * self.product_qty_package
 
-    @api.one
     @api.depends(
         'price_unit', 'discount', 'invoice_line_tax_ids', 'quantity',
         'product_id', 'invoice_id.partner_id', 'invoice_id.currency_id',
