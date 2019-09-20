@@ -26,7 +26,7 @@
 from math import ceil
 from odoo import api, fields, models, _
 import openerp.addons.decimal_precision as dp
-from odoo.exceptions import Warning
+from odoo.exceptions import ValidationError
 
 
 class PurchaseOrderLine(models.Model):
@@ -151,15 +151,15 @@ class PurchaseOrderLine(models.Model):
             if not indicative:
                 if (int(pol.product_qty / package_qty) !=
                         pol.product_qty / package_qty):
-                    raise Warning(
-                            """You have to buy a multiple of the package"""
+                    raise ValidationError(
+                            _("""You have to buy a multiple of the package"""
                             """ qty or change the package settings in the"""
                             """ supplierinfo of the product for the"""
                             """ following line:"""
                             """ \n - Product: %s;"""
                             """ \n - Quantity: %s;"""
                             """ \n - Unit Price: %s;"""
-                            """ \n - Package quantity: %s;""" % (
+                            """ \n - Package quantity: %s;""") % (
                                 pol.product_id.name, pol.product_qty,
                                 pol.price_unit, package_qty))
 
