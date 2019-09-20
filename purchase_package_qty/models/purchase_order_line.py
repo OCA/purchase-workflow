@@ -152,7 +152,7 @@ class PurchaseOrderLine(models.Model):
                 if (int(pol.product_qty / package_qty) !=
                         pol.product_qty / package_qty):
                     raise ValidationError(
-                            _("""You have to buy a multiple of the package"""
+                        _("""You have to buy a multiple of the package"""
                             """ qty or change the package settings in the"""
                             """ supplierinfo of the product for the"""
                             """ following line:"""
