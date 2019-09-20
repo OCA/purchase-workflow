@@ -45,7 +45,7 @@ class ProductSupplierinfo(models.Model):
         [('uom', 'per UOM'), ('package', 'per Package')], "Price Policy",
         default='uom', required=True)
     base_price = fields.Float(
-        'Price', required=True,
+        'Price', required=False, default=0.00,
         digits=dp.get_precision('Product Price'),
         help="The price to purchase a product")
     price = fields.Float(
