@@ -1,8 +1,10 @@
-# -*- encoding: utf-8 -*-
 ##############################################################################
 #
 #    Purchase - Package Quantity Module for Odoo
+#    Copyright (C) 2019-Today: La Louve (<https://cooplalouve.fr>)
+#    Copyright (C) 2019-Today: Druidoo (<https://www.druidoo.io>)
 #    Copyright (C) 2016-Today Akretion (https://www.akretion.com)
+#    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 #    @author Julien WESTE
 #    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
 #
@@ -21,14 +23,19 @@
 #
 ##############################################################################
 
+from odoo import api, fields, models
 
-from . import product_template
-from . import product_supplierinfo
-from . import purchase_order_line
-from . import purchase_order
-from . import stock_move
-from . import stock_picking
-from . import stock_pack_operation
-from . import account_invoice
-from . import account_invoice_line
-from . import stock_inventory
+
+class ProductTemplate(models.Model):
+    _inherit = 'product.template'
+
+    @api.depends('seller_ids',)
+    @api.multi
+    def _compute_default_seller_id(self):
+        for pt in self:
+            pt.default_seller_id = pt.seller_ids and pt.seller_ids[0] or False
+
+    default_seller_id = fields.Many2one(
+        string='Default Seller',
+        comodel_name='product.supplierinfo',
+        compute='_compute_default_seller_id',)

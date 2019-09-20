@@ -1,8 +1,10 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Purchase - Package Quantity Module for Odoo
+#    Copyright (C) 2019-Today: La Louve (<https://cooplalouve.fr>)
+#    Copyright (C) 2019-Today: Druidoo (<https://www.druidoo.io>)
 #    Copyright (C) 2016-Today Akretion (https://www.akretion.com)
+#    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 #    @author Julien WESTE
 #    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
 #
@@ -21,7 +23,7 @@
 #
 ##############################################################################
 
-from openerp import api, models
+from odoo import api, models
 
 
 class AccountInvoice(models.Model):
@@ -42,52 +44,28 @@ class AccountInvoice(models.Model):
 
     @api.multi
     def get_taxes_values(self):
-        # We have to override the method in account module
         tax_grouped = {}
+        round_curr = self.currency_id.round
         for line in self.invoice_line_ids:
+            if not line.account_id:
+                continue
             price_unit = line.price_unit * (1 - (line.discount or 0.0) / 100.0)
             if line.price_policy == 'package':
-                taxes = line.invoice_line_tax_ids.compute_all(
-                    price_unit, self.currency_id, line.product_qty_package,
-                    line.product_id, self.partner_id)['taxes']
+                quantity = line.product_qty_package
             else:
-                taxes = line.invoice_line_tax_ids.compute_all(
-                    price_unit, self.currency_id, line.quantity,
-                    line.product_id, self.partner_id)['taxes']
+                quantity = line.quantity
+            taxes = line.invoice_line_tax_ids.compute_all(
+                price_unit, self.currency_id, quantity, line.product_id,
+                self.partner_id)['taxes']
             for tax in taxes:
-                val = {
-                    'invoice_id': self.id,
-                    'name': tax['name'],
-                    'tax_id': tax['id'],
-                    'amount': tax['amount'],
-                    'manual': False,
-                    'sequence': tax['sequence'],
-                    'account_analytic_id': tax['analytic'] and
-                    line.account_analytic_id.id or False,
-                    'account_id': self.type in (
-                        'out_invoice', 'in_invoice') and
-                    (tax['account_id'] or line.account_id.id) or
-                    (tax['refund_account_id'] or line.account_id.id),
-                    'base': tax['base'],
-                }
-
-                # If the taxes generate moves on the same financial account as
-                # the invoice line, propagate the analytic account from the
-                # invoice line to the tax line.
-                # This is necessary in situations were (part of) the taxes
-                # cannot be reclaimed, to ensure the tax move is allocated to
-                # the proper analytic account.
-                if not val.get('account_analytic_id') and\
-                        line.account_analytic_id and\
-                        val['account_id'] == line.account_id.id:
-                    val['account_analytic_id'] = line.account_analytic_id.id
-
-                key = self.env['account.tax'].browse(tax['id']).\
-                    get_grouping_key(val)
+                val = self._prepare_tax_line_vals(line, tax)
+                key = self.env['account.tax'].browse(
+                    tax['id']).get_grouping_key(val)
 
                 if key not in tax_grouped:
                     tax_grouped[key] = val
+                    tax_grouped[key]['base'] = round_curr(val['base'])
                 else:
-                    tax_grouped[key]['base'] += val['base']
                     tax_grouped[key]['amount'] += val['amount']
+                    tax_grouped[key]['base'] += round_curr(val['base'])
         return tax_grouped
