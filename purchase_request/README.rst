@@ -117,6 +117,7 @@ Contributors
 * Adrien Peiffer <adrien.peiffer@acsone.eu>
 * Lois Rilo <lois.rilo@eficent.com>
 * Héctor Villarreal <hector.villarreal@eficent.com>
+* Bhavesh Odedra <bodedra@opensourceintegrators.com>
 
 Other credits
 ~~~~~~~~~~~~~
