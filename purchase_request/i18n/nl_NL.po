@@ -900,7 +900,6 @@ msgid "Wizard"
 msgstr "Wizard"
 
 #. module: purchase_request
-#: code:addons/purchase_request/models/purchase_request.py:209
 #: code:addons/purchase_request/models/purchase_request.py:210
 #, python-format
 msgid ""
@@ -919,7 +918,6 @@ msgstr ""
 "verwervingsgroep hebben."
 
 #. module: purchase_request
-#: code:addons/purchase_request/models/purchase_request.py:441
 #: code:addons/purchase_request/models/purchase_request.py:442
 #, python-format
 msgid "You cannot delete a record that refers to purchase lines!"
