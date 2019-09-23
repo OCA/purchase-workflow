@@ -1,3 +1,4 @@
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 # Copyright 2019 Eficent Business and IT Consulting Services S.L.
 #   (http://www.eficent.com)
 
@@ -9,7 +10,7 @@ class PurchaseOrder(models.Model):
 
     @api.multi
     def button_approve(self, force=False):
-        res = super(PurchaseOrder, self).button_approve(force)
+        res = super().button_approve(force)
         for rec in self:
             rec.order_line.mapped('product_id').set_product_last_purchase(
                 rec.id)
@@ -17,6 +18,7 @@ class PurchaseOrder(models.Model):
 
     @api.multi
     def button_cancel(self):
-        super(PurchaseOrder, self).button_cancel()
+        res = super().button_cancel()
         for rec in self:
             rec.order_line.mapped('product_id').set_product_last_purchase()
+        return res
