@@ -1,3 +1,6 @@
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+# Copyright 2019 Eficent Business and IT Consulting Services S.L.
+#   (http://www.eficent.com)
 
 from odoo import api, fields, models
 
@@ -40,15 +43,17 @@ class ProductProduct(models.Model):
 
                 date_order = last_line.order_id.date_order
                 # Compute Price Unit in the Product base UoM
-                price_unit_uom = product.product_tmpl_id.uom_id.\
-                    _compute_quantity(last_line.price_unit,
-                                      last_line.product_uom)
+                price_unit_uom = product.uom_id._compute_quantity(
+                    last_line.price_unit, last_line.product_uom)
                 last_supplier = last_line.order_id.partner_id
 
             # Assign values to record
-            product.last_purchase_date = date_order
-            product.last_purchase_price = price_unit_uom
-            product.last_supplier_id = last_supplier
+            product.write({
+                "last_purchase_date": date_order,
+                "last_purchase_price": price_unit_uom,
+                "last_supplier_id": last_supplier.id
+                if last_supplier else False,
+            })
             # Set related product template values
             product.product_tmpl_id.set_product_template_last_purchase(
                 date_order, price_unit_uom, last_supplier)
@@ -66,6 +71,8 @@ class ProductTemplate(models.Model):
 
     def set_product_template_last_purchase(self, date_order, price_unit,
                                            partner_id):
-        self.last_purchase_date = date_order
-        self.last_purchase_price = price_unit
-        self.last_supplier_id = partner_id
+        return self.write({
+            "last_purchase_date": date_order,
+            "last_purchase_price": price_unit,
+            "last_supplier_id": partner_id.id if partner_id else False,
+        })
