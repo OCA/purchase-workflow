@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ********************************************************************** -->
+<!-- See __manifest__.py file for Copyright and Licence Informations.       -->
+<!-- ********************************************************************** -->
+<odoo>
+
+<!-- View : computed.purchase.order -->
+    <record id="view_computed_purchase_order_form" model="ir.ui.view">
+        <field name="name">computed.purchase.order.form</field>
+        <field name="model">computed.purchase.order</field>
+        <field name="arch" type="xml">
+            <form name="Computed Purchase Order">
+                <header>
+                    <button name="make_order" states="draft"
+                            string="Make Purchase Order"
+                            type="object" class="oe_highlight"/>
+                    <button name="%(action_view_update_products)d"
+                            string="Update Products" type="action"
+                            class="oe_highlight"
+                            attrs="{'invisible':
+                            [('products_updated','=',False)]}"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,done,canceled"
+                           statusbar_colors='{"canceled":"red","done":"blue"}'
+                           readonly="1"/>
+                </header>
+                <sheet>
+                    <h1>
+                        <field name="name" class="oe_inline" nolabel="1"/>
+                    </h1>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="purchase_order_id" states="done"/>
+                        </group>
+                        <group>
+                            <field name="incoming_date"/>
+                            <field name="products_updated" invisible="1"/>
+                            <field name="company_id"
+                                 groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <group states="draft">
+                        <group string="Get Products">
+                            <field name="compute_pending_quantity" />
+                            <button name="compute_active_product_stock"
+                                type="object"
+                                string="Get products and stocks"
+                                help="Fetch all active products sold by
+                                selected supplier and calculate the available
+                                quantities. It ignores inactive or not
+                                purchasable products."
+                                states="draft"/>
+                        </group>
+                        <group string="Compute Order">
+                            <label for="purchase_target"/>
+                            <div>
+                              <field name="purchase_target" class="oe_inline"/>
+                                &amp;nbsp;
+                              <field name="target_type" class="oe_inline"/>
+                              <br/>
+                              <button
+                                name="compute_purchase_quantities"
+                                type="object"
+                                string="Compute Purchase Quantities"
+                                help="Compute the optimal purchase quantities
+                                of selected products according to the
+                                objective."
+                                states="draft"/>
+                          </div>
+                        </group>
+                    </group>
+                    <group string="Result">
+                        <group>
+                            <field name="computed_amount"/>
+                            <field name="package_qty_count"/>
+                        </group>
+                        <group>
+                            <field name="computed_duration"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="orderlines" string="Order lines">
+                            <field name="line_ids"
+                                   options="{'reload_on_button': true}">
+                                <tree
+                                    decoration-warning="state == 'updated'"
+                                    decoration-info="state == 'new'"
+                                    editable="bottom">
+                                    <field name="product_code_inv"
+                                           readonly="1"/>
+                                    <field name="product_id" readonly="1"/>
+                                    <field name="qty_available" readonly="1"/>
+                                    <field name="incoming_qty" readonly="1"/>
+                                    <field name="displayed_average_consumption"
+                                           readonly="1"/>
+                                    <field name="uom_id" readonly="1"/>
+                                    <field name="stock_duration" readonly="1"/>
+                                    <field name="cpo_state" invisible="1"/>
+                                    <field
+                                        name="purchase_qty_package"
+                                        attrs="{'readonly':
+                                        [('cpo_state', '!=', 'draft')]}"/>
+                                    <field name="package_qty_inv"
+                                           readonly="1"/>
+                                    <field name="purchase_qty"
+                                           readonly="1"/>
+                                    <field name="product_price_inv"
+                                           readonly="1"/>
+                                    <field name="discount_inv" readonly="1"/>
+                                    <field name="price_policy" readonly="1"/>
+                                    <field name="virtual_duration"
+                                           readonly="1"/>
+                                    <field name="subtotal" readonly="1"/>
+                                    <field name="state" readonly="1"/>
+                                    <button
+                                        name="unlink_psi"
+                                        states="up_to_date,updated"
+                                        type="object" icon="fa-close"
+                                        help="If you click this button,
+                                        it means you don't want to buy this
+                                        product to this supplier anymore.
+                                        The supplier will thus be removed from
+                                        the product form."/>
+                                    <button
+                                        name="create_psi" states="new"
+                                        type="object" icon="fa-plus-square"
+                                        help="If you click this button,
+                                        it means you want to buy this product
+                                        to this supplier regularly.
+                                        The supplier will thus be added to
+                                        the product form."/>
+                                </tree>
+                                <form string="Computed purchase order lines">
+                                    <group>
+                                        <group>
+                                            <field name="product_code_inv"/>
+                                            <field name="product_id"/>
+                                            <field name="qty_available"/>
+                                            <field name="incoming_qty"/>
+                                            <label
+                                                for="displayed_average_consumption"/>
+                                            <div class="oe_inline">
+                                                <field name="displayed_average_consumption"/>
+                                                <field name="uom_id"/>
+                                            </div>
+                                        </group>
+                                        <group>
+                                            <field name="stock_duration"/>
+                                            <field name="purchase_qty_package"/>
+                                            <field name="package_qty_inv"/>
+                                            <label for="purchase_qty"/>
+                                            <div class="oe_inline">
+                                                <field name="purchase_qty"/>
+                                                <field name="uom_po_id"/>
+                                            </div>
+                                            <field name="product_price_inv"/>
+                                            <field name="discount_inv"/>
+                                            <field name="price_policy"/>
+                                            <field name="virtual_duration"/>
+                                            <field name="subtotal"/>
+                                            <field name="state" />
+                                        </group>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_computed_purchase_order_tree" model="ir.ui.view">
+        <field name="name">computed.purchase.order.tree</field>
+        <field name="model">computed.purchase.order</field>
+        <field name="arch" type="xml">
+            <tree
+                decoration-danger="state == 'canceled'"
+                decoration-info="state == 'draft'">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="incoming_date"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_computed_purchase_order_search" model="ir.ui.view">
+        <field name="name">computed.purchase.order.search</field>
+        <field name="model">computed.purchase.order</field>
+        <field name="arch" type="xml">
+            <search string="Search Purchase Order">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="state"/>
+                <filter icon="terp-document-new" name="draft" string="Draft"
+                        domain="[('state','=','draft')]"
+                        help="Computations in draft state"/>
+                <filter icon="terp-check" name="done" string="Converted"
+                        domain="[('state','=','done')]"
+                        help="Computations already converted into purchase
+                              orders"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_view_computed_purchase_order_tree"
+            model="ir.actions.act_window">
+        <field name="name">Computed Purchase Order</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">computed.purchase.order</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to begin a computed purchase order.
+          </p><p>
+            This tool will allow you to calculate your needs according to the
+            stock and average consumption of your products and the purchase
+            objective defined against the supplier.
+          </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_computed_purchase_order"
+        parent="purchase.menu_procurement_management"
+        sequence="1"
+        action="action_view_computed_purchase_order_tree"/>
+
+    <!-- View : res.partner -->
+    <record id="view_partner_form_cpo" model="ir.ui.view">
+        <field name="name">res.partner.form.cpo</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <field name="user_id" position="after">
+                <group colspan='2' col='3'>
+                    <field name="purchase_target"/>
+                    <field name="target_type" nolabel="1"/>
+                </group>
+            </field>
+        </field>
+    </record>
+</odoo>

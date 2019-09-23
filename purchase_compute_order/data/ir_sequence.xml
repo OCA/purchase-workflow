@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ********************************************************************** -->
+<!-- See __manifest__.py file for Copyright and Licence Informations.       -->
+<!-- ********************************************************************** -->
+<odoo noupdate="1">
+        <!-- Sequences for computed.purchase.order -->
+        <record id="ir_sequence_internal_use" model="ir.sequence">
+            <field name="name">Computed Purchase Order</field>
+            <field name="code">computed.purchase.order</field>
+            <field name="prefix">CPO/%(year)s/</field>
+            <field name="padding">5</field>
+        </record>
+</odoo>

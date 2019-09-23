@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ********************************************************************** -->
+<!-- See __manifest__.py file for Copyright and Licence Informations.       -->
+<!-- ********************************************************************** -->
+<odoo>
+
+<!-- View : update.products -->
+        <record id="view_update_products_form" model="ir.ui.view">
+            <field name="name">update.products.wizard.form</field>
+            <field name="model">update.products.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Update Products">
+                    <group>
+                        <field name="line_ids" nolabel="1" />
+                    </group>
+                    <footer>
+                        <button name="apply_product_change" string="Apply"
+                                type="object" class="oe_highlight"/>
+                        <button string="Cancel" class="oe_link"
+                                special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_update_products_line_form" model="ir.ui.view">
+            <field name="name">update.products.line.wizard.tree</field>
+            <field name="model">update.products.line.wizard</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="product_id"/>
+                    <field name="product_code"/>
+                    <field name="product_name"/>
+                    <field name="package_qty"/>
+                    <field name="product_uom"/>
+                    <field name="price"/>
+                    <field name="discount"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_view_update_products" model="ir.actions.act_window">
+            <field name="name">Update Products</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">update.products.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_update_products_form"/>
+            <field name="target">new</field>
+        </record>
+
+</odoo>
