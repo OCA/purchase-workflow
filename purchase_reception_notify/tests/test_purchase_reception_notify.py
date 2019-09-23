@@ -12,7 +12,7 @@ class TestPurchaseReceptionNotify(TransactionCase):
         purchase_order_line_model = self.env['purchase.order.line']
         partner_model = self.env['res.partner']
         prod_model = self.env['product.product']
-        self.product_uom_model = self.env['product.uom']
+        self.product_uom_model = self.env['uom.uom']
 
         # partners
         pa_dict = {
