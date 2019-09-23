@@ -160,7 +160,8 @@ class PurchaseRequest(models.Model):
 
     @api.depends('line_ids')
     def _compute_line_count(self):
-        self.line_count = len(self.mapped('line_ids'))
+        for rec in self:
+            rec.line_count = len(rec.mapped('line_ids'))
 
     @api.multi
     def action_view_purchase_request_line(self):
