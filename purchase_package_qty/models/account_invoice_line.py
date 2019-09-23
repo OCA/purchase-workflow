@@ -52,6 +52,7 @@ class AccountInvoiceLine(models.Model):
     def onchange_package_qty(self):
         self.quantity = self.package_qty * self.product_qty_package
 
+    # pylint: disable=W8104
     @api.one
     @api.depends(
         'price_unit', 'discount', 'invoice_line_tax_ids', 'quantity',
