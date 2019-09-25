@@ -4,3 +4,4 @@ product-attribute
 server-ux
 web
 hr
+stock-logistics-workflow
