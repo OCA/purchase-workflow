@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo12-addon-procurement_purchase_no_grouping',
+        'odoo12-addon-product_form_purchase_link',
         'odoo12-addon-purchase_date_planned_manual',
         'odoo12-addon-purchase_delivery_split_date',
         'odoo12-addon-purchase_discount',
