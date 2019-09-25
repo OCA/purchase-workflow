@@ -19,20 +19,20 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: purchase_last_price_info
-#: model:ir.model.fields,field_description:purchase_last_price_info.field_product_product_last_purchase_date
-#: model:ir.model.fields,field_description:purchase_last_price_info.field_product_template_last_purchase_date
+#: model:ir.model.fields,field_description:purchase_last_price_info.field_product_product__last_purchase_date
+#: model:ir.model.fields,field_description:purchase_last_price_info.field_product_template__last_purchase_date
 msgid "Last Purchase Date"
 msgstr ""
 
 #. module: purchase_last_price_info
-#: model:ir.model.fields,field_description:purchase_last_price_info.field_product_product_last_purchase_price
-#: model:ir.model.fields,field_description:purchase_last_price_info.field_product_template_last_purchase_price
+#: model:ir.model.fields,field_description:purchase_last_price_info.field_product_product__last_purchase_price
+#: model:ir.model.fields,field_description:purchase_last_price_info.field_product_template__last_purchase_price
 msgid "Last Purchase Price"
 msgstr ""
 
 #. module: purchase_last_price_info
-#: model:ir.model.fields,field_description:purchase_last_price_info.field_product_product_last_supplier_id
-#: model:ir.model.fields,field_description:purchase_last_price_info.field_product_template_last_supplier_id
+#: model:ir.model.fields,field_description:purchase_last_price_info.field_product_product__last_supplier_id
+#: model:ir.model.fields,field_description:purchase_last_price_info.field_product_template__last_supplier_id
 msgid "Last Supplier"
 msgstr ""
 
@@ -49,8 +49,8 @@ msgid "Product Template"
 msgstr "Ürün"
 
 #. module: purchase_last_price_info
-#: model:ir.ui.view,arch_db:purchase_last_price_info.product_product_last_purchase_info_form_view
-#: model:ir.ui.view,arch_db:purchase_last_price_info.product_template_last_purchase_info_form_view
+#: model_terms:ir.ui.view,arch_db:purchase_last_price_info.product_product_last_purchase_info_form_view
+#: model_terms:ir.ui.view,arch_db:purchase_last_price_info.product_template_last_purchase_info_form_view
 msgid "Purchase"
 msgstr ""
 
