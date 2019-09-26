@@ -52,34 +52,18 @@ class AccountInvoiceLine(models.Model):
     def onchange_package_qty(self):
         self.quantity = self.package_qty * self.product_qty_package
 
+    @api.one
     @api.depends(
         'price_unit', 'discount', 'invoice_line_tax_ids', 'quantity',
         'product_id', 'invoice_id.partner_id', 'invoice_id.currency_id',
         'invoice_id.company_id', 'invoice_id.date_invoice', 'invoice_id.date',
         'product_qty_package', 'price_policy')
     def _compute_price(self):
-        currency = self.invoice_id and self.invoice_id.currency_id or None
-        price = self.price_unit * (1 - (self.discount or 0.0) / 100.0)
-        taxes = False
         if self.price_policy == 'package':
-            quantity = self.product_qty_package
+            origin_quantiy = self.quantity
+            self.quantity = self.product_qty_package
+            res = super(AccountInvoiceLine, self)._compute_price()
+            self.quantity = origin_quantiy
+            return res
         else:
-            quantity = self.quantity
-        if self.invoice_line_tax_ids:
-            taxes = self.invoice_line_tax_ids.compute_all(
-                price, currency, quantity, product=self.product_id,
-                partner=self.invoice_id.partner_id)
-        self.price_subtotal = price_subtotal_signed = \
-            taxes['total_excluded'] if taxes else quantity * price
-        self.price_total = \
-            taxes['total_included'] if taxes else self.price_subtotal
-        if self.invoice_id.currency_id and self.invoice_id.currency_id != \
-                self.invoice_id.company_id.currency_id:
-            currency = self.invoice_id.currency_id
-            date = self.invoice_id._get_currency_rate_date()
-            price_subtotal_signed = currency._convert(
-                price_subtotal_signed, self.invoice_id.company_id.currency_id,
-                self.company_id or self.env.user.company_id,
-                date or fields.Date.today())
-        sign = self.invoice_id.type in ['in_refund', 'out_refund'] and -1 or 1
-        self.price_subtotal_signed = price_subtotal_signed * sign
+            return super(AccountInvoiceLine, self)._compute_price()
