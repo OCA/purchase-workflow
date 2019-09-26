@@ -55,6 +55,7 @@ class PurchaseOrderLine(models.Model):
 
     @api.multi
     def _get_supplierinfovals(self, partner=False):
+        self.ensure_one()
         if not partner:
             return False
         currency = partner.property_purchase_currency_id or\
@@ -135,7 +136,6 @@ class PurchaseOrderLine(models.Model):
             if pol.order_id.state not in ('draft', 'sent'):
                 continue
             if not pol.product_id:
-                # return True
                 continue
             supplier_id = pol.order_id.partner_id.id
             found = False
