@@ -7,7 +7,7 @@
     "name": "Purchase Location by Line",
     "summary": "Allows to define a specific destination location on each PO "
                "line",
-    "version": "11.0.1.0.0",
+    "version": "11.0.1.0.1",
     "author": "Eficent, "
               "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
