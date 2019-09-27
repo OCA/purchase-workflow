@@ -27,7 +27,7 @@
                 </field>
                 <field name="product_uom" position="after">
                     <div>
-                         using package <field name="packaging_id" domain="[('product_tmpl_id', '=', product_tmpl_id)]" groups="product.group_stock_packaging"/>
+                         using package <field name="packaging_id" domain="[('product_id.product_tmpl_id', '=', product_tmpl_id)]" groups="product.group_stock_packaging"/>
                     </div>
                 </field>
                 <field name="delay" position="after">
