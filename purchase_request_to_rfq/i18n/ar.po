@@ -20,14 +20,12 @@ msgstr ""
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/models/purchase_order.py:25
 #: code:addons/purchase_request_to_rfq/models/purchase_order.py:30
 #, python-format
 msgid "<li><b>%s</b>: Ordered quantity %s %s, Planned date %s</li>"
 msgstr ""
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/models/stock.py:25
 #: code:addons/purchase_request_to_rfq/models/stock.py:29
 #, python-format
 msgid "<li><b>%s</b>: Received quantity %s %s</li>"
@@ -215,7 +213,6 @@ msgid "Purchase Request"
 msgstr ""
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/models/purchase_order.py:67
 #: code:addons/purchase_request_to_rfq/models/purchase_order.py:69
 #, python-format
 msgid "Purchase Request %s has already been completed"
@@ -244,7 +241,6 @@ msgid "Purchase Request Line Make Purchase Order Item"
 msgstr ""
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/models/purchase_order.py:100
 #: code:addons/purchase_request_to_rfq/models/purchase_order.py:102
 #: model:ir.model.fields,field_description:purchase_request_to_rfq.field_purchase_order_line_purchase_request_lines
 #: model:ir.ui.view,arch_db:purchase_request_to_rfq.purchase_order_line_form2
