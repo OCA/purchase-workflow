@@ -31,8 +31,8 @@ class StockPicking(models.Model):
         return message
 
     @api.multi
-    def do_transfer(self):
-        super(StockPicking, self).do_transfer()
+    def action_done(self):
+        super(StockPicking, self).action_done()
         request_obj = self.env['purchase.request']
         for picking in self:
             requests_dict = {}
