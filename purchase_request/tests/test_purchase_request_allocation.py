@@ -132,3 +132,36 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         purchase.button_cancel()
         self.assertEqual(purchase_request_line1.qty_cancelled, 1.5)
         self.assertEqual(purchase_request_line1.pending_qty_to_receive, 1.5)
+
+    def test_purchase_request_allocation_min_qty(self):
+        vals = {
+            'picking_type_id': self.env.ref('stock.picking_type_in').id,
+            'requested_by': SUPERUSER_ID,
+        }
+        purchase_request1 = self.purchase_request.create(vals)
+        vals = {
+            'request_id': purchase_request1.id,
+            'product_id': self.product_product.id,
+            'product_uom_id': self.env.ref('uom.product_uom_unit').id,
+            'product_qty': 2.0,
+        }
+        purchase_request_line1 = self.purchase_request_line.create(vals)
+        # add a vendor
+        vendor1 = self.env.ref('base.res_partner_1')
+        self.env['product.supplierinfo'].create({
+            'name': vendor1.id,
+            'product_tmpl_id': self.product_product.product_tmpl_id.id,
+            'min_qty': 8,
+        })
+        vals = {
+            'supplier_id': self.env.ref('base.res_partner_1').id,
+        }
+        purchase_request1.button_approved()
+        wiz_id = self.wiz.with_context(
+            active_model="purchase.request.line",
+            active_ids=[purchase_request_line1.id,
+                        ]).create(vals)
+        wiz_id.make_purchase_order()
+        self.assertEqual(
+            purchase_request_line1.purchase_request_allocation_ids[0].
+            open_product_qty, 2.0)
