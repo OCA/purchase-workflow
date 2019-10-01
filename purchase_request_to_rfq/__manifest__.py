@@ -7,7 +7,7 @@
     "author": "Eficent, "
               "Acsone SA/NV,"
               "Odoo Community Association (OCA)",
-    "version": "10.0.1.0.1",
+    "version": "10.0.1.0.2",
     "website": "http://www.eficent.com",
     "category": "Purchase Management",
     "depends": [
