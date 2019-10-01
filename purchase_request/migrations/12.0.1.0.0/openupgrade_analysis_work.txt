@@ -1,0 +1,44 @@
+---Fields in module 'purchase_request'---
+
+purchase_request / purchase.request         / activity_date_deadline (date) : not related anymore
+purchase_request / purchase.request         / activity_date_deadline (date) : not stored anymore
+purchase_request / purchase.request         / activity_date_deadline (date) : now a function
+purchase_request / purchase.request         / message_last_post (datetime)  : DEL
+purchase_request / purchase.request         / message_main_attachment_id (many2one): NEW relation: ir.attachment
+purchase_request / purchase.request.line    / activity_date_deadline (date) : not related anymore
+purchase_request / purchase.request.line    / activity_date_deadline (date) : not stored anymore
+purchase_request / purchase.request.line    / activity_date_deadline (date) : now a function
+purchase_request / purchase.request.line    / message_last_post (datetime)  : DEL
+purchase_request / purchase.request.line    / message_main_attachment_id (many2one): NEW relation: ir.attachment
+# NOTHING TO DO
+
+** NEW MODEL **
+purchase_request / purchase.request.allocation / allocated_product_qty (float) : NEW
+purchase_request / purchase.request.allocation / prev_allocated_qty (float)    : NEW
+purchase_request / purchase.request.allocation / purchase_line_id (many2one)   : NEW relation: purchase.order.line
+purchase_request / purchase.request.allocation / purchase_request_line_id (many2one): NEW relation: purchase.request.line, required
+purchase_request / purchase.request.allocation / requested_product_uom_qty (float): NEW
+purchase_request / purchase.request.allocation / stock_move_id (many2one)      : NEW relation: stock.move
+# DONE: filled, because the three new computed fields in purchase.request.line need them
+
+purchase_request / purchase.order.line      / purchase_request_allocation_ids (one2many): NEW relation: purchase.request.allocation
+purchase_request / purchase.request.line    / purchase_request_allocation_ids (one2many): NEW relation: purchase.request.allocation
+purchase_request / stock.move               / purchase_request_allocation_ids (one2many): NEW relation: purchase.request.allocation
+# NOTHING TO DO: one2many to new model
+
+purchase_request / purchase.request.line    / product_uom_id (many2one)     : relation is now 'uom.uom' ('product.uom') [nothing to do]
+# NOTHING TO DO
+
+purchase_request / purchase.request.line    / qty_cancelled (float)         : NEW isfunction: function, stored
+purchase_request / purchase.request.line    / qty_done (float)              : NEW isfunction: function, stored
+purchase_request / purchase.request.line    / qty_in_progress (float)       : NEW isfunction: function, stored
+# NOTHING TO DO: new computed fields
+
+---XML records in module 'purchase_request'---
+NEW ir.model.access: purchase_request.access_purchase_request_allocation_manager
+NEW ir.model.access: purchase_request.access_purchase_request_allocation_user
+NEW ir.ui.view: purchase_request.purchase_request_allocation
+NEW ir.ui.view: purchase_request.view_move_form
+NEW ir.ui.view: purchase_request.view_move_picking_form
+NEW ir.ui.view: purchase_request.view_stock_move_operations
+# NOTHING TO DO
