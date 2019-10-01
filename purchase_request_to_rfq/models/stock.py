@@ -22,11 +22,15 @@ class StockPicking(models.Model):
             request.name, picking.name)
         message += '<ul>'
         for line in request_dict.values():
+            if line['request_line'].product_id:
+                display_name = line['request_line'].product_id.display_name
+            else:
+                display_name = line['request_line'].name
             message += _(
                 '<li><b>%s</b>: Received quantity %s %s</li>'
-            ) % (line['name'],
-                 line['product_qty'],
-                 line['product_uom'],
+            ) % (display_name,
+                 line['stock_move'].product_qty,
+                 line['stock_move'].product_uom.name,
                  )
         message += '</ul>'
         return message
@@ -48,9 +52,8 @@ class StockPicking(models.Model):
                         if request_id not in requests_dict:
                             requests_dict[request_id] = {}
                         data = {
-                            'name': request_line.name,
-                            'product_qty': move.product_qty,
-                            'product_uom': move.product_uom.name,
+                            'request_line': request_line,
+                            'stock_move': move,
                         }
                         requests_dict[request_id][request_line.id] = data
             for request_id in requests_dict:
