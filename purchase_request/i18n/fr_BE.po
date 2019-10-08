@@ -25,7 +25,6 @@ msgid "<li><b>%s</b>: Ordered quantity %s %s, Planned date %s</li>"
 msgstr ""
 
 #. module: purchase_request
-#: code:addons/purchase_request/models/purchase_order.py:173
 #: code:addons/purchase_request/models/purchase_order.py:174
 #: code:addons/purchase_request/models/purchase_request_allocation.py:110
 #: code:addons/purchase_request/models/stock_picking.py:24
@@ -785,7 +784,6 @@ msgid "Purchase Request Line count"
 msgstr ""
 
 #. module: purchase_request
-#: code:addons/purchase_request/models/purchase_order.py:104
 #: code:addons/purchase_request/models/purchase_order.py:105
 #: model:ir.actions.act_window,name:purchase_request.purchase_request_line_form_action
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_order_line__purchase_request_lines
@@ -1068,7 +1066,6 @@ msgid "Service Purchase Order Line"
 msgstr ""
 
 #. module: purchase_request
-#: code:addons/purchase_request/models/purchase_order.py:165
 #: code:addons/purchase_request/models/purchase_order.py:166
 #, python-format
 msgid "Service confirmation for Request %s"
@@ -1186,7 +1183,6 @@ msgid ""
 msgstr ""
 
 #. module: purchase_request
-#: code:addons/purchase_request/models/purchase_order.py:168
 #: code:addons/purchase_request/models/purchase_order.py:169
 #, python-format
 msgid ""
