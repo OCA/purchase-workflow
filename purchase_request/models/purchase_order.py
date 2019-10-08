@@ -88,7 +88,8 @@ class PurchaseOrderLine(models.Model):
     purchase_request_allocation_ids = fields.One2many(
         comodel_name='purchase.request.allocation',
         inverse_name='purchase_line_id',
-        string='Purchase Request Allocation')
+        string='Purchase Request Allocation',
+        copy=False,)
 
     @api.multi
     def action_openRequestLineTreeView(self):
