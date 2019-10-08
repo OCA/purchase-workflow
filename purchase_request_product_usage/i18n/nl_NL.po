@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* purchase_request_product_usage
+# 	* purchase_request_product_usage
 #
 msgid ""
 msgstr ""
@@ -32,7 +32,7 @@ msgid "Purchase Request Line Make Purchase Order Item"
 msgstr "Inkoopaanvraagregel maak inkooporderregel"
 
 #. module: purchase_request_product_usage
-#: model:ir.model.fields,field_description:purchase_request_product_usage.field_purchase_request_line_make_purchase_order_item_usage_id
-#: model:ir.model.fields,field_description:purchase_request_product_usage.field_purchase_request_line_usage_id
+#: model:ir.model.fields,field_description:purchase_request_product_usage.field_purchase_request_line__usage_id
+#: model:ir.model.fields,field_description:purchase_request_product_usage.field_purchase_request_line_make_purchase_order_item__usage_id
 msgid "Usage"
 msgstr "Gebruik"
