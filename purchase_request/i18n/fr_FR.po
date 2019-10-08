@@ -349,7 +349,6 @@ msgid "Draft"
 msgstr ""
 
 #. module: purchase_request
-#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:228
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:231
 #, python-format
 msgid "Enter a positive quantity."
@@ -945,7 +944,6 @@ msgid "Quantity to purchase"
 msgstr ""
 
 #. module: purchase_request
-#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:275
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:280
 #, python-format
 msgid "RFQ"
