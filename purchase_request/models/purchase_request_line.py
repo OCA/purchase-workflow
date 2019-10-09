@@ -70,7 +70,8 @@ class PurchaseRequestLine(models.Model):
                                      store=True)
     supplier_id = fields.Many2one('res.partner',
                                   string='Preferred supplier',
-                                  compute="_compute_supplier_id")
+                                  compute="_compute_supplier_id",
+                                  store=True)
     cancelled = fields.Boolean(
         string="Cancelled", readonly=True, default=False, copy=False)
 
@@ -228,6 +229,7 @@ class PurchaseRequestLine(models.Model):
             rec.is_editable = False
 
     @api.multi
+    @api.depends('product_id', 'product_id.seller_ids')
     def _compute_supplier_id(self):
         for rec in self:
             if rec.product_id:
