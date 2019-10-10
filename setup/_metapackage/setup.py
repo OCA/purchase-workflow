@@ -12,6 +12,7 @@ setuptools.setup(
         'odoo12-addon-product_form_purchase_link',
         'odoo12-addon-purchase_date_planned_manual',
         'odoo12-addon-purchase_delivery_split_date',
+        'odoo12-addon-purchase_deposit',
         'odoo12-addon-purchase_discount',
         'odoo12-addon-purchase_exception',
         'odoo12-addon-purchase_force_invoiced',
