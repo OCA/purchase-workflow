@@ -11,5 +11,3 @@ This project aim to deal with modules related to manage purchase and their relat
  - Choose the cheapest supplier
  - Add validation step
  - ...
-
-
