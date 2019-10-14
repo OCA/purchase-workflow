@@ -2,7 +2,7 @@
 # Copyright 2019 PlanetaTIC - Marc Poch <mpoch@planetatic.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models, SUPERUSER_ID, _
+from odoo import api, models
 
 
 class PurchaseOrder(models.Model):
@@ -26,7 +26,8 @@ class PurchaseOrderLine(models.Model):
     def change_supplier(self, supplier_id):
         purchase_obj = self.env['purchase.order']
 
-        original_order = self[0].order_id
+        first_line = self[0]
+        original_order = first_line.order_id
 
         # search for already existing purchase order to add new products or
         # create a new purchase order with supplier_id
@@ -36,8 +37,9 @@ class PurchaseOrderLine(models.Model):
             quotation_purchase_order = purchase_orders[0]
         else:
             group_id =\
-                (self.sale_ids and self.sale_ids[0].procurement_group_id and
-                 self.sale_ids[0].procurement_group_id.id) or False
+                (first_line.sale_ids and
+                 first_line.sale_ids[0].procurement_group_id and
+                 first_line.sale_ids[0].procurement_group_id.id) or False
             quotation_purchase_order = purchase_obj.create({
                 'partner_id': supplier_id,
                 'group_id': group_id,
