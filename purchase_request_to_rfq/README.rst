@@ -50,6 +50,7 @@ Contributors
 * Jonathan Nemry <jonathan.nemry@acsone.eu>
 * Aaron Henriquez <ahenriquez@eficent.com>
 * Adrien Peiffer <adrien.peiffer@acsone.eu>
+* Raphaël Reverdy <raphael.reverdy@akretion.com>
 
 
 Maintainer
