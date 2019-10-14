@@ -4,5 +4,5 @@ To use this module:
 * Select the lines you want to change the supplier
 * Click on Actions->Change Supplier
 ** Select the new supplier
-* You will be moved to a new purchsae quotation of selected supplier with the selected lines (these lines were remove from the original purchase quotation to the new one)
- 
+* If selected supplier already has a quotation purchase order, selected lines will be moved to this quotation purchase order. Otherwise, a new quotation purchase order will be created containing selected lines.
+** User interface will display the new (or updated) quotation purchase order.

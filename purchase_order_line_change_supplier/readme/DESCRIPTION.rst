@@ -1,1 +1,1 @@
-This module permits to change supplier of purchase order line, moving selected lines of a purchase order to a new purchase order of selected supplier.
+This module permits to select purchase order lines of a quotation purchase order and select a supplier. Selected purchase order lines will be moved to an already existing quotation purchase order of a selected supplier, if selected supplier has no quotation purchase order a new one will be created.

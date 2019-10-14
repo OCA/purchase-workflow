@@ -36,8 +36,8 @@ class PurchaseOrderLine(models.Model):
             quotation_purchase_order = purchase_orders[0]
         else:
             group_id =\
-                (self.sale_ids and self.sale_ids[0].procurement_group_id and\
-                self.sale_ids[0].procurement_group_id.id) or False
+                (self.sale_ids and self.sale_ids[0].procurement_group_id and
+                 self.sale_ids[0].procurement_group_id.id) or False
             quotation_purchase_order = purchase_obj.create({
                 'partner_id': supplier_id,
                 'group_id': group_id,
