@@ -19,59 +19,91 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: purchase_order_type
-#: field:purchase.order.type,active:0
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type_active
 msgid "Active"
 msgstr "Активен"
 
 #. module: purchase_order_type
-#: field:purchase.order.type,invoice_method:0
-msgid "Create Invoice"
+#: model:ir.actions.act_window,help:purchase_order_type.action_purchase_order_type_view
+msgid "Click to set a new type for purchase order."
 msgstr ""
 
 #. module: purchase_order_type
-#: field:purchase.order.type,create_uid:0
+#: model:ir.model,name:purchase_order_type.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: purchase_order_type
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type_create_uid
 msgid "Created by"
 msgstr "Създадено от"
 
 #. module: purchase_order_type
-#: field:purchase.order.type,create_date:0
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type_create_date
 msgid "Created on"
 msgstr "Създадено на"
 
 #. module: purchase_order_type
-#: field:purchase.order.type,display_name:0
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type_description
+msgid "Description"
+msgstr ""
+
+#. module: purchase_order_type
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type_display_name
 msgid "Display Name"
 msgstr "Име за Показване"
 
 #. module: purchase_order_type
-#: field:purchase.order.type,id:0
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type_sequence_id
+#: model:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
+msgid "Entry Sequence"
+msgstr ""
+
+#. module: purchase_order_type
+#: model:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
+msgid "Group By"
+msgstr ""
+
+#. module: purchase_order_type
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type_id
 msgid "ID"
 msgstr "ID"
 
 #. module: purchase_order_type
-#: field:purchase.order.type,__last_update:0
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type_incoterm_id
+#: model:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
+msgid "Incoterm"
+msgstr ""
+
+#. module: purchase_order_type
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type___last_update
 msgid "Last Modified on"
 msgstr "Последно обновено на"
 
 #. module: purchase_order_type
-#: field:purchase.order.type,write_uid:0
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type_write_uid
 msgid "Last Updated by"
 msgstr "Последно обновено от"
 
 #. module: purchase_order_type
-#: field:purchase.order.type,write_date:0
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type_write_date
 msgid "Last Updated on"
 msgstr "Последно обновено на"
 
 #. module: purchase_order_type
-#: field:purchase.order.type,name:0
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type_name
 msgid "Name"
 msgstr "Име"
 
 #. module: purchase_order_type
-#: model:ir.model,name:purchase_order_type.model_res_partner
-msgid "Partner"
-msgstr "Партньор"
+#: model:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
+msgid "Payment Term"
+msgstr ""
+
+#. module: purchase_order_type
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type_payment_term_id
+msgid "Payment Terms"
+msgstr ""
 
 #. module: purchase_order_type
 #: model:ir.model,name:purchase_order_type.model_purchase_order
@@ -79,21 +111,36 @@ msgid "Purchase Order"
 msgstr ""
 
 #. module: purchase_order_type
-#: view:res.partner:purchase_order_type.res_partner_purchase_type_form_view
-#: field:res.partner,purchase_type:0
+#: model:ir.model.fields,field_description:purchase_order_type.field_res_partner_purchase_type
+#: model:ir.model.fields,field_description:purchase_order_type.field_res_users_purchase_type
+#: model:ir.ui.view,arch_db:purchase_order_type.res_partner_purchase_type_form_view
 msgid "Purchase Order Type"
 msgstr ""
 
 #. module: purchase_order_type
 #: model:ir.actions.act_window,name:purchase_order_type.action_purchase_order_type_view
 #: model:ir.ui.menu,name:purchase_order_type.menu_purchase_order_type
-#: view:purchase.order.type:purchase_order_type.view_purchase_order_type_search
-#: view:purchase.order.type:purchase_order_type.view_purchase_order_type_tree
+#: model:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
+#: model:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_tree
 msgid "Purchase Order Types"
 msgstr ""
 
 #. module: purchase_order_type
-#: view:purchase.order:purchase_order_type.view_purchase_order_filter
-#: field:purchase.order,order_type:0
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type_sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: purchase_order_type
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_order_type
+#: model:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_filter
+#: model:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_form
 msgid "Type"
 msgstr "Вид"
+
+#. module: purchase_order_type
+#: model:ir.model,name:purchase_order_type.model_purchase_order_type
+msgid "Type of purchase order"
+msgstr ""
+
+#~ msgid "Partner"
+#~ msgstr "Партньор"
