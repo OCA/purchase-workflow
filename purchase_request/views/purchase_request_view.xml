@@ -254,15 +254,15 @@
                 <field name="assigned_to" />
                 <field name="picking_type_id"/>
                 <group expand="0" string="Group By...">
-                    <filter name="requested_by" string="Requested by" icon="terp-personal"
+                    <filter name="requested_by" string="Requested by" icon="fa-user"
                             domain="[]"
                             context="{'group_by':'requested_by'}"/>
                     <filter name="assigned_to"
-                            string="Assigned to" icon="terp-personal"
+                            string="Assigned to" icon="fa-user"
                             domain="[]"
                             context="{'group_by':'assigned_to'}"/>
-                    <filter name="source" string="Source" icon="terp-gtk-jump-to-rtl" domain="[]" context="{'group_by':'origin'}"/>
-                    <filter name="start_date" string="Start Date" icon="terp-go-month" domain="[]" context="{'group_by':'date_start'}"/>
+                    <filter name="source" string="Source" icon="fa-caret-square-o-left" domain="[]" context="{'group_by':'origin'}"/>
+                    <filter name="start_date" string="Start Date" icon="fa-calendar" domain="[]" context="{'group_by':'date_start'}"/>
                 </group>
             </search>
         </field>
