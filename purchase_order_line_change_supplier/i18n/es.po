@@ -1,0 +1,100 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* purchase_order_line_change_supplier
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-10-14 07:44+0000\n"
+"PO-Revision-Date: 2019-10-14 07:44+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_order_line_change_supplier
+#: model:ir.ui.view,arch_db:purchase_order_line_change_supplier.change_purchase_line_supplierwizard_view
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: purchase_order_line_change_supplier
+#: model:ir.actions.act_window,name:purchase_order_line_change_supplier.change_purchase_line_supplier_wizard_action
+#: model:ir.ui.view,arch_db:purchase_order_line_change_supplier.change_purchase_line_supplierwizard_view
+msgid "Change Purchase Line Supplier"
+msgstr "Cambiar las líneas de compra de proveedor"
+
+#. module: purchase_order_line_change_supplier
+#: model:ir.model,name:purchase_order_line_change_supplier.model_change_purchase_line_supplier_wizard
+msgid "Change Purchase Line Supplier Wizard"
+msgstr "Cambiar las líneas de compra de proveedor"
+
+#. module: purchase_order_line_change_supplier
+#: model:ir.model.fields,field_description:purchase_order_line_change_supplier.field_change_purchase_line_supplier_wizard_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: purchase_order_line_change_supplier
+#: model:ir.model.fields,field_description:purchase_order_line_change_supplier.field_change_purchase_line_supplier_wizard_create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: purchase_order_line_change_supplier
+#: model:ir.model.fields,field_description:purchase_order_line_change_supplier.field_change_purchase_line_supplier_wizard_display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: purchase_order_line_change_supplier
+#: model:ir.model.fields,field_description:purchase_order_line_change_supplier.field_change_purchase_line_supplier_wizard_id
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_order_line_change_supplier
+#: model:ir.model.fields,field_description:purchase_order_line_change_supplier.field_change_purchase_line_supplier_wizard___last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: purchase_order_line_change_supplier
+#: model:ir.model.fields,field_description:purchase_order_line_change_supplier.field_change_purchase_line_supplier_wizard_write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: purchase_order_line_change_supplier
+#: model:ir.model.fields,field_description:purchase_order_line_change_supplier.field_change_purchase_line_supplier_wizard_write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: purchase_order_line_change_supplier
+#: model:ir.model,name:purchase_order_line_change_supplier.model_purchase_order
+msgid "Purchase Order"
+msgstr "Pedido de compra"
+
+#. module: purchase_order_line_change_supplier
+#: model:ir.model,name:purchase_order_line_change_supplier.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Línea pedido de compra"
+
+#. module: purchase_order_line_change_supplier
+#: code:addons/purchase_order_line_change_supplier/wizard/change_purchase_line_supplier.py:35
+#, python-format
+msgid "Request for Quotation"
+msgstr "Solicitud de presupuesto"
+
+#. module: purchase_order_line_change_supplier
+#: model:ir.actions.act_window,name:purchase_order_line_change_supplier.show_purchase_lines_action
+msgid "Show Purchase Lines"
+msgstr "Mostrar líneas de compra"
+
+#. module: purchase_order_line_change_supplier
+#: model:ir.model.fields,field_description:purchase_order_line_change_supplier.field_change_purchase_line_supplier_wizard_supplier_id
+msgid "Supplier"
+msgstr "Proveedor"
+
+#. module: purchase_order_line_change_supplier
+#: code:addons/purchase_order_line_change_supplier/wizard/change_purchase_line_supplier.py:29
+#, python-format
+msgid "There are no lines to change supplier."
+msgstr "No se ha seleccionado ninguna línea."
+

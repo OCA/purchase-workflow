@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2019 PlanetaTIC - Marc Poch <mpoch@planetatic.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+<data>
+
+    <act_window id="show_purchase_lines_action"
+        name="Show Purchase Lines"
+        src_model="purchase.order"
+        res_model="purchase.order.line"
+        domain="[('order_id', 'in', active_ids), ('state', '=', 'draft')]"
+        view_type="form" view_mode="tree,form"
+        key2="client_action_multi"/>
+
+</data>
+</odoo>

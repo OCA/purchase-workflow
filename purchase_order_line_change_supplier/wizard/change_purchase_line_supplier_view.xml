@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2019 PlanetaTIC - Marc Poch <mpoch@planetatic.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+<data>
+    <!-- wizard action on change.purchase.line.supplier -->
+    <act_window id="change_purchase_line_supplier_wizard_action"
+        name="Change Purchase Line Supplier"
+        src_model="purchase.order.line"
+        res_model="change.purchase.line.supplier.wizard"
+        view_type="form" view_mode="form"
+        key2="client_action_multi" target="new"/>
+
+    <!-- wizard view -->
+    <record id="change_purchase_line_supplierwizard_view" model="ir.ui.view">
+        <field name="name">Change Purchase Line Supplier</field>
+        <field name="model">change.purchase.line.supplier.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Change Purchase Line Supplier">
+                <group>
+                    <field name="supplier_id" />
+                </group>
+                <footer>
+                    <button string="Change Purchase Line Supplier" name="confirm_change_purchase_lines_supplier" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</data>
+</odoo>
