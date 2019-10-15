@@ -232,12 +232,17 @@ class PurchaseInvoicePlan(models.Model):
             assert len(line.purchase_line_id) >= 0, \
                 'No matched order line for invoice line'
             order_line = fields.first(line.purchase_line_id)
-            plan_qty = order_line.product_qty * (percent/100)
+            plan_qty = self._get_plan_qty(order_line, percent)
             prec = order_line.product_uom.rounding
-            if float_compare(plan_qty, line.quantity, prec) == 1:
+            if float_compare(abs(plan_qty), abs(line.quantity), prec) == 1:
                 raise ValidationError(
                     _('Plan quantity: %s, exceed invoiceable quantity: %s'
                       '\nProduct should be delivered before invoice') %
                     (plan_qty, line.quantity))
             line.write({'quantity': plan_qty})
         invoice.compute_taxes()
+
+    @api.model
+    def _get_plan_qty(self, order_line, percent):
+        plan_qty = order_line.product_qty * (percent/100)
+        return plan_qty
