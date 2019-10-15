@@ -19,7 +19,7 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-24 07:53+0000\n"
-"PO-Revision-Date: 2019-10-14 17:31+0000\n"
+"PO-Revision-Date: 2019-10-15 10:04+0000\n"
 "Last-Translator: Khalid Hazam <k.hazam@badep.ma>\n"
 "Language-Team: French (http://www.transifex.com/oca/"
 "OCA-purchase-workflow-10-0/language/fr/)\n"
@@ -575,7 +575,7 @@ msgstr "Résumé de la prochaine activité"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__activity_type_id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__activity_type_id
 msgid "Next Activity Type"
-msgstr ""
+msgstr "Type de la prochaine activité"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
