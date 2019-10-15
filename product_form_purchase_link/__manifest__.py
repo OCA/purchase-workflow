@@ -11,9 +11,7 @@
     "maintainers": ["rousseldenis"],
     "author": "ACSONE SA/NV,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
-    "depends": [
-        "purchase",
-    ],
+    "depends": ["purchase"],
     "data": [
         "views/purchase_order_line.xml",
         "views/product_template.xml",
