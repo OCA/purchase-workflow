@@ -17,6 +17,7 @@ setuptools.setup(
         'odoo12-addon-purchase_discount',
         'odoo12-addon-purchase_exception',
         'odoo12-addon-purchase_force_invoiced',
+        'odoo12-addon-purchase_invoice_plan',
         'odoo12-addon-purchase_landed_cost',
         'odoo12-addon-purchase_last_price_info',
         'odoo12-addon-purchase_line_procurement_group',
