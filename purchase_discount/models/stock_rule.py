@@ -3,7 +3,7 @@
 from odoo import api, models
 
 
-class ProcurementRule(models.Model):
+class StockRule(models.Model):
     _inherit = 'stock.rule'
 
     @api.multi
