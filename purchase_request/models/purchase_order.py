@@ -192,10 +192,16 @@ class PurchaseOrderLine(models.Model):
 
     @api.multi
     def write(self, vals):
-        #  it is done here instead of method _update_received_qty
-        #  to make sure this work for services
-        prev_qty_received = self.qty_received
-        res = super(PurchaseOrderLine, self).write(vals)
+        #  As services do not generate stock move this tweak is required
+        #  to allocate them.
+        prev_qty_received = {}
         if vals.get('qty_received', False):
-            self.update_service_allocations(prev_qty_received)
+            service_lines = self.filtered(
+                lambda l: l.product_id.type == 'service')
+            for line in service_lines:
+                prev_qty_received[line.id] = line.qty_received
+        res = super(PurchaseOrderLine, self).write(vals)
+        if prev_qty_received:
+            for line in service_lines:
+                line.update_service_allocations(prev_qty_received[line.id])
         return res
