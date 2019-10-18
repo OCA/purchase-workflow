@@ -64,7 +64,7 @@ class TestProductSupplierinfoDiscount(common.SavepointCase):
             "6 with partner 1 and qty 1")
 
     def test_004_prepare_purchase_order_line(self):
-        procurement_rule = self.env['stock.rule'].create({
+        stock_rule = self.env['stock.rule'].create({
             'sequence': 20,
             'location_id': self.env.ref('stock.stock_location_locations').id,
             'picking_type_id': self.env.ref('stock.chi_picking_type_in').id,
@@ -89,9 +89,9 @@ class TestProductSupplierinfoDiscount(common.SavepointCase):
             'name': 'WH: Stock -> Customers MTO',
             'product_id': self.product.id,
             'date_planned': fields.Datetime.now(),
-            'rule_id': procurement_rule.id,
+            'rule_id': stock_rule.id,
         }
-        res = procurement_rule._prepare_purchase_order_line(
+        res = stock_rule._prepare_purchase_order_line(
             self.product, 50, self.env.ref('uom.product_uom_unit'),
             po_line_vals, self.purchase_order, self.supplierinfo.name,
         )
