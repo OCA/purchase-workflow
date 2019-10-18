@@ -194,8 +194,9 @@ class PurchaseOrderLine(models.Model):
     def write(self, vals):
         #  it is done here instead of method _update_received_qty
         #  to make sure this work for services
-        prev_qty_received = self.qty_received
-        res = super(PurchaseOrderLine, self).write(vals)
-        if vals.get('qty_received', False):
-            self.update_service_allocations(prev_qty_received)
+        for line in self:
+            prev_qty_received = line.qty_received
+            res = super(PurchaseOrderLine, line).write(vals)
+            if vals.get('qty_received', False):
+                line.update_service_allocations(prev_qty_received)
         return res
