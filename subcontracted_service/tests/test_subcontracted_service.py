@@ -35,7 +35,7 @@ class TestSubcontractedService(TransactionCase):
             limit=1
         )
 
-    def test_wh_procurement_rule(self):
+    def test_wh_stock_rule(self):
         """Tests if the procurement rule for subcontracting services is
         assigned properly to the warehouse."""
         wh = self.test_wh
