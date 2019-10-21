@@ -30,3 +30,7 @@ class SupplierValidationWizard(models.TransientModel):
     def confirm_button(self):
         partner_id = self._get_partner()
         partner_id.supplier_approve_status = self.supplier_approve_status
+        if partner_id.child_ids:
+            partner_id.child_ids.write({
+                'supplier_approve_status': self.supplier_approve_status
+            })
