@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-  <data>
-
+<odoo>
+    
         <record id="custom_purchase_order_form" model="ir.ui.view">
             <field name="model">purchase.order</field>
             <field name="inherit_id" ref="purchase.purchase_order_form" />
             <field name="arch" type="xml">
-                <button name="purchase_approve" position="after">
-                    <button name="action_view_sale_order" string="View Sale Orders"
-                            groups="base.group_sale_salesman" type="object" class="oe_highlight"/>
+
+                <xpath expr="//div[hasclass('oe_button_box')]"
+                    position="inside">
+                <button type="object"
+                    name="action_view_sale_order"
+                    class="oe_stat_button"
+                    icon="fa-usd"
+                    attrs="{'invisible': [('sale_order_count', '=', 0)]}"
+                    groups="sales_team.group_sale_salesman">
+                    <field name="sale_order_count"
+                        widget="statinfo" string="Sale Orders"/>
                 </button>
+              </xpath>
+
             </field>
         </record>
 
-  </data>
-</openerp>
+</odoo>

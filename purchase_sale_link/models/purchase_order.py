@@ -1,12 +1,16 @@
-# -*- coding: utf-8 -*-
-# © 2017 Akretion
+# © 2019 Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
-from openerp import models, api, exceptions, _
+from odoo import models, api, fields
 
 
 class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
+
+    sale_order_count = fields.Integer(
+        string='Sale Orders',
+        compute='_compute_sale_order_count',
+    )
 
     @api.model
     def get_purchase_sale_action_xmlid(self):
@@ -17,14 +21,26 @@ class PurchaseOrder(models.Model):
         return 'sale.view_order_form'
 
     @api.multi
-    def action_view_sale_order(self):
+    def get_sale_orders(self):
         self.ensure_one()
-        procurements = self.order_line.mapped('procurement_ids')
-        procurement_group = procurements.mapped('group_id')
-        sale_orders = self.env['sale.order'].search(
-            [('procurement_group_id', 'in', procurement_group.ids)])
-        if not sale_orders:
-            raise exceptions.Warning(_('No sale order found'))
+
+        # Catch the Sale Orders related to the actual Purchase Order
+        # from the procurement_groups related to the stock_moves
+        # created from the Purchase Order (only valid for Sale Orders with
+        # storable products)
+        stock_moves = self.order_line.mapped('move_dest_ids')
+        procurement_groups = stock_moves.mapped('group_id')
+        sale_orders = procurement_groups.mapped('sale_id')
+
+        # Add the Sale Orders linked with the actual Purchase Order via
+        # service products
+        sale_orders |= self.order_line.mapped('sale_order_id')
+
+        return sale_orders
+
+    @api.multi
+    def action_view_sale_order(self):
+        sale_orders = self.get_sale_orders()
 
         action_xmlid = self.get_purchase_sale_action_xmlid()
         action = self.env.ref(action_xmlid).read()[0]
@@ -35,3 +51,9 @@ class PurchaseOrder(models.Model):
             action['views'] = [(self.env.ref(view_xmlid).id, 'form')]
             action['res_id'] = sale_orders.id
         return action
+
+    @api.depends('order_line.move_dest_ids')
+    def _compute_sale_order_count(self):
+        for order in self:
+            sale_orders = order.get_sale_orders()
+            order.sale_order_count = len(sale_orders)
