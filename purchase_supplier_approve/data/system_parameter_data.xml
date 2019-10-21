@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2019 RGB Consulting - Domantas Sidorenkovas
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <data noupdate="1">
+        <record id="supplier_approval_pending_block" model="ir.config_parameter">
+            <field name="key">supplier_approval.pending_block</field>
+            <field name="value">0</field>
+        </record>
+    </data>
+</odoo>

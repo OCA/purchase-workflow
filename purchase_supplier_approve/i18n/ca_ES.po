@@ -128,7 +128,7 @@ msgid "Suppliers approval"
 msgstr "Homologació de Proveïdor"
 
 #. module: purchase_supplier_approve
-#: code:addons/purchase_supplier_approve/models/purchase.py:15
+#: code:addons/purchase_supplier_approve/models/purchase.py:20
 #, python-format
 msgid "You cannot confirm a purchase order if the supplier is not approved."
 msgstr "No pots confirmar una comanda de compra si el proveïdor no està homologat"

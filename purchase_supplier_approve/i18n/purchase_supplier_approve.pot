@@ -125,7 +125,7 @@ msgid "Suppliers approval"
 msgstr ""
 
 #. module: purchase_supplier_approve
-#: code:addons/purchase_supplier_approve/models/purchase.py:15
+#: code:addons/purchase_supplier_approve/models/purchase.py:20
 #, python-format
 msgid "You cannot confirm a purchase order if the supplier is not approved."
 msgstr ""

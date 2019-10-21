@@ -11,6 +11,7 @@
     'license': 'AGPL-3',
     'website': 'https://github.com/OCA/purchase-workflow',
     'data': [
+        'data/system_parameter_data.xml',
         'security/purchase_security.xml',
         'views/res_partner_view.xml',
         'wizard/supplier_approval_wizard.xml',
