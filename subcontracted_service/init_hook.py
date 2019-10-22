@@ -8,10 +8,10 @@ from odoo.api import Environment
 
 def post_init_hook(cr, pool):
     env = Environment(cr, SUPERUSER_ID, {})
-    create_warehouse_procurement_rules(env)
+    create_warehouse_stock_rules(env)
 
 
-def create_warehouse_procurement_rules(env):
+def create_warehouse_stock_rules(env):
     warehouses = env['stock.warehouse'].with_context(
         active_test=False).search([])
     warehouses._set_subcontracting_service_proc_rule()
