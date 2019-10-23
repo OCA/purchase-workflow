@@ -1,11 +1,10 @@
 # Copyright 2018 Tecnativa - Vicent Cubells
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
+from odoo import fields
 from odoo.tests import common
 
 
 class TestPurchaseOrderLineDeepSort(common.SavepointCase):
-
     @classmethod
     def setUpClass(cls):
         super(TestPurchaseOrderLineDeepSort, cls).setUpClass()
@@ -124,11 +123,13 @@ class TestPurchaseOrderLineDeepSort(common.SavepointCase):
         })
         lines = self.po_line_model.search([('order_id', '=', self.po.id)])
         self._check_value(lines, self.product_1, self.product_2)
-        self.assertEqual(lines[1].date_planned[:10], '2018-11-03')
+        self.assertEqual(
+            fields.Date.to_string(lines[1].date_planned), '2018-11-03')
         self.po.write({'line_direction': 'desc'})
         lines = self.po_line_model.search([('order_id', '=', self.po.id)])
         self._check_value(lines, self.product_2, self.product_1)
-        self.assertEqual(lines[1].date_planned[:10], '2018-11-03')
+        self.assertEqual(
+            fields.Date.to_string(lines[1].date_planned), '2018-11-03')
 
     def test_line_by_price_unit(self):
         """ Test if lines are ordered by purchase line price"""
@@ -178,3 +179,12 @@ class TestPurchaseOrderLineDeepSort(common.SavepointCase):
         self.po_line_3.price_unit = 0.0
         lines = self.po_line_model.search([('order_id', '=', self.po.id)])
         self.assertEqual(lines[0], self.po_line_3)
+
+    def test_res_config_settings(self):
+        purchase_config = self.env['res.config.settings'].sudo().create({
+            'po_line_order_default': 'name',
+            'po_line_direction_default': 'asc',
+        })
+        purchase_config.po_line_order_default = False
+        purchase_config.onchange_po_line_order_default()
+        self.assertFalse(purchase_config.po_line_direction_default)
