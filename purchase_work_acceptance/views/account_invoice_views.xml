@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="view_invoice_asset_category">
+        <field name="name">account.invoice.supplier.form</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_supplier_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='vendor_bill_id']" position="after">
+                <field name="require_wa" invisible="1"/>
+                <field name="wa_id"
+                       options="{'no_create': True}"
+                       groups="purchase_work_acceptance.group_enable_wa_on_invoice"
+                       attrs="{'required': [('require_wa','=', True)],
+                               'readonly':[('state', '!=' , 'draft')],
+                               'invisible': [('id', '=', False)]}"
+                       />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
