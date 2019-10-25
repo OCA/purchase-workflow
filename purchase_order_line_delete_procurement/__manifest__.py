@@ -15,7 +15,9 @@ Convert destination move from mto to mts.
     'depends': [
         'purchase',
     ],
-    'data': [],
+    'data': [
+        "views/sale_views.xml",
+    ],
     'installable': True,
     'auto_install': False,
     'license': "AGPL-3",

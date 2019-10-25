@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2019 PlanetaTIC - Lluís Rovira <lrovira@planetatic.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_order_form_cancel_sale_order" model="ir.ui.view">
+        <field name="name">sale.order.form.cancel.sale.order</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_cancel']" position="attributes">
+                <attribute name="context">{'cancel_sale_order': '1'}</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

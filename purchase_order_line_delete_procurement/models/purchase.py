@@ -10,10 +10,10 @@ class PurchaseOrderLine(models.Model):
 
     @api.multi
     def unlink(self):
-        for line in self:
-            line.procurement_ids.filtered(lambda r: r.state != 'cancel').unlink()
-        res = super(PurchaseOrderLine, self).unlink()
-        return res
+        if 'cancel_sale_order' not in self.env.context:
+            for line in self:
+                line.procurement_ids.filtered(lambda r: r.state != 'cancel').unlink()
+        return super(PurchaseOrderLine, self).unlink()
 
 
 class ProcurementOrder(models.Model):
