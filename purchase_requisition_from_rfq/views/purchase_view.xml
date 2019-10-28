@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <act_window id="action_purchase_purchase_agreement_from_rfq"
+        multi="True"
+        key2="client_action_multi"
+        name="Create Purchase Agreement from RFQ"
+        res_model="purchase.requisition"
+        src_model="purchase.order"
+        view_mode="form"
+        view_type="form"
+        target="current"
+        context="{'default_from_rfq': True}"/>
+
+</odoo>
