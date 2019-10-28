@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_purchase_requisition_form" model="ir.ui.view">
+        <field name="name">purchase.requisition.form.inherit</field>
+        <field name="model">purchase.requisition</field>
+        <field
+            name="inherit_id"
+            ref="purchase_requisition.view_purchase_requisition_form"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='is_quantity_copy']" position="before">
+                <field name="from_rfq" invisible="1" />
+            </xpath>
+            <xpath
+                expr="//button[@name='%(purchase_requisition.action_purchase_requisition_to_so)d'][1]"
+                position="attributes"
+            >
+                <attribute
+                    name="attrs"
+                >{'invisible': ['|', ('state', '!=', 'open'), ('from_rfq', '=', True)]}</attribute>
+            </xpath>
+            <xpath
+                expr="//button[@name='%(purchase_requisition.action_purchase_requisition_to_so)d'][2]"
+                position="attributes"
+            >
+                <attribute
+                    name="attrs"
+                >{'invisible': ['|',('state', 'not in', ('in_progress', 'ongoing')), ('from_rfq', '=', True)]}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

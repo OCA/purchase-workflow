@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="action_purchase_agreement_from_rfq" model="ir.actions.act_window">
+        <field name="name">Create Purchase Agreement from RFQ</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">purchase.requisition</field>
+        <field name="view_mode">form</field>
+        <field
+            name="view_id"
+            ref="purchase_requisition.view_purchase_requisition_form"
+        />
+        <field name="target">current</field>
+        <field name="context">{'default_from_rfq': True}</field>
+        <field name="binding_model_id" ref="purchase.model_purchase_order" />
+    </record>
+
+</odoo>
