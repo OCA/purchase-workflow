@@ -35,6 +35,7 @@ setuptools.setup(
         'odoo12-addon-purchase_request_product_usage',
         'odoo12-addon-purchase_request_tier_validation',
         'odoo12-addon-purchase_request_usage_department',
+        'odoo12-addon-purchase_requisition_tier_validation',
         'odoo12-addon-purchase_tier_validation',
         'odoo12-addon-purchase_triple_discount',
         'odoo12-addon-subcontracted_service',
