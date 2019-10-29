@@ -1,6 +1,7 @@
 # Copyright 2019 David Vidal <david.vidal@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from datetime import datetime
 from odoo import _, api, fields, models
 from odoo.addons import decimal_precision as dp
 from odoo.exceptions import UserError
@@ -64,8 +65,7 @@ class PurchaseOrderRecommendation(models.TransientModel):
     @api.multi
     def _get_total_days(self):
         """Compute days between the initial and the end date"""
-        day = (fields.Datetime.from_string(self.date_end) + timedelta(days=1) -
-               fields.Datetime.from_string(self.date_begin)).days
+        day = (self.date_end + timedelta(days=1) - self.date_begin).days
         return day
 
     @api.multi
@@ -79,10 +79,11 @@ class PurchaseOrderRecommendation(models.TransientModel):
         product_tmpls = supplierinfos.mapped('product_tmpl_id')
         products = supplierinfos.mapped('product_id')
         products |= product_tmpls.mapped('product_variant_ids')
+        combine = datetime.combine
         domain = [
             ('product_id', 'in', products.ids),
-            ('date', '>=', '{} 00:00:00'.format(self.date_begin)),
-            ('date', '<=', '{} 23:59:59'.format(self.date_end)),
+            ('date', '>=', combine(self.date_begin, datetime.min.time())),
+            ('date', '<=', combine(self.date_end, datetime.max.time())),
             ('location_id.usage', '=', src),
             ('location_dest_id.usage', '=', dst),
             ('state', '=', 'done'),
