@@ -19,7 +19,7 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-24 07:53+0000\n"
-"PO-Revision-Date: 2019-10-15 10:04+0000\n"
+"PO-Revision-Date: 2019-10-29 15:33+0000\n"
 "Last-Translator: Khalid Hazam <k.hazam@badep.ma>\n"
 "Language-Team: French (http://www.transifex.com/oca/"
 "OCA-purchase-workflow-10-0/language/fr/)\n"
@@ -193,7 +193,7 @@ msgstr "Approuvé"
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 #: selection:purchase.request,state:0
 msgid "Approved"
-msgstr "Approuver"
+msgstr "Approuvé"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__assigned_to
@@ -411,7 +411,7 @@ msgstr "Abonnés (partenaires)"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_request_allocation.py:107
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "From last reception this quantity has been allocated to this purchase request"
 msgstr ""
@@ -446,21 +446,18 @@ msgstr "ID"
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__message_unread
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__message_unread
-#, fuzzy
 msgid "If checked new messages require your attention."
 msgstr "Si coché les nouveaux messages requièrent votre attention."
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__message_needaction
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__message_needaction
-#, fuzzy
 msgid "If checked, new messages require your attention."
 msgstr "Si coché les nouveaux messages requièrent votre attention."
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__message_has_error
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__message_has_error
-#, fuzzy
 msgid "If checked, some messages have a delivery error."
 msgstr "Si coché, certains messages ont une erreur d'envoi."
 
@@ -479,7 +476,7 @@ msgstr "Est éditable"
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order__item_ids
 msgid "Items"
-msgstr ""
+msgstr "Lignes"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request____last_update
@@ -538,10 +535,8 @@ msgstr ""
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_ids
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_ids
-#, fuzzy
-#| msgid "Unread Messages"
 msgid "Messages"
-msgstr "Messages non lus"
+msgstr "Messages"
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_stock_warehouse_orderpoint
@@ -580,19 +575,19 @@ msgstr "Type de la prochaine activité"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "No RFQ or Purchase has been created"
-msgstr ""
+msgstr "Aucunes demande de prix ou bon de commande fournisseur n'ont été crées"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_needaction_counter
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_needaction_counter
 msgid "Number of Actions"
-msgstr ""
+msgstr "Nombre d'actions"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_has_error_counter
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_has_error_counter
 msgid "Number of error"
-msgstr ""
+msgstr "Nombre d'erreurs"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__message_needaction_counter
@@ -676,9 +671,8 @@ msgstr "Fournisseur favori"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__group_id
-#, fuzzy
 msgid "Procurement Group"
-msgstr "Ordre d'approvisionnement"
+msgstr "Groupe d'approvisionnement"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__product_id
@@ -786,9 +780,9 @@ msgstr "Demande d'achat rejetée"
 
 #. module: purchase_request
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:48
-#, fuzzy, python-format
+#, python-format
 msgid "Purchase Request %s is not approved"
-msgstr "Demande d'achat approuvée"
+msgstr "Demande d'achat %s est non approuvée"
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_purchase_request_allocation
@@ -1043,7 +1037,7 @@ msgstr "Demander l'autorisation"
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Request is approved"
-msgstr "Demande acceptée"
+msgstr "Demande approuvée"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
