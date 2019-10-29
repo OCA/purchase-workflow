@@ -1,6 +1,7 @@
 # Copyright 2019 David Vidal <david.vidal@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from datetime import date, datetime
 from odoo.tests.common import SavepointCase
 
 
@@ -69,7 +70,7 @@ class RecommendationCase(SavepointCase):
             'product_id': cls.prod_1.id,
             'product_uom_id': cls.prod_1.uom_id.id,
             'qty_done': 1,
-            'date': '2018-01-11 15:05:00',
+            'date': datetime(2018, 1, 11, 15, 5),
             'location_id': cls.wh1.lot_stock_id.id,
             'location_dest_id': cls.customer_loc.id,
             'picking_id': cls.picking_1.id,
@@ -78,7 +79,7 @@ class RecommendationCase(SavepointCase):
             'product_id': cls.prod_2.id,
             'product_uom_id': cls.prod_2.uom_id.id,
             'qty_done': 38,
-            'date': '2019-02-01 00:05:00',
+            'date': datetime(2019, 2, 1, 0, 5),
             'location_id': cls.wh1.lot_stock_id.id,
             'location_dest_id': cls.customer_loc.id,
             'picking_id': cls.picking_1.id,
@@ -87,7 +88,7 @@ class RecommendationCase(SavepointCase):
             'product_id': cls.prod_2.id,
             'product_uom_id': cls.prod_2.uom_id.id,
             'qty_done': 4,
-            'date': '2019-02-01 00:05:00',
+            'date': datetime(2019, 2, 1, 0, 5),
             'location_id': cls.wh2.lot_stock_id.id,
             'location_dest_id': cls.customer_loc.id,
             'picking_id': cls.picking_2.id,
@@ -96,7 +97,7 @@ class RecommendationCase(SavepointCase):
             'product_id': cls.prod_3.id,
             'product_uom_id': cls.prod_3.uom_id.id,
             'qty_done': 13,
-            'date': '2019-02-01 00:06:00',
+            'date': datetime(2019, 2, 1, 0, 6),
             'location_id': cls.wh2.lot_stock_id.id,
             'location_dest_id': cls.customer_loc.id,
             'picking_id': cls.picking_2.id,
@@ -105,7 +106,7 @@ class RecommendationCase(SavepointCase):
             'product_id': cls.prod_3.id,
             'product_uom_id': cls.prod_3.uom_id.id,
             'qty_done': 7,
-            'date': '2019-02-01 00:00:00',
+            'date': datetime(2019, 2, 1, 0, 0),
             'location_id': cls.supplier_loc.id,
             'location_dest_id': cls.wh1.lot_stock_id.id,
             'picking_id': cls.picking_3.id,
@@ -145,7 +146,7 @@ class RecommendationCase(SavepointCase):
         self.assertEqual(wizard.order_id, self.new_po)
         # All our moves are in the past
         self.assertFalse(wizard.line_ids)
-        wizard.date_begin = wizard.date_end = '2019-02-01'
+        wizard.date_begin = wizard.date_end = date(2019, 2, 1)
         wizard._generate_recommendations()
         self.assertEqual(wizard.line_ids[0].times_delivered, 2)
         self.assertEqual(wizard.line_ids[0].units_delivered, 42)
@@ -165,7 +166,7 @@ class RecommendationCase(SavepointCase):
     def test_recommendations_by_warehouse(self):
         """We can split recommendations by delivery warehouse"""
         wizard = self.wizard()
-        wizard.date_begin = wizard.date_end = '2019-02-01'
+        wizard.date_begin = wizard.date_end = date(2019, 2, 1)
         # Just delivered to WH2
         wizard.warehouse_ids = self.wh2
         wizard._generate_recommendations()
@@ -207,3 +208,45 @@ class RecommendationCase(SavepointCase):
         self.assertEqual(wizard.line_ids[1].product_id, self.prod_3)
         self.assertEqual(wizard.line_ids[1].units_available, 5)
         self.assertEqual(wizard.line_ids[1].units_virtual_available, 5)
+
+    def test_action_accept(self):
+        """Open wizard when there are no PO Lines and click on Accept"""
+        wizard = self.wizard()
+        wizard.date_begin = wizard.date_end = date(2019, 2, 1)
+        wizard._generate_recommendations()
+        wizard.action_accept()
+        self.assertEqual(len(self.new_po.order_line), 2)
+        self.assertEqual(self.new_po.order_line[0].product_id, self.prod_2)
+        self.assertEqual(self.new_po.order_line[0].product_qty, 42)
+        self.assertEqual(self.new_po.order_line[1].product_id, self.prod_3)
+        self.assertEqual(self.new_po.order_line[1].product_qty, 8)
+
+    def test_action_accept(self):
+        """Open wizard when there are PO Lines and click on Accept"""
+        # po_line = self.env['purchase.order.line'].create({
+        po_line = self.env['purchase.order.line'].new({
+            'sequence': 1,
+            'order_id': self.new_po.id,
+            'product_id': self.prod_2.id,
+        })
+        po_line.onchange_product_id()
+        po_line.product_qty = 10
+        po_line._onchange_quantity()
+        self.new_po.order_line = po_line
+        # Create wizard and set dates
+        wizard = self.wizard()
+        wizard.date_begin = wizard.date_end = date(2019, 2, 1)
+        wizard._generate_recommendations()
+        # After change dates, in the recommendation line corresponding to the
+        # self.prod_2 Units Included must be 10
+        self.assertEqual(wizard.line_ids[0].units_included, 10)
+        self.assertEqual(wizard.line_ids[1].units_included, 8)
+        # Change Units Included amount to 20 and accept, then the product_qty
+        # of the PO Line corresponding to the self.prod_2 must change to 20
+        wizard.line_ids[0].units_included = 20
+        wizard.action_accept()
+        self.assertEqual(len(self.new_po.order_line), 2)
+        self.assertEqual(self.new_po.order_line[0].product_id, self.prod_2)
+        self.assertEqual(self.new_po.order_line[0].product_qty, 20)
+        self.assertEqual(self.new_po.order_line[1].product_id, self.prod_3)
+        self.assertEqual(self.new_po.order_line[1].product_qty, 8)
