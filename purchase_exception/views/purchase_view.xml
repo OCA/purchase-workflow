@@ -65,7 +65,7 @@
         <field name="arch" type="xml">
             <filter name="activities_my" position="after">
                 <separator orientation="vertical"/>
-                <filter icon="terp-emblem-important" name="tofix"
+                <filter icon="fa-exclamation-circle" name="tofix"
                         string="Blocked in Draft" domain="[('main_exception_id','!=',False)]"/>
             </filter>
         </field>
