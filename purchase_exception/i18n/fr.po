@@ -26,7 +26,6 @@ msgstr ""
 #. module: purchase_exception
 #: model_terms:ir.ui.view,arch_db:purchase_exception.view_purchase_order_filter
 #, fuzzy
-#| msgid "Blocked in draft"
 msgid "Blocked in Draft"
 msgstr "Bloquée en brouillon"
 
@@ -48,7 +47,6 @@ msgstr "Nom affiché"
 #. module: purchase_exception
 #: model:ir.model,name:purchase_exception.model_exception_rule
 #, fuzzy
-#| msgid "Exception Rules"
 msgid "Exception Rule"
 msgstr "Règles d'exception"
 
@@ -60,7 +58,6 @@ msgstr "Exceptions"
 #. module: purchase_exception
 #: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__exception_ids
 #, fuzzy
-#| msgid "Exception Rules"
 msgid "Exceptions to resolve"
 msgstr "Règles d'exception"
 
@@ -73,7 +70,6 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__ignore
 #: model:ir.model.fields,field_description:purchase_exception.field_purchase_order_line__ignore_exception
 #, fuzzy
-#| msgid "Exceptions"
 msgid "Ignore Exceptions"
 msgstr "Exceptions"
 
@@ -126,7 +122,6 @@ msgstr "Commande"
 #. module: purchase_exception
 #: model:ir.model,name:purchase_exception.model_purchase_order_line
 #, fuzzy
-#| msgid "Purchase Order"
 msgid "Purchase Order Line"
 msgstr "Commande"
 
@@ -138,14 +133,12 @@ msgstr "La quantité sur la ligne doit être positive"
 #. module: purchase_exception
 #: selection:exception.rule,model:0
 #, fuzzy
-#| msgid "Purchase Order"
 msgid "Purchase order"
 msgstr "Commande"
 
 #. module: purchase_exception
 #: selection:exception.rule,model:0
 #, fuzzy
-#| msgid "Purchase Order"
 msgid "Purchase order line"
 msgstr "Commande"
 
@@ -159,7 +152,6 @@ msgstr "Achat : Test des exceptions des commandes en brouillon"
 #. module: purchase_exception
 #: model:ir.model.fields,field_description:purchase_exception.field_exception_rule__purchase_ids
 #, fuzzy
-#| msgid "Purchase"
 msgid "Purchases"
 msgstr "Achat"
 
