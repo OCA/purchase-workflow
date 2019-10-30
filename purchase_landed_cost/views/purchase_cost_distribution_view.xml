@@ -298,7 +298,7 @@
                 <button name="button_duplicate"
                         string="Duplicate expense"
                         type="object"
-                        icon="gtk-dnd-multiple"
+                        icon="fa-clone"
                 />
             </tree>
         </field>
