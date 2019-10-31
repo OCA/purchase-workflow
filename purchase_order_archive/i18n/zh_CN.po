@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* purchase_order_archive
+# 	* purchase_order_archive
 #
 msgid ""
 msgstr ""
@@ -25,6 +25,12 @@ msgstr "有效"
 #: model_terms:ir.ui.view,arch_db:purchase_order_archive.view_purchase_order_archive_filter
 msgid "Archived"
 msgstr "已归档"
+
+#. module: purchase_order_archive
+#: code:addons/purchase_order_archive/models/purchase_order.py:0
+#, python-format
+msgid "Only 'Locked' or 'Canceled' orders can be archived"
+msgstr ""
 
 #. module: purchase_order_archive
 #: model:ir.model,name:purchase_order_archive.model_purchase_order
