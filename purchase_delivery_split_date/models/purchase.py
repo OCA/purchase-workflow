@@ -2,12 +2,9 @@
 # Copyright 2017 Eficent Business and IT Consulting Services, S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from datetime import datetime
-from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
-
 import logging
 from itertools import groupby
-from odoo import models, api
+from odoo import models, api, fields
 
 _logger = logging.getLogger(__name__)
 
@@ -22,10 +19,11 @@ class PurchaseOrderLine(models.Model):
         dictionary element with the field that you want to group by. This
         method is designed for extensibility, so that other modules can add
         additional keys or replace them by others."""
-        date = datetime.strptime(
-            str(line.date_planned), DEFAULT_SERVER_DATETIME_FORMAT)
+        date = line.date_planned.date()
         # Split date value to obtain only the attributes year, month and day
-        key = ({'date_planned': str(date).split(" ")[0]},)
+        key = (
+            {'date_planned': fields.Date.to_string(date)},
+        )
         return key
 
     @api.model
