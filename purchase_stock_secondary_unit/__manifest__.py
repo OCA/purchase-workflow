@@ -4,7 +4,7 @@
     'name': 'Purchase Stock Secondary Unit',
     'summary': 'Propagate secondary UoM from PO lines to Stock Moves',
     'version': '12.0.1.0.0',
-    'development_status': 'Alpha',
+    'development_status': 'alpha',
     'category': 'Purchase',
     'website': 'https://github.com/OCA/purchase-workflow',
     'author': 'Eficent, Odoo Community Association (OCA)',
@@ -14,6 +14,6 @@
     'auto_install': True,
     'depends': [
         'stock_secondary_unit',
-        'purchase_secondary_unit',
+        'purchase_order_secondary_unit',
     ],
 }

@@ -8,11 +8,10 @@ class PurchaseOrderLine(models.Model):
 
     @api.multi
     def _prepare_stock_moves(self, picking):
-        """ Prepare the stock moves data for one order line. This function returns a list of
-        dictionary ready to be used in stock.move's create()
+        """ If secondary unit of measure is defined on PO line propagate it
+        to Stock Moves
         """
         res = super()._prepare_stock_moves(self, picking)
-        if self.secondary_uom_id and self.secondary_uom_qty:
+        if self.secondary_uom_id:
             res[0]['secondary_uom_id'] = self.secondary_uom_id
-            res[0]['secondary_uom_qty'] = self.secondary_uom_qty
         return res
