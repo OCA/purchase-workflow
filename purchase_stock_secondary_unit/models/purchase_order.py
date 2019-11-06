@@ -13,5 +13,5 @@ class PurchaseOrderLine(models.Model):
         """
         res = super()._prepare_stock_moves(picking)
         if self.secondary_uom_id:
-            res[0]['secondary_uom_id'] = self.secondary_uom_id
+            res[0]['secondary_uom_id'] = self.secondary_uom_id.id
         return res
