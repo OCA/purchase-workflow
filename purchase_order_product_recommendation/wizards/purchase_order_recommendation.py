@@ -138,6 +138,13 @@ class PurchaseOrderRecommendation(models.TransientModel):
         qty_to_order = abs(
             min(0, units_virtual_available - vals.get('qty_delivered', 0)))
         vals['is_modified'] = bool(qty_to_order)
+        units_included = order_line and order_line.product_qty or qty_to_order
+        price_unit = product_id._select_seller(
+            partner_id=self.order_id.partner_id,
+            date=fields.Date.today(),
+            quantity=units_included,
+            uom_id=product_id.uom_po_id,
+        ).price
         return {
             'purchase_line_id': order_line and order_line.id,
             'product_id': product_id.id,
@@ -149,8 +156,8 @@ class PurchaseOrderRecommendation(models.TransientModel):
             'units_avg_delivered': (vals.get('qty_delivered', 0) /
                                     self._get_total_days()),
             'units_delivered': vals.get('qty_delivered', 0),
-            'units_included': (order_line and order_line.product_qty or
-                               qty_to_order),
+            'units_included': units_included,
+            'price_unit': price_unit,
             'is_modified': vals.get('is_modified', False),
         }
 
@@ -247,7 +254,7 @@ class PurchaseOrderRecommendationLine(models.TransientModel):
         string='Product',
     )
     price_unit = fields.Monetary(
-        compute='_compute_price_unit',
+        readonly=True,
     )
     times_delivered = fields.Integer(
         readonly=True,
@@ -284,20 +291,15 @@ class PurchaseOrderRecommendationLine(models.TransientModel):
     )
     is_modified = fields.Boolean()
 
-    @api.multi
-    @api.depends('partner_id', 'product_id', 'units_included')
-    def _compute_price_unit(self):
-        for one in self:
-            one.price_unit = one.product_id._select_seller(
-                partner_id=one.partner_id,
-                date=fields.Date.today(),
-                quantity=one.units_included,
-                uom_id=one.product_id.uom_po_id,
-            ).price
-
     @api.onchange('units_included')
     def _onchange_units_included(self):
         self.is_modified = bool(self.purchase_line_id or self.units_included)
+        self.price_unit = self.product_id._select_seller(
+            partner_id=self.partner_id,
+            date=fields.Date.today(),
+            quantity=self.units_included,
+            uom_id=self.product_id.uom_po_id,
+        ).price
 
     @api.multi
     def _prepare_update_po_line(self):
