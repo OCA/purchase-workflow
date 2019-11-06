@@ -3,18 +3,13 @@
 
 {
     "name": "Purchase Request",
-    "author": "Eficent, "
-              "Odoo Community Association (OCA)",
-    "version": "12.0.1.1.0",
+    "author": "Eficent, " "Odoo Community Association (OCA)",
+    "version": "13.0.1.1.0",
     "summary": "Use this module to have notification of requirements of "
-               "materials and/or external services and keep track of such "
-               "requirements.",
+    "materials and/or external services and keep track of such "
+    "requirements.",
     "category": "Purchase Management",
-    "depends": [
-        "purchase",
-        "product",
-        "purchase_stock",
-    ],
+    "depends": ["purchase", "product", "purchase_stock"],
     "data": [
         "security/purchase_request.xml",
         "security/ir.model.access.csv",
@@ -29,10 +24,8 @@
         "views/stock_move_views.xml",
         "wizard/purchase_request_line_make_purchase_order_view.xml",
     ],
-    'demo': [
-        "demo/purchase_request_demo.xml",
-    ],
-    "license": 'LGPL-3',
-    'installable': True,
-    'application': True,
+    "demo": ["demo/purchase_request_demo.xml"],
+    "license": "LGPL-3",
+    "installable": True,
+    "application": True,
 }
