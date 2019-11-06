@@ -11,7 +11,7 @@ class PurchaseOrderLine(models.Model):
         """ If secondary unit of measure is defined on PO line propagate it
         to Stock Moves
         """
-        res = super()._prepare_stock_moves(self, picking)
+        res = super()._prepare_stock_moves(picking)
         if self.secondary_uom_id:
             res[0]['secondary_uom_id'] = self.secondary_uom_id
         return res
