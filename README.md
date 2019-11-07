@@ -44,11 +44,11 @@ addon | version | summary
 [purchase_order_revision](purchase_order_revision/) | 10.0.1.0.0 | Purchase order revisions
 [purchase_picking_state](purchase_picking_state/) | 10.0.1.0.0 | Add the status of all the incoming picking in the purchase order
 [purchase_product_multi_add](purchase_product_multi_add/) | 10.0.1.0.0 | This module allows a shortcut to add purchase.order.line by selecting product into a wizard for the given suplier
-[purchase_request](purchase_request/) | 10.0.1.1.2 | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
+[purchase_request](purchase_request/) | 10.0.1.2.0 | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
 [purchase_request_department](purchase_request_department/) | 10.0.1.0.0 | Purchase Request Department
-[purchase_request_procurement](purchase_request_procurement/) | 10.0.1.0.1 | Purchase Request Procurement
+[purchase_request_procurement](purchase_request_procurement/) | 10.0.1.1.0 | Purchase Request Procurement
 [purchase_request_to_procurement](purchase_request_to_procurement/) | 10.0.1.0.0 | This module introduces the possiblity to create procurement order from purchase request
-[purchase_request_to_rfq](purchase_request_to_rfq/) | 10.0.1.0.3 | Purchase Request to RFQ
+[purchase_request_to_rfq](purchase_request_to_rfq/) | 10.0.1.1.0 | Purchase Request to RFQ
 [purchase_request_to_rfq_order_approved](purchase_request_to_rfq_order_approved/) | 10.0.1.0.0 | Purchase Request to RFQ Order Approved
 [purchase_tier_validation](purchase_tier_validation/) | 10.0.1.0.0 | Extends the functionality of Purchase Orders to support a tier validation process.
 [purchase_triple_discount](purchase_triple_discount/) | 10.0.1.1.0 | Manage triple discount on purchase order lines
