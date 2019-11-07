@@ -115,6 +115,10 @@ class PurchaseRequest(models.Model):
         compute='_compute_line_count',
         readonly=True
     )
+    product_id = fields.Many2one('product.product',
+                                 related='line_ids.product_id',
+                                 readonly=True,
+                                 string='Product')
 
     @api.depends('line_ids')
     def _compute_line_count(self):

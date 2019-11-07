@@ -16,7 +16,7 @@ class ProcurementOrder(models.Model):
     )
 
     @api.multi
-    def _prepare_purchase_request_line(self):
+    def _prepare_purchase_request_line(self, pr):
         self.ensure_one()
         product = self.product_id
         procurement_uom_po_qty = self.product_uom._compute_quantity(
@@ -27,35 +27,50 @@ class ProcurementOrder(models.Model):
             'date_required': self.date_planned,
             'product_uom_id': product.uom_po_id.id,
             'product_qty': procurement_uom_po_qty,
-            'request_id': self.request_id.id,
+            'request_id': pr.id,
             'procurement_id': self.id
         }
 
     @api.multi
     def _prepare_purchase_request(self):
         self.ensure_one()
-
+        gpo = self.rule_id.group_propagation_option
+        group_id = (gpo == 'fixed' and self.group_id.id) or \
+                   (gpo == 'propagate' and self.group_id.id) or False
         return {
             'origin': self.origin,
             'company_id': self.company_id.id,
             'picking_type_id': self.rule_id.picking_type_id.id,
+            'group_id': group_id,
         }
 
     @api.multi
-    def _search_existing_purchase_request(self):
+    def _make_pr_get_domain(self, values):
         """
         This method is to be implemented by other modules that can
         provide a criteria to select the appropriate purchase request to be
         extended.
         :return: False
         """
-        return False
+        domain = (
+            ('state', '=', 'draft'),
+            ('picking_type_id', '=', values['picking_type_id']),
+            ('company_id', '=', values['company_id']),
+        )
+        gpo = self.rule_id.group_propagation_option
+        group_id = (gpo == 'fixed' and self.group_id.id) or \
+                   (gpo == 'propagate' and self.group_id.id) or False
+        if group_id:
+            domain += (
+                ('group_id', '=', group_id),
+                )
+        return domain
 
     @api.multi
     def _run(self):
         self.ensure_one()
         if self.is_create_purchase_request_allowed():
-            self.create_purchase_request()
+            self.request_id = self.create_purchase_request()
             return True
         return super(ProcurementOrder, self)._run()
 
@@ -83,19 +98,32 @@ class ProcurementOrder(models.Model):
 
         purchase_request_model = self.env['purchase.request']
         purchase_request_line_model = self.env['purchase.request.line']
-
-        # Search for an existing Purchase Request to be considered
-        # to be extended.
-        pr = self._search_existing_purchase_request()
+        origin = self.origin
+        cache = {}
+        pr = self.env['purchase.request']
+        request_data = self._prepare_purchase_request()
+        domain = self._make_pr_get_domain(request_data)
+        if domain in cache:
+            pr = cache[domain]
+        elif domain:
+            pr = self.env['purchase.request'].search([dom for dom in domain])
+            pr = pr[0] if pr else False
+            cache[domain] = pr
         if not pr:
-            request_data = self._prepare_purchase_request()
-            req = purchase_request_model.create(request_data)
-            self.message_post(body=_("Purchase Request created"))
-            self.request_id = req
-        request_line_data = self._prepare_purchase_request_line()
-        purchase_request_line_model.create(request_line_data),
-        self.message_post(body=_("Purchase Request extended."))
-        return self.request_id
+            pr = purchase_request_model.create(request_data)
+            cache[domain] = pr
+        elif not pr.origin or origin not in pr.origin.split(', '):
+            if pr.origin:
+                if origin:
+                    pr.write({'origin': pr.origin + ', ' + origin})
+                else:
+                    pr.write({'origin': pr.origin})
+            else:
+                pr.write({'origin': origin})
+        # Create Line
+        request_line_data = self._prepare_purchase_request_line(pr)
+        purchase_request_line_model.create(request_line_data)
+        return pr
 
     @api.multi
     def propagate_cancels(self):
