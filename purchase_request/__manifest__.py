@@ -5,7 +5,7 @@
     "name": "Purchase Request",
     "author": "Eficent, "
               "Odoo Community Association (OCA)",
-    "version": "12.0.1.1.0",
+    "version": "12.0.1.1.1",
     "summary": "Use this module to have notification of requirements of "
                "materials and/or external services and keep track of such "
                "requirements.",
