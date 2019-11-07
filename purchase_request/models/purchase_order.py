@@ -1,13 +1,12 @@
 # Copyright 2018-2019 Eficent Business and IT Consulting Services S.L.
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0).
 
-from odoo import _, api, exceptions, fields, models
+from odoo import _, exceptions, fields, models
 
 
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
-    @api.multi
     def _purchase_request_confirm_message_content(self, request, request_dict):
         self.ensure_one()
         if not request_dict:
@@ -34,7 +33,6 @@ class PurchaseOrder(models.Model):
         message += "</ul>"
         return message
 
-    @api.multi
     def _purchase_request_confirm_message(self):
         request_obj = self.env["purchase.request"]
         for po in self:
@@ -60,7 +58,6 @@ class PurchaseOrder(models.Model):
                 request.message_post(body=message, subtype="mail.mt_comment")
         return True
 
-    @api.multi
     def _purchase_request_line_check(self):
         for po in self:
             for line in po.order_line:
@@ -72,7 +69,6 @@ class PurchaseOrder(models.Model):
                         )
         return True
 
-    @api.multi
     def button_confirm(self):
         self._purchase_request_line_check()
         res = super(PurchaseOrder, self).button_confirm()
@@ -84,11 +80,11 @@ class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
     purchase_request_lines = fields.Many2many(
-        "purchase.request.line",
-        "purchase_request_purchase_order_line_rel",
-        "purchase_order_line_id",
-        "purchase_request_line_id",
-        "Purchase Request Lines",
+        comodel_name="purchase.request.line",
+        relation="purchase_request_purchase_order_line_rel",
+        column1="purchase_order_line_id",
+        column2="purchase_request_line_id",
+        string="Purchase Request Lines",
         readonly=True,
         copy=False,
     )
@@ -100,7 +96,6 @@ class PurchaseOrderLine(models.Model):
         copy=False,
     )
 
-    @api.multi
     def action_openRequestLineTreeView(self):
         """
         :return dict: dictionary value for created view
@@ -120,7 +115,6 @@ class PurchaseOrderLine(models.Model):
             "domain": domain,
         }
 
-    @api.multi
     def _prepare_stock_moves(self, picking):
         self.ensure_one()
         val = super(PurchaseOrderLine, self)._prepare_stock_moves(picking)
@@ -134,7 +128,6 @@ class PurchaseOrderLine(models.Model):
             v["purchase_request_allocation_ids"] = all_list
         return val
 
-    @api.multi
     def update_service_allocations(self, prev_qty_received):
         for rec in self:
             allocation = self.env["purchase.request.allocation"].search(
@@ -174,7 +167,6 @@ class PurchaseOrderLine(models.Model):
                 alloc.purchase_request_line_id._compute_qty()
         return True
 
-    @api.model
     def _purchase_request_confirm_done_message_content(self, message_data):
         title = _("Service confirmation for Request %s") % (
             message_data["request_name"]
@@ -203,12 +195,16 @@ class PurchaseOrderLine(models.Model):
             "requestor": request_line.request_id.requested_by.partner_id.name,
         }
 
-    @api.multi
     def write(self, vals):
-        #  it is done here instead of method _update_received_qty
-        #  to make sure this work for services
-        prev_qty_received = self.qty_received
-        res = super(PurchaseOrderLine, self).write(vals)
+        #  As services do not generate stock move this tweak is required
+        #  to allocate them.
+        prev_qty_received = {}
         if vals.get("qty_received", False):
-            self.update_service_allocations(prev_qty_received)
+            service_lines = self.filtered(lambda l: l.product_id.type == "service")
+            for line in service_lines:
+                prev_qty_received[line.id] = line.qty_received
+        res = super(PurchaseOrderLine, self).write(vals)
+        if prev_qty_received:
+            for line in service_lines:
+                line.update_service_allocations(prev_qty_received[line.id])
         return res

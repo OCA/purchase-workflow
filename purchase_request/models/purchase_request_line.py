@@ -1,5 +1,5 @@
 # Copyright 2018-2019 Eficent Business and IT Consulting Services S.L.
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0).
 
 from datetime import datetime
 
@@ -8,8 +8,6 @@ from dateutil.relativedelta import relativedelta
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools.float_utils import float_compare
-
-import odoo.addons.decimal_precision as dp
 
 _STATES = [
     ("draft", "Draft"),
@@ -27,32 +25,43 @@ class PurchaseRequestLine(models.Model):
     _inherit = ["mail.thread", "mail.activity.mixin"]
     _order = "id desc"
 
-    name = fields.Char("Description", track_visibility="onchange")
+    name = fields.Char(string="Description", track_visibility="onchange")
     product_uom_id = fields.Many2one(
-        "uom.uom", "Product Unit of Measure", track_visibility="onchange"
+        comodel_name="uom.uom",
+        string="Product Unit of Measure",
+        track_visibility="onchange",
     )
     product_qty = fields.Float(
-        "Quantity",
-        track_visibility="onchange",
-        digits=dp.get_precision("Product Unit of Measure"),
+        string="Quantity", track_visibility="onchange", digits="Product Unit of Measure"
     )
     request_id = fields.Many2one(
-        "purchase.request", "Purchase Request", ondelete="cascade", readonly=True
+        comodel_name="purchase.request",
+        string="Purchase Request",
+        ondelete="cascade",
+        readonly=True,
     )
     company_id = fields.Many2one(
-        "res.company", related="request_id.company_id", string="Company", store=True
+        comodel_name="res.company",
+        related="request_id.company_id",
+        string="Company",
+        store=True,
     )
     analytic_account_id = fields.Many2one(
-        "account.analytic.account", "Analytic Account", track_visibility="onchange"
+        comodel_name="account.analytic.account",
+        string="Analytic Account",
+        track_visibility="onchange",
     )
     requested_by = fields.Many2one(
-        "res.users",
-        related="request_id.requested_by",
+        comodel_name="res.users",
         string="Requested by",
+        related="request_id.requested_by",
         store=True,
     )
     assigned_to = fields.Many2one(
-        "res.users", related="request_id.assigned_to", string="Assigned to", store=True
+        comodel_name="res.users",
+        related="request_id.assigned_to",
+        string="Assigned to",
+        store=True,
     )
     date_start = fields.Date(related="request_id.date_start", store=True)
     description = fields.Text(
@@ -81,7 +90,9 @@ class PurchaseRequestLine(models.Model):
         store=True,
     )
     supplier_id = fields.Many2one(
-        "res.partner", string="Preferred supplier", compute="_compute_supplier_id"
+        comodel_name="res.partner",
+        string="Preferred supplier",
+        compute="_compute_supplier_id",
     )
     cancelled = fields.Boolean(
         string="Cancelled", readonly=True, default=False, copy=False
@@ -89,15 +100,15 @@ class PurchaseRequestLine(models.Model):
 
     purchased_qty = fields.Float(
         string="Quantity in RFQ or PO",
-        digits=dp.get_precision("Product Unit of Measure"),
+        digits="Product Unit of Measure",
         compute="_compute_purchased_qty",
     )
     purchase_lines = fields.Many2many(
-        "purchase.order.line",
-        "purchase_request_purchase_order_line_rel",
-        "purchase_request_line_id",
-        "purchase_order_line_id",
-        "Purchase Order Lines",
+        comodel_name="purchase.order.line",
+        relation="purchase_request_purchase_order_line_rel",
+        column1="purchase_request_line_id",
+        column2="purchase_order_line_id",
+        string="Purchase Order Lines",
         readonly=True,
         copy=False,
     )
@@ -108,10 +119,14 @@ class PurchaseRequestLine(models.Model):
         store=True,
     )
     move_dest_ids = fields.One2many(
-        "stock.move", "created_purchase_request_line_id", "Downstream Moves"
+        comodel_name="stock.move",
+        inverse_name="created_purchase_request_line_id",
+        string="Downstream Moves",
     )
 
-    orderpoint_id = fields.Many2one("stock.warehouse.orderpoint", "Orderpoint")
+    orderpoint_id = fields.Many2one(
+        comodel_name="stock.warehouse.orderpoint", string="Orderpoint"
+    )
     purchase_request_allocation_ids = fields.One2many(
         comodel_name="purchase.request.allocation",
         inverse_name="purchase_request_line_id",
@@ -119,24 +134,24 @@ class PurchaseRequestLine(models.Model):
     )
 
     qty_in_progress = fields.Float(
-        "Qty In Progress",
-        digits=dp.get_precision("Product Unit of Measure"),
+        string="Qty In Progress",
+        digits="Product Unit of Measure",
         readonly=True,
         compute="_compute_qty",
         store=True,
         help="Quantity in progress.",
     )
     qty_done = fields.Float(
-        "Qty Done",
-        digits=dp.get_precision("Product Unit of Measure"),
+        string="Qty Done",
+        digits="Product Unit of Measure",
         readonly=True,
         compute="_compute_qty",
         store=True,
         help="Quantity completed",
     )
     qty_cancelled = fields.Float(
-        "Qty Cancelled",
-        digits=dp.get_precision("Product Unit of Measure"),
+        string="Qty Cancelled",
+        digits="Product Unit of Measure",
         readonly=True,
         compute="_compute_qty_cancelled",
         store=True,
@@ -149,7 +164,7 @@ class PurchaseRequestLine(models.Model):
     )
     pending_qty_to_receive = fields.Float(
         compute="_compute_qty_to_buy",
-        digits=dp.get_precision("Product Unit of Measure"),
+        digits="Product Unit of Measure",
         copy=False,
         string="Pending Qty to Receive",
         store=True,
@@ -261,7 +276,6 @@ class PurchaseRequestLine(models.Model):
     )
     currency_id = fields.Many2one(related="company_id.currency_id", readonly=True)
 
-    @api.multi
     @api.depends(
         "product_id",
         "name",
@@ -281,16 +295,16 @@ class PurchaseRequestLine(models.Model):
         for rec in self.filtered(lambda p: p.purchase_lines):
             rec.is_editable = False
 
-    @api.multi
     def _compute_supplier_id(self):
         for rec in self:
             if rec.product_id:
+                rec.supplier_id = False
                 if rec.product_id.seller_ids:
                     rec.supplier_id = rec.product_id.seller_ids[0].name
 
     product_id = fields.Many2one(
-        "product.product",
-        "Product",
+        comodel_name="product.product",
+        string="Product",
         domain=[("purchase_ok", "=", True)],
         track_visibility="onchange",
     )
@@ -307,17 +321,14 @@ class PurchaseRequestLine(models.Model):
             self.product_qty = 1
             self.name = name
 
-    @api.multi
     def do_cancel(self):
         """Actions to perform when cancelling a purchase request line."""
         self.write({"cancelled": True})
 
-    @api.multi
     def do_uncancel(self):
         """Actions to perform when uncancelling a purchase request line."""
         self.write({"cancelled": False})
 
-    @api.multi
     def write(self, vals):
         res = super(PurchaseRequestLine, self).write(vals)
         if vals.get("cancelled"):
@@ -325,7 +336,6 @@ class PurchaseRequestLine(models.Model):
             requests.check_auto_reject()
         return res
 
-    @api.multi
     def _compute_purchased_qty(self):
         for rec in self:
             rec.purchased_qty = 0.0
@@ -337,7 +347,6 @@ class PurchaseRequestLine(models.Model):
                 else:
                     rec.purchased_qty += line.product_qty
 
-    @api.multi
     @api.depends("purchase_lines.state", "purchase_lines.order_id.state")
     def _compute_purchase_state(self):
         for rec in self:
@@ -409,7 +418,6 @@ class PurchaseRequestLine(models.Model):
         qty = max(rl_qty, supplierinfo_min_qty)
         return qty
 
-    @api.multi
     def unlink(self):
         if self.mapped("purchase_lines"):
             raise UserError(

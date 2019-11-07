@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
     <record id="view_stock_move_operations" model="ir.ui.view">
@@ -12,7 +11,6 @@
             </field>
         </field>
     </record>
-
 
     <record id="purchase_request_allocation" model="ir.ui.view">
     <field name="name">purchase.request.allocation</field>
@@ -37,25 +35,8 @@
         <field name="inherit_id" ref="stock.view_move_form"/>
         <field name="arch" type="xml">
             <group name="linked_group" position="after">
-                <newline/>
-                <group name="allocations"
-                       string="Purchase Request Allocations">
-                    <field name="purchase_request_allocation_ids"/>
-                </group>
-            </group>
-        </field>
-    </record>
-
-    <record id="view_move_picking_form" model="ir.ui.view">
-        <field name="name">stock.move.form</field>
-        <field name="model">stock.move</field>
-        <field name="inherit_id" ref="stock.view_move_picking_form"/>
-        <field name="arch" type="xml">
-            <group name="quants_grp" position="after">
-                <newline/>
-                <group name="allocations"
-                       string="Purchase Request Allocations">
-                    <field name="purchase_request_allocation_ids"/>
+                <group name="allocations" string="Purchase Request Allocations">
+                    <field name="purchase_request_allocation_ids" style="width:251%%"/>
                 </group>
             </group>
         </field>

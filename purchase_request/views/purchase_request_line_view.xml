@@ -1,7 +1,7 @@
-<?xml version="1.0"?>
 <!-- Copyright 2018-2019 Eficent Business and IT Consulting Services S.L.
-     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0) -->
 <odoo>
+
     <record id="purchase_request_line_tree" model="ir.ui.view">
         <field name="name">purchase.request.line.tree</field>
         <field name="model">purchase.request.line</field>
@@ -85,7 +85,6 @@
                             <field name="estimated_cost" widget="monetary"
                                    attrs="{'readonly': [('is_editable','=', False)]}"/>
                             <field name="currency_id" invisible="1"/>
-                            <field name="cancelled"/>
                         </group>
                     </group>
                     <group name="specifications">
@@ -215,7 +214,7 @@
         id="action_purchase_request_line_product_tree"
         name="Purchase Requests"
         res_model="purchase.request.line"
-        src_model="product.product"
+        binding_model="product.product"
         groups="group_purchase_request_user,group_purchase_request_manager"/>
 
     <record id="purchase_request_line_form_action"
@@ -223,7 +222,6 @@
         <field name="name">Purchase Request Lines</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">purchase.request.line</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="search_view_id" ref="purchase_request_line_search"/>
     </record>
@@ -345,6 +343,6 @@
         id="menu_purchase_request_line_act"
         sequence="20"
         parent="menu_purchase_request"
-        action="purchase_request_line_form_action"
-        />
+        action="purchase_request_line_form_action"/>
+
 </odoo>

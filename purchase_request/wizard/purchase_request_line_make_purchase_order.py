@@ -1,5 +1,5 @@
 # Copyright 2018-2019 Eficent Business and IT Consulting Services S.L.
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0).
 
 
 from datetime import datetime
@@ -7,18 +7,16 @@ from datetime import datetime
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
-import odoo.addons.decimal_precision as dp
-
 
 class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
     _name = "purchase.request.line.make.purchase.order"
     _description = "Purchase Request Line Make Purchase Order"
 
     supplier_id = fields.Many2one(
-        "res.partner",
+        comodel_name="res.partner",
         string="Supplier",
         required=True,
-        domain=[("supplier", "=", True), ("is_company", "=", True)],
+        domain=[("is_company", "=", True)],
     )
     item_ids = fields.One2many(
         "purchase.request.line.make.purchase.order.item", "wiz_id", string="Items"
@@ -154,7 +152,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
     @api.model
     def _prepare_purchase_order_line(self, po, item):
         if not item.product_id:
-            raise UserError("Please select a product for all lines")
+            raise UserError(_("Please select a product for all lines"))
         product = item.product_id
 
         # Keep the standard product UOM for purchase order so we should
@@ -219,7 +217,6 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             order_line_data.append(("name", "=", item.name))
         return order_line_data
 
-    @api.multi
     def make_purchase_order(self):
         res = []
         purchase_obj = self.env["purchase.order"]
@@ -292,7 +289,7 @@ class PurchaseRequestLineMakePurchaseOrderItem(models.TransientModel):
     _description = "Purchase Request Line Make Purchase Order Item"
 
     wiz_id = fields.Many2one(
-        "purchase.request.line.make.purchase.order",
+        comodel_name="purchase.request.line.make.purchase.order",
         string="Wizard",
         required=True,
         ondelete="cascade",
@@ -300,23 +297,22 @@ class PurchaseRequestLineMakePurchaseOrderItem(models.TransientModel):
     )
     line_id = fields.Many2one("purchase.request.line", string="Purchase Request Line")
     request_id = fields.Many2one(
-        "purchase.request",
+        comodel_name="purchase.request",
         related="line_id.request_id",
         string="Purchase Request",
         readonly=False,
     )
     product_id = fields.Many2one(
-        "product.product",
+        comodel_name="product.product",
         string="Product",
         related="line_id.product_id",
         readonly=False,
     )
     name = fields.Char(string="Description", required=True)
     product_qty = fields.Float(
-        string="Quantity to purchase",
-        digits=dp.get_precision("Product Unit of Measure"),
+        string="Quantity to purchase", digits="Product Unit of Measure"
     )
-    product_uom_id = fields.Many2one("uom.uom", string="UoM")
+    product_uom_id = fields.Many2one(comodel_name="uom.uom", string="UoM")
     keep_description = fields.Boolean(
         string="Copy descriptions to new PO",
         help="Set true if you want to keep the "

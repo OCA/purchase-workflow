@@ -1,5 +1,5 @@
 # Copyright 2018-2019 Eficent Business and IT Consulting Services S.L.
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0).
 
 from odoo import fields
 from odoo.tests import common
@@ -34,12 +34,7 @@ class TestPurchaseRequestProcurement(common.SavepointCase):
 
         # Create Supplier
         self.supplier = self.env["res.partner"].create(
-            {
-                "name": "Supplier",
-                "is_company": True,
-                "supplier": True,
-                "company_id": False,
-            }
+            {"name": "Supplier", "is_company": True, "company_id": False}
         )
 
         # Add supplier to product_1
@@ -63,15 +58,20 @@ class TestPurchaseRequestProcurement(common.SavepointCase):
             "route_ids": self.env.ref("purchase_stock.route_warehouse0_buy"),
             "company_id": self.env.ref("base.main_company"),
         }
-        return self.env["procurement.group"].run(
-            product,
-            qty,
-            product.uom_id,
-            self.location,
-            name,
-            "Test Purchase Request Procurement",
-            values,
+        procurements = []
+        procurements.append(
+            self.env["procurement.group"].Procurement(
+                product,
+                qty,
+                product.uom_id,
+                self.location,
+                name,
+                "Test Purchase Request Procurement",
+                self.env.company,
+                values,
+            )
         )
+        return self.env["procurement.group"].run(procurements)
 
     def test_procure_purchase_request(self):
         has_route = self.procurement_group_run(

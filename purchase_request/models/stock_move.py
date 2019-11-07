@@ -1,5 +1,5 @@
 # Copyright 2018-2019 Eficent Business and IT Consulting Services S.L.
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0).
 
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
@@ -9,8 +9,8 @@ class StockMove(models.Model):
     _inherit = "stock.move"
 
     created_purchase_request_line_id = fields.Many2one(
-        "purchase.request.line",
-        "Created Purchase Request Line",
+        comodel_name="purchase.request.line",
+        string="Created Purchase Request Line",
         ondelete="set null",
         readonly=True,
         copy=False,
@@ -52,6 +52,7 @@ class StockMove(models.Model):
                     activity_type_id = self.env.ref("mail.mail_activity_data_todo").id
                 except ValueError:
                     activity_type_id = False
+                pr_line = move.created_purchase_request_line_id
                 self.env["mail.activity"].sudo().create(
                     {
                         "activity_type_id": activity_type_id,
@@ -60,8 +61,8 @@ class StockMove(models.Model):
                             "purchase request has been cancelled/deleted. "
                             "Check if an action is needed."
                         ),
-                        "user_id": move.created_purchase_request_line_id.product_id.responsible_id.id,
-                        "res_id": move.created_purchase_request_line_id.request_id.id,
+                        "user_id": pr_line.product_id.responsible_id.id,
+                        "res_id": pr_line.request_id.id,
                         "res_model_id": self.env.ref(
                             "purchase_request.model_purchase_request"
                         ).id,

@@ -1,6 +1,5 @@
-<?xml version="1.0"?>
 <!-- Copyright 2018-2019 Eficent Business and IT Consulting Services S.L.
-     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0) -->
 <odoo>
 
     <record model="ir.ui.view" id="view_purchase_request_form">
@@ -41,27 +40,27 @@
             <sheet>
                 <div class="oe_button_box" name="button_box">
                     <button type="object"
-                        name="action_view_purchase_request_line"
-                        class="oe_stat_button"
-                        attrs="{'invisible':[('line_count', '=', 0)]}"
-                        icon="fa-list">
+                            name="action_view_purchase_request_line"
+                            class="oe_stat_button"
+                            attrs="{'invisible':[('line_count', '=', 0)]}"
+                            icon="fa-list">
                         <field name="line_count" widget="statinfo"
                                string="Lines"/>
                     </button>
                     <button type="object"
-                        name="action_view_purchase_order"
-                        class="oe_stat_button"
-                        attrs="{'invisible':[('purchase_count', '=', 0)]}"
-                        icon="fa-shopping-cart">
+                            name="action_view_purchase_order"
+                            class="oe_stat_button"
+                            attrs="{'invisible':[('purchase_count', '=', 0)]}"
+                            icon="fa-shopping-cart">
                         <field name="purchase_count" widget="statinfo"
                                string="Purchase Orders"/>
                     </button>
                     <button type="object"
-                        name="action_view_stock_move"
-                        class="oe_stat_button"
-                        attrs="{'invisible':[('move_count', '=', 0)]}"
-                        groups="stock.group_stock_manager"
-                        icon="fa-truck">
+                            name="action_view_stock_move"
+                            class="oe_stat_button"
+                            attrs="{'invisible':[('move_count', '=', 0)]}"
+                            groups="stock.group_stock_manager"
+                            icon="fa-truck">
                         <field name="move_count" widget="statinfo"
                                string="Stock Moves"/>
                     </button>
@@ -146,6 +145,7 @@
                                                    attrs="{'readonly': [('is_editable','=', False)]}"/>
                                             <field name="currency_id" invisible="1"/>
                                             <field name="cancelled"/>
+                                            <field name="supplier_id"/>
                                         </group>
                                     </group>
                                     <group name="specifications">
@@ -273,7 +273,6 @@
         <field name="name">Purchase Requests</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">purchase.request</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="context">{"search_default_requested_by":uid}</field>
         <field name="search_view_id" ref="view_purchase_request_search"/>
@@ -293,22 +292,22 @@
         parent="purchase.menu_procurement_management"
         action="purchase_request_form_action"/>
 
-    <menuitem id="parent_menu_purchase_request"
-              name="Purchase requests"
-              web_icon="purchase_request,static/description/icon.png"
-              groups="group_purchase_request_user,group_purchase_request_manager"
-        />
+    <menuitem
+        id="parent_menu_purchase_request"
+        name="Purchase requests"
+        web_icon="purchase_request,static/description/icon.png"
+        groups="group_purchase_request_user,group_purchase_request_manager"/>
 
-    <menuitem id="menu_purchase_request"
+    <menuitem
+        id="menu_purchase_request"
         name="Purchase Requests"
         parent="parent_menu_purchase_request"
-        groups="group_purchase_request_user,group_purchase_request_manager"
-        />
+        groups="group_purchase_request_user,group_purchase_request_manager"/>
+
     <menuitem
         id="menu_purchase_request_act"
         sequence="10"
         parent="menu_purchase_request"
-        action="purchase_request_form_action"
-        />
+        action="purchase_request_form_action"/>
 
 </odoo>
