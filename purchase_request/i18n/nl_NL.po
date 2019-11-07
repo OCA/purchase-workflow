@@ -510,7 +510,6 @@ msgid "Unread Messages"
 msgstr ""
 
 #. module: purchase_request
-#: code:addons/purchase_request/models/purchase_request.py:213
 #: code:addons/purchase_request/models/purchase_request.py:217
 #, python-format
 msgid ""
