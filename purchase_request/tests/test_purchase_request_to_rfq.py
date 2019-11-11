@@ -208,9 +208,9 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         purchase_request_line2 = self.purchase_request_line.create(vals)
         vals = {
             'request_id': purchase_request2.id,
-            'product_id': self.env.ref('product.product_product_6').id,
+            'product_id': product.id,
             'product_uom_id': self.env.ref('uom.product_uom_unit').id,
-            'product_qty': 12.0,
+            'product_qty': 1.0,
         }
         purchase_request_line3 = self.purchase_request_line.create(vals)
         vals = {
@@ -224,12 +224,11 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
                         purchase_request_line3.id]).create(vals)
         for item in wiz_id.item_ids:
             if item.line_id.id == purchase_request_line2.id:
+                # PRL will be splitted into another POL to keep description
                 item.keep_description = True
-            if item.line_id.id == purchase_request_line3.id:
-                item.onchange_product_id()
         wiz_id.make_purchase_order()
         po_line = purchase_request_line1.purchase_lines[0]
-        self.assertEquals(po_line.product_qty, 2.0, 'Quantity should be 2')
+        self.assertEquals(po_line.product_qty, 1.09, 'Quantity should be 1.09')
         self.assertEquals(po_line.product_uom,
                           self.env.ref('uom.product_uom_dozen'),
                           'The purchase UoM should be Dozen(s).')
@@ -297,3 +296,58 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         # Check Purchase qty should be 6
         po_line = purchase_request_line2.purchase_lines[0]
         self.assertEquals(po_line.product_qty, 6.0, 'Quantity should be 6')
+
+    def test_purchase_request_to_purchase_rfq_multiple_PO_purchaseUoM(self):
+        product = self.env.ref('product.product_product_6')
+        product.uom_po_id = self.env.ref('uom.product_uom_dozen')
+
+        vals = {
+            'picking_type_id': self.env.ref('stock.picking_type_in').id,
+            'requested_by': SUPERUSER_ID,
+        }
+        purchase_request1 = self.purchase_request.create(vals)
+        vals = {
+            'picking_type_id': self.env.ref('stock.picking_type_in').id,
+            'requested_by': SUPERUSER_ID,
+        }
+        purchase_request2 = self.purchase_request.create(vals)
+        vals = {
+            'request_id': purchase_request1.id,
+            'product_id': product.id,
+            'product_uom_id': self.env.ref('uom.product_uom_unit').id,
+            'product_qty': 12.0,
+        }
+        purchase_request_line1 = self.purchase_request_line.create(vals)
+        vals = {
+            'request_id': purchase_request2.id,
+            'product_id': product.id,
+            'product_uom_id': self.env.ref('uom.product_uom_unit').id,
+            'product_qty': 12.0,
+        }
+        purchase_request_line2 = self.purchase_request_line.create(vals)
+        vals = {
+            'request_id': purchase_request2.id,
+            'product_id': product.id,
+            'product_uom_id': self.env.ref('uom.product_uom_unit').id,
+            'product_qty': 1.0,
+        }
+        purchase_request_line3 = self.purchase_request_line.create(vals)
+        vals = {
+            'supplier_id': self.env.ref('base.res_partner_1').id,
+        }
+        purchase_request1.button_approved()
+        purchase_request2.button_approved()
+        wiz_id = self.wiz.with_context(
+            active_model="purchase.request.line",
+            active_ids=[purchase_request_line1.id, purchase_request_line2.id,
+                        purchase_request_line3.id]).create(vals)
+        for item in wiz_id.item_ids:
+            if item.line_id.id == purchase_request_line2.id:
+                # PRL will be splitted into another POL to keep description
+                item.keep_description = True
+        wiz_id.make_purchase_order()
+        po_line = purchase_request_line1.purchase_lines[0]
+        self.assertEquals(po_line.product_qty, 1.09, 'Quantity should be 1.09')
+        self.assertEquals(po_line.product_uom,
+                          self.env.ref('uom.product_uom_dozen'),
+                          'The purchase UoM should be Dozen(s).')

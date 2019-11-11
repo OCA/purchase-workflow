@@ -146,8 +146,9 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                     vals[field] = obj._fields[field].convert_to_write(
                         obj[field], obj)
 
-    def create_allocation(self, po_line, pr_line, new_qty):
+    def create_allocation(self, po_line, pr_line, new_qty, alloc_uom):
         vals = {'requested_product_uom_qty': new_qty,
+                'product_uom_id': alloc_uom.id,
                 'purchase_request_line_id': pr_line.id,
                 'purchase_line_id': po_line.id,
                 }
@@ -156,7 +157,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
     @api.model
     def _prepare_purchase_order_line(self, po, item):
         if not item.product_id:
-            raise UserError("Please select a product for all lines")
+            raise UserError(_("Please select a product for all lines"))
         product = item.product_id
 
         # Keep the standard product UOM for purchase order so we should
@@ -171,7 +172,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             'name': product.name,
             'order_id': po.id,
             'product_id': product.id,
-            'product_uom': product.uom_po_id.id,
+            'product_uom': product.uom_po_id.id or product.uom_id.id,
             'price_unit': 0.0,
             'product_qty': qty,
             'account_analytic_id': item.line_id.analytic_account_id.id,
@@ -245,21 +246,40 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             domain = self._get_order_line_search_domain(purchase, item)
             available_po_lines = po_line_obj.search(domain)
             new_pr_line = True
+            # If Unit of Measure is not set, update from wizard.
+            if not line.product_uom_id:
+                line.product_uom_id = item.product_uom_id
+            # Allocation UoM has to be the same as PR line UoM
+            alloc_uom = line.product_uom_id
+            wizard_uom = item.product_uom_id
             if available_po_lines and not item.keep_description:
                 new_pr_line = False
                 po_line = available_po_lines[0]
                 po_line.purchase_request_lines = [(4, line.id)]
                 po_line.move_dest_ids |= line.move_dest_ids
-                all_qty = min(po_line.product_uom_qty, item.product_qty)
-                self.create_allocation(po_line, line, all_qty)
+                po_line_product_uom_qty = \
+                    po_line.product_uom._compute_quantity(
+                        po_line.product_uom_qty, alloc_uom)
+                wizard_product_uom_qty = wizard_uom._compute_quantity(
+                    item.product_qty,  alloc_uom
+                )
+                all_qty = min(po_line_product_uom_qty, wizard_product_uom_qty)
+                self.create_allocation(po_line, line, all_qty, alloc_uom)
             else:
                 po_line_data = self._prepare_purchase_order_line(purchase,
                                                                  item)
                 if item.keep_description:
                     po_line_data['name'] = item.name
                 po_line = po_line_obj.create(po_line_data)
-                all_qty = min(po_line.product_uom_qty, item.product_qty)
-                self.create_allocation(po_line, line, all_qty)
+                po_line_product_uom_qty = \
+                    po_line.product_uom._compute_quantity(
+                        po_line.product_uom_qty, alloc_uom)
+                wizard_product_uom_qty = wizard_uom._compute_quantity(
+                    item.product_qty, alloc_uom
+                )
+                all_qty = min(po_line_product_uom_qty, wizard_product_uom_qty)
+                self.create_allocation(po_line, line, all_qty, alloc_uom)
+            # TODO: Check propagate_uom compatibility:
             new_qty = pr_line_obj._calc_new_qty(
                 line, po_line=po_line,
                 new_pr_line=new_pr_line)
@@ -307,7 +327,7 @@ class PurchaseRequestLineMakePurchaseOrderItem(models.TransientModel):
     product_qty = fields.Float(
         string='Quantity to purchase',
         digits=dp.get_precision('Product Unit of Measure'))
-    product_uom_id = fields.Many2one('uom.uom', string='UoM')
+    product_uom_id = fields.Many2one('uom.uom', string='UoM', required=True)
     keep_description = fields.Boolean(string='Copy descriptions to new PO',
                                       help='Set true if you want to keep the '
                                            'descriptions provided in the '
