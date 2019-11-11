@@ -61,20 +61,24 @@ class StockMoveLine(models.Model):
         for ml in self.filtered(
                 lambda m: m.exists() and
                 m.move_id.purchase_request_allocation_ids):
-            ml.product_uom_id._compute_quantity(
-                ml.qty_done, ml.product_id.uom_id)
 
             # We do sudo because potentially the user that completes the move
             #  may not have permissions for purchase.request.
             to_allocate_qty = ml.qty_done
+            to_allocate_uom = ml.product_uom_id
             for allocation in \
                     ml.move_id.purchase_request_allocation_ids.sudo():
                 allocated_qty = 0.0
                 if allocation.open_product_qty and to_allocate_qty:
+                    to_allocate_uom_qty = to_allocate_uom._compute_quantity(
+                        to_allocate_qty, allocation.product_uom_id)
                     allocated_qty = min(
-                        allocation.open_product_qty, to_allocate_qty)
+                        allocation.open_product_qty, to_allocate_uom_qty)
                     allocation.allocated_product_qty += allocated_qty
-                    to_allocate_qty -= allocated_qty
+                    to_allocate_uom_qty -= allocated_qty
+                    to_allocate_qty = allocation.product_uom_id. \
+                        _compute_quantity(to_allocate_uom_qty, to_allocate_uom)
+
                 request = allocation.purchase_request_line_id.request_id
                 if allocated_qty:
                     message_data = self._prepare_message_data(ml, request,
