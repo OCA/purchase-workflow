@@ -130,8 +130,9 @@ class PurchaseRequestLine(models.Model):
     @api.depends('purchase_request_allocation_ids',
                  'purchase_request_allocation_ids.stock_move_id.state',
                  'purchase_request_allocation_ids.stock_move_id',
+                 'purchase_request_allocation_ids.purchase_line_id',
                  'purchase_request_allocation_ids.purchase_line_id.state',
-                 'purchase_request_allocation_ids.purchase_line_id')
+                 'request_id.state')
     def _compute_qty_to_buy(self):
         for pr in self:
             qty_to_buy = sum(pr.mapped('product_qty')) - \
@@ -151,15 +152,8 @@ class PurchaseRequestLine(models.Model):
             open_qty = sum(
                 request.purchase_request_allocation_ids.mapped(
                     'open_product_qty'))
-            if request.product_uom_id:
-                request.qty_done = request.product_id.uom_id._compute_quantity(
-                    done_qty, request.product_uom_id)
-                request.qty_in_progress = \
-                    request.product_id.uom_id._compute_quantity(
-                        open_qty, request.product_uom_id)
-            else:
-                request.qty_done = done_qty
-                request.qty_in_progress = open_qty
+            request.qty_done = done_qty
+            request.qty_in_progress = open_qty
 
     @api.depends('purchase_request_allocation_ids',
                  'purchase_request_allocation_ids.stock_move_id.state',
@@ -338,10 +332,9 @@ class PurchaseRequestLine(models.Model):
     def _calc_new_qty(self, request_line, po_line=None,
                       new_pr_line=False):
         purchase_uom = po_line.product_uom or request_line.product_id.uom_po_id
-        uom = request_line.product_uom_id
-        qty = uom._compute_quantity(request_line.product_qty, purchase_uom)
-        # Make sure we use the minimum quantity of the partner corresponding
-        # to the PO. This does not apply in case of dropshipping
+        # TODO: Not implemented yet.
+        #  Make sure we use the minimum quantity of the partner corresponding
+        #  to the PO. This does not apply in case of dropshipping
         supplierinfo_min_qty = 0.0
         if not po_line.order_id.dest_address_id:
             supplierinfo_min_qty = self._get_supplier_min_qty(
@@ -349,9 +342,13 @@ class PurchaseRequestLine(models.Model):
 
         rl_qty = 0.0
         # Recompute quantity by adding existing running procurements.
-        for rl in po_line.purchase_request_lines:
-            rl_qty += rl.product_uom_id._compute_quantity(
-                rl.product_qty, purchase_uom)
+        if new_pr_line:
+            rl_qty = po_line.product_uom_qty
+        else:
+            for prl in po_line.purchase_request_lines:
+                for alloc in prl.purchase_request_allocation_ids:
+                    rl_qty += alloc.product_uom_id._compute_quantity(
+                        alloc.requested_product_uom_qty, purchase_uom)
         qty = max(rl_qty, supplierinfo_min_qty)
         return qty
 
