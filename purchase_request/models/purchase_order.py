@@ -74,6 +74,20 @@ class PurchaseOrder(models.Model):
         self._purchase_request_confirm_message()
         return res
 
+    @api.multi
+    def unlink(self):
+        alloc_to_unlink = self.env['purchase.request.allocation']
+        for rec in self:
+            for alloc in rec.order_line.mapped(
+                    'purchase_request_lines').mapped(
+                    'purchase_request_allocation_ids').filtered(
+                    lambda alloc: alloc.purchase_line_id.order_id.id == rec.id
+            ):
+                alloc_to_unlink += alloc
+        res = super().unlink()
+        alloc_to_unlink.unlink()
+        return res
+
 
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
