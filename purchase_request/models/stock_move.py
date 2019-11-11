@@ -92,7 +92,7 @@ class StockMove(models.Model):
             default['purchase_request_allocation_ids'] = []
         first_it = True
         for alloc in self.purchase_request_allocation_ids.filtered(
-                lambda al: al.requested_product_qty >
+                lambda al: al.requested_product_uom_qty >
                 al.allocated_product_qty):
             qty_done = sum(
                 alloc.stock_move_id.mapped('move_line_ids.qty_done'))

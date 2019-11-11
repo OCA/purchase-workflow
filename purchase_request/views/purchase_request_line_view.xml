@@ -117,7 +117,18 @@
                                              'search_view_ref' : 'purchase_order_line_search_sub'}"/>
                         </page>
                         <page name="allocations" string="Allocations">
-                            <field name="purchase_request_allocation_ids"/>
+                            <field name="purchase_request_allocation_ids">
+                                    <tree decoration-muted="purchase_state == 'cancel'">
+                                        <field name="purchase_line_id"/>
+                                        <field name="stock_move_id"/>
+                                        <field name="product_id"/>
+                                        <field name="requested_product_uom_qty"/>
+                                        <field name="allocated_product_qty"/>
+                                        <field name="open_product_qty"/>
+                                        <field name="product_uom_id"/>
+                                        <field name="purchase_state" invisible="1"/>
+                                    </tree>
+                            </field>
                         </page>
                     </notebook>
                 </sheet>
