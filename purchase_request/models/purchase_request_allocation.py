@@ -39,18 +39,12 @@ class PurchaseRequestAllocation(models.Model):
     product_uom_id = fields.Many2one(
         string='UoM', comodel_name='uom.uom',
         related='purchase_request_line_id.product_uom_id',
-        readonly=True,
+        readonly=True, required=True
         )
     requested_product_uom_qty = fields.Float(
-        'Requested Quantity (UoM)',
+        'Requested Quantity',
         help='Quantity of the purchase request line allocated to the'
              'stock move, in the UoM of the Purchase Request Line',
-    )
-    requested_product_qty = fields.Float(
-        'Requested Quantity',
-        help='Quantity of the purchase request line allocated to the stock'
-             'move, in the default UoM of the product',
-        compute='_compute_requested_product_qty'
     )
 
     allocated_product_qty = fields.Float(
@@ -62,44 +56,26 @@ class PurchaseRequestAllocation(models.Model):
     open_product_qty = fields.Float('Open Quantity',
                                     compute='_compute_open_product_qty')
 
-    @api.depends('purchase_request_line_id.product_id',
-                 'purchase_request_line_id.product_uom_id',
-                 'purchase_request_line_id')
-    def _compute_requested_product_qty(self):
-        for rec in self:
-            if not rec.product_uom_id:
-                rec.requested_product_qty = rec.requested_product_uom_qty
-            else:
-                rec.requested_product_qty = \
-                    rec.product_uom_id._compute_quantity(
-                        rec.requested_product_uom_qty, rec.product_id.uom_id)
+    purchase_state = fields.Selection(
+        related='purchase_line_id.state'
+    )
 
-    @api.depends('requested_product_qty', 'allocated_product_qty',
+    @api.depends('requested_product_uom_qty', 'allocated_product_qty',
                  'stock_move_id', 'stock_move_id.state',
                  'stock_move_id.product_uom_qty',
                  'stock_move_id.move_line_ids.qty_done',
                  'purchase_line_id',
                  'purchase_line_id.qty_received',
-                 'purchase_line_id.state')
+                 'purchase_state')
     def _compute_open_product_qty(self):
         for rec in self:
-            if rec.purchase_line_id.state in ['cancel', 'done']:
+            if rec.purchase_state in ['cancel', 'done']:
                 rec.open_product_qty = 0.0
             else:
                 rec.open_product_qty = \
-                    rec.requested_product_qty - rec.allocated_product_qty
+                    rec.requested_product_uom_qty - rec.allocated_product_qty
                 if rec.open_product_qty < 0.0:
                     rec.open_product_qty = 0.0
-
-    def _split(self, new_stock_move_id):
-        new_stock_move = self.env['stock.move'].browse(new_stock_move_id)
-        for rec in self:
-            if not rec.requested_product_qty > rec.allocated_product_qty:
-                continue
-            new_alloc = rec.copy()
-            new_alloc.stock_move_id = new_stock_move_id
-            new_alloc.requested_product_qty = new_stock_move.product_uom_qty
-            rec.requested_product_qty = rec.allocated_product_qty
 
     @api.model
     def _purchase_request_confirm_done_message_content(self, message_data):
