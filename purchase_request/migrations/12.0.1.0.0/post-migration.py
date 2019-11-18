@@ -26,14 +26,13 @@ def create_service_allocation(env, po_line, pr_line, qty):
     return alloc
 
 
-def allocate_from_stock_move(ml, ml_done=None):
+def allocate_from_stock_move(env, ml, alloc_uom, ml_done=None):
     #  done here because open_product_qty is zero so cannot call method in
     #  stock_move_line
     if ml_done is None:
         ml_done = []
-    ml.product_uom_id._compute_quantity(
-        ml.qty_done, ml.product_id.uom_id)
-    to_allocate_qty = ml.qty_done
+    to_allocate_qty = ml.product_uom_id._compute_quantity(
+        ml.qty_done, alloc_uom)
     for allocation in \
             ml.filtered(
                 lambda m: m.id not in ml_done).move_id.\
@@ -56,7 +55,7 @@ def allocate_stockable(env):
                 'and consumables')
     openupgrade.logged_query(cr, """
         SELECT rel.purchase_request_line_id, rel.purchase_order_line_id, sm.id,
-         sm.product_qty, sm.product_uom_qty, prl.product_qty
+         sm.product_qty, prl.product_qty, sm.product_uom
         FROM purchase_request_purchase_order_line_rel rel
         INNER JOIN purchase_request_line prl ON prl.id =
         rel.purchase_request_line_id
@@ -71,9 +70,11 @@ def allocate_stockable(env):
     res = cr.fetchall()
     ml_done = []
     for (purchase_request_line_id, purchase_order_line_id, sm_id, product_qty,
-         product_uom_qty, req_qty) in res:
+         req_qty, sm_uom_id) in res:
         purchase_request_line = env['purchase.request.line'].browse(
             purchase_request_line_id)
+        sm_uom = env['uom.uom'].browse(sm_uom_id)
+        alloc_uom = purchase_request_line.product_uom_id or sm_uom
         pending_qty = purchase_request_line.product_qty - \
             purchase_request_line.qty_done
         if not pending_qty:
@@ -82,16 +83,18 @@ def allocate_stockable(env):
             # we allocated what is in the stock move
             create_allocation(
                 env, purchase_order_line_id, purchase_request_line_id,
-                sm_id, pending_qty)
+                sm_id, pending_qty, alloc_uom)
             #  cannot call super, open_qty is zero
             sm = env['stock.move'].browse(sm_id)
             if sm.state == 'done':
-                ml_done = allocate_from_stock_move(sm.move_line_ids, ml_done)
+                ml_done = allocate_from_stock_move(env, sm.move_line_ids,
+                                                   alloc_uom, ml_done)
         else:
             # we allocated what is in the PR line
+            req_qty = sm_uom._compute_quantity(req_qty, alloc_uom)
             create_allocation(
                 env, purchase_order_line_id, purchase_request_line_id,
-                False, req_qty)
+                False, req_qty, alloc_uom)
         purchase_request_line._compute_qty()
 
 
@@ -101,7 +104,7 @@ def allocate_service(env):
     logger.info('Allocating purchase request for services')
     openupgrade.logged_query(cr, """
         SELECT rel.purchase_request_line_id, rel.purchase_order_line_id,
-         pol.product_qty, pol.product_uom_qty
+         pol.product_qty, pol.product_uom
         FROM purchase_request_purchase_order_line_rel rel
         INNER JOIN purchase_request_line prl ON prl.id =
          rel.purchase_request_line_id
@@ -113,15 +116,20 @@ def allocate_service(env):
         """)
     res = cr.fetchall()
     for (purchase_request_line_id, purchase_order_line_id, product_qty,
-         product_uom_qty) in res:
+         pol_product_uom) in res:
+        purchase_request_line = env['purchase.request.line'].browse(
+            purchase_request_line_id)
+        product_alloc_uom = \
+            purchase_request_line.product_uom_id or pol_product_uom
+        product_alloc_qty = pol_product_uom._compute_quantity(
+            product_qty, product_alloc_uom)
         alloc = create_service_allocation(
             env, purchase_order_line_id, purchase_request_line_id,
-            product_qty)
+            product_alloc_qty)
         pol = env['purchase.order.line'].browse(purchase_order_line_id)
         pol.with_context(no_notify=True).update_service_allocations(0.0)
         alloc._compute_open_product_qty()
-        env['purchase.request.line'].browse(
-            purchase_request_line_id)._compute_qty()
+        purchase_request_line._compute_qty()
 
 
 @openupgrade.migrate(use_env=True)
