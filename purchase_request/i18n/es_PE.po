@@ -28,6 +28,8 @@ msgstr ""
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_order.py:174
+#: code:addons/purchase_request/models/purchase_order.py:188
+#: code:addons/purchase_request/models/purchase_request_allocation.py:86
 #: code:addons/purchase_request/models/purchase_request_allocation.py:110
 #: code:addons/purchase_request/models/stock_picking.py:24
 #, python-format
@@ -358,6 +360,7 @@ msgstr "Borrador"
 
 #. module: purchase_request
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:231
+#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:232
 #, python-format
 msgid "Enter a positive quantity."
 msgstr ""
@@ -402,6 +405,7 @@ msgid "Followers (Partners)"
 msgstr ""
 
 #. module: purchase_request
+#: code:addons/purchase_request/models/purchase_request_allocation.py:83
 #: code:addons/purchase_request/models/purchase_request_allocation.py:107
 #, python-format
 msgid ""
@@ -658,6 +662,12 @@ msgid "Planned"
 msgstr ""
 
 #. module: purchase_request
+#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:160
+#, python-format
+msgid "Please select a product for all lines"
+msgstr ""
+
+#. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__supplier_id
 msgid "Preferred supplier"
 msgstr "Proveedor preferido"
@@ -822,6 +832,7 @@ msgstr "Linea de solicitud de compra"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_order.py:105
+#: code:addons/purchase_request/models/purchase_order.py:119
 #: model:ir.actions.act_window,name:purchase_request.purchase_request_line_form_action
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_order_line__purchase_request_lines
 #: model:ir.ui.menu,name:purchase_request.menu_purchase_request_line
@@ -956,7 +967,6 @@ msgstr "Productos a comprar"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_allocation__allocated_product_qty
-#: model:ir.model.fields,help:purchase_request.field_purchase_request_allocation__requested_product_qty
 msgid ""
 "Quantity of the purchase request line allocated to the stockmove, in the "
 "default UoM of the product"
@@ -977,6 +987,7 @@ msgstr "Productos a comprar"
 
 #. module: purchase_request
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:280
+#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:300
 #, python-format
 msgid "RFQ"
 msgstr ""
@@ -1061,17 +1072,11 @@ msgid "Request status"
 msgstr "Estado de la solicitud"
 
 #. module: purchase_request
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__requested_product_qty
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__requested_product_uom_qty
 #, fuzzy
 #| msgid "Requested by"
 msgid "Requested Quantity"
 msgstr "Solicitado por"
-
-#. module: purchase_request
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__requested_product_uom_qty
-#, fuzzy
-msgid "Requested Quantity (UoM)"
-msgstr "Estado de la solicitud"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__requested_by
@@ -1118,6 +1123,7 @@ msgstr "Buscar solicitud de compra"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_order.py:166
+#: code:addons/purchase_request/models/purchase_order.py:180
 #, python-format
 msgid "Service confirmation for Request %s"
 msgstr ""
@@ -1154,6 +1160,7 @@ msgstr "Fecha de inicio"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__state
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__purchase_state
 msgid "Status"
 msgstr "Estado"
 
@@ -1235,6 +1242,7 @@ msgstr ""
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_order.py:169
+#: code:addons/purchase_request/models/purchase_order.py:183
 #, python-format
 msgid ""
 "The following requested services from Purchase Request %s requested by %s "
@@ -1363,6 +1371,7 @@ msgid ""
 msgstr ""
 
 #. module: purchase_request
+#: code:addons/purchase_request/models/purchase_request_line.py:357
 #: code:addons/purchase_request/models/purchase_request_line.py:360
 #, python-format
 msgid "You cannot delete a record that refers to purchase lines!"
@@ -1385,6 +1394,10 @@ msgstr ""
 #, python-format
 msgid "You have to select lines from the same company."
 msgstr ""
+
+#, fuzzy
+#~ msgid "Requested Quantity (UoM)"
+#~ msgstr "Estado de la solicitud"
 
 #, fuzzy
 #~ msgid "Procurement Rule"
