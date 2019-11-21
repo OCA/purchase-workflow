@@ -94,17 +94,20 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
 
     @api.model
     def default_get(self, fields):
-        res = super(PurchaseRequestLineMakePurchaseOrder, self).default_get(
-            fields)
-        request_line_obj = self.env['purchase.request.line']
-        request_line_ids = self.env.context.get('active_ids', False)
+        res = super().default_get(fields)
         active_model = self.env.context.get('active_model', False)
+        request_line_ids = []
+        if active_model == 'purchase.request.line':
+            request_line_ids += self.env.context.get('active_ids', [])
+        elif active_model == 'purchase.request':
+            request_ids = self.env.context.get('active_ids', False)
+            request_line_ids += self.env[active_model].browse(
+                request_ids).mapped('line_ids.id')
         if not request_line_ids:
             return res
-        assert active_model == 'purchase.request.line', \
-            'Bad context propagation'
         res['item_ids'] = self.get_items(request_line_ids)
-        request_lines = request_line_obj.browse(request_line_ids)
+        request_lines = self.env['purchase.request.line'].browse(
+            request_line_ids)
         supplier_ids = request_lines.mapped('supplier_id').ids
         if len(supplier_ids) == 1:
             res['supplier_id'] = supplier_ids[0]
