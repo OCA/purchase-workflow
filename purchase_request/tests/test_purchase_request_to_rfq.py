@@ -264,7 +264,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         }
         wiz_id = self.wiz.with_context(
             active_model="purchase.request.line",
-            active_ids=purchase_request_line1.id).create(vals)
+            active_ids=[purchase_request_line1.id]).create(vals)
         wiz_id.make_purchase_order()
         po = purchase_request_line1.purchase_lines[0].order_id
         # Create Purchase Request
@@ -291,7 +291,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         }
         wiz_id = self.wiz.with_context(
             active_model="purchase.request.line",
-            active_ids=purchase_request_line2.id).create(vals)
+            active_ids=[purchase_request_line2.id]).create(vals)
         wiz_id.make_purchase_order()
         # Check Purchase qty should be 6
         po_line = purchase_request_line2.purchase_lines[0]
