@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2015 Eficent Business and IT Consulting Services S.L.
 # Copyright 2018 Camptocamp
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
@@ -35,7 +34,7 @@ class PurchaseOrder(models.Model):
             else:
                 # assume we are searching on the analytic account name
                 domain = [('order_id', '!=', False),
-                          ('account_analytic_id.name', 'like', value),
+                          ('account_analytic_id.name', 'ilike', value),
                           ]
         po_lines = po_line_obj.search(domain)
         orders = po_lines.mapped('order_id')
