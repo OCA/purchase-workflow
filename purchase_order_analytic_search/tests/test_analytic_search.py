@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2015-17 Eficent Business and IT Consulting Services S.L.
 # Copyright 2018 Camptocamp
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
@@ -16,7 +15,7 @@ class TestAnalyticSearch(SavepointCase):
         partner_model = cls.env['res.partner']
         prod_model = cls.env['product.product']
         analytic_account_model = cls.env['account.analytic.account']
-        cls.product_uom_model = cls.env['product.uom']
+        cls.product_uom_model = cls.env['uom.uom']
 
         pa_dict = {
             'name': 'Partner 1',
