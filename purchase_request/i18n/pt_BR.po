@@ -16,15 +16,16 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-24 07:53+0000\n"
-"PO-Revision-Date: 2017-11-24 07:55+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-"
-"purchase-workflow-10-0/language/pt_BR/)\n"
+"PO-Revision-Date: 2019-11-24 19:58+0000\n"
+"Last-Translator: Rodrigo Macedo <rmsolucoeseminformatic4@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/"
+"OCA-purchase-workflow-10-0/language/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.8\n"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_order.py:24
@@ -738,9 +739,8 @@ msgstr "Requisição de compras"
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_purchase_order_line
-#, fuzzy
 msgid "Purchase Order Line"
-msgstr "Requisição de compras"
+msgstr "Linha da Ordem de Compra"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__purchase_lines
@@ -807,7 +807,7 @@ msgstr "Requisição de Compras"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__line_id
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_form
 msgid "Purchase Request Line"
-msgstr ""
+msgstr "Linha de solicitação de compra"
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_purchase_request_line_make_purchase_order
@@ -838,7 +838,7 @@ msgstr "Requisição de compra rejeitada"
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_tree
 #, python-format
 msgid "Purchase Request Lines"
-msgstr ""
+msgstr "Linhas de solicitação de compra"
 
 #. module: purchase_request
 #: model:res.groups,name:purchase_request.group_purchase_request_manager
