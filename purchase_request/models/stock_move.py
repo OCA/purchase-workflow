@@ -66,8 +66,8 @@ class StockMove(models.Model):
     @api.depends('purchase_request_allocation_ids')
     def _compute_purchase_request_ids(self):
         for rec in self:
-            rec.purchase_request_ids = rec.\
-                purchase_request_allocation_ids.mapped('purchase_request_id')
+            rec.purchase_request_ids = rec.purchase_request_allocation_ids.\
+                mapped('purchase_request_line_id.request_id')
 
     def _merge_moves_fields(self):
         res = super(StockMove, self)._merge_moves_fields()
