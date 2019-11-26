@@ -7,8 +7,7 @@
     <field name="arch" type="xml">
       <xpath expr="//field[@name='partner_ref']" position="after">
         <field name="account_analytic_id"
-          groups="purchase.group_analytic_accounting"
-          domain="[('account_type','=','normal')]"
+          groups="analytic.group_analytic_accounting"
           />
       </xpath>
       <field name="order_line" position="attributes">
