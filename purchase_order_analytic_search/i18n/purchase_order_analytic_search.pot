@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: purchase_order_analytic_search
-#: model:ir.model.fields,field_description:purchase_order_analytic_search.field_purchase_order_account_analytic_ids
+#: model:ir.model.fields,field_description:purchase_order_analytic_search.field_purchase_order__account_analytic_ids
 msgid "Analytic Account"
 msgstr ""
 
