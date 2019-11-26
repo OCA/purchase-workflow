@@ -27,6 +27,43 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
             'product_tmpl_id': self.service_product.product_tmpl_id.id,
         })
 
+    def test_wizard_default_get(self):
+        # Check that correct create items by purchase.request
+        vals = {
+            'picking_type_id': self.env.ref('stock.picking_type_in').id,
+            'requested_by': SUPERUSER_ID,
+            'line_ids': [[0, 0, {
+                'product_id': self.env.ref('product.product_product_13').id,
+                'product_uom_id': self.env.ref('uom.product_uom_unit').id,
+                'product_qty': 2.0,
+            }]],
+        }
+        purchase_request1 = self.purchase_request.create(vals)
+        purchase_request1.button_approved()
+        vals = {
+            'supplier_id': self.env.ref('base.res_partner_1').id,
+            'line_ids': [[0, 0, {
+                'product_id': self.env.ref('product.product_product_13').id,
+                'product_uom_id': self.env.ref('uom.product_uom_unit').id,
+                'product_qty': 2.0,
+            }]],
+        }
+        purchase_request2 = self.purchase_request.create(vals)
+        vals = {
+            'supplier_id': self.env.ref('base.res_partner_1').id,
+        }
+        purchase_request1.button_approved()
+        purchase_request2.button_approved()
+        wiz_id = self.wiz.with_context(
+            active_model="purchase.request",
+            active_ids=[purchase_request1.id,
+                        purchase_request2.id]).create(vals)
+        (purchase_request1 | purchase_request2).mapped('line_ids')
+        self.assertEquals(
+            (purchase_request1 | purchase_request2).mapped('line_ids'),
+            wiz_id.item_ids.mapped('line_id'),
+            'Should have same purchase request lines')
+
     def test_purchase_request_to_purchase_rfq(self):
         vals = {
             'picking_type_id': self.env.ref('stock.picking_type_in').id,
