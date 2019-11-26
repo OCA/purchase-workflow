@@ -1,13 +1,11 @@
-# Translation of OpenERP Server.
+# Translation of Odoo Server.
 # This file contains the translation of the following modules:
 #	* purchase_analytic_global
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 7.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-01 10:03+0000\n"
-"PO-Revision-Date: 2014-09-01 10:03+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,24 +14,17 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: purchase_analytic_global
-#: field:purchase.order,account_analytic_id:0
+#: model:ir.model.fields,field_description:purchase_analytic_global.field_purchase_order__account_analytic_id
 msgid "Analytic Account"
 msgstr ""
 
 #. module: purchase_analytic_global
-#: help:purchase.order,account_analytic_id:0
-msgid "The analytic account that will be set on all the lines. If you want to use different accounts, leave this field empty and set the accounts individually on the lines."
-msgstr ""
-
-#. module: purchase_analytic_global
-#: view:purchase.order:0
-msgid "{'default_account_analytic_id': account_analytic_id}"
-msgstr ""
-
-#. module: purchase_analytic_global
-#: code:_description:0
 #: model:ir.model,name:purchase_analytic_global.model_purchase_order
-#, python-format
 msgid "Purchase Order"
+msgstr ""
+
+#. module: purchase_analytic_global
+#: model:ir.model.fields,help:purchase_analytic_global.field_purchase_order__account_analytic_id
+msgid "This account will be propagated to all lines, if you need to use different accounts, define the account at line level."
 msgstr ""
 
