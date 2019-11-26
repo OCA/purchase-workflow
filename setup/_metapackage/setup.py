@@ -35,6 +35,7 @@ setuptools.setup(
         'odoo12-addon-purchase_reception_notify',
         'odoo12-addon-purchase_request',
         'odoo12-addon-purchase_request_department',
+        'odoo12-addon-purchase_request_order_approved',
         'odoo12-addon-purchase_request_product_usage',
         'odoo12-addon-purchase_request_tier_validation',
         'odoo12-addon-purchase_request_usage_department',
