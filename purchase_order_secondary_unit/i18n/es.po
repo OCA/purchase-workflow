@@ -18,8 +18,8 @@ msgstr ""
 "X-Generator: Poedit 2.0.6\n"
 
 #. module: purchase_order_secondary_unit
-#: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_product_product_purchase_secondary_uom_id
-#: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_product_template_purchase_secondary_uom_id
+#: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_product_product__purchase_secondary_uom_id
+#: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_product_template__purchase_secondary_uom_id
 msgid "Default unit purchase"
 msgstr ""
 
@@ -34,11 +34,11 @@ msgid "Purchase Order Line"
 msgstr "Línea pedido de compra"
 
 #. module: purchase_order_secondary_unit
-#: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_purchase_order_line_secondary_uom_qty
+#: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_purchase_order_line__secondary_uom_qty
 msgid "Secondary Qty"
 msgstr "Cdad. secundaria"
 
 #. module: purchase_order_secondary_unit
-#: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_purchase_order_line_secondary_uom_id
+#: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_purchase_order_line__secondary_uom_id
 msgid "Secondary uom"
 msgstr "UdM Secundaría"
