@@ -15,9 +15,9 @@ class TestPurchaseOpenQty(TransactionCase):
         analytic_account_model = self.env["account.analytic.account"]
 
         # partners
-        pa_dict = {"name": "Partner 1", "supplier": True}
+        pa_dict = {"name": "Partner 1"}
         self.partner = partner_model.sudo().create(pa_dict)
-        pa_dict2 = {"name": "Partner 2", "supplier": True}
+        pa_dict2 = {"name": "Partner 2"}
         self.partner2 = partner_model.sudo().create(pa_dict2)
 
         # account
@@ -27,7 +27,7 @@ class TestPurchaseOpenQty(TransactionCase):
         # Purchase Order Num 1
         po_dict = {"partner_id": self.partner.id}
         self.purchase_order_1 = self.purchase_order_model.create(po_dict)
-        uom_id = prod_model.uom_id.search([("name", "=", "Unit(s)")], limit=1).id
+        uom_id = prod_model.uom_id.search([("name", "=", "Units")], limit=1).id
         pr_dict = {
             "name": "Product Test",
             "uom_id": uom_id,

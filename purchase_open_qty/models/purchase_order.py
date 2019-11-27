@@ -5,8 +5,6 @@
 from odoo import _, api, fields, models
 from odoo.tools import float_compare
 
-import odoo.addons.decimal_precision as dp
-
 
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
@@ -45,14 +43,14 @@ class PurchaseOrderLine(models.Model):
 
     qty_to_invoice = fields.Float(
         compute="_compute_qty_to_invoice",
-        digits=dp.get_precision("Product Unit of Measure"),
+        digits="Product Unit of Measure",
         copy=False,
         string="Qty to Bill",
         store=True,
     )
     qty_to_receive = fields.Float(
         compute="_compute_qty_to_receive",
-        digits=dp.get_precision("Product Unit of Measure"),
+        digits="Product Unit of Measure",
         copy=False,
         string="Qty to Receive",
         store=True,
