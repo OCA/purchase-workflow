@@ -354,14 +354,12 @@ msgid "Draft"
 msgstr "Borrador"
 
 #. module: purchase_request
-#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:232
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:235
 #, python-format
 msgid "Enter a positive quantity."
 msgstr "Ingrese una cantidad positiva."
 
 #. module: purchase_request
-#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:117
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:120
 #, python-format
 msgid "Enter a supplier."
@@ -649,7 +647,6 @@ msgid "Planned"
 msgstr "Planificado"
 
 #. module: purchase_request
-#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:160
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:163
 #, python-format
 msgid "Please select a product for all lines"
@@ -956,7 +953,6 @@ msgid "Quantity to purchase"
 msgstr "Cantidad a comprar"
 
 #. module: purchase_request
-#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:300
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:303
 #, python-format
 msgid "RFQ"
