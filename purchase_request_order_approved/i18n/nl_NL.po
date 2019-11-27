@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* purchase_request_order_approved
+# 	* purchase_request_order_approved
 #
 msgid ""
 msgstr ""
@@ -17,12 +17,12 @@ msgstr ""
 "X-Generator: Weblate 3.6.1\n"
 
 #. module: purchase_request_order_approved
-#: model:ir.ui.view,arch_db:purchase_request_order_approved.purchase_request_line_search
+#: model_terms:ir.ui.view,arch_db:purchase_request_order_approved.purchase_request_line_search
 msgid "At least a Purchase Order has been approved"
 msgstr "Tenminste een inkooporder is goedgekeurd"
 
 #. module: purchase_request_order_approved
-#: model:ir.ui.view,arch_db:purchase_request_order_approved.purchase_request_line_search
+#: model_terms:ir.ui.view,arch_db:purchase_request_order_approved.purchase_request_line_search
 msgid "Purchase Approved"
 msgstr "Inkoop goedgekeurd"
 
