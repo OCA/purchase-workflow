@@ -62,6 +62,11 @@ msgid "Display Name"
 msgstr ""
 
 #. module: purchase_order_product_recommendation
+#: model:ir.model.fields,help:purchase_order_product_recommendation.field_purchase_order_recommendation__product_category_ids
+msgid "Filter by product internal category"
+msgstr ""
+
+#. module: purchase_order_product_recommendation
 #: model:ir.model.fields,help:purchase_order_product_recommendation.field_purchase_order_recommendation__date_end
 msgid "Final date to compute recommendations."
 msgstr ""
@@ -126,6 +131,11 @@ msgid "Product"
 msgstr ""
 
 #. module: purchase_order_product_recommendation
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation__product_category_ids
+msgid "Product Categories"
+msgstr ""
+
+#. module: purchase_order_product_recommendation
 #: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation__line_ids
 msgid "Products"
 msgstr ""
@@ -186,13 +196,18 @@ msgid "Recommended products for current purchase order"
 msgstr ""
 
 #. module: purchase_order_product_recommendation
-#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation__show_all_partner_products
-msgid "Show all products"
+#: model:ir.model.fields,help:purchase_order_product_recommendation.field_purchase_order_recommendation__show_all_partner_products
+msgid "Show all products with supplier infos for this supplier"
 msgstr ""
 
 #. module: purchase_order_product_recommendation
-#: model:ir.model.fields,help:purchase_order_product_recommendation.field_purchase_order_recommendation__show_all_partner_products
-msgid "Show all products with supplier infos for this supplier"
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation__show_all_products
+msgid "Show all purchasable products"
+msgstr ""
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation__show_all_partner_products
+msgid "Show all supplier products"
 msgstr ""
 
 #. module: purchase_order_product_recommendation
@@ -202,6 +217,7 @@ msgstr ""
 
 #. module: purchase_order_product_recommendation
 #: code:addons/purchase_order_product_recommendation/wizards/purchase_order_recommendation.py:62
+#: code:addons/purchase_order_product_recommendation/wizards/purchase_order_recommendation.py:72
 #, python-format
 msgid "This wizard is only valid for purchases"
 msgstr ""
@@ -244,6 +260,11 @@ msgstr ""
 #. module: purchase_order_product_recommendation
 #: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__units_virtual_available
 msgid "Units Virtual Available"
+msgstr ""
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,help:purchase_order_product_recommendation.field_purchase_order_recommendation__show_all_products
+msgid "Useful if a product hasn't been selled by the partner yet"
 msgstr ""
 
 #. module: purchase_order_product_recommendation
