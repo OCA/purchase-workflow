@@ -4,7 +4,6 @@
 
 import logging
 
-
 logger = logging.getLogger(__name__)
 
 
@@ -18,34 +17,42 @@ def pre_init_hook(cr):
 
 def store_field_qty_to_receive_and_invoice(cr):
 
-    cr.execute("""SELECT column_name
+    cr.execute(
+        """SELECT column_name
     FROM information_schema.columns
     WHERE table_name='purchase_order_line' AND
-    column_name='qty_to_receive'""")
+    column_name='qty_to_receive'"""
+    )
     if not cr.fetchone():
-        logger.info('Creating field qty_to_receive on purchase_order_line')
+        logger.info("Creating field qty_to_receive on purchase_order_line")
         cr.execute(
             """
             ALTER TABLE purchase_order_line ADD COLUMN qty_to_receive float;
             COMMENT ON COLUMN purchase_order_line.qty_to_receive IS
             'Qty to Receive';
-            """)
+            """
+        )
 
-    cr.execute("""SELECT column_name
+    cr.execute(
+        """SELECT column_name
     FROM information_schema.columns
     WHERE table_name='purchase_order_line' AND
-    column_name='qty_to_invoice'""")
+    column_name='qty_to_invoice'"""
+    )
     if not cr.fetchone():
-        logger.info('Creating field qty_to_invoice on purchase_order_line')
+        logger.info("Creating field qty_to_invoice on purchase_order_line")
         cr.execute(
             """
             ALTER TABLE purchase_order_line ADD COLUMN qty_to_invoice float;
             COMMENT ON COLUMN purchase_order_line.qty_to_invoice IS
             'Qty to Bill';
-            """)
+            """
+        )
 
-    logger.info('Computing values for fields qty_to_receive and qty_to_invoice'
-                ' on purchase_order_line')
+    logger.info(
+        "Computing values for fields qty_to_receive and qty_to_invoice"
+        " on purchase_order_line"
+    )
     cr.execute(
         """
         UPDATE purchase_order_line pol
