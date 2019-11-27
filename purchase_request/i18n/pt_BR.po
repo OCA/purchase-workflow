@@ -18,8 +18,8 @@ msgstr ""
 "POT-Creation-Date: 2017-11-24 07:53+0000\n"
 "PO-Revision-Date: 2019-11-24 19:58+0000\n"
 "Last-Translator: Rodrigo Macedo <rmsolucoeseminformatic4@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/"
-"OCA-purchase-workflow-10-0/language/pt_BR/)\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-"
+"purchase-workflow-10-0/language/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1365,6 +1365,7 @@ msgstr ""
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_request_line.py:357
+#: code:addons/purchase_request/models/purchase_request_line.py:359
 #, python-format
 msgid "You cannot delete a record that refers to purchase lines!"
 msgstr ""

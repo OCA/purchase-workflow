@@ -1359,6 +1359,7 @@ msgstr ""
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_request_line.py:357
+#: code:addons/purchase_request/models/purchase_request_line.py:359
 #, python-format
 msgid "You cannot delete a record that refers to purchase lines!"
 msgstr ""
