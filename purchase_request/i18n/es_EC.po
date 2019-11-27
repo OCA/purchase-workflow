@@ -268,6 +268,7 @@ msgstr "Copiar descripción a nueva PO"
 
 #. module: purchase_request
 #: model:ir.actions.act_window,name:purchase_request.action_purchase_request_line_make_purchase_order
+#: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_line_make_purchase_order
 msgid "Create RFQ"
 msgstr "Crear Cotización"
@@ -354,12 +355,14 @@ msgstr "Borrador"
 
 #. module: purchase_request
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:232
+#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:235
 #, python-format
 msgid "Enter a positive quantity."
 msgstr "Ingrese una cantidad positiva."
 
 #. module: purchase_request
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:117
+#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:120
 #, python-format
 msgid "Enter a supplier."
 msgstr "Ingrese un proveedor."
@@ -647,6 +650,7 @@ msgstr "Planificado"
 
 #. module: purchase_request
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:160
+#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:163
 #, python-format
 msgid "Please select a product for all lines"
 msgstr ""
@@ -953,6 +957,7 @@ msgstr "Cantidad a comprar"
 
 #. module: purchase_request
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:300
+#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:303
 #, python-format
 msgid "RFQ"
 msgstr "RFQ"
