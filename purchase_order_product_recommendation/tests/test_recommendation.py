@@ -1,6 +1,5 @@
 # Copyright 2019 David Vidal <david.vidal@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
 from datetime import date, datetime
 from odoo.tests.common import SavepointCase
 
@@ -12,21 +11,31 @@ class RecommendationCase(SavepointCase):
         cls.partner = cls.env['res.partner'].create({
             'name': 'Mr. Odoo',
         })
+        cls.category_obj = cls.env['product.category']
+        cls.categ1 = cls.category_obj.create({
+            'name': 'Test Cat 1',
+        })
+        cls.categ2 = cls.category_obj.create({
+            'name': 'Test Cat 2',
+        })
         cls.product_obj = cls.env['product.product']
         cls.prod_1 = cls.product_obj.create({
             'default_code': 'product-1',
             'name': 'Test Product 1',
+            'categ_id': cls.categ1.id,
             'type': 'product',
             'seller_ids': [(0, 0, {'name': cls.partner.id, 'price': 5})],
         })
         cls.prod_2 = cls.prod_1.copy({
             'default_code': 'product-2',
             'name': 'Test Product 2',
+            'categ_id': cls.categ2.id,
             'seller_ids': [(0, 0, {'name': cls.partner.id, 'price': 10})],
         })
         cls.prod_3 = cls.prod_1.copy({
             'default_code': 'product-3',
             'name': 'Test Product 3',
+            'categ_id': cls.categ2.id,
             'seller_ids': [(0, 0, {'name': cls.partner.id, 'price': 7})],
         })
         # Warehouses
@@ -142,6 +151,9 @@ class RecommendationCase(SavepointCase):
         wizard._generate_recommendations()
         return wizard
 
+
+class RecommendationCaseTests(RecommendationCase):
+
     def test_recommendations(self):
         """Recommendations are OK."""
         wizard = self.wizard()
@@ -213,20 +225,7 @@ class RecommendationCase(SavepointCase):
         self.assertEqual(wizard.line_ids[1].units_virtual_available, 5)
 
     def test_action_accept(self):
-        """Open wizard when there are no PO Lines and click on Accept"""
-        wizard = self.wizard()
-        wizard.date_begin = wizard.date_end = date(2019, 2, 1)
-        wizard._generate_recommendations()
-        wizard.action_accept()
-        self.assertEqual(len(self.new_po.order_line), 2)
-        self.assertEqual(self.new_po.order_line[0].product_id, self.prod_2)
-        self.assertEqual(self.new_po.order_line[0].product_qty, 42)
-        self.assertEqual(self.new_po.order_line[1].product_id, self.prod_3)
-        self.assertEqual(self.new_po.order_line[1].product_qty, 8)
-
-    def test_action_accept(self):
         """Open wizard when there are PO Lines and click on Accept"""
-        # po_line = self.env['purchase.order.line'].create({
         po_line = self.env['purchase.order.line'].new({
             'sequence': 1,
             'order_id': self.new_po.id,
@@ -253,3 +252,34 @@ class RecommendationCase(SavepointCase):
         self.assertEqual(self.new_po.order_line[0].product_qty, 20)
         self.assertEqual(self.new_po.order_line[1].product_id, self.prod_3)
         self.assertEqual(self.new_po.order_line[1].product_qty, 8)
+
+    def test_recommendations_by_category(self):
+        """We can split recommendations by delivery warehouse"""
+        wizard = self.wizard()
+        wizard.date_begin = wizard.date_end = '2019-02-01'
+        # Just delivered from category 1
+        wizard.product_category_ids = self.categ1
+        wizard.show_all_partner_products = True
+        wizard._generate_recommendations()
+        # Just one line with products from category 1
+        self.assertEqual(wizard.line_ids.product_id, self.prod_1)
+        # Just delivered from category 2
+        wizard.product_category_ids = self.categ2
+        wizard._generate_recommendations()
+        self.assertEqual(len(wizard.line_ids), 2)
+        # All categorys
+        wizard.product_category_ids += self.categ1
+        wizard._generate_recommendations()
+        self.assertEqual(len(wizard.line_ids), 3)
+        # No category set
+        wizard.product_category_ids = False
+        wizard._generate_recommendations()
+        self.assertEqual(len(wizard.line_ids), 3)
+        # All products
+        wizard.show_all_products = True
+        wizard.line_amount = 0
+        wizard._generate_recommendations()
+        purchase_products_number = self.product_obj.search_count([
+            ('purchase_ok', '!=', False),
+        ])
+        self.assertEqual(len(wizard.line_ids), purchase_products_number)
