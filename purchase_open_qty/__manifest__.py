@@ -5,17 +5,14 @@
 {
     "name": "Purchase Open Qty",
     "summary": "Allows to identify the purchase orders that have quantities "
-               "pending to invoice or to receive.",
-    "version": "12.0.1.1.0",
-    "author": "Eficent, "
-              "Odoo Community Association (OCA)",
+    "pending to invoice or to receive.",
+    "version": "13.0.1.0.0",
+    "author": "Eficent, " "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
     "category": "Purchases",
     "depends": ["purchase_stock"],
-    "data": [
-        'views/purchase_view.xml',
-    ],
-    'pre_init_hook': 'pre_init_hook',
+    "data": ["views/purchase_view.xml"],
+    "pre_init_hook": "pre_init_hook",
     "license": "AGPL-3",
     "installable": True,
     "application": False,
