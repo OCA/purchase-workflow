@@ -14,15 +14,18 @@ class RecommendationCase(SavepointCase):
         })
         cls.product_obj = cls.env['product.product']
         cls.prod_1 = cls.product_obj.create({
+            'default_code': 'product-1',
             'name': 'Test Product 1',
             'type': 'product',
             'seller_ids': [(0, 0, {'name': cls.partner.id, 'price': 5})],
         })
         cls.prod_2 = cls.prod_1.copy({
+            'default_code': 'product-2',
             'name': 'Test Product 2',
             'seller_ids': [(0, 0, {'name': cls.partner.id, 'price': 10})],
         })
         cls.prod_3 = cls.prod_1.copy({
+            'default_code': 'product-3',
             'name': 'Test Product 3',
             'seller_ids': [(0, 0, {'name': cls.partner.id, 'price': 7})],
         })
