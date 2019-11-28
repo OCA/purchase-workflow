@@ -69,7 +69,8 @@
         <field name="model">purchase.order</field>
         <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
         <field name="arch" type="xml">
-            <filter name="invoiced" position="after">
+            <filter name="order_date" position="after">
+                <separator/>
                 <filter name="needs_review" string="Needs my Review"
                         domain="[('reviewer_ids','in',uid), ('state', 'not in', ['done', 'cancel','to approve'])]"
                         help="My Purchases to review"/>
