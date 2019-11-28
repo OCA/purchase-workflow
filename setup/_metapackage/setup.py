@@ -10,6 +10,7 @@ setuptools.setup(
     install_requires=[
         'odoo13-addon-product_form_purchase_link',
         'odoo13-addon-purchase_open_qty',
+        'odoo13-addon-purchase_order_archive',
     ],
     classifiers=[
         'Programming Language :: Python',
