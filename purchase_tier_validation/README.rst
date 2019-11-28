@@ -66,6 +66,7 @@ Contributors
 
 * Lois Rilo <lois.rilo@eficent.com>
 * Naglis Jonaitis <naglis@versada.eu>
+* Pedro Gonzalez <pedro.gonzalez@pesol.es>
 
 Do not contact contributors directly about support or help with technical issues.
 
