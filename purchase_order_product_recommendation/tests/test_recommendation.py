@@ -243,7 +243,8 @@ class RecommendationCase(SavepointCase):
         # All products
         wizard.show_all_products = True
         wizard.line_amount = 0
-        purchase_products_number = self.product_obj.read_group(
-            [], ['purchase_ok'], ['purchase_ok'])[0]['purchase_ok_count']
+        purchase_products_number = self.product_obj.search_count([
+            ('purchase_ok', '!=', False),
+        ])
         wizard._generate_recommendations()
         self.assertEqual(len(wizard.line_ids), purchase_products_number)
