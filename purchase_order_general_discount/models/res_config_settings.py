@@ -8,6 +8,5 @@ class ResConfigSettings(models.TransientModel):
 
     purchase_general_discount_field = fields.Selection(
         related='company_id.purchase_general_discount_field',
-        default='discount',
         readonly=False,
     )
