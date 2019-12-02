@@ -3,7 +3,7 @@
 {
     'name': 'Purchase Order General Discount',
     'summary': 'General discount per purchase order',
-    'version': '11.0.1.1.0',
+    'version': '11.0.1.1.1',
     'category': 'Purchases',
     'website': 'https://github.com/OCA/purchase-workflow',
     'author': 'Tecnativa, '
