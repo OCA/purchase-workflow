@@ -1,19 +1,16 @@
-# -*- coding: utf-8 -*-
+# Copyright 2019 Digital5 S.L.
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 {
     'name': 'Purchase MTO Cancel',
-    'version': '11.0.1.0.1',
+    'summary': 'Avoid the cancellation of sale pickings in case of a purchase '
+               'cancellation with a MTO product',
+    'version': '11.0.1.0.0',
     'category': 'Purchase Management',
-    'description': """
-	""",
-    'author': 'Digital5, S.L.',
+    'author': 'Digital5, S.L., Odoo Community Association (OCA)',
     'website': 'http://www.digital5.es',
     'depends': [
         'purchase'
     ],
-    'data': [],
-    'demo': [],
-    'test': [],
     'installable': True,
-    'auto_install': False,
 }
