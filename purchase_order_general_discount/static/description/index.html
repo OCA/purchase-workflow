@@ -401,7 +401,7 @@ will appear when the module is installed.</li>
 can be used to extend more line discount fields. For example, if we had the
 field <cite>discount4</cite>, we could extend it like this:</p>
 <pre class="code python literal-block">
-<span class="nd">&#64;api.model</span>
+<span class="nd">&#64;api</span><span class="o">.</span><span class="n">model</span>
 <span class="k">def</span> <span class="nf">_get_purchase_discount_fields</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="n">discount_fields</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_get_purchase_discount_fields</span><span class="p">()</span>
     <span class="n">discount_fields</span> <span class="o">+=</span> <span class="p">[(</span><span class="s1">'discount4'</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s1">'Discount 4'</span><span class="p">))]</span>
