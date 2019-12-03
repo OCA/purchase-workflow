@@ -1,7 +1,7 @@
 # Copyright 2019 Digital5 S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from openerp import models, fields, api, _
+from openerp import models, api
 
 
 class PurchaseOrderLine(models.Model):
@@ -10,9 +10,10 @@ class PurchaseOrderLine(models.Model):
     @api.multi
     def _prepare_stock_moves(self, picking):
         """
-        the propagate field in purchases is not informed in any case, so it will always be true
-        therefore when we cancel a mto purchase the picking from the sale is cancelled
-        what this does: if the move comes from another one, search the rule that generated it and apply its propagate
+        the propagate field in purchases is not informed in any case, so it will always
+        be true therefore when we cancel a mto purchase the picking from the sale is
+        cancelled what this does: if the move comes from another one, search the rule
+        that generated it and apply its propagate
         """
         res = super(PurchaseOrderLine, self)._prepare_stock_moves(picking)
         if res and self.move_dest_ids:
@@ -32,9 +33,10 @@ class PurchaseOrder(models.Model):
     @api.multi
     def button_cancel(self):
         """
-        upon cancelling the move, if the cancelation is not propagated, the original moves are left in the same state
-        so the moves from the sale will be "waiting for another operation", when they have been changed to mts
-        what this does: recompute the state of the affected moves
+        upon cancelling the move, if the cancelation is not propagated, the original
+        moves are left in the same state so the moves from the sale will be "waiting
+        for another operation", when they have been changed to mts what this does:
+        recompute the state of the affected moves
         """
         moves_to_recompute = self.mapped('order_line.move_dest_ids')
         res = super(PurchaseOrder, self).button_cancel()
