@@ -13,4 +13,5 @@
         'purchase'
     ],
     'installable': True,
+    "license": "AGPL-3",
 }
