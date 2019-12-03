@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-17 03:38+0000\n"
-"PO-Revision-Date: 2019-12-03 11:27+0000\n"
+"PO-Revision-Date: 2019-12-03 14:04+0000\n"
 "Last-Translator: Riccardo Bellanova <r.bellanova@apuliasoftware.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/"
 "OCA-purchase-workflow-10-0/language/it/)\n"
@@ -414,9 +414,8 @@ msgstr ""
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_search_sub
-#, fuzzy
 msgid "Group By"
-msgstr "Raggruppa per..."
+msgstr "Raggruppa per"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
@@ -939,7 +938,7 @@ msgstr "Quantità"
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__purchased_qty
 msgid "Quantity in RFQ or PO"
-msgstr "Quantità in RFQ o PO"
+msgstr "Qtà in RFQ o PO"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__qty_in_progress
@@ -1076,7 +1075,7 @@ msgstr "Richiesto per Preventivo"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Reset"
-msgstr ""
+msgstr "Imposta a Bozza"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__activity_user_id
