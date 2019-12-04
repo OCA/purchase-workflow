@@ -9,53 +9,42 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-24 13:09+0000\n"
-"PO-Revision-Date: 2017-02-24 13:09+0000\n"
-"Last-Translator: Fernando Lara <gennesis45@gmail.com>, 2017\n"
+"POT-Creation-Date: 2019-12-04 18:12+0100\n"
+"PO-Revision-Date: 2019-12-04 18:13+0100\n"
+"Last-Translator: Carlos Dauden <carlos.dauden@tecnativa.com>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.7.1\n"
 
 #. module: product_supplierinfo_discount
 #: model:ir.model,name:product_supplierinfo_discount.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contacto"
 
 #. module: product_supplierinfo_discount
-#: model:ir.model.fields,field_description:product_supplierinfo_discount.field_res_partner_default_supplierinfo_discount
-#: model:ir.model.fields,field_description:product_supplierinfo_discount.field_res_users_default_supplierinfo_discount
+#: model:ir.model.fields,field_description:product_supplierinfo_discount.field_res_partner__default_supplierinfo_discount
+#: model:ir.model.fields,field_description:product_supplierinfo_discount.field_res_users__default_supplierinfo_discount
 msgid "Default Supplier Discount (%)"
 msgstr "Descuento por Proveedor Predeterminado (%)"
 
 #. module: product_supplierinfo_discount
-#: model:ir.model.fields,field_description:product_supplierinfo_discount.field_product_supplierinfo_discount
+#: model:ir.model.fields,field_description:product_supplierinfo_discount.field_product_supplierinfo__discount
 msgid "Discount (%)"
 msgstr "(%) Descuento"
 
 #. module: product_supplierinfo_discount
-#: model:ir.ui.view,arch_db:product_supplierinfo_discount.res_partner_form_view
+#: model_terms:ir.ui.view,arch_db:product_supplierinfo_discount.res_partner_form_view
 msgid "Discount-related settings are managed on"
 msgstr "Los ajustes relacionados con los descuentos se gestionan en"
 
 #. module: product_supplierinfo_discount
-#: model:ir.model,name:product_supplierinfo_discount.model_product_supplierinfo
-msgid "Information about a product vendor"
-msgstr "Información sobre el proveedor del producto"
-
-#. module: product_supplierinfo_discount
-#: model:ir.model,name:product_supplierinfo_discount.model_procurement_rule
-#, fuzzy
-msgid "Procurement Rule"
-msgstr "Abastecimiento"
-
-#. module: product_supplierinfo_discount
 #: model:ir.model,name:product_supplierinfo_discount.model_purchase_order
-#, fuzzy
 msgid "Purchase Order"
-msgstr "Línea orden de compra"
+msgstr "Pedido de compra"
 
 #. module: product_supplierinfo_discount
 #: model:ir.model,name:product_supplierinfo_discount.model_purchase_order_line
@@ -63,19 +52,22 @@ msgid "Purchase Order Line"
 msgstr "Línea orden de compra"
 
 #. module: product_supplierinfo_discount
-#: model:ir.model.fields,help:product_supplierinfo_discount.field_res_partner_default_supplierinfo_discount
-#: model:ir.model.fields,help:product_supplierinfo_discount.field_res_users_default_supplierinfo_discount
-msgid ""
-"This value will be used as the default one, for each new supplierinfo line "
-"depending on that supplier."
-msgstr ""
-"Este valor se utilizará como predeterminado, para cada nueva línea de "
-"información del proveedor dependiendo de ese proveedor."
+#: model:ir.model,name:product_supplierinfo_discount.model_stock_rule
+msgid "Stock Rule"
+msgstr "Regla de Inventario"
 
 #. module: product_supplierinfo_discount
-#: model:ir.ui.view,arch_db:product_supplierinfo_discount.res_partner_form_view
+#: model:ir.model,name:product_supplierinfo_discount.model_product_supplierinfo
+msgid "Supplier Pricelist"
+msgstr "Tarifa de proveedor"
+
+#. module: product_supplierinfo_discount
+#: model:ir.model.fields,help:product_supplierinfo_discount.field_res_partner__default_supplierinfo_discount
+#: model:ir.model.fields,help:product_supplierinfo_discount.field_res_users__default_supplierinfo_discount
+msgid "This value will be used as the default one, for each new supplierinfo line depending on that supplier."
+msgstr "Este valor se utilizará como predeterminado, para cada nueva línea de información del proveedor dependiendo de ese proveedor."
+
+#. module: product_supplierinfo_discount
+#: model_terms:ir.ui.view,arch_db:product_supplierinfo_discount.res_partner_form_view
 msgid "the parent company"
 msgstr "la empresa matriz"
-
-#~ msgid "Partner"
-#~ msgstr "Empresa"

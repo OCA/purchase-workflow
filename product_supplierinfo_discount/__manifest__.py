@@ -7,7 +7,7 @@
 
 {
     "name": "Discounts in product supplier info",
-    "version": "11.0.1.0.0",
+    "version": "12.0.1.0.0",
     "author": "Tecnativa, "
               "GRAP, "
               "Odoo Community Association (OCA)",

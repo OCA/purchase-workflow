@@ -4,5 +4,5 @@
 * `Tecnativa <https://www.tecnativa.com>`_:
 
   * Pedro M. Baeza
-  * Vicent Cubells <vicent.cubells@tecnativa.com>
-
+  * Vicent Cubells
+  * Carlos Dauden
