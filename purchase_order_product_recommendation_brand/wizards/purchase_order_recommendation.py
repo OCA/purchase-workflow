@@ -29,7 +29,10 @@ class PurchaseOrderRecommendation(models.TransientModel):
             domain += [('product_brand_id', 'in', self.product_brand_ids.ids)]
         return domain
 
-    @api.onchange('product_brand_ids')
+    @api.onchange(
+        'order_id', 'date_begin', 'date_end', 'line_amount',
+        'show_all_partner_products', 'show_all_products',
+        'product_category_ids', 'warehouse_ids', 'product_brand_ids')
     def _generate_recommendations(self):
         """Just to add field to the onchange method"""
         return super()._generate_recommendations()
