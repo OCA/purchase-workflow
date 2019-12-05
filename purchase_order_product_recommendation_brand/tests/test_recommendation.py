@@ -41,3 +41,20 @@ class BrandRecommendationCase(test_recommendation.RecommendationCase):
         wizard.product_brand_ids = False
         wizard._generate_recommendations()
         self.assertEqual(len(wizard.line_ids), 3)
+
+    def test_recommendations_by_brand_all_products(self):
+        """Brand filters also apply to all products filter"""
+        wizard = self.wizard()
+        wizard.date_begin = wizard.date_end = '2019-02-01'
+        # First we show all purchasable products
+        wizard.show_all_products = True
+        wizard.line_amount = 0
+        wizard._generate_recommendations()
+        purchase_products_number = self.product_obj.search_count([
+            ('purchase_ok', '!=', False),
+        ])
+        self.assertEqual(len(wizard.line_ids), purchase_products_number)
+        # Then we filter by brand
+        wizard.product_brand_ids = self.brand_2
+        wizard._generate_recommendations()
+        self.assertEqual(len(wizard.line_ids), 2)
