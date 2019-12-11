@@ -160,6 +160,7 @@ class PurchaseRequest(models.Model):
         self.ensure_one()
         default.update({
             'state': 'draft',
+            'requested_by': self.env.user.id,
             'name': self.env['ir.sequence'].next_by_code('purchase.request'),
         })
         return super(PurchaseRequest, self).copy(default)
