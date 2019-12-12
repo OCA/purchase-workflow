@@ -91,7 +91,11 @@ class PurchaseOrderRecommendation(models.TransientModel):
 
     def _get_products(self):
         """Override to filter products show_all_partner_products is set"""
-        products = self._get_supplier_products()
+        if self.show_all_products:
+            products = self.env['product.product'].search(
+                self._get_all_products_domain())
+        else:
+            products = self._get_supplier_products()
         # Filter products by category if set.
         # It will apply to show_all_partner_products as well
         if self.product_category_ids:
@@ -148,10 +152,6 @@ class PurchaseOrderRecommendation(models.TransientModel):
             'qty_done': x['qty_done']
         } for x in found_lines]
         found_lines = {l['id']: l for l in found_lines}
-        # Show every purchaseable product
-        if self.show_all_products:
-            products += self.env['product.product'].search(
-                self._get_all_products_domain())
         # Show all products with supplier infos belonging to a partner
         if self.show_all_partner_products or self.show_all_products:
             for product in products.filtered(
