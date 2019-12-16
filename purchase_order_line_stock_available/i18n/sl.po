@@ -20,12 +20,12 @@ msgstr ""
 "%100==4 ? 2 : 3);\n"
 
 #. module: purchase_order_line_stock_available
-#: model:ir.model.fields,field_description:purchase_order_line_stock_available.field_purchase_order_line_virtual_available
+#: model:ir.model.fields,field_description:purchase_order_line_stock_available.field_purchase_order_line__virtual_available
 msgid "Forecast Quantity"
 msgstr ""
 
 #. module: purchase_order_line_stock_available
-#: model:ir.model.fields,help:purchase_order_line_stock_available.field_purchase_order_line_virtual_available
+#: model:ir.model.fields,help:purchase_order_line_stock_available.field_purchase_order_line__virtual_available
 msgid ""
 "Forecast quantity (computed as Quantity On Hand - Outgoing + Incoming)\n"
 "In a context with a single Stock Location, this includes goods stored in "
