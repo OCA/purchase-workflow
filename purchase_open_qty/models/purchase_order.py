@@ -26,7 +26,7 @@ class PurchaseOrderLine(models.Model):
                 line.qty_to_invoice = line.product_qty - line.qty_invoiced
 
     @api.depends('move_ids.state', 'move_ids.product_uom',
-                 'move_ids.product_uom_qty')
+                 'move_ids.product_uom_qty', 'order_id.state')
     def _compute_qty_to_receive(self):
         for line in self:
             total = line.product_uom_qty
