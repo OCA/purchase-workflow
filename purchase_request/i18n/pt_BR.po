@@ -1350,7 +1350,6 @@ msgid "Wizard"
 msgstr ""
 
 #. module: purchase_request
-#: code:addons/purchase_request/models/purchase_request.py:264
 #: code:addons/purchase_request/models/purchase_request.py:265
 #, python-format
 msgid ""
