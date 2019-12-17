@@ -66,6 +66,7 @@ class PurchaseRequest(models.Model):
     requested_by = fields.Many2one('res.users',
                                    'Requested by',
                                    required=True,
+                                   copy=False,
                                    track_visibility='onchange',
                                    default=_get_default_requested_by)
     assigned_to = fields.Many2one(
