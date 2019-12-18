@@ -5,17 +5,17 @@ from odoo import api, fields, models
 
 
 class PurchaseOrder(models.Model):
-    _inherit = 'purchase.order'
+    _inherit = "purchase.order"
 
-    state = fields.Selection(selection_add=[('approved', 'Approved')])
+    state = fields.Selection(selection_add=[("approved", "Approved")])
     # TODO: inherit state but adding approved state in a position after 'to
     # approve' state.
 
     READONLY_STATES = {
-        'purchase': [('readonly', True)],
-        'done': [('readonly', True)],
-        'cancel': [('readonly', True)],
-        'approved': [('readonly', True)],
+        "purchase": [("readonly", True)],
+        "done": [("readonly", True)],
+        "cancel": [("readonly", True)],
+        "approved": [("readonly", True)],
     }
 
     # Update the readonly states:
@@ -35,7 +35,9 @@ class PurchaseOrder(models.Model):
     @api.multi
     def button_approve(self, force=False):
         approve_purchases = self.filtered(
-            lambda p: p.company_id.purchase_approve_active)
-        approve_purchases.write({'state': 'approved'})
+            lambda p: p.company_id.purchase_approve_active
+        )
+        approve_purchases.write({"state": "approved"})
         return super(PurchaseOrder, self - approve_purchases).button_approve(
-            force=force)
+            force=force
+        )
