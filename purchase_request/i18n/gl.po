@@ -509,7 +509,6 @@ msgid "Unread Messages"
 msgstr "Mensaxes sen ler"
 
 #. module: purchase_request
-#: code:addons/purchase_request/models/purchase_request.py:217
 #: code:addons/purchase_request/models/purchase_request.py:219
 #, python-format
 msgid ""
