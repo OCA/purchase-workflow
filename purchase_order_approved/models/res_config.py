@@ -5,10 +5,10 @@ from odoo import fields, models
 
 
 class ResConfigSettings(models.TransientModel):
-    _inherit = 'res.config.settings'
+    _inherit = "res.config.settings"
 
     purchase_approve_active = fields.Boolean(
-        related='company_id.purchase_approve_active',
+        related="company_id.purchase_approve_active",
         string="State 'Approved' in Purchase Orders",
         readonly=False,
     )
