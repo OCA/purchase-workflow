@@ -30,12 +30,14 @@ class PurchaseOrder(models.Model):
         for order in self:
             if any([ptype in ['product', 'consu'] for ptype in
                     order.order_line.mapped('product_id.type')]):
-                picking = order.picking_ids.filtered(
-                    lambda x: x.state not in ('done', 'cancel'))[0]
-                for move, line in zip(
-                        sorted(picking.move_lines,
-                               key=lambda m: m.id), order.order_line):
-                    move.write({'sequence': line.sequence})
+                pickings = order.picking_ids.filtered(
+                    lambda x: x.state not in ('done', 'cancel'))
+                if pickings:
+                    picking = pickings[0]
+                    for move, line in zip(
+                            sorted(picking.move_lines,
+                                   key=lambda m: m.id), order.order_line):
+                        move.write({'sequence': line.sequence})
         return res
 
     @api.multi
