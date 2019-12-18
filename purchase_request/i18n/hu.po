@@ -509,6 +509,7 @@ msgstr "Olvasatlan üzenetek"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_request.py:217
+#: code:addons/purchase_request/models/purchase_request.py:219
 #, python-format
 msgid ""
 "You can't request an approval for a purchase request which is empty. (%s)"
