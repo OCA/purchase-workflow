@@ -9,22 +9,25 @@ class ProductUsage(models.Model):
     _name = "purchase.product.usage"
     _description = "Product Usage"
 
-    name = fields.Char('Description', required=True)
-    code = fields.Char('Code')
+    name = fields.Char("Description", required=True)
+    code = fields.Char("Code")
     company_id = fields.Many2one(
-        comodel_name='res.company', string='Company',
-        required=True, default=lambda self: self.env.user.company_id)
+        comodel_name="res.company",
+        string="Company",
+        required=True,
+        default=lambda self: self.env.user.company_id,
+    )
     active = fields.Boolean(default=True)
     account_id = fields.Many2one(
-        comodel_name='account.account',
-        string='Account',
-        help='Expense account for vendor bills'
+        comodel_name="account.account",
+        string="Account",
+        help="Expense account for vendor bills",
     )
     product_id = fields.Many2one(
-        comodel_name='product.product',
-        domain=[('type', 'in', ['consu', 'service'])],
-        string='Default Product',
-        help='Purchase this product by default'
+        comodel_name="product.product",
+        domain=[("type", "in", ["consu", "service"])],
+        string="Default Product",
+        help="Purchase this product by default",
     )
 
     @api.multi
@@ -34,7 +37,7 @@ class ProductUsage(models.Model):
         for usage in result:
             rec = self.browse(usage[0])
             if rec.code:
-                name = '[%s] %s' % (rec.code, usage[1])
+                name = "[{}] {}".format(rec.code, usage[1])
             else:
                 name = usage[1]
             new_result.append((rec.id, name))
