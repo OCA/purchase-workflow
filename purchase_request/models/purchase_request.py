@@ -80,6 +80,7 @@ class PurchaseRequest(models.Model):
     requested_by = fields.Many2one('res.users',
                                    'Requested by',
                                    required=True,
+                                   copy=False,
                                    track_visibility='onchange',
                                    default=_get_default_requested_by)
     assigned_to = fields.Many2one('res.users', 'Approver',
@@ -159,6 +160,7 @@ class PurchaseRequest(models.Model):
         self.ensure_one()
         default.update({
             'state': 'draft',
+            'requested_by': self.env.user.id,
             'name': self.env['ir.sequence'].next_by_code('purchase.request'),
         })
         return super(PurchaseRequest, self).copy(default)
