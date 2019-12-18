@@ -8,11 +8,9 @@ from odoo import api, fields, models
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
-    usage_id = fields.Many2one(
-        comodel_name='purchase.product.usage',
-        string="Usage")
+    usage_id = fields.Many2one(comodel_name="purchase.product.usage", string="Usage")
 
-    @api.onchange('usage_id')
+    @api.onchange("usage_id")
     def onchange_usage_id(self):
         if self.usage_id.product_id and not self.product_id:
             self.product_id = self.usage_id.product_id
