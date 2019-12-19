@@ -1,7 +1,7 @@
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class PurchaseOrder(models.Model):
@@ -28,11 +28,9 @@ class PurchaseOrder(models.Model):
     company_id = fields.Many2one(states=READONLY_STATES)
     picking_type_id = fields.Many2one(states=READONLY_STATES)
 
-    @api.multi
     def button_release(self):
         super(PurchaseOrder, self).button_approve()
 
-    @api.multi
     def button_approve(self, force=False):
         approve_purchases = self.filtered(
             lambda p: p.company_id.purchase_approve_active

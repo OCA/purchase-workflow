@@ -26,8 +26,8 @@ msgid ""
 "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
 "specific.\" groups=\"base.group_multi_company\"/>"
 msgstr ""
-"<span class=\"fa fa-lg fa-building-o\" title=\"此处设置的值特定于公司。\" groups=\"base."
-"group_multi_company\"/>"
+"<span class=\"fa fa-lg fa-building-o\" title=\"此处设置的值特定于公司。\" "
+"groups=\"base.group_multi_company\"/>"
 
 #. module: purchase_order_approved
 #: model_terms:ir.ui.view,arch_db:purchase_order_approved.view_purchase_configuration
@@ -45,18 +45,14 @@ msgid ""
 "back to draft. You can release the creation of the incoming shipments moving "
 "the purchase order to state 'Purchase Order'."
 msgstr ""
-"在“采购订单”之前的采购订单中添加额外状态。确认和批准采购订单后，将进入“已批准”状态。在此状态下，尚未创建传入装运，您仍可以返回草稿状态。您可以释放将采"
-"购订单移动到状态“采购订单”的传入发货的创建。"
+"在“采购订单”之前的采购订单中添加额外状态。确认和批准采购订单后，将进入“已批"
+"准”状态。在此状态下，尚未创建传入装运，您仍可以返回草稿状态。您可以释放将采购"
+"订单移动到状态“采购订单”的传入发货的创建。"
 
 #. module: purchase_order_approved
-#: selection:purchase.order,state:0
+#: model:ir.model.fields.selection,name:purchase_order_approved.selection__purchase_order__state__approved
 msgid "Approved"
 msgstr "已批准"
-
-#. module: purchase_order_approved
-#: selection:purchase.order,state:0
-msgid "Cancelled"
-msgstr "已取消"
 
 #. module: purchase_order_approved
 #: model:ir.model,name:purchase_order_approved.model_res_company
@@ -101,11 +97,6 @@ msgid "Drop Ship Address"
 msgstr "代发货地址"
 
 #. module: purchase_order_approved
-#: selection:purchase.order,state:0
-msgid "Locked"
-msgstr "已锁定"
-
-#. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__date_order
 msgid "Order Date"
 msgstr "单据日期"
@@ -117,7 +108,6 @@ msgstr "订单行"
 
 #. module: purchase_order_approved
 #: model:ir.model,name:purchase_order_approved.model_purchase_order
-#: selection:purchase.order,state:0
 msgid "Purchase Order"
 msgstr "采购订单"
 
@@ -126,17 +116,9 @@ msgstr "采购订单"
 msgid ""
 "Put an address if you want to deliver directly from the vendor to the "
 "customer. Otherwise, keep empty to deliver to your own company."
-msgstr "如果你想直接从供应商发货给客户，就填写一个地址。否则，留空把货物运到你的公司仓库。"
-
-#. module: purchase_order_approved
-#: selection:purchase.order,state:0
-msgid "RFQ"
-msgstr "询价单"
-
-#. module: purchase_order_approved
-#: selection:purchase.order,state:0
-msgid "RFQ Sent"
-msgstr "发送询价单"
+msgstr ""
+"如果你想直接从供应商发货给客户，就填写一个地址。否则，留空把货物运到你的公司"
+"仓库。"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,help:purchase_order_approved.field_purchase_order__origin
@@ -166,11 +148,6 @@ msgid "This will determine operation type of incoming shipment"
 msgstr "这将决定进货的操作类型"
 
 #. module: purchase_order_approved
-#: selection:purchase.order,state:0
-msgid "To Approve"
-msgstr "批准"
-
-#. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_res_company__purchase_approve_active
 msgid "Use State 'Approved' in Purchase Orders"
 msgstr "在采购订单中使用“已批准”状态"
@@ -184,3 +161,18 @@ msgstr "供应商"
 #: model:ir.model.fields,help:purchase_order_approved.field_purchase_order__partner_id
 msgid "You can find a vendor by its Name, TIN, Email or Internal Reference."
 msgstr "您可以通过名称，TIN，电子邮件或内部参考找到供应商。"
+
+#~ msgid "Cancelled"
+#~ msgstr "已取消"
+
+#~ msgid "Locked"
+#~ msgstr "已锁定"
+
+#~ msgid "RFQ"
+#~ msgstr "询价单"
+
+#~ msgid "RFQ Sent"
+#~ msgstr "发送询价单"
+
+#~ msgid "To Approve"
+#~ msgstr "批准"
