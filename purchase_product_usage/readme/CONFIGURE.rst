@@ -3,6 +3,6 @@ In order to be able to define usages, assign users to the group
 in the group "Purchase Manager"
 
 
-Go to *Purchases / Configuration / Purchase Product Usages* and define
+Go to *Purchase / Configuration / Purchase Product Usages* and define
 the usages, indicating the description and optionally the code, default
 product and account to use.
