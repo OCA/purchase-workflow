@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
+from odoo.osv import expression
 
 
 class ProcurementOrder(models.Model):
@@ -55,7 +56,12 @@ class ProcurementOrder(models.Model):
         res = super(ProcurementOrder, self)._make_po_get_domain(
             partner=partner)
         if self.account_analytic_id:
-            res += (('order_line.account_analytic_id',
-                     '=',
-                     self.account_analytic_id.id),)
+            domain = expression.OR([
+                [('order_line', '=', False)],
+                [('order_line.account_analytic_id',
+                  '=',
+                  self.account_analytic_id.id)]])
+            res = expression.AND([
+                res, domain
+            ])
         return res
