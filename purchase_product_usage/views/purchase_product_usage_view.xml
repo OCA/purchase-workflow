@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
 <odoo>
+
     <record id="purchase_product_usage_tree" model="ir.ui.view">
         <field name="name">purchase.product.usage.tree</field>
         <field name="model">purchase.product.usage</field>
@@ -21,10 +21,8 @@
                 <header/>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button name="toggle_active" type="object"
-                                class="oe_stat_button" icon="fa-archive">
-                            <field name="active" widget="boolean_button"
-                                options='{"terminology": "archive"}'/>
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
                         </button>
                     </div>
                     <div class="oe_title">
@@ -65,12 +63,12 @@
     <record id="action_purchase_product_usage" model="ir.actions.act_window">
         <field name="name">Purchase Product Usages</field>
         <field name="res_model">purchase.product.usage</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="view_id" ref="purchase_product_usage_tree"/>
     </record>
 
-    <menuitem id="menu_purchase_product_usage"
+    <menuitem
+        id="menu_purchase_product_usage"
         name="Purchase Product Usages"
         groups="group_purchase_product_usage"
         sequence="26"
