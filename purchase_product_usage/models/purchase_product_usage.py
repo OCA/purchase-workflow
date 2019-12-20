@@ -1,16 +1,16 @@
 # Copyright 2019 Aleph Objects, Inc.
 # Copyright 2019 Eficent Business and IT Consulting Services S.L.
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl-3.0).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3.0).
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class ProductUsage(models.Model):
     _name = "purchase.product.usage"
     _description = "Product Usage"
 
-    name = fields.Char("Description", required=True)
-    code = fields.Char("Code")
+    name = fields.Char(string="Description", required=True)
+    code = fields.Char(string="Code")
     company_id = fields.Many2one(
         comodel_name="res.company",
         string="Company",
@@ -30,7 +30,6 @@ class ProductUsage(models.Model):
         help="Purchase this product by default",
     )
 
-    @api.multi
     def name_get(self):
         result = super(ProductUsage, self).name_get()
         new_result = []
