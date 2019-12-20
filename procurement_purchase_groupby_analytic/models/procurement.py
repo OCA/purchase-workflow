@@ -56,12 +56,11 @@ class ProcurementOrder(models.Model):
         res = super(ProcurementOrder, self)._make_po_get_domain(
             partner=partner)
         if self.account_analytic_id:
-            domain = expression.OR([
-                [('order_line', '=', False)],
-                [('order_line.account_analytic_id',
-                  '=',
-                  self.account_analytic_id.id)]])
-            res = expression.AND([
-                res, domain
-            ])
+            domain = (
+                '|',
+                ('order_line', '=', False),
+                ('order_line.account_analytic_id',
+                 '=',
+                 self.account_analytic_id.id))
+            res = domain + res
         return res
