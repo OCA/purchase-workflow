@@ -1,4 +1,4 @@
-# Copyright 2017 Eficent Business and IT Consulting Services S.L.
+# Copyright 2019 ForgeFlow S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.fields import Datetime
@@ -15,13 +15,13 @@ class TestPurchaseReceptionNotify(TransactionCase):
         self.product_uom_model = self.env["uom.uom"]
 
         # partners
-        pa_dict = {"name": "Partner 1", "supplier": True}
+        pa_dict = {"name": "Partner 1"}
         self.partner = partner_model.sudo().create(pa_dict)
 
         # Purchase Order Num 1
         po_dict = {"partner_id": self.partner.id}
         self.purchase_order = self.purchase_order_model.create(po_dict)
-        uom_id = self.product_uom_model.search([("name", "=", "Unit(s)")])[0].id
+        uom_id = self.env.ref("uom.product_uom_unit").id
         pr_dict = {
             "name": "Product Test",
             "uom_id": uom_id,
