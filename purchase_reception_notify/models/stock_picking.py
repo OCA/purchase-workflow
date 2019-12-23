@@ -1,4 +1,4 @@
-# Copyright 2018 Eficent Business and IT Consulting Services S.L.
+# Copyright 2019 ForgeFlow S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
 
 from odoo import _, api, models
@@ -26,7 +26,6 @@ class StockPicking(models.Model):
         message += "</ul>"
         return message
 
-    @api.multi
     def action_done(self):
         super(StockPicking, self).action_done()
         for picking in self.filtered(lambda p: p.picking_type_id.code == "incoming"):
