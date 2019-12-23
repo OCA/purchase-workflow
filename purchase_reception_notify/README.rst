@@ -23,7 +23,7 @@ Purchase Reception Notify
     :target: https://runbot.odoo-community.org/runbot/142/12.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module notifies to the employees following a the purchase order
 when the associated products have been received into stock.
@@ -59,13 +59,13 @@ Credits
 Authors
 ~~~~~~~
 
-* Eficent
+* ForgeFlow
 
 Contributors
 ~~~~~~~~~~~~
 
-* Aaron Henriquez <ahenriquez@eficent.com>
-* Jordi Ballester <jordi.ballester@eficent.com>
+* Aaron Henriquez <ahenriquez@forgeflow.com>
+* Jordi Ballester <jordi.ballester@forgeflow.com>
 
 Maintainers
 ~~~~~~~~~~~
