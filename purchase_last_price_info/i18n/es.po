@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-03-08 10:15+0000\n"
-"PO-Revision-Date: 2019-11-21 16:16+0000\n"
+"PO-Revision-Date: 2019-12-29 12:50+0000\n"
 "Last-Translator: Roodin <santi@comunitea.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/"
 "OCA-purchase-workflow-8-0/language/es/)\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.8\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: purchase_last_price_info
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_product__last_purchase_date
@@ -29,7 +29,7 @@ msgstr "Última fecha de compra"
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_product__last_purchase_price
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_template__last_purchase_price
 msgid "Last Purchase Price"
-msgstr "Último pecio de compra"
+msgstr "Último precio de compra"
 
 #. module: purchase_last_price_info
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_product__last_supplier_id
