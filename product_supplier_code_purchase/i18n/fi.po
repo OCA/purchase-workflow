@@ -19,9 +19,16 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: product_supplier_code_purchase
-#: model:ir.model.fields,field_description:product_supplier_code_purchase.field_purchase_order_line_product_supplier_code
+#: model:ir.model.fields,field_description:product_supplier_code_purchase.field_purchase_order_line__product_supplier_code
 msgid "Product Supplier Code"
 msgstr ""
+
+#. module: product_supplier_code_purchase
+#: model:ir.model,name:product_supplier_code_purchase.model_purchase_order
+#, fuzzy
+#| msgid "Purchase Order Line"
+msgid "Purchase Order"
+msgstr "Ostotilausrivi"
 
 #. module: product_supplier_code_purchase
 #: model:ir.model,name:product_supplier_code_purchase.model_purchase_order_line
