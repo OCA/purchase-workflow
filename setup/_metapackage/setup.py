@@ -11,6 +11,7 @@ setuptools.setup(
         'odoo13-addon-product_form_purchase_link',
         'odoo13-addon-purchase_open_qty',
         'odoo13-addon-purchase_order_archive',
+        'odoo13-addon-purchase_reception_notify',
         'odoo13-addon-purchase_tier_validation',
     ],
     classifiers=[
