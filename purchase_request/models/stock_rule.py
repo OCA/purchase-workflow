@@ -1,5 +1,5 @@
 # Copyright 2018-2019 Eficent Business and IT Consulting Services S.L.
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 
 from odoo import api, fields, models
 
@@ -8,24 +8,24 @@ class StockRule(models.Model):
     _inherit = "stock.rule"
 
     @api.model
-    def _prepare_purchase_request_line(
-        self, request_id, product_id, product_qty, product_uom, values
-    ):
-        procurement_uom_po_qty = product_uom._compute_quantity(
-            product_qty, product_id.uom_po_id
+    def _prepare_purchase_request_line(self, request_id, procurement):
+        procurement_uom_po_qty = procurement.product_uom._compute_quantity(
+            procurement.product_qty, procurement.product_id.uom_po_id
         )
         return {
-            "product_id": product_id.id,
-            "name": product_id.name,
-            "date_required": "date_planned" in values
-            and values["date_planned"]
+            "product_id": procurement.product_id.id,
+            "name": procurement.product_id.name,
+            "date_required": "date_planned" in procurement.values
+            and procurement.values["date_planned"]
             or fields.Datetime.now(),
-            "product_uom_id": product_id.uom_po_id.id,
+            "product_uom_id": procurement.product_id.uom_po_id.id,
             "product_qty": procurement_uom_po_qty,
             "request_id": request_id.id,
-            "move_dest_ids": [(4, x.id) for x in values.get("move_dest_ids", [])],
-            "orderpoint_id": values.get("orderpoint_id", False)
-            and values.get("orderpoint_id").id,
+            "move_dest_ids": [
+                (4, x.id) for x in procurement.values.get("move_dest_ids", [])
+            ],
+            "orderpoint_id": procurement.values.get("orderpoint_id", False)
+            and procurement.values.get("orderpoint_id").id,
         }
 
     @api.model
@@ -66,40 +66,35 @@ class StockRule(models.Model):
             domain += (("group_id", "=", group_id),)
         return domain
 
-    @api.multi
-    def is_create_purchase_request_allowed(self, product_id):
+    def is_create_purchase_request_allowed(self, procurement):
         """
         Tell if current procurement order should
         create a purchase request or not.
         :return: boolean
         """
-        return self.action == "buy" and product_id.purchase_request
-
-    @api.multi
-    def _run_buy(
-        self, product_id, product_qty, product_uom, location_id, name, origin, values
-    ):
-        if self.is_create_purchase_request_allowed(product_id):
-            self.create_purchase_request(
-                product_id, product_qty, product_uom, origin, values
-            )
-            return
-        return super(StockRule, self)._run_buy(
-            product_id, product_qty, product_uom, location_id, name, origin, values
+        rule = self.env["procurement.group"]._get_rule(
+            procurement.product_id, procurement.location_id, procurement.values
         )
+        return rule.action == "buy" and procurement.product_id.purchase_request
 
-    @api.multi
-    def create_purchase_request(
-        self, product_id, product_qty, product_uom, origin, values
-    ):
+    def _run_buy(self, procurements):
+        if self.is_create_purchase_request_allowed(procurements[0][0]):
+            self.create_purchase_request(procurements[0][0])
+            return
+        return super(StockRule, self)._run_buy(procurements)
+
+    def create_purchase_request(self, procurement):
         """
         Create a purchase request containing procurement order product.
         """
+        rule = self.env["procurement.group"]._get_rule(
+            procurement.product_id, procurement.location_id, procurement.values
+        )
         purchase_request_model = self.env["purchase.request"]
         purchase_request_line_model = self.env["purchase.request.line"]
         cache = {}
         pr = self.env["purchase.request"]
-        domain = self._make_pr_get_domain(values)
+        domain = rule._make_pr_get_domain(procurement.values)
         if domain in cache:
             pr = cache[domain]
         elif domain:
@@ -107,19 +102,19 @@ class StockRule(models.Model):
             pr = pr[0] if pr else False
             cache[domain] = pr
         if not pr:
-            request_data = self._prepare_purchase_request(origin, values)
+            request_data = rule._prepare_purchase_request(
+                procurement.origin, procurement.values
+            )
             pr = purchase_request_model.create(request_data)
             cache[domain] = pr
-        elif not pr.origin or origin not in pr.origin.split(", "):
+        elif not pr.origin or procurement.origin not in pr.origin.split(", "):
             if pr.origin:
-                if origin:
-                    pr.write({"origin": pr.origin + ", " + origin})
+                if procurement.origin:
+                    pr.write({"origin": pr.origin + ", " + procurement.origin})
                 else:
                     pr.write({"origin": pr.origin})
             else:
-                pr.write({"origin": origin})
+                pr.write({"origin": procurement.origin})
         # Create Line
-        request_line_data = self._prepare_purchase_request_line(
-            pr, product_id, product_qty, product_uom, values
-        )
+        request_line_data = rule._prepare_purchase_request_line(pr, procurement)
         purchase_request_line_model.create(request_line_data)
