@@ -1299,7 +1299,7 @@ msgid "Wizard"
 msgstr ""
 
 #. module: purchase_request
-#: code:addons/purchase_request/models/purchase_request.py:265
+#: code:addons/purchase_request/models/purchase_request.py:264
 #, python-format
 msgid ""
 "You can't request an approval for a purchase request which is empty. (%s)"
