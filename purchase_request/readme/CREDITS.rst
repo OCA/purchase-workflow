@@ -8,4 +8,3 @@ Images
 ------
 
 * Enric Tobella (logo)
-
