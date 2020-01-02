@@ -1,5 +1,5 @@
 ---Fields in module 'purchase_request'---
-purchase_request / product.template         / purchase_request (boolean)    : NEW 
+purchase_request / product.template         / purchase_request (boolean)    : NEW
 purchase_request / purchase.request         / activity_ids (one2many)       : NEW relation: mail.activity
 purchase_request / purchase.request         / group_id (many2one)           : NEW relation: procurement.group
 purchase_request / purchase.request         / website_message_ids (one2many): NEW relation: mail.message
