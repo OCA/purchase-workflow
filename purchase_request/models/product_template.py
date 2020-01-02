@@ -9,5 +9,5 @@ class ProductTemplate(models.Model):
 
     purchase_request = fields.Boolean(
         help="Check this box to generate Purchase Request instead of "
-             "generating Requests For Quotation from procurement."
+        "generating Requests For Quotation from procurement."
     )
