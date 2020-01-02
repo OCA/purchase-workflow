@@ -5,3 +5,4 @@
 * Lois Rilo <lois.rilo@eficent.com>
 * Héctor Villarreal <hector.villarreal@eficent.com>
 * Ben Cai <ben.cai@elico-corp.com>
+* Rattapong Chokmasermkul <rattapongc@ecosoft.co.th>

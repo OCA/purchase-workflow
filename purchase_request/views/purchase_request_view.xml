@@ -3,7 +3,7 @@
      License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
 <odoo>
 
-    <record model="ir.ui.view" id="view_purchase_request_form">
+    <record id="view_purchase_request_form" model="ir.ui.view">
         <field name="name">purchase.request.form</field>
         <field name="model">purchase.request</field>
         <field name="arch" type="xml">
@@ -14,8 +14,10 @@
                         string="Reset"
                         type="object"
                         groups="purchase_request.group_purchase_request_manager"/>
-                <button name="button_to_approve" states="draft"
-                        string="Request approval" type="object"
+                <button name="button_to_approve"
+                        states="draft"
+                        string="Request approval"
+                        type="object"
                         class="oe_highlight"/>
                 <button name="button_approved"
                         states="to_approve"
@@ -44,29 +46,26 @@
             <sheet>
                 <div class="oe_button_box" name="button_box">
                     <button type="object"
-                        name="action_view_purchase_request_line"
-                        class="oe_stat_button"
-                        attrs="{'invisible':[('line_count', '=', 0)]}"
-                        icon="fa-list">
-                        <field name="line_count" widget="statinfo"
-                               string="Lines"/>
+                            name="action_view_purchase_request_line"
+                            class="oe_stat_button"
+                            attrs="{'invisible':[('line_count', '=', 0)]}"
+                            icon="fa-list">
+                        <field name="line_count" widget="statinfo" string="Lines"/>
                     </button>
                     <button type="object"
-                        name="action_view_purchase_order"
-                        class="oe_stat_button"
-                        attrs="{'invisible':[('purchase_count', '=', 0)]}"
-                        icon="fa-shopping-cart">
-                        <field name="purchase_count" widget="statinfo"
-                               string="Purchase Orders"/>
+                            name="action_view_purchase_order"
+                            class="oe_stat_button"
+                            attrs="{'invisible':[('purchase_count', '=', 0)]}"
+                            icon="fa-shopping-cart">
+                        <field name="purchase_count" widget="statinfo" string="Purchase Orders"/>
                     </button>
                     <button type="object"
-                        name="action_view_stock_move"
-                        class="oe_stat_button"
-                        attrs="{'invisible':[('move_count', '=', 0)]}"
-                        groups="stock.group_stock_manager"
-                        icon="fa-truck">
-                        <field name="move_count" widget="statinfo"
-                               string="Stock Moves"/>
+                            name="action_view_stock_move"
+                            class="oe_stat_button"
+                            attrs="{'invisible':[('move_count', '=', 0)]}"
+                            groups="stock.group_stock_manager"
+                            icon="fa-truck">
+                        <field name="move_count" widget="statinfo" string="Stock Moves"/>
                     </button>
                 </div>
                 <div class="oe_edit_only">
@@ -74,31 +73,22 @@
                 </div>
                 <h1>
                     <field name="is_editable" invisible="1"/>
-                    <field name="name" class="oe_inline"
-                           attrs="{'readonly': [('is_editable','=', False)]}"/>
+                    <field name="name" class="oe_inline" attrs="{'readonly': [('is_editable','=', False)]}"/>
                 </h1>
                 <group>
                     <group>
-                        <field name="requested_by"
-                               attrs="{'readonly': [('is_editable','=', False)]}"/>
-                        <field name="assigned_to"
-                               attrs="{'readonly': [('is_editable','=', False)]}"/>
+                        <field name="requested_by" attrs="{'readonly': [('is_editable','=', False)]}"/>
+                        <field name="assigned_to" attrs="{'readonly': [('is_editable','=', False)]}"/>
                     </group>
                     <group>
-                        <field name="origin" class="oe_inline"
-                           attrs="{'readonly': [('is_editable','=', False)]}"/>
-                        <field name="description"
-                               attrs="{'readonly': [('is_editable','=', False)]}"/>
-                        <field name="group_id"
-                               attrs="{'readonly': [('is_editable','=', False)]}"/>
+                        <field name="origin" class="oe_inline" attrs="{'readonly': [('is_editable','=', False)]}"/>
+                        <field name="description" attrs="{'readonly': [('is_editable','=', False)]}"/>
+                        <field name="group_id" attrs="{'readonly': [('is_editable','=', False)]}"/>
                     </group>
                     <group>
-                        <field name="date_start"
-                                attrs="{'readonly': [('is_editable','=', False)]}"/>
-                        <field name="picking_type_id"
-                               attrs="{'readonly': [('is_editable','=', False)]}"/>
-                        <field name="company_id" groups="base.group_multi_company" widget="selection"
-                               attrs="{'readonly': [('is_editable','=', False)]}"/>
+                        <field name="date_start" attrs="{'readonly': [('is_editable','=', False)]}"/>
+                        <field name="picking_type_id" attrs="{'readonly': [('is_editable','=', False)]}"/>
+                        <field name="company_id" groups="base.group_multi_company" widget="selection" attrs="{'readonly': [('is_editable','=', False)]}"/>
                     </group>
                 </group>
                 <notebook>
@@ -109,8 +99,7 @@
                                 <field name="name"/>
                                 <field name="product_qty"/>
                                 <field name="product_uom_id" groups="uom.group_uom"/>
-                                <field name="analytic_account_id"
-                                       groups="analytic.group_analytic_accounting"/>
+                                <field name="analytic_account_id" groups="analytic.group_analytic_accounting"/>
                                 <field name="date_required"/>
                                 <field name="estimated_cost" widget="monetary"/>
                                 <field name="currency_id" invisible="1"/>
@@ -125,28 +114,16 @@
                                     <group name="main">
                                         <group>
                                             <field name="is_editable" invisible="1"/>
-                                            <field name="product_id"
-                                                   attrs="{'readonly': [('is_editable','=', False)]}"/>
-                                            <field name="name"
-                                                   attrs="{'readonly': [('is_editable','=', False)]}"/>
-                                            <label for="product_qty"
-                                                   attrs="{'readonly': [('is_editable','=', False)]}"/>
+                                            <field name="product_id" attrs="{'readonly': [('is_editable','=', False)]}"/>
+                                            <field name="name" attrs="{'readonly': [('is_editable','=', False)]}"/>
+                                            <label for="product_qty" attrs="{'readonly': [('is_editable','=', False)]}"/>
                                             <div>
-                                                <field name="product_qty"
-                                                       class="oe_inline"
-                                                       attrs="{'readonly': [('is_editable','=', False)]}"/>
-                                                <field name="product_uom_id"
-                                                       groups="uom.group_uom"
-                                                       class="oe_inline"
-                                                       attrs="{'readonly': [('is_editable','=', False)]}"/>
+                                                <field name="product_qty" class="oe_inline" attrs="{'readonly': [('is_editable','=', False)]}"/>
+                                                <field name="product_uom_id" groups="uom.group_uom" class="oe_inline" attrs="{'readonly': [('is_editable','=', False)]}"/>
                                             </div>
-                                            <field name="analytic_account_id"
-                                                   groups="analytic.group_analytic_accounting"
-                                                   attrs="{'readonly': [('is_editable','=', False)]}"/>
-                                            <field name="date_required"
-                                                   attrs="{'readonly': [('is_editable','=', False)]}"/>
-                                            <field name="estimated_cost" widget="monetary"
-                                                   attrs="{'readonly': [('is_editable','=', False)]}"/>
+                                            <field name="analytic_account_id" groups="analytic.group_analytic_accounting" attrs="{'readonly': [('is_editable','=', False)]}"/>
+                                            <field name="date_required" attrs="{'readonly': [('is_editable','=', False)]}"/>
+                                            <field name="estimated_cost" widget="monetary" attrs="{'readonly': [('is_editable','=', False)]}"/>
                                             <field name="currency_id" invisible="1"/>
                                             <field name="cancelled"/>
                                         </group>
@@ -154,9 +131,7 @@
                                     <group name="specifications">
                                         <separator string="Specifications"/>
                                         <newline/>
-                                        <field name="specifications"
-                                               nolabel="1"
-                                               attrs="{'readonly': [('is_editable','=', False)]}"/>
+                                        <field name="specifications" nolabel="1" attrs="{'readonly': [('is_editable','=', False)]}"/>
                                     </group>
                                     <group name="quantities" string="Tracking">
                                         <group>
@@ -167,8 +142,7 @@
                                         </group>
                                     </group>
                                     <notebook>
-                                        <page name="purchase_lines"
-                                          string="Purchase Order Lines">
+                                        <page name="purchase_lines" string="Purchase Order Lines">
                                             <group>
                                                 <group name="purchase_state">
                                                     <field name="purchased_qty"/>
@@ -198,7 +172,7 @@
         </field>
     </record>
 
-    <record model="ir.ui.view" id="view_purchase_request_tree">
+    <record id="view_purchase_request_tree" model="ir.ui.view">
         <field name="name">purchase.request.tree</field>
         <field name="model">purchase.request</field>
         <field name="arch" type="xml">
@@ -276,7 +250,6 @@
         <field name="name">Purchase Requests</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">purchase.request</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="context">{"search_default_requested_by":uid}</field>
         <field name="search_view_id" ref="view_purchase_request_search"/>
@@ -296,22 +269,22 @@
         parent="purchase.menu_procurement_management"
         action="purchase_request_form_action"/>
 
-    <menuitem id="parent_menu_purchase_request"
-              name="Purchase requests"
-              web_icon="purchase_request,static/description/icon.png"
-              groups="group_purchase_request_user,group_purchase_request_manager"
-        />
+    <menuitem
+        id="parent_menu_purchase_request"
+        name="Purchase requests"
+        web_icon="purchase_request,static/description/icon.png"
+        groups="group_purchase_request_user,group_purchase_request_manager"/>
 
-    <menuitem id="menu_purchase_request"
+    <menuitem
+        id="menu_purchase_request"
         name="Purchase Requests"
         parent="parent_menu_purchase_request"
-        groups="group_purchase_request_user,group_purchase_request_manager"
-        />
+        groups="group_purchase_request_user,group_purchase_request_manager"/>
+
     <menuitem
         id="menu_purchase_request_act"
         sequence="10"
         parent="menu_purchase_request"
-        action="purchase_request_form_action"
-        />
+        action="purchase_request_form_action"/>
 
 </odoo>

@@ -1,5 +1,5 @@
 # Copyright 2018-2019 Eficent Business and IT Consulting Services S.L.
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 
 from odoo.tests import common
 from odoo.tools import SUPERUSER_ID
@@ -14,14 +14,14 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         self.purchase_order = self.env["purchase.order"]
         vendor = self.env["res.partner"].create({"name": "Partner #2"})
         self.service_product = self.env["product.product"].create(
-            {
-                "name": "Product Service Test",
-                "type": "service",
-                "service_to_purchase": True,
-            }
+            {"name": "Product Service Test", "type": "service"}
         )
         self.product_product = self.env["product.product"].create(
-            {"name": "Product Product Test", "type": "product"}
+            {
+                "name": "Product Product Test",
+                "type": "product",
+                "description_purchase": "Test Description",
+            }
         )
         self.env["product.supplierinfo"].create(
             {
@@ -49,28 +49,33 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
             "product_qty": 2.0,
         }
         purchase_request_line1 = self.purchase_request_line.create(vals)
-        vals = {"supplier_id": self.env.ref("base.res_partner_1").id}
-        purchase_request1.button_approved()
+        vals = {
+            "picking_type_id": self.env.ref("stock.picking_type_in").id,
+            "requested_by": SUPERUSER_ID,
+        }
         purchase_request2 = self.purchase_request.create(vals)
         vals = {
-            "request_id": purchase_request2.id,
+            "request_id": purchase_request1.id,
             "product_id": self.product_product.id,
             "product_uom_id": self.env.ref("uom.product_uom_unit").id,
             "product_qty": 2.0,
         }
         purchase_request_line2 = self.purchase_request_line.create(vals)
-        vals = {"supplier_id": self.env.ref("base.res_partner_1").id}
         purchase_request1.button_approved()
         purchase_request2.button_approved()
-
+        purchase_request1.action_view_purchase_request_line()
+        vals = {"supplier_id": self.env.ref("base.res_partner_1").id}
         wiz_id = self.wiz.with_context(
             active_model="purchase.request.line",
             active_ids=[purchase_request_line1.id, purchase_request_line2.id],
         ).create(vals)
         wiz_id.make_purchase_order()
+        purchase_request1.action_view_purchase_order()
         po_line = purchase_request_line1.purchase_lines[0]
         purchase = po_line.order_id
+        purchase.order_line.action_openRequestLineTreeView()
         purchase.button_confirm()
+        purchase_request1.action_view_stock_move()
         self.assertEqual(purchase_request_line1.qty_in_progress, 2.0)
         self.assertEqual(purchase_request_line2.qty_in_progress, 2.0)
         picking = purchase.picking_ids[0]
@@ -93,7 +98,9 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
 
         self.assertEqual(purchase_request_line1.qty_done, 2.0)
         self.assertEqual(purchase_request_line2.qty_done, 1.0)
-        purchase.picking_ids[0].action_cancel()
+        for pick in purchase.picking_ids:
+            if pick.state == "assigned":
+                pick.action_cancel()
         self.assertEqual(purchase_request_line1.qty_cancelled, 0.0)
         self.assertEqual(purchase_request_line2.qty_cancelled, 1.0)
         self.assertEqual(purchase_request_line1.pending_qty_to_receive, 0.0)
@@ -103,6 +110,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         vals = {
             "picking_type_id": self.env.ref("stock.picking_type_in").id,
             "requested_by": SUPERUSER_ID,
+            "assigned_to": SUPERUSER_ID,
         }
         purchase_request1 = self.purchase_request.create(vals)
         vals = {
@@ -114,20 +122,53 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         purchase_request_line1 = self.purchase_request_line.create(vals)
         vals = {"supplier_id": self.env.ref("base.res_partner_1").id}
         purchase_request1.button_approved()
+        purchase_request1.action_view_purchase_request_line()
         wiz_id = self.wiz.with_context(
             active_model="purchase.request.line", active_ids=[purchase_request_line1.id]
         ).create(vals)
         wiz_id.make_purchase_order()
+        purchase_request1.action_view_purchase_order()
         po_line = purchase_request_line1.purchase_lines[0]
         purchase = po_line.order_id
         purchase.button_confirm()
         self.assertEqual(purchase_request_line1.qty_in_progress, 2.0)
+        purchase_request1.action_view_stock_move()
         # manually set in the PO line
         po_line.write({"qty_received": 0.5})
         self.assertEqual(purchase_request_line1.qty_done, 0.5)
         purchase.button_cancel()
         self.assertEqual(purchase_request_line1.qty_cancelled, 1.5)
         self.assertEqual(purchase_request_line1.pending_qty_to_receive, 1.5)
+        # Case revieve 2 product
+        vals = {
+            "picking_type_id": self.env.ref("stock.picking_type_in").id,
+            "requested_by": SUPERUSER_ID,
+            "assigned_to": SUPERUSER_ID,
+        }
+        purchase_request2 = self.purchase_request.create(vals)
+        vals = {
+            "request_id": purchase_request2.id,
+            "product_id": self.service_product.id,
+            "product_uom_id": self.env.ref("uom.product_uom_unit").id,
+            "product_qty": 2.0,
+        }
+        purchase_request_line2 = self.purchase_request_line.create(vals)
+        vals = {"supplier_id": self.env.ref("base.res_partner_1").id}
+        purchase_request2.button_approved()
+        purchase_request2.action_view_purchase_request_line()
+        wiz_id = self.wiz.with_context(
+            active_model="purchase.request.line", active_ids=[purchase_request_line2.id]
+        ).create(vals)
+        wiz_id.make_purchase_order()
+        purchase_request2.action_view_purchase_order()
+        po_line = purchase_request_line2.purchase_lines[0]
+        purchase2 = po_line.order_id
+        purchase2.button_confirm()
+        self.assertEqual(purchase_request_line2.qty_in_progress, 2.0)
+        purchase_request1.action_view_stock_move()
+        # manually set in the PO line
+        po_line.write({"qty_received": 2.0})
+        self.assertEqual(purchase_request_line2.qty_done, 2.0)
 
     def test_purchase_request_allocation_min_qty(self):
         vals = {
@@ -292,3 +333,18 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         self.assertEquals(
             len(purchase_request_line1.purchase_request_allocation_ids), 0
         )
+
+    def test_onchange_product_id(self):
+        vals = {
+            "picking_type_id": self.env.ref("stock.picking_type_in").id,
+            "requested_by": SUPERUSER_ID,
+        }
+        purchase_request1 = self.purchase_request.create(vals)
+        vals = {
+            "request_id": purchase_request1.id,
+            "product_id": self.product_product.id,
+            "product_uom_id": self.env.ref("uom.product_uom_unit").id,
+            "product_qty": 2.0,
+        }
+        purchase_request_line1 = self.purchase_request_line.create(vals)
+        purchase_request_line1.onchange_product_id()

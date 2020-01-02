@@ -1,5 +1,5 @@
 # Copyright 2018-2019 Eficent Business and IT Consulting Services S.L.
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
@@ -9,9 +9,10 @@ class StockMove(models.Model):
     _inherit = "stock.move"
 
     created_purchase_request_line_id = fields.Many2one(
-        "purchase.request.line",
-        "Created Purchase Request Line",
+        comodel_name="purchase.request.line",
+        string="Created Purchase Request Line",
         ondelete="set null",
+        # compute="_compute_request",
         readonly=True,
         copy=False,
     )
@@ -26,7 +27,7 @@ class StockMove(models.Model):
     purchase_request_ids = fields.One2many(
         comodel_name="purchase.request",
         string="Purchase Requests",
-        compute="_compute_purchase_request_ids",
+        compute="_compute_request",
     )
 
     @api.model
@@ -47,11 +48,13 @@ class StockMove(models.Model):
 
     def _action_cancel(self):
         for move in self:
+            move._compute_request()
             if move.created_purchase_request_line_id:
                 try:
                     activity_type_id = self.env.ref("mail.mail_activity_data_todo").id
                 except ValueError:
                     activity_type_id = False
+                pr_line = move.created_purchase_request_line_id
                 self.env["mail.activity"].sudo().create(
                     {
                         "activity_type_id": activity_type_id,
@@ -60,8 +63,8 @@ class StockMove(models.Model):
                             "purchase request has been cancelled/deleted. "
                             "Check if an action is needed."
                         ),
-                        "user_id": move.created_purchase_request_line_id.product_id.responsible_id.id,
-                        "res_id": move.created_purchase_request_line_id.request_id.id,
+                        "user_id": pr_line.product_id.responsible_id.id,
+                        "res_id": pr_line.request_id.id,
                         "res_model_id": self.env.ref(
                             "purchase_request.model_purchase_request"
                         ).id,
@@ -70,11 +73,13 @@ class StockMove(models.Model):
         return super(StockMove, self)._action_cancel()
 
     @api.depends("purchase_request_allocation_ids")
-    def _compute_purchase_request_ids(self):
+    def _compute_request(self):
         for rec in self:
-            rec.purchase_request_ids = rec.purchase_request_allocation_ids.mapped(
-                "purchase_request_id"
-            )
+            for line in rec.purchase_request_allocation_ids.mapped(
+                "purchase_request_line_id"
+            ):
+                rec.created_purchase_request_line_id = line.id
+                rec.purchase_request_ids = line.request_id
 
     def _merge_moves_fields(self):
         res = super(StockMove, self)._merge_moves_fields()
