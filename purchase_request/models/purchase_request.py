@@ -1,5 +1,5 @@
 # Copyright 2018-2019 Eficent Business and IT Consulting Services S.L.
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
@@ -22,8 +22,7 @@ class PurchaseRequest(models.Model):
 
     @api.model
     def _company_get(self):
-        company_id = self.env["res.company"]._company_default_get(self._name)
-        return self.env["res.company"].browse(company_id.id)
+        return self.env["res.company"].browse(self.env.company.id)
 
     @api.model
     def _get_default_requested_by(self):
@@ -36,7 +35,7 @@ class PurchaseRequest(models.Model):
     @api.model
     def _default_picking_type(self):
         type_obj = self.env["stock.picking.type"]
-        company_id = self.env.context.get("company_id") or self.env.user.company_id.id
+        company_id = self.env.context.get("company_id") or self.env.company.id
         types = type_obj.search(
             [("code", "=", "incoming"), ("warehouse_id.company_id", "=", company_id)]
         )
@@ -46,7 +45,6 @@ class PurchaseRequest(models.Model):
             )
         return types[:1]
 
-    @api.multi
     @api.depends("state")
     def _compute_is_editable(self):
         for rec in self:
@@ -56,29 +54,29 @@ class PurchaseRequest(models.Model):
                 rec.is_editable = True
 
     name = fields.Char(
-        "Request Reference",
+        string="Request Reference",
         required=True,
         default=_get_default_name,
         track_visibility="onchange",
     )
-    origin = fields.Char("Source Document")
+    origin = fields.Char(string="Source Document")
     date_start = fields.Date(
-        "Creation date",
+        string="Creation date",
         help="Date when the user initiated the " "request.",
         default=fields.Date.context_today,
         track_visibility="onchange",
     )
     requested_by = fields.Many2one(
-        "res.users",
-        "Requested by",
+        comodel_name="res.users",
+        string="Requested by",
         required=True,
         copy=False,
         track_visibility="onchange",
         default=_get_default_requested_by,
     )
     assigned_to = fields.Many2one(
-        "res.users",
-        "Approver",
+        comodel_name="res.users",
+        string="Approver",
         track_visibility="onchange",
         domain=lambda self: [
             (
@@ -88,24 +86,24 @@ class PurchaseRequest(models.Model):
             )
         ],
     )
-    description = fields.Text("Description")
+    description = fields.Text(string="Description")
     company_id = fields.Many2one(
-        "res.company",
-        "Company",
+        comodel_name="res.company",
+        string="Company",
         required=True,
         default=_company_get,
         track_visibility="onchange",
     )
     line_ids = fields.One2many(
-        "purchase.request.line",
-        "request_id",
-        "Products to Purchase",
+        comodel_name="purchase.request.line",
+        inverse_name="request_id",
+        string="Products to Purchase",
         readonly=False,
         copy=True,
         track_visibility="onchange",
     )
     product_id = fields.Many2one(
-        "product.product",
+        comodel_name="product.product",
         related="line_ids.product_id",
         string="Product",
         readonly=True,
@@ -124,13 +122,13 @@ class PurchaseRequest(models.Model):
     )
     to_approve_allowed = fields.Boolean(compute="_compute_to_approve_allowed")
     picking_type_id = fields.Many2one(
-        "stock.picking.type",
-        "Picking Type",
+        comodel_name="stock.picking.type",
+        string="Picking Type",
         required=True,
         default=_default_picking_type,
     )
     group_id = fields.Many2one(
-        "procurement.group", string="Procurement Group", copy=False
+        comodel_name="procurement.group", string="Procurement Group", copy=False
     )
     line_count = fields.Integer(
         string="Purchase Request Line count",
@@ -148,7 +146,6 @@ class PurchaseRequest(models.Model):
     def _compute_purchase_count(self):
         self.purchase_count = len(self.mapped("line_ids.purchase_lines.order_id"))
 
-    @api.multi
     def action_view_purchase_order(self):
         action = self.env.ref("purchase.purchase_rfq").read()[0]
         lines = self.mapped("line_ids.purchase_lines.order_id")
@@ -167,7 +164,6 @@ class PurchaseRequest(models.Model):
             self.mapped("line_ids.purchase_request_allocation_ids.stock_move_id")
         )
 
-    @api.multi
     def action_view_stock_move(self):
         action = self.env.ref("stock.stock_move_action").read()[0]
         # remove default filters
@@ -185,7 +181,6 @@ class PurchaseRequest(models.Model):
         for rec in self:
             rec.line_count = len(rec.mapped("line_ids"))
 
-    @api.multi
     def action_view_purchase_request_line(self):
         action = self.env.ref(
             "purchase_request.purchase_request_line_form_action"
@@ -200,7 +195,6 @@ class PurchaseRequest(models.Model):
             action["res_id"] = lines.ids[0]
         return action
 
-    @api.multi
     @api.depends("state", "line_ids.product_qty", "line_ids.cancelled")
     def _compute_to_approve_allowed(self):
         for rec in self:
@@ -208,7 +202,6 @@ class PurchaseRequest(models.Model):
                 [not line.cancelled and line.product_qty for line in rec.line_ids]
             )
 
-    @api.multi
     def copy(self, default=None):
         default = dict(default or {})
         self.ensure_one()
@@ -222,8 +215,7 @@ class PurchaseRequest(models.Model):
 
     @api.model
     def _get_partner_id(self, request):
-        user_id = request.assigned_to
-        user_id = user_id or self.env.user
+        user_id = request.assigned_to or self.env.user
         return user_id.partner_id.id
 
     @api.model
@@ -234,7 +226,6 @@ class PurchaseRequest(models.Model):
             request.message_subscribe(partner_ids=[partner_id])
         return request
 
-    @api.multi
     def write(self, vals):
         res = super(PurchaseRequest, self).write(vals)
         for request in self:
@@ -243,30 +234,34 @@ class PurchaseRequest(models.Model):
                 request.message_subscribe(partner_ids=[partner_id])
         return res
 
-    @api.multi
     def button_draft(self):
         self.mapped("line_ids").do_uncancel()
-        return self.write({"state": "draft"})
+        for rec in self:
+            rec.write({"state": "draft"})
+        return True
 
-    @api.multi
     def button_to_approve(self):
         self.to_approve_allowed_check()
-        return self.write({"state": "to_approve"})
+        for rec in self:
+            rec.write({"state": "to_approve"})
+        return True
 
-    @api.multi
     def button_approved(self):
-        return self.write({"state": "approved"})
+        for rec in self:
+            rec.write({"state": "approved"})
+        return True
 
-    @api.multi
     def button_rejected(self):
         self.mapped("line_ids").do_cancel()
-        return self.write({"state": "rejected"})
+        for rec in self:
+            rec.write({"state": "rejected"})
+        return True
 
-    @api.multi
     def button_done(self):
-        return self.write({"state": "done"})
+        for rec in self:
+            rec.write({"state": "done"})
+        return True
 
-    @api.multi
     def check_auto_reject(self):
         """When all lines are cancelled the purchase request should be
         auto-rejected."""
@@ -274,7 +269,6 @@ class PurchaseRequest(models.Model):
             if not pr.line_ids.filtered(lambda l: l.cancelled is False):
                 pr.write({"state": "rejected"})
 
-    @api.multi
     def to_approve_allowed_check(self):
         for rec in self:
             if not rec.to_approve_allowed:
