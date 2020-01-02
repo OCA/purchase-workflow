@@ -1,16 +1,18 @@
 # Copyright 2018-2019 Eficent Business and IT Consulting Services S.L.
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 
 from odoo.exceptions import UserError
-from odoo.tests import common
+from odoo.tests.common import Form, TransactionCase
 from odoo.tools import SUPERUSER_ID
 
 
-class TestPurchaseRequest(common.TransactionCase):
+class TestPurchaseRequest(TransactionCase):
     def setUp(self):
         super(TestPurchaseRequest, self).setUp()
         self.purchase_request_obj = self.env["purchase.request"]
         self.purchase_request_line_obj = self.env["purchase.request.line"]
+        self.purchase_order = self.env["purchase.order"]
+        self.wiz = self.env["purchase.request.line.make.purchase.order"]
         vals = {
             "picking_type_id": self.env.ref("stock.picking_type_in").id,
             "requested_by": SUPERUSER_ID,
@@ -27,6 +29,7 @@ class TestPurchaseRequest(common.TransactionCase):
     def test_purchase_request_status(self):
         """Tests Purchase Request status workflow."""
         purchase_request = self.purchase_request
+        purchase_request.write({"assigned_to": SUPERUSER_ID})
         self.assertEqual(purchase_request.is_editable, True, "Should be editable")
         purchase_request.button_to_approve()
         self.assertEqual(
@@ -41,6 +44,32 @@ class TestPurchaseRequest(common.TransactionCase):
         self.assertEqual(purchase_request.is_editable, False, "Should not be editable")
         purchase_request.button_rejected()
         self.assertEqual(purchase_request.is_editable, False, "Should not be editable")
+        vals = {
+            "request_id": purchase_request.id,
+            "product_id": self.env.ref("product.product_product_6").id,
+            "product_uom_id": self.env.ref("uom.product_uom_unit").id,
+            "product_qty": 2.0,
+        }
+        purchase_request_line = self.purchase_request_line_obj.create(vals)
+        purchase_request.button_approved()
+        vals = {"supplier_id": self.env.ref("base.res_partner_1").id}
+        wiz_id = self.wiz.with_context(
+            active_model="purchase.request.line", active_ids=[purchase_request_line.id]
+        ).create(vals)
+        wiz_id.make_purchase_order()
+        # Unlink purchase_lines from state approved
+        with self.assertRaises(UserError):
+            purchase_request_line.unlink()
+        purchase = purchase_request_line.purchase_lines.order_id
+        purchase.button_done()
+        self.assertEqual(purchase.state, "done")
+        purchase_request_line._compute_purchase_state()
+        # Error case purchase_order in state done
+        with self.assertRaises(UserError):
+            purchase.button_confirm()
+        purchase.button_cancel()
+        self.assertEqual(purchase.state, "cancel")
+        purchase_request_line._compute_purchase_state()
 
     def test_auto_reject(self):
         """Tests if a Purchase Request is autorejected when all lines are
@@ -99,7 +128,6 @@ class TestPurchaseRequest(common.TransactionCase):
 
         new_line.write({"product_qty": 1})
         self.assertTrue(request.to_approve_allowed)
-
         request.line_ids.unlink()
         self.assertFalse(request.to_approve_allowed)
 
@@ -114,3 +142,62 @@ class TestPurchaseRequest(common.TransactionCase):
         pr_lines.write({"product_qty": 4})
         pr.button_to_approve()
         self.assertEqual(pr.state, "to_approve")
+
+    def test_default_picking_type(self):
+        with Form(self.purchase_request_obj) as f:
+            f.name = "Test Purchase"
+            f.requested_by = self.env.user
+        f.save()
+
+    def test_copy_purchase_request(self):
+        purchase_request = self.purchase_request
+        # Add a second line to the PR:
+        vals = {
+            "request_id": purchase_request.id,
+            "product_id": self.env.ref("product.product_product_16").id,
+            "product_uom_id": self.env.ref("uom.product_uom_unit").id,
+            "product_qty": 5.0,
+        }
+        self.purchase_request_line_obj.create(vals)
+        purchase_request_copy = purchase_request.copy()
+        self.assertEqual(purchase_request_copy.state, "draft")
+
+    def test_raise_error(self):
+        vals = {
+            "picking_type_id": self.env.ref("stock.picking_type_in").id,
+            "requested_by": SUPERUSER_ID,
+        }
+        purchase_request = self.purchase_request.create(vals)
+        vals = {
+            "request_id": purchase_request.id,
+            "product_id": self.env.ref("product.product_product_16").id,
+            "product_uom_id": self.env.ref("uom.product_uom_unit").id,
+            "product_qty": 2.0,
+        }
+        purchase_request_line = self.purchase_request_line_obj.create(vals)
+        self.assertEqual(purchase_request.state, "draft")
+        # create purchase order from draft state
+        with self.assertRaises(UserError):
+            self.wiz.with_context(
+                active_model="purchase.request.line",
+                active_ids=[purchase_request_line.id],
+            ).create(vals)
+        purchase_request.button_done()
+        # create purchase order from done state
+        self.assertEqual(purchase_request.state, "done")
+        purchase_request_line._compute_is_editable()
+        with self.assertRaises(UserError):
+            self.wiz.with_context(
+                active_model="purchase.request.line",
+                active_ids=[purchase_request_line.id],
+            ).create(vals)
+        # Change product_qty to negative
+        purchase_request_line.write({"product_qty": -6})
+        purchase_request.button_approved()
+        self.assertEqual(purchase_request.state, "approved")
+        vals = {"supplier_id": self.env.ref("base.res_partner_1").id}
+        wiz_id = self.wiz.with_context(
+            active_model="purchase.request.line", active_ids=[purchase_request_line.id]
+        ).create(vals)
+        with self.assertRaises(UserError):
+            wiz_id.make_purchase_order()
