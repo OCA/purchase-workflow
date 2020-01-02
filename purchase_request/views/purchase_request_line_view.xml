@@ -2,6 +2,7 @@
 <!-- Copyright 2018-2019 Eficent Business and IT Consulting Services S.L.
      License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
 <odoo>
+
     <record id="purchase_request_line_tree" model="ir.ui.view">
         <field name="name">purchase.request.line.tree</field>
         <field name="model">purchase.request.line</field>
@@ -33,6 +34,7 @@
             </tree>
         </field>
     </record>
+
     <record id="purchase_request_line_form" model="ir.ui.view">
         <field name="name">purchase.request.line.form</field>
         <field name="model">purchase.request.line</field>
@@ -118,16 +120,16 @@
                         </page>
                         <page name="allocations" string="Allocations">
                             <field name="purchase_request_allocation_ids">
-                                    <tree decoration-muted="purchase_state == 'cancel'">
-                                        <field name="purchase_line_id"/>
-                                        <field name="stock_move_id"/>
-                                        <field name="product_id"/>
-                                        <field name="requested_product_uom_qty"/>
-                                        <field name="allocated_product_qty"/>
-                                        <field name="open_product_qty"/>
-                                        <field name="product_uom_id"/>
-                                        <field name="purchase_state" invisible="1"/>
-                                    </tree>
+                                <tree decoration-muted="purchase_state == 'cancel'">
+                                    <field name="purchase_line_id"/>
+                                    <field name="stock_move_id"/>
+                                    <field name="product_id"/>
+                                    <field name="requested_product_uom_qty"/>
+                                    <field name="allocated_product_qty"/>
+                                    <field name="open_product_qty"/>
+                                    <field name="product_uom_id"/>
+                                    <field name="purchase_state" invisible="1"/>
+                                </tree>
                             </field>
                         </page>
                     </notebook>
@@ -226,30 +228,25 @@
         id="action_purchase_request_line_product_tree"
         name="Purchase Requests"
         res_model="purchase.request.line"
-        src_model="product.product"
+        binding_model="product.product"
         groups="group_purchase_request_user,group_purchase_request_manager"/>
 
-    <record id="purchase_request_line_form_action"
-            model="ir.actions.act_window">
+    <record id="purchase_request_line_form_action" model="ir.actions.act_window">
         <field name="name">Purchase Request Lines</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">purchase.request.line</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="search_view_id" ref="purchase_request_line_search"/>
     </record>
 
-    <record id="purchase_request_line_form_action_tree"
-            model="ir.actions.act_window.view">
+    <record id="purchase_request_line_form_action_tree" model="ir.actions.act_window.view">
         <field eval="1" name="sequence"/>
         <field name="view_mode">tree</field>
         <field name="view_id" ref="purchase_request_line_tree"/>
-        <field name="act_window_id"
-               ref="purchase_request_line_form_action"/>
+        <field name="act_window_id" ref="purchase_request_line_form_action"/>
     </record>
 
-    <record id="purchase_request_line_form_action_form2"
-            model="ir.actions.act_window.view">
+    <record id="purchase_request_line_form_action_form2" model="ir.actions.act_window.view">
         <field eval="2" name="sequence"/>
         <field name="view_mode">form</field>
         <field name="view_id" ref="purchase_request_line_form"/>
@@ -282,8 +279,7 @@
                             <field name="price_unit" widget="monetary" readonly="1"/>
                         </group>
                         <group>
-                            <field name="taxes_id" widget="many2many_tags"
-                                domain="[('type_tax_use', '=', 'purchase')]" readonly="1"/>
+                            <field name="taxes_id" widget="many2many_tags" domain="[('type_tax_use', '=', 'purchase')]" readonly="1"/>
                             <field name="date_planned" widget="date" readonly="1"/>
                             <field name="company_id" readonly="1" groups="base.group_multi_company" options="{'no_create': True}"/>
                             <field name="account_analytic_id" readonly="1" colspan="4" groups="analytic.group_analytic_accounting"/>
@@ -327,12 +323,8 @@
             <search string="Search Purchase Order Line">
                 <field name="order_id"/>
                 <field name="product_id"/>
-                <field name="partner_id"
-                       string="Vendor"
-                       filter_domain="[('partner_id', 'child_of', self)]"/>
-                <filter name="hide_cancelled"
-                        string="Hide cancelled lines"
-                        domain="[('state', '!=', 'cancel')]"/>
+                <field name="partner_id" string="Vendor" filter_domain="[('partner_id', 'child_of', self)]"/>
+                <filter name="hide_cancelled" string="Hide cancelled lines" domain="[('state', '!=', 'cancel')]"/>
                 <group expand="0" string="Group By">
                     <filter name="order_reference"
                             string="Order Reference"
@@ -356,6 +348,6 @@
         id="menu_purchase_request_line_act"
         sequence="20"
         parent="menu_purchase_request"
-        action="purchase_request_line_form_action"
-        />
+        action="purchase_request_line_form_action"/>
+
 </odoo>
