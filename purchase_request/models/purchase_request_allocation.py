@@ -1,5 +1,5 @@
 # Copyright 2019 Eficent Business and IT Consulting Services S.L.
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 
 from odoo import _, api, fields, models
 
@@ -45,19 +45,19 @@ class PurchaseRequestAllocation(models.Model):
         required=True,
     )
     requested_product_uom_qty = fields.Float(
-        "Requested Quantity",
+        striing="Requested Quantity",
         help="Quantity of the purchase request line allocated to the"
         "stock move, in the UoM of the Purchase Request Line",
     )
 
     allocated_product_qty = fields.Float(
-        "Allocated Quantity",
+        string="Allocated Quantity",
         copy=False,
         help="Quantity of the purchase request line allocated to the stock"
         "move, in the default UoM of the product",
     )
     open_product_qty = fields.Float(
-        "Open Quantity", compute="_compute_open_product_qty"
+        string="Open Quantity", compute="_compute_open_product_qty"
     )
 
     purchase_state = fields.Selection(related="purchase_line_id.state")

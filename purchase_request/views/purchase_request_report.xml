@@ -4,12 +4,11 @@
 <odoo>
 
     <report
-        string="Purchase Request"
         id="action_report_purchase_requests"
         model="purchase.request"
+        string="Purchase Request"
         report_type="qweb-pdf"
         name="purchase_request.report_purchase_request"
-        file="purchase_request.report_purchase_request"
-     />
+        file="purchase_request.report_purchase_request"/>
 
 </odoo>
