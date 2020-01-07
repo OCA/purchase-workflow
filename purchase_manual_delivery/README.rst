@@ -23,7 +23,7 @@ Purchase Manual Delivery
     :target: https://runbot.odoo-community.org/runbot/142/12.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 The goal of this module is to allow the manual creation of incoming shipments.  When installed,
 a purchase order won't impact directly the stock. It will not create the pickings upon order confirmation.
