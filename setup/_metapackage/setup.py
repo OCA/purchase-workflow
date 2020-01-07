@@ -22,6 +22,7 @@ setuptools.setup(
         'odoo12-addon-purchase_last_price_info',
         'odoo12-addon-purchase_line_procurement_group',
         'odoo12-addon-purchase_location_by_line',
+        'odoo12-addon-purchase_manual_delivery',
         'odoo12-addon-purchase_open_qty',
         'odoo12-addon-purchase_order_analytic_search',
         'odoo12-addon-purchase_order_approval_block',
