@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: odoomrp-wip (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-07 10:44+0000\n"
-"PO-Revision-Date: 2020-01-08 19:13+0000\n"
+"PO-Revision-Date: 2020-01-08 23:13+0000\n"
 "Last-Translator: clementmbr <clement.mombereau@akretion.com.br>\n"
 "Language-Team: French (http://www.transifex.com/oca/odoomrp-wip-8-0/language/"
 "fr/)\n"
@@ -27,58 +27,58 @@ msgstr "Lignes d'opérations affectées"
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__total_amount
 msgid "Amount line"
-msgstr ""
+msgstr "Montant total"
 
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
 msgid "Are you sure that you want to update product prices?"
-msgstr ""
+msgstr "Êtes-vous sûr de vouloir mettre à jour ces prix d'articles ?"
 
 #. module: purchase_landed_cost
 #: selection:purchase.expense.type,calculation_method:0
 msgid "By amount of the line"
-msgstr ""
+msgstr "Par montant de la ligne"
 
 #. module: purchase_landed_cost
 #: selection:purchase.expense.type,calculation_method:0
 msgid "By product price"
-msgstr ""
+msgstr "Par prix de l'article"
 
 #. module: purchase_landed_cost
 #: selection:purchase.expense.type,calculation_method:0
 msgid "By product quantity"
-msgstr ""
+msgstr "Par quantité d'article"
 
 #. module: purchase_landed_cost
 #: selection:purchase.expense.type,calculation_method:0
 msgid "By product volume"
-msgstr ""
+msgstr "Par volume de l'article"
 
 #. module: purchase_landed_cost
 #: selection:purchase.expense.type,calculation_method:0
 msgid "By product weight"
-msgstr ""
+msgstr "Par poids de l'article"
 
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
 msgid "Calculate"
-msgstr ""
+msgstr "Calculer le prix d'acquisition"
 
 #. module: purchase_landed_cost
 #: selection:purchase.cost.distribution,state:0
 msgid "Calculated"
-msgstr ""
+msgstr "Prix d'acquisition calculé"
 
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_form
 msgid "Calculated Cost"
-msgstr ""
+msgstr "Total des frais d'approche"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_expense__calculation_method
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_expense_type__calculation_method
 msgid "Calculation method"
-msgstr ""
+msgstr "Méthode de calcul"
 
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.import_invoice_line_wizard_view
@@ -92,12 +92,12 @@ msgstr "Annuler"
 #. module: purchase_landed_cost
 #: model_terms:ir.actions.act_window,help:purchase_landed_cost.action_purchase_cost_distribution
 msgid "Click to create a draft purchase expenses distribution."
-msgstr ""
+msgstr "Cliquer pour créer un brouillon de Distribution de frais d'approche."
 
 #. module: purchase_landed_cost
 #: model_terms:ir.actions.act_window,help:purchase_landed_cost.action_purchase_expense_type
 msgid "Click to create a new expense type."
-msgstr ""
+msgstr "Cliquer pour créer un nouveau type de frais d'approche."
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__company_id
@@ -106,55 +106,55 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_expense__company_id
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_expense_type__company_id
 msgid "Company"
-msgstr ""
+msgstr "Société"
 
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_form
 msgid "Cost Line Expenses"
-msgstr ""
+msgstr "Lignes de frais d'approche"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__cost_update_type
 msgid "Cost Update Type"
-msgstr ""
+msgstr "Type de mise à jour des prix"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__expense_amount
 msgid "Cost amount"
-msgstr ""
+msgstr "Montant des frais d'approche"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_expense__distribution
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__distribution
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
 msgid "Cost distribution"
-msgstr ""
+msgstr "Distribution des frais d'approche"
 
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_expense_invoice_form
 msgid "Cost distribution expenses"
-msgstr ""
+msgstr "Frais d'approche"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_expense__distribution_line
 msgid "Cost distribution line"
-msgstr ""
+msgstr "Ligne de distribution de frais d'approche"
 
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_form
 msgid "Cost distribution line information"
-msgstr ""
+msgstr "Info lignes de distribution de frais"
 
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
 msgid "Cost distribution notes..."
-msgstr ""
+msgstr "Notes sur la distribution de frais d'approche..."
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_expense_type__note
 msgid "Cost documentation"
-msgstr ""
+msgstr "Documentation sur les frais"
 
 #. module: purchase_landed_cost
 #: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:308
@@ -163,16 +163,19 @@ msgid ""
 "Cost update cannot be undone because there has been a later update. Restore "
 "correct price and try again."
 msgstr ""
+"La mise à jour du Coût de l'article ne peut pas être annulée car il y a eu "
+"une autre mise à jour depuis. Restaurez la valeur du Coût antérieure à cette "
+"dernière mise à jour et essayez de nouveau."
 
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
 msgid "Costs distribution picking lines"
-msgstr ""
+msgstr "Lignes d'opérations de la distribution de frais"
 
 #. module: purchase_landed_cost
 #: model:ir.ui.menu,name:purchase_landed_cost.menu_purchase_cost_control
 msgid "Costs distributions"
-msgstr ""
+msgstr "Frais d'approche"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_import_invoice_line_wizard__create_uid
@@ -201,12 +204,12 @@ msgstr "Créé le"
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__currency_id
 msgid "Currency"
-msgstr ""
+msgstr "Devise"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__date
 msgid "Date"
-msgstr ""
+msgstr "Date"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,help:purchase_landed_cost.field_purchase_cost_distribution_line_expense__picking_date_done
