@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2020 Jarsa
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl). -->
+<odoo>
+    <record model="ir.ui.view" id="purchase_request_line_secondary_unit_tree">
+        <field name="name">purchase_request_secondary_unit.tree</field>
+        <field name="model">purchase.request.line</field>
+        <field name="inherit_id" ref="purchase_request.purchase_request_line_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_uom_id']" position="after">
+                <field name="secondary_uom_qty"/>
+                <field name="secondary_uom_id"/>
+            </xpath>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="purchase_request_line_secondary_unit_form">
+        <field name="name">purchase_request_secondary_unit.form</field>
+        <field name="model">purchase.request.line</field>
+        <field name="inherit_id" ref="purchase_request.purchase_request_line_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='settings']/div" position="after">
+                <label for="secondary_uom_qty"/>
+                <div>
+                    <field name="secondary_uom_qty"
+                           class="oe_inline"
+                           attrs="{'readonly': [('is_editable','=', False)]}"/>
+                    <field name="secondary_uom_id"
+                           groups="uom.group_uom"
+                           class="oe_inline"
+                           attrs="{'readonly': [('is_editable','=', False)]}"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="purchase_request_secondary_unit_form">
+        <field name="name">purchase_request_secondary_unit.form</field>
+        <field name="model">purchase.request</field>
+        <field name="inherit_id" ref="purchase_request.view_purchase_request_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='line_ids']/tree/field[@name='product_uom_id']" position="after">
+                <field name="secondary_uom_qty"/>
+                <field name="secondary_uom_id"/>
+            </xpath>
+            <xpath expr="//group[@name='main']/group/div" position="after">
+                <label for="secondary_uom_qty"/>
+                <div>
+                    <field name="secondary_uom_qty"
+                           class="oe_inline"
+                           attrs="{'readonly': [('is_editable','=', False)]}"/>
+                    <field name="secondary_uom_id"
+                           groups="uom.group_uom"
+                           class="oe_inline"
+                           attrs="{'readonly': [('is_editable','=', False)]}"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

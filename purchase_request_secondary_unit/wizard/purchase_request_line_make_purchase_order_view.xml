@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2020 Jarsa
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_purchase_request_line_make_purchase_order_secondary_unit" model="ir.ui.view">
+        <field name="name">Purchase Request Line Make Purchase Order</field>
+        <field name="model">purchase.request.line.make.purchase.order</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="purchase_request.view_purchase_request_line_make_purchase_order"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_uom_id']" position="after">
+                <field name="secondary_uom_qty"/>
+                <field name="secondary_uom_id" groups="uom.group_uom"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
