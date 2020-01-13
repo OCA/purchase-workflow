@@ -13,7 +13,6 @@ class TestPurchaseLastPriceInfo(common.TransactionCase):
         self.purchase_line_model = self.env["purchase.order.line"]
         self.product = self.env.ref("product.consu_delivery_01")
         self.partner = self.env.ref("base.res_partner_1")
-        self.picking_type = self.env.ref("stock.picking_type_in")
 
     def test_purchase_last_price_info_demo(self):
         purchase_order = self.env.ref("purchase.purchase_order_6")
@@ -39,7 +38,6 @@ class TestPurchaseLastPriceInfo(common.TransactionCase):
         purchase_order = self.purchase_model.create(
             {
                 "partner_id": self.partner.id,
-                "picking_type_id": self.picking_type.id,
                 "order_line": [
                     (
                         0,
@@ -65,3 +63,5 @@ class TestPurchaseLastPriceInfo(common.TransactionCase):
             purchase_order.order_line[:1].price_unit, self.product.last_purchase_price
         )
         self.assertEqual(self.partner, self.product.last_supplier_id)
+        purchase_order.button_cancel()
+        self.assertEqual(purchase_order.state, "cancel")
