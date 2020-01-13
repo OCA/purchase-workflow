@@ -42,7 +42,8 @@ class ProductProduct(models.Model):
                 # Compute Price Unit in the Product base UoM
                 price_unit_uom = product.product_tmpl_id.uom_id.\
                     _compute_quantity(last_line.price_unit,
-                                      last_line.product_uom)
+                                      last_line.product_uom,
+                                      round=False)
                 last_supplier = last_line.order_id.partner_id
 
             # Assign values to record
