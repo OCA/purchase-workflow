@@ -5,3 +5,4 @@
 * Carlos Lopez Mite <celm1990@hotmail.com>
 * Adria Gil Sorribes <adria.gil@eficent.com>
 * Lois Rilo <lois.rilo@eficent.com>
+* Rattapong Chokmasermkul <rattapongc@ecosoft.co.th>
