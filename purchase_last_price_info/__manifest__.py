@@ -6,18 +6,14 @@
     "category": "Purchase Management",
     "license": "AGPL-3",
     "author": "OdooMRP team, "
-              "AvanzOSC, "
-              "Tecnativa - Pedro M. Baeza, "
-              "Odoo Community Association (OCA)",
+    "AvanzOSC, "
+    "Tecnativa - Pedro M. Baeza, "
+    "Odoo Community Association (OCA)",
     "development_status": "Beta",
-    "maintainers": ['lreficent'],
+    "maintainers": ["lreficent"],
     "website": "https://github.com/OCA/purchase-workflow",
-    "depends": [
-        "purchase",
-    ],
-    "data": [
-        "views/product_views.xml",
-    ],
+    "depends": ["purchase"],
+    "data": ["views/product_views.xml"],
     "installable": True,
     "post_init_hook": "set_last_price_info",
 }
