@@ -34,22 +34,11 @@ class TestPurchaseOrderSecondaryUnit(SavepointCase):
             [("product_tmpl_id", "=", cls.product.product_tmpl_id.id)]
         )
         cls.product.purchase_secondary_uom_id = cls.secondary_unit.id
-        cls.partner = cls.env["res.partner"].create(
-            {"name": "test - partner", "supplier": True}
-        )
-        type_obj = cls.env["stock.picking.type"]
-        company_id = cls.env.user.company_id.id
-        picking_type_id = type_obj.search(
-            [("code", "=", "incoming"), ("warehouse_id.company_id", "=", company_id)],
-            limit=1,
-        )
-        if not picking_type_id:
-            picking_type_id = cls.env.ref("stock.picking_type_in")
+        cls.partner = cls.env["res.partner"].create({"name": "test - partner"})
         cls.purchase_order_obj = cls.env["purchase.order"]
         po_val = {
             "partner_id": cls.partner.id,
-            "company_id": cls.env.user.company_id.id,
-            "picking_type_id": picking_type_id.id,
+            "company_id": cls.env.company.id,
             "order_line": [
                 (
                     0,
@@ -70,6 +59,9 @@ class TestPurchaseOrderSecondaryUnit(SavepointCase):
         cls.order = cls.purchase_order_obj.create(po_val)
 
     def test_onchange_secondary_uom(self):
+        self.order.order_line._onchange_secondary_uom()
+        self.assertEqual(self.order.order_line.product_qty, 1.0)
+
         self.order.order_line.write(
             {"secondary_uom_id": self.secondary_unit.id, "secondary_uom_qty": 5}
         )
@@ -77,6 +69,9 @@ class TestPurchaseOrderSecondaryUnit(SavepointCase):
         self.assertEqual(self.order.order_line.product_qty, 3.5)
 
     def test_onchange_product_qty_purchase_order_secondary_unit(self):
+        self.order.order_line._onchange_product_qty_purchase_order_secondary_unit()
+        self.assertEqual(self.order.order_line.secondary_uom_qty, 0.0)
+
         self.order.order_line.update(
             {"secondary_uom_id": self.secondary_unit.id, "product_qty": 3.5}
         )
@@ -88,6 +83,9 @@ class TestPurchaseOrderSecondaryUnit(SavepointCase):
         self.assertEqual(self.order.order_line.secondary_uom_id, self.secondary_unit)
 
     def test_onchange_order_product_uom(self):
+        self.order.order_line._onchange_product_uom_purchase_order_secondary_unit()
+        self.assertEqual(self.order.order_line.secondary_uom_qty, 0.0)
+
         self.order.order_line.update(
             {
                 "secondary_uom_id": self.secondary_unit.id,
