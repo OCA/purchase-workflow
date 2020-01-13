@@ -12,13 +12,12 @@ class PurchaseOrder(models.Model):
     def button_approve(self, force=False):
         res = super().button_approve(force)
         for rec in self:
-            rec.order_line.mapped('product_id').set_product_last_purchase(
-                rec.id)
+            rec.order_line.mapped("product_id").set_product_last_purchase(rec.id)
         return res
 
     @api.multi
     def button_cancel(self):
         res = super().button_cancel()
         for rec in self:
-            rec.order_line.mapped('product_id').set_product_last_purchase()
+            rec.order_line.mapped("product_id").set_product_last_purchase()
         return res
