@@ -2,7 +2,7 @@
 # Copyright 2019 Eficent Business and IT Consulting Services S.L.
 #   (http://www.eficent.com)
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class ProductProduct(models.Model):
@@ -14,7 +14,6 @@ class ProductProduct(models.Model):
         comodel_name="res.partner", string="Last Supplier"
     )
 
-    @api.multi
     def set_product_last_purchase(self, order_id=False):
         """ Get last purchase price, last purchase date and last supplier """
         PurchaseOrderLine = self.env["purchase.order.line"]
