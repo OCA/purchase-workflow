@@ -3,14 +3,12 @@
 from odoo import api, fields, models
 from odoo.tools.float_utils import float_compare, float_round
 
-from odoo.addons import decimal_precision as dp
-
 
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
     secondary_uom_qty = fields.Float(
-        string="Secondary Qty", digits=dp.get_precision("Product Unit of Measure")
+        string="Secondary Qty", digits="Product Unit of Measure"
     )
     secondary_uom_id = fields.Many2one(
         comodel_name="product.secondary.unit",
