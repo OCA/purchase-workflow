@@ -120,7 +120,7 @@ def allocate_service(env):
         purchase_request_line = env['purchase.request.line'].browse(
             purchase_request_line_id)
         product_alloc_uom = \
-            purchase_request_line.product_uom_id.id or pol_product_uom
+            purchase_request_line.product_uom_id or pol_product_uom
         pol_product_uom = env['uom.uom'].browse(pol_product_uom)
         product_alloc_qty = pol_product_uom._compute_quantity(
             product_qty, product_alloc_uom)
