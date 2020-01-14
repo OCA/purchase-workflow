@@ -236,31 +236,21 @@ class PurchaseRequest(models.Model):
 
     def button_draft(self):
         self.mapped("line_ids").do_uncancel()
-        for rec in self:
-            rec.write({"state": "draft"})
-        return True
+        return self.write({"state": "draft"})
 
     def button_to_approve(self):
         self.to_approve_allowed_check()
-        for rec in self:
-            rec.write({"state": "to_approve"})
-        return True
+        return self.write({"state": "to_approve"})
 
     def button_approved(self):
-        for rec in self:
-            rec.write({"state": "approved"})
-        return True
+        return self.write({"state": "approved"})
 
     def button_rejected(self):
         self.mapped("line_ids").do_cancel()
-        for rec in self:
-            rec.write({"state": "rejected"})
-        return True
+        return self.write({"state": "rejected"})
 
     def button_done(self):
-        for rec in self:
-            rec.write({"state": "done"})
-        return True
+        return self.write({"state": "done"})
 
     def check_auto_reject(self):
         """When all lines are cancelled the purchase request should be

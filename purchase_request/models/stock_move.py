@@ -12,7 +12,6 @@ class StockMove(models.Model):
         comodel_name="purchase.request.line",
         string="Created Purchase Request Line",
         ondelete="set null",
-        # compute="_compute_request",
         readonly=True,
         copy=False,
     )
@@ -27,7 +26,7 @@ class StockMove(models.Model):
     purchase_request_ids = fields.One2many(
         comodel_name="purchase.request",
         string="Purchase Requests",
-        compute="_compute_request",
+        compute="_compute_purchase_request_ids",
     )
 
     @api.model
@@ -48,7 +47,6 @@ class StockMove(models.Model):
 
     def _action_cancel(self):
         for move in self:
-            move._compute_request()
             if move.created_purchase_request_line_id:
                 try:
                     activity_type_id = self.env.ref("mail.mail_activity_data_todo").id
@@ -73,13 +71,11 @@ class StockMove(models.Model):
         return super(StockMove, self)._action_cancel()
 
     @api.depends("purchase_request_allocation_ids")
-    def _compute_request(self):
+    def _compute_purchase_request_ids(self):
         for rec in self:
-            for line in rec.purchase_request_allocation_ids.mapped(
-                "purchase_request_line_id"
-            ):
-                rec.created_purchase_request_line_id = line.id
-                rec.purchase_request_ids = line.request_id
+            rec.purchase_request_ids = rec.purchase_request_allocation_ids.mapped(
+                "purchase_request_id"
+            )
 
     def _merge_moves_fields(self):
         res = super(StockMove, self)._merge_moves_fields()
