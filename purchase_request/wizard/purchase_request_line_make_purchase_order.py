@@ -1,5 +1,5 @@
 # Copyright 2018-2019 Eficent Business and IT Consulting Services S.L.
-# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0).
 
 from datetime import datetime
 
@@ -49,14 +49,15 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         company_id = False
 
         for line in self.env["purchase.request.line"].browse(request_line_ids):
-
             if line.request_id.state == "done":
                 raise UserError(_("The purchase has already been completed."))
-
             if line.request_id.state != "approved":
                 raise UserError(
                     _("Purchase Request %s is not approved") % line.request_id.name
                 )
+
+            if line.purchase_state == "done":
+                raise UserError(_("The purchase has already been completed."))
 
             line_company_id = line.company_id and line.company_id.id or False
             if company_id is not False and line_company_id != company_id:
@@ -304,7 +305,6 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         return {
             "domain": [("id", "in", res)],
             "name": _("RFQ"),
-            "view_type": "form",
             "view_mode": "tree,form",
             "res_model": "purchase.order",
             "view_id": False,
