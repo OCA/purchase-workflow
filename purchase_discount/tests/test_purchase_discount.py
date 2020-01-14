@@ -10,9 +10,12 @@ class TestPurchaseOrder(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
         super(TestPurchaseOrder, cls).setUpClass()
+        cls.categ_cost_average = cls.env["product.category"].create(
+            {"name": "Average cost method category", "property_cost_method": "average"}
+        )
         product_obj = cls.env["product.product"]
         cls.product_1 = product_obj.create(
-            {"name": "Test product 1", "cost_method": "average"}
+            {"name": "Test product 1", "categ_id": cls.categ_cost_average.id}
         )
         cls.product_2 = product_obj.create({"name": "Test product 2"})
         po_model = cls.env["purchase.order.line"]
@@ -40,12 +43,31 @@ class TestPurchaseOrder(common.SavepointCase):
                 "price_unit": 10.0,
             }
         )
+        cls.account = cls.env["account.account"].create(
+            {
+                "name": "Test account",
+                "code": "TEST",
+                "user_type_id": cls.env.ref("account.data_account_type_expenses").id,
+            }
+        )
         cls.tax = cls.env["account.tax"].create(
             {
                 "name": "Sample tax 15%",
                 "amount_type": "percent",
                 "type_tax_use": "purchase",
                 "amount": 15.0,
+                "invoice_repartition_line_ids": [
+                    (0, 0, {"factor_percent": 100, "repartition_type": "base"}),
+                    (
+                        0,
+                        0,
+                        {
+                            "factor_percent": 100,
+                            "repartition_type": "tax",
+                            "account_id": cls.account.id,
+                        },
+                    ),
+                ],
             }
         )
         cls.po_line_2 = po_model.create(
@@ -113,13 +135,14 @@ class TestPurchaseOrder(common.SavepointCase):
         self.assertEqual(rec.discount, 50)
 
     def test_invoice(self):
-        invoice = self.env["account.invoice"].new(
+        invoice = self.env["account.move"].new(
             {
+                "type": "out_invoice",
                 "partner_id": self.env.ref("base.res_partner_3").id,
                 "purchase_id": self.purchase_order.id,
             }
         )
-        invoice.purchase_order_change()
+        invoice._onchange_purchase_auto_complete()
         line = invoice.invoice_line_ids.filtered(
             lambda x: x.purchase_line_id == self.po_line_1
         )

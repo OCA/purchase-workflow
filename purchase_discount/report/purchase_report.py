@@ -4,14 +4,12 @@
 
 from odoo import fields, models
 
-import odoo.addons.decimal_precision as dp
-
 
 class PurchaseReport(models.Model):
     _inherit = "purchase.report"
 
     discount = fields.Float(
-        string="Discount (%)", digits=dp.get_precision("Discount"), group_operator="avg"
+        string="Discount (%)", digits="Discount", group_operator="avg"
     )
 
     def _select(self):
