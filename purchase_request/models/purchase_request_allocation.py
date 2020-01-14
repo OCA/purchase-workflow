@@ -45,7 +45,7 @@ class PurchaseRequestAllocation(models.Model):
         required=True,
     )
     requested_product_uom_qty = fields.Float(
-        striing="Requested Quantity",
+        string="Requested Quantity",
         help="Quantity of the purchase request line allocated to the"
         "stock move, in the UoM of the Purchase Request Line",
     )

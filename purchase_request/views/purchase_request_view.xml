@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!-- Copyright 2018-2019 Eficent Business and IT Consulting Services S.L.
-     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0) -->
 <odoo>
 
     <record id="view_purchase_request_form" model="ir.ui.view">
@@ -27,7 +27,8 @@
                         groups="purchase_request.group_purchase_request_manager"/>
                 <button name="%(action_purchase_request_line_make_purchase_order)d"
                         states="approved"
-                        string="Create RFQ" type="action"/>
+                        string="Create RFQ"
+                        type="action"/>
                 <button name="button_done"
                         states="approved"
                         string="Done"
@@ -39,7 +40,8 @@
                         string="Reject"
                         type="object"
                         groups="purchase_request.group_purchase_request_manager"/>
-                <field name="state" widget="statusbar"
+                <field name="state"
+                       widget="statusbar"
                        statusbar_visible="draft,to_approve,approved,done,rejected"
                        statusbar_colors='{"approved":"blue"}'/>
             </header>
@@ -88,7 +90,8 @@
                     <group>
                         <field name="date_start" attrs="{'readonly': [('is_editable','=', False)]}"/>
                         <field name="picking_type_id" attrs="{'readonly': [('is_editable','=', False)]}"/>
-                        <field name="company_id" groups="base.group_multi_company" widget="selection" attrs="{'readonly': [('is_editable','=', False)]}"/>
+                        <field name="company_id" groups="base.group_multi_company" widget="selection"
+                               attrs="{'readonly': [('is_editable','=', False)]}"/>
                     </group>
                 </group>
                 <notebook>
@@ -118,12 +121,22 @@
                                             <field name="name" attrs="{'readonly': [('is_editable','=', False)]}"/>
                                             <label for="product_qty" attrs="{'readonly': [('is_editable','=', False)]}"/>
                                             <div>
-                                                <field name="product_qty" class="oe_inline" attrs="{'readonly': [('is_editable','=', False)]}"/>
-                                                <field name="product_uom_id" groups="uom.group_uom" class="oe_inline" attrs="{'readonly': [('is_editable','=', False)]}"/>
+                                                <field name="product_qty"
+                                                       class="oe_inline"
+                                                       attrs="{'readonly': [('is_editable','=', False)]}"/>
+                                                <field name="product_uom_id"
+                                                       groups="uom.group_uom"
+                                                       class="oe_inline"
+                                                       attrs="{'readonly': [('is_editable','=', False)]}"/>
                                             </div>
-                                            <field name="analytic_account_id" groups="analytic.group_analytic_accounting" attrs="{'readonly': [('is_editable','=', False)]}"/>
-                                            <field name="date_required" attrs="{'readonly': [('is_editable','=', False)]}"/>
-                                            <field name="estimated_cost" widget="monetary" attrs="{'readonly': [('is_editable','=', False)]}"/>
+                                            <field name="analytic_account_id"
+                                                   groups="analytic.group_analytic_accounting"
+                                                   attrs="{'readonly': [('is_editable','=', False)]}"/>
+                                            <field name="date_required"
+                                                   attrs="{'readonly': [('is_editable','=', False)]}"/>
+                                            <field name="estimated_cost"
+                                                   widget="monetary"
+                                                   attrs="{'readonly': [('is_editable','=', False)]}"/>
                                             <field name="currency_id" invisible="1"/>
                                             <field name="cancelled"/>
                                         </group>
@@ -131,7 +144,9 @@
                                     <group name="specifications">
                                         <separator string="Specifications"/>
                                         <newline/>
-                                        <field name="specifications" nolabel="1" attrs="{'readonly': [('is_editable','=', False)]}"/>
+                                        <field name="specifications"
+                                               nolabel="1"
+                                               attrs="{'readonly': [('is_editable','=', False)]}"/>
                                     </group>
                                     <group name="quantities" string="Tracking">
                                         <group>

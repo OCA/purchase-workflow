@@ -63,4 +63,3 @@ class StockPicking(models.Model):
                     subtype="mail.mt_comment",
                     author_id=self.env.user.partner_id.id,
                 )
-                request_line.check_done()
