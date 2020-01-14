@@ -29,5 +29,5 @@ class PurchaseOrderType(models.Model):
     payment_term_id = fields.Many2one(
         comodel_name='account.payment.term', string='Payment Terms')
     incoterm_id = fields.Many2one(
-        comodel_name='stock.incoterms', string='Incoterm')
+        comodel_name='account.incoterms', string='Incoterm')
     sequence = fields.Integer(default=10)
