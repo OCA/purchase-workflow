@@ -5,13 +5,10 @@
 
 from odoo import api, fields, models
 
-import odoo.addons.decimal_precision as dp
-
 
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
-    @api.multi
     def _add_supplier_to_product(self):
         """ Insert a mapping of products to PO lines to be picked up
         in supplierinfo's create() """
@@ -37,7 +34,7 @@ class PurchaseOrderLine(models.Model):
         vals.update({"price_unit": self._get_discounted_price_unit()})
         return vals
 
-    discount = fields.Float(string="Discount (%)", digits=dp.get_precision("Discount"))
+    discount = fields.Float(string="Discount (%)", digits="Discount")
 
     _sql_constraints = [
         (
@@ -59,7 +56,6 @@ class PurchaseOrderLine(models.Model):
             return self.price_unit * (1 - self.discount / 100)
         return self.price_unit
 
-    @api.multi
     def _get_stock_move_price_unit(self):
         """Get correct price with discount replacing current price_unit
         value before calling super and restoring it later for assuring
@@ -106,3 +102,8 @@ class PurchaseOrderLine(models.Model):
         if not seller:
             return
         self.discount = seller.discount
+
+    def _prepare_account_move_line(self, move):
+        vals = super(PurchaseOrderLine, self)._prepare_account_move_line(move)
+        vals["discount"] = self.discount
+        return vals
