@@ -29,7 +29,7 @@
                 <field name="order_type"/>
             </field>
             <group position="inside">
-                <filter string="Type"
+                <filter string="Type" name="order_type"
                         domain="[]" context="{'group_by': 'order_type'}"/>
             </group>
         </field>

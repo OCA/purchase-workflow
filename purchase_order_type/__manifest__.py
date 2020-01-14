@@ -1,9 +1,9 @@
-# Copyright (C) 2015 Camptocamp SA
+# Copyright 2015 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 {
     'name': 'Purchase Order Type',
-    'version': '11.0.1.0.0',
+    'version': '12.0.1.0.0',
     'author': 'Camptocamp,Odoo Community Association (OCA)',
     'license': 'AGPL-3',
     'category': 'Purchase Management',
