@@ -79,9 +79,8 @@ class TestProductSupplierinfoDiscount(common.SavepointCase):
             {
                 "sequence": 20,
                 "location_id": self.env.ref("stock.stock_location_locations").id,
-                "picking_type_id": self.env.ref("stock.chi_picking_type_in").id,
+                "picking_type_id": self.env.ref("stock.picking_type_in").id,
                 "warehouse_id": self.env.ref("stock.warehouse0").id,
-                "propagate": True,
                 "procure_method": "make_to_stock",
                 "route_sequence": 5.0,
                 "name": "YourCompany:  Buy",
@@ -89,28 +88,20 @@ class TestProductSupplierinfoDiscount(common.SavepointCase):
                 "action": "buy",
             }
         )
-        po_line_vals = {
-            "origin": "SO012:WH: Stock -> Customers MTO",
-            "product_uom": self.env.ref("uom.product_uom_unit").id,
-            "product_qty": 50,
-            "location_id": self.env.ref("stock.stock_location_locations").id,
-            "company_id": self.env.ref("base.main_company"),
-            "state": "confirmed",
-            "warehouse_id": self.env.ref("stock.warehouse0").id,
-            "move_dest_id": self.env.ref("stock.stock_location_customers").id,
-            "message_unread_counter": 0,
-            "name": "WH: Stock -> Customers MTO",
-            "product_id": self.product.id,
-            "date_planned": fields.Datetime.now(),
-            "rule_id": stock_rule.id,
-        }
         res = stock_rule._prepare_purchase_order_line(
             self.product,
             50,
             self.env.ref("uom.product_uom_unit"),
-            po_line_vals,
+            self.env.ref("base.main_company"),
+            {
+                "supplier": self.supplierinfo,
+                "date_planned": fields.Datetime.now(),
+                "propagate_date": stock_rule.propagate_date,
+                "propagate_date_minimum_delta": stock_rule.propagate_date_minimum_delta,
+                "propagate_cancel": stock_rule.propagate_cancel,
+                "move_dest_id": [self.env.ref("stock.stock_location_customers").id],
+            },
             self.purchase_order,
-            self.supplierinfo.name,
         )
         self.assertTrue(res.get("discount"), "Should have a discount key")
 

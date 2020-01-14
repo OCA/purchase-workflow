@@ -4,15 +4,13 @@
 
 from odoo import fields, models
 
-from odoo.addons import decimal_precision as dp
-
 
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
     default_supplierinfo_discount = fields.Float(
         string="Default Supplier Discount (%)",
-        digits=dp.get_precision("Discount"),
+        digits="Discount",
         help="This value will be used as the default one, for each new"
         " supplierinfo line depending on that supplier.",
     )
