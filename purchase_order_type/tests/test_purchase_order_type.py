@@ -10,7 +10,7 @@ class TestPurchaseOrderType(common.SavepointCase):
 
     @classmethod
     def setUpClass(cls):
-        super(TestPurchaseOrderType, cls).setUpClass()
+        super().setUpClass()
         cls.po_obj = cls.env['purchase.order']
         # Partner
         cls.partner1 = cls.env.ref('base.res_partner_1')
@@ -24,7 +24,7 @@ class TestPurchaseOrderType(common.SavepointCase):
         # Payment Term
         cls.payterm = cls.env.ref('account.account_payment_term_immediate')
         # Incoterm
-        cls.incoterm = cls.env.ref('stock.incoterm_EXW')
+        cls.incoterm = cls.env.ref('account.incoterm_EXW')
         cls.type2.payment_term_id = cls.payterm
         cls.type2.incoterm_id = cls.incoterm
         cls.partner1.purchase_type = cls.type2
@@ -61,6 +61,5 @@ class TestPurchaseOrderType(common.SavepointCase):
         purchase = self.po_obj.create({
             'partner_id': self.partner1.id,
             'order_line': lines,
-            # 'company_id': self.company1.id,
         })
         return purchase
