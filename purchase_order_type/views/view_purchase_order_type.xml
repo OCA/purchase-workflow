@@ -61,11 +61,11 @@
                 <field name="payment_term_id" />
                 <field name="incoterm_id" />
                 <group expand="0" string="Group By">
-                    <filter string="Entry Sequence" domain="[]"
+                    <filter string="Entry Sequence" name="entry_sequence" domain="[]"
                             context="{'group_by':'sequence_id'}" />
-                    <filter string="Payment Term" domain="[]"
+                    <filter string="Payment Term" name="pay_terms" domain="[]"
                             context="{'group_by':'payment_term_id'}" />
-                    <filter string="Incoterm" domain="[]"
+                    <filter string="Incoterm" name="incoterm" domain="[]"
                             context="{'group_by':'incoterm_id'}" />
                 </group>
             </search>
