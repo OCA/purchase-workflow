@@ -1,11 +1,11 @@
-# Copyright (C) 2015 Camptocamp SA
+# Copyright 2015 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models
 from odoo.addons.purchase.models.purchase import PurchaseOrder
 
 
-class PurchaseOrder(models.Model):
+class PurchaseOrderClass(models.Model):
     _inherit = 'purchase.order'
 
     def _default_order_type(self):
@@ -21,7 +21,7 @@ class PurchaseOrder(models.Model):
     @api.multi
     @api.onchange('partner_id')
     def onchange_partner_id(self):
-        super(PurchaseOrder, self).onchange_partner_id()
+        super().onchange_partner_id()
         purchase_type = (self.partner_id.purchase_type or
                          self.partner_id.commercial_partner_id.purchase_type)
         if purchase_type:
@@ -43,4 +43,4 @@ class PurchaseOrder(models.Model):
                 vals['order_type'])
             if purchase_type.sequence_id:
                 vals['name'] = purchase_type.sequence_id.next_by_id()
-        return super(PurchaseOrder, self).create(vals)
+        return super().create(vals)
