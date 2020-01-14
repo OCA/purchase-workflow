@@ -8,5 +8,5 @@ class AccountInvoice(models.Model):
 
     def _prepare_invoice_line_from_po_line(self, line):
         vals = super()._prepare_invoice_line_from_po_line(line)
-        vals['discount'] = line.discount
+        vals["discount"] = line.discount
         return vals
