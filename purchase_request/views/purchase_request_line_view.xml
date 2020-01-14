@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!-- Copyright 2018-2019 Eficent Business and IT Consulting Services S.L.
-     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0) -->
 <odoo>
 
     <record id="purchase_request_line_tree" model="ir.ui.view">
@@ -201,7 +201,7 @@
                         string="Cancelled Quantity"/>
                 <group expand="0" string="Group By...">
                     <filter name="product" string="Product"
-                            domain="[]" context="{'group_by' : 'product_id'}" />
+                            domain="[]" context="{'group_by' : 'product_id'}"/>
                     <filter name="requested_by" string="Requested by"
                             domain="[]"
                             context="{'group_by':'requested_by'}"/>
@@ -252,7 +252,6 @@
         <field name="view_id" ref="purchase_request_line_form"/>
         <field name="act_window_id" ref="purchase_request_line_form_action"/>
     </record>
-
 
     <record id="purchase_order_line_form2_sub" model="ir.ui.view">
         <field name="name">purchase.order.line.form2</field>
@@ -310,7 +309,7 @@
                 <field name="product_qty"/>
                 <field name="product_uom" groups="uom.group_uom"/>
                 <field name="price_subtotal" widget="monetary"/>
-                <field name="date_planned"  widget="date"/>
+                <field name="date_planned" widget="date"/>
                 <field name="purchase_request_lines" invisible="1"/>
             </tree>
         </field>

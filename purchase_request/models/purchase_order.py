@@ -9,6 +9,8 @@ class PurchaseOrder(models.Model):
 
     def _purchase_request_confirm_message_content(self, request, request_dict=None):
         self.ensure_one()
+        if not request_dict:
+            request_dict = {}
         title = _("Order confirmation %s for your Request %s") % (
             self.name,
             request.name,
@@ -151,6 +153,9 @@ class PurchaseOrderLine(models.Model):
             qty_left = rec.qty_received - prev_qty_received
             for alloc in allocation:
                 allocated_product_qty = alloc.allocated_product_qty
+                if not qty_left:
+                    alloc.purchase_request_line_id._compute_qty()
+                    break
                 if alloc.open_product_qty <= qty_left:
                     allocated_product_qty += alloc.open_product_qty
                     qty_left -= alloc.open_product_qty

@@ -3,7 +3,6 @@
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
-from odoo.tools.float_utils import float_compare
 
 _STATES = [
     ("draft", "Draft"),
@@ -166,12 +165,6 @@ class PurchaseRequestLine(models.Model):
         string="Pending Qty to Receive",
         store=True,
     )
-    product_id = fields.Many2one(
-        comodel_name="product.product",
-        string="Product",
-        domain=[("purchase_ok", "=", True)],
-        track_visibility="onchange",
-    )
     estimated_cost = fields.Monetary(
         string="Estimated Cost",
         currency_field="currency_id",
@@ -179,6 +172,12 @@ class PurchaseRequestLine(models.Model):
         help="Estimated cost of Purchase Request Line, not propagated to PO.",
     )
     currency_id = fields.Many2one(related="company_id.currency_id", readonly=True)
+    product_id = fields.Many2one(
+        comodel_name="product.product",
+        string="Product",
+        domain=[("purchase_ok", "=", True)],
+        track_visibility="onchange",
+    )
 
     @api.depends(
         "purchase_request_allocation_ids",
@@ -236,34 +235,19 @@ class PurchaseRequestLine(models.Model):
                 # done this way as i cannot track what was received before
                 # cancelled the purchase order
                 qty_cancelled -= request.qty_done
-            request.qty_cancelled = (
-                max(
-                    0,
-                    request.product_id.uom_id._compute_quantity(
-                        qty_cancelled, request.product_uom_id
-                    ),
+            if request.product_uom_id:
+                request.qty_cancelled = (
+                    max(
+                        0,
+                        request.product_id.uom_id._compute_quantity(
+                            qty_cancelled, request.product_uom_id
+                        ),
+                    )
+                    if request.purchase_request_allocation_ids
+                    else 0
                 )
-                if request.purchase_request_allocation_ids
-                else 0
-            )
-
-    def check_done(self):
-        precision = self.env["decimal.precision"].precision_get(
-            "Product Unit of Measure"
-        )
-        for line in self:
-            allocated_qty = sum(
-                line.purchase_request_allocation_ids.mapped("allocated_product_qty")
-            )
-            qty_done = line.product_id.uom_id._compute_quantity(
-                allocated_qty, line.product_uom_id
-            )
-            if (
-                float_compare(qty_done, line.product_qty, precision_digits=precision)
-                >= 0
-            ):
-                line.request_id.write({"state": "done"})
-        return True
+            else:
+                request.qty_cancelled = qty_cancelled
 
     @api.depends(
         "product_id",
@@ -296,6 +280,8 @@ class PurchaseRequestLine(models.Model):
     def onchange_product_id(self):
         if self.product_id:
             name = self.product_id.name
+            if self.product_id.code:
+                name = "[{}] {}".format(name, self.product_id.code)
             if self.product_id.description_purchase:
                 name += "\n" + self.product_id.description_purchase
             self.product_uom_id = self.product_id.uom_id.id
@@ -304,15 +290,11 @@ class PurchaseRequestLine(models.Model):
 
     def do_cancel(self):
         """Actions to perform when cancelling a purchase request line."""
-        for rec in self:
-            rec.write({"cancelled": True})
-        return True
+        self.write({"cancelled": True})
 
     def do_uncancel(self):
         """Actions to perform when uncancelling a purchase request line."""
-        for rec in self:
-            rec.write({"cancelled": False})
-        return True
+        self.write({"cancelled": False})
 
     def write(self, vals):
         res = super(PurchaseRequestLine, self).write(vals)
@@ -351,18 +333,24 @@ class PurchaseRequestLine(models.Model):
                     temp_purchase_state = "to approve"
                 elif any([po_line.state == "sent" for po_line in rec.purchase_lines]):
                     temp_purchase_state = "sent"
-                elif all([po_line.state == "draft" for po_line in rec.purchase_lines]):
+                elif all(
+                    [
+                        po_line.state in ("draft", "cancel")
+                        for po_line in rec.purchase_lines
+                    ]
+                ):
                     temp_purchase_state = "draft"
             rec.purchase_state = temp_purchase_state
 
     @api.model
     def _get_supplier_min_qty(self, product, partner_id=False):
         seller_min_qty = 0.0
-        seller = product.seller_ids.sorted(key=lambda r: r.min_qty)
         if partner_id:
             seller = product.seller_ids.filtered(lambda r: r.name == partner_id).sorted(
                 key=lambda r: r.min_qty
             )
+        else:
+            seller = product.seller_ids.sorted(key=lambda r: r.min_qty)
         if seller:
             seller_min_qty = seller[0].min_qty
         return seller_min_qty
