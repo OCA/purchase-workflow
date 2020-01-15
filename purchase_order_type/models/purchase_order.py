@@ -2,10 +2,10 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models
-from odoo.addons.purchase.models.purchase import PurchaseOrder
+from odoo.addons.purchase.models.purchase import PurchaseOrder as Purchase
 
 
-class PurchaseOrderClass(models.Model):
+class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
 
     def _default_order_type(self):
@@ -13,7 +13,7 @@ class PurchaseOrderClass(models.Model):
 
     order_type = fields.Many2one(comodel_name='purchase.order.type',
                                  readonly=False,
-                                 states=PurchaseOrder.READONLY_STATES,
+                                 states=Purchase.READONLY_STATES,
                                  string='Type',
                                  ondelete='restrict',
                                  default=_default_order_type)
