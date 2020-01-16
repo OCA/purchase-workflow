@@ -1,4 +1,4 @@
-# Copyright 2017 Eficent Business and IT Consulting Services S.L.
+# Copyright 2017-2020 Forgeflow S.L.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
 
 from odoo.tests.common import TransactionCase
@@ -52,7 +52,7 @@ class TestPurchaseRequest(TransactionCase):
             "picking_type_id": self.env.ref("stock.picking_type_in").id,
             "requested_by": user_test.id,
         }
-        self.purchase_request = self.pr_model.sudo(user_test).create(pr_dict)
+        self.purchase_request = self.pr_model.with_user(user_test).create(pr_dict)
         prl_test = {
             "request_id": self.purchase_request.id,
             "product_id": self.env.ref("product.product_product_13").id,
