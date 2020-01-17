@@ -11,7 +11,19 @@ class PurchaseOrder(models.Model):
     @api.multi
     def button_cancel(self):
         purchase_context = dict(self._context, cancel_sale_order=True)
-        res = super(PurchaseOrder, self.with_context(purchase_context)).button_cancel()
+        for order in self:
+            procurements = order.order_line.mapped('procurement_ids')
+            for procurement in procurements:
+                if procurement.state not in ('cancel', 'exception')\
+                        and procurement.rule_id.propagate:
+                    dest_move = procurement.move_dest_id
+                    moves = procurement.move_ids
+                    if dest_move and dest_move.state == 'done'\
+                            and not moves and procurement.purchase_id\
+                            and procurement.purchase_line_id:
+                        procurement.with_context(purchase_context).cancel()
+        res = super(PurchaseOrder,
+                    self).button_cancel()
         return res
 
 
