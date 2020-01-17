@@ -22,8 +22,7 @@ class PurchaseOrder(models.Model):
                             and not moves and procurement.purchase_id\
                             and procurement.purchase_line_id:
                         procurement.with_context(purchase_context).cancel()
-        res = super(PurchaseOrder,
-                    self).button_cancel()
+        res = super(PurchaseOrder, self).button_cancel()
         return res
 
 
