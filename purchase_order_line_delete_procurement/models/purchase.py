@@ -5,6 +5,16 @@
 from odoo import api, models
 
 
+class PurchaseOrder(models.Model):
+    _inherit = "purchase.order"
+
+    @api.multi
+    def button_cancel(self):
+        purchase_context = dict(self._context, cancel_sale_order=True)
+        res = super(PurchaseOrder, self.with_context(purchase_context)).button_cancel()
+        return res
+
+
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
