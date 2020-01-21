@@ -14,6 +14,7 @@ setuptools.setup(
         'odoo13-addon-purchase_product_usage',
         'odoo13-addon-purchase_reception_notify',
         'odoo13-addon-purchase_request',
+        'odoo13-addon-purchase_request_department',
         'odoo13-addon-purchase_tier_validation',
     ],
     classifiers=[
