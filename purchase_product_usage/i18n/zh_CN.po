@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* purchase_product_usage
+# 	* purchase_product_usage
 #
 msgid ""
 msgstr ""
@@ -82,9 +82,9 @@ msgid "ID"
 msgstr "ID"
 
 #. module: purchase_product_usage
-#: model:ir.model,name:purchase_product_usage.model_account_invoice
-msgid "Invoice"
-msgstr "发票"
+#: model:ir.model,name:purchase_product_usage.model_account_move_line
+msgid "Journal Item"
+msgstr ""
 
 #. module: purchase_product_usage
 #: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_product_usage____last_update
@@ -137,3 +137,6 @@ msgstr "用途"
 #: model_terms:ir.ui.view,arch_db:purchase_product_usage.view_purchase_product_usage_search
 msgid "Usages"
 msgstr "用途"
+
+#~ msgid "Invoice"
+#~ msgstr "发票"
