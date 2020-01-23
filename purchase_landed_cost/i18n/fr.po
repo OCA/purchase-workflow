@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: odoomrp-wip (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-07 10:44+0000\n"
-"PO-Revision-Date: 2020-01-10 22:13+0000\n"
+"PO-Revision-Date: 2020-01-23 22:13+0000\n"
 "Last-Translator: clementmbr <clement.mombereau@akretion.com.br>\n"
 "Language-Team: French (http://www.transifex.com/oca/odoomrp-wip-8-0/language/"
 "fr/)\n"
@@ -121,7 +121,7 @@ msgstr "Type de mise à jour des prix"
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__expense_amount
 msgid "Cost amount"
-msgstr "Montant des frais d'approche"
+msgstr "Montant des frais"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_expense__distribution
@@ -337,7 +337,7 @@ msgstr "Lignes de distributions de frais"
 #: model:ir.actions.act_window,name:purchase_landed_cost.action_purchase_expense_type
 #: model:ir.ui.menu,name:purchase_landed_cost.menu_purchase_expense_type
 msgid "Expenses types"
-msgstr "Types de frais"
+msgstr "Types de frais d'approche"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__product_weight
