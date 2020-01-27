@@ -45,7 +45,7 @@ class PurchaseOrder(models.Model):
 
     account_analytic_ids = fields.Many2many(
         comodel_name='account.analytic.account',
-        string='Analytic Account',
+        string='Analytic Account(s)',
         compute='_compute_analytic_accounts',
         search='_search_analytic_accounts',
         readonly=True
