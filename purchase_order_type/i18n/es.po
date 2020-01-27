@@ -34,12 +34,12 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: purchase_order_type
-#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type_active
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__active
 msgid "Active"
 msgstr "Activo"
 
 #. module: purchase_order_type
-#: model:ir.actions.act_window,help:purchase_order_type.action_purchase_order_type_view
+#: model_terms:ir.actions.act_window,help:purchase_order_type.action_purchase_order_type_view
 msgid "Click to set a new type for purchase order."
 msgstr ""
 
@@ -49,74 +49,74 @@ msgid "Contact"
 msgstr ""
 
 #. module: purchase_order_type
-#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type_create_uid
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__create_uid
 msgid "Created by"
 msgstr "Creado por"
 
 #. module: purchase_order_type
-#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type_create_date
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__create_date
 msgid "Created on"
 msgstr "Creado en"
 
 #. module: purchase_order_type
-#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type_description
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__description
 msgid "Description"
 msgstr ""
 
 #. module: purchase_order_type
-#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type_display_name
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
 
 #. module: purchase_order_type
-#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type_sequence_id
-#: model:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__sequence_id
+#: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
 msgid "Entry Sequence"
 msgstr ""
 
 #. module: purchase_order_type
-#: model:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
+#: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
 msgid "Group By"
 msgstr ""
 
 #. module: purchase_order_type
-#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type_id
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__id
 msgid "ID"
 msgstr "ID"
 
 #. module: purchase_order_type
-#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type_incoterm_id
-#: model:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__incoterm_id
+#: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
 msgid "Incoterm"
 msgstr ""
 
 #. module: purchase_order_type
-#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type___last_update
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type____last_update
 msgid "Last Modified on"
 msgstr "Última modificación el"
 
 #. module: purchase_order_type
-#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type_write_uid
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__write_uid
 msgid "Last Updated by"
 msgstr "Última actualización por"
 
 #. module: purchase_order_type
-#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type_write_date
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__write_date
 msgid "Last Updated on"
 msgstr "Última actualización el"
 
 #. module: purchase_order_type
-#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type_name
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__name
 msgid "Name"
 msgstr "Nombre"
 
 #. module: purchase_order_type
-#: model:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
+#: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
 msgid "Payment Term"
 msgstr ""
 
 #. module: purchase_order_type
-#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type_payment_term_id
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__payment_term_id
 msgid "Payment Terms"
 msgstr ""
 
@@ -126,36 +126,35 @@ msgid "Purchase Order"
 msgstr "Orden de Compra"
 
 #. module: purchase_order_type
-#: model:ir.model.fields,field_description:purchase_order_type.field_res_partner_purchase_type
-#: model:ir.model.fields,field_description:purchase_order_type.field_res_users_purchase_type
-#: model:ir.ui.view,arch_db:purchase_order_type.res_partner_purchase_type_form_view
+#: model:ir.model.fields,field_description:purchase_order_type.field_res_partner__purchase_type
+#: model:ir.model.fields,field_description:purchase_order_type.field_res_users__purchase_type
+#: model_terms:ir.ui.view,arch_db:purchase_order_type.res_partner_purchase_type_form_view
 msgid "Purchase Order Type"
 msgstr ""
 
 #. module: purchase_order_type
 #: model:ir.actions.act_window,name:purchase_order_type.action_purchase_order_type_view
 #: model:ir.ui.menu,name:purchase_order_type.menu_purchase_order_type
-#: model:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
-#: model:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_tree
+#: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
+#: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_tree
 msgid "Purchase Order Types"
 msgstr ""
 
 #. module: purchase_order_type
-#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type_sequence
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__sequence
 msgid "Sequence"
 msgstr ""
 
 #. module: purchase_order_type
-#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_order_type
-#: model:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_filter
-#: model:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_form
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order__order_type
+#: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_filter
+#: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_form
 msgid "Type"
 msgstr "Tipo"
 
 #. module: purchase_order_type
 #: model:ir.model,name:purchase_order_type.model_purchase_order_type
 #, fuzzy
-#| msgid "Purchase Order"
 msgid "Type of purchase order"
 msgstr "Orden de Compra"
 
