@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: odoomrp-wip (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-07 10:44+0000\n"
-"PO-Revision-Date: 2020-01-23 22:13+0000\n"
+"PO-Revision-Date: 2020-01-27 16:51+0000\n"
 "Last-Translator: clementmbr <clement.mombereau@akretion.com.br>\n"
 "Language-Team: French (http://www.transifex.com/oca/odoomrp-wip-8-0/language/"
 "fr/)\n"
@@ -22,7 +22,7 @@ msgstr ""
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_expense__affected_lines
 msgid "Affected lines"
-msgstr "Lignes d'opérations affectées"
+msgstr "Mouvement de réception affecté"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__total_amount
@@ -37,7 +37,7 @@ msgstr "Êtes-vous sûr de vouloir mettre à jour ces prix d'articles ?"
 #. module: purchase_landed_cost
 #: selection:purchase.expense.type,calculation_method:0
 msgid "By amount of the line"
-msgstr "Par montant de la ligne"
+msgstr "Proportionnellement au montant de chaque Mouvement"
 
 #. module: purchase_landed_cost
 #: selection:purchase.expense.type,calculation_method:0
@@ -170,7 +170,7 @@ msgstr ""
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
 msgid "Costs distribution picking lines"
-msgstr "Lignes d'opérations de la distribution de frais"
+msgstr "Mouvements de réception de la distribution de frais"
 
 #. module: purchase_landed_cost
 #: model:ir.ui.menu,name:purchase_landed_cost.menu_purchase_cost_control
@@ -238,7 +238,7 @@ msgid ""
 "                used for calculating the distribution between lines."
 msgstr ""
 "Définit le type de calcul utilisé par chaque frais d'approche pour calculer "
-"la distribution des frais entre chaque ligne d'opération."
+"la distribution des frais entre chaque Mouvement de réception."
 
 #. module: purchase_landed_cost
 #: selection:purchase.cost.distribution,cost_update_type:0
@@ -295,7 +295,7 @@ msgstr "Dupliquer le frais d'approche"
 #. module: purchase_landed_cost
 #: selection:purchase.expense.type,calculation_method:0
 msgid "Equally to all lines"
-msgstr "Égal sur chaque ligne"
+msgstr "Équiréparti sur chaque Mouvement"
 
 #. module: purchase_landed_cost
 #: selection:purchase.cost.distribution,state:0
@@ -485,12 +485,12 @@ msgstr "Dernière mise à jour le"
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__total_volume
 msgid "Line volume"
-msgstr "Volume de la ligne"
+msgstr "Volume du Mouvement de réception"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__total_weight
 msgid "Line weight"
-msgstr "Poids de la ligne"
+msgstr "Poids du Mouvement de réception"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__name
@@ -526,12 +526,12 @@ msgstr "Opération"
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__move_id
 msgid "Picking line"
-msgstr "Ligne"
+msgstr "Mouvement"
 
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
 msgid "Picking lines"
-msgstr "Opérations de réception"
+msgstr "Mouvements de réception"
 
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_expense_search
@@ -604,7 +604,7 @@ msgstr "Frais d'une distribution de frais d'approche"
 #. module: purchase_landed_cost
 #: model:ir.model,name:purchase_landed_cost.model_purchase_cost_distribution_line_expense
 msgid "Purchase cost distribution line expense"
-msgstr "Lien entre un frais et une ligne d'Opération de réception"
+msgstr "Lien entre un frais et un Mouvement d'Opération de réception"
 
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_expense_tree
@@ -654,9 +654,9 @@ msgid ""
 "Put here specific lines that this expense is going to be distributed across. "
 "Leave it blank to use all imported lines."
 msgstr ""
-"Renseigner les lignes spécifiques des Opérations de réception sur lesquelles "
-"vont être distribuées le frais d'approche. Laisser en blanc pour le "
-"distribuer sur toutes les lignes."
+"Renseigner les Mouvements de réception spécifiques sur lesquels vont être "
+"distribués le frais d'approche. Laisser en blanc pour le distribuer sur tous "
+"les Mouvements de la distribution."
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__product_qty
@@ -752,12 +752,12 @@ msgstr "Le poids brut en kg."
 #. module: purchase_landed_cost
 #: model:ir.model.fields,help:purchase_landed_cost.field_purchase_cost_distribution_line__total_weight
 msgid "The line gross weight in Kg."
-msgstr "Le poids brut de la ligne d'opération en kg."
+msgstr "Le poids brut du mouvement de réception en kg."
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,help:purchase_landed_cost.field_purchase_cost_distribution_line__total_volume
 msgid "The line volume in m3."
-msgstr "Le volume de la ligne d'opération en m3."
+msgstr "Le volume du mouvement de réception en m3."
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,help:purchase_landed_cost.field_purchase_cost_distribution_line__product_volume
@@ -769,7 +769,8 @@ msgstr "Le volume en m3."
 #, python-format
 msgid "There is no picking lines in the distribution"
 msgstr ""
-"Il n'y a pas de lignes d'Opération de réception dans la Distribution de frais"
+"Il n'y a pas de Mouvements d'Opération de réception dans la Distribution de "
+"frais"
 
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
