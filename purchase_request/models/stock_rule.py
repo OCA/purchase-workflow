@@ -1,4 +1,4 @@
-# Copyright 2018-2019 Eficent Business and IT Consulting Services S.L.
+# Copyright 2018-2020 ForgeFlow, S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 
 from odoo import api, fields, models
@@ -72,24 +72,31 @@ class StockRule(models.Model):
         create a purchase request or not.
         :return: boolean
         """
-        rule = self.env["procurement.group"]._get_rule(
-            procurement.product_id, procurement.location_id, procurement.values
+        return (
+            procurement[1].action == "buy"
+            and procurement[0].product_id.purchase_request
         )
-        return rule.action == "buy" and procurement.product_id.purchase_request
 
     def _run_buy(self, procurements):
-        if self.is_create_purchase_request_allowed(procurements[0][0]):
-            self.create_purchase_request(procurements[0][0])
+        indexes_to_pop = []
+        for i, procurement in enumerate(procurements):
+            if self.is_create_purchase_request_allowed(procurement):
+                self.create_purchase_request(procurement)
+                indexes_to_pop.append(i)
+        if indexes_to_pop:
+            indexes_to_pop.reverse()
+            for index in indexes_to_pop:
+                procurements.pop(index)
+        if not procurements:
             return
         return super(StockRule, self)._run_buy(procurements)
 
-    def create_purchase_request(self, procurement):
+    def create_purchase_request(self, procurement_group):
         """
         Create a purchase request containing procurement order product.
         """
-        rule = self.env["procurement.group"]._get_rule(
-            procurement.product_id, procurement.location_id, procurement.values
-        )
+        procurement = procurement_group[0]
+        rule = procurement_group[1]
         purchase_request_model = self.env["purchase.request"]
         purchase_request_line_model = self.env["purchase.request.line"]
         cache = {}
