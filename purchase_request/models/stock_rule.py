@@ -54,7 +54,8 @@ class StockRule(models.Model):
         )
         gpo = self.group_propagation_option
         group_id = (gpo == 'fixed' and self.group_id.id) or \
-                   (gpo == 'propagate' and values['group_id'].id) or False
+                   (gpo == 'propagate' and values['group_id'] and
+                    values['group_id'].id) or False
         if group_id:
             domain += (
                 ('group_id', '=', group_id),
