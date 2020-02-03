@@ -28,7 +28,8 @@ Purchase Order Approved
 This module extends the functionality of purchases adding a new state
 *Approved* in purchase orders before the *Purchase Order* state. Additionally
 add the possibility to set back to draft a purchase order in all the states
-previous to *Purchase Order*.
+previous to *Purchase Order*. From a user point of view, this change introduces
+a two-step validation process of the purchase order.
 
 In this new *Approved* state:
 
@@ -51,11 +52,20 @@ The new state diagram is depicted below:
 Configuration
 =============
 
-To configure this module:
+This new workflow can be activated by company and by supplier.
+
+To activate the new workflow by company:
 
 #. Go to 'Purchase > Configuration > Settings'.
 #. In the *Orders* section you can set the *State 'Approved' in Purchase
    Orders*.
+
+To activate the new workflow by supplier:
+
+#. Open the supplier form view.
+#. In the *Purchase* section in the *Sales & Purchases* tab the field
+   *Purchase requires second approval* allows you to select the policy to
+   apply for the current supplier. 'Never' | 'Always' | 'Based on company policy'
 
 Usage
 =====
@@ -104,12 +114,14 @@ Authors
 ~~~~~~~
 
 * ForgeFlow
+* ACSONE SA/NV
 
 Contributors
 ~~~~~~~~~~~~
 
 * Lois Rilo <lois.rilo@forgeflow.com>
 * Rattapong Chokmasermkul <rattapongc@ecosoft.co.th>
+* Laurent Mignon <laurent.mignon@acsone.eu>
 
 Maintainers
 ~~~~~~~~~~~
