@@ -7,7 +7,8 @@
     "version": "10.0.1.0.0",
     "category": "Purchases",
     "website": "https://odoo-community.org/",
-    "author": "Eficent, Odoo Community Association (OCA)",
+    "author": "Eficent, ACSONE SA/NV, "
+              "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
@@ -15,6 +16,7 @@
         "purchase",
     ],
     "data": [
+        'views/res_partner.xml',
         "views/purchase_order_view.xml",
         "views/res_config_view.xml",
     ],
