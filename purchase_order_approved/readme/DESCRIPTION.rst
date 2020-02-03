@@ -1,7 +1,8 @@
 This module extends the functionality of purchases adding a new state
 *Approved* in purchase orders before the *Purchase Order* state. Additionally
 add the possibility to set back to draft a purchase order in all the states
-previous to *Purchase Order*.
+previous to *Purchase Order*. From a user point of view, this change introduces
+a two-step validation process of the purchase order.
 
 In this new *Approved* state:
 
