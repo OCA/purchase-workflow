@@ -32,9 +32,8 @@
     'website': 'https://cooplalouve.fr/',
     'license': 'AGPL-3',
     'depends': [
-        'base',
-        'product_average_consumption',
         'purchase',
+        'product_average_consumption',
         'purchase_package_qty',
         'purchase_discount',
     ],
