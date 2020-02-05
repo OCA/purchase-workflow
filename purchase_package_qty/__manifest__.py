@@ -32,7 +32,6 @@
     'license': 'AGPL-3',
     'depends': [
         'account',
-        'base',
         'product',
         'purchase_discount',
     ],
