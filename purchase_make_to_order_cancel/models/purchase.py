@@ -1,7 +1,7 @@
 # Copyright 2019 Digital5 S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from openerp import models, api
+from odoo import models, api
 
 
 class PurchaseOrderLine(models.Model):

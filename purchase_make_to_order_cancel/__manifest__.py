@@ -8,7 +8,7 @@
     'version': '11.0.1.0.0',
     'category': 'Purchase Management',
     'author': 'Digital5, S.L., Odoo Community Association (OCA)',
-    'website': 'http://www.digital5.es',
+    'website': 'https://github.com/OCA/purchase-workflow/',
     'depends': [
         'purchase'
     ],
