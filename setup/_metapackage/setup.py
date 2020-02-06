@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo13-addon-product_form_purchase_link',
+        'odoo13-addon-purchase_last_price_info',
         'odoo13-addon-purchase_open_qty',
         'odoo13-addon-purchase_order_archive',
         'odoo13-addon-purchase_product_usage',
