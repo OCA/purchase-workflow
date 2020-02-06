@@ -25,7 +25,9 @@ Purchase Location by Line
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-Allows to define a specific destination location on each Purchase Order line.
+Allows to define a specific destination location, whose default value can be defined in the product or in
+the product category, on each Purchase Order line.
+
 When the PO is confirmed, it will generate one Incoming Shipment per
 combination of destination location and expected date indicated in the
 Purchase Order Lines.
@@ -61,6 +63,7 @@ Contributors
 
 * Jordi Ballester Alomar <jordi.ballester@eficent.com>
 * Hizbul Bahar <hizbul25@gmail.com>
+* Alex Comba <alex.comba@agilebg.com>
 
 Maintainers
 ~~~~~~~~~~~

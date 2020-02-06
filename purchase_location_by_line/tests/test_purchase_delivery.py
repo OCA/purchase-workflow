@@ -1,5 +1,6 @@
 # © 2016 Eficent Business and IT Consulting Services S.L.
 #   (<http://www.eficent.com>)
+# Copyright 2020 Alex Comba - Agile Business Group
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo.tests.common import TransactionCase
@@ -11,8 +12,8 @@ class TestDeliverySingle(TransactionCase):
     def setUp(self):
         super(TestDeliverySingle, self).setUp()
         # Products
-        p1 = self.env.ref('product.product_product_13')
-        p2 = self.env.ref('product.product_product_25')
+        self.prod1 = self.env.ref('product.product_product_13')
+        self.prod2 = self.env.ref('product.product_product_25')
 
         # Locations
         self.l1 = self.env.ref('stock.stock_location_stock')
@@ -29,24 +30,24 @@ class TestDeliverySingle(TransactionCase):
         self.po = self.env['purchase.order'].create({
             'partner_id': self.ref('base.res_partner_3'),
             'order_line': [
-                (0, 0, {'product_id': p1.id,
-                        'product_uom': p1.uom_id.id,
-                        'name': p1.name,
-                        'price_unit': p1.standard_price,
+                (0, 0, {'product_id': self.prod1.id,
+                        'product_uom': self.prod1.uom_id.id,
+                        'name': self.prod1.name,
+                        'price_unit': self.prod1.standard_price,
                         'date_planned': self.date_sooner,
                         'product_qty': 42.0,
                         'location_dest_id': self.l1.id}),
-                (0, 0, {'product_id': p2.id,
-                        'product_uom': p1.uom_id.id,
-                        'name': p2.name,
-                        'price_unit': p2.standard_price,
+                (0, 0, {'product_id': self.prod2.id,
+                        'product_uom': self.prod1.uom_id.id,
+                        'name': self.prod2.name,
+                        'price_unit': self.prod2.standard_price,
                         'date_planned': self.date_sooner,
                         'product_qty': 12.0,
                         'location_dest_id': self.l1.id}),
-                (0, 0, {'product_id': p1.id,
-                        'product_uom': p1.uom_id.id,
-                        'name': p1.name,
-                        'price_unit': p1.standard_price,
+                (0, 0, {'product_id': self.prod1.id,
+                        'product_uom': self.prod1.uom_id.id,
+                        'name': self.prod1.name,
+                        'price_unit': self.prod1.standard_price,
                         'date_planned': self.date_sooner,
                         'product_qty': 1.0,
                         'location_dest_id': self.l1.id})]})
@@ -193,3 +194,21 @@ class TestDeliverySingle(TransactionCase):
             self.po.order_line[0].move_ids.mapped('location_dest_id'),
             self.l1
         )
+
+    def test_default_location_dest(self):
+        # Set default location on the prod1
+        po_line = self.po.order_line[0]
+        self.prod1.default_location_dest_id = self.l2
+        po_line.product_id = self.prod1
+        po_line.onchange_product_id()
+        self.assertEqual(po_line.location_dest_id, self.l2)
+        # Set default location on the category of the prod2
+        categ_id = self.env.ref('product.product_category_5')
+        categ_id.default_location_dest_id = self.l1
+        po_line.product_id = self.prod2
+        po_line.onchange_product_id()
+        self.assertEqual(po_line.location_dest_id, self.l1)
+        # Clean default_location previously set on the category of the prod2
+        categ_id.default_location_dest_id = False
+        po_line.onchange_product_id()
+        self.assertFalse(po_line.location_dest_id)

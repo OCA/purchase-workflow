@@ -1,4 +1,6 @@
-Allows to define a specific destination location on each Purchase Order line.
+Allows to define a specific destination location, whose default value can be defined in the product or in
+the product category, on each Purchase Order line.
+
 When the PO is confirmed, it will generate one Incoming Shipment per
 combination of destination location and expected date indicated in the
 Purchase Order Lines.

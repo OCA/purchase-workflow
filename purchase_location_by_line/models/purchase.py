@@ -1,6 +1,7 @@
 # © 2016 Eficent Business and IT Consulting Services S.L.
 #   (<http://www.eficent.com>)
 # © 2018 Hizbul Bahar <hizbul25@gmail.com>
+# Copyright 2020 Alex Comba - Agile Business Group
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models
@@ -55,3 +56,11 @@ class PurchaseOrderLine(models.Model):
                 line.move_ids.filtered(lambda m: m.state != 'done').write(
                     {'location_dest_id': location.id})
         return res
+
+    @api.onchange('product_id')
+    def onchange_product_id(self):
+        result = super().onchange_product_id()
+        self.update({'location_dest_id':
+                     self.product_id.default_location_dest_id
+                     or self.product_id.categ_id.default_location_dest_id})
+        return result

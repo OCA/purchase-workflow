@@ -1,13 +1,14 @@
 # © 2016 Eficent Business and IT Consulting Services S.L.
 #   (<http://www.eficent.com>)
 # © 2018 Hizbul Bahar <hizbul25@gmail.com>
+# Copyright 2020 Alex Comba - Agile Business Group
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 {
     "name": "Purchase Location by Line",
     "summary": "Allows to define a specific destination location on each PO "
                "line",
-    "version": "12.0.1.0.0",
+    "version": "12.0.1.1.0",
     "author": "Eficent, "
               "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
@@ -18,7 +19,9 @@
     ],
     "license": "AGPL-3",
     "data": [
-        "views/purchase_view.xml"
+        "views/purchase_view.xml",
+        "views/product_template_view.xml",
+        "views/product_category_view.xml"
     ],
     'installable': True,
 }
