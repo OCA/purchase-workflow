@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2020 ForgeFlow S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field name="name">purchase.order.form - test</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <field name="invoice_status" position="before">
+                <field name="user_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="purchase_order_tree" model="ir.ui.view">
+        <field name="name">purchase.order.form - test</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="user_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_purchase_order_filter" model="ir.ui.view">
+        <field name="name">purchase.order.select - purchase_tier_validation</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+        <field name="arch" type="xml">
+            <field name="create_uid" position="after">
+                <field name="user_id"/>
+                <filter name="my_purchases" string="My Purchases" domain="[('user_id','=', uid)]"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
