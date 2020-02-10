@@ -23,7 +23,7 @@ Purchase Request
     :target: https://runbot.odoo-community.org/runbot/142/13.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 You use this module if you wish to give notification of requirements of
 materials and/or external services and keep track of such requirements.
@@ -107,17 +107,17 @@ Credits
 Authors
 ~~~~~~~
 
-* Eficent
+* ForgeFlow
 
 Contributors
 ~~~~~~~~~~~~
 
-* Jordi Ballester Alomar <jordi.ballester@eficent.com>
+* Jordi Ballester Alomar <jordi.ballester@forgeflow.com>
 * Jonathan Nemry <jonathan.nemry@acsone.eu>
-* Aaron Henriquez <ahenriquez@eficent.com>
+* Aaron Henriquez <ahenriquez@forgeflow.com>
 * Adrien Peiffer <adrien.peiffer@acsone.eu>
-* Lois Rilo <lois.rilo@eficent.com>
-* Héctor Villarreal <hector.villarreal@eficent.com>
+* Lois Rilo <lois.rilo@forgeflow.com>
+* Héctor Villarreal <hector.villarreal@forgeflow.com>
 * Ben Cai <ben.cai@elico-corp.com>
 * Rattapong Chokmasermkul <rattapongc@ecosoft.co.th>
 

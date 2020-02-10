@@ -1,8 +1,8 @@
-* Jordi Ballester Alomar <jordi.ballester@eficent.com>
+* Jordi Ballester Alomar <jordi.ballester@forgeflow.com>
 * Jonathan Nemry <jonathan.nemry@acsone.eu>
-* Aaron Henriquez <ahenriquez@eficent.com>
+* Aaron Henriquez <ahenriquez@forgeflow.com>
 * Adrien Peiffer <adrien.peiffer@acsone.eu>
-* Lois Rilo <lois.rilo@eficent.com>
-* Héctor Villarreal <hector.villarreal@eficent.com>
+* Lois Rilo <lois.rilo@forgeflow.com>
+* Héctor Villarreal <hector.villarreal@forgeflow.com>
 * Ben Cai <ben.cai@elico-corp.com>
 * Rattapong Chokmasermkul <rattapongc@ecosoft.co.th>
