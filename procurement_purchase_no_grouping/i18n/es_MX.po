@@ -20,12 +20,12 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: procurement_purchase_no_grouping
-#: selection:product.category,procured_purchase_grouping:0
+#: model:ir.model.fields.selection,name:procurement_purchase_no_grouping.selection__product_category__procured_purchase_grouping__line
 msgid "No line grouping"
 msgstr ""
 
 #. module: procurement_purchase_no_grouping
-#: selection:product.category,procured_purchase_grouping:0
+#: model:ir.model.fields.selection,name:procurement_purchase_no_grouping.selection__product_category__procured_purchase_grouping__order
 msgid "No order grouping"
 msgstr ""
 
@@ -57,7 +57,7 @@ msgid ""
 msgstr ""
 
 #. module: procurement_purchase_no_grouping
-#: selection:product.category,procured_purchase_grouping:0
+#: model:ir.model.fields.selection,name:procurement_purchase_no_grouping.selection__product_category__procured_purchase_grouping__standard
 msgid "Standard grouping"
 msgstr ""
 

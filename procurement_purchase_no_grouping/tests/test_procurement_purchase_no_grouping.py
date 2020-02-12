@@ -32,15 +32,21 @@ class TestProcurementPurchaseNoGrouping(common.SavepointCase):
         }
 
     def _run_procurement(self):
-        self.stock_rule._run_buy(
+        procurement_group_obj = self.env["procurement.group"]
+        procurement = procurement_group_obj.Procurement(
             self.product,
             1,
             self.product.uom_id,
             self.location,
             False,
             self.origin,
+            self.env.company,
             self.values,
         )
+        rule = procurement_group_obj._get_rule(
+            procurement.product_id, procurement.location_id, procurement.values
+        )
+        self.stock_rule._run_buy([(procurement, rule)])
 
     def test_procurement_grouped_purchase(self):
         self.category.procured_purchase_grouping = "standard"
