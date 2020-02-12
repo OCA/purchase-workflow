@@ -3,23 +3,20 @@
 # Copyright 2018 Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
-from odoo import api, models
+from odoo import models
 
 
 class StockRule(models.Model):
     _inherit = "stock.rule"
 
-    @api.multi
-    def _run_buy(
-        self, product_id, product_qty, product_uom, location_id, name, origin, values
-    ):
-        grouping = product_id.categ_id.procured_purchase_grouping
-        self_wc = self.with_context(grouping=grouping)
-        return super(StockRule, self_wc)._run_buy(
-            product_id, product_qty, product_uom, location_id, name, origin, values
-        )
+    def _run_buy(self, procurements):
+        for procurement, _rule in procurements:
+            procurement.values[
+                "grouping"
+            ] = procurement.product_id.categ_id.procured_purchase_grouping
+        return super()._run_buy(procurements)
 
-    def _make_po_get_domain(self, values, partner):
-        if self.env.context.get("grouping", "standard") == "order":
+    def _make_po_get_domain(self, company_id, values, partner):
+        if values.get("grouping") == "order":
             return (("id", "=", 0),)
-        return super()._make_po_get_domain(values, partner)
+        return super()._make_po_get_domain(company_id, values, partner)
