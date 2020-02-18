@@ -37,6 +37,7 @@ setuptools.setup(
         'odoo11-addon-purchase_order_type',
         'odoo11-addon-purchase_product_usage',
         'odoo11-addon-purchase_reception_notify',
+        'odoo11-addon-purchase_representative',
         'odoo11-addon-purchase_request',
         'odoo11-addon-purchase_request_department',
         'odoo11-addon-purchase_request_order_approved',
