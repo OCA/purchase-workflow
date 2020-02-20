@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* purchase_discount
+# 	* purchase_discount
 #
 msgid ""
 msgstr ""
@@ -40,7 +40,7 @@ msgid "Discount (%)"
 msgstr "折扣(%)"
 
 #. module: purchase_discount
-#: sql_constraint:purchase.order.line:0
+#: model:ir.model.constraint,message:purchase_discount.constraint_purchase_order_line_discount_limit
 msgid "Discount must be lower than 100%."
 msgstr "折扣必须低于100％。"
 
@@ -48,11 +48,6 @@ msgstr "折扣必须低于100％。"
 #: model_terms:ir.ui.view,arch_db:purchase_discount.res_partner_form_view
 msgid "Discount-related settings are managed on"
 msgstr "与折扣相关的设置进行管理"
-
-#. module: purchase_discount
-#: model:ir.model,name:purchase_discount.model_account_invoice
-msgid "Invoice"
-msgstr "发票"
 
 #. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_purchase_order
@@ -87,10 +82,15 @@ msgstr "供应商价格表"
 #. module: purchase_discount
 #: model:ir.model.fields,help:purchase_discount.field_res_partner__default_supplierinfo_discount
 #: model:ir.model.fields,help:purchase_discount.field_res_users__default_supplierinfo_discount
-msgid "This value will be used as the default one, for each new supplierinfo line depending on that supplier."
+msgid ""
+"This value will be used as the default one, for each new supplierinfo line "
+"depending on that supplier."
 msgstr "根据供应商的不同，此值将用作每个新供应商信息行的默认值。"
 
 #. module: purchase_discount
 #: model_terms:ir.ui.view,arch_db:purchase_discount.res_partner_form_view
 msgid "the parent company"
 msgstr "上级公司"
+
+#~ msgid "Invoice"
+#~ msgstr "发票"

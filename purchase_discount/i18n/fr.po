@@ -43,7 +43,7 @@ msgid "Discount (%)"
 msgstr "Remise (%)"
 
 #. module: purchase_discount
-#: sql_constraint:purchase.order.line:0
+#: model:ir.model.constraint,message:purchase_discount.constraint_purchase_order_line_discount_limit
 msgid "Discount must be lower than 100%."
 msgstr "La remise doit être inférieure à 100%."
 
@@ -51,11 +51,6 @@ msgstr "La remise doit être inférieure à 100%."
 #: model_terms:ir.ui.view,arch_db:purchase_discount.res_partner_form_view
 msgid "Discount-related settings are managed on"
 msgstr ""
-
-#. module: purchase_discount
-#: model:ir.model,name:purchase_discount.model_account_invoice
-msgid "Invoice"
-msgstr "Facture"
 
 #. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_purchase_order
@@ -103,3 +98,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:purchase_discount.res_partner_form_view
 msgid "the parent company"
 msgstr ""
+
+#~ msgid "Invoice"
+#~ msgstr "Facture"
