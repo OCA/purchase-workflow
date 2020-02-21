@@ -6,23 +6,24 @@ from odoo import api, fields, models
 
 
 class PurchaseOrder(models.Model):
-    _inherit = 'purchase.order'
+    _inherit = "purchase.order"
 
     @api.multi
     def copy_data(self, default=None):
         if default is None:
             default = {}
-        default['order_line'] = \
-            [(0, 0, line.copy_data()[0])
-             for line in self.order_line.filtered(lambda l: not l.is_deposit)]
+        default["order_line"] = [
+            (0, 0, line.copy_data()[0])
+            for line in self.order_line.filtered(lambda l: not l.is_deposit)
+        ]
         return super(PurchaseOrder, self).copy_data(default)
 
 
 class PurchaseOrderLine(models.Model):
-    _inherit = 'purchase.order.line'
+    _inherit = "purchase.order.line"
 
     is_deposit = fields.Boolean(
-        string='Is a deposit payment',
+        string="Is a deposit payment",
         help="Deposit payments are made when creating invoices from a purhcase"
         " order. They are not copied when duplicating a purchase order.",
     )
