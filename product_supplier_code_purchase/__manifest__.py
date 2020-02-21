@@ -10,11 +10,7 @@
     "website": "https://github.com/OCA/purchase-workflow",
     "category": "Purchase Management",
     "license": "AGPL-3",
-    "depends": [
-        "purchase",
-    ],
-    "data": [
-        "views/purchase_order_view.xml",
-    ],
-    'installable': True,
+    "depends": ["purchase"],
+    "data": ["views/purchase_order_view.xml"],
+    "installable": True,
 }
