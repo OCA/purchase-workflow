@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_invoice_document" inherit_id="account.report_invoice_document">
+        <xpath expr="//th[@name='th_description']" position="after">
+            <t t-if="o.type == 'in_invoice'"><th name="th_supplier_code" class="text-left"><span>Supplier Code</span></th></t>
+        </xpath>
+        <xpath expr="//td[@name='account_invoice_line_name']" position="after">
+            <t t-if="o.type == 'in_invoice'">
+                <td name="td_supplier_code">
+                    <span t-field="line.product_supplier_code"/>
+                </td>
+            </t>
+        </xpath>
+    </template>
+</odoo>

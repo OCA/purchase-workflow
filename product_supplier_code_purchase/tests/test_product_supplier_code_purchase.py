@@ -1,7 +1,7 @@
 # Copyright 2015-20 ForgeFlow, S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 from odoo import fields
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import Form, TransactionCase
 
 
 class TestProductSupplierCodePurchase(TransactionCase):
@@ -56,7 +56,9 @@ class TestProductSupplierCodePurchase(TransactionCase):
         )
 
     def test_supplierinfo_update(self):
-        new_product = self.env["product.product"].create({"name": "Test product"})
+        new_product = self.env["product.product"].create(
+            {"name": "Test product", "standard_price": 100.0}
+        )
         purchase_order = self.purchase_model.create(
             {
                 "partner_id": self.supplier.id,
@@ -81,3 +83,8 @@ class TestProductSupplierCodePurchase(TransactionCase):
         self.assertEqual(
             new_product.seller_ids[0].product_code, "01000", "Wrong supplier code"
         )
+        # Check Product Supplier Code is propagated to Invoice
+        action = purchase_order.action_view_invoice()
+        invoice_form = Form(self.env["account.move"].with_context(action["context"]))
+        self.invoice_form = invoice_form.save()
+        self.assertEqual(self.invoice_form.line_ids[1].product_supplier_code, "01000")

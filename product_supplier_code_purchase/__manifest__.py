@@ -11,6 +11,11 @@
     "category": "Purchase Management",
     "license": "AGPL-3",
     "depends": ["purchase"],
-    "data": ["views/purchase_order_view.xml"],
+    "data": [
+        "reports/purchase_order_reports.xml",
+        "reports/account_invoice_report_view.xml",
+        "views/purchase_order_view.xml",
+        "views/account_invoice_view.xml",
+    ],
     "installable": True,
 }

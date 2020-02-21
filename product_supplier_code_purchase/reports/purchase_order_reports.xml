@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_purchaseorder_document" inherit_id="purchase.report_purchaseorder_document">
+        <xpath expr="//th[@name='th_description']" position="after">
+            <th name="th_supplier_code"><strong>Supplier Code</strong></th>
+        </xpath>
+        <xpath expr="//td[@id='product']" position="after">
+            <td name="td_supplier_code">
+                <span t-field="line.product_supplier_code"/>
+            </td>
+        </xpath>
+    </template>
+
+</odoo>
