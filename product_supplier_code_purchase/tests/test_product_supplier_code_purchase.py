@@ -1,4 +1,4 @@
-# Copyright 2015-17 ForgeFlow, S.L.
+# Copyright 2015-20 ForgeFlow, S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 from odoo import fields
 from odoo.tests.common import TransactionCase
@@ -12,7 +12,7 @@ class TestProductSupplierCodePurchase(TransactionCase):
             {
                 "name": "name",
                 "email": "example@yourcompany.com",
-                "supplier": True,
+                "supplier_rank": 1,
                 "phone": 123456,
             }
         )

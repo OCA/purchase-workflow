@@ -1,4 +1,4 @@
-# Copyright 2015-17 ForgeFlow, S.L.
+# Copyright 2015-20 ForgeFlow, S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 from odoo import api, fields, models
 from odoo.exceptions import AccessError
@@ -9,7 +9,6 @@ class PurchaseOrderLine(models.Model):
 
     product_supplier_code = fields.Char(string="Product Supplier Code")
 
-    @api.multi
     @api.onchange("partner_id", "product_id")
     def _onchange_product_code(self):
         for line in self:
@@ -36,7 +35,6 @@ class PurchaseOrderLine(models.Model):
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
-    @api.multi
     def _add_supplier_to_product(self):
         super()._add_supplier_to_product()
         for line in self.order_line:
