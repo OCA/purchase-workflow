@@ -21,12 +21,12 @@ msgstr ""
 "X-Generator: Weblate 3.8\n"
 
 #. module: procurement_purchase_no_grouping
-#: selection:product.category,procured_purchase_grouping:0
+#: model:ir.model.fields.selection,name:procurement_purchase_no_grouping.selection__product_category__procured_purchase_grouping__line
 msgid "No line grouping"
 msgstr "没有行分组"
 
 #. module: procurement_purchase_no_grouping
-#: selection:product.category,procured_purchase_grouping:0
+#: model:ir.model.fields.selection,name:procurement_purchase_no_grouping.selection__product_category__procured_purchase_grouping__order
 msgid "No order grouping"
 msgstr "没有行分组"
 
@@ -57,12 +57,13 @@ msgid ""
 "* No order grouping: This option will prevent any kind of grouping."
 msgstr ""
 "选择为此类别的产品分组采购购买的行为：\n"
-"* 标准分组（默认）：采购将一如既往地生成采购订单，尽可能对生产线和订单进行分组。\n"
+"* 标准分组（默认）：采购将一如既往地生成采购订单，尽可能对生产线和订单进行分"
+"组。\n"
 "* 无行分组：如果同一供应商有任何未结采购订单，则会重复使用，但不会合并行。\n"
 "* 没有订单分组：此选项将阻止任何类型的分组。"
 
 #. module: procurement_purchase_no_grouping
-#: selection:product.category,procured_purchase_grouping:0
+#: model:ir.model.fields.selection,name:procurement_purchase_no_grouping.selection__product_category__procured_purchase_grouping__standard
 msgid "Standard grouping"
 msgstr "标准分组"
 
