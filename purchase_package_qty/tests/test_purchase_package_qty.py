@@ -20,7 +20,8 @@ class TestPurchasePackageQty(TestAccountNoChartCommon):
         self.partner_2 = self.env.ref('base.res_partner_2')
         self.product = self.env.ref('product.product_product_4d')
         self.Invoice = self.env['account.invoice']
-        self.journal_purchase = self.env['account.journal'].search([('type', '=', 'purchase')], limit=1)
+        self.journal_purchase = self.env['account.journal'].search([
+            ('type', '=', 'purchase')], limit=1)
 
         self.supplierinfo = self.supplierinfo_model.create({
             'min_qty': 0.0,
