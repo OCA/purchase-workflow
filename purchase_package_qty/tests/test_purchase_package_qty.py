@@ -19,7 +19,8 @@ class TestPurchasePackageQty(TestAccountNoChartCommon):
         self.partner_1 = self.env.ref('base.res_partner_1')
         self.partner_2 = self.env.ref('base.res_partner_2')
         self.product = self.env.ref('product.product_product_4d')
-        self.Invoice = self.env['account.invoice'].with_context(mail_notrack=True, mail_create_nolog=True)
+        self.Invoice = self.env['account.invoice'].with_context(
+                mail_notrack=True, mail_create_nolog=True)
 
         self.supplierinfo = self.supplierinfo_model.create({
             'min_qty': 0.0,
@@ -87,7 +88,7 @@ class TestPurchasePackageQty(TestAccountNoChartCommon):
             'type': 'in_invoice',
             'partner_id': self.partner_customer_usd.id,
             'account_id': self.account_payable.id,
-            'journal_id': self.purchae_journal.id,
+            'journal_id': self.journal_purchase.id,
             'currency_id': self.env.user.company_id.currency_id.id,
             'purchase_id': self.purchase_order.id
         })
