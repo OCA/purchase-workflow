@@ -5,12 +5,12 @@
 #    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 ##############################################################################
 
-from odoo.tests.common import TransactionCase
+from odoo.addons.account.tests.account_test_no_chart import TestAccountNoChartCommon
 from odoo import fields
 from odoo.tests import Form
 
 
-class TestPurchasePackageQty(TransactionCase):
+class TestPurchasePackageQty(TestAccountNoChartCommon):
 
     def setUp(self):
         super(TestPurchasePackageQty, self).setUp()
@@ -19,6 +19,7 @@ class TestPurchasePackageQty(TransactionCase):
         self.partner_1 = self.env.ref('base.res_partner_1')
         self.partner_2 = self.env.ref('base.res_partner_2')
         self.product = self.env.ref('product.product_product_4d')
+        self.Invoice = self.env['account.invoice'].with_context(mail_notrack=True, mail_create_nolog=True)
 
         self.supplierinfo = self.supplierinfo_model.create({
             'min_qty': 0.0,
@@ -81,9 +82,15 @@ class TestPurchasePackageQty(TransactionCase):
     def test_004_check_invoice_line_qty(self):
         self.purchase_order.button_confirm()
         self.purchase_order.picking_ids.button_validate()
-        invoice_form = Form(self.env['account.invoice'])
-        invoice_form.purchase_id = self.purchase_order
-        invoice = invoice_form.save()
+
+        invoice = self.Invoice.create({
+            'type': 'in_invoice',
+            'partner_id': self.partner_customer_usd.id,
+            'account_id': self.account_payable.id,
+            'journal_id': self.purchae_journal.id,
+            'currency_id': self.env.user.company_id.currency_id.id,
+            'purchase_id': self.purchase_order.id
+        })
         invoice.purchase_order_change()
         for line in invoice.invoice_line_ids:
             self.assertEquals(
