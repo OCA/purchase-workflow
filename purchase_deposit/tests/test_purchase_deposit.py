@@ -1,6 +1,6 @@
 # Copyright 2019 Elico Corp, Dominique K. <dominique.k@elico-corp.com.sg>
 # Copyright 2019 Ecosoft Co., Ltd., Kitti U. <kittiu@ecosoft.co.th>
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import fields
 from odoo.exceptions import UserError
@@ -12,7 +12,7 @@ class TestPurchaseDeposit(TransactionCase):
         super(TestPurchaseDeposit, self).setUp()
         self.product_model = self.env["product.product"]
         self.account_model = self.env["account.account"]
-        self.invoice_model = self.env["account.invoice"]
+        self.invoice_model = self.env["account.move"]
         self.default_model = self.env["ir.default"]
 
         # Create Deposit Account
@@ -103,9 +103,7 @@ class TestPurchaseDeposit(TransactionCase):
         # On Purchase Order, create normal billing
         res = self.po.with_context(create_bill=True).action_view_invoice()
         ctx = res.get("context")
-        f = Form(
-            self.invoice_model.with_context(ctx), view="account.invoice_supplier_form"
-        )
+        f = Form(self.invoice_model.with_context(ctx), view="account.view_move_form")
         invoice = f.save()
         self.assertRecordValues(
             invoice.invoice_line_ids,
