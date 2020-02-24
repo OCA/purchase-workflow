@@ -1,14 +1,13 @@
 # Copyright 2019 Elico Corp, Dominique K. <dominique.k@elico-corp.com.sg>
 # Copyright 2019 Ecosoft Co., Ltd., Kitti U. <kittiu@ecosoft.co.th>
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
-    @api.multi
     def copy_data(self, default=None):
         if default is None:
             default = {}
@@ -27,3 +26,9 @@ class PurchaseOrderLine(models.Model):
         help="Deposit payments are made when creating invoices from a purhcase"
         " order. They are not copied when duplicating a purchase order.",
     )
+
+    def _prepare_account_move_line(self, move):
+        res = super(PurchaseOrderLine, self)._prepare_account_move_line(move)
+        if self.is_deposit:
+            res["quantity"] = -1 * self.qty_invoiced
+        return res
