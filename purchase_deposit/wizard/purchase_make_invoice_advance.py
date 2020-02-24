@@ -1,11 +1,13 @@
 # Copyright 2019 Elico Corp, Dominique K. <dominique.k@elico-corp.com.sg>
 # Copyright 2019 Ecosoft Co., Ltd., Kitti U. <kittiu@ecosoft.co.th>
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).\
 
 import time
+from datetime import datetime
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
+from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 
 class PurchaseAdvancePaymentInv(models.TransientModel):
@@ -57,9 +59,8 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
         self.deposit_account_id = product.property_account_expense_id
         self.deposit_taxes_id = product.supplier_taxes_id
 
-    @api.multi
     def _create_invoice(self, order, po_line, amount):
-        Invoice = self.env["account.invoice"]
+        Invoice = self.env["account.move"]
         ir_property_obj = self.env["ir.property"]
         account_id = False
         product = self.purchase_deposit_product_id
@@ -105,11 +106,8 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
 
         invoice = Invoice.create(
             {
-                "name": order.name,
-                "origin": order.name,
+                "ref": order.name,
                 "type": "in_invoice",
-                "reference": False,
-                "account_id": order.partner_id.property_account_payable_id.id,
                 "partner_id": order.partner_id.id,
                 "invoice_line_ids": [
                     (
@@ -117,28 +115,27 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
                         0,
                         {
                             "name": name,
-                            "origin": order.name,
+                            "ref": order.name,
                             "account_id": account_id,
                             "price_unit": amount,
                             "quantity": 1.0,
-                            "uom_id": product.uom_id.id,
+                            "product_uom_id": product.uom_id.id,
                             "product_id": product.id,
                             "purchase_line_id": po_line.id,
-                            "invoice_line_tax_ids": [(6, 0, tax_ids)],
-                            "account_analytic_id": po_line.account_analytic_id.id
+                            "tax_ids": [(6, 0, tax_ids)],
+                            "analytic_account_id": po_line.account_analytic_id.id
                             or False,
                         },
                     )
                 ],
                 "currency_id": order.currency_id.id,
-                "payment_term_id": order.payment_term_id.id,
+                "invoice_payment_term_id": order.payment_term_id.id,
                 "fiscal_position_id": order.fiscal_position_id.id
                 or order.partner_id.property_account_position_id.id,
                 "purchase_id": order.id,
-                "comment": order.notes,
+                "narration": order.notes,
             }
         )
-        invoice.compute_taxes()
         invoice.message_post_with_view(
             "mail.message_origin_link",
             values={"self": invoice, "origin": order},
@@ -146,7 +143,6 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
         )
         return invoice
 
-    @api.multi
     def create_invoices(self):
         Purchase = self.env["purchase.order"]
         IrDefault = self.env["ir.default"].sudo()
@@ -202,7 +198,9 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
                     "product_uom": product.uom_id.id,
                     "product_id": product.id,
                     "taxes_id": [(6, 0, tax_ids)],
-                    "date_planned": order.date_planned,
+                    "date_planned": datetime.today().strftime(
+                        DEFAULT_SERVER_DATETIME_FORMAT
+                    ),
                     "is_deposit": True,
                 }
             )
