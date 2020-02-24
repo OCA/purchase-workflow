@@ -38,6 +38,13 @@ msgid "Procurement"
 msgstr "Nabava"
 
 #. module: purchase_request_procurement
+#: model:ir.model.fields,field_description:purchase_request_procurement.field_purchase_request_group_id
+#, fuzzy
+#| msgid "Procurement"
+msgid "Procurement Group"
+msgstr "Nabava"
+
+#. module: purchase_request_procurement
 #: model:ir.model,name:purchase_request_procurement.model_product_template
 msgid "Product Template"
 msgstr "Predložak proizvoda"
@@ -55,31 +62,19 @@ msgid "Purchase Request Line"
 msgstr "Stavka zahtjeva za nabavu"
 
 #. module: purchase_request_procurement
-#: code:addons/purchase_request_procurement/models/procurement_order.py:93
-#, python-format
-msgid "Purchase Request created"
-msgstr ""
-
-#. module: purchase_request_procurement
-#: code:addons/purchase_request_procurement/models/procurement_order.py:97
-#, python-format
-msgid "Purchase Request extended."
-msgstr ""
-
-#. module: purchase_request_procurement
-#: code:addons/purchase_request_procurement/models/procurement_order.py:114
+#: code:addons/purchase_request_procurement/models/procurement_order.py:142
 #, python-format
 msgid "Related procurement has been cancelled."
 msgstr ""
 
 #. module: purchase_request_procurement
-#: code:addons/purchase_request_procurement/models/procurement_order.py:81
+#: code:addons/purchase_request_procurement/models/procurement_order.py:96
 #, python-format
 msgid "You can't create a purchase request for this procurement order (%s)."
 msgstr ""
 
 #. module: purchase_request_procurement
-#: code:addons/purchase_request_procurement/models/purchase_request.py:18
+#: code:addons/purchase_request_procurement/models/purchase_request.py:21
 #, python-format
 msgid ""
 "You cannot reject a purchase request with lines related to done procurement "
@@ -87,7 +82,7 @@ msgid ""
 msgstr ""
 
 #. module: purchase_request_procurement
-#: code:addons/purchase_request_procurement/models/purchase_request.py:31
+#: code:addons/purchase_request_procurement/models/purchase_request.py:34
 #, python-format
 msgid ""
 "You cannot set back to draft a purchase request with lines related to done "

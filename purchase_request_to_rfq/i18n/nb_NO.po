@@ -20,13 +20,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/models/purchase_order.py:25
+#: code:addons/purchase_request_to_rfq/models/purchase_order.py:30
 #, python-format
 msgid "<li><b>%s</b>: Ordered quantity %s %s, Planned date %s</li>"
 msgstr ""
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/models/stock.py:25
+#: code:addons/purchase_request_to_rfq/models/stock.py:29
 #, python-format
 msgid "<li><b>%s</b>: Received quantity %s %s</li>"
 msgstr ""
@@ -91,7 +91,7 @@ msgid "Display Name"
 msgstr "Vis navn"
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:213
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:219
 #, python-format
 msgid "Enter a positive quantity."
 msgstr ""
@@ -213,7 +213,7 @@ msgid "Purchase Request"
 msgstr ""
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/models/purchase_order.py:67
+#: code:addons/purchase_request_to_rfq/models/purchase_order.py:69
 #, python-format
 msgid "Purchase Request %s has already been completed"
 msgstr ""
@@ -241,7 +241,7 @@ msgid "Purchase Request Line Make Purchase Order Item"
 msgstr ""
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/models/purchase_order.py:100
+#: code:addons/purchase_request_to_rfq/models/purchase_order.py:102
 #: model:ir.model.fields,field_description:purchase_request_to_rfq.field_purchase_order_line_purchase_request_lines
 #: model:ir.ui.view,arch_db:purchase_request_to_rfq.purchase_order_line_form2
 #: model:ir.ui.view,arch_db:purchase_request_to_rfq.purchase_order_line_form2_sub
@@ -277,7 +277,7 @@ msgid "Quantity to purchase"
 msgstr ""
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:252
+#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:260
 #, python-format
 msgid "RFQ"
 msgstr ""
@@ -364,7 +364,7 @@ msgid "Wizard"
 msgstr ""
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/models/purchase_request.py:132
+#: code:addons/purchase_request_to_rfq/models/purchase_request.py:135
 #, python-format
 msgid "You cannot delete a record that refers to purchase lines!"
 msgstr ""

@@ -263,6 +263,7 @@ msgstr "Nalog za nabavu"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_product_id
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_product_id
 #: model:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Product"
 msgstr "Proizvod"
@@ -512,7 +513,7 @@ msgid "Unread Messages"
 msgstr "Nepročitane poruke"
 
 #. module: purchase_request
-#: code:addons/purchase_request/models/purchase_request.py:213
+#: code:addons/purchase_request/models/purchase_request.py:219
 #, python-format
 msgid ""
 "You can't request an approval for a purchase request which is empty. (%s)"

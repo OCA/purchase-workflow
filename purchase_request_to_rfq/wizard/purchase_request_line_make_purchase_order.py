@@ -111,14 +111,20 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             raise exceptions.Warning(
                 _('Enter a supplier.'))
         supplier = self.supplier_id
+        fpos = self.env['account.fiscal.position'].get_fiscal_position(
+            supplier.id)
+
         data = {
             'origin': '',
-            'partner_id': self.supplier_id.id,
-            'fiscal_position_id': supplier.property_account_position_id and
-            supplier.property_account_position_id.id or False,
+            'partner_id': supplier.id,
+            'fiscal_position_id': fpos,
             'picking_type_id': picking_type.id,
             'company_id': company.id,
-            }
+            'currency_id': supplier.property_purchase_currency_id.id or
+            company.currency_id.id,
+            'payment_term_id': supplier.property_supplier_payment_term_id.id,
+
+        }
         return data
 
     @api.model
@@ -257,6 +263,9 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             if available_po_lines or False:
                 new_pr_line = False
                 po_line = available_po_lines[0]
+                po_line.purchase_request_lines = [(4, line.id)]
+                if line.procurement_id:
+                    po_line.procurement_ids = [(4, line.procurement_id.id)]
             else:
                 new_pr_line = True
                 po_line_data = self._prepare_purchase_order_line(purchase,
@@ -311,9 +320,10 @@ class PurchaseRequestLineMakePurchaseOrderItem(models.TransientModel):
                                  readonly=True)
     product_id = fields.Many2one('product.product', string='Product')
     name = fields.Char(string='Description', required=True)
-    product_qty = fields.Float(string='Quantity to purchase',
-                               digits=dp.get_precision('Product UoS'),
-                               readonly=True)
+    product_qty = fields.Float(
+        string='Quantity to purchase',
+        digits=dp.get_precision('Product Unit of Measure'),
+        readonly=True)
     product_uom_id = fields.Many2one('product.uom', string='UoM',
                                      readonly=True)
     keep_description = fields.Boolean(string='Copy descriptions to new PO',

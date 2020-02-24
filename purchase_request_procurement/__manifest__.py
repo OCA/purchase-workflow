@@ -4,7 +4,7 @@
 
 {
     'name': "Purchase Request Procurement",
-    'version': "10.0.1.0.1",
+    'version': "10.0.1.1.0",
     'author': "Eficent Business and IT Consulting Services S.L., "
               "Odoo Community Association (OCA)",
     'website': "https://github.com/OCA/purchase-workflow",
@@ -16,8 +16,8 @@
     'data': [
         "views/product_template.xml",
         "views/procurement_order.xml",
+        "views/purchase_request_view.xml",
     ],
-    'demo': [],
     'license': 'LGPL-3',
     'installable': True,
 }

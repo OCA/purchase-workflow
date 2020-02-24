@@ -9,40 +9,41 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-07-16 02:54+0000\n"
-"PO-Revision-Date: 2017-07-16 02:54+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2019-10-22 11:32+0000\n"
+"Last-Translator: Fabien B <fabien@yaltik.com>\n"
 "Language-Team: French (France) (https://www.transifex.com/oca/teams/23907/"
 "fr_FR/)\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.8\n"
 
 #. module: procurement_purchase_no_grouping
 #: selection:product.category,procured_purchase_grouping:0
 msgid "No line grouping"
-msgstr ""
+msgstr "Pas de regroupement de ligne"
 
 #. module: procurement_purchase_no_grouping
 #: selection:product.category,procured_purchase_grouping:0
 msgid "No order grouping"
-msgstr ""
+msgstr "Pas de regroupement de commande"
 
 #. module: procurement_purchase_no_grouping
 #: model:ir.model.fields,field_description:procurement_purchase_no_grouping.field_product_category_procured_purchase_grouping
 msgid "Procured purchase grouping"
-msgstr ""
+msgstr "Regroupement des achats par l'approvisionnement"
 
 #. module: procurement_purchase_no_grouping
 #: model:ir.model,name:procurement_purchase_no_grouping.model_procurement_order
 msgid "Procurement"
-msgstr ""
+msgstr "Approvisionnement"
 
 #. module: procurement_purchase_no_grouping
 #: model:ir.model,name:procurement_purchase_no_grouping.model_product_category
 msgid "Product Category"
-msgstr ""
+msgstr "Catégorie d'article"
 
 #. module: procurement_purchase_no_grouping
 #: model:ir.model,name:procurement_purchase_no_grouping.model_purchase_order
@@ -52,7 +53,7 @@ msgstr "Bon de commande"
 #. module: procurement_purchase_no_grouping
 #: model:ir.model,name:procurement_purchase_no_grouping.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Ligne du bon de commande"
 
 #. module: procurement_purchase_no_grouping
 #: model:ir.model.fields,help:procurement_purchase_no_grouping.field_product_category_procured_purchase_grouping
@@ -65,8 +66,15 @@ msgid ""
 "supplier, it will be reused, but lines won't be merged.\n"
 "* No order grouping: This option will prevent any kind of grouping."
 msgstr ""
+"Sélectionner le comportement du groupement automatique des achats pour les "
+"articles de cette catégorie:\n"
+"* Regroupement standard (par défaut): les approvisionnements généreront des "
+"achats comme toujours, en groupant les lignes et les commandes si possible.\n"
+"* Pas de regroupement des lignes: s'il y a une commande ouverte pour le même "
+"fournisseur, elle sera réutilisée mais les ligne ne seront pas fusionnées.\n"
+"* Pas de regroupement: cette option interdira toute sorte de regroupement."
 
 #. module: procurement_purchase_no_grouping
 #: selection:product.category,procured_purchase_grouping:0
 msgid "Standard grouping"
-msgstr ""
+msgstr "Regroupement standard"
