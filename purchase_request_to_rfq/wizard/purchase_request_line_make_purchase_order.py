@@ -264,8 +264,6 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                 new_pr_line = False
                 po_line = available_po_lines[0]
                 po_line.purchase_request_lines = [(4, line.id)]
-                if line.procurement_id:
-                    po_line.procurement_ids = [(4, line.procurement_id.id)]
             else:
                 new_pr_line = True
                 po_line_data = self._prepare_purchase_order_line(purchase,
