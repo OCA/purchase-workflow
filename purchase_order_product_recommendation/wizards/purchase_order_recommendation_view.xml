@@ -19,7 +19,7 @@
                                 widget="many2many_tags"
                                 options="{'no_open': True, 'no_create': True}"
                                 attrs="{'invisible': [('warehouse_count', '&lt;', 2)]}"/>
-                            <field name="line_amount"/>
+                            <field name="line_amount" widget="numeric_step"/>
                         </group>
                         <group name="col_right">
                             <field name="show_all_partner_products" attrs="{'invisible': [('show_all_products', '!=', False)]}"/>
@@ -43,7 +43,7 @@
                                 <field name="units_received" string="Qty Received"/>
                                 <field name="units_delivered" string="Qty delivered" class="oe_bold"/>
                                 <field name="units_avg_delivered" string="Qty Dlvd./day"/>
-                                <field name="units_included" string="Qty"/>
+                                <field name="units_included" string="Qty" widget="numeric_step"/>
                             </tree>
                         </field>
                     </group>
