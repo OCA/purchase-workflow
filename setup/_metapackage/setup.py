@@ -15,6 +15,7 @@ setuptools.setup(
         'odoo13-addon-purchase_last_price_info',
         'odoo13-addon-purchase_open_qty',
         'odoo13-addon-purchase_order_archive',
+        'odoo13-addon-purchase_order_secondary_unit',
         'odoo13-addon-purchase_product_usage',
         'odoo13-addon-purchase_reception_notify',
         'odoo13-addon-purchase_request',
