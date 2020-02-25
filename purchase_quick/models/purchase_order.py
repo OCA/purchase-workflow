@@ -11,7 +11,6 @@ class PurchaseOrder(models.Model):
     _name = "purchase.order"
     _inherit = ["purchase.order", "product.mass.addition"]
 
-    @api.multi
     def add_product(self):
         self.ensure_one()
         res = self._common_action_keys()
