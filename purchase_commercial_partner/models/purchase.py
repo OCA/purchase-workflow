@@ -6,8 +6,12 @@ from odoo import fields, models
 
 
 class PurchaseOrder(models.Model):
-    _inherit = 'purchase.order'
+    _inherit = "purchase.order"
 
     commercial_partner_id = fields.Many2one(
-        'res.partner', related='partner_id.commercial_partner_id', store=True,
-        index=True, string='Commercial Vendor')
+        "res.partner",
+        related="partner_id.commercial_partner_id",
+        store=True,
+        index=True,
+        string="Commercial Vendor",
+    )
