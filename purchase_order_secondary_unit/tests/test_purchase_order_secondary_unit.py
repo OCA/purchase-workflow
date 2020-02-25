@@ -9,10 +9,10 @@ class TestPurchaseOrderSecondaryUnit(SavepointCase):
 
     @classmethod
     def setUpClass(cls):
-        super().setUpClass()
-        cls.product_uom_kg = cls.env.ref('uom.product_uom_kgm')
-        cls.product_uom_gram = cls.env.ref('uom.product_uom_gram')
-        cls.product_uom_unit = cls.env.ref('uom.product_uom_unit')
+        super(TestPurchaseOrderSecondaryUnit, cls).setUpClass()
+        cls.product_uom_kg = cls.env.ref('product.product_uom_kgm')
+        cls.product_uom_gram = cls.env.ref('product.product_uom_gram')
+        cls.product_uom_unit = cls.env.ref('product.product_uom_unit')
         cls.product = cls.env['product.product'].create({
             'name': 'test',
             'uom_id': cls.product_uom_kg.id,
