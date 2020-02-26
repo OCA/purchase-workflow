@@ -3,16 +3,14 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
-    'name': 'Purchase Commercial Partner',
-    'version': '12.0.1.0.0',
-    'category': 'Purchases',
-    'license': 'AGPL-3',
-    'summary': "Add stored related field 'Commercial Supplier' on POs",
-    'author': 'Akretion,Odoo Community Association (OCA)',
-    'website': 'https://github.com/OCA/purchase-workflow',
-    'depends': ['purchase'],
-    'data': [
-        'views/purchase.xml',
-    ],
-    'installable': True,
+    "name": "Purchase Commercial Partner",
+    "version": "12.0.1.0.0",
+    "category": "Purchases",
+    "license": "AGPL-3",
+    "summary": "Add stored related field 'Commercial Supplier' on POs",
+    "author": "Akretion,Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/purchase-workflow",
+    "depends": ["purchase"],
+    "data": ["views/purchase.xml"],
+    "installable": True,
 }
