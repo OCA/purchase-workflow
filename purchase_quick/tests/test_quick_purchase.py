@@ -1,8 +1,7 @@
 # @author Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo.tests.common import TransactionCase
-from odoo.tests.common import Form
+from odoo.tests.common import Form, TransactionCase
 
 
 class TestQuickPurchase(TransactionCase):
@@ -30,9 +29,7 @@ class TestQuickPurchase(TransactionCase):
             {"parent_id": self.po.id, "parent_model": "purchase.order"}
         ).qty_to_process = 5.0
         self.assertEqual(
-            len(self.po.order_line),
-            1,
-            "Purchase: no purchase order line created",
+            len(self.po.order_line), 1, "Purchase: no purchase order line created"
         )
         self.product_id_2.with_context(
             {"parent_id": self.po.id, "parent_model": "purchase.order"}
@@ -74,6 +71,4 @@ class TestQuickPurchase(TransactionCase):
             product_act_from_po["view_id"][0],
             self.env.ref("purchase_quick.product_tree_view4purchase").id,
         )
-        self.assertEqual(
-            product_act_from_po["context"]["parent_id"], self.po.id
-        )
+        self.assertEqual(product_act_from_po["context"]["parent_id"], self.po.id)
