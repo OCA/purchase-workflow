@@ -4,7 +4,7 @@
 # @author Pierrick Brun <pierrick.brun@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, models, _
+from odoo import _, api, models
 
 
 class PurchaseOrder(models.Model):
@@ -22,19 +22,16 @@ class PurchaseOrder(models.Model):
             }
         )
         commercial = self.partner_id.commercial_partner_id.name
-        res["name"] = "🔙 %s (%s)" % (_("Product Variants"), commercial)
-        res["view_id"] = (
-            self.env.ref("purchase_quick.product_tree_view4purchase").id,
-        )
         res["search_view_id"] = (
             self.env.ref("purchase_quick.product_search_view4purchase").id,
         )
+        res["name"] = "🔙 {} ({})".format(_("Product Variants"), commercial)
+        res["view_id"] = (self.env.ref("purchase_quick.product_tree_view4purchase").id,)
         return res
 
     def _get_quick_line(self, product):
         return self.env["purchase.order.line"].search(
-            [("product_id", "=", product.id), ("order_id", "=", self.id)],
-            limit=1,
+            [("product_id", "=", product.id), ("order_id", "=", self.id)], limit=1
         )
 
     def _get_quick_line_qty_vals(self, product):
