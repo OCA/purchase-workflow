@@ -4,14 +4,13 @@
 # @author Pierrick Brun <pierrick.brun@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, models
+from odoo import _, models
 
 
 class PurchaseOrder(models.Model):
     _name = "purchase.order"
     _inherit = ["purchase.order", "product.mass.addition"]
 
-    @api.multi
     def add_product(self):
         self.ensure_one()
         res = self._common_action_keys()
