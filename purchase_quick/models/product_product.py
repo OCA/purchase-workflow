@@ -27,11 +27,13 @@ class ProductProduct(models.Model):
                 [("order_id", "=", self.env.context.get("parent_id"))]
             )
             for product in self:
+                total_prod_qty = 0.0
                 product_po_lines = po_lines.filtered(
                     lambda l, p=product: l.product_id == p
                 )
                 for product_po_line in product_po_lines:
-                    product.qty_to_process += product_po_line.product_qty
+                    total_prod_qty += product_po_line.product_qty
+                product.qty_to_process += total_prod_qty
         return res
 
     @api.model
