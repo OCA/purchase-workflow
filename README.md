@@ -22,6 +22,7 @@ addon | version | summary
 [product_by_supplier](product_by_supplier/) | 9.0.1.1.0 | Show products grouped by suppliers
 [product_supplier_code_purchase](product_supplier_code_purchase/) | 9.0.1.0.0 | This module adds to the purchase order line the supplier code defined in the product.
 [product_supplierinfo_discount](product_supplierinfo_discount/) | 9.0.1.0.0 | Discounts in product supplier info
+[purchase_analytic_global](purchase_analytic_global/) | 9.0.1.0.0 | Purchase - Analytic Account Global
 [purchase_date_planned_manual](purchase_date_planned_manual/) | 9.0.1.0.0 | This module makes the system to always respect the planned (or scheduled) date in PO lines.
 [purchase_delivery_split_date](purchase_delivery_split_date/) | 9.0.1.0.0 | Purchase Deliveries split by date
 [purchase_discount](purchase_discount/) | 9.0.1.1.1 | Purchase order lines with discounts
