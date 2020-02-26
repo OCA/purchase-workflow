@@ -5,7 +5,7 @@
 
 {
     "name": "Quick Purchase order",
-    "version": "12.0.1.0.3",
+    "version": "13.0.1.0.0",
     "author": "Akretion, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
     "license": "AGPL-3",
