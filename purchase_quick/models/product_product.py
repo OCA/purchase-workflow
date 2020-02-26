@@ -12,9 +12,7 @@ class ProductProduct(models.Model):
     _inherit = "product.product"
 
     # for searching purpose
-    variant_specific_seller_ids = fields.One2many(
-        "product.supplierinfo", "product_id"
-    )
+    variant_specific_seller_ids = fields.One2many("product.supplierinfo", "product_id")
     po_line_ids = fields.One2many(
         comodel_name="purchase.order.line",
         inverse_name="product_id",
@@ -38,14 +36,12 @@ class ProductProduct(models.Model):
 
     @api.model
     def search(self, args, offset=0, limit=None, order=None, count=False):
-        purchase = self.env["purchase.order"].browse(
-            self.env.context.get("parent_id")
-        )
+        purchase = self.env["purchase.order"].browse(self.env.context.get("parent_id"))
         if self.env.context.get("in_current_parent") and purchase:
             po_lines = self.env["purchase.order.line"].search(
                 [("order_id", "=", purchase.id)]
             )
-            args.append((("id", "in", po_lines.mapped("product_id").ids)))
+            args.append(("id", "in", po_lines.mapped("product_id").ids))
         if self.env.context.get("for_current_supplier") and purchase:
             seller = purchase.partner_id
             seller = seller.commercial_partner_id or seller
