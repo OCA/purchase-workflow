@@ -12,6 +12,7 @@ setuptools.setup(
         'odoo9-addon-product_by_supplier',
         'odoo9-addon-product_supplier_code_purchase',
         'odoo9-addon-product_supplierinfo_discount',
+        'odoo9-addon-purchase_analytic_global',
         'odoo9-addon-purchase_date_planned_manual',
         'odoo9-addon-purchase_delivery_split_date',
         'odoo9-addon-purchase_discount',
