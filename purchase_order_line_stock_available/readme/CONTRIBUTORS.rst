@@ -6,3 +6,4 @@
 
   * Pedro Baeza <pedro.baeza@tecnativa.com>
   * Vicent Cubells <vicent.cubells@tecnativa.com>
+* Sudhir Arya <sudhir@erpharbor.com>
