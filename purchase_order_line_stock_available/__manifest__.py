@@ -5,16 +5,10 @@
     "name": "Purchase order line stock available",
     "version": "12.0.1.0.0",
     "license": "AGPL-3",
-    "author": "AvanzOSC,"
-              "Tecnativa,"
-              "Odoo Community Association (OCA)",
-    'website': "https://github.com/OCA/purchase-workflow",
-    "depends": [
-        'purchase',
-    ],
+    "author": "AvanzOSC," "Tecnativa," "Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/purchase-workflow",
+    "depends": ["purchase"],
     "category": "Purchases",
-    "data": [
-        'views/purchase_view.xml',
-    ],
-    "installable": True
+    "data": ["views/purchase_view.xml"],
+    "installable": True,
 }
