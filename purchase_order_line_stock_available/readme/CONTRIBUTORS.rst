@@ -4,5 +4,7 @@
   * Ana Juaristi <anajuaristi@avanzosc.es>
 * `Tecnativa <https://www.tecnativa.com>`_:
 
-  * Pedro Baeza <pedro.baeza@tecnativa.com>
-  * Vicent Cubells <vicent.cubells@tecnativa.com>
+  * Pedro Baeza
+  * Vicent Cubells
+  * Víctor Martínez
+* Sudhir Arya <sudhir@erpharbor.com>
