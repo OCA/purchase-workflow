@@ -26,25 +26,26 @@ def create_service_allocation(env, po_line, pr_line, qty):
     return alloc
 
 
-def allocate_from_stock_move(env, ml, alloc_uom, ml_done=None):
+def allocate_from_stock_move(env, mls, alloc_uom, ml_done=None):
     #  done here because open_product_qty is zero so cannot call method in
     #  stock_move_line
     if ml_done is None:
         ml_done = []
-    to_allocate_qty = ml.product_uom_id._compute_quantity(
-        ml.qty_done, alloc_uom)
-    for allocation in \
-            ml.filtered(
-                lambda m: m.id not in ml_done).move_id.\
-            purchase_request_allocation_ids:
-        if to_allocate_qty > 0.0 and \
-                allocation.allocated_product_qty < \
-                allocation.requested_product_uom_qty:
-            allocated_qty = min(
-                allocation.requested_product_uom_qty, to_allocate_qty)
-            allocation.allocated_product_qty += allocated_qty
-            to_allocate_qty -= allocated_qty
-        ml_done.append(ml.id)
+    for ml in mls:
+        to_allocate_qty = ml.product_uom_id._compute_quantity(
+            ml.qty_done, alloc_uom)
+        for allocation in \
+                ml.filtered(
+                    lambda m: m.id not in ml_done).move_id.\
+                purchase_request_allocation_ids:
+            if to_allocate_qty > 0.0 and \
+                    allocation.allocated_product_qty < \
+                    allocation.requested_product_uom_qty:
+                allocated_qty = min(
+                    allocation.requested_product_uom_qty, to_allocate_qty)
+                allocation.allocated_product_qty += allocated_qty
+                to_allocate_qty -= allocated_qty
+            ml_done.append(ml.id)
     return ml_done
 
 
