@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: purchase_package_qty
-#: model_terms:ir.ui.view,arch_db:purchase_package_qty.report_inventory_package
+#: model_terms:ir.ui.view,arch_db:purchase_package_qty.report_inventory
 msgid "<strong>Package Qty</strong>"
 msgstr ""
 
