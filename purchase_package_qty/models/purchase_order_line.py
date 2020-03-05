@@ -60,14 +60,16 @@ class PurchaseOrderLine(models.Model):
             return False
         currency = partner.property_purchase_currency_id or\
             self.env.user.company_id.currency_id
+        convert_date = self._context.get('date') or self.order_id.date_order
         return {
             'name': partner.id,
             'sequence': max(self.product_id.seller_ids.mapped('sequence')) + 1
             if self.product_id.seller_ids else 1,
             'product_uom': self.product_uom.id,
             'min_qty': 0.0,
-            'base_price': self.order_id.currency_id.compute(
-                self.price_unit, currency),
+            'base_price': self.order_id.currency_id._convert(
+                self.price_unit, currency, company=self.order_id.company_id,
+                date=convert_date),
             'price_policy': self.price_policy,
             'package_qty': self.package_qty or 1,
             'currency_id': currency.id,
