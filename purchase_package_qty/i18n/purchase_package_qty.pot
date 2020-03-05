@@ -177,7 +177,7 @@ msgid "The quantity of products in the supplier package. You will always have to
 msgstr ""
 
 #. module: purchase_package_qty
-#: code:addons/purchase_package_qty/models/purchase_order_line.py:215
+#: code:addons/purchase_package_qty/models/purchase_order_line.py:217
 #, python-format
 msgid "The selected supplier only sells this product by %s %s"
 msgstr ""
@@ -188,13 +188,13 @@ msgid "Unit Price"
 msgstr ""
 
 #. module: purchase_package_qty
-#: code:addons/purchase_package_qty/models/purchase_order_line.py:214
+#: code:addons/purchase_package_qty/models/purchase_order_line.py:216
 #, python-format
 msgid "Warning!"
 msgstr ""
 
 #. module: purchase_package_qty
-#: code:addons/purchase_package_qty/models/purchase_order_line.py:155
+#: code:addons/purchase_package_qty/models/purchase_order_line.py:157
 #, python-format
 msgid "You have to buy a multiple of the package qty or change the package settings in the supplierinfo of the product for the following line: \n"
 " - Product: %s; \n"
