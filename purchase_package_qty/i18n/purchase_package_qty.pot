@@ -26,6 +26,7 @@ msgstr ""
 
 #. module: purchase_package_qty
 #: model:ir.model.fields,field_description:purchase_package_qty.field_stock_move__qty_done_package
+#: model:ir.model.fields,field_description:purchase_package_qty.field_stock_move_line__qty_done_package
 msgid "Done (package)"
 msgstr ""
 
@@ -65,6 +66,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_package_qty.field_account_invoice_line__product_qty_package
 #: model:ir.model.fields,field_description:purchase_package_qty.field_purchase_order_line__product_qty_package
 #: model:ir.model.fields,field_description:purchase_package_qty.field_stock_move__product_qty_package
+#: model:ir.model.fields,field_description:purchase_package_qty.field_stock_move_line__product_qty_package
 msgid "Number of packages"
 msgstr ""
 
@@ -84,6 +86,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_package_qty.field_purchase_order_line__package_qty
 #: model:ir.model.fields,field_description:purchase_package_qty.field_stock_inventory_line__package_qty
 #: model:ir.model.fields,field_description:purchase_package_qty.field_stock_move__package_qty
+#: model:ir.model.fields,field_description:purchase_package_qty.field_stock_move_line__package_qty
 msgid "Package Qty"
 msgstr ""
 
@@ -107,6 +110,11 @@ msgstr ""
 #. module: purchase_package_qty
 #: model_terms:ir.ui.view,arch_db:purchase_package_qty.product_supplierinfo_form_view_package
 msgid "Price per unit"
+msgstr ""
+
+#. module: purchase_package_qty
+#: model:ir.model,name:purchase_package_qty.model_stock_move_line
+msgid "Product Moves (Stock Move Line)"
 msgstr ""
 
 #. module: purchase_package_qty
@@ -143,11 +151,13 @@ msgstr ""
 #: model:ir.model.fields,help:purchase_package_qty.field_account_invoice_line__product_qty_package
 #: model:ir.model.fields,help:purchase_package_qty.field_purchase_order_line__product_qty_package
 #: model:ir.model.fields,help:purchase_package_qty.field_stock_move__product_qty_package
+#: model:ir.model.fields,help:purchase_package_qty.field_stock_move_line__product_qty_package
 msgid "The number of packages you'll buy."
 msgstr ""
 
 #. module: purchase_package_qty
 #: model:ir.model.fields,help:purchase_package_qty.field_stock_move__qty_done_package
+#: model:ir.model.fields,help:purchase_package_qty.field_stock_move_line__qty_done_package
 msgid "The number of packages you've received."
 msgstr ""
 
@@ -167,6 +177,7 @@ msgstr ""
 #: model:ir.model.fields,help:purchase_package_qty.field_account_invoice_line__package_qty
 #: model:ir.model.fields,help:purchase_package_qty.field_purchase_order_line__package_qty
 #: model:ir.model.fields,help:purchase_package_qty.field_stock_move__package_qty
+#: model:ir.model.fields,help:purchase_package_qty.field_stock_move_line__package_qty
 msgid "The quantity of products in the supplier package."
 msgstr ""
 
