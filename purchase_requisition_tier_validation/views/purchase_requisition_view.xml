@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <record id="purchase_requisition_form" model="ir.ui.view">
+    <record id="view_purchase_requisition_form" model="ir.ui.view">
         <field name="name">purchase.requisition.form</field>
         <field name="model">purchase.requisition</field>
         <field name="inherit_id" ref="purchase_requisition.view_purchase_requisition_form"/>
@@ -61,7 +61,7 @@
         </field>
     </record>
 
-    <record id="purchase_requisition_filter" model="ir.ui.view">
+    <record id="view_purchase_requisition_filter" model="ir.ui.view">
         <field name="name">purchase.requisition.filter</field>
         <field name="model">purchase.requisition</field>
         <field name="inherit_id" ref="purchase_requisition.view_purchase_requisition_filter"/>
