@@ -23,4 +23,4 @@
 ** Control Vendor Bill by Work Acceptance **
 
 #. After once the products and/or services have been accepted, Click 'Create Bill'
-#. You will be prompted to select a Work Acceptance. Select it and Click 'Create Vendor Bill'
+#. You will be prompted to select a Work Acceptance. Select it and Click 'Post'
