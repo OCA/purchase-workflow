@@ -1,7 +1,7 @@
 # Copyright 2019 Ecosoft Co., Ltd. (http://ecosoft.co.th)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import _, fields, models
 
 
 class PurchaseOrder(models.Model):
@@ -27,7 +27,6 @@ class PurchaseOrder(models.Model):
             )
             order.wa_count = len(order.wa_ids)
 
-    @api.multi
     def action_view_wa(self):
         self.ensure_one()
         act = self.env.ref("purchase_work_acceptance.action_work_acceptance")
@@ -67,7 +66,6 @@ class PurchaseOrder(models.Model):
                 result["res_id"] = self.wa_ids.id or False
         return result
 
-    @api.multi
     def action_view_invoice(self):
         if self.env.context.get("create_bill", False) and self.env.user.has_group(
             "purchase_work_acceptance.group_enable_wa_on_invoice"
@@ -78,14 +76,13 @@ class PurchaseOrder(models.Model):
             return {
                 "name": _("Select Work Acceptance"),
                 "type": "ir.actions.act_window",
-                "view_type": "form",
                 "view_mode": "form",
                 "res_model": "select.work.acceptance.wizard",
                 "views": [(wizard.id, "form")],
                 "view_id": wizard.id,
                 "target": "new",
             }
-        return super(PurchaseOrder, self).action_view_invoice()
+        return super().action_view_invoice()
 
 
 class PurchaseOrderLine(models.Model):
@@ -104,3 +101,11 @@ class PurchaseOrderLine(models.Model):
             for wa_line in self.wa_line_ids
             if wa_line.wa_id.state != "cancel"
         )
+
+    def _prepare_account_move_line(self, move):
+        res = super()._prepare_account_move_line(move)
+        if move.wa_id:
+            wa_line = self.wa_line_ids.filtered(lambda l: l.wa_id == move.wa_id)
+            res["quantity"] = wa_line.product_qty
+            res["product_uom_id"] = wa_line.product_uom
+        return res

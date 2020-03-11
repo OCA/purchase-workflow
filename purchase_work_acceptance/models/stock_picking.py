@@ -19,13 +19,11 @@ class Picking(models.Model):
         ],
     )
 
-    @api.multi
     def _compute_require_wa(self):
         self.require_wa = self.env.user.has_group(
             "purchase_work_acceptance.group_enforce_wa_on_in"
         )
 
-    @api.multi
     def button_validate(self):
         if self.wa_id:
             order = self.env["purchase.order"].browse(self._context.get("active_id"))
