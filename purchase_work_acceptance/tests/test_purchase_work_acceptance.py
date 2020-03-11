@@ -204,69 +204,15 @@ class TestPurchaseWorkAcceptance(TransactionCase):
         self.assertEqual(work_acceptance.state, "accept")
         self.assertEqual(purchase_order.wa_count, 1)
         # Create Vendor Bill
-        res = purchase_order.with_context(create_bill=True).action_view_invoice()
-        ctx = res.get("context")
-        f = Form(
-            self.env["account.move"].with_context(ctx), view="account.view_move_form"
+        purchase_order.with_context(create_bill=True).action_view_invoice()
+        wizard = self.env["select.work.acceptance.wizard"].create(
+            {"wa_id": work_acceptance.id}
         )
+        wiz = wizard.button_create_vendor_bill()
+        f = Form(self.env["account.move"].with_context(wiz.get("context", {})))
+        f.purchase_id = purchase_order
         invoice = f.save()
+        invoice._onchange_purchase_auto_complete()
         self.assertEqual(invoice.state, "draft")
         invoice.action_post()
         self.assertEqual(invoice.state, "posted")
-
-    def test_04_enable_config_flow(self):
-        qty = 2.0
-        # Create Purchase Order
-        purchase_order = self._create_purchase_order(qty)
-        purchase_order.button_confirm()
-        # Create Work Acceptance
-        work_acceptance = self._create_work_acceptance(qty, purchase_order)
-        work_acceptance.button_accept()
-        res = purchase_order.with_context(create_bill=True).action_view_invoice()
-        self.assertEqual(res.get("res_model"), "account.move")
-        # enable wa on invoice
-        self.env["res.config.settings"].create(
-            {"group_enable_wa_on_invoice": True}
-        ).execute()
-        res = purchase_order.with_context(create_bill=True).action_view_invoice()
-        self.assertEqual(res.get("res_model"), "select.work.acceptance.wizard")
-        wizard = self.env[res.get("res_model")].create({"wa_id": work_acceptance.id})
-        wiz = wizard.button_create_vendor_bill()
-        ctx = wiz.get("context")
-        f = Form(
-            self.env["account.move"].with_context(ctx), view="account.view_move_form"
-        )
-        f.save()
-
-    def test_05_create_multi_lines(self):
-        qty = 5.0
-        # Create Purchase Order
-        purchase_order = self._create_multi_purchase_order(qty, multi=2)
-        purchase_order.button_confirm()
-        # Create Work Acceptance
-        work_acceptance = work_acceptance = self._create_multi_work_acceptance(
-            qty, purchase_order, multi=2
-        )
-        work_acceptance.button_accept()
-        # Received Products
-        picking = purchase_order.picking_ids[0]
-        self.assertEqual(len(picking.move_ids_without_package), 2)
-        with Form(picking) as p:
-            p.wa_id = work_acceptance
-        p.save()
-        picking.button_validate()
-        # Create Vendor Bill
-        self.env["res.config.settings"].create(
-            {"group_enable_wa_on_invoice": True}
-        ).execute()
-        res = purchase_order.with_context(create_bill=True).action_view_invoice()
-        self.assertEqual(res.get("res_model"), "select.work.acceptance.wizard")
-        wizard = self.env[res.get("res_model")].create({"wa_id": work_acceptance.id})
-        wiz = wizard.button_create_vendor_bill()
-        ctx = wiz.get("context")
-        f = Form(
-            self.env["account.move"].with_context(ctx), view="account.view_move_form"
-        )
-        invoice = f.save()
-        with self.assertRaises(ValidationError):
-            invoice.action_post()
