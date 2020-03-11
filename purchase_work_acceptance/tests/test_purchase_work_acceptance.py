@@ -142,21 +142,20 @@ class TestPurchaseWorkAcceptance(TransactionCase):
         picking.move_ids_without_package[0].quantity_done = 42.0
         picking.button_validate()
         # Create Vendor Bill
-        invoice = self.env["account.invoice"].create(
-            {
-                "partner_id": self.res_partner.id,
-                "purchase_id": purchase_order.id,
-                "account_id": self.res_partner.property_account_payable_id.id,
-                "type": "in_invoice",
-            }
-        )
-        invoice.purchase_order_change()
+        f = Form(self.env["account.move"].with_context(default_type="in_invoice"))
+        f.partner_id = purchase_order.partner_id
+        f.purchase_id = purchase_order
+        # f.wa_id = work_acceptance
+        invoice = f.save()
         invoice.wa_id = work_acceptance
+        invoice_line = invoice.invoice_line_ids[0]
         with self.assertRaises(ValidationError):
-            invoice.invoice_line_ids[0].quantity = 6.0
-            invoice.action_invoice_open()
-        invoice.invoice_line_ids[0].quantity = 42.0
-        invoice.action_invoice_open()
+            invoice_line.with_context(check_move_validity=False).write(
+                {"quantity": 6.0}
+            )
+            invoice.action_post()  # Warn when quantity not equal to WA
+        invoice_line.quantity = 42.0
+        invoice.action_post()
 
     def test_03_flow_service(self):
         # Create Purchase Order
@@ -214,16 +213,11 @@ class TestPurchaseWorkAcceptance(TransactionCase):
         wizard = self.env["select.work.acceptance.wizard"].create(
             {"wa_id": work_acceptance.id}
         )
-        wizard.button_create_vendor_bill()
-        invoice = self.env["account.invoice"].create(
-            {
-                "partner_id": self.res_partner.id,
-                "purchase_id": purchase_order.id,
-                "account_id": self.res_partner.property_account_payable_id.id,
-                "type": "in_invoice",
-            }
-        )
-        invoice.wa_id = work_acceptance
-        invoice.purchase_order_change()
+        wiz = wizard.button_create_vendor_bill()
+        f = Form(self.env["account.move"].with_context(wiz.get("context", {})))
+        f.purchase_id = purchase_order
+        invoice = f.save()
+        invoice._onchange_purchase_auto_complete()
         self.assertEqual(invoice.state, "draft")
-        invoice.action_invoice_open()
+        invoice.action_post()
+        self.assertEqual(invoice.state, "posted")
