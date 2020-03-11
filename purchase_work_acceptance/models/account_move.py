@@ -5,8 +5,8 @@ from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 
-class AccountInvoice(models.Model):
-    _inherit = "account.invoice"
+class AccountMove(models.Model):
+    _inherit = "account.move"
 
     require_wa = fields.Boolean(compute="_compute_require_wa")
     wa_id = fields.Many2one(
@@ -21,30 +21,20 @@ class AccountInvoice(models.Model):
         "according to the quantity and unit price of the work acceptance.",
     )
 
-    @api.multi
     def _compute_require_wa(self):
         self.require_wa = self.env.user.has_group(
             "purchase_work_acceptance.group_enforce_wa_on_invoice"
         )
 
-    def _prepare_invoice_line_from_po_line(self, line):
-        res = super()._prepare_invoice_line_from_po_line(line)
-        wa_line = self.wa_id.wa_line_ids.filtered(lambda l: l.purchase_line_id == line)
-        if wa_line:
-            res["quantity"] = wa_line.product_qty
-            res["uom_id"] = wa_line.product_uom
-        return res
-
-    @api.onchange("purchase_id")
-    def purchase_order_change(self):
-        res = super().purchase_order_change()
+    @api.onchange("purchase_vendor_bill_id", "purchase_id")
+    def _onchange_purchase_auto_complete(self):
+        res = super()._onchange_purchase_auto_complete()
         if self.wa_id:
-            self.reference = self.wa_id.invoice_ref
+            self.ref = self.wa_id.invoice_ref
             self.currency_id = self.wa_id.currency_id
         return res
 
-    @api.multi
-    def action_invoice_open(self):
+    def action_post(self):
         for rec in self:
             if rec.wa_id:
                 wa_line = {}
@@ -60,7 +50,7 @@ class AccountInvoice(models.Model):
                             wa_line[line.product_id.id] = qty
                 invoice_line = {}
                 for line in rec.invoice_line_ids:
-                    qty = line.uom_id._compute_quantity(
+                    qty = line.product_uom_id._compute_quantity(
                         line.quantity, line.product_id.uom_id
                     )
                     if qty > 0.0:
@@ -72,8 +62,8 @@ class AccountInvoice(models.Model):
                 if wa_line != invoice_line:
                     raise ValidationError(
                         _(
-                            "You cannot validate a bill if "
-                            "Quantity not equal accepted quantity"
+                            "You cannot validate a bill if Quantity not equal "
+                            "accepted quantity"
                         )
                     )
-        return super().action_invoice_open()
+        return super().action_post()

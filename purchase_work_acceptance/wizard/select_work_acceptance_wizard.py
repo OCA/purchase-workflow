@@ -1,7 +1,7 @@
 # Copyright 2019 Ecosoft Co., Ltd. (http://ecosoft.co.th)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import _, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -24,18 +24,18 @@ class SelectWorkAcceptanceWizard(models.TransientModel):
             "purchase_work_acceptance.group_enforce_wa_on_invoice"
         )
 
-    @api.multi
     def button_create_vendor_bill(self):
         order = self.env["purchase.order"].browse(self._context.get("active_id"))
         if any(invoice.wa_id == self.wa_id for invoice in order.invoice_ids):
             raise ValidationError(_("%s was used in some bill.") % self.wa_id.name)
-        action = self.env.ref("account.action_vendor_bill_template")
+        action = self.env.ref("account.action_move_in_invoice_type")
         result = action.read()[0]
         result["context"] = {
-            "type": "in_invoice",
+            "default_type": "in_invoice",
             "default_wa_id": self.wa_id.id,
             "default_purchase_id": self._context.get("active_id"),
+            "default_company_id": self.wa_id.company_id.id or self.env.company.id,
         }
-        res = self.env.ref("account.invoice_supplier_form", False)
+        res = self.env.ref("account.view_move_form", False)
         result["views"] = [(res and res.id or False, "form")]
         return result
