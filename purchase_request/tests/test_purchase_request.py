@@ -1,6 +1,7 @@
 # Copyright 2018-2019 ForgeFlow, S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 
+from odoo import exceptions
 from odoo.exceptions import UserError
 from odoo.tests.common import Form, TransactionCase
 from odoo.tools import SUPERUSER_ID
@@ -31,10 +32,15 @@ class TestPurchaseRequest(TransactionCase):
         purchase_request = self.purchase_request
         purchase_request.write({"assigned_to": SUPERUSER_ID})
         self.assertEqual(purchase_request.is_editable, True, "Should be editable")
+        self.assertEqual(purchase_request.state, "draft", "Should be in state draft")
         purchase_request.button_to_approve()
         self.assertEqual(
             purchase_request.state, "to_approve", "Should be in state to_approve"
         )
+        with self.assertRaises(exceptions.UserError) as e:
+            purchase_request.unlink()
+        msg = "You cannot delete a purchase request which is not draft."
+        self.assertIn(msg, e.exception.name)
         self.assertEqual(purchase_request.is_editable, False, "Should not be editable")
         purchase_request.button_draft()
         self.assertEqual(purchase_request.is_editable, True, "Should be editable")
@@ -42,6 +48,10 @@ class TestPurchaseRequest(TransactionCase):
         purchase_request.button_to_approve()
         purchase_request.button_done()
         self.assertEqual(purchase_request.is_editable, False, "Should not be editable")
+        with self.assertRaises(exceptions.UserError) as e:
+            purchase_request.unlink()
+        msg = "You cannot delete a purchase request which is not draft."
+        self.assertIn(msg, e.exception.name)
         purchase_request.button_rejected()
         self.assertEqual(purchase_request.is_editable, False, "Should not be editable")
         vals = {
@@ -70,6 +80,12 @@ class TestPurchaseRequest(TransactionCase):
         purchase.button_cancel()
         self.assertEqual(purchase.state, "cancel")
         purchase_request_line._compute_purchase_state()
+        with self.assertRaises(exceptions.UserError) as e:
+            purchase_request.unlink()
+        msg = "You cannot delete a purchase request which is not draft."
+        self.assertIn(msg, e.exception.name)
+        purchase_request.button_draft()
+        purchase_request.unlink()
 
     def test_auto_reject(self):
         """Tests if a Purchase Request is autorejected when all lines are
@@ -201,3 +217,29 @@ class TestPurchaseRequest(TransactionCase):
         ).create(vals)
         with self.assertRaises(UserError):
             wiz_id.make_purchase_order()
+
+    def test_purchase_request_unlink(self):
+        pr = self.purchase_request
+        pr_lines = pr.line_ids
+
+        pr.button_to_approve()
+        self.assertEqual(pr.state, "to_approve", "Should be in state to_approve")
+        with self.assertRaises(exceptions.UserError) as e:
+            pr_lines.unlink()
+        msg = (
+            "You can only delete a purchase request line "
+            "if the purchase request is in draft state."
+        )
+        self.assertIn(msg, e.exception.name)
+        pr.button_done()
+        self.assertEqual(pr.state, "done", "Should be in state done")
+        with self.assertRaises(exceptions.UserError) as e:
+            pr_lines.unlink()
+        msg = (
+            "You can only delete a purchase request line "
+            "if the purchase request is in draft state."
+        )
+        self.assertIn(msg, e.exception.name)
+        pr.button_draft()
+        self.assertEqual(pr.state, "draft", "Should be in state draft")
+        pr_lines.unlink()
