@@ -353,9 +353,20 @@ class PurchaseRequestLine(models.Model):
         return qty
 
     @api.multi
+    def _can_be_deleted(self):
+        self.ensure_one()
+        return self.request_state == 'draft'
+
+    @api.multi
     def unlink(self):
         if self.mapped('purchase_lines'):
             raise UserError(
                 _('You cannot delete a record that refers to purchase '
                   'lines!'))
+        for line in self:
+            if not line._can_be_deleted():
+                raise UserError(_(
+                    'You can only delete a purchase request line '
+                    'if the purchase request is in draft state.'
+                ))
         return super(PurchaseRequestLine, self).unlink()
