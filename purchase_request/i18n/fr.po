@@ -530,7 +530,6 @@ msgid ""
 msgstr ""
 
 #. module: purchase_request
-#: code:addons/purchase_request/models/purchase_request.py:219
 #: code:addons/purchase_request/models/purchase_request.py:233
 #, python-format
 msgid ""
