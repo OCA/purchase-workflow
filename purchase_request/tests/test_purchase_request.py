@@ -5,6 +5,7 @@
 from odoo.exceptions import UserError
 from odoo.tests import common
 from odoo.tools import SUPERUSER_ID
+from odoo import exceptions
 
 
 class TestPurchaseRequest(common.TransactionCase):
@@ -32,10 +33,17 @@ class TestPurchaseRequest(common.TransactionCase):
         self.assertEqual(
             purchase_request.is_editable, True,
             'Should be editable')
+        self.assertEqual(
+            purchase_request.state, 'draft',
+            'Should be in state draft')
         purchase_request.button_to_approve()
         self.assertEqual(
             purchase_request.state, 'to_approve',
             'Should be in state to_approve')
+        with self.assertRaises(exceptions.UserError) as e:
+            purchase_request.unlink()
+        msg = "You cannot delete a purchase request which is not draft."
+        self.assertIn(msg, e.exception.name)
         self.assertEqual(
             purchase_request.is_editable, False,
             'Should not be editable')
@@ -51,10 +59,20 @@ class TestPurchaseRequest(common.TransactionCase):
         self.assertEqual(
             purchase_request.is_editable, False,
             'Should not be editable')
+        with self.assertRaises(exceptions.UserError) as e:
+            purchase_request.unlink()
+        msg = "You cannot delete a purchase request which is not draft."
+        self.assertIn(msg, e.exception.name)
         purchase_request.button_rejected()
         self.assertEqual(
             purchase_request.is_editable, False,
             'Should not be editable')
+        with self.assertRaises(exceptions.UserError) as e:
+            purchase_request.unlink()
+        msg = "You cannot delete a purchase request which is not draft."
+        self.assertIn(msg, e.exception.name)
+        purchase_request.button_draft()
+        purchase_request.unlink()
 
     def test_auto_reject(self):
         """Tests if a Purchase Request is autorejected when all lines are
@@ -122,3 +140,31 @@ class TestPurchaseRequest(common.TransactionCase):
         pr_lines.write({'product_qty': 4})
         pr.button_to_approve()
         self.assertEqual(pr.state, 'to_approve')
+
+    def test_purchase_request_unlink(self):
+        pr = self.purchase_request
+        pr_lines = pr.line_ids
+
+        pr.button_to_approve()
+        self.assertEqual(
+            pr.state, 'to_approve',
+            'Should be in state to_approve')
+        with self.assertRaises(exceptions.UserError) as e:
+            pr_lines.unlink()
+        msg = "You can only delete a purchase request line " \
+              "if the purchase request is in draft state."
+        self.assertIn(msg, e.exception.name)
+        pr.button_done()
+        self.assertEqual(
+            pr.state, 'done',
+            'Should be in state done')
+        with self.assertRaises(exceptions.UserError) as e:
+            pr_lines.unlink()
+        msg = "You can only delete a purchase request line " \
+              "if the purchase request is in draft state."
+        self.assertIn(msg, e.exception.name)
+        pr.button_draft()
+        self.assertEqual(
+            pr.state, 'draft',
+            'Should be in state draft')
+        pr_lines.unlink()

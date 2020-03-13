@@ -181,6 +181,20 @@ class PurchaseRequest(models.Model):
         return res
 
     @api.multi
+    def _can_be_deleted(self):
+        self.ensure_one()
+        return self.state == 'draft'
+
+    @api.multi
+    def unlink(self):
+        for request in self:
+            if not request._can_be_deleted():
+                raise UserError(_(
+                    'You cannot delete a purchase request which is not draft.'
+                ))
+        return super(PurchaseRequest, self).unlink()
+
+    @api.multi
     def button_draft(self):
         self.mapped('line_ids').do_uncancel()
         return self.write({'state': 'draft'})
@@ -331,3 +345,18 @@ class PurchaseRequestLine(models.Model):
             requests = self.mapped('request_id')
             requests.check_auto_reject()
         return res
+
+    @api.multi
+    def _can_be_deleted(self):
+        self.ensure_one()
+        return self.request_state == 'draft'
+
+    @api.multi
+    def unlink(self):
+        for line in self:
+            if not line._can_be_deleted():
+                raise UserError(_(
+                    'You can only delete a purchase request line '
+                    'if the purchase request is in draft state.'
+                ))
+        return super(PurchaseRequestLine, self).unlink()
