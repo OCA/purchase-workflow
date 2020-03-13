@@ -107,6 +107,26 @@ class ComputedPurchaseOrder(models.Model):
         """ average consumption)\n"""
         """ * Target type 'kg': computed purchase order will weight at"""
         """ least the weight specified""")
+    line_order_field = fields.Selection(
+        [
+            ('product_code', 'Supplier Product Code'),
+            ('product_name', 'Supplier Product Name'),
+            ('product_sequence', 'Product Sequence'),
+        ],
+        string='Lines Order',
+        help='The field used to sort the CPO lines',
+        default='product_code',
+        required=True,
+    )
+    line_order = fields.Selection(
+        [
+            ('asc', 'Ascending'),
+            ('desc', 'Descending'),
+        ],
+        string='Lines Order Direction',
+        default='asc',
+        required=True,
+    )
     valid_psi = fields.Selection(
         _VALID_PSI, 'Supplier choice', required=True,
         default='first',
@@ -127,6 +147,10 @@ class ComputedPurchaseOrder(models.Model):
     products_updated = fields.Boolean(
         compute='_compute_products_updated',
         string='Indicate if there were any products updated in the list')
+    lines_with_qty_count = fields.Integer(
+        'Total Ordered Lines',
+        compute='_compute_lines_with_qty',
+    )
 
     # Fields Function section
     @api.onchange('line_ids')
@@ -159,6 +183,12 @@ class ComputedPurchaseOrder(models.Model):
                     break
             cpo.products_updated = updated
 
+    @api.depends('line_ids.purchase_qty')
+    def _compute_lines_with_qty(self):
+        for cpo in self:
+            cpo.lines_with_qty_count = len(cpo.line_ids.filtered(
+                lambda line: line.purchase_qty > 0))
+
     # View Section
     @api.onchange('partner_id')
     def onchange_partner_id(self):
@@ -168,6 +198,8 @@ class ComputedPurchaseOrder(models.Model):
         if self.partner_id:
             self.purchase_target = self.partner_id.purchase_target
             self.target_type = self.partner_id.target_type
+            self.line_order_field = self.partner_id.cpo_line_order_field
+            self.line_order = self.partner_id.cpo_line_order
         self.line_ids = [(2, x.id, False) for x in self.line_ids]
 
     # Overload Section
@@ -185,6 +217,17 @@ class ComputedPurchaseOrder(models.Model):
         if self.update_sorting(vals):
             self._sort_lines()
         return cpo_id
+
+    @api.multi
+    def sort_lines(self):
+        for rec in self:
+            # sort based on field
+            lines = rec.line_ids.sorted(
+                key=lambda l: getattr(l, rec.line_order_field) or '',
+                reverse=(rec.line_order == 'desc'))
+            # store new sequence
+            for i, line in enumerate(lines):
+                line.sequence = i
 
     @api.model
     def update_sorting(self, vals):
@@ -415,3 +458,13 @@ class ComputedPurchaseOrder(models.Model):
                 'target': 'current',
                 'res_id': po_id.id or False,
             }
+
+    @api.multi
+    def action_view_order_lines(self):
+        self.ensure_one()
+        action = self.env.ref(
+            'purchase_compute_order.action_computed_purchase_order_tree')
+        action = action.read()[0]
+        action['domain'] = [('computed_purchase_order_id', '=', self.id)]
+        action['context'] = {'search_default_ordered_products': 1}
+        return action

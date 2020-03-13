@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_partner_form_cpo" model="ir.ui.view">
+        <field name="name">res.partner.form.cpo</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <group name="purchase" position="inside">
+                <div name="purchase_target">
+                    <field name="purchase_target" class="oe_inline"/>
+                    <field name="target_type" class="oe_inline"/>
+                </div>
+                <label for="cpo_line_order_field"/>
+                <div name="cpo_line_order_field">
+                    <field name="cpo_line_order_field" class="oe_inline"/>
+                    <field name="cpo_line_order" class="oe_inline"/>
+                </div>
+            </group>
+        </field>
+    </record>
+
+</odoo>

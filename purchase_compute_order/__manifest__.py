@@ -43,7 +43,9 @@
         'data/ir_sequence.xml',
         'wizard/update_product_wizard_view.xml',
         'views/computed_purchase_order_view.xml',
+        'views/computed_purchase_order_line_view.xml',
         'views/res_config_view.xml',
         'views/purchase_order_line_view.xml',
+        'views/res_partner_view.xml',
     ],
 }

@@ -25,6 +25,9 @@
                            readonly="1"/>
                 </header>
                 <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_inline oe_stat_button" string="Order Lines" type="object" name="action_view_order_lines" icon="fa-book"/>
+                    </div>
                     <h1>
                         <field name="name" class="oe_inline" nolabel="1"/>
                     </h1>
@@ -68,12 +71,15 @@
                                 objective."
                                 states="draft"/>
                           </div>
+                            <field name="line_order_field" invisible="1"/>
+                            <field name="line_order" invisible="1"/>
                         </group>
                     </group>
                     <group string="Result">
                         <group>
                             <field name="computed_amount"/>
                             <field name="package_qty_count"/>
+                            <field name="lines_with_qty_count" readonly="1"/>
                         </group>
                         <group>
                             <field name="computed_duration"/>
@@ -81,6 +87,7 @@
                     </group>
                     <notebook>
                         <page name="orderlines" string="Order lines">
+                            <button name="sort_lines" type="object" string="Sort lines" groups="base.group_no_one"/>
                             <field name="line_ids"
                                    options="{'reload_on_button': true}">
                                 <tree
@@ -230,18 +237,4 @@
         sequence="1"
         action="action_view_computed_purchase_order_tree"/>
 
-    <!-- View : res.partner -->
-    <record id="view_partner_form_cpo" model="ir.ui.view">
-        <field name="name">res.partner.form.cpo</field>
-        <field name="model">res.partner</field>
-        <field name="inherit_id" ref="base.view_partner_form"/>
-        <field name="arch" type="xml">
-            <field name="user_id" position="after">
-                <group colspan='2' col='3'>
-                    <field name="purchase_target"/>
-                    <field name="target_type" nolabel="1"/>
-                </group>
-            </field>
-        </field>
-    </record>
 </odoo>

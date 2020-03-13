@@ -53,3 +53,24 @@ class ResPartner(models.Model):
         """ average consumption)\n"""
         """* Target type 'kg': computed purchase order will weight"""
         """ at least the weight specified""")
+    cpo_line_order_field = fields.Selection(
+        [
+            ('product_code', 'Supplier Product Code'),
+            ('product_name', 'Supplier Product Name'),
+            ('product_sequence', 'Product Sequence'),
+        ],
+        string='CPO Lines Order',
+        help='The field used to sort the CPO lines',
+        default='product_code',
+        required=True,
+    )
+
+    cpo_line_order = fields.Selection(
+        [
+            ('asc', 'Ascending'),
+            ('desc', 'Descending'),
+        ],
+        string='CPO Lines Order Direction',
+        default='asc',
+        required=True,
+    )

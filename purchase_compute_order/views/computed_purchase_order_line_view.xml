@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="view_computed_purchase_order_line_tree" model="ir.ui.view">
+        <field name="name">computed.purchase.order.line.tree</field>
+        <field name="model">computed.purchase.order.line</field>
+        <field name="arch" type="xml">
+            <tree string="Computed purchase order lines" colors="brown:state == 'updated';blue:state == 'new'" editable="bottom" create="0" edit="0" delete="0">
+                <field name="computed_purchase_order_id"/>
+                <field name="product_code_inv"/>
+                <field name="product_id"/>
+                <field name="qty_available"/>
+                <field name="incoming_qty"/>
+                <field name="displayed_average_consumption"/>
+                <field name="uom_id"/>
+                <field name="stock_duration"/>
+                <field name="cpo_state" invisible="1"/>
+                <field name="purchase_qty_package"/>
+                <field name="package_qty_inv"/>
+                <field name="purchase_qty"/>
+                <field name="product_price_inv"/>
+                <field name="discount_inv"/>
+                <field name="price_policy"/>
+                <field name="virtual_duration"/>
+                <field name="subtotal"/>
+                <field name="state"/>
+                <button name="unlink_psi" states="up_to_date,updated" type="object" icon="fa-close"
+                        help="If you click this button,
+                            it means you don't want to buy this
+                            product to this supplier anymore.
+                            The supplier will thus be removed from
+                            the product form."/>
+                <button name="create_psi" states="new" type="object" icon="fa-plus-square"
+                        help="If you click this button,
+                            it means you want to buy this product
+                            to this supplier regularly.
+                            The supplier will thus be added to
+                            the product form."/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_computed_purchase_order_line_search" model="ir.ui.view">
+        <field name="name">computed.purchase.order.line.search</field>
+        <field name="model">computed.purchase.order.line</field>
+        <field name="arch" type="xml">
+            <search string="Search Purchase Order Lines">
+                <field name="product_id"/>
+                <field name="state"/>
+                <field name="purchase_qty"/>
+                <filter name="ordered_products" string="Ordered Products" domain="[('purchase_qty','>',0)]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Product" name="grp_product" context="{'group_by':'product_id'}"/>
+                    <filter string="Status" name="grp_state" context="{'group_by':'state'}"/>
+                    <filter string="CPO Status" name="grp_cpo_state" context="{'group_by':'cpo_state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_computed_purchase_order_tree" model="ir.actions.act_window">
+        <field name="name">Computed Purchase Order Line</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">computed.purchase.order.line</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_computed_purchase_order_line_tree"/>
+    </record>
+
+</odoo>
