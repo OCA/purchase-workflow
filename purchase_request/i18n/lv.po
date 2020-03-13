@@ -509,8 +509,23 @@ msgid "Unread Messages"
 msgstr "Neizlasītās vēstules"
 
 #. module: purchase_request
+#: code:addons/purchase_request/models/purchase_request.py:358
+#, python-format
+msgid ""
+"You can only delete a purchase request line if the purchase request is in "
+"draft state."
+msgstr ""
+
+#. module: purchase_request
 #: code:addons/purchase_request/models/purchase_request.py:219
+#: code:addons/purchase_request/models/purchase_request.py:233
 #, python-format
 msgid ""
 "You can't request an approval for a purchase request which is empty. (%s)"
+msgstr ""
+
+#. module: purchase_request
+#: code:addons/purchase_request/models/purchase_request.py:192
+#, python-format
+msgid "You cannot delete a purchase request which is not draft."
 msgstr ""
