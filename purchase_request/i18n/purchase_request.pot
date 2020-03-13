@@ -507,7 +507,6 @@ msgid "You can only delete a purchase request line if the purchase request is in
 msgstr ""
 
 #. module: purchase_request
-#: code:addons/purchase_request/models/purchase_request.py:219
 #: code:addons/purchase_request/models/purchase_request.py:233
 #, python-format
 msgid "You can't request an approval for a purchase request which is empty. (%s)"
