@@ -57,17 +57,29 @@ msgstr "<strong>Compte analytique</strong>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
-msgid "<strong>Assigned to:</strong><br/>"
+#, fuzzy
+#| msgid "<strong>Assigned to:</strong><br/>"
+msgid ""
+"<strong>Assigned to:</strong>\n"
+"                                <br/>"
 msgstr "<strong>Assigné à:</strong><br/>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
-msgid "<strong>Creation Date:</strong><br/>"
+#, fuzzy
+#| msgid "<strong>Creation Date:</strong><br/>"
+msgid ""
+"<strong>Creation Date:</strong>\n"
+"                                <br/>"
 msgstr "<strong>Date de création:</strong><br/>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
-msgid "<strong>Description:</strong><br/>"
+#, fuzzy
+#| msgid "<strong>Description:</strong><br/>"
+msgid ""
+"<strong>Description:</strong>\n"
+"                                <br/>"
 msgstr "<strong>Description:</strong><br/>"
 
 #. module: purchase_request
@@ -82,7 +94,11 @@ msgstr "<strong>Coût estimé</strong>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
-msgid "<strong>Picking Type:</strong><br/>"
+#, fuzzy
+#| msgid "<strong>Picking Type:</strong><br/>"
+msgid ""
+"<strong>Picking Type:</strong>\n"
+"                                <br/>"
 msgstr "<strong>Type de prélèvement:</strong><br/>"
 
 #. module: purchase_request
@@ -97,7 +113,11 @@ msgstr "<strong>Qté</strong>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
-msgid "<strong>Request Reference:</strong><br/>"
+#, fuzzy
+#| msgid "<strong>Request Reference:</strong><br/>"
+msgid ""
+"<strong>Request Reference:</strong>\n"
+"                                <br/>"
 msgstr "<strong>Demande de référence:</strong><br/>"
 
 #. module: purchase_request
@@ -107,12 +127,20 @@ msgstr "<strong>Date demandée</strong>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
-msgid "<strong>Requested by:</strong><br/>"
+#, fuzzy
+#| msgid "<strong>Requested by:</strong><br/>"
+msgid ""
+"<strong>Requested by:</strong>\n"
+"                                <br/>"
 msgstr "<strong>Demandé par:</strong><br/>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
-msgid "<strong>Source:</strong><br/>"
+#, fuzzy
+#| msgid "<strong>Source:</strong><br/>"
+msgid ""
+"<strong>Source:</strong>\n"
+"                                <br/>"
 msgstr "<strong>Origine:</strong><br/>"
 
 #. module: purchase_request
