@@ -48,17 +48,23 @@ msgstr ""
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
-msgid "<strong>Assigned to:</strong><br/>"
+msgid ""
+"<strong>Assigned to:</strong>\n"
+"                                <br/>"
 msgstr ""
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
-msgid "<strong>Creation Date:</strong><br/>"
+msgid ""
+"<strong>Creation Date:</strong>\n"
+"                                <br/>"
 msgstr ""
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
-msgid "<strong>Description:</strong><br/>"
+msgid ""
+"<strong>Description:</strong>\n"
+"                                <br/>"
 msgstr ""
 
 #. module: purchase_request
@@ -73,7 +79,9 @@ msgstr ""
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
-msgid "<strong>Picking Type:</strong><br/>"
+msgid ""
+"<strong>Picking Type:</strong>\n"
+"                                <br/>"
 msgstr ""
 
 #. module: purchase_request
@@ -88,7 +96,9 @@ msgstr ""
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
-msgid "<strong>Request Reference:</strong><br/>"
+msgid ""
+"<strong>Request Reference:</strong>\n"
+"                                <br/>"
 msgstr ""
 
 #. module: purchase_request
@@ -98,12 +108,16 @@ msgstr ""
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
-msgid "<strong>Requested by:</strong><br/>"
+msgid ""
+"<strong>Requested by:</strong>\n"
+"                                <br/>"
 msgstr ""
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
-msgid "<strong>Source:</strong><br/>"
+msgid ""
+"<strong>Source:</strong>\n"
+"                                <br/>"
 msgstr ""
 
 #. module: purchase_request
