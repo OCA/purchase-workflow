@@ -50,17 +50,29 @@ msgstr "<strong>Konto analitike</strong>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
-msgid "<strong>Assigned to:</strong><br/>"
+#, fuzzy
+#| msgid "<strong>Assigned to:</strong><br/>"
+msgid ""
+"<strong>Assigned to:</strong>\n"
+"                                <br/>"
 msgstr "<strong>Dodijeljeno:</strong><br/>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
-msgid "<strong>Creation Date:</strong><br/>"
+#, fuzzy
+#| msgid "<strong>Creation Date:</strong><br/>"
+msgid ""
+"<strong>Creation Date:</strong>\n"
+"                                <br/>"
 msgstr "<strong>Datum kreiranja:</strong><br/>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
-msgid "<strong>Description:</strong><br/>"
+#, fuzzy
+#| msgid "<strong>Description:</strong><br/>"
+msgid ""
+"<strong>Description:</strong>\n"
+"                                <br/>"
 msgstr "<strong>Opis:</strong><br/>"
 
 #. module: purchase_request
@@ -77,7 +89,9 @@ msgstr "<strong>Opis</strong><br/>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
-msgid "<strong>Picking Type:</strong><br/>"
+msgid ""
+"<strong>Picking Type:</strong>\n"
+"                                <br/>"
 msgstr ""
 
 #. module: purchase_request
@@ -92,7 +106,9 @@ msgstr "<strong>Količina</strong>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
-msgid "<strong>Request Reference:</strong><br/>"
+msgid ""
+"<strong>Request Reference:</strong>\n"
+"                                <br/>"
 msgstr ""
 
 #. module: purchase_request
@@ -102,12 +118,18 @@ msgstr ""
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
-msgid "<strong>Requested by:</strong><br/>"
+msgid ""
+"<strong>Requested by:</strong>\n"
+"                                <br/>"
 msgstr ""
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
-msgid "<strong>Source:</strong><br/>"
+#, fuzzy
+#| msgid "<strong>Source:</strong><br/>"
+msgid ""
+"<strong>Source:</strong>\n"
+"                                <br/>"
 msgstr "<strong>Izvor:</strong><br/>"
 
 #. module: purchase_request
