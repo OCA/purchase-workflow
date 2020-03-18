@@ -1307,7 +1307,6 @@ msgid ""
 msgstr ""
 
 #. module: purchase_request
-#: code:addons/purchase_request/models/purchase_request.py:265
 #: code:addons/purchase_request/models/purchase_request.py:279
 #, python-format
 msgid ""
@@ -1329,7 +1328,6 @@ msgid "You cannot delete a purchase request which is not draft."
 msgstr ""
 
 #. module: purchase_request
-#: code:addons/purchase_request/models/purchase_request_line.py:359
 #: code:addons/purchase_request/models/purchase_request_line.py:364
 #, python-format
 msgid "You cannot delete a record that refers to purchase lines!"
