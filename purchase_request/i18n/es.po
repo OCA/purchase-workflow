@@ -1353,6 +1353,14 @@ msgid "Wizard"
 msgstr ""
 
 #. module: purchase_request
+#: code:addons/purchase_request/models/purchase_request_line.py:0
+#, python-format
+msgid ""
+"You can only delete a purchase request line if the purchase request is in "
+"draft state."
+msgstr ""
+
+#. module: purchase_request
 #: code:addons/purchase_request/models/purchase_request.py:0
 #, python-format
 msgid ""
@@ -1365,6 +1373,12 @@ msgstr ""
 msgid ""
 "You cannot create a single purchase order from purchase requests that have "
 "different procurement group."
+msgstr ""
+
+#. module: purchase_request
+#: code:addons/purchase_request/models/purchase_request.py:0
+#, python-format
+msgid "You cannot delete a purchase request which is not draft."
 msgstr ""
 
 #. module: purchase_request
