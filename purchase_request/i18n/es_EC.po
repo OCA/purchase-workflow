@@ -1366,6 +1366,14 @@ msgid "Wizard"
 msgstr "Asistente"
 
 #. module: purchase_request
+#: code:addons/purchase_request/models/purchase_request_line.py:0
+#, python-format
+msgid ""
+"You can only delete a purchase request line if the purchase request is in "
+"draft state."
+msgstr ""
+
+#. module: purchase_request
 #: code:addons/purchase_request/models/purchase_request.py:0
 #, python-format
 msgid ""
@@ -1381,6 +1389,14 @@ msgid ""
 msgstr ""
 "No puedes crear solo una orden de compra desde una requisición que tiene "
 "diferentes grupos de abastecimiento."
+
+#. module: purchase_request
+#: code:addons/purchase_request/models/purchase_request.py:0
+#, fuzzy, python-format
+#| msgid ""
+#| "You can't request an approval for a purchase request which is empty. (%s)"
+msgid "You cannot delete a purchase request which is not draft."
+msgstr "No puedes solicitar aprobación de una requisición vacía. (%s)"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_request_line.py:0
