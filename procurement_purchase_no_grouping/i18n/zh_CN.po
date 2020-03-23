@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-07-16 02:54+0000\n"
-"PO-Revision-Date: 2019-09-01 16:00+0000\n"
-"Last-Translator: 黎伟杰 <674416404@qq.com>\n"
+"PO-Revision-Date: 2020-03-23 13:13+0000\n"
+"Last-Translator: Dong <dong@freshoo.cn>\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/oca/teams/23907/"
 "zh_CN/)\n"
 "Language: zh_CN\n"
@@ -18,22 +18,22 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.8\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: procurement_purchase_no_grouping
 #: model:ir.model.fields.selection,name:procurement_purchase_no_grouping.selection__product_category__procured_purchase_grouping__line
 msgid "No line grouping"
-msgstr "没有行分组"
+msgstr "明细不合并"
 
 #. module: procurement_purchase_no_grouping
 #: model:ir.model.fields.selection,name:procurement_purchase_no_grouping.selection__product_category__procured_purchase_grouping__order
 msgid "No order grouping"
-msgstr "没有行分组"
+msgstr "订单不合并"
 
 #. module: procurement_purchase_no_grouping
 #: model:ir.model.fields,field_description:procurement_purchase_no_grouping.field_product_category__procured_purchase_grouping
 msgid "Procured purchase grouping"
-msgstr "采购分组"
+msgstr "采购补货组"
 
 #. module: procurement_purchase_no_grouping
 #: model:ir.model,name:procurement_purchase_no_grouping.model_product_category
@@ -43,7 +43,7 @@ msgstr "产品分类"
 #. module: procurement_purchase_no_grouping
 #: model:ir.model,name:procurement_purchase_no_grouping.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr "采购订单行"
+msgstr "采购订单明细"
 
 #. module: procurement_purchase_no_grouping
 #: model:ir.model.fields,help:procurement_purchase_no_grouping.field_product_category__procured_purchase_grouping
@@ -56,16 +56,15 @@ msgid ""
 "supplier, it will be reused, but lines won't be merged.\n"
 "* No order grouping: This option will prevent any kind of grouping."
 msgstr ""
-"选择为此类别的产品分组采购购买的行为：\n"
-"* 标准分组（默认）：采购将一如既往地生成采购订单，尽可能对生产线和订单进行分"
-"组。\n"
-"* 无行分组：如果同一供应商有任何未结采购订单，则会重复使用，但不会合并行。\n"
-"* 没有订单分组：此选项将阻止任何类型的分组。"
+"选择此产品类别采购时补货组合并行为：\n"
+"* 标准合并（默认）：采购将总是生成采购订单，并尽可能对订单和明细的补货组进行合并。\n"
+"* 明细不合并：如果同一供应商有任何未结采购订单，则会重复使用，但不会合并明细。\n"
+"* 订单不合并：此选项将阻止任何类型的补货组合并。"
 
 #. module: procurement_purchase_no_grouping
 #: model:ir.model.fields.selection,name:procurement_purchase_no_grouping.selection__product_category__procured_purchase_grouping__standard
 msgid "Standard grouping"
-msgstr "标准分组"
+msgstr "标准合并"
 
 #. module: procurement_purchase_no_grouping
 #: model:ir.model,name:procurement_purchase_no_grouping.model_stock_rule
