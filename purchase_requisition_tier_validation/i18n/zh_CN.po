@@ -6,77 +6,79 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2020-03-23 13:13+0000\n"
+"Last-Translator: Dong <dong@freshoo.cn>\n"
 "Language-Team: none\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: purchase_requisition_tier_validation
 #: model_terms:ir.ui.view,arch_db:purchase_requisition_tier_validation.view_purchase_requisition_form
 msgid ""
 "<i class=\"fa fa-info-circle\"/>This Purchase Agreement needs to be "
 "validated."
-msgstr ""
+msgstr "<i class=\"fa fa-info-circle\"/>这个采购协议需要验证。"
 
 #. module: purchase_requisition_tier_validation
 #: model_terms:ir.ui.view,arch_db:purchase_requisition_tier_validation.view_purchase_requisition_form
 msgid "<i class=\"fa fa-thumbs-down\"/> Operation has been <b>rejected</b>."
-msgstr ""
+msgstr "<i class=\"fa fa-thumbs-down\"/> 操作已被<b>驳回</b>。"
 
 #. module: purchase_requisition_tier_validation
 #: model_terms:ir.ui.view,arch_db:purchase_requisition_tier_validation.view_purchase_requisition_form
 msgid "<i class=\"fa fa-thumbs-up\"/> Operation has been <b>validated</b>!"
-msgstr ""
+msgstr "<i class=\"fa fa-thumbs-up\"/> 操作已被 <b>验证</b>！"
 
 #. module: purchase_requisition_tier_validation
 #: model_terms:ir.ui.view,arch_db:purchase_requisition_tier_validation.view_purchase_requisition_filter
 msgid "My Purchase Agreements to review"
-msgstr ""
+msgstr "等待我审核的采购协议"
 
 #. module: purchase_requisition_tier_validation
 #: model_terms:ir.ui.view,arch_db:purchase_requisition_tier_validation.view_purchase_requisition_filter
 msgid "Needs my Review"
-msgstr ""
+msgstr "需要我审核"
 
 #. module: purchase_requisition_tier_validation
 #: model_terms:ir.ui.view,arch_db:purchase_requisition_tier_validation.view_purchase_requisition_filter
 msgid "Purchase Agreements validated and ready to be confirmed"
-msgstr ""
+msgstr "采购协议已验证并等待确认"
 
 #. module: purchase_requisition_tier_validation
 #: model:ir.model,name:purchase_requisition_tier_validation.model_purchase_requisition
 msgid "Purchase Requisition"
-msgstr ""
+msgstr "采购招标"
 
 #. module: purchase_requisition_tier_validation
 #: model_terms:ir.ui.view,arch_db:purchase_requisition_tier_validation.view_purchase_requisition_form
 msgid "Reject"
-msgstr ""
+msgstr "驳回"
 
 #. module: purchase_requisition_tier_validation
 #: model_terms:ir.ui.view,arch_db:purchase_requisition_tier_validation.view_purchase_requisition_form
 msgid "Request Validation"
-msgstr ""
+msgstr "请求验证"
 
 #. module: purchase_requisition_tier_validation
 #: model_terms:ir.ui.view,arch_db:purchase_requisition_tier_validation.view_purchase_requisition_form
 msgid "Restart Validation"
-msgstr ""
+msgstr "重新验证"
 
 #. module: purchase_requisition_tier_validation
 #: model:ir.model,name:purchase_requisition_tier_validation.model_tier_definition
 msgid "Tier Definition"
-msgstr ""
+msgstr "层级定义"
 
 #. module: purchase_requisition_tier_validation
 #: model_terms:ir.ui.view,arch_db:purchase_requisition_tier_validation.view_purchase_requisition_form
 msgid "Validate"
-msgstr ""
+msgstr "验证"
 
 #. module: purchase_requisition_tier_validation
 #: model_terms:ir.ui.view,arch_db:purchase_requisition_tier_validation.view_purchase_requisition_filter
 msgid "Validated"
-msgstr ""
+msgstr "已验证"
