@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2019-09-02 14:40+0000\n"
-"Last-Translator: 黎伟杰 <674416404@qq.com>\n"
+"PO-Revision-Date: 2020-03-23 13:13+0000\n"
+"Last-Translator: Dong <dong@freshoo.cn>\n"
 "Language-Team: none\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.8\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: purchase_product_usage
 #: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_product_usage__account_id
@@ -44,7 +44,7 @@ msgstr "公司"
 #. module: purchase_product_usage
 #: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_product_usage__create_uid
 msgid "Created by"
-msgstr "创建者"
+msgstr "创建人"
 
 #. module: purchase_product_usage
 #: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_product_usage__create_date
@@ -59,7 +59,7 @@ msgstr "默认产品"
 #. module: purchase_product_usage
 #: model:res.groups,name:purchase_product_usage.group_purchase_product_usage
 msgid "Define Purchase Product Usages"
-msgstr "定义采购产品用法"
+msgstr "定义产品的采购用途"
 
 #. module: purchase_product_usage
 #: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_product_usage__name
@@ -84,22 +84,22 @@ msgstr "ID"
 #. module: purchase_product_usage
 #: model:ir.model,name:purchase_product_usage.model_account_move_line
 msgid "Journal Item"
-msgstr ""
+msgstr "会计分录"
 
 #. module: purchase_product_usage
 #: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_product_usage____last_update
 msgid "Last Modified on"
-msgstr "最后修改时间"
+msgstr "最近修改时间"
 
 #. module: purchase_product_usage
 #: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_product_usage__write_uid
 msgid "Last Updated by"
-msgstr "最后更新者"
+msgstr "最近更新人"
 
 #. module: purchase_product_usage
 #: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_product_usage__write_date
 msgid "Last Updated on"
-msgstr "最后更新时间"
+msgstr "最近更新时间"
 
 #. module: purchase_product_usage
 #: model:ir.model,name:purchase_product_usage.model_purchase_product_usage
@@ -114,14 +114,14 @@ msgstr "产品用途"
 #. module: purchase_product_usage
 #: model:ir.model,name:purchase_product_usage.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr "采购订单行"
+msgstr "采购订单明细"
 
 #. module: purchase_product_usage
 #: model:ir.actions.act_window,name:purchase_product_usage.action_purchase_product_usage
 #: model:ir.ui.menu,name:purchase_product_usage.menu_purchase_product_usage
 #: model_terms:ir.ui.view,arch_db:purchase_product_usage.purchase_product_usage_tree
 msgid "Purchase Product Usages"
-msgstr "采购产品用途"
+msgstr "产品采购用途"
 
 #. module: purchase_product_usage
 #: model:ir.model.fields,help:purchase_product_usage.field_purchase_product_usage__product_id
