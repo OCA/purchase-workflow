@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-17 03:38+0000\n"
-"PO-Revision-Date: 2020-03-23 13:13+0000\n"
+"PO-Revision-Date: 2020-03-23 16:13+0000\n"
 "Last-Translator: Dong <dong@freshoo.cn>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/oca/"
 "OCA-purchase-workflow-10-0/language/zh_CN/)\n"
@@ -773,7 +773,7 @@ msgstr "采购订单"
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_tree
 msgid "Purchase Request"
-msgstr "请购"
+msgstr "请购单"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_order.py:0
@@ -889,7 +889,7 @@ msgstr "请购待批准"
 #: model:ir.ui.menu,name:purchase_request.menu_purchase_request_act
 #: model:ir.ui.menu,name:purchase_request.menu_purchase_request_pro_mgt
 msgid "Purchase Requests"
-msgstr "请购单"
+msgstr "采购请求"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__purchase_state
@@ -945,7 +945,7 @@ msgstr "已完成数量"
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__purchased_qty
 msgid "Quantity in RFQ or PO"
-msgstr "采购单或询价单中的数量"
+msgstr "待采购数量"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__qty_in_progress
@@ -1066,7 +1066,7 @@ msgstr "已请购数量"
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Requested by"
-msgstr "已请购自"
+msgstr "请购人"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
