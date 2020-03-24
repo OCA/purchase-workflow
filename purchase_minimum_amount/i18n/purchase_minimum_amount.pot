@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -19,13 +19,13 @@ msgid "Contact"
 msgstr ""
 
 #. module: purchase_minimum_amount
-#: model:ir.model.fields,field_description:purchase_minimum_amount.field_res_partner_minimum_po_amount
-#: model:ir.model.fields,field_description:purchase_minimum_amount.field_res_users_minimum_po_amount
+#: model:ir.model.fields,field_description:purchase_minimum_amount.field_res_partner__minimum_po_amount
+#: model:ir.model.fields,field_description:purchase_minimum_amount.field_res_users__minimum_po_amount
 msgid "Minimum Purchase Amount"
 msgstr ""
 
 #. module: purchase_minimum_amount
-#: model:ir.model.fields,field_description:purchase_minimum_amount.field_purchase_order_minimum_po_amount
+#: model:ir.model.fields,field_description:purchase_minimum_amount.field_purchase_order__minimum_po_amount
 msgid "Purchase Minimum Amount"
 msgstr ""
 
