@@ -78,7 +78,7 @@ class TestPoAmountBlock(TransactionCase):
         return purchase
 
     def test_po_amount_block_1(self):
-        "Test PO Block for Minimum Threshold Vendor Amount"
+        """Test PO Block for Minimum Threshold Vendor Amount"""
         self.partner1.write({'minimum_po_amount': 1500.00})
 
         # Create a PO with an amount below the minimum and check that the
@@ -101,7 +101,7 @@ class TestPoAmountBlock(TransactionCase):
         self.assertEquals(purchase1.state, 'purchase')
 
     def test_po_amount_block_2(self):
-        "Test PO Block for Minimum Threshold Vendor Amount"
+        """Test PO Block for Minimum Threshold Vendor Amount"""
         self.partner1.write({'minimum_po_amount': 1500.00})
 
         purchase1 = self._create_purchase(
@@ -122,5 +122,5 @@ class TestPoAmountBlock(TransactionCase):
             purchase1.approval_block_id,
             self.env['purchase.approval.block.reason'])
 
-        purchase1.sudo().button_confirm()
+        purchase1.sudo(self.user1_id).button_confirm()
         self.assertEquals(purchase1.state, 'purchase')
