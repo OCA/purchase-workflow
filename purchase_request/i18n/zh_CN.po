@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-17 03:38+0000\n"
-"PO-Revision-Date: 2020-03-23 16:13+0000\n"
+"PO-Revision-Date: 2020-03-25 00:13+0000\n"
 "Last-Translator: Dong <dong@freshoo.cn>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/oca/"
 "OCA-purchase-workflow-10-0/language/zh_CN/)\n"
@@ -889,7 +889,7 @@ msgstr "请购待批准"
 #: model:ir.ui.menu,name:purchase_request.menu_purchase_request_act
 #: model:ir.ui.menu,name:purchase_request.menu_purchase_request_pro_mgt
 msgid "Purchase Requests"
-msgstr "采购请求"
+msgstr "请购单"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__purchase_state
@@ -900,7 +900,7 @@ msgstr "采购状态"
 #. module: purchase_request
 #: model:ir.ui.menu,name:purchase_request.parent_menu_purchase_request
 msgid "Purchase requests"
-msgstr "请购单"
+msgstr "采购请求"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__purchase_count
