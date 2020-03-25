@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-03-23 16:13+0000\n"
+"PO-Revision-Date: 2020-03-25 09:13+0000\n"
 "Last-Translator: Dong <dong@freshoo.cn>\n"
 "Language-Team: none\n"
 "Language: zh_CN\n"
@@ -61,7 +61,7 @@ msgstr "需要我审核"
 #. module: purchase_request_tier_validation
 #: model:tier.definition,name:purchase_request_tier_validation.purchase_request_default_tier_definition
 msgid "New Tier Validation"
-msgstr "请购单层级验证"
+msgstr "请购单多层级审核"
 
 #. module: purchase_request_tier_validation
 #: model:ir.model,name:purchase_request_tier_validation.model_purchase_request
