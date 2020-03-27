@@ -1,4 +1,4 @@
-# Copyright (C) 2018 Eficent Business and IT Consulting Services S.L.
+# Copyright (C) 2018 ForgeFlow S.L. (https://www.forgeflow.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from collections import defaultdict
 
@@ -69,18 +69,18 @@ class BlanketOrderWizard(models.TransientModel):
                 0,
                 0,
                 {
-                    "blanket_line_id": l.id,
-                    "product_id": l.product_id.id,
-                    "date_schedule": l.date_schedule,
-                    "remaining_uom_qty": l.remaining_uom_qty,
-                    "price_unit": l.price_unit,
-                    "product_uom": l.product_uom,
-                    "qty": l.remaining_uom_qty,
-                    "partner_id": l.partner_id,
+                    "blanket_line_id": line.id,
+                    "product_id": line.product_id.id,
+                    "date_schedule": line.date_schedule,
+                    "remaining_uom_qty": line.remaining_uom_qty,
+                    "price_unit": line.price_unit,
+                    "product_uom": line.product_uom,
+                    "qty": line.remaining_uom_qty,
+                    "partner_id": line.partner_id,
                 },
             )
-            for l in bo_lines
-            if l.remaining_uom_qty > 0
+            for line in bo_lines
+            if line.remaining_uom_qty > 0
         ]
         return lines
 
@@ -95,7 +95,6 @@ class BlanketOrderWizard(models.TransientModel):
         default=_default_lines,
     )
 
-    @api.multi
     def create_purchase_order(self):
 
         order_lines_by_supplier = defaultdict(list)
@@ -165,7 +164,6 @@ class BlanketOrderWizard(models.TransientModel):
         return {
             "domain": [("id", "in", res)],
             "name": _("RFQ"),
-            "view_type": "form",
             "view_mode": "tree,form",
             "res_model": "purchase.order",
             "view_id": False,
@@ -176,6 +174,7 @@ class BlanketOrderWizard(models.TransientModel):
 
 class BlanketOrderWizardLine(models.TransientModel):
     _name = "purchase.blanket.order.wizard.line"
+    _description = "Purchase Blanket Order Wizard Line"
 
     wizard_id = fields.Many2one("purchase.blanket.order.wizard")
     blanket_line_id = fields.Many2one("purchase.blanket.order.line")
@@ -186,7 +185,7 @@ class BlanketOrderWizardLine(models.TransientModel):
         readonly=True,
     )
     product_uom = fields.Many2one(
-        "product.uom",
+        "uom.uom",
         related="blanket_line_id.product_uom",
         string="Unit of Measure",
         readonly=True,
