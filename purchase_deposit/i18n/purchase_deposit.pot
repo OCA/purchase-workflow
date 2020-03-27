@@ -1,12 +1,12 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* purchase_deposit
+# 	* purchase_deposit
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: <>\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,7 +19,7 @@ msgid "Account used for deposits"
 msgstr ""
 
 #. module: purchase_deposit
-#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:168
+#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
 #, python-format
 msgid "Advance: %s"
 msgstr ""
@@ -60,7 +60,7 @@ msgid "Default product used for payment advances."
 msgstr ""
 
 #. module: purchase_deposit
-#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:88
+#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
 #, python-format
 msgid "Deposit Payment"
 msgstr ""
@@ -81,13 +81,15 @@ msgid "Deposit Payments"
 msgstr ""
 
 #. module: purchase_deposit
-#: selection:purchase.advance.payment.inv,advance_payment_method:0
+#: model:ir.model.fields.selection,name:purchase_deposit.selection__purchase_advance_payment_inv__advance_payment_method__fixed
 msgid "Deposit payment (fixed amount)"
 msgstr ""
 
 #. module: purchase_deposit
 #: model:ir.model.fields,help:purchase_deposit.field_purchase_order_line__is_deposit
-msgid "Deposit payments are made when creating invoices from a purhcase order. They are not copied when duplicating a purchase order."
+msgid ""
+"Deposit payments are made when creating invoices from a purhcase order. They"
+" are not copied when duplicating a purchase order."
 msgstr ""
 
 #. module: purchase_deposit
@@ -96,7 +98,7 @@ msgid "Display Name"
 msgstr ""
 
 #. module: purchase_deposit
-#: selection:purchase.advance.payment.inv,advance_payment_method:0
+#: model:ir.model.fields.selection,name:purchase_deposit.selection__purchase_advance_payment_inv__advance_payment_method__percentage
 msgid "Down payment (percentage)"
 msgstr ""
 
@@ -111,11 +113,6 @@ msgid "ID"
 msgstr ""
 
 #. module: purchase_deposit
-#: model:ir.model,name:purchase_deposit.model_account_invoice
-msgid "Invoice"
-msgstr ""
-
-#. module: purchase_deposit
 #: model:ir.actions.act_window,name:purchase_deposit.action_view_purchase_advance_payment_inv
 msgid "Invoice Order"
 msgstr ""
@@ -127,7 +124,9 @@ msgstr ""
 
 #. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
-msgid "Invoices will be created in draft so that you can review them before validation."
+msgid ""
+"Invoices will be created in draft so that you can review them before "
+"validation."
 msgstr ""
 
 #. module: purchase_deposit
@@ -191,38 +190,44 @@ msgid "The amount to be invoiced in advance, taxes excluded."
 msgstr ""
 
 #. module: purchase_deposit
-#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:86
+#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
 #, python-format
 msgid "The percentage of the deposit must be not over 100"
 msgstr ""
 
 #. module: purchase_deposit
-#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:156
+#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
 #, python-format
-msgid "The product used to invoice a down payment should be of type \"Service\". Please use another product or update this product."
+msgid ""
+"The product used to invoice a down payment should be of type \"Service\". "
+"Please use another product or update this product."
 msgstr ""
 
 #. module: purchase_deposit
-#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:150
+#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
 #, python-format
-msgid "The product used to invoice a down payment should have an invoice policy set to \"Ordered quantities\". Please update your deposit product to be able to create a deposit invoice."
+msgid ""
+"The product used to invoice a down payment should have an invoice policy set"
+" to \"Ordered quantities\". Please update your deposit product to be able to"
+" create a deposit invoice."
 msgstr ""
 
 #. module: purchase_deposit
-#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:80
+#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
 #, python-format
 msgid "The value of the deposit must be positive."
 msgstr ""
 
 #. module: purchase_deposit
-#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:75
+#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
 #, python-format
-msgid "There is no purchase account defined for this product: %s.\n"
+msgid ""
+"There is no purchase account defined for this product: %s.\n"
 "You may have to install a chart of account from Accounting app, settings menu."
 msgstr ""
 
 #. module: purchase_deposit
-#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:50
+#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
 #, python-format
 msgid "This action is allowed only in Purchase Order sate"
 msgstr ""
@@ -236,4 +241,3 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__advance_payment_method
 msgid "What do you want to invoice?"
 msgstr ""
-
