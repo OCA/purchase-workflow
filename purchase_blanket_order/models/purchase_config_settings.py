@@ -5,9 +5,10 @@ from odoo import fields, models
 
 
 class PurchaseConfigSettings(models.TransientModel):
-    _inherit = 'res.config.settings'
+    _inherit = "res.config.settings"
 
     group_purchase_blanket_disable_adding_lines = fields.Boolean(
-        string='Disable adding more lines to SOs',
-        implied_group='purchase_blanket_order.'
-                      'purchase_blanket_orders_disable_adding_lines')
+        string="Disable adding more lines to SOs",
+        implied_group="purchase_blanket_order."
+        "purchase_blanket_orders_disable_adding_lines",
+    )
