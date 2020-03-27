@@ -1,4 +1,4 @@
-# Copyright (C) 2018 Eficent Business and IT Consulting Services S.L.
+# Copyright (C) 2018 ForgeFlow S.L. (https://www.forgeflow.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from datetime import date, timedelta
 
@@ -22,9 +22,8 @@ class PurchaseOrder(models.Model):
             line.blanket_order_line.remaining_qty < 0.0 for line in self.order_line
         )
 
-    @api.multi
     def button_confirm(self):
-        res = super(PurchaseOrder, self).button_confirm()
+        res = super().button_confirm()
         for order in self:
             if order._check_exchausted_blanket_order_line():
                 raise ValidationError(
@@ -47,6 +46,20 @@ class PurchaseOrder(models.Model):
                             " lines vendor"
                         )
                     )
+
+    @api.constrains("currency_id")
+    def check_currency(self):
+        for rec in self:
+            if any(
+                line.blanket_order_line.order_id.currency_id != rec.currency_id
+                for line in rec.order_line.filtered(lambda x: x.blanket_order_line)
+            ):
+                raise ValidationError(
+                    _(
+                        "The currency of the blanket order must match with that "
+                        "of the purchase order."
+                    )
+                )
 
 
 class PurchaseOrderLine(models.Model):
@@ -91,7 +104,6 @@ class PurchaseOrderLine(models.Model):
         filters = self._get_eligible_bo_lines_domain(base_qty)
         return self.env["purchase.blanket.order.line"].search(filters)
 
-    @api.multi
     def get_assigned_bo_line(self):
         self.ensure_one()
         eligible_bo_lines = self._get_eligible_bo_lines()
@@ -108,7 +120,7 @@ class PurchaseOrderLine(models.Model):
 
     @api.onchange("product_id", "partner_id")
     def onchange_product_id(self):
-        res = super(PurchaseOrderLine, self).onchange_product_id()
+        res = super().onchange_product_id()
         # If product has changed remove the relation with blanket order line
         if self.product_id:
             return self.get_assigned_bo_line()
@@ -116,7 +128,7 @@ class PurchaseOrderLine(models.Model):
 
     @api.onchange("product_qty", "product_uom")
     def _onchange_quantity(self):
-        res = super(PurchaseOrderLine, self)._onchange_quantity()
+        res = super()._onchange_quantity()
         if self.product_id and not self.env.context.get("skip_blanket_find", False):
             return self.get_assigned_bo_line()
         return res
@@ -144,9 +156,7 @@ class PurchaseOrderLine(models.Model):
     @api.constrains("date_planned")
     def check_date_planned(self):
         for line in self:
-            date_planned = fields.Date.to_string(
-                fields.Date.from_string(self.date_planned)
-            )
+            date_planned = fields.Date.from_string(self.date_planned)
             if (
                 line.blanket_order_line
                 and line.blanket_order_line.date_schedule
