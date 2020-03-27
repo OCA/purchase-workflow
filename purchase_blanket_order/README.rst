@@ -23,7 +23,7 @@ Purchase Blanket Orders
     :target: https://runbot.odoo-community.org/runbot/142/11.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 A purchase blanket order is a pre-agreement to purchase a certain number of
 quantities of products at a specific price. From a confirmed blanket order,
@@ -112,8 +112,8 @@ Authors
 Contributors
 ~~~~~~~~~~~~
 
-* Adrià Gil Sorribes <adria.gil@eficent.com>
-* Jordi Ballester Alomar <jordi.ballester@eficent.com>
+* Adrià Gil Sorribes <adria.gil@forgeflow.com>
+* Jordi Ballester Alomar <jordi.ballester@forgeflow.com>
 
 Maintainers
 ~~~~~~~~~~~

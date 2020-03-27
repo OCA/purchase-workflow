@@ -1,4 +1,4 @@
-# Copyright (C) 2018 Eficent Business and IT Consulting Services S.L.
+# Copyright (C) 2018 ForgeFlow S.L. (https://www.forgeflow.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from datetime import date, timedelta
 
@@ -8,16 +8,16 @@ from odoo.tests import common
 
 class TestPurchaseOrder(common.TransactionCase):
     def setUp(self):
-        super(TestPurchaseOrder, self).setUp()
+        super().setUp()
         self.blanket_order_obj = self.env["purchase.blanket.order"]
         self.blanket_order_line_obj = self.env["purchase.blanket.order.line"]
         self.purchase_order_obj = self.env["purchase.order"]
         self.purchase_order_line_obj = self.env["purchase.order.line"]
 
         self.partner = self.env["res.partner"].create(
-            {"name": "TEST SUPPLIER", "supplier": True}
+            {"name": "TEST SUPPLIER", "supplier_rank": 1}
         )
-        self.payment_term = self.env.ref("account.account_payment_term_net")
+        self.payment_term = self.env.ref("account.account_payment_term_30days")
 
         # Seller IDS
         seller = self.env["product.supplierinfo"].create(
@@ -31,7 +31,7 @@ class TestPurchaseOrder(common.TransactionCase):
                 "standard_price": 35.0,
                 "seller_ids": [(6, 0, [seller.id])],
                 "type": "consu",
-                "uom_id": self.env.ref("product.product_uom_unit").id,
+                "uom_id": self.env.ref("uom.product_uom_unit").id,
                 "default_code": "PROD_DEL01",
             }
         )
@@ -42,7 +42,7 @@ class TestPurchaseOrder(common.TransactionCase):
                 "standard_price": 35.0,
                 "seller_ids": [(6, 0, [seller.id])],
                 "type": "consu",
-                "uom_id": self.env.ref("product.product_uom_unit").id,
+                "uom_id": self.env.ref("uom.product_uom_unit").id,
                 "default_code": "PROD_DEL02",
             }
         )
