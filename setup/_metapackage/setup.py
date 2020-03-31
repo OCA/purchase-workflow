@@ -39,6 +39,7 @@ setuptools.setup(
         'odoo12-addon-purchase_order_secondary_unit',
         'odoo12-addon-purchase_order_type',
         'odoo12-addon-purchase_picking_state',
+        'odoo12-addon-purchase_price_recalculation',
         'odoo12-addon-purchase_product_usage',
         'odoo12-addon-purchase_quick',
         'odoo12-addon-purchase_reception_notify',
