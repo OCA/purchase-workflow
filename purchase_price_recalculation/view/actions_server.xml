@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="model_purchase_action_recalculation" model="ir.actions.server">
+        <field name="name">Purchase recalculation</field>
+        <field name="model_id" ref="purchase.model_purchase_order"/>
+        <field name="binding_model_id" ref="purchase.model_purchase_order"/>
+        <field name="state">code</field>
+        <field name="code">
+records._recalculate_prices()
+        </field>
+    </record>
+
+</odoo>
