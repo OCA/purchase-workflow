@@ -16,7 +16,7 @@ Installation
 
 To install this module, you need to:
 
-* clone the branch 11.0 of the repository https://github.com/OCA/purchase-workflow
+* clone the branch 12.0 of the repository https://github.com/OCA/purchase-workflow
 * add the path to this repository in your configuration (addons-path)
 * update the module list
 * search for "Account Invoice Allowed Product" in your addons
@@ -39,6 +39,10 @@ Contributors
 * Chafique Delli <chafique.delli@akretion.com>
 * Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
 * Hieu, Vo Minh Bao <hieu.vmb@komit-consulting.com>
+
+`Tecnativa <https://www.tecnativa.com>`__:
+
+  * Manuel Calero
 
 Do not contact contributors directly about support or help with technical issues.
 
