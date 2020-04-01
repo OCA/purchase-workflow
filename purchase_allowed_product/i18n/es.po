@@ -6,7 +6,7 @@
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 02:48+0000\n"
 "PO-Revision-Date: 2017-06-01 02:48+0000\n"
@@ -21,7 +21,7 @@ msgstr ""
 #. module: purchase_allowed_product
 #: model:ir.model,name:purchase_allowed_product.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contacto"
 
 #. module: purchase_allowed_product
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_supplied_product_mixin_display_name
@@ -41,23 +41,26 @@ msgid ""
 "supplied by this supplier when creating a supplier invoice or purchase for "
 "it. This value can be changed by invoice or purchase."
 msgstr ""
+"Si está marcada, de forma predeterminada solo podrá seleccionar productos que "
+"este proveedor puede suministrar al crear una factura o pedido. Este valor "
+"puede modificarse en la factura o en el pedido.""
 
 #. module: purchase_allowed_product
 #: model:ir.model.fields,help:purchase_allowed_product.field_account_invoice_use_only_supplied_product
 #: model:ir.model.fields,help:purchase_allowed_product.field_purchase_order_use_only_supplied_product
 #: model:ir.model.fields,help:purchase_allowed_product.field_supplied_product_mixin_use_only_supplied_product
 msgid "If checked, only the products provided by this supplier will be shown."
-msgstr ""
+msgstr "Si se marca, solo se mostrarán los productos proporcionados por este proveedor"
 
 #. module: purchase_allowed_product
 #: model:ir.model,name:purchase_allowed_product.model_product_supplierinfo
 msgid "Information about a product vendor"
-msgstr ""
+msgstr "Información del proveedor"
 
 #. module: purchase_allowed_product
 #: model:ir.model,name:purchase_allowed_product.model_account_invoice
 msgid "Invoice"
-msgstr ""
+msgstr "Factura"
 
 #. module: purchase_allowed_product
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_supplied_product_mixin___last_update
@@ -68,7 +71,7 @@ msgstr "Última modificación en"
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_res_partner_use_only_supplied_product
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_res_users_use_only_supplied_product
 msgid "Order and invoice only supplied products"
-msgstr ""
+msgstr "Comprar y facturar solo los productos suministrados"
 
 #. module: purchase_allowed_product
 #: model:ir.model,name:purchase_allowed_product.model_product_product
@@ -85,7 +88,7 @@ msgstr "Orden de Compra"
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_purchase_order_use_only_supplied_product
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_supplied_product_mixin_use_only_supplied_product
 msgid "Use only allowed products"
-msgstr ""
+msgstr "Usar solo los productos permitidos"
 
 #. module: purchase_allowed_product
 #: model:ir.model,name:purchase_allowed_product.model_supplied_product_mixin
