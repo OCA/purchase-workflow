@@ -71,6 +71,11 @@ msgid "Number of packages"
 msgstr ""
 
 #. module: purchase_package_qty
+#: model:ir.model.fields,field_description:purchase_package_qty.field_purchase_order_line__operation_extra_id
+msgid "Pack Operation Extra"
+msgstr ""
+
+#. module: purchase_package_qty
 #: model_terms:ir.ui.view,arch_db:purchase_package_qty.stock_picking_form_view_package
 msgid "Pack. Qty"
 msgstr ""
@@ -188,9 +193,19 @@ msgid "The quantity of products in the supplier package. You will always have to
 msgstr ""
 
 #. module: purchase_package_qty
-#: code:addons/purchase_package_qty/models/purchase_order_line.py:217
+#: code:addons/purchase_package_qty/models/purchase_order_line.py:223
 #, python-format
 msgid "The selected supplier only sells this product by %s %s"
+msgstr ""
+
+#. module: purchase_package_qty
+#: model:ir.model.fields,help:purchase_package_qty.field_purchase_order_line__operation_extra_id
+msgid "The technical field is use to specify the line that was generated from adding operation pack manually"
+msgstr ""
+
+#. module: purchase_package_qty
+#: model:ir.model,name:purchase_package_qty.model_stock_picking
+msgid "Transfer"
 msgstr ""
 
 #. module: purchase_package_qty
@@ -199,13 +214,13 @@ msgid "Unit Price"
 msgstr ""
 
 #. module: purchase_package_qty
-#: code:addons/purchase_package_qty/models/purchase_order_line.py:216
+#: code:addons/purchase_package_qty/models/purchase_order_line.py:222
 #, python-format
 msgid "Warning!"
 msgstr ""
 
 #. module: purchase_package_qty
-#: code:addons/purchase_package_qty/models/purchase_order_line.py:157
+#: code:addons/purchase_package_qty/models/purchase_order_line.py:163
 #, python-format
 msgid "You have to buy a multiple of the package qty or change the package settings in the supplierinfo of the product for the following line: \n"
 " - Product: %s; \n"
