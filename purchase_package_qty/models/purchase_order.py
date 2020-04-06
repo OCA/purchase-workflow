@@ -46,3 +46,11 @@ class PurchaseOrder(models.Model):
                     line.product_id.write(vals)
                 except Exception:  # If no Write access rights -> just ignore
                     break
+
+    @api.multi
+    def action_view_picking(self):
+        res = super(PurchaseOrder, self).action_view_picking()
+        res['context'].update({
+            'readonly_by_pass': True
+        })
+        return res
