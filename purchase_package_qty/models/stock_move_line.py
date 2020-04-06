@@ -36,3 +36,8 @@ class StockMoveLine(models.Model):
                     res['value']['package_qty'] = supplier.package_qty
                 break
         return res
+
+    @api.onchange('product_qty_package')
+    def product_qty_package_onchange(self):
+        if self.product_qty_package == int(self.product_qty_package):
+            self.product_qty = self.product_qty_package * self.package_qty
