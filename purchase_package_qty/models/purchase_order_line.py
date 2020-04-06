@@ -118,6 +118,12 @@ class PurchaseOrderLine(models.Model):
         string='Package Price', compute="_compute_product_prices",
         digits=dp.get_precision('Product Price'))
 
+    operation_extra_id = fields.Many2one(
+        'stock.move.line',
+        string="Pack Operation Extra",
+        help="The technical field is use to specify the line" +
+        " that was generated from adding operation pack manually")
+
     @api.multi
     @api.depends('package_qty', 'price_unit')
     def _compute_product_prices(self):
