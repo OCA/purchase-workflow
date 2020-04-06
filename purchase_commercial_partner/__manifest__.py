@@ -11,6 +11,6 @@
     "author": "Akretion,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
     "depends": ["purchase"],
-    "data": ["views/purchase.xml"],
+    "data": ["views/purchase_views.xml"],
     "installable": True,
 }
