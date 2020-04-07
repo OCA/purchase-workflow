@@ -84,6 +84,7 @@ Authors
 Contributors
 ~~~~~~~~~~~~
 
+
 * Núria Martín <nuria.martin@forgeflow.com>
 * Jordi Ballester <jordi.ballester@forgeflow.com>
 * Lois Rilo <lois.rilo@eforgeflow>
@@ -101,19 +102,13 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-.. |maintainer-Nuria Martin <nuria.martin@forgeflow.com>| image:: https://github.com/Nuria Martin <nuria.martin@forgeflow.com>.png?size=40px
-    :target: https://github.com/Nuria Martin <nuria.martin@forgeflow.com>
-    :alt: Nuria Martin <nuria.martin@forgeflow.com>
-.. |maintainer-Jordi Ballester <jordi.ballester@forgeflow.com>| image:: https://github.com/Jordi Ballester <jordi.ballester@forgeflow.com>.png?size=40px
-    :target: https://github.com/Jordi Ballester <jordi.ballester@forgeflow.com>
-    :alt: Jordi Ballester <jordi.ballester@forgeflow.com>
-.. |maintainer-Lois Rilo <lois.rilo@forgeflow.com>| image:: https://github.com/Lois Rilo <lois.rilo@forgeflow.com>.png?size=40px
-    :target: https://github.com/Lois Rilo <lois.rilo@forgeflow.com>
-    :alt: Lois Rilo <lois.rilo@forgeflow.com>
+.. |maintainer-NuriaMForgeFlow| image:: https://github.com/NuriaMForgeFlow.png?size=40px
+    :target: https://github.com/NuriaMForgeFlow
+    :alt: NuriaMForgeFlow
 
-Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
+Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-Nuria Martin <nuria.martin@forgeflow.com>| |maintainer-Jordi Ballester <jordi.ballester@forgeflow.com>| |maintainer-Lois Rilo <lois.rilo@forgeflow.com>| 
+|maintainer-NuriaMForgeFlow| 
 
 This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/12.0/supplier_calendar>`_ project on GitHub.
 
