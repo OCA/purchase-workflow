@@ -25,13 +25,13 @@ msgid "Contact"
 msgstr "Contacto"
 
 #. module: purchase_minimum_amount
-#: model:ir.model.fields,field_description:purchase_minimum_amount.field_res_partner_minimum_po_amount
-#: model:ir.model.fields,field_description:purchase_minimum_amount.field_res_users_minimum_po_amount
+#: model:ir.model.fields,field_description:purchase_minimum_amount.field_res_partner__minimum_po_amount
+#: model:ir.model.fields,field_description:purchase_minimum_amount.field_res_users__minimum_po_amount
 msgid "Minimum Purchase Amount"
 msgstr "Importe mínimo de compra"
 
 #. module: purchase_minimum_amount
-#: model:ir.model.fields,field_description:purchase_minimum_amount.field_purchase_order_minimum_po_amount
+#: model:ir.model.fields,field_description:purchase_minimum_amount.field_purchase_order__minimum_po_amount
 msgid "Purchase Minimum Amount"
 msgstr "Importe mínimo de compra"
 
