@@ -40,7 +40,7 @@ addon | version | summary
 [purchase_order_approval_block](purchase_order_approval_block/) | 10.0.1.0.0 | Purchase Order Approval Block
 [purchase_order_approved](purchase_order_approved/) | 10.0.1.0.0 | Add a new state 'Approved' in purchase orders.
 [purchase_order_line_description](purchase_order_line_description/) | 10.0.1.0.0 | Purchase order line description
-[purchase_order_line_sequence](purchase_order_line_sequence/) | 10.0.1.0.0 | Adds sequence to PO lines and propagates it toInvoice lines and Stock Moves
+[purchase_order_line_sequence](purchase_order_line_sequence/) | 10.0.1.0.1 | Adds sequence to PO lines and propagates it toInvoice lines and Stock Moves
 [purchase_order_revision](purchase_order_revision/) | 10.0.1.0.0 | Purchase order revisions
 [purchase_picking_state](purchase_picking_state/) | 10.0.1.0.0 | Add the status of all the incoming picking in the purchase order
 [purchase_product_multi_add](purchase_product_multi_add/) | 10.0.1.0.0 | This module allows a shortcut to add purchase.order.line by selecting product into a wizard for the given suplier
