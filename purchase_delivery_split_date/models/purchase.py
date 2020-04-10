@@ -70,6 +70,49 @@ class PurchaseOrderLine(models.Model):
                 picking)
         return moves
 
+    @api.multi
+    def write(self, values):
+        res = super().write(values)
+        if 'date_planned' in values:
+            self.mapped('order_id')._check_split_pickings()
+        return res
+
+
+class PurchaseOrder(models.Model):
+    _inherit = 'purchase.order'
+
+    def _check_split_pickings(self):
+        for order in self:
+            moves = self.env['stock.move'].search([
+                ('purchase_line_id', 'in', self.order_line.ids),
+                ('state', 'not in', ('cancel', 'done')),
+            ])
+            pickings = moves.mapped('picking_id')
+            pickings_by_date = {}
+            for pick in pickings:
+                pickings_by_date[pick.scheduled_date.date()] = pick
+            order_lines = moves.mapped('purchase_line_id')
+            date_groups = groupby(
+                order_lines, lambda l: l._get_group_keys(l.order_id, l)
+            )
+            for key, lines in date_groups:
+                date_key = fields.Date.from_string(key[0]['date_planned'])
+                for line in lines:
+                    for move in line.move_ids:
+                        if move.state in ('cancel', 'done'):
+                            continue
+                        if move.picking_id.scheduled_date.date() != date_key:
+                            if date_key not in pickings_by_date:
+                                copy_vals = line._first_picking_copy_vals(key, line)
+                                new_picking = move.picking_id.copy(copy_vals)
+                                pickings_by_date[date_key] = new_picking
+                            move._do_unreserve()
+                            move.picking_id = pickings_by_date[date_key]
+
+            for picking in pickings_by_date.values():
+                if len(picking.move_lines) == 0:
+                    picking.write({'state': 'cancel'})
+
 
 class StockPicking(models.Model):
     _inherit = 'stock.picking'
