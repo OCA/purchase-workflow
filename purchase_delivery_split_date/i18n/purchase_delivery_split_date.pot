@@ -14,6 +14,11 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: purchase_delivery_split_date
+#: model:ir.model,name:purchase_delivery_split_date.model_purchase_order
+msgid "Purchase Order"
+msgstr ""
+
+#. module: purchase_delivery_split_date
 #: model:ir.model,name:purchase_delivery_split_date.model_purchase_order_line
 msgid "Purchase Order Line"
 msgstr ""
