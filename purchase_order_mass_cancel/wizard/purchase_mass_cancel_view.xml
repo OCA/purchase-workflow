@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2020 PlanetaTIC - Marc Poch <mpoch@planetatic.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+<data>
+    <record id="view_purchase_mass_cancel" model="ir.ui.view">
+        <field name="name">Mass Cancel</field>
+        <field name="model">purchase.mass.cancel.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Cancel Purchase Orders">
+                <p class="oe_grey">
+                    Selected purchases orders will be cancelled.
+                </p>
+                <footer>
+                    <button name="purchase_mass_cancel" string="Cancel Purchase Orders" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_view_purchase_mass_cancel" model="ir.actions.act_window">
+        <field name="name">Cancel Purchase Orders</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">purchase.mass.cancel.wizard</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record model="ir.values" id="purchase_mass_cancel_multi">
+        <field name="model_id" ref="purchase.model_purchase_order" />
+        <field name="name">Cancel Purchase Orders</field>
+        <field name="key2">client_action_multi</field>
+        <field name="value" eval="'ir.actions.act_window,' + str(ref('action_view_purchase_mass_cancel'))" />
+        <field name="key">action</field>
+        <field name="model">purchase.order</field>
+    </record>
+</data>
+</odoo>

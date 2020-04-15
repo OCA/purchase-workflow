@@ -1,0 +1,79 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* purchase_order_mass_cancel
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-04-14 15:43+0000\n"
+"PO-Revision-Date: 2020-04-14 15:43+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_order_mass_cancel
+#: code:addons/purchase_order_mass_cancel/wizard/purchase_mass_cancel.py:22
+#, python-format
+msgid "All purchases must be in 'draft' state to cancel."
+msgstr "Todos los pedidos de compra deben estar en borrador antes de ser cancelados."
+
+#. module: purchase_order_mass_cancel
+#: model:ir.ui.view,arch_db:purchase_order_mass_cancel.view_purchase_mass_cancel
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: purchase_order_mass_cancel
+#: model:ir.actions.act_window,name:purchase_order_mass_cancel.action_view_purchase_mass_cancel
+#: model:ir.ui.view,arch_db:purchase_order_mass_cancel.view_purchase_mass_cancel
+msgid "Cancel Purchase Orders"
+msgstr "Cancelar Solicitudes de presupuesto"
+
+#. module: purchase_order_mass_cancel
+#: model:ir.model.fields,field_description:purchase_order_mass_cancel.field_purchase_mass_cancel_wizard_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: purchase_order_mass_cancel
+#: model:ir.model.fields,field_description:purchase_order_mass_cancel.field_purchase_mass_cancel_wizard_create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: purchase_order_mass_cancel
+#: model:ir.model.fields,field_description:purchase_order_mass_cancel.field_purchase_mass_cancel_wizard_display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: purchase_order_mass_cancel
+#: model:ir.model.fields,field_description:purchase_order_mass_cancel.field_purchase_mass_cancel_wizard_id
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_order_mass_cancel
+#: model:ir.model.fields,field_description:purchase_order_mass_cancel.field_purchase_mass_cancel_wizard___last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: purchase_order_mass_cancel
+#: model:ir.model.fields,field_description:purchase_order_mass_cancel.field_purchase_mass_cancel_wizard_write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: purchase_order_mass_cancel
+#: model:ir.model.fields,field_description:purchase_order_mass_cancel.field_purchase_mass_cancel_wizard_write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: purchase_order_mass_cancel
+#: model:ir.model,name:purchase_order_mass_cancel.model_purchase_mass_cancel_wizard
+msgid "Purchase Mass Cancel Wizard"
+msgstr "Asistente para cancelar un listado de las Solicitudes d epresupuesto"
+
+#. module: purchase_order_mass_cancel
+#: model:ir.ui.view,arch_db:purchase_order_mass_cancel.view_purchase_mass_cancel
+msgid "Selected purchases orders will be cancelled."
+msgstr "Las solicitudes de presupuesto seleccionadas seran canceladas."
+
