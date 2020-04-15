@@ -7,6 +7,7 @@
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
             <group name="purchase" position="inside">
+                <label for="purchase_target"/>
                 <div name="purchase_target">
                     <field name="purchase_target" class="oe_inline"/>
                     <field name="target_type" class="oe_inline"/>
