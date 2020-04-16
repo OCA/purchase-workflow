@@ -1,5 +1,4 @@
 from openerp import fields, models, api
-import openerp.addons.decimal_precision as dp
 
 
 class StockMoveLine(models.Model):
@@ -12,8 +11,7 @@ class StockMoveLine(models.Model):
         'Number of packages', help="""The number of packages you'll buy.""",)
 #     qty_done = fields.Float("Done (uom)")
     qty_done_package = fields.Float(
-        "Done (package)", help="""The number of packages you've received.""",
-        digits_compute=dp.get_precision('Product Unit of Measure'))
+        "Done (package)", help="""The number of packages you've received.""")
 
     @api.onchange('qty_done')
     def onchange_qty_done(self):
