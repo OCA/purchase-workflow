@@ -38,31 +38,27 @@ Usage
 
 Inside a purchase order, you can click on "Add products", to open a product tree view, then update "qty to purchase" field.
 
-.. image:: https://raw.githubusercontent.com/OCA/purchase-workflow/12.0/purchase_quick/static/description/01_purchase_order_create.png
+.. image:: https://raw.githubusercontent.com/OCA/purchase-workflow/12.0/purchase_quick/static/description/po.png
     :width: 800 px
     :alt: Purchase order create
 
 |
 
-.. image:: https://raw.githubusercontent.com/OCA/purchase-workflow/12.0/purchase_quick/static/description/02_purchase_order_add_product.png
+.. image:: https://raw.githubusercontent.com/OCA/purchase-workflow/12.0/purchase_quick/static/description/po-product.png
     :width: 800 px
     :alt: Purchase order Add product
+
+|
+
+.. image:: https://raw.githubusercontent.com/OCA/purchase-workflow/12.0/purchase_quick/static/description/filter.png
+    :width: 800 px
+    :alt: Filter products
 
 |
 
 The update of "qty to purchase" will add new purchase line or update the existing line. If qty to purchase is 0 it purchase line will deleted if it exists.
 
 |
-
-.. image:: https://raw.githubusercontent.com/OCA/purchase-workflow/12.0/purchase_quick/static/description/03_purchase_order_updated.png
-    :width: 800 px
-    :alt: Purchase order updated
-
-|
-
-.. image:: https://raw.githubusercontent.com/OCA/purchase-workflow/12.0/purchase_quick/static/description/04_purchase_order_update_product_qty.png
-    :width: 800 px
-    :alt: Purchase order update product qty.
 
 Known issues / Roadmap
 ======================
@@ -108,6 +104,17 @@ This module is maintained by the OCA.
 OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
+
+.. |maintainer-PierrickBrun| image:: https://github.com/PierrickBrun.png?size=40px
+    :target: https://github.com/PierrickBrun
+    :alt: PierrickBrun
+.. |maintainer-bealdav| image:: https://github.com/bealdav.png?size=40px
+    :target: https://github.com/bealdav
+    :alt: bealdav
+
+Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
+
+|maintainer-PierrickBrun| |maintainer-bealdav| 
 
 This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/12.0/purchase_quick>`_ project on GitHub.
 
