@@ -13,4 +13,5 @@
     "depends": ["base_product_mass_addition", "purchase"],
     "data": ["views/purchase_view.xml", "views/product_view.xml"],
     "installable": True,
+    "maintainers": ["PierrickBrun", "bealdav"],
 }
