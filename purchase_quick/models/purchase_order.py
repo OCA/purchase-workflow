@@ -26,6 +26,9 @@ class PurchaseOrder(models.Model):
         res["view_id"] = (
             self.env.ref("purchase_quick.product_tree_view4purchase").id,
         )
+        res["search_view_id"] = (
+            self.env.ref("purchase_quick.product_search_view4purchase").id,
+        )
         return res
 
     def _get_quick_line(self, product):
