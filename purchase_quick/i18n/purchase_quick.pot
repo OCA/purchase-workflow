@@ -19,12 +19,12 @@ msgid "Add"
 msgstr ""
 
 #. module: purchase_quick
-#: model_terms:ir.ui.view,arch_db:purchase_quick.product_search_form_view
+#: model_terms:ir.ui.view,arch_db:purchase_quick.product_search_view4purchase
 msgid "Filter products supplied by the supplier of the current parent object"
 msgstr ""
 
 #. module: purchase_quick
-#: model_terms:ir.ui.view,arch_db:purchase_quick.product_search_form_view
+#: model_terms:ir.ui.view,arch_db:purchase_quick.product_search_view4purchase
 msgid "For current supplier"
 msgstr ""
 
