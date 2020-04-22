@@ -6,7 +6,7 @@
     'summary': 'Supplier of brand on buy procurements',
     'version': '10.0.1.0.0',
     'category': 'Procurements',
-    'author': 'PlanetaTIC',
+    'author': 'PlanetaTIC, Odoo Community Association (OCA)',
     'website': 'https://www.planetatic.com',
     'license': 'AGPL-3',
     'application': False,
