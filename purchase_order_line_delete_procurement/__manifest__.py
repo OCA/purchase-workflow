@@ -10,7 +10,7 @@ Convert destination move from mto to mts.
     """,
     'version': '10.0.1.0.0',
     'category': 'Purchase Management',
-    'author': 'PlanetaTIC',
+    'author': 'PlanetaTIC, Odoo Community Association (OCA)',
     'website': 'https://www.planetatic.com',
     'depends': [
         'purchase',
