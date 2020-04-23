@@ -4,10 +4,9 @@
 
 {
     'name': 'Purchase order lines delete procurement',
-    'summary': """
-Delete procurement order type buy when purchase_order_line is removed.
-Convert destination move from mto to mts.
-    """,
+    'description': """
+        Delete procurement order type buy when purchase_order_line is removed.
+        Convert destination move from mto to mts.""",
     'version': '10.0.1.0.0',
     'category': 'Purchase Management',
     'author': 'PlanetaTIC, Odoo Community Association (OCA)',
