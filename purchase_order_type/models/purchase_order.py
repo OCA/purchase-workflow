@@ -21,7 +21,6 @@ class PurchaseOrder(models.Model):
         default=_default_order_type,
     )
 
-    @api.multi
     @api.onchange("partner_id")
     def onchange_partner_id(self):
         super().onchange_partner_id()
@@ -32,7 +31,6 @@ class PurchaseOrder(models.Model):
         if purchase_type:
             self.order_type = purchase_type
 
-    @api.multi
     @api.onchange("order_type")
     def onchange_order_type(self):
         for order in self:
