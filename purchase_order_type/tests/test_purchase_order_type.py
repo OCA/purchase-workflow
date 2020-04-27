@@ -58,6 +58,10 @@ class TestPurchaseOrderType(common.SavepointCase):
             }
             lines.append((0, 0, line_values))
         purchase = self.po_obj.create(
-            {"partner_id": self.partner1.id, "order_line": lines}
+            {
+                "partner_id": self.partner1.id,
+                "order_type": self.type1.id,
+                "order_line": lines,
+            }
         )
         return purchase
