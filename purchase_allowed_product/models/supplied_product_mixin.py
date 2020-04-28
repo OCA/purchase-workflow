@@ -6,6 +6,7 @@ from odoo import api, fields, models
 
 class SuppliedProductMixin(models.AbstractModel):
     _name = 'supplied.product.mixin'
+    _description = "Mixin for documents that want to restrict products"
 
     use_only_supplied_product = fields.Boolean(
         string="Use only allowed products",

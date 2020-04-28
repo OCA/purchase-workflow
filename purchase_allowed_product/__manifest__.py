@@ -3,9 +3,9 @@
 # 2020 Manuel Calero - Tecnativa
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
-    'name': 'Account Invoice Allowed Product',
+    'name': 'Purchase and Invoice Allowed Product',
     'summary': 'This module allows to select only products that can be '
-               'supplied by the supplier',
+               'supplied by the vendor',
     'version': '12.0.1.0.0',
     'category': 'Accounting & Finance',
     'website': 'https://github.com/OCA/purchase-workflow',
