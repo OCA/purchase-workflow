@@ -1,4 +1,5 @@
-# © 2017 Today Mourad EL HADJ MIMOUNE @ Akretion
+# Copyright 2017 Today Mourad EL HADJ MIMOUNE @ Akretion
+# Copyright 2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 
@@ -68,8 +69,9 @@ class TestPurchaseAllowedProduct(TransactionCase):
             'restrict_supplier_id': self.purchase.partner_id.id,
             'use_only_supplied_product':
             self.purchase.use_only_supplied_product}
-        supplied_product = self.product_model.with_context(context).search([])
-        self.assertEqual(supplied_product, self.prtner_4_supplied_products)
+        supplied_product = self.product_model.with_context(context)._search([])
+        self.assertEqual(
+            set(supplied_product), set(self.prtner_4_supplied_products.ids))
 
     def test_invoice_onchange(self):
         """A user creates a invoice from the form."""
@@ -88,5 +90,6 @@ class TestPurchaseAllowedProduct(TransactionCase):
             'restrict_supplier_id': self.invoice.partner_id.id,
             'use_only_supplied_product':
             self.invoice.use_only_supplied_product}
-        supplied_product = self.product_model.with_context(context).search([])
-        self.assertEqual(supplied_product, self.prtner_4_supplied_products)
+        supplied_product = self.product_model.with_context(context)._search([])
+        self.assertEqual(
+            set(supplied_product), set(self.prtner_4_supplied_products.ids))
