@@ -160,14 +160,12 @@ msgstr ""
 #. module: purchase_compute_order
 #: selection:computed.purchase.order,valid_psi:0
 #: selection:res.config.settings,default_valid_psi:0
-#: selection:user.config.settings,default_valid_psi:0
 msgid "Consider all the suppliers registered on the product"
 msgstr ""
 
 #. module: purchase_compute_order
 #: selection:computed.purchase.order,valid_psi:0
 #: selection:res.config.settings,default_valid_psi:0
-#: selection:user.config.settings,default_valid_psi:0
 msgid "Consider only the first supplier on the product"
 msgstr ""
 
@@ -625,7 +623,6 @@ msgstr ""
 #. module: purchase_compute_order
 #: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order__valid_psi
 #: model:ir.model.fields,field_description:purchase_compute_order.field_res_config_settings__default_valid_psi
-#: model:ir.model.fields,field_description:purchase_compute_order.field_user_config_settings__default_valid_psi
 msgid "Supplier choice"
 msgstr ""
 
