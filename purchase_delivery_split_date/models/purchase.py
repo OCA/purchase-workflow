@@ -81,6 +81,22 @@ class PurchaseOrderLine(models.Model):
             self.mapped("order_id")._check_split_pickings()
         return res
 
+    def create(self, values):
+        line = super().create(values)
+        if line.order_id.state == "purchase":
+            line.order_id._check_split_pickings()
+        return line
+
+    @api.onchange('product_qty', 'product_uom')
+    def _onchange_quantity(self):
+        date_planned = self.date_planned
+        res = super()._onchange_quantity()
+        # preserve the date which was presumably set on the PO line if it is
+        # later than the date computed from the Vendor information
+        if self.date_planned <= date_planned:
+            self.date_planned = date_planned
+        return res
+
 
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
