@@ -3,7 +3,7 @@
 {
     "name": "Supplier Calendar",
     "summary": "Supplier Calendar",
-    "version": "12.0.1.0.0",
+    "version": "13.0.1.0.0",
     "category": "Purchase Management",
     "author": "ForgeFlow," "Odoo Community Association (OCA)",
     "maintainers": ["NuriaMForgeFlow"],
@@ -11,6 +11,6 @@
     "application": False,
     "installable": True,
     "auto_install": False,
-    "depends": ["purchase_stock", "resource",],
+    "depends": ["purchase_stock", "resource"],
     "data": ["views/res_partner_view.xml", "views/product_view.xml"],
 }
