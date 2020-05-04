@@ -11,7 +11,7 @@ class ResPartner(models.Model):
 
     factory_calendar_id = fields.Many2one(comodel_name="resource.calendar")
     delay_calendar_type = fields.Selection(
-        [("natural", "Natural days"), ("supplier_calendar", "Supplier Calendar"),],
+        [("natural", "Natural days"), ("supplier_calendar", "Supplier Calendar")],
         default="natural",
         required=True,
     )
