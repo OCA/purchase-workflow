@@ -6,4 +6,3 @@ natural days. THis module adds the possibility of expressing the lead time
 of a vendor in his own calendar. This way, the order dates of purchase
 orders and the scheduled dates of receipts will only take into account the
 supplier working days.
-
