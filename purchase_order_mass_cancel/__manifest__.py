@@ -5,7 +5,7 @@
 {
     'name': 'Purchase Order Mass Cancel',
     'version': '10.0.1.0.0',
-    'summary':
+    'description':
         'Permits users to cancel multiple purchase order in draft state',
     'category': 'Purchases',
     'author': 'PlanetaTIC, Odoo Community Association (OCA)',
