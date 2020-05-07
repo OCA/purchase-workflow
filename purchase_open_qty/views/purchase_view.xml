@@ -33,10 +33,10 @@
             <filter name="hide_cancelled" position="after">
                 <filter name="pending_qty_to_invoice"
                         string="Pending Qty to Bill"
-                        domain="[('pending_qty_to_invoice','=',True)]"/>
+                        domain="[('qty_to_invoice','>',0.0)]"/>
                 <filter name="pending_qty_to_receive"
                         string="Pending Qty to Receive"
-                        domain="[('pending_qty_to_receive','=',True)]"/>
+                        domain="[('qty_to_receive','>',0.0)]"/>
             </filter>
         </field>
     </record>
