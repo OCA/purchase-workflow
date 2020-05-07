@@ -328,43 +328,43 @@ class PurchaseCostDistributionLine(models.Model):
     @api.depends('product_price_unit', 'product_qty')
     def _compute_total_amount(self):
         for dist_line in self:
-            dist_line.total_amount = dist_line.product_price_unit * \
-                dist_line.product_qty
+            dist_line.total_amount = (
+                dist_line.product_price_unit * dist_line.product_qty
+            )
 
     @api.multi
     @api.depends('product_id', 'product_qty')
     def _compute_total_weight(self):
         for dist_line in self:
-            dist_line.total_weight = dist_line.product_weight * \
-                dist_line.product_qty
+            dist_line.total_weight = dist_line.product_weight * dist_line.product_qty
 
     @api.multi
     @api.depends('product_id', 'product_qty')
     def _compute_total_volume(self):
         for dist_line in self:
-            dist_line.total_volume = dist_line.product_volume * \
-                dist_line.product_qty
+            dist_line.total_volume = dist_line.product_volume * dist_line.product_qty
 
     @api.multi
     @api.depends('expense_lines', 'expense_lines.cost_ratio')
     def _compute_cost_ratio(self):
         for dist_line in self:
-            dist_line.cost_ratio = sum([x.cost_ratio for x in
-                                        dist_line.expense_lines])
+            dist_line.cost_ratio = sum([x.cost_ratio for x in dist_line.expense_lines])
 
     @api.multi
     @api.depends('expense_lines', 'expense_lines.expense_amount')
     def _compute_expense_amount(self):
         for dist_line in self:
-            dist_line.expense_amount = sum([x.expense_amount for x in
-                                            dist_line.expense_lines])
+            dist_line.expense_amount = sum(
+                [x.expense_amount for x in dist_line.expense_lines]
+            )
 
     @api.multi
     @api.depends('standard_price_old', 'cost_ratio')
     def _compute_standard_price_new(self):
         for dist_line in self:
-            dist_line.standard_price_new = dist_line.standard_price_old + \
-                dist_line.cost_ratio
+            dist_line.standard_price_new = (
+                dist_line.standard_price_old + dist_line.cost_ratio
+            )
 
     @api.multi
     @api.depends('distribution', 'distribution.name',
@@ -387,7 +387,7 @@ class PurchaseCostDistributionLine(models.Model):
 
     @api.multi
     @api.depends('move_id', 'move_id.product_qty')
-    def _get_product_qty(self):
+    def _compute_product_qty(self):
         for dist_line in self:
             # Cannot be done via related
             #  field due to strange bug in update chain
@@ -426,7 +426,7 @@ class PurchaseCostDistributionLine(models.Model):
         comodel_name='product.product', string='Product', store=True,
         compute='_compute_product_id')
     product_qty = fields.Float(
-        string='Quantity', compute='_get_product_qty', store=True)
+        string='Quantity', compute='_compute_product_qty', store=True)
     product_uom = fields.Many2one(
         comodel_name='uom.uom', string='Unit of measure',
         related='move_id.product_uom')
@@ -522,7 +522,7 @@ class PurchaseCostDistributionExpense(models.Model):
 
     @api.multi
     @api.depends('distribution', 'distribution.cost_lines')
-    def _get_imported_lines(self):
+    def _compute_imported_lines(self):
         for record in self:
             record.imported_lines = record.env[
                 'purchase.cost.distribution.line']
@@ -540,7 +540,7 @@ class PurchaseCostDistributionExpense(models.Model):
         readonly=True)
     imported_lines = fields.Many2many(
         comodel_name='purchase.cost.distribution.line',
-        string='Imported lines', compute='_get_imported_lines')
+        string='Imported lines', compute='_compute_imported_lines')
     affected_lines = fields.Many2many(
         comodel_name='purchase.cost.distribution.line', column1="expense_id",
         relation="distribution_expense_aff_rel", column2="line_id",
