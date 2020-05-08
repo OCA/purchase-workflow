@@ -72,6 +72,10 @@ class TestPurchaseLandedCost(common.SavepointCase):
             'code': 'CODE',
             'user_type_id': user_type.id,
         })
+        # Unlink default expenses to avoid unknown results
+        for expense_line in cls.distribution.expense_lines:
+            expense_line.unlink()
+        # Add an expense with an amount of 10.0
         cls.invoice = cls.env['account.invoice'].create({
             'partner_id': cls.supplier.id,
             'type': 'in_invoice',
@@ -107,6 +111,7 @@ class TestPurchaseLandedCost(common.SavepointCase):
             'pickings': [(6, 0, self.picking.ids)],
         })
         wiz.action_import_picking()
+
         self.assertEqual(len(self.distribution.cost_lines.ids), 1)
         self.assertAlmostEqual(self.distribution.total_uom_qty, 5.0)
         self.assertAlmostEqual(self.distribution.total_purchase, 15.0)
@@ -115,9 +120,9 @@ class TestPurchaseLandedCost(common.SavepointCase):
         self.assertEqual(len(self.distribution.expense_lines.ids), 1)
         self.assertAlmostEqual(self.distribution.total_uom_qty, 5.0)
         self.distribution.action_calculate()
-        self.assertAlmostEqual(self.distribution.cost_lines[0].cost_ratio, 2)
+        self.assertAlmostEqual(self.distribution.cost_lines[0].expense_unit, 2)
         self.assertAlmostEqual(self.distribution.total_expense, 10.0)
-        self.assertAlmostEqual(self.distribution.cost_lines[0].cost_ratio, 2)
+        self.assertAlmostEqual(self.distribution.cost_lines[0].expense_unit, 2)
         self.assertEqual(self.distribution.state, 'calculated')
         self.assertAlmostEqual(self.product.standard_price, 3.0)
         self.distribution.action_done()
@@ -146,7 +151,7 @@ class TestPurchaseLandedCost(common.SavepointCase):
         self.assertAlmostEqual(self.distribution.total_uom_qty, 10.0)
         self.assertAlmostEqual(self.distribution.total_purchase, 25.0)
         self.distribution.action_calculate()
-        self.assertAlmostEqual(self.distribution.cost_lines[0].cost_ratio, 1)
+        self.assertAlmostEqual(self.distribution.cost_lines[0].expense_unit, 1)
         self.assertAlmostEqual(self.product.standard_price, 2.5)
         self.distribution.action_done()
         self.assertAlmostEqual(self.product.standard_price, 3.5)
@@ -180,7 +185,7 @@ class TestPurchaseLandedCost(common.SavepointCase):
         self.assertAlmostEqual(self.distribution.total_uom_qty, 10.0)
         self.assertAlmostEqual(self.distribution.total_purchase, 15.0)
         self.distribution.action_calculate()
-        self.assertAlmostEqual(self.distribution.cost_lines[0].cost_ratio, 1)
+        self.assertAlmostEqual(self.distribution.cost_lines[0].expense_unit, 1)
         self.assertAlmostEqual(self.product.standard_price, 2)
         self.distribution.action_done()
         self.assertAlmostEqual(self.product.standard_price, 2.67, 2)

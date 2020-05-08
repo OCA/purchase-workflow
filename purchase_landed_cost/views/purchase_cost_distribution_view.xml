@@ -143,11 +143,11 @@
                                     <field name="product_id" readonly="1"/>
                                     <field name="product_qty"/>
                                     <field name="product_price_unit"/>
-                                    <field name="total_amount"/>
+                                    <field name="product_price_amount"/>
+                                    <field name="expense_unit"/>
                                     <field name="expense_amount"/>
-                                    <field name="cost_ratio"/>
-                                    <field name="standard_price_old"/>
-                                    <field name="standard_price_new"/>
+                                    <field name="currency_id" invisible="1"/>
+                                    <field name="landed_cost_unit" widget="monetary" options="{'currency_field': 'currency_id'}"/>
                                 </tree>
                             </field>
                         </page>
@@ -226,7 +226,7 @@
                 <field name="product_id" readonly="1"/>
                 <field name="product_qty"/>
                 <field name="product_price_unit"/>
-                <field name="total_amount"/>
+                <field name="product_price_amount"/>
             </tree>
         </field>
     </record>
@@ -257,12 +257,12 @@
                         <field name="product_uom" readonly="1"/>
                         <field name="product_weight" readonly="1"/>
                         <field name="product_volume" readonly="1"/>
-                        <field name="standard_price_old" readonly="1"/>
+                        <field name="product_price_unit" readonly="1"/>
                     </group>
                 </group>
                 <group string="Cost distribution line information">
                     <group>
-                        <field name="total_amount"/>
+                        <field name="product_price_amount"/>
                         <field name="total_volume"/>
                     </group>
                     <group>
@@ -273,7 +273,7 @@
                     <tree string="Cost Line Expenses">
                         <field name="type"/>
                         <field name="expense_amount" sum="Total Expenses"/>
-                        <field name="cost_ratio" sum="Calculated Cost"/>
+                        <field name="expense_unit" sum="Unit Expenses"/>
                     </tree>
                 </field>
             </form>

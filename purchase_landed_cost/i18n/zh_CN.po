@@ -22,8 +22,8 @@ msgid "Affected lines"
 msgstr "受影响的行"
 
 #. module: purchase_landed_cost
-#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__total_amount
-msgid "Amount line"
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__product_price_amount
+msgid "Price amount"
 msgstr "总计"
 
 #. module: purchase_landed_cost
@@ -486,7 +486,7 @@ msgid "Name"
 msgstr "名称"
 
 #. module: purchase_landed_cost
-#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__standard_price_new
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__landed_cost_unit
 msgid "New cost"
 msgstr "新的成本"
 
@@ -545,7 +545,7 @@ msgid "Prev Pickings"
 msgstr "上一个拣货"
 
 #. module: purchase_landed_cost
-#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__standard_price_old
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__product_price_unit
 msgid "Previous cost"
 msgstr "以前的费用"
 
@@ -784,8 +784,8 @@ msgid "Transfer"
 msgstr "调拨"
 
 #. module: purchase_landed_cost
-#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__cost_ratio
-#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_expense__cost_ratio
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__expense_unit
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_expense__expense_unit
 msgid "Unit cost"
 msgstr "单位成本"
 

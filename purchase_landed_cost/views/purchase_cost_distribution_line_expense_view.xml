@@ -23,7 +23,7 @@
                 <field name="distribution_line" />
                 <field name="distribution_expense" />
                 <field name="expense_amount" />
-                <field name="cost_ratio" />
+                <field name="expense_unit" />
             </tree>
         </field>
     </record>

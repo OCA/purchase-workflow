@@ -25,8 +25,8 @@ msgid "Affected lines"
 msgstr "Mouvement de réception affecté"
 
 #. module: purchase_landed_cost
-#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__total_amount
-msgid "Amount line"
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__product_price_amount
+msgid "Price amount"
 msgstr "Montant total"
 
 #. module: purchase_landed_cost
@@ -499,7 +499,7 @@ msgid "Name"
 msgstr "Nom"
 
 #. module: purchase_landed_cost
-#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__standard_price_new
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__landed_cost_unit
 msgid "New cost"
 msgstr "Prix d'acquisition"
 
@@ -560,7 +560,7 @@ msgid "Prev Pickings"
 msgstr "Opérations précédentes"
 
 #. module: purchase_landed_cost
-#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__standard_price_old
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__product_price_unit
 msgid "Previous cost"
 msgstr "Ancien prix de revient"
 
@@ -828,8 +828,8 @@ msgid "Transfer"
 msgstr "Opération de réception"
 
 #. module: purchase_landed_cost
-#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__cost_ratio
-#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_expense__cost_ratio
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__expense_unit
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_expense__expense_unit
 msgid "Unit cost"
 msgstr "Frais unitaire"
 

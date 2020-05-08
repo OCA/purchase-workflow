@@ -23,11 +23,12 @@ class PurchaseCostDistribution(models.Model):
                 distribution.total_expense
 
     @api.multi
-    @api.depends('cost_lines', 'cost_lines.total_amount')
+    @api.depends('cost_lines', 'cost_lines.product_price_amount')
     def _compute_total_purchase(self):
         for distribution in self:
-            distribution.total_purchase = sum([x.total_amount for x in
-                                               distribution.cost_lines])
+            for dist_line in distribution.cost_lines:
+                distribution.total_purchase = sum([x.product_price_amount for x in
+                                                   distribution.cost_lines])
 
     @api.multi
     @api.depends('cost_lines', 'cost_lines.product_price_unit')
@@ -158,9 +159,9 @@ class PurchaseCostDistribution(models.Model):
     def _prepare_expense_line(self, expense_line, cost_line):
         distribution = cost_line.distribution
         if expense_line.type.calculation_method == 'amount':
-            multiplier = cost_line.total_amount
+            multiplier = cost_line.product_price_amount
             if expense_line.affected_lines:
-                divisor = sum([x.total_amount for x in
+                divisor = sum([x.product_price_amount for x in
                                expense_line.affected_lines])
             else:
                 divisor = distribution.total_purchase
@@ -209,7 +210,7 @@ class PurchaseCostDistribution(models.Model):
         return {
             'distribution_expense': expense_line.id,
             'expense_amount': expense_amount,
-            'cost_ratio': expense_amount / cost_line.product_qty,
+            'expense_unit': expense_amount / cost_line.product_qty,
         }
 
     @api.multi
@@ -274,7 +275,7 @@ class PurchaseCostDistribution(models.Model):
             d.setdefault(product, [])
             d[product].append(
                 (line.move_id,
-                 line.standard_price_new - line.standard_price_old),
+                 line.landed_cost_unit - line.product_price_unit),
             )
         for product, vals_list in d.items():
             self._product_price_update(product, vals_list)
@@ -292,7 +293,6 @@ class PurchaseCostDistribution(models.Model):
     def action_cancel(self):
         """Perform all moves that touch the same product in batch."""
         self.ensure_one()
-        self.state = 'draft'
         if self.cost_update_type != 'direct':
             return
         d = {}
@@ -303,21 +303,23 @@ class PurchaseCostDistribution(models.Model):
                 continue
             if self.currency_id.compare_amounts(
                     line.move_id.price_unit,
-                    line.standard_price_new) != 0:
+                    line.landed_cost_unit) != 0:
                 raise UserError(
-                    _('Cost update cannot be undone because there has '
-                      'been a later update. Restore correct price and try '
-                      'again.'))
+                    _("""Cost Update cannot be undone as one of the Stock Moves
+                    Product's Unit Price has been modified since last Cost Update."""))
             d.setdefault(product, [])
             d[product].append(
                 (line.move_id,
-                 line.standard_price_old - line.standard_price_new),
+                 line.product_price_unit - line.landed_cost_unit),
             )
         for product, vals_list in d.items():
             self._product_price_update(product, vals_list)
             for move, price_diff in vals_list:
                 move.price_unit += price_diff
                 move._run_valuation()
+        # Set to 'draft' after valuation as 'landed_cost_unit' will be set to zero
+        # when the Cost Distribution state is set to 'draft'
+        self.state = 'draft'
 
 
 class PurchaseCostDistributionLine(models.Model):
@@ -326,9 +328,9 @@ class PurchaseCostDistributionLine(models.Model):
 
     @api.multi
     @api.depends('product_price_unit', 'product_qty')
-    def _compute_total_amount(self):
+    def _compute_product_price_amount(self):
         for dist_line in self:
-            dist_line.total_amount = (
+            dist_line.product_price_amount = (
                 dist_line.product_price_unit * dist_line.product_qty
             )
 
@@ -345,10 +347,12 @@ class PurchaseCostDistributionLine(models.Model):
             dist_line.total_volume = dist_line.product_volume * dist_line.product_qty
 
     @api.multi
-    @api.depends('expense_lines', 'expense_lines.cost_ratio')
-    def _compute_cost_ratio(self):
+    @api.depends("expense_lines", "expense_lines.expense_unit")
+    def _compute_expense_unit(self):
         for dist_line in self:
-            dist_line.cost_ratio = sum([x.cost_ratio for x in dist_line.expense_lines])
+            dist_line.expense_unit = sum(
+                [x.expense_unit for x in dist_line.expense_lines]
+            )
 
     @api.multi
     @api.depends('expense_lines', 'expense_lines.expense_amount')
@@ -359,12 +363,17 @@ class PurchaseCostDistributionLine(models.Model):
             )
 
     @api.multi
-    @api.depends('standard_price_old', 'cost_ratio')
-    def _compute_standard_price_new(self):
+    @api.depends('product_price_unit', 'expense_unit', 'distribution.state')
+    def _compute_landed_cost_unit(self):
         for dist_line in self:
-            dist_line.standard_price_new = (
-                dist_line.standard_price_old + dist_line.cost_ratio
-            )
+            # Reset to zero the calculated Landed cost when the Cost Distribution
+            # is canceled
+            if dist_line.distribution.state == 'draft':
+                dist_line.landed_cost_unit = 0
+            else:
+                dist_line.landed_cost_unit = (
+                    dist_line.product_price_unit + dist_line.expense_unit
+                )
 
     @api.multi
     @api.depends('distribution', 'distribution.name',
@@ -394,10 +403,10 @@ class PurchaseCostDistributionLine(models.Model):
             dist_line.product_qty = dist_line.move_id.product_qty
 
     @api.multi
-    @api.depends('move_id')
-    def _compute_standard_price_old(self):
+    @api.depends('move_id', 'move_id.state')
+    def _compute_product_price_unit(self):
         for dist_line in self:
-            dist_line.standard_price_old = (
+            dist_line.product_price_unit = (
                 dist_line.move_id and dist_line.move_id._get_price_unit() or
                 0.0)
 
@@ -408,7 +417,7 @@ class PurchaseCostDistributionLine(models.Model):
         comodel_name='purchase.cost.distribution', string='Cost distribution',
         ondelete='cascade', required=True)
     move_id = fields.Many2one(
-        comodel_name='stock.move', string='Picking line', ondelete="restrict",
+        comodel_name='stock.move', string='Stock Move', ondelete="restrict",
         required=True)
     purchase_line_id = fields.Many2one(
         comodel_name='purchase.order.line', string='Purchase order line',
@@ -430,8 +439,6 @@ class PurchaseCostDistributionLine(models.Model):
     product_uom = fields.Many2one(
         comodel_name='uom.uom', string='Unit of measure',
         related='move_id.product_uom')
-    product_price_unit = fields.Float(
-        string='Unit price', related='move_id.price_unit')
     expense_lines = fields.One2many(
         comodel_name='purchase.cost.distribution.line.expense',
         inverse_name='distribution_line', string='Expenses distribution lines')
@@ -441,21 +448,24 @@ class PurchaseCostDistributionLine(models.Model):
     product_weight = fields.Float(
         string='Gross weight', related='product_id.product_tmpl_id.weight',
         help="The gross weight in Kg.")
-    standard_price_old = fields.Float(
-        string='Previous cost', compute="_compute_standard_price_old",
+    product_price_unit = fields.Float(
+        string='Unit price', compute="_compute_product_price_unit",
+        help="Product unit price attached to the Stock Move before adding Expenses",
         store=True,
         digits=dp.get_precision('Product Price'))
-    expense_amount = fields.Float(
-        string='Cost amount', digits=dp.get_precision('Account'),
-        compute='_compute_expense_amount')
-    cost_ratio = fields.Float(
-        string='Unit cost', compute='_compute_cost_ratio')
-    standard_price_new = fields.Float(
-        string='New cost', digits=dp.get_precision('Product Price'),
-        compute='_compute_standard_price_new')
-    total_amount = fields.Float(
-        compute=_compute_total_amount, string='Amount line',
+    product_price_amount = fields.Float(
+        compute=_compute_product_price_amount, string='Price amount',
+        help="Total price for this Product in the Stock Move before adding Expenses",
         digits=dp.get_precision('Account'))
+    expense_amount = fields.Float(
+        string='Expenses amount', digits=dp.get_precision('Account'),
+        compute='_compute_expense_amount')
+    expense_unit = fields.Float(
+        string='Unit expenses', compute='_compute_expense_unit')
+    landed_cost_unit = fields.Float(
+        string='Unit Landed cost', digits=dp.get_precision('Product Price'),
+        help="Product unit cost including its price and its affected expenses",
+        compute='_compute_landed_cost_unit')
     total_weight = fields.Float(
         compute=_compute_total_weight, string="Line weight", store=True,
         digits=dp.get_precision('Stock Weight'),
@@ -467,6 +477,9 @@ class PurchaseCostDistributionLine(models.Model):
         comodel_name="res.company", related="distribution.company_id",
         store=True,
     )
+    currency_id = fields.Many2one(
+        comodel_name='res.currency', string='Currency',
+        related="distribution.currency_id")
 
     @api.model
     def get_action_purchase_cost_distribution(self):
@@ -509,7 +522,7 @@ class PurchaseCostDistributionLineExpense(models.Model):
     expense_amount = fields.Float(
         string='Expense amount', digits=dp.get_precision('Account'),
     )
-    cost_ratio = fields.Float('Unit cost')
+    expense_unit = fields.Float('Unit expense')
     company_id = fields.Many2one(
         comodel_name="res.company", related="distribution_line.company_id",
         store=True, readonly=True,
