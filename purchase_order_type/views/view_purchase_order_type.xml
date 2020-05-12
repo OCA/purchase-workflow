@@ -11,6 +11,7 @@
                 <field name="payment_term_id" />
                 <field name="incoterm_id" />
                 <field name="description" />
+                <field name="company_id" groups="base.group_multi_company" />
             </tree>
         </field>
     </record>
@@ -43,6 +44,10 @@
                     <group>
                         <group>
                             <field name="sequence_id" />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
                         </group>
                         <group>
                             <field name="payment_term_id" />
@@ -82,6 +87,13 @@
                         name="incoterm"
                         domain="[]"
                         context="{'group_by':'incoterm_id'}"
+                    />
+                    <filter
+                        string="Company"
+                        name="company"
+                        domain="[]"
+                        context="{'group_by':'company_id'}"
+                        groups="base.group_multi_company"
                     />
                 </group>
             </search>

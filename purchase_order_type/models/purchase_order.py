@@ -10,7 +10,10 @@ class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
     def _default_order_type(self):
-        return self.env["purchase.order.type"].search([], limit=1)
+        return self.env["purchase.order.type"].search(
+            ["|", ("company_id", "=", False), ("company_id", "=", self.env.company.id)],
+            limit=1,
+        )
 
     order_type = fields.Many2one(
         comodel_name="purchase.order.type",
@@ -18,6 +21,7 @@ class PurchaseOrder(models.Model):
         states=Purchase.READONLY_STATES,
         string="Type",
         ondelete="restrict",
+        domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",
         default=_default_order_type,
     )
 
