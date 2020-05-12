@@ -154,7 +154,7 @@ class PurchaseOrderRecommendation(models.TransientModel):
             }
             for x in found_lines
         ]
-        found_lines = {l["id"]: l for l in found_lines}
+        found_lines = {line["id"]: line for line in found_lines}
         # Show every purchaseable product
         if self.show_all_products:
             products += self.env["product.product"].search(
