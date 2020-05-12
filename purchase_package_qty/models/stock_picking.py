@@ -23,35 +23,25 @@
 #
 ##############################################################################
 
-from odoo import api, models
+from odoo import api, models, _
 
 
 class StockPicking(models.Model):
     _inherit = 'stock.picking'
 
     @api.multi
-    def _create_backorder(self, backorder_moves=None):
-        backorders = super()._create_backorder(backorder_moves=backorder_moves)
-        if backorders.move_line_ids:
-            diff_pack_op = backorders.move_line_ids
-            for pack in diff_pack_op:
-                if pack.product_qty > 0:
-                    # Create po line that is matched with pack
-                    # which was added manually
-                    po_line = backorders.prepare_vals_order_line(pack)
-                    if po_line:
-                        moves = po_line._create_stock_moves(backorders)
-                        move_ids = moves._action_confirm()
-                        moves = self.env['stock.move'].browse(move_ids)
-                        seq = 0
-                        for move in sorted(
-                                moves, key=lambda move: move.date_expected):
-                            seq += 5
-                            move.sequence = seq
-                        moves._action_assign()
-                else:
-                    pack.unlink()
-        return backorders
+    def button_validate(self):
+        self.ensure_one()
+        if self.purchase_id:
+            for move_line in self.move_lines:
+                if not move_line.purchase_line_id:
+                    if move_line.product_qty > 0:
+                        self.prepare_vals_order_line(move_line)
+                        move_line._action_confirm()
+                        move_line._action_assign()
+                    else:
+                        move_line.unlink()
+        return super().button_validate()
 
     @api.multi
     def prepare_vals_order_line(self, diff_pack_op):
@@ -62,9 +52,7 @@ class StockPicking(models.Model):
         '''
         self.ensure_one()
         po_line_env = self.env['purchase.order.line']
-        order = self.env['purchase.order'].search([
-            ('name', '=', self.origin)
-        ], limit=1)
+        order = self.purchase_id
         if order:
             procurement_uom_po_qty = diff_pack_op.product_id.uom_po_id.\
                 _compute_quantity(
@@ -95,13 +83,17 @@ class StockPicking(models.Model):
                 'product_qty_package': diff_pack_op.product_qty_package,
                 'package_qty': diff_pack_op.package_qty,
                 'order_id': order.id,
-                'product_uom': diff_pack_op.product_uom_id.id,
+                'product_uom': diff_pack_op.product_uom.id,
                 'price_unit': price_unit,
                 'date_planned': order.date_planned,
                 'taxes_id': [(
                         6, 0, [x.id for x in
                                diff_pack_op.product_id.supplier_taxes_id])],
-                'operation_extra_id': diff_pack_op.id
             })
-            po_line = po_line_env.create(vals)
+            po_line = po_line_env.with_context(
+                skip_move_create=True).create(vals)
+            order.message_post(body=_(
+                'Purchase items: %s with %s qty. were created from '
+                'incoming shipment (%s).') % (
+                    name, diff_pack_op.package_qty, self.origin))
             return po_line
