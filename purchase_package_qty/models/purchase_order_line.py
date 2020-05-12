@@ -253,3 +253,10 @@ class PurchaseOrderLine(models.Model):
             move.product_qty_package = \
                 move.purchase_line_id.product_qty_package
         return res
+
+    @api.multi
+    def _create_or_update_picking(self):
+        if self._context.get('skip_move_create', False):
+            return True
+        else:
+            return super()._create_or_update_picking()
