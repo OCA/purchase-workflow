@@ -1,13 +1,10 @@
 # Copyright 2014-2016 Numérigraphe SARL
 # Copyright 2017 Eficent Business and IT Consulting Services, S.L.
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-import logging
 from itertools import groupby
 
 from odoo import api, fields, models
-
-_logger = logging.getLogger(__name__)
 
 
 class PurchaseOrderLine(models.Model):
@@ -33,10 +30,9 @@ class PurchaseOrderLine(models.Model):
         vals = {"move_lines": []}
         for key_element in key:
             if "date_planned" in key_element.keys():
-                vals["date"] = key_element["date_planned"]
+                vals["scheduled_date"] = key_element["date_planned"]
         return vals
 
-    @api.multi
     def _create_stock_moves(self, picking):
         """Group the receptions in one picking per group key"""
         moves = self.env["stock.move"]
@@ -70,7 +66,6 @@ class PurchaseOrderLine(models.Model):
             moves += super(PurchaseOrderLine, po_lines)._create_stock_moves(picking)
         return moves
 
-    @api.multi
     def write(self, values):
         res = super().write(values)
         if "date_planned" in values:
@@ -110,7 +105,7 @@ class PurchaseOrder(models.Model):
                                 pickings_by_date[date_key] = new_picking
                             move._do_unreserve()
                             move.picking_id = pickings_by_date[date_key]
-
+                            move.date_expected = date_key
             for picking in pickings_by_date.values():
                 if len(picking.move_lines) == 0:
                     picking.write({"state": "cancel"})
@@ -119,7 +114,6 @@ class PurchaseOrder(models.Model):
 class StockPicking(models.Model):
     _inherit = "stock.picking"
 
-    @api.multi
     def _update_picking_from_group_key(self, key):
         """The picking is updated with data from the grouping key.
         This method is designed for extensibility, so that other modules
