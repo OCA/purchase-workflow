@@ -5,20 +5,13 @@
 
 {
     "name": "Purchase Location by Line",
-    "summary": "Allows to define a specific destination location on each PO "
-               "line",
+    "summary": "Allows to define a specific destination location on each PO " "line",
     "version": "12.0.1.0.0",
-    "author": "Eficent, "
-              "Odoo Community Association (OCA)",
+    "author": "Eficent, " "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
     "category": "Purchase Management",
-    "depends": [
-        "purchase_stock",
-        "purchase_delivery_split_date"
-    ],
+    "depends": ["purchase_stock", "purchase_delivery_split_date"],
     "license": "AGPL-3",
-    "data": [
-        "views/purchase_view.xml"
-    ],
-    'installable': True,
+    "data": ["views/purchase_view.xml"],
+    "installable": True,
 }
