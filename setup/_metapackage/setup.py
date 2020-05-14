@@ -10,6 +10,7 @@ setuptools.setup(
     install_requires=[
         'odoo13-addon-procurement_purchase_no_grouping',
         'odoo13-addon-product_form_purchase_link',
+        'odoo13-addon-purchase_delivery_split_date',
         'odoo13-addon-purchase_deposit',
         'odoo13-addon-purchase_discount',
         'odoo13-addon-purchase_isolated_rfq',
