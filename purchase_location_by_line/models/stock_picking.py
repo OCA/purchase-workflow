@@ -7,7 +7,7 @@ from odoo import api, models
 
 
 class StockPicking(models.Model):
-    _inherit = 'stock.picking'
+    _inherit = "stock.picking"
 
     @api.multi
     def _update_picking_from_group_key(self, key):
@@ -17,7 +17,9 @@ class StockPicking(models.Model):
         super(StockPicking, self)._update_picking_from_group_key(key)
         for rec in self:
             for key_element in key:
-                if ('location_dest_id' in key_element.keys() and
-                        key_element['location_dest_id']):
-                    rec.location_dest_id = key_element['location_dest_id']
+                if (
+                    "location_dest_id" in key_element.keys()
+                    and key_element["location_dest_id"]
+                ):
+                    rec.location_dest_id = key_element["location_dest_id"]
         return False
