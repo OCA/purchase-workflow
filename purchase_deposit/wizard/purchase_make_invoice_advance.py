@@ -1,6 +1,6 @@
 # Copyright 2019 Elico Corp, Dominique K. <dominique.k@elico-corp.com.sg>
 # Copyright 2019 Ecosoft Co., Ltd., Kitti U. <kittiu@ecosoft.co.th>
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).\
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import time
 from datetime import datetime
@@ -106,7 +106,7 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
 
         invoice = Invoice.create(
             {
-                "ref": order.name,
+                "invoice_origin": order.name,
                 "type": "in_invoice",
                 "partner_id": order.partner_id.id,
                 "invoice_line_ids": [
@@ -115,7 +115,6 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
                         0,
                         {
                             "name": name,
-                            "ref": order.name,
                             "account_id": account_id,
                             "price_unit": amount,
                             "quantity": 1.0,
