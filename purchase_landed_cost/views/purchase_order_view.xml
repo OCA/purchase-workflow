@@ -29,4 +29,22 @@
         </field>
     </record>
 
+    <record model="ir.ui.view" id="view_purchase_order_filter">
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.view_purchase_order_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='invoiced']" position="after">
+                <separator />
+                <filter name="distribution_required" string="Required Costs Dist."
+                        domain="[('cost_distribution_state','=', 'required')]" />
+                <filter name="distribution_draft" string="Draft Costs Dist."
+                        domain="[('cost_distribution_state','=', 'draft')]" />
+                <filter name="distribution_calculated" string="Calculated Costs Dist."
+                        domain="[('cost_distribution_state','=', 'calculated')]" />
+                <filter name="distribution_done" string="Done Costs Dist."
+                        domain="[('cost_distribution_state','=', 'done')]" />
+            </xpath>
+        </field>
+    </record>
+
 </odoo>

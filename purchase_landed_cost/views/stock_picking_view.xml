@@ -28,4 +28,22 @@
         </field>
     </record>
 
+    <record id="view_picking_internal_search" model="ir.ui.view">
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_internal_search" />
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='backorder']" position="after">
+                <separator />
+                <filter name="distribution_required" string="Required Costs Dist."
+                        domain="[('cost_distribution_state','=', 'required')]" />
+                <filter name="distribution_draft" string="Draft Costs Dist."
+                        domain="[('cost_distribution_state','=', 'draft')]" />
+                <filter name="distribution_calculated" string="Calculated Costs Dist."
+                        domain="[('cost_distribution_state','=', 'calculated')]" />
+                <filter name="distribution_done" string="Done Costs Dist."
+                        domain="[('cost_distribution_state','=', 'done')]" />
+            </xpath>
+        </field>
+    </record>
+
 </odoo>
