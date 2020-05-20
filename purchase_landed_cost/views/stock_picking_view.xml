@@ -1,18 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
-    <record model="ir.ui.view" id="view_picking_form">
+    <record id="view_picking_form" model="ir.ui.view">
         <field name="model">stock.picking</field>
         <field name="inherit_id" ref="stock.view_picking_form" />
         <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_toggle_is_locked']" position="after">
+              <field name="cost_distribution_state" invisible="1" />
+              <button class="oe_highlight" name="action_create_cost_distribution"
+                      type="object" string="Register Landed Costs"
+                      attrs="{'invisible': ['|', ('cost_distribution_state', '!=', 'required'),
+                          ('cost_distribution_ok', '=', False)]}" />
+            </xpath>
             <div name="button_box" position="inside">
-                <button class="oe_stat_button"
-                        name="action_open_landed_cost"
-                        icon="fa-credit-card"
-                        type="object"
-                        string="Landed costs">
-                </button>
+                <button class="oe_stat_button" name="action_open_landed_cost"
+                        icon="fa-credit-card" type="object" string="Landed costs"
+                        attrs="{'invisible': [
+                                '|', '|',
+                                ('state', 'not in', ['assigned', 'done']),
+                                ('cost_distribution_ok', '=', False),
+                                ('cost_distribution_state', 'not in', ['draft', 'calculated', 'done'])
+                            ]}" />
             </div>
+            <xpath expr="//field[@name='origin']/.." position="inside">
+                <field name="cost_distribution_ok" />
+            </xpath>
         </field>
     </record>
 

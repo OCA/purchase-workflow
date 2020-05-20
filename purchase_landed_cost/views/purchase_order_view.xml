@@ -5,14 +5,27 @@
         <field name="model">purchase.order</field>
         <field name="inherit_id" ref="purchase.purchase_order_form" />
         <field name="arch" type="xml">
+            <xpath expr="//button[@name='button_unlock']" position="after">
+                <field name="is_picking_ok" invisible="1" />
+                <field name="cost_distribution_state" invisible="1" />
+                <button name="action_create_cost_distribution" type="object"
+                        string="Register Landed Costs" class="oe_highlight"
+                        attrs="{'invisible': ['|', ('cost_distribution_state', '!=', 'required'),
+                                              ('cost_distribution_ok', '=', False)]}" />
+            </xpath>
             <div name="button_box" position="inside">
-                <button class="oe_stat_button"
-                        name="action_open_landed_cost"
-                        icon="fa-credit-card"
-                        type="object"
-                        string="Landed costs">
-                </button>
+                <button class="oe_stat_button" name="action_open_landed_cost"
+                        icon="fa-credit-card" type="object" string="Landed costs"
+                        attrs="{'invisible': [
+                                '|', '|',
+                                ('is_picking_ok', '!=', True),
+                                ('cost_distribution_ok', '=', False),
+                                ('cost_distribution_state', 'not in', ['draft', 'calculated', 'done']),
+                            ]}" />
             </div>
+            <xpath expr="//field[@name='company_id']/.." position="inside">
+                <field name="cost_distribution_ok" />
+            </xpath>
         </field>
     </record>
 

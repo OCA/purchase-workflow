@@ -152,7 +152,19 @@ class PurchaseCostDistribution(models.Model):
                     raise UserError(
                         _("You can't delete a cost line if it's an "
                           "affected line of any expense line."))
-        return super(PurchaseCostDistribution, self).write(vals)
+        # Inform related Purchase Orders and Pickings that the Cost Distribution state
+        # changed
+        res = super().write(vals)
+        for cost_distrib in self:
+            cost_distrib._propagate_state_in_order_picking()
+        return res
+
+    @api.multi
+    def _propagate_state_in_order_picking(self):
+        self.ensure_one()
+        for line in self.cost_lines:
+            line.purchase_id._compute_cost_distribution_state()
+            line.picking_id._compute_cost_distribution_state()
 
     @api.model
     def _prepare_expense_line(self, expense_line, cost_line):
@@ -267,9 +279,26 @@ class PurchaseCostDistribution(models.Model):
             return
         d = {}
         for line in self.cost_lines:
+            # Block the update if one of the related pickings is not 'done'
+            if line.picking_id.state != 'done':
+                raise UserError(
+                    _("You can't update any product Cost as long as there is\n"
+                        "a Stock Picking that is not processed"
+                        " (i.e. is not in state 'done')"))
             product = line.move_id.product_id
-            if (product.cost_method != 'average' or
-                    line.move_id.location_id.usage != 'supplier'):
+            if product.cost_method != "average":
+                raise UserError(
+                    _(
+                        """The product "{}" has a Costing method which is not
+                    "Average Cost (AVCO)", so its cost won't be updated.
+
+                    Please remove its related Stock Move from the Cost Distribution
+                    or change its Costing method in its Category's options.""".format(
+                            product.name
+                        )
+                    )
+                )
+            if line.move_id.location_id.usage != 'supplier':
                 continue
             d.setdefault(product, [])
             d[product].append(
@@ -481,6 +510,15 @@ class PurchaseCostDistributionLine(models.Model):
         else:
             action['domain'] = [('id', 'in', distributions.ids)]
         return action
+
+    @api.model
+    def create(self, vals):
+        """Inform related Purchase Orders and picking that they are now linked
+        to a Cost Distribution which state is 'draft' """
+        res = super().create(vals)
+        res.purchase_id._compute_cost_distribution_state()
+        res.picking_id._compute_cost_distribution_state()
+        return res
 
 
 class PurchaseCostDistributionLineExpense(models.Model):

@@ -6,6 +6,9 @@
         <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Select incoming shipment wizard">
+                <p>Select the <b>Incoming shipments</b> on which <b>Expenses</b> will be
+                    affected in order to calculate the operation's products <b>Landed Costs</b>.
+                </p>
                 <group>
                     <field name="prev_pickings" invisible="1" widget="many2many_tags"/>
                     <field name="supplier"/>
