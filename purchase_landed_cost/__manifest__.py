@@ -29,6 +29,7 @@
         'views/purchase_expense_type_view.xml',
         'views/purchase_order_view.xml',
         'views/stock_picking_view.xml',
+        'views/res_partner_view.xml',
     ],
     'installable': True,
     'images': [

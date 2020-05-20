@@ -20,6 +20,14 @@ class PurchaseOrder(models.Model):
         compute="_compute_cost_distribution_state", default="", store=True,
     )
 
+    @api.onchange("partner_id", "company_id")
+    def onchange_partner_id(self):
+        res = super(PurchaseOrder, self).onchange_partner_id()
+        self.cost_distribution_ok = (
+            self.partner_id.commercial_partner_id.cost_distribution_ok
+        )
+        return res
+
     @api.multi
     def _compute_is_picking_ok(self):
         """Check if at least one of the Purchase Order's pickings is 'assigned' or
