@@ -28,7 +28,9 @@ class PickingImportWizard(models.TransientModel):
     pickings = fields.Many2many(
         comodel_name='stock.picking',
         relation='distribution_import_picking_rel', column1='wizard_id',
-        column2='picking_id', string='Incoming shipments', required=True)
+        column2='picking_id', string='Incoming shipments', required=True,
+        help="Only Pickings in status 'Ready' or 'Done' can be imported\
+        into a Cost Distribution")
     prev_pickings = fields.Many2many(comodel_name='stock.picking')
 
     def _prepare_distribution_line(self, move):
