@@ -4,7 +4,7 @@
 
 {
     "name": "Purchase Reception Status",
-    "version": "12.0.1.0.0",
+    "version": "13.0.1.0.0",
     "category": "Purchases",
     "license": "AGPL-3",
     "summary": "Add reception status on purchase orders",
@@ -12,6 +12,6 @@
     "maintainers": ["alexis-via"],
     "website": "https://github.com/OCA/purchase-workflow",
     "depends": ["purchase"],
-    "data": ["views/purchase_order.xml",],
+    "data": ["views/purchase_order.xml"],
     "installable": True,
 }
