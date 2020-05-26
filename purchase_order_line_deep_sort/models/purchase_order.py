@@ -27,7 +27,6 @@ class PurchaseOrder(models.Model):
         if not self.line_order:
             self.line_direction = False
 
-    @api.multi
     def _sort_purchase_line(self):
         def resolve_subfields(obj, line_order):
             subfields = line_order.split(".")
@@ -53,9 +52,8 @@ class PurchaseOrder(models.Model):
                 continue
             line.sequence = sequence
 
-    @api.multi
     def write(self, values):
-        res = super(PurchaseOrder, self).write(values)
+        res = super().write(values)
         if (
             "order_line" in values
             or "line_order" in values
@@ -66,7 +64,7 @@ class PurchaseOrder(models.Model):
 
     @api.model
     def create(self, values):
-        purchase = super(PurchaseOrder, self).create(values)
+        purchase = super().create(values)
         purchase._sort_purchase_line()
         return purchase
 
@@ -76,6 +74,6 @@ class PurchaseOrderLine(models.Model):
 
     @api.model
     def create(self, vals):
-        line = super(PurchaseOrderLine, self).create(vals)
+        line = super().create(vals)
         line.order_id._sort_purchase_line()
         return line
