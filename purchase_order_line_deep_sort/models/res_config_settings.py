@@ -5,21 +5,19 @@ from odoo import api, fields, models
 
 
 class ResConfigSettings(models.TransientModel):
-    _inherit = 'res.config.settings'
+    _inherit = "res.config.settings"
 
     # In v12.0 is forbidden use field names like default_xxx
     po_line_order_default = fields.Selection(
-        related='company_id.default_po_line_order',
-        string="Line Order",
-        readonly=False,
+        related="company_id.default_po_line_order", string="Line Order", readonly=False,
     )
     po_line_direction_default = fields.Selection(
-        related='company_id.default_po_line_direction',
+        related="company_id.default_po_line_direction",
         string="Sort Direction",
         readonly=False,
     )
 
-    @api.onchange('po_line_order_default')
+    @api.onchange("po_line_order_default")
     def onchange_po_line_order_default(self):
         """ Reset direction line order when user remove order field value """
         if not self.po_line_order_default:
