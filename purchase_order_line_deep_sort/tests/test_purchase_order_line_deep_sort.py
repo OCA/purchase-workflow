@@ -7,7 +7,7 @@ from odoo.tests import common
 class TestPurchaseOrderLineDeepSort(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
-        super(TestPurchaseOrderLineDeepSort, cls).setUpClass()
+        super().setUpClass()
 
         po_model = cls.env["purchase.order"]
         cls.po_line_model = cls.env["purchase.order.line"]
@@ -21,7 +21,7 @@ class TestPurchaseOrderLineDeepSort(common.SavepointCase):
         cls.product_3 = cls.product_obj.create(
             {"name": "Test product 3", "default_code": "ABC", "standard_price": 7.4}
         )
-        supplier = cls.env["res.partner"].create({"name": "Supplier", "supplier": True})
+        supplier = cls.env["res.partner"].create({"name": "Supplier"})
         cls.po = po_model.create({"partner_id": supplier.id})
         cls.po_line_1 = cls.po_line_model.create(
             {
@@ -64,8 +64,6 @@ class TestPurchaseOrderLineDeepSort(common.SavepointCase):
     def test_without_line_order(self):
         self.assertEqual(self.po.order_line[0].product_id, self.product_1)
         self.assertEqual(self.po.order_line[2].product_id, self.product_3)
-        for line in self.po.order_line:
-            self.assertEqual(line.sequence, 10)
 
     def test_line_by_name(self):
         """ Test if lines are ordered by purchase line name"""

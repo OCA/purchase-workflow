@@ -7,7 +7,6 @@ from odoo import api, fields, models
 class ResConfigSettings(models.TransientModel):
     _inherit = "res.config.settings"
 
-    # In v12.0 is forbidden use field names like default_xxx
     po_line_order_default = fields.Selection(
         related="company_id.default_po_line_order", string="Line Order", readonly=False,
     )
