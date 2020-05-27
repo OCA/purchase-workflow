@@ -34,6 +34,7 @@
                        <page string="Products">
                            <field name="wa_line_ids" attrs="{'readonly': [('state', '!=', 'draft')]}">
                                 <tree string="Work Acceptance Lines" editable="bottom">
+                                   <field name="purchase_line_id" invisible="1"/>
                                    <field name="product_id"/>
                                    <field name="name"/>
                                    <field name="product_qty"/>
