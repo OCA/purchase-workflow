@@ -17,44 +17,44 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: purchase_order_line_deep_sort
-#: selection:purchase.order,line_direction:0
-#: selection:res.company,default_po_line_direction:0
+#: model:ir.model.fields.selection,name:purchase_order_line_deep_sort.selection__purchase_order__line_direction__asc
+#: model:ir.model.fields.selection,name:purchase_order_line_deep_sort.selection__res_company__default_po_line_direction__asc
 msgid "Ascending"
 msgstr "Ascendente"
 
 #. module: purchase_order_line_deep_sort
-#: selection:purchase.order,line_order:0
-#: selection:res.company,default_po_line_order:0
+#: model:ir.model.fields.selection,name:purchase_order_line_deep_sort.selection__purchase_order__line_order__date_planned
+#: model:ir.model.fields.selection,name:purchase_order_line_deep_sort.selection__res_company__default_po_line_order__date_planned
 msgid "By date planned"
 msgstr "Por fecha planificada"
 
 #. module: purchase_order_line_deep_sort
-#: selection:purchase.order,line_order:0
-#: selection:res.company,default_po_line_order:0
+#: model:ir.model.fields.selection,name:purchase_order_line_deep_sort.selection__purchase_order__line_order__name
+#: model:ir.model.fields.selection,name:purchase_order_line_deep_sort.selection__res_company__default_po_line_order__name
 msgid "By name"
 msgstr "Por nombre"
 
 #. module: purchase_order_line_deep_sort
-#: selection:purchase.order,line_order:0
-#: selection:res.company,default_po_line_order:0
+#: model:ir.model.fields.selection,name:purchase_order_line_deep_sort.selection__purchase_order__line_order__price_unit
+#: model:ir.model.fields.selection,name:purchase_order_line_deep_sort.selection__res_company__default_po_line_order__price_unit
 msgid "By price"
 msgstr "Por precio"
 
 #. module: purchase_order_line_deep_sort
-#: selection:purchase.order,line_order:0
-#: selection:res.company,default_po_line_order:0
+#: model:ir.model.fields.selection,name:purchase_order_line_deep_sort.selection__purchase_order__line_order__product_id_name
+#: model:ir.model.fields.selection,name:purchase_order_line_deep_sort.selection__res_company__default_po_line_order__product_id_name
 msgid "By product name"
 msgstr "Por nombre de producto"
 
 #. module: purchase_order_line_deep_sort
-#: selection:purchase.order,line_order:0
-#: selection:res.company,default_po_line_order:0
+#: model:ir.model.fields.selection,name:purchase_order_line_deep_sort.selection__purchase_order__line_order__product_id_default_code
+#: model:ir.model.fields.selection,name:purchase_order_line_deep_sort.selection__res_company__default_po_line_order__product_id_default_code
 msgid "By product reference"
 msgstr "Por referencia del producto"
 
 #. module: purchase_order_line_deep_sort
-#: selection:purchase.order,line_order:0
-#: selection:res.company,default_po_line_order:0
+#: model:ir.model.fields.selection,name:purchase_order_line_deep_sort.selection__purchase_order__line_order__product_qty
+#: model:ir.model.fields.selection,name:purchase_order_line_deep_sort.selection__res_company__default_po_line_order__product_qty
 msgid "By quantity"
 msgstr "Por cantidad"
 
@@ -81,8 +81,8 @@ msgid "Default sort criteria for purchase order lines"
 msgstr "Criterio de ordenación por defecto de las líneas del pedido de compra"
 
 #. module: purchase_order_line_deep_sort
-#: selection:purchase.order,line_direction:0
-#: selection:res.company,default_po_line_direction:0
+#: model:ir.model.fields.selection,name:purchase_order_line_deep_sort.selection__purchase_order__line_direction__desc
+#: model:ir.model.fields.selection,name:purchase_order_line_deep_sort.selection__res_company__default_po_line_direction__desc
 msgid "Descending"
 msgstr "Descendente"
 
