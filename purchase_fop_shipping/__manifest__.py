@@ -5,7 +5,7 @@
 
 {
     "name": "Purchase Free-Of-Paiment shipping",
-    'version': '10.0.1.0.0',
+    'version': '10.0.1.0.1',
     'author': "Akretion,Odoo Community Association (OCA)",
     'maintainer': 'Akretion',
     'license': 'AGPL-3',
