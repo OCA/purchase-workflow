@@ -138,18 +138,16 @@ class TestPurchaseOrder(common.SavepointCase):
         self.po_line1.discount3 = 50.0
         self.po_line2.discount3 = 50.0
         self.order.button_confirm()
-        self.invoice = self.env["account.invoice"].create(
+        self.invoice = self.env["account.move"].new(
             {
                 "partner_id": self.partner.id,
                 "purchase_id": self.order.id,
-                "account_id": self.partner.property_account_payable_id.id,
                 "type": "in_invoice",
             }
         )
-        self.invoice.purchase_order_change()
-        self.invoice._onchange_invoice_line_ids()
+        self.invoice._onchange_purchase_auto_complete()
         self.assertEqual(
-            self.po_line1.discount, self.invoice.invoice_line_ids[0].discount
+            self.po_line1.discount, self.invoice.invoice_line_ids[0].discount1
         )
         self.assertEqual(
             self.po_line1.discount2, self.invoice.invoice_line_ids[0].discount2
@@ -226,4 +224,5 @@ class TestPurchaseOrder(common.SavepointCase):
         )
         self.assertEqual(rec.discount2, 50)
         self.assertEqual(rec.discount3, 20)
-        self.assertEqual(rec.price_total, 240)
+        self.assertEqual(rec.untaxed_total, 240)
+        self.assertEqual(rec.price_total, 276)

@@ -3,18 +3,12 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo import api, fields, models
 
-import odoo.addons.decimal_precision as dp
-
 
 class ProductSupplierInfo(models.Model):
     _inherit = "product.supplierinfo"
 
-    discount2 = fields.Float(
-        string="Discount 2 (%)", digits=dp.get_precision("Discount"),
-    )
-    discount3 = fields.Float(
-        string="Discount 3 (%)", digits=dp.get_precision("Discount"),
-    )
+    discount2 = fields.Float(string="Discount 2 (%)", digits="Discount")
+    discount3 = fields.Float(string="Discount 3 (%)", digits="Discount")
 
     @api.onchange("name")
     def onchange_name(self):

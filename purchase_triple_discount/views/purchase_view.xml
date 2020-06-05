@@ -9,8 +9,8 @@
                 expr="//field[@name='order_line']//tree//field[@name='discount']"
                 position="after"
             >
-                <field name="discount2" />
-                <field name="discount3" />
+                <field name="discount2" optional="show" />
+                <field name="discount3" optional="show" />
             </xpath>
             <xpath
                 expr="//field[@name='order_line']//form//field[@name='discount']"

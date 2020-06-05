@@ -6,7 +6,7 @@
             ref="purchase_discount.product_supplierinfo_form_view"
         />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='discount']/.." position="after">
+            <xpath expr="//field[@name='discount']" position="after">
                 <label for="discount2" />
                 <div>
                     <field name="discount2" class="oe_inline" />
@@ -26,8 +26,8 @@
         />
         <field name="arch" type="xml">
             <field name="discount" position="after">
-                <field name="discount2" />
-                <field name="discount3" />
+                <field name="discount2" optional="show" />
+                <field name="discount3" optional="show" />
             </field>
         </field>
     </record>
