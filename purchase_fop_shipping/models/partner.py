@@ -13,5 +13,5 @@ class ResPartner(models.Model):
         string="FOP shipping",
         help="Min purchase order amount for FOP shipping",
         company_dependent=True,
-        digits='Account',
+        digits="Account",
     )
