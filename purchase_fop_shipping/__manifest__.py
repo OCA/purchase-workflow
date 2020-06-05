@@ -4,19 +4,17 @@
 
 {
     "name": "Purchase Free-Of-Paiment shipping",
-    'version': '13.0.1.0.0',
-    'author': "Akretion,Odoo Community Association (OCA)",
-    'website': "https://github.com/OCA/purchase-workflow",
-    'maintainer': 'Akretion',
-    'license': 'AGPL-3',
-    'category': 'Purchase',
-    'depends': [
-        'purchase',
+    "version": "13.0.1.0.0",
+    "author": "Akretion,Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/purchase-workflow",
+    "maintainer": "Akretion",
+    "license": "AGPL-3",
+    "category": "Purchase",
+    "depends": ["purchase"],
+    "data": [
+        "security/res_groups.xml",
+        "views/purchase_order.xml",
+        "views/res_partner.xml",
     ],
-    'data': [
-        'security/res_groups.xml',
-        'views/purchase_order.xml',
-        'views/res_partner.xml',
-    ],
-    'installable': True,
+    "installable": True,
 }
