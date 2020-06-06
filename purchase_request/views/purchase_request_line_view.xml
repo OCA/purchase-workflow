@@ -47,7 +47,7 @@
         <field name="model">purchase.request.line</field>
         <field name="priority" eval="20" />
         <field name="arch" type="xml">
-            <form string="Purchase Request Line" duplicate="false">
+            <form string="Purchase Request Line" create="false" duplicate="false">
                 <header>
                     <field name="request_state" widget="statusbar" />
                 </header>
