@@ -35,6 +35,11 @@ msgid "Purchase Order Line"
 msgstr ""
 
 #. module: purchase_order_line_packaging_qty
+#: model:ir.model,name:purchase_order_line_packaging_qty.model_stock_rule
+msgid "Stock Rule"
+msgstr ""
+
+#. module: purchase_order_line_packaging_qty
 #: code:addons/purchase_order_line_packaging_qty/models/purchase_order_line.py:0
 #, python-format
 msgid "This product is packaged by %.2f %s. You should sell %.2f %s."
