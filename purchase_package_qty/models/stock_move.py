@@ -89,6 +89,10 @@ class StockMove(models.Model):
     def _action_done(self):
         res = super(StockMove, self)._action_done()
         for move in self:
-            if move.purchase_line_id and move.quantity_done > 0:
+            if (
+                move.purchase_line_id
+                and move.quantity_done > 0
+                and move.package_qty
+            ):
                 move.qty_done_package = move.quantity_done / move.package_qty
         return res
