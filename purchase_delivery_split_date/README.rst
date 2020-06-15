@@ -53,6 +53,16 @@ When a Purchase Order is confirmed, shipments will be grouped by same scheduled 
 Changelog
 =========
 
+12.0.2.1.0 (2020-04-30)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] when adding a new line on a confirmed PO, split the delivery (this was
+  done only if a date was changed on an existing line)
+* [IMP] when the quantity on a line is changed, the onchange would reset the
+  planned date -> change this to prevent setting a date earlier than the one on
+  the line, since if we are using this module the user probably has manually
+  set the date first
+
 12.0.2.0.0 (2020-04-10)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
