@@ -50,18 +50,19 @@ class PurchaseOrderLine(models.Model):
 
     def _inverse_product_packaging_qty(self):
         for pol in self:
-            if not pol.product_packaging:
+            if pol.product_packaging_qty and not pol.product_packaging:
                 raise UserError(
                     _(
                         "You must define a package before setting a quantity "
                         "of said package."
                     )
                 )
-            if pol.product_packaging.qty == 0:
+            if pol.product_packaging and pol.product_packaging.qty == 0:
                 raise UserError(
                     _("Please select a packaging with a quantity bigger than 0")
                 )
-            pol.write(pol._prepare_product_packaging_qty_values())
+            if pol.product_packaging and pol.product_packaging_qty:
+                pol.write(pol._prepare_product_packaging_qty_values())
 
     @api.onchange("product_packaging")
     def _onchange_product_packaging(self):
