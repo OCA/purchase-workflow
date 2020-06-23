@@ -1,7 +1,7 @@
 # Copyright 2020 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
-    "name": "Purchase Delays",
+    "name": "Purchase Delay",
     "summary": "Purchase delay based on transport and supplier delays",
     "version": "13.0.1.0.0",
     "website": "https://odoo-community.org/",
