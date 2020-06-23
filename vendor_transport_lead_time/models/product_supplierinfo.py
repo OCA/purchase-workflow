@@ -1,7 +1,8 @@
 # Copyright 2020 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class ProductSupplierinfo(models.Model):
@@ -15,7 +16,7 @@ class ProductSupplierinfo(models.Model):
         readonly=True,
     )
     supplier_delay = fields.Integer(
-        string="Supplier Lead Time", default=1, required=True
+        string="Supplier Lead Time", default=0, required=True
     )
     transport_delay = fields.Integer(
         string="Transport Lead Time", default=0, required=True
@@ -28,5 +29,10 @@ class ProductSupplierinfo(models.Model):
 
     def _inverse_delay(self):
         for record in self:
-            delay = record.delay
-            record.write({"supplier_delay": delay, "transport_delay": 0})
+            diff = record.delay - record.transport_delay
+            if diff < 0:
+                raise ValidationError(
+                    _("You can't set a delay inferior to the transport delay.")
+                )
+            else:
+                record.supplier_delay = diff
