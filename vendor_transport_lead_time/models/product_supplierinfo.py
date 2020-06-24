@@ -8,12 +8,7 @@ class ProductSupplierinfo(models.Model):
 
     _inherit = "product.supplierinfo"
 
-    delay = fields.Integer(
-        string="Lead Time",
-        compute="_compute_delay",
-        inverse="_inverse_delay",
-        readonly=True,
-    )
+    delay = fields.Integer(string="Lead Time", compute="_compute_delay",)
     supplier_delay = fields.Integer(
         string="Supplier Lead Time", default=1, required=True
     )
