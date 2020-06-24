@@ -25,8 +25,3 @@ class ProductSupplierinfo(models.Model):
     def _compute_delay(self):
         for record in self:
             record.delay = record.supplier_delay + record.transport_delay
-
-    def _inverse_delay(self):
-        for record in self:
-            delay = record.delay
-            record.write({"supplier_delay": delay, "transport_delay": 0})
