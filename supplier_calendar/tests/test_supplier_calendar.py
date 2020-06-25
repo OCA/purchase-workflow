@@ -2,9 +2,11 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 from odoo import fields
+from odoo.tests import tagged
 from odoo.tests.common import TransactionCase
 
 
+@tagged("post_install", "-at_install")
 class TestStockWarehouseCalendar(TransactionCase):
     def setUp(self):
         super(TestStockWarehouseCalendar, self).setUp()
