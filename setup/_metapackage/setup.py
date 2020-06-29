@@ -30,6 +30,7 @@ setuptools.setup(
         'odoo13-addon-purchase_requisition_tier_validation',
         'odoo13-addon-purchase_tier_validation',
         'odoo13-addon-supplier_calendar',
+        'odoo13-addon-vendor_transport_lead_time',
     ],
     classifiers=[
         'Programming Language :: Python',
