@@ -1,5 +1,5 @@
 ==========================
-Vendor Transport Lead Time
+Vendor transport lead time
 ==========================
 
 .. !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -27,12 +27,19 @@ Vendor Transport Lead Time
 
 This module overrides the `product.supplierinfo` model.
 It splits the delay into two new delay fields, `Supplier Lead Time` and `Transport Lead Time`, to sum them into the actual `Lead Time`
-This allow users to get the information about the transportation lead time in order to plan the transport properly when relevant.
 
 **Table of contents**
 
 .. contents::
    :local:
+
+Changelog
+=========
+
+13.0.1.0.0 (2020-06-15)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* Initial version
 
 Bug Tracker
 ===========
@@ -51,11 +58,6 @@ Authors
 ~~~~~~~
 
 * Camptocamp
-
-Contributors
-~~~~~~~~~~~~
-
-* Matthieu Méquignon <matthieu.mequignon@camptocamp.com>
 
 Maintainers
 ~~~~~~~~~~~
