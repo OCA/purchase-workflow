@@ -10,6 +10,7 @@
     "summary": "Manage triple discount on purchase order lines",
     "depends": ["purchase_discount", "account_invoice_triple_discount"],
     "data": [
+        "report/report_purchase_order.xml",
         "views/product_supplierinfo.xml",
         "views/purchase_order.xml",
         "views/res_partner.xml",
