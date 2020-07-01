@@ -357,5 +357,6 @@ class PurchaseOrderRecommendationLine(models.TransientModel):
         return {
             'order_id': self.wizard_id.order_id.id,
             'product_id': self.product_id.id,
+            'partner_id': self.wizard_id.order_id.partner_id.id,
             'sequence': sequence,
         }
