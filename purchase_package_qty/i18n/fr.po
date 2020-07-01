@@ -7,13 +7,16 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-10-22 17:29+0000\n"
-"PO-Revision-Date: 2016-10-22 17:29+0000\n"
-"Last-Translator: <>\n"
-"Language-Team: \n"
+"PO-Revision-Date: 2020-07-01 10:27+0000\n"
+"Last-Translator: Simon Mas <simon.mas@druidoo.io>\n"
+"Language-Team: French <https://translate.druidoo.io/projects/foodcoops-12-0/"
+"foodcoops-12-0-purchase_package_qty/fr/>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.8\n"
 
 #. module: purchase_package_qty
 #: model:ir.ui.view,arch_db:purchase_package_qty.report_inventory_package
@@ -23,7 +26,7 @@ msgstr "<strong>Colisage</strong>"
 #. module: purchase_package_qty
 #: model:ir.model.fields,field_description:purchase_package_qty.field_product_template_default_seller_id
 msgid "Default seller id"
-msgstr "Default seller id"
+msgstr "Fournisseur"
 
 #. module: purchase_package_qty
 #: model:ir.model.fields,field_description:purchase_package_qty.field_stock_pack_operation_qty_done_package
@@ -45,12 +48,12 @@ msgstr "Conditionnement indicatif"
 #. module: purchase_package_qty
 #: model:ir.model,name:purchase_package_qty.model_product_supplierinfo
 msgid "Information about a product vendor"
-msgstr "Information sur le vendeur de l'article"
+msgstr "Informations du fournisseur"
 
 #. module: purchase_package_qty
 #: model:ir.model,name:purchase_package_qty.model_stock_inventory
 msgid "Inventory"
-msgstr "Inventaire"
+msgstr "Ligne d'inventaire"
 
 #. module: purchase_package_qty
 #: model:ir.model,name:purchase_package_qty.model_stock_inventory_line
@@ -65,7 +68,7 @@ msgstr "Facture"
 #. module: purchase_package_qty
 #: model:ir.model,name:purchase_package_qty.model_account_invoice_line
 msgid "Invoice Line"
-msgstr "Ligne de facuration"
+msgstr "Ligne de facture"
 
 #. module: purchase_package_qty
 #: model:ir.model.fields,field_description:purchase_package_qty.field_account_invoice_line_product_qty_package
@@ -84,12 +87,12 @@ msgstr "Cond."
 #: code:addons/purchase_package_qty/model/purchase_order_line.py:144
 #, python-format
 msgid "Package Error!"
-msgstr "Erreur de condtionnement !"
+msgstr "Erreur de conditionnement !"
 
 #. module: purchase_package_qty
 #: model:ir.model.fields,field_description:purchase_package_qty.field_purchase_order_line_package_price
 msgid "Package Price"
-msgstr "Prix du colis"
+msgstr "Prix colis"
 
 #. module: purchase_package_qty
 #: model:ir.model.fields,field_description:purchase_package_qty.field_account_invoice_line_package_qty
@@ -131,7 +134,7 @@ msgstr "Modèle d'article"
 #. module: purchase_package_qty
 #: model:ir.model,name:purchase_package_qty.model_purchase_order
 msgid "Purchase Order"
-msgstr "Commande fournisseur"
+msgstr "Bon de commande"
 
 #. module: purchase_package_qty
 #: model:ir.model,name:purchase_package_qty.model_purchase_order_line
@@ -165,7 +168,7 @@ msgstr "Le colisage ne peut être égal à 0."
 #. module: purchase_package_qty
 #: model:ir.model.fields,help:purchase_package_qty.field_product_supplierinfo_base_price
 msgid "The price to purchase a product"
-msgstr "Le prix pour l'achat d'un article"
+msgstr "Le prix d'achat d'un article"
 
 #. module: purchase_package_qty
 #: model:ir.model.fields,help:purchase_package_qty.field_account_invoice_line_package_qty
@@ -201,7 +204,7 @@ msgstr "Prix unitaire"
 #: code:addons/purchase_package_qty/model/purchase_order_line.py:193
 #, python-format
 msgid "Warning!"
-msgstr "Avertissement!"
+msgstr "Avertissement !"
 
 #. module: purchase_package_qty
 #: code:addons/purchase_package_qty/model/purchase_order_line.py:153
@@ -211,11 +214,13 @@ msgid "You have to buy a multiple of the package qty or change the package setti
 " - Quantity: %s; \n"
 " - Unit Price: %s; \n"
 " - Package quantity: %s;"
-msgstr "You have to buy a multiple of the package qty or change the package settings in the supplierinfo of the product for the following line: \n"
-" - Product: %s; \n"
-" - Quantity: %s; \n"
-" - Unit Price: %s; \n"
-" - Package quantity: %s;"
+msgstr ""
+"Vous devez acheter un multiple du colisage du produit ou marquer le produit "
+"en conditionnement indicatif dans les informations fournisseur pour : \n"
+" - Produit : %s; \n"
+" - Quantité : %s; \n"
+" - Prix Unitaire : %s; \n"
+" - Colisage : %s;"
 
 #. module: purchase_package_qty
 #: selection:account.invoice.line,price_policy:0
