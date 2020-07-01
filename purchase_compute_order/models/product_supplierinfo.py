@@ -1,14 +1,5 @@
 ##############################################################################
 #
-#    Purchase - Computed Purchase Order Module for Odoo
-#    Copyright (C) 2019-Today: La Louve (<https://cooplalouve.fr>)
-#    Copyright (C) 2019-Today: Druidoo (<https://www.druidoo.io>)
-#    Copyright (C) 2013-Today GRAP (http://www.grap.coop)
-#    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-#    @author Druidoo
-#    @author Julien WESTE
-#    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
-#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
 #    published by the Free Software Foundation, either version 3 of the
@@ -24,9 +15,23 @@
 #
 ##############################################################################
 
-from . import computed_purchase_order
-from . import computed_purchase_order_line
-from . import res_partner
-from . import product_product
-from . import product_supplierinfo
-from . import res_config
+from odoo import models, fields
+
+
+class ProductSupplierinfo(models.Model):
+    _inherit = 'product.supplierinfo'
+
+    # Columns Section
+    shelf_life = fields.Integer(
+        string="Shelf life (days)",
+        inverse="_inverse_shelf_life"
+    )
+
+    def _inverse_shelf_life(self):
+        for psi in self:
+            lines = self.env["computed.purchase.order.line"].sudo().search([
+                ("psi_id", "=", psi.id),
+            ])
+            lines = lines.filtered(lambda l: l.cpo_state == 'draft')
+            for line in lines:
+                line.shelf_life = psi.shelf_life

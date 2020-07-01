@@ -21,9 +21,11 @@
                 <field name="product_price_inv"/>
                 <field name="discount_inv"/>
                 <field name="price_policy"/>
+                <field name="shelf_life"/>
                 <field name="virtual_duration"/>
                 <field name="subtotal"/>
                 <field name="state"/>
+                <field name="psi_id" invisible="1"/>
                 <button name="unlink_psi" states="up_to_date,updated" type="object" icon="fa-close"
                         help="If you click this button,
                             it means you don't want to buy this

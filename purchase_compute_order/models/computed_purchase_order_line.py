@@ -154,12 +154,26 @@ class ComputedPurchaseOrderLine(models.Model):
     ],
         related='computed_purchase_order_id.state',
         string='CPO State')
+    psi_id = fields.Many2one(
+        comodel_name="product.supplierinfo",
+        ondelete="set null"
+    )
+    shelf_life = fields.Integer(
+        string="Shelf life (days)",
+        compute="compute_shelf_life",
+        store=True
+    )
 
     # Constraints section
     _sql_constraints = [(
         'product_id_uniq', 'unique(computed_purchase_order_id,product_id)',
         'Product must be unique by computed purchase order!'),
     ]
+
+    @api.depends("psi_id")
+    def compute_shelf_life(self):
+        for line in self:
+            line.shelf_life = line.psi_id.shelf_life
 
     # Columns section
     @api.multi
@@ -170,6 +184,9 @@ class ComputedPurchaseOrderLine(models.Model):
                 cpol.purchase_qty_package = cpol.purchase_qty /\
                     cpol.package_qty_inv
 
+    def get_psi(self):
+        return self.psi_id
+
     @api.multi
     @api.depends('purchase_qty_package', 'package_qty_inv')
     def _compute_purchase_qty(self):
@@ -177,6 +194,9 @@ class ComputedPurchaseOrderLine(models.Model):
             if cpol.purchase_qty_package == int(cpol.purchase_qty_package):
                 cpol.purchase_qty = cpol.package_qty_inv *\
                     cpol.purchase_qty_package
+                psi = cpol.get_psi()
+                cpol.psi_id = psi
+                cpol.product_price = psi.base_price
 
     @api.multi
     @api.onchange('package_qty_inv', 'product_price_inv', 'price_policy')
@@ -232,6 +252,7 @@ class ComputedPurchaseOrderLine(models.Model):
                 computed_qty += cpol.incoming_qty - cpol.outgoing_qty
             cpol.computed_qty = computed_qty
 
+    @api.depends('product_id', 'psi_id', 'state')
     @api.multi
     def _compute_product_information(self):
         psi_obj = self.env['product.supplierinfo']
@@ -250,11 +271,13 @@ class ComputedPurchaseOrderLine(models.Model):
                 cpol.discount_inv = cpol.discount
                 cpol.package_qty_inv = cpol.package_qty
             else:
-                psi = psi_obj.search([
-                    ('name', '=',
-                        cpol.computed_purchase_order_id.partner_id.id),
-                    ('product_tmpl_id', '=',
-                        cpol.product_id.product_tmpl_id.id)])
+                psi = cpol.psi_id
+                if not psi:
+                    psi = psi_obj.search([
+                        ('name', '=',
+                            cpol.computed_purchase_order_id.partner_id.id),
+                        ('product_tmpl_id', '=',
+                            cpol.product_id.product_tmpl_id.id)])
                 if len(psi):
                     psi = psi[0]
                     if psi:
@@ -369,6 +392,7 @@ class ComputedPurchaseOrderLine(models.Model):
                     'package_qty_inv': psi.package_qty,
                     'uom_po_id': psi.product_uom.id,
                     'state': 'up_to_date',
+                    'psi_id': psi.id
                 })
             self.qty_available = vals['qty_available']
             self.incoming_qty = vals['incoming_qty']

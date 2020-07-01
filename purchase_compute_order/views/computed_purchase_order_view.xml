@@ -9,7 +9,7 @@
         <field name="name">computed.purchase.order.form</field>
         <field name="model">computed.purchase.order</field>
         <field name="arch" type="xml">
-            <form name="Computed Purchase Order">
+            <form name="Computed Purchase Order" disable_autofocus="1">
                 <header>
                     <button name="make_order" states="draft"
                             string="Make Purchase Order"
@@ -43,8 +43,8 @@
                                  groups="base.group_multi_company"/>
                         </group>
                     </group>
-                    <group states="draft">
-                        <group string="Get Products">
+                    <group>
+                        <group string="Get Products" states="draft">
                             <field name="compute_pending_quantity" />
                             <button name="compute_active_product_stock"
                                 type="object"
@@ -58,9 +58,11 @@
                         <group string="Compute Order">
                             <label for="purchase_target"/>
                             <div>
-                              <field name="purchase_target" class="oe_inline"/>
+                              <field name="purchase_target" class="oe_inline"
+                                attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                                 &amp;nbsp;
-                              <field name="target_type" class="oe_inline"/>
+                              <field name="target_type" class="oe_inline"
+                                attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                               <br/>
                               <button
                                 name="compute_purchase_quantities"
@@ -116,10 +118,12 @@
                                            readonly="1"/>
                                     <field name="discount_inv" readonly="1"/>
                                     <field name="price_policy" readonly="1"/>
+                                    <field name="shelf_life"/>
                                     <field name="virtual_duration"
                                            readonly="1"/>
                                     <field name="subtotal" readonly="1"/>
                                     <field name="state" readonly="1"/>
+                                    <field name="psi_id" invisible="1"/>
                                     <button
                                         name="unlink_psi"
                                         states="up_to_date,updated"

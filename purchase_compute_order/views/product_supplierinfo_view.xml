@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record model="ir.ui.view" id="product_supplierinfo_tree_view">
+        <field name="model">product.supplierinfo</field>
+        <field name="inherit_id" ref="purchase_package_qty.product_supplierinfo_tree_view_package"/>
+        <field name="priority">1000</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='price_policy']" position="after">
+                <field name="shelf_life"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

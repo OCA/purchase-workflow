@@ -541,6 +541,12 @@ msgid "Sequence"
 msgstr ""
 
 #. module: purchase_compute_order
+#: model:ir.model.fields,field_description:purchase_compute_order.field_computed_purchase_order_line__shelf_life
+#: model:ir.model.fields,field_description:purchase_compute_order.field_product_supplierinfo__shelf_life
+msgid "Shelf life (days)"
+msgstr ""
+
+#. module: purchase_compute_order
 #: model:ir.model.fields,help:purchase_compute_order.field_computed_purchase_order_line__state
 msgid "Shows if the product's information has been updated"
 msgstr ""

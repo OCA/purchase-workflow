@@ -26,7 +26,7 @@
 
 {
     'name': 'Computed Purchase Order',
-    'version': '12.0.1.0.0',
+    'version': '12.0.1.0.2',
     'category': 'Purchase',
     'author': 'GRAP, Druidoo',
     'website': 'https://cooplalouve.fr/',
@@ -47,5 +47,6 @@
         'views/res_config_view.xml',
         'views/purchase_order_line_view.xml',
         'views/res_partner_view.xml',
+        'views/product_supplierinfo_view.xml',
     ],
 }

@@ -34,7 +34,7 @@ class ResPartner(models.Model):
     _TARGET_TYPE = [
         ('product_price_inv_eq', '€'),
         ('time', 'days'),
-        ('weight_net', 'kg'),
+        ('weight', 'kg'),
     ]
 
     # Columns Section
