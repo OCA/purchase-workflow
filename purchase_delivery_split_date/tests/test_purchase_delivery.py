@@ -26,6 +26,7 @@ class TestDeliverySingle(TransactionCase):
         # Two dates which we can use to test the features:
         self.date_sooner = '2015-01-01'
         self.date_later = '2015-12-13'
+        self.date_3rd = '2015-12-31'
 
         self.po = self.env['purchase.order'].create({
             'partner_id': self.ref('base.res_partner_3'),
@@ -82,3 +83,44 @@ class TestDeliverySingle(TransactionCase):
         self.assertEquals(
             str(sorted_pickings[1].scheduled_date)[:10], self.date_later,
             "The second picking must be planned at the latest date")
+
+    def test_purchase_line_date_change(self):
+        self.po.order_line[0].date_planned = self.date_later
+        self.po.button_confirm()
+        moves = self.env['stock.move'].search(
+            [('purchase_line_id', '=', self.po.order_line[0].id)]
+        )
+        line = self.po.order_line[0]
+        line.write({'date_planned': self.date_3rd})
+        self.assertEqual(
+            moves.date_expected.strftime('%Y-%m-%d'), self.date_3rd
+        )
+
+    def test_purchase_line_date_change_split_picking(self):
+        self.po.button_confirm()
+        line1 = self.po.order_line[0]
+        line2 = self.po.order_line[1]
+        move1 = self.env['stock.move'].search(
+            [('purchase_line_id', '=', line1.id)]
+        )
+        move2 = self.env['stock.move'].search(
+            [('purchase_line_id', '=', line2.id)]
+        )
+
+        line1.write({'date_planned': self.date_later})
+        self.assertEquals(
+            len(self.po.picking_ids), 2,
+            "There must be 2 pickings when I change the date")
+        self.assertEqual(
+            move1.date_expected.strftime('%Y-%m-%d'), self.date_later
+        )
+        self.assertEqual(
+            move2.date_expected.strftime('%Y-%m-%d'), self.date_sooner
+        )
+        self.assertNotEqual(move1.picking_id, move2.picking_id)
+        line2.write({'date_planned': self.date_later})
+        self.assertEqual(
+            move1.picking_id, move2.picking_id,
+            "If I change the other line to the same date as the first, "
+            "both moves must be in the same picking"
+        )

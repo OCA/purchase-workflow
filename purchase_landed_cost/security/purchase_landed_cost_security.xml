@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="expense_type_company_rule" model="ir.rule">
+        <field name="name">Expense type multi-company</field>
+        <field name="model_id" ref="model_purchase_expense_type"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|', ('company_id','=',False), ('company_id', 'child_of', [user.company_id.id])]</field>
+    </record>
+
+    <record id="purchase_cost_distribution_company_rule" model="ir.rule">
+        <field name="name">Cost distribution multi-company</field>
+        <field name="model_id" ref="model_purchase_cost_distribution"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|', ('company_id','=',False), ('company_id', 'child_of', [user.company_id.id])]</field>
+    </record>
+
+    <record id="purchase_cost_distribution_expense_company_rule" model="ir.rule">
+        <field name="name">Cost distribution expense multi-company</field>
+        <field name="model_id" ref="model_purchase_cost_distribution_expense"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|', ('company_id','=',False), ('company_id', 'child_of', [user.company_id.id])]</field>
+    </record>
+
+    <record id="purchase_cost_distribution_line_company_rule" model="ir.rule">
+        <field name="name">Cost distribution line multi-company</field>
+        <field name="model_id" ref="model_purchase_cost_distribution_line"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|', ('company_id','=',False), ('company_id', 'child_of', [user.company_id.id])]</field>
+    </record>
+
+    <record id="purchase_cost_distribution_line_expense_company_rule" model="ir.rule">
+        <field name="name">Cost distribution line expense multi-company</field>
+        <field name="model_id" ref="model_purchase_cost_distribution_line_expense"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|', ('company_id','=',False), ('company_id', 'child_of', [user.company_id.id])]</field>
+    </record>
+
+</odoo>

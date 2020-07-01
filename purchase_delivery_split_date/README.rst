@@ -53,6 +53,22 @@ When a Purchase Order is confirmed, shipments will be grouped by same scheduled 
 Changelog
 =========
 
+12.0.2.1.0 (2020-04-30)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] when adding a new line on a confirmed PO, split the delivery (this was
+  done only if a date was changed on an existing line)
+* [IMP] when the quantity on a line is changed, the onchange would reset the
+  planned date -> change this to prevent setting a date earlier than the one on
+  the line, since if we are using this module the user probably has manually
+  set the date first
+
+12.0.2.0.0 (2020-04-10)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* Improve the module: when changing the date on a purchase line, this will
+  cause a split or a merge of the pickings, to keep 1 picking per date.
+
 
 11.0.1.0.0 (2018-09-16)
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -82,6 +98,7 @@ Authors
 
 * Numerigraphe
 * Eficent
+* Camptocamp
 
 Contributors
 ~~~~~~~~~~~~
@@ -91,6 +108,7 @@ Contributors
 * Lionel Sausin <ls@numerigraphe.com> (modularization for v7+)
 * Jordi Ballester Alomar <jordi.ballester@eficent.com> (modularization v8, v9)
 * Lois Rilo <lois.rilo@eficent.com> (migration to v10)
+* Alexandre Fayolle <alexandre.fayolle@camptocamp.com>
 
 Maintainers
 ~~~~~~~~~~~

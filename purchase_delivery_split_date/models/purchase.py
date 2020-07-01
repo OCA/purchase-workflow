@@ -2,12 +2,9 @@
 # Copyright 2017 Eficent Business and IT Consulting Services, S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from datetime import datetime
-from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
-
 import logging
 from itertools import groupby
-from odoo import models, api
+from odoo import models, api, fields
 
 _logger = logging.getLogger(__name__)
 
@@ -22,10 +19,11 @@ class PurchaseOrderLine(models.Model):
         dictionary element with the field that you want to group by. This
         method is designed for extensibility, so that other modules can add
         additional keys or replace them by others."""
-        date = datetime.strptime(
-            str(line.date_planned), DEFAULT_SERVER_DATETIME_FORMAT)
+        date = line.date_planned.date()
         # Split date value to obtain only the attributes year, month and day
-        key = ({'date_planned': str(date).split(" ")[0]},)
+        key = (
+            {'date_planned': fields.Date.to_string(date)},
+        )
         return key
 
     @api.model
@@ -71,6 +69,66 @@ class PurchaseOrderLine(models.Model):
             moves += super(PurchaseOrderLine, po_lines)._create_stock_moves(
                 picking)
         return moves
+
+    @api.multi
+    def write(self, values):
+        res = super().write(values)
+        if 'date_planned' in values:
+            self.mapped('order_id')._check_split_pickings()
+        return res
+
+    @api.model
+    def create(self, values):
+        line = super().create(values)
+        if line.order_id.state == 'purchase':
+            line.order_id._check_split_pickings()
+        return line
+
+    @api.onchange('product_qty', 'product_uom')
+    def _onchange_quantity(self):
+        date_planned = self.date_planned
+        res = super()._onchange_quantity()
+        # preserve the date which was presumably set on the PO line if it is
+        # later than the date computed from the Vendor information
+        if self.date_planned <= date_planned:
+            self.date_planned = date_planned
+        return res
+
+
+class PurchaseOrder(models.Model):
+    _inherit = 'purchase.order'
+
+    def _check_split_pickings(self):
+        for order in self:
+            moves = self.env['stock.move'].search([
+                ('purchase_line_id', 'in', self.order_line.ids),
+                ('state', 'not in', ('cancel', 'done')),
+            ])
+            pickings = moves.mapped('picking_id')
+            pickings_by_date = {}
+            for pick in pickings:
+                pickings_by_date[pick.scheduled_date.date()] = pick
+            order_lines = moves.mapped('purchase_line_id')
+            date_groups = groupby(
+                order_lines, lambda l: l._get_group_keys(l.order_id, l)
+            )
+            for key, lines in date_groups:
+                date_key = fields.Date.from_string(key[0]['date_planned'])
+                for line in lines:
+                    for move in line.move_ids:
+                        if move.state in ('cancel', 'done'):
+                            continue
+                        if move.picking_id.scheduled_date.date() != date_key:
+                            if date_key not in pickings_by_date:
+                                copy_vals = line._first_picking_copy_vals(key, line)
+                                new_picking = move.picking_id.copy(copy_vals)
+                                pickings_by_date[date_key] = new_picking
+                            move._do_unreserve()
+                            move.picking_id = pickings_by_date[date_key]
+
+            for picking in pickings_by_date.values():
+                if len(picking.move_lines) == 0:
+                    picking.write({'state': 'cancel'})
 
 
 class StockPicking(models.Model):
