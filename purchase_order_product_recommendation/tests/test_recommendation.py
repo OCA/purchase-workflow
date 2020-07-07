@@ -1,5 +1,6 @@
 # Copyright 2019 David Vidal <david.vidal@tecnativa.com>
 # Copyright 2020 Manuel Calero - Tecnativa
+# Copyright 2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo import fields
 from odoo.tests.common import SavepointCase
@@ -305,3 +306,16 @@ class RecommendationCaseTests(RecommendationCase):
             [("purchase_ok", "!=", False)]
         )
         self.assertEqual(len(wizard.line_ids), purchase_products_number)
+
+    def test_recommendations_inactive_product(self):
+        """Recommendations are OK."""
+        self.prod_2.active = False
+        wizard = self.wizard()
+        wizard.date_begin = wizard.date_end = fields.Date.from_string("2019-02-01")
+        wizard._generate_recommendations()
+        # The first recommendation line is the prod_3, as prod_2 is archived
+        self.assertEqual(wizard.line_ids[0].product_id, self.prod_3)
+        self.prod_3.purchase_ok = False
+        wizard._generate_recommendations()
+        # No recommendations as both elegible products are excluded
+        self.assertFalse(wizard.line_ids)
