@@ -99,6 +99,13 @@ class TestPurchaseInvoicePlan(TransactionCase):
             "active_ids": [self.test_po_product.id],
             "all_remain_invoices": True,
         }
+        # ValidationError Number of Installment <= 1
+        with self.assertRaises(ValidationError) as e:
+            with Form(self.PurchaseInvoicePlan) as p:
+                p.num_installment = 0
+            p.save()
+        error_message = "Number Installment must greater than 1"
+        self.assertEqual(e.exception.name, error_message)
         # Create purchase plan
         with Form(self.PurchaseInvoicePlan) as p:
             p.num_installment = 5
