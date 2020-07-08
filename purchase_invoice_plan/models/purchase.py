@@ -7,8 +7,6 @@ from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
 from odoo.tools.float_utils import float_compare, float_round
 
-from odoo.addons import decimal_precision as dp
-
 
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
@@ -16,7 +14,7 @@ class PurchaseOrder(models.Model):
     invoice_plan_ids = fields.One2many(
         comodel_name="purchase.invoice.plan",
         inverse_name="purchase_id",
-        string="Inovice Plan",
+        string="Invoice Plan",
         copy=False,
         readonly=True,
         states={"draft": [("readonly", False)]},
@@ -30,7 +28,6 @@ class PurchaseOrder(models.Model):
         help="At least one invoice plan line pending to create invoice",
     )
 
-    @api.multi
     def _compute_ip_invoice_plan(self):
         for rec in self:
             rec.ip_invoice_plan = (
@@ -48,13 +45,11 @@ class PurchaseOrder(models.Model):
                         _("Please fill percentage for all invoice plan lines")
                     )
 
-    @api.multi
     def action_confirm(self):
         if self.filtered(lambda r: r.use_invoice_plan and not r.invoice_plan_ids):
             raise UserError(_("Use Invoice Plan selected, but no plan created"))
         return super().action_confirm()
 
-    @api.multi
     def create_invoice_plan(
         self, num_installment, installment_date, interval, interval_type
     ):
@@ -82,7 +77,6 @@ class PurchaseOrder(models.Model):
         self.write({"invoice_plan_ids": invoice_plans})
         return True
 
-    @api.multi
     def remove_invoice_plan(self):
         self.ensure_one()
         self.invoice_plan_ids.unlink()
@@ -100,24 +94,31 @@ class PurchaseOrder(models.Model):
         next_date = fields.Date.to_string(next_date)
         return next_date
 
-    @api.multi
     def action_invoice_create(self):
-        self.ensure_one()
-        pre_inv = self.env["account.invoice"].new(
+        journal = (
+            self.env["account.move"]
+            .with_context(
+                default_type="in_invoice", default_currency_id=self.currency_id.id
+            )
+            ._get_default_journal()
+        )
+        pre_inv = self.env["account.move"].new(
             {
                 "type": "in_invoice",
                 "purchase_id": self.id,
+                "journal_id": journal.id,
                 "currency_id": self.currency_id.id,
                 "company_id": self.company_id.id,
-                "origin": self.name,
-                "name": self.partner_ref or "",
-                "comment": self.notes,
+                "invoice_origin": self.name,
+                "ref": self.partner_ref or "",
+                "narration": self.notes,
+                "fiscal_position_id": self.fiscal_position_id.id,
+                "invoice_payment_term_id": self.payment_term_id.id,
             }
         )
-        pre_inv.purchase_order_change()
+        pre_inv._onchange_purchase_auto_complete()
         inv_data = pre_inv._convert_to_write(pre_inv._cache)
-        invoice = self.env["account.invoice"].create(inv_data)
-        invoice.compute_taxes()
+        invoice = self.env["account.move"].create(inv_data)
         if not invoice.invoice_line_ids:
             raise UserError(
                 _(
@@ -126,14 +127,10 @@ class PurchaseOrder(models.Model):
                     "that a quantity has been delivered."
                 )
             )
-        po_payment_term_id = invoice.payment_term_id.id
-        fp_invoice = invoice.fiscal_position_id
         invoice._onchange_partner_id()
-        invoice.fiscal_position_id = fp_invoice
-        invoice.payment_term_id = po_payment_term_id
         invoice.message_post_with_view(
             "mail.message_origin_link",
-            values={"self": invoice, "origin": self,},
+            values={"self": invoice, "origin": self},
             subtype_id=self.env.ref("mail.mt_note").id,
         )
         invoice_plan_id = self._context.get("invoice_plan_id")
@@ -165,7 +162,7 @@ class PurchaseInvoicePlan(models.Model):
         index=True,
     )
     state = fields.Selection(
-        [
+        selection=[
             ("draft", "RFQ"),
             ("sent", "RFQ Sent"),
             ("to approve", "To Approve"),
@@ -181,21 +178,21 @@ class PurchaseInvoicePlan(models.Model):
     installment = fields.Integer(string="Installment",)
     plan_date = fields.Date(string="Plan Date", required=True,)
     invoice_type = fields.Selection(
-        [("installment", "Installment")],
+        selection=[("installment", "Installment")],
         string="Type",
         required=True,
         default="installment",
     )
     percent = fields.Float(
         string="Percent",
-        digits=dp.get_precision("Product Unit of Measure"),
+        digits="Product Unit of Measure",
         help="This percent will be used to calculate new quantity",
     )
     invoice_ids = fields.Many2many(
-        "account.invoice",
+        comodel_name="account.move",
         relation="purchase_invoice_plan_invoice_rel",
         column1="plan_id",
-        column2="invoice_id",
+        column2="move_id",
         string="Invoices",
         readonly=True,
     )
@@ -210,29 +207,26 @@ class PurchaseInvoicePlan(models.Model):
         help="If this line already invoiced",
     )
 
-    @api.multi
     def _compute_to_invoice(self):
         """ If any invoice is in draft/open/paid do not allow to create inv
             Only if previous to_invoice is False, it is eligible to_invoice
         """
-        for rec in self.sorted("installment"):
+        for rec in self:
             rec.to_invoice = False
+        for rec in self.sorted("installment"):
             if rec.purchase_id.state != "purchase":
-                # Not confirmed, no to_invoice
                 continue
             if not rec.invoiced:
                 rec.to_invoice = True
                 break
 
-    @api.multi
     def _compute_invoiced(self):
         for rec in self:
             invoiced = rec.invoice_ids.filtered(
-                lambda l: l.state in ("draft", "open", "paid")
+                lambda l: l.state in ("draft", "posted")
             )
             rec.invoiced = invoiced and True or False
 
-    @api.multi
     def _compute_new_invoice_quantity(self, invoice):
         self.ensure_one()
         percent = self.percent
@@ -251,8 +245,7 @@ class PurchaseInvoicePlan(models.Model):
                     )
                     % (plan_qty, line.quantity)
                 )
-            line.write({"quantity": plan_qty})
-        invoice.compute_taxes()
+            line.with_context(check_move_validity=False).write({"quantity": plan_qty})
 
     @api.model
     def _get_plan_qty(self, order_line, percent):
