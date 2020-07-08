@@ -29,6 +29,7 @@ setuptools.setup(
         'odoo13-addon-purchase_request_tier_validation',
         'odoo13-addon-purchase_requisition_tier_validation',
         'odoo13-addon-purchase_tier_validation',
+        'odoo13-addon-purchase_work_acceptance',
         'odoo13-addon-supplier_calendar',
         'odoo13-addon-vendor_transport_lead_time',
     ],
