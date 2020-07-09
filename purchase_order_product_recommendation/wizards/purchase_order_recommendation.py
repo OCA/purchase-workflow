@@ -1,4 +1,5 @@
 # Copyright 2019 David Vidal <david.vidal@tecnativa.com>
+# Copyright 2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from datetime import datetime
@@ -84,8 +85,12 @@ class PurchaseOrderRecommendation(models.TransientModel):
             prefetch_fields=False)
         partner = self.order_id.partner_id.commercial_partner_id
         supplierinfos = supplierinfo_obj.search([('name', '=', partner.id)])
-        product_tmpls = supplierinfos.mapped('product_tmpl_id')
-        products = supplierinfos.mapped('product_id')
+        product_tmpls = supplierinfos.mapped('product_tmpl_id').filtered(
+            lambda x: x.active and x.purchase_ok
+        )
+        products = supplierinfos.mapped('product_id').filtered(
+            lambda x: x.active and x.purchase_ok
+        )
         products += product_tmpls.mapped('product_variant_ids')
         return products
 
