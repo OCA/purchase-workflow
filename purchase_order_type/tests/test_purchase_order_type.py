@@ -4,6 +4,7 @@
 import time
 
 from odoo.tests import common
+from odoo.exceptions import ValidationError
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 
@@ -28,6 +29,20 @@ class TestPurchaseOrderType(common.SavepointCase):
         cls.type2.payment_term_id = cls.payterm
         cls.type2.incoterm_id = cls.incoterm
         cls.partner1.purchase_type = cls.type2
+
+    def test_purchase_order_change_company(self):
+        order = self.purchase_order_model.new({"partner_id": self.partner.id})
+        self.assertEqual(order.order_type, self.purchase_type)
+        order._onchange_company()
+        self.assertFalse(order.order_type)
+
+    def test_purchase_order_type_company_error(self):
+        order = self.purchase_order_model.create({"partner_id": self.partner.id})
+        self.assertEqual(order.order_type, self.purchase_type)
+        self.assertEqual(order.company_id, self.purchase_type.company_id)
+        company2 = self.env.ref("stock.res_company_1")
+        with self.assertRaises(ValidationError):
+            order.write({"company_id": company2.id})
 
     def test_purchase_order_type(self):
         purchase = self._create_purchase(

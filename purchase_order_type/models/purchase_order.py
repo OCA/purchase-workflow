@@ -1,7 +1,8 @@
 # Copyright 2015 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 from odoo.addons.purchase.models.purchase import PurchaseOrder as Purchase
 
@@ -21,7 +22,7 @@ class PurchaseOrder(models.Model):
         states=Purchase.READONLY_STATES,
         string="Type",
         ondelete="restrict",
-        domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",
+        domain="[('company_id', 'in', [False, company_id])]",
         default=_default_order_type,
     )
 
@@ -50,3 +51,15 @@ class PurchaseOrder(models.Model):
             if purchase_type.sequence_id:
                 vals["name"] = purchase_type.sequence_id.next_by_id()
         return super().create(vals)
+
+    @api.constrains("company_id")
+    def _check_po_type_company(self):
+        for record in self.filtered("order_type.company_id"):
+            if record.company_id != record.order_type.company_id:
+                raise ValidationError(
+                    _("Document's company and type's company mismatch")
+                )
+
+    @api.onchange("company_id")
+    def _onchange_company(self):
+        self.order_type = False

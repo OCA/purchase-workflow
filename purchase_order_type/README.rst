@@ -23,7 +23,7 @@ Purchase Order Type
     :target: https://runbot.odoo-community.org/runbot/142/13.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 Adds a configurable *type* on the purchase orders.
 This type can be used in filters and groupbys.
@@ -76,6 +76,8 @@ Contributors
 
 * Guewen Baconnier <guewen.baconnier@camptocamp.com>
 * Pimolnat Suntian <pimolnats@ecosoft.co.th>
+* Watcharaporn Charamrum <watcharapornc@ecosoft.co.th>
+
 
 Maintainers
 ~~~~~~~~~~~
