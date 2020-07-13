@@ -216,7 +216,6 @@ class WorkAcceptanceLine(models.Model):
         string='Purchase Order Line',
         ondelete='set null',
         index=True,
-        readonly=True,
     )
 
     def _compute_amount(self):
