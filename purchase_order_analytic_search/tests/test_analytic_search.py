@@ -10,18 +10,16 @@ class TestAnalyticSearch(SavepointCase):
     @classmethod
     def setUpClass(cls):
         super(TestAnalyticSearch, cls).setUpClass()
+        # purchase_order
         cls.purchase_order_model = cls.env["purchase.order"]
         partner_model = cls.env["res.partner"]
         prod_model = cls.env["product.product"]
         analytic_account_model = cls.env["account.analytic.account"]
-        cls.product_uom_model = cls.env["uom.uom"]
-
         pa_dict = {
             "name": "Partner 1",
-            "supplier": True,
         }
         cls.partner = partner_model.create(pa_dict)
-        uom_id = cls.product_uom_model.search([("name", "=", "Unit(s)")])[0].id
+        uom_id = cls.env.ref("uom.product_uom_unit").id
         pr_dict = {
             "name": "Product Test",
             "uom_id": uom_id,
@@ -68,11 +66,9 @@ class TestAnalyticSearch(SavepointCase):
             ],
         }
         cls.purchase_order_1 = cls.purchase_order_model.create(po_dict)
-
         # PURCHASE ORDER NUM 2 => account 1 and 2
         pa_dict2 = {
             "name": "Partner 2",
-            "supplier": True,
         }
         cls.partner2 = partner_model.create(pa_dict2)
         po_dict2 = {
@@ -139,7 +135,6 @@ class TestAnalyticSearch(SavepointCase):
                 ),
             ],
         }
-
         cls.purchase_order_3 = cls.purchase_order_model.create(po_dict3)
 
     def test_filter_analytic_accounts(self):
@@ -170,3 +165,7 @@ class TestAnalyticSearch(SavepointCase):
             self.purchase_order_2.account_analytic_ids,
             self.analytic_account_1 + self.analytic_account_2,
         )
+
+    def test_filter_analytic_accounts_equal_false(self):
+        found = self.purchase_order_model.search([("account_analytic_ids", "=", False)])
+        self.assertFalse(found)

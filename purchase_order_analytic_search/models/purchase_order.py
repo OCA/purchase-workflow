@@ -9,7 +9,6 @@ class PurchaseOrder(models.Model):
 
     _inherit = "purchase.order"
 
-    @api.multi
     @api.depends("order_line.account_analytic_id")
     def _compute_analytic_accounts(self):
         for purchase in self:
