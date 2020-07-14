@@ -5,7 +5,7 @@
     "name": "Purchase Order Analytic Search",
     "summary": """Search purchase orders by analytic account. New menu entry in
                 Purchasing to list purchase order lines.""",
-    "version": "12.0.1.0.0",
+    "version": "13.0.1.0.0",
     "website": "https://github.com/OCA/purchase-workflow",
     "category": "Purchase Workflow",
     "author": "Eficent, Camptocamp, Odoo Community Association (OCA)",
