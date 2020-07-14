@@ -12,6 +12,7 @@ setuptools.setup(
         'odoo12-addon-product_form_purchase_link',
         'odoo12-addon-product_supplier_code_purchase',
         'odoo12-addon-purchase_analytic_global',
+        'odoo12-addon-purchase_blanket_order',
         'odoo12-addon-purchase_commercial_partner',
         'odoo12-addon-purchase_date_planned_manual',
         'odoo12-addon-purchase_delivery_split_date',
