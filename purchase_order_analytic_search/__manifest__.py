@@ -11,11 +11,6 @@
     "author": "Eficent, Camptocamp, Odoo Community Association (OCA)",
     "license": "LGPL-3",
     "installable": True,
-    "depends": [
-        "analytic",
-        "purchase"
-    ],
-    "data": [
-        "views/purchase_order_view.xml"
-    ],
+    "depends": ["analytic", "purchase"],
+    "data": ["views/purchase_order_view.xml"],
 }
