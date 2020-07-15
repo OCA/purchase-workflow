@@ -3,7 +3,6 @@
 
 import logging
 
-
 logger = logging.getLogger(__name__)
 
 
@@ -17,7 +16,7 @@ def post_init_hook(cr, registry):
 
 def update_field_purchase_state(cr):
 
-    logger.info('Updating field purchase_state on purchase_request_line')
+    logger.info("Updating field purchase_state on purchase_request_line")
 
     cr.execute(
         """
