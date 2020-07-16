@@ -7,7 +7,6 @@ from odoo import api, models
 class PurchaseRequestLine(models.Model):
     _inherit = "purchase.request.line"
 
-    @api.multi
     @api.depends("purchase_lines", "purchase_lines.order_id.state")
     def _compute_purchase_state(self):
         super(PurchaseRequestLine, self)._compute_purchase_state()
