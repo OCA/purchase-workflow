@@ -1,0 +1,67 @@
+<odoo>
+    <record id="view_work_acceptance_evaluation_tree" model="ir.ui.view">
+        <field name="name">work.acceptance.evaluation.tree</field>
+        <field name="model">work.acceptance.evaluation</field>
+        <field name="arch" type="xml">
+            <tree string="Work Acceptance Evaluation">
+                <field name="name" context="{'active_test': False}" />
+                <field name="active" />
+                <field name="state_required" invisible="0" />
+            </tree>
+        </field>
+    </record>
+    <record id="view_work_acceptance_evaluation_form" model="ir.ui.view">
+        <field name="name">work.acceptance.evaluation.form</field>
+        <field name="model">work.acceptance.evaluation</field>
+        <field name="arch" type="xml">
+            <form string="Work Acceptance Evaluation">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" />
+                            <field name="state_required" />
+                        </group>
+                        <group>
+                            <field name="active" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Score" name="score">
+                            <field name="score_ids">
+                                <tree string="Score Lines" editable="bottom">
+                                    <field name="name" optional="show" />
+                                    <field name="evaluation_id" invisible="1" />
+                                    <field name="score" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="view_work_acceptance_evaluation_search" model="ir.ui.view">
+        <field name="model">work.acceptance.evaluation</field>
+        <field name="arch" type="xml">
+            <search string="Work Acceptance Evaluation">
+                <field name="name" />
+                <field name="score_ids" />
+            </search>
+        </field>
+    </record>
+    <record id="work_acceptance_evaluation_action" model="ir.actions.act_window">
+        <field name="name">Work Acceptance Evaluation</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">work.acceptance.evaluation</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_work_acceptance_evaluation_search" />
+        <field name="view_id" ref="view_work_acceptance_evaluation_tree" />
+    </record>
+    <menuitem
+        id="menu_work_acceptance_evaluation"
+        name="Work Acceptance Evaluation"
+        parent="purchase.menu_purchase_config"
+        action="work_acceptance_evaluation_action"
+        groups="purchase_work_acceptance_evaluation.group_enable_eval_on_wa"
+    />
+</odoo>
