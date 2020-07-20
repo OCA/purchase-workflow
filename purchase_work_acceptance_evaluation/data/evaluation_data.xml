@@ -1,0 +1,74 @@
+<odoo>
+    <data noupdate="1">
+        <record id="score_on_time" model="work.acceptance.evaluation.score">
+            <field name="name">On time</field>
+            <field name="score" eval="3" />
+        </record>
+        <record id="score_late_one" model="work.acceptance.evaluation.score">
+            <field name="name">Late for 1-7 days</field>
+            <field name="score" eval="2" />
+        </record>
+        <record id="score_late_two" model="work.acceptance.evaluation.score">
+            <field name="name">Late for 8-14 days</field>
+            <field name="score" eval="1" />
+        </record>
+        <record id="score_late_three" model="work.acceptance.evaluation.score">
+            <field name="name">Late more than 15 days</field>
+            <field name="score" eval="0" />
+        </record>
+        <record id="score_excellent" model="work.acceptance.evaluation.score">
+            <field name="name">Excellent</field>
+            <field name="score" eval="3" />
+        </record>
+        <record id="score_good" model="work.acceptance.evaluation.score">
+            <field name="name">Good</field>
+            <field name="score" eval="2" />
+        </record>
+        <record id="score_satisfactory" model="work.acceptance.evaluation.score">
+            <field name="name">Satisfactory</field>
+            <field name="score" eval="1" />
+        </record>
+        <record id="score_need_improvement" model="work.acceptance.evaluation.score">
+            <field name="name">Need Improvement</field>
+            <field name="score" eval="0" />
+        </record>
+        <record id="score_better" model="work.acceptance.evaluation.score">
+            <field name="name">Better than expectation</field>
+            <field name="score" eval="2" />
+        </record>
+        <record id="score_as_expec" model="work.acceptance.evaluation.score">
+            <field name="name">As expectation</field>
+            <field name="score" eval="1" />
+        </record>
+        <record id="case_name_01" model="work.acceptance.evaluation">
+            <field name="name">Delivery Time</field>
+            <field name="active">True</field>
+            <field name="state_required">draft</field>
+            <field
+                name="score_ids"
+                eval="[(6,0,[ref('score_on_time'), ref('score_late_one'), ref('score_late_two'), ref('score_late_three')])]"
+            >
+            </field>
+        </record>
+        <record id="case_name_02" model="work.acceptance.evaluation">
+            <field name="name">Product Quality</field>
+            <field name="active">True</field>
+            <field name="state_required">draft</field>
+            <field
+                name="score_ids"
+                eval="[(6,0,[ref('score_better'), ref('score_as_expec')])]"
+            >
+            </field>
+        </record>
+        <record id="case_name_03" model="work.acceptance.evaluation">
+            <field name="name">Service Quality</field>
+            <field name="active">True</field>
+            <field name="state_required">draft</field>
+            <field
+                name="score_ids"
+                eval="[(6,0,[ref('score_excellent'), ref('score_good'), ref('score_satisfactory'), ref('score_need_improvement')])]"
+            >
+            </field>
+        </record>
+    </data>
+</odoo>
