@@ -23,7 +23,7 @@ Purchase order line price history
     :target: https://runbot.odoo-community.org/runbot/142/12.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 This module extends the functionality of Purchase to allow you to see the price
 history of a product from a purchase order line and set one of these
