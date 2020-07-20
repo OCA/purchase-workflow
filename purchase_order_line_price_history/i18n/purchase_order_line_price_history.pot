@@ -6,8 +6,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-17 02:59+0000\n"
-"PO-Revision-Date: 2020-07-17 02:59+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -30,11 +28,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_order_line_price_history.field_purchase_order_line_price_history__create_date
 #: model:ir.model.fields,field_description:purchase_order_line_price_history.field_purchase_order_line_price_history_line__create_date
 msgid "Created on"
-msgstr ""
-
-#. module: purchase_order_line_price_history
-#: model:ir.model.fields,field_description:purchase_order_line_price_history.field_purchase_order_line_price_history__partner_id
-msgid "Supplier"
 msgstr ""
 
 #. module: purchase_order_line_price_history
@@ -70,6 +63,11 @@ msgid "Include 'Requests for Quotation' lines in the purchase history"
 msgstr ""
 
 #. module: purchase_order_line_price_history
+#: model:ir.model.fields,field_description:purchase_order_line_price_history.field_purchase_order_line_price_history__include_rfq
+msgid "Include RFQ"
+msgstr ""
+
+#. module: purchase_order_line_price_history
 #: model:ir.model.fields,field_description:purchase_order_line_price_history.field_purchase_order_line_price_history__include_commercial_partner
 msgid "Include commercial entity"
 msgstr ""
@@ -77,11 +75,6 @@ msgstr ""
 #. module: purchase_order_line_price_history
 #: model:ir.model.fields,help:purchase_order_line_price_history.field_purchase_order_line_price_history__include_commercial_partner
 msgid "Include commercial entity and its contacts in the purchase history"
-msgstr ""
-
-#. module: purchase_order_line_price_history
-#: model:ir.model.fields,field_description:purchase_order_line_price_history.field_purchase_order_line_price_history__include_rfq
-msgid "Include RFQ"
 msgstr ""
 
 #. module: purchase_order_line_price_history
@@ -166,6 +159,11 @@ msgstr ""
 #. module: purchase_order_line_price_history
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_price_history.purchase_order_line_price_history_view_form
 msgid "Set price"
+msgstr ""
+
+#. module: purchase_order_line_price_history
+#: model:ir.model.fields,field_description:purchase_order_line_price_history.field_purchase_order_line_price_history__partner_id
+msgid "Supplier"
 msgstr ""
 
 #. module: purchase_order_line_price_history
