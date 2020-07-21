@@ -45,6 +45,7 @@ setuptools.setup(
         'odoo11-addon-purchase_request_tier_validation',
         'odoo11-addon-purchase_request_usage_department',
         'odoo11-addon-purchase_stock_price_unit_sync',
+        'odoo11-addon-purchase_stock_return_request',
         'odoo11-addon-purchase_tier_validation',
         'odoo11-addon-purchase_triple_discount',
         'odoo11-addon-stock_landed_cost_company_percentage',
