@@ -35,11 +35,6 @@ msgid "Created on"
 msgstr "Creado el"
 
 #. module: purchase_order_line_price_history
-#: model:ir.model.fields,field_description:purchase_order_line_price_history.field_purchase_order_line_price_history__partner_id
-msgid "Supplier"
-msgstr "Proveedor"
-
-#. module: purchase_order_line_price_history
 #: model:ir.model.fields,help:purchase_order_line_price_history.field_purchase_order_line_price_history_line__purchase_order_date_order
 msgid ""
 "Depicts the date where the Quotation should be validated and converted into "
@@ -74,8 +69,12 @@ msgstr ""
 #: model:ir.model.fields,help:purchase_order_line_price_history.field_purchase_order_line_price_history__include_rfq
 msgid "Include 'Requests for Quotation' lines in the purchase history"
 msgstr ""
-"Incluir lineas de 'Solicitudes de presupuesto' en el historial "
-"de compras"
+"Incluir lineas de 'Solicitudes de presupuesto' en el historial de compras"
+
+#. module: purchase_order_line_price_history
+#: model:ir.model.fields,field_description:purchase_order_line_price_history.field_purchase_order_line_price_history__include_rfq
+msgid "Include RFQ"
+msgstr "Incluir SdP"
 
 #. module: purchase_order_line_price_history
 #: model:ir.model.fields,field_description:purchase_order_line_price_history.field_purchase_order_line_price_history__include_commercial_partner
@@ -86,11 +85,6 @@ msgstr "Incluir entidad comercial"
 #: model:ir.model.fields,help:purchase_order_line_price_history.field_purchase_order_line_price_history__include_commercial_partner
 msgid "Include commercial entity and its contacts in the purchase history"
 msgstr "Incluir entidad comercial y sus contactos en el historial de compra"
-
-#. module: purchase_order_line_price_history
-#: model:ir.model.fields,field_description:purchase_order_line_price_history.field_purchase_order_line_price_history__include_rfq
-msgid "Include RFQ"
-msgstr "Incluir SdP"
 
 #. module: purchase_order_line_price_history
 #: model:ir.model.fields,field_description:purchase_order_line_price_history.field_purchase_order_line_price_history____last_update
@@ -175,6 +169,11 @@ msgstr "Cantidad"
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_price_history.purchase_order_line_price_history_view_form
 msgid "Set price"
 msgstr "Establecer precio"
+
+#. module: purchase_order_line_price_history
+#: model:ir.model.fields,field_description:purchase_order_line_price_history.field_purchase_order_line_price_history__partner_id
+msgid "Supplier"
+msgstr "Proveedor"
 
 #. module: purchase_order_line_price_history
 #: model:ir.model.fields,field_description:purchase_order_line_price_history.field_purchase_order_line_price_history_line__price_unit
