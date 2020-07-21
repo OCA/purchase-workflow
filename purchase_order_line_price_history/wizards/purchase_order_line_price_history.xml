@@ -42,6 +42,7 @@
                         </tree>
                     </field>
                 </group>
+                <field name="purchase_order_line_id" invisible="1"/>
                 <footer>
                     <button special="cancel" string="Close"/>
                 </footer>
