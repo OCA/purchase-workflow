@@ -23,7 +23,7 @@ Purchase Open Qty
     :target: https://runbot.odoo-community.org/runbot/142/13.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module allows purchase users to identify what are the purchase orders
 that currently have quantities pending to invoice or to receive.
@@ -54,12 +54,12 @@ Credits
 Authors
 ~~~~~~~
 
-* Eficent
+* ForgeFlow
 
 Contributors
 ~~~~~~~~~~~~
 
-* Miquel Raïch <miquel.raich@eficent.com>
+* Miquel Raïch <miquel.raich@forgeflow.com>
 * Andreas Dian Sukarno Putro <andreasdian777@gmail.com>
 * Kitti Upariphutthiphong <kittiu@ecosoft.co.th>
 * Eric Antones <eantones@nuobit.com>
