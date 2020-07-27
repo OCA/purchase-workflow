@@ -106,7 +106,11 @@ class PurchaseOrderLinePriceHistoryline(models.TransientModel):
         related="purchase_order_line_id.price_unit",
     )
 
-    @api.multi
+    def _prepare_purchase_order_line_vals(self):
+        self.ensure_one()
+        return {'price_unit': self.price_unit}
+
     def action_set_price(self):
         self.ensure_one()
-        self.history_purchase_order_line_id.price_unit = self.price_unit
+        vals = self._prepare_purchase_order_line_vals()
+        self.history_purchase_order_line_id.write(vals)
