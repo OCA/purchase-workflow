@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright 2019 Elico Corp, Dominique K. <dominique.k@elico-corp.com.sg>
 # Copyright 2019 Ecosoft Co., Ltd., Kitti U. <kittiu@ecosoft.co.th>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
@@ -47,8 +48,8 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
         purchase = self.env['purchase.order'].browse(active_id)
         if purchase.state != 'purchase':
             raise UserError(
-                _('This action is allowed only in Purchase Order sate'))
-        return super().view_init(fields)
+                _('This action is allowed only in Purchase Order state'))
+        return super(PurchaseAdvancePaymentInv, self).view_init(fields)
 
     @api.onchange('purchase_deposit_product_id')
     def _onchagne_purchase_deposit_product_id(self):
@@ -84,7 +85,7 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
             if self.amount > 100:
                 raise UserError(
                     _('The percentage of the deposit must be not over 100'))
-            amount = self.amount/100 * order.amount_untaxed
+            amount = self.amount / 100 * order.amount_untaxed
         name = _('Deposit Payment')
         del context
         taxes = product.supplier_taxes_id.filtered(
@@ -130,7 +131,6 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
     @api.multi
     def create_invoices(self):
         Purchase = self.env['purchase.order']
-        IrDefault = self.env['ir.default'].sudo()
         purchases = Purchase.browse(self._context.get('active_ids', []))
         # Create deposit product if necessary
         product = self.purchase_deposit_product_id
@@ -138,13 +138,11 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
             vals = self._prepare_deposit_product()
             product = self.purchase_deposit_product_id = \
                 self.env['product.product'].create(vals)
-            IrDefault.set('purchase.advance.payment.inv',
-                          'purchase_deposit_product_id', product.id)
         PurchaseLine = self.env['purchase.order.line']
         for order in purchases:
             amount = self.amount
             if self.advance_payment_method == 'percentage':  # Case percent
-                amount = self.amount/100 * order.amount_untaxed
+                amount = self.amount / 100 * order.amount_untaxed
             if product.purchase_method != 'purchase':
                 raise UserError(
                     _('The product used to invoice a down payment should have '
