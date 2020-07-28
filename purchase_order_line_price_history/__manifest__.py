@@ -4,13 +4,10 @@
     "name": "Purchase order line price history",
     "version": "12.0.1.0.2",
     "category": "Purchase Management",
-    "author": "Tecnativa,"
-              "Odoo Community Association (OCA)",
+    "author": "Tecnativa," "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow/",
     "license": "AGPL-3",
-    "depends": [
-        "purchase",
-    ],
+    "depends": ["purchase",],
     "data": [
         "wizards/purchase_order_line_price_history.xml",
         "views/purchase_views.xml",
