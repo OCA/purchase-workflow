@@ -5,16 +5,15 @@ from odoo.tests import Form, SavepointCase
 
 
 class TestPurchaseOrderLinePriceHistory(SavepointCase):
-
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.partner_1 = cls.env['res.partner'].create({'name': 'Partner 1'})
-        cls.partner_2 = cls.env['res.partner'].create({'name': 'Partner 2'})
-        cls.product = cls.env['product.product'].create({'name': 'Product 1'})
+        cls.partner_1 = cls.env["res.partner"].create({"name": "Partner 1"})
+        cls.partner_2 = cls.env["res.partner"].create({"name": "Partner 2"})
+        cls.product = cls.env["product.product"].create({"name": "Product 1"})
         # Two confirmed purchase orders with the same data and
         # different partners
-        purchase_form = Form(cls.env['purchase.order'])
+        purchase_form = Form(cls.env["purchase.order"])
         purchase_form.partner_id = cls.partner_1
         with purchase_form.order_line.new() as line_form:
             line_form.product_id = cls.product
@@ -22,7 +21,7 @@ class TestPurchaseOrderLinePriceHistory(SavepointCase):
             line_form.price_unit = 10
         cls.purchase_order_1 = purchase_form.save()
         cls.purchase_order_1.button_confirm()
-        purchase_form = Form(cls.env['purchase.order'])
+        purchase_form = Form(cls.env["purchase.order"])
         purchase_form.partner_id = cls.partner_2
         with purchase_form.order_line.new() as line_form:
             line_form.product_id = cls.product
@@ -32,7 +31,7 @@ class TestPurchaseOrderLinePriceHistory(SavepointCase):
         cls.purchase_order_2.button_confirm()
         # A non-confirmed purchase orders with the same partner
         # of cls.purchase_order_2
-        purchase_form = Form(cls.env['purchase.order'])
+        purchase_form = Form(cls.env["purchase.order"])
         purchase_form.partner_id = cls.partner_2
         with purchase_form.order_line.new() as line_form:
             line_form.product_id = cls.product
@@ -41,7 +40,7 @@ class TestPurchaseOrderLinePriceHistory(SavepointCase):
         cls.purchase_order_3 = purchase_form.save()
 
     def launch_wizard(self, active_id):
-        wizard_obj = self.env['purchase.order.line.price.history']
+        wizard_obj = self.env["purchase.order.line.price.history"]
         wizard = wizard_obj.with_context(active_id=active_id).create({})
         wizard._onchange_partner_id()
         return wizard
@@ -53,8 +52,7 @@ class TestPurchaseOrderLinePriceHistory(SavepointCase):
         wizard = self.launch_wizard(self.purchase_order_3.order_line.id)
         self.assertEqual(len(wizard.line_ids), 1)
         self.assertEqual(
-            wizard.line_ids.purchase_order_line_id,
-            self.purchase_order_2.order_line,
+            wizard.line_ids.purchase_order_line_id, self.purchase_order_2.order_line,
         )
         self.assertEqual(wizard.line_ids.price_unit, 20)
         # Set partner to False. Two history lines should be shown and
@@ -64,14 +62,14 @@ class TestPurchaseOrderLinePriceHistory(SavepointCase):
         wizard._onchange_partner_id()
         self.assertEqual(len(wizard.line_ids), 2)
         self.assertEqual(
-            set(wizard.line_ids.mapped('purchase_order_line_id.price_unit')),
+            set(wizard.line_ids.mapped("purchase_order_line_id.price_unit")),
             set(list([10.0, 20.0])),
         )
 
     def test_onchange_partner_id_include_rfq(self):
         # Another purchase orders with the same partner of cls.purchase_order_2
         # and cls.purchase_order_3
-        purchase_form = Form(self.env['purchase.order'])
+        purchase_form = Form(self.env["purchase.order"])
         purchase_form.partner_id = self.partner_2
         with purchase_form.order_line.new() as line_form:
             line_form.product_id = self.product
@@ -84,8 +82,7 @@ class TestPurchaseOrderLinePriceHistory(SavepointCase):
         wizard = self.launch_wizard(self.purchase_order_4.order_line.id)
         self.assertEqual(len(wizard.line_ids), 1)
         self.assertEqual(
-            wizard.line_ids.purchase_order_line_id,
-            self.purchase_order_2.order_line,
+            wizard.line_ids.purchase_order_line_id, self.purchase_order_2.order_line,
         )
         # If include_rfq is checked two history lines should be shown
         # and they should be associated with self.purchase_order_2 order line
@@ -94,18 +91,16 @@ class TestPurchaseOrderLinePriceHistory(SavepointCase):
         wizard._onchange_partner_id()
         self.assertEqual(len(wizard.line_ids), 2)
         self.assertEqual(
-            wizard.line_ids.mapped('purchase_order_line_id'),
-            (self.purchase_order_2.order_line
-             | self.purchase_order_3.order_line),
+            wizard.line_ids.mapped("purchase_order_line_id"),
+            (self.purchase_order_2.order_line | self.purchase_order_3.order_line),
         )
 
     def test_onchange_partner_id_include_commercial_partner(self):
         # Another purchase orders with a partner child of cls.purchase_order_2
-        partner_2_child = self.env['res.partner'].create({
-            'name': 'Child of Partner 2',
-            'parent_id': self.partner_2.id,
-        })
-        purchase_form = Form(self.env['purchase.order'])
+        partner_2_child = self.env["res.partner"].create(
+            {"name": "Child of Partner 2", "parent_id": self.partner_2.id,}
+        )
+        purchase_form = Form(self.env["purchase.order"])
         purchase_form.partner_id = partner_2_child
         with purchase_form.order_line.new() as line_form:
             line_form.product_id = self.product
@@ -118,8 +113,7 @@ class TestPurchaseOrderLinePriceHistory(SavepointCase):
         wizard = self.launch_wizard(self.purchase_order_4.order_line.id)
         self.assertEqual(len(wizard.line_ids), 1)
         self.assertEqual(
-            wizard.line_ids.purchase_order_line_id,
-            self.purchase_order_2.order_line,
+            wizard.line_ids.purchase_order_line_id, self.purchase_order_2.order_line,
         )
         # Uncheck include_commercial_partner and purchase history
         # will be empty.
