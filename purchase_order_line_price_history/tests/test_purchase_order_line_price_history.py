@@ -98,7 +98,7 @@ class TestPurchaseOrderLinePriceHistory(SavepointCase):
     def test_onchange_partner_id_include_commercial_partner(self):
         # Another purchase orders with a partner child of cls.purchase_order_2
         partner_2_child = self.env["res.partner"].create(
-            {"name": "Child of Partner 2", "parent_id": self.partner_2.id,}
+            {"name": "Child of Partner 2", "parent_id": self.partner_2.id},
         )
         purchase_form = Form(self.env["purchase.order"])
         purchase_form.partner_id = partner_2_child
