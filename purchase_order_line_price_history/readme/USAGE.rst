@@ -1,6 +1,6 @@
 To use this module, you need to:
 
-#. Go to *Purchase -> Requests for Quotation* and select
+#. Go to *Purchase -> Orders -> Requests for Quotation* and select
    a Requests for Quotation or create a new one.
 #. Click on the new clock button in one of the order lines.
 #. A pop-up will open and you will see the *price history* for the product of
