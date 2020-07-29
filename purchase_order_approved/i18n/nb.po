@@ -44,13 +44,8 @@ msgid ""
 msgstr ""
 
 #. module: purchase_order_approved
-#: selection:purchase.order,state:0
+#: model:ir.model.fields.selection,name:purchase_order_approved.selection__purchase_order__state__approved
 msgid "Approved"
-msgstr ""
-
-#. module: purchase_order_approved
-#: selection:purchase.order,state:0
-msgid "Cancelled"
 msgstr ""
 
 #. module: purchase_order_approved
@@ -98,11 +93,6 @@ msgid "Drop Ship Address"
 msgstr ""
 
 #. module: purchase_order_approved
-#: selection:purchase.order,state:0
-msgid "Locked"
-msgstr ""
-
-#. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__date_order
 msgid "Order Date"
 msgstr ""
@@ -114,7 +104,6 @@ msgstr ""
 
 #. module: purchase_order_approved
 #: model:ir.model,name:purchase_order_approved.model_purchase_order
-#: selection:purchase.order,state:0
 msgid "Purchase Order"
 msgstr ""
 
@@ -123,16 +112,6 @@ msgstr ""
 msgid ""
 "Put an address if you want to deliver directly from the vendor to the "
 "customer. Otherwise, keep empty to deliver to your own company."
-msgstr ""
-
-#. module: purchase_order_approved
-#: selection:purchase.order,state:0
-msgid "RFQ"
-msgstr ""
-
-#. module: purchase_order_approved
-#: selection:purchase.order,state:0
-msgid "RFQ Sent"
 msgstr ""
 
 #. module: purchase_order_approved
@@ -160,11 +139,6 @@ msgstr ""
 #. module: purchase_order_approved
 #: model:ir.model.fields,help:purchase_order_approved.field_purchase_order__picking_type_id
 msgid "This will determine operation type of incoming shipment"
-msgstr ""
-
-#. module: purchase_order_approved
-#: selection:purchase.order,state:0
-msgid "To Approve"
 msgstr ""
 
 #. module: purchase_order_approved
