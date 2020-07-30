@@ -1,0 +1,6 @@
+<odoo>
+    <record id="group_enable_fines_on_wa" model="res.groups">
+        <field name="name">Enable Late Delivery Fines on Work Acceptance</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+    </record>
+</odoo>
