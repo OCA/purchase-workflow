@@ -5,14 +5,13 @@ from odoo.tests import Form, SavepointCase
 
 
 class TestPurchaseOrderLinePriceHistoryDiscount(SavepointCase):
-
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.partner_1 = cls.env['res.partner'].create({'name': 'Partner 1'})
-        cls.product = cls.env['product.product'].create({'name': 'Product 1'})
+        cls.partner_1 = cls.env["res.partner"].create({"name": "Partner 1"})
+        cls.product = cls.env["product.product"].create({"name": "Product 1"})
         # Create a purchase order
-        purchase_form = Form(cls.env['purchase.order'])
+        purchase_form = Form(cls.env["purchase.order"])
         purchase_form.partner_id = cls.partner_1
         with purchase_form.order_line.new() as line_form:
             line_form.product_id = cls.product
@@ -23,7 +22,7 @@ class TestPurchaseOrderLinePriceHistoryDiscount(SavepointCase):
         cls.purchase_order_1.button_confirm()
         # A non-confirmed purchase orders with the same partner and product
         # of cls.purchase_order_1, but different unit price and discount
-        purchase_form = Form(cls.env['purchase.order'])
+        purchase_form = Form(cls.env["purchase.order"])
         purchase_form.partner_id = cls.partner_1
         with purchase_form.order_line.new() as line_form:
             line_form.product_id = cls.product
@@ -33,7 +32,7 @@ class TestPurchaseOrderLinePriceHistoryDiscount(SavepointCase):
         cls.purchase_order_2 = purchase_form.save()
 
     def launch_wizard(self, active_id):
-        wizard_obj = self.env['purchase.order.line.price.history']
+        wizard_obj = self.env["purchase.order.line.price.history"]
         wizard = wizard_obj.with_context(active_id=active_id).create({})
         wizard._onchange_partner_id()
         return wizard
