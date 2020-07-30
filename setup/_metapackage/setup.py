@@ -35,6 +35,7 @@ setuptools.setup(
         'odoo12-addon-purchase_order_line_deep_sort',
         'odoo12-addon-purchase_order_line_description',
         'odoo12-addon-purchase_order_line_price_history',
+        'odoo12-addon-purchase_order_line_price_history_discount',
         'odoo12-addon-purchase_order_line_sequence',
         'odoo12-addon-purchase_order_line_stock_available',
         'odoo12-addon-purchase_order_product_recommendation',
