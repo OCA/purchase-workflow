@@ -8,7 +8,7 @@
     "version": "13.0.1.0.1",
     "license": "AGPL-3",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
-    "website": "www.github.com/OCA/stock-logistics-workflow.git",
+    "website": "https://github.com/OCA/purchase-workflow",
     "depends": ["purchase"],
     "data": ["views/purchase_order_views.xml"],
 }
