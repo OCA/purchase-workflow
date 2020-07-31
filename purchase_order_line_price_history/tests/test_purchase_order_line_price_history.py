@@ -4,8 +4,7 @@
 from odoo.tests import Form, SavepointCase
 
 
-class TestPurchaseOrderLinePriceHistory(SavepointCase):
-
+class TestPurchaseOrderLinePriceHistoryBase(SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -29,7 +28,6 @@ class TestPurchaseOrderLinePriceHistory(SavepointCase):
             line_form.product_qty = 2
             line_form.price_unit = 20
         cls.purchase_order_2 = purchase_form.save()
-        cls.purchase_order_2.button_confirm()
         # A non-confirmed purchase orders with the same partner
         # of cls.purchase_order_2
         purchase_form = Form(cls.env['purchase.order'])
@@ -45,6 +43,13 @@ class TestPurchaseOrderLinePriceHistory(SavepointCase):
         wizard = wizard_obj.with_context(active_id=active_id).create({})
         wizard._onchange_partner_id()
         return wizard
+
+
+class TestPurchaseOrderLinePriceHistory(TestPurchaseOrderLinePriceHistoryBase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.purchase_order_2.button_confirm()
 
     def test_onchange_partner_id(self):
         # Create a wizard from self.purchase_order_3 order line.
