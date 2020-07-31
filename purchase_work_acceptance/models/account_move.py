@@ -13,6 +13,7 @@ class AccountMove(models.Model):
         comodel_name="work.acceptance",
         string="WA Reference",
         copy=False,
+        readonly=True,
         domain=lambda self: [
             ("state", "=", "accept"),
             ("purchase_id", "=", self._context.get("active_id")),
@@ -22,16 +23,19 @@ class AccountMove(models.Model):
     )
 
     def _compute_require_wa(self):
-        self.require_wa = self.env.user.has_group(
-            "purchase_work_acceptance.group_enforce_wa_on_invoice"
-        )
+        for rec in self:
+            enforce_wa = self.env.user.has_group(
+                "purchase_work_acceptance.group_enforce_wa_on_invoice"
+            )
+            rec.require_wa = self.wa_id and enforce_wa
 
     @api.onchange("purchase_vendor_bill_id", "purchase_id")
     def _onchange_purchase_auto_complete(self):
         res = super()._onchange_purchase_auto_complete()
         if self.wa_id:
-            self.ref = self.wa_id.invoice_ref
-            self.currency_id = self.wa_id.currency_id
+            self.write(
+                {"ref": self.wa_id.invoice_ref, "currency_id": self.wa_id.currency_id}
+            )
         return res
 
     def action_post(self):

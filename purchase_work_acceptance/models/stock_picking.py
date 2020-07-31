@@ -82,7 +82,7 @@ class Picking(models.Model):
                 if move_line.product_id.id in wa_line.keys():
                     qty = wa_line[move_line.product_id.id]
                     if move_line.product_uom_qty < qty:
-                        move_line.qty_done = move_line.product_uom_qty
+                        move_line._origin.qty_done = move_line.product_uom_qty
                         wa_line[line.product_id.id] = qty - move_line.product_uom_qty
                     else:
-                        move_line.qty_done = qty
+                        move_line._origin.qty_done = qty
