@@ -1,7 +1,8 @@
 # Copyright 2019 Ecosoft Co., Ltd. (http://ecosoft.co.th)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import UserError
 
 
 class WorkAcceptance(models.Model):
@@ -112,6 +113,15 @@ class WorkAcceptance(models.Model):
         self.write({"state": "accept", "date_accept": fields.Datetime.now()})
 
     def button_draft(self):
+        picking_obj = self.env["stock.picking"]
+        wa_ids = picking_obj.search([("wa_id", "in", self.ids)])
+        if wa_ids:
+            raise UserError(
+                _(
+                    "Unable set to draft this work acceptance. "
+                    "You must first cancel the related receipts."
+                )
+            )
         self.write({"state": "draft"})
 
     def button_cancel(self):
