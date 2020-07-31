@@ -11,9 +11,7 @@
                     name="wa_id"
                     options="{'no_create': True}"
                     groups="purchase_work_acceptance.group_enable_wa_on_invoice"
-                    attrs="{'required': [('require_wa','=', True)],
-                               'readonly': True,
-                               'invisible': ['|', ('wa_id', '=', False), ('purchase_id', '=', False)]}"
+                    attrs="{'required': [('require_wa','=', True)], 'invisible': [('wa_id', '=', False)]}"
                 />
             </xpath>
         </field>
