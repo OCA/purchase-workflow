@@ -29,4 +29,4 @@ class PurchaseOrder(models.Model):
                     purchase_warn_msg += p.purchase_warn_msg
                 if p != rec.partner_id and rec.partner_id.purchase_warn == "warning":
                     purchase_warn_msg += separator + rec.partner_id.purchase_warn_msg
-            rec.purchase_warn_msg = purchase_warn_msg
+            rec.purchase_warn_msg = purchase_warn_msg or False
