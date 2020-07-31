@@ -178,7 +178,6 @@ msgstr "Precio unitario"
 #. module: purchase_order_line_price_history
 #: model:ir.model.fields,field_description:purchase_order_line_price_history.field_purchase_order_line_price_history_line__product_uom
 #, fuzzy
-#| msgid "Product Unit of Measure"
 msgid "Unit of Measure"
 msgstr "Unidad de medida del producto"
 
