@@ -22,6 +22,7 @@ setuptools.setup(
         'odoo13-addon-purchase_order_line_deep_sort',
         'odoo13-addon-purchase_order_line_packaging_qty',
         'odoo13-addon-purchase_order_line_price_history',
+        'odoo13-addon-purchase_order_line_price_history_discount',
         'odoo13-addon-purchase_order_product_recommendation',
         'odoo13-addon-purchase_order_secondary_unit',
         'odoo13-addon-purchase_product_usage',
