@@ -8,35 +8,34 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-03-08 10:15+0000\n"
-"PO-Revision-Date: 2016-03-08 10:16+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/OCA-purchase-"
-"workflow-8-0/language/es/)\n"
+"PO-Revision-Date: 2020-08-06 15:59+0000\n"
+"Last-Translator: Nacho Morales <i.moralesc@outlook.es>\n"
+"Language-Team: Spanish (http://www.transifex.com/oca/"
+"OCA-purchase-workflow-8-0/language/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: purchase_last_price_info
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_product_last_purchase_date
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_template_last_purchase_date
-#, fuzzy
-#| msgid "Purchase"
 msgid "Last Purchase Date"
-msgstr "Compra"
+msgstr "Última fecha de compra"
 
 #. module: purchase_last_price_info
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_product_last_purchase_price
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_template_last_purchase_price
 msgid "Last Purchase Price"
-msgstr ""
+msgstr "Último precio de compra"
 
 #. module: purchase_last_price_info
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_product_last_supplier_id
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_template_last_supplier_id
 msgid "Last Supplier"
-msgstr ""
+msgstr "Último proveedor"
 
 #. module: purchase_last_price_info
 #: model:ir.model,name:purchase_last_price_info.model_product_product
@@ -45,10 +44,8 @@ msgstr "Producto"
 
 #. module: purchase_last_price_info
 #: model:ir.model,name:purchase_last_price_info.model_product_template
-#, fuzzy
-#| msgid "Product"
 msgid "Product Template"
-msgstr "Producto"
+msgstr "Plantilla de producto"
 
 #. module: purchase_last_price_info
 #: model:ir.ui.view,arch_db:purchase_last_price_info.product_product_last_purchase_info_form_view
@@ -58,10 +55,8 @@ msgstr "Compra"
 
 #. module: purchase_last_price_info
 #: model:ir.model,name:purchase_last_price_info.model_purchase_order
-#, fuzzy
-#| msgid "Purchase"
 msgid "Purchase Order"
-msgstr "Compra"
+msgstr "Orden de compra"
 
 #~ msgid "Last Price Info"
 #~ msgstr "Información último precio"
