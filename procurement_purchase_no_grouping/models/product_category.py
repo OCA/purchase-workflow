@@ -15,7 +15,6 @@ class ProductCategory(models.Model):
             ("order", "No order grouping"),
         ],
         string="Procured purchase grouping",
-        default="standard",
         help="Select the behaviour for grouping procured purchases for the "
         "the products of this category:\n"
         "* Standard grouping (default): Procurements will generate "
@@ -25,5 +24,6 @@ class ProductCategory(models.Model):
         "the same supplier, it will be reused, but lines won't be "
         "merged.\n"
         "* No order grouping: This option will prevent any kind of "
-        "grouping.",
+        "grouping.\n"
+        "* <empty>: If no value is selected, system-wide default will be used.",
     )
