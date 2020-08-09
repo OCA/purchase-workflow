@@ -48,6 +48,9 @@ class TestProcurementPurchaseNoGrouping(common.SavepointCase):
         )
         self.stock_rule._run_buy([(procurement, rule)])
 
+    def _set_system_grouping(self, grouping):
+        self.env.company.procured_purchase_grouping = grouping
+
     def test_procurement_grouped_purchase(self):
         self.category.procured_purchase_grouping = "standard"
         self._run_procurement()
@@ -70,6 +73,41 @@ class TestProcurementPurchaseNoGrouping(common.SavepointCase):
 
     def test_procurement_no_grouping_order_purchase(self):
         self.category.procured_purchase_grouping = "order"
+        self._run_procurement()
+        self._run_procurement()
+        orders = self.env["purchase.order"].search([("origin", "=", self.origin)])
+        self.assertEqual(len(orders), 2, "Procured purchase orders are the same")
+        self.assertEqual(
+            len(orders.mapped("order_line")),
+            2,
+            "Procured purchase orders lines are the same",
+        )
+
+    def test_procurement_system_grouped_purchase(self):
+        self.category.procured_purchase_grouping = None
+        self._set_system_grouping("standard")
+        self._run_procurement()
+        self._run_procurement()
+        orders = self.env["purchase.order"].search([("origin", "=", self.origin)])
+        self.assertEqual(len(orders), 1, "Procured purchase orders are not the same")
+        self.assertEqual(
+            len(orders.order_line), 1, "Procured purchase orders lines are not the same"
+        )
+
+    def test_procurement_system_no_grouping_line_purchase(self):
+        self.category.procured_purchase_grouping = None
+        self._set_system_grouping("line")
+        self._run_procurement()
+        self._run_procurement()
+        orders = self.env["purchase.order"].search([("origin", "=", self.origin)])
+        self.assertEqual(len(orders), 1, "Procured purchase orders are not the same")
+        self.assertEqual(
+            len(orders.order_line), 2, "Procured purchase orders lines are the same"
+        )
+
+    def test_procurement_system_no_grouping_order_purchase(self):
+        self.category.procured_purchase_grouping = None
+        self._set_system_grouping("order")
         self._run_procurement()
         self._run_procurement()
         orders = self.env["purchase.order"].search([("origin", "=", self.origin)])
