@@ -1,6 +1,7 @@
 # Copyright 2015 AvanzOsc (http://www.avanzosc.es)
 # Copyright 2015-2016 Tecnativa - Pedro M. Baeza
 # Copyright 2018 Tecnativa - Carlos Dauden
+# Copyright 2020 Radovan Skolnik
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
 from odoo import models
@@ -11,9 +12,10 @@ class StockRule(models.Model):
 
     def _run_buy(self, procurements):
         for procurement, _rule in procurements:
-            procurement.values[
-                "grouping"
-            ] = procurement.product_id.categ_id.procured_purchase_grouping
+            grouping = procurement.product_id.categ_id.procured_purchase_grouping
+            if not grouping:
+                grouping = self.env.company.procured_purchase_grouping
+            procurement.values["grouping"] = grouping
         return super()._run_buy(procurements)
 
     def _make_po_get_domain(self, company_id, values, partner):
