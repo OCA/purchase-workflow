@@ -10,7 +10,7 @@
     "website": "https://github.com/OCA/purchase-workflow",
     "category": "Procurements",
     "depends": ["purchase_stock"],
-    "data": ["views/product_category_view.xml"],
+    "data": ["views/product_category_view.xml", "views/res_config_settings_views.xml"],
     "installable": True,
     "license": "AGPL-3",
 }
