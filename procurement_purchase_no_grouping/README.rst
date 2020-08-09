@@ -26,7 +26,8 @@ Procurement Purchase No Grouping
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
 This module allows to not group generated purchase orders from procurements.
-The grouping behaviour can be configurable at product category level.
+The grouping behaviour can be configurable at product category level or fall back
+to system default.
 
 **Table of contents**
 
@@ -39,11 +40,16 @@ Configuration
 Go to each product category, and select one of these values in the field
 "Procured purchase grouping":
 
-* *Standard grouping (default)*: With this option, procurements will generate
+* *Standard grouping*: With this option, procurements will generate
   purchase orders as always, grouping lines and orders when possible.
 * *No line grouping*: With this value, if there are any open purchase order
   for the same supplier, it will be reused, but lines won't be merged.
 * *No order grouping*: This option will prevent any kind of grouping.
+* *<empty>*: If you select nothing, default value set up in System
+  settings will be applied.
+
+System default behaviour can be set up in System settings / Purchase / Procurement
+Purchase Grouping
 
 Bug Tracker
 ===========
@@ -76,6 +82,7 @@ Contributors
 
 * Ana Juaristi <ajuaristo@gmail.com>
 * Alfredo de la Fuente <alfredodelafuente@avanzosc.es>
+* Radovan Skolnik <radovan@skolnik.info>
 
 Maintainers
 ~~~~~~~~~~~

@@ -7,3 +7,4 @@
 
 * Ana Juaristi <ajuaristo@gmail.com>
 * Alfredo de la Fuente <alfredodelafuente@avanzosc.es>
+* Radovan Skolnik <radovan@skolnik.info>
