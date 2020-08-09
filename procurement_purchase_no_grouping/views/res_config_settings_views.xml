@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record
+        id="res_config_settings_view_form_procurement_purchase_grouping"
+        model="ir.ui.view"
+    >
+        <field
+            name="name"
+        >res.config.settings.view.form.inherit.procurement.purchase.grouping</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="50" />
+        <field name="inherit_id" ref="base.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div
+                    class="app_settings_block"
+                    data-string="Purchase"
+                    string="Purchase"
+                    data-key="purchase"
+                    groups="purchase.group_purchase_manager"
+                >
+                    <h2>Procurement Purchase Grouping</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <span class="o_form_label">Grouping</span>
+                                <span
+                                    class="fa fa-lg fa-object-group"
+                                    title="Value to be used if individual category is set to 'System default'"
+                                    aria-label="Value set here is default. Specific values are set per category."
+                                    role="img"
+                                />
+                                <div class="text-muted">
+                                    Set the default procurement purchase grouping type
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16 row">
+                                        <label
+                                            for="procured_purchase_grouping"
+                                            string="Grouping"
+                                            class="col-3 col-lg-3 o_light_label"
+                                        />
+                                        <field
+                                            name="procured_purchase_grouping"
+                                            class="oe_inline"
+                                            required="1"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
