@@ -7,15 +7,16 @@ msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-07 23:04+0000\n"
-"PO-Revision-Date: 2015-08-15 18:33+0200\n"
-"Last-Translator: Matjaz Mozetic <m.mozetic@matmoz.si>\n"
+"PO-Revision-Date: 2020-08-12 15:59+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@matmoz.si>\n"
 "Language-Team: \n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
-"X-Generator: Poedit 1.8.4\n"
+"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_expense__affected_lines
@@ -24,9 +25,8 @@ msgstr "Prizadete postavke"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__total_amount
-#, fuzzy
 msgid "Amount line"
-msgstr "Po znesku postavke"
+msgstr "Znesek postavke"
 
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
@@ -90,14 +90,13 @@ msgstr "Preklic"
 
 #. module: purchase_landed_cost
 #: model_terms:ir.actions.act_window,help:purchase_landed_cost.action_purchase_cost_distribution
-#, fuzzy
 msgid "Click to create a draft purchase expenses distribution."
-msgstr "Iskanje distribucij nabavnih stroškov"
+msgstr "Ustvari osnutek distribucije nabavnih stroškov."
 
 #. module: purchase_landed_cost
 #: model_terms:ir.actions.act_window,help:purchase_landed_cost.action_purchase_expense_type
 msgid "Click to create a new expense type."
-msgstr ""
+msgstr "Ustvari nov tip stroška."
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__company_id
@@ -106,12 +105,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_expense__company_id
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_expense_type__company_id
 msgid "Company"
-msgstr "Družba:"
+msgstr "Družba"
 
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_form
 msgid "Cost Line Expenses"
-msgstr "Izdatki stroškovnih postavk"
+msgstr "Postavka stroškov nabave"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__cost_update_type
@@ -120,9 +119,8 @@ msgstr "Tip posodobitve stroška"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__expense_amount
-#, fuzzy
 msgid "Cost amount"
-msgstr "Privzeti znesek"
+msgstr "Znesek stroška"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_expense__distribution
@@ -135,7 +133,7 @@ msgstr "Distribucija stroškov"
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_expense_invoice_form
 msgid "Cost distribution expenses"
-msgstr "Izdatki distribucije stroškov"
+msgstr "Strošek distribucije stroškov nabave"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_expense__distribution_line
@@ -170,7 +168,7 @@ msgstr ""
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
 msgid "Costs distribution picking lines"
-msgstr "Postavke zbirnika distribucije stroškov"
+msgstr "Distribucija stroškov postavk dobavnice"
 
 #. module: purchase_landed_cost
 #: model:ir.ui.menu,name:purchase_landed_cost.menu_purchase_cost_control
@@ -204,7 +202,7 @@ msgstr "Ustvarjeno"
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__currency_id
 msgid "Currency"
-msgstr ""
+msgstr "Valuta"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__date
@@ -214,17 +212,17 @@ msgstr "Datum"
 #. module: purchase_landed_cost
 #: model:ir.model.fields,help:purchase_landed_cost.field_purchase_cost_distribution_line_expense__picking_date_done
 msgid "Date at which the transfer has been processed or cancelled."
-msgstr ""
+msgstr "Datum obdelave ali preklica premestitve."
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_expense__picking_date_done
 msgid "Date of Transfer"
-msgstr ""
+msgstr "Datum premestitve"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_expense_type__default_expense
 msgid "Default Expense"
-msgstr "Privzeti izdatek"
+msgstr "Privzeti strošek"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_expense_type__default_amount
@@ -253,12 +251,12 @@ msgstr "Neposredna posodobitev"
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_expense__display_name
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_expense_type__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Prikazni naziv"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_expense__distribution_expense
 msgid "Distribution expense"
-msgstr "Distribucijski izdatek"
+msgstr "Distribucijski strošek"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__cost_lines
@@ -287,14 +285,13 @@ msgstr "Osnutek"
 
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_expense_invoice_form
-#, fuzzy
 msgid "Duplicate expense"
-msgstr "Privzeti izdatek"
+msgstr "Podvoji strošek"
 
 #. module: purchase_landed_cost
 #: selection:purchase.expense.type,calculation_method:0
 msgid "Equally to all lines"
-msgstr "Enako za vse postavke"
+msgstr "Enakomerno na vse postavke"
 
 #. module: purchase_landed_cost
 #: selection:purchase.cost.distribution,state:0
@@ -305,14 +302,13 @@ msgstr "Napaka"
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_expense__expense_amount
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_expense__expense_amount
 msgid "Expense amount"
-msgstr "Znesek izdatka"
+msgstr "Znesek stroška"
 
 #. module: purchase_landed_cost
 #: model:ir.actions.act_window,name:purchase_landed_cost.action_purchase_cost_distribution_line_expense
 #: model:ir.ui.menu,name:purchase_landed_cost.menu_purchase_cost_distribution_line_expense
-#, fuzzy
 msgid "Expense distribution lines"
-msgstr "Distribucijske postavke izdatkov"
+msgstr "Postavke distribucije stroška"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_import_invoice_line_wizard__expense_type
@@ -320,35 +316,34 @@ msgstr "Distribucijske postavke izdatkov"
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_expense__type
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_expense_search
 msgid "Expense type"
-msgstr "Tip izdatka"
+msgstr "Tip stroška"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__expense_lines
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
 msgid "Expenses"
-msgstr "Izdatki"
+msgstr "Stroški"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__expense_lines
 msgid "Expenses distribution lines"
-msgstr "Distribucijske postavke izdatkov"
+msgstr "Postavke distribucije stroškov"
 
 #. module: purchase_landed_cost
 #: model:ir.actions.act_window,name:purchase_landed_cost.action_purchase_expense_type
 #: model:ir.ui.menu,name:purchase_landed_cost.menu_purchase_expense_type
 msgid "Expenses types"
-msgstr "Tipi izdatkov"
+msgstr "Tipi stroškov"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__product_weight
-#, fuzzy
 msgid "Gross weight"
-msgstr "Po masi proizvoda"
+msgstr "Bruto masa"
 
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_expense_search
 msgid "Group By"
-msgstr ""
+msgstr "Združi po"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_import_invoice_line_wizard__id
@@ -368,8 +363,8 @@ msgid ""
 "If set, this amount is put in the expense line when you select this expense "
 "type"
 msgstr ""
-"Če je nastavljeno, se ob izbiri tega tipa izdatka znesek da med postavke "
-"izdatkov"
+"Če je nastavljeno, se, ob izbiri tega tipa stroška, ta znesek prenese v "
+"postavko stroška"
 
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.import_invoice_line_wizard_view
@@ -380,9 +375,8 @@ msgstr "Uvoz"
 
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.invoice_supplier_form
-#, fuzzy
 msgid "Import from pickings"
-msgstr "Uvoz postavke računa"
+msgstr "Uvozi iz dobavnic"
 
 #. module: purchase_landed_cost
 #: model:ir.actions.act_window,name:purchase_landed_cost.action_picking_import_wizard
@@ -399,13 +393,12 @@ msgstr "Uvoz postavke računa"
 #. module: purchase_landed_cost
 #: model:ir.actions.act_window,name:purchase_landed_cost.action_import_landed_cost_pickings_wizard
 msgid "Import landed cost from pickings"
-msgstr ""
+msgstr "Uvozi odvisne stroške dobav iz dobavnic"
 
 #. module: purchase_landed_cost
 #: model:ir.model,name:purchase_landed_cost.model_import_landed_cost_pickings_wizard
-#, fuzzy
 msgid "Import landed cost pickings"
-msgstr "Uvoz postavke računa"
+msgstr "Uvozi dobavnice z odvisnimi stroški"
 
 #. module: purchase_landed_cost
 #: model:ir.actions.act_window,name:purchase_landed_cost.action_import_invoice_line_wizard
@@ -415,9 +408,8 @@ msgstr "Uvoz postavke prejetega računa"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_expense__imported_lines
-#, fuzzy
 msgid "Imported lines"
-msgstr "Uvoz postavke računa"
+msgstr "Uvožene postavke"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_picking_import_wizard__pickings
@@ -433,7 +425,6 @@ msgstr "Račun"
 
 #. module: purchase_landed_cost
 #: model:ir.model,name:purchase_landed_cost.model_account_invoice_line
-#, fuzzy
 msgid "Invoice Line"
 msgstr "Postavka računa"
 
@@ -449,7 +440,7 @@ msgstr "Postavka računa"
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_order_form
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_picking_form
 msgid "Landed costs"
-msgstr "Stroški iztovarjanja"
+msgstr "Odvisni stroški dobave"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_import_invoice_line_wizard____last_update
@@ -460,9 +451,8 @@ msgstr "Stroški iztovarjanja"
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line____last_update
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_expense____last_update
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_expense_type____last_update
-#, fuzzy
 msgid "Last Modified on"
-msgstr "Zadnjič posodobljeno"
+msgstr "Zadnjič spremenjeno"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_import_invoice_line_wizard__write_uid
@@ -506,9 +496,8 @@ msgstr "Naziv"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__standard_price_new
-#, fuzzy
 msgid "New cost"
-msgstr "Stroški iztovarjanja"
+msgstr "Nov strošek"
 
 #. module: purchase_landed_cost
 #: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:200
@@ -519,7 +508,7 @@ msgstr "Ni veljavnega tipa distribucije."
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.import_landed_cost_pickings_wizard_view
 msgid "Only the pickings with expenses are allowed to be selected here."
-msgstr ""
+msgstr "Tu lahko izbirate le dobavnice s stroški."
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__picking_id
@@ -540,31 +529,27 @@ msgstr "Postavke zbirnika"
 
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_expense_search
-#, fuzzy
 msgid "Picking transfer date"
-msgstr "Zbirnik"
+msgstr "Datum premestitve z zbirnika"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_import_landed_cost_pickings_wizard__picking_ids
-#, fuzzy
 msgid "Pickings"
-msgstr "Zbirnik"
+msgstr "Zbirniki"
 
 #. module: purchase_landed_cost
 #: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:221
 #, python-format
 msgid "Please enter an amount for all the expenses"
-msgstr "Vnesite znesek za vse izdatke"
+msgstr "Vnesite znesek za vse stroške"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_import_landed_cost_pickings_wizard__possible_picking_ids
-#, fuzzy
 msgid "Possible pickings"
-msgstr "Prejšnji zbirniki"
+msgstr "Možni zbirniki"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_picking_import_wizard__prev_pickings
-#, fuzzy
 msgid "Prev Pickings"
 msgstr "Prejšnji zbirniki"
 
@@ -586,7 +571,7 @@ msgstr "Podatki o proizvodu"
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_form
 msgid "Purchase Cost Line"
-msgstr "Postavka nabavnega stroška"
+msgstr "Postavka stroška nabave"
 
 #. module: purchase_landed_cost
 #: model:ir.model,name:purchase_landed_cost.model_purchase_order
@@ -598,55 +583,54 @@ msgstr "Nabavni nalog"
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_calendar
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_graph
 msgid "Purchase cost distribution"
-msgstr "Distribucija nabavnih stroškov"
+msgstr "Distribucija stroškov nabave"
 
 #. module: purchase_landed_cost
 #: model:ir.model,name:purchase_landed_cost.model_purchase_cost_distribution_line
 msgid "Purchase cost distribution Line"
-msgstr "Distribucijska postavka nabavnih stroškov"
+msgstr "Postavka distribucije stroškov nabave"
 
 #. module: purchase_landed_cost
 #: model:ir.model,name:purchase_landed_cost.model_purchase_cost_distribution_expense
 msgid "Purchase cost distribution expense"
-msgstr "Distribucijski izdatek nabavnih stroškov"
+msgstr "Strošek distribucije stroškov nabave"
 
 #. module: purchase_landed_cost
 #: model:ir.model,name:purchase_landed_cost.model_purchase_cost_distribution_line_expense
 msgid "Purchase cost distribution line expense"
-msgstr "Distribucijska postavka izdatka stroška nabave"
+msgstr "Strošek postavke distribucije stroškov nabave"
 
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_expense_tree
-#, fuzzy
 msgid "Purchase cost distribution lines"
-msgstr "Distribucijska postavka nabavnih stroškov"
+msgstr "Postavke distribucije stroškov nabave"
 
 #. module: purchase_landed_cost
 #: model:ir.actions.act_window,name:purchase_landed_cost.action_purchase_cost_distribution
 #: model:ir.ui.menu,name:purchase_landed_cost.menu_purchase_cost_distribution
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_tree
 msgid "Purchase cost distributions"
-msgstr "Distribucije nabavnih stroškov"
+msgstr "Distribucije stroškov nabave"
 
 #. module: purchase_landed_cost
 #: model:ir.model,name:purchase_landed_cost.model_purchase_expense_type
 msgid "Purchase cost type"
-msgstr "Tip nabavnega stroška"
+msgstr "Tip stroška nabave"
 
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_expense_type_tree
 msgid "Purchase expense types"
-msgstr "Tipi nabavnih izdatkov"
+msgstr "Tipi stroškov nabave"
 
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_form
 msgid "Purchase information"
-msgstr "Nabavni podatki"
+msgstr "Podatki o nabavi"
 
 #. module: purchase_landed_cost
 #: model:ir.model,name:purchase_landed_cost.model_purchase_cost_distribution
 msgid "Purchase landed costs distribution"
-msgstr "Distribucija nabavnih stroškov iztovarjanja"
+msgstr "Distribucija odvisnih stroškov nabave"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__purchase_id
@@ -655,9 +639,8 @@ msgstr "Nabavni nalog"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__purchase_line_id
-#, fuzzy
 msgid "Purchase order line"
-msgstr "Nabavni nalog"
+msgstr "Postavka nabavnega naloga"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,help:purchase_landed_cost.field_purchase_cost_distribution_expense__affected_lines
@@ -686,13 +669,14 @@ msgstr "Sklic"
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_search
 msgid "Search purchase costs distributions"
-msgstr "Iskanje distribucij nabavnih stroškov"
+msgstr "Iskanje distribucij stroškov nabave"
 
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.import_landed_cost_pickings_wizard_view
 msgid ""
 "Select here the pickings for those you want to add their expenses lines."
 msgstr ""
+"Izberite tiste zbirnike/dobavnice, katerim želite dodati stroškovne postavke."
 
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.picking_import_wizard_view
@@ -709,8 +693,7 @@ msgstr "Čarovnik za izbiro postavk prejetih računov"
 msgid ""
 "Specify if the expense will be automatically added in a purchase cost "
 "distribution."
-msgstr ""
-"Določite, če se izdatek samodejno doda v distribucijo nabavnih stroškov."
+msgstr "Določite, če se izdatek samodejno doda v distribucijo stroškov nabave."
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__state
@@ -747,7 +730,6 @@ msgstr ""
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,help:purchase_landed_cost.field_purchase_cost_distribution_line__product_weight
-#, fuzzy
 msgid "The gross weight in Kg."
 msgstr "Bruto masa postavke v kg."
 
@@ -763,15 +745,14 @@ msgstr "Prostornina postavke v m3."
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,help:purchase_landed_cost.field_purchase_cost_distribution_line__product_volume
-#, fuzzy
 msgid "The volume in m3."
-msgstr "Prostornina postavke v m3."
+msgstr "Prostornina v m3."
 
 #. module: purchase_landed_cost
 #: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:225
 #, python-format
 msgid "There is no picking lines in the distribution"
-msgstr "V distribuciji ni postavk zbirnika"
+msgstr "V distribuciji ni postavk dobavnice"
 
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
@@ -785,68 +766,61 @@ msgstr ""
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__amount_total
 msgid "Total"
-msgstr ""
+msgstr "Skupaj"
 
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_form
 msgid "Total Expenses"
-msgstr "Skupaj izdatkov"
+msgstr "Skupaj stroški"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__total_expense
-#, fuzzy
 msgid "Total expenses"
-msgstr "Skupaj izdatkov"
+msgstr "Skupaj stroški"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__total_weight
-#, fuzzy
 msgid "Total gross weight"
-msgstr "Bruto masa postavke v kg."
+msgstr "Skupaj bruto masa"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__total_price_unit
-#, fuzzy
 msgid "Total price unit"
-msgstr "Skupaj izdatkov"
+msgstr "Skupaj cena enote"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__total_purchase
-#, fuzzy
 msgid "Total purchase"
-msgstr "Skupaj izdatkov"
+msgstr "Skupaj nabava"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__total_uom_qty
-#, fuzzy
 msgid "Total quantity"
-msgstr "Po količini proizvoda"
+msgstr "Količina skupaj"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__total_volume
-#, fuzzy
 msgid "Total volume"
-msgstr "Po prostornini proizvoda"
+msgstr "Skupaj prostornina"
 
 #. module: purchase_landed_cost
 #: model:ir.model,name:purchase_landed_cost.model_stock_picking
 msgid "Transfer"
-msgstr ""
+msgstr "Premestitev"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__cost_ratio
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_expense__cost_ratio
 msgid "Unit cost"
-msgstr "Cena enote"
+msgstr "Strošek enote"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__product_uom
 msgid "Unit of measure"
-msgstr ""
+msgstr "Enota mere"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__product_price_unit
-#, fuzzy
 msgid "Unit price"
 msgstr "Cena enote"
 
@@ -873,7 +847,7 @@ msgstr ""
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__product_volume
 msgid "Volume"
-msgstr ""
+msgstr "Prostornina"
 
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_form
