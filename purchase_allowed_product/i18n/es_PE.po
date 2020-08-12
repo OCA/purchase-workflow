@@ -25,18 +25,18 @@ msgid "Contact"
 msgstr ""
 
 #. module: purchase_allowed_product
-#: model:ir.model.fields,field_description:purchase_allowed_product.field_supplied_product_mixin_display_name
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_supplied_product_mixin__display_name
 msgid "Display Name"
 msgstr "Nombre a mostrar"
 
 #. module: purchase_allowed_product
-#: model:ir.model.fields,field_description:purchase_allowed_product.field_supplied_product_mixin_id
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_supplied_product_mixin__id
 msgid "ID"
 msgstr "ID"
 
 #. module: purchase_allowed_product
-#: model:ir.model.fields,help:purchase_allowed_product.field_res_partner_use_only_supplied_product
-#: model:ir.model.fields,help:purchase_allowed_product.field_res_users_use_only_supplied_product
+#: model:ir.model.fields,help:purchase_allowed_product.field_res_partner__use_only_supplied_product
+#: model:ir.model.fields,help:purchase_allowed_product.field_res_users__use_only_supplied_product
 msgid ""
 "If checked, by default you will only be able to select products that can be "
 "supplied by this supplier when creating a supplier invoice or purchase for "
@@ -47,18 +47,13 @@ msgstr ""
 "proveedor o comprarla. Este valor puede ser cambiado por factura o compra."
 
 #. module: purchase_allowed_product
-#: model:ir.model.fields,help:purchase_allowed_product.field_account_invoice_use_only_supplied_product
-#: model:ir.model.fields,help:purchase_allowed_product.field_purchase_order_use_only_supplied_product
-#: model:ir.model.fields,help:purchase_allowed_product.field_supplied_product_mixin_use_only_supplied_product
+#: model:ir.model.fields,help:purchase_allowed_product.field_account_invoice__use_only_supplied_product
+#: model:ir.model.fields,help:purchase_allowed_product.field_purchase_order__use_only_supplied_product
+#: model:ir.model.fields,help:purchase_allowed_product.field_supplied_product_mixin__use_only_supplied_product
 msgid "If checked, only the products provided by this supplier will be shown."
 msgstr ""
 "Si se selecciona, sólo se mostrarán los productos proporcionados por este "
 "proveedor."
-
-#. module: purchase_allowed_product
-#: model:ir.model,name:purchase_allowed_product.model_product_supplierinfo
-msgid "Information about a product vendor"
-msgstr "Información sobre el proveedor"
 
 #. module: purchase_allowed_product
 #: model:ir.model,name:purchase_allowed_product.model_account_invoice
@@ -66,13 +61,18 @@ msgid "Invoice"
 msgstr "Factura"
 
 #. module: purchase_allowed_product
-#: model:ir.model.fields,field_description:purchase_allowed_product.field_supplied_product_mixin___last_update
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_supplied_product_mixin____last_update
 msgid "Last Modified on"
 msgstr "Última modificación"
 
 #. module: purchase_allowed_product
-#: model:ir.model.fields,field_description:purchase_allowed_product.field_res_partner_use_only_supplied_product
-#: model:ir.model.fields,field_description:purchase_allowed_product.field_res_users_use_only_supplied_product
+#: model:ir.model,name:purchase_allowed_product.model_supplied_product_mixin
+msgid "Mixin for documents that want to restrict products"
+msgstr ""
+
+#. module: purchase_allowed_product
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_res_partner__use_only_supplied_product
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_res_users__use_only_supplied_product
 msgid "Order and invoice only supplied products"
 msgstr "Pediro y factura solo de productos suministrados"
 
@@ -87,16 +87,32 @@ msgid "Purchase Order"
 msgstr "Orden de compra"
 
 #. module: purchase_allowed_product
-#: model:ir.model.fields,field_description:purchase_allowed_product.field_account_invoice_use_only_supplied_product
-#: model:ir.model.fields,field_description:purchase_allowed_product.field_purchase_order_use_only_supplied_product
-#: model:ir.model.fields,field_description:purchase_allowed_product.field_supplied_product_mixin_use_only_supplied_product
+#: model:ir.model,name:purchase_allowed_product.model_product_supplierinfo
+msgid "Supplier Pricelist"
+msgstr ""
+
+#. module: purchase_allowed_product
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_account_invoice__use_only_supplied_product
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_purchase_order__use_only_supplied_product
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_supplied_product_mixin__use_only_supplied_product
 msgid "Use only allowed products"
 msgstr "Utilizar sólo los productos permitidos"
 
 #. module: purchase_allowed_product
-#: model:ir.model,name:purchase_allowed_product.model_supplied_product_mixin
-msgid "supplied.product.mixin"
-msgstr "Mezclar productos seleccionados"
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_product_supplierinfo__name
+msgid "Vendor"
+msgstr ""
+
+#. module: purchase_allowed_product
+#: model:ir.model.fields,help:purchase_allowed_product.field_product_supplierinfo__name
+msgid "Vendor of this product"
+msgstr ""
+
+#~ msgid "Information about a product vendor"
+#~ msgstr "Información sobre el proveedor"
+
+#~ msgid "supplied.product.mixin"
+#~ msgstr "Mezclar productos seleccionados"
 
 #~ msgid "Partner"
 #~ msgstr "Socio"
