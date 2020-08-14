@@ -58,7 +58,6 @@ msgstr "<strong>Compte analytique</strong>"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 #, fuzzy
-#| msgid "<strong>Assigned to:</strong><br/>"
 msgid ""
 "<strong>Assigned to:</strong>\n"
 "                                <br/>"
@@ -67,7 +66,6 @@ msgstr "<strong>Assigné à:</strong><br/>"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 #, fuzzy
-#| msgid "<strong>Creation Date:</strong><br/>"
 msgid ""
 "<strong>Creation Date:</strong>\n"
 "                                <br/>"
@@ -76,7 +74,6 @@ msgstr "<strong>Date de création:</strong><br/>"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 #, fuzzy
-#| msgid "<strong>Description:</strong><br/>"
 msgid ""
 "<strong>Description:</strong>\n"
 "                                <br/>"
@@ -95,7 +92,6 @@ msgstr "<strong>Coût estimé</strong>"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 #, fuzzy
-#| msgid "<strong>Picking Type:</strong><br/>"
 msgid ""
 "<strong>Picking Type:</strong>\n"
 "                                <br/>"
@@ -114,7 +110,6 @@ msgstr "<strong>Qté</strong>"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 #, fuzzy
-#| msgid "<strong>Request Reference:</strong><br/>"
 msgid ""
 "<strong>Request Reference:</strong>\n"
 "                                <br/>"
@@ -128,7 +123,6 @@ msgstr "<strong>Date demandée</strong>"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 #, fuzzy
-#| msgid "<strong>Requested by:</strong><br/>"
 msgid ""
 "<strong>Requested by:</strong>\n"
 "                                <br/>"
@@ -137,7 +131,6 @@ msgstr "<strong>Demandé par:</strong><br/>"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 #, fuzzy
-#| msgid "<strong>Source:</strong><br/>"
 msgid ""
 "<strong>Source:</strong>\n"
 "                                <br/>"
@@ -631,7 +624,6 @@ msgstr "Nombre d'actions"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_has_error_counter
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_has_error_counter
 #, fuzzy
-#| msgid "Number of error"
 msgid "Number of errors"
 msgstr "Nombre d'erreurs"
 
@@ -651,7 +643,6 @@ msgstr ""
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__message_unread_counter
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__message_unread_counter
 #, fuzzy
-#| msgid "Unread Messages"
 msgid "Number of unread messages"
 msgstr "Messages non lus"
 
@@ -681,7 +672,6 @@ msgstr ""
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__description
 #, fuzzy
-#| msgid "Description"
 msgid "PR Description"
 msgstr "Descriptions"
 
@@ -1354,7 +1344,6 @@ msgstr "Messages non lus"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_unread_counter
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_unread_counter
 #, fuzzy
-#| msgid "Unread Messages"
 msgid "Unread Messages Counter"
 msgstr "Messages non lus"
 
@@ -1374,7 +1363,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__website_message_ids
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__website_message_ids
 #, fuzzy
-#| msgid "Unread Messages"
 msgid "Website Messages"
 msgstr "Messages non lus"
 

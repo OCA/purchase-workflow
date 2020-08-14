@@ -172,7 +172,6 @@ msgstr ""
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__allocated_product_qty
 #, fuzzy
-#| msgid "Quantity"
 msgid "Allocated Quantity"
 msgstr "Količina"
 
@@ -252,7 +251,6 @@ msgstr ""
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #, fuzzy
-#| msgid "Quantity"
 msgid "Cancelled Quantity"
 msgstr "Količina"
 
@@ -625,7 +623,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__open_product_qty
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #, fuzzy
-#| msgid "Quantity"
 msgid "Open Quantity"
 msgstr "Količina"
 
@@ -648,7 +645,6 @@ msgstr ""
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__description
 #, fuzzy
-#| msgid "Description"
 msgid "PR Description"
 msgstr "Opis"
 
@@ -930,14 +926,12 @@ msgstr "Količina"
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__qty_cancelled
 #, fuzzy
-#| msgid "Quantity"
 msgid "Quantity cancelled"
 msgstr "Količina"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__qty_done
 #, fuzzy
-#| msgid "Quantity"
 msgid "Quantity completed"
 msgstr "Količina"
 
@@ -1057,7 +1051,6 @@ msgstr ""
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__requested_product_uom_qty
 #, fuzzy
-#| msgid "Quantity"
 msgid "Requested Quantity"
 msgstr "Količina"
 
