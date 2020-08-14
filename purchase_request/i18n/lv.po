@@ -546,7 +546,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_ids
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_ids
 #, fuzzy
-#| msgid "Unread Messages"
 msgid "Messages"
 msgstr "Neizlasītās vēstules"
 
@@ -617,7 +616,6 @@ msgstr ""
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__message_unread_counter
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__message_unread_counter
 #, fuzzy
-#| msgid "Unread Messages"
 msgid "Number of unread messages"
 msgstr "Neizlasītās vēstules"
 
@@ -646,7 +644,6 @@ msgstr ""
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__description
 #, fuzzy
-#| msgid "Description"
 msgid "PR Description"
 msgstr "Apraksts"
 
@@ -1294,7 +1291,6 @@ msgstr "Neizlasītās vēstules"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_unread_counter
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_unread_counter
 #, fuzzy
-#| msgid "Unread Messages"
 msgid "Unread Messages Counter"
 msgstr "Neizlasītās vēstules"
 
@@ -1314,7 +1310,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__website_message_ids
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__website_message_ids
 #, fuzzy
-#| msgid "Unread Messages"
 msgid "Website Messages"
 msgstr "Neizlasītās vēstules"
 
