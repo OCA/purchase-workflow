@@ -48,7 +48,6 @@ msgstr "<strong>Kontu analitikoa</strong>"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 #, fuzzy
-#| msgid "<strong>Assigned to:</strong><br/>"
 msgid ""
 "<strong>Assigned to:</strong>\n"
 "                                <br/>"
@@ -57,7 +56,6 @@ msgstr "<strong>Izendatu:<strong><br/>"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 #, fuzzy
-#| msgid "<strong>Creation Date:</strong><br/>"
 msgid ""
 "<strong>Creation Date:</strong>\n"
 "                                <br/>"
@@ -66,7 +64,6 @@ msgstr "<strong>Sortze data:</strong><br/>"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 #, fuzzy
-#| msgid "<strong>Description:</strong><br/>"
 msgid ""
 "<strong>Description:</strong>\n"
 "                                <br/>"
@@ -80,7 +77,6 @@ msgstr "<strong>Deskribapena</strong>"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 #, fuzzy
-#| msgid "<strong>Description</strong>"
 msgid "<strong>Estimated Cost</strong>"
 msgstr "<strong>Deskribapena</strong>"
 

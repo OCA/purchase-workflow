@@ -51,7 +51,6 @@ msgstr "<strong>Konto analitike</strong>"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 #, fuzzy
-#| msgid "<strong>Assigned to:</strong><br/>"
 msgid ""
 "<strong>Assigned to:</strong>\n"
 "                                <br/>"
@@ -60,7 +59,6 @@ msgstr "<strong>Dodijeljeno:</strong><br/>"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 #, fuzzy
-#| msgid "<strong>Creation Date:</strong><br/>"
 msgid ""
 "<strong>Creation Date:</strong>\n"
 "                                <br/>"
@@ -69,7 +67,6 @@ msgstr "<strong>Datum kreiranja:</strong><br/>"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 #, fuzzy
-#| msgid "<strong>Description:</strong><br/>"
 msgid ""
 "<strong>Description:</strong>\n"
 "                                <br/>"
@@ -83,7 +80,6 @@ msgstr "<strong>Opis</strong><br/>"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 #, fuzzy
-#| msgid "<strong>Description</strong>"
 msgid "<strong>Estimated Cost</strong>"
 msgstr "<strong>Opis</strong><br/>"
 
@@ -126,7 +122,6 @@ msgstr ""
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 #, fuzzy
-#| msgid "<strong>Source:</strong><br/>"
 msgid ""
 "<strong>Source:</strong>\n"
 "                                <br/>"
@@ -185,7 +180,6 @@ msgstr ""
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__allocated_product_qty
 #, fuzzy
-#| msgid "Quantity"
 msgid "Allocated Quantity"
 msgstr "Količina"
 
@@ -265,7 +259,6 @@ msgstr ""
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #, fuzzy
-#| msgid "Quantity"
 msgid "Cancelled Quantity"
 msgstr "Količina"
 
@@ -564,7 +557,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_ids
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_ids
 #, fuzzy
-#| msgid "Unread Messages"
 msgid "Messages"
 msgstr "Nepročitane poruke"
 
@@ -635,7 +627,6 @@ msgstr ""
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__message_unread_counter
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__message_unread_counter
 #, fuzzy
-#| msgid "Unread Messages"
 msgid "Number of unread messages"
 msgstr "Nepročitane poruke"
 
@@ -643,7 +634,6 @@ msgstr "Nepročitane poruke"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__open_product_qty
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #, fuzzy
-#| msgid "Quantity"
 msgid "Open Quantity"
 msgstr "Količina"
 
@@ -667,7 +657,6 @@ msgstr ""
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__description
 #, fuzzy
-#| msgid "Description"
 msgid "PR Description"
 msgstr "Opis"
 
@@ -1342,7 +1331,6 @@ msgstr "Nepročitane poruke"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_unread_counter
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_unread_counter
 #, fuzzy
-#| msgid "Unread Messages"
 msgid "Unread Messages Counter"
 msgstr "Nepročitane poruke"
 
@@ -1362,7 +1350,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__website_message_ids
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__website_message_ids
 #, fuzzy
-#| msgid "Unread Messages"
 msgid "Website Messages"
 msgstr "Nepročitane poruke"
 
