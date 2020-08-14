@@ -205,12 +205,7 @@ class PurchaseRequest(models.Model):
     def copy(self, default=None):
         default = dict(default or {})
         self.ensure_one()
-        default.update(
-            {
-                "state": "draft",
-                "name": self.env["ir.sequence"].next_by_code("purchase.request"),
-            }
-        )
+        default.update({"state": "draft", "name": self._get_default_name()})
         return super(PurchaseRequest, self).copy(default)
 
     @api.model
