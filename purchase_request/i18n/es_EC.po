@@ -48,7 +48,6 @@ msgstr "<strong>Centro de Costo</strong>"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 #, fuzzy
-#| msgid "<strong>Assigned to:</strong><br/>"
 msgid ""
 "<strong>Assigned to:</strong>\n"
 "                                <br/>"
@@ -57,7 +56,6 @@ msgstr "<strong>Asignado a:</strong><br/>"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 #, fuzzy
-#| msgid "<strong>Creation Date:</strong><br/>"
 msgid ""
 "<strong>Creation Date:</strong>\n"
 "                                <br/>"
@@ -66,7 +64,6 @@ msgstr "<strong>Fecha creación:</strong><br/>"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 #, fuzzy
-#| msgid "<strong>Description:</strong><br/>"
 msgid ""
 "<strong>Description:</strong>\n"
 "                                <br/>"
@@ -85,7 +82,6 @@ msgstr "<strong>Costo Estimado</strong>"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 #, fuzzy
-#| msgid "<strong>Picking Type:</strong><br/>"
 msgid ""
 "<strong>Picking Type:</strong>\n"
 "                                <br/>"
@@ -104,7 +100,6 @@ msgstr "<strong>Cant</strong>"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 #, fuzzy
-#| msgid "<strong>Request Reference:</strong><br/>"
 msgid ""
 "<strong>Request Reference:</strong>\n"
 "                                <br/>"
@@ -118,7 +113,6 @@ msgstr "<strong>Fecha requisito</strong>"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 #, fuzzy
-#| msgid "<strong>Requested by:</strong><br/>"
 msgid ""
 "<strong>Requested by:</strong>\n"
 "                                <br/>"
@@ -127,7 +121,6 @@ msgstr "<strong>Solicitado por:</strong><br/>"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 #, fuzzy
-#| msgid "<strong>Source:</strong><br/>"
 msgid ""
 "<strong>Source:</strong>\n"
 "                                <br/>"
@@ -619,7 +612,6 @@ msgstr "Nro de acciones"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_has_error_counter
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_has_error_counter
 #, fuzzy
-#| msgid "Number of error"
 msgid "Number of errors"
 msgstr "Nro de error"
 
@@ -1102,7 +1094,6 @@ msgstr "Responsable"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_has_sms_error
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_has_sms_error
 #, fuzzy
-#| msgid "Message Delivery error"
 msgid "SMS Delivery error"
 msgstr "Mensaje de error"
 
@@ -1393,8 +1384,6 @@ msgstr ""
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_request.py:0
 #, fuzzy, python-format
-#| msgid ""
-#| "You can't request an approval for a purchase request which is empty. (%s)"
 msgid "You cannot delete a purchase request which is not draft."
 msgstr "No puedes solicitar aprobación de una requisición vacía. (%s)"
 
