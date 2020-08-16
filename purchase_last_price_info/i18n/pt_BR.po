@@ -45,7 +45,6 @@ msgstr "Produto"
 #. module: purchase_last_price_info
 #: model:ir.model,name:purchase_last_price_info.model_product_template
 #, fuzzy
-#| msgid "Product"
 msgid "Product Template"
 msgstr "Produto"
 
@@ -58,7 +57,6 @@ msgstr "Compra"
 #. module: purchase_last_price_info
 #: model:ir.model,name:purchase_last_price_info.model_purchase_order
 #, fuzzy
-#| msgid "Purchase"
 msgid "Purchase Order"
 msgstr "Compra"
 
