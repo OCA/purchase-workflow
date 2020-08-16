@@ -33,7 +33,6 @@ msgstr ""
 #. module: purchase_date_planned_manual
 #: model:ir.model,name:purchase_date_planned_manual.model_procurement_rule
 #, fuzzy
-#| msgid "Procurement"
 msgid "Procurement Rule"
 msgstr "Aquisições"
 
