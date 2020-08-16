@@ -25,21 +25,18 @@ msgstr ""
 #. module: purchase_order_line_sequence
 #: model:ir.model.fields,help:purchase_order_line_sequence.field_purchase_order_line__sequence2
 #, fuzzy
-#| msgid "Gives the sequence of this line when displaying the purchase order."
 msgid "Displays the sequence of the line in the purchase order."
 msgstr "Numéro d'ordre des lines lors de l'affichage du bon de commande."
 
 #. module: purchase_order_line_sequence
 #: model:ir.model.fields,help:purchase_order_line_sequence.field_purchase_order_line__sequence
 #, fuzzy
-#| msgid "Gives the sequence of this line when displaying the purchase order."
 msgid "Gives the sequence of the line when displaying the purchase order."
 msgstr "Numéro d'ordre des lines lors de l'affichage du bon de commande."
 
 #. module: purchase_order_line_sequence
 #: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order_line__sequence
 #, fuzzy
-#| msgid "Sequence"
 msgid "Hidden Sequence"
 msgstr "Séquence"
 
@@ -56,14 +53,12 @@ msgstr ""
 #. module: purchase_order_line_sequence
 #: model:ir.model,name:purchase_order_line_sequence.model_purchase_order
 #, fuzzy
-#| msgid "Purchase order"
 msgid "Purchase Order"
 msgstr "Commande fournisseur"
 
 #. module: purchase_order_line_sequence
 #: model:ir.model,name:purchase_order_line_sequence.model_purchase_order_line
 #, fuzzy
-#| msgid "Purchase Order line"
 msgid "Purchase Order Line"
 msgstr "Purchase Order line"
 
