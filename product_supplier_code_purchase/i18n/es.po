@@ -27,7 +27,6 @@ msgstr "Código Producto Proveedor"
 #. module: product_supplier_code_purchase
 #: model:ir.model,name:product_supplier_code_purchase.model_purchase_order
 #, fuzzy
-#| msgid "Purchase Order Line"
 msgid "Purchase Order"
 msgstr "Línea pedido de compra"
 
