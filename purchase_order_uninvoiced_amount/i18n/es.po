@@ -24,7 +24,6 @@ msgstr "Pedido de compra"
 #. module: purchase_order_uninvoiced_amount
 #: model_terms:ir.ui.view,arch_db:purchase_order_uninvoiced_amount.purchase_order_tree
 #, fuzzy
-#| msgid "Total Univoiced amount"
 msgid "Total Uninvoiced amount"
 msgstr "Total pendiente facturar"
 
