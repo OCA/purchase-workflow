@@ -62,7 +62,6 @@ msgstr ""
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 #, fuzzy
-#| msgid "<strong>Creation Date:</strong><br/>"
 msgid ""
 "<strong>Creation Date:</strong>\n"
 "                                <br/>"
@@ -71,7 +70,6 @@ msgstr "Data de criação"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 #, fuzzy
-#| msgid "<strong>Description:</strong><br/>"
 msgid ""
 "<strong>Description:</strong>\n"
 "                                <br/>"
@@ -85,7 +83,6 @@ msgstr ""
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 #, fuzzy
-#| msgid "<strong>Requested Date</strong>"
 msgid "<strong>Estimated Cost</strong>"
 msgstr "Data de requisição"
 
@@ -121,7 +118,6 @@ msgstr "Data de requisição"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 #, fuzzy
-#| msgid "<strong>Requested by:</strong><br/>"
 msgid ""
 "<strong>Requested by:</strong>\n"
 "                                <br/>"
@@ -187,7 +183,6 @@ msgstr ""
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__allocated_product_qty
 #, fuzzy
-#| msgid "Quantity"
 msgid "Allocated Quantity"
 msgstr "Quantidade"
 
@@ -267,7 +262,6 @@ msgstr ""
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #, fuzzy
-#| msgid "Quantity"
 msgid "Cancelled Quantity"
 msgstr "Quantidade"
 
@@ -566,7 +560,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_ids
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_ids
 #, fuzzy
-#| msgid "Unread Messages"
 msgid "Messages"
 msgstr "Mensagens não lidas"
 
@@ -637,7 +630,6 @@ msgstr ""
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__message_unread_counter
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__message_unread_counter
 #, fuzzy
-#| msgid "Unread Messages"
 msgid "Number of unread messages"
 msgstr "Mensagens não lidas"
 
@@ -645,7 +637,6 @@ msgstr "Mensagens não lidas"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__open_product_qty
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #, fuzzy
-#| msgid "Quantity"
 msgid "Open Quantity"
 msgstr "Quantidade"
 
@@ -669,7 +660,6 @@ msgstr ""
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__description
 #, fuzzy
-#| msgid "Description"
 msgid "PR Description"
 msgstr "Descrição"
 
@@ -1093,7 +1083,6 @@ msgstr "Status da requisição"
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__requested_product_uom_qty
 #, fuzzy
-#| msgid "Requested by"
 msgid "Requested Quantity"
 msgstr "Requisitado por"
 
@@ -1343,7 +1332,6 @@ msgstr "Mensagens não lidas"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_unread_counter
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_unread_counter
 #, fuzzy
-#| msgid "Unread Messages"
 msgid "Unread Messages Counter"
 msgstr "Mensagens não lidas"
 
@@ -1363,7 +1351,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__website_message_ids
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__website_message_ids
 #, fuzzy
-#| msgid "Unread Messages"
 msgid "Website Messages"
 msgstr "Mensagens não lidas"
 
