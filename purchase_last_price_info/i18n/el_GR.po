@@ -44,7 +44,6 @@ msgstr "Προϊόν"
 #. module: purchase_last_price_info
 #: model:ir.model,name:purchase_last_price_info.model_product_template
 #, fuzzy
-#| msgid "Product"
 msgid "Product Template"
 msgstr "Προϊόν"
 
