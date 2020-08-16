@@ -61,7 +61,6 @@ msgstr "Bedrijven"
 #. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__company_id
 #, fuzzy
-#| msgid "Companies"
 msgid "Company"
 msgstr "Bedrijven"
 
