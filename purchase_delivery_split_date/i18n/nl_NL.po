@@ -22,7 +22,6 @@ msgstr ""
 #. module: purchase_delivery_split_date
 #: model:ir.model,name:purchase_delivery_split_date.model_purchase_order
 #, fuzzy
-#| msgid "Purchase Order Line"
 msgid "Purchase Order"
 msgstr "Inkooporderregel"
 
