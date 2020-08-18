@@ -12,7 +12,10 @@ class PurchaseOrderType(models.Model):
     @api.model
     def _get_domain_sequence_id(self):
         seq_type = self.env.ref("purchase.seq_purchase_order")
-        return [("code", "=", seq_type.code)]
+        return [
+            ("code", "=", seq_type.code),
+            ("company_id", "in", [False, self.env.company.id]),
+        ]
 
     @api.model
     def _default_sequence_id(self):
@@ -26,8 +29,8 @@ class PurchaseOrderType(models.Model):
         comodel_name="ir.sequence",
         string="Entry Sequence",
         copy=False,
-        domain=_get_domain_sequence_id,
-        default=_default_sequence_id,
+        domain=lambda self: self._get_domain_sequence_id(),
+        default=lambda self: self._default_sequence_id(),
         required=True,
     )
     payment_term_id = fields.Many2one(
@@ -35,3 +38,8 @@ class PurchaseOrderType(models.Model):
     )
     incoterm_id = fields.Many2one(comodel_name="account.incoterms", string="Incoterm")
     sequence = fields.Integer(default=10)
+    company_id = fields.Many2one(
+        comodel_name="res.company",
+        string="Company",
+        default=lambda self: self.env.company,
+    )
