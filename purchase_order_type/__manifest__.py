@@ -11,6 +11,7 @@
     "website": "https://github.com/OCA/purchase-workflow",
     "data": [
         "security/ir.model.access.csv",
+        "security/security.xml",
         "views/view_purchase_order_type.xml",
         "views/view_purchase_order.xml",
         "views/res_partner_view.xml",
