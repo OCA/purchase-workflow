@@ -3,15 +3,18 @@
 
 import time
 
-from odoo.tests import common
+from odoo.exceptions import ValidationError
+from odoo.tests import common, tagged
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 
+@tagged("post_install", "-at_install")
 class TestPurchaseOrderType(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.po_obj = cls.env["purchase.order"]
+        cls.company_obj = cls.env["res.company"]
         # Partner
         cls.partner1 = cls.env.ref("base.res_partner_1")
         # Products
@@ -28,6 +31,7 @@ class TestPurchaseOrderType(common.SavepointCase):
         cls.type2.payment_term_id = cls.payterm
         cls.type2.incoterm_id = cls.incoterm
         cls.partner1.purchase_type = cls.type2
+        cls.company2 = cls.company_obj.create({"name": "company2"})
 
     def test_purchase_order_type(self):
         purchase = self._create_purchase(
@@ -65,3 +69,16 @@ class TestPurchaseOrderType(common.SavepointCase):
             }
         )
         return purchase
+
+    def test_purchase_order_change_company(self):
+        order = self.po_obj.new({"partner_id": self.partner1.id})
+        self.assertEqual(order.order_type, self.type1)
+        order._onchange_company()
+        self.assertFalse(order.order_type)
+
+    def test_purchase_order_type_company_error(self):
+        order = self.po_obj.create({"partner_id": self.partner1.id})
+        self.assertEqual(order.order_type, self.type1)
+        self.assertEqual(order.company_id, self.type1.company_id)
+        with self.assertRaises(ValidationError):
+            order.write({"company_id": self.company2.id})
