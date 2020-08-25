@@ -17,13 +17,12 @@ from openerp.tests import common
 
 
 class TestThreeStepReception(common.TransactionCase):
-
     def test_three_steps_generate_three_pickings(self):
-        wh = self.env.ref('stock.warehouse0')
-        wh.reception_steps = 'three_steps'
-        po = self.env.ref('purchase.purchase_order_1')
+        wh = self.env.ref("stock.warehouse0")
+        wh.reception_steps = "three_steps"
+        po = self.env.ref("purchase.purchase_order_1")
         po.location_id = wh.wh_input_stock_loc_id
-        po.signal_workflow('purchase_confirm')
+        po.signal_workflow("purchase_confirm")
 
         self.assertEqual(1, po.shipment_count)
         self.assertEqual(3, po.all_shipment_count)
