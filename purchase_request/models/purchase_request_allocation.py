@@ -14,6 +14,7 @@ class PurchaseRequestAllocation(models.Model):
         required=True,
         ondelete="cascade",
         copy=True,
+        index=True,
     )
     company_id = fields.Many2one(
         string="Company",
@@ -22,7 +23,7 @@ class PurchaseRequestAllocation(models.Model):
         related="purchase_request_line_id.request_id." "company_id",
     )
     stock_move_id = fields.Many2one(
-        string="Stock Move", comodel_name="stock.move", ondelete="cascade"
+        string="Stock Move", comodel_name="stock.move", ondelete="cascade", index=True,
     )
     purchase_line_id = fields.Many2one(
         string="Purchase Line",
@@ -30,6 +31,7 @@ class PurchaseRequestAllocation(models.Model):
         copy=True,
         ondelete="cascade",
         help="Service Purchase Order Line",
+        index=True,
     )
     product_id = fields.Many2one(
         string="Product",
