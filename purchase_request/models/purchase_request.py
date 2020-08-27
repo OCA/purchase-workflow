@@ -73,6 +73,7 @@ class PurchaseRequest(models.Model):
         copy=False,
         track_visibility="onchange",
         default=_get_default_requested_by,
+        index=True,
     )
     assigned_to = fields.Many2one(
         comodel_name="res.users",
@@ -85,6 +86,7 @@ class PurchaseRequest(models.Model):
                 self.env.ref("purchase_request.group_purchase_request_manager").id,
             )
         ],
+        index=True,
     )
     description = fields.Text(string="Description")
     company_id = fields.Many2one(
@@ -128,7 +130,10 @@ class PurchaseRequest(models.Model):
         default=_default_picking_type,
     )
     group_id = fields.Many2one(
-        comodel_name="procurement.group", string="Procurement Group", copy=False
+        comodel_name="procurement.group",
+        string="Procurement Group",
+        copy=False,
+        index=True,
     )
     line_count = fields.Integer(
         string="Purchase Request Line count",
