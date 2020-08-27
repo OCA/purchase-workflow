@@ -34,6 +34,8 @@ class PurchaseRequestLine(models.Model):
         string="Purchase Request",
         ondelete="cascade",
         readonly=True,
+        index=True,
+        auto_join=True,
     )
     company_id = fields.Many2one(
         comodel_name="res.company",
