@@ -15,36 +15,43 @@ class TestDelay(SavepointCase):
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.supplier = cls.env["res.partner"].create({"name": "supplier test"})
 
-    def check_delay_equals_delays(self, form):
-        delays = form.transport_delay + form.supplier_delay
-        self.assertEquals(form.delay, delays)
-
-    def test_set_delays(self):
+    def test_set_delay_from_form(self):
         form = Form(self.env["product.supplierinfo"])
         form.name = self.supplier
         # test compute method
         form.transport_delay = 5
         self.assertEqual(form.delay, 5)
-        self.check_delay_equals_delays(form)
         form.supplier_delay = 5
         self.assertEqual(form.delay, 10)
-        self.check_delay_equals_delays(form)
+        form.save()
 
-    def test_set_delay(self):
-        # Can't use Form here as Form().save() does not saves readonly fields.
+    def test_set_delay_from_create(self):
         record = self.env["product.supplierinfo"].create(
-            {
-                "name": self.supplier.id,
-                "delay": 10,
-                "transport_delay": 5,
-                "supplier_delay": 5,
-            }
+            {"name": self.supplier.id, "transport_delay": 5, "supplier_delay": 5}
         )
+        # test compute method
+        self.assertEqual(record.transport_delay, 5)
+        self.assertEqual(record.supplier_delay, 5)
+        self.assertEqual(record.delay, 10)
         # test inverse method
         record.delay = 12
         self.assertEqual(record.transport_delay, 5)
         self.assertEqual(record.supplier_delay, 7)
-        self.check_delay_equals_delays(record)
+        self.assertEqual(record.delay, 12)
         # Should raise an exception when delay < transport_delay
         with self.assertRaises(ValidationError):
             record.delay = 3
+
+    def test_set_delay_from_create_with_delay(self):
+        record = self.env["product.supplierinfo"].create(
+            {
+                "name": self.supplier.id,
+                "transport_delay": 5,
+                "supplier_delay": 5,
+                "delay": 12,
+            }
+        )
+        # test compute method: 'delay' takes the precedence over other fields
+        self.assertEqual(record.transport_delay, 5)
+        self.assertEqual(record.supplier_delay, 7)
+        self.assertEqual(record.delay, 12)
