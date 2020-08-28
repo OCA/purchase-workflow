@@ -9,34 +9,35 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-24 07:53+0000\n"
-"PO-Revision-Date: 2017-11-24 07:53+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2020-08-28 16:59+0000\n"
+"Last-Translator: Sandie FAVRE <sandie.favre@grap.coop>\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: procurement_purchase_no_grouping
 #: selection:product.category,procured_purchase_grouping:0
 msgid "No line grouping"
-msgstr ""
+msgstr "Pas de regroupement de lignes"
 
 #. module: procurement_purchase_no_grouping
 #: selection:product.category,procured_purchase_grouping:0
 msgid "No order grouping"
-msgstr ""
+msgstr "Pas de regroupement de commandes"
 
 #. module: procurement_purchase_no_grouping
 #: model:ir.model.fields,field_description:procurement_purchase_no_grouping.field_product_category__procured_purchase_grouping
 msgid "Procured purchase grouping"
-msgstr ""
+msgstr "Regroupement d'achats"
 
 #. module: procurement_purchase_no_grouping
 #: model:ir.model,name:procurement_purchase_no_grouping.model_product_category
 msgid "Product Category"
-msgstr ""
+msgstr "Catégorie de produit"
 
 #. module: procurement_purchase_no_grouping
 #: model:ir.model,name:procurement_purchase_no_grouping.model_purchase_order_line
@@ -54,16 +55,26 @@ msgid ""
 "supplier, it will be reused, but lines won't be merged.\n"
 "* No order grouping: This option will prevent any kind of grouping."
 msgstr ""
+"Sélectionnez le comportement de regroupement des achats pour les produits de "
+"cette catégorie :\n"
+"* Regroupement standard (par défaut) : les achats généreront des bons de "
+"commande, en regroupant les lignes et les commandes lorsque cela est "
+"possible.\n"
+"* Pas de regroupement de lignes : s'il existe des commandes en cours pour le "
+"même fournisseur, elles seront réutilisées, mais les lignes ne seront pas "
+"fusionnées.\n"
+"* Pas de regroupement de commandes : cette option empêchera tout type de "
+"regroupement."
 
 #. module: procurement_purchase_no_grouping
 #: selection:product.category,procured_purchase_grouping:0
 msgid "Standard grouping"
-msgstr ""
+msgstr "Regroupement standard"
 
 #. module: procurement_purchase_no_grouping
 #: model:ir.model,name:procurement_purchase_no_grouping.model_stock_rule
 msgid "Stock Rule"
-msgstr ""
+msgstr "Règle de stock"
 
 #~ msgid "Purchase Order"
 #~ msgstr "Bon de commande"
