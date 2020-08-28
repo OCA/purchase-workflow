@@ -14,8 +14,13 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: vendor_transport_lead_time
+#: model:ir.model.fields,field_description:vendor_transport_lead_time.field_purchase_order_line__report_date_planned
+msgid "Date planned (used by report)"
+msgstr ""
+
+#. module: vendor_transport_lead_time
 #: model:ir.model.fields,field_description:vendor_transport_lead_time.field_product_supplierinfo__delay
-msgid "Lead Time"
+msgid "Delivery Lead Time"
 msgstr ""
 
 #. module: vendor_transport_lead_time
@@ -24,6 +29,11 @@ msgid ""
 "Lead time in days between the confirmation of the purchase order and the "
 "receipt of the products in your warehouse. Used by the scheduler for "
 "automatic computation of the purchase order planning."
+msgstr ""
+
+#. module: vendor_transport_lead_time
+#: model:ir.model,name:vendor_transport_lead_time.model_purchase_order_line
+msgid "Purchase Order Line"
 msgstr ""
 
 #. module: vendor_transport_lead_time
@@ -37,8 +47,23 @@ msgid "Supplier Pricelist"
 msgstr ""
 
 #. module: vendor_transport_lead_time
+#: model:ir.model.fields,field_description:vendor_transport_lead_time.field_purchase_order_line__supplier_date_planned
+msgid "Supplier Scheduled Date"
+msgstr ""
+
+#. module: vendor_transport_lead_time
+#: model:ir.model.fields,help:vendor_transport_lead_time.field_product_supplierinfo__supplier_delay
+msgid "Supplier lead time in days."
+msgstr ""
+
+#. module: vendor_transport_lead_time
 #: model:ir.model.fields,field_description:vendor_transport_lead_time.field_product_supplierinfo__transport_delay
 msgid "Transport Lead Time"
+msgstr ""
+
+#. module: vendor_transport_lead_time
+#: model:ir.model.fields,help:vendor_transport_lead_time.field_product_supplierinfo__transport_delay
+msgid "Transport lead time in days."
 msgstr ""
 
 #. module: vendor_transport_lead_time
