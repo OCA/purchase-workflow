@@ -11,27 +11,28 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-04-02 00:52+0000\n"
-"PO-Revision-Date: 2016-04-01 01:20+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: French (http://www.transifex.com/oca/OCA-purchase-"
-"workflow-9-0/language/fr/)\n"
+"PO-Revision-Date: 2020-08-28 16:59+0000\n"
+"Last-Translator: Sandie FAVRE <sandie.favre@grap.coop>\n"
+"Language-Team: French (http://www.transifex.com/oca/"
+"OCA-purchase-workflow-9-0/language/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: purchase_picking_state
 #: code:addons/purchase_picking_state/models/purchase.py:15
 #, python-format
 msgid "Cancelled"
-msgstr ""
+msgstr "Annulé"
 
 #. module: purchase_picking_state
 #: code:addons/purchase_picking_state/models/purchase.py:16
 #, python-format
 msgid "Not Received"
-msgstr ""
+msgstr "Non reçu"
 
 #. module: purchase_picking_state
 #: model:ir.model.fields,help:purchase_picking_state.field_purchase_order__picking_state
@@ -42,7 +43,7 @@ msgstr "Statut général basé sur l'ensemble des bons de réception"
 #: code:addons/purchase_picking_state/models/purchase.py:17
 #, python-format
 msgid "Partially Received"
-msgstr ""
+msgstr "Réception partielle"
 
 #. module: purchase_picking_state
 #: model:ir.model.fields,field_description:purchase_picking_state.field_purchase_order__picking_state
@@ -58,4 +59,4 @@ msgstr "Bon de commande"
 #: code:addons/purchase_picking_state/models/purchase.py:18
 #, python-format
 msgid "Transferred"
-msgstr ""
+msgstr "Transféré"
