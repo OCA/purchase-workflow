@@ -36,6 +36,7 @@
                     <p><i class="fa fa-info-circle" />This PO needs to be
                         validated.
                         <field name="can_review" invisible="1" />
+                        <field name="can_escalate" invisible="1" />
                         <button
                             name="validate_tier"
                             string="Validate"
@@ -51,6 +52,14 @@
                             type="object"
                             class="btn-icon btn-danger"
                             icon="fa-thumbs-down"
+                        />
+                        <button
+                            name="escalate_tier"
+                            string="Escalate"
+                            attrs="{'invisible': [('can_escalate', '=', False)]}"
+                            type="object"
+                            class="oe_inline oe_button btn-warning"
+                            icon="fa-arrow-circle-right"
                         />
                     </p>
                 </div>
