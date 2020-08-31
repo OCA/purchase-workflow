@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-08-28 17:00+0000\n"
-"Last-Translator: Sandie FAVRE <sandie.favre@grap.coop>\n"
+"PO-Revision-Date: 2020-08-31 17:00+0000\n"
+"Last-Translator: Sylvain LE GAL <sylvain.legal@grap.coop>\n"
 "Language-Team: none\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 #. module: purchase_force_invoiced
 #: model:ir.model.fields,field_description:purchase_force_invoiced.field_purchase_order__force_invoiced
 msgid "Force invoiced"
-msgstr ""
+msgstr "Force l'état \"Facturé\""
 
 #. module: purchase_force_invoiced
 #: model:ir.model,name:purchase_force_invoiced.model_account_invoice
