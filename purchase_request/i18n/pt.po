@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-17 03:38+0000\n"
-"PO-Revision-Date: 2020-09-06 15:00+0000\n"
+"PO-Revision-Date: 2020-09-07 00:00+0000\n"
 "Last-Translator: Pedro Castro Silva <pedrocs@exo.pt>\n"
 "Language-Team: Portuguese (http://www.transifex.com/oca/"
 "OCA-purchase-workflow-10-0/language/pt/)\n"
@@ -731,7 +731,7 @@ msgstr "Linha de Requisição de Compra"
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_form
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Purchase Order Lines"
-msgstr "Linhas de Requisição de Compra"
+msgstr "Linhas de Encomendas de Compra"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
@@ -800,7 +800,7 @@ msgstr "Linha de Requisição de Compra Fazer Item de Encomenda de compra"
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__line_count
 msgid "Purchase Request Line count"
-msgstr "Nº de linhas da Requisição de Compra"
+msgstr "Nº de Linhas de Requisições de Compras"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_order.py:119
@@ -813,7 +813,7 @@ msgstr "Nº de linhas da Requisição de Compra"
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_tree
 #, python-format
 msgid "Purchase Request Lines"
-msgstr "Linhas da Requisição de Compra"
+msgstr "Linhas de Requisições de Compras"
 
 #. module: purchase_request
 #: model:res.groups,name:purchase_request.group_purchase_request_manager
@@ -845,7 +845,7 @@ msgstr "Requisição de Compra está terminada"
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_form
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_tree
 msgid "Purchase Request lines"
-msgstr "Linhas de Requisições de Compra"
+msgstr "Linhas de Requisições de Compras"
 
 #. module: purchase_request
 #: model:mail.message.subtype,description:purchase_request.mt_request_rejected
