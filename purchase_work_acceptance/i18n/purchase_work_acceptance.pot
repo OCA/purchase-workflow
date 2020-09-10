@@ -505,6 +505,14 @@ msgid "Type of the exception activity on record."
 msgstr ""
 
 #. module: purchase_work_acceptance
+#: code:addons/purchase_work_acceptance/models/work_acceptance.py:0
+#, python-format
+msgid ""
+"Unable set to draft this work acceptance. You must first cancel the related "
+"receipts."
+msgstr ""
+
+#. module: purchase_work_acceptance
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance_line__price_unit
 msgid "Unit Price"
 msgstr ""
