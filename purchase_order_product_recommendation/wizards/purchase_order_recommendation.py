@@ -171,9 +171,21 @@ class PurchaseOrderRecommendation(models.TransientModel):
                 found_lines.update({product.id: {"product_id": product}})
         return found_lines
 
-    @api.model
+    def _prepare_wizard_line_from_seller(self, vals, seller):
+        """Allow to add values coming from the selected seller, which will have
+        more priority than existing prepared values.
+
+        :param vals: Existing wizard line dictionary vals.
+        :param seller: Selected seller for this line.
+        """
+        self.ensure_one()
+        return {
+            "price_unit": seller.price,
+        }
+
     def _prepare_wizard_line(self, vals, order_line=False):
         """Used to create the wizard line"""
+        self.ensure_one()
         product_id = order_line and order_line.product_id or vals["product_id"]
         if self.warehouse_ids:
             units_available = sum(
@@ -196,13 +208,13 @@ class PurchaseOrderRecommendation(models.TransientModel):
         )
         vals["is_modified"] = bool(qty_to_order)
         units_included = order_line and order_line.product_qty or qty_to_order
-        price_unit = product_id._select_seller(
+        seller = product_id._select_seller(
             partner_id=self.order_id.partner_id,
             date=fields.Date.today(),
             quantity=units_included,
             uom_id=product_id.uom_po_id,
-        ).price
-        return {
+        )
+        res = {
             "purchase_line_id": order_line and order_line.id,
             "product_id": product_id.id,
             "times_delivered": vals.get("times_delivered", 0),
@@ -215,9 +227,10 @@ class PurchaseOrderRecommendation(models.TransientModel):
             ),
             "units_delivered": vals.get("qty_delivered", 0),
             "units_included": units_included,
-            "price_unit": price_unit,
             "is_modified": vals.get("is_modified", False),
         }
+        res.update(self._prepare_wizard_line_from_seller(res, seller))
+        return res
 
     @api.onchange(
         "order_id",
