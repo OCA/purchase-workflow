@@ -25,6 +25,7 @@ setuptools.setup(
         'odoo13-addon-purchase_order_line_price_history_discount',
         'odoo13-addon-purchase_order_product_recommendation',
         'odoo13-addon-purchase_order_secondary_unit',
+        'odoo13-addon-purchase_order_uninvoiced_amount',
         'odoo13-addon-purchase_product_usage',
         'odoo13-addon-purchase_reception_notify',
         'odoo13-addon-purchase_request',
