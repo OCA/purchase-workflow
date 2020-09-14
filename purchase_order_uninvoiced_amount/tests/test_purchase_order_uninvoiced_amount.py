@@ -3,7 +3,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 from odoo import fields
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import Form, SavepointCase
 
 
 class TestPurchaseOrderUninvoiceAmount(SavepointCase):
@@ -12,7 +12,7 @@ class TestPurchaseOrderUninvoiceAmount(SavepointCase):
         # Environmet
         self.purchase_order_model = self.env["purchase.order"]
         self.purchase_order_line_model = self.env["purchase.order.line"]
-        self.account_invoice_model = self.env["account.invoice"]
+        self.account_move_model = self.env["account.move"]
         self.res_partner_model = self.env["res.partner"]
         self.product_product_model = self.env["product.product"]
         self.product_category_model = self.env["product.category"]
@@ -20,13 +20,13 @@ class TestPurchaseOrderUninvoiceAmount(SavepointCase):
         self.company = self.env.ref("base.main_company")
         # Partner
         self.partner = self.res_partner_model.create(
-            {"name": "Partner 1", "supplier": True, "is_company": True,}
+            {"name": "Partner 1", "supplier_rank": 1, "is_company": True}
         )
         # Category
         self.product_categ = self.product_category_model.create(
             {"name": "Test category"}
         )
-        self.uom_categ = self.env["uom.category"].create({"name": "Category 1",})
+        self.uom_categ = self.env["uom.category"].create({"name": "Category 1"})
         self.uom1 = self.env["uom.uom"].create(
             {
                 "name": "UOM 1",
@@ -38,7 +38,7 @@ class TestPurchaseOrderUninvoiceAmount(SavepointCase):
         )
         # Products
         self.product_category = self.env["product.category"].create(
-            {"name": "Test Product category",}
+            {"name": "Test Product category"}
         )
         self.product_1 = self.env["product.product"].create(
             {
@@ -54,7 +54,7 @@ class TestPurchaseOrderUninvoiceAmount(SavepointCase):
         """ Create a purchase order.
         """
         purchase = self.purchase_order_model.create(
-            {"company_id": self.company.id, "partner_id": self.partner.id,}
+            {"company_id": self.company.id, "partner_id": self.partner.id}
         )
         purchase_line_1 = self.purchase_order_line_model.create(
             {
@@ -73,16 +73,12 @@ class TestPurchaseOrderUninvoiceAmount(SavepointCase):
         return purchase
 
     def _create_invoice_from_purchase(self, purchase):
-        invoice = self.account_invoice_model.create(
-            {
-                "partner_id": purchase.partner_id.id,
-                "purchase_id": purchase.id,
-                "account_id": purchase.partner_id.property_account_payable_id.id,
-                "type": "in_invoice",
-            }
+        invoice_form = Form(
+            self.account_move_model.with_context(default_type="in_invoice")
         )
-        invoice.purchase_order_change()
-        return invoice
+        invoice_form.partner_id = purchase.partner_id
+        invoice_form.purchase_id = purchase
+        return invoice_form.save()
 
     def test_create_purchase_and_not_invoiced(self):
         purchase = self._create_purchase(1, 1)
