@@ -1,5 +1,6 @@
 # Copyright 2020 Tecnativa - Manuel Calero
 # Copyright 2020 Tecnativa - Pedro M. Baeza
+# Copyright 2020 Tecnativa - João Marques
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 from odoo import api, fields, models
@@ -21,12 +22,12 @@ class PurchaseOrder(models.Model):
                 )
                 amount_uninvoiced -= line.qty_invoiced * price_unit
             order.update(
-                {"amount_uninvoiced": order.currency_id.round(amount_uninvoiced),}
+                {"amount_uninvoiced": order.currency_id.round(amount_uninvoiced)}
             )
 
     amount_uninvoiced = fields.Monetary(
         string="Uninvoiced Amount",
         readonly=True,
         compute="_compute_amount_uninvoiced",
-        track_visibility="always",
+        tracking=True,
     )
