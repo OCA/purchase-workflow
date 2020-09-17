@@ -17,9 +17,9 @@ class PurchaseOrderLine(models.Model):
 
     def stock_price_unit_sync(self):
         for line in self.filtered(lambda l: l.state in ["purchase", "done"]):
-            line.move_ids.write(
+            line.move_ids.mapped("stock_valuation_layer_ids").write(
                 {
-                    "price_unit": line.with_context(
+                    "unit_cost": line.with_context(
                         skip_stock_price_unit_sync=True
                     )._get_stock_move_price_unit(),
                 }
