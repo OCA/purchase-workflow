@@ -4,11 +4,11 @@
 {
     "name": "Purchase stock price unit sync",
     "summary": "Update cost price in stock moves already done",
-    "version": "12.0.1.0.0",
+    "version": "13.0.1.0.0",
     "category": "Purchase",
     "website": "https://github.com/OCA/purchase-workflow",
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,
-    "depends": ["purchase_stock",],
+    "depends": ["purchase_stock"],
 }
