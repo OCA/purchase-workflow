@@ -5,18 +5,22 @@ from odoo import models
 
 
 class PurchaseOrderLine(models.Model):
-    _inherit = 'purchase.order.line'
+    _inherit = "purchase.order.line"
 
     def write(self, vals):
         res = super().write(vals)
-        if ('price_unit' in vals or 'discount' in vals) and (
-                not self.env.context.get('skip_stock_price_unit_sync')):
+        if ("price_unit" in vals or "discount" in vals) and (
+            not self.env.context.get("skip_stock_price_unit_sync")
+        ):
             self.stock_price_unit_sync()
         return res
 
     def stock_price_unit_sync(self):
-        for line in self.filtered(lambda l: l.state in ['purchase', 'done']):
-            line.move_ids.write({
-                'price_unit': line.with_context(skip_stock_price_unit_sync=True
-                                                )._get_stock_move_price_unit(),
-            })
+        for line in self.filtered(lambda l: l.state in ["purchase", "done"]):
+            line.move_ids.write(
+                {
+                    "price_unit": line.with_context(
+                        skip_stock_price_unit_sync=True
+                    )._get_stock_move_price_unit(),
+                }
+            )
