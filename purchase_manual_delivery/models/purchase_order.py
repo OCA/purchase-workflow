@@ -86,10 +86,23 @@ class PurchaseOrderLine(models.Model):
                         )
             line.existing_qty = total
             if float_compare(
-                line.product_uom_qty,
+                line.product_qty,
                 line.existing_qty,
                 precision_rounding=rounding,
             ):
                 line.pending_to_receive = True
             else:
                 line.pending_to_receive = False
+
+    @api.multi
+    def _create_or_update_picking(self):
+        if self.env.context.get("manual_delivery", False):
+            # We do not want to create the picking when writting PO lines
+            # manually
+            return
+        return super()._create_or_update_picking()
+
+    @api.multi
+    def write(self, values):
+        return super(PurchaseOrderLine, self.with_context(
+            manual_delivery=True)).write(values)

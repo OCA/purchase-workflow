@@ -123,13 +123,6 @@ class CreateManualStockPickingWizard(models.TransientModel):
     def create_stock_picking(self):
         StockPicking = self.env["stock.picking"]
 
-        # If a picking has been selected, we add products to the picking
-        # otherwise we create a new picking
-        picking_id = self.picking_id
-        if not picking_id:
-            res = self._prepare_picking()
-            picking_id = StockPicking.create(res)
-
         # Check quantity is not above remaining quantity
         if any(line.qty > line.remaining_qty for line in self.line_ids):
             raise UserError(
@@ -139,6 +132,12 @@ class CreateManualStockPickingWizard(models.TransientModel):
                     "the purchase order first."
                 )
             )
+        # If a picking has been selected, we add products to the picking
+        # otherwise we create a new picking
+        picking_id = self.picking_id
+        if not picking_id:
+            res = self._prepare_picking()
+            picking_id = StockPicking.create(res)
         moves = self.line_ids._create_stock_moves(picking_id)
         moves = moves.filtered(
             lambda x: x.state not in ("done", "cancel")
@@ -183,7 +182,7 @@ class CreateManualStockPickingWizardLine(models.TransientModel):
         string="Product",
     )
     product_uom = fields.Many2one(
-        "uom.uom",
+        "product.uom",
         related="purchase_order_line_id.product_uom",
         string="Unit of Measure",
     )
@@ -237,7 +236,7 @@ class CreateManualStockPickingWizardLine(models.TransientModel):
 
     @api.multi
     def _create_stock_moves(self, picking):
-        values = []
+        moves = False
         for line in self:
             for val in line._prepare_stock_moves(picking):
                 if val.get("product_uom_qty", False):
@@ -254,5 +253,8 @@ class CreateManualStockPickingWizardLine(models.TransientModel):
                     val[
                         "location_dest_id"
                     ] = line.wizard_id.location_dest_id.id
-                values.append(val)
-        return self.env["stock.move"].create(values)
+            if not moves:
+                moves = self.env["stock.move"].create(val)
+            else:
+                moves += self.env["stock.move"].create(val)
+        return moves
