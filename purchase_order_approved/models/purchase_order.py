@@ -49,6 +49,9 @@ class PurchaseOrder(models.Model):
                 partner_requires_approve or company_requires_approve
             ):
                 two_steps_purchase_approval_ids.append(rec.id)
+            if rec.state == 'approved':
+                return rec.button_release()
+
         two_steps_purchase_approval = self.browse(
             two_steps_purchase_approval_ids
         )
