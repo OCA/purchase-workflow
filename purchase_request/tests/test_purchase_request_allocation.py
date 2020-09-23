@@ -348,3 +348,6 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         }
         purchase_request_line1 = self.purchase_request_line.create(vals)
         purchase_request_line1.onchange_product_id()
+
+    def test_empty_records_for_company_constraint(self):
+        self.assertFalse(self.env["stock.move"]._check_company_purchase_request())
