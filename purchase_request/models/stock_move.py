@@ -86,16 +86,21 @@ class StockMove(models.Model):
 
     @api.constrains("company_id")
     def _check_company_purchase_request(self):
-        if any(
-            self.env["purchase.request.allocation"].search(
-                [
-                    ("company_id", "!=", rec.company_id.id),
-                    ("stock_move_id", "=", rec.id),
-                ],
-                limit=1,
-            )
-            for rec in self
-        ):
+        if not self.ids:
+            return
+        self.env.cr.execute(
+            """
+            SELECT 1
+            FROM purchase_request_allocation pra
+            INNER JOIN stock_move sm
+               ON sm.id=pra.stock_move_id
+            WHERE pra.company_id != sm.company_id
+                AND sm.id IN %s
+            LIMIT 1
+        """,
+            (tuple(self.ids),),
+        )
+        if self.env.cr.fetchone():
             raise ValidationError(
                 _(
                     "The company of the purchase request must match with "
