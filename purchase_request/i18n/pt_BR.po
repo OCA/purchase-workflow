@@ -16,16 +16,16 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-24 07:53+0000\n"
-"PO-Revision-Date: 2019-11-24 19:58+0000\n"
-"Last-Translator: Rodrigo Macedo <rmsolucoeseminformatic4@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-"
-"purchase-workflow-10-0/language/pt_BR/)\n"
+"PO-Revision-Date: 2020-09-25 23:00+0000\n"
+"Last-Translator: Marcel Savegnago <marcel.savegnago@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/"
+"OCA-purchase-workflow-10-0/language/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.8\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_order.py:24
@@ -232,19 +232,17 @@ msgstr ""
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_line_make_purchase_order
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__cancelled
 msgid "Cancelled"
-msgstr ""
+msgstr "Cancelado"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
-#, fuzzy
-#| msgid "Quantity"
 msgid "Cancelled Quantity"
-msgstr "Quantidade"
+msgstr "Quantidade Cancelada"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_product_product__purchase_request
@@ -436,7 +434,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order__id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__id
 msgid "ID"
-msgstr "Identificação"
+msgstr "ID"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__message_unread
