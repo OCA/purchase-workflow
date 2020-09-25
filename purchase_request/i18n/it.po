@@ -32,6 +32,7 @@ msgstr "<li><b>%s</b>: Quantità ordinata%s %s, Data pianificata %s</li>"
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_order.py:188
 #: code:addons/purchase_request/models/purchase_request_allocation.py:86
+#: code:addons/purchase_request/models/purchase_request_allocation.py:88
 #: code:addons/purchase_request/models/stock_picking.py:24
 #, python-format
 msgid "<li><b>%s</b>: Received quantity %s %s</li>"
@@ -405,6 +406,7 @@ msgstr "Followers (Partners)"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_request_allocation.py:83
+#: code:addons/purchase_request/models/purchase_request_allocation.py:85
 #, python-format
 msgid ""
 "From last reception this quantity has been allocated to this purchase request"
@@ -1186,6 +1188,7 @@ msgstr "Fornitore"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/stock_move.py:85
+#: code:addons/purchase_request/models/stock_move.py:93
 #, python-format
 msgid ""
 "The company of the purchase request must match with that of the location."
