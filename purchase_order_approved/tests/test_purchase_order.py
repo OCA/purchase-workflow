@@ -116,3 +116,23 @@ class TestPurchaseOrder(SavepointCase):
         self.supplier.purchase_requires_second_approval = "always"
         self.purchase_order.button_approve()
         self.assertEqual(self.purchase_order.state, "approved")
+
+    def test_06(self):
+        """
+        Data:
+            * one draft PO
+            * supplier configured with purchase request second approval based
+            on company policy
+            * company configured with purchase_approve_active set to True
+        Test Case:
+            * confirm the PO, approve it twice
+        Expected result:
+            * PO is in state 'purchase'
+        """
+        self.assertEqual(self.purchase_order.state, "draft")
+        self.purchase_order.company_id.purchase_approve_active = True
+        self.supplier.purchase_requires_second_approval = "based_on_company"
+        self.purchase_order.button_approve()
+        self.assertEqual(self.purchase_order.state, "approved")
+        self.purchase_order.button_approve()
+        self.assertEqual(self.purchase_order.state, "purchase")
