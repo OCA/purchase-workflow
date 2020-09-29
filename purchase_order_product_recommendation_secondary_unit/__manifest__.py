@@ -3,7 +3,7 @@
 {
     "name": "Purchase Order Product Recommendation Secondary Unit",
     "summary": "Add secondary unit to recommend products wizard",
-    "version": "11.0.1.0.0",
+    "version": "12.0.1.0.0",
     "category": "Purchases",
     "website": "https://github.com/OCA/purchase-workflow",
     "author": "Tecnativa, Odoo Community Association (OCA)",
@@ -14,7 +14,5 @@
         "purchase_order_product_recommendation",
         "purchase_order_secondary_unit",
     ],
-    "data": [
-        "wizards/purchase_order_recommendation_view.xml",
-    ],
+    "data": ["wizards/purchase_order_recommendation_view.xml"],
 }
