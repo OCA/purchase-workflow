@@ -31,13 +31,13 @@ class StockReturnRequest(models.Model):
 
     def action_view_purchases(self):
         """Display returned purchases"""
-        action = action = self.env.ref('purchase.purchase_form_action')
+        action = self.env.ref('purchase.purchase_form_action')
         result = action.read()[0]
         result['context'] = {}
         purchases = self.mapped('purchase_order_ids')
-        if not purchases or len(purchases) > 1:
+        if len(purchases) != 1:
             result['domain'] = "[('id', 'in', %s)]" % (purchases.ids)
-        elif len(purchases) == 1:
+        else:
             res = self.env.ref('purchase.purchase_order_form', False)
             result['views'] = [(res and res.id or False, 'form')]
             result['res_id'] = purchases.id
