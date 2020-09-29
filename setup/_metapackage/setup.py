@@ -59,6 +59,7 @@ setuptools.setup(
         'odoo12-addon-purchase_request_usage_department',
         'odoo12-addon-purchase_requisition_tier_validation',
         'odoo12-addon-purchase_stock_price_unit_sync',
+        'odoo12-addon-purchase_stock_return_request',
         'odoo12-addon-purchase_tier_validation',
         'odoo12-addon-purchase_triple_discount',
         'odoo12-addon-purchase_work_acceptance',
