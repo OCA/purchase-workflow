@@ -23,7 +23,7 @@ Purchase Location by Line
     :target: https://runbot.odoo-community.org/runbot/142/13.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 Allows to define a specific destination location on each Purchase Order line.
 When the PO is confirmed, it will generate one Incoming Shipment per
@@ -54,12 +54,12 @@ Credits
 Authors
 ~~~~~~~
 
-* Eficent
+* ForgeFlow
 
 Contributors
 ~~~~~~~~~~~~
 
-* Jordi Ballester Alomar <jordi.ballester@eficent.com>
+* Jordi Ballester Alomar <jordi.ballester@forgeflow.com>
 * Hizbul Bahar <hizbul25@gmail.com>
 * Harald Panten <harald.panten@sygel.es>
 

@@ -1,12 +1,12 @@
 # Copyright 2019 Aleph Objects, Inc.
-# Copyright 2019 Eficent Business and IT Consulting Services S.L.
+# Copyright 2019 ForgeFlow S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3.0).
 
 {
     "name": "Purchase Product Usage",
     "version": "13.0.1.1.0",
     "category": "Purchase Management",
-    "author": "Eficent, " "Odoo Community Association (OCA)",
+    "author": "ForgeFlow, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
     "license": "AGPL-3",
     "depends": ["purchase"],

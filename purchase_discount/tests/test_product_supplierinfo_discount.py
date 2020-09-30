@@ -71,7 +71,7 @@ class TestProductSupplierinfoDiscount(common.SavepointCase):
         self.assertEquals(
             self.po_line_1.discount,
             0.0,
-            "Incorrect discount for product " "6 with partner 1 and qty 1",
+            "Incorrect discount for product 6 with partner 1 and qty 1",
         )
 
     def test_004_prepare_purchase_order_line(self):

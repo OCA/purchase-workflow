@@ -1,2 +1,2 @@
-* Gisela Mora Comas <gisela.mora@eficent.com>
+* Gisela Mora Comas <gisela.mora@forgeflow.com>
 * Héctor Villarreal <hector.villarreal@forgeflow.com>

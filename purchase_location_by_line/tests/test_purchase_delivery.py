@@ -1,5 +1,5 @@
-# © 2016 Eficent Business and IT Consulting Services S.L.
-#   (<http://www.eficent.com>)
+# © 2016 ForgeFlow S.L.
+#   (<http://www.forgeflow.com>)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 import time
@@ -128,13 +128,13 @@ class TestDeliverySingle(TransactionCase):
             lambda p: p.location_dest_id == self.l2
         )
         self.assertEquals(
-            len(l2_picking), 0, "There must be 0 picking for " "location Shelf 1"
+            len(l2_picking), 0, "There must be 0 picking for location Shelf 1"
         )
         l1_picking = self.po.picking_ids.filtered(
             lambda p: p.location_dest_id == self.l1
         )
         self.assertEquals(
-            len(l1_picking), 2, "There must be 2 pickings for " "location Stock"
+            len(l1_picking), 2, "There must be 2 pickings for location Stock"
         )
 
     def test_check_multiple_locations_same_date(self):
@@ -153,17 +153,13 @@ class TestDeliverySingle(TransactionCase):
             lambda p: p.location_dest_id == self.l2
         )
         self.assertGreaterEqual(
-            len(l2_picking),
-            1,
-            "There must be 1 or more " "pickings for location Shelf 1",
+            len(l2_picking), 1, "There must be 1 or more pickings for location Shelf 1",
         )
         l1_picking = self.po.picking_ids.filtered(
             lambda p: p.location_dest_id == self.l1
         )
         self.assertGreaterEqual(
-            len(l1_picking),
-            1,
-            "There must be 1 or more " "pickings for " "location Stock",
+            len(l1_picking), 1, "There must be 1 or more pickings for location Stock",
         )
 
     def test_check_multiple_locations_multiple_dates(self):
@@ -189,7 +185,7 @@ class TestDeliverySingle(TransactionCase):
             lambda p: p.location_dest_id == self.l1
         )
         self.assertGreaterEqual(
-            len(l1_picking), 2, "There must be 2 or more " "pickings for location Stock"
+            len(l1_picking), 2, "There must be 2 or more pickings for location Stock"
         )
 
         sorted_pickings = sorted(self.po.picking_ids, key=lambda x: x.scheduled_date)
@@ -232,7 +228,7 @@ class TestDeliverySingle(TransactionCase):
         self.assertGreaterEqual(
             len(default_location_picking),
             2,
-            "There must be 2 or more " "pickings for the default location of the PO",
+            "There must be 2 or more pickings for the default location of the PO",
         )
 
         sorted_pickings = sorted(self.po.picking_ids, key=lambda x: x.scheduled_date)
