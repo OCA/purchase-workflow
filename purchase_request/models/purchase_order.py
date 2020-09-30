@@ -64,7 +64,7 @@ class PurchaseOrder(models.Model):
                 for request_line in line.purchase_request_lines:
                     if request_line.sudo().purchase_state == "done":
                         raise exceptions.UserError(
-                            _("Purchase Request %s has already " "been completed")
+                            _("Purchase Request %s has already been completed")
                             % request_line.request_id.name
                         )
         return True
