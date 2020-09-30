@@ -1,3 +1,3 @@
-* Jordi Ballester Alomar <jordi.ballester@eficent.com>
-* Aaron Henriquez <ahenriquez@eficent.com>
+* Jordi Ballester Alomar <jordi.ballester@forgeflow.com>
+* Aaron Henriquez <ahenriquez@forgeflow.com>
 * Rattapong Chokmasermkul <rattapongc@ecosoft.co.th>
