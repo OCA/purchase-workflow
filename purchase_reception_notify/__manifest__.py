@@ -5,7 +5,7 @@
     "name": "Purchase Reception Notify",
     "version": "13.0.1.0.0",
     "category": "Purchase Management",
-    "author": "ForgeFlow, " "Odoo Community Association (OCA)",
+    "author": "ForgeFlow, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
     "license": "AGPL-3",
     "depends": ["purchase_stock"],
