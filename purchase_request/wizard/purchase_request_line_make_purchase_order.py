@@ -61,7 +61,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
 
             line_company_id = line.company_id and line.company_id.id or False
             if company_id is not False and line_company_id != company_id:
-                raise UserError(_("You have to select lines " "from the same company."))
+                raise UserError(_("You have to select lines from the same company."))
             else:
                 company_id = line_company_id
 
@@ -70,7 +70,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                 raise UserError(_("You have to enter a Picking Type."))
             if picking_type is not False and line_picking_type != picking_type:
                 raise UserError(
-                    _("You have to select lines " "from the same Picking Type.")
+                    _("You have to select lines from the same Picking Type.")
                 )
             else:
                 picking_type = line_picking_type
