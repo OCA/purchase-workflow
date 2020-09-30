@@ -20,7 +20,7 @@ class PurchaseRequestAllocation(models.Model):
         string="Company",
         comodel_name="res.company",
         readonly=True,
-        related="purchase_request_line_id.request_id." "company_id",
+        related="purchase_request_line_id.request_id.company_id",
     )
     stock_move_id = fields.Many2one(
         string="Stock Move", comodel_name="stock.move", ondelete="cascade", index=True,
