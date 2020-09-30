@@ -62,7 +62,7 @@ class PurchaseRequest(models.Model):
     origin = fields.Char(string="Source Document")
     date_start = fields.Date(
         string="Creation date",
-        help="Date when the user initiated the " "request.",
+        help="Date when the user initiated the request.",
         default=fields.Date.context_today,
         track_visibility="onchange",
     )
