@@ -10,7 +10,7 @@
     "Tecnativa - Pedro M. Baeza, "
     "Odoo Community Association (OCA)",
     "development_status": "Beta",
-    "maintainers": ["lreficent"],
+    "maintainers": ["LoisRForgeFlow"],
     "website": "https://github.com/OCA/purchase-workflow",
     "depends": ["purchase"],
     "data": ["views/product_views.xml"],
