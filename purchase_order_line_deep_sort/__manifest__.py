@@ -4,7 +4,7 @@
 {
     "name": "Purchase Order Line Deep Sort",
     "version": "13.0.1.0.0",
-    "author": "Tecnativa," "Odoo Community Association (OCA)",
+    "author": "Tecnativa, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "category": "Purchase Management",
     "website": "https://github.com/OCA/purchase-workflow",
