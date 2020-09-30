@@ -67,14 +67,14 @@ class TestPurchaseRequest(TransactionCase):
         self.assertEqual(
             self.purchase_request.department_id,
             self.department_test,
-            "Invalid department found in " "the purchase request",
+            "Invalid department found in the purchase request",
         )
 
     def test_purchase_request_line_department(self):
         self.assertEqual(
             self.purchase_request_line.department_id,
             self.department_test,
-            "Invalid department found in " "the purchase request line",
+            "Invalid department found in the purchase request line",
         )
 
     def test_onchange_method(self):
@@ -84,5 +84,5 @@ class TestPurchaseRequest(TransactionCase):
         self.assertEqual(
             self.purchase_request.department_id,
             self.department_test2,
-            "Invalid department found in " "the purchase request",
+            "Invalid department found in the purchase request",
         )

@@ -3,7 +3,7 @@
 
 {
     "name": "Purchase Request Department",
-    "author": "ForgeFlow, " "Odoo Community Association (OCA)",
+    "author": "ForgeFlow, Odoo Community Association (OCA)",
     "version": "13.0.1.0.0",
     "website": "https://github.com/OCA/purchase-workflow",
     "category": "Purchase Management",
