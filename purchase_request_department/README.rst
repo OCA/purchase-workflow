@@ -23,7 +23,7 @@ Purchase Request Department
     :target: https://runbot.odoo-community.org/runbot/142/13.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module adds the user department in a new field in the purchase request
 form and allows to group by department on the tree view.
@@ -60,7 +60,7 @@ Authors
 Contributors
 ~~~~~~~~~~~~
 
-* Gisela Mora Comas <gisela.mora@eficent.com>
+* Gisela Mora Comas <gisela.mora@forgeflow.com>
 * Héctor Villarreal <hector.villarreal@forgeflow.com>
 
 Other credits
