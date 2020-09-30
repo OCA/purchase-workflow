@@ -14,7 +14,7 @@ class StockPicking(models.Model):
         title = _("Receipt confirmation %s") % (picking.name)
         message = "<h3>%s</h3>" % title
         message += _(
-            "The following items " "have now been received in Incoming Shipment %s:"
+            "The following items have now been received in Incoming Shipment %s:"
         ) % (picking.name)
         message += "<ul>"
         for purchase_line_id in purchase_dict.values():

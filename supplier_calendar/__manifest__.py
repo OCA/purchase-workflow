@@ -5,7 +5,7 @@
     "summary": "Supplier Calendar",
     "version": "13.0.1.0.0",
     "category": "Purchase Management",
-    "author": "ForgeFlow," "Odoo Community Association (OCA)",
+    "author": "ForgeFlow, Odoo Community Association (OCA)",
     "maintainers": ["NuriaMForgeFlow"],
     "license": "LGPL-3",
     "application": False,
