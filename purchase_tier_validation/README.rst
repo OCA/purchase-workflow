@@ -64,7 +64,7 @@ Images
 Contributors
 ------------
 
-* Lois Rilo <lois.rilo@eficent.com>
+* Lois Rilo <lois.rilo@forgeflow.com>
 * Naglis Jonaitis <naglis@versada.eu>
 * Pedro Gonzalez <pedro.gonzalez@pesol.es>
 
