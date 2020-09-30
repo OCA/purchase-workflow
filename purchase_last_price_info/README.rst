@@ -23,7 +23,7 @@ Purchase Product Last Price Info
     :target: https://runbot.odoo-community.org/runbot/142/13.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module adds the last purchase info of the product.
 
@@ -71,8 +71,8 @@ Contributors
 * Pedro M. Baeza <pedro.baeza@tecnativa.com>
 * Ana Juaristi <anajuaristi@avanzosc.es>
 * Carlos Lopez Mite <celm1990@hotmail.com>
-* Adria Gil Sorribes <adria.gil@eficent.com>
-* Lois Rilo <lois.rilo@eficent.com>
+* Adria Gil Sorribes <adria.gil@forgeflow.com>
+* Lois Rilo <lois.rilo@forgeflow.com>
 * Rattapong Chokmasermkul <rattapongc@ecosoft.co.th>
 
 Maintainers
@@ -88,13 +88,13 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-.. |maintainer-lreficent| image:: https://github.com/lreficent.png?size=40px
-    :target: https://github.com/lreficent
-    :alt: lreficent
+.. |maintainer-LoisRForgeFlow| image:: https://github.com/LoisRForgeFlow.png?size=40px
+    :target: https://github.com/LoisRForgeFlow
+    :alt: LoisRForgeFlow
 
 Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-lreficent| 
+|maintainer-LoisRForgeFlow|
 
 This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/13.0/purchase_last_price_info>`_ project on GitHub.
 
