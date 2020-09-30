@@ -23,7 +23,7 @@ Purchase Product Last Price Info
     :target: https://runbot.odoo-community.org/runbot/142/13.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 This module adds the last purchase info of the product.
 
@@ -94,7 +94,7 @@ promote its widespread use.
 
 Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-LoisRForgeFlow|
+|maintainer-LoisRForgeFlow| 
 
 This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/13.0/purchase_last_price_info>`_ project on GitHub.
 
