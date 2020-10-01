@@ -12,7 +12,6 @@
                        options="{'no_create': True}"
                        groups="purchase_work_acceptance.group_enable_wa_on_invoice"
                        attrs="{'required': [('require_wa','=', True)],
-                               'readonly':[('state', '!=' , 'draft')],
                                'invisible': [('id', '=', False)]}"
                        />
             </xpath>
