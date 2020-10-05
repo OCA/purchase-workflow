@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-17 03:38+0000\n"
-"PO-Revision-Date: 2020-10-05 21:16+0000\n"
+"PO-Revision-Date: 2020-10-06 00:16+0000\n"
 "Last-Translator: Carmen Miranda - https://www.vauxoo.com/ <carmen@vauxoo.com>"
 "\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/"
@@ -615,7 +615,7 @@ msgstr "Referencia del pedido"
 #: code:addons/purchase_request/models/purchase_order.py:16
 #, python-format
 msgid "Order confirmation %s for your Request %s"
-msgstr ""
+msgstr "Confirmación del pedido %s para su Petición %s"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__orderpoint_id
