@@ -13,10 +13,11 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-17 03:38+0000\n"
-"PO-Revision-Date: 2020-06-19 17:19+0000\n"
-"Last-Translator: Enrique Martin Zabalza <enriquemartin@digital5.es>\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/OCA-purchase-"
-"workflow-10-0/language/es/)\n"
+"PO-Revision-Date: 2020-10-05 21:16+0000\n"
+"Last-Translator: Carmen Miranda - https://www.vauxoo.com/ <carmen@vauxoo.com>"
+"\n"
+"Language-Team: Spanish (http://www.transifex.com/oca/"
+"OCA-purchase-workflow-10-0/language/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,7 +29,7 @@ msgstr ""
 #: code:addons/purchase_request/models/purchase_order.py:24
 #, python-format
 msgid "<li><b>%s</b>: Ordered quantity %s %s, Planned date %s</li>"
-msgstr ""
+msgstr "<li><b>%s</b>: Cantidad Ordenada %s %s, Fecha planificada %s</li>"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_order.py:188
@@ -113,7 +114,7 @@ msgstr "<strong>Origen:</strong><br/>"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 msgid "<strong>Specifications</strong>"
-msgstr ""
+msgstr "<strong>Especificaciones</strong>"
 
 #. module: purchase_request
 #: model_terms:ir.actions.act_window,help:purchase_request.purchase_request_form_action
@@ -122,6 +123,9 @@ msgid ""
 "            a certain quantity of materials services, so that they are\n"
 "            available at a certain point in time."
 msgstr ""
+"Una petición de compra es una instrucción a Compras para adquirir\n"
+"            una cierta cantidad de servicios materiales, para que estén\n"
+"            disponibles en un momento determinado."
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/stock_move.py:53
@@ -154,20 +158,18 @@ msgstr "Estado de actividad"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "All Bought"
-msgstr ""
+msgstr "Todo Comprado"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__allocated_product_qty
-#, fuzzy
-#| msgid "Quantity"
 msgid "Allocated Quantity"
-msgstr "Cantidad"
+msgstr "Cantidad Asignada"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_allocation
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_form
 msgid "Allocations"
-msgstr ""
+msgstr "Asignaciones"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__analytic_account_id
@@ -276,7 +278,7 @@ msgstr "Creado SdP"
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_stock_move__created_purchase_request_line_id
 msgid "Created Purchase Request Line"
-msgstr ""
+msgstr "Línea de Petición de Compra creada"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__create_uid
@@ -501,7 +503,7 @@ msgstr "Líneas"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_main_attachment_id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_main_attachment_id
 msgid "Main Attachment"
-msgstr ""
+msgstr "Adjuntos principales"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_form2_sub
@@ -574,7 +576,7 @@ msgstr "Número de Acciones"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_has_error_counter
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_has_error_counter
 msgid "Number of error"
-msgstr ""
+msgstr "Número de error"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__message_needaction_counter
@@ -607,7 +609,7 @@ msgstr "Cantidad"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_search_sub
 msgid "Order Reference"
-msgstr ""
+msgstr "Referencia del pedido"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_order.py:16
@@ -637,7 +639,7 @@ msgstr "Descripción"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__pending_qty_to_receive
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Pending Qty to Receive"
-msgstr ""
+msgstr "Cantidad Pendiente a Recibir"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__picking_type_id
@@ -690,7 +692,7 @@ msgstr "Producto"
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__product_uom_id
 msgid "Product Unit of Measure"
-msgstr "Unidad de medida"
+msgstr "Unidad de medida del producto"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
