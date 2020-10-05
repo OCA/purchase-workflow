@@ -61,11 +61,6 @@ msgid "Companies"
 msgstr ""
 
 #. module: purchase_order_line_deep_sort
-#: model:ir.model,name:purchase_order_line_deep_sort.model_res_config_settings
-msgid "Config Settings"
-msgstr ""
-
-#. module: purchase_order_line_deep_sort
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_deep_sort.res_config_settings_view_form
 msgid "Default Sort Criteria"
 msgstr ""
@@ -96,6 +91,11 @@ msgstr ""
 #. module: purchase_order_line_deep_sort
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_deep_sort.purchase_order_form
 msgid "Other Info"
+msgstr ""
+
+#. module: purchase_order_line_deep_sort
+#: model:ir.model,name:purchase_order_line_deep_sort.model_res_config_settings
+msgid "Procurement purchase grouping settings"
 msgstr ""
 
 #. module: purchase_order_line_deep_sort
