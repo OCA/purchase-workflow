@@ -1,12 +1,20 @@
+# -*- coding: utf-8 -*-
 # Copyright 2020 Camptocamp SA
 # Copyright 2020 ForgeFlow, S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
+import odoo.addons.decimal_precision as dp
 
 
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
+
+    product_tmpl_id = fields.Many2one(
+        comodel_name="product.template",
+        related="product_id.product_tmpl_id",
+        readonly="True",
+    )
 
     product_packaging = fields.Many2one(
         comodel_name="product.packaging",
@@ -18,7 +26,7 @@ class PurchaseOrderLine(models.Model):
         string="Package quantity",
         compute="_compute_product_packaging_qty",
         inverse="_inverse_product_packaging_qty",
-        digits="Product Unit of Measure",
+        digits=dp.get_precision('Product Unit of Measure'),
     )
 
     @api.depends(
@@ -45,7 +53,6 @@ class PurchaseOrderLine(models.Model):
     def _prepare_product_packaging_qty_values(self):
         return {
             "product_qty": self.product_packaging.qty * self.product_packaging_qty,
-            "product_uom": self.product_packaging.product_uom_id.id,
         }
 
     def _inverse_product_packaging_qty(self):
@@ -86,7 +93,7 @@ class PurchaseOrderLine(models.Model):
 
     @api.onchange("product_qty", "product_uom")
     def _onchange_quantity(self):
-        res = super()._onchange_quantity()
+        res = super(PurchaseOrderLine, self)._onchange_quantity()
         if not res:
             res = self._check_package()
         return res

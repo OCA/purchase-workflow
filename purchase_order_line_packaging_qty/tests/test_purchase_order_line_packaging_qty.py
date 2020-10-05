@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright 2020 Camptocamp SA
 # Copyright 2020 ForgeFlow, S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
@@ -8,7 +9,7 @@ from odoo.tests import SavepointCase
 class TestPurchaseOrderLinePackagingQty(SavepointCase):
     @classmethod
     def setUpClass(cls):
-        super().setUpClass()
+        super(TestPurchaseOrderLinePackagingQty, cls).setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.partner = cls.env.ref("base.res_partner_12")
         cls.product = cls.env.ref("product.product_product_9")
@@ -26,12 +27,12 @@ class TestPurchaseOrderLinePackagingQty(SavepointCase):
                 "product_uom": self.product.uom_id.id,
                 "product_qty": 3.0,
                 "price_unit": 0.0,
-                "date_planned": fields.Datetime.today(),
+                "date_planned": fields.Date.today(),
             }
         )
-        order_line.write({"product_packaging": self.packaging})
+        order_line.write({"product_packaging": self.packaging.id})
         order_line._onchange_product_packaging()
-        self.assertEqual(order_line.product_uom_qty, 5.0)
+        self.assertEqual(order_line.product_qty, 5.0)
         self.assertEqual(order_line.product_packaging_qty, 1.0)
         order_line.write({"product_packaging_qty": 3.0})
-        self.assertEqual(order_line.product_uom_qty, 15.0)
+        self.assertEqual(order_line.product_qty, 15.0)
