@@ -99,11 +99,6 @@ msgid "Company"
 msgstr ""
 
 #. module: purchase_work_acceptance
-#: model:ir.model,name:purchase_work_acceptance.model_res_config_settings
-msgid "Config Settings"
-msgstr ""
-
-#. module: purchase_work_acceptance
 #: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_select_work_acceptance_wizard
 msgid "Create Vendor Bill"
 msgstr ""
@@ -366,6 +361,11 @@ msgstr ""
 #. module: purchase_work_acceptance
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__access_url
 msgid "Portal Access URL"
+msgstr ""
+
+#. module: purchase_work_acceptance
+#: model:ir.model,name:purchase_work_acceptance.model_res_config_settings
+msgid "Procurement purchase grouping settings"
 msgstr ""
 
 #. module: purchase_work_acceptance
