@@ -397,7 +397,6 @@ msgstr "Importar costes en destino desde albaranes"
 #. module: purchase_landed_cost
 #: model:ir.model,name:purchase_landed_cost.model_import_landed_cost_pickings_wizard
 #, fuzzy
-#| msgid "Import landed cost from pickings"
 msgid "Import landed cost pickings"
 msgstr "Importar costes en destino desde albaranes"
 
