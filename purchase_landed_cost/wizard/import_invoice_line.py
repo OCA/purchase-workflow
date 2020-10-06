@@ -26,7 +26,7 @@ class ImportInvoiceLine(models.TransientModel):
         self.ensure_one()
         dist_id = self.env.context['active_id']
         distribution = self.env['purchase.cost.distribution'].browse(dist_id)
-        currency_from = self.invoice_line.company_id.currency_id
+        currency_from = self.invoice_line.currency_id
         amount = self.invoice_line.price_subtotal
         currency_to = distribution.currency_id
         company = distribution.company_id or self.env.user.company_id
