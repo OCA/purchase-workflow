@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: purchase_order_general_discount
-#: model:ir.ui.view,arch_db:purchase_order_general_discount.res_config_settings_view_form_purchase
+#: model_terms:ir.ui.view,arch_db:purchase_order_general_discount.res_config_settings_view_form_purchase
 msgid ""
 "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
 "specific.\" groups=\"base.group_multi_company\"/>"
@@ -29,6 +29,11 @@ msgstr ""
 #: model:ir.model,name:purchase_order_general_discount.model_res_company
 msgid "Companies"
 msgstr "Compañías"
+
+#. module: purchase_order_general_discount
+#: model:ir.model,name:purchase_order_general_discount.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
 
 #. module: purchase_order_general_discount
 #: model:ir.model,name:purchase_order_general_discount.model_res_partner
@@ -59,24 +64,19 @@ msgid "Discount must be lower than 100%."
 msgstr "El descuento debe ser menor del 100%."
 
 #. module: purchase_order_general_discount
-#: model:ir.ui.view,arch_db:purchase_order_general_discount.res_config_settings_view_form_purchase
-msgid "Field"
-msgstr "Campo"
-
-#. module: purchase_order_general_discount
-#: model:ir.model.fields,field_description:purchase_order_general_discount.field_purchase_order_general_discount
+#: model:ir.model.fields,field_description:purchase_order_general_discount.field_purchase_order__general_discount
 msgid "Gen. Disc. (%)"
 msgstr "Desc. Gen. (%)"
 
 #. module: purchase_order_general_discount
-#: model:ir.model.fields,field_description:purchase_order_general_discount.field_res_company_purchase_general_discount_field
-#: model:ir.model.fields,field_description:purchase_order_general_discount.field_res_config_settings_purchase_general_discount_field
+#: model:ir.model.fields,field_description:purchase_order_general_discount.field_res_company__purchase_general_discount_field
+#: model:ir.model.fields,field_description:purchase_order_general_discount.field_res_config_settings__purchase_general_discount_field
 msgid "Purchase Discount Field"
 msgstr "Campo para Descuento General de compra"
 
 #. module: purchase_order_general_discount
-#: model:ir.model.fields,field_description:purchase_order_general_discount.field_res_partner_purchase_general_discount
-#: model:ir.model.fields,field_description:purchase_order_general_discount.field_res_users_purchase_general_discount
+#: model:ir.model.fields,field_description:purchase_order_general_discount.field_res_partner__purchase_general_discount
+#: model:ir.model.fields,field_description:purchase_order_general_discount.field_res_users__purchase_general_discount
 msgid "Purchase General Discount (%)"
 msgstr "Descuento General de Compra (%)"
 
@@ -86,7 +86,7 @@ msgid "Purchase Order"
 msgstr "Pedido de compra"
 
 #. module: purchase_order_general_discount
-#: model:ir.ui.view,arch_db:purchase_order_general_discount.res_config_settings_view_form_purchase
+#: model_terms:ir.ui.view,arch_db:purchase_order_general_discount.res_config_settings_view_form_purchase
 msgid ""
 "Select to which purchase line field will the purchase general discount be "
 "propagated."
@@ -95,8 +95,8 @@ msgstr ""
 "descuento general."
 
 #. module: purchase_order_general_discount
-#: model:ir.model.fields,help:purchase_order_general_discount.field_res_company_purchase_general_discount_field
-#: model:ir.model.fields,help:purchase_order_general_discount.field_res_config_settings_purchase_general_discount_field
+#: model:ir.model.fields,help:purchase_order_general_discount.field_res_company__purchase_general_discount_field
+#: model:ir.model.fields,help:purchase_order_general_discount.field_res_config_settings__purchase_general_discount_field
 msgid ""
 "Set the purchase line discount field in wich the discounts will be applied."
 msgstr ""
@@ -104,14 +104,15 @@ msgstr ""
 "el descuento."
 
 #. module: purchase_order_general_discount
-#: model:ir.ui.view,arch_db:purchase_order_general_discount.purchase_order_form
+#: model_terms:ir.ui.view,arch_db:purchase_order_general_discount.purchase_order_form
 msgid "Update general discounts"
 msgstr "Actualizar descuento general"
 
-#. module: purchase_order_general_discount
-#: model:ir.model,name:purchase_order_general_discount.model_res_config_settings
-msgid "res.config.settings"
-msgstr "res.config.settings"
+#~ msgid "Field"
+#~ msgstr "Campo"
+
+#~ msgid "res.config.settings"
+#~ msgstr "res.config.settings"
 
 #~ msgid "Purchase Order Line"
 #~ msgstr "Línea de pedido de compra"
