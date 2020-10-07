@@ -21,12 +21,6 @@
                         type="object"
                         string="Convert to Order"
                     />
-                    <button
-                        name="action_cancel"
-                        states="draft"
-                        type="object"
-                        string="Cancel"
-                    />
                     <field
                         name="rfq_state"
                         widget="statusbar"
