@@ -18,33 +18,33 @@ msgstr ""
 "X-Generator: Weblate 3.10\n"
 
 #. module: purchase_stock_return_request
-#: model:ir.ui.view,arch_db:purchase_stock_return_request.stock_move_lines_to_return_purchase_value
+#: model_terms:ir.ui.view,arch_db:purchase_stock_return_request.stock_move_lines_to_return_purchase_value
 msgid "<strong>Order Ref.</strong>"
 msgstr "<strong>Ref. Pedido</strong>"
 
 #. module: purchase_stock_return_request
-#: model:ir.ui.view,arch_db:purchase_stock_return_request.stock_move_lines_to_return_purchase_value
+#: model_terms:ir.ui.view,arch_db:purchase_stock_return_request.stock_move_lines_to_return_purchase_value
 msgid "<strong>Price</strong>"
 msgstr "<strong>Precio unitario</strong>"
 
 #. module: purchase_stock_return_request
-#: model:ir.ui.view,arch_db:purchase_stock_return_request.stock_move_lines_to_return_purchase_value
-#: model:ir.ui.view,arch_db:purchase_stock_return_request.supplier_return_request_valued_total
+#: model_terms:ir.ui.view,arch_db:purchase_stock_return_request.stock_move_lines_to_return_purchase_value
+#: model_terms:ir.ui.view,arch_db:purchase_stock_return_request.supplier_return_request_valued_total
 msgid "<strong>Subtotal</strong>"
 msgstr "<strong>Subtotal</strong>"
 
 #. module: purchase_stock_return_request
-#: model:ir.ui.view,arch_db:purchase_stock_return_request.stock_move_lines_to_return_purchase_value
+#: model_terms:ir.ui.view,arch_db:purchase_stock_return_request.stock_move_lines_to_return_purchase_value
 msgid "<strong>To Refund</strong>"
 msgstr "<strong>Reembolsar</strong>"
 
 #. module: purchase_stock_return_request
-#: model:ir.ui.view,arch_db:purchase_stock_return_request.supplier_return_request_valued_total
+#: model_terms:ir.ui.view,arch_db:purchase_stock_return_request.supplier_return_request_valued_total
 msgid "<strong>Total</strong>"
 msgstr "<strong>Total</strong>"
 
 #. module: purchase_stock_return_request
-#: model:ir.model.fields,field_description:purchase_stock_return_request.field_stock_return_request_purchase_order_ids
+#: model:ir.model.fields,field_description:purchase_stock_return_request.field_stock_return_request__purchase_order_ids
 msgid "Involved Purchases"
 msgstr "Compras involucradas"
 
@@ -59,7 +59,7 @@ msgid "Purchase Return Requests"
 msgstr "Solicitudes de Devolución de mercancía de compras"
 
 #. module: purchase_stock_return_request
-#: model:ir.ui.view,arch_db:purchase_stock_return_request.view_stock_return_request_form
+#: model_terms:ir.ui.view,arch_db:purchase_stock_return_request.view_stock_return_request_form
 msgid "Purchases"
 msgstr "Compras"
 
@@ -69,6 +69,6 @@ msgid "Return Request"
 msgstr "Solicitud de Devolución"
 
 #. module: purchase_stock_return_request
-#: model:ir.ui.view,arch_db:purchase_stock_return_request.supplier_return_request_valued_total
+#: model_terms:ir.ui.view,arch_db:purchase_stock_return_request.supplier_return_request_valued_total
 msgid "Taxes"
 msgstr "Impuestos"
