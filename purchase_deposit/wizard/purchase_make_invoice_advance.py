@@ -107,7 +107,7 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
         invoice = Invoice.create(
             {
                 "invoice_origin": order.name,
-                "type": "in_invoice",
+                "move_type": "in_invoice",
                 "partner_id": order.partner_id.id,
                 "invoice_line_ids": [
                     (
