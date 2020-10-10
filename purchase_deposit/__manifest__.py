@@ -12,6 +12,7 @@
     "license": "AGPL-3",
     "depends": ["purchase"],
     "data": [
+        "security/ir.model.access.csv",
         "wizard/purchase_make_invoice_advance_views.xml",
         "views/res_config_settings_views.xml",
         "views/purchase_view.xml",
