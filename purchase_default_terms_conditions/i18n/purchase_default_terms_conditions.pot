@@ -6,8 +6,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-06 20:25+0000\n"
-"PO-Revision-Date: 2020-10-06 20:25+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -38,11 +36,6 @@ msgstr ""
 #. module: purchase_default_terms_conditions
 #: model:ir.model.fields,field_description:purchase_default_terms_conditions.field_res_company__purchase_note
 msgid "Purchase Default Terms and Conditions"
-msgstr ""
-
-#. module: purchase_default_terms_conditions
-#: model:ir.model,name:purchase_default_terms_conditions.model_purchase_order
-msgid "Purchase Order"
 msgstr ""
 
 #. module: purchase_default_terms_conditions
