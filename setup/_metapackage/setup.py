@@ -16,6 +16,7 @@ setuptools.setup(
         'odoo12-addon-purchase_blanket_order',
         'odoo12-addon-purchase_commercial_partner',
         'odoo12-addon-purchase_date_planned_manual',
+        'odoo12-addon-purchase_default_terms_conditions',
         'odoo12-addon-purchase_delivery_split_date',
         'odoo12-addon-purchase_deposit',
         'odoo12-addon-purchase_discount',
