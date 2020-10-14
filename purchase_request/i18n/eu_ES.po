@@ -6,19 +6,22 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2020-10-14 19:08+0000\n"
+"Last-Translator: GorkaMagra <gorka.magra@gmail.com>\n"
 "Language-Team: none\n"
 "Language: eu_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_order.py:24
 #, python-format
 msgid "<li><b>%s</b>: Ordered quantity %s %s, Planned date %s</li>"
 msgstr ""
+"<li><b>%s</b>: Eskatutako kantitatea %s %s, Planifikatutako data %s</li>"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_order.py:188
@@ -26,49 +29,49 @@ msgstr ""
 #: code:addons/purchase_request/models/stock_picking.py:24
 #, python-format
 msgid "<li><b>%s</b>: Received quantity %s %s</li>"
-msgstr ""
+msgstr "<li><b>%s</b>: Jasotako Kantitatea %s %s</li>"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/stock_move_line.py:20
 #: code:addons/purchase_request/models/stock_move_line.py:40
 #, python-format
 msgid "<li><b>%s</b>: Transferred quantity %s %s</li>"
-msgstr ""
+msgstr "<li><b>%s</b>: Transferitutako Kantitatea %s %s</li>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 msgid "<strong>Analytic Account</strong>"
-msgstr ""
+msgstr "<strong>Kontu Analitikoa</strong>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 msgid "<strong>Assigned to:</strong><br/>"
-msgstr ""
+msgstr "<strong>Nori Esleituta:</strong><br/>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 msgid "<strong>Creation Date:</strong><br/>"
-msgstr ""
+msgstr "<strong>Sortuera Data:</strong><br/>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 msgid "<strong>Description:</strong><br/>"
-msgstr ""
+msgstr "<strong>Deskripzioa:</strong><br/>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 msgid "<strong>Description</strong>"
-msgstr ""
+msgstr "<strong>Deskripzioa</strong>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 msgid "<strong>Estimated Cost</strong>"
-msgstr ""
+msgstr "<strong>Gutxi gorabeherako prezioa</strong>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 msgid "<strong>Picking Type:</strong><br/>"
-msgstr ""
+msgstr "<strong>Operazio Mota:</strong><br/>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
