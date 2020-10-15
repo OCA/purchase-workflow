@@ -1,8 +1,8 @@
 # Copyright 2018-2019 ForgeFlow, S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 
+from odoo import SUPERUSER_ID
 from odoo.tests import common
-from odoo.tools import SUPERUSER_ID
 
 
 class TestPurchaseRequestToRfq(common.TransactionCase):
@@ -74,7 +74,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
                 purchase_request2.mapped("line_ids").id,
             ],
         ).create(vals)
-        self.assertEquals(
+        self.assertEqual(
             (purchase_request1 | purchase_request2).mapped("line_ids"),
             wiz_id.item_ids.mapped("line_id"),
             "Should have same purchase request lines",
@@ -106,12 +106,12 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         self.assertTrue(
             len(purchase_request_line.purchase_lines), "Should have a purchase line"
         )
-        self.assertEquals(
+        self.assertEqual(
             purchase_request_line.purchase_lines.product_id.id,
             purchase_request_line.product_id.id,
             "Should have same product",
         )
-        self.assertEquals(
+        self.assertEqual(
             purchase_request_line.purchase_lines.state,
             purchase_request_line.purchase_state,
             "Should have same state",
@@ -162,22 +162,22 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         self.assertTrue(
             len(purchase_request_line.purchase_lines), "Should have a purchase line"
         )
-        self.assertEquals(
+        self.assertEqual(
             purchase_request_line.purchase_lines.product_id.id,
             purchase_request_line.product_id.id,
             "Should have same product",
         )
-        self.assertEquals(
+        self.assertEqual(
             purchase_request_line.purchase_lines.state,
             purchase_request_line.purchase_state,
             "Should have same state",
         )
-        self.assertEquals(
+        self.assertEqual(
             purchase_request_line.purchase_lines.product_qty,
             5,
             "The PO line should have the minimum order quantity.",
         )
-        self.assertEquals(
+        self.assertEqual(
             purchase_request_line,
             purchase_request_line.purchase_lines.purchase_request_lines,
             "The PO should cross-reference to the purchase request.",
@@ -232,10 +232,10 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
             if item.line_id.id == purchase_request_line3.id:
                 item.onchange_product_id()
         wiz_id.make_purchase_order()
-        self.assertEquals(
+        self.assertEqual(
             purchase_request_line1.purchased_qty, 1.0, "Should be a quantity of 1"
         )
-        self.assertEquals(
+        self.assertEqual(
             purchase_request_line2.purchased_qty, 1.0, "Should be a quantity of 1"
         )
 
@@ -291,8 +291,8 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
                 item.keep_description = True
         wiz_id.make_purchase_order()
         po_line = purchase_request_line1.purchase_lines[0]
-        self.assertEquals(po_line.product_qty, 1.09, "Quantity should be 1.09")
-        self.assertEquals(
+        self.assertEqual(po_line.product_qty, 1.09, "Quantity should be 1.09")
+        self.assertEqual(
             po_line.product_uom,
             self.env.ref("uom.product_uom_dozen"),
             "The purchase UoM should be Dozen(s).",
@@ -354,7 +354,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         wiz_id.make_purchase_order()
         # Check Purchase qty should be 6
         po_line = purchase_request_line2.purchase_lines[0]
-        self.assertEquals(po_line.product_qty, 6.0, "Quantity should be 6")
+        self.assertEqual(po_line.product_qty, 6.0, "Quantity should be 6")
         # auto change state to done
         po_line.order_id.button_confirm()
         picking = po_line.order_id.picking_ids[0]
