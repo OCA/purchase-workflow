@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-10-15 14:08+0000\n"
+"PO-Revision-Date: 2020-10-15 18:08+0000\n"
 "Last-Translator: GorkaMagra <gorka.magra@gmail.com>\n"
 "Language-Team: none\n"
 "Language: eu_ES\n"
@@ -114,6 +114,8 @@ msgid "A purchase request is an instruction to Purchasing to procure\n"
 "            a certain quantity of materials services, so that they are\n"
 "            available at a certain point in time."
 msgstr ""
+"Erosketa eskaera bat material zerbitzu kantitate bat une batean\n"
+"              eskuragarri egoteko erosketa argibideak dira."
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/stock_move.py:53
@@ -601,7 +603,7 @@ msgstr "%s Eskaeraren baieztapena, %s egiteko"
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__orderpoint_id
 msgid "Orderpoint"
-msgstr ""
+msgstr "Inbentario erregela"
 
 #. module: purchase_request
 #: selection:purchase.request,activity_state:0
@@ -612,7 +614,7 @@ msgstr "Iraungita"
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__description
 msgid "PR Description"
-msgstr ""
+msgstr "Erosketa Eskaeraren Deskribapena"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__pending_qty_to_receive
@@ -659,54 +661,54 @@ msgstr "Produktua"
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_stock_move_line
 msgid "Product Moves (Stock Move Line)"
-msgstr ""
+msgstr "Stock mugimenduak"
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_product_template
 msgid "Product Template"
-msgstr ""
+msgstr "Produktuaren txantiloia"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__product_uom_id
 msgid "Product Unit of Measure"
-msgstr ""
+msgstr "Produktuaren neurri unitatea"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Products"
-msgstr ""
+msgstr "Produktuak"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__line_ids
 msgid "Products to Purchase"
-msgstr ""
+msgstr "Erosteko produktuak"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Purchase Confirmed"
-msgstr ""
+msgstr "Erosketa baieztatuta"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Purchase Done"
-msgstr ""
+msgstr "Erosketa eginda"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__purchase_line_id
 msgid "Purchase Line"
-msgstr ""
+msgstr "Erosketa Lerroa"
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_purchase_order
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order__purchase_order_id
 msgid "Purchase Order"
-msgstr ""
+msgstr "Erosketa Eskaera"
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Erosketa Eskaera Lerroa"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__purchase_lines
@@ -715,12 +717,12 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_form
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Purchase Order Lines"
-msgstr ""
+msgstr "Erosketa aginduaren lerroa"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Purchase Orders"
-msgstr ""
+msgstr "Erosketa agindua"
 
 #. module: purchase_request
 #: model:ir.actions.report,name:purchase_request.action_report_purchase_requests
@@ -735,19 +737,19 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_tree
 msgid "Purchase Request"
-msgstr ""
+msgstr "Erosketa Eskaera"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_order.py:66
 #, python-format
 msgid "Purchase Request %s has already been completed"
-msgstr ""
+msgstr "%s Erosketa eskaera osatuta dago"
 
 #. module: purchase_request
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:48
 #, python-format
 msgid "Purchase Request %s is not approved"
-msgstr ""
+msgstr "%s Erosketa eskaera ez dago baieztatuta"
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_purchase_request_allocation
@@ -755,13 +757,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__purchase_request_allocation_ids
 #: model:ir.model.fields,field_description:purchase_request.field_stock_move__purchase_request_allocation_ids
 msgid "Purchase Request Allocation"
-msgstr ""
+msgstr "Erosketa eskaeraren esleipena"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_move_form
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_move_picking_form
 msgid "Purchase Request Allocations"
-msgstr ""
+msgstr "Erosketa eskaeren esleipenak"
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_purchase_request_line
@@ -769,7 +771,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__line_id
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_form
 msgid "Purchase Request Line"
-msgstr ""
+msgstr "Erosketa eskaeraren lerroa"
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_purchase_request_line_make_purchase_order
