@@ -23,7 +23,7 @@ class PurchaseRequestLine(models.Model):
     name = fields.Char(string="Description", track_visibility="onchange")
     product_uom_id = fields.Many2one(
         comodel_name="uom.uom",
-        string="Product Unit of Measure",
+        string="UoM",
         track_visibility="onchange",
     )
     product_qty = fields.Float(
@@ -83,7 +83,6 @@ class PurchaseRequestLine(models.Model):
     request_state = fields.Selection(
         string="Request state",
         related="request_id.state",
-        selection=_STATES,
         store=True,
     )
     supplier_id = fields.Many2one(
@@ -97,7 +96,7 @@ class PurchaseRequestLine(models.Model):
     )
 
     purchased_qty = fields.Float(
-        string="Quantity in RFQ or PO",
+        string="RFQ/PO Qty",
         digits="Product Unit of Measure",
         compute="_compute_purchased_qty",
     )
@@ -180,6 +179,9 @@ class PurchaseRequestLine(models.Model):
         domain=[("purchase_ok", "=", True)],
         track_visibility="onchange",
     )
+
+    def _valid_field_parameter(self, field, name):
+        return name == "track_visibility" or super()._valid_field_parameter(field, name)
 
     @api.depends(
         "purchase_request_allocation_ids",

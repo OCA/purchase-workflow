@@ -356,7 +356,8 @@ class PurchaseRequestLineMakePurchaseOrderItem(models.TransientModel):
     @api.onchange("product_id")
     def onchange_product_id(self):
         if self.product_id:
-            name = self.product_id.name
+            if not self.keep_description:
+                name = self.product_id.name
             code = self.product_id.code
             sup_info_id = self.env["product.supplierinfo"].search(
                 [
@@ -374,9 +375,11 @@ class PurchaseRequestLineMakePurchaseOrderItem(models.TransientModel):
                 )
             else:
                 if code:
-                    name = "[{}] {}".format(code, name)
-            if self.product_id.description_purchase:
+                    name = "[{}] {}".format(
+                        code, self.name if self.keep_description else name
+                    )
+            if self.product_id.description_purchase and not self.keep_description:
                 name += "\n" + self.product_id.description_purchase
             self.product_uom_id = self.product_id.uom_id.id
-            self.product_qty = 1.0
-            self.name = name
+            if name:
+                self.name = name
