@@ -32,12 +32,12 @@
                                 options="{'no_open': true}"
                                 invisible="1"
                             />
-                            <field name="request_id" readonly="1" />
+                            <field name="request_id" attrs="{'readonly': True}" />
                             <field name="product_id" />
                             <field name="name" />
                             <field name="product_qty" />
                             <field name="product_uom_id" groups="uom.group_uom" />
-                            <field name="keep_description" />
+                            <field name="keep_description" widget="boolean_toggle" />
                         </tree>
                     </field>
                 </group>
