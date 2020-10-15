@@ -98,13 +98,16 @@ class StockMoveLine(models.Model):
                     message = self._purchase_request_confirm_done_message_content(
                         message_data
                     )
-                    request.message_post(body=message, subtype="mail.mt_comment")
+                    request.message_post(
+                        body=message, subtype_id=self.env.ref("mail.mt_comment").id
+                    )
 
                     picking_message = self._picking_confirm_done_message_content(
                         message_data
                     )
                     ml.move_id.picking_id.message_post(
-                        body=picking_message, subtype="mail.mt_comment"
+                        body=picking_message,
+                        subtype_id=self.env.ref("mail.mt_comment").id,
                     )
 
                 allocation._compute_open_product_qty()

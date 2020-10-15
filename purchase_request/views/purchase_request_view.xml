@@ -101,7 +101,7 @@
                         <label for="name" class="oe_inline" />
                     </div>
                     <h1>
-                        <field name="is_editable" invisible="1" />
+                        <field name="is_editable" attrs="{'invisible': True}" />
                         <field
                             name="name"
                             class="oe_inline"
@@ -177,7 +177,15 @@
                                     <field name="cancelled" invisible="1" />
                                     <field name="is_editable" invisible="1" />
                                     <field name="purchased_qty" />
-                                    <field name="purchase_state" />
+                                    <field
+                                        name="purchase_state"
+                                        widget="badge"
+                                        decoration-success="purchase_state == ('done')"
+                                        decoration-muted="purchase_state == ('draft')"
+                                        decoration-info="purchase_state in ('sent', 'purchase')"
+                                        decoration-warning="purchase_state == ('to_approve')"
+                                        decoration-danger="purchase_state == 'cancelled'"
+                                    />
                                 </tree>
                                 <form>
                                     <sheet>
@@ -185,7 +193,7 @@
                                             <group>
                                                 <field
                                                     name="is_editable"
-                                                    invisible="1"
+                                                    attrs="{'invisible': True}"
                                                 />
                                                 <field
                                                     name="product_id"
@@ -195,11 +203,8 @@
                                                     name="name"
                                                     attrs="{'readonly': [('is_editable','=', False)]}"
                                                 />
-                                                <label
-                                                    for="product_qty"
-                                                    attrs="{'readonly': [('is_editable','=', False)]}"
-                                                />
-                                                <div>
+                                                <label for="product_qty" />
+                                                <div class="o_row">
                                                     <field
                                                         name="product_qty"
                                                         class="oe_inline"
@@ -228,9 +233,12 @@
                                                 />
                                                 <field
                                                     name="currency_id"
-                                                    invisible="1"
+                                                    attrs="{'invisible': True}"
                                                 />
-                                                <field name="cancelled" />
+                                                <field
+                                                    name="cancelled"
+                                                    widget="boolean"
+                                                />
                                             </group>
                                         </group>
                                         <group name="specifications">
@@ -299,14 +307,22 @@
                 <field name="message_needaction" invisible="1" />
                 <field name="name" />
                 <field name="date_start" />
-                <field name="requested_by" />
+                <field name="requested_by" widget="many2one_avatar_user" />
                 <field
                     name="company_id"
                     groups="base.group_multi_company"
                     widget="selection"
                 />
+                <field name="activity_ids" widget="list_activity" optional="show" />
                 <field name="origin" />
-                <field name="state" />
+                <field
+                    name="state"
+                    widget="badge"
+                    decoration-success="state in ('done', 'approved')"
+                    decoration-muted="state == 'draft'"
+                    decoration-warning="state == 'to_approve'"
+                    decoration-danger="state == 'rejected'"
+                />
             </tree>
         </field>
     </record>
