@@ -147,9 +147,13 @@ class PurchaseRequest(models.Model):
         string="Purchases count", compute="_compute_purchase_count", readonly=True
     )
 
+    def _valid_field_parameter(self, field, name):
+        return name == "track_visibility" or super()._valid_field_parameter(field, name)
+
     @api.depends("line_ids")
     def _compute_purchase_count(self):
-        self.purchase_count = len(self.mapped("line_ids.purchase_lines.order_id"))
+        for rec in self:
+            rec.purchase_count = len(rec.mapped("line_ids.purchase_lines.order_id"))
 
     def action_view_purchase_order(self):
         action = self.env.ref("purchase.purchase_rfq").read()[0]
@@ -165,9 +169,10 @@ class PurchaseRequest(models.Model):
 
     @api.depends("line_ids")
     def _compute_move_count(self):
-        self.move_count = len(
-            self.mapped("line_ids.purchase_request_allocation_ids.stock_move_id")
-        )
+        for rec in self:
+            rec.move_count = len(
+                rec.mapped("line_ids.purchase_request_allocation_ids.stock_move_id")
+            )
 
     def action_view_stock_move(self):
         action = self.env.ref("stock.stock_move_action").read()[0]
