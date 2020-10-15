@@ -24,15 +24,19 @@
         <field name="name">Purchase Request multi-company</field>
         <field name="model_id" ref="model_purchase_request" />
         <field name="global" eval="True" />
-        <field name="domain_force">['|',('company_id','=',False),
-            ('company_id','child_of',[user.company_id.id])]</field>
+        <field name="domain_force">
+            ['|',('company_id','=',False),
+            ('company_id','child_of',[user.company_id.id])]
+        </field>
     </record>
     <record model="ir.rule" id="purchase_request_line_comp_rule">
         <field name="name">Purchase Request Line multi-company</field>
         <field name="model_id" ref="model_purchase_request_line" />
         <field name="global" eval="True" />
-        <field name="domain_force">['|',('company_id','=',False),
-            ('company_id','child_of',[user.company_id.id])]</field>
+        <field name="domain_force">
+            ['|',('company_id','=',False),
+            ('company_id','child_of',[user.company_id.id])]
+        </field>
     </record>
     <record id="purchase_request_followers_rule" model="ir.rule">
         <field name="name">Follow Purchase Request</field>
@@ -42,8 +46,11 @@
         <field name="perm_write" eval="False" />
         <field name="perm_create" eval="False" />
         <field name="perm_unlink" eval="False" />
-        <field name="domain_force">['|',('requested_by','=',user.id),
-                                        ('message_partner_ids', 'in', [user.partner_id.id])]</field>
+        <field name="domain_force">
+            ['|',('requested_by','=',user.id),
+                                        ('message_partner_ids', 'in',
+            [user.partner_id.id])]
+        </field>
     </record>
     <record id="purchase_request_rule" model="ir.rule">
         <field name="name">Purchase Request User</field>
@@ -72,8 +79,11 @@
         <field name="perm_write" eval="False" />
         <field name="perm_create" eval="False" />
         <field name="perm_unlink" eval="False" />
-        <field name="domain_force">['|',('request_id.requested_by','=',user.id),
-                                        ('request_id.message_partner_ids', 'in', [user.partner_id.id])]</field>
+        <field name="domain_force">
+            ['|',('request_id.requested_by','=',user.id),
+                                        ('request_id.message_partner_ids', 'in',
+            [user.partner_id.id])]
+        </field>
     </record>
     <record id="purchase_request_line_rule" model="ir.rule">
         <field name="name">Purchase Request Line User</field>
