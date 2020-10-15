@@ -25,7 +25,10 @@ class PurchaseRequestAllocation(models.Model):
         index=True,
     )
     stock_move_id = fields.Many2one(
-        string="Stock Move", comodel_name="stock.move", ondelete="cascade", index=True,
+        string="Stock Move",
+        comodel_name="stock.move",
+        ondelete="cascade",
+        index=True,
     )
     purchase_line_id = fields.Many2one(
         string="Purchase Line",
