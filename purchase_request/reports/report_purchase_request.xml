@@ -8,7 +8,10 @@
                 <t t-call="web.external_layout">
                     <div class="page">
                         <div class="oe_structure" />
-                        <h2>Purchase Request <span t-field="o.name" /></h2>
+                        <h2>
+                            Purchase Request
+                            <span t-field="o.name" />
+                        </h2>
                         <div class="row mt32 mb32">
                             <div class="col-xs-3">
                                 <strong>Request Reference:</strong>
