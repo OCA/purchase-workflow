@@ -1,10 +1,9 @@
 # Copyright 2018-2019 ForgeFlow, S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 
-from odoo import exceptions
+from odoo import SUPERUSER_ID, exceptions
 from odoo.exceptions import UserError
 from odoo.tests.common import Form, TransactionCase
-from odoo.tools import SUPERUSER_ID
 
 
 class TestPurchaseRequest(TransactionCase):
@@ -40,7 +39,7 @@ class TestPurchaseRequest(TransactionCase):
         with self.assertRaises(exceptions.UserError) as e:
             purchase_request.unlink()
         msg = "You cannot delete a purchase request which is not draft."
-        self.assertIn(msg, e.exception.name)
+        self.assertIn(msg, e.exception.args[0])
         self.assertEqual(purchase_request.is_editable, False, "Should not be editable")
         purchase_request.button_draft()
         self.assertEqual(purchase_request.is_editable, True, "Should be editable")
@@ -51,7 +50,7 @@ class TestPurchaseRequest(TransactionCase):
         with self.assertRaises(exceptions.UserError) as e:
             purchase_request.unlink()
         msg = "You cannot delete a purchase request which is not draft."
-        self.assertIn(msg, e.exception.name)
+        self.assertIn(msg, e.exception.args[0])
         purchase_request.button_rejected()
         self.assertEqual(purchase_request.is_editable, False, "Should not be editable")
         vals = {
@@ -83,7 +82,7 @@ class TestPurchaseRequest(TransactionCase):
         with self.assertRaises(exceptions.UserError) as e:
             purchase_request.unlink()
         msg = "You cannot delete a purchase request which is not draft."
-        self.assertIn(msg, e.exception.name)
+        self.assertIn(msg, e.exception.args[0])
         purchase_request.button_draft()
         purchase_request.unlink()
 
@@ -230,7 +229,7 @@ class TestPurchaseRequest(TransactionCase):
             "You can only delete a purchase request line "
             "if the purchase request is in draft state."
         )
-        self.assertIn(msg, e.exception.name)
+        self.assertIn(msg, e.exception.args[0])
         pr.button_done()
         self.assertEqual(pr.state, "done", "Should be in state done")
         with self.assertRaises(exceptions.UserError) as e:
@@ -239,7 +238,7 @@ class TestPurchaseRequest(TransactionCase):
             "You can only delete a purchase request line "
             "if the purchase request is in draft state."
         )
-        self.assertIn(msg, e.exception.name)
+        self.assertIn(msg, e.exception.args[0])
         pr.button_draft()
         self.assertEqual(pr.state, "draft", "Should be in state draft")
         pr_lines.unlink()
