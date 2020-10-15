@@ -1,9 +1,8 @@
 # Copyright 2018-2019 ForgeFlow, S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 
-from odoo import fields
+from odoo import SUPERUSER_ID, fields
 from odoo.tests import common
-from odoo.tools import SUPERUSER_ID
 
 
 class TestPurchaseRequestProcurement(common.SavepointCase):
@@ -86,9 +85,9 @@ class TestPurchaseRequestProcurement(common.SavepointCase):
             [("origin", "=", "Test Purchase Request Procurement")]
         )
         self.assertTrue(pr.to_approve_allowed)
-        self.assertEquals(pr.origin, "Test Purchase Request Procurement")
+        self.assertEqual(pr.origin, "Test Purchase Request Procurement")
         prl = self.env["purchase.request.line"].search([("request_id", "=", pr.id)])
-        self.assertEquals(prl.request_id, pr)
+        self.assertEqual(prl.request_id, pr)
         # Test split(", ")
         vals = {
             "picking_type_id": self.env.ref("stock.picking_type_in").id,

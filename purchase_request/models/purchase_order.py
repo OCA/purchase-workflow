@@ -55,7 +55,9 @@ class PurchaseOrder(models.Model):
                 message = po._purchase_request_confirm_message_content(
                     request, requests_dict[request_id]
                 )
-                request.message_post(body=message, subtype="mail.mt_comment")
+                request.message_post(
+                    body=message, subtype_id=self.env.ref("mail.mt_comment").id
+                )
         return True
 
     def _purchase_request_line_check(self):
@@ -109,7 +111,7 @@ class PurchaseOrderLine(models.Model):
         copy=False,
     )
 
-    def action_openRequestLineTreeView(self):
+    def action_open_request_line_tree_view(self):
         """
         :return dict: dictionary value for created view
         """
@@ -173,7 +175,7 @@ class PurchaseOrderLine(models.Model):
                     message_data
                 )
                 alloc.purchase_request_line_id.request_id.message_post(
-                    body=message, subtype="mail.mt_comment"
+                    body=message, subtype_id=self.env.ref("mail.mt_comment").id
                 )
 
                 alloc.purchase_request_line_id._compute_qty()
