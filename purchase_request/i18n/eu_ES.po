@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-10-15 18:08+0000\n"
+"PO-Revision-Date: 2020-10-16 14:08+0000\n"
 "Last-Translator: GorkaMagra <gorka.magra@gmail.com>\n"
 "Language-Team: none\n"
 "Language: eu_ES\n"
@@ -198,17 +198,17 @@ msgstr "Niri Esleituta"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "At least a Draft PO has been created"
-msgstr "Gutxienez Produktu eskaeraren zirriborro bat sortu da"
+msgstr "Gutxienez Erosketa Aginduaren zirriborro bat sortu da"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "At least a PO has been completed"
-msgstr "Gutxienez Produktu Eskaera bat osatu da"
+msgstr "Gutxienez Erosketa Agindu bat osatu da"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "At least a PO has been confirmed"
-msgstr "Gutxienez Produktu Eskaera bat baieztatu da"
+msgstr "Gutxienez Erosketa Agindu bat baieztatu da"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_attachment_count
@@ -236,7 +236,7 @@ msgstr "Ezeztatutako Kantitatea"
 #: model:ir.model.fields,help:purchase_request.field_product_template__purchase_request
 msgid "Check this box to generate Purchase Request instead of generating Requests For Quotation from procurement."
 msgstr ""
-"Markatu lauki hau erosketa eskaera bat sortzeko, horniduratik aurrekontu "
+"Markatu lauki hau erosketa eskaera bat sortzeko, horniduratik aurrekontu-"
 "eskaerak sortu beharrean."
 
 #. module: purchase_request
@@ -261,7 +261,7 @@ msgstr "Kopiatu erosketa agindu berriaren deskribapenak"
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_line_make_purchase_order
 msgid "Create RFQ"
-msgstr "Sortu Prezio Eskaera"
+msgstr "Sortu Aurrekontu-Eskaera"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_stock_move__created_purchase_request_line_id
@@ -363,12 +363,12 @@ msgstr "Gutxi gorabeherako prezioa"
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__estimated_cost
 msgid "Estimated cost of Purchase Request Line, not propagated to PO."
-msgstr "Eskaera lerroaren kostu zenbatetsia, prezio Eskaerari hedatu gabea."
+msgstr "Eskaera lerroaren kostu zenbatetsia, Erosketa Aginduari hedatu gabea."
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_line_make_purchase_order
 msgid "Existing RFQ to update:"
-msgstr "Eguneratu beharreko dauden prezio eskaerak:"
+msgstr "Eguneratu beharreko dauden aurrekontu-eskaerak:"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_follower_ids
@@ -528,7 +528,7 @@ msgstr "Nire eskaerak"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_line_make_purchase_order
 msgid "New PO details:"
-msgstr "Prezio eskaera berriaren xehetasunak:"
+msgstr "Erosketa agindua berriaren xehetasunak:"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__activity_date_deadline
@@ -551,7 +551,7 @@ msgstr "Hurrengo jardueraren mota"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "No RFQ or Purchase has been created"
-msgstr "Ez dira precio eskaerak edo salmentak sortu"
+msgstr "Ez dira aurrekontu eskaerak edo salmentak sortu"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_needaction_counter
@@ -776,17 +776,17 @@ msgstr "Erosketa eskaeraren lerroa"
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_purchase_request_line_make_purchase_order
 msgid "Purchase Request Line Make Purchase Order"
-msgstr ""
+msgstr "Erosketa Eskaera Lerroa egin Erosketa agindua"
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_purchase_request_line_make_purchase_order_item
 msgid "Purchase Request Line Make Purchase Order Item"
-msgstr ""
+msgstr "Erosketa Eskaera Lerroa egin Erosketa aginduaren elementua"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__line_count
 msgid "Purchase Request Line count"
-msgstr ""
+msgstr "Eskaera lerroen kopurua"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_order.py:119
@@ -799,51 +799,51 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_tree
 #, python-format
 msgid "Purchase Request Lines"
-msgstr ""
+msgstr "Erosketa eskaeraren lerroak"
 
 #. module: purchase_request
 #: model:res.groups,name:purchase_request.group_purchase_request_manager
 msgid "Purchase Request Manager"
-msgstr ""
+msgstr "Erosketa eskaeraren arduraduna"
 
 #. module: purchase_request
 #: model:res.groups,name:purchase_request.group_purchase_request_user
 msgid "Purchase Request User"
-msgstr ""
+msgstr "Erosketa eskaeraren erabiltzailea"
 
 #. module: purchase_request
 #: model:mail.message.subtype,description:purchase_request.mt_request_approved
 #: model:mail.message.subtype,name:purchase_request.mt_request_approved
 msgid "Purchase Request approved"
-msgstr ""
+msgstr "Erosketa eskaera onartuta"
 
 #. module: purchase_request
 #: model:mail.message.subtype,name:purchase_request.mt_request_done
 msgid "Purchase Request done"
-msgstr ""
+msgstr "Erosketa eskaera eginda"
 
 #. module: purchase_request
 #: model:mail.message.subtype,description:purchase_request.mt_request_done
 msgid "Purchase Request is done"
-msgstr ""
+msgstr "Erosketa eskaera egin da"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_form
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_tree
 msgid "Purchase Request lines"
-msgstr ""
+msgstr "Erosketa eskaeraren lerroak"
 
 #. module: purchase_request
 #: model:mail.message.subtype,description:purchase_request.mt_request_rejected
 #: model:mail.message.subtype,name:purchase_request.mt_request_rejected
 msgid "Purchase Request rejected"
-msgstr ""
+msgstr "Erosketa eskaera ezeztatuta"
 
 #. module: purchase_request
 #: model:mail.message.subtype,description:purchase_request.mt_request_to_approve
 #: model:mail.message.subtype,name:purchase_request.mt_request_to_approve
 msgid "Purchase Request to be approved"
-msgstr ""
+msgstr "Onartua izateko erosketa eskaera"
 
 #. module: purchase_request
 #: model:ir.actions.act_window,name:purchase_request.action_purchase_request_line_product_tree
@@ -853,172 +853,176 @@ msgstr ""
 #: model:ir.ui.menu,name:purchase_request.menu_purchase_request_act
 #: model:ir.ui.menu,name:purchase_request.menu_purchase_request_pro_mgt
 msgid "Purchase Requests"
-msgstr ""
+msgstr "Erosketa eskaerak"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__purchase_state
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Purchase Status"
-msgstr ""
+msgstr "Erosketaren egoera"
 
 #. module: purchase_request
 #: model:ir.ui.menu,name:purchase_request.parent_menu_purchase_request
 msgid "Purchase requests"
-msgstr ""
+msgstr "Erosketa eskaerak"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__purchase_count
 msgid "Purchases count"
-msgstr ""
+msgstr "Erosketa kopurua"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Purchasing not started"
-msgstr ""
+msgstr "Hasi gabeko erosketa"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__qty_cancelled
 msgid "Qty Cancelled"
-msgstr ""
+msgstr "Ezeztatutako kopurua"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__qty_done
 msgid "Qty Done"
-msgstr ""
+msgstr "Egindako kopurua"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__qty_in_progress
 msgid "Qty In Progress"
-msgstr ""
+msgstr "Kantitatea prozesuan"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__product_qty
 msgid "Quantity"
-msgstr ""
+msgstr "Kantitatea"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__qty_cancelled
 msgid "Quantity cancelled"
-msgstr ""
+msgstr "Ezeztatutako kopurua"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__qty_done
 msgid "Quantity completed"
-msgstr ""
+msgstr "Egindako kopurua"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__purchased_qty
 msgid "Quantity in RFQ or PO"
-msgstr ""
+msgstr "Erosketa aginduan edo Aurrekontu-eskaeran dagoen kantitatea"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__qty_in_progress
 msgid "Quantity in progress."
-msgstr ""
+msgstr "Kantitatea prozesuan."
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_allocation__allocated_product_qty
 msgid "Quantity of the purchase request line allocated to the stockmove, in the default UoM of the product"
 msgstr ""
+"Erosketa eskaera lerroaren kopurua stock mugimenduari esleituta, "
+"produktuaren neurketa unitate lehenetsian"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_allocation__requested_product_uom_qty
 msgid "Quantity of the purchase request line allocated to thestock move, in the UoM of the Purchase Request Line"
 msgstr ""
+"Erosketa eskaera lerrora bideratutako erosketa eskaera lerroaren kopurua, "
+"Erosketa eskaera lerroaren Neurketa unitatean"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__product_qty
 msgid "Quantity to purchase"
-msgstr ""
+msgstr "Erosteko kantitatea"
 
 #. module: purchase_request
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:303
 #, python-format
 msgid "RFQ"
-msgstr ""
+msgstr "Aurrekontu-Eskaera"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/stock_move_line.py:12
 #: code:addons/purchase_request/models/stock_picking.py:16
 #, python-format
 msgid "Receipt confirmation %s for your Request %s"
-msgstr ""
+msgstr "%s -ren baieztatutako harrera %s eskaerarentzat"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/stock_move_line.py:31
 #, python-format
 msgid "Receipt confirmation for Request %s"
-msgstr ""
+msgstr "%s -ren eskaeraren baieztatutako harrera"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Reject"
-msgstr ""
+msgstr "Ezeztatu"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 #: selection:purchase.request,state:0
 msgid "Rejected"
-msgstr ""
+msgstr "Ezeztatuta"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Request"
-msgstr ""
+msgstr "Eskaera"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__date_required
 msgid "Request Date"
-msgstr ""
+msgstr "Eskaeraren data"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__name
 msgid "Request Reference"
-msgstr ""
+msgstr "Eskaeraren erreferentzia"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Request approval"
-msgstr ""
+msgstr "Eskaeraren onarpena"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Request is approved"
-msgstr ""
+msgstr "Eskaera onartuta dago"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Request is done"
-msgstr ""
+msgstr "Eskaera eginda"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Request is rejected"
-msgstr ""
+msgstr "Eskaera ezeztatuta dago"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Request is to be approved"
-msgstr ""
+msgstr "Eskaera onespenaren zain dago"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__request_state
 msgid "Request state"
-msgstr ""
+msgstr "Eskaeraren egoera"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Request status"
-msgstr ""
+msgstr "Eskaeraren egoera"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__requested_product_uom_qty
 msgid "Requested Quantity"
-msgstr ""
+msgstr "Eskatutako kantitatea"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__requested_by
@@ -1026,79 +1030,79 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Requested by"
-msgstr ""
+msgstr "Nork eskatuta"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Requested for Quotation"
-msgstr ""
+msgstr "Aurrekontu-Eskaera"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Reset"
-msgstr ""
+msgstr "Berrabiarazi"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__activity_user_id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__activity_user_id
 msgid "Responsible User"
-msgstr ""
+msgstr "Erabiltzaile arduraduna"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_search_sub
 msgid "Search Purchase Order Line"
-msgstr ""
+msgstr "Eskaera lerroa bilatu"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Search Purchase Request"
-msgstr ""
+msgstr "Erosketa eskaera bilatu"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_allocation__purchase_line_id
 msgid "Service Purchase Order Line"
-msgstr ""
+msgstr "Erosketa lerroa"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_order.py:180
 #, python-format
 msgid "Service confirmation for Request %s"
-msgstr ""
+msgstr "%s eskaeraren zerbitzu baieztapena"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line_make_purchase_order_item__keep_description
 msgid "Set true if you want to keep the descriptions provided in the wizard in the new PO."
-msgstr ""
+msgstr "Deskribapen hau erosketa-eskaera berrian mantentzeko markatu."
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Source"
-msgstr ""
+msgstr "Jatorria"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__origin
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__origin
 msgid "Source Document"
-msgstr ""
+msgstr "Jatorrizko dokumentua"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__specifications
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_form
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Specifications"
-msgstr ""
+msgstr "Zehaztapenak"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Start Date"
-msgstr ""
+msgstr "Hasiera Data"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__state
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__purchase_state
 msgid "Status"
-msgstr ""
+msgstr "Egoera"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__activity_state
@@ -1108,215 +1112,233 @@ msgid "Status based on activities\n"
 "Today: Activity date is today\n"
 "Planned: Future activities."
 msgstr ""
+"Jardueretan oinarritutako egoera\n"
+"Atzeratua: bi data igaro dira\n"
+"Gaur: jardueraren data gaur da\n"
+"Planifikatua: etorkizuneko jarduerak."
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_stock_move
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__stock_move_id
 msgid "Stock Move"
-msgstr ""
+msgstr "Stock mugimendua"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__move_count
 msgid "Stock Move count"
-msgstr ""
+msgstr "Stock mugimendu kopurua"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_form2_sub
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Stock Moves"
-msgstr ""
+msgstr "Stock mugimenduak"
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_stock_rule
 msgid "Stock Rule"
-msgstr ""
+msgstr "Stock araua"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order__supplier_id
 msgid "Supplier"
-msgstr ""
+msgstr "Hornitzailea"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/stock_move.py:93
 #, python-format
 msgid "The company of the purchase request must match with that of the location."
 msgstr ""
+"Erosketa-eskaeraren konpainiak kokalekuaren konpainiarekin bat etorri behar "
+"du."
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_order.py:19
 #, python-format
 msgid "The following requested items from Purchase Request %s have now been confirmed in Purchase Order %s:"
 msgstr ""
+"%s erosketa eskaeraren hurrengo artikuluak baieztatu egin dira erosketa "
+"aginduan %s:"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/stock_move_line.py:15
 #, python-format
 msgid "The following requested items from Purchase Request %s have now been received in %s using Picking %s:"
 msgstr ""
+"%s Erosketa eskaeraren hurrengo artikuluak %s -an jaso dira %s emate-"
+"agiriarekin:"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/stock_picking.py:19
 #, python-format
 msgid "The following requested items from Purchase Request %s have now been received in Incoming Shipment %s:"
 msgstr ""
+"%s erosketa eskaeraren hurrengo artikuluak jaso dira %s emate-agiriarekin:"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/stock_move_line.py:34
 #, python-format
 msgid "The following requested items from Purchase Request %s requested by %s have now been received in %s:"
 msgstr ""
+"%s erosketa eskaeraren hurrengo artikuluak eskatuta %s -gatik jaso dira %s "
+"-an:"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_order.py:183
 #, python-format
 msgid "The following requested services from Purchase Request %s requested by %s have now been received:"
 msgstr ""
+"%s Erosketa eskaeraren hurrengo serbitzuak eskatuta %s -gatik jaso dira:"
 
 #. module: purchase_request
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:53
 #, python-format
 msgid "The purchase has already been completed."
-msgstr ""
+msgstr "Erosketa osatu da."
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__qty_to_buy
 msgid "There is some pending qty to buy"
-msgstr ""
+msgstr "Kantitate bat dago erosteko"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "To Approve"
-msgstr ""
+msgstr "Onartzeko"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__to_approve_allowed
 msgid "To Approve Allowed"
-msgstr ""
+msgstr "Onartzeko baimenduta"
 
 #. module: purchase_request
 #: selection:purchase.request,state:0
 msgid "To be approved"
-msgstr ""
+msgstr "Onartzeko"
 
 #. module: purchase_request
 #: selection:purchase.request,activity_state:0
 #: selection:purchase.request.line,activity_state:0
 msgid "Today"
-msgstr ""
+msgstr "Gaur"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_form
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Tracking"
-msgstr ""
+msgstr "Jazarpena"
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_stock_picking
 msgid "Transfer"
-msgstr ""
+msgstr "Transferitu"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Unassigned"
-msgstr ""
+msgstr "Esleitu gabe"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Unassigned Request"
-msgstr ""
+msgstr "Esleipen gabeko eskaera"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Uncancelled"
-msgstr ""
+msgstr "Ez ezeztatuta"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_unread
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_unread
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Unread Messages"
-msgstr ""
+msgstr "Irakurri gabeko mezuak"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_unread_counter
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_unread_counter
 msgid "Unread Messages Counter"
-msgstr ""
+msgstr "Irakurri gabeko mezuen kontagailua"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__product_uom_id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__product_uom_id
 msgid "UoM"
-msgstr ""
+msgstr "Neurri Unitatea"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_search_sub
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_tree_sub
 msgid "Vendor"
-msgstr ""
+msgstr "Hornitzailea"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__website_message_ids
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__website_message_ids
 msgid "Website Messages"
-msgstr ""
+msgstr "webgune mezuak"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__website_message_ids
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__website_message_ids
 msgid "Website communication history"
-msgstr ""
+msgstr "Webgune komunikazio historikoa"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__wiz_id
 msgid "Wizard"
-msgstr ""
+msgstr "Laguntzailea"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_request_line.py:368
 #, python-format
 msgid "You can only delete a purchase request line if the purchase request is in draft state."
 msgstr ""
+"Eskaera-lerro bakarra ezaba dezakezu, eskaera zirriborro egoeran badago."
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_request.py:279
 #, python-format
 msgid "You can't request an approval for a purchase request which is empty. (%s)"
 msgstr ""
+"Ezin duzu onespenik eskatu hutsik dagoen erosketa-eskaera baterako ( %s)"
 
 #. module: purchase_request
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:81
 #, python-format
 msgid "You cannot create a single purchase order from purchase requests that have different procurement group."
 msgstr ""
+"Ezin du erosketa-eskaera bakarra sortu hornidura-talde desberdina duten "
+"eskaerentzat."
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_request.py:238
 #, python-format
 msgid "You cannot delete a purchase request which is not draft."
-msgstr ""
+msgstr "Ezin duzu ezabatu zirriborro egoeran ez dagoen erosketa-eskaera bat."
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_request_line.py:364
 #, python-format
 msgid "You cannot delete a record that refers to purchase lines!"
-msgstr ""
+msgstr "Ezin dituzu ezabatu erosketa-lerroekin lotutako erregistroak!"
 
 #. module: purchase_request
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:68
 #, python-format
 msgid "You have to enter a Picking Type."
-msgstr ""
+msgstr "Eragiketa mota bat sartu behar duzu."
 
 #. module: purchase_request
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:72
 #, python-format
 msgid "You have to select lines from the same Picking Type."
-msgstr ""
+msgstr "Eragiketa mota bereko lerroak aukeratu behar dituzu."
 
 #. module: purchase_request
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:60
 #, python-format
 msgid "You have to select lines from the same company."
-msgstr ""
+msgstr "Konpainia bereko lerroa aukeratu behar duzu."
