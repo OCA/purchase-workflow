@@ -24,15 +24,17 @@
         <field name="name">Purchase Request multi-company</field>
         <field name="model_id" ref="model_purchase_request" />
         <field name="global" eval="True" />
-        <field name="domain_force">['|',('company_id','=',False),
-            ('company_id','child_of',[user.company_id.id])]</field>
+        <field
+            name="domain_force"
+        >['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
     </record>
     <record model="ir.rule" id="purchase_request_line_comp_rule">
         <field name="name">Purchase Request Line multi-company</field>
         <field name="model_id" ref="model_purchase_request_line" />
         <field name="global" eval="True" />
-        <field name="domain_force">['|',('company_id','=',False),
-            ('company_id','child_of',[user.company_id.id])]</field>
+        <field
+            name="domain_force"
+        >['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
     </record>
     <record id="purchase_request_followers_rule" model="ir.rule">
         <field name="name">Follow Purchase Request</field>
