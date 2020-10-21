@@ -14,18 +14,22 @@ class AccountInvoice(models.Model):
     wa_id = fields.Many2one(
         comodel_name='work.acceptance',
         string='WA Reference',
+        readonly=True,
         copy=False,
         domain=lambda self: [
             ('state', '=', 'accept'),
             ('purchase_id', '=', self._context.get('active_id'))],
         help='To control quantity and unit price of the vendor bill, to be '
-             'according to the quantity and unit price of the work acceptance.',
+             'according to the quantity and unit price of the work acceptance.'
     )
 
     @api.multi
     def _compute_require_wa(self):
-        self.require_wa = self.env.user.has_group(
-            'purchase_work_acceptance.group_enforce_wa_on_invoice')
+        for rec in self:
+            enforce_wa = self.env.user.has_group(
+                "purchase_work_acceptance.group_enforce_wa_on_invoice"
+            )
+            rec.require_wa = self.wa_id and enforce_wa
 
     def _prepare_invoice_line_from_po_line(self, line):
         res = super()._prepare_invoice_line_from_po_line(line)
@@ -69,6 +73,7 @@ class AccountInvoice(models.Model):
                         else:
                             invoice_line[line.product_id.id] = qty
                 if wa_line != invoice_line:
-                    raise ValidationError(_('You cannot validate a bill if '
-                                          'Quantity not equal accepted quantity'))
+                    raise ValidationError(_(
+                        'You cannot validate a bill if '
+                        'Quantity not equal accepted quantity'))
         return super().action_invoice_open()
