@@ -589,7 +589,6 @@ msgid "Work Acceptances"
 msgstr ""
 
 #. module: purchase_work_acceptance
-#: code:addons/purchase_work_acceptance/models/account_invoice.py:72
 #: code:addons/purchase_work_acceptance/models/account_invoice.py:76
 #, python-format
 msgid "You cannot validate a bill if Quantity not equal accepted quantity"
