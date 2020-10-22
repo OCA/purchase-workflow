@@ -3,7 +3,7 @@
 
 {
     'name': 'Purchase Work Acceptance',
-    'version': '12.0.1.0.2',
+    'version': '12.0.1.1.0',
     'category': 'Purchase Management',
     'author': 'Ecosoft, '
               'Odoo Community Association (OCA)',
