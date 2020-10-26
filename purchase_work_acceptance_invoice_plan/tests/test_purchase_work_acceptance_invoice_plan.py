@@ -12,9 +12,6 @@ class TestPurchaseWorkAcceptanceInvoicePlan(TransactionCase):
         self.PurchaseOrder = self.env["purchase.order"]
         self.PurchaseInvoicePlan = self.env["purchase.create.invoice.plan"]
         self.WaInstallment = self.env["select.work.acceptance.invoice.plan.wizard"]
-        # self.StockBackorderConfirm = self.env["stock.backorder.confirmation"]
-        # self.StockPicking = self.env["stock.picking"]
-
         self.test_partner = self.env.ref("base.res_partner_12")
         self.test_service = self.env.ref("product.product_product_2")
         self.test_product = self.env.ref("product.product_product_7")
