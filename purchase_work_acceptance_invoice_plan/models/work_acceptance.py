@@ -12,4 +12,5 @@ class WorkAcceptance(models.Model):
         string="Invoice Plan",
         readonly=True,
         copy=False,
+        ondelete="restrict",
     )
