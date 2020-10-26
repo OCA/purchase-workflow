@@ -3,11 +3,11 @@
 
 {
     "name": "Purchase Supplierinfo Currency",
-    "version": "12.0.1.0.0",
+    "version": "13.0.1.0.0",
     "summary": "When a PO is created from an stock rule this module verifes "
                "the product supplier info of the product to create PO "
                "per currency",
-    "author": "Jarsa Sistemas S.A. de C.V., Odoo Community Association (OCA)",
+    "author": "Jarsa Sistemas S.A. de C.V., MtNet Services, SA de CV., Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
     "category": "Purchase Management",
     "license": "AGPL-3",
