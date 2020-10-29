@@ -29,13 +29,13 @@
                         name="state"
                         widget="statusbar"
                         statusbar_visible="draft,accept"
-                        readonly="1"
+                        attrs="{'readonly': True}"
                     />
                 </header>
                 <sheet>
                     <div class="oe_title">
                         <h1>
-                            <field name="name" readonly="1" />
+                            <field name="name" attrs="{'readonly': True}" />
                         </h1>
                     </div>
                     <group>
@@ -140,7 +140,11 @@
                     groups="base.group_multi_company"
                     options="{'no_create': True}"
                 />
-                <field name="currency_id" invisible="1" />
+                <field
+                    name="currency_id"
+                    groups="base.group_multi_currency"
+                    options="{'no_create': True}"
+                />
                 <field name="state" />
             </tree>
         </field>

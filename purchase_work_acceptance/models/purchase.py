@@ -66,7 +66,7 @@ class PurchaseOrder(models.Model):
                 result["res_id"] = self.wa_ids.id or False
         return result
 
-    def action_view_invoice(self):
+    def action_create_invoice(self):
         if self.env.context.get("create_bill", False) and self.env.user.has_group(
             "purchase_work_acceptance.group_enable_wa_on_invoice"
         ):
@@ -82,7 +82,7 @@ class PurchaseOrder(models.Model):
                 "view_id": wizard.id,
                 "target": "new",
             }
-        return super().action_view_invoice()
+        return super().action_create_invoice()
 
 
 class PurchaseOrderLine(models.Model):
@@ -102,9 +102,9 @@ class PurchaseOrderLine(models.Model):
             if wa_line.wa_id.state != "cancel"
         )
 
-    def _prepare_account_move_line(self, move):
+    def _prepare_account_move_line(self, move=False):
         res = super()._prepare_account_move_line(move)
-        if move.wa_id:
+        if move and move.wa_id:
             wa_line = self.wa_line_ids.filtered(lambda l: l.wa_id == move.wa_id)
             res["quantity"] = wa_line.product_qty
             res["product_uom_id"] = wa_line.product_uom
