@@ -20,7 +20,7 @@ class TestPurchaseWorkAcceptance(TransactionCase):
             {"group_enable_wa_on_po": True}
         ).execute()
 
-    def _create_purchase_order(self, qty):
+    def _create_purchase_order(self, qty, product):
         purchase_order = self.env["purchase.order"].create(
             {
                 "partner_id": self.res_partner.id,
@@ -29,10 +29,10 @@ class TestPurchaseWorkAcceptance(TransactionCase):
                         0,
                         0,
                         {
-                            "product_id": self.product_product.id,
-                            "product_uom": self.product_product.uom_id.id,
-                            "name": self.product_product.name,
-                            "price_unit": self.product_product.standard_price,
+                            "product_id": product.id,
+                            "product_uom": product.uom_id.id,
+                            "name": product.name,
+                            "price_unit": product.standard_price,
                             "date_planned": self.date_now,
                             "product_qty": qty,
                         },
@@ -141,7 +141,7 @@ class TestPurchaseWorkAcceptance(TransactionCase):
     def test_01_action_view_wa(self):
         # Create Purchase Order
         qty = 42.0
-        purchase_order = self._create_purchase_order(qty)
+        purchase_order = self._create_purchase_order(qty, self.product_product)
         purchase_order.button_confirm()
         self.assertEqual(purchase_order.state, "purchase")
 
@@ -153,7 +153,7 @@ class TestPurchaseWorkAcceptance(TransactionCase):
     def test_02_flow_product(self):
         # Create Purchase Order
         qty = 42.0
-        purchase_order = self._create_purchase_order(qty)
+        purchase_order = self._create_purchase_order(qty, self.product_product)
         purchase_order.button_confirm()
         self.assertEqual(purchase_order.state, "purchase")
         self.assertEqual(purchase_order.picking_count, 1)
@@ -177,7 +177,7 @@ class TestPurchaseWorkAcceptance(TransactionCase):
         with self.assertRaises(UserError):
             work_acceptance.button_draft()
         # Create Vendor Bill
-        f = Form(self.env["account.move"].with_context(default_type="in_invoice"))
+        f = Form(self.env["account.move"].with_context(default_move_type="in_invoice"))
         f.partner_id = purchase_order.partner_id
         f.purchase_id = purchase_order
         # f.wa_id = work_acceptance
@@ -189,13 +189,15 @@ class TestPurchaseWorkAcceptance(TransactionCase):
                 {"quantity": 6.0}
             )
             invoice.action_post()  # Warn when quantity not equal to WA
-        invoice_line.quantity = 42.0
+        invoice_line.quantity = qty
+        self.assertEqual(invoice.state, "draft")
         invoice.action_post()
+        self.assertEqual(invoice.state, "posted")
 
     def test_03_flow_service(self):
         qty = 30.0
         # Create Purchase Order
-        purchase_order = self._create_purchase_order(qty)
+        purchase_order = self._create_purchase_order(qty, self.service_product)
         purchase_order.button_confirm()
         self.assertEqual(purchase_order.state, "purchase")
         # Create Work Acceptance
@@ -204,12 +206,12 @@ class TestPurchaseWorkAcceptance(TransactionCase):
         self.assertEqual(work_acceptance.state, "accept")
         self.assertEqual(purchase_order.wa_count, 1)
         # Create Vendor Bill
-        res = purchase_order.with_context(create_bill=True).action_view_invoice()
-        ctx = res.get("context")
-        f = Form(
-            self.env["account.move"].with_context(ctx), view="account.view_move_form"
-        )
+        f = Form(self.env["account.move"].with_context(default_move_type="in_invoice"))
+        f.partner_id = purchase_order.partner_id
+        f.purchase_id = purchase_order
+        # f.wa_id = work_acceptance
         invoice = f.save()
+        invoice.wa_id = work_acceptance
         self.assertEqual(invoice.state, "draft")
         invoice.action_post()
         self.assertEqual(invoice.state, "posted")
@@ -217,18 +219,18 @@ class TestPurchaseWorkAcceptance(TransactionCase):
     def test_04_enable_config_flow(self):
         qty = 2.0
         # Create Purchase Order
-        purchase_order = self._create_purchase_order(qty)
+        purchase_order = self._create_purchase_order(qty, self.service_product)
         purchase_order.button_confirm()
         # Create Work Acceptance
         work_acceptance = self._create_work_acceptance(qty, purchase_order)
         work_acceptance.button_accept()
-        res = purchase_order.with_context(create_bill=True).action_view_invoice()
+        res = purchase_order.with_context(create_bill=True).action_create_invoice()
         self.assertEqual(res.get("res_model"), "account.move")
         # enable wa on invoice
         self.env["res.config.settings"].create(
             {"group_enable_wa_on_invoice": True}
         ).execute()
-        res = purchase_order.with_context(create_bill=True).action_view_invoice()
+        res = purchase_order.with_context(create_bill=True).action_create_invoice()
         self.assertEqual(res.get("res_model"), "select.work.acceptance.wizard")
         wizard = self.env[res.get("res_model")].create({"wa_id": work_acceptance.id})
         wiz = wizard.button_create_vendor_bill()
@@ -259,7 +261,7 @@ class TestPurchaseWorkAcceptance(TransactionCase):
         self.env["res.config.settings"].create(
             {"group_enable_wa_on_invoice": True}
         ).execute()
-        res = purchase_order.with_context(create_bill=True).action_view_invoice()
+        res = purchase_order.with_context(create_bill=True).action_create_invoice()
         self.assertEqual(res.get("res_model"), "select.work.acceptance.wizard")
         wizard = self.env[res.get("res_model")].create({"wa_id": work_acceptance.id})
         wiz = wizard.button_create_vendor_bill()
