@@ -35,9 +35,11 @@
                 expr="//field[@name='order_line']/tree//field[@name='qty_received']"
                 position="attributes"
             >
-                <attribute
-                    name="attrs"
-                >{'column_invisible': [('parent.state', 'not in', ('purchase', 'done'))], 'readonly': ['|', ('product_type', 'in', ('consu', 'product')), ('wa_line_ids', '!=', ())]}</attribute>
+                <attribute name="attrs">
+                    {'column_invisible': [('parent.state', 'not in', ('purchase',
+                    'done'))], 'readonly': ['|', ('product_type', 'in', ('consu',
+                    'product')), ('wa_line_ids', '!=', ())]}
+                </attribute>
             </xpath>
         </field>
     </record>

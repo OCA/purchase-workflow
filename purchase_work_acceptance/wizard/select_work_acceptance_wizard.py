@@ -26,12 +26,15 @@ class SelectWorkAcceptanceWizard(models.TransientModel):
 
     def button_create_vendor_bill(self):
         order = self.env["purchase.order"].browse(self._context.get("active_id"))
-        if any(invoice.wa_id == self.wa_id for invoice in order.invoice_ids):
+        if any(
+            (invoice.wa_id and invoice.wa_id == self.wa_id)
+            for invoice in order.invoice_ids
+        ):
             raise ValidationError(_("%s was used in some bill.") % self.wa_id.name)
         action = self.env.ref("account.action_move_in_invoice_type")
         result = action.read()[0]
         result["context"] = {
-            "default_type": "in_invoice",
+            "default_move_type": "in_invoice",
             "default_wa_id": self.wa_id.id,
             "default_purchase_id": self._context.get("active_id"),
             "default_company_id": self.wa_id.company_id.id or self.env.company.id,
