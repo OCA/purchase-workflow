@@ -126,18 +126,23 @@ msgid "Purchase Order Line"
 msgstr "Commande"
 
 #. module: purchase_exception
+#: model:ir.model,name:purchase_exception.model_purchase_exception_confirm
+msgid "Purchase exception wizard"
+msgstr ""
+
+#. module: purchase_exception
 #: model:exception.rule,description:purchase_exception.pol_excep_qty_check
 msgid "Purchase line quantity must be positive"
 msgstr "La quantité sur la ligne doit être positive"
 
 #. module: purchase_exception
-#: selection:exception.rule,model:0
+#: model:ir.model.fields.selection,name:purchase_exception.selection__exception_rule__model__purchase_order
 #, fuzzy
 msgid "Purchase order"
 msgstr "Commande"
 
 #. module: purchase_exception
-#: selection:exception.rule,model:0
+#: model:ir.model.fields.selection,name:purchase_exception.selection__exception_rule__model__purchase_order_line
 #, fuzzy
 msgid "Purchase order line"
 msgstr "Commande"
@@ -157,8 +162,8 @@ msgstr "Achat"
 
 #. module: purchase_exception
 #: model:exception.rule,name:purchase_exception.pol_excep_qty_check
-msgid "Quantity not negative"
-msgstr "Quantité non négative"
+msgid "Quantity not positive"
+msgstr ""
 
 #. module: purchase_exception
 #: model_terms:ir.ui.view,arch_db:purchase_exception.view_order_form
@@ -169,10 +174,11 @@ msgstr ""
 "Vous avez une exception\n"
 "                   non résolue à traiter :"
 
-#. module: purchase_exception
-#: model:ir.model,name:purchase_exception.model_purchase_exception_confirm
-msgid "purchase.exception.confirm"
-msgstr "purchase.exception.confirm"
+#~ msgid "Quantity not negative"
+#~ msgstr "Quantité non négative"
+
+#~ msgid "purchase.exception.confirm"
+#~ msgstr "purchase.exception.confirm"
 
 #~ msgid "Rule Group"
 #~ msgstr "Groupe de règle"
