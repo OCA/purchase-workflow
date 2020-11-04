@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* purchase_exception
+# 	* purchase_exception
 #
 msgid ""
 msgstr ""
@@ -119,17 +119,22 @@ msgid "Purchase Order Line"
 msgstr "采购订单行"
 
 #. module: purchase_exception
+#: model:ir.model,name:purchase_exception.model_purchase_exception_confirm
+msgid "Purchase exception wizard"
+msgstr ""
+
+#. module: purchase_exception
 #: model:exception.rule,description:purchase_exception.pol_excep_qty_check
 msgid "Purchase line quantity must be positive"
 msgstr "采购行数量必须为正数"
 
 #. module: purchase_exception
-#: selection:exception.rule,model:0
+#: model:ir.model.fields.selection,name:purchase_exception.selection__exception_rule__model__purchase_order
 msgid "Purchase order"
 msgstr "采购订单"
 
 #. module: purchase_exception
-#: selection:exception.rule,model:0
+#: model:ir.model.fields.selection,name:purchase_exception.selection__exception_rule__model__purchase_order_line
 msgid "Purchase order line"
 msgstr "采购订单行"
 
@@ -147,18 +152,20 @@ msgstr "采购"
 
 #. module: purchase_exception
 #: model:exception.rule,name:purchase_exception.pol_excep_qty_check
-msgid "Quantity not negative"
-msgstr "数量不是负数"
+msgid "Quantity not positive"
+msgstr ""
 
 #. module: purchase_exception
 #: model_terms:ir.ui.view,arch_db:purchase_exception.view_order_form
-msgid "You have an outstanding\n"
+msgid ""
+"You have an outstanding\n"
 "                    exception to manage:"
 msgstr ""
 "你有一个突出的\n"
 "                    异常需要管理："
 
-#. module: purchase_exception
-#: model:ir.model,name:purchase_exception.model_purchase_exception_confirm
-msgid "purchase.exception.confirm"
-msgstr "purchase.exception.confirm"
+#~ msgid "Quantity not negative"
+#~ msgstr "数量不是负数"
+
+#~ msgid "purchase.exception.confirm"
+#~ msgstr "purchase.exception.confirm"
