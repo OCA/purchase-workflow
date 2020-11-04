@@ -3,21 +3,18 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 {
-    'name': 'Purchase Exception',
-    'summary': 'Custom exceptions on purchase order',
-    'version': '12.0.1.1.0',
-    'category': 'Generic Modules/Purchase',
-    'author': "Akretion, Odoo Community Association (OCA)",
+    "name": "Purchase Exception",
+    "summary": "Custom exceptions on purchase order",
+    "version": "12.0.1.1.0",
+    "category": "Generic Modules/Purchase",
+    "author": "Akretion, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
-    'depends': [
-        'purchase',
-        'base_exception',
+    "depends": ["purchase", "base_exception",],
+    "license": "AGPL-3",
+    "data": [
+        "data/purchase_exception_data.xml",
+        "wizard/purchase_exception_confirm_view.xml",
+        "views/purchase_view.xml",
     ],
-    'license': 'AGPL-3',
-    'data': [
-        'data/purchase_exception_data.xml',
-        'wizard/purchase_exception_confirm_view.xml',
-        'views/purchase_view.xml',
-    ],
-    'installable': True,
+    "installable": True,
 }
