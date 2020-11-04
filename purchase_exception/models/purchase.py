@@ -10,13 +10,13 @@ logger = logging.getLogger(__name__)
 
 
 class PurchaseOrder(models.Model):
-    _inherit = ['purchase.order', 'base.exception']
-    _name = 'purchase.order'
-    _order = 'main_exception_id asc, date_order desc, name desc'
+    _inherit = ["purchase.order", "base.exception"]
+    _name = "purchase.order"
+    _order = "main_exception_id asc, date_order desc, name desc"
 
     @api.model
     def test_all_draft_orders(self):
-        order_set = self.search([('state', '=', 'draft')])
+        order_set = self.search([("state", "=", "draft")])
         order_set.detect_exceptions()
         return True
 
@@ -26,33 +26,35 @@ class PurchaseOrder(models.Model):
         # We keep this only for backward compatibility
         res = super()._exception_rule_eval_context(rec)
         if res.get("purchase"):
-            logger.warning("""
+            logger.warning(
+                """
                 For a full compatibility with future versions of this module,
                 please use 'self' instead of 'purchase' in your
                 custom exceptions rules.
-                """)
-        res['purchase'] = rec
+                """
+            )
+        res["purchase"] = rec
         return res
 
     @api.model
     def _reverse_field(self):
-        return 'purchase_ids'
+        return "purchase_ids"
 
     def detect_exceptions(self):
         all_exceptions = super().detect_exceptions()
-        lines = self.mapped('order_line')
+        lines = self.mapped("order_line")
         all_exceptions += lines.detect_exceptions()
         return all_exceptions
 
-    @api.constrains('ignore_exception', 'order_line', 'state')
+    @api.constrains("ignore_exception", "order_line", "state")
     def purchase_check_exception(self):
-        orders = self.filtered(lambda s: s.state == 'purchase')
+        orders = self.filtered(lambda s: s.state == "purchase")
         if orders:
             orders._check_exception()
 
-    @api.onchange('order_line')
+    @api.onchange("order_line")
     def onchange_ignore_exception(self):
-        if self.state == 'purchase':
+        if self.state == "purchase":
             self.ignore_exception = False
 
     @api.multi
@@ -72,6 +74,5 @@ class PurchaseOrder(models.Model):
 
     @api.model
     def _get_popup_action(self):
-        action = self.env.ref(
-            'purchase_exception.action_purchase_exception_confirm')
+        action = self.env.ref("purchase_exception.action_purchase_exception_confirm")
         return action
