@@ -6,5 +6,5 @@ from openupgradelib import openupgrade
 @openupgrade.migrate()
 def migrate(env, version):
     openupgrade.load_data(
-        env.cr, 'purchase_exception',
-        'migrations/12.0.1.0.1/noupdate_changes.xml')
+        env.cr, "purchase_exception", "migrations/12.0.1.0.1/noupdate_changes.xml"
+    )
