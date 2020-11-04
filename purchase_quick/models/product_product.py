@@ -24,7 +24,7 @@ class ProductProduct(models.Model):
     @api.depends("po_line_ids")
     def _compute_process_qty(self):
         res = super(ProductProduct, self)._compute_process_qty()
-        if self.env.context["parent_model"] == "purchase.order":
+        if self.env.context.get("parent_model", False) == "purchase.order":
             po_lines = self.env["purchase.order.line"].search(
                 [("order_id", "=", self.env.context.get("parent_id"))]
             )
