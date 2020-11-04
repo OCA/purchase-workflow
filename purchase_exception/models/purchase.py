@@ -1,12 +1,9 @@
 # Copyright 2017 Akretion (http://www.akretion.com)
+# Copyright 2020 Camptocamp SA
 # Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-import logging
-
 from odoo import api, models
-
-logger = logging.getLogger(__name__)
 
 
 class PurchaseOrder(models.Model):
@@ -19,22 +16,6 @@ class PurchaseOrder(models.Model):
         order_set = self.search([("state", "=", "draft")])
         order_set.detect_exceptions()
         return True
-
-    @api.model
-    def _exception_rule_eval_context(self, rec):
-        # TODO remove in v13
-        # We keep this only for backward compatibility
-        res = super()._exception_rule_eval_context(rec)
-        if res.get("purchase"):
-            logger.warning(
-                """
-                For a full compatibility with future versions of this module,
-                please use 'self' instead of 'purchase' in your
-                custom exceptions rules.
-                """
-            )
-        res["purchase"] = rec
-        return res
 
     @api.model
     def _reverse_field(self):
@@ -57,15 +38,13 @@ class PurchaseOrder(models.Model):
         if self.state == "purchase":
             self.ignore_exception = False
 
-    @api.multi
     def button_confirm(self):
         if self.detect_exceptions() and not self.ignore_exception:
             return self._popup_exceptions()
-        return super(PurchaseOrder, self).button_confirm()
+        return super().button_confirm()
 
-    @api.multi
     def button_draft(self):
-        res = super(PurchaseOrder, self).button_draft()
+        res = super().button_draft()
         for order in self:
             order.exception_ids = False
             order.main_exception_id = False
