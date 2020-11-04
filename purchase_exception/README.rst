@@ -23,7 +23,7 @@ Purchase Exception
     :target: https://runbot.odoo-community.org/runbot/142/12.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module allows you attach several customizable exceptions to your
 purchase order in a way that you can filter orders by exceptions type and fix them.
@@ -67,6 +67,7 @@ Contributors
 
 * Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
 * Sudhir Arya <sudhir@erpharbor.com>
+* Darius Martinkus <darius@focusate.eu>
 
 Maintainers
 ~~~~~~~~~~~
