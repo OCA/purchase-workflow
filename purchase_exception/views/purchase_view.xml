@@ -71,7 +71,7 @@
         <field name="model">purchase.order</field>
         <field name="inherit_id" ref="purchase.view_purchase_order_filter" />
         <field name="arch" type="xml">
-            <filter name="activities_my" position="after">
+            <filter name="activities_exception" position="after">
                 <separator orientation="vertical" />
                 <filter
                     icon="fa-exclamation-circle"
