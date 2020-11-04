@@ -8,10 +8,6 @@
     "website": "https://github.com/OCA/purchase-workflow",
     "author": "Camptocamp, Odoo Community Association (OCA)",
     "license": "AGPL-3",
-    "depends": [
-        "purchase_stock",
-    ],
-    "data": [
-        "views/purchase.xml",
-    ],
+    "depends": ["purchase_stock",],
+    "data": ["views/purchase.xml",],
 }
