@@ -1,4 +1,5 @@
 # Copyright 2017 Akretion (http://www.akretion.com)
+# Copyright 2020 Camptocamp SA
 # Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
