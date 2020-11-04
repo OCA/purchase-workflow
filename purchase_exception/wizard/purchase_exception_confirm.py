@@ -6,10 +6,10 @@ from odoo import api, fields, models
 
 
 class PurchaseExceptionConfirm(models.TransientModel):
-    _name = 'purchase.exception.confirm'
-    _inherit = ['exception.rule.confirm']
+    _name = "purchase.exception.confirm"
+    _inherit = ["exception.rule.confirm"]
 
-    related_model_id = fields.Many2one('purchase.order', 'Purchase')
+    related_model_id = fields.Many2one("purchase.order", "Purchase")
 
     @api.multi
     def action_confirm(self):
