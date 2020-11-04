@@ -1,16 +1,16 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='utf-8' ?>
 <odoo>
-  <record id="ir_cron_test_po_order_except" model="ir.cron" forcecreate="True">
-    <field name="code">model.test_all_draft_orders()</field>
-  </record>
-  <record id="po_excep_no_email" model="exception.rule">
-<!--    <field name="rule_group"/>-->
-    <field name="code">if not self.partner_id.email:
+    <record id="ir_cron_test_po_order_except" model="ir.cron" forcecreate="True">
+        <field name="code">model.test_all_draft_orders()</field>
+    </record>
+    <record id="po_excep_no_email" model="exception.rule">
+        <!--    <field name="rule_group"/>-->
+        <field name="code">if not self.partner_id.email:
             failed=True</field>
-  </record>
-  <record id="pol_excep_qty_check" model="exception.rule">
-<!--    <field name="rule_group"/>-->
-    <field name="code">if self.product_qty &lt; 0:
+    </record>
+    <record id="pol_excep_qty_check" model="exception.rule">
+        <!--    <field name="rule_group"/>-->
+        <field name="code">if self.product_qty &lt; 0:
             failed=True</field>
-  </record>
+    </record>
 </odoo>
