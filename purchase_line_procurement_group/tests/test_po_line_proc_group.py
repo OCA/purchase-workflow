@@ -8,6 +8,7 @@ class TestPOLineProcurementGroup(SavepointCase):
     def setUpClass(cls):
 
         super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
 
         def _create_orderpoint(product, qty_min, qty_max, location):
             orderpoint_model = cls.env["stock.warehouse.orderpoint"]
@@ -22,14 +23,11 @@ class TestPOLineProcurementGroup(SavepointCase):
             )
 
         # Create supplier
-        cls.pyromaniacs = (
-            cls.env["res.partner"]
-            .with_context(tracking_disable=True)
-            .create({"name": "Pyromaniacs Inc", "company_type": "company"})
+        cls.pyromaniacs = cls.env["res.partner"].create(
+            {"name": "Pyromaniacs Inc", "company_type": "company"}
         )
         cls.lighter = (
             cls.env["product.template"]
-            .with_context(tracking_disable=True)
             .create(
                 {
                     "name": "Lighter",
@@ -39,7 +37,7 @@ class TestPOLineProcurementGroup(SavepointCase):
                         (
                             0,
                             0,
-                            {"name": cls.pyromaniacs.id, "min_qty": 1, "price": 1.0,},
+                            {"name": cls.pyromaniacs.id, "min_qty": 1, "price": 1.0},
                         )
                     ],
                 }
@@ -75,7 +73,7 @@ class TestPOLineProcurementGroup(SavepointCase):
                             ).id,
                             "group_propagation_option": "fixed",
                             "group_id": cls.wh_wh2_pg.id,
-                            "propagate": True,
+                            "propagate_cancel": True,
                         },
                     )
                 ],
