@@ -1,6 +1,6 @@
 # Copyright 2018 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class PurchaseOrderLine(models.Model):
@@ -9,17 +9,35 @@ class PurchaseOrderLine(models.Model):
 
     procurement_group_id = fields.Many2one("procurement.group")
 
-    def _merge_in_existing_line(
-        self, product_id, product_qty, product_uom, location_id, name, origin, values
+    def _find_candidate(
+        self,
+        product_id,
+        product_qty,
+        product_uom,
+        location_id,
+        name,
+        origin,
+        company_id,
+        values,
     ):
         """Do no merge PO lines if procurement group is different."""
-        if values.get("group_id") != (self.procurement_group_id or False):
-            return False
-        return super()._merge_in_existing_line(
-            product_id, product_qty, product_uom, location_id, name, origin, values
+        if "group_id" in values:
+            lines = self.filtered(
+                lambda l: l.procurement_group_id == values["group_id"]
+            )
+        else:
+            lines = self
+        return super(PurchaseOrderLine, lines)._find_candidate(
+            product_id=product_id,
+            product_qty=product_qty,
+            product_uom=product_uom,
+            location_id=location_id,
+            name=name,
+            origin=origin,
+            company_id=company_id,
+            values=values,
         )
 
-    @api.multi
     def _prepare_stock_moves(self, picking):
         res = super()._prepare_stock_moves(picking)
         if res and res[0] and "group_id" in res[0]:
