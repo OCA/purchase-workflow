@@ -9,7 +9,7 @@ class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
     commercial_partner_id = fields.Many2one(
-        "res.partner",
+        comodel_name="res.partner",
         related="partner_id.commercial_partner_id",
         store=True,
         index=True,
