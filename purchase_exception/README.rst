@@ -67,7 +67,7 @@ Contributors
 
 * Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
 * Sudhir Arya <sudhir@erpharbor.com>
-* Darius Martinkus <darius@focusate.com>
+* Darius Martinkus <darius@focusate.eu>
 
 Maintainers
 ~~~~~~~~~~~
