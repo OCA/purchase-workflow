@@ -19,6 +19,7 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
+[purchase_commercial_partner](purchase_commercial_partner/) | 14.0.1.0.0 | Add stored related field 'Commercial Supplier' on POs
 [purchase_order_archive](purchase_order_archive/) | 14.0.1.0.0 | Archive Purchase Orders
 
 [//]: # (end addons)
