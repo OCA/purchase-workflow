@@ -15,10 +15,8 @@ class SuppliedProductMixin(models.AbstractModel):
     )
 
     @api.onchange("partner_id")
-    def partner_id_change(self):
-        only_supp_prod = self.partner_id.use_only_supplied_product
-        if not only_supp_prod:
-            only_supp_prod = (
-                self.partner_id.commercial_partner_id.use_only_supplied_product
-            )
-        self.use_only_supplied_product = only_supp_prod
+    def _onchange_partner_id_supplied_product(self):
+        self.use_only_supplied_product = (
+            self.partner_id.use_only_supplied_product
+            or self.partner_id.commercial_partner_id.use_only_supplied_product
+        )

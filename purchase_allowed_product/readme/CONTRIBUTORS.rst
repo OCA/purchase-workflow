@@ -5,3 +5,7 @@
 
   * Manuel Calero
   * Pedro M. Baeza
+
+* `Via laurea <https://www.vialaurea.com>`__:
+
+  * Darius Žižys
