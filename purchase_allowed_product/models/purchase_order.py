@@ -5,5 +5,5 @@ from odoo import models
 
 
 class PurchaseOrder(models.Model):
-    _inherit = ['purchase.order', 'supplied.product.mixin']
-    _name = 'purchase.order'
+    _inherit = ["purchase.order", "supplied.product.mixin"]
+    _name = "purchase.order"
