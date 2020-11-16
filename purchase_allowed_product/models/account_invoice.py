@@ -5,5 +5,5 @@ from odoo import models
 
 
 class AccountInvoice(models.Model):
-    _inherit = ['account.invoice', 'supplied.product.mixin']
-    _name = 'account.invoice'
+    _inherit = ["account.invoice", "supplied.product.mixin"]
+    _name = "account.invoice"

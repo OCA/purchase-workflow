@@ -1,19 +1,28 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record model="ir.ui.view" id="account_invoice_supplier_form_supplied_product">
         <field name="model">account.invoice</field>
         <field name="inherit_id" ref="account.invoice_supplier_form" />
         <field name="arch" type="xml">
             <field name="invoice_line_ids" position="before">
-                <field name="use_only_supplied_product"
-                       attrs="{'invisible': [('state', 'not in', ('draft', 'send'))]}"
-                       class="oe_edit_only" />
-                <label for="use_only_supplied_product"
-                       attrs="{'invisible': [('state', 'not in', ('draft', 'send'))]}"
-                       class="oe_edit_only" />
+                <field
+                    name="use_only_supplied_product"
+                    attrs="{'invisible': [('state', 'not in', ('draft', 'send'))]}"
+                    class="oe_edit_only"
+                />
+                <label
+                    for="use_only_supplied_product"
+                    attrs="{'invisible': [('state', 'not in', ('draft', 'send'))]}"
+                    class="oe_edit_only"
+                />
             </field>
-            <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='product_id']" position="attributes">
-                <attribute name="context">{'restrict_supplier_id': parent.partner_id, 'use_only_supplied_product': parent.use_only_supplied_product}</attribute>
+            <xpath
+                expr="//field[@name='invoice_line_ids']/tree/field[@name='product_id']"
+                position="attributes"
+            >
+                <attribute
+                    name="context"
+                >{'restrict_supplier_id': parent.partner_id, 'use_only_supplied_product': parent.use_only_supplied_product}</attribute>
             </xpath>
         </field>
     </record>
@@ -22,7 +31,9 @@
         <field name="inherit_id" ref="account.view_invoice_line_form" />
         <field name="arch" type="xml">
             <field name="product_id" position="attributes">
-                <attribute name="context">{'restrict_supplier_id': parent.partner_id, 'use_only_supplied_product': parent.use_only_supplied_product}</attribute>
+                <attribute
+                    name="context"
+                >{'restrict_supplier_id': parent.partner_id, 'use_only_supplied_product': parent.use_only_supplied_product}</attribute>
             </field>
         </field>
     </record>
