@@ -2,8 +2,11 @@
     <data>
         <record id="group_purchase_own_orders" model="res.groups">
             <field name="name">Purchase (own orders)</field>
-            <field name="category_id" ref="base.module_category_purchase_management"/>
-            <field name="implied_ids" eval="[(4, ref('purchase.group_purchase_user'))]"/>
+            <field name="category_id" ref="base.module_category_purchase_management" />
+            <field
+                name="implied_ids"
+                eval="[(4, ref('purchase.group_purchase_user'))]"
+            />
         </record>
         <record id="purchase.group_purchase_manager" model="res.groups">
             <field
@@ -22,7 +25,9 @@
         <record model="ir.rule" id="purchase_order_group_purchase_order_own_orders">
             <field name="name">View purchase orders (own responsible)</field>
             <field name="model_id" ref="purchase.model_purchase_order" />
-            <field name="domain_force">['|',('user_id','=',user.id),('user_id','=',False)]</field>
+            <field
+                name="domain_force"
+            >['|',('user_id','=',user.id),('user_id','=',False)]</field>
             <field name="groups" eval="[(4,ref('group_purchase_own_orders'))]" />
         </record>
     </data>
