@@ -4,6 +4,6 @@
 from odoo import models
 
 
-class AccountInvoice(models.Model):
-    _inherit = ["account.invoice", "supplied.product.mixin"]
-    _name = "account.invoice"
+class AccountMove(models.Model):
+    _inherit = ["account.move", "supplied.product.mixin"]
+    _name = "account.move"
