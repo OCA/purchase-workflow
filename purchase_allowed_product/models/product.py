@@ -19,18 +19,20 @@ class ProductProduct(models.Model):
         count=False,
         access_rights_uid=None,
     ):
-        use_only_supplied_product = self.env.context.get("use_only_supplied_product")
-        if use_only_supplied_product:
+        if self.env.context.get("use_only_supplied_product"):
             restrict_supplier_id = self.env.context.get("restrict_supplier_id")
-            seller = self.env["res.partner"].browse(restrict_supplier_id)
-            seller = seller.commercial_partner_id
+            seller = (
+                self.env["res.partner"]
+                .browse(restrict_supplier_id)
+                .commercial_partner_id
+            )
             supplierinfos = self.env["product.supplierinfo"].search(
                 [("name", "=", seller.id)]
             )
             args += [
                 "|",
-                ("product_tmpl_id", "in", supplierinfos.mapped("product_tmpl_id").ids),
-                ("id", "in", supplierinfos.mapped("product_id").ids),
+                ("product_tmpl_id", "in", supplierinfos.product_tmpl_id.ids),
+                ("id", "in", supplierinfos.product_id.ids),
             ]
         return super()._search(
             args,
