@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 import logging
+
 from odoo.exceptions import AccessError
 from odoo.tests.common import SavepointCase
 
@@ -32,9 +33,7 @@ class TestPurchaseOrderSecurity(SavepointCase):
                 "name": "po_user",
                 "login": "po_user",
                 "email": "po_user@example.com",
-                "groups_id": [
-                    (6, 0, [cls.env.ref("purchase.group_purchase_user").id])
-                ],
+                "groups_id": [(6, 0, [cls.env.ref("purchase.group_purchase_user").id])],
             }
         )
         # Purchase order manager
@@ -44,9 +43,7 @@ class TestPurchaseOrderSecurity(SavepointCase):
                 "login": "po_manager",
                 "email": "po_manager@example.com",
                 "groups_id": [
-                    (6, 0, [
-                        cls.env.ref("purchase.group_purchase_manager").id
-                    ])
+                    (6, 0, [cls.env.ref("purchase.group_purchase_manager").id])
                 ],
             }
         )
@@ -60,32 +57,32 @@ class TestPurchaseOrderSecurity(SavepointCase):
             }
         )
         # Partner for the POs
-        cls.partner_po = cls.env["res.partner"].create({
-            'name': 'PO Partner',
-        })
+        cls.partner_po = cls.env["res.partner"].create({"name": "PO Partner",})
         # Purchase Order
-        cls.env["purchase.order"].create((
-            {
-                "name": "po_security_1",
-                "partner_id": cls.partner_po.id,
-                "user_id": False,  # No Purchase Representative
-            },
-            {
-                "name": "po_security_2",
-                "user_id": cls.user_po_user.id,
-                "partner_id": cls.partner_po.id,
-            },
-            {
-                "name": "po_security_3",
-                "user_id": cls.user_po_manager.id,
-                "partner_id": cls.partner_po.id,
-            },
-            {
-                "name": "po_security_4",
-                "user_id": cls.user_group_purchase_own_orders.id,
-                "partner_id": cls.partner_po.id,
-            }
-        ))
+        cls.env["purchase.order"].create(
+            (
+                {
+                    "name": "po_security_1",
+                    "partner_id": cls.partner_po.id,
+                    "user_id": False,  # No Purchase Representative
+                },
+                {
+                    "name": "po_security_2",
+                    "user_id": cls.user_po_user.id,
+                    "partner_id": cls.partner_po.id,
+                },
+                {
+                    "name": "po_security_3",
+                    "user_id": cls.user_po_manager.id,
+                    "partner_id": cls.partner_po.id,
+                },
+                {
+                    "name": "po_security_4",
+                    "user_id": cls.user_group_purchase_own_orders.id,
+                    "partner_id": cls.partner_po.id,
+                },
+            )
+        )
 
     def test_access_user_user_group_purchase_own_orders(self):
         # User in group should have access to it's own PO
@@ -94,9 +91,10 @@ class TestPurchaseOrderSecurity(SavepointCase):
             len(
                 self.env["purchase.order"]
                 .sudo(self.user_group_purchase_own_orders)
-                .search([]).ids
+                .search([])
+                .ids
             ),
-            2
+            2,
         )
 
     def test_access_user_po_user(self):
@@ -106,11 +104,10 @@ class TestPurchaseOrderSecurity(SavepointCase):
             len(
                 self.env["purchase.order"]
                 .sudo(self.user_po_user)
-                .search([
-                    ('name', 'like', 'po_security')
-                ]).ids
+                .search([("name", "like", "po_security")])
+                .ids
             ),
-            4
+            4,
         )
 
     def test_access_user_po_manager(self):
@@ -119,11 +116,10 @@ class TestPurchaseOrderSecurity(SavepointCase):
             len(
                 self.env["purchase.order"]
                 .sudo(self.user_po_manager)
-                .search([
-                    ('name', 'like', 'po_security')
-                ]).ids
+                .search([("name", "like", "po_security")])
+                .ids
             ),
-            4
+            4,
         )
 
     def test_access_user_without_groups(self):
