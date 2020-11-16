@@ -5,6 +5,6 @@ from odoo import fields, models
 
 
 class ProductSupplierinfo(models.Model):
-    _inherit = 'product.supplierinfo'
+    _inherit = "product.supplierinfo"
 
-    name = fields.Many2one('res.partner', index=True)
+    name = fields.Many2one("res.partner", index=True)
