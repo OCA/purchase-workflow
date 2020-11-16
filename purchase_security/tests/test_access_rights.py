@@ -3,7 +3,6 @@
 
 import logging
 
-from odoo.exceptions import AccessError
 from odoo.tests.common import SavepointCase
 
 _logger = logging.getLogger(__name__)
@@ -57,7 +56,7 @@ class TestPurchaseOrderSecurity(SavepointCase):
             }
         )
         # Partner for the POs
-        cls.partner_po = cls.env["res.partner"].create({"name": "PO Partner",})
+        cls.partner_po = cls.env["res.partner"].create({"name": "PO Partner"})
         # Purchase Order
         cls.env["purchase.order"].create(
             (
@@ -90,7 +89,7 @@ class TestPurchaseOrderSecurity(SavepointCase):
         self.assertEqual(
             len(
                 self.env["purchase.order"]
-                .sudo(self.user_group_purchase_own_orders)
+                .with_user(self.user_group_purchase_own_orders)
                 .search([])
                 .ids
             ),
@@ -103,7 +102,7 @@ class TestPurchaseOrderSecurity(SavepointCase):
         self.assertEqual(
             len(
                 self.env["purchase.order"]
-                .sudo(self.user_po_user)
+                .with_user(self.user_po_user)
                 .search([("name", "like", "po_security")])
                 .ids
             ),
@@ -115,7 +114,7 @@ class TestPurchaseOrderSecurity(SavepointCase):
         self.assertEqual(
             len(
                 self.env["purchase.order"]
-                .sudo(self.user_po_manager)
+                .with_user(self.user_po_manager)
                 .search([("name", "like", "po_security")])
                 .ids
             ),
@@ -124,5 +123,7 @@ class TestPurchaseOrderSecurity(SavepointCase):
 
     def test_access_user_without_groups(self):
         # User without groups should not have access to POs
-        with self.assertRaises(AccessError):
-            self.env["purchase.order"].sudo(self.user_without_groups).read()
+        self.assertEqual(
+            len(self.env["purchase.order"].with_user(self.user_without_groups).read()),
+            0,
+        )
