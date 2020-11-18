@@ -21,6 +21,7 @@ addon | version | summary
 --- | --- | ---
 [purchase_commercial_partner](purchase_commercial_partner/) | 14.0.1.0.0 | Add stored related field 'Commercial Supplier' on POs
 [purchase_order_archive](purchase_order_archive/) | 14.0.1.0.0 | Archive Purchase Orders
+[purchase_request](purchase_request/) | 14.0.1.0.0 | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
 
 [//]: # (end addons)
 
