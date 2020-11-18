@@ -90,7 +90,7 @@ class WorkAcceptance(models.Model):
         move_dict = [
             {
                 "partner_id": wa.partner_id.id,
-                "type": "out_invoice",
+                "move_type": "out_invoice",
                 "late_wa_id": wa.id,
                 "invoice_line_ids": [
                     (0, 0, wa._prepare_late_wa_in_account_move_line())

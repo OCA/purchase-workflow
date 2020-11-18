@@ -50,7 +50,7 @@ class AccountMove(models.Model):
         move_line = self.env["account.move.line"]
         self.line_ids = False
         late_wa = self.late_wa_id
-        if self.type == "out_invoice" and late_wa:
+        if self.move_type == "out_invoice" and late_wa:
             move_dict = self._prepare_move_wa_late(late_wa)
             move_line_dict = late_wa._prepare_late_wa_in_account_move_line()
             move_line_dict.update(

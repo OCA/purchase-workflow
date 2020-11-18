@@ -92,7 +92,7 @@ class TestWorkAcceptanceLateFine(SavepointCase):
             self.late2days, self.currency_usd.id, product_qty=2
         )
         self.assertEqual(work_acceptance.currency_id.id, self.currency_usd.id)
-        move = self.env["account.move"].create({"type": "out_invoice"})
+        move = self.env["account.move"].create({"move_type": "out_invoice"})
         self.assertEqual(move.currency_id.id, self.currency_eur.id)
         with Form(move) as m:
             m.partner_id = self.res_partner
