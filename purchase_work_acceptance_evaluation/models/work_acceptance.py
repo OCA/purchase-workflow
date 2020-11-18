@@ -46,7 +46,9 @@ class WorkAcceptanceEvaluationResult(models.Model):
         ondelete="cascade",
     )
     case_id = fields.Many2one(
-        comodel_name="work.acceptance.evaluation", string="Case Name", required=True,
+        comodel_name="work.acceptance.evaluation",
+        string="Case Name",
+        required=True,
     )
     score_id = fields.Many2one(
         comodel_name="work.acceptance.evaluation.score",
