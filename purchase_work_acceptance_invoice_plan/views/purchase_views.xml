@@ -13,13 +13,13 @@
                     class="oe_highlight"
                     context="{'create_wa': True}"
                     groups="purchase_work_acceptance.group_enable_wa_on_po"
-                    attrs="{'invisible': ['|', ('ip_invoice_plan', '=', False), ('state', 'not in', ('purchase', 'done'))]}"
+                    attrs="{'invisible': ['|', '|', ('ip_invoice_plan', '=', False), ('state', 'not in', ('purchase', 'done')), ('wa_accepted', '=', True)]}"
                 />
             </xpath>
             <xpath expr="//button[@name='action_view_wa']" position="attributes">
                 <field name="action_view_wa" position="attributes">
                     <attribute name="attrs">
-                          {'invisible': ['|', ('ip_invoice_plan', '!=', False), ('state', 'not in', ('purchase', 'done'))]}
+                          {'invisible': ['|', '|', ('ip_invoice_plan', '!=', False), ('state', 'not in', ('purchase', 'done')), ('wa_accepted', '=', True)]}
                      </attribute>
                 </field>
             </xpath>

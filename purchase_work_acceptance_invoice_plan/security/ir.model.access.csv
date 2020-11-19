@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_select_work_acceptance_invoice_plan_wizard,access_select_work_acceptance_invoice_plan_wizard,model_select_work_acceptance_invoice_plan_wizard,,1,1,1,1
