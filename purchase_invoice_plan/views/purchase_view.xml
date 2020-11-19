@@ -49,7 +49,7 @@
                     <label for="use_invoice_plan" />
                 </div>
             </xpath>
-            <xpath expr="//button[@name='action_view_invoice']" position="before">
+            <xpath expr="//button[@name='action_create_invoice']" position="before">
                 <field name="ip_invoice_plan" invisible="1" />
                 <button
                     name="%(action_view_purchase_make_planned_invoice)d"
@@ -117,13 +117,13 @@
                 <filter
                     name="not_invoiced"
                     string="Waiting Bills"
-                    domain="[('invoice_status','=', 'to invoice')]"
+                    domain="[('to_invoice','=', True)]"
                     help="Purchase orders that include lines not invoiced."
                 />
                 <filter
                     name="invoiced"
                     string="Bills Received"
-                    domain="[('invoice_status','=', 'invoiced')]"
+                    domain="[('invoiced','=', True)]"
                     help="Purchase orders that have been invoiced."
                 />
                 <group expand="0" string="Group By">
