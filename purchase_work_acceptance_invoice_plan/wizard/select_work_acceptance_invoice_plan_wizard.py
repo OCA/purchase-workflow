@@ -10,7 +10,8 @@ class SelectWorkAcceptanceInvoicePlanWizard(models.TransientModel):
     _description = "Select Work Acceptance Invoice Plan Wizard"
 
     active_installment_ids = fields.Many2many(
-        comodel_name="purchase.invoice.plan", compute="_compute_active_installment_ids",
+        comodel_name="purchase.invoice.plan",
+        compute="_compute_active_installment_ids",
     )
     installment_id = fields.Many2one(
         comodel_name="purchase.invoice.plan",
