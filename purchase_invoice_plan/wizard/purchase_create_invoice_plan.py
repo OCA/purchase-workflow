@@ -10,12 +10,20 @@ class PurchaseCreateInvoicePlan(models.TransientModel):
     _description = "Fillig invoice planning criteria"
 
     num_installment = fields.Integer(
-        string="Number of Installment", default=0, required=True,
+        string="Number of Installment",
+        default=0,
+        required=True,
     )
     installment_date = fields.Date(
-        string="Installment Date", default=fields.Date.context_today, required=True,
+        string="Installment Date",
+        default=fields.Date.context_today,
+        required=True,
     )
-    interval = fields.Integer(string="Interval", default=1, required=True,)
+    interval = fields.Integer(
+        string="Interval",
+        default=1,
+        required=True,
+    )
     interval_type = fields.Selection(
         [("day", "Day"), ("month", "Month"), ("year", "Year")],
         string="Interval Type",
