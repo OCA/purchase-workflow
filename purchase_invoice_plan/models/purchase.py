@@ -100,13 +100,15 @@ class PurchaseOrder(models.Model):
         journal = (
             self.env["account.move"]
             .with_context(
-                default_type="in_invoice", default_currency_id=self.currency_id.id
+                default_type="in_invoice",
+                default_currency_id=self.currency_id.id,
+                default_company_id=self.env.user.company_id.id,
             )
             ._get_default_journal()
         )
         pre_inv = self.env["account.move"].new(
             {
-                "type": "in_invoice",
+                "move_type": "in_invoice",
                 "purchase_id": self.id,
                 "journal_id": journal.id,
                 "currency_id": self.currency_id.id,
@@ -139,7 +141,7 @@ class PurchaseOrder(models.Model):
         if invoice_plan_id:
             plan = self.env["purchase.invoice.plan"].browse(invoice_plan_id)
             plan._compute_new_invoice_quantity(invoice)
-            invoice.date_invoice = plan.plan_date
+            invoice.invoice_date = plan.plan_date
             plan.invoice_ids += invoice
         return invoice
 
@@ -164,14 +166,6 @@ class PurchaseInvoicePlan(models.Model):
         index=True,
     )
     state = fields.Selection(
-        selection=[
-            ("draft", "RFQ"),
-            ("sent", "RFQ Sent"),
-            ("to approve", "To Approve"),
-            ("purchase", "Purchase Order"),
-            ("done", "Locked"),
-            ("cancel", "Cancelled"),
-        ],
         string="Status",
         related="purchase_id.state",
         store=True,
@@ -207,13 +201,16 @@ class PurchaseInvoicePlan(models.Model):
         string="Next Invoice",
         compute="_compute_to_invoice",
         help="If this line is ready to create new invoice",
+        store=True,
     )
     invoiced = fields.Boolean(
         string="Invoice Created",
         compute="_compute_invoiced",
         help="If this line already invoiced",
+        store=True,
     )
 
+    @api.depends("purchase_id.state", "purchase_id.invoice_plan_ids.invoiced")
     def _compute_to_invoice(self):
         """If any invoice is in draft/open/paid do not allow to create inv
         Only if previous to_invoice is False, it is eligible to_invoice
@@ -227,6 +224,7 @@ class PurchaseInvoicePlan(models.Model):
                 rec.to_invoice = True
                 break
 
+    @api.depends("invoice_ids.state")
     def _compute_invoiced(self):
         for rec in self:
             invoiced = rec.invoice_ids.filtered(
