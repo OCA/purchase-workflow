@@ -76,7 +76,7 @@ class TestPurchaseInvoicePlan(TransactionCase):
         # Receive all products
         receive = self.test_po_product.picking_ids.filtered(lambda l: l.state != "done")
         receive.move_ids_without_package.quantity_done = 10.0
-        receive.action_done()
+        receive._action_done()
         purchase_create = self.env["purchase.make.planned.invoice"].create({})
         purchase_create.with_context(ctx).create_invoices_by_plan()
 
@@ -105,7 +105,7 @@ class TestPurchaseInvoicePlan(TransactionCase):
                 p.num_installment = 0
             p.save()
         error_message = "Number Installment must greater than 1"
-        self.assertEqual(e.exception.name, error_message)
+        self.assertEqual(e.exception.args[0], error_message)
         # Create purchase plan
         with Form(self.PurchaseInvoicePlan) as p:
             p.num_installment = 5
@@ -116,7 +116,7 @@ class TestPurchaseInvoicePlan(TransactionCase):
         # Receive product 1 unit
         receive = self.test_po_product.picking_ids.filtered(lambda l: l.state != "done")
         receive.move_ids_without_package.quantity_done = 1.0
-        receive.action_done()
+        receive._action_done()
         # ValidationError Create all invoice plan - Receive < Invoice require
         purchase_create = self.env["purchase.make.planned.invoice"].create({})
         with self.assertRaises(ValidationError) as e:
@@ -125,4 +125,4 @@ class TestPurchaseInvoicePlan(TransactionCase):
             "Plan quantity: 2.0, exceed invoiceable quantity: 1.0"
             "\nProduct should be delivered before invoice"
         )
-        self.assertEqual(e.exception.name, error_message)
+        self.assertEqual(e.exception.args[0], error_message)
