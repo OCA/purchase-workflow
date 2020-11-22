@@ -73,7 +73,6 @@ msgstr "Reiniciar Validación"
 #. module: purchase_tier_validation
 #: model:ir.model,name:purchase_tier_validation.model_tier_definition
 #, fuzzy
-#| msgid "tier.definition"
 msgid "Tier Definition"
 msgstr "tier.definition"
 
