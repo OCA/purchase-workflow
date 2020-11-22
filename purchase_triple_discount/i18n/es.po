@@ -80,7 +80,6 @@ msgstr "Línea orden de compra"
 #. module: purchase_triple_discount
 #: model:ir.model,name:purchase_triple_discount.model_purchase_report
 #, fuzzy
-#| msgid "Purchase Order Line"
 msgid "Purchase Report"
 msgstr "Línea orden de compra"
 

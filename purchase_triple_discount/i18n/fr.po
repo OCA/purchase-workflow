@@ -78,7 +78,6 @@ msgstr "Ligne de commande d'achat"
 #. module: purchase_triple_discount
 #: model:ir.model,name:purchase_triple_discount.model_purchase_report
 #, fuzzy
-#| msgid "Purchase Order"
 msgid "Purchase Report"
 msgstr "Commande fournisseur"
 
