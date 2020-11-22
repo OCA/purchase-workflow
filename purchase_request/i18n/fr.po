@@ -70,7 +70,6 @@ msgstr "<strong>Description</strong>"
 #. module: purchase_request
 #: model:ir.ui.view,arch_db:purchase_request.report_purchase_request
 #, fuzzy
-#| msgid "<strong>Requested Date</strong>"
 msgid "<strong>Estimated Cost</strong>"
 msgstr "<strong>Date demandée</strong>"
 
