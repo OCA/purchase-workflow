@@ -40,7 +40,6 @@ msgstr "Aquisiciones"
 #. module: purchase_request_procurement
 #: model:ir.model.fields,field_description:purchase_request_procurement.field_purchase_request_group_id
 #, fuzzy
-#| msgid "Procurement"
 msgid "Procurement Group"
 msgstr "Aquisiciones"
 
