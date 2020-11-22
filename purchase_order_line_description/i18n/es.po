@@ -30,7 +30,6 @@ msgstr ""
 #. module: purchase_order_line_description
 #: model:ir.model,name:purchase_order_line_description.model_res_config_settings
 #, fuzzy
-#| msgid "res.config.settings"
 msgid "Config Settings"
 msgstr "res.config.settings"
 
