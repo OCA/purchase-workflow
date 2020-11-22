@@ -155,7 +155,6 @@ msgstr "Art"
 #. module: purchase_order_type
 #: model:ir.model,name:purchase_order_type.model_purchase_order_type
 #, fuzzy
-#| msgid "Purchase Order"
 msgid "Type of purchase order"
 msgstr "Bestellauftrag"
 
