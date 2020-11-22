@@ -15,8 +15,8 @@ msgstr ""
 "POT-Creation-Date: 2016-11-17 03:38+0000\n"
 "PO-Revision-Date: 2020-10-14 19:08+0000\n"
 "Last-Translator: Enrique Martin Zabalza <enriquemartin@digital5.es>\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/"
-"OCA-purchase-workflow-10-0/language/es/)\n"
+"Language-Team: Spanish (http://www.transifex.com/oca/OCA-purchase-"
+"workflow-10-0/language/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -630,7 +630,6 @@ msgstr "Vencidas"
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__description
 #, fuzzy
-#| msgid "Description"
 msgid "PR Description"
 msgstr "Descripción"
 
@@ -1192,8 +1191,8 @@ msgid ""
 "The following requested items from Purchase Request %s have now been "
 "received in %s using Picking %s:"
 msgstr ""
-"Los siguitenes artículos de la solicitud de compra %s han sido recibidos en %"
-"s con el albarán %s:"
+"Los siguitenes artículos de la solicitud de compra %s han sido recibidos en "
+"%s con el albarán %s:"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/stock_picking.py:19

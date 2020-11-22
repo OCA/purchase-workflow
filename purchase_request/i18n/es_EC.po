@@ -1352,8 +1352,6 @@ msgstr ""
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_request.py:238
 #, fuzzy, python-format
-#| msgid ""
-#| "You can't request an approval for a purchase request which is empty. (%s)"
 msgid "You cannot delete a purchase request which is not draft."
 msgstr "No puedes solicitar aprobación de una requisición vacía. (%s)"
 
