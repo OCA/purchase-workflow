@@ -49,7 +49,6 @@ msgstr "Pop. 3(%)"
 #. module: purchase_triple_discount
 #: model:ir.model.fields,field_description:purchase_triple_discount.field_product_supplierinfo_discount2
 #, fuzzy
-#| msgid "Disc. 2 (%)"
 msgid "Discount 2 (%)"
 msgstr "Pop. 2 (%)"
 
@@ -61,7 +60,6 @@ msgstr "Popust 2 mora biti manje od 100%."
 #. module: purchase_triple_discount
 #: model:ir.model.fields,field_description:purchase_triple_discount.field_product_supplierinfo_discount3
 #, fuzzy
-#| msgid "Disc. 3 (%)"
 msgid "Discount 3 (%)"
 msgstr "Pop. 3(%)"
 
@@ -88,7 +86,6 @@ msgstr ""
 #. module: purchase_triple_discount
 #: model:ir.model,name:purchase_triple_discount.model_purchase_order
 #, fuzzy
-#| msgid "Purchase Order Line"
 msgid "Purchase Order"
 msgstr "Stavka naloga za nabavu"
 

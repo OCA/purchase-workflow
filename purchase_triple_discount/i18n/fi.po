@@ -83,7 +83,6 @@ msgstr ""
 #. module: purchase_triple_discount
 #: model:ir.model,name:purchase_triple_discount.model_purchase_order
 #, fuzzy
-#| msgid "Purchase Order Line"
 msgid "Purchase Order"
 msgstr "Ostotilausrivi"
 
