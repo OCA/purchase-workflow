@@ -60,7 +60,6 @@ msgstr "Facture"
 #. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_purchase_order
 #, fuzzy
-#| msgid "Purchases Orders"
 msgid "Purchase Order"
 msgstr "Commandes d'achat"
 
@@ -72,7 +71,6 @@ msgstr "Ligne de commande d'achat"
 #. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_purchase_report
 #, fuzzy
-#| msgid "Purchases Orders"
 msgid "Purchase Report"
 msgstr "Commandes d'achat"
 
