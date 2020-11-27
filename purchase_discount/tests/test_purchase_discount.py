@@ -52,6 +52,7 @@ class TestPurchaseOrder(common.SavepointCase):
                 "product_uom": cls.product_1.uom_id.id,
                 "discount": 50.0,
                 "price_unit": 10.0,
+                "taxes_id": [],
             }
         )
         cls.account = cls.env["account.account"].create(
@@ -132,7 +133,7 @@ class TestPurchaseOrder(common.SavepointCase):
         self.assertEqual(move3.price_unit, 10)
         # Confirm the picking to see the cost price
         move1.move_line_ids.qty_done = 1
-        picking.action_done()
+        picking._action_done()
         self.assertAlmostEqual(self.product_1.standard_price, 5.0)
         # Check data in PO remains the same - This is due to the hack
         self.assertAlmostEqual(self.po_line_1.price_unit, 10.0)
@@ -148,7 +149,7 @@ class TestPurchaseOrder(common.SavepointCase):
     def test_invoice(self):
         invoice = self.env["account.move"].new(
             {
-                "type": "out_invoice",
+                "move_type": "out_invoice",
                 "partner_id": self.env.ref("base.res_partner_3").id,
                 "purchase_id": self.purchase_order.id,
             }
