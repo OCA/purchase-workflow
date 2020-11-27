@@ -18,6 +18,11 @@
                     class="oe_highlight"
                 />
             </button>
+            <field name="order_line" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'readonly': [('state', 'in', ('purchase', 'done', 'cancel', 'approved'))]}</attribute>
+            </field>
         </field>
     </record>
     <record id="purchase.purchase_form_action" model="ir.actions.act_window">
