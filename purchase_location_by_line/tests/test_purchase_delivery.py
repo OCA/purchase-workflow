@@ -72,7 +72,7 @@ class TestDeliverySingle(TransactionCase):
         )
 
     def test_check_single_date(self):
-        self.assertEquals(
+        self.assertEqual(
             len(self.po.picking_ids),
             0,
             "There must not be pickings for the PO when draft",
@@ -80,13 +80,13 @@ class TestDeliverySingle(TransactionCase):
 
         self.po.button_confirm()
 
-        self.assertEquals(
+        self.assertEqual(
             len(self.po.picking_ids),
             1,
             "There must be 1 picking for the PO when confirmed",
         )
 
-        self.assertEquals(
+        self.assertEqual(
             str(self.po.picking_ids[0].scheduled_date)[:10],
             self.date_sooner,
             "The picking must be planned at the expected date",
@@ -96,7 +96,7 @@ class TestDeliverySingle(TransactionCase):
         # Change the date of the first line
         self.po.order_line[0].date_planned = self.date_later
 
-        self.assertEquals(
+        self.assertEqual(
             len(self.po.picking_ids),
             0,
             "There must not be pickings for the PO when draft",
@@ -105,7 +105,7 @@ class TestDeliverySingle(TransactionCase):
         self.po.button_confirm()
 
         len_pickings = len(self.po.picking_ids)
-        self.assertEquals(
+        self.assertEqual(
             len_pickings,
             2,
             "There must be 2 pickings for the PO when confirmed. %s found"
@@ -113,12 +113,12 @@ class TestDeliverySingle(TransactionCase):
         )
 
         sorted_pickings = sorted(self.po.picking_ids, key=lambda x: x.scheduled_date)
-        self.assertEquals(
+        self.assertEqual(
             str(sorted_pickings[0].scheduled_date)[:10],
             self.date_sooner,
             "The first picking must be planned at the soonest date",
         )
-        self.assertEquals(
+        self.assertEqual(
             str(sorted_pickings[1].scheduled_date)[:10],
             self.date_later,
             "The second picking must be planned at the latest date",
@@ -127,13 +127,13 @@ class TestDeliverySingle(TransactionCase):
         l2_picking = self.po.picking_ids.filtered(
             lambda p: p.location_dest_id == self.l2
         )
-        self.assertEquals(
+        self.assertEqual(
             len(l2_picking), 0, "There must be 0 picking for location Shelf 1"
         )
         l1_picking = self.po.picking_ids.filtered(
             lambda p: p.location_dest_id == self.l1
         )
-        self.assertEquals(
+        self.assertEqual(
             len(l1_picking), 2, "There must be 2 pickings for location Stock"
         )
 
@@ -141,7 +141,7 @@ class TestDeliverySingle(TransactionCase):
         # Change the location of the first line
         self.po.order_line[0].location_dest_id = self.l2
 
-        self.assertEquals(
+        self.assertEqual(
             len(self.po.picking_ids),
             0,
             "There must not be pickings for the PO when draft",
@@ -171,7 +171,7 @@ class TestDeliverySingle(TransactionCase):
         self.po.order_line[0].location_dest_id = self.l2
         self.po.order_line[1].date_planned = self.date_later
 
-        self.assertEquals(
+        self.assertEqual(
             len(self.po.picking_ids),
             0,
             "There must not be pickings for the PO when draft",
@@ -193,12 +193,12 @@ class TestDeliverySingle(TransactionCase):
         )
 
         sorted_pickings = sorted(self.po.picking_ids, key=lambda x: x.scheduled_date)
-        self.assertEquals(
+        self.assertEqual(
             str(sorted_pickings[0].scheduled_date)[:10],
             self.date_sooner,
             "The first picking must be planned at the soonest date",
         )
-        self.assertEquals(
+        self.assertEqual(
             str(sorted_pickings[2].scheduled_date)[:10],
             self.date_later,
             "The second picking must be planned at the latest date",
@@ -211,7 +211,7 @@ class TestDeliverySingle(TransactionCase):
         self.po.order_line[2].location_dest_id = False
         self.po.order_line[1].date_planned = self.date_later
 
-        self.assertEquals(
+        self.assertEqual(
             len(self.po.picking_ids),
             0,
             "There must not be pickings for the PO when draft",
@@ -236,12 +236,12 @@ class TestDeliverySingle(TransactionCase):
         )
 
         sorted_pickings = sorted(self.po.picking_ids, key=lambda x: x.scheduled_date)
-        self.assertEquals(
+        self.assertEqual(
             str(sorted_pickings[0].scheduled_date)[:10],
             self.date_sooner,
             "The first picking must be planned at the soonest date",
         )
-        self.assertEquals(
+        self.assertEqual(
             str(sorted_pickings[2].scheduled_date)[:10],
             self.date_later,
             "The second picking must be planned at the latest date",
