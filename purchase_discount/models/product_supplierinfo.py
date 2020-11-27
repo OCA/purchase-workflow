@@ -25,8 +25,8 @@ class ProductSupplierInfo(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
-        """ Insert discount (or others) from context from purchase.order's
-        _add_supplier_to_product method """
+        """Insert discount (or others) from context from purchase.order's
+        _add_supplier_to_product method"""
         for vals in vals_list:
             product_tmpl_id = vals["product_tmpl_id"]
             po_line_map = self.env.context.get("po_line_map", {})

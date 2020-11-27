@@ -48,7 +48,7 @@ class TestProductSupplierinfoDiscount(common.SavepointCase):
 
     def test_001_purchase_order_partner_3_qty_1(self):
         self.po_line_1._onchange_quantity()
-        self.assertEquals(
+        self.assertEqual(
             self.po_line_1.discount,
             10,
             "Incorrect discount for product 6 with partner 3 and qty 1: "
@@ -58,7 +58,7 @@ class TestProductSupplierinfoDiscount(common.SavepointCase):
     def test_002_purchase_order_partner_3_qty_10(self):
         self.po_line_1.write({"product_qty": 10})
         self.po_line_1._onchange_quantity()
-        self.assertEquals(
+        self.assertEqual(
             self.po_line_1.discount,
             20.0,
             "Incorrect discount for product 6 with partner 3 and qty 10: "
@@ -68,39 +68,19 @@ class TestProductSupplierinfoDiscount(common.SavepointCase):
     def test_003_purchase_order_partner_1_qty_1(self):
         self.po_line_1.write({"partner_id": self.partner_1.id, "product_qty": 1})
         self.po_line_1.onchange_product_id()
-        self.assertEquals(
+        self.assertEqual(
             self.po_line_1.discount,
             0.0,
             "Incorrect discount for product 6 with partner 1 and qty 1",
         )
 
     def test_004_prepare_purchase_order_line(self):
-        stock_rule = self.env["stock.rule"].create(
-            {
-                "sequence": 20,
-                "location_id": self.env.ref("stock.stock_location_locations").id,
-                "picking_type_id": self.env.ref("stock.picking_type_in").id,
-                "warehouse_id": self.env.ref("stock.warehouse0").id,
-                "procure_method": "make_to_stock",
-                "route_sequence": 5.0,
-                "name": "YourCompany:  Buy",
-                "route_id": self.env.ref("stock.route_warehouse0_mto").id,
-                "action": "buy",
-            }
-        )
-        res = stock_rule._prepare_purchase_order_line(
+        res = self.purchase_order_line_model._prepare_purchase_order_line(
             self.product,
             50,
             self.env.ref("uom.product_uom_unit"),
             self.env.ref("base.main_company"),
-            {
-                "supplier": self.supplierinfo,
-                "date_planned": fields.Datetime.now(),
-                "propagate_date": stock_rule.propagate_date,
-                "propagate_date_minimum_delta": stock_rule.propagate_date_minimum_delta,
-                "propagate_cancel": stock_rule.propagate_cancel,
-                "move_dest_id": [self.env.ref("stock.stock_location_customers").id],
-            },
+            self.supplierinfo,
             self.purchase_order,
         )
         self.assertTrue(res.get("discount"), "Should have a discount key")
