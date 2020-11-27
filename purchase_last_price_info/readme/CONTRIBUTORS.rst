@@ -6,3 +6,4 @@
 * Adria Gil Sorribes <adria.gil@forgeflow.com>
 * Lois Rilo <lois.rilo@forgeflow.com>
 * Rattapong Chokmasermkul <rattapongc@ecosoft.co.th>
+* Vishnu Vanneri <vanneri.odoodev@gmail.com>
