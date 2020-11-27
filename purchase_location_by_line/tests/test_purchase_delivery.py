@@ -153,13 +153,17 @@ class TestDeliverySingle(TransactionCase):
             lambda p: p.location_dest_id == self.l2
         )
         self.assertGreaterEqual(
-            len(l2_picking), 1, "There must be 1 or more pickings for location Shelf 1",
+            len(l2_picking),
+            1,
+            "There must be 1 or more pickings for location Shelf 1",
         )
         l1_picking = self.po.picking_ids.filtered(
             lambda p: p.location_dest_id == self.l1
         )
         self.assertGreaterEqual(
-            len(l1_picking), 1, "There must be 1 or more pickings for location Stock",
+            len(l1_picking),
+            1,
+            "There must be 1 or more pickings for location Stock",
         )
 
     def test_check_multiple_locations_multiple_dates(self):
