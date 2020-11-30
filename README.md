@@ -23,6 +23,7 @@ addon | version | summary
 [purchase_open_qty](purchase_open_qty/) | 14.0.1.0.0 | Allows to identify the purchase orders that have quantities pending to invoice or to receive.
 [purchase_order_archive](purchase_order_archive/) | 14.0.1.0.0 | Archive Purchase Orders
 [purchase_request](purchase_request/) | 14.0.1.0.0 | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
+[purchase_request_tier_validation](purchase_request_tier_validation/) | 14.0.1.0.0 | Extends the functionality of Purchase Requests to support a tier validation process.
 
 [//]: # (end addons)
 
