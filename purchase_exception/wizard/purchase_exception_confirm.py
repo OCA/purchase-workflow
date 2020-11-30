@@ -8,6 +8,7 @@ from odoo import fields, models
 
 class PurchaseExceptionConfirm(models.TransientModel):
     _name = "purchase.exception.confirm"
+    _description = "Purchase exception wizard"
     _inherit = ["exception.rule.confirm"]
 
     related_model_id = fields.Many2one("purchase.order", "Purchase")
