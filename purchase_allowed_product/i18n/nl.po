@@ -10,19 +10,20 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 02:48+0000\n"
-"PO-Revision-Date: 2017-06-01 02:48+0000\n"
-"Last-Translator: Erwin van der Ploeg <erwin@odooexperts.nl>, 2017\n"
+"PO-Revision-Date: 2020-12-01 15:36+0000\n"
+"Last-Translator: Cas Vissers <c.vissers@brahoo.nl>\n"
 "Language-Team: Dutch (https://www.transifex.com/oca/teams/23907/nl/)\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: purchase_allowed_product
 #: model:ir.model,name:purchase_allowed_product.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contact"
 
 #. module: purchase_allowed_product
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_supplied_product_mixin__display_name
@@ -42,6 +43,10 @@ msgid ""
 "supplied by this supplier when creating a supplier invoice or purchase for "
 "it. This value can be changed by invoice or purchase."
 msgstr ""
+"Indien aangevinkt, kunt u standaard alleen producten selecteren die door "
+"deze leverancier kunnen worden geleverd bij het aanmaken van een "
+"leveranciersfactuur of -inkoop. Deze waarde kan worden gewijzigd door middel "
+"van een factuur of aankoop."
 
 #. module: purchase_allowed_product
 #: model:ir.model.fields,help:purchase_allowed_product.field_account_invoice__use_only_supplied_product
@@ -49,11 +54,13 @@ msgstr ""
 #: model:ir.model.fields,help:purchase_allowed_product.field_supplied_product_mixin__use_only_supplied_product
 msgid "If checked, only the products provided by this supplier will be shown."
 msgstr ""
+"Indien aangevinkt, worden alleen de door deze leverancier geleverde "
+"producten getoond."
 
 #. module: purchase_allowed_product
 #: model:ir.model,name:purchase_allowed_product.model_account_invoice
 msgid "Invoice"
-msgstr ""
+msgstr "Factuur"
 
 #. module: purchase_allowed_product
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_supplied_product_mixin____last_update
@@ -63,13 +70,13 @@ msgstr "Laatst bijgewerkt op"
 #. module: purchase_allowed_product
 #: model:ir.model,name:purchase_allowed_product.model_supplied_product_mixin
 msgid "Mixin for documents that want to restrict products"
-msgstr ""
+msgstr "Mixin voor documenten die producten willen beperken"
 
 #. module: purchase_allowed_product
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_res_partner__use_only_supplied_product
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_res_users__use_only_supplied_product
 msgid "Order and invoice only supplied products"
-msgstr ""
+msgstr "Bestel en factureer aan geleverde producten"
 
 #. module: purchase_allowed_product
 #: model:ir.model,name:purchase_allowed_product.model_product_product
@@ -84,24 +91,24 @@ msgstr "Inkooporder"
 #. module: purchase_allowed_product
 #: model:ir.model,name:purchase_allowed_product.model_product_supplierinfo
 msgid "Supplier Pricelist"
-msgstr ""
+msgstr "Prijslijst leverancier"
 
 #. module: purchase_allowed_product
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_account_invoice__use_only_supplied_product
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_purchase_order__use_only_supplied_product
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_supplied_product_mixin__use_only_supplied_product
 msgid "Use only allowed products"
-msgstr ""
+msgstr "Alleen toegestane producten"
 
 #. module: purchase_allowed_product
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_product_supplierinfo__name
 msgid "Vendor"
-msgstr ""
+msgstr "Leverancier"
 
 #. module: purchase_allowed_product
 #: model:ir.model.fields,help:purchase_allowed_product.field_product_supplierinfo__name
 msgid "Vendor of this product"
-msgstr ""
+msgstr "Leverancier van dit product"
 
 #~ msgid "Information about a product vendor"
 #~ msgstr "Informatie over een product leverancier"
