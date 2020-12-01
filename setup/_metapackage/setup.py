@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo14-addon-purchase_commercial_partner',
+        'odoo14-addon-purchase_last_price_info',
         'odoo14-addon-purchase_open_qty',
         'odoo14-addon-purchase_order_archive',
         'odoo14-addon-purchase_request',
