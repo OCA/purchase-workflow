@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_work_acceptance,access_work_acceptance,model_work_acceptance,purchase.group_purchase_user,1,1,1,1
+access_work_acceptance_line,access_work_acceptance_line,model_work_acceptance_line,purchase.group_purchase_user,1,1,1,1
+access_select_work_acceptance_wizard,access_select_work_acceptance_wizard,model_select_work_acceptance_wizard,purchase.group_purchase_user,1,1,1,1

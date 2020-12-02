@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_work_acceptance_form" model="ir.ui.view">
+        <field name="name">work.acceptance.form</field>
+        <field name="model">work.acceptance</field>
+        <field name="arch" type="xml">
+            <form string="Work Acceptance">
+                <header>
+                    <button
+                        name="button_accept"
+                        type="object"
+                        states="draft"
+                        string="Accept"
+                        class="oe_highlight"
+                    />
+                    <button
+                        name="button_draft"
+                        type="object"
+                        states="accept,cancel"
+                        string="Set to draft"
+                    />
+                    <button
+                        name="button_cancel"
+                        type="object"
+                        states="draft,accept"
+                        string="Cancel"
+                    />
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="draft,accept"
+                        attrs="{'readonly': True}"
+                    />
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" attrs="{'readonly': True}" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="partner_id" />
+                            <field name="responsible_id" />
+                            <field name="invoice_ref" />
+                            <field
+                                name="currency_id"
+                                groups="base.group_multi_currency"
+                                options="{'no_create': True}"
+                            />
+                        </group>
+                        <group>
+                            <field name="date_due" />
+                            <field name="date_receive" />
+                            <field
+                                name="date_accept"
+                                attrs="{'invisible': [('state', '=', 'draft')]}"
+                            />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                                options="{'no_create': True}"
+                            />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Products">
+                            <field
+                                name="wa_line_ids"
+                                attrs="{'readonly': [('state', '!=', 'draft')]}"
+                            >
+                                <tree string="Work Acceptance Lines" editable="bottom">
+                                    <field name="purchase_line_id" invisible="1" />
+                                    <field name="product_id" />
+                                    <field name="name" />
+                                    <field name="product_qty" />
+                                    <field name="product_uom" groups="uom.group_uom" />
+                                    <field name="price_unit" />
+                                    <field
+                                        name="price_subtotal"
+                                        widget="monetary"
+                                        sum="Total"
+                                    />
+                                </tree>
+                                <form string="Work Acceptance Line">
+                                    <sheet>
+                                        <group>
+                                            <group>
+                                                <field name="product_id" />
+                                                <label for="product_qty" />
+                                                <div>
+                                                    <field
+                                                        name="product_qty"
+                                                        class="oe_inline"
+                                                    />
+                                                    <span
+                                                        class="oe_inline"
+                                                    >&#160;</span>
+                                                    <field
+                                                        name="product_uom"
+                                                        groups="uom.group_uom"
+                                                        class="oe_inline"
+                                                    />
+                                                </div>
+                                                <field name="price_unit" />
+                                            </group>
+                                        </group>
+                                    </sheet>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
+                    <field
+                        name="notes"
+                        class="oe_inline"
+                        placeholder="Define your terms and conditions ..."
+                    />
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="activity_ids" widget="mail_activity" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="view_work_acceptance_tree" model="ir.ui.view">
+        <field name="name">work.acceptance.tree</field>
+        <field name="model">work.acceptance</field>
+        <field name="arch" type="xml">
+            <tree string="Work Acceptance" decoration-muted="state=='cancel'">
+                <field name="name" string="Reference" />
+                <field name="date_due" />
+                <field name="date_receive" />
+                <field name="date_accept" />
+                <field name="partner_id" />
+                <field name="responsible_id" />
+                <field
+                    name="company_id"
+                    groups="base.group_multi_company"
+                    options="{'no_create': True}"
+                />
+                <field
+                    name="currency_id"
+                    groups="base.group_multi_currency"
+                    options="{'no_create': True}"
+                />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+    <record id="view_work_acceptance_search" model="ir.ui.view">
+        <field name="name">work.acceptance.search</field>
+        <field name="model">work.acceptance</field>
+        <field name="arch" type="xml">
+            <search string="Work Acceptance">
+                <field name="name" string="Reference" />
+                <field name="partner_id" operator="child_of" />
+                <field name="responsible_id" operator="child_of" />
+                <field name="product_id" />
+                <field name="create_uid" />
+                <field name="user_id" />
+                <filter
+                    name="my_wa"
+                    string="My Work Acceptance"
+                    domain="[('user_id','=', uid)]"
+                />
+                <separator />
+                <filter
+                    string="Draft"
+                    name="draft"
+                    domain="[('state', '=', 'draft')]"
+                />
+                <filter
+                    string="Accepted"
+                    name="accepted"
+                    domain="[('state', '=', 'accept')]"
+                />
+                <group expand="0" string="Group By">
+                    <filter
+                        string="Accepted By"
+                        name="accept_by"
+                        domain="[]"
+                        context="{'group_by':'responsible_id'}"
+                    />
+                    <filter
+                        string="Vendor"
+                        name="vendor"
+                        domain="[]"
+                        context="{'group_by':'partner_id'}"
+                    />
+                    <filter
+                        string="Due Date"
+                        name="due_date"
+                        domain="[]"
+                        context="{'group_by':'date_due'}"
+                    />
+                    <filter
+                        string="Receive Date"
+                        name="receive_date"
+                        domain="[]"
+                        context="{'group_by':'date_receive'}"
+                    />
+                    <filter
+                        string="Accepte Date"
+                        name="accept_date"
+                        domain="[]"
+                        context="{'group_by':'date_accept'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="action_work_acceptance" model="ir.actions.act_window">
+        <field name="name">Work Acceptance</field>
+        <field name="res_model">work.acceptance</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_work_acceptance_search" />
+        <field name="view_id" ref="view_work_acceptance_tree" />
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create a new work acceptance</p>
+        </field>
+    </record>
+    <menuitem
+        id="menu_work_acceptance"
+        name="Work Acceptance"
+        action="action_work_acceptance"
+        parent="purchase.menu_procurement_management"
+    />
+</odoo>
