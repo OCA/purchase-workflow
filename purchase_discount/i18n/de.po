@@ -1,0 +1,98 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * purchase_discount
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-02-23 17:50+0000\n"
+"PO-Revision-Date: 2020-07-22 12:19+0000\n"
+"Last-Translator: c2cdidier <didier.donze@camptocamp.com>\n"
+"Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.10\n"
+
+#. module: purchase_discount
+#: model_terms:ir.ui.view,arch_db:purchase_discount.report_purchaseorder_document
+msgid "<strong>Disc. (%)</strong>"
+msgstr "<strong>Rabatt (%)</strong>"
+
+#. module: purchase_discount
+#: model:ir.model,name:purchase_discount.model_res_partner
+msgid "Contact"
+msgstr "Kontakt"
+
+#. module: purchase_discount
+#: model:ir.model.fields,field_description:purchase_discount.field_res_partner__default_supplierinfo_discount
+#: model:ir.model.fields,field_description:purchase_discount.field_res_users__default_supplierinfo_discount
+msgid "Default Supplier Discount (%)"
+msgstr "Standardlieferantenrabatt (%)"
+
+#. module: purchase_discount
+#: model:ir.model.fields,field_description:purchase_discount.field_product_supplierinfo__discount
+#: model:ir.model.fields,field_description:purchase_discount.field_purchase_order_line__discount
+#: model:ir.model.fields,field_description:purchase_discount.field_purchase_report__discount
+msgid "Discount (%)"
+msgstr "Rabatt (%)"
+
+#. module: purchase_discount
+#: model:ir.model.constraint,message:purchase_discount.constraint_purchase_order_line_discount_limit
+msgid "Discount must be lower than 100%."
+msgstr "Der Rabatt muss kleiner als 100% sein."
+
+#. module: purchase_discount
+#: model_terms:ir.ui.view,arch_db:purchase_discount.res_partner_form_view
+msgid "Discount-related settings are managed on"
+msgstr "Rabatt-bezogene Einstellungen werden verwaltet auf"
+
+#. module: purchase_discount
+#: model:ir.model,name:purchase_discount.model_purchase_order
+msgid "Purchase Order"
+msgstr "Bestellung"
+
+#. module: purchase_discount
+#: model:ir.model,name:purchase_discount.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Bestellposition"
+
+#. module: purchase_discount
+#: model:ir.model,name:purchase_discount.model_purchase_report
+msgid "Purchase Report"
+msgstr "Einkaufsbericht"
+
+#. module: purchase_discount
+#: model:ir.model,name:purchase_discount.model_stock_move
+msgid "Stock Move"
+msgstr "Lagerbewegung"
+
+#. module: purchase_discount
+#: model:ir.model,name:purchase_discount.model_stock_rule
+msgid "Stock Rule"
+msgstr "Lagerregel"
+
+#. module: purchase_discount
+#: model:ir.model,name:purchase_discount.model_product_supplierinfo
+msgid "Supplier Pricelist"
+msgstr "Lieferanten Preisliste"
+
+#. module: purchase_discount
+#: model:ir.model.fields,help:purchase_discount.field_res_partner__default_supplierinfo_discount
+#: model:ir.model.fields,help:purchase_discount.field_res_users__default_supplierinfo_discount
+msgid ""
+"This value will be used as the default one, for each new supplierinfo line "
+"depending on that supplier."
+msgstr ""
+"Dieser Wert wird als Standardwert für jede neue Lieferanten-Info-Zeile in "
+"Zusammenhang mit diesem Lieferanten verwendet."
+
+#. module: purchase_discount
+#: model_terms:ir.ui.view,arch_db:purchase_discount.res_partner_form_view
+msgid "the parent company"
+msgstr "Die Muttergesellschaft"

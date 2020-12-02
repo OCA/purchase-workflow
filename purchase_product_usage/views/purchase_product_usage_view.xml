@@ -1,0 +1,89 @@
+<odoo>
+    <record id="purchase_product_usage_tree" model="ir.ui.view">
+        <field name="name">purchase.product.usage.tree</field>
+        <field name="model">purchase.product.usage</field>
+        <field name="arch" type="xml">
+            <tree string="Purchase Product Usages">
+                <field name="active" invisible="1" />
+                <field name="code" />
+                <field name="name" />
+                <field name="account_id" groups="account.group_account_user" />
+            </tree>
+        </field>
+    </record>
+    <record id="purchase_product_usage_form" model="ir.ui.view">
+        <field name="name">purchase.product.usage.form</field>
+        <field name="model">purchase.product.usage</field>
+        <field name="arch" type="xml">
+            <form string="Product usage">
+                <header />
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            name="toggle_active"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-archive"
+                        >
+                            <field
+                                name="active"
+                                widget="boolean_button"
+                                options='{"terminology": "archive"}'
+                            />
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group colspan="4" col="2">
+                        <group name="description">
+                            <field name="code" />
+                            <field name="product_id" />
+                            <field
+                                name="account_id"
+                                groups="account.group_account_user"
+                            />
+                        </group>
+                        <group name="company" groups="base.group_multi_company">
+                            <field name="company_id" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="view_purchase_product_usage_search" model="ir.ui.view">
+        <field name="name">purchase.product.usage.search</field>
+        <field name="model">purchase.product.usage</field>
+        <field name="arch" type="xml">
+            <search string="Usages">
+                <field name="name" />
+                <field name="code" />
+                <field name="product_id" />
+                <field name="account_id" />
+                <separator />
+                <filter
+                    string="Archived"
+                    name="inactive"
+                    domain="[('active','=',False)]"
+                />
+            </search>
+        </field>
+    </record>
+    <record id="action_purchase_product_usage" model="ir.actions.act_window">
+        <field name="name">Purchase Product Usages</field>
+        <field name="res_model">purchase.product.usage</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="purchase_product_usage_tree" />
+    </record>
+    <menuitem
+        id="menu_purchase_product_usage"
+        name="Purchase Product Usages"
+        groups="group_purchase_product_usage"
+        sequence="26"
+        parent="purchase.menu_purchase_config"
+        action="action_purchase_product_usage"
+    />
+</odoo>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- # Copyright (C) 2018 ForgeFlow S.L. (https://www.forgeflow.com)
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field name="name">purchase.order.from.blanket.form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <field name="date_planned" position="after">
+                <field
+                    name="blanket_order_line"
+                    context="{'from_purchase_order': True}"
+                />
+            </field>
+            <field name="order_line" position="attributes">
+                <attribute name="context">{'from_purchase_order': True}</attribute>
+            </field>
+        </field>
+    </record>
+    <record id="purchase_order_form_disable_adding_lines" model="ir.ui.view">
+        <field
+            name="name"
+        >purchase.order.from.blanket.form - disable adding lines</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field
+            name="groups_id"
+            eval="[(6,0,[ref('purchase_blanket_order.purchase_blanket_orders_disable_adding_lines')])]"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']//tree" position="attributes">
+                <attribute name="create">blanket_order_id==False</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

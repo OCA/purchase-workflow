@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="purchase_order_recommendation_view_form" model="ir.ui.view">
+        <field name="name">Recommended Products for this Customer</field>
+        <field name="model">purchase.order.recommendation</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group name="group_sup">
+                        <group name="col_left">
+                            <field name="order_id" invisible="1" />
+                            <field name="warehouse_count" invisible="1" />
+                            <field name="date_begin" />
+                            <field name="date_end" />
+                            <field
+                                name="product_category_ids"
+                                widget="many2many_tags"
+                                options="{'no_create': True}"
+                            />
+                            <field
+                                name="warehouse_ids"
+                                widget="many2many_tags"
+                                options="{'no_open': True, 'no_create': True}"
+                                attrs="{'invisible': [('warehouse_count', '&lt;', 2)]}"
+                            />
+                            <field name="line_amount" widget="numeric_step" />
+                        </group>
+                        <group name="col_right">
+                            <field
+                                name="show_all_partner_products"
+                                attrs="{'invisible': [('show_all_products', '!=', False)]}"
+                            />
+                            <field name="show_all_products" />
+                        </group>
+                    </group>
+                    <group>
+                        <field name="line_ids" nolabel="1">
+                            <tree
+                                decoration-info="purchase_line_id != False"
+                                decoration-success="units_included &gt; 0 and not purchase_line_id"
+                                decoration-danger="units_virtual_available &lt; 0 and units_included &lt; abs(units_virtual_available)"
+                                decoration-muted="units_received == 0 and units_delivered == 0"
+                                create="0"
+                                delete="0"
+                                editable="top"
+                            >
+                                <field name="currency_id" invisible="1" />
+                                <field name="purchase_line_id" invisible="1" />
+                                <field name="is_modified" invisible="1" />
+                                <field name="product_id" readonly="1" force_save="1" />
+                                <field name="price_unit" string="Price" />
+                                <field name="units_available" string="Qty On Hand" />
+                                <field
+                                    name="units_virtual_available"
+                                    string="Forecasted Qty"
+                                />
+                                <field name="units_received" string="Qty Received" />
+                                <field
+                                    name="units_delivered"
+                                    string="Qty delivered"
+                                    class="oe_bold"
+                                />
+                                <field
+                                    name="units_avg_delivered"
+                                    string="Qty Dlvd./day"
+                                />
+                                <field
+                                    name="units_included"
+                                    string="Qty"
+                                    widget="numeric_step"
+                                />
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+                <footer>
+                    <button
+                        name="action_accept"
+                        type="object"
+                        string="Accept"
+                        class="oe_highlight"
+                    />
+                    <button special="cancel" string="Cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="purchase_order_recommendation_action" model="ir.actions.act_window">
+        <field name="name">Recommended Products for this Customer</field>
+        <field name="res_model">purchase.order.recommendation</field>
+        <field name="binding_view_types">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

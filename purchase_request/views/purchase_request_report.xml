@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2018-2019 ForgeFlow, S.L.
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0) -->
+<odoo>
+    <report
+        id="action_report_purchase_requests"
+        model="purchase.request"
+        string="Purchase Request"
+        report_type="qweb-pdf"
+        name="purchase_request.report_purchase_request"
+        file="purchase_request.report_purchase_request"
+    />
+</odoo>

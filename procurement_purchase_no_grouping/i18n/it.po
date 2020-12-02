@@ -1,0 +1,128 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * procurement_purchase_no_grouping
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-11-24 07:53+0000\n"
+"PO-Revision-Date: 2017-11-24 07:53+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: procurement_purchase_no_grouping
+#: model_terms:ir.ui.view,arch_db:procurement_purchase_no_grouping.res_config_settings_view_form_procurement_purchase_grouping
+msgid ""
+"<span class=\"o_form_label\">Grouping</span>\n"
+"                                <span class=\"fa fa-lg fa-object-group\" "
+"title=\"Value to be used if individual category is set to 'System default'\" "
+"aria-label=\"Value set here is default. Specific values are set per category."
+"\" role=\"img\"/>"
+msgstr ""
+
+#. module: procurement_purchase_no_grouping
+#: model:ir.model,name:procurement_purchase_no_grouping.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: procurement_purchase_no_grouping
+#: model_terms:ir.ui.view,arch_db:procurement_purchase_no_grouping.res_config_settings_view_form_procurement_purchase_grouping
+msgid "Grouping"
+msgstr ""
+
+#. module: procurement_purchase_no_grouping
+#: model:ir.model.fields.selection,name:procurement_purchase_no_grouping.selection__product_category__procured_purchase_grouping__line
+#: model:ir.model.fields.selection,name:procurement_purchase_no_grouping.selection__res_company__procured_purchase_grouping__line
+msgid "No line grouping"
+msgstr ""
+
+#. module: procurement_purchase_no_grouping
+#: model:ir.model.fields.selection,name:procurement_purchase_no_grouping.selection__product_category__procured_purchase_grouping__order
+#: model:ir.model.fields.selection,name:procurement_purchase_no_grouping.selection__res_company__procured_purchase_grouping__order
+msgid "No order grouping"
+msgstr ""
+
+#. module: procurement_purchase_no_grouping
+#: model:ir.model.fields,field_description:procurement_purchase_no_grouping.field_product_category__procured_purchase_grouping
+#: model:ir.model.fields,field_description:procurement_purchase_no_grouping.field_res_company__procured_purchase_grouping
+#: model:ir.model.fields,field_description:procurement_purchase_no_grouping.field_res_config_settings__procured_purchase_grouping
+msgid "Procured purchase grouping"
+msgstr ""
+
+#. module: procurement_purchase_no_grouping
+#: model_terms:ir.ui.view,arch_db:procurement_purchase_no_grouping.res_config_settings_view_form_procurement_purchase_grouping
+msgid "Procurement Purchase Grouping"
+msgstr ""
+
+#. module: procurement_purchase_no_grouping
+#: model:ir.model,name:procurement_purchase_no_grouping.model_res_config_settings
+msgid "Procurement purchase grouping settings"
+msgstr ""
+
+#. module: procurement_purchase_no_grouping
+#: model:ir.model,name:procurement_purchase_no_grouping.model_product_category
+msgid "Product Category"
+msgstr ""
+
+#. module: procurement_purchase_no_grouping
+#: model_terms:ir.ui.view,arch_db:procurement_purchase_no_grouping.res_config_settings_view_form_procurement_purchase_grouping
+msgid "Purchase"
+msgstr ""
+
+#. module: procurement_purchase_no_grouping
+#: model:ir.model,name:procurement_purchase_no_grouping.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Riga Ordine d'Acquisto"
+
+#. module: procurement_purchase_no_grouping
+#: model:ir.model.fields,help:procurement_purchase_no_grouping.field_product_category__procured_purchase_grouping
+msgid ""
+"Select the behaviour for grouping procured purchases for the the products of "
+"this category:\n"
+"* Standard grouping (default): Procurements will generate purchase orders as "
+"always, grouping lines and orders when possible.\n"
+"* No line grouping: If there are any open purchase order for the same "
+"supplier, it will be reused, but lines won't be merged.\n"
+"* No order grouping: This option will prevent any kind of grouping.\n"
+"* <empty>: If no value is selected, system-wide default will be used."
+msgstr ""
+
+#. module: procurement_purchase_no_grouping
+#: model:ir.model.fields,help:procurement_purchase_no_grouping.field_res_company__procured_purchase_grouping
+#: model:ir.model.fields,help:procurement_purchase_no_grouping.field_res_config_settings__procured_purchase_grouping
+msgid ""
+"Select the behaviour for grouping procured purchases for the the products of "
+"this category:\n"
+"* Standard grouping: Procurements will generate purchase orders as always, "
+"grouping lines and orders when possible.\n"
+"* No line grouping: If there are any open purchase order for the same "
+"supplier, it will be reused, but lines won't be merged.\n"
+"* No order grouping: This option will prevent any kind of grouping."
+msgstr ""
+
+#. module: procurement_purchase_no_grouping
+#: model_terms:ir.ui.view,arch_db:procurement_purchase_no_grouping.res_config_settings_view_form_procurement_purchase_grouping
+msgid "Set the default procurement purchase grouping type"
+msgstr ""
+
+#. module: procurement_purchase_no_grouping
+#: model:ir.model.fields.selection,name:procurement_purchase_no_grouping.selection__product_category__procured_purchase_grouping__standard
+#: model:ir.model.fields.selection,name:procurement_purchase_no_grouping.selection__res_company__procured_purchase_grouping__standard
+msgid "Standard grouping"
+msgstr ""
+
+#. module: procurement_purchase_no_grouping
+#: model:ir.model,name:procurement_purchase_no_grouping.model_stock_rule
+msgid "Stock Rule"
+msgstr ""
+
+#~ msgid "Purchase Order"
+#~ msgstr "Ordine Acquisto"

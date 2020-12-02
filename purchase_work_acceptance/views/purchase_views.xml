@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="purchase_order_form_inherit">
+        <field name="name">purchase.order.form.inherit</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='button_approve']" position="after">
+                <button
+                    name="action_view_wa"
+                    string="Create WA"
+                    type="object"
+                    class="oe_highlight"
+                    context="{'create_wa':True}"
+                    groups="purchase_work_acceptance.group_enable_wa_on_po"
+                    attrs="{'invisible': [('state', 'not in', ('purchase', 'done'))]}"
+                />
+            </xpath>
+            <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                <button
+                    type="object"
+                    name="action_view_wa"
+                    class="oe_stat_button"
+                    icon="fa-clipboard"
+                    attrs="{'invisible':[('wa_ids','=',[])]}"
+                >
+                    <field name="wa_count" widget="statinfo" string="WA" />
+                    <field name="wa_ids" invisible="1" />
+                </button>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree" position="inside">
+                <field name="wa_line_ids" invisible="1" />
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/tree//field[@name='qty_received']"
+                position="attributes"
+            >
+                <attribute
+                    name="attrs"
+                >{'column_invisible': [('parent.state', 'not in', ('purchase', 'done'))], 'readonly': ['|', ('product_type', 'in', ('consu', 'product')), ('wa_line_ids', '!=', ())]}</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- # Copyright (C) 2018 ForgeFlow S.L. (https://www.forgeflow.com)
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_purchase_blanket_order_tree" model="ir.ui.view">
+        <field name="name">purchase.blanket.order.tree</field>
+        <field name="model">purchase.blanket.order</field>
+        <field name="arch" type="xml">
+            <tree
+                decoration-info="state in ('draft','to_approve')"
+                decoration-muted="state in ('expired')"
+            >
+                <field name="name" />
+                <field name="user_id" />
+                <field name="partner_id" />
+                <field name="validity_date" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+    <record id="view_purchase_blanket_order_form" model="ir.ui.view">
+        <field name="name">purchase.blanket.order.form</field>
+        <field name="model">purchase.blanket.order</field>
+        <field name="arch" type="xml">
+            <form string="Blanket Order">
+                <header>
+                    <button
+                        name="%(action_create_purchase_order)d"
+                        string="Create Purchase Order"
+                        type="action"
+                        class="btn-primary"
+                        attrs="{'invisible': [('state', '!=', 'open')]}"
+                    />
+                    <button
+                        name="set_to_draft"
+                        states="expired,done"
+                        string="To Draft"
+                        class="btn-secondary"
+                        type="object"
+                    />
+                    <button
+                        name="action_cancel"
+                        states="open"
+                        string="Cancel"
+                        class="btn-secondary"
+                        type="object"
+                    />
+                    <button
+                        name="action_confirm"
+                        states="draft"
+                        string="Confirm"
+                        class="btn-primary o_purchase_confirm"
+                        type="object"
+                    />
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="draft,open,expired"
+                    />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            name="action_view_purchase_orders"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-list-alt"
+                        >
+                            <field
+                                name="purchase_count"
+                                widget="statinfo"
+                                string="RFQ/Orders"
+                            />
+                        </button>
+                        <button
+                            type="object"
+                            name="action_view_purchase_blanket_order_line"
+                            class="oe_stat_button"
+                            attrs="{'invisible':[('line_count', '=', 0)]}"
+                            icon="fa-list"
+                        >
+                            <field name="line_count" widget="statinfo" string="Lines" />
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1" />
+                        </h1>
+                    </div>
+                    <group name="group_top">
+                        <group name="group_top_left">
+                            <field
+                                name="partner_id"
+                                attrs="{'required': [('state', '=', 'draft')]}"
+                                context="{'res_partner_search_mode': 'supplier', 'show_address': 1}"
+                                options='{"always_reload": True}'
+                            />
+                            <field name="payment_term_id" />
+                        </group>
+                        <group name="group_top_right">
+                            <field
+                                name="currency_id"
+                                groups="base.group_multi_currency"
+                                options="{'no_create': True}"
+                            />
+                            <field name="user_id" />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                                options="{'no_create': True}"
+                            />
+                        </group>
+                    </group>
+                    <group name="group_bottom">
+                        <group name="group_bottom_left">
+                            <field
+                                name="date_start"
+                                attrs="{'required': [('state', '=', 'draft')]}"
+                            />
+                        </group>
+                        <group name="group_bottom_right">
+                            <field
+                                name="validity_date"
+                                attrs="{'required': [('state', '=', 'draft')]}"
+                            />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Order Lines">
+                            <field
+                                name="line_ids"
+                                attrs="{'readonly': [('state', 'in', ('open','expired'))]}"
+                            >
+                                <tree editable="bottom">
+                                    <field name="sequence" widget="handle" />
+                                    <field name="name" invisible="1" />
+                                    <field
+                                        name="product_id"
+                                        context="{'partner_id':parent.partner_id, 'quantity':original_uom_qty, 'company_id': parent.company_id}"
+                                    />
+                                    <field
+                                        name="original_uom_qty"
+                                        string="Original Qty"
+                                        context="{'partner_id':parent.partner_id, 'quantity':original_uom_qty, 'company_id': parent.company_id}"
+                                    />
+                                    <field name="product_uom" groups="uom.group_uom" />
+                                    <field name="price_unit" />
+                                    <field name="date_schedule" />
+                                    <field name="ordered_uom_qty" />
+                                    <field name="invoiced_uom_qty" />
+                                    <field name="received_uom_qty" />
+                                    <field name="remaining_uom_qty" />
+                                    <field
+                                        name="taxes_id"
+                                        widget="many2many_tags"
+                                        domain="[('type_tax_use','=','purchase')]"
+                                        context="{'default_type_tax_use': 'purchase'}"
+                                        options="{'no_create': True}"
+                                    />
+                                    <field name="price_subtotal" widget="monetary" />
+                                </tree>
+                            </field>
+                            <group class="oe_subtotal_footer oe_right">
+                                <field
+                                    name="amount_untaxed"
+                                    widget="monetary"
+                                    options="{'currency_field': 'currency_id'}"
+                                />
+                                <field
+                                    name="amount_tax"
+                                    widget="monetary"
+                                    options="{'currency_field': 'currency_id'}"
+                                />
+                                <div class="oe_subtotal_footer_separator oe_inline">
+                                    <label for="amount_total" />
+                                </div>
+                                <field
+                                    name="amount_total"
+                                    nolabel="1"
+                                    class="oe_subtotal_footer_separator"
+                                    widget="monetary"
+                                    options="{'currency_field': 'currency_id'}"
+                                />
+                            </group>
+                            <separator string="Terms and Conditions" />
+                            <field
+                                name="note"
+                                class="oe_inline"
+                                placeholder="Setup default terms and conditions in your company settings."
+                            />
+                            <div class="oe_clear" />
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="activity_ids" widget="mail_activity" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="view_purchase_blanket_order_search" model="ir.ui.view">
+        <field name="name">purchase.blanket.order.search</field>
+        <field name="model">purchase.blanket.order</field>
+        <field name="arch" type="xml">
+            <search>
+                <filter
+                    name="state_open"
+                    string="Open"
+                    domain="[('state','=', 'open')]"
+                />
+                <filter
+                    name="original_uom_qty"
+                    string="Original Qty"
+                    domain="[('original_uom_qty','>',0.0)]"
+                />
+                <filter
+                    name="ordered_uom_qty"
+                    string="Ordered Qty"
+                    domain="[('ordered_uom_qty','>',0.0)]"
+                />
+                <filter
+                    name="invoiced_uom_qty"
+                    string="Invoiced Qty"
+                    domain="[('invoiced_uom_qty','>',0.0)]"
+                />
+                <filter
+                    name="received_uom_qty"
+                    string="Received Qty"
+                    domain="[('received_uom_qty','>',0.0)]"
+                />
+                <filter
+                    name="remaining_uom_qty"
+                    string="Remaining Qty"
+                    domain="[('remaining_uom_qty','>',0.0)]"
+                />
+                <group>
+                    <field name="name" />
+                    <field name="partner_id" />
+                    <field name="product_id" />
+                    <field name="state" />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="act_open_purchase_blanket_order_view">
+        <field name="name">Blanket Orders</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">purchase.blanket.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_purchase_blanket_order_search" />
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a blanket order that can be converted into a purchase order.
+              </p>
+            <p>
+                Use this menu to search within your blanket orders. For each blanket order,
+                you can track the related discussion with the vendor, control
+                the products received and control the vendor bills.
+              </p>
+        </field>
+    </record>
+    <record id="purchase_blanket_order_line_tree" model="ir.ui.view">
+        <field name="name">purchase.blanket.order.line.tree</field>
+        <field name="model">purchase.blanket.order.line</field>
+        <field name="arch" type="xml">
+            <tree string="Blanket Order Lines" create="false">
+                <field name="sequence" widget="handle" />
+                <field name="name" invisible="1" />
+                <field name="order_id" />
+                <field
+                    name="product_id"
+                    context="{'partner_id':parent.partner_id, 'quantity':original_uom_qty, 'company_id': parent.company_id}"
+                />
+                <field name="product_uom" invisible="1" />
+                <field name="price_unit" />
+                <field name="date_schedule" />
+                <field
+                    name="original_uom_qty"
+                    string="Original Qty"
+                    context="{'partner_id':parent.partner_id, 'quantity':original_uom_qty, 'company_id': parent.company_id}"
+                />
+                <field name="ordered_uom_qty" />
+                <field name="invoiced_uom_qty" />
+                <field name="received_uom_qty" />
+                <field name="remaining_uom_qty" />
+            </tree>
+        </field>
+    </record>
+    <record id="purchase_blanket_order_line_form" model="ir.ui.view">
+        <field name="name">purchase.blanket.order.line.form</field>
+        <field name="model">purchase.blanket.order.line</field>
+        <field name="priority" eval="20" />
+        <field name="arch" type="xml">
+            <form string="Purchase Blanket Order Line" duplicate="false">
+                <sheet>
+                    <h1>
+                        <field name="order_id" />
+                    </h1>
+                    <group>
+                        <group>
+                            <group>
+                                <field name="product_id" readonly="1" />
+                                <field name="price_unit" readonly="1" />
+                                <field name="partner_id" readonly="1" />
+                                <field name="date_schedule" readonly="1" />
+                            </group>
+                        </group>
+                        <group>
+                            <label for="original_uom_qty" />
+                            <div>
+                                <field
+                                    name="original_uom_qty"
+                                    class="oe_inline"
+                                    readonly="1"
+                                />
+                                <field
+                                    name="product_uom"
+                                    groups="uom.group_uom"
+                                    class="oe_inline"
+                                    readonly="1"
+                                />
+                            </div>
+                            <label for="ordered_uom_qty" />
+                            <div>
+                                <field
+                                    name="ordered_uom_qty"
+                                    class="oe_inline"
+                                    readonly="1"
+                                />
+                                <field
+                                    name="product_uom"
+                                    groups="uom.group_uom"
+                                    class="oe_inline"
+                                    readonly="1"
+                                />
+                            </div>
+                            <label for="invoiced_uom_qty" />
+                            <div>
+                                <field
+                                    name="invoiced_uom_qty"
+                                    class="oe_inline"
+                                    readonly="1"
+                                />
+                                <field
+                                    name="product_uom"
+                                    groups="uom.group_uom"
+                                    class="oe_inline"
+                                    readonly="1"
+                                />
+                            </div>
+                            <label for="remaining_uom_qty" />
+                            <div>
+                                <field
+                                    name="remaining_uom_qty"
+                                    class="oe_inline"
+                                    readonly="1"
+                                />
+                                <field
+                                    name="product_uom"
+                                    groups="uom.group_uom"
+                                    class="oe_inline"
+                                    readonly="1"
+                                />
+                            </div>
+                            <label for="remaining_qty" />
+                            <div>
+                                <field
+                                    name="remaining_qty"
+                                    class="oe_inline"
+                                    readonly="1"
+                                />
+                            </div>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="purchase_lines" string="Purchase Order Lines">
+                            <field
+                                name="purchase_lines"
+                                mode="tree"
+                                readonly="1"
+                                domain="[('product_id', '=', product_id)]"
+                            />
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="activity_ids" widget="mail_activity" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="purchase_blanket_order_line_search" model="ir.ui.view">
+        <field name="name">purchase.blanket.order.line.search</field>
+        <field name="model">purchase.blanket.order.line</field>
+        <field name="arch" type="xml">
+            <search string="Search Purchase Blanket Order Line">
+                <field name="product_id" />
+                <field name="date_schedule" />
+            </search>
+        </field>
+    </record>
+    <record
+        id="act_open_purchase_blanket_order_lines_view_tree"
+        model="ir.actions.act_window"
+    >
+        <field name="name">Blanket Order Lines</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">purchase.blanket.order.line</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="purchase_blanket_order_line_search" />
+    </record>
+    <menuitem
+        id="menu_purchase_blanket_order_config"
+        parent="purchase.menu_procurement_management"
+        groups="purchase.group_purchase_manager"
+        sequence="8"
+        action="act_open_purchase_blanket_order_view"
+    />
+    <menuitem
+        action="act_open_purchase_blanket_order_lines_view_tree"
+        id="menu_purchase_blanket_order_line"
+        sequence="9"
+        parent="purchase.menu_procurement_management"
+    />
+</odoo>
