@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 13.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -78,6 +78,11 @@ msgid "Activity State"
 msgstr ""
 
 #. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: purchase_work_acceptance
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__message_attachment_count
 msgid "Attachment Count"
 msgstr ""
@@ -96,6 +101,11 @@ msgstr ""
 #. module: purchase_work_acceptance
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__company_id
 msgid "Company"
+msgstr ""
+
+#. module: purchase_work_acceptance
+#: model:ir.model,name:purchase_work_acceptance.model_res_config_settings
+msgid "Config Settings"
 msgstr ""
 
 #. module: purchase_work_acceptance
@@ -149,7 +159,12 @@ msgid "Description"
 msgstr ""
 
 #. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_account_move__display_name
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_purchase_order_line__display_name
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_res_config_settings__display_name
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_select_work_acceptance_wizard__display_name
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_stock_picking__display_name
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__display_name
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance_line__display_name
 msgid "Display Name"
@@ -214,12 +229,22 @@ msgid "Followers (Partners)"
 msgstr ""
 
 #. module: purchase_work_acceptance
+#: model:ir.model.fields,help:purchase_work_acceptance.field_work_acceptance__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: purchase_work_acceptance
 #: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_work_acceptance_search
 msgid "Group By"
 msgstr ""
 
 #. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_account_move__id
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_purchase_order__id
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_purchase_order_line__id
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_res_config_settings__id
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_select_work_acceptance_wizard__id
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_stock_picking__id
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__id
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance_line__id
 msgid "ID"
@@ -259,11 +284,16 @@ msgstr ""
 
 #. module: purchase_work_acceptance
 #: model:ir.model,name:purchase_work_acceptance.model_account_move
-msgid "Journal Entries"
+msgid "Journal Entry"
 msgstr ""
 
 #. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_account_move____last_update
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_purchase_order____last_update
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_purchase_order_line____last_update
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_res_config_settings____last_update
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_select_work_acceptance_wizard____last_update
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_stock_picking____last_update
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance____last_update
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance_line____last_update
 msgid "Last Modified on"
@@ -364,11 +394,6 @@ msgid "Portal Access URL"
 msgstr ""
 
 #. module: purchase_work_acceptance
-#: model:ir.model,name:purchase_work_acceptance.model_res_config_settings
-msgid "Procurement purchase grouping settings"
-msgstr ""
-
-#. module: purchase_work_acceptance
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__product_id
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance_line__product_id
 msgid "Product"
@@ -419,7 +444,9 @@ msgid "Reference"
 msgstr ""
 
 #. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_account_bank_statement_line__require_wa
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_account_move__require_wa
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_account_payment__require_wa
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_select_work_acceptance_wizard__require_wa
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_stock_picking__require_wa
 msgid "Require Wa"
@@ -483,7 +510,9 @@ msgid "Subtotal"
 msgstr ""
 
 #. module: purchase_work_acceptance
+#: model:ir.model.fields,help:purchase_work_acceptance.field_account_bank_statement_line__wa_id
 #: model:ir.model.fields,help:purchase_work_acceptance.field_account_move__wa_id
+#: model:ir.model.fields,help:purchase_work_acceptance.field_account_payment__wa_id
 msgid ""
 "To control quantity and unit price of the vendor bill, to be according to "
 "the quantity and unit price of the work acceptance."
@@ -545,7 +574,9 @@ msgid "WA Lines"
 msgstr ""
 
 #. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_account_bank_statement_line__wa_id
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_account_move__wa_id
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_account_payment__wa_id
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_stock_picking__wa_id
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance_line__wa_id
 msgid "WA Reference"
