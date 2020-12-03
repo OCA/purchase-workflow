@@ -15,9 +15,15 @@ class TestPurchaseOrder(common.SavepointCase):
         )
         product_obj = cls.env["product.product"]
         cls.product_1 = product_obj.create(
-            {"name": "Test product 1", "categ_id": cls.categ_cost_average.id}
+            {
+                "name": "Test product 1",
+                "categ_id": cls.categ_cost_average.id,
+                "type": "product",
+            }
         )
-        cls.product_2 = product_obj.create({"name": "Test product 2"})
+        cls.product_2 = product_obj.create(
+            {"name": "Test product 2", "type": "product"}
+        )
         po_model = cls.env["purchase.order.line"]
         currency_rate_model = cls.env["res.currency.rate"]
         # Set the Exchange rate for the currency of the company to 1
