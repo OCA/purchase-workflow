@@ -22,7 +22,7 @@
                         string="Convert to Order"
                     />
                     <button
-                        name="action_cancel"
+                        name="button_cancel"
                         states="draft"
                         type="object"
                         string="Cancel"
