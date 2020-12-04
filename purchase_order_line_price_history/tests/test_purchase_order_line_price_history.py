@@ -11,10 +11,14 @@ class TestPurchaseOrderLinePriceHistoryBase(SavepointCase):
         cls.partner_1 = cls.env["res.partner"].create({"name": "Partner 1"})
         cls.partner_2 = cls.env["res.partner"].create({"name": "Partner 2"})
         cls.product = cls.env["product.product"].create({"name": "Product 1"})
+        # Compatible with purchase_order_type, if installed.
+        cls.order_type = cls.env.ref("purchase_order_type.po_type_regular", False)
         # Two confirmed purchase orders with the same data and
         # different partners
         purchase_form = Form(cls.env["purchase.order"])
         purchase_form.partner_id = cls.partner_1
+        if "order_type" in purchase_form._model:
+            purchase_form.order_type = cls.order_type
         with purchase_form.order_line.new() as line_form:
             line_form.product_id = cls.product
             line_form.product_qty = 2
@@ -23,6 +27,8 @@ class TestPurchaseOrderLinePriceHistoryBase(SavepointCase):
         cls.purchase_order_1.button_confirm()
         purchase_form = Form(cls.env["purchase.order"])
         purchase_form.partner_id = cls.partner_2
+        if "order_type" in purchase_form._model:
+            purchase_form.order_type = cls.order_type
         with purchase_form.order_line.new() as line_form:
             line_form.product_id = cls.product
             line_form.product_qty = 2
@@ -32,6 +38,8 @@ class TestPurchaseOrderLinePriceHistoryBase(SavepointCase):
         # of cls.purchase_order_2
         purchase_form = Form(cls.env["purchase.order"])
         purchase_form.partner_id = cls.partner_2
+        if "order_type" in purchase_form._model:
+            purchase_form.order_type = cls.order_type
         with purchase_form.order_line.new() as line_form:
             line_form.product_id = cls.product
             line_form.product_qty = 2
