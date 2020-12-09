@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="purchase_order_view_form_inherit" model="ir.ui.view">
+        <field name="name">purchase.order.form</field>
+        <field name="model">purchase.order</field>
+        <field
+            name="inherit_id"
+            ref="purchase_stock.purchase_order_view_form_inherit"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                <button
+                    type="object"
+                    name="action_view_all_pickings"
+                    class="oe_stat_button"
+                    icon="fa-truck"
+                    attrs="{'invisible': [('all_picking_count', '=', 0)]}"
+                >
+                    <field
+                        name="all_picking_count"
+                        widget="statinfo"
+                        string="All Pickings"
+                        help="All Pickings, including chained"
+                    />
+                </button>
+            </xpath>
+            <!-- xpath needed because of odoo/odoo#5247 -->
+            <xpath
+                expr="//div[@name='button_box']/button[@name='action_view_picking']"
+                position="attributes"
+            >
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
