@@ -15,6 +15,7 @@
     ],
     "data": [
         "wizards/purchase_order_recommendation_view.xml",
+        "views/assets.xml",
         "views/purchase_order_view.xml",
     ],
 }
