@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* purchase_request_tier_validation
+# 	* purchase_request_tier_validation
 #
 msgid ""
 msgstr ""
@@ -17,37 +17,42 @@ msgstr ""
 "X-Generator: Weblate 3.8\n"
 
 #. module: purchase_request_tier_validation
-#: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_form_inherit_tier
-msgid "<i class=\"fa fa-info-circle\"/>This Purchase Request needs to be\n"
-"                        validated."
+#: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__can_review
+msgid "Can Review"
 msgstr ""
-"<i class=\"fa fa-info-circle\"/>Esa requisición de compra necesita ser\n"
-"                        validada."
 
 #. module: purchase_request_tier_validation
-#: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_form_inherit_tier
-msgid "<i class=\"fa fa-thumbs-down\"/> Operation has been <b>rejected</b>."
-msgstr "<i class=\"fa fa-thumbs-down\"/> Operación ha sido <b>rechazada</b>."
+#: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__display_name
+#: model:ir.model.fields,field_description:purchase_request_tier_validation.field_tier_definition__display_name
+msgid "Display Name"
+msgstr ""
 
 #. module: purchase_request_tier_validation
-#: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_form_inherit_tier
-msgid "<i class=\"fa fa-thumbs-up\"/> Operation has been <b>validated</b>!"
-msgstr "<i class=\"fa fa-thumbs-up\"/> Operación ha sido <b>validada</b>!"
+#: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__has_comment
+msgid "Has Comment"
+msgstr ""
 
 #. module: purchase_request_tier_validation
-#: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_form_inherit_tier
-msgid "Confirm"
-msgstr "Confirmar"
+#: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__id
+#: model:ir.model.fields,field_description:purchase_request_tier_validation.field_tier_definition__id
+msgid "ID"
+msgstr ""
 
 #. module: purchase_request_tier_validation
-#: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.tier_review_form_wiz
-msgid "Dismiss"
-msgstr "Descartar"
+#: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request____last_update
+#: model:ir.model.fields,field_description:purchase_request_tier_validation.field_tier_definition____last_update
+msgid "Last Modified on"
+msgstr ""
 
 #. module: purchase_request_tier_validation
 #: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_filter
 msgid "My Purchases to review"
 msgstr "Mis compras a revisar"
+
+#. module: purchase_request_tier_validation
+#: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__need_validation
+msgid "Need Validation"
+msgstr ""
 
 #. module: purchase_request_tier_validation
 #: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_filter
@@ -65,6 +70,11 @@ msgid "New Tier Validation"
 msgstr "Nueva capa de validación"
 
 #. module: purchase_request_tier_validation
+#: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__next_review
+msgid "Next Review"
+msgstr ""
+
+#. module: purchase_request_tier_validation
 #: model:ir.model,name:purchase_request_tier_validation.model_purchase_request
 msgid "Purchase Request"
 msgstr "Requisición de Compra"
@@ -75,19 +85,14 @@ msgid "Purchase Requests validated and ready to be confirmed"
 msgstr "Requisición de compra validada y ya confirmada"
 
 #. module: purchase_request_tier_validation
-#: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_form_inherit_tier
-msgid "Reject"
-msgstr "Rechazar"
+#: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__rejected
+msgid "Rejected"
+msgstr ""
 
 #. module: purchase_request_tier_validation
-#: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_form_inherit_tier
-msgid "Request Validation"
-msgstr "Solicitar Validación"
-
-#. module: purchase_request_tier_validation
-#: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_form_inherit_tier
-msgid "Restart Validation"
-msgstr "Reinicia validación"
+#: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__reviewer_ids
+msgid "Reviewers"
+msgstr ""
 
 #. module: purchase_request_tier_validation
 #: model:ir.model,name:purchase_request_tier_validation.model_tier_definition
@@ -95,16 +100,47 @@ msgid "Tier Definition"
 msgstr "Definición"
 
 #. module: purchase_request_tier_validation
-#: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.tier_review_form_wiz
-msgid "Tier Review"
-msgstr "Revisar"
-
-#. module: purchase_request_tier_validation
-#: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_form_inherit_tier
-msgid "Validate"
-msgstr "Validar"
-
-#. module: purchase_request_tier_validation
+#: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__validated
 #: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_filter
 msgid "Validated"
 msgstr "Validado"
+
+#. module: purchase_request_tier_validation
+#: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__review_ids
+msgid "Validations"
+msgstr ""
+
+#~ msgid ""
+#~ "<i class=\"fa fa-info-circle\"/>This Purchase Request needs to be\n"
+#~ "                        validated."
+#~ msgstr ""
+#~ "<i class=\"fa fa-info-circle\"/>Esa requisición de compra necesita ser\n"
+#~ "                        validada."
+
+#~ msgid "<i class=\"fa fa-thumbs-down\"/> Operation has been <b>rejected</b>."
+#~ msgstr ""
+#~ "<i class=\"fa fa-thumbs-down\"/> Operación ha sido <b>rechazada</b>."
+
+#~ msgid "<i class=\"fa fa-thumbs-up\"/> Operation has been <b>validated</b>!"
+#~ msgstr "<i class=\"fa fa-thumbs-up\"/> Operación ha sido <b>validada</b>!"
+
+#~ msgid "Confirm"
+#~ msgstr "Confirmar"
+
+#~ msgid "Dismiss"
+#~ msgstr "Descartar"
+
+#~ msgid "Reject"
+#~ msgstr "Rechazar"
+
+#~ msgid "Request Validation"
+#~ msgstr "Solicitar Validación"
+
+#~ msgid "Restart Validation"
+#~ msgstr "Reinicia validación"
+
+#~ msgid "Tier Review"
+#~ msgstr "Revisar"
+
+#~ msgid "Validate"
+#~ msgstr "Validar"

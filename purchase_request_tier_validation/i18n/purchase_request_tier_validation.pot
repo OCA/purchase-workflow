@@ -14,30 +14,8 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: purchase_request_tier_validation
-#: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_form_inherit_tier
-msgid ""
-"<i class=\"fa fa-info-circle\"/>This Purchase Request needs to be\n"
-"                        validated."
-msgstr ""
-
-#. module: purchase_request_tier_validation
-#: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_form_inherit_tier
-msgid "<i class=\"fa fa-thumbs-down\"/> Operation has been <b>rejected</b>."
-msgstr ""
-
-#. module: purchase_request_tier_validation
-#: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_form_inherit_tier
-msgid "<i class=\"fa fa-thumbs-up\"/> Operation has been <b>validated</b>!"
-msgstr ""
-
-#. module: purchase_request_tier_validation
 #: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__can_review
 msgid "Can Review"
-msgstr ""
-
-#. module: purchase_request_tier_validation
-#: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_form_inherit_tier
-msgid "Confirm"
 msgstr ""
 
 #. module: purchase_request_tier_validation
@@ -89,6 +67,11 @@ msgid "New Tier Validation"
 msgstr ""
 
 #. module: purchase_request_tier_validation
+#: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__next_review
+msgid "Next Review"
+msgstr ""
+
+#. module: purchase_request_tier_validation
 #: model:ir.model,name:purchase_request_tier_validation.model_purchase_request
 msgid "Purchase Request"
 msgstr ""
@@ -99,23 +82,8 @@ msgid "Purchase Requests validated and ready to be confirmed"
 msgstr ""
 
 #. module: purchase_request_tier_validation
-#: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_form_inherit_tier
-msgid "Reject"
-msgstr ""
-
-#. module: purchase_request_tier_validation
 #: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__rejected
 msgid "Rejected"
-msgstr ""
-
-#. module: purchase_request_tier_validation
-#: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_form_inherit_tier
-msgid "Request Validation"
-msgstr ""
-
-#. module: purchase_request_tier_validation
-#: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_form_inherit_tier
-msgid "Restart Validation"
 msgstr ""
 
 #. module: purchase_request_tier_validation
@@ -126,11 +94,6 @@ msgstr ""
 #. module: purchase_request_tier_validation
 #: model:ir.model,name:purchase_request_tier_validation.model_tier_definition
 msgid "Tier Definition"
-msgstr ""
-
-#. module: purchase_request_tier_validation
-#: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_form_inherit_tier
-msgid "Validate"
 msgstr ""
 
 #. module: purchase_request_tier_validation

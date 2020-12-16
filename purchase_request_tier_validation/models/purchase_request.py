@@ -9,6 +9,8 @@ class PurchaseRequest(models.Model):
     _state_from = ["draft"]
     _state_to = ["approved"]
 
+    _tier_validation_manual_config = False
+
     @api.model
     def _get_under_validation_exceptions(self):
         res = super(PurchaseRequest, self)._get_under_validation_exceptions()
