@@ -26,13 +26,13 @@ class StockMoveLine(models.Model):
     @api.onchange('product_id', 'product_uom_id')
     def onchange_product_id(self):
         res = super(StockMoveLine, self).onchange_product_id()
-        if self.product_id and self.picking_id and self.picking_id.partner_id:
-            for supplier in self.product_id.seller_ids:
-                if supplier.name.id == self.picking_id.partner_id.id:
-                    if not res.get('value', False):
-                        res['value'] = {}
-                    res['value']['package_qty'] = supplier.package_qty
-                break
+        if self.product_id and self.picking_id:
+            supplier = self.product_id._select_seller(
+                partner_id=self.picking_id.partner_id, quantity=1)
+            if supplier:
+                if not res.get('value', False):
+                    res['value'] = {}
+                res['value']['package_qty'] = supplier.package_qty
         return res
 
     @api.onchange('product_qty_package')
