@@ -31,9 +31,9 @@ class PurchaseOrder(models.Model):
             main_currency, self.currency_id, self.company_id, self.date_order or today
         )
 
-    def action_refrese_currency(self):
+    def action_refresh_currency(self):
         self.ensure_one()
         if self.state != "draft":
-            raise ValidationError(_("Rate currency can refrese state draft only."))
+            raise ValidationError(_("Rate currency can refresh state draft only."))
         self._onchange_currency_change_rate()
         return True

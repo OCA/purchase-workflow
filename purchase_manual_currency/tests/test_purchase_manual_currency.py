@@ -29,13 +29,13 @@ class TestPurchaseManualCurrency(TransactionCase):
             p.currency_id = self.currency_usd
             p.manual_currency = True
         self.assertNotEqual(self.purchase_order.custom_rate, 0.0)
-        # check function refrese
+        # check function refresh
         currency_rate = self.purchase_order.custom_rate
         self.purchase_order.custom_rate += 5.0
         self.assertNotEqual(self.purchase_order.custom_rate, currency_rate)
-        self.purchase_order.action_refrese_currency()
+        self.purchase_order.action_refresh_currency()
         self.assertEqual(self.purchase_order.custom_rate, currency_rate)
         self.purchase_order.button_confirm()
         self.assertEqual(self.purchase_order.state, "purchase")
         with self.assertRaises(ValidationError):
-            self.purchase_order.action_refrese_currency()
+            self.purchase_order.action_refresh_currency()
