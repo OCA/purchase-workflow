@@ -61,7 +61,7 @@ class StockMove(models.Model):
             if supplier:
                 self.package_qty = supplier.package_qty
                 self.product_qty = supplier.package_qty
-                self.product_qty_package = 1
+                self.product_qty_package = 0.0
                 self.indicative_package = supplier.indicative_package
         return res
 
@@ -86,6 +86,13 @@ class StockMove(models.Model):
     def onchange_qty_done_package(self):
         if self.qty_done_package == int(self.qty_done_package):
             self.quantity_done = self.package_qty * self.qty_done_package
+
+    @api.onchange('product_uom_qty')
+    def onchange_product_uom_qty(self):
+        if self.product_uom_qty and self.package_qty:
+            self.product_qty_package = self.product_uom_qty / self.package_qty
+        else:
+            self.product_qty_package = 0.0
 
     def _action_done(self):
         res = super(StockMove, self)._action_done()
