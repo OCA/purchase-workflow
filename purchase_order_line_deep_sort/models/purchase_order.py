@@ -44,7 +44,8 @@ class PurchaseOrder(models.Model):
         reverse = self.line_direction == "desc"
         sequence = 0
         sorted_lines = self.order_line.sorted(
-            key=lambda p: resolve_subfields(p, self.line_order), reverse=reverse,
+            key=lambda p: resolve_subfields(p, self.line_order),
+            reverse=reverse,
         )
         for line in sorted_lines:
             sequence += 10
