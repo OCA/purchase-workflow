@@ -1,1 +1,2 @@
 server-ux
+product-attribute https://github.com/akretion/product-attribute 14.0-mig-product_base_mass_addition
