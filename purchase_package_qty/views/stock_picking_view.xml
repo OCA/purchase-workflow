@@ -30,9 +30,11 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='move_ids_without_package']/tree/field
                 [@name='product_uom_qty']" position="before">
-                <field name="product_qty_package"/>
+                <field name="product_qty_package"
+                    attrs="{'column_invisible': [('parent.state', 'not in', ('assigned', 'done'))]}"/>
                 <field name="package_qty" readonly="True"
-                       string="Pack. Qty"/>
+                    attrs="{'column_invisible': [('parent.state', 'not in', ('assigned', 'done'))]}"
+                    string="Pack. Qty"/>
             </xpath>
             <xpath expr="//field[@name='move_ids_without_package']/tree/field
                 [@name='product_uom_qty']" position="attributes">
@@ -40,8 +42,15 @@
             </xpath>
             <xpath expr="//field[@name='move_ids_without_package']/tree/field
                 [@name='quantity_done']" position="before">
-                <field name="qty_done_package"/>
+                <field name="qty_done_package"
+                    attrs="{'column_invisible': [('parent.state', 'not in', ('assigned', 'done'))]}"/>
             </xpath>
+            <xpath expr="//field[@name='move_ids_without_package']/tree/field
+                [@name='quantity_done']" position="attributes">
+                <attribute name="attrs">{'column_invisible': [('parent.state', 'not in', ('assigned', 'done'))]}
+                </attribute>
+            </xpath>
+
         </field>
     </record>
 </odoo>

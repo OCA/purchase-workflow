@@ -44,24 +44,25 @@ class StockMove(models.Model):
     @api.depends('product_id')
     def _compute_package_qty(self):
         for move in self:
-            if move.product_id:
-                partner = move.picking_id.partner_id
-                for supplier in move.product_id.seller_ids:
-                    if partner and (supplier.name == partner):
-                        move.package_qty = supplier.package_qty
+            if move.product_id and move.picking_id:
+                supplier = move.product_id._select_seller(
+                    partner_id=move.picking_id.partner_id, quantity=1)
+                if supplier:
+                    # Get the first one
+                    move.package_qty = supplier.package_qty
 
     # Views section
     @api.onchange('product_id')
     def onchange_product_id(self):
         res = super(StockMove, self).onchange_product_id()
-        partner = self.picking_id.partner_id
-        if self.product_id and partner:
-            for supplier in self.product_id.seller_ids:
-                if supplier.name.id == partner.id:
-                    self.package_qty = supplier.package_qty
-                    self.product_qty = supplier.package_qty
-                    self.product_qty_package = 1
-                    self.indicative_package = supplier.indicative_package
+        if self.product_id and self.product_id.seller_ids:
+            supplier = self.product_id._select_seller(
+                partner_id=self.picking_id.partner_id, quantity=1)
+            if supplier:
+                self.package_qty = supplier.package_qty
+                self.product_qty = supplier.package_qty
+                self.product_qty_package = 1
+                self.indicative_package = supplier.indicative_package
         return res
 
     @api.onchange('product_qty')
