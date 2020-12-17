@@ -8,7 +8,9 @@ class ResConfigSettings(models.TransientModel):
     _inherit = "res.config.settings"
 
     po_line_order_default = fields.Selection(
-        related="company_id.default_po_line_order", string="Line Order", readonly=False,
+        related="company_id.default_po_line_order",
+        string="Line Order",
+        readonly=False,
     )
     po_line_direction_default = fields.Selection(
         related="company_id.default_po_line_direction",
