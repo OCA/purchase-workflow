@@ -24,7 +24,7 @@
                     <button
                         aria-label="Opened"
                         type="object"
-                        name="action_refrese_currency"
+                        name="action_refresh_currency"
                         class="btn-link"
                         states="draft"
                     >
