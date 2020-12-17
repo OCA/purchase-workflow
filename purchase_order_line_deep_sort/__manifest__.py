@@ -3,7 +3,7 @@
 
 {
     "name": "Purchase Order Line Deep Sort",
-    "version": "13.0.1.0.0",
+    "version": "14.0.1.0.0",
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "category": "Purchase Management",
