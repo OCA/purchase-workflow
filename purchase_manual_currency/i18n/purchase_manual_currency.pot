@@ -48,7 +48,7 @@ msgstr ""
 #. module: purchase_manual_currency
 #: code:addons/purchase_manual_currency/models/purchase.py:0
 #, python-format
-msgid "Rate currency can refrese state draft only."
+msgid "Rate currency can refresh state draft only."
 msgstr ""
 
 #. module: purchase_manual_currency
