@@ -20,8 +20,8 @@ msgstr ""
 #. module: purchase_order_secondary_unit
 #: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_product_product__purchase_secondary_uom_id
 #: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_product_template__purchase_secondary_uom_id
-msgid "Default unit purchase"
-msgstr ""
+msgid "Default secondary unit for purchases"
+msgstr "Ud de compra secundaria por defecto"
 
 #. module: purchase_order_secondary_unit
 #: model:ir.model,name:purchase_order_secondary_unit.model_product_template
