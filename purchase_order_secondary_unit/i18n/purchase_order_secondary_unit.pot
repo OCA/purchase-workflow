@@ -16,7 +16,7 @@ msgstr ""
 #. module: purchase_order_secondary_unit
 #: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_product_product__purchase_secondary_uom_id
 #: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_product_template__purchase_secondary_uom_id
-msgid "Default unit purchase"
+msgid "Default secondary unit for purchases"
 msgstr ""
 
 #. module: purchase_order_secondary_unit
