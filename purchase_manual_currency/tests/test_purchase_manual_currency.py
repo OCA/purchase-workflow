@@ -34,7 +34,7 @@ class TestPurchaseManualCurrency(TransactionCase):
         self.purchase_order.custom_rate += 5.0
         self.assertNotEqual(self.purchase_order.custom_rate, currency_rate)
         self.purchase_order.action_refresh_currency()
-        self.assertEqual(self.purchase_order.custom_rate, currency_rate)
+        self.assertAlmostEqual(self.purchase_order.custom_rate, currency_rate)
         self.purchase_order.button_confirm()
         self.assertEqual(self.purchase_order.state, "purchase")
         with self.assertRaises(ValidationError):
