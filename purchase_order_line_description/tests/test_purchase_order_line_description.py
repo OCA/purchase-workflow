@@ -46,3 +46,15 @@ class TestPurchaseOrderLineDescription(common.SavepointCase):
         self.order.order_line[0].sudo(self.test_user).onchange_product_id()
         self.assertEqual(
             self.product.description_purchase, self.order.order_line[0].name)
+
+    def test_translated_description(self):
+        """PO description rendered in supplier lang."""
+        self.env["res.lang"].load_lang("es_ES")
+        self.order.partner_id.lang = "es_ES"
+        self.product.with_context(
+            lang="es_ES"
+        ).description_purchase = "descripción para compras"
+        with common.Form(self.order.sudo(self.test_user)) as order:
+            with order.order_line.new() as line:
+                line.product_id = self.product
+                self.assertEqual(line.name, "descripción para compras")
