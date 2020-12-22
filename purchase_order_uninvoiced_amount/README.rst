@@ -58,6 +58,7 @@ Contributors
   * Manuel Calero
   * João Marques
   * Pedro M. Baeza
+  * Ernesto Tejeda
 
 Maintainers
 ~~~~~~~~~~~
