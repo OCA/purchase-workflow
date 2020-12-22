@@ -32,26 +32,28 @@ from odoo.exceptions import ValidationError
 class PurchaseOrderLine(models.Model):
     _inherit = 'purchase.order.line'
 
-    @api.depends('product_qty', 'price_unit', 'taxes_id', 'price_policy')
+    # adding price_policy to depends
+    @api.depends('price_policy')
     def _compute_amount(self):
+        return super()._compute_amount()
+
+    def _prepare_compute_all_values(self):
+        vals = super()._prepare_compute_all_values()
+        vals.update({'product_qty': self._get_policy_qty()})
+        return vals
+
+    def _get_policy_qty(self):
+        """Inheritable method for getting the product qty after applying
+        the price policy.
+
+        :rtype: float
+        :return: Product qty after the price policy.
         """
-        Override native method to compute amount based on price_policy
-        (per package or per uom)
-        """
-        for line in self:
-            qty_to_compute = line.product_qty
-            if line.price_policy == 'package':
-                qty_to_compute = line.product_qty_package
-            taxes = line.taxes_id.compute_all(
-                line.price_unit, line.order_id.currency_id, qty_to_compute,
-                product=line.product_id, partner=line.order_id.partner_id
-            )
-            line.update({
-                'price_tax': taxes['total_included'] - taxes[
-                    'total_excluded'],
-                'price_total': taxes['total_included'],
-                'price_subtotal': taxes['total_excluded'],
-            })
+        self.ensure_one()
+        product_qty = self.product_qty
+        if self.price_policy == 'package':
+            product_qty = self.product_qty_package
+        return product_qty
 
     @api.multi
     def _get_supplierinfovals(self, partner=False):
