@@ -13,9 +13,13 @@ class PurchaseOrderLine(models.Model):
         res = super(PurchaseOrderLine, self).onchange_product_id()
         if not self.product_id:
             return res
+        # TODO Use odoo.tools.misc.get_lang in v13+
+        translated_product = self.product_id.with_context(
+            lang=self.partner_id.lang or self.env.lang
+        )
         if (self.user_has_groups(
                 'purchase_order_line_description.'
                 'group_use_product_description_per_po_line') and
-                self.product_id.description_purchase):
-            self.name = self.product_id.description_purchase
+                translated_product.description_purchase):
+            self.name = translated_product.description_purchase
         return res
