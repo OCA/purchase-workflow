@@ -20,6 +20,7 @@ Available addons
 addon | version | summary
 --- | --- | ---
 [purchase_commercial_partner](purchase_commercial_partner/) | 14.0.1.0.0 | Add stored related field 'Commercial Supplier' on POs
+[purchase_delivery_split_date](purchase_delivery_split_date/) | 14.0.1.0.0 | Allows Purchase Order you confirm to generate one Incoming Shipment for each expected date indicated in the Purchase Order Lines
 [purchase_last_price_info](purchase_last_price_info/) | 14.0.1.0.0 | Purchase Product Last Price Info
 [purchase_open_qty](purchase_open_qty/) | 14.0.1.0.0 | Allows to identify the purchase orders that have quantities pending to invoice or to receive.
 [purchase_order_archive](purchase_order_archive/) | 14.0.1.0.0 | Archive Purchase Orders
