@@ -19,5 +19,5 @@
              'views/purchase_view.xml',
              ],
     'installable': True,
-    'development_status': 'alpha',
+    'development_status': 'Alpha',
 }

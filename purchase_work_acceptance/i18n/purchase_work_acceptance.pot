@@ -495,6 +495,12 @@ msgid "Transfer"
 msgstr ""
 
 #. module: purchase_work_acceptance
+#: code:addons/purchase_work_acceptance/models/work_acceptance.py:137
+#, python-format
+msgid "Unable set to draft this work acceptance. You must first cancel the related receipts."
+msgstr ""
+
+#. module: purchase_work_acceptance
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance_line__price_unit
 msgid "Unit Price"
 msgstr ""
@@ -583,7 +589,7 @@ msgid "Work Acceptances"
 msgstr ""
 
 #. module: purchase_work_acceptance
-#: code:addons/purchase_work_acceptance/models/account_invoice.py:72
+#: code:addons/purchase_work_acceptance/models/account_invoice.py:76
 #, python-format
 msgid "You cannot validate a bill if Quantity not equal accepted quantity"
 msgstr ""

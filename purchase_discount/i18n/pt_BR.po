@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-23 17:50+0000\n"
-"PO-Revision-Date: 2018-02-23 17:50+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
-"teams/23907/pt_BR/)\n"
+"PO-Revision-Date: 2020-09-25 23:00+0000\n"
+"Last-Translator: Marcel Savegnago <marcel.savegnago@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
+"23907/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: purchase_discount
 #: model_terms:ir.ui.view,arch_db:purchase_discount.report_purchaseorder_document
@@ -55,14 +56,12 @@ msgstr ""
 #. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_account_invoice
 msgid "Invoice"
-msgstr ""
+msgstr "Fatura"
 
 #. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_purchase_order
-#, fuzzy
-#| msgid "Purchase Order Line"
 msgid "Purchase Order"
-msgstr "Linha da Ordem de Compra"
+msgstr "Ordem de Compra"
 
 #. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_purchase_order_line
@@ -71,10 +70,8 @@ msgstr "Linha da Ordem de Compra"
 
 #. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_purchase_report
-#, fuzzy
-#| msgid "Purchase Order Line"
 msgid "Purchase Report"
-msgstr "Linha da Ordem de Compra"
+msgstr "Relatório de Compra"
 
 #. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_stock_move

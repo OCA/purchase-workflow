@@ -29,7 +29,7 @@ msgstr ""
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_order.py:188
-#: code:addons/purchase_request/models/purchase_request_allocation.py:86
+#: code:addons/purchase_request/models/purchase_request_allocation.py:88
 #: code:addons/purchase_request/models/stock_picking.py:24
 #, python-format
 msgid "<li><b>%s</b>: Received quantity %s %s</li>"
@@ -393,7 +393,7 @@ msgid "Followers (Partners)"
 msgstr ""
 
 #. module: purchase_request
-#: code:addons/purchase_request/models/purchase_request_allocation.py:83
+#: code:addons/purchase_request/models/purchase_request_allocation.py:85
 #, python-format
 msgid ""
 "From last reception this quantity has been allocated to this purchase request"
@@ -518,7 +518,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_ids
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_ids
 #, fuzzy
-#| msgid "Unread Messages"
 msgid "Messages"
 msgstr "未读消息"
 
@@ -589,7 +588,6 @@ msgstr ""
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__message_unread_counter
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__message_unread_counter
 #, fuzzy
-#| msgid "Unread Messages"
 msgid "Number of unread messages"
 msgstr "未读消息"
 
@@ -624,7 +622,6 @@ msgstr ""
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__description
 #, fuzzy
-#| msgid "Description"
 msgid "PR Description"
 msgstr "说明"
 
@@ -1157,7 +1154,7 @@ msgid "Supplier"
 msgstr ""
 
 #. module: purchase_request
-#: code:addons/purchase_request/models/stock_move.py:85
+#: code:addons/purchase_request/models/stock_move.py:93
 #, python-format
 msgid ""
 "The company of the purchase request must match with that of the location."
@@ -1273,7 +1270,6 @@ msgstr "未读消息"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_unread_counter
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_unread_counter
 #, fuzzy
-#| msgid "Unread Messages"
 msgid "Unread Messages Counter"
 msgstr "未读消息"
 
@@ -1293,7 +1289,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__website_message_ids
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__website_message_ids
 #, fuzzy
-#| msgid "Unread Messages"
 msgid "Website Messages"
 msgstr "未读消息"
 

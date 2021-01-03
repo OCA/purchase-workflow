@@ -216,7 +216,7 @@ msgid "Stablish a limit on how many recommendations you want to get.Leave it as 
 msgstr ""
 
 #. module: purchase_order_product_recommendation
-#: code:addons/purchase_order_product_recommendation/wizards/purchase_order_recommendation.py:72
+#: code:addons/purchase_order_product_recommendation/wizards/purchase_order_recommendation.py:73
 #, python-format
 msgid "This wizard is only valid for purchases"
 msgstr ""

@@ -1,4 +1,5 @@
 # Copyright 2020 Tecnativa - Manuel Calero
+# Copyright 2020 Tecnativa - Pedro M. Baeza
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 from odoo.tests.common import SavepointCase
@@ -48,6 +49,7 @@ class TestPurchaseOrderUninvoiceAmount(SavepointCase):
             'type': 'consu',
             'categ_id': self.product_category.id,
             'description_sale': 'Test Description Sale',
+            'purchase_method': 'receive',
         })
 
     def _create_purchase(self, product_qty=1, product_received=1):
@@ -88,20 +90,34 @@ class TestPurchaseOrderUninvoiceAmount(SavepointCase):
         self.assertEquals(purchase.amount_uninvoiced, purchase.amount_untaxed,
                           "The purchase amount uninvoiced must be the amount untaxed")
 
-    def test_create_purchase_and_invoiced_without_units(self):
+    def test_create_purchase_and_no_receive(self):
         purchase = self._create_purchase(2, 0)
-        self._create_invoice_from_purchase(purchase)
-        self.assertEquals(purchase.amount_uninvoiced, 200,
-                          "The purchase amount uninvoiced must be 200")
+        self.assertEquals(purchase.amount_uninvoiced, 0,
+                          "The purchase amount uninvoiced must be 0")
 
-    def test_create_purchase_and_invoiced_with_half_units(self):
-        purchase = self._create_purchase(2, 1)
-        self._create_invoice_from_purchase(purchase)
-        self.assertEquals(purchase.amount_uninvoiced, 100,
-                          "The purchase amount uninvoiced must be 100")
+    def test_create_purchase_and_invoiced_a_part(self):
+        purchase = self._create_purchase(10, 5)
+        self.assertEquals(purchase.amount_uninvoiced, 500)
+        invoice = self._create_invoice_from_purchase(purchase)
+        invoice.invoice_line_ids.quantity = 3
+        self.assertEquals(purchase.amount_uninvoiced, 200)
 
     def test_create_purchase_create_and_invoiced_with_all_units(self):
         purchase = self._create_purchase(2, 2)
         self._create_invoice_from_purchase(purchase)
         self.assertEquals(purchase.amount_uninvoiced, 0,
                           "The purchase amount uninvoiced must be 0")
+
+    def test_create_purchase_qty_0(self):
+        purchase = self._create_purchase(0, 0)
+        self.assertEquals(purchase.amount_uninvoiced, 0)
+
+    def test_on_ordered_quantities_policy(self):
+        self.product_1.purchase_method = "purchase"
+        purchase = self._create_purchase(10, 0)
+        self.assertEquals(purchase.amount_uninvoiced, 1000)
+        invoice = self._create_invoice_from_purchase(purchase)
+        invoice.invoice_line_ids.quantity = 6
+        self.assertEquals(purchase.amount_uninvoiced, 400)
+        self._create_invoice_from_purchase(purchase)
+        self.assertEquals(purchase.amount_uninvoiced, 0)

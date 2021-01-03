@@ -16,8 +16,8 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-24 07:53+0000\n"
-"PO-Revision-Date: 2019-11-24 19:58+0000\n"
-"Last-Translator: Rodrigo Macedo <rmsolucoeseminformatic4@gmail.com>\n"
+"PO-Revision-Date: 2020-09-25 23:00+0000\n"
+"Last-Translator: Marcel Savegnago <marcel.savegnago@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-"
 "purchase-workflow-10-0/language/pt_BR/)\n"
 "Language: pt_BR\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.8\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_order.py:24
@@ -35,7 +35,7 @@ msgstr ""
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_order.py:188
-#: code:addons/purchase_request/models/purchase_request_allocation.py:86
+#: code:addons/purchase_request/models/purchase_request_allocation.py:88
 #: code:addons/purchase_request/models/stock_picking.py:24
 #, python-format
 msgid "<li><b>%s</b>: Received quantity %s %s</li>"
@@ -76,7 +76,6 @@ msgstr ""
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 #, fuzzy
-#| msgid "<strong>Requested Date</strong>"
 msgid "<strong>Estimated Cost</strong>"
 msgstr "Data de requisição"
 
@@ -162,7 +161,6 @@ msgstr ""
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__allocated_product_qty
 #, fuzzy
-#| msgid "Quantity"
 msgid "Allocated Quantity"
 msgstr "Quantidade"
 
@@ -232,19 +230,17 @@ msgstr ""
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_line_make_purchase_order
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__cancelled
 msgid "Cancelled"
-msgstr ""
+msgstr "Cancelado"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
-#, fuzzy
-#| msgid "Quantity"
 msgid "Cancelled Quantity"
-msgstr "Quantidade"
+msgstr "Quantidade Cancelada"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_product_product__purchase_request
@@ -406,7 +402,7 @@ msgid "Followers (Partners)"
 msgstr ""
 
 #. module: purchase_request
-#: code:addons/purchase_request/models/purchase_request_allocation.py:83
+#: code:addons/purchase_request/models/purchase_request_allocation.py:85
 #, python-format
 msgid ""
 "From last reception this quantity has been allocated to this purchase request"
@@ -436,7 +432,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order__id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__id
 msgid "ID"
-msgstr "Identificação"
+msgstr "ID"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__message_unread
@@ -531,7 +527,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_ids
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_ids
 #, fuzzy
-#| msgid "Unread Messages"
 msgid "Messages"
 msgstr "Mensagens não lidas"
 
@@ -602,7 +597,6 @@ msgstr ""
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__message_unread_counter
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__message_unread_counter
 #, fuzzy
-#| msgid "Unread Messages"
 msgid "Number of unread messages"
 msgstr "Mensagens não lidas"
 
@@ -610,7 +604,6 @@ msgstr "Mensagens não lidas"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__open_product_qty
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #, fuzzy
-#| msgid "Quantity"
 msgid "Open Quantity"
 msgstr "Quantidade"
 
@@ -640,7 +633,6 @@ msgstr ""
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__description
 #, fuzzy
-#| msgid "Description"
 msgid "PR Description"
 msgstr "Descrição"
 
@@ -1070,7 +1062,6 @@ msgstr "Status da requisição"
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__requested_product_uom_qty
 #, fuzzy
-#| msgid "Requested by"
 msgid "Requested Quantity"
 msgstr "Requisitado por"
 
@@ -1197,7 +1188,7 @@ msgid "Supplier"
 msgstr ""
 
 #. module: purchase_request
-#: code:addons/purchase_request/models/stock_move.py:85
+#: code:addons/purchase_request/models/stock_move.py:93
 #, python-format
 msgid ""
 "The company of the purchase request must match with that of the location."
@@ -1314,7 +1305,6 @@ msgstr "Mensagens não lidas"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_unread_counter
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_unread_counter
 #, fuzzy
-#| msgid "Unread Messages"
 msgid "Unread Messages Counter"
 msgstr "Mensagens não lidas"
 
@@ -1334,7 +1324,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__website_message_ids
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__website_message_ids
 #, fuzzy
-#| msgid "Unread Messages"
 msgid "Website Messages"
 msgstr "Mensagens não lidas"
 

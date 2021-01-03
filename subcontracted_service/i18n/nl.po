@@ -22,7 +22,6 @@ msgstr ""
 #. module: subcontracted_service
 #: model:ir.model,name:subcontracted_service.model_procurement_group
 #, fuzzy
-#| msgid "Procurement Requisition"
 msgid "Procurement Group"
 msgstr "Inkoopaanvraag"
 

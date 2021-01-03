@@ -223,7 +223,7 @@ msgstr ""
 "si no desea límite"
 
 #. module: purchase_order_product_recommendation
-#: code:addons/purchase_order_product_recommendation/wizards/purchase_order_recommendation.py:72
+#: code:addons/purchase_order_product_recommendation/wizards/purchase_order_recommendation.py:73
 #, python-format
 msgid "This wizard is only valid for purchases"
 msgstr "Este asistente solo es válido para compras"

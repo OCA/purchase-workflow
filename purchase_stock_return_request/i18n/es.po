@@ -1,0 +1,74 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_stock_return_request
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-11-07 12:35+0000\n"
+"PO-Revision-Date: 2020-08-06 15:59+0000\n"
+"Last-Translator: Nacho Morales <i.moralesc@outlook.es>\n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.10\n"
+
+#. module: purchase_stock_return_request
+#: model_terms:ir.ui.view,arch_db:purchase_stock_return_request.stock_move_lines_to_return_purchase_value
+msgid "<strong>Order Ref.</strong>"
+msgstr "<strong>Ref. Pedido</strong>"
+
+#. module: purchase_stock_return_request
+#: model_terms:ir.ui.view,arch_db:purchase_stock_return_request.stock_move_lines_to_return_purchase_value
+msgid "<strong>Price</strong>"
+msgstr "<strong>Precio unitario</strong>"
+
+#. module: purchase_stock_return_request
+#: model_terms:ir.ui.view,arch_db:purchase_stock_return_request.stock_move_lines_to_return_purchase_value
+#: model_terms:ir.ui.view,arch_db:purchase_stock_return_request.supplier_return_request_valued_total
+msgid "<strong>Subtotal</strong>"
+msgstr "<strong>Subtotal</strong>"
+
+#. module: purchase_stock_return_request
+#: model_terms:ir.ui.view,arch_db:purchase_stock_return_request.stock_move_lines_to_return_purchase_value
+msgid "<strong>To Refund</strong>"
+msgstr "<strong>Reembolsar</strong>"
+
+#. module: purchase_stock_return_request
+#: model_terms:ir.ui.view,arch_db:purchase_stock_return_request.supplier_return_request_valued_total
+msgid "<strong>Total</strong>"
+msgstr "<strong>Total</strong>"
+
+#. module: purchase_stock_return_request
+#: model:ir.model.fields,field_description:purchase_stock_return_request.field_stock_return_request__purchase_order_ids
+msgid "Involved Purchases"
+msgstr "Compras involucradas"
+
+#. module: purchase_stock_return_request
+#: model:ir.model,name:purchase_stock_return_request.model_stock_return_request
+msgid "Perform stock returns across pickings"
+msgstr "Devolver mercancía desde múltiples albaranes"
+
+#. module: purchase_stock_return_request
+#: model:ir.actions.act_window,name:purchase_stock_return_request.action_purchase_stock_return_request_tree
+msgid "Purchase Return Requests"
+msgstr "Solicitudes de Devolución de mercancía de compras"
+
+#. module: purchase_stock_return_request
+#: model_terms:ir.ui.view,arch_db:purchase_stock_return_request.view_stock_return_request_form
+msgid "Purchases"
+msgstr "Compras"
+
+#. module: purchase_stock_return_request
+#: model:ir.ui.menu,name:purchase_stock_return_request.menu_purchase_stock_return_request
+msgid "Return Request"
+msgstr "Solicitud de Devolución"
+
+#. module: purchase_stock_return_request
+#: model_terms:ir.ui.view,arch_db:purchase_stock_return_request.supplier_return_request_valued_total
+msgid "Taxes"
+msgstr "Impuestos"

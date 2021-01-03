@@ -280,3 +280,6 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         self.assertEquals(len(purchase_request_line1.purchase_lines), 0)
         self.assertEquals(
             len(purchase_request_line1.purchase_request_allocation_ids), 0)
+
+    def test_empty_records_for_company_constraint(self):
+        self.assertFalse(self.env['stock.move']._check_company_purchase_request())

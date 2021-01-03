@@ -59,7 +59,6 @@ msgstr ""
 #. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_purchase_order
 #, fuzzy
-#| msgid "Purchase Order Line"
 msgid "Purchase Order"
 msgstr "Bestellposition"
 
@@ -71,7 +70,6 @@ msgstr "Bestellposition"
 #. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_purchase_report
 #, fuzzy
-#| msgid "Purchase Order Line"
 msgid "Purchase Report"
 msgstr "Bestellposition"
 

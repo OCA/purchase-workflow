@@ -3,6 +3,8 @@
 # Copyright 2018 Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
+import random
+
 from odoo import api, models
 
 
@@ -19,6 +21,10 @@ class StockRule(models.Model):
             origin, values)
 
     def _make_po_get_domain(self, values, partner):
+        domain = super()._make_po_get_domain(values, partner)
         if self.env.context.get('grouping', 'standard') == 'order':
-            return (('id', '=', 0), )
-        return super()._make_po_get_domain(values, partner)
+            if values.get("move_dest_ids"):
+                domain += (("id", "=", -values["move_dest_ids"][:1].id),)
+            # The minimum is imposed by PG int4 limit
+            domain += (("id", "=", random.randint(-2147483648, 0)),)
+        return domain

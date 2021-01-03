@@ -29,7 +29,7 @@ msgstr ""
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_order.py:188
-#: code:addons/purchase_request/models/purchase_request_allocation.py:86
+#: code:addons/purchase_request/models/purchase_request_allocation.py:88
 #: code:addons/purchase_request/models/stock_picking.py:24
 #, python-format
 msgid "<li><b>%s</b>: Received quantity %s %s</li>"
@@ -154,7 +154,6 @@ msgstr ""
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__allocated_product_qty
 #, fuzzy
-#| msgid "Quantity"
 msgid "Allocated Quantity"
 msgstr "Cantitate"
 
@@ -234,7 +233,6 @@ msgstr ""
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #, fuzzy
-#| msgid "Quantity"
 msgid "Cancelled Quantity"
 msgstr "Cantitate"
 
@@ -397,7 +395,7 @@ msgid "Followers (Partners)"
 msgstr ""
 
 #. module: purchase_request
-#: code:addons/purchase_request/models/purchase_request_allocation.py:83
+#: code:addons/purchase_request/models/purchase_request_allocation.py:85
 #, python-format
 msgid ""
 "From last reception this quantity has been allocated to this purchase request"
@@ -597,7 +595,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__open_product_qty
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #, fuzzy
-#| msgid "Quantity"
 msgid "Open Quantity"
 msgstr "Cantitate"
 
@@ -912,14 +909,12 @@ msgstr "Cantitate"
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__qty_cancelled
 #, fuzzy
-#| msgid "Quantity"
 msgid "Quantity cancelled"
 msgstr "Cantitate"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__qty_done
 #, fuzzy
-#| msgid "Quantity"
 msgid "Quantity completed"
 msgstr "Cantitate"
 
@@ -1039,7 +1034,6 @@ msgstr ""
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__requested_product_uom_qty
 #, fuzzy
-#| msgid "Quantity"
 msgid "Requested Quantity"
 msgstr "Cantitate"
 
@@ -1163,7 +1157,7 @@ msgid "Supplier"
 msgstr ""
 
 #. module: purchase_request
-#: code:addons/purchase_request/models/stock_move.py:85
+#: code:addons/purchase_request/models/stock_move.py:93
 #, python-format
 msgid ""
 "The company of the purchase request must match with that of the location."
