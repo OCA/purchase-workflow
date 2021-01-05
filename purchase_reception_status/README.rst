@@ -23,7 +23,7 @@ Purchase Reception Status
     :target: https://runbot.odoo-community.org/runbot/142/13.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module adds a field *Receiption Status* on purchase orders. On a confirmed purchase order, it can have 3 different values:
 
@@ -83,8 +83,8 @@ promote its widespread use.
 
 Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-alexis-via| 
+|maintainer-alexis-via|
 
-This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/13.0/purchase_reception_status>`_ project on GitHub.
+This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/14.0/purchase_reception_status>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
