@@ -12,7 +12,8 @@ class PurchaseOrder(models.Model):
 
     def _default_order_type(self):
         return self.env["purchase.order.type"].search(
-            [("company_id", "in", [False, self.env.company.id])], limit=1,
+            [("company_id", "in", [False, self.env.company.id])],
+            limit=1,
         )
 
     order_type = fields.Many2one(
