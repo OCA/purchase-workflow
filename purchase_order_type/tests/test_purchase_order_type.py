@@ -37,14 +37,14 @@ class TestPurchaseOrderType(common.SavepointCase):
         purchase = self._create_purchase(
             [(self.product1, 1), (self.product2, 5), (self.product3, 8)]
         )
-        self.assertEquals(purchase.order_type, self.type1)
+        self.assertEqual(purchase.order_type, self.type1)
         self.assertFalse(purchase.incoterm_id)
         self.assertFalse(purchase.payment_term_id)
         purchase.onchange_partner_id()
-        self.assertEquals(purchase.order_type, self.type2)
+        self.assertEqual(purchase.order_type, self.type2)
         purchase.onchange_order_type()
-        self.assertEquals(purchase.incoterm_id, self.incoterm)
-        self.assertEquals(purchase.payment_term_id, self.payterm)
+        self.assertEqual(purchase.incoterm_id, self.incoterm)
+        self.assertEqual(purchase.payment_term_id, self.payterm)
 
     def _create_purchase(self, line_products):
         """Create a purchase order.
