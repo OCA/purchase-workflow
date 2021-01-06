@@ -47,7 +47,7 @@ class TestPurchaseOrderType(common.SavepointCase):
         self.assertEquals(purchase.payment_term_id, self.payterm)
 
     def _create_purchase(self, line_products):
-        """ Create a purchase order.
+        """Create a purchase order.
         ``line_products`` is a list of tuple [(product, qty)]
         """
         lines = []
