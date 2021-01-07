@@ -9,7 +9,6 @@ from odoo import api, fields, models
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
-    @api.multi
     @api.depends("order_line")
     def _compute_max_line_sequence(self):
         """Allow to know the highest sequence entered in purchase order lines.
@@ -26,7 +25,6 @@ class PurchaseOrder(models.Model):
         string="Max sequence in lines", compute="_compute_max_line_sequence"
     )
 
-    @api.multi
     def _create_picking(self):
         res = super(PurchaseOrder, self)._create_picking()
         for order in self:
@@ -47,7 +45,6 @@ class PurchaseOrder(models.Model):
                         move.write({"sequence": line.sequence})
         return res
 
-    @api.multi
     def _reset_sequence(self):
         for rec in self:
             current_sequence = 1
@@ -55,13 +52,11 @@ class PurchaseOrder(models.Model):
                 line.sequence = current_sequence
                 current_sequence += 1
 
-    @api.multi
     def write(self, line_values):
         res = super(PurchaseOrder, self).write(line_values)
         self._reset_sequence()
         return res
 
-    @api.multi
     def copy(self, default=None):
         return super(PurchaseOrder, self.with_context(keep_line_sequence=True)).copy(
             default
@@ -85,7 +80,6 @@ class PurchaseOrderLine(models.Model):
         readonly=True,
     )
 
-    @api.multi
     def _prepare_stock_moves(self, picking):
         res = super(PurchaseOrderLine, self)._prepare_stock_moves(picking)
         for move, line in zip(res, self):
