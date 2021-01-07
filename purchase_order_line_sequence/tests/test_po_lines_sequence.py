@@ -19,8 +19,8 @@ class TestPurchaseOrder(common.TransactionCase):
         self.product_id_1 = self.env.ref("product.product_product_8")
         self.product_id_2 = self.env.ref("product.product_product_11")
 
-        self.AccountInvoice = self.env["account.invoice"]
-        self.AccountInvoiceLine = self.env["account.invoice.line"]
+        self.AccountInvoice = self.env["account.move"]
+        self.AccountInvoiceLine = self.env["account.move.line"]
 
         self.category = self.env.ref("product.product_category_1").copy(
             {
@@ -31,7 +31,7 @@ class TestPurchaseOrder(common.TransactionCase):
         )
 
         account_type = self.env["account.account.type"].create(
-            {"name": "RCV type", "type": "other"}
+            {"name": "RCV type", "type": "other", "internal_group": "expense"}
         )
         self.account_expense = self.env["account.account"].create(
             {
@@ -52,7 +52,6 @@ class TestPurchaseOrder(common.TransactionCase):
 
         self.category.property_account_expense_categ_id = self.account_expense
 
-        self.category.property_stock_account_payable_id = self.account_payable
         self.category.property_stock_journal = self.env["account.journal"].create(
             {"name": "Stock journal", "type": "sale", "code": "STK00"}
         )
@@ -138,24 +137,16 @@ class TestPurchaseOrder(common.TransactionCase):
 
         po = self._create_purchase_order()
         po.button_confirm()
-        po.picking_ids.action_done()
-        self.invoice = self.AccountInvoice.create(
-            {
-                "partner_id": self.partner_id.id,
-                "purchase_id": po.id,
-                "account_id": self.partner_id.property_account_payable_id.id,
-                "type": "in_invoice",
-            }
-        )
-        self.invoice.purchase_order_change()
-        self.invoice.action_invoice_open()
+        po.order_line.qty_received = 5
+        result = po.action_create_invoice()
+        self.invoice = self.AccountInvoice.browse(result["res_id"])
         self.assertEqual(
             po.order_line[0].sequence,
-            self.invoice.invoice_line_ids[0].sequence,
+            self.invoice.line_ids[0].sequence,
             "The Sequence is not copied properly",
         )
         self.assertEqual(
             po.order_line[1].sequence,
-            self.invoice.invoice_line_ids[1].sequence,
+            self.invoice.line_ids[1].sequence,
             "The Sequence is not copied properly",
         )
