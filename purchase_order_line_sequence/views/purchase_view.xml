@@ -23,7 +23,7 @@
             </xpath>
             <xpath expr="//field[@name='order_line']" position="attributes">
                 <attribute name="context">{'default_sequence':
-                    max_line_sequence}</attribute>
+                    max_line_sequence, 'default_state': 'draft'}</attribute>
             </xpath>
             <xpath
                 expr="//field[@name='order_line']/tree/field[@name='product_id']"
