@@ -122,6 +122,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         data = {
             'origin': origin,
             'partner_id': self.supplier_id.id,
+            'payment_term_id': supplier.property_supplier_payment_term_id.id,
             'fiscal_position_id': supplier.property_account_position_id and
             supplier.property_account_position_id.id or False,
             'picking_type_id': picking_type.id,
