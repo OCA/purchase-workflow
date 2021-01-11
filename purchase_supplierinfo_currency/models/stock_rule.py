@@ -9,8 +9,8 @@ from odoo import api, models
 class StockRule(models.Model):
     _inherit = 'stock.rule'
 
-    def _make_po_get_domain(self, values, partner):
-        domain = super(StockRule, self)._make_po_get_domain(values, partner)
+    def _make_po_get_domain(self, company_id, values, partner):
+        domain = super(StockRule, self)._make_po_get_domain(company_id, values, partner)
         supplier = values.get('supplier')
         if supplier and supplier.currency_id:
             domain += (('currency_id', '=', supplier.currency_id.id),)
@@ -43,7 +43,7 @@ class StockRule(models.Model):
 
         # Search if a RFQ with the supplierinfo currency exists if, there
         # is not we create a new PO with the supplierinfo currency
-        domain = self._make_po_get_domain(values, partner)
+        domain = self._make_po_get_domain(company_id, values, partner)
         purchase_order = self.env['purchase.order'].sudo().search(
             [dom for dom in domain])
         if not purchase_order:
