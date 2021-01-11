@@ -209,7 +209,7 @@ class PurchaseRequest(models.Model):
     def _compute_to_approve_allowed(self):
         for rec in self:
             rec.to_approve_allowed = rec.state == "draft" and any(
-                [not line.cancelled and line.product_qty for line in rec.line_ids]
+                not line.cancelled and line.product_qty for line in rec.line_ids
             )
 
     def copy(self, default=None):
