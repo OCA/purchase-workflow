@@ -323,25 +323,21 @@ class PurchaseRequestLine(models.Model):
         for rec in self:
             temp_purchase_state = False
             if rec.purchase_lines:
-                if any([po_line.state == "done" for po_line in rec.purchase_lines]):
+                if any(po_line.state == "done" for po_line in rec.purchase_lines):
                     temp_purchase_state = "done"
-                elif all([po_line.state == "cancel" for po_line in rec.purchase_lines]):
+                elif all(po_line.state == "cancel" for po_line in rec.purchase_lines):
                     temp_purchase_state = "cancel"
-                elif any(
-                    [po_line.state == "purchase" for po_line in rec.purchase_lines]
-                ):
+                elif any(po_line.state == "purchase" for po_line in rec.purchase_lines):
                     temp_purchase_state = "purchase"
                 elif any(
-                    [po_line.state == "to approve" for po_line in rec.purchase_lines]
+                    po_line.state == "to approve" for po_line in rec.purchase_lines
                 ):
                     temp_purchase_state = "to approve"
-                elif any([po_line.state == "sent" for po_line in rec.purchase_lines]):
+                elif any(po_line.state == "sent" for po_line in rec.purchase_lines):
                     temp_purchase_state = "sent"
                 elif all(
-                    [
-                        po_line.state in ("draft", "cancel")
-                        for po_line in rec.purchase_lines
-                    ]
+                    po_line.state in ("draft", "cancel")
+                    for po_line in rec.purchase_lines
                 ):
                     temp_purchase_state = "draft"
             rec.purchase_state = temp_purchase_state
