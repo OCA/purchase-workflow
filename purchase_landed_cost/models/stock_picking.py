@@ -5,12 +5,12 @@ from odoo import api, models
 
 
 class StockPicking(models.Model):
-    _inherit = 'stock.picking'
+    _inherit = "stock.picking"
 
     @api.multi
     def action_open_landed_cost(self):
         self.ensure_one()
-        line_obj = self.env['purchase.cost.distribution.line']
-        lines = line_obj.search([('picking_id', '=', self.id)])
+        line_obj = self.env["purchase.cost.distribution.line"]
+        lines = line_obj.search([("picking_id", "=", self.id)])
         if lines:
             return lines.get_action_purchase_cost_distribution()

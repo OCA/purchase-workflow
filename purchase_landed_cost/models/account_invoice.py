@@ -5,16 +5,20 @@ from odoo import fields, models
 
 
 class AccountInvoice(models.Model):
-    _inherit = 'account.invoice'
+    _inherit = "account.invoice"
 
     expense_line_ids = fields.One2many(
         comodel_name="purchase.cost.distribution.expense",
-        inverse_name="invoice_id", string="Landed costs")
+        inverse_name="invoice_id",
+        string="Landed costs",
+    )
 
 
 class AccountInvoiceLine(models.Model):
-    _inherit = 'account.invoice.line'
+    _inherit = "account.invoice.line"
 
     expense_line_ids = fields.One2many(
         comodel_name="purchase.cost.distribution.expense",
-        inverse_name="invoice_line", string="Landed costs")
+        inverse_name="invoice_line",
+        string="Landed costs",
+    )
