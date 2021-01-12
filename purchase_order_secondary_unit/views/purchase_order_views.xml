@@ -33,9 +33,9 @@
                 />
                 <field
                     name="secondary_uom_id"
-                    domain="[('product_tmpl_id.product_variant_ids', 'in', [product_id])]"
+                    domain="[('product_tmpl_id.product_variant_ids', 'in', product_id and [product_id] or [])]"
                     options="{'no_create': True}"
-                    attrs="{'readonly': ['|',('state', 'in', ('done', 'cancel')), ('product_id', '=', False)]}"
+                    attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
                 />
             </xpath>
         </field>
