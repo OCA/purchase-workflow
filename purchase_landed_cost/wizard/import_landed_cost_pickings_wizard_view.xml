@@ -28,7 +28,6 @@
         <field name="name">Import landed cost from pickings</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">import.landed.cost.pickings.wizard</field>
-        <field name="view_type">form</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
     </record>
