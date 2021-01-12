@@ -1,12 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-
     <record id="action_purchase_expense_type" model="ir.actions.act_window">
         <field name="name">Expenses types</field>
         <field name="res_model">purchase.expense.type</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
-        <field eval="False" name="view_id"/>
+        <field eval="False" name="view_id" />
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
                 Click to create a new expense type.
@@ -22,24 +21,22 @@
             </p>
         </field>
     </record>
-
-    <menuitem id="menu_purchase_expense_type"
-              action="action_purchase_expense_type"
-              parent="menu_purchase_cost_control"
-              sequence="30"
+    <menuitem
+        id="menu_purchase_expense_type"
+        action="action_purchase_expense_type"
+        parent="menu_purchase_cost_control"
+        sequence="30"
     />
-
     <record id="purchase_expense_type_tree" model="ir.ui.view">
         <field name="model">purchase.expense.type</field>
         <field name="arch" type="xml">
             <tree string="Purchase expense types" editable="bottom">
-                <field name="name"/>
-                <field name="calculation_method"/>
-                <field name="default_expense"/>
-                <field name="default_amount"/>
-                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="name" />
+                <field name="calculation_method" />
+                <field name="default_expense" />
+                <field name="default_amount" />
+                <field name="company_id" groups="base.group_multi_company" />
             </tree>
         </field>
     </record>
-
 </odoo>
