@@ -6,12 +6,12 @@ from odoo import api, models
 
 
 class PurchaseOrder(models.Model):
-    _inherit = 'purchase.order'
+    _inherit = "purchase.order"
 
     @api.multi
     def action_open_landed_cost(self):
         self.ensure_one()
-        line_obj = self.env['purchase.cost.distribution.line']
-        lines = line_obj.search([('purchase_id', '=', self.id)])
+        line_obj = self.env["purchase.cost.distribution.line"]
+        lines = line_obj.search([("purchase_id", "=", self.id)])
         if lines:
             return lines.get_action_purchase_cost_distribution()
