@@ -2,13 +2,12 @@
 # Copyright 2014-2016 Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3
 
-from odoo import api, models
+from odoo import models
 
 
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
-    @api.multi
     def action_open_landed_cost(self):
         self.ensure_one()
         line_obj = self.env["purchase.cost.distribution.line"]
