@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <record id="invoice_supplier_form" model="ir.ui.view">
-        <field name="model">account.invoice</field>
-        <field name="inherit_id" ref="account.invoice_supplier_form" />
+    <record id="view_move_form" model="ir.ui.view">
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
         <field name="arch" type="xml">
             <notebook position="inside">
-                <page string="Landed costs">
+                <page
+                    string="Landed costs"
+                    attrs="{'invisible': [('type', 'not in', ('in_invoice', 'in_refund'))]}"
+                >
                     <button
                         name="%(purchase_landed_cost.action_import_landed_cost_pickings_wizard)d"
                         string="Import from pickings"

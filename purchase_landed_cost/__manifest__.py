@@ -4,7 +4,7 @@
 
 {
     "name": "Purchase landed costs - Alternative option",
-    "version": "12.0.1.1.1",
+    "version": "13.0.1.0.0",
     "author": "AvanzOSC,"
     "Tecnativa,"
     "Joaquín Gutierrez,"
@@ -13,7 +13,7 @@
     "category": "Purchase Management",
     "website": "https://github.com/OCA/purchase-workflow",
     "summary": "Purchase cost distribution",
-    "depends": ["purchase_stock",],
+    "depends": ["purchase_stock"],
     "data": [
         "data/purchase_cost_distribution_sequence.xml",
         "security/purchase_landed_cost_security.xml",
@@ -21,7 +21,7 @@
         "wizard/picking_import_wizard_view.xml",
         "wizard/import_invoice_line_wizard_view.xml",
         "wizard/import_landed_cost_pickings_wizard_view.xml",
-        "views/account_invoice_view.xml",
+        "views/account_move_view.xml",
         "views/purchase_cost_distribution_view.xml",
         "views/purchase_cost_distribution_line_expense_view.xml",
         "views/purchase_expense_type_view.xml",

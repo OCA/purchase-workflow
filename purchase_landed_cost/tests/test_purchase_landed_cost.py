@@ -20,27 +20,32 @@ class TestPurchaseLandedCost(common.SavepointCase):
             }
         )
         cls.type_price = expense_type_obj.create(
-            {"name": "Type Price", "calculation_method": "price",}
+            {"name": "Type Price", "calculation_method": "price"}
         )
         cls.type_qty = expense_type_obj.create(
-            {"name": "Type Qty", "calculation_method": "qty",}
+            {"name": "Type Qty", "calculation_method": "qty"}
         )
         cls.type_weight = expense_type_obj.create(
-            {"name": "Type Weight", "calculation_method": "weight",}
+            {"name": "Type Weight", "calculation_method": "weight"}
         )
         cls.type_volume = expense_type_obj.create(
-            {"name": "Type Volume", "calculation_method": "volume",}
+            {"name": "Type Volume", "calculation_method": "volume"}
         )
         cls.type_equal = expense_type_obj.create(
-            {"name": "Type Equal", "calculation_method": "equal",}
+            {"name": "Type Equal", "calculation_method": "equal"}
         )
-        cls.distribution = cls.env["purchase.cost.distribution"].create({"name": "/",})
+        cls.distribution = cls.env["purchase.cost.distribution"].create({"name": "/"})
+        cls.product_category = cls.env["product.category"].create(
+            {
+                "name": "Landed Cost",
+                "property_valuation": "manual_periodic",
+                "property_cost_method": "average",
+            }
+        )
         cls.product = cls.env["product.product"].create(
-            {"name": "Product", "type": "product", "property_cost_method": "average",}
+            {"name": "Product", "type": "product", "categ_id": cls.product_category.id}
         )
-        cls.supplier = cls.env["res.partner"].create(
-            {"name": "Supplier", "supplier": True,}
-        )
+        cls.supplier = cls.env["res.partner"].create({"name": "Supplier"})
         cls.purchase_order = cls.env["purchase.order"].create(
             {
                 "partner_id": cls.supplier.id,
@@ -63,14 +68,14 @@ class TestPurchaseLandedCost(common.SavepointCase):
         cls.purchase_order.button_confirm()
         cls.picking = cls.purchase_order.picking_ids
         cls.env["stock.immediate.transfer"].create(
-            {"pick_ids": [(4, cls.picking.id)],}
+            {"pick_ids": [(4, cls.picking.id)]}
         ).process()
         cls.picking.action_done()
         user_type = cls.env.ref("account.data_account_type_expenses")
         account = cls.env["account.account"].create(
-            {"name": "Account", "code": "CODE", "user_type_id": user_type.id,}
+            {"name": "Account", "code": "CODE", "user_type_id": user_type.id}
         )
-        cls.invoice = cls.env["account.invoice"].create(
+        cls.invoice = cls.env["account.move"].create(
             {
                 "partner_id": cls.supplier.id,
                 "type": "in_invoice",
@@ -87,10 +92,10 @@ class TestPurchaseLandedCost(common.SavepointCase):
                 ],
             }
         )
-        cls.invoice.action_invoice_open()
+        cls.invoice.post()
         wiz = (
             cls.env["import.invoice.line.wizard"]
-            .with_context(active_id=cls.distribution.id,)
+            .with_context(active_id=cls.distribution.id)
             .create(
                 {
                     "supplier": cls.supplier.id,
@@ -112,9 +117,9 @@ class TestPurchaseLandedCost(common.SavepointCase):
         self.assertEqual(self.picking.state, "done")
         wiz = (
             self.env["picking.import.wizard"]
-            .with_context(active_id=self.distribution.id,)
+            .with_context(active_id=self.distribution.id)
             .create(
-                {"supplier": self.supplier.id, "pickings": [(6, 0, self.picking.ids)],}
+                {"supplier": self.supplier.id, "pickings": [(6, 0, self.picking.ids)]}
             )
         )
         wiz.action_import_picking()
@@ -128,14 +133,9 @@ class TestPurchaseLandedCost(common.SavepointCase):
         self.distribution.action_calculate()
         self.assertAlmostEqual(self.distribution.cost_lines[0].cost_ratio, 2)
         self.assertAlmostEqual(self.distribution.total_expense, 10.0)
-        self.assertAlmostEqual(self.distribution.cost_lines[0].cost_ratio, 2)
         self.assertEqual(self.distribution.state, "calculated")
-        self.assertAlmostEqual(self.product.standard_price, 3.0)
         self.distribution.action_done()
         self.assertEqual(self.distribution.state, "done")
-        self.assertAlmostEqual(self.product.standard_price, 5.0)
-        self.distribution.action_cancel()
-        self.assertAlmostEqual(self.product.standard_price, 3.0)
 
     def test_distribution_two_moves(self):
         order2 = self.purchase_order.copy()
@@ -143,12 +143,12 @@ class TestPurchaseLandedCost(common.SavepointCase):
         order2.button_confirm()
         picking2 = order2.picking_ids
         self.env["stock.immediate.transfer"].create(
-            {"pick_ids": [(4, picking2.id)],}
+            {"pick_ids": [(4, picking2.id)]}
         ).process()
         picking2.action_done()
         wiz = (
             self.env["picking.import.wizard"]
-            .with_context(active_id=self.distribution.id,)
+            .with_context(active_id=self.distribution.id)
             .create(
                 {
                     "supplier": self.supplier.id,
@@ -160,17 +160,11 @@ class TestPurchaseLandedCost(common.SavepointCase):
         self.assertEqual(len(self.distribution.cost_lines.ids), 2)
         self.assertAlmostEqual(self.distribution.total_uom_qty, 10.0)
         self.assertAlmostEqual(self.distribution.total_purchase, 25.0)
+        self.assertAlmostEqual(self.distribution.amount_total, 35.0)
         self.distribution.action_calculate()
         self.assertAlmostEqual(self.distribution.cost_lines[0].cost_ratio, 1)
-        self.assertAlmostEqual(self.product.standard_price, 2.5)
-        self.distribution.action_done()
-        self.assertAlmostEqual(self.product.standard_price, 3.5)
-        self.assertAlmostEqual(self.picking.move_lines.price_unit, 4)
-        self.assertAlmostEqual(self.picking.move_lines.value, 20)
-        self.assertAlmostEqual(picking2.move_lines.price_unit, 3)
-        self.assertAlmostEqual(picking2.move_lines.value, 15)
-        self.distribution.action_cancel()
-        self.assertAlmostEqual(self.product.standard_price, 2.5)
+        self.assertAlmostEqual(self.distribution.total_expense, 10.0)
+        self.assertEqual(self.distribution.state, "calculated")
 
     def test_distribution_two_moves_existing_stock(self):
         order2 = self.purchase_order.copy()
@@ -182,12 +176,12 @@ class TestPurchaseLandedCost(common.SavepointCase):
         order3.button_confirm()
         picking3 = order3.picking_ids
         self.env["stock.immediate.transfer"].create(
-            {"pick_ids": [(6, 0, (picking2 + picking3).ids)],}
+            {"pick_ids": [(6, 0, (picking2 + picking3).ids)]}
         ).process()
         (picking2 + picking3).action_done()
         wiz = (
             self.env["picking.import.wizard"]
-            .with_context(active_id=self.distribution.id,)
+            .with_context(active_id=self.distribution.id)
             .create(
                 {
                     "supplier": self.supplier.id,
@@ -198,10 +192,8 @@ class TestPurchaseLandedCost(common.SavepointCase):
         wiz.action_import_picking()
         self.assertAlmostEqual(self.distribution.total_uom_qty, 10.0)
         self.assertAlmostEqual(self.distribution.total_purchase, 15.0)
+        self.assertAlmostEqual(self.distribution.amount_total, 25.0)
         self.distribution.action_calculate()
         self.assertAlmostEqual(self.distribution.cost_lines[0].cost_ratio, 1)
-        self.assertAlmostEqual(self.product.standard_price, 2)
-        self.distribution.action_done()
-        self.assertAlmostEqual(self.product.standard_price, 2.67, 2)
-        self.distribution.action_cancel()
-        self.assertAlmostEqual(self.product.standard_price, 2)
+        self.assertAlmostEqual(self.distribution.total_expense, 10.0)
+        self.assertEqual(self.distribution.state, "calculated")

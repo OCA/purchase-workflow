@@ -3,7 +3,6 @@
     <record id="action_purchase_expense_type" model="ir.actions.act_window">
         <field name="name">Expenses types</field>
         <field name="res_model">purchase.expense.type</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field eval="False" name="view_id" />
         <field name="help" type="html">

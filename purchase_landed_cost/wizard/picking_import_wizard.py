@@ -24,10 +24,7 @@ class PickingImportWizard(models.TransientModel):
         return res
 
     supplier = fields.Many2one(
-        comodel_name="res.partner",
-        string="Supplier",
-        required=True,
-        domain="[('supplier',  '=', True)]",
+        comodel_name="res.partner", string="Supplier", required=True,
     )
     pickings = fields.Many2many(
         comodel_name="stock.picking",
@@ -45,7 +42,6 @@ class PickingImportWizard(models.TransientModel):
             "move_id": move.id,
         }
 
-    @api.multi
     def action_import_picking(self):
         self.ensure_one()
         distribution = self.env["purchase.cost.distribution"].browse(
