@@ -13,5 +13,3 @@ distribute them with a lot of methods.
 * Types marked as default are automatically added to each new purchase
   distribution.
 * Management orders shopping expenses associated with one or more entry slips.
-* Upgrade cost price of products based on the costs.
-* Currently only one type of upgrade cost is available: direct upgrade.
