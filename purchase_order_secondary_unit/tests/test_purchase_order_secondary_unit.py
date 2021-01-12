@@ -1,38 +1,29 @@
 # Copyright 2018 Tecnativa - Sergio Teruel
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import fields
-from odoo.tests.common import SavepointCase, tagged
+from odoo.tests.common import Form, SavepointCase, tagged
 
 
-@tagged("post_install", "-at_install")
+@tagged("-at_install", "post_install")
 class TestPurchaseOrderSecondaryUnit(SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        # Active multiple units of measure security group for user
+        cls.env.user.groups_id = [(4, cls.env.ref("uom.group_uom").id)]
         cls.product_uom_kg = cls.env.ref("uom.product_uom_kgm")
         cls.product_uom_gram = cls.env.ref("uom.product_uom_gram")
         cls.product_uom_unit = cls.env.ref("uom.product_uom_unit")
-        cls.product = cls.env["product.product"].create(
-            {
-                "name": "test",
-                "uom_id": cls.product_uom_kg.id,
-                "uom_po_id": cls.product_uom_kg.id,
-                "secondary_uom_ids": [
-                    (
-                        0,
-                        0,
-                        {
-                            "name": "unit-700",
-                            "uom_id": cls.product_uom_unit.id,
-                            "factor": 0.7,
-                        },
-                    )
-                ],
-            }
-        )
-        cls.secondary_unit = cls.env["product.secondary.unit"].search(
-            [("product_tmpl_id", "=", cls.product.product_tmpl_id.id)]
-        )
+        with Form(cls.env["product.product"]) as form:
+            form.name = "Test"
+            form.uom_id = cls.product_uom_kg
+            form.uom_po_id = cls.product_uom_kg
+            with form.secondary_uom_ids.new() as line:
+                line.name = "unit-700"
+                line.uom_id = cls.product_uom_unit
+                line.factor = 0.7
+        cls.product = form.save()
+        cls.secondary_unit = cls.product.secondary_uom_ids
         cls.product.purchase_secondary_uom_id = cls.secondary_unit.id
         cls.partner = cls.env["res.partner"].create({"name": "test - partner"})
         cls.purchase_order_obj = cls.env["purchase.order"]
@@ -56,42 +47,23 @@ class TestPurchaseOrderSecondaryUnit(SavepointCase):
         }
         po = cls.purchase_order_obj.new(po_val)
         po.onchange_partner_id()
-        cls.order = cls.purchase_order_obj.create(po_val)
+        cls.order = cls.purchase_order_obj.create(po._convert_to_write(po._cache))
 
-    def test_onchange_secondary_uom(self):
-        self.order.order_line._onchange_secondary_uom()
-        self.assertEqual(self.order.order_line.product_qty, 1.0)
-
-        self.order.order_line.write(
-            {"secondary_uom_id": self.secondary_unit.id, "secondary_uom_qty": 5}
-        )
-        self.order.order_line._onchange_secondary_uom()
-        self.assertEqual(self.order.order_line.product_qty, 3.5)
-
-    def test_onchange_product_qty_purchase_order_secondary_unit(self):
-        self.order.order_line._onchange_product_qty_purchase_order_secondary_unit()
-        self.assertEqual(self.order.order_line.secondary_uom_qty, 0.0)
-
-        self.order.order_line.update(
-            {"secondary_uom_id": self.secondary_unit.id, "product_qty": 3.5}
-        )
-        self.order.order_line._onchange_product_qty_purchase_order_secondary_unit()
-        self.assertEqual(self.order.order_line.secondary_uom_qty, 5.0)
-
-    def test_default_secondary_unit(self):
-        self.order.order_line._onchange_product_id_purchase_order_secondary_unit()
-        self.assertEqual(self.order.order_line.secondary_uom_id, self.secondary_unit)
-
-    def test_onchange_order_product_uom(self):
-        self.order.order_line._onchange_product_uom_purchase_order_secondary_unit()
-        self.assertEqual(self.order.order_line.secondary_uom_qty, 0.0)
-
-        self.order.order_line.update(
-            {
-                "secondary_uom_id": self.secondary_unit.id,
-                "product_uom": self.product_uom_gram.id,
-                "product_qty": 3500.00,
-            }
-        )
-        self.order.order_line._onchange_product_uom_purchase_order_secondary_unit()
-        self.assertEqual(self.order.order_line.secondary_uom_qty, 5.0)
+    def test_purchase_order(self):
+        purchase_order = Form(self.order)
+        with purchase_order.order_line.edit(0) as line:
+            # Test _compute product_qty
+            line.secondary_uom_id = self.secondary_unit
+            self.assertEqual(line.product_qty, 0.0)
+            line.secondary_uom_qty = 10.0
+            self.assertEqual(line.product_qty, 7.0)
+            # Test onchange product uom
+            line.secondary_uom_qty = 3500.0
+            line.product_uom = self.product_uom_gram
+            self.assertEqual(line.secondary_uom_qty, 3.5)
+        # Test default purchase order line secondary uom
+        with purchase_order.order_line.new() as line_new:
+            line_new.product_id = self.product
+            self.assertEqual(line_new.secondary_uom_id, self.secondary_unit)
+            self.assertEqual(line_new.secondary_uom_qty, 1.0)
+            self.assertAlmostEqual(line_new.product_qty, 0.7, places=2)
