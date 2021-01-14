@@ -10,6 +10,7 @@ setuptools.setup(
     install_requires=[
         'odoo14-addon-purchase_commercial_partner',
         'odoo14-addon-purchase_delivery_split_date',
+        'odoo14-addon-purchase_invoice_plan',
         'odoo14-addon-purchase_last_price_info',
         'odoo14-addon-purchase_location_by_line',
         'odoo14-addon-purchase_open_qty',
