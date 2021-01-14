@@ -15,6 +15,7 @@ setuptools.setup(
         'odoo14-addon-purchase_open_qty',
         'odoo14-addon-purchase_order_archive',
         'odoo14-addon-purchase_order_line_deep_sort',
+        'odoo14-addon-purchase_order_type',
         'odoo14-addon-purchase_order_uninvoiced_amount',
         'odoo14-addon-purchase_request',
         'odoo14-addon-purchase_request_tier_validation',
