@@ -14,32 +14,6 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: purchase_tier_validation
-#: model_terms:ir.ui.view,arch_db:purchase_tier_validation.purchase_order_form
-msgid ""
-"<i class=\"fa fa-info-circle\"/>\n"
-"                        This PO needs to be\n"
-"                        validated."
-msgstr ""
-
-#. module: purchase_tier_validation
-#: model_terms:ir.ui.view,arch_db:purchase_tier_validation.purchase_order_form
-msgid ""
-"<i class=\"fa fa-thumbs-down\"/>\n"
-"                        Operation has been\n"
-"                        <b>rejected</b>\n"
-"                        ."
-msgstr ""
-
-#. module: purchase_tier_validation
-#: model_terms:ir.ui.view,arch_db:purchase_tier_validation.purchase_order_form
-msgid ""
-"<i class=\"fa fa-thumbs-up\"/>\n"
-"                        Operation has been\n"
-"                        <b>validated</b>\n"
-"                        !"
-msgstr ""
-
-#. module: purchase_tier_validation
 #: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__can_review
 msgid "Can Review"
 msgstr ""
@@ -93,23 +67,8 @@ msgid "Purchase Order"
 msgstr ""
 
 #. module: purchase_tier_validation
-#: model_terms:ir.ui.view,arch_db:purchase_tier_validation.purchase_order_form
-msgid "Reject"
-msgstr ""
-
-#. module: purchase_tier_validation
 #: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__rejected
 msgid "Rejected"
-msgstr ""
-
-#. module: purchase_tier_validation
-#: model_terms:ir.ui.view,arch_db:purchase_tier_validation.purchase_order_form
-msgid "Request Validation"
-msgstr ""
-
-#. module: purchase_tier_validation
-#: model_terms:ir.ui.view,arch_db:purchase_tier_validation.purchase_order_form
-msgid "Restart Validation"
 msgstr ""
 
 #. module: purchase_tier_validation
@@ -120,11 +79,6 @@ msgstr ""
 #. module: purchase_tier_validation
 #: model:ir.model,name:purchase_tier_validation.model_tier_definition
 msgid "Tier Definition"
-msgstr ""
-
-#. module: purchase_tier_validation
-#: model_terms:ir.ui.view,arch_db:purchase_tier_validation.purchase_order_form
-msgid "Validate"
 msgstr ""
 
 #. module: purchase_tier_validation
