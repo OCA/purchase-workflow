@@ -1,0 +1,14 @@
+<odoo>
+    <record model="ir.ui.view" id="purchase_requisition_form_inherit">
+        <field name="name">purchase.requisition.form</field>
+        <field name="model">purchase.requisition</field>
+        <field name="inherit_id" ref="purchase_requisition.view_purchase_requisition_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_in_progress']" position="before">
+                <button name="auto_rfq_from_suppliers" type="object" string="Generate quotations from suppliers"
+                        attrs="{'invisible': ['|', ('line_ids', '=', []), ('state', '!=', 'in_progress')]}"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
