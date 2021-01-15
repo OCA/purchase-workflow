@@ -18,11 +18,12 @@ env:
 
   matrix:
   - LINT_CHECK="1"
-  - MAKEPOT="1"
-  - TESTS="1" ODOO_REPO="OCA/OCB" INCLUDE="framework_agreement"
-  - TESTS="1" ODOO_REPO="OCA/OCB" INCLUDE="purchase_rfq_bid_workflow"
-  - TESTS="1" ODOO_REPO="OCA/OCB" INCLUDE="purchase_requisition_auto_rfq"
-  - TESTS="1" ODOO_REPO="OCA/OCB" INCLUDE="purchase_requisition_multicurrency,purchase_rfq_bid_workflow,purchase_requisition_bid_selection,purchase_requisition_auto_rfq_bid_selection"
+  # - MAKEPOT="1"
+  - TESTS="1" ODOO_REPO="OCA/OCB" INCLUDE="purchase_update_proposal"
+  # - TESTS="1" ODOO_REPO="OCA/OCB" INCLUDE="framework_agreement"
+  # - TESTS="1" ODOO_REPO="OCA/OCB" INCLUDE="purchase_rfq_bid_workflow"
+  # - TESTS="1" ODOO_REPO="OCA/OCB" INCLUDE="purchase_requisition_auto_rfq"
+  # - TESTS="1" ODOO_REPO="OCA/OCB" INCLUDE="purchase_requisition_multicurrency,purchase_rfq_bid_workflow,purchase_requisition_bid_selection,purchase_requisition_auto_rfq_bid_selection"
   - TESTS="1" ODOO_REPO="OCA/OCB" EXCLUDE="purchase_requisition_delivery_address,purchase_delivery_address,purchase_origin_address,framework_agreement,purchase_rfq_bid_workflow,purchase_requisition_bid_selection,purchase_requisition_auto_rfq,purchase_requisition_auto_rfq_bid_selection,purchase_requisition_multicurrency"
 
 install:
