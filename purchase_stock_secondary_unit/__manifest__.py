@@ -1,9 +1,10 @@
 # Copyright 2020 Jarsa Sistemas
+# Copyright 2021 Tecnativa - Sergio Teruel
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 {
     "name": "Purchase Stock Secondary Unit",
     "summary": "Get product quantities in a secondary unit",
-    "version": "13.0.1.0.0",
+    "version": "13.0.1.0.1",
     "development_status": "Beta",
     "category": "stock",
     "website": "https://github.com/OCA/purchase-workflow",
