@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="before">
+                <button name="button_update_proposal" help="Suggest Modification" type="object" icon="gtk-leave-fullscreen" groups="purchase_update_proposal.group_purchase_proposal_user"/>
+                <field name="proposal_count" invisible="1"/>
+                <field name="id" attrs="{'invisible': [('proposal_count', '=', 0)]}"/>
+            </xpath>
+            <field name="order_line" position="before">
+                <group col="4" attrs="{'invisible': [('proposal_count', '=', 0)]}">
+                    <div colspan="4"
+                         style="background-color:AntiqueWhite; text-align:center; font-weight: bold; padding: 8px">
+                        Update Proposal
+                    </div>
+                    <group>
+                        <field name="proposal_state" colspan="2"/>
+                        <button name="approve_proposal" help="Approve Proposal" type="object" string="Approve" class="oe_highlight"
+                                attrs="{'invisible': [('proposal_state', 'in', ['approved', 'draft'])]}"
+                                groups="purchase.group_purchase_user"/>
+                        <button name="reject_proposal" help="Reject Proposal" type="object" string="Reject" 
+                                attrs="{'invisible': [('proposal_state', 'in', ['draft', 'approved', 'rejected'])]}"
+                                groups="purchase.group_purchase_user"/>
+                        <button name="submit_proposal" help="Submit Proposal" type="object" string="Submit" class="oe_highlight"
+                                attrs="{'invisible': [('proposal_state', 'in', ['approved', 'submitted', 'rejected'])]}"
+                                groups="purchase_update_proposal.group_purchase_proposal_user"/>
+                        <button name="reset_proposal" help="Reset Proposal" type="object" string="Reset" 
+                                attrs="{'invisible': [('proposal_state', 'in', ['draft', 'approved'])]}"
+                                groups="purchase_update_proposal.group_purchase_proposal_user"/>
+                        <field name="proposal_count" invisible="1"/>
+                    </group>
+                    <group colspan="4" attrs="{'invisible': [('proposal_count', '=', 0)]}">
+                        <field name="proposal_ids" colspan="4" attrs="{'readonly': [('proposal_updatable', '=', 'no')]}" nolabel="1"/>
+                        <field name="proposal_updatable" invisible="1"/>
+                        <div attrs="{'invisible': [('proposal_updatable', '!=', 'no')]}" colspan="2"
+                             style="background-color:red; color:white; text-align:center; font-weight: bold;">
+                            We can't complete your request because our incoming workflow is partially finished or cancelled
+                        </div>
+                    </group>
+                    <hr style="background: AntiqueWhite; height: 12px" colspan="4"/>
+                </group>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_purchase_order_filter" model="ir.ui.view">
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+        <field name="arch" type="xml">
+            <filter name="approved" position="after">
+                <filter name="submitted" string="Submitted" domain="[('proposal_state','=', 'submitted')]"/>
+            </filter>
+        </field>
+    </record>
+
+</data>
+</openerp>
