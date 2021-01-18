@@ -1,0 +1,12 @@
+<odoo>
+    <record id="purchase_request_type_multi_company_rule" model="ir.rule">
+        <field name="name">Purchase Request Type multi-company</field>
+        <field
+            name="model_id"
+            ref="purchase_request_type.model_purchase_request_type"
+        />
+        <field name="domain_force">
+            ['|', ('company_id','=',False), ('company_id','in',company_ids)]
+        </field>
+    </record>
+</odoo>
