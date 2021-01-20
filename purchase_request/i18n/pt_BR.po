@@ -358,6 +358,7 @@ msgstr "Provisório"
 
 #. module: purchase_request
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:235
+#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:236
 #, python-format
 msgid "Enter a positive quantity."
 msgstr ""
@@ -655,6 +656,7 @@ msgstr ""
 
 #. module: purchase_request
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:163
+#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:164
 #, python-format
 msgid "Please select a product for all lines"
 msgstr ""
@@ -976,6 +978,7 @@ msgstr "Produtos para compra"
 
 #. module: purchase_request
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:303
+#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:304
 #, python-format
 msgid "RFQ"
 msgstr ""
