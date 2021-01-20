@@ -80,8 +80,9 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         purchase_request.button_to_approve()
         purchase_request.button_approved()
 
+        supplier = self.env.ref('base.res_partner_12')
         vals = {
-            'supplier_id': self.env.ref('base.res_partner_12').id,
+            'supplier_id': supplier.id,
         }
         wiz_id = self.wiz.with_context(
             active_model="purchase.request.line",
@@ -99,6 +100,11 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
             purchase_request_line.purchase_lines.state,
             purchase_request_line.purchase_state,
             'Should have same state')
+        purchase_order = purchase_request_line.purchase_lines.order_id
+        self.assertEquals(
+            purchase_order.payment_term_id.id,
+            supplier.property_supplier_payment_term_id.id,
+            'Should have same supplier payment term')
 
     def test_bug_is_editable_multiple_lines(self):
         # Check that reading multiple lines is still possible
