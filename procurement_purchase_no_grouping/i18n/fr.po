@@ -40,6 +40,11 @@ msgid "Product Category"
 msgstr "Catégorie de produit"
 
 #. module: procurement_purchase_no_grouping
+#: selection:product.category,procured_purchase_grouping:0
+msgid "Product category grouping"
+msgstr ""
+
+#. module: procurement_purchase_no_grouping
 #: model:ir.model,name:procurement_purchase_no_grouping.model_purchase_order_line
 msgid "Purchase Order Line"
 msgstr "Ligne de commande d'achat"
@@ -53,18 +58,10 @@ msgid ""
 "always, grouping lines and orders when possible.\n"
 "* No line grouping: If there are any open purchase order for the same "
 "supplier, it will be reused, but lines won't be merged.\n"
-"* No order grouping: This option will prevent any kind of grouping."
+"* No order grouping: This option will prevent any kind of grouping.\n"
+"* Product category grouping: This option groups products in the same "
+"purchase order that belongs to the same product category."
 msgstr ""
-"Sélectionnez le comportement de regroupement des achats pour les produits de "
-"cette catégorie :\n"
-"* Regroupement standard (par défaut) : les achats généreront des bons de "
-"commande, en regroupant les lignes et les commandes lorsque cela est "
-"possible.\n"
-"* Pas de regroupement de lignes : s'il existe des commandes en cours pour le "
-"même fournisseur, elles seront réutilisées, mais les lignes ne seront pas "
-"fusionnées.\n"
-"* Pas de regroupement de commandes : cette option empêchera tout type de "
-"regroupement."
 
 #. module: procurement_purchase_no_grouping
 #: selection:product.category,procured_purchase_grouping:0
@@ -75,6 +72,26 @@ msgstr "Regroupement standard"
 #: model:ir.model,name:procurement_purchase_no_grouping.model_stock_rule
 msgid "Stock Rule"
 msgstr "Règle de stock"
+
+#~ msgid ""
+#~ "Select the behaviour for grouping procured purchases for the the products "
+#~ "of this category:\n"
+#~ "* Standard grouping (default): Procurements will generate purchase orders "
+#~ "as always, grouping lines and orders when possible.\n"
+#~ "* No line grouping: If there are any open purchase order for the same "
+#~ "supplier, it will be reused, but lines won't be merged.\n"
+#~ "* No order grouping: This option will prevent any kind of grouping."
+#~ msgstr ""
+#~ "Sélectionnez le comportement de regroupement des achats pour les produits "
+#~ "de cette catégorie :\n"
+#~ "* Regroupement standard (par défaut) : les achats généreront des bons de "
+#~ "commande, en regroupant les lignes et les commandes lorsque cela est "
+#~ "possible.\n"
+#~ "* Pas de regroupement de lignes : s'il existe des commandes en cours pour "
+#~ "le même fournisseur, elles seront réutilisées, mais les lignes ne seront "
+#~ "pas fusionnées.\n"
+#~ "* Pas de regroupement de commandes : cette option empêchera tout type de "
+#~ "regroupement."
 
 #~ msgid "Purchase Order"
 #~ msgstr "Bon de commande"

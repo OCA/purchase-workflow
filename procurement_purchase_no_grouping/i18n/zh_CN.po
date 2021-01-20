@@ -41,6 +41,11 @@ msgid "Product Category"
 msgstr "产品分类"
 
 #. module: procurement_purchase_no_grouping
+#: selection:product.category,procured_purchase_grouping:0
+msgid "Product category grouping"
+msgstr ""
+
+#. module: procurement_purchase_no_grouping
 #: model:ir.model,name:procurement_purchase_no_grouping.model_purchase_order_line
 msgid "Purchase Order Line"
 msgstr "采购订单行"
@@ -54,12 +59,10 @@ msgid ""
 "always, grouping lines and orders when possible.\n"
 "* No line grouping: If there are any open purchase order for the same "
 "supplier, it will be reused, but lines won't be merged.\n"
-"* No order grouping: This option will prevent any kind of grouping."
+"* No order grouping: This option will prevent any kind of grouping.\n"
+"* Product category grouping: This option groups products in the same "
+"purchase order that belongs to the same product category."
 msgstr ""
-"选择为此类别的产品分组采购购买的行为：\n"
-"* 标准分组（默认）：采购将一如既往地生成采购订单，尽可能对生产线和订单进行分组。\n"
-"* 无行分组：如果同一供应商有任何未结采购订单，则会重复使用，但不会合并行。\n"
-"* 没有订单分组：此选项将阻止任何类型的分组。"
 
 #. module: procurement_purchase_no_grouping
 #: selection:product.category,procured_purchase_grouping:0
@@ -70,6 +73,22 @@ msgstr "标准分组"
 #: model:ir.model,name:procurement_purchase_no_grouping.model_stock_rule
 msgid "Stock Rule"
 msgstr "库存规则"
+
+#~ msgid ""
+#~ "Select the behaviour for grouping procured purchases for the the products "
+#~ "of this category:\n"
+#~ "* Standard grouping (default): Procurements will generate purchase orders "
+#~ "as always, grouping lines and orders when possible.\n"
+#~ "* No line grouping: If there are any open purchase order for the same "
+#~ "supplier, it will be reused, but lines won't be merged.\n"
+#~ "* No order grouping: This option will prevent any kind of grouping."
+#~ msgstr ""
+#~ "选择为此类别的产品分组采购购买的行为：\n"
+#~ "* 标准分组（默认）：采购将一如既往地生成采购订单，尽可能对生产线和订单进行"
+#~ "分组。\n"
+#~ "* 无行分组：如果同一供应商有任何未结采购订单，则会重复使用，但不会合并"
+#~ "行。\n"
+#~ "* 没有订单分组：此选项将阻止任何类型的分组。"
 
 #, fuzzy
 #~ msgid "Procurement Rule"
