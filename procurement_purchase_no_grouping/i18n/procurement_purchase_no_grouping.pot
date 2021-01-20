@@ -6,6 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-01-19 13:00+0000\n"
+"PO-Revision-Date: 2021-01-19 13:00+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -34,6 +36,11 @@ msgid "Product Category"
 msgstr ""
 
 #. module: procurement_purchase_no_grouping
+#: selection:product.category,procured_purchase_grouping:0
+msgid "Product category grouping"
+msgstr ""
+
+#. module: procurement_purchase_no_grouping
 #: model:ir.model,name:procurement_purchase_no_grouping.model_purchase_order_line
 msgid "Purchase Order Line"
 msgstr ""
@@ -43,7 +50,8 @@ msgstr ""
 msgid "Select the behaviour for grouping procured purchases for the the products of this category:\n"
 "* Standard grouping (default): Procurements will generate purchase orders as always, grouping lines and orders when possible.\n"
 "* No line grouping: If there are any open purchase order for the same supplier, it will be reused, but lines won't be merged.\n"
-"* No order grouping: This option will prevent any kind of grouping."
+"* No order grouping: This option will prevent any kind of grouping.\n"
+"* Product category grouping: This option groups products in the same purchase order that belongs to the same product category."
 msgstr ""
 
 #. module: procurement_purchase_no_grouping

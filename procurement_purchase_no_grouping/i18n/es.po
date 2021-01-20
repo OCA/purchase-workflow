@@ -8,35 +8,41 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-24 07:53+0000\n"
-"PO-Revision-Date: 2017-11-24 07:53+0000\n"
+"POT-Creation-Date: 2021-01-19 13:00+0000\n"
+"PO-Revision-Date: 2021-01-20 10:03+0100\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.3\n"
 
 #. module: procurement_purchase_no_grouping
 #: selection:product.category,procured_purchase_grouping:0
 msgid "No line grouping"
-msgstr ""
+msgstr "Sin agrupación de líneas"
 
 #. module: procurement_purchase_no_grouping
 #: selection:product.category,procured_purchase_grouping:0
 msgid "No order grouping"
-msgstr ""
+msgstr "Sin agrupación de pedidos"
 
 #. module: procurement_purchase_no_grouping
 #: model:ir.model.fields,field_description:procurement_purchase_no_grouping.field_product_category__procured_purchase_grouping
 msgid "Procured purchase grouping"
-msgstr ""
+msgstr "Agrupación de la compra abastecida"
 
 #. module: procurement_purchase_no_grouping
 #: model:ir.model,name:procurement_purchase_no_grouping.model_product_category
 msgid "Product Category"
-msgstr ""
+msgstr "Categoría de producto"
+
+#. module: procurement_purchase_no_grouping
+#: selection:product.category,procured_purchase_grouping:0
+msgid "Product category grouping"
+msgstr "Agrupación por categoría de producto"
 
 #. module: procurement_purchase_no_grouping
 #: model:ir.model,name:procurement_purchase_no_grouping.model_purchase_order_line
@@ -52,18 +58,30 @@ msgid ""
 "always, grouping lines and orders when possible.\n"
 "* No line grouping: If there are any open purchase order for the same "
 "supplier, it will be reused, but lines won't be merged.\n"
-"* No order grouping: This option will prevent any kind of grouping."
+"* No order grouping: This option will prevent any kind of grouping.\n"
+"* Product category grouping: This option groups products in the same "
+"purchase order that belongs to the same product category."
 msgstr ""
+"Seleccione el comportamiento para agrupar las compras adquiridas para los "
+"productos de esta categoría:\n"
+"* Agrupación estándar (predeterminada): Las adquisiciones generarán órdenes "
+"de compra como siempre, agrupando líneas y órdenes cuando sea posible.\n"
+"* Sin agrupación de líneas: si hay alguna orden de compra abierta para el "
+"mismo proveedor, se reutilizará, pero las líneas no se fusionarán.\n"
+"* Sin agrupación de pedidos: esta opción evitará cualquier tipo de "
+"agrupación.\n"
+"* Agrupación por categoría de producto: esta opción agrupa productos en la "
+"misma orden de compra que pertenece a la misma categoría de producto."
 
 #. module: procurement_purchase_no_grouping
 #: selection:product.category,procured_purchase_grouping:0
 msgid "Standard grouping"
-msgstr ""
+msgstr "Agrupación estándar"
 
 #. module: procurement_purchase_no_grouping
 #: model:ir.model,name:procurement_purchase_no_grouping.model_stock_rule
 msgid "Stock Rule"
-msgstr ""
+msgstr "Regla de inventario"
 
 #~ msgid "Purchase Order"
 #~ msgstr "Orden de Compra"

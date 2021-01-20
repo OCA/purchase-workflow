@@ -6,3 +6,4 @@ Go to each product category, and select one of these values in the field
 * *No line grouping*: With this value, if there are any open purchase order
   for the same supplier, it will be reused, but lines won't be merged.
 * *No order grouping*: This option will prevent any kind of grouping.
+* *Product category grouping*: This option groups products in the same purchase order that belongs to the same product category.
