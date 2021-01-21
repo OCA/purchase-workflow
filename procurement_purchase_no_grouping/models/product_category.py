@@ -1,5 +1,5 @@
 # Copyright 2015 AvanzOsc (http://www.avanzosc.es)
-# Copyright 2015-2016 - Pedro M. Baeza <pedro.baeza@tecnativa.com>
+# Copyright 2015-2016 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
 from odoo import fields, models
@@ -13,6 +13,7 @@ class ProductCategory(models.Model):
             ("standard", "Standard grouping"),
             ("line", "No line grouping"),
             ("order", "No order grouping"),
+            ("product_category", "Product category grouping"),
         ],
         string="Procured purchase grouping",
         help="Select the behaviour for grouping procured purchases for the "
@@ -25,5 +26,7 @@ class ProductCategory(models.Model):
         "merged.\n"
         "* No order grouping: This option will prevent any kind of "
         "grouping.\n"
+        "* Product category grouping: This option groups products in the "
+        "same purchase order that belongs to the same product category.\n"
         "* <empty>: If no value is selected, system-wide default will be used.",
     )
