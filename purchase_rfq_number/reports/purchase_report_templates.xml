@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template
+        id="report_purchasequotation_document"
+        inherit_id="purchase.report_purchasequotation_document"
+    >
+        <xpath expr="//span[@t-field='o.name']" position="replace">
+            <t t-if="o.rfq_number != 'New'">
+                <span t-field="o.rfq_number" />
+            </t>
+            <t t-else="">
+                <span t-field="o.name" />
+            </t>
+        </xpath>
+    </template>
+
+</odoo>
