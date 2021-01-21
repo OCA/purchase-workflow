@@ -272,3 +272,26 @@ class TestPurchaseWorkAcceptance(TransactionCase):
         invoice = f.save()
         with self.assertRaises(ValidationError):
             invoice.action_post()
+
+    def test_06_check_qty_accepted(self):
+        qty_po = 20.0
+        qty_wa = 12.0
+        purchase_order = self._create_purchase_order(qty_po, self.product_product)
+        purchase_order.button_confirm()
+        work_acceptance = self._create_work_acceptance(qty_wa, po=purchase_order)
+        work_acceptance.button_accept()
+        self.assertEqual(purchase_order.order_line[0].qty_accepted, 12.0)
+        self.assertEqual(purchase_order.order_line[0].qty_to_accept, 8.0)
+
+    def test_07_hide_wa_button(self):
+        qty_po = 20.0
+        purchase_order = self._create_purchase_order(qty_po, self.product_product)
+        purchase_order.button_confirm()
+        work_acceptance = self._create_work_acceptance(qty=12, po=purchase_order)
+        work_acceptance.button_accept()
+        purchase_order._compute_wa_accepted()
+        self.assertEqual(purchase_order.wa_accepted, False)
+        work_acceptance = self._create_work_acceptance(qty=8, po=purchase_order)
+        work_acceptance.button_accept()
+        purchase_order._compute_wa_accepted()
+        self.assertEqual(purchase_order.wa_accepted, True)
