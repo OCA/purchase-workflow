@@ -1,7 +1,7 @@
 # Copyright 2019 Ecosoft Co., Ltd. (http://ecosoft.co.th)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, fields, models
+from odoo import _, api, fields, models
 
 
 class PurchaseOrder(models.Model):
@@ -19,6 +19,7 @@ class PurchaseOrder(models.Model):
         string="WA Lines",
         readonly=True,
     )
+    wa_accepted = fields.Boolean(string="WA Accepted", compute="_compute_wa_accepted")
 
     def _compute_wa_ids(self):
         for order in self:
@@ -84,6 +85,11 @@ class PurchaseOrder(models.Model):
             }
         return super().action_create_invoice()
 
+    def _compute_wa_accepted(self):
+        for order in self:
+            lines = order.order_line.filtered(lambda l: l.qty_to_accept > 0)
+            order.wa_accepted = not any(lines)
+
 
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
@@ -93,6 +99,20 @@ class PurchaseOrderLine(models.Model):
         inverse_name="purchase_line_id",
         string="WA Lines",
         readonly=True,
+    )
+    qty_accepted = fields.Float(
+        compute="_compute_qty_accepted",
+        string="Accepted Qty.",
+        store=True,
+        readonly=True,
+        digits="Product Unit of Measure",
+    )
+    qty_to_accept = fields.Float(
+        compute="_compute_qty_accepted",
+        string="To Accept Qty.",
+        store=True,
+        readonly=True,
+        digits="Product Unit of Measure",
     )
 
     def _get_product_qty(self):
@@ -109,3 +129,25 @@ class PurchaseOrderLine(models.Model):
             res["quantity"] = wa_line.product_qty
             res["product_uom_id"] = wa_line.product_uom
         return res
+
+    @api.depends(
+        "wa_line_ids.wa_id.state",
+        "wa_line_ids.product_qty",
+        "product_qty",
+        "product_uom_qty",
+        "order_id.state",
+    )
+    def _compute_qty_accepted(self):
+        for line in self:
+            # compute qty_accepted
+            qty = 0.0
+            for wa_line in line.wa_line_ids.filtered(
+                lambda l: l.wa_id.state == "accept"
+            ):
+                qty += wa_line.product_uom._compute_quantity(
+                    wa_line.product_qty, line.product_uom
+                )
+            line.qty_accepted = qty
+
+            # compute qty_to_accept
+            line.qty_to_accept = line.product_uom_qty - line.qty_accepted
