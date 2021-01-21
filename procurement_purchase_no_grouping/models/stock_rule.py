@@ -5,7 +5,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
 import random
-
 from odoo import api, models
 
 
@@ -24,8 +23,9 @@ class StockRule(models.Model):
     def _make_po_get_domain(self, values, partner):
         domain = super()._make_po_get_domain(values, partner)
         if self.env.context.get('grouping', 'standard') == 'product_category':
-            if values.get("product_id"):
-                product = self.env["product.product"].browse(values["product_id"])
+            if values.get("supplier"):
+                suppinfo = values["supplier"]
+                product = suppinfo.product_id or suppinfo.product_tmpl_id
                 domain += (
                     ("order_line.product_id.categ_id", "=", product.categ_id.id),
                 )
