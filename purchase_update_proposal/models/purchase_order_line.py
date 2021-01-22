@@ -13,9 +13,7 @@ logger = logging.getLogger(__name__)
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
-    proposal_count = fields.Integer(
-        related="order_id.proposal_count", store=False
-    )
+    proposal_count = fields.Integer(related="order_id.proposal_count", store=False)
 
     @api.multi
     def button_update_proposal(self):
@@ -28,7 +26,7 @@ class PurchaseOrderLine(models.Model):
                 "line_id": rec.id,
                 "order_id": rec.order_id.id,
             }
-            # We only want create proposal line from pu²rchase line
+            # We only want create proposal line from purchase line
             self.env["purchase.line.proposal"].sudo().create(vals)
         if not self:
             return
