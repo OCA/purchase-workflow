@@ -46,17 +46,12 @@ class PurchaseOrder(models.Model):
         self = self.sudo()
         for rec in self:
             moves = self.env["stock.move"].search(
-                [("purchase_line_id", "in", rec.order_line.ids)]
+                [
+                    ("purchase_line_id", "in", rec.order_line.ids),
+                    ("state", "in", ["cancel", "done"]),
+                ]
             )
-            if any(
-                True
-                for x in moves
-                if x.state
-                in (
-                    "cancel",
-                    "done",
-                )
-            ):
+            if moves:
                 rec.proposal_updatable = "no"
             else:
                 rec.proposal_updatable = "yes"
@@ -77,10 +72,7 @@ class PurchaseOrder(models.Model):
     @api.onchange("proposal_date")
     def onchange_proposal_date(self):
         for rec in self:
-            vals = [
-                (1, x.id, {"date": rec.proposal_date})
-                for x in rec.proposal_ids
-            ]
+            vals = [(1, x.id, {"date": rec.proposal_date}) for x in rec.proposal_ids]
             rec.proposal_ids = vals
 
     @api.multi
@@ -106,7 +98,7 @@ class PurchaseOrder(models.Model):
     @api.multi
     def approve_proposal(self):
         """
-        We need to update purchase lines with approvaled lines.
+        We need to update purchase lines with approved lines.
         If 1 purchase line has created more than 1 line,
         we update the first one and create another purchase line
         """
@@ -173,8 +165,7 @@ class PurchaseOrder(models.Model):
     def _check_data2update(self, data):
         for key, val in data.items():
             if isinstance(val, list) and not val[0]:
-                raise UserError(
-                    _("No data to update for line ID '%s'") % key.id)
+                raise UserError(_("No data to update for line ID '%s'") % key.id)
 
     def _update_proposal_to_purchase_line(self, data, body):
         for line_id in data:
@@ -191,22 +182,25 @@ class PurchaseOrder(models.Model):
 
     @api.multi
     def write(self, vals):
-        if not self._get_purchase_groups() and [
-                x for x in vals.keys() if x[:9] != "proposal_"]:
+        if not self._get_purchase_groups() and self._fields_prevent_to_update(vals):
             # The user is not an Odoo purchaser, we must prevent to update other fields
-            logger.info("Fields being writing %s" % vals.keys())
+            logger.info("Fields being written %s" % vals.keys())
             raise UserError(
                 _("You can only update purchase proposal, not other fields")
             )
         return super(PurchaseOrder, self).write(vals)
 
-    @api.model
     def _get_purchase_groups(self):
-        """ Guess if the user is a standard purchaser
-        """
+        """Guess if the user is a standard purchaser"""
         return [
             x
             for x in self.env.user.groups_id
             if x in self.env.ref("purchase.group_purchase_user")
             or x in self.env.ref("purchase.group_purchase_manager")
         ]
+
+    def _fields_prevent_to_update(self, vals):
+        res = False
+        if [x for x in vals.keys() if x[:9] != "proposal_"]:
+            res = True
+        return res
