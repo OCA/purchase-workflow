@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem
+        id="menu_purchase_cost_control"
+        name="Costs distributions"
+        parent="purchase.menu_purchase_root"
+        sequence="9"
+    />
+    <record id="action_purchase_cost_distribution" model="ir.actions.act_window">
+        <field name="name">Purchase cost distributions</field>
+        <field name="res_model">purchase.cost.distribution</field>
+        <field name="view_mode">tree,form,calendar,graph</field>
+        <field eval="False" name="view_id" />
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a draft purchase expenses distribution.
+            </p>
+            <p>
+                Use this menu to control the cost of purchases by expense type
+                such as transport, insurance, freight customs, etc.
+            </p>
+            <p>
+                You can add one or more receipts which share the same expenses
+                and update cost price of product.
+            </p>
+        </field>
+    </record>
+    <menuitem
+        id="menu_purchase_cost_distribution"
+        action="action_purchase_cost_distribution"
+        parent="menu_purchase_cost_control"
+        sequence="10"
+    />
+    <record id="view_purchase_cost_distribution_tree" model="ir.ui.view">
+        <field name="name">purchase.cost.distribution.tree</field>
+        <field name="model">purchase.cost.distribution</field>
+        <field name="arch" type="xml">
+            <tree string="Purchase cost distributions">
+                <field name="name" />
+                <field name="date" />
+                <field name="total_purchase" />
+                <field name="total_expense" />
+                <field name="amount_total" />
+                <field name="cost_lines" />
+                <field name="state" />
+                <field name="company_id" groups="base.group_multi_company" />
+            </tree>
+        </field>
+    </record>
+    <record id="view_purchase_cost_distribution_calendar" model="ir.ui.view">
+        <field name="name">purchase.cost.distribution.calendar</field>
+        <field name="model">purchase.cost.distribution</field>
+        <field name="arch" type="xml">
+            <calendar
+                string="Purchase cost distribution"
+                color="state"
+                date_start="date"
+            >
+                <field name="name" />
+                <field name="total_purchase" />
+                <field name="total_expense" />
+            </calendar>
+        </field>
+    </record>
+    <record id="view_purchase_cost_distribution_graph" model="ir.ui.view">
+        <field name="name">purchase.cost.distribution.graph</field>
+        <field name="model">purchase.cost.distribution</field>
+        <field name="arch" type="xml">
+            <graph string="Purchase cost distribution" type="bar">
+                <field name="name" group="True" />
+                <field name="total_purchase" />
+            </graph>
+        </field>
+    </record>
+    <record id="purchase_cost_distribution_form" model="ir.ui.view">
+        <field name="name">purchase.cost.distribution.form</field>
+        <field name="model">purchase.cost.distribution</field>
+        <field name="arch" type="xml">
+            <form string="Purchase cost distribution">
+                <header>
+                    <button
+                        name="%(action_picking_import_wizard)d"
+                        string="Import incoming shipment"
+                        states="draft"
+                        type="action"
+                        class="oe_highlight"
+                    />
+                    <button
+                        name="action_calculate"
+                        string="Calculate"
+                        states="draft,error"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    <button
+                        name="action_calculate"
+                        string="Recalculate"
+                        states="calculated"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    <button
+                        name="action_done"
+                        string="Set done"
+                        states="calculated"
+                        type="object"
+                        confirm="Are you sure that you want to set done state?"
+                        class="oe_highlight"
+                    />
+                    <button
+                        name="action_draft"
+                        string="Set draft"
+                        states="calculated,done"
+                        type="object"
+                    />
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="draft,calculated,done"
+                        statusbar_colors='{"error": "red", "done": "blue"}'
+                    />
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <label for="name" string="Cost distribution " />
+                            <field name="name" class="oe_inline" readonly="1" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
+                            <field name="currency_id" readonly="1" />
+                        </group>
+                        <group>
+                            <field name="date" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Picking lines">
+                            <field name="cost_lines">
+                                <tree
+                                    string="Costs distribution picking lines"
+                                    create="false"
+                                >
+                                    <field name="picking_id" />
+                                    <field name="move_id" />
+                                    <field name="product_id" readonly="1" />
+                                    <field name="product_qty" />
+                                    <field name="product_price_unit" />
+                                    <field name="total_amount" />
+                                    <field name="expense_amount" />
+                                    <field name="cost_ratio" />
+                                    <field name="standard_price_old" />
+                                    <field name="standard_price_new" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Expenses">
+                            <button
+                                name="%(action_import_invoice_line_wizard)d"
+                                string="Import invoice line"
+                                states="draft"
+                                type="action"
+                            />
+                            <field
+                                name="expense_lines"
+                                options="{'reload_on_button': true}"
+                            >
+                                <tree
+                                    string="Cost distribution expenses"
+                                    editable="bottom"
+                                >
+                                    <field name="type" />
+                                    <field name="calculation_method" />
+                                    <field name="ref" />
+                                    <field name="expense_amount" />
+                                    <field name="imported_lines" invisible="1" />
+                                    <field
+                                        name="affected_lines"
+                                        widget="many2many_tags"
+                                    />
+                                    <field
+                                        name="invoice_line"
+                                        options="{'no_create': true, 'create_edit': false}"
+                                    />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    <group>
+                        <group class="oe_subtotal_footer oe_right">
+                            <field
+                                name="total_purchase"
+                                widget="monetary"
+                                options="{'currency_field': 'currency_id'}"
+                            />
+                            <field
+                                name="total_expense"
+                                widget="monetary"
+                                options="{'currency_field': 'currency_id'}"
+                            />
+                            <div
+                                class="oe_subtotal_footer_separator oe_inline"
+                                states="calculated,done"
+                            >
+                                <label for="amount_total" />
+                            </div>
+                            <field
+                                name="amount_total"
+                                nolabel="1"
+                                class="oe_subtotal_footer_separator"
+                                widget='monetary'
+                                options="{'currency_field': 'currency_id'}"
+                            />
+                        </group>
+                    </group>
+                    <group>
+                        <field name="total_uom_qty" />
+                        <field name="total_weight" />
+                        <field name="total_volume" />
+                    </group>
+                    <div class="oe_clear" />
+                    <field
+                        name="note"
+                        class="oe_inline"
+                        placeholder="Cost distribution notes..."
+                    />
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="purchase_cost_distribution_search" model="ir.ui.view">
+        <field name="name">purchase.cost.distribution.search</field>
+        <field name="model">purchase.cost.distribution</field>
+        <field name="arch" type="xml">
+            <search string="Search purchase costs distributions">
+                <field name="name" />
+                <field name="cost_lines" />
+                <field name="expense_lines" />
+            </search>
+        </field>
+    </record>
+    <record id="view_purchase_cost_distribution_line_tree" model="ir.ui.view">
+        <field name="model">purchase.cost.distribution.line</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="picking_id" />
+                <field name="move_id" />
+                <field name="product_id" readonly="1" />
+                <field name="product_qty" />
+                <field name="product_price_unit" />
+                <field name="total_amount" />
+            </tree>
+        </field>
+    </record>
+    <record id="view_purchase_cost_distribution_line_form" model="ir.ui.view">
+        <field name="name">purchase.cost.distribution.line.form</field>
+        <field name="model">purchase.cost.distribution.line</field>
+        <field name="arch" type="xml">
+            <form string="Purchase Cost Line">
+                <group readonly="1">
+                    <group string="Purchase information">
+                        <field name="partner" />
+                        <field name="purchase_id" />
+                        <field name="purchase_line_id" />
+                    </group>
+                    <group string="Warehouse information">
+                        <field name="picking_id" readonly="1" />
+                        <field name="move_id" readonly="1" />
+                    </group>
+                </group>
+                <group string="Product information">
+                    <group>
+                        <field name="product_id" readonly="1" />
+                        <field name="product_qty" readonly="1" />
+                        <field name="product_price_unit" readonly="1" />
+                    </group>
+                    <group>
+                        <field name="product_uom" readonly="1" />
+                        <field name="product_weight" readonly="1" />
+                        <field name="product_volume" readonly="1" />
+                        <field name="standard_price_old" readonly="1" />
+                    </group>
+                </group>
+                <group string="Cost distribution line information">
+                    <group>
+                        <field name="total_amount" />
+                        <field name="total_volume" />
+                    </group>
+                    <group>
+                        <field name="total_weight" />
+                    </group>
+                </group>
+                <field name="expense_lines" readonly="1">
+                    <tree string="Cost Line Expenses">
+                        <field name="type" />
+                        <field name="expense_amount" sum="Total Expenses" />
+                        <field name="cost_ratio" sum="Calculated Cost" />
+                    </tree>
+                </field>
+            </form>
+        </field>
+    </record>
+    <record
+        id="view_purchase_cost_distribution_expense_invoice_form"
+        model="ir.ui.view"
+    >
+        <field name="model">purchase.cost.distribution.expense</field>
+        <field name="arch" type="xml">
+            <tree string="Cost distribution expenses" editable="bottom" create="false">
+                <field
+                    name="invoice_line"
+                    options="{'no_create': true, 'create_edit': false}"
+                    domain="[('invoice_id', '=', parent.id)]"
+                />
+                <field name="type" />
+                <field name="calculation_method" />
+                <field name="expense_amount" />
+                <field name="distribution" readonly="1" />
+                <button
+                    name="button_duplicate"
+                    string="Duplicate expense"
+                    type="object"
+                    icon="fa-clone"
+                />
+            </tree>
+        </field>
+    </record>
+</odoo>

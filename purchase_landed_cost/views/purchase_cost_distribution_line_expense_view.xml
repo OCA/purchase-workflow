@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record
+        id="action_purchase_cost_distribution_line_expense"
+        model="ir.actions.act_window"
+    >
+        <field name="name">Expense distribution lines</field>
+        <field name="res_model">purchase.cost.distribution.line.expense</field>
+        <field name="view_mode">tree</field>
+        <field name="context">{'create': False}</field>
+    </record>
+    <menuitem
+        id="menu_purchase_cost_distribution_line_expense"
+        action="action_purchase_cost_distribution_line_expense"
+        parent="menu_purchase_cost_control"
+        sequence="20"
+    />
+    <record id="view_purchase_cost_distribution_line_expense_tree" model="ir.ui.view">
+        <field name="model">purchase.cost.distribution.line.expense</field>
+        <field name="arch" type="xml">
+            <tree string="Purchase cost distribution lines">
+                <field name="picking_id" invisible="1" />
+                <field name="distribution_line" />
+                <field name="distribution_expense" />
+                <field name="expense_amount" />
+                <field name="cost_ratio" />
+            </tree>
+        </field>
+    </record>
+    <record id="view_purchase_cost_distribution_line_expense_search" model="ir.ui.view">
+        <field name="model">purchase.cost.distribution.line.expense</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="picking_id" />
+                <field name="distribution_line" />
+                <field name="distribution_expense" />
+                <group expand="0" string="Group By">
+                    <filter
+                        name="group_by_picking"
+                        string="Picking"
+                        context="{'group_by': 'picking_id'}"
+                    />
+                    <filter
+                        name="group_by_picking_date"
+                        string="Picking transfer date"
+                        context="{'group_by': 'picking_date_done'}"
+                    />
+                    <filter
+                        name="group_by_type"
+                        string="Expense type"
+                        context="{'group_by': 'type'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="import_landed_cost_pickings_wizard_view">
+        <field name="model">import.landed.cost.pickings.wizard</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <p
+            >Select here the pickings for those you want to add their expenses lines.</p>
+            <p>Only the pickings with expenses are allowed to be selected here.</p>
+            <field name="possible_picking_ids" invisible="1" />
+            <field name="picking_ids" nolabel="1" />
+            <footer>
+                <button
+                    name="button_import"
+                    string="Import"
+                    type="object"
+                    class="oe_highlight"
+                />
+                or
+                <button string="Cancel" class="oe_link" special="cancel" />
+            </footer>
+        </field>
+    </record>
+    <record
+        id="action_import_landed_cost_pickings_wizard"
+        model="ir.actions.act_window"
+    >
+        <field name="name">Import landed cost from pickings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">import.landed.cost.pickings.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
