@@ -19,6 +19,7 @@ setuptools.setup(
         'odoo13-addon-purchase_discount',
         'odoo13-addon-purchase_invoice_plan',
         'odoo13-addon-purchase_isolated_rfq',
+        'odoo13-addon-purchase_landed_cost',
         'odoo13-addon-purchase_last_price_info',
         'odoo13-addon-purchase_location_by_line',
         'odoo13-addon-purchase_manual_currency',
