@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-01-25 04:44+0000\n"
+"PO-Revision-Date: 2021-01-25 08:44+0000\n"
 "Last-Translator: Dong <dong@freshoo.cn>\n"
 "Language-Team: none\n"
 "Language: zh_CN\n"
@@ -29,7 +29,7 @@ msgstr "转为采购订单"
 #. module: purchase_isolated_rfq
 #: model:ir.model.fields,help:purchase_isolated_rfq.field_purchase_order__quote_id
 msgid "For Purchases Order, this field references to its RFQ"
-msgstr "对于采购订单，此字段引用自采购询价单"
+msgstr "对于采购订单，该字段引用自采购询价单"
 
 #. module: purchase_isolated_rfq
 #: model:ir.model.fields,help:purchase_isolated_rfq.field_purchase_order__purchase_order_id
