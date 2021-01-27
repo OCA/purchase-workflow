@@ -10,10 +10,10 @@
                 <field name="product_id" />
                 <field name="qty" />
                 <field name="date" />
-                <field name="price_u" />
+                <field name="price_u"/>
                 <field name="product_qty" />
                 <field name="date_planned" />
-                <field name="price_unit" />
+                <field name="price_unit"/>
                 <field name="line_id" invisible="1"/>
                 <field name="order_id" invisible="1"/>
             </tree>

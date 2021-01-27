@@ -35,6 +35,8 @@
                     </group>
                     <group colspan="4" attrs="{'invisible': [('proposal_count', '=', 0)]}">
                         <field name="proposal_ids" colspan="4" attrs="{'readonly': [('proposal_updatable', '=', 'no')]}" nolabel="1"/>
+                        <div attrs="{'invisible': [('check_price_on_proposal', '=', True)]}" colspan="2" style="text-align:center;">Prices are not updated for this supplier</div>
+                        <field name="check_price_on_proposal" invisible="1"/>
                         <field name="proposal_updatable" invisible="1"/>
                         <div attrs="{'invisible': [('proposal_updatable', '!=', 'no')]}" colspan="2"
                              style="background-color:red; color:white; text-align:center; font-weight: bold;">

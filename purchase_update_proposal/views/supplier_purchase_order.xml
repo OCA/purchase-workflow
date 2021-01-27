@@ -97,13 +97,15 @@
                                     <div attrs="{'invisible': [('proposal_state', '!=', 'draft')]}">Update new fields below and submit modifications.</div>
                                     <div attrs="{'invisible': [('proposal_state', '!=', 'submitted')]}">These data have to be approved before update purchase line</div>
                                     <field name="proposal_ids" colspan="4" attrs="{'readonly': [('proposal_updatable', '=', 'no')]}" nolabel="1"/>
+                                    <div attrs="{'invisible': [('check_price_on_proposal', '=', True)]}" colspan="2" style="text-align:center;">Prices are not updated for this supplier</div>
+                                    <field name="check_price_on_proposal" invisible="1"/>
                                     <field name="proposal_updatable" invisible="1"/>
                                     <div attrs="{'invisible': [('proposal_updatable', '!=', 'no')]}" colspan="2"
                                          style="background-color:red; color:white; text-align:center; font-weight: bold;">
                                         We can't complete your request because our incoming workflow is partially finished or cancelled
                                     </div>
                                 </group>
-                                <group colspan="4" attrs="{'invisible': [('proposal_count', '&lt;', 2)]}">
+                                <group colspan="4" attrs="{'invisible': [('proposal_count', '&lt;', 1)]}">
                                     <field name="proposal_date"/>
                                 </group>
                                 <hr style="background: AntiqueWhite; height: 12px" colspan="4"/>

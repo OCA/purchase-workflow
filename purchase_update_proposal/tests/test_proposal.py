@@ -59,13 +59,14 @@ class Test(common.SavepointCase):
 
     def test_proposal_workflow(self):
         # order with supplier
+        order = self.get_order_with_user()
+        order.partner_id.write({"check_price_on_proposal": True})
         order_s = self.get_order_with_user(alternate_user=True)
         order_s.order_line[0].button_update_proposal()
         prop = order_s.proposal_ids[0]
         prop.write({"qty": 10, "price_u": 2})
         order_s.submit_proposal()
         assert order_s.proposal_updatable == "yes"
-        order = self.get_order_with_user()
         assert order.proposal_state == "submitted"
         order.approve_proposal()
         # We check all is correctly written
@@ -85,6 +86,20 @@ class Test(common.SavepointCase):
         order.approve_proposal()
         assert order.order_line[0].product_qty == initial_qty - 1
         assert order.order_line[2].product_qty == 1
+
+    def test_check_purchase_line(self):
+        order = self.get_order_with_user()
+        order.partner_id.write({"check_price_on_proposal": True})
+        order_s = self.get_order_with_user(alternate_user=True)
+        order.order_line[0].button_update_proposal()
+        order.order_line[0].button_update_proposal()
+        order_s.proposal_ids[0].write({"qty": 2})
+        order_s.proposal_ids[1].write({"qty": 5, "price_u": 3})
+        order.approve_proposal()
+        assert order.order_line[0].product_qty == 2
+        assert order.order_line[2].product_qty == 5
+        assert order.order_line[2].price_unit == 3
+        assert order.order_line[2].taxes_id == order.order_line[0].taxes_id
 
     def test_supplier_should_not_update_forbidden_fields(self):
         order = self.get_order_with_user(alternate_user=True)

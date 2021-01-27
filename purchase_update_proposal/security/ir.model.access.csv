@@ -1,4 +1,7 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+purch_proposal_user,purch_proposal_user,model_purchase_line_proposal,group_purchase_proposal_user,1,1,0,1
 purch_proposal_supplier,purch_proposal_supplier,model_purchase_line_proposal,group_supplier_own_purchase,1,1,0,1
+purch_order_proposal_user,proposal_user purchase.order,purchase.model_purchase_order,group_purchase_proposal_user,1,1,0,0
 purch_order_supplier,supplier purchase.order,purchase.model_purchase_order,group_supplier_own_purchase,1,1,0,0
+purch_order_line_proposal_user,proposal_user purchase.order.line,purchase.model_purchase_order_line,group_purchase_proposal_user,1,0,0,0
 purch_order_line_supplier,supplier purchase.order.line,purchase.model_purchase_order_line,group_supplier_own_purchase,1,0,0,0
