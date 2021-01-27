@@ -41,6 +41,8 @@ class PurchaseOrder(models.Model):
         help="Update all date of the order with this date",
         copy=False,
     )
+    check_price_on_proposal = fields.Boolean(
+        related="partner_id.check_price_on_proposal")
 
     def _check_updatable_proposal(self):
         self = self.sudo()
@@ -67,6 +69,7 @@ class PurchaseOrder(models.Model):
         lines = self.order_line.filtered(
             lambda s: s.id not in self.proposal_ids.mapped("line_id").ids
         )
+        self.write({"proposal_date": False})
         lines.button_update_proposal()
 
     @api.onchange("proposal_date")
@@ -116,9 +119,6 @@ class PurchaseOrder(models.Model):
             self.action_cancel_draft()
         if data:
             self._update_proposal_to_purchase_line(data, body)
-            self.env["purchase.line.proposal"].search(
-                [("order_id", "=", self.id)]
-            ).unlink()
         self.write({"proposal_state": "approved"})
         self.message_post(body="\n".join(body))
         self._post_process_approved_proposal(initial_state)
@@ -129,7 +129,9 @@ class PurchaseOrder(models.Model):
         """
         if initial_state in ("approved", "confirmed"):
             self.signal_workflow("purchase_confirm")
-            self.signal_workflow("purchase_approved")
+            self.signal_workflow("purchase_approve")
+        # clean accepted proposals
+        self.env["purchase.line.proposal"].search([("order_id", "=", self.id)]).unlink()
 
     def _prepare_proposal_data(self):
         self.ensure_one()
@@ -142,16 +144,15 @@ class PurchaseOrder(models.Model):
             vals = {"product_qty": elm.qty}
             if elm.line_id in res:
                 # we already have a purchase_line as origin of these data
-                # then we'll create a new line
-                vals["order_id"] = elm.order_id.id
-                vals["price_unit"] = elm.price_u or elm.line_id.price_unit
+                # then we'll create a new line by copy
                 vals["date_planned"] = elm.date or elm.line_id.date_planned
-                vals["product_id"] = elm.line_id.product_id.id
-                vals["name"] = elm.line_id.product_id.display_name
-                vals["proposal"] = elm
+                if elm.price_u and self.partner_id.check_price_on_proposal:
+                    vals["price_unit"] = elm.price_u or elm.line_id.price_unit
+                else:
+                    vals["price_unit"] = elm.line_id.price_unit
             else:
                 # it'll be used for write
-                if elm.price_u:
+                if elm.price_u and self.partner_id.check_price_on_proposal:
                     vals["price_unit"] = elm.price_u
                 if elm.date:
                     vals["date_planned"] = elm.date
@@ -176,8 +177,13 @@ class PurchaseOrder(models.Model):
                 todo = len(data[line_id]) - 1
                 while todo:
                     # create other lines if any
-                    self.env["purchase.order.line"].create(data[line_id][todo])
-                    body.append(_("Created line: %s" % data[line_id][todo]))
+                    vals = data[line_id][todo]
+                    new_vals = {}
+                    for elm in ["date_planned", "price_unit", "product_qty"]:
+                        if elm in vals:
+                            new_vals.update({elm: vals[elm]})
+                    line_id.copy(new_vals)
+                    body.append(_("Created line: %s" % vals))
                     todo -= 1
 
     @api.multi
@@ -200,7 +206,6 @@ class PurchaseOrder(models.Model):
         ]
 
     def _fields_prevent_to_update(self, vals):
-        res = False
         if [x for x in vals.keys() if x[:9] != "proposal_"]:
-            res = True
-        return res
+            return True
+        return False

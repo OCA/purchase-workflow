@@ -15,6 +15,7 @@
     "data": [
         "security/security.xml",
         "security/ir.model.access.csv",
+        "views/partner.xml",
         "views/purchase_order.xml",
         "views/purchase_line_proposal.xml",
         "views/supplier_purchase_order.xml",

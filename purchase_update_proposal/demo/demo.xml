@@ -10,6 +10,7 @@
         <field name="country_id" ref="base.us"/>
         <field name="tz">Europe/Brussels</field>
         <field name="email">supplier@example.com</field>
+        <field name="check_price_on_proposal" eval="1"/>
         <field name="phone">(441)-695-2334</field>
     </record>
 
@@ -19,12 +20,18 @@
         <field name="password">supplier</field>
         <field name="signature"><![CDATA[<span>- - <br/>Mr Demo Supplier</span>]]></field>
         <field name="groups_id"
-               eval="[(4, ref('group_supplier_own_purchase')), (4, ref('group_purchase_proposal_user'))]"/>
+               eval="[(4, ref('group_supplier_own_purchase'))]"/>
     </record>
 
     <record id="base.user_root" model="res.users">
         <field name="groups_id"
                eval="[(4, ref('group_supplier_own_purchase')), (4, ref('group_purchase_proposal_user'))]"/>
+    </record>
+
+    <record id="tax17" model="account.tax">
+        <field name="name">17</field>
+        <field name="amount">17</field>
+        <field name="type">percent</field>
     </record>
 
     <record id="purchase_order" model="purchase.order">
@@ -39,6 +46,7 @@
                 'name': 'DVD RW',
                 'price_unit': 22.80,
                 'product_qty': 15.0,
+                'taxes_id': [(6, 0, [ref('tax17')])],
                 'product_uom': ref('product.product_uom_unit'),
                 'date_planned': DateTime.today() + relativedelta(days=3)}),
             (0, 0, {
@@ -46,6 +54,7 @@
                 'name': 'Ipod',
                 'price_unit': 19.50,
                 'product_qty': 5.0,
+                'taxes_id': [(6, 0, [ref('tax17')])],
                 'product_uom': ref('product.product_uom_unit'),
                 'date_planned': DateTime.today() + relativedelta(days=3)}),
         ]"/>
