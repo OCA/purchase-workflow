@@ -36,7 +36,9 @@ class WorkAcceptance(models.Model):
         compute="_compute_fines_invoice_ids", string="Fines Invoice Count"
     )
     fines_invoice_ids = fields.One2many(
-        comodel_name="account.move", inverse_name="late_wa_id", string="Fines Invoices",
+        comodel_name="account.move",
+        inverse_name="late_wa_id",
+        string="Fines Invoices",
     )
 
     @api.depends("fines_invoice_ids")
