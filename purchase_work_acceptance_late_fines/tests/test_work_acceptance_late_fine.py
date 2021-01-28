@@ -1,7 +1,5 @@
 # Copyright 2020 Ecosoft Co., Ltd. (http://ecosoft.co.th)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-import ast
-
 from dateutil.relativedelta import relativedelta
 
 from odoo import fields
@@ -72,6 +70,8 @@ class TestWorkAcceptanceLateFine(SavepointCase):
                 ],
             }
         )
+        work_acceptance._onchange_late_days()
+        work_acceptance._onchange_fines_late()
         return work_acceptance
 
     def test_01_compute_wa_late(self):
@@ -81,18 +81,13 @@ class TestWorkAcceptanceLateFine(SavepointCase):
         self.assertEqual(work_acceptance.late_days, 2)
         self.assertEqual(work_acceptance.fines_rate, 100.0)
         self.assertEqual(work_acceptance.fines_late, 200.0)
-        self.assertEqual(work_acceptance.date_due, self.late2days)
-        work_acceptance.late_days = 4
-        late4days = fields.Datetime.now() - relativedelta(days=4)
-        self.assertEqual(work_acceptance.date_due, late4days)
-        self.assertEqual(work_acceptance.fines_late, 400.0)
 
     def test_02_wa_late_multi_currency(self):
         work_acceptance = self._create_wa(
             self.late2days, self.currency_usd.id, product_qty=2
         )
         self.assertEqual(work_acceptance.currency_id.id, self.currency_usd.id)
-        move = self.env["account.move"].create({"type": "out_invoice"})
+        move = self.env["account.move"].create({"move_type": "out_invoice"})
         self.assertEqual(move.currency_id.id, self.currency_eur.id)
         with Form(move) as m:
             m.partner_id = self.res_partner
@@ -103,25 +98,24 @@ class TestWorkAcceptanceLateFine(SavepointCase):
     def test_03_create_fines_from_wa(self):
         work_acceptance1 = self._create_wa(self.late2days)
         work_acceptance2 = self._create_wa(self.not_late)
-        result = work_acceptance1.action_create_fines_invoice_form()
+        result = work_acceptance1.action_create_fines_invoice()
         # Should be form view
-        move_id = self.env[result["res_model"]].browse(result["res_id"])
-        self.assertEqual(move_id.late_wa_id.id, work_acceptance1.id)
+        move = self.env[result["res_model"]].browse(result["res_id"])
+        self.assertEqual(move.late_wa_id.id, work_acceptance1.id)
         self.assertEqual(len(work_acceptance1.fines_invoice_ids.ids), 1)
         self.assertEqual(work_acceptance1.fines_invoice_count, 1)
-
         # Can create 1 time until you cancel fines invoice
         with self.assertRaises(UserError):
-            work_acceptance1.action_create_fines_invoice_form()
-        move_id.button_cancel()
-        work_acceptance1.action_create_fines_invoice_form()
+            work_acceptance1.action_create_fines_invoice()
+        move.button_cancel()
+        work_acceptance1.action_create_fines_invoice()
         self.assertEqual(len(work_acceptance1.fines_invoice_ids.ids), 2)
         self.assertEqual(work_acceptance1.fines_invoice_count, 2)
         # Not late can't create fines
         with self.assertRaises(UserError):
-            work_acceptance2.action_create_fines_invoice_form()
+            work_acceptance2.action_create_fines_invoice()
         # Button from wa to fines
-        work_acceptance1.with_context({"fines_invoice": True}).action_view_invoice()
+        work_acceptance1.action_view_invoice()
 
     def test_04_create_multi_fines_from_wa(self):
         work_acceptance1 = self._create_wa(self.late2days)
@@ -131,6 +125,6 @@ class TestWorkAcceptanceLateFine(SavepointCase):
         result = work_acceptance.with_context(ctx).action_create_fines_invoice()
         # Should be tree view
         self.assertEqual(result["res_id"], 0)
-        domain = ast.literal_eval(result["domain"])
+        domain = result["domain"]
         move_ids = self.env[result["res_model"]].browse(domain[0][2])
         self.assertEqual(move_ids.mapped("late_wa_id").ids, work_acceptance.ids)
