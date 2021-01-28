@@ -26,14 +26,15 @@
         <field name="arch" type="xml">
             <xpath expr="//header" position="inside">
                 <button
-                    name="action_create_fines_invoice_form"
+                    name="action_create_fines_invoice"
                     string="Create Fines Invoice"
                     type="object"
                     class="oe_highlight"
                     attrs="{'invisible': ['|', '|', ('state', '!=', 'accept'), ('fines_late', '=', 0.0), ('fines_invoice_ids', '!=', [])]}"
+                    groups="account.group_account_invoice"
                 />
                 <button
-                    name="action_create_fines_invoice_form"
+                    name="action_create_fines_invoice"
                     string="Create Fines Invoice"
                     type="object"
                     attrs="{'invisible': ['|', '|', ('state', '!=', 'accept'), ('fines_late', '=', 0.0), ('fines_invoice_ids', '=', [])]}"
@@ -46,8 +47,8 @@
                         name="action_view_invoice"
                         class="oe_stat_button"
                         icon="fa-pencil-square-o"
-                        context="{'fines_invoice': True}"
                         attrs="{'invisible': [('fines_invoice_ids', '=', [])]}"
+                        context="{'default_partner_id': partner_id}"
                     >
                         <field
                             name="fines_invoice_count"
@@ -60,7 +61,7 @@
             </xpath>
             <xpath expr="//notebook" position="inside">
                 <page
-                    string="Fines"
+                    string="Late Fines"
                     name="fines_late"
                     groups="purchase_work_acceptance_late_fines.group_enable_fines_on_wa"
                 >
@@ -90,13 +91,10 @@
     </record>
     <record id="action_account_invoice_from_list" model="ir.actions.server">
         <field name="name">Create Fines Invoice</field>
-        <field
-            name="model_id"
-            ref="purchase_work_acceptance_late_fines.model_work_acceptance"
-        />
+        <field name="model_id" ref="purchase_work_acceptance.model_work_acceptance" />
         <field
             name="binding_model_id"
-            ref="purchase_work_acceptance_late_fines.model_work_acceptance"
+            ref="purchase_work_acceptance.model_work_acceptance"
         />
         <field name="binding_view_types">list</field>
         <field name="state">code</field>

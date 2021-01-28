@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="view_move_form" model="ir.ui.view">
         <field name="name">account.move.form</field>
@@ -7,7 +8,7 @@
             <xpath expr="//field[@name='partner_id']" position="after">
                 <field
                     name="late_wa_id"
-                    attrs="{'invisible': [('type', '!=', 'out_invoice')]}"
+                    attrs="{'invisible': [('move_type', '!=', 'out_invoice')]}"
                     options="{'no_create': True}"
                     groups="purchase_work_acceptance_late_fines.group_enable_fines_on_wa"
                 />
