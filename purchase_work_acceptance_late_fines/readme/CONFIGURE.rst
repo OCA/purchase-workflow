@@ -2,7 +2,6 @@
 
 #. Go to *Purchase > Configuration > Settings*
 #. Check 'Enable Late Delivery Fines on Work Acceptance'
-#. Select Revenue Account for fines.
 
 Note:
 

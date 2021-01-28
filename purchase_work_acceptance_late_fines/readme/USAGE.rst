@@ -6,7 +6,6 @@
 #. Accept the Work Acceptance
 #. Normally process
 
-
 **Create Fines from Work Acceptance**
 
 #. Go to Purchase > Orders > Work Acceptance
