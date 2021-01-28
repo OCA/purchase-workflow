@@ -18,7 +18,9 @@ class ResConfigSettings(models.TransientModel):
         readonly=False,
     )
     wa_fines_rate = fields.Monetary(
-        related="company_id.wa_fines_rate", string="Fines Rate", readonly=False,
+        related="company_id.wa_fines_rate",
+        string="Fines Rate",
+        readonly=False,
     )
 
     @api.onchange("group_enable_fines_on_wa")

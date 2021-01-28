@@ -9,5 +9,6 @@ class Company(models.Model):
 
     wa_fines_rate = fields.Monetary(string="Fines Rate")
     wa_fines_late_account_id = fields.Many2one(
-        comodel_name="account.account", string="Late Delivery Fines Revenue Account",
+        comodel_name="account.account",
+        string="Late Delivery Fines Revenue Account",
     )
