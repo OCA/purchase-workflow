@@ -12,7 +12,7 @@ class TestPurchaseIsolatedRFQ(TransactionCase):
         self.rfq = self.env["purchase.order"].create(vals)
 
     def test_quotation_convert_to_order(self):
-        """ Expect.
+        """Expect.
         - When quotation is converted to order
           - Status chagned to 'done'
           - New purchase.order of order_sequence = True created
