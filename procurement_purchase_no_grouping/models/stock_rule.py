@@ -2,6 +2,7 @@
 # Copyright 2015-2016 Tecnativa - Pedro M. Baeza
 # Copyright 2018 Tecnativa - Carlos Dauden
 # Copyright 2020 Radovan Skolnik
+# Copyright 2020 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
 import random
@@ -29,7 +30,14 @@ class StockRule(models.Model):
         lines confirmation).
         """
         domain = super()._make_po_get_domain(company_id, values, partner)
-        if values.get("grouping") == "order":
+        if values.get("grouping") == "product_category":
+            if values.get("supplier"):
+                suppinfo = values["supplier"]
+                product = suppinfo.product_id or suppinfo.product_tmpl_id
+                domain += (
+                    ("order_line.product_id.categ_id", "=", product.categ_id.id),
+                )
+        elif values.get("grouping") == "order":
             if values.get("move_dest_ids"):
                 domain += (("id", "=", -values["move_dest_ids"][:1].id),)
             # The minimum is imposed by PG int4 limit
