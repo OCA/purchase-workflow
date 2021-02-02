@@ -5,7 +5,7 @@
 
 {
     "name": "Procurement Purchase No Grouping",
-    "version": "13.0.2.0.0",
+    "version": "13.0.3.0.0",
     "author": "AvanzOSC, Tecnativa, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
     "category": "Procurements",
