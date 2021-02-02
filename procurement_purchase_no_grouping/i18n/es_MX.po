@@ -74,6 +74,12 @@ msgid "Product Category"
 msgstr ""
 
 #. module: procurement_purchase_no_grouping
+#: model:ir.model.fields.selection,name:procurement_purchase_no_grouping.selection__product_category__procured_purchase_grouping__product_category
+#: model:ir.model.fields.selection,name:procurement_purchase_no_grouping.selection__res_company__procured_purchase_grouping__product_category
+msgid "Product category grouping"
+msgstr ""
+
+#. module: procurement_purchase_no_grouping
 #: model_terms:ir.ui.view,arch_db:procurement_purchase_no_grouping.res_config_settings_view_form_procurement_purchase_grouping
 msgid "Purchase"
 msgstr ""
@@ -93,7 +99,9 @@ msgid ""
 "* No line grouping: If there are any open purchase order for the same "
 "supplier, it will be reused, but lines won't be merged.\n"
 "* No order grouping: This option will prevent any kind of grouping.\n"
-"* <empty>: If no value is selected, system-wide default will be used."
+"* <empty>: If no value is selected, system-wide default will be used.\n"
+"* Product category grouping: This option groups products in the same "
+"purchase order that belongs to the same product category."
 msgstr ""
 
 #. module: procurement_purchase_no_grouping
@@ -106,7 +114,10 @@ msgid ""
 "grouping lines and orders when possible.\n"
 "* No line grouping: If there are any open purchase order for the same "
 "supplier, it will be reused, but lines won't be merged.\n"
-"* No order grouping: This option will prevent any kind of grouping."
+"* No order grouping: This option will prevent any kind of grouping.\n"
+"* <empty>: If no value is selected, system-wide default will be used.\n"
+"* Product category grouping: This option groups products in the same "
+"purchase order that belongs to the same product category."
 msgstr ""
 
 #. module: procurement_purchase_no_grouping
