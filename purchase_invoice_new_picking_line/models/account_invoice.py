@@ -63,9 +63,10 @@ class AccountInvoice(models.Model):
     def purchase_order_change(self):
         res = super(AccountInvoice, self).purchase_order_change()
         po = self.env["purchase.order"].search([("name", "=", self.origin)])
-        moves = po.picking_ids.filtered(
-            lambda p: p.state == "done"
-        ).move_ids_without_package
+        pickings = po.picking_ids.filtered(lambda p: p.state == "done")
+        moves = self.env["stock.move"]
+        for picking in pickings:
+            moves += picking.move_ids_without_package
         moves_to_invoice = moves.filtered(
             lambda m: m.state == "done" and not m.purchase_line_id
         )
