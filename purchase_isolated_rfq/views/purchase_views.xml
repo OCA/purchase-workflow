@@ -30,7 +30,7 @@
                     <field
                         name="rfq_state"
                         widget="statusbar"
-                        statusbar_visible="draft, done"
+                        statusbar_visible="draft,done"
                         invisible="context.get('order_sequence', False)"
                     />
                 </header>
