@@ -12,6 +12,7 @@ class ResCompany(models.Model):
             ("standard", "Standard grouping"),
             ("line", "No line grouping"),
             ("order", "No order grouping"),
+            ("product_category", "Product category grouping"),
         ],
         string="Procured purchase grouping",
         default="standard",
@@ -24,5 +25,8 @@ class ResCompany(models.Model):
         "the same supplier, it will be reused, but lines won't be "
         "merged.\n"
         "* No order grouping: This option will prevent any kind of "
-        "grouping.",
+        "grouping.\n"
+        "* <empty>: If no value is selected, system-wide default will be used.\n"
+        "* Product category grouping: This option groups products in the "
+        "same purchase order that belongs to the same product category.",
     )
