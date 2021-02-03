@@ -7,10 +7,10 @@ from odoo import api, fields, models
 
 
 class PurchaseOrder(models.Model):
-    _inherit = 'purchase.order'
+    _inherit = "purchase.order"
 
     @api.multi
-    @api.depends('order_line')
+    @api.depends("order_line")
     def _compute_max_line_sequence(self):
         """Allow to know the highest sequence entered in purchase order lines.
         Then we add 1 to this value for the next sequence which is given
@@ -19,25 +19,32 @@ class PurchaseOrder(models.Model):
         """
         for purchase in self:
             purchase.max_line_sequence = (
-                max(purchase.mapped('order_line.sequence') or [0]) + 1)
+                max(purchase.mapped("order_line.sequence") or [0]) + 1
+            )
 
-    max_line_sequence = fields.Integer(string='Max sequence in lines',
-                                       compute='_compute_max_line_sequence')
+    max_line_sequence = fields.Integer(
+        string="Max sequence in lines", compute="_compute_max_line_sequence"
+    )
 
     @api.multi
     def _create_picking(self):
         res = super(PurchaseOrder, self)._create_picking()
         for order in self:
-            if any([ptype in ['product', 'consu'] for ptype in
-                    order.order_line.mapped('product_id.type')]):
+            if any(
+                [
+                    ptype in ["product", "consu"]
+                    for ptype in order.order_line.mapped("product_id.type")
+                ]
+            ):
                 pickings = order.picking_ids.filtered(
-                    lambda x: x.state not in ('done', 'cancel'))
+                    lambda x: x.state not in ("done", "cancel")
+                )
                 if pickings:
                     picking = pickings[0]
                     for move, line in zip(
-                            sorted(picking.move_lines,
-                                   key=lambda m: m.id), order.order_line):
-                        move.write({'sequence': line.sequence})
+                        sorted(picking.move_lines, key=lambda m: m.id), order.order_line
+                    ):
+                        move.write({"sequence": line.sequence})
         return res
 
     @api.multi
@@ -56,23 +63,27 @@ class PurchaseOrder(models.Model):
 
     @api.multi
     def copy(self, default=None):
-        return super(PurchaseOrder,
-                     self.with_context(keep_line_sequence=True)).copy(default)
+        return super(PurchaseOrder, self.with_context(keep_line_sequence=True)).copy(
+            default
+        )
 
 
 class PurchaseOrderLine(models.Model):
-    _inherit = 'purchase.order.line'
-    _order = 'sequence, id'
+    _inherit = "purchase.order.line"
+    _order = "sequence, id"
 
-    sequence = fields.Integer('Hidden Sequence',
-                              help="Gives the sequence of the line when "
-                                   "displaying the purchase order.",
-                              default=9999)
+    sequence = fields.Integer(
+        "Hidden Sequence",
+        help="Gives the sequence of the line when " "displaying the purchase order.",
+        default=9999,
+    )
 
-    sequence2 = fields.Integer('Sequence',
-                               help="Displays the sequence of the line in "
-                                    "the purchase order.",
-                               related='sequence', readonly=True)
+    sequence2 = fields.Integer(
+        "Sequence",
+        help="Displays the sequence of the line in " "the purchase order.",
+        related="sequence",
+        readonly=True,
+    )
 
     @api.multi
     def _prepare_stock_moves(self, picking):
@@ -85,6 +96,6 @@ class PurchaseOrderLine(models.Model):
     def create(self, values):
         line = super(PurchaseOrderLine, self).create(values)
         # We do not reset the sequence when copying an entire purchase order
-        if not self.env.context.get('keep_line_sequence'):
+        if not self.env.context.get("keep_line_sequence"):
             line.order_id._reset_sequence()
         return line
