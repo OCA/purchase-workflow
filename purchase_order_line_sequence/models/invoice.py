@@ -7,7 +7,7 @@ from odoo import models
 
 
 class AccountInvoiceLine(models.Model):
-    _inherit = 'account.invoice.line'
+    _inherit = "account.invoice.line"
 
     def _set_additional_fields(self, invoice):
         if self.purchase_line_id:
