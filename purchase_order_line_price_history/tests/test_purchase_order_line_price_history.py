@@ -66,7 +66,8 @@ class TestPurchaseOrderLinePriceHistory(TestPurchaseOrderLinePriceHistoryBase):
         wizard = self.launch_wizard(self.purchase_order_3.order_line.id)
         self.assertEqual(len(wizard.line_ids), 1)
         self.assertEqual(
-            wizard.line_ids.purchase_order_line_id, self.purchase_order_2.order_line,
+            wizard.line_ids.purchase_order_line_id,
+            self.purchase_order_2.order_line,
         )
         self.assertEqual(wizard.line_ids.price_unit, 20)
         # Set partner to False. Two history lines should be shown and
@@ -96,7 +97,8 @@ class TestPurchaseOrderLinePriceHistory(TestPurchaseOrderLinePriceHistoryBase):
         wizard = self.launch_wizard(self.purchase_order_4.order_line.id)
         self.assertEqual(len(wizard.line_ids), 1)
         self.assertEqual(
-            wizard.line_ids.purchase_order_line_id, self.purchase_order_2.order_line,
+            wizard.line_ids.purchase_order_line_id,
+            self.purchase_order_2.order_line,
         )
         # If include_rfq is checked two history lines should be shown
         # and they should be associated with self.purchase_order_2 order line
@@ -127,7 +129,8 @@ class TestPurchaseOrderLinePriceHistory(TestPurchaseOrderLinePriceHistoryBase):
         wizard = self.launch_wizard(self.purchase_order_4.order_line.id)
         self.assertEqual(len(wizard.line_ids), 1)
         self.assertEqual(
-            wizard.line_ids.purchase_order_line_id, self.purchase_order_2.order_line,
+            wizard.line_ids.purchase_order_line_id,
+            self.purchase_order_2.order_line,
         )
         # Uncheck include_commercial_partner and purchase history
         # will be empty.

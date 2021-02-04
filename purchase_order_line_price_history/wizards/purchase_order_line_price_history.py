@@ -22,7 +22,9 @@ class PurchaseOrderLinePriceHistory(models.TransientModel):
     )
     product_id = fields.Many2one(related="purchase_order_line_id.product_id")
     partner_id = fields.Many2one(
-        comodel_name="res.partner", string="Supplier", default=_default_partner_id,
+        comodel_name="res.partner",
+        string="Supplier",
+        default=_default_partner_id,
     )
     line_ids = fields.One2many(
         comodel_name="purchase.order.line.price.history.line",
@@ -70,10 +72,12 @@ class PurchaseOrderLinePriceHistoryLine(models.TransientModel):
     _description = "Purchase order line price history line"
 
     history_id = fields.Many2one(
-        comodel_name="purchase.order.line.price.history", string="History",
+        comodel_name="purchase.order.line.price.history",
+        string="History",
     )
     purchase_order_line_id = fields.Many2one(
-        comodel_name="purchase.order.line", string="Purchase order line",
+        comodel_name="purchase.order.line",
+        string="Purchase order line",
     )
     order_id = fields.Many2one(related="purchase_order_line_id.order_id")
     partner_id = fields.Many2one(related="purchase_order_line_id.partner_id")
