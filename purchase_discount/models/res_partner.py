@@ -13,4 +13,6 @@ class ResPartner(models.Model):
         string='Default Supplier Discount (%)',
         digits=dp.get_precision('Discount'),
         help="This value will be used as the default one, for each new"
-        " supplierinfo line depending on that supplier.")
+        " supplierinfo line depending on that supplier.",
+        track_visibility="onchange",
+    )
