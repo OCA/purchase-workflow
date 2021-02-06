@@ -33,12 +33,19 @@ class PurchaseOrderLine(models.Model):
                 vals["scheduled_date"] = key_element["date_planned"]
         return vals
 
+    def _get_sorted_keys(self, line):
+        """Return a tuple of keys to use in order to sort the order lines.
+        This method is designed for extensibility, so that other modules can
+        add additional keys or replace them by others."""
+        return (line.date_planned,)
+
     def _create_stock_moves(self, picking):
         """Group the receptions in one picking per group key"""
         moves = self.env["stock.move"]
         # Group the order lines by group key
         order_lines = sorted(
-            self.filtered(lambda l: not l.display_type), key=lambda l: l.date_planned
+            self.filtered(lambda l: not l.display_type),
+            key=lambda l: self._get_sorted_keys(l),
         )
         date_groups = groupby(
             order_lines, lambda l: self._get_group_keys(l.order_id, l, picking=picking)
