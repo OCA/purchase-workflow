@@ -55,6 +55,7 @@
             <field name="fiscal_position_id" position="after">
                 <field
                     name="wa_accepted"
+                    groups="purchase_work_acceptance.group_enable_wa_on_po"
                     attrs="{'invisible': [('state', 'not in', ('purchase', 'done'))]}"
                 />
             </field>
