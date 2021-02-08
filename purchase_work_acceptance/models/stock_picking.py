@@ -13,10 +13,6 @@ class Picking(models.Model):
         comodel_name="work.acceptance",
         string="WA Reference",
         copy=False,
-        domain=lambda self: [
-            ("state", "=", "accept"),
-            ("purchase_id", "=", self._context.get("active_id")),
-        ],
     )
 
     def _compute_require_wa(self):
