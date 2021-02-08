@@ -7,10 +7,12 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='backorder_id']" position="after">
                 <field name="require_wa" invisible="1" />
+                <field name="purchase_id" invisible="1" />
                 <field
                     name="wa_id"
                     options="{'no_create': True}"
                     groups="purchase_work_acceptance.group_enable_wa_on_in"
+                    domain="[('state', '=', 'accept'),('purchase_id', '=', purchase_id)]"
                     attrs="{'required': [('require_wa','=', True)],
                                'readonly':[('state', 'in' , ('done', 'cancel'))],
                                'invisible': ['|', ('id', '=', False), ('picking_type_code', '!=', 'incoming')]}"
