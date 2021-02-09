@@ -2,7 +2,7 @@
     <data>
         <record id="group_purchase_own_orders" model="res.groups">
             <field name="name">User (own orders)</field>
-            <field name="category_id" ref="base.module_category_operations_purchase" />
+            <field name="category_id" ref="base.module_category_inventory_purchase" />
             <field
                 name="implied_ids"
                 eval="[(4, ref('purchase.group_purchase_user'))]"
