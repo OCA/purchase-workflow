@@ -11,7 +11,7 @@
         </field>
     </record>
     <record id="action_purchase_orders_lines" model="ir.actions.act_window">
-        <field name="name">Order Lines</field>
+        <field name="name">Purchase Order Lines</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">purchase.order.line</field>
         <field name="view_mode">tree,pivot</field>
@@ -19,7 +19,7 @@
 
     <menuitem
         id="purchase_order_line_menu"
-        name="Order Lines"
+        name="Purchase Order Lines"
         action="action_purchase_orders_lines"
         parent="purchase.menu_procurement_management"
         sequence="7"
