@@ -99,7 +99,9 @@ class TestPurchaseOrder(common.SavepointCase):
             )
         ]
         invoice.update({"invoice_line_ids": vals})
-        return invoice.invoice_line_ids._onchange_mark_recompute_taxes()
+        return invoice.invoice_line_ids.with_context(
+            check_move_validity=False
+        )._onchange_mark_recompute_taxes()
 
     def test_invoice(self):
         invoice = self.env["account.move"].create(
