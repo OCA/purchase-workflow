@@ -37,6 +37,7 @@ msgstr ""
 
 #. module: purchase_work_acceptance
 #: model:ir.model.fields.selection,name:purchase_work_acceptance.selection__work_acceptance__state__accept
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.purchase_order_form_inherit
 #: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_work_acceptance_search
 msgid "Accepted"
 msgstr ""
@@ -50,6 +51,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__date_accept
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance_line__date_accept
 msgid "Accepted Date"
+msgstr ""
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_purchase_order_line__qty_accepted
+msgid "Accepted Qty."
 msgstr ""
 
 #. module: purchase_work_acceptance
@@ -510,6 +516,16 @@ msgid "Subtotal"
 msgstr ""
 
 #. module: purchase_work_acceptance
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.purchase_order_form_inherit
+msgid "To Accept"
+msgstr ""
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_purchase_order_line__qty_to_accept
+msgid "To Accept Qty."
+msgstr ""
+
+#. module: purchase_work_acceptance
 #: model:ir.model.fields,help:purchase_work_acceptance.field_account_bank_statement_line__wa_id
 #: model:ir.model.fields,help:purchase_work_acceptance.field_account_move__wa_id
 #: model:ir.model.fields,help:purchase_work_acceptance.field_account_payment__wa_id
@@ -565,6 +581,11 @@ msgstr ""
 #. module: purchase_work_acceptance
 #: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.purchase_order_form_inherit
 msgid "WA"
+msgstr ""
+
+#. module: purchase_work_acceptance
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_purchase_order__wa_accepted
+msgid "WA Accepted"
 msgstr ""
 
 #. module: purchase_work_acceptance
