@@ -23,6 +23,7 @@ msgstr ""
 
 #. module: purchase_order_uninvoiced_amount
 #: model_terms:ir.ui.view,arch_db:purchase_order_uninvoiced_amount.purchase_order_tree
+#: model_terms:ir.ui.view,arch_db:purchase_order_uninvoiced_amount.purchase_order_view_tree
 msgid "Total Uninvoiced amount"
 msgstr ""
 
