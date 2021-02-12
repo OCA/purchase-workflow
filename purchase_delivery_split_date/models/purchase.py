@@ -37,7 +37,9 @@ class PurchaseOrderLine(models.Model):
         """Group the receptions in one picking per group key"""
         moves = self.env["stock.move"]
         # Group the order lines by group key
-        order_lines = sorted(self, key=lambda l: l.date_planned)
+        order_lines = sorted(
+            self.filtered(lambda l: not l.display_type), key=lambda l: l.date_planned
+        )
         date_groups = groupby(
             order_lines, lambda l: self._get_group_keys(l.order_id, l, picking=picking)
         )

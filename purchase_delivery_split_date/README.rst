@@ -100,6 +100,7 @@ Contributors
 * Lois Rilo <lois.rilo@forgeflow.com> (migration to v10)
 * Alexandre Fayolle <alexandre.fayolle@camptocamp.com>
 * Pimolnat Suntian <pimolnats@ecosoft.co.th>
+* Mallory Marcot <contact@mallory-marcot.com>
 
 Maintainers
 ~~~~~~~~~~~
