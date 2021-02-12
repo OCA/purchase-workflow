@@ -57,6 +57,7 @@ Contributors
 
   * Manuel Calero
   * Ernesto Tejeda
+  * Víctor Martínez
 
 Maintainers
 ~~~~~~~~~~~
