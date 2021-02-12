@@ -1,5 +1,6 @@
 # Copyright 2020 Tecnativa - Manuel Calero
 # Copyright 2020 Tecnativa - Pedro M. Baeza
+# Copyright 2021 Tecnativa - Víctor Martínez
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 from odoo.tests.common import SavepointCase
@@ -121,3 +122,10 @@ class TestPurchaseOrderUninvoiceAmount(SavepointCase):
         self.assertEquals(purchase.amount_uninvoiced, 400)
         self._create_invoice_from_purchase(purchase)
         self.assertEquals(purchase.amount_uninvoiced, 0)
+
+    def test_create_purchase_receive_and_invoice_more_qty(self):
+        purchase = self._create_purchase(10, 10)
+        self.assertEquals(purchase.amount_uninvoiced, 1000)
+        invoice = self._create_invoice_from_purchase(purchase)
+        invoice.invoice_line_ids.quantity = 20
+        self.assertEquals(purchase.amount_uninvoiced, -1000)
