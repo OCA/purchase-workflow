@@ -21,8 +21,5 @@ class AccountMoveLine(models.Model):
     def _onchange_mark_recompute_taxes(self):
         for line in self:
             if line.purchase_line_id.usage_id.account_id:
-                account = line.purchase_line_id.usage_id.account_id
-            else:
-                account = line._get_computed_account()
-            line.account_id = account
+                line.account_id = line.purchase_line_id.usage_id.account_id
         return super(AccountMoveLine, self)._onchange_mark_recompute_taxes()
