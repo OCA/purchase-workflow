@@ -376,5 +376,8 @@ class PurchaseOrderRecommendationLine(models.TransientModel):
         return {
             'order_id': self.wizard_id.order_id.id,
             'product_id': self.product_id.id,
+            # set this related field manually, as there's a glitch
+            # in ORM that doesn't set its initial value
+            'partner_id': self.partner_id.id,
             'sequence': sequence,
         }
