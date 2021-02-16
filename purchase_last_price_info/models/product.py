@@ -3,13 +3,14 @@
 #   (http://www.eficent.com)
 
 from odoo import api, fields, models
+import odoo.addons.decimal_precision as dp
 
 
 class ProductProduct(models.Model):
     _inherit = 'product.product'
 
     last_purchase_price = fields.Float(
-        string='Last Purchase Price')
+        string='Last Purchase Price', digits=dp.get_precision('Product Price'))
     last_purchase_date = fields.Date(
         string='Last Purchase Date')
     last_supplier_id = fields.Many2one(
@@ -63,7 +64,7 @@ class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     last_purchase_price = fields.Float(
-        string='Last Purchase Price')
+        string='Last Purchase Price', digits=dp.get_precision('Product Price'))
     last_purchase_date = fields.Date(
         string='Last Purchase Date')
     last_supplier_id = fields.Many2one(
