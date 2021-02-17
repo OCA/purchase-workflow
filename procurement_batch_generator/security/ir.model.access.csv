@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_procurement_batch_generator,Full access on procurement.batch.generator,model_procurement_batch_generator,stock.group_stock_user,1,1,1,1
+access_procurement_batch_generator_line,Full access on procurement.batch.generator.line,model_procurement_batch_generator_line,stock.group_stock_user,1,1,1,1
