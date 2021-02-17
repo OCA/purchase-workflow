@@ -55,7 +55,8 @@ class PurchaseOrder(models.Model):
                 message = po._purchase_request_confirm_message_content(
                     request, requests_dict[request_id]
                 )
-                request.message_post(body=message, subtype="mail.mt_comment")
+                if message is not None:  # override preparation method to avoid email
+                    request.message_post(body=message, subtype="mail.mt_comment")
         return True
 
     def _purchase_request_line_check(self):
@@ -172,9 +173,10 @@ class PurchaseOrderLine(models.Model):
                 message = self._purchase_request_confirm_done_message_content(
                     message_data
                 )
-                alloc.purchase_request_line_id.request_id.message_post(
-                    body=message, subtype="mail.mt_comment"
-                )
+                if message is not None:  # override preparation method to avoid email
+                    alloc.purchase_request_line_id.request_id.message_post(
+                        body=message, subtype="mail.mt_comment"
+                    )
 
                 alloc.purchase_request_line_id._compute_qty()
         return True
