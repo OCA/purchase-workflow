@@ -1,0 +1,29 @@
+<odoo>
+    <record model="ir.ui.view" id="view_purchase_order_line_pivot">
+        <field name="name">purchase.order.line.pivot</field>
+        <field name="model">purchase.order.line</field>
+        <field name="arch" type="xml">
+            <pivot string="Order Lines" sample="1">
+                <field name="product_id" type="row" />
+                <field name="product_qty" type="col" />
+                <field name="price_subtotal" type="measure" />
+            </pivot>
+        </field>
+    </record>
+    <record id="action_purchase_orders_lines" model="ir.actions.act_window">
+        <field name="name">Purchase Order Lines</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">purchase.order.line</field>
+        <field name="view_mode">tree,pivot</field>
+    </record>
+
+    <menuitem
+        id="purchase_order_line_menu"
+        name="Purchase Order Lines"
+        action="action_purchase_orders_lines"
+        parent="purchase.menu_procurement_management"
+        sequence="7"
+    />
+
+
+</odoo>
