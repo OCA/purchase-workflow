@@ -29,6 +29,7 @@ addon | version | summary
 [purchase_open_qty](purchase_open_qty/) | 14.0.1.0.0 | Allows to identify the purchase orders that have quantities pending to invoice or to receive.
 [purchase_order_archive](purchase_order_archive/) | 14.0.1.0.0 | Archive Purchase Orders
 [purchase_order_line_deep_sort](purchase_order_line_deep_sort/) | 14.0.1.0.0 | Purchase Order Line Sort
+[purchase_order_line_menu](purchase_order_line_menu/) | 14.0.1.0.0 | Adds Purchase Order Lines Menu
 [purchase_order_type](purchase_order_type/) | 14.0.1.0.0 | Purchase Order Type
 [purchase_order_uninvoiced_amount](purchase_order_uninvoiced_amount/) | 14.0.1.0.0 | Show uninvoiced amount on purchase order tree.
 [purchase_request](purchase_request/) | 14.0.1.0.1 | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
