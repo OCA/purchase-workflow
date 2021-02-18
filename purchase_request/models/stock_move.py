@@ -14,6 +14,7 @@ class StockMove(models.Model):
         ondelete="set null",
         readonly=True,
         copy=False,
+        index=True,
     )
 
     purchase_request_allocation_ids = fields.One2many(
