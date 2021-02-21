@@ -8,10 +8,12 @@ class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
     supplier_date_planned = fields.Datetime(
-        string="Supplier Scheduled Date", compute="_compute_supplier_date_planned",
+        string="Supplier Scheduled Date",
+        compute="_compute_supplier_date_planned",
     )
     report_date_planned = fields.Datetime(
-        string="Date planned (used by report)", compute="_compute_report_date_planned",
+        string="Date planned (used by report)",
+        compute="_compute_report_date_planned",
     )
 
     @api.depends("date_planned")
