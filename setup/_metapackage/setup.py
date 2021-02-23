@@ -17,6 +17,7 @@ setuptools.setup(
         'odoo13-addon-purchase_delivery_split_date',
         'odoo13-addon-purchase_deposit',
         'odoo13-addon-purchase_discount',
+        'odoo13-addon-purchase_exception',
         'odoo13-addon-purchase_invoice_plan',
         'odoo13-addon-purchase_isolated_rfq',
         'odoo13-addon-purchase_landed_cost',
