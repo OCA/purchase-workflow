@@ -56,8 +56,11 @@ class PurchaseRequest(models.Model):
     name = fields.Char(
         string="Request Reference",
         required=True,
-        default=_get_default_name,
+        default=lambda self: _("New"),
         track_visibility="onchange",
+    )
+    is_name_editable = fields.Boolean(
+        default=lambda self: self.env.user.has_group("base.group_no_one"),
     )
     origin = fields.Char(string="Source Document")
     date_start = fields.Date(
@@ -225,6 +228,8 @@ class PurchaseRequest(models.Model):
 
     @api.model
     def create(self, vals):
+        if vals.get("name", _("New")) == _("New"):
+            vals["name"] = self._get_default_name()
         request = super(PurchaseRequest, self).create(vals)
         if vals.get("assigned_to"):
             partner_id = self._get_partner_id(request)
