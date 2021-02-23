@@ -1,12 +1,12 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* purchase_exception
+# 	* purchase_exception
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: <>\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -116,17 +116,22 @@ msgid "Purchase Order Line"
 msgstr ""
 
 #. module: purchase_exception
+#: model:ir.model,name:purchase_exception.model_purchase_exception_confirm
+msgid "Purchase exception wizard"
+msgstr ""
+
+#. module: purchase_exception
 #: model:exception.rule,description:purchase_exception.pol_excep_qty_check
 msgid "Purchase line quantity must be positive"
 msgstr ""
 
 #. module: purchase_exception
-#: selection:exception.rule,model:0
+#: model:ir.model.fields.selection,name:purchase_exception.selection__exception_rule__model__purchase_order
 msgid "Purchase order"
 msgstr ""
 
 #. module: purchase_exception
-#: selection:exception.rule,model:0
+#: model:ir.model.fields.selection,name:purchase_exception.selection__exception_rule__model__purchase_order_line
 msgid "Purchase order line"
 msgstr ""
 
@@ -149,12 +154,7 @@ msgstr ""
 
 #. module: purchase_exception
 #: model_terms:ir.ui.view,arch_db:purchase_exception.view_order_form
-msgid "You have an outstanding\n"
+msgid ""
+"You have an outstanding\n"
 "                    exception to manage:"
 msgstr ""
-
-#. module: purchase_exception
-#: model:ir.model,name:purchase_exception.model_purchase_exception_confirm
-msgid "purchase.exception.confirm"
-msgstr ""
-
