@@ -1,12 +1,12 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* purchase_order_approval_block
+# 	* purchase_order_approval_block
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: <>\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -15,7 +15,8 @@ msgstr ""
 
 #. module: purchase_order_approval_block
 #: model:res.groups,comment:purchase_order_approval_block.group_rfq_approval_block
-msgid "\n"
+msgid ""
+"\n"
 "            The user will be able to release an RFQ blocked for approval.\n"
 "        "
 msgstr ""
@@ -87,14 +88,14 @@ msgid "Name"
 msgstr ""
 
 #. module: purchase_order_approval_block
-#: code:addons/purchase_order_approval_block/models/purchase_order.py:44
+#: code:addons/purchase_order_approval_block/models/purchase_order.py:0
 #, python-format
 msgid "Order \"%s\" approval block released."
 msgstr ""
 
 #. module: purchase_order_approval_block
-#: code:addons/purchase_order_approval_block/models/purchase_order.py:29
-#: code:addons/purchase_order_approval_block/models/purchase_order.py:40
+#: code:addons/purchase_order_approval_block/models/purchase_order.py:0
+#: code:addons/purchase_order_approval_block/models/purchase_order.py:0
 #, python-format
 msgid "Order \"%s\" blocked with reason \"%s\""
 msgstr ""
@@ -121,6 +122,11 @@ msgid "Purchase Order Approval Block Reasons"
 msgstr ""
 
 #. module: purchase_order_approval_block
+#: model:ir.model,name:purchase_order_approval_block.model_purchase_exception_confirm
+msgid "Purchase exception wizard"
+msgstr ""
+
+#. module: purchase_order_approval_block
 #: model_terms:ir.ui.view,arch_db:purchase_order_approval_block.purchase_order_form
 msgid "Release Approval Block"
 msgstr ""
@@ -132,12 +138,7 @@ msgstr ""
 
 #. module: purchase_order_approval_block
 #: model:exception.rule,description:purchase_order_approval_block.po_excep_approval_block
-msgid "The approval has been blocked,\n"
+msgid ""
+"The approval has been blocked,\n"
 "                with a Blocking reason."
 msgstr ""
-
-#. module: purchase_order_approval_block
-#: model:ir.model,name:purchase_order_approval_block.model_purchase_exception_confirm
-msgid "purchase.exception.confirm"
-msgstr ""
-

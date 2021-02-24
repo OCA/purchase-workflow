@@ -1,13 +1,12 @@
-# Copyright 2017 Eficent Business and IT Consulting Services S.L.
+# Copyright 2017 ForgeFlow S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-from odoo import api, models
+from odoo import models
 
 
 class PurchaseExceptionConfirm(models.TransientModel):
     _inherit = "purchase.exception.confirm"
 
-    @api.multi
     def action_confirm(self):
         self.ensure_one()
         if self.ignore and self.related_model_id.approval_block_id:

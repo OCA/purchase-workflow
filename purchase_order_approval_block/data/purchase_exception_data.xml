@@ -9,7 +9,7 @@
         <field name="model">purchase.order</field>
         <field
             name="code"
-        >if 'approval_block_id' in purchase._fields and purchase.approval_block_id: failed = True</field>
+        >if 'approval_block_id' in self._fields and self.approval_block_id: failed = True</field>
         <!-- <field name="next_state">to approve</field> -->
         <field name="active" eval="True" />
     </record>
