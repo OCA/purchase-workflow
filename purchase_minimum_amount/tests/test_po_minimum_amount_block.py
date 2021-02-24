@@ -1,4 +1,4 @@
-# Copyright 2017 Eficent Business and IT Consulting Services S.L.
+# Copyright 2017 ForgeFlow S.L.
 # Copyright 2017 Serpent Consulting Services Pvt. Ltd.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
@@ -74,14 +74,14 @@ class TestPoAmountBlock(TransactionCase):
         )
         return purchase
 
-    def test_po_amount_block_1(self):
+    def test_po_amount_block_under_minimum_manager_user_release(self):
         """Test PO Block for Minimum Threshold Vendor Amount"""
         self.partner1.write({"minimum_po_amount": 1500.00})
 
         # Create a PO with an amount below the minimum and check that the
         # Approval Block Reason is correctly assign
         purchase1 = self._create_purchase(
-            [(self.product1, 1), (self.product2, 5), (self.product3, 8),]
+            [(self.product1, 1), (self.product2, 5), (self.product3, 8)]
         )
 
         self.assertEquals(
@@ -89,12 +89,14 @@ class TestPoAmountBlock(TransactionCase):
             self.env.ref("purchase_minimum_amount.minimum_amount_block_reason"),
         )
 
+        purchase1.with_user(self.user1_id).button_confirm()
+        self.assertEquals(purchase1.state, "draft")
         # Release the PO by pressing the button and then confirming the order
-        purchase1.sudo(self.user2_id).button_release_approval_block()
-        purchase1.sudo().button_confirm()
+        purchase1.with_user(self.user2_id).button_release_approval_block()
+        purchase1.button_confirm()
         self.assertEquals(purchase1.state, "purchase")
 
-    def test_po_amount_block_2(self):
+    def test_po_amount_block_above_minimum_group_user(self):
         """Test PO Block for Minimum Threshold Vendor Amount"""
         self.partner1.write({"minimum_po_amount": 1500.00})
 
@@ -111,9 +113,7 @@ class TestPoAmountBlock(TransactionCase):
             if po_line.product_id == self.product1:
                 po_line.product_qty = 10
 
-        self.assertEquals(
-            purchase1.approval_block_id, self.env["purchase.approval.block.reason"]
-        )
+        self.assertFalse(purchase1.approval_block_id)
 
-        purchase1.sudo(self.user1_id).button_confirm()
+        purchase1.with_user(self.user1_id).button_confirm()
         self.assertEquals(purchase1.state, "purchase")
