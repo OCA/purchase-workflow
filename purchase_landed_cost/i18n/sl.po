@@ -7,16 +7,16 @@ msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-07 23:04+0000\n"
-"PO-Revision-Date: 2020-08-12 15:59+0000\n"
-"Last-Translator: Matjaz Mozetic <matjaz@matmoz.si>\n"
+"PO-Revision-Date: 2021-02-24 11:45+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: \n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
-"n%100==4 ? 2 : 3;\n"
-"X-Generator: Weblate 3.10\n"
+"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_expense__affected_lines
@@ -235,6 +235,8 @@ msgid ""
 "Define the type of the calculation of each purchase expense\n"
 "                used for calculating the distribution between lines."
 msgstr ""
+"Določi tip izračuna za vsak strošek nabave, ki se uporablja\n"
+"                za izračun porazdelitve med postavkami."
 
 #. module: purchase_landed_cost
 #: selection:purchase.cost.distribution,cost_update_type:0
@@ -719,6 +721,9 @@ msgid ""
 "picking confirmation (when costing method used is 'average price' or "
 "'real'). Value given in company currency and in product uom."
 msgstr ""
+"Tehnično polje, ki se uporablja za zapisovanje lastne cene proizvoda med "
+"potrjevanjem dobavnice (v primeru stroškovne metode povprečene cene ali "
+"realne cene). Vrednost je podana v valuti družbe in v EM proizvoda."
 
 #. module: purchase_landed_cost
 #: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:206
@@ -727,6 +732,8 @@ msgid ""
 "The cost for the line '%s' can't be distributed because the calculation "
 "method doesn't provide valid data"
 msgstr ""
+"Strošek postavke '%s' ne more biti razporejen, ker metoda izračuna ne "
+"zagotavlja veljavnih podatkov"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,help:purchase_landed_cost.field_purchase_cost_distribution_line__product_weight
@@ -835,6 +842,8 @@ msgid ""
 "Use this menu to control the cost of purchases by expense type\n"
 "                such as transport, insurance, freight customs, etc."
 msgstr ""
+"Ta meni se uporablja za nadzor stroškov nabave po tipu stroška, kot\n"
+"                npr. transport, zavarovanje, carina, ipd."
 
 #. module: purchase_landed_cost
 #: model_terms:ir.actions.act_window,help:purchase_landed_cost.action_purchase_expense_type
@@ -843,6 +852,9 @@ msgid ""
 "                The types marked by default will be added to the cost\n"
 "                distribution automatically."
 msgstr ""
+"Uporabi ta meni za ustvarjanje tipa stroškov nabave.\n"
+"                Privzeto označeni tipi bodo samodejno dodani\n"
+"                v distribucijo stroškov."
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__product_volume
@@ -860,11 +872,15 @@ msgid ""
 "You can add one or more receipts which share the same expenses\n"
 "                and update cost price of product."
 msgstr ""
+"Dodate lahko eno ali več prejemnic, ki si delijo iste stroške\n"
+"                in posodobite lastno ceno proizvoda."
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,help:purchase_landed_cost.field_purchase_cost_distribution_line__partner
 msgid "You can find a vendor by its Name, TIN, Email or Internal Reference."
 msgstr ""
+"Dobavitelja lahko najdete po imenu, davčni številki, email naslovu ali "
+"internem sklicu."
 
 #. module: purchase_landed_cost
 #: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:132
@@ -878,6 +894,8 @@ msgstr "Ne morete izbrisati potrjene distribucije stroškov"
 msgid ""
 "You can't delete a cost line if it's an affected line of any expense line."
 msgstr ""
+"Postavke stroška nabave ne morete izbrisati, če je povezana s katerokoli "
+"stroškovno postavko."
 
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.import_invoice_line_wizard_view
