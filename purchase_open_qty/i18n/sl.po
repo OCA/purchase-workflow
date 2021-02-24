@@ -9,29 +9,30 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-24 07:53+0000\n"
-"PO-Revision-Date: 2017-11-24 07:53+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2021-02-24 11:45+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
-"%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: purchase_open_qty
 #: model:ir.model.fields,field_description:purchase_open_qty.field_purchase_order__pending_qty_to_invoice
 #: model_terms:ir.ui.view,arch_db:purchase_open_qty.purchase_order_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_open_qty.view_purchase_order_filter
 msgid "Pending Qty to Bill"
-msgstr ""
+msgstr "Obračun v teku"
 
 #. module: purchase_open_qty
 #: model:ir.model.fields,field_description:purchase_open_qty.field_purchase_order__pending_qty_to_receive
 #: model_terms:ir.ui.view,arch_db:purchase_open_qty.purchase_order_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_open_qty.view_purchase_order_filter
 msgid "Pending Qty to Receive"
-msgstr ""
+msgstr "Prejem v teku"
 
 #. module: purchase_open_qty
 #: model:ir.model,name:purchase_open_qty.model_purchase_order
@@ -47,17 +48,17 @@ msgstr "Postavka nabavnega naloga"
 #: model:ir.model.fields,field_description:purchase_open_qty.field_purchase_order__qty_to_invoice
 #: model:ir.model.fields,field_description:purchase_open_qty.field_purchase_order_line__qty_to_invoice
 msgid "Qty to Bill"
-msgstr ""
+msgstr "Kol za obračun"
 
 #. module: purchase_open_qty
 #: model:ir.model.fields,field_description:purchase_open_qty.field_purchase_order__qty_to_receive
 #: model:ir.model.fields,field_description:purchase_open_qty.field_purchase_order_line__qty_to_receive
 msgid "Qty to Receive"
-msgstr ""
+msgstr "Kol za prejem"
 
 #. module: purchase_open_qty
 #: code:addons/purchase_open_qty/models/purchase_order.py:72
 #: code:addons/purchase_open_qty/models/purchase_order.py:85
 #, python-format
 msgid "Unsupported search operator"
-msgstr ""
+msgstr "Nepodprt operator za iskanje"
