@@ -4,7 +4,7 @@
 {
     "name": "Purchase Order Approval Block",
     "author": "Eficent, Odoo Community Association (OCA)",
-    "version": "12.0.1.0.0",
+    "version": "13.0.1.0.0",
     "category": "Purchase Management",
     "website": "https://github.com/OCA/purchase-workflow",
     "depends": ["purchase_stock", "purchase_exception"],
