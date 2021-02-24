@@ -3,7 +3,7 @@
 
 {
     "name": "Purchase Picking State",
-    "version": "12.0.1.0.0",
+    "version": "12.0.1.1.0",
     "author": "Akretion, " "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "category": "Purchase Management",
