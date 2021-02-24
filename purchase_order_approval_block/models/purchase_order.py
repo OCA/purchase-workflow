@@ -1,19 +1,17 @@
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-from odoo import api, fields, models, _
+from odoo import _, api, fields, models
 
 
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
     approval_block_id = fields.Many2one(
-        comodel_name='purchase.approval.block.reason',
-        string='Approval Block Reason',
+        comodel_name="purchase.approval.block.reason", string="Approval Block Reason",
     )
     approval_blocked = fields.Boolean(
-        'Approval Blocked',
-        compute='_compute_approval_blocked',
+        "Approval Blocked", compute="_compute_approval_blocked",
     )
 
     @api.multi
@@ -25,23 +23,24 @@ class PurchaseOrder(models.Model):
     @api.model
     def create(self, vals):
         po = super(PurchaseOrder, self).create(vals)
-        if 'approval_block_id' in vals and vals['approval_block_id']:
-            po.message_post(body=_('Order \"%s\" blocked with reason'
-                                   ' \"%s\"') % (po.name,
-                                                 po.approval_block_id.name))
+        if "approval_block_id" in vals and vals["approval_block_id"]:
+            po.message_post(
+                body=_('Order "%s" blocked with reason' ' "%s"')
+                % (po.name, po.approval_block_id.name)
+            )
         return po
 
     @api.multi
     def write(self, vals):
         res = super(PurchaseOrder, self).write(vals)
         for po in self:
-            if 'approval_block_id' in vals and vals['approval_block_id']:
+            if "approval_block_id" in vals and vals["approval_block_id"]:
                 po.message_post(
-                    body=_('Order \"%s\" blocked with reason \"%s\"') % (
-                        po.name, po.approval_block_id.name))
-            elif 'approval_block_id' in vals and not vals['approval_block_id']:
-                po.message_post(
-                    body=_('Order \"%s\" approval block released.') % po.name)
+                    body=_('Order "%s" blocked with reason "%s"')
+                    % (po.name, po.approval_block_id.name)
+                )
+            elif "approval_block_id" in vals and not vals["approval_block_id"]:
+                po.message_post(body=_('Order "%s" approval block released.') % po.name)
         return res
 
     @api.multi
