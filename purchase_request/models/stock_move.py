@@ -46,7 +46,7 @@ class StockMove(models.Model):
         ]
         return keys_sorted
 
-    def _action_cancel(self):
+    def _action_cancel_create_mail_activity(self):
         for move in self:
             if move.created_purchase_request_line_id:
                 try:
@@ -69,6 +69,9 @@ class StockMove(models.Model):
                         ).id,
                     }
                 )
+
+    def _action_cancel(self):
+        self._action_cancel_create_mail_activity()
         return super(StockMove, self)._action_cancel()
 
     @api.depends("purchase_request_allocation_ids")
