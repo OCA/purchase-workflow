@@ -6,15 +6,12 @@
     "author": "Eficent, Odoo Community Association (OCA)",
     "version": "12.0.1.0.0",
     "website": "https://github.com/OCA/purchase-workflow",
-    "depends": [
-        'purchase',
-        'purchase_order_approval_block',
-    ],
+    "depends": ["purchase", "purchase_order_approval_block",],
     "data": [
-        'data/purchase_block_reason_data.xml',
-        'views/purchase_order_view.xml',
-        'views/res_partner_view.xml',
+        "data/purchase_block_reason_data.xml",
+        "views/purchase_order_view.xml",
+        "views/res_partner_view.xml",
     ],
-    "license": 'LGPL-3',
-    "installable": True
+    "license": "LGPL-3",
+    "installable": True,
 }
