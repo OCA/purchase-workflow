@@ -5,7 +5,7 @@ from odoo import api, models
 
 
 class PurchaseExceptionConfirm(models.TransientModel):
-    _inherit = 'purchase.exception.confirm'
+    _inherit = "purchase.exception.confirm"
 
     @api.multi
     def action_confirm(self):
