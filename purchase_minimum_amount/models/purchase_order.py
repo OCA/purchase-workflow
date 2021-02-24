@@ -12,7 +12,7 @@ class PurchaseOrder(models.Model):
         related="partner_id.minimum_po_amount", string="Purchase Minimum Amount",
     )
 
-    @api.multi
+    @api.constrains("partner_id")
     def _check_minimum_amount(self):
         for rec in self:
             po_amt_block = rec.env.ref(
@@ -29,26 +29,13 @@ class PurchaseOrder(models.Model):
                 rec.approval_block_id = False
         return True
 
-    @api.model
-    def create(self, vals):
-        po = super(PurchaseOrder, self).create(vals)
-        po._check_minimum_amount()
-        return po
-
-    @api.multi
-    def write(self, vals):
-        res = super(PurchaseOrder, self).write(vals)
-        for rec in self:
-            if "partner_id" in vals:
-                rec._check_minimum_amount()
-        return res
-
 
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
     @api.model
     def _check_minimum_amount_fields(self):
+        """As we are adding a hook, we cannot use api.constrain"""
         return ["product_qty", "price_unit"]
 
     @api.model
@@ -59,7 +46,6 @@ class PurchaseOrderLine(models.Model):
             res.order_id._check_minimum_amount()
         return res
 
-    @api.multi
     def write(self, vals):
         res = super(PurchaseOrderLine, self).write(vals)
         fields = self._check_minimum_amount_fields()
