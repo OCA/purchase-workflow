@@ -9,25 +9,26 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-23 00:46+0000\n"
-"PO-Revision-Date: 2017-06-23 00:46+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2021-02-24 11:45+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
-"%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: purchase_date_planned_manual
 #: model_terms:ir.ui.view,arch_db:purchase_date_planned_manual.view_purchase_order_form
 msgid "Arriving late"
-msgstr ""
+msgstr "Zamuja"
 
 #. module: purchase_date_planned_manual
 #: model:ir.model.fields,field_description:purchase_date_planned_manual.field_purchase_order_line__predicted_arrival_late
 msgid "Planned to be late"
-msgstr ""
+msgstr "Pričakovana zamuda"
 
 #. module: purchase_date_planned_manual
 #: model:ir.model,name:purchase_date_planned_manual.model_purchase_order_line
@@ -37,7 +38,7 @@ msgstr "Postavka nabavnega naloga"
 #. module: purchase_date_planned_manual
 #: model:ir.model,name:purchase_date_planned_manual.model_stock_rule
 msgid "Stock Rule"
-msgstr ""
+msgstr "Pravilo zaloge"
 
 #. module: purchase_date_planned_manual
 #: code:addons/purchase_date_planned_manual/models/purchase_order.py:50
@@ -46,6 +47,8 @@ msgid ""
 "This line is scheduled for: %s. \n"
 " However it is now planned to arrive late."
 msgstr ""
+"Ta postavka je načrtovana na: %s. \n"
+" A zdaj je pričakovana je zamuda."
 
 #. module: purchase_date_planned_manual
 #: model:ir.model.fields,help:purchase_date_planned_manual.field_purchase_order_line__predicted_arrival_late
@@ -53,6 +56,9 @@ msgid ""
 "True if the arrival at scheduled date is planned to be late. Takes into "
 "account the vendor lead time and the company margin for lead times."
 msgstr ""
+"Pravilno, če se pričakuje zamuda glede na načrtovani datum. Upošteva rok "
+"dobave dobavitelja in nastavitve družbe glede varnostnih razlik v rokih "
+"dobave."
 
 #~ msgid "Procurement"
 #~ msgstr "Oskrba"
