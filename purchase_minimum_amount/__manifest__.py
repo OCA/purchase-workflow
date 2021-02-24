@@ -1,12 +1,12 @@
-# Copyright 2016 Eficent Business and IT Consulting Services S.L.
+# Copyright 2016 ForgeFlow S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0).
 
 {
     "name": "Purchase Minimum Amount",
-    "author": "Eficent, Odoo Community Association (OCA)",
-    "version": "12.0.1.0.0",
+    "author": "ForgeFlow, Odoo Community Association (OCA)",
+    "version": "13.0.1.0.0",
     "website": "https://github.com/OCA/purchase-workflow",
-    "depends": ["purchase", "purchase_order_approval_block",],
+    "depends": ["purchase", "purchase_order_approval_block"],
     "data": [
         "data/purchase_block_reason_data.xml",
         "views/purchase_order_view.xml",
