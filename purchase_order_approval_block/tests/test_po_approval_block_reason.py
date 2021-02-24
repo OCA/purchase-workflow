@@ -1,4 +1,4 @@
-# Copyright 2017 Eficent Business and IT Consulting Services S.L.
+# Copyright 2017 ForgeFlow S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 from .test_purchase_order_approval_block import TestPurchaseOrderApprovalBlock
@@ -16,12 +16,12 @@ class TestPoApprovalBlockReason(TestPurchaseOrderApprovalBlock):
 
         self.assertEqual(purchase.approval_blocked, True)
         # The purchase manager unblocks the RFQ with block
-        purchase.sudo(self.user2_id).button_release_approval_block()
+        purchase.with_user(self.user2_id).button_release_approval_block()
         self.assertEqual(
             purchase.approval_block_id, self.env["purchase.approval.block.reason"]
         )
         # The purchase user validates the RFQ without block
-        purchase.sudo(self.user1_id).button_confirm()
+        purchase.with_user(self.user1_id).button_confirm()
         # The PO is approved
         self.assertEqual(purchase.state, "purchase")
 
@@ -33,7 +33,7 @@ class TestPoApprovalBlockReason(TestPurchaseOrderApprovalBlock):
 
         purchase.approval_block_id = self.po_approval_block_reason.id
         # The purchase user validates the RFQ with block, and is now to approve
-        purchase.sudo(self.user2_id).button_confirm()
+        purchase.with_user(self.user2_id).button_confirm()
         purchase.company_id.po_double_validation = False
         self.assertEquals(purchase.state, "draft")
 
@@ -62,9 +62,9 @@ class TestPoApprovalBlockReason(TestPurchaseOrderApprovalBlock):
 
         purchase.approval_block_id = self.po_approval_block_reason.id
         # The purchase user validates the RFQ with block, and is now to approve
-        purchase.sudo(self.user2_id).button_confirm()
+        purchase.with_user(self.user2_id).button_confirm()
         self.assertEquals(purchase.state, "draft")
 
-        purchase.sudo(self.user2_id).button_approve()
+        purchase.with_user(self.user2_id).button_approve()
 
         self.assertEqual(purchase.state, "purchase")
