@@ -43,6 +43,13 @@ class PurchaseOrderLine(models.Model):
         location = line.location_dest_id or default_picking_location
         return key + ({"location_dest_id": location},)
 
+    def _get_sorted_keys(self, line):
+        """Return a tuple of keys to use in order to sort the order lines.
+        This method is designed for extensibility, so that other modules can
+        add additional keys or replace them by others."""
+        keys = super(PurchaseOrderLine, self)._get_sorted_keys(line)
+        return keys + (line.location_dest_id.id,)
+
     def _create_stock_moves(self, picking):
         res = super(PurchaseOrderLine, self)._create_stock_moves(picking)
         for line in self:
