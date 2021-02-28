@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-17 03:38+0000\n"
-"PO-Revision-Date: 2020-03-25 00:13+0000\n"
+"PO-Revision-Date: 2021-02-28 10:45+0000\n"
 "Last-Translator: Dong <dong@freshoo.cn>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/oca/"
 "OCA-purchase-workflow-10-0/language/zh_CN/)\n"
@@ -20,13 +20,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_order.py:0
 #, python-format
 msgid "<li><b>%s</b>: Ordered quantity %s %s, Planned date %s</li>"
-msgstr "<li><b>%s</b>：下单数量 %s %s, 计划日期 %s</li>"
+msgstr "<li><b>%s</b>：已下单数量 %s %s，计划日期 %s</li>"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_order.py:0
@@ -34,18 +34,18 @@ msgstr "<li><b>%s</b>：下单数量 %s %s, 计划日期 %s</li>"
 #: code:addons/purchase_request/models/stock_picking.py:0
 #, python-format
 msgid "<li><b>%s</b>: Received quantity %s %s</li>"
-msgstr "<li><b>%s</b>：收货数量 %s %s</li>"
+msgstr "<li><b>%s</b>：已收货数量 %s %s</li>"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/stock_move_line.py:0
 #, python-format
 msgid "<li><b>%s</b>: Transferred quantity %s %s</li>"
-msgstr "<li><b>%s</b>：调拨数量 %s %s</li>"
+msgstr "<li><b>%s</b>：已调拨数量 %s·%s</li>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 msgid "<strong>Analytic Account</strong>"
-msgstr "<strong>分析账户</strong>"
+msgstr "<strong>辅助核算</strong>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
@@ -71,13 +71,13 @@ msgid ""
 "<strong>Description:</strong>\n"
 "                                <br/>"
 msgstr ""
-"<strong>说明：</strong>\n"
+"<strong>描述：</strong>\n"
 "                                <br/>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 msgid "<strong>Description</strong>"
-msgstr "<strong>说明</strong>"
+msgstr "<strong>描述</strong>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
@@ -90,7 +90,7 @@ msgid ""
 "<strong>Picking Type:</strong>\n"
 "                                <br/>"
 msgstr ""
-"<strong>作业类型：</strong>\n"
+"<strong>仓库作业：</strong>\n"
 "                                <br/>"
 
 #. module: purchase_request
@@ -109,13 +109,13 @@ msgid ""
 "<strong>Request Reference:</strong>\n"
 "                                <br/>"
 msgstr ""
-"<strong>请购单号：</strong>\n"
+"<strong>申请编号：</strong>\n"
 "                                <br/>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 msgid "<strong>Requested Date</strong>"
-msgstr "<strong>请购日期</strong>"
+msgstr "<strong>申请日期</strong>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
@@ -123,7 +123,7 @@ msgid ""
 "<strong>Requested by:</strong>\n"
 "                                <br/>"
 msgstr ""
-"<strong>请购人：</strong>\n"
+"<strong>申请人：</strong>\n"
 "                                <br/>"
 
 #. module: purchase_request
@@ -132,13 +132,13 @@ msgid ""
 "<strong>Source:</strong>\n"
 "                                <br/>"
 msgstr ""
-"<strong>来源：</strong>\n"
+"<strong>来源文档：</strong>\n"
 "                                <br/>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 msgid "<strong>Specifications</strong>"
-msgstr "<strong>详细说明</strong>"
+msgstr "<strong>规格</strong>"
 
 #. module: purchase_request
 #: model_terms:ir.actions.act_window,help:purchase_request.purchase_request_form_action
@@ -146,7 +146,7 @@ msgid ""
 "A purchase request is an instruction to Purchasing to procure\n"
 "            a certain quantity of materials services, so that they are\n"
 "            available at a certain point in time."
-msgstr "请购是为了指导采购在某个时间点满足一定数量的材料或服务。"
+msgstr "采购申请是为了指导采购业务在某个时间点满足一定数量的物资或服务。"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/stock_move.py:0
@@ -154,7 +154,7 @@ msgstr "请购是为了指导采购在某个时间点满足一定数量的材料
 msgid ""
 "A sale/manufacturing order that generated this purchase request has been "
 "cancelled/deleted. Check if an action is needed."
-msgstr "生成此请购单的关联销售单/生产单已经取消或删除，检查是否需要采取纠正措施。"
+msgstr "生成此采购申请的关联销售单/生产单已经取消或删除，检查是否需要采取纠正措施。"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_needaction
@@ -200,19 +200,19 @@ msgstr "分配"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__analytic_account_id
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Analytic Account"
-msgstr "分析账户"
+msgstr "辅助核算"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Approve"
-msgstr "批准"
+msgstr "通过"
 
 #. module: purchase_request
 #: model:ir.model.fields.selection,name:purchase_request.selection__purchase_request__state__approved
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Approved"
-msgstr "已批准"
+msgstr "已通过"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__assigned_to
@@ -251,7 +251,7 @@ msgstr "至少已确认一张采购单"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_attachment_count
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_attachment_count
 msgid "Attachment Count"
-msgstr "附件计数"
+msgstr "附件数"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_line_make_purchase_order
@@ -274,19 +274,19 @@ msgstr "已取消数量"
 msgid ""
 "Check this box to generate Purchase Request instead of generating Requests "
 "For Quotation from procurement."
-msgstr "选中以生成请购单，而不是从采购中生成询价单。"
+msgstr "选中以使用采购申请，而不是从采购订单草稿。"
 
 #. module: purchase_request
 #: model_terms:ir.actions.act_window,help:purchase_request.purchase_request_form_action
 msgid "Click to start a new purchase request process."
-msgstr "单击启动新的请购流程。"
+msgstr "单击启动新的采购申请流程。"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__company_id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__company_id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__company_id
 msgid "Company"
-msgstr "公司"
+msgstr "订货组织"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__keep_description
@@ -338,14 +338,14 @@ msgstr "币别"
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__date_start
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__date_start
 msgid "Date when the user initiated the request."
-msgstr "用户发起请购的日期。"
+msgstr "用户发起申请的日期。"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__description
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__name
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__name
 msgid "Description"
-msgstr "说明"
+msgstr "描述"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_line_make_purchase_order
@@ -400,7 +400,7 @@ msgstr "预估成本"
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__estimated_cost
 msgid "Estimated cost of Purchase Request Line, not propagated to PO."
-msgstr "请购明细的预估成本，不会传到采购单。"
+msgstr "采购申请明细的预估成本，不会传到采购单。"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_line_make_purchase_order
@@ -430,7 +430,7 @@ msgstr "关注者(业务伙伴)"
 #, python-format
 msgid ""
 "From last reception this quantity has been allocated to this purchase request"
-msgstr "自上次收货起，已分配给这个采购请求的数量"
+msgstr "自上次收货起，已分配给这个采购申请的数量"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_search_sub
@@ -548,7 +548,7 @@ msgstr "手动开票"
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order__sync_data_planned
 msgid "Merge on PO lines with equal Scheduled Date"
-msgstr "合并到计划日期相同的采购明细中"
+msgstr "合并到预期到货日期相同的采购明细中"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_has_error
@@ -646,17 +646,17 @@ msgstr "订单编号"
 #: code:addons/purchase_request/models/purchase_order.py:0
 #, python-format
 msgid "Order confirmation %s for your Request %s"
-msgstr "确认订单 %s 根据您的请购单 %s"
+msgstr "确认订单 %s 根据您的采购申请 %s"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__orderpoint_id
 msgid "Orderpoint"
-msgstr "订货点"
+msgstr "安全库存规则"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__description
 msgid "PR Description"
-msgstr "请购说明"
+msgstr "采购申请描述"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__pending_qty_to_receive
@@ -667,7 +667,7 @@ msgstr "待收货数量"
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__picking_type_id
 msgid "Picking Type"
-msgstr "作业类型"
+msgstr "仓库作业"
 
 #. module: purchase_request
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
@@ -773,19 +773,19 @@ msgstr "采购订单"
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_tree
 msgid "Purchase Request"
-msgstr "请购单"
+msgstr "采购申请"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_order.py:0
 #, python-format
 msgid "Purchase Request %s has already been completed"
-msgstr "请购单 %s 已完成"
+msgstr "采购申请 %s 已完成"
 
 #. module: purchase_request
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
 #, python-format
 msgid "Purchase Request %s is not approved"
-msgstr "请购单 %s 未获批准"
+msgstr "采购申请 %s 未通过"
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_purchase_request_allocation
@@ -793,13 +793,13 @@ msgstr "请购单 %s 未获批准"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__purchase_request_allocation_ids
 #: model:ir.model.fields,field_description:purchase_request.field_stock_move__purchase_request_allocation_ids
 msgid "Purchase Request Allocation"
-msgstr "请购分配"
+msgstr "采购申请分配"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_move_form
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_picking_form
 msgid "Purchase Request Allocations"
-msgstr "请购分配"
+msgstr "采购申请分配"
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_purchase_request_line
@@ -807,22 +807,22 @@ msgstr "请购分配"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__line_id
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_form
 msgid "Purchase Request Line"
-msgstr "请购明细"
+msgstr "采购申请明细"
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_purchase_request_line_make_purchase_order
 msgid "Purchase Request Line Make Purchase Order"
-msgstr "请购明细下达采购订单"
+msgstr "采购申请明细下推采购订单"
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_purchase_request_line_make_purchase_order_item
 msgid "Purchase Request Line Make Purchase Order Item"
-msgstr "请购明细下达采购订单明细"
+msgstr "采购申请明细下推采购订单明细"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__line_count
 msgid "Purchase Request Line count"
-msgstr "请购明细计数"
+msgstr "采购申请明细数"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_order.py:0
@@ -835,51 +835,51 @@ msgstr "请购明细计数"
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_tree
 #, python-format
 msgid "Purchase Request Lines"
-msgstr "请购明细"
+msgstr "采购申请明细"
 
 #. module: purchase_request
 #: model:res.groups,name:purchase_request.group_purchase_request_manager
 msgid "Purchase Request Manager"
-msgstr "请购经理"
+msgstr "采购申请主管"
 
 #. module: purchase_request
 #: model:res.groups,name:purchase_request.group_purchase_request_user
 msgid "Purchase Request User"
-msgstr "请购用户"
+msgstr "采购申请用户"
 
 #. module: purchase_request
 #: model:mail.message.subtype,description:purchase_request.mt_request_approved
 #: model:mail.message.subtype,name:purchase_request.mt_request_approved
 msgid "Purchase Request approved"
-msgstr "请购已批准"
+msgstr "采购申请已通过"
 
 #. module: purchase_request
 #: model:mail.message.subtype,name:purchase_request.mt_request_done
 msgid "Purchase Request done"
-msgstr "请购已完成"
+msgstr "采购申请已完成"
 
 #. module: purchase_request
 #: model:mail.message.subtype,description:purchase_request.mt_request_done
 msgid "Purchase Request is done"
-msgstr "请购已经完成"
+msgstr "采购申请已经完成"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_form
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_tree
 msgid "Purchase Request lines"
-msgstr "请购明细"
+msgstr "采购申请明细"
 
 #. module: purchase_request
 #: model:mail.message.subtype,description:purchase_request.mt_request_rejected
 #: model:mail.message.subtype,name:purchase_request.mt_request_rejected
 msgid "Purchase Request rejected"
-msgstr "请购已驳回"
+msgstr "采购申请已拒绝"
 
 #. module: purchase_request
 #: model:mail.message.subtype,description:purchase_request.mt_request_to_approve
 #: model:mail.message.subtype,name:purchase_request.mt_request_to_approve
 msgid "Purchase Request to be approved"
-msgstr "请购待批准"
+msgstr "采购申请审批中"
 
 #. module: purchase_request
 #: model:ir.actions.act_window,name:purchase_request.action_purchase_request_line_product_tree
@@ -889,7 +889,7 @@ msgstr "请购待批准"
 #: model:ir.ui.menu,name:purchase_request.menu_purchase_request_act
 #: model:ir.ui.menu,name:purchase_request.menu_purchase_request_pro_mgt
 msgid "Purchase Requests"
-msgstr "请购单"
+msgstr "采购申请"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__purchase_state
@@ -900,7 +900,7 @@ msgstr "采购状态"
 #. module: purchase_request
 #: model:ir.ui.menu,name:purchase_request.parent_menu_purchase_request
 msgid "Purchase requests"
-msgstr "采购请求"
+msgstr "采购申请"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__purchase_count
@@ -957,14 +957,14 @@ msgstr "采购中数量。"
 msgid ""
 "Quantity of the purchase request line allocated to the stockmove, in the "
 "default UoM of the product"
-msgstr "请购明细以产品默认计量单位分配给库存移动的数量"
+msgstr "采购申请明细以产品默认计量单位分配给库存移动的数量"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_allocation__requested_product_uom_qty
 msgid ""
 "Quantity of the purchase request line allocated to thestock move, in the UoM "
 "of the Purchase Request Line"
-msgstr "请购明细以产品默认计量单位分配给库存移动的数量"
+msgstr "采购申请明细以产品默认计量单位分配给库存移动的数量"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__product_qty
@@ -982,83 +982,83 @@ msgstr "询价单"
 #: code:addons/purchase_request/models/stock_picking.py:0
 #, python-format
 msgid "Receipt confirmation %s for your Request %s"
-msgstr "收货确认 %s 根据您的请购单 %s"
+msgstr "收货确认 %s 根据您的采购申请 %s"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/stock_move_line.py:0
 #, python-format
 msgid "Receipt confirmation for Request %s"
-msgstr "请购单 %s  收货确认"
+msgstr "采购申请 %s 收货确认"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Reject"
-msgstr "驳回"
+msgstr "拒绝"
 
 #. module: purchase_request
 #: model:ir.model.fields.selection,name:purchase_request.selection__purchase_request__state__rejected
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Rejected"
-msgstr "已驳回"
+msgstr "已拒绝"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Request"
-msgstr "请求"
+msgstr "申请"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__date_required
 msgid "Request Date"
-msgstr "请购日期"
+msgstr "申请日期"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__name
 msgid "Request Reference"
-msgstr "请购编号"
+msgstr "申请编号"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Request approval"
-msgstr "请购批准"
+msgstr "采购申请通过"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Request is approved"
-msgstr "请购已批准"
+msgstr "采购申请已通过"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Request is done"
-msgstr "请购已经完成"
+msgstr "采购申请已完成"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Request is rejected"
-msgstr "请购已经驳回"
+msgstr "采购申请已拒绝"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Request is to be approved"
-msgstr "请购等待审批"
+msgstr "采购申请审批中"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__request_state
 msgid "Request state"
-msgstr "请购状态"
+msgstr "审批状态"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Request status"
-msgstr "请购状态"
+msgstr "审批状态"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__requested_product_uom_qty
 msgid "Requested Quantity"
-msgstr "已请购数量"
+msgstr "已申请数量"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__requested_by
@@ -1066,12 +1066,12 @@ msgstr "已请购数量"
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Requested by"
-msgstr "请购人"
+msgstr "申请人"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Requested for Quotation"
-msgstr "已请求报价"
+msgstr "已申请询价"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
@@ -1099,7 +1099,7 @@ msgstr "搜索采购订单明细"
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Search Purchase Request"
-msgstr "搜索请购"
+msgstr "搜索采购申请"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_allocation__purchase_line_id
@@ -1110,14 +1110,14 @@ msgstr "服务型采购订单明细"
 #: code:addons/purchase_request/models/purchase_order.py:0
 #, python-format
 msgid "Service confirmation for Request %s"
-msgstr "请购单 %s 服务确认"
+msgstr "采购申请 %s 服务确认"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line_make_purchase_order_item__keep_description
 msgid ""
 "Set true if you want to keep the descriptions provided in the wizard in the "
 "new PO."
-msgstr "如果要在新的采购订单中保留向导中提供的描述，请设置 true。"
+msgstr "如果要在新的采购订单中保留向导中提供的描述，请设置为 true。"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
@@ -1135,7 +1135,7 @@ msgstr "来源文档"
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_form
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Specifications"
-msgstr "详细说明"
+msgstr "规格"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
@@ -1194,7 +1194,7 @@ msgstr "供应商"
 #, python-format
 msgid ""
 "The company of the purchase request must match with that of the location."
-msgstr "发起请购的公司所选库位必须属于该公司。"
+msgstr "采购申请的发起组织所选库位必须属于该组织。"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_order.py:0
@@ -1202,7 +1202,7 @@ msgstr "发起请购的公司所选库位必须属于该公司。"
 msgid ""
 "The following requested items from Purchase Request %s have now been "
 "confirmed in Purchase Order %s:"
-msgstr "请购单 %s 的下列请购明细已在采购订单 %s 中确认："
+msgstr "采购申请 %s 的下列明细已在采购订单 %s 中确认："
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/stock_move_line.py:0
@@ -1210,7 +1210,7 @@ msgstr "请购单 %s 的下列请购明细已在采购订单 %s 中确认："
 msgid ""
 "The following requested items from Purchase Request %s have now been "
 "received in %s using Picking %s:"
-msgstr "请购单 %s 的下列请购明细已在 %s 中确认收货，作业 %s："
+msgstr "采购申请 %s 的下列明细已在 %s 中确认收货，仓库作业 %s："
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/stock_picking.py:0
@@ -1218,7 +1218,7 @@ msgstr "请购单 %s 的下列请购明细已在 %s 中确认收货，作业 %s�
 msgid ""
 "The following requested items from Purchase Request %s have now been "
 "received in Incoming Shipment %s:"
-msgstr "请购单 %s 的下列请购明细已在入库单 %s 中确认收货："
+msgstr "采购申请 %s 的下列明细已在入库单 %s 中确认收货："
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/stock_move_line.py:0
@@ -1226,7 +1226,7 @@ msgstr "请购单 %s 的下列请购明细已在入库单 %s 中确认收货："
 msgid ""
 "The following requested items from Purchase Request %s requested by %s have "
 "now been received in %s:"
-msgstr "请购单 %s 中请购人 %s 的下列请购明细已在 %s 中确认收货："
+msgstr "采购申请 %s 中申请人 %s 的下列明细已在 %s 中确认收货："
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_order.py:0
@@ -1234,7 +1234,7 @@ msgstr "请购单 %s 中请购人 %s 的下列请购明细已在 %s 中确认收
 msgid ""
 "The following requested services from Purchase Request %s requested by %s "
 "have now been received:"
-msgstr "请购单 %s 中请购人 %s 的下列服务已确认收货："
+msgstr "采购申请 %s 中申请人 %s 的下列服务已确认："
 
 #. module: purchase_request
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
@@ -1251,28 +1251,28 @@ msgstr "存在待采购数量"
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "To Approve"
-msgstr "待批准"
+msgstr "待审批"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__to_approve_allowed
 msgid "To Approve Allowed"
-msgstr "待批准通过"
+msgstr "待审批通过"
 
 #. module: purchase_request
 #: model:ir.model.fields.selection,name:purchase_request.selection__purchase_request__state__to_approve
 msgid "To be approved"
-msgstr "待批准通过"
+msgstr "待审批通过"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_form
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Tracking"
-msgstr "追踪"
+msgstr "溯源"
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_stock_picking
 msgid "Transfer"
-msgstr "移交"
+msgstr "转移"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__activity_exception_decoration
@@ -1283,12 +1283,12 @@ msgstr "记录的异常活动类型。"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Unassigned"
-msgstr "未分配"
+msgstr "未指派"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Unassigned Request"
-msgstr "未分配的请购"
+msgstr "未指派的申请"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
@@ -1343,14 +1343,14 @@ msgstr "向导"
 msgid ""
 "You can only delete a purchase request line if the purchase request is in "
 "draft state."
-msgstr "如果请购单处于草稿状态，则只能删除请购单的明细。"
+msgstr "您只能删除处于草稿状态下的采购申请明细。"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_request.py:0
 #, python-format
 msgid ""
 "You can't request an approval for a purchase request which is empty. (%s)"
-msgstr "您不能为空的请购单执行准批操作。（%s）"
+msgstr "您不能提交无明细的采购申请。（%s）"
 
 #. module: purchase_request
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
@@ -1358,13 +1358,13 @@ msgstr "您不能为空的请购单执行准批操作。（%s）"
 msgid ""
 "You cannot create a single purchase order from purchase requests that have "
 "different procurement group."
-msgstr "您不能从含有不同补货组的请购单中创建单个采购订单。"
+msgstr "您不能从含有不同补货组的采购申请中创建单个采购订单。"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_request.py:0
 #, python-format
 msgid "You cannot delete a purchase request which is not draft."
-msgstr "您不能删除非草稿的请购单。"
+msgstr "您不能删除非草稿状态的采购申请。"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_request_line.py:0
@@ -1376,16 +1376,16 @@ msgstr "您不能删除关联了采购明细的记录！"
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
 #, python-format
 msgid "You have to enter a Picking Type."
-msgstr "您必须输入一个作业类型。"
+msgstr "您必须输入一个仓库作业。"
 
 #. module: purchase_request
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
 #, python-format
 msgid "You have to select lines from the same Picking Type."
-msgstr "您必须选择相同作业类型的请购明细。"
+msgstr "您必须选择相同仓库作业的采购申请明细。"
 
 #. module: purchase_request
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
 #, python-format
 msgid "You have to select lines from the same company."
-msgstr "您必须选择同一个公司的请购明细。"
+msgstr "您必须选择相同组织的采购申请明细。"
