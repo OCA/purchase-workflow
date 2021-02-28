@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-02-28 10:45+0000\n"
+"PO-Revision-Date: 2021-02-28 13:45+0000\n"
 "Last-Translator: Dong <dong@freshoo.cn>\n"
 "Language-Team: none\n"
 "Language: zh_CN\n"
@@ -46,7 +46,7 @@ msgstr "作废"
 #. module: purchase_request_tier_validation
 #: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_filter
 msgid "My Purchases to review"
-msgstr "等待我审核的采购"
+msgstr "我的采购申请审批待办"
 
 #. module: purchase_request_tier_validation
 #: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_filter
@@ -56,7 +56,7 @@ msgstr "需要操作"
 #. module: purchase_request_tier_validation
 #: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_filter
 msgid "Needs my Review"
-msgstr "需要我审核"
+msgstr "需要我审批"
 
 #. module: purchase_request_tier_validation
 #: model:tier.definition,name:purchase_request_tier_validation.purchase_request_default_tier_definition
@@ -81,12 +81,12 @@ msgstr "拒绝"
 #. module: purchase_request_tier_validation
 #: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_form_inherit_tier
 msgid "Request Validation"
-msgstr "提交申请"
+msgstr "提交审批"
 
 #. module: purchase_request_tier_validation
 #: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_form_inherit_tier
 msgid "Restart Validation"
-msgstr "撤回申请"
+msgstr "撤回审批"
 
 #. module: purchase_request_tier_validation
 #: model:ir.model,name:purchase_request_tier_validation.model_tier_definition
