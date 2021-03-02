@@ -44,6 +44,8 @@ class PurchaseOrderLine(models.Model):
             action["view_id"] = self.env.ref(
                 "purchase_update_proposal.supplier_purchase_order_form"
             ).id
+        else:
+            action["view_id"] = self.env.ref("purchase.purchase_form_action").id
         return action
 
     @api.multi

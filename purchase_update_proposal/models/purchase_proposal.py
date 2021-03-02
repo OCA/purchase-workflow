@@ -10,6 +10,7 @@ import openerp.addons.decimal_precision as dp
 class PurchaseLineProposal(models.Model):
     _name = "purchase.line.proposal"
     _description = "Modification proposal on quantity, date, ..."
+    _order = "id asc"
 
     line_id_ = fields.Integer(compute="_compute_line_id")
     line_id = fields.Many2one(

@@ -137,10 +137,6 @@ class PurchaseOrder(models.Model):
         self.ensure_one()
         res = defaultdict(list)
         for elm in self.proposal_ids:
-            if not elm.qty and not elm.price_u and not elm.date:
-                raise UserError(
-                    _("You must fill at least Qty, Date or Price on proposal")
-                )
             vals = {"product_qty": elm.qty}
             if elm.line_id in res:
                 # we already have a purchase_line as origin of these data
