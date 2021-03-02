@@ -53,8 +53,9 @@
         <field name="arch" type="xml">
             <form string="Purchase Order" create="0" edit="1">
             <header>
-                <button name="populate_all_purchase_lines" help="Update dates" 
-                    type="object" string="Update all dates" groups="purchase_update_proposal.group_purchase_proposal_user"/>
+                <button name="populate_all_purchase_lines" type="object" string="Update all dates"
+                    help="Display a date field which update dates all lines" 
+                    groups="purchase_update_proposal.group_purchase_proposal_user,purchase_update_proposal.group_supplier_own_purchase"/>
                 <button name="purchase_supplier_confirm" type="object" states="confirmed" string="Approve Order" class="oe_highlight"/>
                 <field name="state" widget="statusbar" statusbar_visible="confirmed,approved,done" statusbar_colors='{"except_picking":"red","except_invoice":"red","confirmed":"blue"}' readonly="1"/>
             </header>
@@ -80,7 +81,7 @@
                         <group col="4" attrs="{'invisible': [('proposal_count', '=', 0)]}">
                              <div colspan="4" 
                                  style="background-color:AntiqueWhite; text-align:center; font-weight: bold; padding: 8px">
-                                Update Management
+                                Update Proposal
                             </div>
                             <group>
                                 <group>
@@ -109,6 +110,7 @@
                                     <field name="proposal_date"/>
                                 </group>
                                 <hr style="background: AntiqueWhite; height: 12px" colspan="4"/>
+                                <div style="text-align:center; font-weight: bold;" colspan="4">Purchase content before update</div>
                             </group>
                         </group>
                         <field name="order_line" readonly="1">
