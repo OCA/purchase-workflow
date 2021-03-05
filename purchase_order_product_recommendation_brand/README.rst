@@ -75,6 +75,7 @@ Contributors
 
   * David Vidal
   * Manuel Calero
+  * Carlos Roca
 
 Maintainers
 ~~~~~~~~~~~

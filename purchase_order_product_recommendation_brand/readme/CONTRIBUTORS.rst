@@ -2,3 +2,4 @@
 
   * David Vidal
   * Manuel Calero
+  * Carlos Roca
