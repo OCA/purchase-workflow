@@ -63,3 +63,22 @@ class PurchaseOrderLine(models.Model):
     @api.onchange('product_id')
     def _onchange_product_id_purchase_order_secondary_unit(self):
         self.secondary_uom_id = self.product_id.purchase_secondary_uom_id
+
+    @api.multi
+    def write(self, vals):
+        res = super().write(vals)
+        for line in self:
+            secondary_uom = line.product_id.purchase_secondary_uom_id
+            if not line.secondary_uom_id and secondary_uom:
+                line.secondary_uom_id = secondary_uom
+            if not vals.get("secondary_uom_qty"):
+                line._onchange_product_qty_purchase_order_secondary_unit()
+        return res
+
+    @api.model
+    def create(self, vals):
+        line = super().create(vals)
+        if not line.secondary_uom_id:
+            line.secondary_uom_id = line.product_id.purchase_secondary_uom_id
+            line._onchange_product_qty_purchase_order_secondary_unit()
+        return line
