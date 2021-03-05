@@ -8,8 +8,8 @@ class BrandRecommendationCase(test_recommendation.RecommendationCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.brand_obj = cls.env["product.brand"]
-        cls.brand_1 = cls.brand_obj.create({"name": "OCA Cola",})
-        cls.brand_2 = cls.brand_obj.create({"name": "Play-Odoo",})
+        cls.brand_1 = cls.brand_obj.create({"name": "OCA Cola"})
+        cls.brand_2 = cls.brand_obj.create({"name": "Play-Odoo"})
         cls.prod_1.product_brand_id = cls.brand_1
         cls.prod_2.product_brand_id = cls.brand_2
         cls.prod_3.product_brand_id = cls.brand_2
@@ -46,7 +46,7 @@ class BrandRecommendationCase(test_recommendation.RecommendationCase):
         wizard.line_amount = 0
         wizard._generate_recommendations()
         purchase_products_number = self.product_obj.search_count(
-            [("purchase_ok", "!=", False),]
+            [("purchase_ok", "!=", False)]
         )
         self.assertEqual(len(wizard.line_ids), purchase_products_number)
         # Then we filter by brand

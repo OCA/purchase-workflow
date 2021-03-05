@@ -16,10 +16,10 @@ msgstr ""
 #. module: purchase_order_product_recommendation_brand
 #: model:ir.model.fields,field_description:purchase_order_product_recommendation_brand.field_purchase_order_recommendation__product_brand_ids
 msgid "Brands"
-msgstr ""
+msgstr "Marcas"
 
 #. module: purchase_order_product_recommendation_brand
 #: model:ir.model,name:purchase_order_product_recommendation_brand.model_purchase_order_recommendation
 msgid "Recommended products for current purchase order"
-msgstr ""
+msgstr "Productos recomendados para la orden de compra actual"
 
