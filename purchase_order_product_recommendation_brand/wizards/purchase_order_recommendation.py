@@ -6,7 +6,7 @@ from odoo import api, fields, models
 class PurchaseOrderRecommendation(models.TransientModel):
     _inherit = "purchase.order.recommendation"
 
-    product_brand_ids = fields.Many2many(comodel_name="product.brand", string="Brands",)
+    product_brand_ids = fields.Many2many(comodel_name="product.brand", string="Brands")
 
     def _get_products(self):
         """Filter products of the given brands"""
