@@ -7,7 +7,6 @@ from odoo.exceptions import UserError
 
 class WorkAcceptance(models.Model):
     _inherit = "work.acceptance"
-    _description = "Work Acceptance"
 
     evaluation_result_ids = fields.One2many(
         comodel_name="work.acceptance.evaluation.result",
