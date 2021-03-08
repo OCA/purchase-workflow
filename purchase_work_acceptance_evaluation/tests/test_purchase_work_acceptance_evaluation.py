@@ -38,7 +38,11 @@ class TestPurchaseWorkAcceptanceEvaluation(TransactionCase):
                 "date_receive": self.date_now,
                 "company_id": self.main_company.id,
                 "evaluation_result_ids": [
-                    (0, 0, {"case_id": case_id, "score_id": score_id},)
+                    (
+                        0,
+                        0,
+                        {"case_id": case_id, "score_id": score_id},
+                    )
                 ],
             }
         )
