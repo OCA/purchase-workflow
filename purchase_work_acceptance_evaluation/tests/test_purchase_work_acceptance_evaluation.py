@@ -53,7 +53,7 @@ class TestPurchaseWorkAcceptanceEvaluation(TransactionCase):
         with self.assertRaises(UserError) as exc:
             work_acceptance = self._create_wa(self.evaluation_id_1.id, False)
         self.assertEqual(
-            exc.exception.name, "Please evaluate - %s" % self.evaluation_id_1.name
+            exc.exception.args[0], "Please evaluate - %s" % self.evaluation_id_1.name
         )
         work_acceptance = self._create_wa(self.evaluation_id_1.id, self.score.id)
         work_acceptance._default_evaluation_result_ids()
