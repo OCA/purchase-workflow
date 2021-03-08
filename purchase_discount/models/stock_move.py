@@ -22,8 +22,8 @@ class StockMove(models.Model):
             if price != po_line.price_unit:
                 # Only change value if it's different
                 price_unit = po_line.price_unit
-                po_line.price_unit = price
+                po_line.sudo().price_unit = price
         res = super()._get_price_unit()
         if price_unit:
-            po_line.price_unit = price_unit
+            po_line.sudo().price_unit = price_unit
         return res
