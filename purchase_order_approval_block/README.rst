@@ -80,8 +80,8 @@ Images
 Contributors
 ------------
 
-* Jordi Ballester Alomar <jordi.ballester@eficent.com>
-* Roser Garcia <roser.garcia@eficent.com>
+* Jordi Ballester Alomar <jordi.ballester@forgeflow.com>
+* Roser Garcia <roser.garcia@forgeflow.com>
 * Darshan Patel <darshan.patel.serpentcs@gmail.com>
 
 Maintainer
