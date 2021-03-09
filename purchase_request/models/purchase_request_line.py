@@ -48,6 +48,9 @@ class PurchaseRequestLine(models.Model):
         string="Analytic Account",
         track_visibility="onchange",
     )
+    analytic_tag_ids = fields.Many2many(
+        "account.analytic.tag", string="Analytic Tags", track_visibility="onchange"
+    )
     requested_by = fields.Many2one(
         comodel_name="res.users",
         related="request_id.requested_by",
