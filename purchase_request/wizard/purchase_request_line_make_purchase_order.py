@@ -185,6 +185,10 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                                      date_required.day),
             'move_dest_ids': [(4, x.id) for x in item.line_id.move_dest_ids]
         }
+        if item.line_id.analytic_tag_ids:
+            vals['analytic_tag_ids'] = [
+                (4, ati) for ati in item.line_id.analytic_tag_ids.ids
+            ]
         self._execute_purchase_line_onchange(vals)
         return vals
 
