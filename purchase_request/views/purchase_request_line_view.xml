@@ -43,6 +43,10 @@
                     name="analytic_account_id"
                     groups="analytic.group_analytic_accounting"
                 />
+                <field
+                    name="analytic_tag_ids"
+                    groups="analytic.group_analytic_accounting"
+                />
                 <field name="supplier_id" />
                 <field
                     name="company_id"
@@ -124,6 +128,11 @@
                             </div>
                             <field
                                 name="analytic_account_id"
+                                groups="analytic.group_analytic_accounting"
+                                attrs="{'readonly': [('is_editable','=', False)]}"
+                            />
+                            <field
+                                name="analytic_tag_ids"
                                 groups="analytic.group_analytic_accounting"
                                 attrs="{'readonly': [('is_editable','=', False)]}"
                             />
