@@ -167,6 +167,10 @@
                                         name="analytic_account_id"
                                         groups="analytic.group_analytic_accounting"
                                     />
+                                    <field
+                                        name="analytic_tag_ids"
+                                        groups="analytic.group_analytic_accounting"
+                                    />
                                     <field name="date_required" />
                                     <field name="estimated_cost" widget="monetary" />
                                     <field name="currency_id" invisible="1" />
@@ -220,6 +224,11 @@
                                                 </div>
                                                 <field
                                                     name="analytic_account_id"
+                                                    groups="analytic.group_analytic_accounting"
+                                                    attrs="{'readonly': [('is_editable','=', False)]}"
+                                                />
+                                                <field
+                                                    name="analytic_tag_ids"
                                                     groups="analytic.group_analytic_accounting"
                                                     attrs="{'readonly': [('is_editable','=', False)]}"
                                                 />
