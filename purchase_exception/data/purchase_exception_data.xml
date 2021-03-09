@@ -23,7 +23,7 @@
         <field name="active" eval="False" />
     </record>
     <record id="pol_excep_qty_check" model="exception.rule">
-        <field name="name">Quantity not negative</field>
+        <field name="name">Quantity not positive</field>
         <field name="description">Purchase line quantity must be positive</field>
         <field name="sequence">50</field>
         <field name="model">purchase.order.line</field>
