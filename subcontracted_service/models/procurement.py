@@ -11,8 +11,8 @@ class ProcurementGroup(models.Model):
     @api.model
     def _is_subcontracted_service(self, product_id):
         return (product_id.type == 'service' and
-                product_id.property_subcontracted_service or
-                False)
+                product_id.property_subcontracted_service and
+                product_id.purchase_ok or False)
 
     @api.model
     def _get_rule(self, product_id, location_id, values):
