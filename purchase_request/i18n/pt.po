@@ -360,7 +360,6 @@ msgid "Draft"
 msgstr "Rascunho"
 
 #. module: purchase_request
-#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:236
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:240
 #, python-format
 msgid "Enter a positive quantity."
@@ -960,7 +959,6 @@ msgid "Quantity to purchase"
 msgstr "Quantidade a adquirir"
 
 #. module: purchase_request
-#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:304
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:308
 #, python-format
 msgid "RFQ"
@@ -1333,7 +1331,6 @@ msgid "Wizard"
 msgstr "Assistente"
 
 #. module: purchase_request
-#: code:addons/purchase_request/models/purchase_request_line.py:368
 #: code:addons/purchase_request/models/purchase_request_line.py:371
 #, python-format
 msgid ""
@@ -1369,7 +1366,6 @@ msgid "You cannot delete a purchase request which is not draft."
 msgstr "Não pode apagar uma requisição de compra que não esteja em rascunho."
 
 #. module: purchase_request
-#: code:addons/purchase_request/models/purchase_request_line.py:364
 #: code:addons/purchase_request/models/purchase_request_line.py:367
 #, python-format
 msgid "You cannot delete a record that refers to purchase lines!"
