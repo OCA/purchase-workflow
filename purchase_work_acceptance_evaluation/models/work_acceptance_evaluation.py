@@ -18,6 +18,7 @@ class WorkAcceptanceEvaluation(models.Model):
     state_required = fields.Selection(
         selection=[("draft", "Draft"), ("accept", "Accepted")],
         string="State Required",
+        help="Status of Work Acceptance that user need to fill the evaluation",
     )
     score_ids = fields.One2many(
         comodel_name="work.acceptance.evaluation.score",
