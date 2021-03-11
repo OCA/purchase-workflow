@@ -166,6 +166,11 @@ msgid "Analytic Account"
 msgstr ""
 
 #. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__analytic_tag_ids
+msgid "Analytic Tags"
+msgstr ""
+
+#. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Approve"
 msgstr ""
@@ -346,6 +351,7 @@ msgstr "Dự thảo"
 
 #. module: purchase_request
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:236
+#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:240
 #, python-format
 msgid "Enter a positive quantity."
 msgstr ""
@@ -939,6 +945,7 @@ msgstr ""
 
 #. module: purchase_request
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:304
+#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:308
 #, python-format
 msgid "RFQ"
 msgstr ""
@@ -1295,6 +1302,7 @@ msgstr ""
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_request_line.py:368
+#: code:addons/purchase_request/models/purchase_request_line.py:371
 #, python-format
 msgid ""
 "You can only delete a purchase request line if the purchase request is in "
@@ -1324,6 +1332,7 @@ msgstr ""
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_request_line.py:364
+#: code:addons/purchase_request/models/purchase_request_line.py:367
 #, python-format
 msgid "You cannot delete a record that refers to purchase lines!"
 msgstr ""
