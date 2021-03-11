@@ -339,7 +339,6 @@ msgid "Draft"
 msgstr ""
 
 #. module: purchase_request
-#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:236
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:240
 #, python-format
 msgid "Enter a positive quantity."
@@ -928,7 +927,6 @@ msgid "Quantity to purchase"
 msgstr ""
 
 #. module: purchase_request
-#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:304
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:308
 #, python-format
 msgid "RFQ"
@@ -1271,7 +1269,6 @@ msgid "Wizard"
 msgstr ""
 
 #. module: purchase_request
-#: code:addons/purchase_request/models/purchase_request_line.py:368
 #: code:addons/purchase_request/models/purchase_request_line.py:371
 #, python-format
 msgid "You can only delete a purchase request line if the purchase request is in draft state."
@@ -1296,7 +1293,6 @@ msgid "You cannot delete a purchase request which is not draft."
 msgstr ""
 
 #. module: purchase_request
-#: code:addons/purchase_request/models/purchase_request_line.py:364
 #: code:addons/purchase_request/models/purchase_request_line.py:367
 #, python-format
 msgid "You cannot delete a record that refers to purchase lines!"
