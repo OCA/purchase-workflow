@@ -13,13 +13,18 @@
                     name="evaluation"
                     groups="purchase_work_acceptance_evaluation.group_enable_eval_on_wa"
                 >
-                    <field
-                        name="evaluation_result_ids"
-                        attrs="{'readonly': [('state', '!=', 'draft')]}"
-                    >
-                        <tree string="Evaluation Results" editable="bottom">
-                            <field name="case_id" />
-                            <field name="score_id" />
+                    <field name="evaluation_result_ids">
+                        <tree string="Evaluation Results" editable="bottom" create="0">
+                            <field name="case_id" readonly="1" force_save="1" />
+                            <field
+                                name="score_id"
+                                attrs="{'readonly': [('editable', '=', False)]}"
+                            />
+                            <field
+                                name="note"
+                                attrs="{'readonly': [('editable', '=', False)]}"
+                            />
+                            <field name="editable" invisible="1" />
                         </tree>
                     </field>
                 </page>
