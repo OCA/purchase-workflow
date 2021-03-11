@@ -149,7 +149,7 @@ msgstr ""
 
 #. module: purchase_exception
 #: model:exception.rule,name:purchase_exception.pol_excep_qty_check
-msgid "Quantity not negative"
+msgid "Quantity not positive"
 msgstr ""
 
 #. module: purchase_exception
