@@ -24,6 +24,8 @@
                 <field name="product_uom_id" groups="uom.group_uom"/>
                 <field name="analytic_account_id"
                        groups="analytic.group_analytic_accounting"/>
+                <field name="analytic_tag_ids"
+                       groups="analytic.group_analytic_accounting"/>
                 <field name="supplier_id"/>
                 <field name="company_id" groups="base.group_multi_company" widget="selection"/>
                 <field name="cancelled" invisible="1"/>
@@ -78,6 +80,9 @@
                                        attrs="{'readonly': [('is_editable','=', False)]}"/>
                             </div>
                             <field name="analytic_account_id"
+                                   groups="analytic.group_analytic_accounting"
+                                   attrs="{'readonly': [('is_editable','=', False)]}"/>
+                            <field name="analytic_tag_ids"
                                    groups="analytic.group_analytic_accounting"
                                    attrs="{'readonly': [('is_editable','=', False)]}"/>
                             <field name="date_required"
@@ -169,6 +174,7 @@
                         domain="[('purchase_state','=','done')]"
                         help="At least a PO has been completed"/>
                 <field name="analytic_account_id"/>
+                <field name="analytic_tag_ids"/>
                 <field name="cancelled" invisible="1"/>
                 <filter name="request_state_draft" string="Draft"
                         domain="[('request_state','=','draft')]"
