@@ -7,7 +7,7 @@
     "version": "13.0.1.0.0",
     "category": "Purchase Management",
     "website": "https://github.com/OCA/purchase-workflow",
-    "depends": ["purchase_stock", "purchase_exception"],
+    "depends": ["purchase_exception"],
     "data": [
         "data/purchase_exception_data.xml",
         "security/ir.model.access.csv",
