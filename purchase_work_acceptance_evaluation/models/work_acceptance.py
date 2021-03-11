@@ -20,17 +20,24 @@ class WorkAcceptance(models.Model):
         result = [(0, 0, {"case_id": rec.id}) for rec in eval_result]
         return result
 
-    @api.constrains("evaluation_result_ids")
+    def button_accept(self, force=False):
+        for rec in self:
+            rec._check_evaluation()
+        return super().button_accept(force=force)
+
     def _check_evaluation(self):
+        self.ensure_one()
         if self.user_has_groups(
             "purchase_work_acceptance_evaluation.group_enable_eval_on_wa"
         ):
-            Evaluation = self.env["work.acceptance.evaluation"]
-            # i.e., {1: 'accept', 2: 'draft'}
-            case_state = {c.id: c.state_required for c in Evaluation.search([])}
-            for result in self.mapped("evaluation_result_ids"):
-                if case_state[result.case_id.id] == self.state and not result.score_id:
-                    raise UserError(_("Please evaluate - %s") % result.case_id.name)
+            missing_results = self.evaluation_result_ids.filtered(
+                lambda l: l.case_id.state_required == self.state and not l.score_id
+            )
+            if missing_results:
+                cases = missing_results.mapped("case_id")
+                raise UserError(
+                    _("Please evaluate - %s") % ", ".join(cases.mapped("name"))
+                )
 
 
 class WorkAcceptanceEvaluationResult(models.Model):
@@ -54,7 +61,10 @@ class WorkAcceptanceEvaluationResult(models.Model):
         string="Score",
         domain="[('evaluation_id', '=', case_id)]",
     )
+    note = fields.Char()
+    editable = fields.Boolean(compute="_compute_editable")
 
-    @api.onchange("case_id")
-    def _onchange_evaluation_id(self):
-        self.score_id = False
+    @api.depends("case_id")
+    def _compute_editable(self):
+        for rec in self:
+            rec.editable = rec.wa_id.state == rec.case_id.state_required

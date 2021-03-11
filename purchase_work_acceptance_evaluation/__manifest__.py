@@ -16,7 +16,7 @@
         "views/work_acceptance_evaluation_views.xml",
         "views/work_acceptance_views.xml",
     ],
-    "demo": ["data/evaluation_data.xml"],
+    "demo": ["demo/evaluation_data.xml"],
     "maintainers": ["kittiu"],
     "installable": True,
     "development_status": "Alpha",
