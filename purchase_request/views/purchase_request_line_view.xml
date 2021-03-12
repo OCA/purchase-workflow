@@ -29,6 +29,10 @@
                     name="analytic_account_id"
                     groups="analytic.group_analytic_accounting"
                 />
+                <field
+                    name="analytic_tag_ids"
+                    groups="analytic.group_analytic_accounting"
+                />
                 <field name="supplier_id" />
                 <field
                     name="company_id"
@@ -110,6 +114,11 @@
                             </div>
                             <field
                                 name="analytic_account_id"
+                                groups="analytic.group_analytic_accounting"
+                                attrs="{'readonly': [('is_editable','=', False)]}"
+                            />
+                            <field
+                                name="analytic_tag_ids"
                                 groups="analytic.group_analytic_accounting"
                                 attrs="{'readonly': [('is_editable','=', False)]}"
                             />
@@ -219,6 +228,7 @@
                     help="At least a PO has been completed"
                 />
                 <field name="analytic_account_id" />
+                <field name="analytic_tag_ids" />
                 <field name="cancelled" invisible="1" />
                 <filter
                     name="request_state_draft"
