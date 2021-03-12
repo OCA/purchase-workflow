@@ -13,8 +13,8 @@ msgstr ""
 "POT-Creation-Date: 2016-11-17 03:38+0000\n"
 "PO-Revision-Date: 2020-03-25 00:13+0000\n"
 "Last-Translator: Dong <dong@freshoo.cn>\n"
-"Language-Team: Chinese (China) (http://www.transifex.com/oca/"
-"OCA-purchase-workflow-10-0/language/zh_CN/)\n"
+"Language-Team: Chinese (China) (http://www.transifex.com/oca/OCA-purchase-"
+"workflow-10-0/language/zh_CN/)\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -154,7 +154,8 @@ msgstr "请购是为了指导采购在某个时间点满足一定数量的材料
 msgid ""
 "A sale/manufacturing order that generated this purchase request has been "
 "cancelled/deleted. Check if an action is needed."
-msgstr "生成此请购单的关联销售单/生产单已经取消或删除，检查是否需要采取纠正措施。"
+msgstr ""
+"生成此请购单的关联销售单/生产单已经取消或删除，检查是否需要采取纠正措施。"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_needaction
@@ -181,6 +182,12 @@ msgid "Activity State"
 msgstr "活动状态"
 
 #. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request__activity_type_icon
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "All Bought"
 msgstr "已买齐"
@@ -201,6 +208,11 @@ msgstr "分配"
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Analytic Account"
 msgstr "分析账户"
+
+#. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__analytic_tag_ids
+msgid "Analytic Tags"
+msgstr ""
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
@@ -353,11 +365,19 @@ msgid "Details"
 msgstr "明细"
 
 #. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_product_template__display_name
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_order_line__display_name
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__display_name
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__display_name
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__display_name
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order__display_name
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__display_name
+#: model:ir.model.fields,field_description:purchase_request.field_stock_move__display_name
+#: model:ir.model.fields,field_description:purchase_request.field_stock_move_line__display_name
+#: model:ir.model.fields,field_description:purchase_request.field_stock_picking__display_name
+#: model:ir.model.fields,field_description:purchase_request.field_stock_rule__display_name
+#: model:ir.model.fields,field_description:purchase_request.field_stock_warehouse_orderpoint__display_name
 msgid "Display Name"
 msgstr "显示名称"
 
@@ -426,6 +446,12 @@ msgid "Followers (Partners)"
 msgstr "关注者(业务伙伴)"
 
 #. module: purchase_request
+#: model:ir.model.fields,help:purchase_request.field_purchase_request__activity_type_icon
+#: model:ir.model.fields,help:purchase_request.field_purchase_request_line__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: purchase_request
 #: code:addons/purchase_request/models/purchase_request_allocation.py:0
 #, python-format
 msgid ""
@@ -449,11 +475,19 @@ msgid "Hide cancelled lines"
 msgstr "隐藏已取消的明细行"
 
 #. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_product_template__id
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_order__id
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_order_line__id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order__id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__id
+#: model:ir.model.fields,field_description:purchase_request.field_stock_move__id
+#: model:ir.model.fields,field_description:purchase_request.field_stock_move_line__id
+#: model:ir.model.fields,field_description:purchase_request.field_stock_picking__id
+#: model:ir.model.fields,field_description:purchase_request.field_stock_rule__id
+#: model:ir.model.fields,field_description:purchase_request.field_stock_warehouse_orderpoint__id
 msgid "ID"
 msgstr "ID"
 
@@ -503,11 +537,19 @@ msgid "Items"
 msgstr "明细"
 
 #. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_product_template____last_update
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_order____last_update
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_order_line____last_update
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request____last_update
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation____last_update
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line____last_update
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order____last_update
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item____last_update
+#: model:ir.model.fields,field_description:purchase_request.field_stock_move____last_update
+#: model:ir.model.fields,field_description:purchase_request.field_stock_move_line____last_update
+#: model:ir.model.fields,field_description:purchase_request.field_stock_picking____last_update
+#: model:ir.model.fields,field_description:purchase_request.field_stock_rule____last_update
+#: model:ir.model.fields,field_description:purchase_request.field_stock_warehouse_orderpoint____last_update
 msgid "Last Modified on"
 msgstr "最近修改时间"
 
@@ -705,11 +747,6 @@ msgid "Product Template"
 msgstr "产品"
 
 #. module: purchase_request
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__product_uom_id
-msgid "Product Unit of Measure"
-msgstr "计量单位"
-
-#. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Products"
@@ -864,12 +901,6 @@ msgid "Purchase Request is done"
 msgstr "请购已经完成"
 
 #. module: purchase_request
-#: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_form
-#: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_tree
-msgid "Purchase Request lines"
-msgstr "请购明细"
-
-#. module: purchase_request
 #: model:mail.message.subtype,description:purchase_request.mt_request_rejected
 #: model:mail.message.subtype,name:purchase_request.mt_request_rejected
 msgid "Purchase Request rejected"
@@ -943,11 +974,6 @@ msgid "Quantity completed"
 msgstr "已完成数量"
 
 #. module: purchase_request
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__purchased_qty
-msgid "Quantity in RFQ or PO"
-msgstr "待采购数量"
-
-#. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__qty_in_progress
 msgid "Quantity in progress."
 msgstr "采购中数量。"
@@ -976,6 +1002,11 @@ msgstr "待采购数量"
 #, python-format
 msgid "RFQ"
 msgstr "询价单"
+
+#. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__purchased_qty
+msgid "RFQ/PO Qty"
+msgstr ""
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/stock_move_line.py:0
@@ -1310,6 +1341,7 @@ msgstr "未读消息计数器"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__product_uom_id
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__product_uom_id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__product_uom_id
 msgid "UoM"
 msgstr "计量单位"
@@ -1389,3 +1421,12 @@ msgstr "您必须选择相同作业类型的请购明细。"
 #, python-format
 msgid "You have to select lines from the same company."
 msgstr "您必须选择同一个公司的请购明细。"
+
+#~ msgid "Product Unit of Measure"
+#~ msgstr "计量单位"
+
+#~ msgid "Purchase Request lines"
+#~ msgstr "请购明细"
+
+#~ msgid "Quantity in RFQ or PO"
+#~ msgstr "待采购数量"
