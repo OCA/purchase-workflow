@@ -4,8 +4,6 @@
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
-from odoo.addons import decimal_precision as dp
-
 
 class CreateManualStockPickingWizard(models.TransientModel):
     _name = "create.stock.picking.wizard"
@@ -121,6 +119,9 @@ class CreateManualStockPickingWizard(models.TransientModel):
             res["location_dest_id"] = self.location_dest_id.id
         return res
 
+    def _create_stock_moves(self, picking_id):
+        return self.line_ids._create_stock_moves(picking_id)
+
     def create_stock_picking(self):
         StockPicking = self.env["stock.picking"]
 
@@ -140,7 +141,7 @@ class CreateManualStockPickingWizard(models.TransientModel):
                     "the purchase order first."
                 )
             )
-        moves = self.line_ids._create_stock_moves(picking_id)
+        moves = self._create_stock_moves(picking_id)
         moves = moves.filtered(
             lambda x: x.state not in ("done", "cancel")
         )._action_confirm()
@@ -192,22 +193,22 @@ class CreateManualStockPickingWizardLine(models.TransientModel):
     product_qty = fields.Float(
         string="Quantity",
         related="purchase_order_line_id.product_qty",
-        digits=dp.get_precision("Product Unit of Measure"),
+        digits="Product Unit of Measure",
     )
     existing_qty = fields.Float(
         string="Existing Quantity",
         related="purchase_order_line_id.existing_qty",
-        digits=dp.get_precision("Product Unit of Measure"),
+        digits="Product Unit of Measure",
     )
     remaining_qty = fields.Float(
         string="Remaining Quantity",
         compute="_compute_remaining_qty",
         readonly=True,
-        digits=dp.get_precision("Product Unit of Measure"),
+        digits="Product Unit of Measure",
     )
     qty = fields.Float(
         string="Quantity to Receive",
-        digits=dp.get_precision("Product Unit of Measure"),
+        digits="Product Unit of Measure",
         help="This is the quantity taken into account to create the picking",
     )
     price_unit = fields.Float(
@@ -223,7 +224,6 @@ class CreateManualStockPickingWizardLine(models.TransientModel):
         "account.tax", related="purchase_order_line_id.taxes_id"
     )
 
-    @api.multi
     def _compute_remaining_qty(self):
         for line in self:
             line.remaining_qty = line.product_qty - line.existing_qty
@@ -232,7 +232,6 @@ class CreateManualStockPickingWizardLine(models.TransientModel):
         po_line = self.purchase_order_line_id
         return po_line._prepare_stock_moves(picking)
 
-    @api.multi
     def _create_stock_moves(self, picking):
         values = []
         for line in self:

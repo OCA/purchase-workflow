@@ -1,4 +1,4 @@
-# Copyright 2019 ForgeFlow S.L.
+# Copyright 2019-21 ForgeFlow S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
@@ -8,9 +8,9 @@
         and adds the ability to manually generate them as the supplier confirms
         the different purchase order lines.
     """,
-    "version": "12.0.1.0.0",
+    "version": "13.0.1.0.0",
     "license": "AGPL-3",
-    "author": "ForgeFlow S.L.," "Odoo Community Association (OCA)",
+    "author": "ForgeFlow S.L., Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
     "depends": ["purchase_stock"],
     "data": [

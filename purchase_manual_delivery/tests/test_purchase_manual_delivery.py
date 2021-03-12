@@ -1,4 +1,4 @@
-# Copyright 2019 ForgeFlow S.L.
+# Copyright 2019-21 ForgeFlow S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import fields
@@ -22,7 +22,7 @@ class TestPurchaseManualDelivery(TransactionCase):
 
         # Purchase Orders
         self.po1 = self.purchase_order_obj.create(
-            {"partner_id": self.ref("base.res_partner_3"),}
+            {"partner_id": self.ref("base.res_partner_3")}
         )
         self.po1_line1 = self.purchase_order_line_obj.create(
             {
@@ -48,7 +48,7 @@ class TestPurchaseManualDelivery(TransactionCase):
         )
 
         self.po2 = self.purchase_order_obj.create(
-            {"partner_id": self.ref("base.res_partner_3"),}
+            {"partner_id": self.ref("base.res_partner_3")}
         )
         self.po2_line1 = self.purchase_order_line_obj.create(
             {
