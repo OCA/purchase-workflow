@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_purchase_order_line_schedule_user,purchase.order.line.schedule.user,model_purchase_order_line_schedule,purchase.group_purchase_user,1,1,1,1
+access_purchase_order_line_schedule_manager,purchase.order.line.schedule.manager,model_purchase_order_line_schedule,purchase.group_purchase_manager,1,1,1,1
