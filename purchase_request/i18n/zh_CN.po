@@ -13,8 +13,8 @@ msgstr ""
 "POT-Creation-Date: 2016-11-17 03:38+0000\n"
 "PO-Revision-Date: 2021-02-28 10:45+0000\n"
 "Last-Translator: Dong <dong@freshoo.cn>\n"
-"Language-Team: Chinese (China) (http://www.transifex.com/oca/"
-"OCA-purchase-workflow-10-0/language/zh_CN/)\n"
+"Language-Team: Chinese (China) (http://www.transifex.com/oca/OCA-purchase-"
+"workflow-10-0/language/zh_CN/)\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -154,7 +154,8 @@ msgstr "采购申请是为了指导采购业务在某个时间点满足一定数
 msgid ""
 "A sale/manufacturing order that generated this purchase request has been "
 "cancelled/deleted. Check if an action is needed."
-msgstr "生成此采购申请的关联销售单/生产单已经取消或删除，检查是否需要采取纠正措施。"
+msgstr ""
+"生成此采购申请的关联销售单/生产单已经取消或删除，检查是否需要采取纠正措施。"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_needaction
@@ -201,6 +202,11 @@ msgstr "分配"
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Analytic Account"
 msgstr "辅助核算"
+
+#. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__analytic_tag_ids
+msgid "Analytic Tags"
+msgstr ""
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
