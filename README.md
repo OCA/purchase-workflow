@@ -38,7 +38,7 @@ addon | version | summary
 [purchase_request_tier_validation](purchase_request_tier_validation/) | 14.0.2.0.0 | Extends the functionality of Purchase Requests to support a tier validation process.
 [purchase_requisition_tier_validation](purchase_requisition_tier_validation/) | 14.0.1.0.0 | Extends the functionality of Purchase Agreements to support a tier validation process.
 [purchase_tier_validation](purchase_tier_validation/) | 14.0.2.0.0 | Extends the functionality of Purchase Orders to support a tier validation process.
-[purchase_work_acceptance](purchase_work_acceptance/) | 14.0.1.0.2 | Purchase Work Acceptance
+[purchase_work_acceptance](purchase_work_acceptance/) | 14.0.1.0.3 | Purchase Work Acceptance
 
 [//]: # (end addons)
 
