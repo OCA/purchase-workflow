@@ -34,6 +34,7 @@ addon | version | summary
 [purchase_order_line_price_history](purchase_order_line_price_history/) | 14.0.1.0.0 | Purchase order line price history
 [purchase_order_type](purchase_order_type/) | 14.0.1.0.0 | Purchase Order Type
 [purchase_order_uninvoiced_amount](purchase_order_uninvoiced_amount/) | 14.0.1.0.0 | Show uninvoiced amount on purchase order tree.
+[purchase_reception_status](purchase_reception_status/) | 14.0.1.0.0 | Add reception status on purchase orders
 [purchase_request](purchase_request/) | 14.0.1.0.2 | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
 [purchase_request_tier_validation](purchase_request_tier_validation/) | 14.0.2.0.0 | Extends the functionality of Purchase Requests to support a tier validation process.
 [purchase_requisition_tier_validation](purchase_requisition_tier_validation/) | 14.0.1.0.0 | Extends the functionality of Purchase Agreements to support a tier validation process.
