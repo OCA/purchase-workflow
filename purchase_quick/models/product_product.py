@@ -18,7 +18,7 @@ class ProductProduct(models.Model):
         inverse_name="product_id",
         help="Technical: used to compute quantities to purchase.",
     )
-    purchase_quick_uom_category_id = fields.Many2one(related="uom_id.category_id")
+    purchase_quick_uom_category_id = fields.Many2one(related="uom_po_id.category_id")
     purchase_quick_uom_id = fields.Many2one(
         "uom.uom",
         domain="[('category_id', '=', purchase_quick_uom_category_id)]",
@@ -33,7 +33,7 @@ class ProductProduct(models.Model):
     )
 
     def _default_purchase_quick_uom_id(self):
-        return self.uom_id
+        return self.uom_po_id
 
     def _compute_purchase_quick_uom_id(self):
         parent_model = self.env.context.get("parent_model")

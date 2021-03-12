@@ -49,8 +49,12 @@ class TestQuickPurchase(SavepointCase):
         ctx = {"parent_id": self.po.id, "parent_model": "purchase.order"}
         self.product_1 = self.env.ref("product.product_product_8").with_context(ctx)
         self.product_2 = self.env.ref("product.product_product_11").with_context(ctx)
-        self.product_1.write({"qty_to_process": 5.0, "purchase_quick_uom_id": self.uom_unit.id})
-        self.product_2.write({"qty_to_process": 6.0, "purchase_quick_uom_id": self.uom_dozen.id})
+        self.product_1.write(
+            {"qty_to_process": 5.0, "purchase_quick_uom_id": self.uom_unit.id}
+        )
+        self.product_2.write(
+            {"qty_to_process": 6.0, "purchase_quick_uom_id": self.uom_dozen.id}
+        )
         self.assertEqual(self.po.order_line[0].product_uom, self.uom_unit)
         self.assertEqual(self.po.order_line[1].product_uom, self.uom_dozen)
 
