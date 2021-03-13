@@ -1,6 +1,8 @@
 # Copyright 2021 ForgeFlow, S.L.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
+from odoo.tools import float_is_zero
 
 
 class PurchaseOrderLine(models.Model):
@@ -10,9 +12,19 @@ class PurchaseOrderLine(models.Model):
     schedule_line_ids = fields.One2many(
         comodel_name="purchase.order.line.schedule",
         inverse_name="order_line_id",
-        string="Schedule Lines",
+        string="Delivery Schedule",
     )
     has_schedule_lines = fields.Boolean(compute="_compute_has_schedule_lines")
+    qty_to_schedule = fields.Float(
+        string="To Schedule", compute="_compute_qty_to_schedule"
+    )
+
+    @api.depends("product_qty", "schedule_line_ids", "schedule_line_ids.product_qty")
+    def _compute_qty_to_schedule(self):
+        for line in self:
+            line.qty_to_schedule = line.product_qty - sum(
+                line.schedule_line_ids.mapped("product_qty")
+            )
 
     @api.depends("schedule_line_ids")
     def _compute_has_schedule_lines(self):
@@ -84,3 +96,17 @@ class PurchaseOrderLine(models.Model):
         res = super(PurchaseOrderLine, self).write(values)
         self._update_schedule_lines()
         return res
+
+    @api.constrains("product_qty", "schedule_line_ids")
+    def _check_qty_to_schedule_constrains(self):
+        precision = self.env["decimal.precision"].precision_get(
+            "Product Unit of Measure"
+        )
+        for rec in self:
+            if not float_is_zero(rec.qty_to_schedule, precision_digits=precision):
+                raise ValidationError(
+                    _(
+                        "You cannot have more quantity in schedule lines"
+                        "than in the order line."
+                    )
+                )

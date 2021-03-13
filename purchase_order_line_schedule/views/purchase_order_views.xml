@@ -5,16 +5,24 @@
         <field name="model">purchase.order</field>
         <field name="inherit_id" ref="purchase.purchase_order_form" />
         <field name="arch" type="xml">
+            <field name="date_approve" position="after">
+                <field name="has_qty_to_schedule" invisible="True" />
+            </field>
             <xpath
                 expr="//notebook//field[@name='order_line']/tree/field[@name='date_planned']"
                 position="after"
             >
                 <field name="schedule_line_ids" invisible="1" />
                 <button
-                    string="Schedule lines"
+                    string="Delivery Schedule"
                     name="action_open_schedule_lines"
                     type="object"
                     icon="fa-list"
+                    optional="hide"
+                />
+                <field
+                    name="qty_to_schedule"
+                    attrs="{'column_invisible': [('parent.has_qty_to_schedule', '=', False)]}"
                 />
             </xpath>
             <xpath
@@ -22,6 +30,10 @@
                 position="inside"
             >
                 <page name="schedule_lines" string="Schedule Lines">
+                    <field
+                        name="qty_to_schedule"
+                        attrs="{'invisible': [('parent.has_qty_to_schedule', '=', False)]}"
+                    />
                     <field name="schedule_line_ids" nolabel="1" editable="top" />
                 </page>
             </xpath>

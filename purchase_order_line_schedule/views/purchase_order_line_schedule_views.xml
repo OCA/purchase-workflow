@@ -5,12 +5,27 @@
         <field name="model">purchase.order.line.schedule</field>
         <field name="arch" type="xml">
             <tree editable="top" create="true" edit="true" delete="true">
+                <field name="order_id" invisible="1" />
                 <field name="order_line_id" readonly="1" />
                 <field name="date_planned" />
                 <field name="product_qty" />
                 <field name="qty_received" />
                 <field name="qty_received_manual" invisible="1" />
             </tree>
+        </field>
+    </record>
+    <record id="purchase_order_line_schedule_form" model="ir.ui.view">
+        <field name="name">purchase.order.line.schedule.form</field>
+        <field name="model">purchase.order.line.schedule</field>
+        <field name="arch" type="xml">
+            <form>
+                <field name="order_id" readonly="1" />
+                <field name="order_line_id" readonly="1" />
+                <field name="date_planned" />
+                <field name="product_qty" />
+                <field name="qty_received" />
+                <field name="qty_received_manual" invisible="1" />
+            </form>
         </field>
     </record>
 </odoo>

@@ -9,8 +9,11 @@ class PurchaseOrderLineSchedule(models.Model):
     _description = "Purchase Order Line Schedule"
     _order = "order_line_id, date_planned, id"
 
-    order_line_id = fields.Many2one("purchase.order.line")
-    date_planned = fields.Datetime(string="Scheduled Date", index=True)
+    order_id = fields.Many2one(
+        comodel_name="purchase.order", related="order_line_id.order_id", store=True
+    )
+    order_line_id = fields.Many2one(comodel_name="purchase.order.line", required=True,)
+    date_planned = fields.Datetime(string="Scheduled Date", index=True, required=True)
     product_qty = fields.Float(
         string="Quantity", digits="Product Unit of Measure", required=True
     )
@@ -24,6 +27,9 @@ class PurchaseOrderLineSchedule(models.Model):
     )
     qty_received_manual = fields.Float(
         "Manual Received Qty", digits="Product Unit of Measure", copy=False
+    )
+    product_id = fields.Many2one(
+        comodel_name="product.product", related="order_line_id.product_id", store=True,
     )
     company_id = fields.Many2one(
         "res.company", related="order_line_id.company_id", store=True
