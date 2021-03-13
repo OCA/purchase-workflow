@@ -1,0 +1,121 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_work_acceptance_invoice_plan
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_work_acceptance_invoice_plan
+#: model:ir.model.fields,field_description:purchase_work_acceptance_invoice_plan.field_select_work_acceptance_invoice_plan_wizard__active_installment_ids
+msgid "Active Installment"
+msgstr ""
+
+#. module: purchase_work_acceptance_invoice_plan
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance_invoice_plan.view_select_work_acceptance_invoice_plan_wizard
+msgid "Cancel"
+msgstr ""
+
+#. module: purchase_work_acceptance_invoice_plan
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance_invoice_plan.view_select_work_acceptance_invoice_plan_wizard
+msgid "Create WA"
+msgstr ""
+
+#. module: purchase_work_acceptance_invoice_plan
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance_invoice_plan.purchase_order_form
+msgid "Create WA by Installment"
+msgstr ""
+
+#. module: purchase_work_acceptance_invoice_plan
+#: model:ir.model.fields,field_description:purchase_work_acceptance_invoice_plan.field_select_work_acceptance_invoice_plan_wizard__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: purchase_work_acceptance_invoice_plan
+#: model:ir.model.fields,field_description:purchase_work_acceptance_invoice_plan.field_select_work_acceptance_invoice_plan_wizard__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: purchase_work_acceptance_invoice_plan
+#: model:ir.model.fields,field_description:purchase_work_acceptance_invoice_plan.field_purchase_invoice_plan__display_name
+#: model:ir.model.fields,field_description:purchase_work_acceptance_invoice_plan.field_purchase_order_line__display_name
+#: model:ir.model.fields,field_description:purchase_work_acceptance_invoice_plan.field_select_work_acceptance_invoice_plan_wizard__display_name
+#: model:ir.model.fields,field_description:purchase_work_acceptance_invoice_plan.field_work_acceptance__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: purchase_work_acceptance_invoice_plan
+#: model:ir.model.fields,field_description:purchase_work_acceptance_invoice_plan.field_purchase_invoice_plan__id
+#: model:ir.model.fields,field_description:purchase_work_acceptance_invoice_plan.field_purchase_order_line__id
+#: model:ir.model.fields,field_description:purchase_work_acceptance_invoice_plan.field_select_work_acceptance_invoice_plan_wizard__id
+#: model:ir.model.fields,field_description:purchase_work_acceptance_invoice_plan.field_work_acceptance__id
+msgid "ID"
+msgstr ""
+
+#. module: purchase_work_acceptance_invoice_plan
+#: code:addons/purchase_work_acceptance_invoice_plan/wizard/select_work_acceptance_invoice_plan_wizard.py:0
+#, python-format
+msgid "Installment {} is already used by other WA."
+msgstr ""
+
+#. module: purchase_work_acceptance_invoice_plan
+#: model:ir.model.fields,field_description:purchase_work_acceptance_invoice_plan.field_select_work_acceptance_invoice_plan_wizard__installment_id
+#: model:ir.model.fields,field_description:purchase_work_acceptance_invoice_plan.field_work_acceptance__installment_id
+msgid "Invoice Plan"
+msgstr ""
+
+#. module: purchase_work_acceptance_invoice_plan
+#: model:ir.model,name:purchase_work_acceptance_invoice_plan.model_purchase_invoice_plan
+msgid "Invoice Planning Detail"
+msgstr ""
+
+#. module: purchase_work_acceptance_invoice_plan
+#: model:ir.model.fields,field_description:purchase_work_acceptance_invoice_plan.field_purchase_invoice_plan____last_update
+#: model:ir.model.fields,field_description:purchase_work_acceptance_invoice_plan.field_purchase_order_line____last_update
+#: model:ir.model.fields,field_description:purchase_work_acceptance_invoice_plan.field_select_work_acceptance_invoice_plan_wizard____last_update
+#: model:ir.model.fields,field_description:purchase_work_acceptance_invoice_plan.field_work_acceptance____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: purchase_work_acceptance_invoice_plan
+#: model:ir.model.fields,field_description:purchase_work_acceptance_invoice_plan.field_select_work_acceptance_invoice_plan_wizard__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: purchase_work_acceptance_invoice_plan
+#: model:ir.model.fields,field_description:purchase_work_acceptance_invoice_plan.field_select_work_acceptance_invoice_plan_wizard__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: purchase_work_acceptance_invoice_plan
+#: model:ir.model.fields,help:purchase_work_acceptance_invoice_plan.field_select_work_acceptance_invoice_plan_wizard__installment_id
+msgid "List only installment that has not been used in WA (draft, accepted)"
+msgstr ""
+
+#. module: purchase_work_acceptance_invoice_plan
+#: model:ir.model,name:purchase_work_acceptance_invoice_plan.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr ""
+
+#. module: purchase_work_acceptance_invoice_plan
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance_invoice_plan.view_select_work_acceptance_invoice_plan_wizard
+msgid "Select Work Acceptance"
+msgstr ""
+
+#. module: purchase_work_acceptance_invoice_plan
+#: model:ir.model,name:purchase_work_acceptance_invoice_plan.model_select_work_acceptance_invoice_plan_wizard
+msgid "Select Work Acceptance Invoice Plan Wizard"
+msgstr ""
+
+#. module: purchase_work_acceptance_invoice_plan
+#: model:ir.actions.act_window,name:purchase_work_acceptance_invoice_plan.action_view_wa_installment
+#: model:ir.model,name:purchase_work_acceptance_invoice_plan.model_work_acceptance
+msgid "Work Acceptance"
+msgstr ""
