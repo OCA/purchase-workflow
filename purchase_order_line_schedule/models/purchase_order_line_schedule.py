@@ -12,15 +12,24 @@ class PurchaseOrderLineSchedule(models.Model):
     order_id = fields.Many2one(
         comodel_name="purchase.order", related="order_line_id.order_id", store=True
     )
+    purchase_state = fields.Selection(related="order_line_id.order_id.state",)
+    qty_received_method = fields.Selection(related="order_line_id.qty_received_method",)
     order_line_id = fields.Many2one(comodel_name="purchase.order.line", required=True,)
     date_planned = fields.Datetime(string="Scheduled Date", index=True, required=True)
     product_qty = fields.Float(
         string="Quantity", digits="Product Unit of Measure", required=True
     )
     qty_received = fields.Float(
-        "Received Qty",
+        "Received",
         compute="_compute_qty_received",
         inverse="_inverse_qty_received",
+        compute_sudo=True,
+        store=True,
+        digits="Product Unit of Measure",
+    )
+    qty_to_receive = fields.Float(
+        "To Receive",
+        compute="_compute_qty_to_receive",
         compute_sudo=True,
         store=True,
         digits="Product Unit of Measure",
@@ -35,7 +44,14 @@ class PurchaseOrderLineSchedule(models.Model):
         "res.company", related="order_line_id.company_id", store=True
     )
 
-    @api.depends("order_line_id.qty_received_method")
+    @api.depends("qty_received", "product_qty")
+    def _compute_qty_to_receive(self):
+        for line in self:
+            line.qty_to_receive = line.product_qty - line.qty_received
+
+    @api.depends(
+        "product_qty", "qty_received_manual", "order_line_id.qty_received_method"
+    )
     def _compute_qty_received(self):
         for line in self:
             if line.order_line_id.qty_received_method == "manual":

@@ -34,3 +34,4 @@ class PurchaseOrderLine(models.Model):
                         "negative quantity to schedule."
                     )
                 )
+        return super(PurchaseOrderLine, self).button_confirm()

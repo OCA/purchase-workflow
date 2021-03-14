@@ -8,7 +8,7 @@
     "website": "https://github.com/OCA/purchase-workflow",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "license": "AGPL-3",
-    "depends": ["purchase_stock"],
+    "depends": ["purchase"],
     "data": [
         "security/ir.model.access.csv",
         "security/purchase_order_line_schedule.xml",
