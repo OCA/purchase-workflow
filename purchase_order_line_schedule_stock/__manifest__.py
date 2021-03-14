@@ -9,4 +9,5 @@
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "depends": ["purchase_order_line_schedule", "purchase_stock"],
+    "auto_install": True,
 }
