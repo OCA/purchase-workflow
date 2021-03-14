@@ -24,14 +24,12 @@ class PurchaseOrderLineSchedule(models.Model):
         compute="_compute_qty_received",
         inverse="_inverse_qty_received",
         compute_sudo=True,
-        store=True,
         digits="Product Unit of Measure",
     )
     qty_to_receive = fields.Float(
         "To Receive",
         compute="_compute_qty_to_receive",
         compute_sudo=True,
-        store=True,
         digits="Product Unit of Measure",
     )
     qty_received_manual = fields.Float(
