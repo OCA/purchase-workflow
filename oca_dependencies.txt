@@ -1,3 +1,6 @@
 brand
 server-ux
 product-attribute
+purchase-workflow-1 https://github.com/ForgeFlow/purchase-workflow.git 13.0-mig-purchase_manual_delivery
+purchase-workflow-2 https://github.com/ForgeFlow/purchase-workflow.git 13.0-purchase_schedule_line
+purchase-workflow-3 https://github.com/ForgeFlow/purchase-workflow.git 13.0-purchase_order_line_schedule_stock
