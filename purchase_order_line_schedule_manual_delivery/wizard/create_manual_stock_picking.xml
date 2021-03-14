@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_create_stock_picking" model="ir.ui.view">
+        <field name="name">Create Stock Picking</field>
+        <field name="model">create.stock.picking.wizard</field>
+        <field
+            name="inherit_id"
+            ref="purchase_manual_delivery.view_create_stock_picking"
+        />
+        <field name="arch" type="xml">
+            <field name="line_ids" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </field>
+            <field name="line_ids" position="after">
+                <field name="schedule_line_ids" nolabel="1">
+                    <tree create="false" editable="bottom">
+                        <field name="product_id" />
+                        <field name="partner_id" />
+                        <field name="date_planned" />
+                        <field name="price_unit" />
+                        <field name="product_qty" string="Ordered" />
+                        <field name="existing_qty" string="Receiving" />
+                        <field name="remaining_qty" string="To Receive" />
+                        <field name="qty" string="Quantity" />
+                        <field name="product_uom" groups="uom.group_uom" />
+                    </tree>
+                </field>
+            </field>
+        </field>
+    </record>
+</odoo>

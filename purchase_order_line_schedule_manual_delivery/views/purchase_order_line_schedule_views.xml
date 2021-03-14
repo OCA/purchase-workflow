@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="purchase_order_line_schedule_tree" model="ir.ui.view">
+        <field name="name">purchase.order.line.schedule.tree</field>
+        <field name="model">purchase.order.line.schedule</field>
+        <field
+            name="inherit_id"
+            ref="purchase_order_line_schedule.purchase_order_line_schedule_tree"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="/tree" position="attributes">
+                <attribute
+                    name="decoration-info"
+                >purchase_state == 'purchase' and pending_to_receive</attribute>
+            </xpath>
+            <field name="product_qty" position="after">
+                <field name="existing_qty" />
+            </field>
+            <field name="date_planned" position="after">
+                <field name="pending_to_receive" invisible="1" />
+            </field>
+        </field>
+    </record>
+</odoo>
