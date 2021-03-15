@@ -41,7 +41,7 @@ class TestQuickPurchase(SavepointCase):
         same as previous, but include a different UoM as well
         We duplicate _setUpBasicSaleOrder except we ~simultaneously~
         write on qty_to_process as well as quick_uom_id
-        (we want to make sure to test the twice triggered _inverse function)
+        (we want to make sure to test _inverse function when it is triggered twice)
         """
         po = self.env["purchase.order"].create({"partner_id": self.partner.id})
         with Form(po, "purchase.purchase_order_form") as po_form:
