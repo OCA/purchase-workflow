@@ -40,7 +40,7 @@ class TestQuickPurchase(SavepointCase):
         """
         same as previous, but include a different UoM as well
         We duplicate _setUpBasicSaleOrder except we ~simultaneously~
-        write on qty_to_process as well as purchase_quick_uom_id
+        write on qty_to_process as well as quick_uom_id
         (we want to make sure to test the twice triggered _inverse function)
         """
         po = self.env["purchase.order"].create({"partner_id": self.partner.id})
@@ -49,12 +49,8 @@ class TestQuickPurchase(SavepointCase):
         ctx = {"parent_id": self.po.id, "parent_model": "purchase.order"}
         self.product_1 = self.env.ref("product.product_product_8").with_context(ctx)
         self.product_2 = self.env.ref("product.product_product_11").with_context(ctx)
-        self.product_1.write(
-            {"qty_to_process": 5.0, "purchase_quick_uom_id": self.uom_unit.id}
-        )
-        self.product_2.write(
-            {"qty_to_process": 6.0, "purchase_quick_uom_id": self.uom_dozen.id}
-        )
+        self.product_1.write({"qty_to_process": 5.0, "quick_uom_id": self.uom_unit.id})
+        self.product_2.write({"qty_to_process": 6.0, "quick_uom_id": self.uom_dozen.id})
         self.assertEqual(self.po.order_line[0].product_uom, self.uom_unit)
         self.assertEqual(self.po.order_line[1].product_uom, self.uom_dozen)
 
@@ -72,8 +68,8 @@ class TestQuickPurchase(SavepointCase):
         """
         same as previous update only UoM in isolation, not qty
         """
-        self.product_1.purchase_quick_uom_id = self.uom_dozen
-        self.product_2.purchase_quick_uom_id = self.uom_unit
+        self.product_1.quick_uom_id = self.uom_dozen
+        self.product_2.quick_uom_id = self.uom_unit
         self.assertEqual(self.po.order_line[0].product_uom, self.uom_dozen)
         self.assertEqual(self.po.order_line[1].product_uom, self.uom_unit)
 
@@ -83,8 +79,8 @@ class TestQuickPurchase(SavepointCase):
         """
         self.product_1.qty_to_process = 7.0
         self.product_2.qty_to_process = 13.0
-        self.product_1.purchase_quick_uom_id = self.uom_dozen
-        self.product_2.purchase_quick_uom_id = self.uom_unit
+        self.product_1.quick_uom_id = self.uom_dozen
+        self.product_2.quick_uom_id = self.uom_unit
         self.assertEqual(self.po.order_line[0].product_uom, self.uom_dozen)
         self.assertEqual(self.po.order_line[1].product_uom, self.uom_unit)
         self.assertAlmostEqual(self.po.order_line[0].product_qty, 7.0)

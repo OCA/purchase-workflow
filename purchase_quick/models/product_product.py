@@ -18,50 +18,30 @@ class ProductProduct(models.Model):
         inverse_name="product_id",
         help="Technical: used to compute quantities to purchase.",
     )
-    purchase_quick_uom_category_id = fields.Many2one(related="uom_po_id.category_id")
-    purchase_quick_uom_id = fields.Many2one(
-        "uom.uom",
-        domain="[('category_id', '=', purchase_quick_uom_category_id)]",
-        compute="_compute_purchase_quick_uom_id",
-        # TODO cleanup base module to make it cleaner ?
-        #  Whether we update quantities or uom,
-        #  we should be refreshing the line anyways
-        #  + it is not possible to call our own functionhere: several _inverse
-        #  means only the first one will get the values in the UI
-        #  and all the subsequent ones will discard the values
-        inverse="_inverse_set_process_qty",
-    )
 
-    def _default_purchase_quick_uom_id(self):
+    def _default_quick_uom_id(self):
         return self.uom_po_id
 
-    def _compute_purchase_quick_uom_id(self):
-        parent_model = self.env.context.get("parent_model")
-        parent_id = self.env.context.get("parent_id")
-        if parent_model and parent_id:
-            parent = self.env[parent_model].browse(parent_id)
-            for rec in self:
-                quick_line = parent._get_quick_line(rec)
-                if quick_line:
-                    rec.purchase_quick_uom_id = quick_line.product_uom
-                else:
-                    rec.purchase_quick_uom_id = rec._default_purchase_quick_uom_id()
+    def _compute_quick_uom_category_id(self):
+        for rec in self:
+            rec.quick_uom_category_id = rec.uom_po_id.category_id
+
+    def _compute_process_qty_purchase(self):
+        po_lines = self.env["purchase.order.line"].search(
+            [("order_id", "=", self.env.context.get("parent_id"))]
+        )
+        for product in self:
+            product.qty_to_process = sum(
+                po_lines.filtered(lambda l: l.product_id == product).mapped(
+                    "product_qty"
+                )
+            )
 
     @api.depends("po_line_ids")
     def _compute_process_qty(self):
         res = super(ProductProduct, self)._compute_process_qty()
         if self.env.context.get("parent_model", False) == "purchase.order":
-            po_lines = self.env["purchase.order.line"].search(
-                [("order_id", "=", self.env.context.get("parent_id"))]
-            )
-            for product in self:
-                total_prod_qty = 0.0
-                product_po_lines = po_lines.filtered(
-                    lambda l, p=product: l.product_id == p
-                )
-                for product_po_line in product_po_lines:
-                    total_prod_qty += product_po_line.product_qty
-                product.qty_to_process += total_prod_qty
+            self._compute_process_qty_purchase()
         return res
 
     @api.model

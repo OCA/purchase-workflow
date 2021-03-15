@@ -33,7 +33,7 @@ class PurchaseOrder(models.Model):
     def _get_quick_line_qty_vals(self, product):
         return {
             "product_qty": product.qty_to_process,
-            "product_uom": product.purchase_quick_uom_id.id,
+            "product_uom": product.quick_uom_id.id,
         }
 
     def _complete_quick_line_vals(self, vals, lines_key=""):
