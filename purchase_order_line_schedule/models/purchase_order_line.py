@@ -78,8 +78,13 @@ class PurchaseOrderLine(models.Model):
                 }
                 rec.schedule_line_ids = [(0, 0, vals)]
             else:
+                qty = sum(rec.schedule_line_ids.mapped("product_qty"))
                 # Update the last scheduled date of the schedule lines
+                # And update the quantity of schedule lines so as to match
+                # that of the purchase order line.
                 for sl in sls.sorted(lambda x: x.date_planned, reverse=True):
+                    if qty != rec.product_qty:
+                        sl.product_qty += rec.product_qty - qty
                     if sl.date_planned != rec.date_planned:
                         sl.date_planned = rec.date_planned
                     break
