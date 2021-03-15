@@ -75,7 +75,7 @@ class PurchaseOrderLineSchedule(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         res = super(PurchaseOrderLineSchedule, self).create(vals_list)
-        self._update_order_line_date_planned()
+        res._update_order_line_date_planned()
         return res
 
     def write(self, values):
