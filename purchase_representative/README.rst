@@ -14,24 +14,20 @@ Purchase Representative
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fpurchase--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/purchase-workflow/tree/11.0/purchase_representative
+    :target: https://github.com/OCA/purchase-workflow/tree/13.0/purchase_representative
     :alt: OCA/purchase-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/purchase-workflow-11-0/purchase-workflow-11-0-purchase_representative
+    :target: https://translation.odoo-community.org/projects/purchase-workflow-13-0/purchase-workflow-13-0-purchase_representative
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/142/11.0
+    :target: https://runbot.odoo-community.org/runbot/142/13.0
     :alt: Try me on Runbot
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-This module adds the field *Purchase Representative* to Purchase
-Orders. This field is present in Standard Odoo v12. The user specified will
-be the contact person for the purchase order.
-
-Additionally, it defaults it to the user doing a procurement to overcome the
-known flaw of Odoo (until v13) which changes the user in the transaction when
-using `sudo`.
+This module makes the field *Purchase Representative* in Purchase
+Orders default to the user doing a procurement to overcome the
+known flaw of Odoo user in the transaction when using `SUPERUSER_ID`.
 
 **Table of contents**
 
@@ -45,22 +41,13 @@ Just set the *Purchase Representative* in the Purchase Order header.
 Then when sending the RFQ/PO to the vendor the Purchase Representative will be
 the contact person (email from and reply to).
 
-Known issues / Roadmap
-======================
-
-Migration notes:
-
-* The field `user_id` is out-of-the-box in v12.
-* In v13 the user doing the transaction is respected. Check if emails are
-  also sent to the correct user.
-
 Bug Tracker
 ===========
 
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/purchase-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/purchase-workflow/issues/new?body=module:%20purchase_representative%0Aversion:%2011.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/purchase-workflow/issues/new?body=module:%20purchase_representative%0Aversion:%2013.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -90,6 +77,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/11.0/purchase_representative>`_ project on GitHub.
+This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/13.0/purchase_representative>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
