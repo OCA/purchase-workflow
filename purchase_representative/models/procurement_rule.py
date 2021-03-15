@@ -9,20 +9,21 @@ class ProcurementRule(models.Model):
 
     @api.multi
     def _run_buy(
-            self, product_id, product_qty, product_uom,
-            location_id, name, origin, values
+        self, product_id, product_qty, product_uom, location_id, name, origin, values
     ):
         values["propagate_create_uid"] = self.env.uid
         return super()._run_buy(
-            product_id, product_qty, product_uom, location_id, name,
-            origin, values)
+            product_id, product_qty, product_uom, location_id, name, origin, values
+        )
 
-    def _prepare_purchase_order(self, product_id, product_qty, product_uom,
-                                origin, values, partner):
+    def _prepare_purchase_order(
+        self, product_id, product_qty, product_uom, origin, values, partner
+    ):
         vals = super()._prepare_purchase_order(
-            product_id, product_qty, product_uom, origin, values, partner)
+            product_id, product_qty, product_uom, origin, values, partner
+        )
         if values.get("propagate_create_uid"):
-            vals.update({
-                "user_id": values.get("propagate_create_uid"),
-            })
+            vals.update(
+                {"user_id": values.get("propagate_create_uid"),}
+            )
         return vals
