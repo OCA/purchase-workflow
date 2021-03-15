@@ -14,7 +14,9 @@ class PurchaseOrderLineSchedule(models.Model):
     )
     purchase_state = fields.Selection(related="order_line_id.order_id.state",)
     qty_received_method = fields.Selection(related="order_line_id.qty_received_method",)
-    order_line_id = fields.Many2one(comodel_name="purchase.order.line", required=True,)
+    order_line_id = fields.Many2one(
+        comodel_name="purchase.order.line", required=True, ondelete="cascade"
+    )
     date_planned = fields.Datetime(string="Scheduled Date", index=True, required=True)
     product_qty = fields.Float(
         string="Quantity", digits="Product Unit of Measure", required=True
