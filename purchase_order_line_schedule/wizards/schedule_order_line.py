@@ -18,6 +18,7 @@ class ScheduleOrderLine(models.TransientModel):
             "date_planned": sl.date_planned,
             "product_qty": sl.product_qty,
             "qty_received": sl.qty_received,
+            "purchase_state": sl.order_line_id.order_id.state,
             "qty_to_receive": sl.product_qty - sl.qty_received,
             "product_id": sl.product_id.id,
         }
