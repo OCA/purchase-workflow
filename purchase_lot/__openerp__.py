@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2014 Akretion (http://www.akretion.com).
@@ -21,22 +20,22 @@
 
 
 {
-    'name': 'Purchase Lot',
-    'version': '9.0.2.0.0',
-    'category': 'Purchase',
-    'description': """
+    "name": "Purchase Lot",
+    "version": "9.0.2.0.0",
+    "category": "Purchase",
+    "description": """
         Purchase a specific lot number linked to the lot sold
     """,
-    'author': 'Akretion',
-    'website': '',
-    'depends': [
-        'purchase',
-        'sale_order_lot_selection',
-        ],
-    'data': [
-        'purchase_view.xml',
-        ],
-    'installable': True,
-    'auto_install': False,
-    'application': False,
+    "author": "Akretion",
+    "website": "https://github.com/akretion/ak-odoo-incubator",
+    "depends": [
+        "purchase",
+        "sale_order_lot_selection",
+    ],
+    "data": [
+        "purchase_view.xml",
+    ],
+    "installable": True,
+    "auto_install": False,
+    "application": False,
 }
