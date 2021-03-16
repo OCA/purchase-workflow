@@ -17,7 +17,7 @@
                     string="Delivery Schedule"
                     name="action_open_schedule_lines"
                     type="object"
-                    icon="fa-list"
+                    icon="fa-table"
                     optional="show"
                 />
                 <field
