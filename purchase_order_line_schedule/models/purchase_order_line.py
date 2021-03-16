@@ -75,6 +75,7 @@ class PurchaseOrderLine(models.Model):
                 vals = {
                     "date_planned": rec.date_planned,
                     "product_qty": rec.product_qty,
+                    "order_line_id": rec.id,
                 }
                 rec.schedule_line_ids = [(0, 0, vals)]
             else:
@@ -91,9 +92,9 @@ class PurchaseOrderLine(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
-        res = super(PurchaseOrderLine, self).create(vals_list)
-        self._update_schedule_lines()
-        return res
+        recs = super(PurchaseOrderLine, self).create(vals_list)
+        recs._update_schedule_lines()
+        return recs
 
     def write(self, values):
         res = super(PurchaseOrderLine, self).write(values)
