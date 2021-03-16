@@ -42,7 +42,11 @@ class PurchaseOrder(models.Model):
         copy=False,
     )
     check_price_on_proposal = fields.Boolean(
-        related="partner_id.check_price_on_proposal")
+        related="partner_id.check_price_on_proposal"
+    )
+    proposal_display = fields.Boolean(
+        string="Display/Hide Proposal", help="If checked, rejected proposal are hidden."
+    )
 
     def _check_updatable_proposal(self):
         self = self.sudo()
@@ -190,6 +194,8 @@ class PurchaseOrder(models.Model):
             raise UserError(
                 _("You can only update purchase proposal, not other fields")
             )
+        if self.proposal_display and self.proposal_state != "rejected":
+            vals["proposal_display"] = False
         return super(PurchaseOrder, self).write(vals)
 
     def _get_purchase_groups(self):
