@@ -1,0 +1,865 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* purchase_landed_cost
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2019-09-03 04:23+0000\n"
+"Last-Translator: 黎伟杰 <674416404@qq.com>\n"
+"Language-Team: none\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.8\n"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_expense__affected_lines
+msgid "Affected lines"
+msgstr "受影响的行"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__total_amount
+msgid "Amount line"
+msgstr "总计"
+
+#. module: purchase_landed_cost
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
+msgid "Are you sure that you want to update product prices?"
+msgstr "您确定要更新产品价格吗？"
+
+#. module: purchase_landed_cost
+#: selection:purchase.expense.type,calculation_method:0
+msgid "By amount of the line"
+msgstr "按行的数量"
+
+#. module: purchase_landed_cost
+#: selection:purchase.expense.type,calculation_method:0
+msgid "By product price"
+msgstr "按产品价格"
+
+#. module: purchase_landed_cost
+#: selection:purchase.expense.type,calculation_method:0
+msgid "By product quantity"
+msgstr "按产品数量"
+
+#. module: purchase_landed_cost
+#: selection:purchase.expense.type,calculation_method:0
+msgid "By product volume"
+msgstr "按产品体积"
+
+#. module: purchase_landed_cost
+#: selection:purchase.expense.type,calculation_method:0
+msgid "By product weight"
+msgstr "按产品重量"
+
+#. module: purchase_landed_cost
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
+msgid "Calculate"
+msgstr "计算"
+
+#. module: purchase_landed_cost
+#: selection:purchase.cost.distribution,state:0
+msgid "Calculated"
+msgstr "已计算"
+
+#. module: purchase_landed_cost
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_form
+msgid "Calculated Cost"
+msgstr "计算成本"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_expense__calculation_method
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_expense_type__calculation_method
+msgid "Calculation method"
+msgstr "计算方法"
+
+#. module: purchase_landed_cost
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.import_invoice_line_wizard_view
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.import_landed_cost_pickings_wizard_view
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.picking_import_wizard_view
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
+#: selection:purchase.cost.distribution,state:0
+msgid "Cancel"
+msgstr "取消"
+
+#. module: purchase_landed_cost
+#: model_terms:ir.actions.act_window,help:purchase_landed_cost.action_purchase_cost_distribution
+msgid "Click to create a draft purchase expenses distribution."
+msgstr "单击创建采购费用分摊草稿。"
+
+#. module: purchase_landed_cost
+#: model_terms:ir.actions.act_window,help:purchase_landed_cost.action_purchase_expense_type
+msgid "Click to create a new expense type."
+msgstr "单击创建新的费用类型。"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__company_id
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_expense__company_id
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__company_id
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_expense__company_id
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_expense_type__company_id
+msgid "Company"
+msgstr "公司"
+
+#. module: purchase_landed_cost
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_form
+msgid "Cost Line Expenses"
+msgstr "成本行费用"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__cost_update_type
+msgid "Cost Update Type"
+msgstr "成本更新类型"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__expense_amount
+msgid "Cost amount"
+msgstr "成本金额"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_expense__distribution
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__distribution
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
+msgid "Cost distribution"
+msgstr "成本分摊"
+
+#. module: purchase_landed_cost
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_expense_invoice_form
+msgid "Cost distribution expenses"
+msgstr "成本分摊费用"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_expense__distribution_line
+msgid "Cost distribution line"
+msgstr "成本分摊行"
+
+#. module: purchase_landed_cost
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_form
+msgid "Cost distribution line information"
+msgstr "成本分摊行信息"
+
+#. module: purchase_landed_cost
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
+msgid "Cost distribution notes..."
+msgstr "成本分摊说明..."
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_expense_type__note
+msgid "Cost documentation"
+msgstr "成本文件"
+
+#. module: purchase_landed_cost
+#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:308
+#, python-format
+msgid "Cost update cannot be undone because there has been a later update. Restore correct price and try again."
+msgstr "无法撤消成本更新，因为有更新。恢复正确的价格并重试。"
+
+#. module: purchase_landed_cost
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
+msgid "Costs distribution picking lines"
+msgstr "成本分摊拣货行"
+
+#. module: purchase_landed_cost
+#: model:ir.ui.menu,name:purchase_landed_cost.menu_purchase_cost_control
+msgid "Costs distributions"
+msgstr "成本分配"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_import_invoice_line_wizard__create_uid
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_import_landed_cost_pickings_wizard__create_uid
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_picking_import_wizard__create_uid
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__create_uid
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_expense__create_uid
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__create_uid
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_expense__create_uid
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_expense_type__create_uid
+msgid "Created by"
+msgstr "创建者"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_import_invoice_line_wizard__create_date
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_import_landed_cost_pickings_wizard__create_date
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_picking_import_wizard__create_date
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__create_date
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_expense__create_date
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__create_date
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_expense__create_date
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_expense_type__create_date
+msgid "Created on"
+msgstr "创建时间"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__currency_id
+msgid "Currency"
+msgstr "货币"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__date
+msgid "Date"
+msgstr "日期"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,help:purchase_landed_cost.field_purchase_cost_distribution_line_expense__picking_date_done
+msgid "Date at which the transfer has been processed or cancelled."
+msgstr "移库动作确认或者取消的日期。"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_expense__picking_date_done
+msgid "Date of Transfer"
+msgstr "调拨日期"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_expense_type__default_expense
+msgid "Default Expense"
+msgstr "默认费用"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_expense_type__default_amount
+msgid "Default amount"
+msgstr "默认金额"
+
+#. module: purchase_landed_cost
+#: model_terms:ir.actions.act_window,help:purchase_landed_cost.action_purchase_expense_type
+msgid "Define the type of the calculation of each purchase expense\n"
+"                used for calculating the distribution between lines."
+msgstr ""
+"定义每个购买费用的计算类型\n"
+"                用于计算行之间的分摊。"
+
+#. module: purchase_landed_cost
+#: selection:purchase.cost.distribution,cost_update_type:0
+msgid "Direct Update"
+msgstr "直接更新"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_import_invoice_line_wizard__display_name
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_import_landed_cost_pickings_wizard__display_name
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_picking_import_wizard__display_name
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__display_name
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_expense__display_name
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__display_name
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_expense__display_name
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_expense_type__display_name
+msgid "Display Name"
+msgstr "显示名称"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_expense__distribution_expense
+msgid "Distribution expense"
+msgstr "分摊费用"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__cost_lines
+msgid "Distribution lines"
+msgstr "分摊行"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__name
+msgid "Distribution number"
+msgstr "分摊号码"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__note
+msgid "Documentation for this order"
+msgstr "此订单的文档"
+
+#. module: purchase_landed_cost
+#: selection:purchase.cost.distribution,state:0
+msgid "Done"
+msgstr "完成"
+
+#. module: purchase_landed_cost
+#: selection:purchase.cost.distribution,state:0
+msgid "Draft"
+msgstr "草稿"
+
+#. module: purchase_landed_cost
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_expense_invoice_form
+msgid "Duplicate expense"
+msgstr "复制费用"
+
+#. module: purchase_landed_cost
+#: selection:purchase.expense.type,calculation_method:0
+msgid "Equally to all lines"
+msgstr "与所有行相等"
+
+#. module: purchase_landed_cost
+#: selection:purchase.cost.distribution,state:0
+msgid "Error"
+msgstr "错误"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_expense__expense_amount
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_expense__expense_amount
+msgid "Expense amount"
+msgstr "费用金额"
+
+#. module: purchase_landed_cost
+#: model:ir.actions.act_window,name:purchase_landed_cost.action_purchase_cost_distribution_line_expense
+#: model:ir.ui.menu,name:purchase_landed_cost.menu_purchase_cost_distribution_line_expense
+msgid "Expense distribution lines"
+msgstr "费用分摊行"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_import_invoice_line_wizard__expense_type
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_expense__type
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_expense__type
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_expense_search
+msgid "Expense type"
+msgstr "费用类型"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__expense_lines
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
+msgid "Expenses"
+msgstr "费用"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__expense_lines
+msgid "Expenses distribution lines"
+msgstr "费用分摊行"
+
+#. module: purchase_landed_cost
+#: model:ir.actions.act_window,name:purchase_landed_cost.action_purchase_expense_type
+#: model:ir.ui.menu,name:purchase_landed_cost.menu_purchase_expense_type
+msgid "Expenses types"
+msgstr "费用类型"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__product_weight
+msgid "Gross weight"
+msgstr "毛重"
+
+#. module: purchase_landed_cost
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_expense_search
+msgid "Group By"
+msgstr "分组"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_import_invoice_line_wizard__id
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_import_landed_cost_pickings_wizard__id
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_picking_import_wizard__id
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__id
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_expense__id
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__id
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_expense__id
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_expense_type__id
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,help:purchase_landed_cost.field_purchase_expense_type__default_amount
+msgid "If set, this amount is put in the expense line when you select this expense type"
+msgstr "如果设置，则在选择此费用类型时将此金额放入费用行"
+
+#. module: purchase_landed_cost
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.import_invoice_line_wizard_view
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.import_landed_cost_pickings_wizard_view
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.picking_import_wizard_view
+msgid "Import"
+msgstr "导入"
+
+#. module: purchase_landed_cost
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.invoice_supplier_form
+msgid "Import from pickings"
+msgstr "从拣货导入"
+
+#. module: purchase_landed_cost
+#: model:ir.actions.act_window,name:purchase_landed_cost.action_picking_import_wizard
+#: model:ir.model,name:purchase_landed_cost.model_picking_import_wizard
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
+msgid "Import incoming shipment"
+msgstr "导入入库"
+
+#. module: purchase_landed_cost
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
+msgid "Import invoice line"
+msgstr "导入发票行"
+
+#. module: purchase_landed_cost
+#: model:ir.actions.act_window,name:purchase_landed_cost.action_import_landed_cost_pickings_wizard
+msgid "Import landed cost from pickings"
+msgstr "从拣货导入到岸成本"
+
+#. module: purchase_landed_cost
+#: model:ir.model,name:purchase_landed_cost.model_import_landed_cost_pickings_wizard
+msgid "Import landed cost pickings"
+msgstr "导入拣货到岸成本"
+
+#. module: purchase_landed_cost
+#: model:ir.actions.act_window,name:purchase_landed_cost.action_import_invoice_line_wizard
+#: model:ir.model,name:purchase_landed_cost.model_import_invoice_line_wizard
+msgid "Import supplier invoice line"
+msgstr "导入供应商发票行"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_expense__imported_lines
+msgid "Imported lines"
+msgstr "导入行"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_picking_import_wizard__pickings
+msgid "Incoming shipments"
+msgstr "入库"
+
+#. module: purchase_landed_cost
+#: model:ir.model,name:purchase_landed_cost.model_account_invoice
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_import_invoice_line_wizard__invoice
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_expense__invoice_id
+msgid "Invoice"
+msgstr "发票"
+
+#. module: purchase_landed_cost
+#: model:ir.model,name:purchase_landed_cost.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "发票行"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_import_invoice_line_wizard__invoice_line
+msgid "Invoice line"
+msgstr "发票行"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_account_invoice__expense_line_ids
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_account_invoice_line__expense_line_ids
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.invoice_supplier_form
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_order_form
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_picking_form
+msgid "Landed costs"
+msgstr "到岸成本"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_import_invoice_line_wizard____last_update
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_import_landed_cost_pickings_wizard____last_update
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_picking_import_wizard____last_update
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution____last_update
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_expense____last_update
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line____last_update
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_expense____last_update
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_expense_type____last_update
+msgid "Last Modified on"
+msgstr "最后修改时间"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_import_invoice_line_wizard__write_uid
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_import_landed_cost_pickings_wizard__write_uid
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_picking_import_wizard__write_uid
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__write_uid
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_expense__write_uid
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__write_uid
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_expense__write_uid
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_expense_type__write_uid
+msgid "Last Updated by"
+msgstr "最后更新者"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_import_invoice_line_wizard__write_date
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_import_landed_cost_pickings_wizard__write_date
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_picking_import_wizard__write_date
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__write_date
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_expense__write_date
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__write_date
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_expense__write_date
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_expense_type__write_date
+msgid "Last Updated on"
+msgstr "最后更新时间"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__total_volume
+msgid "Line volume"
+msgstr "行体积"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__total_weight
+msgid "Line weight"
+msgstr "行重量"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__name
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_expense_type__name
+msgid "Name"
+msgstr "名称"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__standard_price_new
+msgid "New cost"
+msgstr "新的成本"
+
+#. module: purchase_landed_cost
+#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:200
+#, python-format
+msgid "No valid distribution type."
+msgstr "没有有效的分摊类型。"
+
+#. module: purchase_landed_cost
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.import_landed_cost_pickings_wizard_view
+msgid "Only the pickings with expenses are allowed to be selected here."
+msgstr "这里只允许选择带费用的拣货。"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__picking_id
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_expense__picking_id
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_expense_search
+msgid "Picking"
+msgstr "拣货"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__move_id
+msgid "Picking line"
+msgstr "拣货行"
+
+#. module: purchase_landed_cost
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
+msgid "Picking lines"
+msgstr "拣货行"
+
+#. module: purchase_landed_cost
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_expense_search
+msgid "Picking transfer date"
+msgstr "拣货调拨日期"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_import_landed_cost_pickings_wizard__picking_ids
+msgid "Pickings"
+msgstr "拣货"
+
+#. module: purchase_landed_cost
+#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:221
+#, python-format
+msgid "Please enter an amount for all the expenses"
+msgstr "请输入所有费用的金额"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_import_landed_cost_pickings_wizard__possible_picking_ids
+msgid "Possible pickings"
+msgstr "可以选择的拣货"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_picking_import_wizard__prev_pickings
+msgid "Prev Pickings"
+msgstr "上一个拣货"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__standard_price_old
+msgid "Previous cost"
+msgstr "以前的费用"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__product_id
+msgid "Product"
+msgstr "产品"
+
+#. module: purchase_landed_cost
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_form
+msgid "Product information"
+msgstr "产品信息"
+
+#. module: purchase_landed_cost
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_form
+msgid "Purchase Cost Line"
+msgstr "采购成本行"
+
+#. module: purchase_landed_cost
+#: model:ir.model,name:purchase_landed_cost.model_purchase_order
+msgid "Purchase Order"
+msgstr "采购订单"
+
+#. module: purchase_landed_cost
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_calendar
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_graph
+msgid "Purchase cost distribution"
+msgstr "采购成本分摊"
+
+#. module: purchase_landed_cost
+#: model:ir.model,name:purchase_landed_cost.model_purchase_cost_distribution_line
+msgid "Purchase cost distribution Line"
+msgstr "采购成本分摊行"
+
+#. module: purchase_landed_cost
+#: model:ir.model,name:purchase_landed_cost.model_purchase_cost_distribution_expense
+msgid "Purchase cost distribution expense"
+msgstr "采购成本分摊费用"
+
+#. module: purchase_landed_cost
+#: model:ir.model,name:purchase_landed_cost.model_purchase_cost_distribution_line_expense
+msgid "Purchase cost distribution line expense"
+msgstr "采购成本分摊行费用"
+
+#. module: purchase_landed_cost
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_expense_tree
+msgid "Purchase cost distribution lines"
+msgstr "采购成本分摊行"
+
+#. module: purchase_landed_cost
+#: model:ir.actions.act_window,name:purchase_landed_cost.action_purchase_cost_distribution
+#: model:ir.ui.menu,name:purchase_landed_cost.menu_purchase_cost_distribution
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_tree
+msgid "Purchase cost distributions"
+msgstr "采购成本分配"
+
+#. module: purchase_landed_cost
+#: model:ir.model,name:purchase_landed_cost.model_purchase_expense_type
+msgid "Purchase cost type"
+msgstr "采购成本类型"
+
+#. module: purchase_landed_cost
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_expense_type_tree
+msgid "Purchase expense types"
+msgstr "采购费用类型"
+
+#. module: purchase_landed_cost
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_form
+msgid "Purchase information"
+msgstr "采购信息"
+
+#. module: purchase_landed_cost
+#: model:ir.model,name:purchase_landed_cost.model_purchase_cost_distribution
+msgid "Purchase landed costs distribution"
+msgstr "采购到岸成本分摊"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__purchase_id
+msgid "Purchase order"
+msgstr "采购订单"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__purchase_line_id
+msgid "Purchase order line"
+msgstr "采购订单行"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,help:purchase_landed_cost.field_purchase_cost_distribution_expense__affected_lines
+msgid "Put here specific lines that this expense is going to be distributed across. Leave it blank to use all imported lines."
+msgstr "在这里列出这笔费用将分配到的特定行。 将其留空以使用所有导入的行。"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__product_qty
+msgid "Quantity"
+msgstr "数量"
+
+#. module: purchase_landed_cost
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
+msgid "Recalculate"
+msgstr "重新计算"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_expense__ref
+msgid "Reference"
+msgstr "参考"
+
+#. module: purchase_landed_cost
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_search
+msgid "Search purchase costs distributions"
+msgstr "搜索采购成本分配"
+
+#. module: purchase_landed_cost
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.import_landed_cost_pickings_wizard_view
+msgid "Select here the pickings for those you want to add their expenses lines."
+msgstr "在这里选择你想要添加他们的费用行的拣货。"
+
+#. module: purchase_landed_cost
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.picking_import_wizard_view
+msgid "Select incoming shipment wizard"
+msgstr "选择入库向导"
+
+#. module: purchase_landed_cost
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.import_invoice_line_wizard_view
+msgid "Select supplier invoice line wizard"
+msgstr "选择供应商发票行向导"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,help:purchase_landed_cost.field_purchase_expense_type__default_expense
+msgid "Specify if the expense will be automatically added in a purchase cost distribution."
+msgstr "指定费用是否将自动添加到采购成本分摊中。"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__state
+msgid "Status"
+msgstr "状态"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_import_invoice_line_wizard__supplier
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_picking_import_wizard__supplier
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__partner
+msgid "Supplier"
+msgstr "供应商"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_expense__invoice_line
+msgid "Supplier invoice line"
+msgstr "供应商发票行"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,help:purchase_landed_cost.field_purchase_cost_distribution_line__product_price_unit
+msgid "Technical field used to record the product cost set by the user during a picking confirmation (when costing method used is 'average price' or 'real'). Value given in company currency and in product uom."
+msgstr ""
+"该技术字段用来记录用户在拣货确认期间设置的产品成本（使用 '平均价格' 或'实际价格'的成本方法时）。以公司的货币及产品的默认计量单位来赋予值。"
+
+#. module: purchase_landed_cost
+#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:206
+#, python-format
+msgid "The cost for the line '%s' can't be distributed because the calculation method doesn't provide valid data"
+msgstr "由于计算方法不提供有效数据，因此无法分配行'%s'的成本"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,help:purchase_landed_cost.field_purchase_cost_distribution_line__product_weight
+msgid "The gross weight in Kg."
+msgstr "以公斤为单位的毛重。"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,help:purchase_landed_cost.field_purchase_cost_distribution_line__total_weight
+msgid "The line gross weight in Kg."
+msgstr "该行毛重以千克为单位。"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,help:purchase_landed_cost.field_purchase_cost_distribution_line__total_volume
+msgid "The line volume in m3."
+msgstr "改行体积以立方为单位。"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,help:purchase_landed_cost.field_purchase_cost_distribution_line__product_volume
+msgid "The volume in m3."
+msgstr "体积以立方为单位。"
+
+#. module: purchase_landed_cost
+#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:225
+#, python-format
+msgid "There is no picking lines in the distribution"
+msgstr "在分摊中没有拣货行"
+
+#. module: purchase_landed_cost
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
+msgid "This will undo the product price update (only if current value matches with the calculated price in this distribution). Do you want to continue?"
+msgstr "这将撤消产品价格更新（仅当当前值与此分摊中的计算价格匹配时）。你想继续吗？"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__amount_total
+msgid "Total"
+msgstr "总计"
+
+#. module: purchase_landed_cost
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_form
+msgid "Total Expenses"
+msgstr "总费用"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__total_expense
+msgid "Total expenses"
+msgstr "总费用"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__total_weight
+msgid "Total gross weight"
+msgstr "总毛重"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__total_price_unit
+msgid "Total price unit"
+msgstr "总单价"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__total_purchase
+msgid "Total purchase"
+msgstr "总采购价"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__total_uom_qty
+msgid "Total quantity"
+msgstr "总数量"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__total_volume
+msgid "Total volume"
+msgstr "总体积"
+
+#. module: purchase_landed_cost
+#: model:ir.model,name:purchase_landed_cost.model_stock_picking
+msgid "Transfer"
+msgstr "调拨"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__cost_ratio
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_expense__cost_ratio
+msgid "Unit cost"
+msgstr "单位成本"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__product_uom
+msgid "Unit of measure"
+msgstr "测量单位"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__product_price_unit
+msgid "Unit price"
+msgstr "单价"
+
+#. module: purchase_landed_cost
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
+msgid "Update Cost"
+msgstr "更新成本"
+
+#. module: purchase_landed_cost
+#: model_terms:ir.actions.act_window,help:purchase_landed_cost.action_purchase_cost_distribution
+msgid "Use this menu to control the cost of purchases by expense type\n"
+"                such as transport, insurance, freight customs, etc."
+msgstr ""
+"使用此菜单可按费用类型控制采购成本\n"
+"                如运输，保险，货运海关等。"
+
+#. module: purchase_landed_cost
+#: model_terms:ir.actions.act_window,help:purchase_landed_cost.action_purchase_expense_type
+msgid "Use this menu to create types of purchase expenses.\n"
+"                The types marked by default will be added to the cost\n"
+"                distribution automatically."
+msgstr ""
+"使用此菜单可以创建购买费用类型。\n"
+"                默认标记的类型将添加到成本中\n"
+"               自动分摊。"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__product_volume
+msgid "Volume"
+msgstr "体积"
+
+#. module: purchase_landed_cost
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_form
+msgid "Warehouse information"
+msgstr "仓库信息"
+
+#. module: purchase_landed_cost
+#: model_terms:ir.actions.act_window,help:purchase_landed_cost.action_purchase_cost_distribution
+msgid "You can add one or more receipts which share the same expenses\n"
+"                and update cost price of product."
+msgstr ""
+"您可以添加一个或多个共享相同费用的收据\n"
+"                并更新产品的成本价格。"
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,help:purchase_landed_cost.field_purchase_cost_distribution_line__partner
+msgid "You can find a vendor by its Name, TIN, Email or Internal Reference."
+msgstr "您可以通过名称，TIN，电子邮件或内部参考找到供应商。"
+
+#. module: purchase_landed_cost
+#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:132
+#, python-format
+msgid "You can't delete a confirmed cost distribution"
+msgstr "您无法删除已确认的费用分摊"
+
+#. module: purchase_landed_cost
+#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:153
+#, python-format
+msgid "You can't delete a cost line if it's an affected line of any expense line."
+msgstr "如果成本行是任何费用行的受影响行，则无法删除该成本行。"
+
+#. module: purchase_landed_cost
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.import_invoice_line_wizard_view
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.import_landed_cost_pickings_wizard_view
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.picking_import_wizard_view
+msgid "or"
+msgstr "或"

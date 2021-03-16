@@ -58,8 +58,9 @@ class StockPicking(models.Model):
                 message = self._purchase_request_picking_confirm_message_content(
                     picking, request, requests_dict[request_id]
                 )
-                request.sudo().message_post(
-                    body=message,
-                    subtype="mail.mt_comment",
-                    author_id=self.env.user.partner_id.id,
-                )
+                if message is not None:  # override preparation method to avoid email
+                    request.sudo().message_post(
+                        body=message,
+                        subtype="mail.mt_comment",
+                        author_id=self.env.user.partner_id.id,
+                    )
