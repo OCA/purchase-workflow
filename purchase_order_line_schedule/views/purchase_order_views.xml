@@ -18,7 +18,7 @@
                     name="action_open_schedule_lines"
                     type="object"
                     icon="fa-list"
-                    optional="hide"
+                    optional="show"
                 />
                 <field
                     name="qty_to_schedule"
