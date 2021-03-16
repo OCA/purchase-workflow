@@ -14,6 +14,7 @@
         "security/purchase_order_line_schedule.xml",
         "views/purchase_order_views.xml",
         "views/purchase_order_line_schedule_views.xml",
+        "wizards/schedule_order_line_views.xml",
     ],
     "post_init_hook": "post_init_hook",
 }

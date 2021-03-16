@@ -50,25 +50,20 @@ class PurchaseOrderLine(models.Model):
                 super(PurchaseOrderLine, line)._inverse_qty_received()
 
     def action_open_schedule_lines(self):
-        line_ids = []
-        for line in self:
-            line_ids += line.schedule_line_ids.ids
-
-        domain = [("id", "in", line_ids)]
         context = dict(self.env.context)
         context.update(default_order_line_id=self.id)
-
         return {
             "name": _("Schedule Lines"),
             "type": "ir.actions.act_window",
-            "res_model": "purchase.order.line.schedule",
-            "view_mode": "tree,form",
-            "target": "current",
-            "domain": domain,
+            "res_model": "schedule.order.line",
+            "view_mode": "form",
+            "target": "new",
             "context": context,
         }
 
     def _update_schedule_lines(self):
+        if self.env.context.get("skip_auto_update_schedule_lines", False):
+            return True
         for rec in self:
             sls = rec.schedule_line_ids
             if not sls:

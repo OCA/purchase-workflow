@@ -1,6 +1,8 @@
 # Copyright 2021 ForgeFlow, S.L.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
+from odoo.tools import float_compare
 
 
 class PurchaseOrderLineSchedule(models.Model):
@@ -82,3 +84,24 @@ class PurchaseOrderLineSchedule(models.Model):
         res = super(PurchaseOrderLineSchedule, self).write(values)
         self._update_order_line_date_planned()
         return res
+
+    @api.constrains("product_qty")
+    def _check_product_qty(self):
+        precision = self.env["decimal.precision"].precision_get(
+            "Product Unit of Measure"
+        )
+        for rec in self:
+            total_scheduled_qty = sum(
+                rec.order_line_id.schedule_line_ids.mapped("product_qty")
+            )
+            line_qty = rec.order_line_id.product_qty
+            if (
+                float_compare(total_scheduled_qty, line_qty, precision_digits=precision)
+                == 1
+            ):
+                raise ValidationError(
+                    _(
+                        "You cannot schedule more quantity than what has been "
+                        "ordered."
+                    )
+                )

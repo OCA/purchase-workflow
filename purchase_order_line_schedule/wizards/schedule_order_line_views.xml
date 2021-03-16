@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="schedule_order_line_form" model="ir.ui.view">
+        <field name="name">schedule.order.line.form</field>
+        <field name="model">schedule.order.line</field>
+        <field name="arch" type="xml">
+            <form string="Schedule Lines">
+                <group>
+                    <field name="order_line_id" readonly="1" />
+                </group>
+                <group name="items" string="Items">
+                    <field name="item_ids" nolabel="1">
+                        <tree
+                            string="Items"
+                            create="true"
+                            edit="true"
+                            delete="true"
+                            editable="top"
+                        >
+                            <field name="order_line_id" invisible="1" />
+                            <field name="qty_received_method" invisible="1" />
+                            <field name="order_id" invisible="1" />
+                            <field name="purchase_state" invisible="1" />
+                            <field name="date_planned" />
+                            <field name="product_qty" />
+                            <field
+                                name="qty_received"
+                                attrs="{'invisible': [('purchase_state', 'not in', ('purchase', 'done'))], 'readonly': [('qty_received_method', '!=', 'manual')]}"
+                            />
+                            <field name="qty_to_receive" />
+                        </tree>
+                    </field>
+                </group>
+                <footer>
+                    <button
+                        string="Update"
+                        name="update_schedule_lines"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
