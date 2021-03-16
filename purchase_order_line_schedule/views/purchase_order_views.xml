@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="purchase.purchase_order_form" />
         <field name="arch" type="xml">
             <field name="date_approve" position="after">
-                <field name="has_qty_to_schedule" invisible="True" />
+                <field name="has_qty_to_schedule" invisible="1" />
             </field>
             <xpath
                 expr="//notebook//field[@name='order_line']/tree/field[@name='date_planned']"
