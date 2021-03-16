@@ -14,6 +14,9 @@
                 <separator/>
                 <filter name="not_invoiced" string="Not Invoiced" domain="[('invoice_ids','=', False)]"/>
                 <separator/>
+                <filter name="submitted" string="Submitted" domain="[('proposal_state','=', 'submitted')]"/>
+                <filter name="rejected" string="Rejected" domain="[('proposal_state','=', 'rejected')]"/>
+                <separator/>
                 <filter string="New Mail" name="message_unread" domain="[('message_unread','=',True)]"/>
                 <group expand="0" string="Group By">
                     <filter string="Order Month" icon="terp-go-month" domain="[]" context="{'group_by':'date_order'}"/>
@@ -39,6 +42,7 @@
                 <field name="partner_id"/>
                 <field name="minimum_planned_date"/>
                 <field name="origin"/>
+                <field name="proposal_state"/>
                 <field name="amount_untaxed" sum="Total Untaxed amount" string="Untaxed"/>
                 <field name="amount_total" sum="Total amount"/>
                 <field name="state"/>
