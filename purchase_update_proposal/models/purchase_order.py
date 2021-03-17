@@ -119,7 +119,7 @@ class PurchaseOrder(models.Model):
         data = self._prepare_proposal_data()
         initial_state = self.state
         if initial_state in ["confirmed", "approved"]:
-            self.wkf_action_cancel()
+            self.action_cancel()
             self.action_cancel_draft()
         if data:
             self._update_proposal_to_purchase_line(data, body)
