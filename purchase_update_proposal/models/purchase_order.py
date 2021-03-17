@@ -119,13 +119,22 @@ class PurchaseOrder(models.Model):
         data = self._prepare_proposal_data()
         initial_state = self.state
         if initial_state in ["confirmed", "approved"]:
-            self.wkf_action_cancel()
+            self._hook_for_cancel_process()
+            self.action_cancel()
             self.action_cancel_draft()
         if data:
             self._update_proposal_to_purchase_line(data, body)
         self.write({"proposal_state": "approved"})
         self.message_post(body="\n".join(body))
         self._post_process_approved_proposal(initial_state)
+
+    def _hook_for_cancel_process(self):
+        """Cancellation here is a fake one, in fact it's a workaround
+        to cleanly update purchase when picking has been created.
+        Context can't be used because it disappears in the global odoo process
+        So you may make changes in your custom process to capture falsy cancellation
+        """
+        return
 
     def _post_process_approved_proposal(self, initial_state):
         """Customize according to your needs according delegation
@@ -211,3 +220,26 @@ class PurchaseOrder(models.Model):
         if [x for x in vals.keys() if x[:9] != "proposal_"]:
             return True
         return False
+
+    @api.multi
+    def wkf_confirm_order(self):
+        for rec in self:
+            rec._subscribe_portal_vendor()
+        return super(PurchaseOrder, self).wkf_confirm_order()
+
+    @api.multi
+    def _subscribe_portal_vendor(self):
+        self.ensure_one()
+        cial_partner = self.partner_id.commercial_partner_id
+        partner_ids = cial_partner.child_ids.ids
+        partner_ids.append(cial_partner.id)
+        users = self.env["res.users"].search([("partner_id", "in", partner_ids)])
+        if users:
+            users = users.filtered(
+                lambda s: self.env.ref(
+                    "purchase_update_proposal.group_supplier_own_purchase"
+                )
+                in s.groups_id
+            )
+            if users:
+                self.message_subscribe_users(users.ids)

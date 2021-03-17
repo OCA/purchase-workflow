@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp.tests import common
-from openerp.exceptions import Warning as UserError
+from openerp.exceptions import Warning as UserError, AccessError
 
 
 class Test(common.SavepointCase):
@@ -111,7 +111,7 @@ class Test(common.SavepointCase):
         order.order_line[0].button_update_proposal()
         order.proposal_ids[0].qty = 99
         order.submit_proposal()
-        with self.assertRaises(UserError):
+        with self.assertRaises(AccessError):
             order.approve_proposal()
 
     def get_order_with_user(self, alternate_user=None):
