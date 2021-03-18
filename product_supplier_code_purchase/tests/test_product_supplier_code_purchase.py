@@ -12,7 +12,6 @@ class TestProductSupplierCodePurchase(TransactionCase):
             {
                 "name": "name",
                 "email": "example@yourcompany.com",
-                "supplier": True,
                 "phone": 123456,
             }
         )
