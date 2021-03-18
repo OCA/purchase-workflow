@@ -115,6 +115,7 @@ class PurchaseOrder(models.Model):
                             move._do_unreserve()
                             move.picking_id = pickings_by_date[date_key]
                             move.date_deadline = date_key
+                            move._action_assign()
             for picking in pickings_by_date.values():
                 if len(picking.move_lines) == 0:
                     picking.write({"state": "cancel"})
