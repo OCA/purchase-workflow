@@ -9,7 +9,6 @@ class PurchaseOrderLine(models.Model):
 
     product_supplier_code = fields.Char(string="Product Supplier Code")
 
-    @api.multi
     @api.onchange(
         "partner_id",
         "product_id",
@@ -22,8 +21,7 @@ class PurchaseOrderLine(models.Model):
                 )
             )
             if supplier_info:
-                code = supplier_info[0].product_code or ""
-                line.product_supplier_code = code
+                line.product_supplier_code = supplier_info[0].product_code or ""
             else:
                 supplier_info = line.product_id.seller_ids.filtered(
                     lambda s: (
@@ -32,14 +30,12 @@ class PurchaseOrderLine(models.Model):
                     )
                 )
                 if supplier_info:
-                    code = supplier_info[0].product_code or ""
-                    line.product_supplier_code = code
+                    line.product_supplier_code = supplier_info[0].product_code or ""
 
 
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
-    @api.multi
     def _add_supplier_to_product(self):
         super()._add_supplier_to_product()
         for line in self.order_line:
