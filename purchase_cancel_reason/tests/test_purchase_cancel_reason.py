@@ -11,17 +11,15 @@ class TestPurchaseCancelReason(TransactionCase):
         PurchaseOrder = self.env["purchase.order"]
         CancelReason = self.env["purchase.order.cancel.reason"]
         self.reason = CancelReason.create({"name": "Canceled for tests"})
-        self.supplier = self.env["res.partner"].create(
+        self.partner = self.env["res.partner"].create(
             {
                 "name": "Supplier",
-                "supplier": True,
             }
         )
         self.product = self.env["product.product"].create({"name": "Product"})
-        uom = self.env.ref("product.product_uom_unit")
         self.purchase_order = PurchaseOrder.create(
             {
-                "partner_id": self.supplier.id,
+                "partner_id": self.partner.id,
                 "date_planned": fields.Datetime.now(),
                 "order_line": [
                     (
@@ -31,7 +29,7 @@ class TestPurchaseCancelReason(TransactionCase):
                             "name": "Line 1",
                             "product_id": self.product.id,
                             "product_qty": 8,
-                            "product_uom": uom.id,
+                            "product_uom": self.product.uom_po_id.id,
                             "price_unit": 100.00,
                             "date_planned": fields.Datetime.now(),
                         },

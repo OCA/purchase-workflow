@@ -4,25 +4,25 @@
         <field name="name">Reason for the cancellation</field>
         <field name="model">purchase.order.cancel</field>
         <field name="arch" type="xml">
-         <form string="Reason for the cancellation" version="7.0">
-            <p class="oe_grey">
-                Choose the reason for the cancellation of the
-                purchase order.
-            </p>
-            <group>
-                <field name="reason_id" widget="selection" />
-            </group>
-            <footer>
-                <button
+            <form string="Reason for the cancellation">
+                <p class="oe_grey">
+                    Choose the reason for the cancellation of the
+                    purchase order.
+                </p>
+                <group>
+                    <field name="reason_id" widget="selection" />
+                </group>
+                <footer>
+                    <button
                         name="confirm_cancel"
                         string="Confirm"
                         type="object"
                         class="oe_highlight"
                     />
-                or
-                <button string="Cancel" class="oe_link" special="cancel" />
-            </footer>
-        </form>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
         </field>
     </record>
 
@@ -30,7 +30,6 @@
         <field name="name">Reason for the cancellation</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">purchase.order.cancel</field>
-        <field name="view_type">form</field>
         <field name="view_mode">form</field>
         <field name="view_id" ref="view_purchase_order_cancel" />
         <field name="target">new</field>
