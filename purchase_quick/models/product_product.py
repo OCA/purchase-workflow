@@ -20,11 +20,16 @@ class ProductProduct(models.Model):
     )
 
     def _default_quick_uom_id(self):
-        return self.uom_po_id
+        if self.env.context.get("parent_model", False) == "purchase.order":
+            return self.uom_po_id
+        return super()._default_quick_uom_id()
 
     def _compute_quick_uom_category_id(self):
-        for rec in self:
-            rec.quick_uom_category_id = rec.uom_po_id.category_id
+        if self.env.context.get("parent_model", False) == "purchase.order":
+            for rec in self:
+                rec.quick_uom_category_id = rec.uom_po_id.category_id
+        else:
+            super()._compute_quick_uom_category_id()
 
     def _compute_process_qty_purchase(self):
         po_lines = self.env["purchase.order.line"].search(
