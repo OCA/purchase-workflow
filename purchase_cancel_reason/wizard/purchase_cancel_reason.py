@@ -1,21 +1,20 @@
 # © 2013 Guewen Baconnier, Camptocamp SA
 # Copyright 2017 Okia SPRL
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class PurchaseOrderCancel(models.TransientModel):
 
-    """ Ask a reason for the purchase order cancellation."""
+    """Ask a reason for the purchase order cancellation."""
 
     _name = "purchase.order.cancel"
     _description = __doc__
 
     reason_id = fields.Many2one(
-        "purchase.order.cancel.reason", string="Reason", required=True
+        comodel_name="purchase.order.cancel.reason", string="Reason", required=True
     )
 
-    @api.multi
     def confirm_cancel(self):
         self.ensure_one()
         act_close = {"type": "ir.actions.act_window_close"}
