@@ -8,7 +8,7 @@ class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
     cancel_reason_id = fields.Many2one(
-        "purchase.order.cancel.reason",
+        comodel_name="purchase.order.cancel.reason",
         string="Reason for cancellation",
         readonly=True,
         ondelete="restrict",
@@ -19,4 +19,4 @@ class PurchaseOrderCancelReason(models.Model):
     _name = "purchase.order.cancel.reason"
     _description = "Purchase Order Cancel Reason"
 
-    name = fields.Char("Reason", required=True, translate=True)
+    name = fields.Char(string="Reason", required=True, translate=True)
