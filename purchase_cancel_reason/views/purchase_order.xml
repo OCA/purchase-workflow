@@ -35,7 +35,9 @@
         <field name="model">purchase.order.cancel.reason</field>
         <field name="arch" type="xml">
             <form string="Purchase Order Cancel Reasons">
-                <field name="name" />
+                <group>
+                    <field name="name" />
+                </group>
             </form>
         </field>
     </record>
@@ -53,7 +55,6 @@
     <record id="action_purchase_order_cancel_reason" model="ir.actions.act_window">
         <field name="name">Purchase Order Cancel Reason</field>
         <field name="res_model">purchase.order.cancel.reason</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
 
