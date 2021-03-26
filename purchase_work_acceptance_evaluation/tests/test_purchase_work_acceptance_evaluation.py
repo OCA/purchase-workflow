@@ -50,3 +50,20 @@ class TestPurchaseWorkAcceptanceEvaluation(TransactionCase):
         eval_resuls[2].score_id = eval_resuls[2].case_id.score_ids[0]
         work_acceptance.button_accept()
         self.assertEqual(work_acceptance.state, "accept")
+
+    def test_02_wa_evaluation_score_name_get(self):
+        with Form(self.WorkAcceptance) as f:
+            f.partner_id = self.res_partner
+            f.responsible_id = self.employee
+            f.date_due = fields.Datetime.now()
+            f.date_receive = fields.Datetime.now()
+            f.company_id = self.main_company
+
+        work_acceptance = f.save()
+        score_resuls = work_acceptance.mapped("evaluation_result_ids.case_id.score_ids")
+        name = "{} ({})".format(score_resuls[0].name, score_resuls[0].score)
+        res = score_resuls[0].name_get()
+        self.assertEqual(len(res), 1)
+        rec_id, name_get = res[0]
+        self.assertEqual(score_resuls[0].id, rec_id)
+        self.assertIn(name, name_get)
