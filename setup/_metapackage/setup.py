@@ -46,6 +46,7 @@ setuptools.setup(
         'odoo13-addon-purchase_reception_status',
         'odoo13-addon-purchase_request',
         'odoo13-addon-purchase_request_department',
+        'odoo13-addon-purchase_request_order_approved',
         'odoo13-addon-purchase_request_tier_validation',
         'odoo13-addon-purchase_requisition_tier_validation',
         'odoo13-addon-purchase_security',
