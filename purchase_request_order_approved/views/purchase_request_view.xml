@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<!-- Copyright 2017 Eficent Business and IT Consulting Services S.L.
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
+<odoo>
+    <record id="purchase_request_line_search" model="ir.ui.view">
+        <field name="name">purchase.request.line.search</field>
+        <field name="model">purchase.request.line</field>
+        <field name="inherit_id" ref="purchase_request.purchase_request_line_search" />
+        <field name="arch" type="xml">
+            <filter name="purchase_state_draft" position="after">
+                <filter
+                    name="purchase_state_approved"
+                    string="Purchase Approved"
+                    domain="[('purchase_state','=', 'approved')]"
+                    help="At least a Purchase Order has been approved"
+                />
+            </filter>
+        </field>
+    </record>
+</odoo>
