@@ -32,16 +32,16 @@ class PurchaseOrder(models.Model):
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
-    existing_qty = fields.Float(
-        compute="_compute_existing_qty",
-        string="Existing Qty",
+    qty_in_receipt = fields.Float(
+        compute="_compute_qty_in_receipt",
+        string="In Receipt Qty",
         compute_sudo=True,
         store=True,
         digits="Product Unit of Measure",
         help="Quantity already planned to receive",
     )
     pending_to_receive = fields.Boolean(
-        compute="_compute_existing_qty",
+        compute="_compute_qty_in_receipt",
         compute_sudo=True,
         store=True,
         string="Pending to Receive",
@@ -54,12 +54,12 @@ class PurchaseOrderLine(models.Model):
         "move_ids.location_id",
         "move_ids.location_dest_id",
     )
-    def _compute_existing_qty(self):
+    def _compute_qty_in_receipt(self):
         for line in self:
             rounding = line.company_id.currency_id.rounding
             total = 0.0
             for move in line.move_ids:
-                if move.state not in ["cancel"]:
+                if move.state not in ["done", "cancel"]:
                     if move.location_dest_id.usage == "supplier":
                         if move.to_refund:
                             total -= move.product_uom._compute_quantity(
@@ -81,9 +81,11 @@ class PurchaseOrderLine(models.Model):
                         total += move.product_uom._compute_quantity(
                             move.product_uom_qty, line.product_uom
                         )
-            line.existing_qty = total
+            line.qty_in_receipt = total
             if float_compare(
-                line.product_uom_qty, line.existing_qty, precision_rounding=rounding,
+                line.product_uom_qty - line.qty_received,
+                line.qty_in_receipt,
+                precision_rounding=rounding,
             ):
                 line.pending_to_receive = True
             else:

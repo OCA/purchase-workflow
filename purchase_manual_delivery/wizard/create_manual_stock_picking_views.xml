@@ -30,7 +30,7 @@
                             <field name="date_planned" />
                             <field name="price_unit" />
                             <field name="product_qty" string="Ordered Qty" />
-                            <field name="existing_qty" string="Existing Qty" />
+                            <field name="qty_in_receipt" string="In Receipt Qty" />
                             <field name="remaining_qty" string="Remaining Qty" />
                             <field name="qty" string="Quantity" />
                             <field name="product_uom" groups="uom.group_uom" />

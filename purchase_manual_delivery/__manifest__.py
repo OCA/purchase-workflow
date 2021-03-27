@@ -14,7 +14,7 @@
     "website": "https://github.com/OCA/purchase-workflow",
     "depends": ["purchase_stock"],
     "data": [
-        "wizard/create_manual_stock_picking.xml",
+        "wizard/create_manual_stock_picking_views.xml",
         "views/purchase_order_views.xml",
     ],
 }
