@@ -61,3 +61,7 @@ class PurchaseOrderLineSchedule(models.Model):
                     qty = min(to_allocate, sl.product_qty - sl.qty_received)
                     sl.qty_received += qty
                     to_allocate -= qty
+
+    def _get_order_lines_to_update(self):
+        res = super(PurchaseOrderLineSchedule, self)._get_order_lines_to_update()
+        return res.filtered(lambda l: not l.propagate_date)
