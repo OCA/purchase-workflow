@@ -69,13 +69,11 @@ class PurchaseOrderLineSchedule(models.Model):
             else:
                 line.qty_received_manual = 0.0
 
+    def _get_order_lines_to_update(self):
+        return self.mapped("order_line_id")
+
     def _update_order_line_date_planned(self):
-        order_lines = self.mapped("order_line_id")
-        # We don't want to update the scheduled date when the order line
-        # propagates the scheduled date to the incoming shipments, because
-        # this will be very confusing to the user, as they expect the incoming
-        # shipment to have the scheduled date that was defined in the beginning.
-        for ol in order_lines.filtered(lambda l: not l.propagate_date):
+        for ol in self._get_order_lines_to_update():
             ol.date_planned = max(ol.schedule_line_ids.mapped("date_planned"))
 
     @api.model_create_multi
