@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="schedule_purchase_order_form" model="ir.ui.view">
+        <field name="name">schedule.purchase.order.form</field>
+        <field name="model">schedule.purchase.order</field>
+        <field name="arch" type="xml">
+            <form string="Schedule Purchase Order">
+                <group>
+                    <field name="order_id" invisible="1" />
+                </group>
+                <group name="dates" string="Dates">
+                    <field name="schedule_date_ids" nolabel="1">
+                        <tree
+                            string="Dates"
+                            create="true"
+                            edit="true"
+                            delete="true"
+                            editable="top"
+                        >
+                            <field name="date_planned" />
+                            <field name="count_schedule_lines" />
+                        </tree>
+                    </field>
+                </group>
+                <footer>
+                    <button
+                        string="Continue"
+                        name="create_schedule_grid"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

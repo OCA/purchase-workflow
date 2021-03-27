@@ -11,9 +11,17 @@
     "license": "LGPL-3",
     "author": "ForgeFlow S.L., Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
-    "depends": ["purchase_manual_delivery", "purchase_order_line_schedule_stock"],
+    "depends": [
+        "purchase_manual_delivery",
+        "purchase_order_line_schedule_stock",
+        "web_widget_x2many_2d_matrix",  # OCA/web
+    ],
     "data": [
-        "wizard/create_manual_stock_picking.xml",
+        "wizards/create_manual_stock_picking_views.xml",
+        "wizards/schedule_purchase_order_views.xml",
+        "wizards/schedule_purchase_order_grid_views.xml",
+        "wizards/schedule_order_line_views.xml",
         "views/purchase_order_line_schedule_views.xml",
+        "views/purchase_order_views.xml",
     ],
 }

@@ -10,29 +10,33 @@ from odoo.addons import decimal_precision as dp
 class PurchaseOrderLineSchedule(models.Model):
     _inherit = "purchase.order.line.schedule"
 
-    existing_qty = fields.Float(
-        compute="_compute_existing_qty",
-        string="Receiving",
+    qty_in_receipt = fields.Float(
+        compute="_compute_qty_in_receipt",
+        string="In Receipt",
         compute_sudo=True,
         digits=dp.get_precision("Product Unit of Measure"),
-        help="Quantity already planned or shipped " "(stock movements already created)",
+        help="Quantity already in an incoming shipment pending to receive",
     )
     pending_to_receive = fields.Boolean(
-        compute="_compute_existing_qty",
+        compute="_compute_qty_in_receipt",
         compute_sudo=True,
         string="Pending to Receive",
         help="There is pending quantity to receive not yet planned",
     )
 
-    def _compute_existing_qty(self):
+    def _compute_qty_in_receipt(self):
+        for rec in self:
+            rec.qty_in_receipt = 0.0
+            rec.pending_to_receive = False
         for ol in self.mapped("order_line_id"):
             for sl in ol.schedule_line_ids:
-                sl.existing_qty = 0.0
+                sl.qty_in_receipt = 0.0
                 sl.pending_to_receive = False
             rounding = ol.company_id.currency_id.rounding
 
             for move in ol.move_ids.filtered(
-                lambda m: m.product_id == ol.product_id and m.state != "cancel"
+                lambda m: m.product_id == ol.product_id
+                and m.state not in ("done", "cancel")
             ).sorted(lambda ml: ml.date_expected):
                 total = 0.0
 
@@ -64,16 +68,16 @@ class PurchaseOrderLineSchedule(models.Model):
                     lambda l: l.date_planned.date() == move.date_expected.date()
                 ):
                     qty = min(to_allocate, sl.product_qty - sl.qty_received)
-                    sl.existing_qty += qty
+                    sl.qty_in_receipt += qty
                     to_allocate -= qty
                 # Now try to allocate the remaining qty
                 for sl in ol.schedule_line_ids.sorted(lambda l: l.date_planned):
                     qty = min(to_allocate, sl.product_qty - sl.qty_received)
-                    sl.existing_qty += qty
+                    sl.qty_in_receipt += qty
                     to_allocate -= qty
             for sl in ol.schedule_line_ids:
                 if float_compare(
-                    sl.product_qty, sl.existing_qty, precision_rounding=rounding,
+                    sl.product_qty, sl.qty_in_receipt, precision_rounding=rounding,
                 ):
                     sl.pending_to_receive = True
                 else:

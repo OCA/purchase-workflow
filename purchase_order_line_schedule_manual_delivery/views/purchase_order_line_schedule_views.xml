@@ -14,7 +14,7 @@
                 >purchase_state == 'purchase' and pending_to_receive</attribute>
             </xpath>
             <field name="product_qty" position="after">
-                <field name="existing_qty" />
+                <field name="qty_in_receipt" />
             </field>
             <field name="date_planned" position="after">
                 <field name="pending_to_receive" invisible="1" />
