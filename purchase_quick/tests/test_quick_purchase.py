@@ -1,6 +1,7 @@
 # @author Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+from odoo.exceptions import AccessError
 from odoo.tests.common import Form, SavepointCase
 
 
@@ -109,3 +110,20 @@ class TestQuickPurchase(SavepointCase):
             self.env.ref("purchase_quick.product_tree_view4purchase").id,
         )
         self.assertEqual(product_act_from_po["context"]["parent_id"], self.po.id)
+
+    def test_rights(self):
+        """
+        A user that has access to purchase orders should be able to
+        use the mass addition feature without being blocked by access
+        rights on product.product
+        """
+        user_demo = self.env.ref("base.user_demo")
+        user_demo.groups_id = []
+        with self.assertRaises(AccessError):
+            self.product_1.with_user(user_demo).write({"qty_to_process": 2.0})
+        user_demo.groups_id = [
+            (6, 0, [self.env.ref("purchase.group_purchase_user").id])
+        ]
+        self.product_1.with_user(user_demo).with_context(
+            {"product_mass_addition": True}
+        ).write({"qty_to_process": 3.0})
