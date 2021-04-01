@@ -140,7 +140,7 @@ class ProcurementBatchGeneratorLine(models.TransientModel):
     procurement_qty = fields.Float(
         string="Requested Qty", digits="Product Unit of Measure", required=True
     )
-    uom_id = fields.Many2one("uom.uom", string="Unit of Measure", required=True)
+    uom_id = fields.Many2one("uom.uom", string="Unit of Measure", readonly=True)
     date_planned = fields.Date(string="Scheduled Date", required=True)
     route_ids = fields.Many2many(
         "stock.location.route",
