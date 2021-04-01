@@ -1,3 +1,5 @@
 brand
 server-ux
 product-attribute
+
+sale-workflow https://github.com/acsone/sale-workflow.git 13.0-mig-sale-procurement-amendment-dro
