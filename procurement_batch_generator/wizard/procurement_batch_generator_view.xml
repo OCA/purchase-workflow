@@ -32,12 +32,7 @@
                         <field name="outgoing_qty" readonly="1" />
                         <field name="incoming_qty" readonly="1" />
                         <field name="procurement_qty" />
-                        <field
-                                name="uom_id"
-                                groups="uom.group_uom"
-                                readonly="1"
-                                string="UoM"
-                            />
+                        <field name="uom_id" groups="uom.group_uom" string="UoM" />
                         <field name="date_planned" />
                         <field
                                 name="route_ids"
