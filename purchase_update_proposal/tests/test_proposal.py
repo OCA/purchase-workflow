@@ -114,6 +114,31 @@ class Test(common.SavepointCase):
         with self.assertRaises(AccessError):
             order.approve_proposal()
 
+    def test_one_null_qty_in_proposal_not_in_orderline(self):
+        order = self.get_order_with_user()
+        order.order_line[0].button_update_proposal()
+        order.proposal_ids[0].qty = 0
+        order.order_line[1].button_update_proposal()
+        order.proposal_ids[1].qty = 99
+        order.submit_proposal()
+        order.approve_proposal()
+        assert order.order_line[0].state == "cancel"
+        assert order.order_line[0].product_qty > 0
+        assert order.order_line[1].state != "cancel"
+        assert order.state != "cancel"
+
+    def test_all_null_lines_to_cancel_PO(self):
+        order = self.get_order_with_user()
+        order.order_line[0].button_update_proposal()
+        order.proposal_ids[0].qty = 0
+        order.order_line[1].button_update_proposal()
+        order.proposal_ids[1].qty = 0
+        order.submit_proposal()
+        order.approve_proposal()
+        assert order.order_line[0].state == "cancel"
+        assert order.order_line[1].state == "cancel"
+        assert order.state == "cancel"
+
     def get_order_with_user(self, alternate_user=None):
         order = self.order_main
         if alternate_user:

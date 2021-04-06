@@ -58,7 +58,7 @@
             <form string="Purchase Order" create="0" edit="1">
             <header>
                 <button name="populate_all_purchase_lines" type="object" string="Update all dates"
-                    help="Display a date field which update dates all lines" 
+                    help="Display a date field which update dates all lines"
                     groups="purchase_update_proposal.group_purchase_proposal_user,purchase_update_proposal.group_supplier_own_purchase"/>
                 <button name="purchase_supplier_confirm" type="object" states="confirmed" string="Approve Order" class="oe_highlight"/>
                 <field name="state" widget="statusbar" statusbar_visible="confirmed,approved,done" statusbar_colors='{"except_picking":"red","except_invoice":"red","confirmed":"blue"}' readonly="1"/>
@@ -83,7 +83,7 @@
                 <notebook>
                     <page string="Products">
                         <group col="4" attrs="{'invisible': [('proposal_count', '=', 0)]}">
-                             <div colspan="4" 
+                             <div colspan="4"
                                  style="background-color:AntiqueWhite; text-align:center; font-weight: bold; padding: 8px">
                                 Update Proposal
                             </div>
@@ -93,7 +93,7 @@
                                     <button name="submit_proposal" help="Submit Proposal" type="object" string="Submit" class="oe_highlight"
                                             attrs="{'invisible': [('proposal_state', 'in', ['approved', 'submitted', 'rejected'])]}"
                                             groups="purchase_update_proposal.group_purchase_proposal_user,purchase_update_proposal.group_supplier_own_purchase"/>
-                                    <button name="reset_proposal" help="Reset Proposal" type="object" string="Reset" 
+                                    <button name="reset_proposal" help="Reset Proposal" type="object" string="Reset"
                                             attrs="{'invisible': [('proposal_state', 'in', ['draft', 'approved'])]}"
                                             groups="purchase_update_proposal.group_purchase_proposal_user,purchase_update_proposal.group_supplier_own_purchase"/>
                                     <field name="proposal_count" invisible="1"/>
@@ -178,8 +178,8 @@
 
     <menuitem
         id="supplier_main_menu"
-        name="Supplier_new_way"
-        sequence="150"
+        name="Supplier"
+        sequence="0"
         groups="purchase_update_proposal.group_supplier_own_purchase"
         action="supplier_purchase_order_action"/>
 

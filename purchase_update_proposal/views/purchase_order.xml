@@ -25,13 +25,13 @@
                         <button name="approve_proposal" help="Approve Proposal" type="object" string="Approve" class="oe_highlight"
                                 attrs="{'invisible': [('proposal_state', 'in', ['approved', 'draft'])]}"
                                 groups="purchase.group_purchase_user"/>
-                        <button name="reject_proposal" help="Reject Proposal" type="object" string="Reject" 
+                        <button name="reject_proposal" help="Reject Proposal" type="object" string="Reject"
                                 attrs="{'invisible': [('proposal_state', 'in', ['draft', 'approved', 'rejected'])]}"
                                 groups="purchase.group_purchase_user"/>
                         <button name="submit_proposal" help="Submit Proposal" type="object" string="Submit" class="oe_highlight"
                                 attrs="{'invisible': [('proposal_state', 'in', ['approved', 'submitted', 'rejected'])]}"
                                 groups="purchase_update_proposal.group_purchase_proposal_user"/>
-                        <button name="reset_proposal" help="Reset Proposal" type="object" string="Reset" 
+                        <button name="reset_proposal" help="Reset Proposal" type="object" string="Reset"
                                 attrs="{'invisible': [('proposal_state', 'in', ['draft', 'approved'])]}"
                                 groups="purchase_update_proposal.group_purchase_proposal_user"/>
                         <field name="proposal_count" invisible="1"/>
