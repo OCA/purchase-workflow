@@ -13,13 +13,17 @@ logger = logging.getLogger(__name__)
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
-    proposal_count = fields.Integer(related="order_id.proposal_count", store=False)
+    proposal_count = fields.Integer(
+        related="order_id.proposal_count", store=False
+    )
 
     @api.multi
     def button_update_proposal(self):
         order_ids = [x.order_id for x in self]
         if len(set(order_ids)) > 1:
-            raise UserError(_("You shouldn't update proposal on multiple orders"))
+            raise UserError(
+                _("You shouldn't update proposal on multiple orders")
+            )
         for rec in self:
             vals = {
                 "qty": rec.product_qty,
@@ -45,7 +49,7 @@ class PurchaseOrderLine(models.Model):
                 "purchase_update_proposal.supplier_purchase_order_form"
             ).id
         else:
-            action["view_id"] = self.env.ref("purchase.purchase_form_action").id
+            action["view_id"] = self.env.ref("purchase.purchase_order_form").id
         return action
 
     @api.multi
