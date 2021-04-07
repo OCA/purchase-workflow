@@ -100,7 +100,7 @@ class PurchaseOrder(models.Model):
         journal = (
             self.env["account.move"]
             .with_context(
-                default_type="in_invoice",
+                default_move_type="in_invoice",
                 default_currency_id=self.currency_id.id,
                 default_company_id=self.env.user.company_id.id,
             )
