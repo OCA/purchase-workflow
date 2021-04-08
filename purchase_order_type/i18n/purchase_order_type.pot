@@ -19,6 +19,11 @@ msgid "Active"
 msgstr ""
 
 #. module: purchase_order_type
+#: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_form
+msgid "Archived"
+msgstr ""
+
+#. module: purchase_order_type
 #: model_terms:ir.actions.act_window,help:purchase_order_type.action_purchase_order_type_view
 msgid "Click to set a new type for purchase order."
 msgstr ""
