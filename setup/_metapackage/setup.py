@@ -21,6 +21,7 @@ setuptools.setup(
         'odoo14-addon-purchase_order_line_deep_sort',
         'odoo14-addon-purchase_order_line_menu',
         'odoo14-addon-purchase_order_line_price_history',
+        'odoo14-addon-purchase_order_secondary_unit',
         'odoo14-addon-purchase_order_type',
         'odoo14-addon-purchase_order_uninvoiced_amount',
         'odoo14-addon-purchase_reception_status',
