@@ -28,6 +28,7 @@ addon | version | summary
 [purchase_commercial_partner](purchase_commercial_partner/) | 10.0.1.0.1 | Add stored related field 'Commercial Supplier' on POs
 [purchase_date_planned_manual](purchase_date_planned_manual/) | 10.0.1.0.0 | This module makes the system to always respect the planned (or scheduled) date in PO lines.
 [purchase_delivery_split_date](purchase_delivery_split_date/) | 10.0.1.0.0 | Allows Purchase Order you confirm to generate one Incoming Shipment for each expected date indicated in the Purchase Order Lines
+[purchase_deposit](purchase_deposit/) | 10.0.1.0.0 | Option to create deposit from purchase order
 [purchase_discount](purchase_discount/) | 10.0.1.0.5 | Purchase order lines with discounts
 [purchase_fiscal_position_update](purchase_fiscal_position_update/) | 10.0.1.0.0 | Changing the fiscal position of a purchase order will auto-update purchase order lines
 [purchase_fop_shipping](purchase_fop_shipping/) | 10.0.1.0.0 | Purchase Free-Of-Paiment shipping
