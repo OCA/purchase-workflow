@@ -4,9 +4,8 @@
         <field name="model">work.acceptance.evaluation</field>
         <field name="arch" type="xml">
             <tree string="Work Acceptance Evaluation">
-                <field name="name" context="{'active_test': False}" />
-                <field name="active" />
-                <field name="state_required" invisible="0" />
+                <field name="name" />
+                <field name="state_required" />
             </tree>
         </field>
     </record>
@@ -16,13 +15,19 @@
         <field name="arch" type="xml">
             <form string="Work Acceptance Evaluation">
                 <sheet>
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    />
+                    <field name="active" invisible="1" />
                     <group>
                         <group>
                             <field name="name" />
-                            <field name="state_required" />
                         </group>
                         <group>
-                            <field name="active" />
+                            <field name="state_required" />
                         </group>
                     </group>
                     <notebook>
@@ -30,7 +35,6 @@
                             <field name="score_ids">
                                 <tree string="Score Lines" editable="bottom">
                                     <field name="name" optional="show" />
-                                    <field name="evaluation_id" invisible="1" />
                                     <field name="score" />
                                 </tree>
                             </field>
