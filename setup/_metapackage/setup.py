@@ -18,6 +18,7 @@ setuptools.setup(
         'odoo10-addon-purchase_commercial_partner',
         'odoo10-addon-purchase_date_planned_manual',
         'odoo10-addon-purchase_delivery_split_date',
+        'odoo10-addon-purchase_deposit',
         'odoo10-addon-purchase_discount',
         'odoo10-addon-purchase_fiscal_position_update',
         'odoo10-addon-purchase_fop_shipping',
