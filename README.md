@@ -38,6 +38,7 @@ addon | version | summary
 [purchase_request](purchase_request/) | 14.0.1.1.0 | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
 [purchase_request_tier_validation](purchase_request_tier_validation/) | 14.0.2.0.0 | Extends the functionality of Purchase Requests to support a tier validation process.
 [purchase_requisition_tier_validation](purchase_requisition_tier_validation/) | 14.0.1.0.0 | Extends the functionality of Purchase Agreements to support a tier validation process.
+[purchase_security](purchase_security/) | 14.0.1.0.0 | See only your purchase orders
 [purchase_tier_validation](purchase_tier_validation/) | 14.0.2.0.0 | Extends the functionality of Purchase Orders to support a tier validation process.
 [purchase_work_acceptance](purchase_work_acceptance/) | 14.0.1.0.3 | Purchase Work Acceptance
 [purchase_work_acceptance_invoice_plan](purchase_work_acceptance_invoice_plan/) | 14.0.1.0.0 | Purchase Work Acceptance Invoice Plan
