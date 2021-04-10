@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field name="name">purchase.order.form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_view_wa']" position="after">
+                <button
+                    name="%(action_view_wa_installment)d"
+                    string="Create WA by Installment"
+                    type="action"
+                    class="oe_highlight"
+                    context="{'create_wa': True}"
+                    groups="purchase_work_acceptance.group_enable_wa_on_po"
+                    attrs="{'invisible': ['|', '|', ('ip_invoice_plan', '=', False), ('state', 'not in', ('purchase', 'done')), ('wa_accepted', '=', True)]}"
+                />
+            </xpath>
+            <xpath expr="//button[@name='action_view_wa']" position="attributes">
+                <field name="action_view_wa" position="attributes">
+                    <attribute name="attrs">
+                          {'invisible': ['|', '|', ('ip_invoice_plan', '!=', False), ('state', 'not in', ('purchase', 'done')), ('wa_accepted', '=', True)]}
+                     </attribute>
+                </field>
+            </xpath>
+        </field>
+    </record>
+</odoo>

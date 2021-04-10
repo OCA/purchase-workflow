@@ -1,0 +1,26 @@
+<odoo>
+    <record model="ir.ui.view" id="res_partner_form_view">
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='purchase']" position="inside">
+                <field
+                    name="default_supplierinfo_discount"
+                    attrs="{'invisible': [('is_company', '=', False), ('parent_id', '!=', False)]}"
+                />
+                <div
+                    name="supplierinfo_discount_disabled"
+                    colspan="2"
+                    attrs="{'invisible': ['|',('is_company', '=', True), ('parent_id', '=', False)]}"
+                >
+                    <p>Discount-related settings are managed on <button
+                            name="open_commercial_entity"
+                            type="object"
+                            string="the parent company"
+                            class="oe_link"
+                        /></p>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -13,7 +13,7 @@
                     class="oe_highlight"
                     context="{'create_wa':True}"
                     groups="purchase_work_acceptance.group_enable_wa_on_po"
-                    attrs="{'invisible': [('state', 'not in', ('purchase', 'done'))]}"
+                    attrs="{'invisible': ['|', ('state', 'not in', ('purchase', 'done')), ('wa_accepted', '=', True)]}"
                 />
             </xpath>
             <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
@@ -36,11 +36,29 @@
                 position="attributes"
             >
                 <attribute name="attrs">
-                    {'column_invisible': [('parent.state', 'not in', ('purchase',
-                    'done'))], 'readonly': ['|', ('product_type', 'in', ('consu',
+                    {'column_invisible': [('parent.state', 'not in', ('purchase', 'done'))],
+                    'readonly': ['|', ('product_type', 'in', ('consu',
                     'product')), ('wa_line_ids', '!=', ())]}
                 </attribute>
             </xpath>
+            <xpath
+                expr="//field[@name='order_line']/tree//field[@name='product_qty']"
+                position="after"
+            >
+                <field name="qty_to_accept" string="To Accept" invisible="1" />
+                <field
+                    name="qty_accepted"
+                    string="Accepted"
+                    attrs="{'column_invisible': [('parent.state', 'not in', ('purchase', 'done'))]}"
+                />
+            </xpath>
+            <field name="fiscal_position_id" position="after">
+                <field
+                    name="wa_accepted"
+                    groups="purchase_work_acceptance.group_enable_wa_on_po"
+                    attrs="{'invisible': [('state', 'not in', ('purchase', 'done'))]}"
+                />
+            </field>
         </field>
     </record>
 </odoo>
