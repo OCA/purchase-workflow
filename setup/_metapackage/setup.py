@@ -28,6 +28,7 @@ setuptools.setup(
         'odoo14-addon-purchase_request',
         'odoo14-addon-purchase_request_tier_validation',
         'odoo14-addon-purchase_requisition_tier_validation',
+        'odoo14-addon-purchase_rfq_number',
         'odoo14-addon-purchase_security',
         'odoo14-addon-purchase_tier_validation',
         'odoo14-addon-purchase_work_acceptance',
