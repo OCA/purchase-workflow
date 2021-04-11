@@ -1,0 +1,89 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_rfq_number
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_rfq_number
+#: model:ir.model.fields,field_description:purchase_rfq_number.field_res_company__auto_attachment_rfq
+#: model:ir.model.fields,field_description:purchase_rfq_number.field_res_config_settings__auto_attachment_rfq
+msgid "Auto Attachment RFQ"
+msgstr ""
+
+#. module: purchase_rfq_number
+#: model:ir.model.fields,help:purchase_rfq_number.field_res_company__auto_attachment_rfq
+#: model:ir.model.fields,help:purchase_rfq_number.field_res_config_settings__auto_attachment_rfq
+#: model_terms:ir.ui.view,arch_db:purchase_rfq_number.res_config_settings_view_form_purchase_rfq_number
+msgid "Auto attachment requests for quotation after confirm"
+msgstr ""
+
+#. module: purchase_rfq_number
+#: model:ir.model,name:purchase_rfq_number.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: purchase_rfq_number
+#: model:ir.model,name:purchase_rfq_number.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: purchase_rfq_number
+#: model:ir.model.fields,field_description:purchase_rfq_number.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:purchase_rfq_number.field_res_company__display_name
+#: model:ir.model.fields,field_description:purchase_rfq_number.field_res_config_settings__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: purchase_rfq_number
+#: model:ir.model.fields,field_description:purchase_rfq_number.field_purchase_order__id
+#: model:ir.model.fields,field_description:purchase_rfq_number.field_res_company__id
+#: model:ir.model.fields,field_description:purchase_rfq_number.field_res_config_settings__id
+msgid "ID"
+msgstr ""
+
+#. module: purchase_rfq_number
+#: model:ir.model.fields,help:purchase_rfq_number.field_res_company__keep_name_po
+#: model:ir.model.fields,help:purchase_rfq_number.field_res_config_settings__keep_name_po
+msgid ""
+"If this is unchecked, purchase rfq use a different sequence from Purchase "
+"orders"
+msgstr ""
+
+#. module: purchase_rfq_number
+#: model_terms:ir.ui.view,arch_db:purchase_rfq_number.res_config_settings_view_form_purchase_rfq_number
+msgid ""
+"If this is unchecked, purchase rfq use a different sequence from purchase "
+"orders"
+msgstr ""
+
+#. module: purchase_rfq_number
+#: model:ir.model.fields,field_description:purchase_rfq_number.field_purchase_order____last_update
+#: model:ir.model.fields,field_description:purchase_rfq_number.field_res_company____last_update
+#: model:ir.model.fields,field_description:purchase_rfq_number.field_res_config_settings____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: purchase_rfq_number
+#: model:ir.model,name:purchase_rfq_number.model_purchase_order
+msgid "Purchase Order"
+msgstr ""
+
+#. module: purchase_rfq_number
+#: model:ir.model.fields,field_description:purchase_rfq_number.field_purchase_order__rfq_number
+msgid "RFQ Reference"
+msgstr ""
+
+#. module: purchase_rfq_number
+#: model:ir.model.fields,field_description:purchase_rfq_number.field_res_company__keep_name_po
+#: model:ir.model.fields,field_description:purchase_rfq_number.field_res_config_settings__keep_name_po
+msgid "Use Same Enumeration"
+msgstr ""
