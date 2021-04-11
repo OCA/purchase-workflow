@@ -1,0 +1,192 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_work_acceptance_evaluation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_work_acceptance_evaluation
+#: model:ir.model.fields.selection,name:purchase_work_acceptance_evaluation.selection__work_acceptance_evaluation__state_required__accept
+msgid "Accepted"
+msgstr ""
+
+#. module: purchase_work_acceptance_evaluation
+#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation__active
+msgid "Active"
+msgstr ""
+
+#. module: purchase_work_acceptance_evaluation
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance_evaluation.view_work_acceptance_evaluation_form
+msgid "Archived"
+msgstr ""
+
+#. module: purchase_work_acceptance_evaluation
+#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation__name
+#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation_result__case_id
+#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation_score__evaluation_id
+msgid "Case Name"
+msgstr ""
+
+#. module: purchase_work_acceptance_evaluation
+#: model:ir.model,name:purchase_work_acceptance_evaluation.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: purchase_work_acceptance_evaluation
+#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation__create_uid
+#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation_result__create_uid
+#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation_score__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: purchase_work_acceptance_evaluation
+#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation__create_date
+#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation_result__create_date
+#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation_score__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: purchase_work_acceptance_evaluation
+#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance__display_name
+#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation__display_name
+#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation_result__display_name
+#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation_score__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: purchase_work_acceptance_evaluation
+#: model:ir.model.fields.selection,name:purchase_work_acceptance_evaluation.selection__work_acceptance_evaluation__state_required__draft
+msgid "Draft"
+msgstr ""
+
+#. module: purchase_work_acceptance_evaluation
+#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation_result__editable
+msgid "Editable"
+msgstr ""
+
+#. module: purchase_work_acceptance_evaluation
+#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_res_config_settings__group_enable_eval_on_wa
+#: model:res.groups,name:purchase_work_acceptance_evaluation.group_enable_eval_on_wa
+msgid "Enable Evaluation on Work Acceptance"
+msgstr ""
+
+#. module: purchase_work_acceptance_evaluation
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance_evaluation.view_work_acceptance_evaluation_tab_form
+msgid "Evaluation"
+msgstr ""
+
+#. module: purchase_work_acceptance_evaluation
+#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance__evaluation_result_ids
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance_evaluation.view_work_acceptance_evaluation_tab_form
+msgid "Evaluation Results"
+msgstr ""
+
+#. module: purchase_work_acceptance_evaluation
+#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_res_config_settings__id
+#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance__id
+#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation__id
+#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation_result__id
+#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation_score__id
+msgid "ID"
+msgstr ""
+
+#. module: purchase_work_acceptance_evaluation
+#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_res_config_settings____last_update
+#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance____last_update
+#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation____last_update
+#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation_result____last_update
+#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation_score____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: purchase_work_acceptance_evaluation
+#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation__write_uid
+#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation_result__write_uid
+#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation_score__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: purchase_work_acceptance_evaluation
+#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation__write_date
+#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation_result__write_date
+#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation_score__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: purchase_work_acceptance_evaluation
+#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation_result__note
+msgid "Note"
+msgstr ""
+
+#. module: purchase_work_acceptance_evaluation
+#: code:addons/purchase_work_acceptance_evaluation/models/work_acceptance.py:0
+#, python-format
+msgid "Please evaluate - %s"
+msgstr ""
+
+#. module: purchase_work_acceptance_evaluation
+#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation__score_ids
+#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation_result__score_id
+#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation_score__score
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance_evaluation.view_work_acceptance_evaluation_form
+msgid "Score"
+msgstr ""
+
+#. module: purchase_work_acceptance_evaluation
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance_evaluation.view_work_acceptance_evaluation_form
+msgid "Score Lines"
+msgstr ""
+
+#. module: purchase_work_acceptance_evaluation
+#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation__state_required
+msgid "State Required"
+msgstr ""
+
+#. module: purchase_work_acceptance_evaluation
+#: model:ir.model.fields,help:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation__state_required
+msgid "Status of Work Acceptance that user need to fill the evaluation"
+msgstr ""
+
+#. module: purchase_work_acceptance_evaluation
+#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation_score__name
+msgid "Values"
+msgstr ""
+
+#. module: purchase_work_acceptance_evaluation
+#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation_result__wa_id
+msgid "WA Reference"
+msgstr ""
+
+#. module: purchase_work_acceptance_evaluation
+#: model:ir.model,name:purchase_work_acceptance_evaluation.model_work_acceptance
+msgid "Work Acceptance"
+msgstr ""
+
+#. module: purchase_work_acceptance_evaluation
+#: model:ir.actions.act_window,name:purchase_work_acceptance_evaluation.work_acceptance_evaluation_action
+#: model:ir.model,name:purchase_work_acceptance_evaluation.model_work_acceptance_evaluation
+#: model:ir.ui.menu,name:purchase_work_acceptance_evaluation.menu_work_acceptance_evaluation
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance_evaluation.view_work_acceptance_evaluation_form
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance_evaluation.view_work_acceptance_evaluation_search
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance_evaluation.view_work_acceptance_evaluation_tree
+msgid "Work Acceptance Evaluation"
+msgstr ""
+
+#. module: purchase_work_acceptance_evaluation
+#: model:ir.model,name:purchase_work_acceptance_evaluation.model_work_acceptance_evaluation_result
+msgid "Work Acceptance Evaluation Result"
+msgstr ""
+
+#. module: purchase_work_acceptance_evaluation
+#: model:ir.model,name:purchase_work_acceptance_evaluation.model_work_acceptance_evaluation_score
+msgid "Work Acceptance Evaluation Score"
+msgstr ""
