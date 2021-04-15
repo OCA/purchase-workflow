@@ -34,6 +34,7 @@ class PurchaseOrder(models.Model):
             raise ValidationError(
                 _("Must have only 1 line per product for mass addition")
             )
+        return result
 
     def _get_quick_line_qty_vals(self, product):
         return {
