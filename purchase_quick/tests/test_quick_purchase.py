@@ -1,7 +1,7 @@
 # @author Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo.exceptions import AccessError
+from odoo.exceptions import ValidationError
 from odoo.tests.common import Form, SavepointCase
 
 
@@ -111,19 +111,11 @@ class TestQuickPurchase(SavepointCase):
         )
         self.assertEqual(product_act_from_po["context"]["parent_id"], self.po.id)
 
-    def test_rights(self):
+    def test_several_po_for_one_product(self):
         """
-        A user that has access to purchase orders should be able to
-        use the mass addition feature without being blocked by access
-        rights on product.product
+        Test that when we try to mass add a product that already has
+        several lines with the same product we get a raise
         """
-        user_demo = self.env.ref("base.user_demo")
-        user_demo.groups_id = []
-        with self.assertRaises(AccessError):
-            self.product_1.with_user(user_demo).write({"qty_to_process": 2.0})
-        user_demo.groups_id = [
-            (6, 0, [self.env.ref("purchase.group_purchase_user").id])
-        ]
-        self.product_1.with_user(user_demo).with_context(
-            {"product_mass_addition": True}
-        ).write({"qty_to_process": 3.0})
+        self.po.order_line[0].copy()
+        with self.assertRaises(ValidationError):
+            self.product_1.qty_to_process = 3.0
