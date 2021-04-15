@@ -5,6 +5,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
 from odoo import _, models
+from odoo.exceptions import ValidationError
 
 
 class PurchaseOrder(models.Model):
@@ -26,9 +27,13 @@ class PurchaseOrder(models.Model):
         return res
 
     def _get_quick_line(self, product):
-        return self.env["purchase.order.line"].search(
-            [("product_id", "=", product.id), ("order_id", "=", self.id)], limit=1
+        result = self.env["purchase.order.line"].search(
+            [("product_id", "=", product.id), ("order_id", "=", self.id)]
         )
+        if len(result.ids) > 1:
+            raise ValidationError(
+                _("Must have only 1 line per product for mass addition")
+            )
 
     def _get_quick_line_qty_vals(self, product):
         return {
