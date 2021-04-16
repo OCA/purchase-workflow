@@ -209,7 +209,11 @@ class PurchaseOrder(models.Model):
             raise UserError(
                 _("You can only update purchase proposal, not other fields")
             )
-        if self.proposal_display and self.proposal_state != "rejected":
+        if (  # mainly executed when run on form view
+            len(self) == 1
+            and self.proposal_display
+            and self.proposal_state != "rejected"
+        ):
             vals["proposal_display"] = False
         return super(PurchaseOrder, self).write(vals)
 
