@@ -1,16 +1,16 @@
-# -*- coding: utf-8 -*-
-# Copyright 2021 David BEAL @ Akretion
+# Copyright 2021 David BEAL @ Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
     "name": "Purchase Update Proposal",
     "summary": "Allow to define alternate quantity, date on lines",
-    "version": "8.0.0.1.0",
+    "version": "16.0.1.0.0",
     "author": "Akretion,Odoo Community Association (OCA)",
     "category": "Purchase Management",
     "license": "AGPL-3",
+    "website": "https://github.com/OCA/purchase-workflow",
     "depends": [
-        "purchase",
+        "purchase_stock",
     ],
     "data": [
         "security/security.xml",

@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
-# © 2021 David BEAL @ Akretion
+# © 2021 David BEAL @ Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import logging
 
-from openerp import _, api, fields, models
-from openerp.exceptions import Warning as UserError
+from odoo import _, fields, models
+from odoo.exceptions import UserError
 
 logger = logging.getLogger(__name__)
 
@@ -13,17 +12,54 @@ logger = logging.getLogger(__name__)
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
-    proposal_count = fields.Integer(
-        related="order_id.proposal_count", store=False
+    proposal_count = fields.Integer(related="order_id.proposal_count", store=False)
+    supplier_cancel_status = fields.Char(
+        string="Cancel Status",
+        compute="_compute_supplier_cancel_status",
+        help="Indicate if the line is cancelled",
+    )
+    received = fields.Selection(
+        selection=[("", "No"), ("partially", "Partially"), ("all", "All")],
+        compute="_compute_received",
+        compute_sudo=True,
+        store=False,
+        help="Defined if quantity is partially or "
+        "completely received (at least the quantity of the line)",
     )
 
-    @api.multi
+    def _compute_received(self):
+        for rec in self:
+            received = sum(
+                rec.move_ids.filtered(lambda s: s.state == "done").mapped(
+                    "product_uom_qty"
+                )
+            )
+            if received >= rec.product_qty:
+                rec.received = "all"
+            elif not received:
+                rec.received = ""
+            else:
+                rec.received = "partially"
+
+    def _compute_supplier_cancel_status(self):
+        for rec in self:
+            cancel_status = False
+            if rec.state == "cancel":
+                cancel_status = _("Cancel")
+            rec.supplier_cancel_status = cancel_status
+
+    def cancel_from_proposal(self):
+        """Default behavior when proposal is to not ship a line is to set qty to 0.
+        It could be any other rule in your custom business, i.e. :
+             - remove purchase order line
+             - keep info of previous quantity on purchase line
+        """
+        self.product_qty = 0
+
     def button_update_proposal(self):
         order_ids = [x.order_id for x in self]
         if len(set(order_ids)) > 1:
-            raise UserError(
-                _("You shouldn't update proposal on multiple orders")
-            )
+            raise UserError(_("You shouldn't update proposal on multiple orders"))
         for rec in self:
             vals = {
                 "qty": rec.product_qty,
@@ -52,7 +88,6 @@ class PurchaseOrderLine(models.Model):
             action["view_id"] = self.env.ref("purchase.purchase_order_form").id
         return action
 
-    @api.multi
     def button_supplier_update_proposal(self):
         """Call button_update_proposal() but from the view supplier_purchase_order_form
         We can't pass the context from the view because

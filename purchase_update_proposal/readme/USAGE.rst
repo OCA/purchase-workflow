@@ -17,3 +17,4 @@ Features:
 - proposal with quantity set to 0 impact purchase line by cancelling line instead of update quantity
 - external users are added to confirmed purchases
 - if proposing a null quantity, the purchase order line will be cancelled and the other line's fields not updated
+- update quantity require to reset order to draft while price and date can be set at any time

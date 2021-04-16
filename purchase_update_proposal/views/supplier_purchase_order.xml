@@ -1,26 +1,58 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<openerp>
-<data>
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
 
     <record id="view_supplier_purchase_order_filter" model="ir.ui.view">
         <field name="model">purchase.order</field>
         <field name="arch" type="xml">
-            <search string="Search Purchase Order">
-                <field name="name" string="Reference"/>
-                <field name="product_id"/>
-                <filter name="approved" string="Approved" domain="[('state','=','approved')]"/>
-                <filter name="confirmed" string="Confirmed" domain="[('state','=','confirmed')]"/>
-                <filter name="exception" string="Exception" domain="[('state','in',('except_invoice','except_picking'))]"/>
-                <separator/>
-                <filter name="not_invoiced" string="Not Invoiced" domain="[('invoice_ids','=', False)]"/>
-                <separator/>
-                <filter name="submitted" string="Submitted" domain="[('proposal_state','=', 'submitted')]"/>
-                <filter name="rejected" string="Rejected" domain="[('proposal_state','=', 'rejected')]"/>
-                <separator/>
-                <filter string="New Mail" name="message_unread" domain="[('message_unread','=',True)]"/>
+            <search>
+                <field name="name" string="Reference" />
+                <field name="product_id" />
+                <filter
+                    name="approved"
+                    string="Approved"
+                    domain="[('state','=','approved')]"
+                />
+                <filter
+                    name="confirmed"
+                    string="Confirmed"
+                    domain="[('state','=','confirmed')]"
+                />
+                <separator />
+                <filter
+                    name="not_invoiced"
+                    string="Not Invoiced"
+                    domain="[('invoice_ids','=', False)]"
+                />
+                <separator />
+                <filter
+                    name="submitted"
+                    string="Submitted"
+                    domain="[('proposal_state','=', 'submitted')]"
+                />
+                <filter
+                    name="rejected"
+                    string="Rejected"
+                    domain="[('proposal_state','=', 'rejected')]"
+                />
+                <separator />
+<!--                 <filter
+                    string="New Mail"
+                    name="message_unread"
+                    domain="[('message_unread','=',True)]"
+                /> -->
                 <group expand="0" string="Group By">
-                    <filter string="Order Month" icon="terp-go-month" domain="[]" context="{'group_by':'date_order'}"/>
-                    <filter string="Expected Month" icon="terp-go-month" domain="[]" context="{'group_by':'minimum_planned_date'}"/>
+                    <filter
+                        string="Order Date"
+                        name="date_order"
+                        domain="[]"
+                        context="{'group_by': 'date_order'}"
+                    />
+                    <filter
+                        string="Expected Month"
+                        name="date_planned"
+                        domain="[]"
+                        context="{'group_by':'date_planned'}"
+                    />
                 </group>
             </search>
         </field>
@@ -28,24 +60,31 @@
 
     <record id="supplier_purchase_order_tree" model="ir.ui.view">
         <field name="model">purchase.order</field>
-        <field eval="100" name="priority"/>
+        <field eval="100" name="priority" />
         <field name="arch" type="xml">
-            <tree
+<!--             <tree
                 fonts="bold:message_unread==True"
                 colors="blue:state in ('wait','confirmed');red:state in ('except_invoice','except_picking')"
                 string="Purchase Order"
-                create="0" edit="0"
-                >
-                <field name="message_unread" invisible="1"/>
-                <field name="name" string="Reference"/>
+                create="0"
+                edit="0"
+            > -->
+            <tree>
+                <!-- <field name="message_unread" invisible="1" /> -->
+                <field name="name" string="Reference" />
                 <field name="date_order" />
-                <field name="partner_id"/>
-                <field name="minimum_planned_date"/>
-                <field name="origin"/>
-                <field name="proposal_state"/>
-                <field name="amount_untaxed" sum="Total Untaxed amount" string="Untaxed"/>
-                <field name="amount_total" sum="Total amount"/>
-                <field name="state"/>
+                <field name="partner_id" />
+                <field name="picking_type_id" />
+                <field name="date_planned" />
+                <field name="origin" />
+                <field name="proposal_state" />
+                <field
+                    name="amount_untaxed"
+                    sum="Total Untaxed amount"
+                    string="Untaxed"
+                />
+                <field name="amount_total" sum="Total amount" />
+                <field name="state" />
             </tree>
         </field>
     </record>
@@ -53,102 +92,185 @@
     <record id="supplier_purchase_order_form" model="ir.ui.view">
         <field name="model">purchase.order</field>
         <!-- This view should not replace the original view -->
-        <field eval="100" name="priority"/>
+        <field eval="100" name="priority" />
         <field name="arch" type="xml">
-            <form string="Purchase Order" create="0" edit="1">
+            <form create="0" edit="1">
             <header>
-                <button name="populate_all_purchase_lines" type="object" string="Update all dates"
-                    help="Display a date field which update dates all lines"
-                    groups="purchase_update_proposal.group_purchase_proposal_user,purchase_update_proposal.group_supplier_own_purchase"/>
-                <button name="purchase_supplier_confirm" type="object" states="confirmed" string="Approve Order" class="oe_highlight"/>
-                <field name="state" widget="statusbar" statusbar_visible="confirmed,approved,done" statusbar_colors='{"except_picking":"red","except_invoice":"red","confirmed":"blue"}' readonly="1"/>
+                <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="confirmed,approved,done"
+                        statusbar_colors='{"except_picking":"red","except_invoice":"red","confirmed":"blue"}'
+                        readonly="1"
+                    />
             </header>
             <sheet>
                 <div class="oe_title">
                     <h1>
-                        <label string="Purchase Order " attrs="{'invisible': [('state','in',('draft','sent','bid'))]}"/>
-                        <field name="name" class="oe_inline" readonly="1"/>
+                        <label
+                                for="name"
+                                string="Purchase Order "
+                                attrs="{'invisible': [('state','in',('draft','sent','bid'))]}"
+                            />
+                        <field name="name" class="oe_inline" readonly="1" />
                     </h1>
                 </div>
                 <group>
                     <group>
-                        <field name="partner_id" readonly="1"/>
-                        <field name="partner_ref" readonly="1"/>
+                        <field name="partner_id" readonly="1" />
+                        <field name="partner_ref" readonly="1" />
                     </group>
                     <group>
-                        <field name="date_order" readonly="1"/>
-                        <field name="minimum_planned_date"  readonly="1"/>
+                        <field name="date_order" readonly="1" />
+                        <field name="date_planned" readonly="1" />
+                        <field name="picking_type_id" readonly="1" />
                     </group>
                 </group>
                 <notebook>
                     <page string="Products">
-                        <group col="4" attrs="{'invisible': [('proposal_count', '=', 0)]}">
-                             <div colspan="4"
-                                 style="background-color:AntiqueWhite; text-align:center; font-weight: bold; padding: 8px">
+                        <group col="3">
+                            <button
+                                    name="button_switch2other_view"
+                                    string="Purchaser view"
+                                    type="object"
+                                    groups="purchase.group_purchase_user"
+                                    context="{'from_supplier_view': 1}"
+                                />
+                            <button
+                                    name="populate_all_purchase_lines"
+                                    type="object"
+                                    string="Update all dates"
+                                    help="Display a date field which update dates all lines"
+                                    attrs="{'invisible': [('proposal_count', '>', 0)]}"
+                                    groups="purchase_update_proposal.group_purchase_proposal_user,purchase_update_proposal.group_supplier_own_purchase"
+                                />
+                            <span />
+                        </group>
+                        <div attrs="{'invisible': [('proposal_count', '=', 0)]}">
+                             <div
+                                    style="background-color:AntiqueWhite; text-align:center; font-weight: bold; padding: 8px"
+                                >
                                 Update Proposal
                             </div>
                             <group>
-                                <group>
-                                    <field name="proposal_state" colspan="2"/>
-                                    <button name="submit_proposal" help="Submit Proposal" type="object" string="Submit" class="oe_highlight"
-                                            attrs="{'invisible': [('proposal_state', 'in', ['approved', 'submitted', 'rejected'])]}"
-                                            groups="purchase_update_proposal.group_purchase_proposal_user,purchase_update_proposal.group_supplier_own_purchase"/>
-                                    <button name="reset_proposal" help="Reset Proposal" type="object" string="Reset"
-                                            attrs="{'invisible': [('proposal_state', 'in', ['draft', 'approved'])]}"
-                                            groups="purchase_update_proposal.group_purchase_proposal_user,purchase_update_proposal.group_supplier_own_purchase"/>
-                                    <field name="proposal_count" invisible="1"/>
-                                </group>
-                                <group colspan="4" attrs="{'invisible': [('proposal_count', '=', 0)]}">
-                                    <div attrs="{'invisible': [('proposal_state', '!=', 'draft')]}">Update new fields below and submit modifications.</div>
-                                    <div attrs="{'invisible': [('proposal_state', '!=', 'submitted')]}">These data have to be approved before update purchase line</div>
-                                    <field name="proposal_ids" colspan="4" attrs="{'readonly': [('proposal_updatable', '=', 'no')]}" nolabel="1"/>
-                                    <div attrs="{'invisible': [('check_price_on_proposal', '=', True)]}" colspan="2" style="text-align:center;">Prices are not updated for this supplier</div>
-                                    <field name="check_price_on_proposal" invisible="1"/>
-                                    <field name="proposal_updatable" invisible="1"/>
-                                    <div attrs="{'invisible': [('proposal_updatable', '!=', 'no')]}" colspan="2"
-                                         style="background-color:red; color:white; text-align:center; font-weight: bold;">
-                                        We can't complete your request because our incoming workflow is partially finished or cancelled
-                                    </div>
-                                </group>
-                                <group colspan="4" attrs="{'invisible': [('proposal_count', '&lt;', 1)]}">
-                                    <field name="proposal_date"/>
-                                </group>
-                                <hr style="background: AntiqueWhite; height: 12px" colspan="4"/>
-                                <div style="text-align:center; font-weight: bold;" colspan="4">Purchase content before update</div>
+                                <field name="proposal_state" />
                             </group>
-                        </group>
+                            <group>
+                                <button
+                                        name="submit_proposal"
+                                        help="Submit Proposal"
+                                        type="object"
+                                        string="Submit"
+                                        class="oe_highlight"
+                                        attrs="{'invisible': [('proposal_state', 'in', ['approved', 'submitted', 'rejected'])]}"
+                                        groups="purchase_update_proposal.group_purchase_proposal_user,purchase_update_proposal.group_supplier_own_purchase"
+                                    />
+                                <button
+                                        name="reset_proposal"
+                                        help="Reset Proposal"
+                                        type="object"
+                                        string="Reset"
+                                        attrs="{'invisible': [('proposal_state', 'in', ['draft', 'approved'])]}"
+                                        groups="purchase_update_proposal.group_purchase_proposal_user,purchase_update_proposal.group_supplier_own_purchase"
+                                    />
+                            </group>
+                            <field name="proposal_count" invisible="1" />
+                            <field name="partially_received" invisible="1" />
+                            <div attrs="{'invisible': [('proposal_count', '=', 0)]}">
+                                <div
+                                        attrs="{'invisible': [('proposal_state', '!=', 'submitted')]}"
+                                    >These data have to be approved before update purchase line. </div>
+                                <div
+                                        attrs="{'invisible': [('proposal_state', '!=', 'draft')]}"
+                                    >Update new fields below and submit modifications. </div>
+                                <div
+                                        attrs="{'invisible': [('check_price_on_proposal', '=', True)]}"
+                                    >Prices are not updated for this supplier.</div>
+                            </div>
+                            <field
+                                    name="proposal_ids"
+                                    attrs="{'readonly': [('proposal_updatable', '=', 'no')]}"
+                                    nolabel="1"
+                                />
+                            <field name="check_price_on_proposal" invisible="1" />
+                            <field name="proposal_updatable" invisible="1" />
+                            <div
+                                    attrs="{'invisible': [('proposal_updatable', '!=', 'no')]}"
+                                    style="background-color:red; color:white; text-align:center; font-weight: bold;"
+                                >
+                                We can't complete your request because our incoming workflow is partially finished or cancelled
+                            </div>
+                            <div attrs="{'invisible': [('proposal_count', '&lt;', 1)]}">
+                                <field name="proposal_date" />
+                            </div>
+                            <hr style="background: AntiqueWhite; height: 12px" />
+                            <div
+                                    style="text-align:center; font-weight: bold;"
+                                >Purchase content before update</div>
+                        </div>
                         <field name="order_line" readonly="1">
-                            <tree string="Purchase Order Lines" editable="bottom">
-                                <button name="button_supplier_update_proposal" help="Suggest Modification" type="object" string="Update" groups="purchase_update_proposal.group_purchase_proposal_user,purchase_update_proposal.group_supplier_own_purchase"/>
-                                <field name="proposal_count" invisible="1"/>
-                                <field name="id" attrs="{'invisible': [('proposal_count', '=', 0)]}"/>
-                                <field name="product_id"/>
-                                <field name="name"/>
-                                <field name="date_planned"/>
-                                <field name="product_qty"/>
-                                <field name="product_uom"/>
-                                <field name="price_unit"/>
-                                <field name="taxes_id" widget="many2many_tags"/>
-                                <field name="price_subtotal"/>
-                                <field name="state" invisible="1"/>
+                            <tree editable="bottom">
+                                <button
+                                        name="button_supplier_update_proposal"
+                                        help="Suggest Modification"
+                                        type="object"
+                                        string="Update"
+                                        groups="purchase_update_proposal.group_purchase_proposal_user,purchase_update_proposal.group_supplier_own_purchase"
+                                        attrs="{'invisible': [('received', '=', 'all')]}"
+                                    />
+                                <field name="proposal_count" invisible="1" />
+                                <field
+                                        name="id"
+                                        attrs="{'invisible': [('proposal_count', '=', 0)]}"
+                                    />
+                                <field name="product_id" />
+                                <field name="name" />
+                                <field name="date_planned" />
+                                <field name="product_qty" />
+                                <field name="product_uom" />
+                                <field name="price_unit" />
+                                <field name="taxes_id" widget="many2many_tags" />
+                                <field name="price_subtotal" />
+                                <field name="supplier_cancel_status" />
+                                <field name="received" />
+                                <field name="state" invisible="1" />
                             </tree>
                         </field>
                         <group class="oe_subtotal_footer oe_right">
-                            <field name="amount_untaxed" widget="monetary" options="{'currency_field': 'currency_id'}"/>
-                            <field name="amount_tax" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <field
+                                    name="amount_untaxed"
+                                    widget="monetary"
+                                    options="{'currency_field': 'currency_id'}"
+                                />
+                            <field
+                                    name="amount_tax"
+                                    widget="monetary"
+                                    options="{'currency_field': 'currency_id'}"
+                                />
                             <div class="oe_subtotal_footer_separator oe_inline">
-                                <label for="amount_total"/>
+                                <label for="amount_total" />
                             </div>
-                            <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <field
+                                    name="amount_total"
+                                    nolabel="1"
+                                    class="oe_subtotal_footer_separator"
+                                    widget="monetary"
+                                    options="{'currency_field': 'currency_id'}"
+                                />
                         </group>
-                        <div class="oe_clear"/>
-                        <field name="notes" class="oe_inline" placeholder="Terms and conditions..." readonly="1"/>
+                        <div class="oe_clear" />
+                        <field
+                                name="notes"
+                                class="oe_inline"
+                                placeholder="Terms and conditions..."
+                                readonly="1"
+                            />
                     </page>
                 </notebook>
             </sheet>
             <div class="oe_chatter">
-                <field name="message_follower_ids" widget="mail_followers"/>
-                <field name="message_ids" widget="mail_thread"/>
+                <field name="message_follower_ids" widget="mail_followers" />
+                <field name="message_ids" widget="mail_thread" />
             </div>
             </form>
         </field>
@@ -158,22 +280,29 @@
         <field name="name">Purchase Order Supplier</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">purchase.order</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
-        <field name="domain">[('state','not in',['draft', 'sent', 'bid', 'cancel'])]</field>
+        <field
+            name="domain"
+        >[('state','not in',['draft', 'sent', 'bid', 'cancel'])]</field>
         <field name="context">{'supplier_view': 1}</field>
-        <field name="search_view_id" ref="view_supplier_purchase_order_filter"/>
+        <field name="search_view_id" ref="view_supplier_purchase_order_filter" />
     </record>
 
-    <record id="supplier_purchase_order_tree_view_action" model="ir.actions.act_window.view">
+     <record
+        id="supplier_purchase_order_tree_view_action"
+        model="ir.actions.act_window.view"
+    >
         <field name="view_mode">tree</field>
-        <field name="view_id" ref="supplier_purchase_order_tree"/>
-        <field name="act_window_id" ref="supplier_purchase_order_action"/>
+        <field name="view_id" ref="supplier_purchase_order_tree" />
+        <field name="act_window_id" ref="supplier_purchase_order_action" />
     </record>
-    <record id="supplier_purchase_order_form_view_action" model="ir.actions.act_window.view">
+    <record
+        id="supplier_purchase_order_form_view_action"
+        model="ir.actions.act_window.view"
+    >
         <field name="view_mode">form</field>
-        <field name="view_id" ref="supplier_purchase_order_form"/>
-        <field name="act_window_id" ref="supplier_purchase_order_action"/>
+        <field name="view_id" ref="supplier_purchase_order_form" />
+        <field name="act_window_id" ref="supplier_purchase_order_action" />
     </record>
 
     <menuitem
@@ -181,7 +310,7 @@
         name="Supplier"
         sequence="0"
         groups="purchase_update_proposal.group_supplier_own_purchase"
-        action="supplier_purchase_order_action"/>
+        action="supplier_purchase_order_action"
+    />
 
-</data>
-</openerp>
+</odoo>

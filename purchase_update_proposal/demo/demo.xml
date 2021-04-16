@@ -1,64 +1,70 @@
-<?xml version="1.0" encoding="utf-8"?>
-<openerp>
-<data>
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
 
     <record id="supplier_demo_partner" model="res.partner">
         <field name="name">Supplier Demo</field>
-        <field name="company_id" ref="base.main_company"/>
+        <field name="company_id" ref="base.main_company" />
         <field name="city">Anywhere</field>
         <field name="zip">97990</field>
-        <field name="country_id" ref="base.us"/>
+        <field name="country_id" ref="base.us" />
         <field name="tz">Europe/Brussels</field>
         <field name="email">supplier@example.com</field>
-        <field name="check_price_on_proposal" eval="1"/>
+        <field name="check_price_on_proposal" eval="1" />
         <field name="phone">(441)-695-2334</field>
     </record>
 
-    <record id="supplier_demo_user" model="res.users" context="{'no_reset_password': True}">
-        <field name="partner_id" ref="supplier_demo_partner"/>
+    <record
+        id="supplier_demo_user"
+        model="res.users"
+        context="{'no_reset_password': True}"
+    >
+        <field name="partner_id" ref="supplier_demo_partner" />
         <field name="login">supplier</field>
         <field name="password">supplier</field>
-        <field name="signature"><![CDATA[<span>- - <br/>Mr Demo Supplier</span>]]></field>
-        <field name="groups_id"
-               eval="[(4, ref('group_supplier_own_purchase'))]"/>
+        <field
+            name="signature"
+        ><![CDATA[<span>- - <br/>Mr Demo Supplier</span>]]></field>
+        <field name="groups_id" eval="[(4, ref('group_supplier_own_purchase'))]" />
     </record>
 
     <record id="base.user_root" model="res.users">
-        <field name="groups_id"
-               eval="[(4, ref('group_supplier_own_purchase')), (4, ref('group_purchase_proposal_user'))]"/>
+        <field
+            name="groups_id"
+            eval="[(4, ref('group_supplier_own_purchase')), (4, ref('group_purchase_proposal_user'))]"
+        />
     </record>
 
-    <record id="tax17" model="account.tax">
+    <record id="dummy_tax" model="account.tax">
         <field name="name">17</field>
         <field name="amount">17</field>
-        <field name="type">percent</field>
+        <field name="type_tax_use">purchase</field>
+        <field name="amount_type">percent</field>
     </record>
 
     <record id="purchase_order" model="purchase.order">
         <field name="name">Purchase Order for supplier</field>
-        <field name="partner_id" ref="purchase_update_proposal.supplier_demo_partner"/>
-        <field name="pricelist_id" ref="purchase.list0"/>
-        <field name="location_id" ref="stock.stock_location_company"/>
-        <field name="date_order" eval="(DateTime.today() - relativedelta(months=1)).strftime('%Y-%m-%d %H:%M')"/>
-        <field name="order_line" model="purchase.order.line" eval="[(5, 0, 0),
-            (0, 0, {
-                'product_id': ref('product.product_product_36'),
-                'name': 'DVD RW',
-                'price_unit': 22.80,
-                'product_qty': 15.0,
-                'taxes_id': [(6, 0, [ref('tax17')])],
-                'product_uom': ref('product.product_uom_unit'),
-                'date_planned': DateTime.today() + relativedelta(days=3)}),
-            (0, 0, {
-                'product_id': ref('product.product_product_11b'),
-                'name': 'Ipod',
-                'price_unit': 19.50,
-                'product_qty': 5.0,
-                'taxes_id': [(6, 0, [ref('tax17')])],
-                'product_uom': ref('product.product_uom_unit'),
-                'date_planned': DateTime.today() + relativedelta(days=3)}),
-        ]"/>
+        <field name="partner_id" ref="purchase_update_proposal.supplier_demo_partner" />
+        <field
+            name="date_order"
+            eval="(DateTime.today() - relativedelta(months=1)).strftime('%Y-%m-%d %H:%M')"
+        />
     </record>
 
-</data>
-</openerp>
+    <record id="pol1" model="purchase.order.line">
+        <field name="order_id" ref="purchase_order" />
+        <field name="product_id" ref="product.product_delivery_02" />
+        <field name="price_unit">22.8</field>
+        <field name="product_qty">15.0</field>
+        <field name="taxes_id" eval="[(4, ref('dummy_tax'), False)]" />
+        <field name="date_planned" eval="DateTime.today() + relativedelta(days=3)" />
+    </record>
+
+    <record id="pol2" model="purchase.order.line">
+        <field name="order_id" ref="purchase_order" />
+        <field name="product_id" ref="product.product_delivery_01" />
+        <field name="price_unit">19.5</field>
+        <field name="taxes_id" eval="[(4, ref('dummy_tax'), False)]" />
+        <field name="date_planned" eval="DateTime.today() + relativedelta(days=3)" />
+    </record>
+
+</odoo>

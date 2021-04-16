@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="Docutils: http://docutils.sourceforge.net/" />
+<meta name="generator" content="Docutils 0.15.1: http://docutils.sourceforge.net/" />
 <title>Purchase Update Proposal</title>
 <style type="text/css">
 
@@ -404,6 +404,15 @@ This document is modified by the supplier with specific right on its own purchas
 <div class="figure">
 <img alt="https://raw.githubusercontent.com/OCA/purchase-workflow/8.0/purchase_update_proposal/static/description/purchaser.png" src="https://raw.githubusercontent.com/OCA/purchase-workflow/8.0/purchase_update_proposal/static/description/purchaser.png" />
 </div>
+<p>Features:</p>
+<ul class="simple">
+<li>asked modifications allowed are: quantity, date or price</li>
+<li>update price is optionnal according to supplier</li>
+<li>proposal with quantity set to 0 impact purchase line by cancelling line instead of update quantity</li>
+<li>external users are added to confirmed purchases</li>
+<li>if proposing a null quantity, the purchase order line will be cancelled and the other line’s fields not updated</li>
+<li>update quantity require to reset order to draft while price and date can be set at any time</li>
+</ul>
 </div>
 <div class="section" id="bug-tracker">
 <h1><a class="toc-backref" href="#id2">Bug Tracker</a></h1>

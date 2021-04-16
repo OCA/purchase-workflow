@@ -1,21 +1,20 @@
-# -*- coding: utf-8 -*-
-# © 2020 David BEAL @ Akretion
+# © 2020 David BEAL @ Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp.tests import common
-from openerp.exceptions import Warning as UserError, AccessError
+from odoo.exceptions import UserError
+from odoo.tests import common
 
 
-class Test(common.SavepointCase):
+class Test(common.TransactionCase):
     @classmethod
-    def setUpClass(self):
-        super(Test, self).setUpClass()
-        order = self.env.ref("purchase.purchase_order_7")
-        order.signal_workflow("purchase_confirm")
-        self.order_basic = order
-        order = self.env.ref("purchase_update_proposal.purchase_order")
-        order.signal_workflow("purchase_confirm")
-        self.order_main = order
+    def setUpClass(cls):
+        super().setUpClass()
+        order = cls.env.ref("purchase.purchase_order_7")
+        order.button_confirm()
+        cls.order_basic = order
+        order = cls.env.ref("purchase_update_proposal.purchase_order")
+        order.button_confirm()
+        cls.order_main = order
 
     def test_basics(self):
         order = self.order_basic
@@ -50,10 +49,9 @@ class Test(common.SavepointCase):
         order = self.get_order_with_user(alternate_user=True)
         order.populate_all_purchase_lines()
         order.proposal_date = "2050-01-01"
-        order.onchange_proposal_date()
         dates = [x.date for x in order.proposal_ids]
         assert len(dates) == 2
-        dates = set([x.date for x in order.proposal_ids])
+        dates = {x.date for x in order.proposal_ids}
         assert len(dates) == 1
         assert order.proposal_date == list(dates)[0]
 
@@ -70,7 +68,7 @@ class Test(common.SavepointCase):
         assert order.proposal_state == "submitted"
         order.approve_proposal()
         # We check all is correctly written
-        assert order.state == "approved"
+        assert order.state == "purchase"
         assert order.order_line[0].product_qty == 10
         assert order.order_line[0].price_unit == 2
 
@@ -111,7 +109,7 @@ class Test(common.SavepointCase):
         order.order_line[0].button_update_proposal()
         order.proposal_ids[0].qty = 99
         order.submit_proposal()
-        with self.assertRaises(AccessError):
+        with self.assertRaises(UserError):
             order.approve_proposal()
 
     def test_one_null_qty_in_proposal_not_in_orderline(self):
@@ -122,27 +120,14 @@ class Test(common.SavepointCase):
         order.proposal_ids[1].qty = 99
         order.submit_proposal()
         order.approve_proposal()
-        assert order.order_line[0].state == "cancel"
-        assert order.order_line[0].product_qty > 0
-        assert order.order_line[1].state != "cancel"
+        assert order.order_line[0].product_qty == 0
+        assert order.order_line[1].product_qty != 0
         assert order.state != "cancel"
-
-    def test_all_null_lines_to_cancel_PO(self):
-        order = self.get_order_with_user()
-        order.order_line[0].button_update_proposal()
-        order.proposal_ids[0].qty = 0
-        order.order_line[1].button_update_proposal()
-        order.proposal_ids[1].qty = 0
-        order.submit_proposal()
-        order.approve_proposal()
-        assert order.order_line[0].state == "cancel"
-        assert order.order_line[1].state == "cancel"
-        assert order.state == "cancel"
 
     def get_order_with_user(self, alternate_user=None):
         order = self.order_main
         if alternate_user:
-            order = order.sudo(
-                user=self.env.ref("purchase_update_proposal.supplier_demo_user").id
+            order = order.with_user(
+                self.env.ref("purchase_update_proposal.supplier_demo_user").id
             )
         return order
