@@ -27,6 +27,8 @@ from openerp.tools.safe_eval import safe_eval
 
 class testPurchasePartialInvoicing(common.TransactionCase):
 
+    post_install = True
+
     def setUp(self):
         super(testPurchasePartialInvoicing, self).setUp()
         self.context = self.env['res.users'].context_get()
