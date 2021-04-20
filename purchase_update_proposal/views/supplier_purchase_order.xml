@@ -40,6 +40,7 @@
                 <field name="name" string="Reference"/>
                 <field name="date_order" />
                 <field name="partner_id"/>
+                <field name="picking_type_id"/>
                 <field name="minimum_planned_date"/>
                 <field name="origin"/>
                 <field name="proposal_state"/>
@@ -57,10 +58,9 @@
         <field name="arch" type="xml">
             <form string="Purchase Order" create="0" edit="1">
             <header>
-                <button name="populate_all_purchase_lines" type="object" string="Update all dates"
-                    help="Display a date field which update dates all lines"
-                    groups="purchase_update_proposal.group_purchase_proposal_user,purchase_update_proposal.group_supplier_own_purchase"/>
-                <button name="purchase_supplier_confirm" type="object" states="confirmed" string="Approve Order" class="oe_highlight"/>
+                <button name="purchase_supplier_confirm" type="object"
+                    string="Approve Order" class="oe_highlight oe_read_only"
+                    attrs="{'invisible': ['|', ('proposal_count', '>', 0), ('state', '!=', 'confirmed')]}"/>
                 <field name="state" widget="statusbar" statusbar_visible="confirmed,approved,done" statusbar_colors='{"except_picking":"red","except_invoice":"red","confirmed":"blue"}' readonly="1"/>
             </header>
             <sheet>
@@ -77,11 +77,19 @@
                     </group>
                     <group>
                         <field name="date_order" readonly="1"/>
-                        <field name="minimum_planned_date"  readonly="1"/>
+                        <field name="minimum_planned_date" readonly="1"/>
+                        <field name="picking_type_id" readonly="1"/>
                     </group>
                 </group>
                 <notebook>
                     <page string="Products">
+                        <group col="3">
+                            <span/>
+                            <button name="populate_all_purchase_lines" type="object" string="Update all dates"
+                            help="Display a date field which update dates all lines"  attrs="{'invisible': [('proposal_count', '>', 0)]}"
+                            groups="purchase_update_proposal.group_purchase_proposal_user,purchase_update_proposal.group_supplier_own_purchase"/>
+                            <span/>
+                        </group>
                         <group col="4" attrs="{'invisible': [('proposal_count', '=', 0)]}">
                              <div colspan="4"
                                  style="background-color:AntiqueWhite; text-align:center; font-weight: bold; padding: 8px">
@@ -130,6 +138,7 @@
                                 <field name="price_unit"/>
                                 <field name="taxes_id" widget="many2many_tags"/>
                                 <field name="price_subtotal"/>
+                                <field name="supplier_cancel_status"/>
                                 <field name="state" invisible="1"/>
                             </tree>
                         </field>

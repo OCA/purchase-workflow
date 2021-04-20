@@ -7,6 +7,7 @@
         <field name="arch" type="xml">
             <tree editable="bottom" fonts="bold:qty!=product_qty">
                 <field name="line_id_" string="ID"/>
+                <field name="supplier_ref" />
                 <field name="product_id" />
                 <field name="qty" />
                 <field name="date" />

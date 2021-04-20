@@ -25,6 +25,9 @@ class PurchaseLineProposal(models.Model):
         required=True,
         ondelete="cascade",
     )
+    supplier_ref = fields.Char(
+        string="Ref", compute="_compute_supplier_ref", readonly=True
+    )
     product_id = fields.Many2one(related="line_id.product_id", readonly=True)
     product_qty = fields.Float(
         string="Old Qty", related="line_id.product_qty", readonly=True
@@ -42,6 +45,15 @@ class PurchaseLineProposal(models.Model):
     price_u = fields.Float(
         string="New Price U.", digits_compute=dp.get_precision("Product Price")
     )
+
+    def _compute_supplier_ref(self):
+        for rec in self:
+            name = rec.line_id.name
+            if name[:1] == "[":
+                pos = name.find("]")
+                if pos:
+                    ref = name[1:pos]
+                rec.supplier_ref = ref
 
     def _compute_line_id(self):
         for rec in self:

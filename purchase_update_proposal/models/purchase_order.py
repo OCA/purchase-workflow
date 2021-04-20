@@ -118,17 +118,26 @@ class PurchaseOrder(models.Model):
         body = []
         data = self._prepare_proposal_data()
         initial_state = self.state
+        # these proposals'll cancel lines
+        null_proposals = self.proposal_ids.filtered(lambda s: s.qty == 0.0)
+        to_cancel_lines = null_proposals.mapped("line_id")
+        # intially cancelled lines should stay cancelled, first we keep trace
+        previous_cancelled_lines = self.order_line.filtered(
+            lambda s: s.state == "cancel" and s.id not in to_cancel_lines.ids
+        )
         if initial_state in ["confirmed", "approved"]:
             self._hook_for_cancel_process()
             self.action_cancel()
             self.action_cancel_draft()
         if data:
             self._update_proposal_to_purchase_line(data, body)
-        # Cancellation cases
-        null_proposals = self.proposal_ids.filtered(lambda s: s.qty == 0.0)
-        null_proposals.mapped("line_id").action_cancel()
         self.message_post(body="\n".join(body))
         self._post_process_approved_proposal(initial_state)
+        # Cancellation cases
+        if to_cancel_lines:
+            to_cancel_lines.action_cancel()
+        if previous_cancelled_lines:
+            previous_cancelled_lines.action_cancel()
         self.write({"proposal_state": "approved"})
 
     def _hook_for_cancel_process(self):
