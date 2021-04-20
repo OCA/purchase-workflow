@@ -13,9 +13,19 @@ logger = logging.getLogger(__name__)
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
-    proposal_count = fields.Integer(
-        related="order_id.proposal_count", store=False
+    proposal_count = fields.Integer(related="order_id.proposal_count", store=False)
+
+    supplier_cancel_status = fields.Char(
+        string="Status",
+        compute="_compute_supplier_cancel_status",
+        help="Indicate if the line is cancelled",
     )
+
+    @api.multi
+    def _compute_supplier_cancel_status(self):
+        for rec in self:
+            if rec.state == "cancel":
+                rec.supplier_cancel_status = _("Cancel")
 
     @api.multi
     def button_update_proposal(self):

@@ -139,6 +139,30 @@ class Test(common.SavepointCase):
         assert order.order_line[1].state == "cancel"
         assert order.state == "cancel"
 
+    def test_cancelled_line_stay_cancelled_after_proposal(self):
+        order = self.get_order_with_user()
+        order.order_line[0].action_cancel()
+        assert order.order_line[0].state == "cancel"
+        # a proposal is set on another line
+        order.order_line[1].button_update_proposal()
+        order.proposal_ids[0].qty = 99
+        order.submit_proposal()
+        order.approve_proposal()
+        # previous cancelled line must stay cancelled
+        assert order.order_line[0].state == "cancel"
+
+    def test_updated_qty_in_cancelled_line_stay_cancelled(self):
+        order = self.get_order_with_user()
+        order.order_line[0].action_cancel()
+        assert order.order_line[0].state == "cancel"
+        # a proposal is set on the same line
+        order.order_line[0].button_update_proposal()
+        order.proposal_ids[0].qty = 99
+        order.submit_proposal()
+        order.approve_proposal()
+        assert order.order_line[0].state == "cancel"
+        assert order.order_line[0].product_qty == 99
+
     def get_order_with_user(self, alternate_user=None):
         order = self.order_main
         if alternate_user:

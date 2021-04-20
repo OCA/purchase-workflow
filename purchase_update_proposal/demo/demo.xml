@@ -10,6 +10,7 @@
         <field name="country_id" ref="base.us"/>
         <field name="tz">Europe/Brussels</field>
         <field name="email">supplier@example.com</field>
+        <field name="supplier" eval="1"/>
         <field name="check_price_on_proposal" eval="1"/>
         <field name="phone">(441)-695-2334</field>
     </record>
