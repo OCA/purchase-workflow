@@ -9,21 +9,21 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-24 13:09+0000\n"
-"PO-Revision-Date: 2017-02-24 13:09+0000\n"
-"Last-Translator: Pedro Castro Silva <pedrocs@sossia.pt>, 2017\n"
-"Language-Team: Portuguese (Portugal) (https://www.transifex.com/oca/"
-"teams/23907/pt_PT/)\n"
+"PO-Revision-Date: 2021-04-21 20:47+0000\n"
+"Last-Translator: educasilva <eduardo.silva@exo.pt>\n"
+"Language-Team: Portuguese (Portugal) (https://www.transifex.com/oca/teams/"
+"23907/pt_PT/)\n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: purchase_delivery_split_date
 #: model:ir.model,name:purchase_delivery_split_date.model_purchase_order
-#, fuzzy
 msgid "Purchase Order"
-msgstr "Linha de Encomenda de Compra"
+msgstr "Pedido de compra"
 
 #. module: purchase_delivery_split_date
 #: model:ir.model,name:purchase_delivery_split_date.model_purchase_order_line
@@ -33,4 +33,4 @@ msgstr "Linha de Encomenda de Compra"
 #. module: purchase_delivery_split_date
 #: model:ir.model,name:purchase_delivery_split_date.model_stock_picking
 msgid "Transfer"
-msgstr ""
+msgstr "Transferir"
