@@ -191,6 +191,7 @@ class TestPurchaseWorkAcceptance(TransactionCase):
             invoice.action_post()  # Warn when quantity not equal to WA
         invoice_line.quantity = qty
         self.assertEqual(invoice.state, "draft")
+        invoice.invoice_date = invoice.date
         invoice.action_post()
         self.assertEqual(invoice.state, "posted")
 
@@ -213,6 +214,7 @@ class TestPurchaseWorkAcceptance(TransactionCase):
         invoice = f.save()
         invoice.wa_id = work_acceptance
         self.assertEqual(invoice.state, "draft")
+        invoice.invoice_date = invoice.date
         invoice.action_post()
         self.assertEqual(invoice.state, "posted")
 
