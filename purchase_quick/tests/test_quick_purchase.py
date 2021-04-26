@@ -6,12 +6,6 @@ from odoo.tests.common import Form, SavepointCase
 
 
 class TestQuickPurchase(SavepointCase):
-    # TODO is the below still relevant ?
-    """Test that when an included tax is mapped by a fiscal position,
-    the included tax must be
-    subtracted to the price of the product.
-    """
-
     def _setUpBasicSaleOrder(self):
         self.po = self.env["purchase.order"].create({"partner_id": self.partner.id})
         with Form(self.po, "purchase.purchase_order_form") as po_form:
