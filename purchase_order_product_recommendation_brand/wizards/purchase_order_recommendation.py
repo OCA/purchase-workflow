@@ -14,8 +14,11 @@ class PurchaseOrderRecommendation(models.TransientModel):
         # Filter products by brand if set.
         # It will apply to show_all_partner_products as well
         if self.product_brand_ids:
+            # We are in onchange context, so to avoid to compare records with
+            # new_id instances we use self.product_brand_ids.ids,
+            # self.product_brand_ids = newid but self.product_brand_ids.ids is a real id
             products = products.filtered(
-                lambda x: x.product_brand_id in self.product_brand_ids
+                lambda x: x.product_brand_id.id in self.product_brand_ids.ids
             )
         return products
 
