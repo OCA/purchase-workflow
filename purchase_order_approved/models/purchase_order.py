@@ -30,12 +30,18 @@ class PurchaseOrder(models.Model):
 
     @api.multi
     def button_release(self):
+        po_date_dict = {
+            x.id: x.date_approve for x in self
+        }
         super(PurchaseOrder, self).button_approve()
+        for purchase in self:
+            purchase.date_approve = po_date_dict[purchase.id]
 
     @api.multi
     def button_approve(self, force=False):
         approve_purchases = self.filtered(
             lambda p: p.company_id.purchase_approve_active)
-        approve_purchases.write({'state': 'approved'})
+        approve_purchases.write({'state': 'approved',
+                                 'date_approve': fields.Date.context_today(self)})
         return super(PurchaseOrder, self - approve_purchases).button_approve(
             force=force)
