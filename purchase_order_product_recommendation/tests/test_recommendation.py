@@ -237,9 +237,9 @@ class RecommendationCaseTests(RecommendationCase):
         line_prod_3 = wizard.line_ids.filtered(lambda x: x.product_id == self.prod_3)
         self.assertEqual(line_prod_3.times_delivered, 1)
         self.assertEqual(line_prod_3.units_delivered, 13)
-        self.assertEqual(line_prod_3.units_included, 9)
-        self.assertEqual(line_prod_3.units_available, 4)
-        self.assertEqual(line_prod_3.units_virtual_available, 4)
+        self.assertEqual(line_prod_3.units_included, 8)
+        self.assertEqual(line_prod_3.units_available, 5)
+        self.assertEqual(line_prod_3.units_virtual_available, 5)
 
     def test_action_accept(self):
         """Open wizard when there are PO Lines and click on Accept"""
