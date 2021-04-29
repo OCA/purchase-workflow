@@ -4,7 +4,7 @@
 {
     "name": "Purchase Order Product Recommendation Brand Filter",
     "summary": "Allow to filter recommendations by brand",
-    "version": "13.0.1.0.0",
+    "version": "13.0.1.0.1",
     "category": "Purchases",
     "website": "https://github.com/OCA/purchase-workflow",
     "author": "Tecnativa, Odoo Community Association (OCA)",
