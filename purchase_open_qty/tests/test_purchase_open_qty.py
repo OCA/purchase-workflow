@@ -131,7 +131,8 @@ class TestPurchaseOpenQty(TransactionCase):
             stock_return_picking.product_return_moves.quantity = 2.0
             stock_return_picking.product_return_moves.to_refund = True
             stock_return_picking_action = stock_return_picking.create_returns()
-            return_pick = self.env['stock.picking'].browse(stock_return_picking_action['res_id'])
+            return_pick = \
+                self.env['stock.picking'].browse(stock_return_picking_action['res_id'])
             return_pick.action_assign()
             return_pick.move_lines.quantity_done = 2
             return_pick.action_done()
@@ -150,12 +151,15 @@ class TestPurchaseOpenQty(TransactionCase):
                          "Expected 2 as qty_to_receive in the PO")
 
         # Return 1 item from previous return
-        stock_return_picking = self.env['stock.return.picking'] \
+        stock_return_picking = \
+            self.env['stock.return.picking'] \
             .with_context(active_ids=[return_pick.id], active_id=return_pick.id).create({})
         stock_return_picking.product_return_moves.quantity = 1.0
         stock_return_picking.product_return_moves.to_refund = True
-        stock_return_picking_action = stock_return_picking.create_returns()
-        return_pick2 = self.env['stock.picking'].browse(stock_return_picking_action['res_id'])
+        stock_return_picking_action = \
+            stock_return_picking.create_returns()
+        return_pick2 = \
+            self.env['stock.picking'].browse(stock_return_picking_action['res_id'])
         return_pick2.action_assign()
         return_pick2.move_lines.quantity_done = 1
         return_pick2.action_done()
