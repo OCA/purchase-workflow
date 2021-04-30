@@ -153,7 +153,8 @@ class TestPurchaseOpenQty(TransactionCase):
         # Return 1 item from previous return
         stock_return_picking = \
             self.env['stock.return.picking'] \
-            .with_context(active_ids=[return_pick.id], active_id=return_pick.id).create({})
+            .with_context(active_ids=[return_pick.id],
+                          active_id=return_pick.id).create({})
         stock_return_picking.product_return_moves.quantity = 1.0
         stock_return_picking.product_return_moves.to_refund = True
         stock_return_picking_action = \
