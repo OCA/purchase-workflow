@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <function model="ir.actions.report" name="unlink_action">
+        <value eval="[ref('purchase.report_purchase_quotation')]"/>
+    </function>
+</odoo>
