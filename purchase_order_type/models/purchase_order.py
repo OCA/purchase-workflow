@@ -10,12 +10,6 @@ from odoo.addons.purchase.models.purchase import PurchaseOrder as Purchase
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
-    def _default_order_type(self):
-        return self.env["purchase.order.type"].search(
-            [("company_id", "in", [False, self.env.company.id])],
-            limit=1,
-        )
-
     order_type = fields.Many2one(
         comodel_name="purchase.order.type",
         readonly=False,
@@ -23,7 +17,6 @@ class PurchaseOrder(models.Model):
         string="Type",
         ondelete="restrict",
         domain="[('company_id', 'in', [False, company_id])]",
-        default=lambda self: self._default_order_type(),
     )
 
     @api.onchange("partner_id")
@@ -61,6 +54,12 @@ class PurchaseOrder(models.Model):
         ):
             raise ValidationError(_("Document's company and type's company mismatch"))
 
+    def _default_order_type(self):
+        return self.env["purchase.order.type"].search(
+            [("company_id", "in", [False, self.company_id.id])],
+            limit=1,
+        )
+
     @api.onchange("company_id")
     def _onchange_company(self):
-        self.order_type = False
+        self.order_type = self._default_order_type()
