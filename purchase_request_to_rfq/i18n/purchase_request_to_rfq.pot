@@ -85,7 +85,6 @@ msgid "Display Name"
 msgstr ""
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:219
 #: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:220
 #, python-format
 msgid "Enter a positive quantity."
@@ -272,7 +271,6 @@ msgid "Quantity to purchase"
 msgstr ""
 
 #. module: purchase_request_to_rfq
-#: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:260
 #: code:addons/purchase_request_to_rfq/wizard/purchase_request_line_make_purchase_order.py:261
 #, python-format
 msgid "RFQ"
