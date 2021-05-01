@@ -49,7 +49,7 @@ addon | version | summary
 [purchase_request_department](purchase_request_department/) | 10.0.1.0.0 | Purchase Request Department
 [purchase_request_procurement](purchase_request_procurement/) | 10.0.1.1.0 | Purchase Request Procurement
 [purchase_request_to_procurement](purchase_request_to_procurement/) | 10.0.1.0.0 | This module introduces the possiblity to create procurement order from purchase request
-[purchase_request_to_rfq](purchase_request_to_rfq/) | 10.0.1.1.1 | Purchase Request to RFQ
+[purchase_request_to_rfq](purchase_request_to_rfq/) | 10.0.1.1.2 | Purchase Request to RFQ
 [purchase_request_to_rfq_order_approved](purchase_request_to_rfq_order_approved/) | 10.0.1.0.0 | Purchase Request to RFQ Order Approved
 [purchase_tier_validation](purchase_tier_validation/) | 10.0.1.0.0 | Extends the functionality of Purchase Orders to support a tier validation process.
 [purchase_triple_discount](purchase_triple_discount/) | 10.0.1.1.0 | Manage triple discount on purchase order lines
