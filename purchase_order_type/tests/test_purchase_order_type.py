@@ -72,12 +72,15 @@ class TestPurchaseOrderType(common.SavepointCase):
 
     def test_purchase_order_change_company(self):
         order = self.po_obj.new({"partner_id": self.partner1.id})
-        self.assertEqual(order.order_type, self.type1)
+        order.onchange_partner_id()
+        self.assertEqual(order.order_type, self.type2)
         order._onchange_company()
-        self.assertFalse(order.order_type)
+        self.assertEqual(order.order_type, order._default_order_type())
 
     def test_purchase_order_type_company_error(self):
-        order = self.po_obj.create({"partner_id": self.partner1.id})
+        order = self.po_obj.create(
+            {"partner_id": self.partner1.id, "order_type": self.type1.id}
+        )
         self.assertEqual(order.order_type, self.type1)
         self.assertEqual(order.company_id, self.type1.company_id)
         with self.assertRaises(ValidationError):
