@@ -7,7 +7,7 @@
     "author": "Eficent, "
               "Acsone SA/NV,"
               "Odoo Community Association (OCA)",
-    "version": "10.0.1.1.1",
+    "version": "10.0.1.1.2",
     "website": "https://github.com/OCA/purchase-workflow",
     "category": "Purchase Management",
     "depends": [
