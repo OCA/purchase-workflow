@@ -25,7 +25,7 @@ Purchase Order Product Recommendation XLSX
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-This module extends purchase_order_product_recommendation for add a way to print the
+This module extends purchase_order_product_recommendation to add a way to print the
 recommended products for a supplier.
 
 **Table of contents**
