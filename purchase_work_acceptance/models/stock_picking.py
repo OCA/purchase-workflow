@@ -13,16 +13,15 @@ class Picking(models.Model):
         comodel_name="work.acceptance",
         string="WA Reference",
         copy=False,
-        domain=lambda self: [
-            ("state", "=", "accept"),
-            ("purchase_id", "=", self._context.get("active_id")),
-        ],
     )
 
     def _compute_require_wa(self):
-        self.require_wa = self.env.user.has_group(
-            "purchase_work_acceptance.group_enforce_wa_on_in"
-        )
+        if self.picking_type_code == "incoming":
+            self.require_wa = self.env.user.has_group(
+                "purchase_work_acceptance.group_enforce_wa_on_in"
+            )
+        else:
+            self.require_wa = False
 
     def button_validate(self):
         if self.wa_id:

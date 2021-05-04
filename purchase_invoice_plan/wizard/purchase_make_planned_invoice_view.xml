@@ -1,0 +1,40 @@
+<odoo>
+    <record id="view_purchase_make_planned_invoice" model="ir.ui.view">
+        <field name="name">view.purchase.make.planned.invoice</field>
+        <field name="model">purchase.make.planned.invoice</field>
+        <field name="arch" type="xml">
+            <form string="Bill Purchase Order">
+                <p class="oe_grey">
+                        Bills will be created in draft for this installment
+                        so that you can review them before validation.
+                    </p>
+                <footer>
+                    <button
+                        name="create_invoices_by_plan"
+                        string="Create Next Bill"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button
+                        name="create_invoices_by_plan"
+                        string="Create All Remaining Bills"
+                        type="object"
+                        context="{'all_remain_invoices': True}"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record
+        id="action_view_purchase_make_planned_invoice"
+        model="ir.actions.act_window"
+    >
+        <field name="name">Invoice Order</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">purchase.make.planned.invoice</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

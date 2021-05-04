@@ -1,0 +1,145 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * purchase_cancel_reason
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-03-03 03:48+0000\n"
+"PO-Revision-Date: 2018-03-03 03:48+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
+"Language-Team: Norwegian Bokmål (https://www.transifex.com/oca/teams/23907/"
+"nb/)\n"
+"Language: nb\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: purchase_cancel_reason
+#: model:ir.model,name:purchase_cancel_reason.model_purchase_order_cancel
+msgid " Ask a reason for the purchase order cancellation."
+msgstr ""
+
+#. module: purchase_cancel_reason
+#: model:ir.ui.view,arch_db:purchase_cancel_reason.purchase_order_form
+#: model:ir.ui.view,arch_db:purchase_cancel_reason.view_purchase_order_cancel
+msgid "Cancel"
+msgstr ""
+
+#. module: purchase_cancel_reason
+#: model:ir.ui.view,arch_db:purchase_cancel_reason.purchase_order_form
+msgid "Cancellation reason:"
+msgstr ""
+
+#. module: purchase_cancel_reason
+#: model:ir.ui.view,arch_db:purchase_cancel_reason.view_purchase_order_cancel
+msgid ""
+"Choose the reason for the cancellation of the\n"
+"                purchase order."
+msgstr ""
+
+#. module: purchase_cancel_reason
+#: model:ir.ui.view,arch_db:purchase_cancel_reason.view_purchase_order_cancel
+msgid "Confirm"
+msgstr ""
+
+#. module: purchase_cancel_reason
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_create_uid
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason_create_uid
+msgid "Created by"
+msgstr "Opprettet av"
+
+#. module: purchase_cancel_reason
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_create_date
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason_create_date
+msgid "Created on"
+msgstr "Opprettet"
+
+#. module: purchase_cancel_reason
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_display_name
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason_display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: purchase_cancel_reason
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_id
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason_id_5181
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_cancel_reason
+#: model:purchase.order.cancel.reason,name:purchase_cancel_reason.cancel_reason_only_quotation
+msgid "Just for Quotation"
+msgstr ""
+
+#. module: purchase_cancel_reason
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel___last_update
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason___last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: purchase_cancel_reason
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason_write_uid
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_write_uid
+msgid "Last Updated by"
+msgstr "Sist oppdatert av"
+
+#. module: purchase_cancel_reason
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason_write_date
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_write_date
+msgid "Last Updated on"
+msgstr "Sist oppdatert"
+
+#. module: purchase_cancel_reason
+#: model:purchase.order.cancel.reason,name:purchase_cancel_reason.cancel_reason_other_provider
+msgid "Other Service Provider selected"
+msgstr ""
+
+#. module: purchase_cancel_reason
+#: model:ir.model,name:purchase_cancel_reason.model_purchase_order
+msgid "Purchase Order"
+msgstr ""
+
+#. module: purchase_cancel_reason
+#: model:ir.actions.act_window,name:purchase_cancel_reason.action_purchase_order_cancel_reason
+#: model:ir.model,name:purchase_cancel_reason.model_purchase_order_cancel_reason
+msgid "Purchase Order Cancel Reason"
+msgstr ""
+
+#. module: purchase_cancel_reason
+#: model:ir.ui.menu,name:purchase_cancel_reason.menu_purchase_order_cancel_reason
+#: model:ir.ui.view,arch_db:purchase_cancel_reason.view_purchase_order_cancel_reason_form
+#: model:ir.ui.view,arch_db:purchase_cancel_reason.view_purchase_order_cancel_reason_tree
+msgid "Purchase Order Cancel Reasons"
+msgstr ""
+
+#. module: purchase_cancel_reason
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason_id
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason_name
+msgid "Reason"
+msgstr ""
+
+#. module: purchase_cancel_reason
+#: model:ir.model.fields,field_description:purchase_cancel_reason.field_purchase_order_cancel_reason_id_5173
+msgid "Reason for cancellation"
+msgstr ""
+
+#. module: purchase_cancel_reason
+#: model:ir.actions.act_window,name:purchase_cancel_reason.action_purchase_order_cancel
+#: model:ir.ui.view,arch_db:purchase_cancel_reason.view_purchase_order_cancel
+msgid "Reason for the cancellation"
+msgstr ""
+
+#. module: purchase_cancel_reason
+#: model:purchase.order.cancel.reason,name:purchase_cancel_reason.cancel_reason_no_service_needed
+msgid "Service no longer needed"
+msgstr ""
+
+#. module: purchase_cancel_reason
+#: model:ir.ui.view,arch_db:purchase_cancel_reason.view_purchase_order_cancel
+msgid "or"
+msgstr ""
