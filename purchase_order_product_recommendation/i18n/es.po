@@ -6,15 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-27 16:24+0000\n"
-"PO-Revision-Date: 2019-11-27 16:24+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2021-05-04 15:19+0000\n"
+"PO-Revision-Date: 2021-05-04 17:19+0200\n"
+"Last-Translator: Carlos <carlos.roca@tecnativa.com>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
+"X-Generator: Poedit 2.0.6\n"
 
 #. module: purchase_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:purchase_order_product_recommendation.purchase_order_recommendation_view_form
@@ -75,7 +76,6 @@ msgid "Final date to compute recommendations."
 msgstr "Fecha has la que se calcularán las recomendaciones."
 
 #. module: purchase_order_product_recommendation
-#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__units_virtual_available
 #: model_terms:ir.ui.view,arch_db:purchase_order_product_recommendation.purchase_order_recommendation_view_form
 msgid "Forecasted Qty"
 msgstr "Ctd Prevista"
@@ -120,10 +120,14 @@ msgid "Number of recommendations"
 msgstr "Número de recomendaciones"
 
 #. module: purchase_order_product_recommendation
-#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__price_unit
 #: model_terms:ir.ui.view,arch_db:purchase_order_product_recommendation.purchase_order_recommendation_view_form
 msgid "Price"
 msgstr "Precio"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__price_unit
+msgid "Price Unit"
+msgstr "Precio unitario"
 
 #. module: purchase_order_product_recommendation
 #: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__product_id
@@ -134,6 +138,16 @@ msgstr "Producto"
 #: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation__product_category_ids
 msgid "Product Categories"
 msgstr "Categorías de productos"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__product_name
+msgid "Product name"
+msgstr "Nombre de producto"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__product_code
+msgid "Product reference"
+msgstr "Referencia del producto"
 
 #. module: purchase_order_product_recommendation
 #: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation__line_ids
@@ -151,31 +165,26 @@ msgid "Purchase Order"
 msgstr "Pedido de compra"
 
 #. module: purchase_order_product_recommendation
-#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__units_included
 #: model_terms:ir.ui.view,arch_db:purchase_order_product_recommendation.purchase_order_recommendation_view_form
 msgid "Qty"
 msgstr "Ctd"
 
 #. module: purchase_order_product_recommendation
-#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__units_avg_delivered
 #: model_terms:ir.ui.view,arch_db:purchase_order_product_recommendation.purchase_order_recommendation_view_form
 msgid "Qty Dlvd./day"
 msgstr "Ctd entrg./día"
 
 #. module: purchase_order_product_recommendation
-#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__units_available
 #: model_terms:ir.ui.view,arch_db:purchase_order_product_recommendation.purchase_order_recommendation_view_form
 msgid "Qty On Hand"
 msgstr "Ctd a mano"
 
 #. module: purchase_order_product_recommendation
-#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__units_received
 #: model_terms:ir.ui.view,arch_db:purchase_order_product_recommendation.purchase_order_recommendation_view_form
 msgid "Qty Received"
 msgstr "Ctd recibida"
 
 #. module: purchase_order_product_recommendation
-#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__units_delivered
 #: model_terms:ir.ui.view,arch_db:purchase_order_product_recommendation.purchase_order_recommendation_view_form
 msgid "Qty delivered"
 msgstr "Ctd entregada"
@@ -241,6 +250,36 @@ msgid "Times Received"
 msgstr "Veces recibido"
 
 #. module: purchase_order_product_recommendation
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__units_available
+msgid "Units Available"
+msgstr "Cantidad a mano"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__units_avg_delivered
+msgid "Units Avg Delivered"
+msgstr "Media de unidades entregadas"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__units_delivered
+msgid "Units Delivered"
+msgstr "Unidades entregadas"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__units_included
+msgid "Units Included"
+msgstr "Unidades incluídas"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__units_received
+msgid "Units Received"
+msgstr "Unidades recibidas"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__units_virtual_available
+msgid "Units Virtual Available"
+msgstr "Cantidad prevista"
+
+#. module: purchase_order_product_recommendation
 #: model:ir.model.fields,help:purchase_order_product_recommendation.field_purchase_order_recommendation__show_all_products
 msgid "Useful if a product hasn't been selled by the partner yet"
 msgstr "Resulta útil si un producto aún no ha sido vendido por el proveedor."
@@ -269,24 +308,3 @@ msgstr "Asistente"
 #: model:ir.model.fields,help:purchase_order_product_recommendation.field_purchase_order_recommendation_line__partner_id
 msgid "You can find a vendor by its Name, TIN, Email or Internal Reference."
 msgstr ""
-
-#~ msgid "Price Unit"
-#~ msgstr "Precio unitario"
-
-#~ msgid "Units Available"
-#~ msgstr "Cantidad a mano"
-
-#~ msgid "Units Avg Delivered"
-#~ msgstr "Media de unidades entregadas"
-
-#~ msgid "Units Delivered"
-#~ msgstr "Unidades entregadas"
-
-#~ msgid "Units Included"
-#~ msgstr "Unidades incluídas"
-
-#~ msgid "Units Received"
-#~ msgstr "Unidades recibidas"
-
-#~ msgid "Units Virtual Available"
-#~ msgstr "Cantidad prevista"
