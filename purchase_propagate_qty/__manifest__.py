@@ -4,16 +4,14 @@
 
 {
     "name": "Purchase Propagate Quantity",
-    "version": "12.0.1.0.0",
+    "version": "13.0.1.0.0",
     "summary": "Quantity decrease on purchase line are propagated "
     "to the corresponding stock.move",
     "author": "Camptocamp, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
     "category": "Purchase Management",
     "license": "AGPL-3",
-    "depends": [
-        "purchase_stock",
-    ],
+    "depends": ["purchase_stock"],
     "installable": True,
     "application": False,
 }
