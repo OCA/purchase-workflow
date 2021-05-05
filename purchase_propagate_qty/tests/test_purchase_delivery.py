@@ -1,5 +1,6 @@
 # Copyright 2014-2016 Numérigraphe SARL
 # Copyright 2017 Eficent Business and IT Consulting Services, S.L.
+# Copyright 2021 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo.exceptions import UserError
@@ -7,9 +8,13 @@ from odoo.tests.common import SavepointCase
 
 
 class TestQtyUpdate(SavepointCase):
+    at_install = False
+    post_install = True
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.product_model = cls.env["product.product"]
 
         # Create products:
@@ -76,7 +81,10 @@ class TestQtyUpdate(SavepointCase):
     def test_purchase_line_unlink(self):
         """decrease qty on confirmed po -> decreased reception"""
         line1 = self.po.order_line[0]
-        with self.assertRaises(UserError):
+        exception_regex = (
+            r"Cannot delete a purchase order line which is in state 'purchase'."
+        )
+        with self.assertRaisesRegex(UserError, exception_regex):
             line1.unlink()
 
     def test_purchase_line_qty_decrease_to_zero(self):
