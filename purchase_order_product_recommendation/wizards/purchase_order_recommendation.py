@@ -217,6 +217,8 @@ class PurchaseOrderRecommendation(models.TransientModel):
         res = {
             "purchase_line_id": order_line and order_line.id,
             "product_id": product_id.id,
+            "product_name": product_id.name,
+            "product_code": product_id.code,
             "times_delivered": vals.get("times_delivered", 0),
             "times_received": vals.get("times_received", 0),
             "units_received": vals.get("qty_received", 0),
@@ -315,6 +317,8 @@ class PurchaseOrderRecommendationLine(models.TransientModel):
         related="wizard_id.order_id.partner_id", readonly=True,
     )
     product_id = fields.Many2one(comodel_name="product.product", string="Product",)
+    product_name = fields.Char(string="Product name")
+    product_code = fields.Char(string="Product reference")
     price_unit = fields.Monetary(readonly=True,)
     times_delivered = fields.Integer(readonly=True,)
     times_received = fields.Integer(readonly=True,)
