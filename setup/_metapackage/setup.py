@@ -14,6 +14,7 @@ setuptools.setup(
         'odoo14-addon-purchase_delivery_split_date',
         'odoo14-addon-purchase_discount',
         'odoo14-addon-purchase_invoice_plan',
+        'odoo14-addon-purchase_isolated_rfq',
         'odoo14-addon-purchase_last_price_info',
         'odoo14-addon-purchase_location_by_line',
         'odoo14-addon-purchase_manual_currency',
