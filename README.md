@@ -25,6 +25,7 @@ addon | version | summary
 [purchase_delivery_split_date](purchase_delivery_split_date/) | 14.0.1.0.2 | Allows Purchase Order you confirm to generate one Incoming Shipment for each expected date indicated in the Purchase Order Lines
 [purchase_discount](purchase_discount/) | 14.0.1.0.1 | Purchase order lines with discounts
 [purchase_invoice_plan](purchase_invoice_plan/) | 14.0.1.0.1 | Add to purchases order, ability to manage future invoice plan
+[purchase_isolated_rfq](purchase_isolated_rfq/) | 14.0.1.0.0 | Purchase Isolated RFQ
 [purchase_last_price_info](purchase_last_price_info/) | 14.0.1.0.0 | Purchase Product Last Price Info
 [purchase_location_by_line](purchase_location_by_line/) | 14.0.1.0.1 | Allows to define a specific destination location on each PO line
 [purchase_manual_currency](purchase_manual_currency/) | 14.0.1.0.0 | Allows to manual currency of Purchase
