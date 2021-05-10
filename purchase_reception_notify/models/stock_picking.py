@@ -26,8 +26,8 @@ class StockPicking(models.Model):
         message += "</ul>"
         return message
 
-    def action_done(self):
-        super(StockPicking, self).action_done()
+    def _action_done(self):
+        super()._action_done()
         for picking in self.filtered(lambda p: p.picking_type_id.code == "incoming"):
             purchase_dict = {}
             for move in picking.move_lines.filtered("purchase_line_id"):
@@ -44,6 +44,8 @@ class StockPicking(models.Model):
                 )
                 po.sudo().message_post(
                     body=message,
-                    subtype="purchase_reception_notify.mt_purchase_reception",
+                    subtype_id=self.env.ref(
+                        "purchase_reception_notify.mt_purchase_reception"
+                    ).id,
                     author_id=self.env.user.partner_id.id,
                 )
