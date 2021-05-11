@@ -74,6 +74,12 @@ class PurchaseOrderLine(models.Model):
             self.mapped("order_id")._check_split_pickings()
         return res
 
+    def create(self, values):
+        line = super().create(values)
+        if line.order_id.state == "purchase":
+            line.order_id._check_split_pickings()
+        return line
+
 
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
