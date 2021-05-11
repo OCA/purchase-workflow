@@ -17,6 +17,9 @@ class TestDeliverySingle(TransactionCase):
         p2 = self.product2 = self.product_model.create(
             {"name": "Test Product 2", "type": "product", "default_code": "PROD2"}
         )
+        self.p3 = self.product2 = self.product_model.create(
+            {"name": "Test Product 3", "type": "product", "default_code": "PROD3"}
+        )
 
         # Two dates which we can use to test the features:
         self.date_sooner = "2015-01-01"
@@ -147,3 +150,37 @@ class TestDeliverySingle(TransactionCase):
             "If I change the other line to the same date as the first, "
             "both moves must be in the same picking",
         )
+
+    def test_purchase_line_created_afer_confirm(self):
+        """Check new line created when order is confirmed.
+
+        When a new line is added on an already `purchased` order
+        If it is planned for a non yet existing date in the purchase, a
+        new picking should be created.
+
+        """
+        self.po.button_confirm()
+        self.assertEqual(self.po.state, "purchase")
+        new_date = "2016-01-30"
+        moves_before = self.env["stock.move"].search(
+            [("purchase_line_id", "in", self.po.order_line.ids)]
+        )
+        self.assertEqual(len(moves_before.mapped("picking_id")), 1)
+        self.po.order_line = [
+            (
+                0,
+                0,
+                {
+                    "product_id": self.p3.id,
+                    "product_uom": self.p3.uom_id.id,
+                    "name": self.p3.name,
+                    "price_unit": self.p3.standard_price,
+                    "date_planned": new_date,
+                    "product_qty": 2.0,
+                },
+            ),
+        ]
+        moves_after = self.env["stock.move"].search(
+            [("purchase_line_id", "in", self.po.order_line.ids)]
+        )
+        self.assertEqual(len(moves_after.mapped("picking_id")), 2)
