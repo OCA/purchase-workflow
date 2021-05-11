@@ -34,9 +34,18 @@ class PurchaseRequestLineMakePurchaseRequisition(models.TransientModel):
         res = super(PurchaseRequestLineMakePurchaseRequisition, self).default_get(
             fields
         )
+
+        # By default, expect called from PR Line
         request_line_obj = self.env["purchase.request.line"]
         request_line_ids = self.env.context.get("active_ids")
         active_model = self.env.context.get("active_model")
+
+        # For case called from PR
+        if active_model == "purchase.request":
+            request_ids = self.env.context.get("active_ids")
+            requests = self.env["purchase.request"].browse(request_ids)
+            request_line_ids = requests.mapped("line_ids").ids
+            active_model = "purchase.request.line"
 
         if not request_line_ids:
             return res
