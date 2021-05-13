@@ -62,4 +62,6 @@ class PurchaseOrder(models.Model):
 
     @api.onchange("company_id")
     def _onchange_company(self):
-        self.order_type = False
+        for r in self:
+            if (r.order_type) and (r.order_type.company_id) and (r.order_type.company_id != r.company_id):
+                r.order_type = False
