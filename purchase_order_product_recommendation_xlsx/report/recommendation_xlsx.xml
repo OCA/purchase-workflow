@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <report
+        id="recommendation_xlsx"
+        string="Product Recommendation XLSX"
+        model="purchase.order.recommendation"
+        report_type="xlsx"
+        menu="False"
+        name="purchase_order_product_recommendation_xlsx.summary"
+        file="purchase_order_product_recommendation_xlsx.summary"
+    />
+</odoo>
