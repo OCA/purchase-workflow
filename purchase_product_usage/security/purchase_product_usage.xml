@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="group_purchase_product_usage" model="res.groups">
+        <field name="name">Define Purchase Product Usages</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+    </record>
+    <record id="purchase.group_purchase_manager" model="res.groups">
+        <field name="implied_ids" eval="[(4, ref('group_purchase_product_usage'))]" />
+    </record>
+</odoo>
