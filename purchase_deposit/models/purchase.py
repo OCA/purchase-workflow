@@ -27,8 +27,8 @@ class PurchaseOrderLine(models.Model):
         " order. They are not copied when duplicating a purchase order.",
     )
 
-    def _prepare_account_move_line(self, move):
-        res = super(PurchaseOrderLine, self)._prepare_account_move_line(move)
+    def _prepare_account_move_line(self, move=False):
+        res = super(PurchaseOrderLine, self)._prepare_account_move_line(move=move)
         if self.is_deposit:
             res["quantity"] = -1 * self.qty_invoiced
         return res
