@@ -59,8 +59,7 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
         self.deposit_account_id = product.property_account_expense_id
         self.deposit_taxes_id = product.supplier_taxes_id
 
-    def _create_invoice(self, order, po_line, amount):
-        Invoice = self.env["account.move"]
+    def _prepare_deposit_val(self, order, po_line, amount):
         ir_property_obj = self.env["ir.property"]
         account_id = False
         product = self.purchase_deposit_product_id
@@ -70,7 +69,7 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
                 or product.categ_id.property_account_expense_categ_id.id
             )
         if not account_id:
-            inc_acc = ir_property_obj.get(
+            inc_acc = ir_property_obj._get(
                 "property_account_expense_categ_id", "product.category"
             )
             account_id = (
@@ -104,37 +103,40 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
         else:
             tax_ids = taxes.ids
 
-        invoice = Invoice.create(
-            {
-                "invoice_origin": order.name,
-                "type": "in_invoice",
-                "partner_id": order.partner_id.id,
-                "invoice_line_ids": [
-                    (
-                        0,
-                        0,
-                        {
-                            "name": name,
-                            "account_id": account_id,
-                            "price_unit": amount,
-                            "quantity": 1.0,
-                            "product_uom_id": product.uom_id.id,
-                            "product_id": product.id,
-                            "purchase_line_id": po_line.id,
-                            "tax_ids": [(6, 0, tax_ids)],
-                            "analytic_account_id": po_line.account_analytic_id.id
-                            or False,
-                        },
-                    )
-                ],
-                "currency_id": order.currency_id.id,
-                "invoice_payment_term_id": order.payment_term_id.id,
-                "fiscal_position_id": order.fiscal_position_id.id
-                or order.partner_id.property_account_position_id.id,
-                "purchase_id": order.id,
-                "narration": order.notes,
-            }
-        )
+        deposit_val = {
+            "invoice_origin": order.name,
+            "move_type": "in_invoice",
+            "partner_id": order.partner_id.id,
+            "invoice_line_ids": [
+                (
+                    0,
+                    0,
+                    {
+                        "name": name,
+                        "account_id": account_id,
+                        "price_unit": amount,
+                        "quantity": 1.0,
+                        "product_uom_id": product.uom_id.id,
+                        "product_id": product.id,
+                        "purchase_line_id": po_line.id,
+                        "tax_ids": [(6, 0, tax_ids)],
+                        "analytic_account_id": po_line.account_analytic_id.id or False,
+                    },
+                )
+            ],
+            "currency_id": order.currency_id.id,
+            "invoice_payment_term_id": order.payment_term_id.id,
+            "fiscal_position_id": order.fiscal_position_id.id
+            or order.partner_id.property_account_position_id.id,
+            "purchase_id": order.id,
+            "narration": order.notes,
+        }
+        return deposit_val
+
+    def _create_invoice(self, order, po_line, amount):
+        Invoice = self.env["account.move"]
+        deposit_val = self._prepare_deposit_val(order, po_line, amount)
+        invoice = Invoice.create(deposit_val)
         invoice.message_post_with_view(
             "mail.message_origin_link",
             values={"self": invoice, "origin": order},

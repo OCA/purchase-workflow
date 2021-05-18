@@ -101,10 +101,8 @@ class TestPurchaseDeposit(TransactionCase):
             ],
         )
         # On Purchase Order, create normal billing
-        res = self.po.with_context(create_bill=True).action_view_invoice()
-        ctx = res.get("context")
-        f = Form(self.invoice_model.with_context(ctx), view="account.view_move_form")
-        invoice = f.save()
+        res = self.po.with_context(create_bill=True).action_create_invoice()
+        invoice = self.invoice_model.browse(res["res_id"])
         self.assertRecordValues(
             invoice.invoice_line_ids,
             [
