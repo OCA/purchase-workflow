@@ -141,7 +141,12 @@ class PurchaseOrder(models.Model):
         if invoice_plan_id:
             plan = self.env["purchase.invoice.plan"].browse(invoice_plan_id)
             plan._compute_new_invoice_quantity(invoice)
-            invoice.invoice_date = plan.plan_date
+            invoice.write(
+                {
+                    "date": plan.plan_date,
+                    "invoice_date": plan.plan_date,
+                }
+            )
             plan.invoice_ids += invoice
         return invoice
 
@@ -183,6 +188,11 @@ class PurchaseInvoicePlan(models.Model):
         string="Type",
         required=True,
         default="installment",
+    )
+    last = fields.Boolean(
+        string="Last Installment",
+        compute="_compute_last",
+        help="Last installment will create invoice use remaining amount",
     )
     percent = fields.Float(
         string="Percent",
@@ -232,25 +242,34 @@ class PurchaseInvoicePlan(models.Model):
             )
             rec.invoiced = invoiced and True or False
 
-    def _compute_new_invoice_quantity(self, invoice):
+    def _compute_last(self):
+        for rec in self:
+            last = max(rec.purchase_id.invoice_plan_ids.mapped("installment"))
+            rec.last = rec.installment == last
+
+    def _compute_new_invoice_quantity(self, invoice_move):
         self.ensure_one()
+        if self.last:  # For last install, let the system do the calc.
+            return
         percent = self.percent
-        for line in invoice.invoice_line_ids:
-            assert (
-                len(line.purchase_line_id) >= 0
-            ), "No matched order line for invoice line"
-            order_line = fields.first(line.purchase_line_id)
-            plan_qty = self._get_plan_qty(order_line, percent)
-            prec = order_line.product_uom.rounding
-            if float_compare(abs(plan_qty), abs(line.quantity), prec) == 1:
-                raise ValidationError(
-                    _(
-                        "Plan quantity: %s, exceed invoiceable quantity: %s"
-                        "\nProduct should be delivered before invoice"
-                    )
-                    % (plan_qty, line.quantity)
+        move = invoice_move.with_context({"check_move_validity": False})
+        for line in move.invoice_line_ids:
+            self._update_new_quantity(line, percent)
+        move._move_autocomplete_invoice_lines_values()  # recompute dr/cr
+
+    def _update_new_quantity(self, line, percent):
+        """ Hook function """
+        plan_qty = self._get_plan_qty(line.purchase_line_id, percent)
+        prec = line.purchase_line_id.product_uom.rounding
+        if float_compare(abs(plan_qty), abs(line.quantity), prec) == 1:
+            raise ValidationError(
+                _(
+                    "Plan quantity: %s, exceed invoiceable quantity: %s"
+                    "\nProduct should be delivered before invoice"
                 )
-            line.with_context(check_move_validity=False).write({"quantity": plan_qty})
+                % (plan_qty, line.quantity)
+            )
+        line.write({"quantity": plan_qty})
 
     @api.model
     def _get_plan_qty(self, order_line, percent):
