@@ -25,12 +25,6 @@ class PurchaseOrder(models.Model):
         help="For RFQ, this field references to its Purchases Order",
     )
     rfq_state = fields.Selection(
-        selection=[
-            ("draft", "Draft"),
-            ("sent", "Mail Sent"),
-            ("cancel", "Cancelled"),
-            ("done", "Done"),
-        ],
         string="RFQ Status",
         readonly=True,
         related="state",
