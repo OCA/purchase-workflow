@@ -27,6 +27,7 @@ setuptools.setup(
         'odoo14-addon-purchase_order_type',
         'odoo14-addon-purchase_order_uninvoiced_amount',
         'odoo14-addon-purchase_product_usage',
+        'odoo14-addon-purchase_reception_notify',
         'odoo14-addon-purchase_reception_status',
         'odoo14-addon-purchase_request',
         'odoo14-addon-purchase_request_tier_validation',
