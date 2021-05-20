@@ -198,11 +198,6 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         if not item.product_id:
             order_line_data = [x for x in order_line_data if x[0] != "name"]
             order_line_data.append(('name', '=', item.name))
-        if item.line_id.procurement_id and \
-                item.line_id.procurement_id.location_id:
-            order_line_data.append(
-                ('location_id', '=',
-                 item.line_id.procurement_id.location_id.id))
         return order_line_data
 
     @api.multi
