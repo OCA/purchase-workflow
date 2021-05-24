@@ -1,0 +1,90 @@
+<odoo>
+
+    <record id="view_purchase_order_line_summary_tree" model="ir.ui.view">
+        <field name="name">view.purchase.order.line.summary.tree</field>
+        <field name="model">purchase.order.line.summary</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="order_id" invisible="1" />
+                <field name="origin_line_id" invisible="1" />
+                <field name="product_id" />
+                <field name="name" />
+                <field name="date_planned" optional="hide" />
+                <field name="account_analytic_id" optional="hide" />
+                <field
+                    name="analytic_tag_ids"
+                    widget="many2many_tags"
+                    optional="hide"
+                />
+                <field name="product_qty" />
+                <field name="product_uom" />
+                <field name="price_unit" />
+                <field name="taxes_id" widget="many2many_tags" />
+                <field name="price_subtotal" />
+                <field name="currency_id" invisible="1" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field name="name">purchase_order_form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase_invoice_plan.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//page[@name='products']//tree/field[@name='sequence']"
+                position="after"
+            >
+                <field
+                    name="expand_group"
+                    attrs="{'column_invisible': [('parent.expand','=',False)]}"
+                />
+                <field name="origin_line_id" optional="hide" />
+            </xpath>
+            <label for="use_invoice_plan" position="after">
+                <field
+                    name="expand"
+                    attrs="{'invisible': [('invoice_plan_ids', '=', [])]}"
+                />
+                <label
+                    for="expand"
+                    attrs="{'invisible': [('invoice_plan_ids', '=', [])]}"
+                />
+            </label>
+            <!-- Summary -->
+            <xpath
+                expr="//page[@name='products']/field[@name='order_line']"
+                position="after"
+            >
+                <div
+                    name="line_summary"
+                    attrs="{'invisible': [('expand', '=', False)]}"
+                >
+                <separator string="Summary" />
+                <field
+                        name="order_line_summary"
+                        context="{'tree_view_ref': 'view_purchase_order_line_summary_tree'}"
+                    />
+            </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_purchase_invoice_plan_tree" model="ir.ui.view">
+        <field name="name">view.purchase.invoice.plan.tree</field>
+        <field name="model">purchase.invoice.plan</field>
+        <field
+            name="inherit_id"
+            ref="purchase_invoice_plan.view_purchase_invoice_plan_tree"
+        />
+        <field name="arch" type="xml">
+            <field name="installment" position="before">
+                <field
+                    name="expand_group"
+                    attrs="{'required': [('parent.expand', '=', True)], 'column_invisible': [('parent.expand','=',False)]}"
+                />
+            </field>
+        </field>
+    </record>
+
+</odoo>
