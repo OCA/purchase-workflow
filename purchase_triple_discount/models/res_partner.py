@@ -19,3 +19,15 @@ class ResPartner(models.Model):
         help="This value will be used as the default one, for each new "
              "supplierinfo line depending on that supplier.",
     )
+
+    def button_apply_default_supplierinfo_discount2(self):
+        for partner in self:
+            self.env["product.supplierinfo"].search(
+                [('name', '=', partner.id)]
+            ).write({"discount2": partner.default_supplierinfo_discount2})
+
+    def button_apply_default_supplierinfo_discount3(self):
+        for partner in self:
+            self.env["product.supplierinfo"].search(
+                [('name', '=', partner.id)]
+            ).write({"discount3": partner.default_supplierinfo_discount3})

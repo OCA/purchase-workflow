@@ -4,12 +4,20 @@
          <field name="model">res.partner</field>
          <field name="inherit_id" ref="purchase_discount.res_partner_form_view"/>
          <field name="arch" type="xml">
-            <field name="default_supplierinfo_discount" position="after">
-                <field name="default_supplierinfo_discount2"
-                        attrs="{'invisible': [('is_company', '=', False), ('parent_id', '!=', False)]}"/>
-                <field name="default_supplierinfo_discount3"
-                        attrs="{'invisible': [('is_company', '=', False), ('parent_id', '!=', False)]}"/>
-            </field>
+            <xpath expr="//field[@name='default_supplierinfo_discount']/.." position="after">
+                <label for="default_supplierinfo_discount2"
+                    attrs="{'invisible': [('is_company', '=', False), ('parent_id', '!=', False)]}"/>
+                <div attrs="{'invisible': [('is_company', '=', False), ('parent_id', '!=', False)]}">
+                    <field class="oe_inline" name="default_supplierinfo_discount2"/>
+                    <button class="oe_inline oe_link" name="button_apply_default_supplierinfo_discount2" type="object" string="Apply" confirm="Do you want to apply this value (discount #2) to all supplier informations associated with this partner?"/>
+                </div>
+                <label for="default_supplierinfo_discount3"
+                    attrs="{'invisible': [('is_company', '=', False), ('parent_id', '!=', False)]}"/>
+                <div attrs="{'invisible': [('is_company', '=', False), ('parent_id', '!=', False)]}">
+                    <field class="oe_inline" name="default_supplierinfo_discount3"/>
+                    <button class="oe_inline oe_link" name="button_apply_default_supplierinfo_discount3" type="object" string="Apply" confirm="Do you want to apply this value (discount #3) to all supplier informations associated with this partner?"/>
+                </div>
+            </xpath>
          </field>
      </record>
 

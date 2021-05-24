@@ -1,28 +1,29 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * purchase_discount
+#   * purchase_discount
 #
-# Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2018
-# Quentin THEURET <odoo@kerpeo.com>, 2018
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-23 17:50+0000\n"
-"PO-Revision-Date: 2018-02-23 17:50+0000\n"
-"Last-Translator: Quentin THEURET <odoo@kerpeo.com>, 2018\n"
-"Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
-"Language: fr\n"
+"POT-Creation-Date: 2021-06-10 19:58+0000\n"
+"PO-Revision-Date: 2021-06-10 19:58+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: \n"
 
 #. module: purchase_discount
 #: model_terms:ir.ui.view,arch_db:purchase_discount.report_purchaseorder_document
 msgid "<strong>Disc. (%)</strong>"
 msgstr "<strong>Remise (%)</strong>"
+
+#. module: purchase_discount
+#: model_terms:ir.ui.view,arch_db:purchase_discount.res_partner_form_view
+msgid "Apply"
+msgstr "Appliquer"
 
 #. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_res_partner
@@ -33,7 +34,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_discount.field_res_partner__default_supplierinfo_discount
 #: model:ir.model.fields,field_description:purchase_discount.field_res_users__default_supplierinfo_discount
 msgid "Default Supplier Discount (%)"
-msgstr ""
+msgstr "Remise par défaut (%)"
 
 #. module: purchase_discount
 #: model:ir.model.fields,field_description:purchase_discount.field_product_supplierinfo__discount
@@ -53,15 +54,19 @@ msgid "Discount-related settings are managed on"
 msgstr ""
 
 #. module: purchase_discount
+#: model_terms:ir.ui.view,arch_db:purchase_discount.res_partner_form_view
+msgid "Do you want to apply this value (discount #1) to all supplier informations associated with this partner?"
+msgstr "Souhaitez vous appliquer cette valeur (Remise #1) à toutes les produits associés à ce fournisseur ?"
+
+#. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_account_invoice
 msgid "Invoice"
 msgstr "Facture"
 
 #. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_purchase_order
-#, fuzzy
 msgid "Purchase Order"
-msgstr "Commandes d'achat"
+msgstr "Commande fournisseur"
 
 #. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_purchase_order_line
@@ -70,34 +75,32 @@ msgstr "Ligne de commande d'achat"
 
 #. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_purchase_report
-#, fuzzy
 msgid "Purchase Report"
-msgstr "Commandes d'achat"
+msgstr "Rapport d'achat"
 
 #. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_stock_move
 msgid "Stock Move"
-msgstr ""
+msgstr "Mouvement de stock"
 
 #. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_stock_rule
 msgid "Stock Rule"
-msgstr ""
+msgstr "Règle de stock minimum"
 
 #. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_product_supplierinfo
 msgid "Supplier Pricelist"
-msgstr ""
+msgstr "Liste de prix du fournisseur"
 
 #. module: purchase_discount
 #: model:ir.model.fields,help:purchase_discount.field_res_partner__default_supplierinfo_discount
 #: model:ir.model.fields,help:purchase_discount.field_res_users__default_supplierinfo_discount
-msgid ""
-"This value will be used as the default one, for each new supplierinfo line "
-"depending on that supplier."
-msgstr ""
+msgid "This value will be used as the default one, for each new supplierinfo line depending on that supplier."
+msgstr "Cette valeur sera utilisée par défaut, pour chaque nouvelle information fournisseur créé."
 
 #. module: purchase_discount
 #: model_terms:ir.ui.view,arch_db:purchase_discount.res_partner_form_view
 msgid "the parent company"
-msgstr ""
+msgstr "la société parente"
+

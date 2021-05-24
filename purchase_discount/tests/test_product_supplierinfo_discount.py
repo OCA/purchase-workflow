@@ -140,3 +140,13 @@ class TestProductSupplierinfoDiscount(common.SavepointCase):
             ('product_tmpl_id', '=', product.product_tmpl_id.id)])
         self.assertTrue(seller)
         self.assertEqual(seller.discount, 40)
+
+    def test_007_apply_supplierinfo_default_value(self):
+        all_supplierinfos = self.supplierinfo_model.search(
+            [('name', '=', self.partner_3.id)])
+        self.partner_3.default_supplierinfo_discount = 91
+        self.partner_3.button_apply_default_supplierinfo_discount()
+        self.assertEquals(
+            list(set(all_supplierinfos.mapped('discount'))), [91],
+            "Apply default supplierinfo discount should impact all the"
+            " existing supplierinfos.")

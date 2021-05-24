@@ -216,3 +216,20 @@ class TestPurchaseOrder(common.SavepointCase):
         self.assertEqual(rec.discount2, 50)
         self.assertEqual(rec.discount3, 20)
         self.assertEqual(rec.price_total, 240)
+
+    def test_09_apply_supplierinfo_default_value(self):
+        all_supplierinfos = self.supplierinfo_obj.search(
+            [('name', '=', self.partner2.id)])
+        self.partner2.default_supplierinfo_discount2 = 92
+        self.partner2.button_apply_default_supplierinfo_discount2()
+        self.assertEquals(
+            list(set(all_supplierinfos.mapped('discount2'))), [92],
+            "Apply default supplierinfo discount 2 should impact all the"
+            " existing supplierinfos.")
+
+        self.partner2.default_supplierinfo_discount3 = 93
+        self.partner2.button_apply_default_supplierinfo_discount3()
+        self.assertEquals(
+            list(set(all_supplierinfos.mapped('discount3'))), [93],
+            "Apply default supplierinfo discount 3 should impact all the"
+            " existing supplierinfos.")

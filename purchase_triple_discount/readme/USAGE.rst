@@ -22,3 +22,6 @@ Unit price: 600.00 ->
   and third discounts.
 * A default second or third discount can be set in every vendor
   *Sale & Purchases* tab.
+
+You can mass update all the supplierinfo discount values, going to **Purchase > Vendors**,
+open a supplier, and click on the button "Apply" near the according "Default Supplier Discount (%)" field.

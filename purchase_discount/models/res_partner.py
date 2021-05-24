@@ -16,3 +16,9 @@ class ResPartner(models.Model):
         " supplierinfo line depending on that supplier.",
         track_visibility="onchange",
     )
+
+    def button_apply_default_supplierinfo_discount(self):
+        for partner in self:
+            self.env["product.supplierinfo"].search(
+                [('name', '=', partner.id)]
+            ).write({"discount": partner.default_supplierinfo_discount})
