@@ -7,9 +7,11 @@
                 <field name="installment" />
                 <field name="plan_date" />
                 <field name="invoice_type" />
-                <field name="percent" />
+                <field name="percent" sum="Percent" />
+                <field name="amount" optional="hide" sum="Amount" />
                 <field name="to_invoice" />
                 <field name="invoiced" />
+                <field name="invoice_ids" />
             </tree>
         </field>
     </record>
@@ -27,6 +29,7 @@
                     <group>
                         <field name="invoice_type" />
                         <field name="percent" />
+                        <field name="amount" />
                         <field name="invoiced" />
                     </group>
                 </group>
@@ -164,7 +167,8 @@
                 <field name="installment" />
                 <field name="plan_date" />
                 <field name="invoice_type" />
-                <field name="percent" />
+                <field name="percent" sum="Percent" />
+                <field name="amount" optional="hide" sum="Amount" />
                 <field name="to_invoice" />
                 <field name="invoiced" />
             </tree>
