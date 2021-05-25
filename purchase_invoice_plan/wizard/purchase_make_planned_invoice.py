@@ -17,5 +17,5 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
             or purchase.invoice_plan_ids.filtered("to_invoice")
         )
         for plan in invoice_plans.sorted("installment"):
-            purchase.with_context(invoice_plan_id=plan.id).action_invoice_create()
+            purchase.with_context(invoice_plan_id=plan.id).action_create_invoice()
         return {"type": "ir.actions.act_window_close"}
