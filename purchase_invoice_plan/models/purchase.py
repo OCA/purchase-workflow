@@ -160,6 +160,13 @@ class PurchaseInvoicePlan(models.Model):
         digits="Product Unit of Measure",
         help="This percent will be used to calculate new quantity",
     )
+    amount = fields.Float(
+        string="Amount",
+        digits="Product Price",
+        compute="_compute_amount",
+        inverse="_inverse_amount",
+        help="This amount will be used to calculate the percent",
+    )
     invoice_ids = fields.Many2many(
         comodel_name="account.move",
         relation="purchase_invoice_plan_invoice_rel",
@@ -180,6 +187,19 @@ class PurchaseInvoicePlan(models.Model):
         help="If this line already invoiced",
         store=True,
     )
+
+    @api.depends("percent")
+    def _compute_amount(self):
+        for rec in self:
+            rec.amount = rec.percent * rec.purchase_id.amount_untaxed / 100
+
+    @api.onchange("amount")
+    def _inverse_amount(self):
+        for rec in self:
+            if rec.purchase_id.amount_untaxed != 0:
+                rec.percent = rec.amount / rec.purchase_id.amount_untaxed * 100
+            else:
+                rec.percent = 0
 
     @api.depends("purchase_id.state", "purchase_id.invoice_plan_ids.invoiced")
     def _compute_to_invoice(self):
