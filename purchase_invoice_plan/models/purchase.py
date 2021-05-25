@@ -96,59 +96,20 @@ class PurchaseOrder(models.Model):
         next_date = fields.Date.to_string(next_date)
         return next_date
 
-    def action_invoice_create(self):
-        journal = (
-            self.env["account.move"]
-            .with_context(
-                default_move_type="in_invoice",
-                default_currency_id=self.currency_id.id,
-                default_company_id=self.env.user.company_id.id,
-            )
-            ._get_default_journal()
-        )
-        pre_inv = self.env["account.move"].new(
-            {
-                "move_type": "in_invoice",
-                "purchase_id": self.id,
-                "journal_id": journal.id,
-                "currency_id": self.currency_id.id,
-                "company_id": self.company_id.id,
-                "invoice_origin": self.name,
-                "ref": self.partner_ref or "",
-                "narration": self.notes,
-                "fiscal_position_id": self.fiscal_position_id.id,
-                "invoice_payment_term_id": self.payment_term_id.id,
-            }
-        )
-        pre_inv._onchange_purchase_auto_complete()
-        inv_data = pre_inv._convert_to_write(pre_inv._cache)
-        invoice = self.env["account.move"].create(inv_data)
-        if not invoice.invoice_line_ids:
-            raise UserError(
-                _(
-                    "There is no invoiceable line. If a product has a"
-                    "Delivered quantities invoicing policy, please make sure"
-                    "that a quantity has been delivered."
-                )
-            )
-        invoice._onchange_partner_id()
-        invoice.message_post_with_view(
-            "mail.message_origin_link",
-            values={"self": invoice, "origin": self},
-            subtype_id=self.env.ref("mail.mt_note").id,
-        )
+    def action_view_invoice(self, invoices=False):
         invoice_plan_id = self._context.get("invoice_plan_id")
         if invoice_plan_id:
             plan = self.env["purchase.invoice.plan"].browse(invoice_plan_id)
-            plan._compute_new_invoice_quantity(invoice)
-            invoice.write(
-                {
-                    "date": plan.plan_date,
-                    "invoice_date": plan.plan_date,
-                }
-            )
-            plan.invoice_ids += invoice
-        return invoice
+            for invoice in invoices:
+                plan._compute_new_invoice_quantity(invoice)
+                invoice.write(
+                    {
+                        "date": plan.plan_date,
+                        "invoice_date": plan.plan_date,
+                    }
+                )
+                plan.invoice_ids += invoice
+        return super().action_view_invoice(invoices=invoices)
 
 
 class PurchaseInvoicePlan(models.Model):
