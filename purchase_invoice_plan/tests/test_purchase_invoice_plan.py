@@ -71,6 +71,10 @@ class TestPurchaseInvoicePlan(TransactionCase):
             p.num_installment = 5
         purchase_plan = p.save()
         purchase_plan.with_context(ctx).purchase_create_invoice_plan()
+        # Change plan, so that the 1st installment is 1000 and 5th is 3000
+        self.assertEqual(len(self.test_po_product.invoice_plan_ids), 5)
+        self.test_po_product.invoice_plan_ids[0].amount = 1000
+        self.test_po_product.invoice_plan_ids[4].amount = 3000
         self.test_po_product.button_confirm()
         self.assertEqual(self.test_po_product.state, "purchase")
         # Receive all products
@@ -79,6 +83,10 @@ class TestPurchaseInvoicePlan(TransactionCase):
         receive._action_done()
         purchase_create = self.env["purchase.make.planned.invoice"].create({})
         purchase_create.with_context(ctx).create_invoices_by_plan()
+        self.assertEqual(
+            self.test_po_product.amount_total,
+            sum(self.test_po_product.invoice_ids.mapped("amount_total")),
+        )
 
     def test_unlink_invoice_plan(self):
         ctx = {
