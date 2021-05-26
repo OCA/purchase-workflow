@@ -24,7 +24,7 @@ class PurchaseInvoicePlan(models.Model):
             result.append(
                 (
                     rec.id,
-                    "%s %s : %s -- %d %s"
+                    "%s %s : %s -- %s %s"
                     % (
                         "Invoice Plan",
                         rec.installment,
