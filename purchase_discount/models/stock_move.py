@@ -16,7 +16,7 @@ class StockMove(models.Model):
         is not merged.
         """
         price_unit = False
-        po_line = self.purchase_line_id
+        po_line = self.purchase_line_id.sudo()
         if po_line and self.product_id == po_line.product_id:
             price = po_line._get_discounted_price_unit()
             if price != po_line.price_unit:
