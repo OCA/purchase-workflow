@@ -25,8 +25,8 @@ class ProductSupplierinfo(models.Model):
 
     @api.depends("product_tmpl_id", "packaging_id")
     def _compute_product_uom(self):
-        """ Set product_uom as a computed field instead of a related field.
-            To use uom of link packaging
+        """Set product_uom as a computed field instead of a related field.
+        To use uom of link packaging
         """
         for rec in self:
             rec.product_uom = (

@@ -8,8 +8,8 @@ from odoo import fields
 
 class TestProcurementOrder(common.TransactionCase):
     def setUp(self):
-        """ Create a packagings with uom  product_uom_dozen on
-                * product_product_3 (uom is product_uom_unit)
+        """Create a packagings with uom  product_uom_dozen on
+        * product_product_3 (uom is product_uom_unit)
         """
         super().setUp()
         product_obj = self.env["product.product"]
@@ -95,13 +95,15 @@ class TestProcurementOrder(common.TransactionCase):
         # Check price_unit is 3
         self.assertEqual(len(new_po_lines), 1)
         self.assertEqual(
-            self.env.ref("uom.product_uom_unit"), new_po_lines.product_purchase_uom_id,
+            self.env.ref("uom.product_uom_unit"),
+            new_po_lines.product_purchase_uom_id,
         )
         self.assertEqual(17, new_po_lines.product_purchase_qty)
         self.assertEqual(17, new_po_lines.product_qty)
         self.assertFalse(new_po_lines.packaging_id)
         self.assertEqual(
-            self.env.ref("uom.product_uom_unit"), new_po_lines.product_uom,
+            self.env.ref("uom.product_uom_unit"),
+            new_po_lines.product_uom,
         )
         self.assertEqual(3, new_po_lines.price_unit)
         #  Confirm Purchase Order to avoid group
@@ -144,13 +146,15 @@ class TestProcurementOrder(common.TransactionCase):
         # Check price_unit is 3
         self.assertEqual(len(new_po_lines), 1)
         self.assertEqual(
-            self.env.ref("uom.product_uom_unit"), new_po_lines.product_purchase_uom_id,
+            self.env.ref("uom.product_uom_unit"),
+            new_po_lines.product_purchase_uom_id,
         )
         self.assertEqual(12, new_po_lines.product_purchase_qty)
         self.assertEqual(12, new_po_lines.product_qty)
         self.assertFalse(new_po_lines.packaging_id)
         self.assertEqual(
-            self.env.ref("uom.product_uom_unit"), new_po_lines.product_uom,
+            self.env.ref("uom.product_uom_unit"),
+            new_po_lines.product_uom,
         )
         self.assertEqual(3, new_po_lines.price_unit)
         # Confirm Purchase Order to avoid group
@@ -201,7 +205,8 @@ class TestProcurementOrder(common.TransactionCase):
         self.assertEqual(24, new_po_lines.product_qty)
         self.assertFalse(new_po_lines.packaging_id)
         self.assertEqual(
-            self.env.ref("uom.product_uom_unit"), new_po_lines.product_uom,
+            self.env.ref("uom.product_uom_unit"),
+            new_po_lines.product_uom,
         )
         self.assertEqual(3, new_po_lines.price_unit)
         # Confirm Purchase Order to avoid group
@@ -247,7 +252,8 @@ class TestProcurementOrder(common.TransactionCase):
         self.assertEqual(16, new_po_lines.product_qty)
         self.assertFalse(new_po_lines.packaging_id)
         self.assertEqual(
-            self.env.ref("uom.product_uom_unit"), new_po_lines.product_uom,
+            self.env.ref("uom.product_uom_unit"),
+            new_po_lines.product_uom,
         )
         self.assertEqual(3, new_po_lines.price_unit)
         # Confirm Purchase Order to avoid group
@@ -297,7 +303,8 @@ class TestProcurementOrder(common.TransactionCase):
         self.assertEqual(8, new_po_lines.product_qty)
         self.assertEqual(self.product_packaging_3, new_po_lines.packaging_id)
         self.assertEqual(
-            self.env.ref("uom.product_uom_dozen"), new_po_lines.product_uom,
+            self.env.ref("uom.product_uom_dozen"),
+            new_po_lines.product_uom,
         )
         self.assertEqual(3, new_po_lines.price_unit)
         # Confirm Purchase Order to avoid group
@@ -342,7 +349,8 @@ class TestProcurementOrder(common.TransactionCase):
         self.assertEqual(8, new_po_lines.product_qty)
         self.assertEqual(self.product_packaging_3, new_po_lines.packaging_id)
         self.assertEqual(
-            self.env.ref("uom.product_uom_dozen"), new_po_lines.product_uom,
+            self.env.ref("uom.product_uom_dozen"),
+            new_po_lines.product_uom,
         )
         self.assertEqual(3, new_po_lines.price_unit)
         # Confirm Purchase Order to avoid group
@@ -386,13 +394,15 @@ class TestProcurementOrder(common.TransactionCase):
         # Check packaging_id is product_packaging_3
         # Check product_uom is product_uom_dozen
         self.assertEqual(
-            self.env.ref("uom.product_uom_unit"), new_po_lines.product_purchase_uom_id,
+            self.env.ref("uom.product_uom_unit"),
+            new_po_lines.product_purchase_uom_id,
         )
         self.assertEqual(2, new_po_lines.product_purchase_qty)
         self.assertEqual(2, new_po_lines.product_qty)
         self.assertEqual(self.product_packaging_3, new_po_lines.packaging_id)
         self.assertEqual(
-            self.env.ref("uom.product_uom_dozen"), new_po_lines.product_uom,
+            self.env.ref("uom.product_uom_dozen"),
+            new_po_lines.product_uom,
         )
         self.assertEqual(3, new_po_lines.price_unit)
         # Confirm Purchase Order to avoid group
@@ -436,13 +446,15 @@ class TestProcurementOrder(common.TransactionCase):
         # Check product_uom is product_uom_dozen
         # Check price_unit is 3*12 = 36
         self.assertEqual(
-            self.env.ref("uom.product_uom_unit"), new_po_lines.product_purchase_uom_id,
+            self.env.ref("uom.product_uom_unit"),
+            new_po_lines.product_purchase_uom_id,
         )
         self.assertEqual(1, new_po_lines.product_purchase_qty)
         self.assertEqual(1, new_po_lines.product_qty)
         self.assertEqual(self.product_packaging_3, new_po_lines.packaging_id)
         self.assertEqual(
-            self.env.ref("uom.product_uom_dozen"), new_po_lines.product_uom,
+            self.env.ref("uom.product_uom_dozen"),
+            new_po_lines.product_uom,
         )
         self.assertEqual(36, new_po_lines.price_unit)
         new_po_lines.order_id.button_confirm()
@@ -500,11 +512,11 @@ class TestProcurementOrder(common.TransactionCase):
 
         procurement_obj.run_scheduler()
         new_po_lines = self.env["purchase.order.line"].search(
-            [("orderpoint_id", "=", orderpoint.id)]
+            [("orderpoint_id", "=", orderpoint.id), ("id", "not in", new_po_lines.ids)]
         )
 
         self.assertEqual(len(new_po_lines), 1)
-        self.assertEqual(new_po_lines.product_qty, 24)
+        self.assertEqual(new_po_lines.product_qty, 12)
 
     def test_procurement_from_orderpoint_sent_po(self):
         # Define a multiple of 12 on supplier info
@@ -938,7 +950,8 @@ class TestProcurementOrder(common.TransactionCase):
             order="id",
         )
         self.assertEqual(
-            self.product_uom_8, new_po_lines.product_purchase_uom_id,
+            self.product_uom_8,
+            new_po_lines.product_purchase_uom_id,
         )
         self.assertEqual(1, new_po_lines.product_purchase_qty)
         self.assertEqual(8, new_po_lines.product_qty)
@@ -960,9 +973,19 @@ class TestProcurementOrder(common.TransactionCase):
                 )
             ]
         )
-        self.assertEqual(
-            self.product_uom_8, new_po_lines.product_purchase_uom_id,
+        existing_po_lines = new_po_lines
+        new_po_lines = self.env["purchase.order.line"].search(
+            [
+                ("product_id", "=", self.product_test.id),
+                ("id", "not in", existing_po_lines.ids),
+            ],
+            order="id",
         )
-        self.assertEqual(1, new_po_lines.product_purchase_qty)
-        self.assertEqual(8, new_po_lines.product_qty_needed)
-        self.assertEqual(8, new_po_lines.product_qty)
+        self.assertFalse(new_po_lines)
+        self.assertEqual(
+            self.product_uom_8,
+            existing_po_lines.product_purchase_uom_id,
+        )
+        self.assertEqual(1, existing_po_lines.product_purchase_qty)
+        self.assertEqual(8, existing_po_lines.product_qty_needed)
+        self.assertEqual(8, existing_po_lines.product_qty)

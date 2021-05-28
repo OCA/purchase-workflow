@@ -12,7 +12,8 @@ class PurchaseOrderLine(models.Model):
 
     packaging_id = fields.Many2one("product.packaging", "Packaging")
     product_qty_needed = fields.Float(
-        "Quantity Needed", digits="Product Unit of Measure",
+        "Quantity Needed",
+        digits="Product Unit of Measure",
     )
     product_purchase_qty = fields.Float(
         "Purchase quantity",
@@ -68,8 +69,7 @@ class PurchaseOrderLine(models.Model):
             )
 
     def _inverse_product_qty(self):
-        """ If product_quantity is set compute the purchase_qty
-        """
+        """If product_quantity is set compute the purchase_qty"""
         uom_categories = self.mapped("product_purchase_uom_id.category_id")
         uom_obj = self.env["uom.uom"]
         from_uoms = uom_obj.search(
@@ -98,8 +98,8 @@ class PurchaseOrderLine(models.Model):
 
     @api.onchange("product_id")
     def onchange_product_id(self):
-        """ set domain on product_purchase_uom_id and packaging_id
-            set the first packagigng, purchase_uom and purchase_qty
+        """set domain on product_purchase_uom_id and packaging_id
+        set the first packagigng, purchase_uom and purchase_qty
         """
         domain = {}
         # call default implementation
@@ -112,10 +112,18 @@ class PurchaseOrderLine(models.Model):
         # add default domains
         if self.product_id and self.partner_id:
             domain["packaging_id"] = [
-                ("id", "in", self.product_id.mapped("seller_ids.packaging_id.id"),)
+                (
+                    "id",
+                    "in",
+                    self.product_id.mapped("seller_ids.packaging_id.id"),
+                )
             ]
             domain["product_purchase_uom_id"] = [
-                ("id", "in", self.product_id.mapped("seller_ids.min_qty_uom_id.id"),)
+                (
+                    "id",
+                    "in",
+                    self.product_id.mapped("seller_ids.min_qty_uom_id.id"),
+                )
             ]
         res = super().onchange_product_id()
         if self.product_id:
@@ -134,7 +142,11 @@ class PurchaseOrderLine(models.Model):
             ]
             to_uom = self.env["uom.uom"].search(
                 [
-                    ("category_id", "=", supplier.min_qty_uom_id.category_id.id,),
+                    (
+                        "category_id",
+                        "=",
+                        supplier.min_qty_uom_id.category_id.id,
+                    ),
                     ("uom_type", "=", "reference"),
                 ],
                 limit=1,
@@ -226,4 +238,34 @@ class PurchaseOrderLine(models.Model):
             "recomputing_product_qty"
         ):
             self.with_context(recomputing_product_qty=True)._compute_product_qty()
+        return res
+
+    @api.model
+    def _prepare_purchase_order_line(
+        self, product_id, product_qty, product_uom, company_id, values, po
+    ):
+        """add packaging and update product_uom/quantity if necessary"""
+        res = super()._prepare_purchase_order_line(
+            product_id, product_qty, product_uom, company_id, values, po
+        )
+        if not res.get("orderpoint_id", False):
+            # if the po line is generated from a procurement (stock rule),
+            # store the initial demand
+            res["product_qty_needed"] = product_qty
+        seller = product_id._select_seller(
+            partner_id=po.partner_id,
+            quantity=product_qty,
+            date=po.date_order.date(),
+            uom_id=product_uom,
+        )
+        res["product_purchase_uom_id"] = (
+            seller.min_qty_uom_id.id or product_id.uom_po_id.id
+        )
+        if seller.packaging_id:
+            res["packaging_id"] = seller.packaging_id.id
+            new_uom_id = seller.product_uom
+            if new_uom_id.id != res["product_uom"]:
+                res["product_uom"] = new_uom_id
+                qty = product_uom._compute_quantity(product_qty, new_uom_id)
+                res["product_qty"] = max(qty, seller.min_qty)
         return res

@@ -42,7 +42,9 @@ class Orderpoint(models.Model):
                 precision = orderpoint.product_uom.rounding
                 if (
                     float_compare(
-                        qty, res[orderpoint.id], precision_rounding=precision,
+                        qty,
+                        res[orderpoint.id],
+                        precision_rounding=precision,
                     )
                     >= 0
                 ):

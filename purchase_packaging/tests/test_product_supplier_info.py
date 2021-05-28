@@ -5,8 +5,8 @@ import odoo.tests.common as common
 
 class TestProductSupplierInfo(common.TransactionCase):
     def setUp(self):
-        """ Create a packagings with uom product_uom_dozen on
-            product_supplierinfo_1'product (uom is product_uom_unit)
+        """Create a packagings with uom product_uom_dozen on
+        product_supplierinfo_1'product (uom is product_uom_unit)
         """
         super().setUp()
         self.product_supplier_info = self.env.ref("product.product_supplierinfo_1")
@@ -23,9 +23,9 @@ class TestProductSupplierInfo(common.TransactionCase):
         )
 
     def test_supplierinfo_product_uom(self):
-        """ Check product_uom of product_supplierinfo_30 is product_uom_unit
-            Set packaging_id product_packaging_3 on product_supplierinfo_30
-            Check product_uom of product_supplierinfo_30 is product_uom_dozen
+        """Check product_uom of product_supplierinfo_30 is product_uom_unit
+        Set packaging_id product_packaging_3 on product_supplierinfo_30
+        Check product_uom of product_supplierinfo_30 is product_uom_dozen
         """
         self.assertEqual(
             self.product_supplier_info.product_uom.id,
