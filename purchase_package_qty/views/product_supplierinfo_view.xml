@@ -62,11 +62,12 @@
                     <field name="package_qty"/>
                     <field name="indicative_package"/>
             </field>
-            <field name="price" position="before">
+            <xpath expr="//field[@name='price']" position="replace"/>
+            <xpath expr="//tree" position="inside">
                 <field name="price"/>
                 <field name="base_price"/>
                 <field name="price_policy"/>
-            </field>
+            </xpath>
         </field>
     </record>
 </odoo>
