@@ -32,7 +32,7 @@ class SelectWorkAcceptanceWizard(models.TransientModel):
         ):
             raise ValidationError(_("%s was used in some bill.") % self.wa_id.name)
         action = self.env.ref("account.action_move_in_invoice_type")
-        result = action.read()[0]
+        result = action.sudo().read()[0]
         result["context"] = {
             "default_move_type": "in_invoice",
             "default_wa_id": self.wa_id.id,
