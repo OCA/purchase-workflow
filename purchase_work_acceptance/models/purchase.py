@@ -31,7 +31,7 @@ class PurchaseOrder(models.Model):
     def action_view_wa(self):
         self.ensure_one()
         act = self.env.ref("purchase_work_acceptance.action_work_acceptance")
-        result = act.read()[0]
+        result = act.sudo().read()[0]
         create_wa = self.env.context.get("create_wa", False)
         result["context"] = {
             "default_purchase_id": self.id,
