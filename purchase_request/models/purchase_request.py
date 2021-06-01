@@ -56,8 +56,11 @@ class PurchaseRequest(models.Model):
     name = fields.Char(
         string="Request Reference",
         required=True,
-        default=_get_default_name,
+        default=lambda self: _("New"),
         track_visibility="onchange",
+    )
+    is_name_editable = fields.Boolean(
+        default=lambda self: self.env.user.has_group("base.group_no_one"),
     )
     origin = fields.Char(string="Source Document")
     date_start = fields.Date(
@@ -156,7 +159,7 @@ class PurchaseRequest(models.Model):
             rec.purchase_count = len(rec.mapped("line_ids.purchase_lines.order_id"))
 
     def action_view_purchase_order(self):
-        action = self.env.ref("purchase.purchase_rfq").read()[0]
+        action = self.env.ref("purchase.purchase_rfq").sudo().read()[0]
         lines = self.mapped("line_ids.purchase_lines.order_id")
         if len(lines) > 1:
             action["domain"] = [("id", "in", lines.ids)]
@@ -175,7 +178,7 @@ class PurchaseRequest(models.Model):
             )
 
     def action_view_stock_move(self):
-        action = self.env.ref("stock.stock_move_action").read()[0]
+        action = self.env.ref("stock.stock_move_action").sudo().read()[0]
         # remove default filters
         action["context"] = {}
         lines = self.mapped("line_ids.purchase_request_allocation_ids.stock_move_id")
@@ -192,9 +195,11 @@ class PurchaseRequest(models.Model):
             rec.line_count = len(rec.mapped("line_ids"))
 
     def action_view_purchase_request_line(self):
-        action = self.env.ref(
-            "purchase_request.purchase_request_line_form_action"
-        ).read()[0]
+        action = (
+            self.env.ref("purchase_request.purchase_request_line_form_action")
+            .sudo()
+            .read()[0]
+        )
         lines = self.mapped("line_ids")
         if len(lines) > 1:
             action["domain"] = [("id", "in", lines.ids)]
@@ -225,6 +230,8 @@ class PurchaseRequest(models.Model):
 
     @api.model
     def create(self, vals):
+        if vals.get("name", _("New")) == _("New"):
+            vals["name"] = self._get_default_name()
         request = super(PurchaseRequest, self).create(vals)
         if vals.get("assigned_to"):
             partner_id = self._get_partner_id(request)

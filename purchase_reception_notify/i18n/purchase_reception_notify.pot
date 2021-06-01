@@ -1,0 +1,57 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_reception_notify
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_reception_notify
+#: code:addons/purchase_reception_notify/models/stock_picking.py:0
+#, python-format
+msgid "<li><b>%s</b>: Received quantity %s %s</li>"
+msgstr ""
+
+#. module: purchase_reception_notify
+#: model:ir.model.fields,field_description:purchase_reception_notify.field_stock_picking__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: purchase_reception_notify
+#: model:ir.model.fields,field_description:purchase_reception_notify.field_stock_picking__id
+msgid "ID"
+msgstr ""
+
+#. module: purchase_reception_notify
+#: model:ir.model.fields,field_description:purchase_reception_notify.field_stock_picking____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: purchase_reception_notify
+#: model:mail.message.subtype,name:purchase_reception_notify.mt_purchase_reception
+msgid "Purchase Receptions"
+msgstr ""
+
+#. module: purchase_reception_notify
+#: code:addons/purchase_reception_notify/models/stock_picking.py:0
+#, python-format
+msgid "Receipt confirmation %s"
+msgstr ""
+
+#. module: purchase_reception_notify
+#: code:addons/purchase_reception_notify/models/stock_picking.py:0
+#, python-format
+msgid "The following items have now been received in Incoming Shipment %s:"
+msgstr ""
+
+#. module: purchase_reception_notify
+#: model:ir.model,name:purchase_reception_notify.model_stock_picking
+msgid "Transfer"
+msgstr ""

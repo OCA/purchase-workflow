@@ -1,0 +1,91 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_isolated_rfq
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_isolated_rfq
+#: model_terms:ir.ui.view,arch_db:purchase_isolated_rfq.purchase_order_form
+msgid "Cancel"
+msgstr ""
+
+#. module: purchase_isolated_rfq
+#: model_terms:ir.ui.view,arch_db:purchase_isolated_rfq.purchase_order_form
+msgid "Convert to Order"
+msgstr ""
+
+#. module: purchase_isolated_rfq
+#: model:ir.model.fields,field_description:purchase_isolated_rfq.field_purchase_order__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: purchase_isolated_rfq
+#: model:ir.model.fields,help:purchase_isolated_rfq.field_purchase_order__quote_id
+msgid "For Purchases Order, this field references to its RFQ"
+msgstr ""
+
+#. module: purchase_isolated_rfq
+#: model:ir.model.fields,help:purchase_isolated_rfq.field_purchase_order__purchase_order_id
+msgid "For RFQ, this field references to its Purchases Order"
+msgstr ""
+
+#. module: purchase_isolated_rfq
+#: model:ir.model.fields,field_description:purchase_isolated_rfq.field_purchase_order__id
+msgid "ID"
+msgstr ""
+
+#. module: purchase_isolated_rfq
+#: model:ir.model.fields,field_description:purchase_isolated_rfq.field_purchase_order____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: purchase_isolated_rfq
+#: code:addons/purchase_isolated_rfq/models/purchase_order.py:0
+#, python-format
+msgid "Only quotation can convert to order"
+msgstr ""
+
+#. module: purchase_isolated_rfq
+#: model:ir.model.fields,help:purchase_isolated_rfq.field_purchase_order__rfq_state
+msgid "Only relative RFQ states"
+msgstr ""
+
+#. module: purchase_isolated_rfq
+#: model:ir.model.fields,field_description:purchase_isolated_rfq.field_purchase_order__purchase_order_id
+msgid "Order"
+msgstr ""
+
+#. module: purchase_isolated_rfq
+#: model:ir.model.fields,field_description:purchase_isolated_rfq.field_purchase_order__order_sequence
+msgid "Order Sequence"
+msgstr ""
+
+#. module: purchase_isolated_rfq
+#: model:ir.model,name:purchase_isolated_rfq.model_purchase_order
+msgid "Purchase Order"
+msgstr ""
+
+#. module: purchase_isolated_rfq
+#: code:addons/purchase_isolated_rfq/models/purchase_order.py:0
+#, python-format
+msgid "Purchases Order"
+msgstr ""
+
+#. module: purchase_isolated_rfq
+#: model:ir.model.fields,field_description:purchase_isolated_rfq.field_purchase_order__quote_id
+msgid "Quotation"
+msgstr ""
+
+#. module: purchase_isolated_rfq
+#: model:ir.model.fields,field_description:purchase_isolated_rfq.field_purchase_order__rfq_state
+msgid "RFQ Status"
+msgstr ""
