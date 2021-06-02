@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="base_substate_type_purchase_request" model="base.substate.type">
+        <field name="name">Purchase Request Substate</field>
+        <field name="model">purchase.request</field>
+        <field name="target_state_field">state</field>
+    </record>
+    <!-- Purchase request related substate to state (to_approve, approved) -->
+    <record id="target_state_value_to_approve" model="target.state.value">
+        <field name="name">To be approved</field>
+        <field name="base_substate_type_id" ref="base_substate_type_purchase_request" />
+        <field name="target_state_value">to_approve</field>
+    </record>
+    <record id="target_state_value_approved" model="target.state.value">
+        <field name="name">Approved</field>
+        <field name="base_substate_type_id" ref="base_substate_type_purchase_request" />
+        <field name="target_state_value">approved</field>
+    </record>
+</odoo>
