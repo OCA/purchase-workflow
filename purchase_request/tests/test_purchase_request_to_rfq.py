@@ -397,5 +397,5 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         ).create(vals)
         wiz_id.make_purchase_order()
         po_line = purchase_request["line_ids"][0].purchase_lines[0]
-        self.assertEquals(po_line.account_analytic_id, analytic_account)
-        self.assertEquals(po_line.analytic_tag_ids.ids, analytic_tags.ids)
+        self.assertEqual(po_line.account_analytic_id, analytic_account)
+        self.assertEqual(po_line.analytic_tag_ids.ids, analytic_tags.ids)

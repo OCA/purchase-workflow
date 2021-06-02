@@ -20,14 +20,14 @@ class PurchaseRequestLine(models.Model):
     _inherit = ["mail.thread", "mail.activity.mixin"]
     _order = "id desc"
 
-    name = fields.Char(string="Description", track_visibility="onchange")
+    name = fields.Char(string="Description", tracking=True)
     product_uom_id = fields.Many2one(
         comodel_name="uom.uom",
         string="UoM",
-        track_visibility="onchange",
+        tracking=True,
     )
     product_qty = fields.Float(
-        string="Quantity", track_visibility="onchange", digits="Product Unit of Measure"
+        string="Quantity", tracking=True, digits="Product Unit of Measure"
     )
     request_id = fields.Many2one(
         comodel_name="purchase.request",
@@ -46,10 +46,10 @@ class PurchaseRequestLine(models.Model):
     analytic_account_id = fields.Many2one(
         comodel_name="account.analytic.account",
         string="Analytic Account",
-        track_visibility="onchange",
+        tracking=True,
     )
     analytic_tag_ids = fields.Many2many(
-        "account.analytic.tag", string="Analytic Tags", track_visibility="onchange"
+        "account.analytic.tag", string="Analytic Tags", tracking=True
     )
     requested_by = fields.Many2one(
         comodel_name="res.users",
@@ -76,7 +76,7 @@ class PurchaseRequestLine(models.Model):
     date_required = fields.Date(
         string="Request Date",
         required=True,
-        track_visibility="onchange",
+        tracking=True,
         default=fields.Date.context_today,
     )
     is_editable = fields.Boolean(
@@ -180,11 +180,8 @@ class PurchaseRequestLine(models.Model):
         comodel_name="product.product",
         string="Product",
         domain=[("purchase_ok", "=", True)],
-        track_visibility="onchange",
+        tracking=True,
     )
-
-    def _valid_field_parameter(self, field, name):
-        return name == "track_visibility" or super()._valid_field_parameter(field, name)
 
     @api.depends(
         "purchase_request_allocation_ids",
