@@ -57,7 +57,7 @@ class PurchaseRequest(models.Model):
         string="Request Reference",
         required=True,
         default=lambda self: _("New"),
-        track_visibility="onchange",
+        tracking=True,
     )
     is_name_editable = fields.Boolean(
         default=lambda self: self.env.user.has_group("base.group_no_one"),
@@ -67,21 +67,21 @@ class PurchaseRequest(models.Model):
         string="Creation date",
         help="Date when the user initiated the request.",
         default=fields.Date.context_today,
-        track_visibility="onchange",
+        tracking=True,
     )
     requested_by = fields.Many2one(
         comodel_name="res.users",
         string="Requested by",
         required=True,
         copy=False,
-        track_visibility="onchange",
+        tracking=True,
         default=_get_default_requested_by,
         index=True,
     )
     assigned_to = fields.Many2one(
         comodel_name="res.users",
         string="Approver",
-        track_visibility="onchange",
+        tracking=True,
         domain=lambda self: [
             (
                 "groups_id",
@@ -97,7 +97,7 @@ class PurchaseRequest(models.Model):
         string="Company",
         required=True,
         default=_company_get,
-        track_visibility="onchange",
+        tracking=True,
     )
     line_ids = fields.One2many(
         comodel_name="purchase.request.line",
@@ -105,7 +105,7 @@ class PurchaseRequest(models.Model):
         string="Products to Purchase",
         readonly=False,
         copy=True,
-        track_visibility="onchange",
+        tracking=True,
     )
     product_id = fields.Many2one(
         comodel_name="product.product",
@@ -117,7 +117,7 @@ class PurchaseRequest(models.Model):
         selection=_STATES,
         string="Status",
         index=True,
-        track_visibility="onchange",
+        tracking=True,
         required=True,
         copy=False,
         default="draft",
@@ -149,9 +149,6 @@ class PurchaseRequest(models.Model):
     purchase_count = fields.Integer(
         string="Purchases count", compute="_compute_purchase_count", readonly=True
     )
-
-    def _valid_field_parameter(self, field, name):
-        return name == "track_visibility" or super()._valid_field_parameter(field, name)
 
     @api.depends("line_ids")
     def _compute_purchase_count(self):
