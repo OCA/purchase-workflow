@@ -29,7 +29,8 @@ class PurchaseOrder(models.Model):
     )
 
     @api.depends(
-        "amount_total", "partner_id.fop_shipping",
+        "amount_total",
+        "partner_id.fop_shipping",
     )
     def _compute_fop_shipping_reached(self):
         digit_precision = self.env["decimal.precision"].precision_get("Account")
