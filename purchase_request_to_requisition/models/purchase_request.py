@@ -4,6 +4,42 @@
 from odoo import _, api, exceptions, fields, models
 
 
+class PurchaseRequest(models.Model):
+    _inherit = "purchase.request"
+
+    requisition_count = fields.Integer(
+        compute="_compute_requisition_count",
+    )
+
+    def _compute_requisition_count(self):
+        for rec in self:
+            rec.requisition_count = len(
+                rec.mapped("line_ids.requisition_lines.requisition_id")
+            )
+
+    def action_view_purchase_requisition(self):
+        action = (
+            self.env.ref("purchase_requisition.action_purchase_requisition")
+            .sudo()
+            .read()[0]
+        )
+        requisitions = self.mapped("line_ids.requisition_lines.requisition_id")
+        if len(requisitions) > 1:
+            action["domain"] = [("id", "in", requisitions.ids)]
+        elif requisitions:
+            action["views"] = [
+                (
+                    self.env.ref(
+                        "purchase_requisition.view_purchase_requisition_form"
+                    ).id,
+                    "form",
+                )
+            ]
+            action["res_id"] = requisitions.id
+        action["context"] = {}
+        return action
+
+
 class PurchaseRequestLine(models.Model):
     _inherit = "purchase.request.line"
 
