@@ -7,6 +7,10 @@ from odoo import _, api, fields, models
 class PurchaseRequisition(models.Model):
     _inherit = "purchase.requisition"
 
+    purchase_request_count = fields.Integer(
+        compute="_compute_purchase_request_count",
+    )
+
     @api.model
     def _purchase_request_confirm_message_content(self, pr, request, request_dict):
         if not request_dict:
@@ -55,6 +59,29 @@ class PurchaseRequisition(models.Model):
         res = super().action_in_progress()
         self._purchase_request_confirm_message()
         return res
+
+    def _compute_purchase_request_count(self):
+        for rec in self:
+            rec.purchase_request_count = len(
+                rec.mapped("line_ids.purchase_request_lines.request_id")
+            )
+
+    def action_view_purchase_request(self):
+        action = (
+            self.env.ref("purchase_request.purchase_request_form_action")
+            .sudo()
+            .read()[0]
+        )
+        requests = self.mapped("line_ids.purchase_request_lines.request_id")
+        if len(requests) > 1:
+            action["domain"] = [("id", "in", requests.ids)]
+        elif requests:
+            action["views"] = [
+                (self.env.ref("purchase_request.view_purchase_request_form").id, "form")
+            ]
+            action["res_id"] = requests.id
+        action["context"] = {}
+        return action
 
 
 class PurchaseRequisitionLine(models.Model):

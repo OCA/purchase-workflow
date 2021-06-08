@@ -31,6 +31,21 @@
                         </group>
                     </page>
                 </xpath>
+                <div name="button_box" position="inside">
+                    <button
+                        name="action_view_purchase_requisition"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-file-text-o"
+                        attrs="{'invisible':[('requisition_count','=',0)]}"
+                    >
+                        <field
+                            name="requisition_count"
+                            widget="statinfo"
+                            string="TEs"
+                        />
+                    </button>
+                </div>
             </field>
         </record>
 
