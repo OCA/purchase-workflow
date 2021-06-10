@@ -3,17 +3,17 @@
 
 from odoo import fields
 from odoo.exceptions import UserError, ValidationError
-from odoo.tests.common import TransactionCase, Form
+from odoo.tests.common import Form, TransactionCase
 
 
 class TestPurchaseWorkAcceptance(TransactionCase):
     def setUp(self):
         super(TestPurchaseWorkAcceptance, self).setUp()
         # Create Product
-        self.service_product = self.env.ref('product.product_product_1')
-        self.product_product = self.env.ref('product.product_product_6')
-        self.res_partner = self.env.ref('base.res_partner_3')
-        self.employee = self.env.ref('base.user_demo')
+        self.service_product = self.env.ref("product.product_product_1")
+        self.product_product = self.env.ref("product.product_product_6")
+        self.res_partner = self.env.ref("base.res_partner_3")
+        self.employee = self.env.ref("base.user_demo")
         self.main_company = self.env.ref("base.main_company")
         self.date_now = fields.Datetime.now()
         # Enable and Config WA
@@ -22,23 +22,25 @@ class TestPurchaseWorkAcceptance(TransactionCase):
         ).execute()
 
     def _create_purchase_order(self, qty):
-        purchase_order = self.env["purchase.order"].create({
-            "partner_id": self.res_partner.id,
-            "order_line": [
-                (
-                    0,
-                    0,
-                    {
-                        "product_id": self.product_product.id,
-                        "product_uom": self.product_product.uom_id.id,
-                        "name": self.product_product.name,
-                        "price_unit": self.product_product.standard_price,
-                        "date_planned": self.date_now,
-                        "product_qty": qty
-                    },
-                )
-            ]
-        })
+        purchase_order = self.env["purchase.order"].create(
+            {
+                "partner_id": self.res_partner.id,
+                "order_line": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.product_product.id,
+                            "product_uom": self.product_product.uom_id.id,
+                            "name": self.product_product.name,
+                            "price_unit": self.product_product.standard_price,
+                            "date_planned": self.date_now,
+                            "product_qty": qty,
+                        },
+                    )
+                ],
+            }
+        )
         return purchase_order
 
     def _create_multi_purchase_order(self, qty, multi):
@@ -78,8 +80,7 @@ class TestPurchaseWorkAcceptance(TransactionCase):
                         0,
                         0,
                         {
-                            "purchase_line_id": po and po.order_line[0].id
-                            or False,
+                            "purchase_line_id": po and po.order_line[0].id or False,
                             "product_id": po
                             and po.order_line[0].product_id.id
                             or self.service_product.id,
@@ -132,11 +133,11 @@ class TestPurchaseWorkAcceptance(TransactionCase):
         qty = 3.0
         work_acceptance = self._create_work_acceptance(qty)
         work_acceptance.button_accept()
-        self.assertEqual(work_acceptance.state, 'accept')
+        self.assertEqual(work_acceptance.state, "accept")
         work_acceptance.button_cancel()
-        self.assertEqual(work_acceptance.state, 'cancel')
+        self.assertEqual(work_acceptance.state, "cancel")
         work_acceptance.button_draft()
-        self.assertEqual(work_acceptance.state, 'draft')
+        self.assertEqual(work_acceptance.state, "draft")
 
     def test_01_action_view_wa(self):
         # Create Purchase Order
@@ -177,12 +178,14 @@ class TestPurchaseWorkAcceptance(TransactionCase):
         with self.assertRaises(UserError):
             work_acceptance.button_draft()
         # Create Vendor Bill
-        invoice = self.env['account.invoice'].create({
-            'partner_id': self.res_partner.id,
-            'purchase_id': purchase_order.id,
-            'account_id': self.res_partner.property_account_payable_id.id,
-            'type': 'in_invoice',
-        })
+        invoice = self.env["account.invoice"].create(
+            {
+                "partner_id": self.res_partner.id,
+                "purchase_id": purchase_order.id,
+                "account_id": self.res_partner.property_account_payable_id.id,
+                "type": "in_invoice",
+            }
+        )
         invoice.purchase_order_change()
         invoice.wa_id = work_acceptance
         with self.assertRaises(ValidationError):
@@ -196,27 +199,31 @@ class TestPurchaseWorkAcceptance(TransactionCase):
         # Create Purchase Order
         purchase_order = self._create_purchase_order(qty)
         purchase_order.button_confirm()
-        self.assertEqual(purchase_order.state, 'purchase')
+        self.assertEqual(purchase_order.state, "purchase")
         # Create Work Acceptance
         work_acceptance = self._create_work_acceptance(qty, purchase_order)
         work_acceptance.button_accept()
-        self.assertEqual(work_acceptance.state, 'accept')
+        self.assertEqual(work_acceptance.state, "accept")
         self.assertEqual(purchase_order.wa_count, 1)
         # Create Vendor Bill
         purchase_order.with_context(create_bill=True).action_view_invoice()
-        wizard = self.env['select.work.acceptance.wizard'].create({
-            'wa_id': work_acceptance.id,
-        })
+        wizard = self.env["select.work.acceptance.wizard"].create(
+            {
+                "wa_id": work_acceptance.id,
+            }
+        )
         wizard.button_create_vendor_bill()
-        invoice = self.env['account.invoice'].create({
-            'partner_id': self.res_partner.id,
-            'purchase_id': purchase_order.id,
-            'account_id': self.res_partner.property_account_payable_id.id,
-            'type': 'in_invoice',
-        })
+        invoice = self.env["account.invoice"].create(
+            {
+                "partner_id": self.res_partner.id,
+                "purchase_id": purchase_order.id,
+                "account_id": self.res_partner.property_account_payable_id.id,
+                "type": "in_invoice",
+            }
+        )
         invoice.wa_id = work_acceptance
         invoice.purchase_order_change()
-        self.assertEqual(invoice.state, 'draft')
+        self.assertEqual(invoice.state, "draft")
         invoice.action_invoice_open()
 
     def test_04_enable_config_flow(self):
@@ -235,19 +242,23 @@ class TestPurchaseWorkAcceptance(TransactionCase):
         ).execute()
         # Create Vendor Bill
         purchase_order.with_context(create_bill=True).action_view_invoice()
-        wizard = self.env['select.work.acceptance.wizard'].create({
-            'wa_id': work_acceptance.id,
-        })
+        wizard = self.env["select.work.acceptance.wizard"].create(
+            {
+                "wa_id": work_acceptance.id,
+            }
+        )
         wizard.button_create_vendor_bill()
-        invoice = self.env['account.invoice'].create({
-            'partner_id': self.res_partner.id,
-            'purchase_id': purchase_order.id,
-            'account_id': self.res_partner.property_account_payable_id.id,
-            'type': 'in_invoice',
-        })
+        invoice = self.env["account.invoice"].create(
+            {
+                "partner_id": self.res_partner.id,
+                "purchase_id": purchase_order.id,
+                "account_id": self.res_partner.property_account_payable_id.id,
+                "type": "in_invoice",
+            }
+        )
         invoice.wa_id = work_acceptance
         invoice.purchase_order_change()
-        self.assertEqual(invoice.state, 'draft')
+        self.assertEqual(invoice.state, "draft")
         invoice.action_invoice_open()
 
     def test_05_create_multi_lines(self):
@@ -273,19 +284,23 @@ class TestPurchaseWorkAcceptance(TransactionCase):
         ).execute()
         # Create Vendor Bill
         purchase_order.with_context(create_bill=True).action_view_invoice()
-        wizard = self.env['select.work.acceptance.wizard'].create({
-            'wa_id': work_acceptance.id,
-        })
+        wizard = self.env["select.work.acceptance.wizard"].create(
+            {
+                "wa_id": work_acceptance.id,
+            }
+        )
         wizard.button_create_vendor_bill()
-        invoice = self.env['account.invoice'].create({
-            'partner_id': self.res_partner.id,
-            'purchase_id': purchase_order.id,
-            'account_id': self.res_partner.property_account_payable_id.id,
-            'type': 'in_invoice',
-        })
+        invoice = self.env["account.invoice"].create(
+            {
+                "partner_id": self.res_partner.id,
+                "purchase_id": purchase_order.id,
+                "account_id": self.res_partner.property_account_payable_id.id,
+                "type": "in_invoice",
+            }
+        )
         invoice.wa_id = work_acceptance
         invoice._compute_require_wa()
         self.assertEqual(invoice.require_wa, True)
         invoice.purchase_order_change()
-        self.assertEqual(invoice.state, 'draft')
+        self.assertEqual(invoice.state, "draft")
         invoice.action_invoice_open()
