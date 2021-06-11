@@ -9,6 +9,7 @@ class TestPurchaseOrderLine(common.TransactionCase):
             product_supplierinfo_1'product (uom is product_uom_unit)
         """
         super().setUp()
+        self.env = self.env(context=dict(self.env.context, tracking_disable=True))
         self.product_supplier_info = self.env.ref("product.product_supplierinfo_1")
         self.product_id = self.product_supplier_info.product_tmpl_id.product_variant_ids[  # noqa
             0
@@ -81,6 +82,9 @@ class TestPurchaseOrderLine(common.TransactionCase):
         values = po_line._convert_to_write(
             {name: po_line[name] for name in po_line._cache}
         )
+        # To ensure the values for product_purchase_qty is correctly forced
+        # during the create we have to remove it from the values
+        values.pop("product_qty", 0)
         po.order_line.create(values)
         # check that all the packaging informations are on the created picking
         po._create_picking()

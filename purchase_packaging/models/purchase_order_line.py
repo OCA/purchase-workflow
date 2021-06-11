@@ -205,7 +205,7 @@ class PurchaseOrderLine(models.Model):
                     ],
                     limit=1,
                 )
-                vals["product_qty"] = to_uom._compute_quantity(
+                vals["product_qty"] = product_purchase_uom._compute_quantity(
                     vals["product_purchase_qty"], to_uom
                 )
         res = super().create(self.update_vals_list(vals_list))
