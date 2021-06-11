@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+purchase_base_user_group,purchase_base_user_group,model_purchase_order_recommendation,base.group_user,1,1,1,1
+purchase_line_base_user_group,purchase_line_base_user_group,model_purchase_order_recommendation_line,base.group_user,1,1,1,1
