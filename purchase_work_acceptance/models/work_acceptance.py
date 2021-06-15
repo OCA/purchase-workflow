@@ -104,12 +104,6 @@ class WorkAcceptance(models.Model):
 
     def button_accept(self, force=False):
         self._unlink_zero_quantity()
-        po_lines = self.purchase_id.order_line
-        for po_line in po_lines:
-            if po_line.product_id.type not in ["product", "consu"]:
-                po_line.qty_received = self.wa_line_ids.filtered(
-                    lambda l: l.purchase_line_id == po_line
-                ).product_qty
         self.write({"state": "accept", "date_accept": fields.Datetime.now()})
 
     def button_draft(self):

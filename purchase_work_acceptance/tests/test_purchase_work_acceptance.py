@@ -10,6 +10,7 @@ class TestPurchaseWorkAcceptance(TransactionCase):
     def setUp(self):
         super().setUp()
         self.service_product = self.env.ref("product.product_product_1")
+        self.service_product.purchase_method = "purchase"
         self.product_product = self.env.ref("product.product_product_6")
         self.res_partner = self.env.ref("base.res_partner_3")
         self.employee = self.env.ref("base.user_demo")
@@ -226,21 +227,17 @@ class TestPurchaseWorkAcceptance(TransactionCase):
         # Create Work Acceptance
         work_acceptance = self._create_work_acceptance(qty, purchase_order)
         work_acceptance.button_accept()
-        res = purchase_order.with_context(create_bill=True).action_create_invoice()
-        self.assertEqual(res.get("res_model"), "account.move")
-        # enable wa on invoice
         self.env["res.config.settings"].create(
             {"group_enable_wa_on_invoice": True}
         ).execute()
         res = purchase_order.with_context(create_bill=True).action_create_invoice()
         self.assertEqual(res.get("res_model"), "select.work.acceptance.wizard")
         wizard = self.env[res.get("res_model")].create({"wa_id": work_acceptance.id})
-        wiz = wizard.button_create_vendor_bill()
-        ctx = wiz.get("context")
-        f = Form(
-            self.env["account.move"].with_context(ctx), view="account.view_move_form"
-        )
-        f.save()
+        res = wizard.with_context(
+            active_id=purchase_order.id
+        ).button_create_vendor_bill()
+        invoice = self.env["account.move"].browse(res["res_id"])
+        self.assertEqual(sum(invoice.invoice_line_ids.mapped("quantity")), qty)
 
     def test_05_create_multi_lines(self):
         qty = 5.0
@@ -266,14 +263,11 @@ class TestPurchaseWorkAcceptance(TransactionCase):
         res = purchase_order.with_context(create_bill=True).action_create_invoice()
         self.assertEqual(res.get("res_model"), "select.work.acceptance.wizard")
         wizard = self.env[res.get("res_model")].create({"wa_id": work_acceptance.id})
-        wiz = wizard.button_create_vendor_bill()
-        ctx = wiz.get("context")
-        f = Form(
-            self.env["account.move"].with_context(ctx), view="account.view_move_form"
-        )
-        invoice = f.save()
-        with self.assertRaises(ValidationError):
-            invoice.action_post()
+        res = wizard.with_context(
+            active_id=purchase_order.id
+        ).button_create_vendor_bill()
+        invoice = self.env["account.move"].browse(res["res_id"])
+        self.assertEqual(sum(invoice.invoice_line_ids.mapped("quantity")), qty * 2)
 
     def test_06_check_qty_accepted(self):
         qty_po = 20.0
