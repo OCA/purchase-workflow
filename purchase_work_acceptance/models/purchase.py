@@ -68,9 +68,11 @@ class PurchaseOrder(models.Model):
         return result
 
     def action_create_invoice(self):
-        if self.env.context.get("create_bill", False) and self.env.user.has_group(
+        enable_wa = self.env.user.has_group(
             "purchase_work_acceptance.group_enable_wa_on_invoice"
-        ):
+        )
+        ctx = self.env.context.copy()
+        if enable_wa and ctx.get("create_bill"):
             wizard = self.env.ref(
                 "purchase_work_acceptance.view_select_work_acceptance_wizard"
             )
@@ -89,6 +91,11 @@ class PurchaseOrder(models.Model):
         for order in self:
             lines = order.order_line.filtered(lambda l: l.qty_to_accept > 0)
             order.wa_accepted = not any(lines)
+
+    def _prepare_invoice(self):
+        invoice_vals = super()._prepare_invoice()
+        invoice_vals["wa_id"] = self.env.context.get("wa_id")
+        return invoice_vals
 
 
 class PurchaseOrderLine(models.Model):
@@ -123,9 +130,10 @@ class PurchaseOrderLine(models.Model):
         )
 
     def _prepare_account_move_line(self, move=False):
-        res = super()._prepare_account_move_line(move)
-        if move and move.wa_id:
-            wa_line = self.wa_line_ids.filtered(lambda l: l.wa_id == move.wa_id)
+        res = super()._prepare_account_move_line(move=move)
+        wa_id = self.env.context.get("wa_id")
+        if wa_id:
+            wa_line = self.wa_line_ids.filtered(lambda l: l.wa_id.id == wa_id)
             res["quantity"] = wa_line.product_qty
             res["product_uom_id"] = wa_line.product_uom
         return res
