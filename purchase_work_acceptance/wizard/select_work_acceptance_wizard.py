@@ -28,17 +28,11 @@ class SelectWorkAcceptanceWizard(models.TransientModel):
         order = self.env["purchase.order"].browse(self._context.get("active_id"))
         if any(
             (invoice.wa_id and invoice.wa_id == self.wa_id)
-            for invoice in order.invoice_ids
+            for invoice in order.invoice_ids.filtered(lambda l: l.state == "posted")
         ):
-            raise ValidationError(_("%s was used in some bill.") % self.wa_id.name)
-        action = self.env.ref("account.action_move_in_invoice_type")
-        result = action.sudo().read()[0]
-        result["context"] = {
-            "default_move_type": "in_invoice",
-            "default_wa_id": self.wa_id.id,
-            "default_purchase_id": self._context.get("active_id"),
-            "default_company_id": self.wa_id.company_id.id or self.env.company.id,
-        }
-        res = self.env.ref("account.view_move_form", False)
-        result["views"] = [(res and res.id or False, "form")]
-        return result
+            raise ValidationError(
+                _("%s was already used by some bill") % self.wa_id.name
+            )
+        return order.with_context(
+            create_bill=False, wa_id=self.wa_id.id
+        ).action_create_invoice()
