@@ -101,7 +101,6 @@ class PurchaseOrderLine(models.Model):
         """set domain on product_purchase_uom_id and packaging_id
         set the first packagigng, purchase_uom and purchase_qty
         """
-        domain = {}
         # call default implementation
         # restore default values
         defaults = self.default_get(["packaging_id", "product_purchase_uom_id"])
@@ -109,22 +108,6 @@ class PurchaseOrderLine(models.Model):
         self.product_purchase_uom_id = self.product_purchase_uom_id.browse(
             defaults.get("product_purchase_uom_id", [])
         )
-        # add default domains
-        if self.product_id and self.partner_id:
-            domain["packaging_id"] = [
-                (
-                    "id",
-                    "in",
-                    self.product_id.mapped("seller_ids.packaging_id.id"),
-                )
-            ]
-            domain["product_purchase_uom_id"] = [
-                (
-                    "id",
-                    "in",
-                    self.product_id.mapped("seller_ids.min_qty_uom_id.id"),
-                )
-            ]
         res = super().onchange_product_id()
         if self.product_id:
             supplier = self._get_product_seller()
@@ -137,9 +120,6 @@ class PurchaseOrderLine(models.Model):
             # if the supplier requires some min qty/uom,
             self.product_purchase_qty = supplier.min_qty
             self.product_purchase_uom_id = supplier.min_qty_uom_id
-            domain["product_purchase_uom_id"] = [
-                ("id", "=", supplier.min_qty_uom_id.id)
-            ]
             to_uom = self.env["uom.uom"].search(
                 [
                     (
@@ -156,11 +136,6 @@ class PurchaseOrderLine(models.Model):
                 supplier.min_qty, to_uom
             )
         self.packaging_id = supplier.packaging_id
-        if domain:
-            if not res:
-                res = {}
-            res.setdefault("domain", {})
-            res["domain"].update(domain)
         return res
 
     def _prepare_stock_moves(self, picking):
