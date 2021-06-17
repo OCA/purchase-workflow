@@ -612,6 +612,12 @@ msgid "Minimum Inventory Rule"
 msgstr ""
 
 #. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request__my_activity_date_deadline
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "My requests"
@@ -945,6 +951,7 @@ msgstr "Zahtjevi nabave za odobriti"
 #: model:ir.ui.menu,name:purchase_request.menu_purchase_request
 #: model:ir.ui.menu,name:purchase_request.menu_purchase_request_act
 #: model:ir.ui.menu,name:purchase_request.menu_purchase_request_pro_mgt
+#: model:ir.ui.menu,name:purchase_request.parent_menu_purchase_request
 msgid "Purchase Requests"
 msgstr "Zahtjevi za nabavom"
 
@@ -954,11 +961,6 @@ msgstr "Zahtjevi za nabavom"
 #, fuzzy
 msgid "Purchase Status"
 msgstr "Zahtjev za nabavu"
-
-#. module: purchase_request
-#: model:ir.ui.menu,name:purchase_request.parent_menu_purchase_request
-msgid "Purchase requests"
-msgstr "Zahtjevi za nabavom"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__purchase_count
@@ -1457,6 +1459,9 @@ msgstr ""
 #, python-format
 msgid "You have to select lines from the same company."
 msgstr ""
+
+#~ msgid "Purchase requests"
+#~ msgstr "Zahtjevi za nabavom"
 
 #~ msgid "Product Unit of Measure"
 #~ msgstr "Jedinica mjere proizvoda"
