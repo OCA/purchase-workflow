@@ -40,7 +40,7 @@ addon | version | summary
 [purchase_product_usage](purchase_product_usage/) | 14.0.1.1.0 | Purchase Product Usage
 [purchase_reception_notify](purchase_reception_notify/) | 14.0.1.0.0 | Purchase Reception Notify
 [purchase_reception_status](purchase_reception_status/) | 14.0.1.0.0 | Add reception status on purchase orders
-[purchase_request](purchase_request/) | 14.0.1.2.1 | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
+[purchase_request](purchase_request/) | 14.0.1.2.2 | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
 [purchase_request_tier_validation](purchase_request_tier_validation/) | 14.0.2.0.0 | Extends the functionality of Purchase Requests to support a tier validation process.
 [purchase_requisition_tier_validation](purchase_requisition_tier_validation/) | 14.0.1.0.0 | Extends the functionality of Purchase Agreements to support a tier validation process.
 [purchase_rfq_number](purchase_rfq_number/) | 14.0.1.0.0 | Different sequence for purchase for quotations
