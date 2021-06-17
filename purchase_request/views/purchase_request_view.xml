@@ -457,7 +457,7 @@
     />
     <menuitem
         id="parent_menu_purchase_request"
-        name="Purchase requests"
+        name="Purchase Requests"
         web_icon="purchase_request,static/description/icon.png"
         groups="group_purchase_request_user,group_purchase_request_manager"
     />
