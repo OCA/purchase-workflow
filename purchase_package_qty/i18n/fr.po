@@ -30,6 +30,8 @@ msgstr "Fournisseur"
 
 #. module: purchase_package_qty
 #: model:ir.model.fields,field_description:purchase_package_qty.field_stock_pack_operation_qty_done_package
+#: model:ir.model.fields,field_description:purchase_package_qty.field_stock_move__qty_done_package
+#: model:ir.model.fields,field_description:purchase_package_qty.field_stock_move_line__qty_done_package
 msgid "Done (package)"
 msgstr "Colis reçus"
 
