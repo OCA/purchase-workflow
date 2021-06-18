@@ -351,6 +351,7 @@
                     domain="[('assigned_to','=', False)]"
                     help="Unassigned Request"
                 />
+                <separator />
                 <filter
                     name="state_draft"
                     string="Draft"
@@ -381,6 +382,7 @@
                     domain="[('state','=','done')]"
                     help="Request is done"
                 />
+                <separator />
                 <filter
                     string="Unread Messages"
                     name="message_needaction"
