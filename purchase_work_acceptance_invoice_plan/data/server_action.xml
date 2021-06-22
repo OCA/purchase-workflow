@@ -1,0 +1,35 @@
+<odoo>
+
+    <record id="apply_on_all_product_line" model="ir.actions.server">
+        <field name="name">All product lines</field>
+        <field
+            name="model_id"
+            ref="purchase_work_acceptance_invoice_plan.model_select_work_acceptance_invoice_plan_wizard"
+        />
+        <field name="state">code</field>
+        <field name="code">
+purchase_id = env.context.get("purchase_id")
+purchase = env["purchase.order"].browse(purchase_id)
+action = purchase.order_line.filtered(lambda l: l.qty_to_accept > 0 or not l.product_qty).ids
+        </field>
+    </record>
+
+    <record id="apply_on_matched_amount" model="ir.actions.server">
+        <field name="name">Product line with matched amount</field>
+        <field
+            name="model_id"
+            ref="purchase_work_acceptance_invoice_plan.model_select_work_acceptance_invoice_plan_wizard"
+        />
+        <field name="state">code</field>
+        <field name="code">
+purchase_id = env.context.get("purchase_id")
+installment_id = env.context.get("installment_id")
+purchase = env["purchase.order"].browse(purchase_id)
+installment = env["purchase.invoice.plan"].browse(installment_id)
+action = purchase.order_line.filtered(
+    lambda l: l.qty_to_accept > 0 and l.price_subtotal == installment.amount
+)[:1].ids
+        </field>
+    </record>
+
+</odoo>
