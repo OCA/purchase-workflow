@@ -12,7 +12,12 @@ class Picking(models.Model):
     wa_id = fields.Many2one(
         comodel_name="work.acceptance",
         string="WA Reference",
+        domain="[('id', 'in', wa_ids)]",
         copy=False,
+    )
+    wa_ids = fields.Many2many(
+        comodel_name="work.acceptance",
+        compute="_compute_wa_ids",
     )
 
     def _compute_require_wa(self):
@@ -23,45 +28,52 @@ class Picking(models.Model):
         else:
             self.require_wa = False
 
+    @api.depends("require_wa")
+    def _compute_wa_ids(self):
+        for picking in self:
+            picking.wa_ids = self.env["work.acceptance"]._get_valid_wa(
+                "picking", picking.purchase_id.id
+            )
+
     def button_validate(self):
-        if self.wa_id:
-            order = self.env["purchase.order"].browse(self._context.get("active_id"))
-            if any(
-                picking.wa_id == self.wa_id and picking != self
-                for picking in order.picking_ids
-            ):
-                raise ValidationError(
-                    _("%s was used in some picking.") % self.wa_id.name
-                )
-            wa_line = {}
-            for line in self.wa_id.wa_line_ids:
-                qty = line.product_uom._compute_quantity(
-                    line.product_qty, line.product_id.uom_id
-                )
-                if qty > 0.0 and line.product_id.type in ["product", "consu"]:
-                    if line.product_id.id in wa_line.keys():
-                        qty_old = wa_line[line.product_id.id]
-                        wa_line[line.product_id.id] = qty_old + qty
-                    else:
-                        wa_line[line.product_id.id] = qty
-            move_line = {}
-            for move in self.move_ids_without_package:
-                qty = move.product_uom._compute_quantity(
-                    move.quantity_done, line.product_id.uom_id
-                )
-                if qty > 0.0:
-                    if move.product_id.id in move_line.keys():
-                        qty_old = move_line[move.product_id.id]
-                        move_line[move.product_id.id] = qty_old + qty
-                    else:
-                        move_line[move.product_id.id] = qty
-            if wa_line != move_line:
-                raise ValidationError(
-                    _(
-                        "You cannot validate a transfer if done"
-                        " quantity not equal accepted quantity"
+        for picking in self:
+            if picking.wa_id:
+                order_id = self._context.get("active_id")
+                wa = self.env["work.acceptance"]._get_valid_wa("picking", order_id)
+                wa += picking.wa_id
+                if picking.wa_id not in wa:
+                    raise ValidationError(
+                        _("%s was used in some picking.") % picking.wa_id.name
                     )
-                )
+                wa_line = {}
+                for line in picking.wa_id.wa_line_ids:
+                    qty = line.product_uom._compute_quantity(
+                        line.product_qty, line.product_id.uom_id
+                    )
+                    if qty > 0.0 and line.product_id.type in ["product", "consu"]:
+                        if line.product_id.id in wa_line.keys():
+                            qty_old = wa_line[line.product_id.id]
+                            wa_line[line.product_id.id] = qty_old + qty
+                        else:
+                            wa_line[line.product_id.id] = qty
+                move_line = {}
+                for move in picking.move_ids_without_package:
+                    qty = move.product_uom._compute_quantity(
+                        move.quantity_done, line.product_id.uom_id
+                    )
+                    if qty > 0.0:
+                        if move.product_id.id in move_line.keys():
+                            qty_old = move_line[move.product_id.id]
+                            move_line[move.product_id.id] = qty_old + qty
+                        else:
+                            move_line[move.product_id.id] = qty
+                if wa_line != move_line:
+                    raise ValidationError(
+                        _(
+                            "You cannot validate a transfer if done"
+                            " quantity not equal accepted quantity"
+                        )
+                    )
         return super(Picking, self).button_validate()
 
     @api.onchange("wa_id")
