@@ -20,7 +20,7 @@ class PurchaseOrderLine(models.Model):
         company_id,
         values,
     ):
-        if values.get("grouping") == "line":
+        if values.get("grouping") == "line" or values.get("grouping") == "minimal":
             return False
         return super()._find_candidate(
             product_id,

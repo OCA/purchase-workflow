@@ -13,11 +13,12 @@ class ResCompany(models.Model):
             ("line", "No line grouping"),
             ("order", "No order grouping"),
             ("product_category", "Product category grouping"),
+            ("minimal", "Minimal grouping"),
         ],
         string="Procured purchase grouping",
         default="standard",
-        help="Select the behaviour for grouping procured purchases for the "
-        "the products of this category:\n"
+        help="Select the default behaviour for grouping procured purchases "
+        "for the products (if no grouping is selected for categry):\n"
         "* Standard grouping: Procurements will generate "
         "purchase orders as always, grouping lines and orders when "
         "possible.\n"
@@ -26,7 +27,8 @@ class ResCompany(models.Model):
         "merged.\n"
         "* No order grouping: This option will prevent any kind of "
         "grouping.\n"
-        "* <empty>: If no value is selected, system-wide default will be used.\n"
         "* Product category grouping: This option groups products in the "
-        "same purchase order that belongs to the same product category.",
+        "same purchase order that belongs to the same product category.\n"
+        "* Minimal grouping: Will generate separate purchase order "
+        "per supplier for each procurement and will keep lines in them.",
     )

@@ -14,6 +14,7 @@ class ProductCategory(models.Model):
             ("line", "No line grouping"),
             ("order", "No order grouping"),
             ("product_category", "Product category grouping"),
+            ("minimal", "Minimal grouping"),
         ],
         string="Procured purchase grouping",
         default="standard",
@@ -29,5 +30,7 @@ class ProductCategory(models.Model):
         "grouping.\n"
         "* <empty>: If no value is selected, system-wide default will be used.\n"
         "* Product category grouping: This option groups products in the "
-        "same purchase order that belongs to the same product category.",
+        "same purchase order that belongs to the same product category.\n"
+        "* Minimal grouping: Will generate separate purchase order "
+        "per supplier for each procurement and will keep lines in them.",
     )

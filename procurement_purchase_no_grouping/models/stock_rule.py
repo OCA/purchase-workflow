@@ -19,6 +19,8 @@ class StockRule(models.Model):
             if not grouping:
                 grouping = self.env.company.procured_purchase_grouping
             procurement.values["grouping"] = grouping
+            if grouping == "minimal":
+                procurement.values["origin"] = procurement.origin
         return super()._run_buy(procurements)
 
     def _make_po_get_domain(self, company_id, values, partner):
@@ -42,4 +44,7 @@ class StockRule(models.Model):
                 domain += (("id", "=", -values["move_dest_ids"][:1].id),)
             # The minimum is imposed by PG int4 limit
             domain += (("id", "=", random.randint(-2147483648, 0)),)
+        elif values.get("grouping") == "minimal":
+            if values.get("origin"):
+                domain += (("origin", "=", values["origin"]),)
         return domain

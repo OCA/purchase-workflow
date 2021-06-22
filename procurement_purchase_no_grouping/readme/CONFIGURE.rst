@@ -9,6 +9,7 @@ Go to each product category, and select one of these values in the field
 * *<empty>*: If you select nothing, default value set up in System
   settings will be applied.
 * *Product category grouping*: This option groups products in the same purchase order that belongs to the same product category.
+* *Minimal grouping*: Will generate separate purchase order per supplier for each procurement and will keep lines in them.
 
 System default behaviour can be set up in System settings / Purchase / Procurement
 Purchase Grouping
