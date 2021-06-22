@@ -127,6 +127,25 @@ class WorkAcceptance(models.Model):
         )
         wa_line_zero_quantity.unlink()
 
+    def _get_valid_wa(self, doctype, order_id):
+        """ Get unused WA when validate invoice or picking """
+        order = self.env["purchase.order"].browse(order_id)
+        all_wa = self.env["work.acceptance"].search(
+            [
+                ("state", "=", "accept"),
+                ("purchase_id", "=", order.id),
+            ]
+        )
+        if doctype == "invoice":
+            used_wa = order.invoice_ids.filtered(lambda l: l.state == "posted").mapped(
+                "wa_id"
+            )
+            return all_wa - used_wa
+        if doctype == "picking":
+            used_wa = order.picking_ids.mapped("wa_id")
+            return all_wa - used_wa
+        return all_wa
+
 
 class WorkAcceptanceLine(models.Model):
     _name = "work.acceptance.line"
