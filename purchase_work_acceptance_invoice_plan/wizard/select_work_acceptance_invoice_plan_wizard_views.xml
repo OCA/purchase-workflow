@@ -6,16 +6,71 @@
         <field name="arch" type="xml">
             <form string="Select Work Acceptance">
                 <group>
-                    <field name="installment_id" options="{'no_create': True}" />
                     <field name="active_installment_ids" invisible="1" />
+                    <field
+                        name="installment_id"
+                        options="{'no_create': True, 'no_open': True}"
+                    />
+                    <field
+                        name="apply_method_id"
+                        style="width:50%"
+                        placeholder="Leave blank to apply to all purchase lines"
+                    />
+                    <field name="order_id" invisible="1" />
+                    <field
+                        name="order_line_ids"
+                        widget="many2many_tags"
+                        style="width:80%"
+                        attrs="{'invisible': [('apply_method_id', '=', False)]}"
+                    />
                 </group>
+                <field
+                    name="wa_qty_line_ids"
+                    nolabel="1"
+                    attrs="{'invisible': [('order_line_ids', '=', [])]}"
+                >
+                    <tree editable="bottom" create="0">
+                        <field name="currency_id" invisible="1" />
+                        <field name="order_id" invisible="1" />
+                        <field name="order_line_id" />
+                        <field
+                            name="account_analytic_id"
+                            optional="hide"
+                            groups="analytic.group_analytic_accounting"
+                        />
+                        <field
+                            name="analytic_tag_ids"
+                            widget="many2many_tags"
+                            optional="hide"
+                            groups="analytic.group_analytic_tags"
+                        />
+                        <field name="qty_not_accepted" />
+                        <field
+                            name="quantity"
+                            decoration-success="quantity &lt;= qty_not_accepted"
+                            decoration-danger="quantity &gt; qty_not_accepted"
+                        />
+                        <field name="amount" sum="Total" />
+                    </tree>
+                </field>
                 <footer>
+                    <field name="valid_amount" invisible="1" />
                     <button
                         name="button_create_wa"
                         string="Create WA"
                         type="object"
                         class="oe_highlight"
                         context="{'create_wa': True}"
+                        attrs="{'invisible': [('valid_amount', '=', False), ('order_line_ids', '!=', [])]}"
+                    />
+                    <button
+                        name="button_create_wa"
+                        string="Create WA"
+                        type="object"
+                        class="oe_highlight"
+                        context="{'create_wa': True}"
+                        attrs="{'invisible': ['|', ('valid_amount', '=', True), ('order_line_ids', '=', [])]}"
+                        confirm="Total amount not equal to installment amount, are you sure to continue?"
                     />
                     <button special="cancel" string="Cancel" class="oe_link" />
                 </footer>
