@@ -13,16 +13,19 @@ class SelectWorkAcceptanceWizard(models.TransientModel):
     wa_id = fields.Many2one(
         comodel_name="work.acceptance",
         string="Work Acceptance",
-        domain=lambda self: [
-            ("state", "=", "accept"),
-            ("purchase_id", "=", self._context.get("active_id")),
-        ],
+        domain=lambda self: self._get_wa_domain(),
     )
 
     def _get_require_wa(self):
         return self.env.user.has_group(
             "purchase_work_acceptance.group_enforce_wa_on_invoice"
         )
+
+    def _get_wa_domain(self):
+        wa = self.env["work.acceptance"]._get_valid_wa(
+            "invoice", self.env.context.get("active_id")
+        )
+        return [("id", "in", wa.ids)]
 
     def button_create_vendor_bill(self):
         order = self.env["purchase.order"].browse(self._context.get("active_id"))
