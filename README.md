@@ -48,7 +48,7 @@ addon | version | summary
 [purchase_tier_validation](purchase_tier_validation/) | 14.0.2.0.0 | Extends the functionality of Purchase Orders to support a tier validation process.
 [purchase_work_acceptance](purchase_work_acceptance/) | 14.0.1.0.5 | Purchase Work Acceptance
 [purchase_work_acceptance_evaluation](purchase_work_acceptance_evaluation/) | 14.0.1.0.0 | Purchase Work Acceptance Evaluation
-[purchase_work_acceptance_invoice_plan](purchase_work_acceptance_invoice_plan/) | 14.0.1.0.0 | Purchase Work Acceptance Invoice Plan
+[purchase_work_acceptance_invoice_plan](purchase_work_acceptance_invoice_plan/) | 14.0.1.0.1 | Purchase Work Acceptance Invoice Plan
 
 [//]: # (end addons)
 
