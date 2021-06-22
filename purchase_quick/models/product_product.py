@@ -19,21 +19,27 @@ class ProductProduct(models.Model):
         help="Technical: used to compute quantities to purchase.",
     )
 
+    def _default_quick_uom_id(self):
+        if self.env.context.get("parent_model", False) == "purchase.order":
+            return self.uom_po_id
+        return super()._default_quick_uom_id()
+
+    def _compute_process_qty_purchase(self):
+        po_lines = self.env["purchase.order.line"].search(
+            [("order_id", "=", self.env.context.get("parent_id"))]
+        )
+        for product in self:
+            product.qty_to_process = sum(
+                po_lines.filtered(lambda l: l.product_id == product).mapped(
+                    "product_qty"
+                )
+            )
+
     @api.depends("po_line_ids")
     def _compute_process_qty(self):
         res = super(ProductProduct, self)._compute_process_qty()
         if self.env.context.get("parent_model", False) == "purchase.order":
-            po_lines = self.env["purchase.order.line"].search(
-                [("order_id", "=", self.env.context.get("parent_id"))]
-            )
-            for product in self:
-                total_prod_qty = 0.0
-                product_po_lines = po_lines.filtered(
-                    lambda l, p=product: l.product_id == p
-                )
-                for product_po_line in product_po_lines:
-                    total_prod_qty += product_po_line.product_qty
-                product.qty_to_process += total_prod_qty
+            self._compute_process_qty_purchase()
         return res
 
     @api.model

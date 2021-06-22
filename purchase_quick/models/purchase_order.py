@@ -2,9 +2,10 @@
 # @author Sébastien BEAU <sebastien.beau@akretion.com>
 # @author Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
 # @author Pierrick Brun <pierrick.brun@akretion.com>
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
 from odoo import _, models
+from odoo.exceptions import ValidationError
 
 
 class PurchaseOrder(models.Model):
@@ -21,20 +22,30 @@ class PurchaseOrder(models.Model):
             }
         )
         commercial = self.partner_id.commercial_partner_id.name
-        res["search_view_id"] = (
-            self.env.ref("purchase_quick.product_search_view4purchase").id,
-        )
         res["name"] = "🔙 {} ({})".format(_("Product Variants"), commercial)
         res["view_id"] = (self.env.ref("purchase_quick.product_tree_view4purchase").id,)
         return res
 
     def _get_quick_line(self, product):
-        return self.env["purchase.order.line"].search(
-            [("product_id", "=", product.id), ("order_id", "=", self.id)], limit=1
+        result = self.env["purchase.order.line"].search(
+            [("product_id", "=", product.id), ("order_id", "=", self.id)]
         )
+        nr_lines = len(result.ids)
+        if nr_lines > 1:
+            raise ValidationError(
+                _(
+                    "Must have only 1 line per product for mass addition, but "
+                    "there are %s lines for the product %s"
+                    % (nr_lines, product.display_name),
+                )
+            )
+        return result
 
     def _get_quick_line_qty_vals(self, product):
-        return {"product_qty": product.qty_to_process}
+        return {
+            "product_qty": product.qty_to_process,
+            "product_uom": product.quick_uom_id.id,
+        }
 
     def _complete_quick_line_vals(self, vals, lines_key=""):
         return super(PurchaseOrder, self)._complete_quick_line_vals(
