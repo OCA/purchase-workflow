@@ -13,6 +13,7 @@
                         options="{'no_create': True}"
                         attrs="{'required': [('require_wa','=', True)]}"
                     />
+                    <field name="wa_ids" invisible="1" />
                 </group>
                 <footer>
                     <button
