@@ -1,7 +1,7 @@
 # Copyright 2019 Ecosoft Co., Ltd. (http://ecosoft.co.th)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, fields, models
+from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -13,7 +13,11 @@ class SelectWorkAcceptanceWizard(models.TransientModel):
     wa_id = fields.Many2one(
         comodel_name="work.acceptance",
         string="Work Acceptance",
-        domain=lambda self: self._get_wa_domain(),
+        domain="[('id', 'in', wa_ids)]",
+    )
+    wa_ids = fields.Many2many(
+        comodel_name="work.acceptance",
+        compute="_compute_wa_ids",
     )
 
     def _get_require_wa(self):
@@ -21,11 +25,12 @@ class SelectWorkAcceptanceWizard(models.TransientModel):
             "purchase_work_acceptance.group_enforce_wa_on_invoice"
         )
 
-    def _get_wa_domain(self):
-        wa = self.env["work.acceptance"]._get_valid_wa(
+    @api.depends("require_wa")
+    def _compute_wa_ids(self):
+        self.ensure_one()
+        self.wa_ids = self.env["work.acceptance"]._get_valid_wa(
             "invoice", self.env.context.get("active_id")
         )
-        return [("id", "in", wa.ids)]
 
     def button_create_vendor_bill(self):
         self.ensure_one()
