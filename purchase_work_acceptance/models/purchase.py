@@ -134,8 +134,9 @@ class PurchaseOrderLine(models.Model):
         wa_id = self.env.context.get("wa_id")
         if wa_id:
             wa_line = self.wa_line_ids.filtered(lambda l: l.wa_id.id == wa_id)
-            res["quantity"] = wa_line.product_qty
-            res["product_uom_id"] = wa_line.product_uom
+            if res.get("quantity", 0) >= 0:
+                res["quantity"] = wa_line.product_qty
+                res["product_uom_id"] = wa_line.product_uom
         return res
 
     @api.depends(
