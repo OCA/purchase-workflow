@@ -122,12 +122,14 @@ class PurchaseOrderLine(models.Model):
             if wa_line.wa_id.state != "cancel"
         )
 
-    def _prepare_account_move_line(self, move):
+    def _prepare_account_move_line(self, move=False):
         res = super()._prepare_account_move_line(move)
-        if move.wa_id:
-            wa_line = self.wa_line_ids.filtered(lambda l: l.wa_id == move.wa_id)
-            res["quantity"] = wa_line.product_qty
-            res["product_uom_id"] = wa_line.product_uom
+        wa_id = self.env.context.get("wa_id")
+        if wa_id:
+            wa_line = self.wa_line_ids.filtered(lambda l: l.wa_id.id == wa_id)
+            if res.get("quantity", 0) >= 0:
+                res["quantity"] = wa_line.product_qty
+                res["product_uom_id"] = wa_line.product_uom
         return res
 
     @api.depends(
