@@ -153,7 +153,9 @@ class WorkAcceptanceLine(models.Model):
     _order = "id"
 
     name = fields.Text(string="Description", required=True)
-    product_qty = fields.Float(string="Quantity", required=True)
+    product_qty = fields.Float(
+        string="Quantity", required=True, digits="Product Unit of Measure"
+    )
     product_id = fields.Many2one(
         comodel_name="product.product", string="Product", required=True
     )
