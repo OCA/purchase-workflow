@@ -12,12 +12,14 @@
                 <field
                     name="qty_to_receive"
                     attrs="{'column_invisible': [('parent.state', 'not in', ('purchase', 'done'))]}"
+                    optional="hide"
                 />
             </field>
             <field name="qty_invoiced" position="before">
                 <field
                     name="qty_to_invoice"
                     attrs="{'column_invisible': [('parent.state', 'not in', ('purchase', 'done'))]}"
+                    optional="hide"
                 />
             </field>
         </field>
