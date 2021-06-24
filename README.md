@@ -29,7 +29,7 @@ addon | version | summary
 [purchase_last_price_info](purchase_last_price_info/) | 14.0.1.0.0 | Purchase Product Last Price Info
 [purchase_location_by_line](purchase_location_by_line/) | 14.0.1.0.1 | Allows to define a specific destination location on each PO line
 [purchase_manual_currency](purchase_manual_currency/) | 14.0.1.0.0 | Allows to manual currency of Purchase
-[purchase_open_qty](purchase_open_qty/) | 14.0.1.0.0 | Allows to identify the purchase orders that have quantities pending to invoice or to receive.
+[purchase_open_qty](purchase_open_qty/) | 14.0.1.0.1 | Allows to identify the purchase orders that have quantities pending to invoice or to receive.
 [purchase_order_archive](purchase_order_archive/) | 14.0.1.0.0 | Archive Purchase Orders
 [purchase_order_line_deep_sort](purchase_order_line_deep_sort/) | 14.0.1.0.0 | Purchase Order Line Sort
 [purchase_order_line_menu](purchase_order_line_menu/) | 14.0.1.0.0 | Adds Purchase Order Lines Menu
