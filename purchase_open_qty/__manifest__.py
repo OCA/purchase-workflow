@@ -6,7 +6,7 @@
     "name": "Purchase Open Qty",
     "summary": "Allows to identify the purchase orders that have quantities "
     "pending to invoice or to receive.",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
     "category": "Purchases",
