@@ -54,7 +54,6 @@ class TestPurchaseException(TransactionCase):
 
     def test_purchase_order_exception(self):
         self.exception_noemail.active = True
-        self.exception_noemail.next_state = False
         self.exception_qtycheck.active = True
         self.partner_id.email = False
         self.po = self.PurchaseOrder.create(self.po_vals.copy())
@@ -107,8 +106,6 @@ class TestPurchaseException(TransactionCase):
         self.po.button_draft()
         self.assertEqual(self.po.state, "draft")
         self.assertTrue(not self.po.ignore_exception)
-        # test next_state
-        self.exception_noemail.next_state = "to approve"
         self.po.button_confirm()
         self.assertTrue(self.po.state, "to approve")
 
