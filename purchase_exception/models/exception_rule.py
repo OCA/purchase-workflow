@@ -14,5 +14,6 @@ class ExceptionRule(models.Model):
         selection_add=[
             ("purchase.order", "Purchase order"),
             ("purchase.order.line", "Purchase order line"),
-        ]
+        ],
+        ondelete={"purchase.order": "cascade", "purchase.order.line": "cascade"},
     )
