@@ -29,6 +29,20 @@ class PurchaseOrder(models.Model):
         compute="_compute_ip_invoice_plan",
         help="At least one invoice plan line pending to create invoice",
     )
+    ip_total_percent = fields.Float(
+        compute="_compute_ip_total",
+        string="Percent",
+    )
+    ip_total_amount = fields.Monetary(
+        compute="_compute_ip_total",
+        string="Total Amount",
+    )
+
+    def _compute_ip_total(self):
+        for rec in self:
+            installments = rec.invoice_plan_ids.filtered("installment")
+            rec.ip_total_percent = sum(installments.mapped("percent"))
+            rec.ip_total_amount = sum(installments.mapped("amount"))
 
     def _compute_ip_invoice_plan(self):
         for rec in self:
@@ -191,15 +205,29 @@ class PurchaseInvoicePlan(models.Model):
     @api.depends("percent")
     def _compute_amount(self):
         for rec in self:
+            if rec.last:
+                installments = rec.purchase_id.invoice_plan_ids.filtered(
+                    lambda l: l.invoice_type == "installment"
+                )
+                prev_amount = sum((installments - rec).mapped("amount"))
+                rec.amount = rec.purchase_id.amount_untaxed - prev_amount
+                continue
             rec.amount = rec.percent * rec.purchase_id.amount_untaxed / 100
 
-    @api.onchange("amount")
+    @api.onchange("amount", "percent")
     def _inverse_amount(self):
         for rec in self:
             if rec.purchase_id.amount_untaxed != 0:
+                if rec.last:
+                    installments = rec.purchase_id.invoice_plan_ids.filtered(
+                        lambda l: l.invoice_type == "installment"
+                    )
+                    prev_percent = sum((installments - rec).mapped("percent"))
+                    rec.percent = 100 - prev_percent
+                    continue
                 rec.percent = rec.amount / rec.purchase_id.amount_untaxed * 100
-            else:
-                rec.percent = 0
+                continue
+            rec.percent = 0
 
     @api.depends("purchase_id.state", "purchase_id.invoice_plan_ids.invoiced")
     def _compute_to_invoice(self):
