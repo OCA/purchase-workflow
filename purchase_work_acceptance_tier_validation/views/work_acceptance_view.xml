@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Ecosoft Co., Ltd.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_work_acceptance_search" model="ir.ui.view">
+        <field name="name">view.work.acceptance.search</field>
+        <field name="model">work.acceptance</field>
+        <field
+            name="inherit_id"
+            ref="purchase_work_acceptance.view_work_acceptance_search"
+        />
+        <field name="arch" type="xml">
+            <separator position="before">
+                <separator />
+                <filter
+                    name="needs_review"
+                    string="Needs my Review"
+                    domain="[('reviewer_ids','in',uid), ('state', 'not in', ['done', 'cancel','to approve'])]"
+                    help="My WA to review"
+                />
+                <filter
+                    name="tier_validated"
+                    string="Validated"
+                    domain="[('validated', '=', True)]"
+                    help="WAs validated and ready to be confirmed"
+                />
+                <filter
+                    name="tier_rejected"
+                    string="Rejected"
+                    domain="[('rejected', '=', True)]"
+                    help="WAs rejected"
+                />
+            </separator>
+        </field>
+    </record>
+</odoo>
