@@ -17,7 +17,6 @@
 </div>
         </field>
         <field name="auto_delete" eval="True" />
-        <field name="user_signature" eval="True" />
     </record>
     <record id="mail_template_data_purchase_substate_delivery" model="mail.template">
         <field name="name">In delevery</field>
@@ -29,13 +28,12 @@
     Dear ${object.partner_id.name or 'customer'},<br />
     Thank you for your order.<br />
         You order is being prepared for delivery.
-        You will recive a delivery tracking link to follow your delevery.
+        You will receive a delivery tracking link to follow your delivery.
     <br /><br />
     Thank you,
     <br />
 </div>
         </field>
         <field name="auto_delete" eval="True" />
-        <field name="user_signature" eval="True" />
     </record>
 </odoo>
