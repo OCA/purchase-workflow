@@ -67,4 +67,8 @@ class WorkAcceptanceEvaluationResult(models.Model):
     @api.depends("case_id")
     def _compute_editable(self):
         for rec in self:
-            rec.editable = rec.wa_id.state == rec.case_id.state_required
+            rec.editable = (
+                True
+                if not rec.case_id.state_required
+                else rec.wa_id.state == rec.case_id.state_required
+            )
