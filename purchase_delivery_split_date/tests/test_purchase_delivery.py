@@ -127,6 +127,24 @@ class TestDeliverySingle(TransactionCase):
         line.write({"date_planned": self.date_3rd})
         self.assertEqual(moves.date_deadline.strftime("%Y-%m-%d"), self.date_3rd)
 
+    def test_group_multiple_picking_same_date(self):
+        """Check multiple picking with same planned date are also merged
+
+        This can happen if another module changes the picking planned date
+        before the _check_split_pickings is being called from the write method.
+        """
+        self.po.order_line[0].date_planned = self.date_later
+        self.po.button_confirm()
+        moves = self.env["stock.move"].search(
+            [("purchase_line_id", "in", self.po.order_line.ids)]
+        )
+        pickings = moves.mapped("picking_id")
+        self.assertEqual(len(pickings), 2)
+        pickings[1].scheduled_date = pickings[0].scheduled_date
+        self.po.order_line[0].date_planned = self.date_sooner
+        self.assertEqual(len(moves.mapped("picking_id")), 1)
+        self.assertEqual(len(pickings.filtered(lambda r: r.state == "cancel")), 1)
+
     def test_purchase_line_date_change_split_picking(self):
         self.po.button_confirm()
         line1 = self.po.order_line[0]
