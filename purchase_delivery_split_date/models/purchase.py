@@ -107,7 +107,10 @@ class PurchaseOrder(models.Model):
                     for move in line.move_ids:
                         if move.state in ("cancel", "done"):
                             continue
-                        if move.picking_id.scheduled_date.date() != date_key:
+                        if (
+                            move.picking_id.scheduled_date.date() != date_key
+                            or pickings_by_date[date_key] != move.picking_id
+                        ):
                             if date_key not in pickings_by_date:
                                 copy_vals = line._first_picking_copy_vals(key, line)
                                 new_picking = move.picking_id.copy(copy_vals)
@@ -116,7 +119,7 @@ class PurchaseOrder(models.Model):
                             move.picking_id = pickings_by_date[date_key]
                             move.date_expected = date_key
                             move._action_assign()
-            for picking in pickings_by_date.values():
+            for picking in pickings:
                 if len(picking.move_lines) == 0:
                     picking.write({"state": "cancel"})
 
