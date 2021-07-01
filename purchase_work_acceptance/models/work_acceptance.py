@@ -103,8 +103,22 @@ class WorkAcceptance(models.Model):
         return super(WorkAcceptance, self).create(vals)
 
     def button_accept(self, force=False):
+        if self.env.context.get("manual_date_accept"):
+            wizard = self.env.ref(
+                "purchase_work_acceptance.view_work_accepted_date_wizard"
+            )
+            return {
+                "name": _("Select Accept Date"),
+                "type": "ir.actions.act_window",
+                "view_mode": "form",
+                "res_model": "work.accepted.date.wizard",
+                "views": [(wizard.id, "form")],
+                "view_id": wizard.id,
+                "target": "new",
+            }
         self._unlink_zero_quantity()
-        self.write({"state": "accept", "date_accept": fields.Datetime.now()})
+        date_accept = force or fields.Datetime.now()
+        self.write({"state": "accept", "date_accept": date_accept})
 
     def button_draft(self):
         picking_obj = self.env["stock.picking"]
