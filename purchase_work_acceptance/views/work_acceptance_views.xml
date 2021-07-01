@@ -12,6 +12,7 @@
                         states="draft"
                         string="Accept"
                         class="oe_highlight"
+                        context="{'manual_date_accept': True}"
                     />
                     <button
                         name="button_draft"
