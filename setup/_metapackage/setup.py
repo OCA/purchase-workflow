@@ -31,6 +31,7 @@ setuptools.setup(
         'odoo10-addon-purchase_order_approval_block',
         'odoo10-addon-purchase_order_approved',
         'odoo10-addon-purchase_order_line_description',
+        'odoo10-addon-purchase_order_line_invoicing',
         'odoo10-addon-purchase_order_line_sequence',
         'odoo10-addon-purchase_order_revision',
         'odoo10-addon-purchase_picking_state',
