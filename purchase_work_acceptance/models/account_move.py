@@ -75,8 +75,8 @@ class AccountMove(models.Model):
     @api.model
     def create(self, vals):
         if self.env.context.get("wa_id"):
-            # When use WA, filter for line with qty > 0
+            # When use WA, filter for line with qty != 0, good for deposit too.
             lines = vals.get("invoice_line_ids", [])
-            lines = filter(lambda l: len(l) == 3 and l[2].get("quantity") > 0, lines)
+            lines = filter(lambda l: len(l) == 3 and l[2].get("quantity") != 0, lines)
             vals["invoice_line_ids"] = list(lines)
         return super().create(vals)
