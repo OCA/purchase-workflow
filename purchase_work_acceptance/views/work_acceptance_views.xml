@@ -146,6 +146,7 @@
                     groups="base.group_multi_currency"
                     options="{'no_create': True}"
                 />
+                <field name="purchase_id" optional="hide" />
                 <field name="state" />
             </tree>
         </field>
@@ -161,6 +162,7 @@
                 <field name="product_id" />
                 <field name="create_uid" />
                 <field name="user_id" />
+                <field name="purchase_id" />
                 <filter
                     name="my_wa"
                     string="My Work Acceptance"
@@ -189,6 +191,12 @@
                         name="vendor"
                         domain="[]"
                         context="{'group_by':'partner_id'}"
+                    />
+                    <filter
+                        string="Purchase Order"
+                        name="purchase"
+                        domain="[]"
+                        context="{'group_by':'purchase_id'}"
                     />
                     <filter
                         string="Due Date"
