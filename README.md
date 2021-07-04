@@ -49,6 +49,7 @@ addon | version | summary
 [purchase_work_acceptance](purchase_work_acceptance/) | 14.0.1.0.5 | Purchase Work Acceptance
 [purchase_work_acceptance_evaluation](purchase_work_acceptance_evaluation/) | 14.0.1.0.0 | Purchase Work Acceptance Evaluation
 [purchase_work_acceptance_invoice_plan](purchase_work_acceptance_invoice_plan/) | 14.0.1.0.1 | Purchase Work Acceptance Invoice Plan
+[purchase_work_acceptance_late_fines](purchase_work_acceptance_late_fines/) | 14.0.1.0.0 | Purchase Work Acceptance - Late Delivery Fines
 
 [//]: # (end addons)
 
