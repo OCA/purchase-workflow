@@ -38,6 +38,7 @@ setuptools.setup(
         'odoo14-addon-purchase_work_acceptance',
         'odoo14-addon-purchase_work_acceptance_evaluation',
         'odoo14-addon-purchase_work_acceptance_invoice_plan',
+        'odoo14-addon-purchase_work_acceptance_late_fines',
     ],
     classifiers=[
         'Programming Language :: Python',
