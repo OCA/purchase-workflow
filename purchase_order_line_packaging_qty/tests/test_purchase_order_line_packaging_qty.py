@@ -29,7 +29,7 @@ class TestPurchaseOrderLinePackagingQty(SavepointCase):
                 "date_planned": fields.Datetime.today(),
             }
         )
-        order_line.write({"product_packaging": self.packaging})
+        order_line.write({"product_packaging": self.packaging.id})
         order_line._onchange_product_packaging()
         self.assertEqual(order_line.product_uom_qty, 5.0)
         self.assertEqual(order_line.product_packaging_qty, 1.0)

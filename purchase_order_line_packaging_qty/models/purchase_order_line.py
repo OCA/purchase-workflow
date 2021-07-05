@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
+from odoo.addons import decimal_precision as dp
 
 
 class PurchaseOrderLine(models.Model):
@@ -18,7 +19,7 @@ class PurchaseOrderLine(models.Model):
         string="Package quantity",
         compute="_compute_product_packaging_qty",
         inverse="_inverse_product_packaging_qty",
-        digits="Product Unit of Measure",
+        digits=dp.get_precision("Product Unit of Measure"),
     )
 
     @api.depends(
