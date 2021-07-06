@@ -27,10 +27,14 @@ class TestPoAmountBlock(TransactionCase):
         self.product3 = self.env.ref("product.product_product_11")
         # Create users
         self.user1_id = self._create_user(
-            "user_1", [self.group_purchase_user], self.company1,
+            "user_1",
+            [self.group_purchase_user],
+            self.company1,
         )
         self.user2_id = self._create_user(
-            "user_2", [self.group_purchase_manager], self.company1,
+            "user_2",
+            [self.group_purchase_manager],
+            self.company1,
         )
 
     def _create_user(self, login, groups, company):
@@ -50,7 +54,7 @@ class TestPoAmountBlock(TransactionCase):
         return user.id
 
     def _create_purchase(self, line_products):
-        """ Create a purchase order.
+        """Create a purchase order.
         ``line_products`` is a list of tuple [(product, qty)]
         """
         lines = []
