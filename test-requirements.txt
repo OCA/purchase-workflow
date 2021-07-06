@@ -1,0 +1,1 @@
+odoo14-addon-purchase_exception @ git+https://github.com/OCA/purchase-workflow@refs/pull/1215/head#subdirectory=setup/purchase_exception
