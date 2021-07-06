@@ -56,7 +56,7 @@ class TestPurchaseOrderApprovalBlock(TransactionCase):
         return user.id
 
     def _create_purchase(self, line_products):
-        """ Create a purchase order.
+        """Create a purchase order.
         ``line_products`` is a list of tuple [(product, qty)]
         """
         lines = []
