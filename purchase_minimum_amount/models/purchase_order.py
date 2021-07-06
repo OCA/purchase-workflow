@@ -9,7 +9,8 @@ class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
     minimum_po_amount = fields.Float(
-        related="partner_id.minimum_po_amount", string="Purchase Minimum Amount",
+        related="partner_id.minimum_po_amount",
+        string="Purchase Minimum Amount",
     )
 
     @api.constrains("partner_id")
