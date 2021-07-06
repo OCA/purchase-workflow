@@ -42,12 +42,11 @@
             </form>
         </field>
     </record>
-    <act_window
-        id="action_purchase_approval_block_reason"
-        name="Purchase Approval Block Reasons"
-        res_model="purchase.approval.block.reason"
-        view_mode="tree,form"
-    />
+    <record id="action_purchase_approval_block_reason" model="ir.actions.act_window">
+        <field name="name">Purchase Approval Block Reasons</field>
+        <field name="res_model">purchase.approval.block.reason</field>
+        <field name="view_mode">tree,form</field>
+    </record>
     <menuitem
         id="menu_purchase_approval_block_reason"
         name="Purchase Approval Block Reasons"
