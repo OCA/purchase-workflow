@@ -35,7 +35,7 @@ class TestPoApprovalBlockReason(TestPurchaseOrderApprovalBlock):
         # The purchase user validates the RFQ with block, and is now to approve
         purchase.with_user(self.user2_id).button_confirm()
         purchase.company_id.po_double_validation = False
-        self.assertEquals(purchase.state, "draft")
+        self.assertEqual(purchase.state, "draft")
 
         # Simulation the opening of the wizard purchase_exception_confirm and
         # set ignore_exception to True
@@ -63,7 +63,7 @@ class TestPoApprovalBlockReason(TestPurchaseOrderApprovalBlock):
         purchase.approval_block_id = self.po_approval_block_reason.id
         # The purchase user validates the RFQ with block, and is now to approve
         purchase.with_user(self.user2_id).button_confirm()
-        self.assertEquals(purchase.state, "draft")
+        self.assertEqual(purchase.state, "draft")
 
         purchase.with_user(self.user2_id).button_approve()
 
