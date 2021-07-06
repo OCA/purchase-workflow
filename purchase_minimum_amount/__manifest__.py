@@ -4,7 +4,7 @@
 {
     "name": "Purchase Minimum Amount",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
-    "version": "13.0.1.0.0",
+    "version": "14.0.1.0.0",
     "website": "https://github.com/OCA/purchase-workflow",
     "depends": ["purchase_order_approval_block"],
     "data": [
