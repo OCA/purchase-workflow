@@ -8,10 +8,12 @@ class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
     approval_block_id = fields.Many2one(
-        comodel_name="purchase.approval.block.reason", string="Approval Block Reason",
+        comodel_name="purchase.approval.block.reason",
+        string="Approval Block Reason",
     )
     approval_blocked = fields.Boolean(
-        "Approval Blocked", compute="_compute_approval_blocked",
+        "Approval Blocked",
+        compute="_compute_approval_blocked",
     )
 
     @api.depends("approval_block_id")
