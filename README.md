@@ -24,6 +24,7 @@ addon | version | summary
 [purchase_commercial_partner](purchase_commercial_partner/) | 14.0.1.0.0 | Add stored related field 'Commercial Supplier' on POs
 [purchase_delivery_split_date](purchase_delivery_split_date/) | 14.0.1.0.2 | Allows Purchase Order you confirm to generate one Incoming Shipment for each expected date indicated in the Purchase Order Lines
 [purchase_discount](purchase_discount/) | 14.0.1.0.1 | Purchase order lines with discounts
+[purchase_exception](purchase_exception/) | 14.0.1.0.0 | Custom exceptions on purchase order
 [purchase_invoice_plan](purchase_invoice_plan/) | 14.0.1.0.1 | Add to purchases order, ability to manage future invoice plan
 [purchase_isolated_rfq](purchase_isolated_rfq/) | 14.0.1.0.1 | Purchase Isolated RFQ
 [purchase_last_price_info](purchase_last_price_info/) | 14.0.1.0.0 | Purchase Product Last Price Info
