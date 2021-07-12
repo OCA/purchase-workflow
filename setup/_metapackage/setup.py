@@ -13,6 +13,7 @@ setuptools.setup(
         'odoo14-addon-purchase_commercial_partner',
         'odoo14-addon-purchase_delivery_split_date',
         'odoo14-addon-purchase_discount',
+        'odoo14-addon-purchase_exception',
         'odoo14-addon-purchase_invoice_plan',
         'odoo14-addon-purchase_isolated_rfq',
         'odoo14-addon-purchase_last_price_info',
