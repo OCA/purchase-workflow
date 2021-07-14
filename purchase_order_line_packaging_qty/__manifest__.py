@@ -13,6 +13,6 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": ["purchase_stock"],
+    "depends": ["purchase_stock", "stock_move_packaging_qty"],
     "data": ["views/purchase_order.xml"],
 }

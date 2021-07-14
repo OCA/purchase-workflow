@@ -108,3 +108,10 @@ class PurchaseOrderLine(models.Model):
                 },
             }
         return {}
+
+    def _prepare_stock_moves(self, picking):
+        res = super()._prepare_stock_moves(picking)
+        if res and res[0]:
+            res[0]["product_packaging"] = self.product_packaging.id
+            res[0]["product_packaging_qty"] = self.product_packaging_qty
+        return res
