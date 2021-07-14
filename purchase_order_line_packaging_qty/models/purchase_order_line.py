@@ -34,7 +34,7 @@ class PurchaseOrderLine(models.Model):
             ):
                 pol.product_packaging_qty = 0
                 continue
-            # Consider uom
+            # Consider UOM
             if pol.product_id.uom_id != pol.product_uom:
                 product_qty = pol.product_uom._compute_quantity(
                     pol.product_qty, pol.product_id.uom_id
@@ -109,3 +109,11 @@ class PurchaseOrderLine(models.Model):
                 },
             }
         return {}
+
+    @api.multi
+    def _prepare_stock_moves(self, picking):
+        res = super()._prepare_stock_moves(picking)
+        if res and res[0]:
+            res[0]["product_packaging"] = self.product_packaging.id
+            res[0]["product_packaging_qty"] = self.product_packaging_qty
+        return res
