@@ -1,0 +1,37 @@
+<odoo>
+    <record id="view_purchase_request_form" model="ir.ui.view">
+        <field name="name">purchase.request.form</field>
+        <field name="model">purchase.request</field>
+        <field name="inherit_id" ref="purchase_request.view_purchase_request_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//page//field[@name='line_ids']/form//field[@name='estimated_cost']"
+                position="before"
+            >
+                <field name="manual_currency" />
+                <field
+                    name="manual_currency_id"
+                    attrs="{'invisible': [('manual_currency', '=', False)], 'required': [('manual_currency', '=', True)]}"
+                />
+                <field name="is_manual" invisible="1" />
+                <field
+                    name="custom_rate"
+                    attrs="{'invisible': [('manual_currency', '=', False)], 'required': [('manual_currency', '=', True)]}"
+                />
+                <field
+                    name="manual_currency_cost"
+                    attrs="{'invisible': [('manual_currency', '=', False)], 'required': [('manual_currency', '=', True)]}"
+                />
+            </xpath>
+            <xpath
+                expr="//page//field[@name='line_ids']/form//field[@name='estimated_cost']"
+                position="attributes"
+            >
+                <attribute
+                    name="attrs"
+                >{'readonly': ['|', ('is_editable','=', False), ('manual_currency','=', True)]}</attribute>
+                <attribute name="force_save">1</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
