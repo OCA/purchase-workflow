@@ -15,6 +15,7 @@
         "views/res_config_settings_views.xml",
         "views/work_acceptance_evaluation_views.xml",
         "views/work_acceptance_views.xml",
+        "report/work_acceptance_evaluation_report.xml",
     ],
     "demo": ["demo/evaluation_data.xml"],
     "maintainers": ["kittiu"],
