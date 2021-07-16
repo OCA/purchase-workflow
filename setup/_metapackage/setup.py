@@ -32,6 +32,7 @@ setuptools.setup(
         'odoo14-addon-purchase_reception_notify',
         'odoo14-addon-purchase_reception_status',
         'odoo14-addon-purchase_request',
+        'odoo14-addon-purchase_request_cancel_confirm',
         'odoo14-addon-purchase_request_department',
         'odoo14-addon-purchase_request_tier_validation',
         'odoo14-addon-purchase_requisition_tier_validation',
