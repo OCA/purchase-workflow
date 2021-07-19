@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+     Copyright 2017 ForgeFlow S.L.
+     Copyright 2017 Serpent Consulting Services Pvt. Ltd.
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
+-->
+<odoo>
+    <record id="minimum_amount_block_reason" model="purchase.approval.block.reason">
+        <field name="name">Minimum Amount per Vendor</field>
+        <field
+            name="description"
+        >Set total minimum amount (before taxes) for a vendor.</field>
+    </record>
+</odoo>

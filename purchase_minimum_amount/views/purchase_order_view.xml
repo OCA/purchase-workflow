@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+     Copyright 2017 ForgeFlow S.L.
+     Copyright 2017 Serpent Consulting Services Pvt. Ltd.
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
+-->
+<odoo>
+    <record id="purchase_order_form_inherit" model="ir.ui.view">
+        <field name="name">purchase.order.form.minimum.po.amount</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <field name="date_order" position="after">
+                <field name="minimum_po_amount" />
+            </field>
+            <xpath
+                expr="//button[@name='button_release_approval_block']"
+                position="attributes"
+            >
+                <attribute
+                    name="attrs"
+                >{'invisible': ['|',('approval_block_id', '=', False),('state', 'not in', ['draft', 'sent', 'to approve'])]}</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_purchase_order_filter_inherit" model="ir.ui.view">
+        <field name="name">request.quotation.minimum.block.reason</field>
+        <field name="model">purchase.order</field>
+        <field
+            name="inherit_id"
+            ref="purchase_order_approval_block.view_purchase_order_filter"
+        />
+        <field name="arch" type="xml">
+            <filter name="blocked_po" position="attributes">
+                <attribute
+                    name="domain"
+                >[('approval_block_id', '!=', False)]</attribute>
+            </filter>
+        </field>
+    </record>
+</odoo>

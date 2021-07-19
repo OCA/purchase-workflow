@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+     Copyright 2017 ForgeFlow S.L.
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
+-->
+<odoo>
+    <record id="purchase_approval_block_reason_tree_view" model="ir.ui.view">
+        <field name="name">purchase.approval.block.reason.tree</field>
+        <field name="model">purchase.approval.block.reason</field>
+        <field name="arch" type="xml">
+            <tree string="Purchase Order Approval Block Reasons">
+                <field name="name" />
+                <field name="description" />
+            </tree>
+        </field>
+    </record>
+    <record id="purchase_approval_block_reason_form_view" model="ir.ui.view">
+        <field name="name">purchase.approval.block.reason.form</field>
+        <field name="model">purchase.approval.block.reason</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_button_box" name="active_button_box">
+                        <button
+                            name="toggle_active"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-archive"
+                        >
+                            <field
+                                name="active"
+                                widget="boolean_button"
+                                options='{"terminology": "archive"}'
+                            />
+                        </button>
+                    </div>
+                    <group name="top" colspan="2" col="2">
+                        <field name="name" />
+                        <field name="description" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_purchase_approval_block_reason" model="ir.actions.act_window">
+        <field name="name">Purchase Approval Block Reasons</field>
+        <field name="res_model">purchase.approval.block.reason</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem
+        id="menu_purchase_approval_block_reason"
+        name="Purchase Approval Block Reasons"
+        parent="purchase.menu_purchase_config"
+        action="action_purchase_approval_block_reason"
+    />
+</odoo>
