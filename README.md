@@ -48,6 +48,7 @@ addon | version | summary
 [purchase_request_cancel_confirm](purchase_request_cancel_confirm/) | 14.0.1.0.0 | Purchase Request Cancel Confirm
 [purchase_request_department](purchase_request_department/) | 14.0.1.0.0 | Purchase Request Department
 [purchase_request_tier_validation](purchase_request_tier_validation/) | 14.0.2.0.0 | Extends the functionality of Purchase Requests to support a tier validation process.
+[purchase_request_type](purchase_request_type/) | 14.0.1.0.0 | Purchase Request Type
 [purchase_requisition_tier_validation](purchase_requisition_tier_validation/) | 14.0.1.0.0 | Extends the functionality of Purchase Agreements to support a tier validation process.
 [purchase_rfq_number](purchase_rfq_number/) | 14.0.1.0.0 | Different sequence for purchase for quotations
 [purchase_security](purchase_security/) | 14.0.1.0.0 | See only your purchase orders
