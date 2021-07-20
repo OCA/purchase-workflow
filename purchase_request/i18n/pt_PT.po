@@ -327,6 +327,7 @@ msgid "Creation date"
 msgstr ""
 
 #. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request__currency_id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__currency_id
 msgid "Currency"
 msgstr ""
@@ -1291,6 +1292,11 @@ msgstr "Aprovada"
 #. module: purchase_request
 #: model:ir.model.fields.selection,name:purchase_request.selection__purchase_request__state__to_approve
 msgid "To be approved"
+msgstr ""
+
+#. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request__estimated_cost
+msgid "Total Estimated Cost"
 msgstr ""
 
 #. module: purchase_request
