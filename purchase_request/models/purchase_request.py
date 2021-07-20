@@ -149,6 +149,17 @@ class PurchaseRequest(models.Model):
     purchase_count = fields.Integer(
         string="Purchases count", compute="_compute_purchase_count", readonly=True
     )
+    currency_id = fields.Many2one(related="company_id.currency_id", readonly=True)
+    estimated_cost = fields.Monetary(
+        compute="_compute_estimated_cost",
+        string="Total Estimated Cost",
+        store=True,
+    )
+
+    @api.depends("line_ids", "line_ids.estimated_cost")
+    def _compute_estimated_cost(self):
+        for rec in self:
+            rec.estimated_cost = sum(rec.line_ids.mapped("estimated_cost"))
 
     @api.depends("line_ids")
     def _compute_purchase_count(self):

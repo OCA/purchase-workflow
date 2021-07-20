@@ -293,6 +293,20 @@
                                     </sheet>
                                 </form>
                             </field>
+                            <group class="oe_subtotal_footer oe_right">
+                                <field name="currency_id" invisible="1" />
+                                <div class="oe_subtotal_footer_separator oe_inline">
+                                    <label for="estimated_cost" />
+                                </div>
+                                <field
+                                    name="estimated_cost"
+                                    nolabel="1"
+                                    class="oe_subtotal_footer_separator"
+                                    widget="monetary"
+                                    options="{'currency_field': 'currency_id'}"
+                                />
+                            </group>
+
                         </page>
                     </notebook>
                 </sheet>
@@ -325,6 +339,8 @@
                 />
                 <field name="activity_ids" widget="list_activity" optional="show" />
                 <field name="origin" />
+                <field name="currency_id" invisible="1" />
+                <field name="estimated_cost" optional="hide" />
                 <field
                     name="state"
                     widget="badge"
