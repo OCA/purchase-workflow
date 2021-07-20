@@ -22,6 +22,7 @@ setuptools.setup(
         'odoo14-addon-purchase_minimum_amount',
         'odoo14-addon-purchase_open_qty',
         'odoo14-addon-purchase_order_approval_block',
+        'odoo14-addon-purchase_order_approved',
         'odoo14-addon-purchase_order_archive',
         'odoo14-addon-purchase_order_line_deep_sort',
         'odoo14-addon-purchase_order_line_menu',
