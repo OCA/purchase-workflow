@@ -17,6 +17,15 @@
             </xpath>
         </field>
     </record>
+    <record model="ir.ui.view" id="account_invoice_form_supplied_product">
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form" />
+        <field name="arch" type="xml">
+            <field name="invoice_line_ids" position="before">
+                <field name="use_only_supplied_product" invisible="1" />
+            </field>
+        </field>
+    </record>
     <record model="ir.ui.view" id="invoice_line_form_supplied_product">
         <field name="model">account.invoice.line</field>
         <field name="inherit_id" ref="account.view_invoice_line_form" />
