@@ -5,7 +5,7 @@
     'name': 'Account Invoice Allowed Product',
     'summary': 'This module allows to select only products that can be '
                'supplied by the supplier',
-    'version': '11.0.1.0.0',
+    'version': '11.0.1.1.0',
     'category': 'Accounting & Finance',
     'website': 'https://github.com/OCA/purchase-workflow',
     'author': 'Akretion, Odoo Community Association (OCA)',
