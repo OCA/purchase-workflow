@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
+-->
+<odoo>
+    <record id="stock_picking_form" model="ir.ui.view">
+        <field name="name">stock.picking.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <field name="origin" position="after">
+                <field name="purchase_id" invisible="1" />
+                <field name="show_currency_rate_amount" invisible="1" />
+                <div class="o_td_label">
+                    <field
+                        name="purchase_currency_id"
+                        groups="base.group_multi_currency"
+                        attrs="{'invisible':[('show_currency_rate_amount', '=', False)]}"
+                        nolabel="1"
+                        class="oe_inline"
+                    />
+                </div>
+                <field
+                    name="currency_rate_amount"
+                    groups="base.group_multi_currency"
+                    digits="[12,12]"
+                    attrs="{'invisible':[('show_currency_rate_amount', '=', False)]}"
+                    nolabel="1"
+                    class="oe_inline"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
