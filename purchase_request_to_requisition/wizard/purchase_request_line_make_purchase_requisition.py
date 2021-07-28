@@ -75,6 +75,7 @@ class PurchaseRequestLineMakePurchaseRequisition(models.TransientModel):
             "product_uom_id": item.product_uom_id.id,
             "purchase_request_lines": [(4, item.line_id.id)],
             "account_analytic_id": item.line_id.analytic_account_id.id or False,
+            "product_description_variants": item.name,
         }
 
     @api.model
