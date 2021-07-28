@@ -1,7 +1,7 @@
 # @author Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo.exceptions import ValidationError
+from odoo.exceptions import AccessError, ValidationError
 from odoo.tests.common import Form, SavepointCase
 
 
@@ -21,6 +21,7 @@ class TestQuickPurchase(SavepointCase):
         self.partner = self.env.ref("base.res_partner_1")
         self.uom_unit = self.env.ref("uom.product_uom_unit")
         self.uom_dozen = self.env.ref("uom.product_uom_dozen")
+        self.user = self.env.ref("base.user_demo")
         self._setUpBasicSaleOrder()
 
     def test_quick_line_add_1(self):
@@ -113,3 +114,24 @@ class TestQuickPurchase(SavepointCase):
         self.po.order_line[0].copy()
         with self.assertRaises(ValidationError):
             self.product_1.qty_to_process = 3.0
+
+    def test_purchaser_can_edit_products(self):
+        """
+        While in the quick purchase interface, a purchaser with no edit rights
+        on product.product can still edit product.product quick quantities
+        """
+        po = self.env["purchase.order"].create({"partner_id": self.partner.id})
+        ctx = {
+            "parent_id": po.id,
+            "parent_model": "purchase.order",
+            "quick_access_rights_purchase": 1,
+        }
+        product = self.env.ref("product.product_product_8")
+        with self.assertRaises(AccessError):
+            product.with_user(self.user).write(
+                {"qty_to_process": 5.0, "quick_uom_id": self.uom_unit.id}
+            )
+        product_in_quick_edit = product.with_user(self.user).with_context(ctx)
+        product_in_quick_edit.write(
+            {"qty_to_process": 5.0, "quick_uom_id": self.uom_unit.id}
+        )
