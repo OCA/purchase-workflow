@@ -63,3 +63,12 @@ class ProductProduct(models.Model):
         return super(ProductProduct, self).search(
             args, offset=offset, limit=limit, order=order, count=count
         )
+
+    @api.model
+    def check_access_rights(self, operation, raise_exception=True):
+        """ hijack product edition rights if we're in the mass edition menu """
+        if self.env.context.get("quick_access_rights_purchase"):
+            return self.env["purchase.order.line"].check_access_rights(
+                operation, raise_exception
+            )
+        return super().check_access_rights(operation, raise_exception)

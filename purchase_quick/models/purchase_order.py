@@ -19,6 +19,7 @@ class PurchaseOrder(models.Model):
             {
                 "search_default_filter_to_purchase": 1,
                 "search_default_filter_for_current_supplier": 1,
+                "quick_access_rights_purchase": 1,
             }
         )
         commercial = self.partner_id.commercial_partner_id.name
