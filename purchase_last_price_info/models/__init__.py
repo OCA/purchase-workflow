@@ -1,2 +1,2 @@
-from . import product
-from . import purchase
+from . import product_product
+from . import product_template
