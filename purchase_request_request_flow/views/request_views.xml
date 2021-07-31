@@ -1,0 +1,56 @@
+<odoo>
+
+    <record id="request_request_view_form" model="ir.ui.view">
+        <field name="name">request.request.view.form</field>
+        <field name="model">request.request</field>
+        <field name="inherit_id" ref="request_flow.request_request_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='has_access_to_request']" position="after">
+                <field name="use_pr" invisible="1" />
+                <button
+                    name="create_child_doc"
+                    string="Create PR"
+                    type="object"
+                    attrs="{'invisible':['|','|',('use_pr','=',False),('state','!=','draft'),('purchase_request_count','=',0)]}"
+                    context="{'action_id': 'purchase_request.purchase_request_form_action'}"
+                />
+                <button
+                    name="create_child_doc"
+                    string="Create PR"
+                    type="object"
+                    class="btn-primary"
+                    attrs="{'invisible':['|','|',('use_pr','=',False),('state','!=','draft'),('purchase_request_count','>',0)]}"
+                    context="{'action_id': 'purchase_request.purchase_request_form_action'}"
+                />
+            </xpath>
+            <xpath expr="//button[@name='action_get_attachment_view']" position="after">
+                <button
+                    name="view_child_doc"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-shopping-cart"
+                    attrs="{'invisible':[('use_pr','=',False)]}"
+                    context="{'action_id': 'purchase_request.purchase_request_form_action'}"
+                >
+                    <field
+                        name="purchase_request_count"
+                        string="PR"
+                        widget="statinfo"
+                    />
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="request_request_view_search" model="ir.ui.view">
+        <field name="name">request.request.search</field>
+        <field name="model">request.request</field>
+        <field name="inherit_id" ref="request_flow.request_request_view_search" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="purchase_request_ids" />
+            </field>
+        </field>
+    </record>
+
+</odoo>

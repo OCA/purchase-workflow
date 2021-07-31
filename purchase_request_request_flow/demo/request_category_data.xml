@@ -1,0 +1,31 @@
+<odoo noupdate="1">
+
+    <record id="request_category_data_purchase_request" model="request.category">
+        <field name="name">Purchase Request</field>
+        <field
+            name="image"
+            type="base64"
+            file="purchase_request_request_flow/static/src/img/shopping-cart-svgrepo-com.svg"
+        />
+        <field
+            name="approved_action_id"
+            ref="action_request_flow_approve_child_doc_pr"
+        />
+        <field name="refused_action_id" ref="action_request_flow_reject_child_doc_pr" />
+        <field name="sequence">100</field>
+        <field name="automated_sequence" eval="True" />
+        <field name="sequence_code">RQPR</field>
+        <field name="has_date">optional</field>
+    </record>
+
+    <record
+        id="child_doc_option_purchase_request"
+        model="request.category.child.doc.option"
+    >
+        <field name="category_id" ref="request_category_data_purchase_request" />
+        <field name="model">purchase.request</field>
+        <field name="approved_action_id" eval="False" />
+        <field name="rejected_action_id" eval="False" />
+    </record>
+
+</odoo>

@@ -1,0 +1,22 @@
+<odoo>
+
+    <!-- Server actions for PR -->
+    <record id="action_request_flow_approve_child_doc_pr" model="ir.actions.server">
+        <field name="name">Request Flow: Approve PR</field>
+        <field name="model_id" ref="request_flow.model_request_request" />
+        <field name="state">code</field>
+        <field name="code">
+record.purchase_request_ids.filtered(lambda l: l.state=="to_approve").button_approved()
+        </field>
+    </record>
+
+    <record id="action_request_flow_reject_child_doc_pr" model="ir.actions.server">
+        <field name="name">Request Flow - PR: Reject PR</field>
+        <field name="model_id" ref="request_flow.model_request_request" />
+        <field name="state">code</field>
+        <field name="code">
+record.purchase_request_ids.filtered(lambda l: l.state=="to_approve").button_rejected()
+        </field>
+    </record>
+
+</odoo>
