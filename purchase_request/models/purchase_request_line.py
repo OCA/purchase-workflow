@@ -92,6 +92,7 @@ class PurchaseRequestLine(models.Model):
         comodel_name="res.partner",
         string="Preferred supplier",
         compute="_compute_supplier_id",
+        compute_sudo=True,
         store=True,
     )
     cancelled = fields.Boolean(
@@ -275,10 +276,10 @@ class PurchaseRequestLine(models.Model):
     @api.depends("product_id", "product_id.seller_ids")
     def _compute_supplier_id(self):
         for rec in self:
-            rec.supplier_id = False
-            if rec.product_id:
-                if rec.product_id.seller_ids:
-                    rec.supplier_id = rec.product_id.seller_ids[0].name
+            sellers = rec.product_id.seller_ids.filtered(
+                lambda si: not si.company_id or si.company_id == rec.company_id
+            )
+            rec.supplier_id = sellers[0].name if sellers else False
 
     @api.onchange("product_id")
     def onchange_product_id(self):
