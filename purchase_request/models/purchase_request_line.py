@@ -239,6 +239,7 @@ class PurchaseRequestLine(models.Model):
     product_id = fields.Many2one(
         'product.product', 'Product',
         domain=[('purchase_ok', '=', True)],
+        index=True,
         track_visibility='onchange')
 
     @api.onchange('product_id')
