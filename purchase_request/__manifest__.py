@@ -8,6 +8,7 @@
     "summary": "Use this module to have notification of requirements of "
     "materials and/or external services and keep track of such "
     "requirements.",
+    "website": "https://github.com/OCA/purchase-workflow",
     "category": "Purchase Management",
     "depends": ["purchase", "product", "purchase_stock"],
     "data": [
