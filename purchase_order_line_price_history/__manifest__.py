@@ -5,7 +5,7 @@
     "version": "13.0.1.0.0",
     "category": "Purchase Management",
     "author": "Tecnativa, Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/purchase-workflow/",
+    "website": "https://github.com/OCA/purchase-workflow",
     "license": "AGPL-3",
     "depends": ["purchase"],
     "data": [
