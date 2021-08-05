@@ -9,6 +9,11 @@
             <button name="button_draft" position="attributes">
                 <attribute name="states">cancel,to approve,approved</attribute>
             </button>
+            <button name="button_cancel" position="attributes">
+                <attribute
+                    name="states"
+                >draft,to approve,approved,sent,purchase</attribute>
+            </button>
             <button name="button_approve" position="after">
                 <button
                     name="button_release"
