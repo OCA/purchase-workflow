@@ -25,6 +25,20 @@
             </field>
         </field>
     </record>
+    <record id="view_purchase_order_filter" model="ir.ui.view">
+        <field name="name">request.quotation.select - purchase_order_approved</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.view_purchase_order_filter" />
+        <field name="arch" type="xml">
+            <filter name="approved" position="before">
+                <filter
+                    name="purchase_order_approved"
+                    string="Approved Orders"
+                    domain="[('state', '=', 'approved')]"
+                />
+            </filter>
+        </field>
+    </record>
     <record id="purchase.purchase_form_action" model="ir.actions.act_window">
         <field name="domain">[('state','in',('approved', 'purchase', 'done'))]</field>
     </record>
