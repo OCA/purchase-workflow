@@ -18,6 +18,20 @@ stages:
 
 jobs:
   include:
+    # Test separately: purchase_cancel_reason
+    - stage: test
+      env:
+        - TESTS=1 ODOO_REPO="odoo/odoo" MAKEPOT=1 INCLUDE="purchase_cancel_reason"
+    - stage: test
+      env:
+        - TESTS=1 ODOO_REPO="OCA/OCB" INCLUDE="purchase_cancel_reason"
+    # Test separately: purchase_cancel_confirm
+    - stage: test
+      env:
+        - TESTS=1 ODOO_REPO="odoo/odoo" MAKEPOT=1 INCLUDE="purchase_cancel_confirm"
+    - stage: test
+      env:
+        - TESTS=1 ODOO_REPO="OCA/OCB" INCLUDE="purchase_cancel_confirm"
     # Test separately: purchase_order_type
     - stage: test
       env:
@@ -36,10 +50,11 @@ jobs:
     - stage: test
       env:
         - TESTS=1 ODOO_REPO="odoo/odoo" MAKEPOT=1
-          EXCLUDE="purchase_order_type,purchase_quick"
+          EXCLUDE="purchase_cancel_reason,purchase_cancel_confirm,purchase_order_type,purchase_quick"
     - stage: test
       env:
-        - TESTS=1 ODOO_REPO="OCA/OCB" EXCLUDE="purchase_order_type,purchase_quick"
+        - TESTS=1 ODOO_REPO="OCA/OCB"
+          EXCLUDE="purchase_cancel_reason,purchase_cancel_confirm,purchase_order_type,purchase_quick"
 env:
   global:
     - VERSION="14.0" TESTS="0" LINT_CHECK="0" MAKEPOT="0"
