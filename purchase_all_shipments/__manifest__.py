@@ -4,6 +4,7 @@
     "name": "Purchase All Shipments",
     "version": "13.0.1.0.0",
     "author": "Camptocamp,Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/purchase-workflow",
     "category": "Purchases",
     "license": "AGPL-3",
     "depends": ["purchase_stock"],
