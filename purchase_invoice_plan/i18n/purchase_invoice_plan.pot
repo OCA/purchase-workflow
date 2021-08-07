@@ -14,6 +14,12 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: purchase_invoice_plan
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__amount
+#: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_invoice_plan_tree_readonly
+msgid "Amount"
+msgstr ""
+
+#. module: purchase_invoice_plan
 #: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.purchase_order_form
 msgid "Are you sure to remove this invoice plan?"
 msgstr ""
@@ -176,6 +182,11 @@ msgid "Invoices"
 msgstr ""
 
 #. module: purchase_invoice_plan
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__last
+msgid "Last Installment"
+msgstr ""
+
+#. module: purchase_invoice_plan
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_create_invoice_plan____last_update
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan____last_update
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_make_planned_invoice____last_update
@@ -195,6 +206,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__write_date
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_make_planned_invoice__write_date
 msgid "Last Updated on"
+msgstr ""
+
+#. module: purchase_invoice_plan
+#: model:ir.model.fields,help:purchase_invoice_plan.field_purchase_invoice_plan__last
+msgid "Last installment will create invoice use remaining amount"
 msgstr ""
 
 #. module: purchase_invoice_plan
@@ -220,6 +236,8 @@ msgstr ""
 
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__percent
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_order__ip_total_percent
+#: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_invoice_plan_tree_readonly
 msgid "Percent"
 msgstr ""
 
@@ -302,11 +320,8 @@ msgid "Supplier"
 msgstr ""
 
 #. module: purchase_invoice_plan
-#: code:addons/purchase_invoice_plan/models/purchase.py:0
-#, python-format
-msgid ""
-"There is no invoiceable line. If a product has aDelivered quantities "
-"invoicing policy, please make surethat a quantity has been delivered."
+#: model:ir.model.fields,help:purchase_invoice_plan.field_purchase_invoice_plan__amount
+msgid "This amount will be used to calculate the percent"
 msgstr ""
 
 #. module: purchase_invoice_plan
@@ -327,6 +342,11 @@ msgstr ""
 #. module: purchase_invoice_plan
 #: model_terms:ir.ui.view,arch_db:purchase_invoice_plan.view_purchase_invoice_plan_filter
 msgid "To Approve"
+msgstr ""
+
+#. module: purchase_invoice_plan
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_order__ip_total_amount
+msgid "Total Amount"
 msgstr ""
 
 #. module: purchase_invoice_plan
