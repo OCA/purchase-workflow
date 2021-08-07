@@ -7,9 +7,11 @@
                 <field name="installment" />
                 <field name="plan_date" />
                 <field name="invoice_type" />
-                <field name="percent" />
+                <field name="percent" optional="show" />
+                <field name="amount" optional="show" />
                 <field name="to_invoice" />
                 <field name="invoiced" />
+                <field name="invoice_ids" optional="hide" widget="many2many_tags" />
             </tree>
         </field>
     </record>
@@ -27,6 +29,7 @@
                     <group>
                         <field name="invoice_type" />
                         <field name="percent" />
+                        <field name="amount" />
                         <field name="invoiced" />
                     </group>
                 </group>
@@ -84,6 +87,10 @@
                         context="{'tree_view_ref': 'view_purchase_invoice_plan_tree'}"
                         attrs="{'invisible': [('invoice_plan_ids', '=', [])], 'readonly': [('invoice_count', '>', 0)]}"
                     />
+                    <group class="oe_subtotal_footer oe_right">
+                        <field name="ip_total_percent" />
+                        <field name="ip_total_amount" />
+                    </group>
                 </page>
             </xpath>
         </field>
@@ -164,9 +171,11 @@
                 <field name="installment" />
                 <field name="plan_date" />
                 <field name="invoice_type" />
-                <field name="percent" />
+                <field name="percent" optional="show" sum="Percent" />
+                <field name="amount" optional="show" sum="Amount" />
                 <field name="to_invoice" />
                 <field name="invoiced" />
+                <field name="invoice_ids" widget="many2many_tags" />
             </tree>
         </field>
     </record>
