@@ -26,7 +26,7 @@ addon | version | summary
 [purchase_discount](purchase_discount/) | 14.0.1.0.1 | Purchase order lines with discounts
 [purchase_exception](purchase_exception/) | 14.0.1.0.0 | Custom exceptions on purchase order
 [purchase_fop_shipping](purchase_fop_shipping/) | 14.0.1.0.0 | Purchase Free-Of-Payment shipping
-[purchase_invoice_plan](purchase_invoice_plan/) | 14.0.1.0.1 | Add to purchases order, ability to manage future invoice plan
+[purchase_invoice_plan](purchase_invoice_plan/) | 14.0.1.1.0 | Add to purchases order, ability to manage future invoice plan
 [purchase_isolated_rfq](purchase_isolated_rfq/) | 14.0.1.0.1 | Purchase Isolated RFQ
 [purchase_last_price_info](purchase_last_price_info/) | 14.0.1.0.0 | Purchase Product Last Price Info
 [purchase_location_by_line](purchase_location_by_line/) | 14.0.1.0.1 | Allows to define a specific destination location on each PO line
