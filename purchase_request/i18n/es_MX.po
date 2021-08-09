@@ -9,10 +9,10 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-17 03:38+0000\n"
-"PO-Revision-Date: 2021-02-02 20:44+0000\n"
+"PO-Revision-Date: 2021-08-09 18:49+0000\n"
 "Last-Translator: Jesús Alan Ramos Rodríguez <alan.ramos@jarsa.com.mx>\n"
-"Language-Team: Spanish (Mexico) (http://www.transifex.com/oca/OCA-purchase-"
-"workflow-10-0/language/es_MX/)\n"
+"Language-Team: Spanish (Mexico) (http://www.transifex.com/oca/"
+"OCA-purchase-workflow-10-0/language/es_MX/)\n"
 "Language: es_MX\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -188,7 +188,7 @@ msgstr "Estado de Actividad"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__activity_type_icon
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__activity_type_icon
 msgid "Activity Type Icon"
-msgstr ""
+msgstr "Icono de Tipo de Actividad"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
@@ -215,7 +215,7 @@ msgstr "Cuenta Analítica"
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__analytic_tag_ids
 msgid "Analytic Tags"
-msgstr ""
+msgstr "Etiquetas Analíticas"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
@@ -457,7 +457,7 @@ msgstr "Seguidores (Socios)"
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__activity_type_icon
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
-msgstr ""
+msgstr "Icono Font Awesome ej. fa-tasks"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_request_allocation.py:0
@@ -538,7 +538,7 @@ msgstr "Es Seguidor"
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__is_name_editable
 msgid "Is Name Editable"
-msgstr ""
+msgstr "El Nombre es Editable"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__is_editable
@@ -628,7 +628,7 @@ msgstr "Regla de inventario mínimo"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__my_activity_date_deadline
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__my_activity_date_deadline
 msgid "My Activity Deadline"
-msgstr ""
+msgstr "Fecha límite de mi actividad"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
@@ -640,7 +640,7 @@ msgstr "Mis requisiciones"
 #: code:addons/purchase_request/models/purchase_request.py:0
 #, python-format
 msgid "New"
-msgstr ""
+msgstr "Nuevo"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_line_make_purchase_order
@@ -931,13 +931,13 @@ msgstr "La solicitud de compra está lista"
 #: model:mail.message.subtype,description:purchase_request.mt_request_rejected
 #: model:mail.message.subtype,name:purchase_request.mt_request_rejected
 msgid "Purchase Request rejected"
-msgstr ""
+msgstr "Solicitud de Compra rechazada"
 
 #. module: purchase_request
 #: model:mail.message.subtype,description:purchase_request.mt_request_to_approve
 #: model:mail.message.subtype,name:purchase_request.mt_request_to_approve
 msgid "Purchase Request to be approved"
-msgstr ""
+msgstr "Solicitud de compra por ser aprovada"
 
 #. module: purchase_request
 #: model:ir.actions.act_window,name:purchase_request.action_purchase_request_line_product_tree
@@ -948,58 +948,58 @@ msgstr ""
 #: model:ir.ui.menu,name:purchase_request.menu_purchase_request_pro_mgt
 #: model:ir.ui.menu,name:purchase_request.parent_menu_purchase_request
 msgid "Purchase Requests"
-msgstr ""
+msgstr "Solicitud de Compra"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__purchase_state
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Purchase Status"
-msgstr ""
+msgstr "Estatus de Compra"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__purchase_count
 msgid "Purchases count"
-msgstr ""
+msgstr "Cantidad de Compras"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Purchasing not started"
-msgstr ""
+msgstr "La compra no ha iniciado"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__qty_cancelled
 msgid "Qty Cancelled"
-msgstr ""
+msgstr "Cant. Cancelada"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__qty_done
 msgid "Qty Done"
-msgstr ""
+msgstr "Cant Hecha"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__qty_in_progress
 msgid "Qty In Progress"
-msgstr ""
+msgstr "Cant en Proceso"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__product_qty
 msgid "Quantity"
-msgstr ""
+msgstr "Cantidad"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__qty_cancelled
 msgid "Quantity cancelled"
-msgstr ""
+msgstr "Cantidad cancelada"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__qty_done
 msgid "Quantity completed"
-msgstr ""
+msgstr "Cantidad completada"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__qty_in_progress
 msgid "Quantity in progress."
-msgstr ""
+msgstr "Cantidad en proceso."
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_allocation__allocated_product_qty
@@ -1007,6 +1007,8 @@ msgid ""
 "Quantity of the purchase request line allocated to the stockmove, in the "
 "default UoM of the product"
 msgstr ""
+"Cantidad de la línea de solicitud de compra asignada al movimiento de stock, "
+"en la UdM predeterminada del producto"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_allocation__requested_product_uom_qty
