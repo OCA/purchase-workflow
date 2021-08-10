@@ -29,15 +29,6 @@ class AccountMove(models.Model):
             )
             rec.require_wa = self.wa_id and enforce_wa
 
-    @api.onchange("purchase_vendor_bill_id", "purchase_id")
-    def _onchange_purchase_auto_complete(self):
-        res = super()._onchange_purchase_auto_complete()
-        if self.wa_id:
-            self.write(
-                {"ref": self.wa_id.invoice_ref, "currency_id": self.wa_id.currency_id}
-            )
-        return res
-
     def action_post(self):
         for rec in self:
             if rec.wa_id:

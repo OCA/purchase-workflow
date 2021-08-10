@@ -85,7 +85,30 @@ class PurchaseOrder(models.Model):
                 "view_id": wizard.id,
                 "target": "new",
             }
-        return super().action_create_invoice()
+        res = super().action_create_invoice()
+        # Set 'ref' to WA
+        if (
+            ctx.get("wa_id")
+            and res.get("res_model") == "account.move"
+            and res.get("res_id")
+        ):
+            wa = self.env["work.acceptance"].browse(ctx["wa_id"])
+            invoice = self.env["account.move"].browse(res["res_id"])
+            # invoice.ref, adding "/ WA001"
+            refs = []
+            if invoice.ref:
+                refs.append(invoice.ref)
+            if wa.name:
+                refs.append(wa.name)
+            invoice.ref = " / ".join(refs)
+            # invoice.payment_reference, adding "/ <WA's invoice_ref>"
+            payment_refs = []
+            if invoice.payment_reference:
+                payment_refs.append(invoice.payment_reference)
+            if wa.invoice_ref:
+                payment_refs.append(wa.invoice_ref)
+            invoice.payment_reference = " / ".join(payment_refs)
+        return res
 
     def _compute_wa_accepted(self):
         for order in self:
