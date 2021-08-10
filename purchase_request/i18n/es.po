@@ -1334,7 +1334,6 @@ msgid "Wizard"
 msgstr "Asistente"
 
 #. module: purchase_request
-#: code:addons/purchase_request/models/purchase_request_line.py:371
 #: code:addons/purchase_request/models/purchase_request_line.py:375
 #, python-format
 msgid ""
@@ -1371,7 +1370,6 @@ msgstr ""
 "No puede eliminar una solicitud de compra que no está en estado borrador."
 
 #. module: purchase_request
-#: code:addons/purchase_request/models/purchase_request_line.py:367
 #: code:addons/purchase_request/models/purchase_request_line.py:371
 #, python-format
 msgid "You cannot delete a record that refers to purchase lines!"
