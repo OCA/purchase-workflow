@@ -351,3 +351,55 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
 
     def test_empty_records_for_company_constraint(self):
         self.assertFalse(self.env["stock.move"]._check_company_purchase_request())
+
+    def test_supplier_assignment(self):
+        """Suppliers are not assigned across the company boundary"""
+        product = self.env.ref("product.product_product_6")
+        product.seller_ids.unlink()
+        purchase_request = self.purchase_request.create(
+            {
+                "picking_type_id": self.env.ref("stock.picking_type_in").id,
+                "requested_by": SUPERUSER_ID,
+                "company_id": self.env.ref("base.main_company").id,
+            }
+        )
+        purchase_request_line = self.purchase_request_line.create(
+            {
+                "request_id": purchase_request.id,
+                "product_id": product.id,
+                "product_uom_id": self.env.ref("uom.product_uom_unit").id,
+                "product_qty": 12.0,
+                "company_id": self.env.ref("base.main_company").id,
+            }
+        )
+        # A supplier from another company is not assigned
+        vendor3 = self.env["res.partner"].create({"name": "Partner #3"})
+        supinfo = self.env["product.supplierinfo"].create(
+            {
+                "name": vendor3.id,
+                "product_tmpl_id": product.product_tmpl_id.id,
+                "company_id": self.env.ref("stock.res_company_1").id,
+            }
+        )
+        self.assertFalse(purchase_request_line.supplier_id)
+        # A supplierinfo of a matching company leads to supplier assignment
+        vendor4 = self.env["res.partner"].create({"name": "Partner #4"})
+        supinfo = self.env["product.supplierinfo"].create(
+            {
+                "name": vendor4.id,
+                "product_tmpl_id": product.product_tmpl_id.id,
+                "company_id": self.env.ref("base.main_company").id,
+            }
+        )
+        self.assertEqual(purchase_request_line.supplier_id, vendor4)
+        supinfo.unlink()
+        self.assertFalse(purchase_request_line.supplier_id)
+        # A supplierinfo without company leads to supplier assignment as well
+        self.env["product.supplierinfo"].create(
+            {
+                "name": vendor4.id,
+                "product_tmpl_id": product.product_tmpl_id.id,
+                "company_id": False,
+            }
+        )
+        self.assertEqual(purchase_request_line.supplier_id, vendor4)
