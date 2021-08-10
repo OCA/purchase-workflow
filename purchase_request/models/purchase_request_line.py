@@ -74,6 +74,7 @@ class PurchaseRequestLine(models.Model):
     supplier_id = fields.Many2one('res.partner',
                                   string='Preferred supplier',
                                   compute="_compute_supplier_id",
+                                  compute_sudo=True,
                                   store=True)
     cancelled = fields.Boolean(
         string="Cancelled", readonly=True, default=False, copy=False)
@@ -229,13 +230,16 @@ class PurchaseRequestLine(models.Model):
     @api.depends('product_id', 'product_id.seller_ids')
     def _compute_supplier_id(self):
         for rec in self:
-            if rec.product_id:
-                if rec.product_id.seller_ids:
-                    rec.supplier_id = rec.product_id.seller_ids[0].name
+            sellers = rec.product_id.seller_ids.filtered(
+                lambda s: not s.company_id or s.company_id == rec.company_id
+            )
+            if sellers:
+                rec.supplier_id = sellers[0].name
 
     product_id = fields.Many2one(
         'product.product', 'Product',
         domain=[('purchase_ok', '=', True)],
+        index=True,
         track_visibility='onchange')
 
     @api.onchange('product_id')
