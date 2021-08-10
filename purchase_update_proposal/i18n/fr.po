@@ -1,21 +1,19 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* purchase_update_proposal
+#	* purchase_update_proposal
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-23 22:21+0000\n"
-"PO-Revision-Date: 2021-04-24 00:25+0200\n"
+"POT-Creation-Date: 2021-11-29 16:34+0000\n"
+"PO-Revision-Date: 2021-11-29 16:34+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
-"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.3\n"
 
 #. module: purchase_update_proposal
 #: model:account.tax,name:purchase_update_proposal.tax17
@@ -26,6 +24,11 @@ msgstr "17"
 #: model:res.users,signature:purchase_update_proposal.supplier_demo_user
 msgid "<span>- - <br>Mr Demo Supplier</span>"
 msgstr "<span>- - <br>Mr Demo Supplier</span>"
+
+#. module: purchase_update_proposal
+#: selection:purchase.order.line,received:0
+msgid "All"
+msgstr "Tout"
 
 #. module: purchase_update_proposal
 #: view:purchase.order:purchase_update_proposal.purchase_order_form
@@ -49,26 +52,28 @@ msgid "Approved"
 msgstr "Approuvée"
 
 #. module: purchase_update_proposal
-#: code:addons/purchase_update_proposal/models/purchase_order_line.py:28
+#: code:addons/purchase_update_proposal/models/purchase_order_line.py:49
 #, python-format
 msgid "Cancel"
 msgstr "Annulé"
 
 #. module: purchase_update_proposal
-#: model:ir.model.fields,field_description:purchase_update_proposal.field_purchase_order_check_price_on_proposal
-#: model:ir.model.fields,field_description:purchase_update_proposal.field_res_partner_check_price_on_proposal
+#: field:purchase.line.proposal,check_price:0
 #: field:purchase.order,check_price_on_proposal:0
 #: field:res.partner,check_price_on_proposal:0
 msgid "Check price on proposal"
 msgstr "Vérifier le prix lors de la proposition d'achat"
 
 #. module: purchase_update_proposal
+#: help:purchase.line.proposal,partially_received:0
+#: help:purchase.order,partially_received:0
+msgid "Checked if at least partially delivered"
+msgstr "Coché si la ligne est partiellement livré"
+
+#. module: purchase_update_proposal
 #: help:purchase.order,proposal_updatable:0
-msgid ""
-"Computed to be sure that stock move are in a state compatible with update"
-msgstr ""
-"Calculé pour être sur que les mouvements de stock sont compatibles avec la "
-"mise à jour"
+msgid "Computed to be sure that stock move are in a state compatible with update"
+msgstr "Calculé pour être sur que les mouvements de stock sont compatibles avec la mise à jour"
 
 #. module: purchase_update_proposal
 #: view:purchase.order:purchase_update_proposal.view_supplier_purchase_order_filter
@@ -76,25 +81,27 @@ msgid "Confirmed"
 msgstr "Confirmé"
 
 #. module: purchase_update_proposal
-#: model:ir.model.fields,field_description:purchase_update_proposal.field_purchase_line_proposal_create_uid
 #: field:purchase.line.proposal,create_uid:0
 msgid "Created by"
 msgstr "Créé par"
 
 #. module: purchase_update_proposal
-#: code:addons/purchase_update_proposal/models/purchase_order.py:201
+#: code:addons/purchase_update_proposal/models/purchase_order.py:251
 #, python-format
 msgid "Created line: %s"
 msgstr "Lignes créées : %s"
 
 #. module: purchase_update_proposal
-#: model:ir.model.fields,field_description:purchase_update_proposal.field_purchase_line_proposal_create_date
 #: field:purchase.line.proposal,create_date:0
 msgid "Created on"
 msgstr "Créé le"
 
 #. module: purchase_update_proposal
-#: model:ir.model.fields,field_description:purchase_update_proposal.field_purchase_line_proposal_display_name
+#: help:purchase.order.line,received:0
+msgid "Defined if quantity is partially or completely received (at least the quantity of the line)"
+msgstr "Défini si la quantité est partiellement ou complètement livrée (au minimum la quantité de la ligne)"
+
+#. module: purchase_update_proposal
 #: field:purchase.line.proposal,display_name:0
 msgid "Display Name"
 msgstr "Afficher le nom"
@@ -105,7 +112,6 @@ msgid "Display a date field which update dates all lines"
 msgstr "Affiche un champ date pour mettre à jour toutes les dates des lignes"
 
 #. module: purchase_update_proposal
-#: model:ir.model.fields,field_description:purchase_update_proposal.field_purchase_order_proposal_display
 #: field:purchase.order,proposal_display:0
 msgid "Display/Hide Proposal"
 msgstr "Afficher/Cacher les propositions"
@@ -126,12 +132,12 @@ msgid "Group By"
 msgstr "Regrouper par"
 
 #. module: purchase_update_proposal
-#: model:ir.model.fields,field_description:purchase_update_proposal.field_purchase_line_proposal_id
 #: field:purchase.line.proposal,id:0
 msgid "ID"
 msgstr "Identifiant"
 
 #. module: purchase_update_proposal
+#: help:purchase.line.proposal,check_price:0
 #: help:purchase.order,check_price_on_proposal:0
 #: help:res.partner,check_price_on_proposal:0
 msgid "If checked, match price on purchase proposal"
@@ -139,8 +145,13 @@ msgstr "Si vérifié, vérifie les prix sur les propositions d'achat"
 
 #. module: purchase_update_proposal
 #: help:purchase.order,proposal_display:0
-msgid "If checked, rejected proposal are hidden."
-msgstr "Si coché, les propositions rejetées sont masquées."
+msgid "If checked, rejected proposals are hidden."
+msgstr "Si coché, les propositions rejetées sont cachées."
+
+#. module: purchase_update_proposal
+#: help:purchase.order.line,supplier_cancel_status:0
+msgid "Indicate if the line is cancelled"
+msgstr "Indique si la ligne est annulée"
 
 #. module: purchase_update_proposal
 #: model:res.groups,name:purchase_update_proposal.group_purchase_proposal_user
@@ -148,25 +159,21 @@ msgid "Internal Purchase Proposal"
 msgstr "Proposition interne d'achat"
 
 #. module: purchase_update_proposal
-#: model:ir.model.fields,field_description:purchase_update_proposal.field_purchase_line_proposal___last_update
 #: field:purchase.line.proposal,__last_update:0
 msgid "Last Modified on"
 msgstr "Dernière modification le"
 
 #. module: purchase_update_proposal
-#: model:ir.model.fields,field_description:purchase_update_proposal.field_purchase_line_proposal_write_uid
 #: field:purchase.line.proposal,write_uid:0
 msgid "Last Updated by"
 msgstr "Dernière mise à jour par"
 
 #. module: purchase_update_proposal
-#: model:ir.model.fields,field_description:purchase_update_proposal.field_purchase_line_proposal_write_date
 #: field:purchase.line.proposal,write_date:0
 msgid "Last Updated on"
 msgstr "Dernière mise à jour le"
 
 #. module: purchase_update_proposal
-#: model:ir.model.fields,field_description:purchase_update_proposal.field_purchase_line_proposal_line_id_
 #: field:purchase.line.proposal,line_id_:0
 msgid "Line id "
 msgstr "Line id "
@@ -177,7 +184,6 @@ msgid "Modification proposal on quantity, date, ..."
 msgstr "Proposition de modification sur la quantité, date, ..."
 
 #. module: purchase_update_proposal
-#: model:ir.model.fields,field_description:purchase_update_proposal.field_purchase_line_proposal_date
 #: field:purchase.line.proposal,date:0
 msgid "New Date"
 msgstr "Nouv. Date"
@@ -188,24 +194,23 @@ msgid "New Mail"
 msgstr "Nouveau message"
 
 #. module: purchase_update_proposal
-#: model:ir.model.fields,field_description:purchase_update_proposal.field_purchase_line_proposal_price_u
 #: field:purchase.line.proposal,price_u:0
 msgid "New Price U."
 msgstr "Nouv. Prix U."
 
 #. module: purchase_update_proposal
-#: model:ir.model.fields,field_description:purchase_update_proposal.field_purchase_line_proposal_qty
 #: field:purchase.line.proposal,qty:0
 msgid "New Qty"
 msgstr "Nouv. Qté"
 
 #. module: purchase_update_proposal
 #: selection:purchase.order,proposal_updatable:0
+#: selection:purchase.order.line,received:0
 msgid "No"
 msgstr "Non"
 
 #. module: purchase_update_proposal
-#: code:addons/purchase_update_proposal/models/purchase_order.py:184
+#: code:addons/purchase_update_proposal/models/purchase_order.py:234
 #, python-format
 msgid "No data to update for line ID '%s'"
 msgstr "Aucune donnée à mettre à jour pour la ligne ID '%s'"
@@ -216,19 +221,16 @@ msgid "Not Invoiced"
 msgstr "Non facturée"
 
 #. module: purchase_update_proposal
-#: model:ir.model.fields,field_description:purchase_update_proposal.field_purchase_line_proposal_date_planned
 #: field:purchase.line.proposal,date_planned:0
 msgid "Old Date"
 msgstr "Anc. Date"
 
 #. module: purchase_update_proposal
-#: model:ir.model.fields,field_description:purchase_update_proposal.field_purchase_line_proposal_price_unit
 #: field:purchase.line.proposal,price_unit:0
 msgid "Old Price"
 msgstr "Anc. Prix"
 
 #. module: purchase_update_proposal
-#: model:ir.model.fields,field_description:purchase_update_proposal.field_purchase_line_proposal_product_qty
 #: field:purchase.line.proposal,product_qty:0
 msgid "Old Qty"
 msgstr "Anc. Qté"
@@ -239,18 +241,32 @@ msgid "Order Month"
 msgstr "Mois de commande"
 
 #. module: purchase_update_proposal
+#: selection:purchase.order.line,received:0
+msgid "Partially"
+msgstr "Partially"
+
+#. module: purchase_update_proposal
+#: field:purchase.line.proposal,partially_received:0
+#: field:purchase.order,partially_received:0
+msgid "Partially received"
+msgstr "Partially received"
+
+#. module: purchase_update_proposal
 #: model:ir.model,name:purchase_update_proposal.model_res_partner
 msgid "Partner"
 msgstr "Partenaire"
 
 #. module: purchase_update_proposal
 #: view:purchase.order:purchase_update_proposal.purchase_order_form
-#: view:purchase.order:purchase_update_proposal.supplier_purchase_order_form
 msgid "Prices are not updated for this supplier"
+msgstr "Les prix ne sont pas mis à jour pour ce fournisseur"
+
+#. module: purchase_update_proposal
+#: view:purchase.order:purchase_update_proposal.supplier_purchase_order_form
+msgid "Prices are not updated for this supplier."
 msgstr "Les prix ne sont pas mis à jour pour ce fournisseur."
 
 #. module: purchase_update_proposal
-#: model:ir.model.fields,field_description:purchase_update_proposal.field_purchase_line_proposal_product_id
 #: field:purchase.line.proposal,product_id:0
 msgid "Product"
 msgstr "Produit"
@@ -258,45 +274,38 @@ msgstr "Produit"
 #. module: purchase_update_proposal
 #: view:purchase.order:purchase_update_proposal.supplier_purchase_order_form
 msgid "Products"
-msgstr "Produits"
+msgstr "Articles"
 
 #. module: purchase_update_proposal
-#: model:ir.model.fields,field_description:purchase_update_proposal.field_purchase_order_line_proposal_count
-#: model:ir.model.fields,field_description:purchase_update_proposal.field_purchase_order_proposal_count
 #: field:purchase.order,proposal_count:0
 #: field:purchase.order.line,proposal_count:0
 msgid "Proposal count"
 msgstr "Proposal count"
 
 #. module: purchase_update_proposal
-#: model:ir.model.fields,field_description:purchase_update_proposal.field_purchase_order_proposal_ids
 #: field:purchase.order,proposal_ids:0
 msgid "Proposal ids"
 msgstr "Proposal ids"
 
 #. module: purchase_update_proposal
-#: model:ir.model.fields,field_description:purchase_update_proposal.field_purchase_order_proposal_state
 #: field:purchase.order,proposal_state:0
 msgid "Proposal state"
 msgstr "Etat de la proposition"
 
 #. module: purchase_update_proposal
-#: model:ir.model.fields,field_description:purchase_update_proposal.field_purchase_order_proposal_updatable
 #: field:purchase.order,proposal_updatable:0
 msgid "Proposal updatable"
 msgstr "Proposition modifiable"
 
 #. module: purchase_update_proposal
-#: model:ir.model.fields,field_description:purchase_update_proposal.field_purchase_line_proposal_order_id
 #: field:purchase.line.proposal,order_id:0
 msgid "Purchase"
 msgstr "Achat"
 
 #. module: purchase_update_proposal
-#: model:ir.model.fields,field_description:purchase_update_proposal.field_purchase_line_proposal_line_id
 #: field:purchase.line.proposal,line_id:0
 msgid "Purchase Line"
-msgstr "Ligne de comande d'achat"
+msgstr "Ligne de commande d'achat"
 
 #. module: purchase_update_proposal
 #: model:ir.model,name:purchase_update_proposal.model_purchase_order
@@ -324,6 +333,21 @@ msgstr "Commande d'achats du fournisseur"
 #: view:purchase.order:purchase_update_proposal.supplier_purchase_order_form
 msgid "Purchase content before update"
 msgstr "Contenu de la commande avant modification"
+
+#. module: purchase_update_proposal
+#: view:purchase.order:purchase_update_proposal.supplier_purchase_order_form
+msgid "Purchaser view"
+msgstr "Vue acheteur"
+
+#. module: purchase_update_proposal
+#: field:purchase.order.line,received:0
+msgid "Received"
+msgstr "Reçu"
+
+#. module: purchase_update_proposal
+#: field:purchase.line.proposal,supplier_ref:0
+msgid "Ref"
+msgstr "Ref"
 
 #. module: purchase_update_proposal
 #: view:purchase.order:purchase_update_proposal.supplier_purchase_order_tree
@@ -365,6 +389,11 @@ msgid "Search Purchase Order"
 msgstr "Chercher un bon de commande"
 
 #. module: purchase_update_proposal
+#: field:purchase.order.line,supplier_cancel_status:0
+msgid "Status"
+msgstr "Status"
+
+#. module: purchase_update_proposal
 #: view:purchase.order:purchase_update_proposal.purchase_order_form
 #: view:purchase.order:purchase_update_proposal.supplier_purchase_order_form
 msgid "Submit"
@@ -383,7 +412,6 @@ msgid "Submitted"
 msgstr "Modification proposée"
 
 #. module: purchase_update_proposal
-#: view:purchase.order:purchase_update_proposal.purchase_order_form
 #: view:purchase.order:purchase_update_proposal.supplier_purchase_order_form
 msgid "Suggest Modification"
 msgstr "Suggérer une modification"
@@ -392,6 +420,11 @@ msgstr "Suggérer une modification"
 #: model:ir.ui.menu,name:purchase_update_proposal.supplier_main_menu
 msgid "Supplier"
 msgstr "Fournisseur"
+
+#. module: purchase_update_proposal
+#: view:purchase.order:purchase_update_proposal.purchase_order_form
+msgid "Supplier view"
+msgstr "Vue fournisseur"
 
 #. module: purchase_update_proposal
 #: model:res.groups,name:purchase_update_proposal.group_supplier_own_purchase
@@ -405,8 +438,8 @@ msgstr "Conditions générales..."
 
 #. module: purchase_update_proposal
 #: view:purchase.order:purchase_update_proposal.supplier_purchase_order_form
-msgid "These data have to be approved before update purchase line"
-msgstr "Ces données doivent être approuvé avant de mettre à jour les achats"
+msgid "These data have to be approved before update purchase line."
+msgstr "Ces données doivent être approuvé avant de mettre à jour les achats."
 
 #. module: purchase_update_proposal
 #: selection:purchase.order,proposal_state:0
@@ -455,7 +488,6 @@ msgid "Update all dates"
 msgstr "Mettre à jour toutes les dates"
 
 #. module: purchase_update_proposal
-#: model:ir.model.fields,field_description:purchase_update_proposal.field_purchase_order_proposal_date
 #: field:purchase.order,proposal_date:0
 msgid "Update all dates at once"
 msgstr "Mettre à jour toutes les dates de toutes les lignes"
@@ -463,12 +495,10 @@ msgstr "Mettre à jour toutes les dates de toutes les lignes"
 #. module: purchase_update_proposal
 #: view:purchase.order:purchase_update_proposal.supplier_purchase_order_form
 msgid "Update new fields below and submit modifications."
-msgstr ""
-"Mettre à jour les champs 'Nouveaux' ci-dessous et soumettre les "
-"modifications."
+msgstr "Mettre à jour les champs 'Nouveaux' ci-dessous et soumettre les modifications."
 
 #. module: purchase_update_proposal
-#: code:addons/purchase_update_proposal/models/purchase_order.py:190
+#: code:addons/purchase_update_proposal/models/purchase_order.py:240
 #, python-format
 msgid "Updated line '%s' with %s"
 msgstr "Lignes mises à jour '%s' avec %s"
@@ -476,12 +506,8 @@ msgstr "Lignes mises à jour '%s' avec %s"
 #. module: purchase_update_proposal
 #: view:purchase.order:purchase_update_proposal.purchase_order_form
 #: view:purchase.order:purchase_update_proposal.supplier_purchase_order_form
-msgid ""
-"We can't complete your request because our incoming workflow is partially "
-"finished or cancelled"
-msgstr ""
-"On ne peut accomplir votre requête car notre flux de réception est "
-"partiellement terminé ou annulé"
+msgid "We can't complete your request because our incoming workflow is partially finished or cancelled"
+msgstr "On ne peut accomplir votre requête car notre flux de réception est partiellement terminé ou annulé"
 
 #. module: purchase_update_proposal
 #: selection:purchase.order,proposal_updatable:0
@@ -489,22 +515,25 @@ msgid "Yes"
 msgstr "Oui"
 
 #. module: purchase_update_proposal
-#: code:addons/purchase_update_proposal/models/purchase_order.py:210
+#: code:addons/purchase_update_proposal/models/purchase_order.py:135
 #, python-format
-msgid "You can only update purchase proposal, not other fields"
-msgstr ""
-"Vous pouvez seulement mettre à jour les propositions d'achat, pas les autres "
-"champs"
+msgid "You are not authorized to approve this proposal"
+msgstr "Vous n'êtes pas autorisé à approuver cette proposition."
 
 #. module: purchase_update_proposal
-#: code:addons/purchase_update_proposal/models/purchase_order_line.py:35
+#: code:addons/purchase_update_proposal/models/purchase_order.py:260
+#, python-format
+msgid "You can only update purchase proposal, not other fields"
+msgstr "Vous pouvez seulement mettre à jour les propositions d'achat, pas les autres champs"
+
+#. module: purchase_update_proposal
+#: code:addons/purchase_update_proposal/models/purchase_order_line.py:55
 #, python-format
 msgid "You shouldn't update proposal on multiple orders"
-msgstr ""
-"Vous ne devriez pas mettre à jour les propositions de modification sur "
-"plusieurs commandes"
+msgstr "Vous ne devriez pas mettre à jour les propositions de modification sur plusieurs commandes"
 
 #. module: purchase_update_proposal
 #: selection:purchase.order,proposal_updatable:0
 msgid "undefined"
-msgstr "undefined"
+msgstr "indéfini"
+

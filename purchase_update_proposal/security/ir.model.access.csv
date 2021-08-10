@@ -5,3 +5,4 @@ purch_order_proposal_user,proposal_user purchase.order,purchase.model_purchase_o
 purch_order_supplier,supplier purchase.order,purchase.model_purchase_order,group_supplier_own_purchase,1,1,0,0
 purch_order_line_proposal_user,proposal_user purchase.order.line,purchase.model_purchase_order_line,group_purchase_proposal_user,1,0,0,0
 purch_order_line_supplier,supplier purchase.order.line,purchase.model_purchase_order_line,group_supplier_own_purchase,1,0,0,0
+stock_move_supplier,supplier stock.move,purchase.model_stock_move,group_supplier_own_purchase,1,0,0,0

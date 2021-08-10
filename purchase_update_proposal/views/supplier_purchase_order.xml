@@ -84,7 +84,7 @@
                 <notebook>
                     <page string="Products">
                         <group col="3">
-                            <span/>
+                            <button name="button_switch2other_view" string="Purchaser view" type="object" groups="purchase.group_purchase_user" context="{'from_supplier_view': 1}"/>
                             <button name="populate_all_purchase_lines" type="object" string="Update all dates"
                             help="Display a date field which update dates all lines"  attrs="{'invisible': [('proposal_count', '>', 0)]}"
                             groups="purchase_update_proposal.group_purchase_proposal_user,purchase_update_proposal.group_supplier_own_purchase"/>
@@ -105,12 +105,15 @@
                                             attrs="{'invisible': [('proposal_state', 'in', ['draft', 'approved'])]}"
                                             groups="purchase_update_proposal.group_purchase_proposal_user,purchase_update_proposal.group_supplier_own_purchase"/>
                                     <field name="proposal_count" invisible="1"/>
+                                    <field name="partially_received" invisible="1"/>
                                 </group>
                                 <group colspan="4" attrs="{'invisible': [('proposal_count', '=', 0)]}">
-                                    <div attrs="{'invisible': [('proposal_state', '!=', 'draft')]}">Update new fields below and submit modifications.</div>
-                                    <div attrs="{'invisible': [('proposal_state', '!=', 'submitted')]}">These data have to be approved before update purchase line</div>
+                                    <div>
+                                        <span attrs="{'invisible': [('proposal_state', '!=', 'submitted')]}">These data have to be approved before update purchase line. </span>
+                                        <span attrs="{'invisible': [('proposal_state', '!=', 'draft')]}">Update new fields below and submit modifications. </span>
+                                        <span attrs="{'invisible': [('check_price_on_proposal', '=', True)]}">Prices are not updated for this supplier.</span>
+                                    </div>
                                     <field name="proposal_ids" colspan="4" attrs="{'readonly': [('proposal_updatable', '=', 'no')]}" nolabel="1"/>
-                                    <div attrs="{'invisible': [('check_price_on_proposal', '=', True)]}" colspan="2" style="text-align:center;">Prices are not updated for this supplier</div>
                                     <field name="check_price_on_proposal" invisible="1"/>
                                     <field name="proposal_updatable" invisible="1"/>
                                     <div attrs="{'invisible': [('proposal_updatable', '!=', 'no')]}" colspan="2"
@@ -127,7 +130,7 @@
                         </group>
                         <field name="order_line" readonly="1">
                             <tree string="Purchase Order Lines" editable="bottom">
-                                <button name="button_supplier_update_proposal" help="Suggest Modification" type="object" string="Update" groups="purchase_update_proposal.group_purchase_proposal_user,purchase_update_proposal.group_supplier_own_purchase"/>
+                                <button name="button_supplier_update_proposal" help="Suggest Modification" type="object" string="Update" groups="purchase_update_proposal.group_purchase_proposal_user,purchase_update_proposal.group_supplier_own_purchase" attrs="{'invisible': [('received', '=', 'all')]}"/>
                                 <field name="proposal_count" invisible="1"/>
                                 <field name="id" attrs="{'invisible': [('proposal_count', '=', 0)]}"/>
                                 <field name="product_id"/>
@@ -139,6 +142,7 @@
                                 <field name="taxes_id" widget="many2many_tags"/>
                                 <field name="price_subtotal"/>
                                 <field name="supplier_cancel_status"/>
+                                <field name="received"/>
                                 <field name="state" invisible="1"/>
                             </tree>
                         </field>
