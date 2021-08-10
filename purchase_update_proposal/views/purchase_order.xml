@@ -7,12 +7,12 @@
         <field name="inherit_id" ref="purchase.purchase_order_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="before">
-                <button name="button_update_proposal" help="Suggest Modification" type="object" icon="gtk-leave-fullscreen" groups="purchase_update_proposal.group_purchase_proposal_user"/>
                 <field name="proposal_count" invisible="1"/>
                 <field name="id" attrs="{'invisible': [('proposal_count', '=', 0)]}"/>
             </xpath>
             <field name="order_line" position="before">
                 <group>
+                    <button name="button_switch2other_view" string="Supplier view" type="object" context="{'from_supplier_view': 0}"/>
                     <field name="proposal_display" attrs="{'invisible': ['|', ('proposal_count', '=', 0), ('proposal_state', '!=', 'rejected')]}" groups="purchase.group_purchase_user"/>
                 </group>
                 <group col="4" attrs="{'invisible': ['|', ('proposal_count', '=', 0), ('proposal_display', '=', True)]}">

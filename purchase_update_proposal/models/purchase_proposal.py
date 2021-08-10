@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# © 2021 David BEAL @ Akretion
+# © 2021 David BEAL @ Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 
@@ -45,6 +45,8 @@ class PurchaseLineProposal(models.Model):
     price_u = fields.Float(
         string="New Price U.", digits_compute=dp.get_precision("Product Price")
     )
+    partially_received = fields.Boolean(related="order_id.partially_received")
+    check_price = fields.Boolean(related="order_id.partner_id.check_price_on_proposal")
 
     def _compute_supplier_ref(self):
         for rec in self:
