@@ -1331,6 +1331,7 @@ msgstr "Asistente"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_request_line.py:371
+#: code:addons/purchase_request/models/purchase_request_line.py:375
 #, python-format
 msgid ""
 "You can only delete a purchase request line if the purchase request is in "
@@ -1362,6 +1363,7 @@ msgstr "No puedes solicitar aprobación de una requisición vacía. (%s)"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_request_line.py:367
+#: code:addons/purchase_request/models/purchase_request_line.py:371
 #, python-format
 msgid "You cannot delete a record that refers to purchase lines!"
 msgstr "No puedes borrar un registro que refiere a líneas de pedidos compra!"
