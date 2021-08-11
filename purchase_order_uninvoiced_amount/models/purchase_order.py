@@ -30,9 +30,9 @@ class PurchaseOrder(models.Model):
                     qty = line.qty_received - line.qty_invoiced
                 # we use this way for being compatible with purchase_discount
                 price_unit = (
-                    line.product_qty
-                    and line.price_subtotal / line.product_qty
-                    or line.price_unit
+                    line.price_subtotal / line.product_qty
+                    if line.product_qty
+                    else line.price_unit
                 )
                 amount_uninvoiced += qty * price_unit
             order.update(
