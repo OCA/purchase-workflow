@@ -1,0 +1,18 @@
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">purchase_address_version.view_order_form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field
+                    name="partner_address_id"
+                    force_save="1"
+                    context="{'show_address': 1}"
+                    options="{'always_reload': True}"
+                    attrs="{'invisible': [('partner_address_id', '=', False)]}"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>

@@ -1,3 +1,4 @@
 server-ux
 stock-logistics-workflow
 product-attribute
+partner-contact
