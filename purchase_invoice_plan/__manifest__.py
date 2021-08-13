@@ -12,6 +12,7 @@
     "depends": ["purchase_open_qty", "purchase_stock"],
     "data": [
         "security/ir.model.access.csv",
+        "data/purchase_data.xml",
         "wizard/purchase_create_invoice_plan_view.xml",
         "wizard/purchase_make_planned_invoice_view.xml",
         "views/purchase_view.xml",
