@@ -1,9 +1,9 @@
-# © 2016 ForgeFlow S.L.
-#   (<http://www.forgeflow.com>)
-# © 2018 Hizbul Bahar <hizbul25@gmail.com>
+# Copyright 2016 ForgeFlow S.L. (<http://www.forgeflow.com>)
+# Copyright 2018 Hizbul Bahar <hizbul25@gmail.com>
+# Copyright 2021 Jacques-Etienne Baudoux (BCIM) <je@bcim.be>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class PurchaseOrderLine(models.Model):
@@ -15,51 +15,18 @@ class PurchaseOrderLine(models.Model):
         domain=[("usage", "in", ["internal", "transit"])],
     )
 
-    @api.model
-    def _first_picking_copy_vals(self, key, lines):
-        """The data to be copied to new pickings is updated with data from the
-        grouping key.  This method is designed for extensibility, so that
-        other modules can store more data based on new keys."""
-        vals = super(PurchaseOrderLine, self)._first_picking_copy_vals(key, lines)
-        for key_element in key:
-            if "location_dest_id" in key_element.keys():
-                vals["location_dest_id"] = key_element["location_dest_id"].id
-        return vals
+    def _is_valid_picking(self, picking):
+        res = super()._is_valid_picking(picking)
+        if not res:
+            return res
+        location = self.location_dest_id or self.order_id._get_destination_location()
+        return picking.location_dest_id == location
 
-    @api.model
-    def _get_group_keys(self, order, line, picking=False):
-        """Define the key that will be used to group. The key should be
-        defined as a tuple of dictionaries, with each element containing a
-        dictionary element with the field that you want to group by. This
-        method is designed for extensibility, so that other modules can add
-        additional keys or replace them by others."""
-        key = super(PurchaseOrderLine, self)._get_group_keys(
-            order, line, picking=picking
-        )
-        default_picking_location_id = line.order_id._get_destination_location()
-        default_picking_location = self.env["stock.location"].browse(
-            default_picking_location_id
-        )
-        location = line.location_dest_id or default_picking_location
-        return key + ({"location_dest_id": location},)
-
-    def _get_sorted_keys(self, line):
-        """Return a tuple of keys to use in order to sort the order lines.
-        This method is designed for extensibility, so that other modules can
-        add additional keys or replace them by others."""
-        keys = super(PurchaseOrderLine, self)._get_sorted_keys(line)
-        return keys + (line.location_dest_id.id,)
-
-    def _create_stock_moves(self, picking):
-        res = super(PurchaseOrderLine, self)._create_stock_moves(picking)
-        for line in self:
-            default_picking_location_id = line.order_id._get_destination_location()
-            default_picking_location = self.env["stock.location"].browse(
-                default_picking_location_id
-            )
-            location = line.location_dest_id or default_picking_location
-            if location:
-                line.move_ids.filtered(lambda m: m.state != "done").write(
-                    {"location_dest_id": location.id}
-                )
-        return res
+    def _prepare_stock_moves(self, picking):
+        # When the first move of the picking is prepared, ensure the
+        # destination of the picking to make it a valid candidate
+        if not picking.move_lines:
+            location = self.location_dest_id or self.order_id._get_destination_location()
+            if picking.location_dest_id != location:
+                picking.location_dest_id = location
+        return super()._prepare_stock_moves(picking)

@@ -6,3 +6,4 @@
 * Alexandre Fayolle <alexandre.fayolle@camptocamp.com>
 * Pimolnat Suntian <pimolnats@ecosoft.co.th>
 * Mallory Marcot <contact@mallory-marcot.com>
+* Jacques-Etienne Baudoux (BCIM) <je@bcim.be>

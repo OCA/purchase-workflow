@@ -1,37 +1,31 @@
 # Copyright 2014-2016 Numérigraphe SARL
 # Copyright 2017 ForgeFlow, S.L.
+# Copyright 2021 Jacques-Etienne Baudoux (BCIM) <je@bcim.be>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from itertools import groupby
+from odoo import api, fields, models, SUPERUSER_ID
 
-from odoo import api, fields, models
+
+def date(picking, datetime):
+    # TODO: extract the tz field on the warehouse from the module
+    # sale_cutoff_time_delivery in OCA/sale-workflow to make a generic module
+    # on which this module can depend on. At the moment, we take the tz of the
+    # SUPERUSER. This is safer than the tz of the user (purchaser)
+    tz = picking.env['res.users'].sudo().browse(SUPERUSER_ID).tz
+    picking = picking.with_context(tz=tz)
+    return fields.Date.context_today(picking, datetime)
 
 
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
-    @api.model
-    def _get_group_keys(self, order, line, picking=False):
-        """Define the key that will be used to group. The key should be
-        defined as a tuple of dictionaries, with each element containing a
-        dictionary element with the field that you want to group by. This
-        method is designed for extensibility, so that other modules can add
-        additional keys or replace them by others."""
-        date = fields.Date.context_today(self.env.user, line.date_planned)
-        # Split date value to obtain only the attributes year, month and day
-        key = ({"date_planned": fields.Date.to_string(date)},)
-        return key
-
-    @api.model
-    def _first_picking_copy_vals(self, key, lines):
-        """The data to be copied to new pickings is updated with data from the
-        grouping key.  This method is designed for extensibility, so that
-        other modules can store more data based on new keys."""
-        vals = {"move_lines": []}
-        for key_element in key:
-            if "date_planned" in key_element.keys():
-                vals["scheduled_date"] = key_element["date_planned"]
-        return vals
+    def _is_valid_picking(self, picking):
+        date_planned = date(picking, self.date_planned)
+        return (
+            picking.state not in ('done', 'cancel')
+            and date(picking, picking.scheduled_date) == date_planned
+            and picking.location_dest_id.usage in ('internal', 'transit', 'customer')
+        )
 
     def _get_sorted_keys(self, line):
         """Return a tuple of keys to use in order to sort the order lines.
@@ -40,116 +34,73 @@ class PurchaseOrderLine(models.Model):
         return (line.date_planned,)
 
     def _create_stock_moves(self, picking):
-        """Group the receptions in one picking per group key"""
-        moves = self.env["stock.move"]
-        # Group the order lines by group key
-        order_lines = sorted(
-            self.filtered(lambda l: not l.display_type),
-            key=lambda l: self._get_sorted_keys(l),
-        )
-        date_groups = groupby(
-            order_lines, lambda l: self._get_group_keys(l.order_id, l, picking=picking)
-        )
-
-        first_picking = False
-        # If a picking is provided, use it for the first group only
-        if picking:
-            first_picking = picking
-            key, lines = next(date_groups)
-            po_lines = self.env["purchase.order.line"]
-            for line in list(lines):
-                po_lines += line
-            picking._update_picking_from_group_key(key)
-            moves += super(PurchaseOrderLine, po_lines)._create_stock_moves(
-                first_picking
-            )
-
-        for key, lines in date_groups:
-            # If a picking is provided, clone it for each key for modularity
-            if picking:
-                copy_vals = self._first_picking_copy_vals(key, lines)
-                picking = first_picking.copy(copy_vals)
-            po_lines = self.env["purchase.order.line"]
-            for line in list(lines):
-                po_lines += line
-            moves += super(PurchaseOrderLine, po_lines)._create_stock_moves(picking)
+        # _prepare_stock_moves needs previous move to be created to ensure the
+        # new move is inserted in the right picking. So create move one by one.
+        moves = self.env['stock.move']
+        for line in self:
+            moves |= super(PurchaseOrderLine, line)._create_stock_moves(picking)
         return moves
+
+    def _prepare_stock_moves(self, picking):
+        # When a quantity is increased on a confirmed PO line,
+        # _create_or_update_picking is called to create a new move. That move
+        # will always be inserted in the first picking linked to the PO. So, if the
+        # planned date does not match, we need to provide another picking.
+        # Afterwards, the move is created and then confirmed. This could cause
+        # the move to be merged with another one. To allow this, the move must
+        # be inserted in the right picking.
+        if picking.move_lines and not self._is_valid_picking(picking):
+            pickings = self.order_id.order_line.move_ids.picking_id
+            picking = fields.first(pickings.filtered(
+                lambda p: self._is_valid_picking(p)))
+            if not picking:
+                res = self.order_id._prepare_picking()
+                picking = self.env['stock.picking'].create(res)
+        return super()._prepare_stock_moves(picking)
+
+    @api.model
+    def _prepare_picking_copy_vals(self):
+        """The data to be copied to new pickings. This method is designed for
+        extensibility."""
+        return {"move_lines": []}
+
+    def _check_still_valid_picking(self):
+        moves = self.move_ids.filtered(lambda m: m.state not in ('draft', 'done', 'cancel'))
+        pickings = self.order_id.order_line.move_ids.filtered(
+            lambda m: m.state not in ('draft', 'done', 'cancel')).picking_id
+        picking_to_cancel = self.env['stock.picking']
+        for move in moves:
+            if self._is_valid_picking(move.picking_id):
+                # If the move is the only move of the picking, the picking will
+                # be valid (as the date will be computed as the move date) but
+                # the move could possibly have been merged in another existing
+                # picking
+                if move != move.picking_id.move_lines:
+                    continue
+                picking = fields.first(pickings.filtered(
+                    lambda p: p != move.picking_id and self._is_valid_picking(p)))
+                if not picking:
+                    # No other valid picking
+                    continue
+                picking_to_cancel |= move.picking_id
+            else:
+                # Find an other valid picking
+                picking = fields.first(pickings.filtered(
+                    lambda p: self._is_valid_picking(p)))
+                if not picking:
+                    copy_vals = self._prepare_picking_copy_vals()
+                    picking = move.picking_id.copy(copy_vals)
+                    pickings |= picking
+            move._do_unreserve()
+            move.picking_id = picking
+            move._merge_moves()
+            move._action_assign()
+        picking_to_cancel.filtered(lambda p: not p.move_lines).write({"state": "cancel"})
 
     def write(self, values):
         res = super().write(values)
         if "date_planned" in values:
-            self.mapped("order_id")._check_split_pickings()
+            for line in self.filtered(lambda l: not l.display_type):
+                # The move date_expected could have changed
+                line._check_still_valid_picking()
         return res
-
-    def create(self, values):
-        line = super().create(values)
-        if line.order_id.state == "purchase":
-            line.order_id._check_split_pickings()
-        return line
-
-    @api.onchange("product_qty", "product_uom")
-    def _onchange_quantity(self):
-        date_planned = self.date_planned
-        res = super()._onchange_quantity()
-        # preserve the date which was presumably set on the PO line if it is
-        # later than the date computed from the Vendor information
-        if date_planned and self.date_planned <= date_planned:
-            self.date_planned = date_planned
-        return res
-
-
-class PurchaseOrder(models.Model):
-    _inherit = "purchase.order"
-
-    def _check_split_pickings(self):
-        for order in self:
-            moves = self.env["stock.move"].search(
-                [
-                    ("purchase_line_id", "in", order.order_line.ids),
-                    ("state", "not in", ("cancel", "done")),
-                ]
-            )
-            pickings = moves.mapped("picking_id")
-            pickings_by_date = {}
-            for pick in pickings:
-                pickings_by_date[pick.scheduled_date.date()] = pick
-
-            order_lines = moves.mapped("purchase_line_id")
-            date_groups = groupby(
-                order_lines, lambda l: l._get_group_keys(l.order_id, l)
-            )
-            for key, lines in date_groups:
-                date_key = fields.Date.from_string(key[0]["date_planned"])
-                for line in lines:
-                    for move in line.move_ids:
-                        if move.state in ("cancel", "done"):
-                            continue
-                        if (
-                            move.picking_id.scheduled_date.date() != date_key
-                            or pickings_by_date[date_key] != move.picking_id
-                        ):
-                            if date_key not in pickings_by_date:
-                                copy_vals = line._first_picking_copy_vals(key, line)
-                                new_picking = move.picking_id.copy(copy_vals)
-                                pickings_by_date[date_key] = new_picking
-                            move._do_unreserve()
-                            move.picking_id = pickings_by_date[date_key]
-                            move.date_deadline = date_key
-                            move._action_assign()
-            for picking in pickings:
-                if len(picking.move_lines) == 0:
-                    picking.write({"state": "cancel"})
-
-
-class StockPicking(models.Model):
-    _inherit = "stock.picking"
-
-    def _update_picking_from_group_key(self, key):
-        """The picking is updated with data from the grouping key.
-        This method is designed for extensibility, so that other modules
-        can store more data based on new keys."""
-        for rec in self:
-            for key_element in key:
-                if "date_planned" in key_element.keys():
-                    rec.date = key_element["date_planned"]
-        return False

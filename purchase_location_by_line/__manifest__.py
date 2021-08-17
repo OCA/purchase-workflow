@@ -1,6 +1,6 @@
-# © 2016 ForgeFlow S.L.
-#   (<http://www.forgeflow.com>)
-# © 2018 Hizbul Bahar <hizbul25@gmail.com>
+# Copyright 2016 ForgeFlow S.L. (<http://www.forgeflow.com>)
+# Copyright 2018 Hizbul Bahar <hizbul25@gmail.com>
+# Copyright 2021 Jacques-Etienne Baudoux (BCIM) <je@bcim.be>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 {
