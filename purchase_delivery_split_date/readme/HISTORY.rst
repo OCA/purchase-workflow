@@ -1,9 +1,14 @@
+13.0.1.1.0 (2021-08-17)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* Refactor code to support addition of PO line on confirmed PO and better
+  support the change of date on a confirmed purchase order.
+
 12.0.2.0.0 (2020-04-10)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * Improve the module: when changing the date on a purchase line, this will
   cause a split or a merge of the pickings, to keep 1 picking per date.
-
 
 11.0.1.0.0 (2018-09-16)
 ~~~~~~~~~~~~~~~~~~~~~~~

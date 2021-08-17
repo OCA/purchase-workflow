@@ -5,3 +5,4 @@
 * Lois Rilo <lois.rilo@forgeflow.com> (migration to v10)
 * Alexandre Fayolle <alexandre.fayolle@camptocamp.com>
 * Pimolnat Suntian <pimolnats@ecosoft.co.th>
+* Jacques-Etienne Baudoux (BCIM) <je@bcim.be>

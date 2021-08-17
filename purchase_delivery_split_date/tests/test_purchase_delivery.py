@@ -1,5 +1,6 @@
 # Copyright 2014-2016 Numérigraphe SARL
 # Copyright 2017 ForgeFlow, S.L.
+# Copyright 2021 Jacques-Etienne Baudoux (BCIM) <je@bcim.be>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo.tests.common import TransactionCase
@@ -22,6 +23,7 @@ class TestDeliverySingle(TransactionCase):
         )
 
         # Two dates which we can use to test the features:
+        self.date_in_the_past = "2014-12-12"
         self.date_sooner = "2015-01-01"
         self.date_later = "2015-12-13"
         self.date_3rd = "2015-12-31"
@@ -39,6 +41,7 @@ class TestDeliverySingle(TransactionCase):
                             "name": p1.name,
                             "price_unit": p1.standard_price,
                             "date_planned": self.date_sooner,
+                            "propagate_date": True,
                             "product_qty": 42.0,
                         },
                     ),
@@ -51,6 +54,7 @@ class TestDeliverySingle(TransactionCase):
                             "name": p2.name,
                             "price_unit": p2.standard_price,
                             "date_planned": self.date_sooner,
+                            "propagate_date": True,
                             "product_qty": 12.0,
                         },
                     ),
@@ -63,6 +67,7 @@ class TestDeliverySingle(TransactionCase):
                             "name": p1.name,
                             "price_unit": p1.standard_price,
                             "date_planned": self.date_sooner,
+                            "propagate_date": True,
                             "product_qty": 1.0,
                         },
                     ),
@@ -120,9 +125,7 @@ class TestDeliverySingle(TransactionCase):
     def test_purchase_line_date_change(self):
         self.po.order_line[0].date_planned = self.date_later
         self.po.button_confirm()
-        moves = self.env["stock.move"].search(
-            [("purchase_line_id", "=", self.po.order_line[0].id)]
-        )
+        moves = self.po.order_line[0].move_ids
         line = self.po.order_line[0]
         line.write({"date_planned": self.date_3rd})
         self.assertEqual(moves.date_expected.strftime("%Y-%m-%d"), self.date_3rd)
@@ -135,12 +138,9 @@ class TestDeliverySingle(TransactionCase):
          """
         self.po.order_line[0].date_planned = self.date_later
         self.po.button_confirm()
-        moves = self.env["stock.move"].search(
-            [("purchase_line_id", "in", self.po.order_line.ids)]
-        )
+        moves = self.po.order_line.move_ids
         pickings = moves.mapped("picking_id")
         self.assertEqual(len(pickings), 2)
-        pickings[1].scheduled_date = pickings[0].scheduled_date
         self.po.order_line[0].date_planned = self.date_sooner
         self.assertEqual(len(moves.mapped("picking_id")), 1)
         self.assertEqual(len(pickings.filtered(lambda r: r.state == "cancel")), 1)
@@ -149,8 +149,8 @@ class TestDeliverySingle(TransactionCase):
         self.po.button_confirm()
         line1 = self.po.order_line[0]
         line2 = self.po.order_line[1]
-        move1 = self.env["stock.move"].search([("purchase_line_id", "=", line1.id)])
-        move2 = self.env["stock.move"].search([("purchase_line_id", "=", line2.id)])
+        move1 = line1.move_ids
+        move2 = line2.move_ids
 
         line1.write({"date_planned": self.date_later})
         self.assertEquals(
@@ -169,6 +169,49 @@ class TestDeliverySingle(TransactionCase):
             "both moves must be in the same picking",
         )
 
+    def test_purchase_line_qty_change_merge_moves(self):
+        self.po.order_line[0].date_planned = self.date_later
+        self.po.button_confirm()
+        self.assertEquals(
+            len(self.po.picking_ids),
+            2,
+            "There must be 2 pickings when PO lines have 2 different dates",
+        )
+        # Increase qty of first PO line
+        self.po.order_line[0].product_qty += 10
+        self.assertEquals(
+            len(self.po.picking_ids),
+            2,
+            "There must be 2 pickings when PO lines have 2 different dates",
+        )
+        self.assertEquals(
+            len(self.po.order_line[0].move_ids),
+            1,
+            "There must be 1 move per PO line when qty is increased",
+        )
+        self.assertEquals(
+            len(self.po.order_line[1].move_ids),
+            1,
+            "There must be 1 move per PO line when qty is increased",
+        )
+        # Increase qty of second PO line
+        self.po.order_line[1].product_qty += 10
+        self.assertEquals(
+            len(self.po.picking_ids),
+            2,
+            "There must be 2 pickings when PO lines have 2 different dates",
+        )
+        self.assertEquals(
+            len(self.po.order_line[0].move_ids),
+            1,
+            "There must be 1 move per PO line when qty is increased",
+        )
+        self.assertEquals(
+            len(self.po.order_line[1].move_ids),
+            1,
+            "There must be 1 move per PO line when qty is increased",
+        )
+
     def test_purchase_line_created_afer_confirm(self):
         """Check new line created when order is confirmed.
 
@@ -180,9 +223,7 @@ class TestDeliverySingle(TransactionCase):
         self.po.button_confirm()
         self.assertEqual(self.po.state, "purchase")
         new_date = "2016-01-30"
-        moves_before = self.env["stock.move"].search(
-            [("purchase_line_id", "in", self.po.order_line.ids)]
-        )
+        moves_before = self.po.order_line.move_ids
         self.assertEqual(len(moves_before.mapped("picking_id")), 1)
         self.po.order_line = [
             (
@@ -198,16 +239,13 @@ class TestDeliverySingle(TransactionCase):
                 },
             ),
         ]
-        moves_after = self.env["stock.move"].search(
-            [("purchase_line_id", "in", self.po.order_line.ids)]
-        )
+        moves_after = self.po.order_line.move_ids
         self.assertEqual(len(moves_after.mapped("picking_id")), 2)
 
     def test_purchase_line_date_change_tz_aware(self):
         """Check that the grouping  is time zone aware.
 
         Datetime are always stored in utc in the database.
-
         """
         self.po.order_line[2].unlink()
         self.po.button_confirm()
@@ -226,4 +264,11 @@ class TestDeliverySingle(TransactionCase):
         self.assertEquals(len(self.po.picking_ids), 2)
         # No time difference so will be another day (2 pickings)
         line2.write({"date_planned": "2021-05-04 23:00:00"})
+        self.assertEquals(len(self.po.picking_ids), 2)
+
+    def test_set_planned_date_in_the_past(self):
+        """Check changing the scheduled date of one line in the past."""
+        self.po.button_confirm()
+        self.assertEquals(len(self.po.picking_ids), 1)
+        self.po.order_line[0].date_planned = self.date_in_the_past
         self.assertEquals(len(self.po.picking_ids), 2)
