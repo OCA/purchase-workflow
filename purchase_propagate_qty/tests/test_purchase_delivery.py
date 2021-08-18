@@ -141,8 +141,8 @@ class TestQtyUpdate(SavepointCase):
         self.assertEqual(moves.mapped("product_uom_qty"), [38.0, 12.0])
         # We should not be able to set a qty < to 12, since 12 products are reserved
         exception_regex = (
-            r"You cannot remove more that what remains to be done.\n"
-            r"Max removable quantity 38.0."
+            "You cannot remove more that what remains to be done. "
+            "Max removable quantity 38.0."
         )
         with self.assertRaisesRegex(UserError, exception_regex):
             line1.write({"product_qty": 11})
@@ -151,3 +151,16 @@ class TestQtyUpdate(SavepointCase):
         self.assertEqual(move1.product_uom_qty, 0.0)
         self.assertEqual(move1.state, "cancel")
         self.assertEqual(move2.product_uom_qty, 12.0)
+
+    def test_reduce_purchase_qty_whith_canceled_moves(self):
+        """ Check canceled moves are not taken into account."""
+        self.po.button_cancel()
+        self.po.button_draft()
+        self.po.button_confirm()
+        line1 = self.po.order_line[0]
+        moves = self.env["stock.move"].search([("purchase_line_id", "=", line1.id)])
+        # One canceled move one ready
+        self.assertEqual(len(moves), 2)
+        line1.write({"product_qty": 10})
+        move = moves.filtered(lambda r: r.state != "cancel")
+        self.assertEqual(move.product_uom_qty, 10)

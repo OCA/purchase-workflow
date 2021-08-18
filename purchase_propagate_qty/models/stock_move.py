@@ -32,7 +32,14 @@ class StockMove(models.Model):
                 move._action_cancel()
 
     def _get_removable_qty(self):
+        moves = self.filtered(
+            lambda move: move.location_dest_id.usage != "supplier"
+            and (
+                not move.origin_returned_move_id
+                or (move.origin_returned_move_id and move.to_refund)
+            )
+        )
         assert (
-            len(set(self.mapped("product_uom"))) == 1
+            len(set(moves.mapped("product_uom"))) == 1
         ), "moves doesn't share the same UoM"
-        return sum([move.product_uom_qty - move.quantity_done for move in self])
+        return sum([move.product_uom_qty - move.quantity_done for move in moves])

@@ -29,7 +29,7 @@ class PurchaseOrderLine(models.Model):
                 move.product_uom_qty = line.product_uom_qty
                 if float_is_zero(move.product_uom_qty, precision_rounding=rounding):
                     move._action_cancel()
-            moves = line.move_ids
+            moves = line.move_ids.filtered(lambda r: r.state not in ("cancel", "done"))
             previous_qty = sum(moves.mapped("product_uom_qty"))
             new_qty = line.product_uom_qty
             # Do nothing is qty has been increased, since odoo handles this case
@@ -49,7 +49,7 @@ class PurchaseOrderLine(models.Model):
                 == 1
             ):
                 exception_text = _(
-                    "You cannot remove more that what remains to be done.\n"
+                    "You cannot remove more that what remains to be done. "
                     "Max removable quantity {}."
                 ).format(removable_qty)
                 raise exceptions.UserError(exception_text)
