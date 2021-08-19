@@ -3,7 +3,7 @@
 
 {
     "name": "Purchase Request Type",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "author": "ProThai, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "category": "Purchase Management",
