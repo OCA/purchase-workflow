@@ -18,7 +18,7 @@ class PurchaseRequest(models.Model):
         string="Request Reference",
         required=True,
         default="/",
-        track_visibility="onchange",
+        tracking=True,
     )
     request_type = fields.Many2one(
         comodel_name="purchase.request.type",
