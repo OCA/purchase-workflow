@@ -13,7 +13,8 @@ class StockPicking(models.Model):
         # on which this module can depend on. At the moment, we take the tz of the
         # SUPERUSER if defined. This is safer than the tz of the user
         # (purchaser) that can be freely modified by the user.
-        tz = self.env["res.users"].sudo().browse(SUPERUSER_ID).tz
-        tz = tz or self.env.context.get("tz") or self.env.user.tz
-        self = self.with_context(tz=tz)
+        if self.env.user.id != SUPERUSER_ID:
+            tz = self.env["res.users"].sudo().browse(SUPERUSER_ID).tz
+            if tz:
+                self = self.with_context(tz=tz)
         return fields.Date.context_today(self, datetime)
