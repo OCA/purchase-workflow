@@ -98,6 +98,10 @@ class PurchaseOrderLine(models.Model):
         )
 
     def write(self, values):
+        if "date_planned" in values:
+            lines = self.filtered(lambda l: not l.propagate_date)
+            if lines:
+                lines.write({'propagate_date': True})
         res = super().write(values)
         if "date_planned" in values:
             for line in self.filtered(lambda l: not l.display_type):
