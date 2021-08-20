@@ -6,25 +6,15 @@
 from odoo import api, fields, models, SUPERUSER_ID
 
 
-def date(picking, datetime):
-    # TODO: extract the tz field on the warehouse from the module
-    # sale_cutoff_time_delivery in OCA/sale-workflow to make a generic module
-    # on which this module can depend on. At the moment, we take the tz of the
-    # SUPERUSER. This is safer than the tz of the user (purchaser)
-    tz = picking.env['res.users'].sudo().browse(SUPERUSER_ID).tz
-    picking = picking.with_context(tz=tz)
-    return fields.Date.context_today(picking, datetime)
-
-
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
     def _is_valid_picking(self, picking):
-        date_planned = date(picking, self.date_planned)
+        date_planned = picking.dt2date(self.date_planned)
         return (
-            picking.state not in ('done', 'cancel')
-            and date(picking, picking.scheduled_date) == date_planned
-            and picking.location_dest_id.usage in ('internal', 'transit', 'customer')
+            picking.state not in ("done", "cancel")
+            and picking.dt2date(picking.scheduled_date) == date_planned
+            and picking.location_dest_id.usage in ("internal", "transit", "customer")
         )
 
     def _get_sorted_keys(self, line):
@@ -36,7 +26,7 @@ class PurchaseOrderLine(models.Model):
     def _create_stock_moves(self, picking):
         # _prepare_stock_moves needs previous move to be created to ensure the
         # new move is inserted in the right picking. So create move one by one.
-        moves = self.env['stock.move']
+        moves = self.env["stock.move"]
         for line in self:
             moves |= super(PurchaseOrderLine, line)._create_stock_moves(picking)
         return moves
@@ -51,11 +41,12 @@ class PurchaseOrderLine(models.Model):
         # be inserted in the right picking.
         if picking.move_lines and not self._is_valid_picking(picking):
             pickings = self.order_id.order_line.move_ids.picking_id
-            picking = fields.first(pickings.filtered(
-                lambda p: self._is_valid_picking(p)))
+            picking = fields.first(
+                pickings.filtered(lambda p: self._is_valid_picking(p))
+            )
             if not picking:
                 res = self.order_id._prepare_picking()
-                picking = self.env['stock.picking'].create(res)
+                picking = self.env["stock.picking"].create(res)
         return super()._prepare_stock_moves(picking)
 
     @api.model
@@ -65,10 +56,13 @@ class PurchaseOrderLine(models.Model):
         return {"move_lines": []}
 
     def _check_still_valid_picking(self):
-        moves = self.move_ids.filtered(lambda m: m.state not in ('draft', 'done', 'cancel'))
+        moves = self.move_ids.filtered(
+            lambda m: m.state not in ("draft", "done", "cancel")
+        )
         pickings = self.order_id.order_line.move_ids.filtered(
-            lambda m: m.state not in ('draft', 'done', 'cancel')).picking_id
-        picking_to_cancel = self.env['stock.picking']
+            lambda m: m.state not in ("draft", "done", "cancel")
+        ).picking_id
+        picking_to_cancel = self.env["stock.picking"]
         for move in moves:
             if self._is_valid_picking(move.picking_id):
                 # If the move is the only move of the picking, the picking will
@@ -77,16 +71,20 @@ class PurchaseOrderLine(models.Model):
                 # picking
                 if move != move.picking_id.move_lines:
                     continue
-                picking = fields.first(pickings.filtered(
-                    lambda p: p != move.picking_id and self._is_valid_picking(p)))
+                picking = fields.first(
+                    pickings.filtered(
+                        lambda p: p != move.picking_id and self._is_valid_picking(p)
+                    )
+                )
                 if not picking:
                     # No other valid picking
                     continue
                 picking_to_cancel |= move.picking_id
             else:
                 # Find an other valid picking
-                picking = fields.first(pickings.filtered(
-                    lambda p: self._is_valid_picking(p)))
+                picking = fields.first(
+                    pickings.filtered(lambda p: self._is_valid_picking(p))
+                )
                 if not picking:
                     copy_vals = self._prepare_picking_copy_vals()
                     picking = move.picking_id.copy(copy_vals)
@@ -95,7 +93,9 @@ class PurchaseOrderLine(models.Model):
             move.picking_id = picking
             move._merge_moves()
             move._action_assign()
-        picking_to_cancel.filtered(lambda p: not p.move_lines).write({"state": "cancel"})
+        picking_to_cancel.filtered(lambda p: not p.move_lines).write(
+            {"state": "cancel"}
+        )
 
     def write(self, values):
         res = super().write(values)
