@@ -555,8 +555,8 @@ class PurchaseCostDistributionExpense(models.Model):
     invoice_line = fields.Many2one(
         comodel_name="account.move.line",
         string="Supplier invoice line",
-        domain="[('invoice_id.type', '=', 'in_invoice'),"
-        "('invoice_id.state', '=', 'posted')]",
+        domain="[('move_id.type', '=', 'in_invoice'),"
+        "('move_id.state', '=', 'posted')]",
     )
     invoice_id = fields.Many2one(comodel_name="account.move", string="Invoice")
     display_name = fields.Char(compute="_compute_display_name", store=True)
@@ -594,7 +594,7 @@ class PurchaseCostDistributionExpense(models.Model):
     @api.onchange("invoice_line")
     def onchange_invoice_line(self):
         """set expense_amount in the currency of the distribution"""
-        self.invoice_id = self.invoice_line.invoice_id.id
+        self.invoice_id = self.invoice_line.move_id.id
         currency_from = self.invoice_line.company_id.currency_id
         amount = self.invoice_line.price_subtotal
         currency_to = self.distribution.currency_id
