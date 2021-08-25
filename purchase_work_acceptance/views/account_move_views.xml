@@ -5,7 +5,7 @@
         <field name="model">account.move</field>
         <field name="inherit_id" ref="account.view_move_form" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='purchase_vendor_bill_id']" position="after">
+            <group id="header_left_group" position="inside">
                 <field name="require_wa" invisible="1" />
                 <field
                     name="wa_id"
@@ -13,7 +13,7 @@
                     groups="purchase_work_acceptance.group_enable_wa_on_invoice"
                     attrs="{'required': [('require_wa','=', True)], 'invisible': [('wa_id', '=', False)]}"
                 />
-            </xpath>
+            </group>
         </field>
     </record>
 </odoo>
