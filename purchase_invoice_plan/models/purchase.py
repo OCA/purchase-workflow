@@ -61,10 +61,10 @@ class PurchaseOrder(models.Model):
                         _("Please fill percentage for all invoice plan lines")
                     )
 
-    def action_confirm(self):
+    def button_confirm(self):
         if self.filtered(lambda r: r.use_invoice_plan and not r.invoice_plan_ids):
             raise UserError(_("Use Invoice Plan selected, but no plan created"))
-        return super().action_confirm()
+        return super().button_confirm()
 
     def create_invoice_plan(
         self, num_installment, installment_date, interval, interval_type
