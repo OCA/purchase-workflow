@@ -1,0 +1,158 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * procurement_batch_generator
+# 
+# Translators:
+# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2016
+# Carles Antoli <carlesantoli@hotmail.com>, 2016
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012
+# Kostas Goutoudis <goutoudis@gmail.com>, 2015
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Paolo Valier, 2016
+# Pedro Castro Silva <pedrocs@sossia.pt>, 2015
+# Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
+# SaFi J. <safi2266@gmail.com>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: purchase-workflow (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-05-14 02:42+0000\n"
+"PO-Revision-Date: 2016-05-12 05:25+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: procurement_batch_generator
+#: code:addons/procurement_batch_generator/wizard/procurement_batch_generator.py:75
+#, python-format
+msgid "All requested quantities are null."
+msgstr "Vse zahtevane količine so nične."
+
+#. module: procurement_batch_generator
+#: view:procurement.batch.generator:procurement_batch_generator.procurement_batch_generator_form
+msgid "Cancel"
+msgstr "Preklic"
+
+#. module: procurement_batch_generator
+#: field:procurement.batch.generator,create_uid:0
+#: field:procurement.batch.generator.line,create_uid:0
+msgid "Created by"
+msgstr "Ustvaril"
+
+#. module: procurement_batch_generator
+#: field:procurement.batch.generator,create_date:0
+#: field:procurement.batch.generator.line,create_date:0
+msgid "Created on"
+msgstr "Ustvarjeno"
+
+#. module: procurement_batch_generator
+#: field:procurement.batch.generator,display_name:0
+#: field:procurement.batch.generator.line,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: procurement_batch_generator
+#: field:procurement.batch.generator,id:0
+#: field:procurement.batch.generator.line,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: procurement_batch_generator
+#: field:procurement.batch.generator.line,incoming_qty:0
+msgid "Incoming Quantity"
+msgstr "Prihajajoča količina"
+
+#. module: procurement_batch_generator
+#: field:procurement.batch.generator,__last_update:0
+#: field:procurement.batch.generator.line,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
+
+#. module: procurement_batch_generator
+#: field:procurement.batch.generator,write_uid:0
+#: field:procurement.batch.generator.line,write_uid:0
+msgid "Last Updated by"
+msgstr "Zadnji posodobil"
+
+#. module: procurement_batch_generator
+#: field:procurement.batch.generator,write_date:0
+#: field:procurement.batch.generator.line,write_date:0
+msgid "Last Updated on"
+msgstr "Zadnjič posodobljeno"
+
+#. module: procurement_batch_generator
+#: model:ir.model,name:procurement_batch_generator.model_procurement_batch_generator_line
+msgid "Lines of the wizard to request procurements"
+msgstr "Postavke čarovnika za zahteve po oskrbi"
+
+#. module: procurement_batch_generator
+#: field:procurement.batch.generator.line,outgoing_qty:0
+msgid "Outgoing qty"
+msgstr "Odhodna kol."
+
+#. module: procurement_batch_generator
+#: field:procurement.batch.generator.line,parent_id:0
+msgid "Parent"
+msgstr "Nadrejeni"
+
+#. module: procurement_batch_generator
+#: field:procurement.batch.generator.line,date_planned:0
+msgid "Planned Date"
+msgstr "Načrtovani datum"
+
+#. module: procurement_batch_generator
+#: field:procurement.batch.generator,line_ids:0
+msgid "Procurement Request Lines"
+msgstr "Postavke oskrbovalnega zahtevka"
+
+#. module: procurement_batch_generator
+#: field:procurement.batch.generator.line,product_id:0
+msgid "Product"
+msgstr "Proizvod"
+
+#. module: procurement_batch_generator
+#: field:procurement.batch.generator.line,qty_available:0
+msgid "Quantity Available"
+msgstr "Razpoložljiva količina"
+
+#. module: procurement_batch_generator
+#: model:ir.actions.act_window,name:procurement_batch_generator.procurement_batch_generator_tree_action
+#: view:procurement.batch.generator:procurement_batch_generator.procurement_batch_generator_form
+msgid "Request Procurements"
+msgstr "Zahteva po oskrbi"
+
+#. module: procurement_batch_generator
+#: field:procurement.batch.generator.line,procurement_qty:0
+msgid "Requested Quantity"
+msgstr "Zahtevana količina"
+
+#. module: procurement_batch_generator
+#: field:procurement.batch.generator.line,partner_id:0
+msgid "Supplier"
+msgstr "Dobavitelj"
+
+#. module: procurement_batch_generator
+#: field:procurement.batch.generator.line,uom_id:0
+msgid "Unit of Measure"
+msgstr "Enota mere"
+
+#. module: procurement_batch_generator
+#: view:procurement.batch.generator:procurement_batch_generator.procurement_batch_generator_form
+msgid "Validate"
+msgstr "Potrdi"
+
+#. module: procurement_batch_generator
+#: field:procurement.batch.generator.line,warehouse_id:0
+msgid "Warehouse"
+msgstr "Skladišče"
+
+#. module: procurement_batch_generator
+#: model:ir.model,name:procurement_batch_generator.model_procurement_batch_generator
+msgid "Wizard to create procurements from product tree"
+msgstr "Čarovnik za ustvarjanje oskrbe iz seznama proizvodov"
