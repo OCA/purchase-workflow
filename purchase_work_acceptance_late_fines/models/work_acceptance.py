@@ -107,3 +107,16 @@ class WorkAcceptance(models.Model):
     def _onchange_fines_late(self):
         fines_late = self.late_days * self.fines_rate
         self.fines_late = fines_late > 0 and fines_late or 0
+
+    @api.constrains("late_days", "fines_rate", "fines_late")
+    def _check_late_fines(self):
+        for rec in self:
+            err = []
+            if rec.late_days < 0:
+                err.append("Late Days is not negative value.")
+            if rec.fines_rate < 0:
+                err.append("Fines Rate is not negative value.")
+            if rec.fines_late < 0:
+                err.append("Fines Amount is not negative value.")
+            if err:
+                raise UserError(_("%s" % ("\n".join(err))))
