@@ -102,7 +102,7 @@ class PurchaseOrderLine(models.Model):
                 "warning": {
                     "title": _("Warning"),
                     "message": _(
-                        "This product is packaged by %.2f %s. You should sell %.2f %s."
+                        "This product is packaged by %.2f %s. You should buy %.2f %s."
                     )
                     % (pack.qty, default_uom.name, newqty, self.product_uom.name),
                 },
@@ -114,4 +114,13 @@ class PurchaseOrderLine(models.Model):
         if res and res[0]:
             res[0]["product_packaging"] = self.product_packaging.id
             res[0]["product_packaging_qty"] = self.product_packaging_qty
+        return res
+
+    @api.onchange("product_id")
+    def onchange_product_id(self):
+        res = super(PurchaseOrderLine, self).onchange_product_id()
+        for pol in self:
+            if pol.product_id and pol.product_id.default_packaging:
+                pol.product_packaging = pol.product_id.default_packaging.id
+                pol._onchange_product_packaging()
         return res

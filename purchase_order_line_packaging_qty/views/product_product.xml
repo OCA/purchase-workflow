@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="product_product_form_view">
+        <field name="name">product.product.form - pack </field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='packaging_ids']" position="after">
+                <group name="main">
+                    <field
+                        name="default_packaging"
+                        domain="[('product_id', '=', id)]"
+                    />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
