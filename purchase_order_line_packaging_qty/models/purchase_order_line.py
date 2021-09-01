@@ -33,6 +33,8 @@ class PurchaseOrderLine(models.Model):
                 or pol.product_packaging.qty == 0
             ):
                 pol.product_packaging_qty = 0
+                if pol.product_id and pol.product_id.default_packaging:
+                    pol.product_packaging = pol.product_id.default_packaging.id
                 continue
             # Consider UOM
             if pol.product_id.uom_id != pol.product_uom:
@@ -103,7 +105,7 @@ class PurchaseOrderLine(models.Model):
                 "warning": {
                     "title": _("Warning"),
                     "message": _(
-                        "This product is packaged by %.2f %s. You should sell %.2f %s."
+                        "This product is packaged by %.2f %s. You should buy %.2f %s."
                     )
                     % (pack.qty, default_uom.name, newqty, self.product_uom.name),
                 },

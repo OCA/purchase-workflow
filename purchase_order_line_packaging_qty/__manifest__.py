@@ -14,5 +14,5 @@
     "application": False,
     "installable": True,
     "depends": ["purchase_stock", "stock_move_packaging_qty"],
-    "data": ["views/purchase_order.xml"],
+    "data": ["views/purchase_order.xml", "views/product_product.xml"],
 }
