@@ -1,6 +1,6 @@
 # Copyright 2021 Jacques-Etienne Baudoux (BCIM) <je@bcim.be>
 
-from odoo import fields, models, SUPERUSER_ID
+from odoo import SUPERUSER_ID, fields, models
 
 
 class StockPicking(models.Model):

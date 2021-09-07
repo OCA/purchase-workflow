@@ -3,7 +3,7 @@
 # Copyright 2021 Jacques-Etienne Baudoux (BCIM) <je@bcim.be>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models, SUPERUSER_ID
+from odoo import api, fields, models
 
 
 class PurchaseOrderLine(models.Model):
@@ -14,6 +14,7 @@ class PurchaseOrderLine(models.Model):
         return (
             picking.state not in ("done", "cancel")
             and picking.dt2date(picking.scheduled_date) == date_planned
+            and len(set(picking.move_lines.mapped("date_expected"))) == 1
             and picking.location_dest_id.usage in ("internal", "transit", "customer")
         )
 

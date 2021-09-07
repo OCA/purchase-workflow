@@ -22,6 +22,7 @@ class TestDeliverySingle(TransactionCase):
         )
 
         # Two dates which we can use to test the features:
+        self.date_in_the_past = "2014-12-12"
         self.date_sooner = "2015-01-01"
         self.date_later = "2015-12-13"
         self.date_3rd = "2015-12-31"
@@ -262,4 +263,11 @@ class TestDeliverySingle(TransactionCase):
         self.assertEquals(len(self.po.picking_ids), 2)
         # No time difference so will be another day (2 pickings)
         line2.write({"date_planned": "2021-05-04 23:00:00"})
+        self.assertEquals(len(self.po.picking_ids), 2)
+
+    def test_set_planned_date_in_the_past(self):
+        """Check changing the scheduled date of one line in the past."""
+        self.po.button_confirm()
+        self.assertEquals(len(self.po.picking_ids), 1)
+        self.po.order_line[0].date_planned = self.date_in_the_past
         self.assertEquals(len(self.po.picking_ids), 2)
