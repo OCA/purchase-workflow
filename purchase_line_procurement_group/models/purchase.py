@@ -21,13 +21,12 @@ class PurchaseOrderLine(models.Model):
         values,
     ):
         """Do no merge PO lines if procurement group is different."""
-        if "group_id" in values:
-            lines = self.filtered(
-                lambda l: l.procurement_group_id == values["group_id"]
+        _self = self
+        if values.get("group_id"):
+            _self = self.filtered(
+                lambda l: l.procurement_group_id == values.get("group_id")
             )
-        else:
-            lines = self
-        return super(PurchaseOrderLine, lines)._find_candidate(
+        return super(PurchaseOrderLine, _self)._find_candidate(
             product_id=product_id,
             product_qty=product_qty,
             product_uom=product_uom,
