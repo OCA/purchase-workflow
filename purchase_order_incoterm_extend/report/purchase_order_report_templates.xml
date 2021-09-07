@@ -8,7 +8,7 @@
             <div t-if="o.incoterm_id" class="col-3 bm-2">
                 <strong>Incoterms:</strong>
                 <br />
-                <span t-field="o.incoterm_id"/>
+                <span t-field="o.incoterm_id.code"/>
                 <span t-field="o.incoterm_place" t-if="o.incoterm_place"/>
             </div>
         </xpath>

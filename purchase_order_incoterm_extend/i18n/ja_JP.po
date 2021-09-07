@@ -23,7 +23,7 @@ msgstr "<strong>インコタームズ:</strong>"
 #. module: purchase_order_incoterm_extend
 #: model:ir.model.fields,field_description:purchase_order_incoterm_extend.field_purchase_order__incoterm_place
 msgid "Incoterm Place"
-msgstr ""積地/仕向地"
+msgstr "積地/仕向地"
 
 #. module: purchase_order_incoterm_extend
 #: model:ir.model,name:purchase_order_incoterm_extend.model_purchase_order
