@@ -11,10 +11,14 @@ class PurchaseOrderLine(models.Model):
 
     def _is_valid_picking(self, picking):
         date_planned = picking.dt2date(self.date_planned)
+        expected_dates = [
+            picking.dt2date(expected_date)
+            for expected_date in picking.move_lines.mapped("date_expected")
+        ]
         return (
             picking.state not in ("done", "cancel")
             and picking.dt2date(picking.scheduled_date) == date_planned
-            and len(set(picking.move_lines.mapped("date_expected"))) == 1
+            and len(set(expected_dates)) == 1
             and picking.location_dest_id.usage in ("internal", "transit", "customer")
         )
 
