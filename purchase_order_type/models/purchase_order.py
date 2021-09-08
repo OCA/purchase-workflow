@@ -59,7 +59,3 @@ class PurchaseOrder(models.Model):
             and r.order_type.company_id != r.company_id
         ):
             raise ValidationError(_("Document's company and type's company mismatch"))
-
-    @api.onchange("company_id")
-    def _onchange_company(self):
-        self.order_type = False
