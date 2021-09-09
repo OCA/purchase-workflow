@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="purchase_cost_distribution_form_volumetric_weight" model="ir.ui.view">
+        <field name="name">purchase.cost.distribution.form</field>
+        <field name="model">purchase.cost.distribution</field>
+        <field
+            name="inherit_id"
+            ref="purchase_landed_cost.purchase_cost_distribution_form"
+        />
+        <field name="arch" type="xml">
+            <field name="total_volume" position="after">
+                <field name="total_volumetric_weight" />
+            </field>
+        </field>
+    </record>
+    <record
+        id="view_purchase_cost_distribution_line_form_volumetric_weight"
+        model="ir.ui.view"
+    >
+        <field name="name">purchase.cost.distribution.line.form</field>
+        <field name="model">purchase.cost.distribution.line</field>
+        <field
+            name="inherit_id"
+            ref="purchase_landed_cost.view_purchase_cost_distribution_line_form"
+        />
+        <field name="arch" type="xml">
+            <field name="product_volume" position="after">
+                <field name="product_volumetric_weight" readonly="1" />
+            </field>
+            <field name="total_volume" position="after">
+                <field name="total_volumetric_weight" />
+            </field>
+        </field>
+    </record>
+</odoo>

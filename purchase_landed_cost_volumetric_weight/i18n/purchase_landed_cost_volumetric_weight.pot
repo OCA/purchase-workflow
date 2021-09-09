@@ -1,0 +1,52 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_landed_cost_volumetric_weight
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-09-09 08:44+0000\n"
+"PO-Revision-Date: 2021-09-09 08:44+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_landed_cost_volumetric_weight
+#: model:ir.model.fields,field_description:purchase_landed_cost_volumetric_weight.field_purchase_expense_type__calculation_method
+msgid "Calculation method"
+msgstr ""
+
+#. module: purchase_landed_cost_volumetric_weight
+#: model:ir.model.fields,field_description:purchase_landed_cost_volumetric_weight.field_purchase_cost_distribution_line__total_volumetric_weight
+msgid "Line volumetric weight"
+msgstr ""
+
+#. module: purchase_landed_cost_volumetric_weight
+#: model:ir.model,name:purchase_landed_cost_volumetric_weight.model_purchase_cost_distribution_line
+msgid "Purchase cost distribution Line"
+msgstr ""
+
+#. module: purchase_landed_cost_volumetric_weight
+#: model:ir.model,name:purchase_landed_cost_volumetric_weight.model_purchase_expense_type
+msgid "Purchase cost type"
+msgstr ""
+
+#. module: purchase_landed_cost_volumetric_weight
+#: model:ir.model,name:purchase_landed_cost_volumetric_weight.model_purchase_cost_distribution
+msgid "Purchase landed costs distribution"
+msgstr ""
+
+#. module: purchase_landed_cost_volumetric_weight
+#: model:ir.model.fields,field_description:purchase_landed_cost_volumetric_weight.field_purchase_cost_distribution__total_volumetric_weight
+msgid "Total volumetric weight"
+msgstr ""
+
+#. module: purchase_landed_cost_volumetric_weight
+#: model:ir.model.fields,field_description:purchase_landed_cost_volumetric_weight.field_purchase_cost_distribution_line__product_volumetric_weight
+#: model:ir.model.fields.selection,name:purchase_landed_cost_volumetric_weight.selection__purchase_expense_type__calculation_method__volumetric_weight
+msgid "Volumetric weight"
+msgstr ""
