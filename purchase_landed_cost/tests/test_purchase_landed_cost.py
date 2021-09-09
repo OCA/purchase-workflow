@@ -1,5 +1,6 @@
 # Copyright 2018 Tecnativa - Vicent Cubells
 # Copyright 2018 Tecnativa - Pedro M. Baeza
+# Copyright 2021 Tecnativa - Víctor Martínez
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 from odoo import fields
@@ -7,10 +8,10 @@ from odoo.exceptions import UserError
 from odoo.tests import common
 
 
-class TestPurchaseLandedCost(common.SavepointCase):
+class TestPurchaseLandedCostBase(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
-        super(TestPurchaseLandedCost, cls).setUpClass()
+        super().setUpClass()
         expense_type_obj = cls.env["purchase.expense.type"]
         cls.type_amount = expense_type_obj.create(
             {
@@ -93,19 +94,28 @@ class TestPurchaseLandedCost(common.SavepointCase):
             }
         )
         cls.invoice.post()
+
+    def _import_invoice_line_wizard(self, expense_type):
         wiz = (
-            cls.env["import.invoice.line.wizard"]
-            .with_context(active_id=cls.distribution.id)
+            self.env["import.invoice.line.wizard"]
+            .with_context(active_id=self.distribution.id)
             .create(
                 {
-                    "supplier": cls.supplier.id,
-                    "invoice": cls.invoice.id,
-                    "invoice_line": cls.invoice.invoice_line_ids[:1].id,
-                    "expense_type": cls.type_qty.id,
+                    "supplier": self.supplier.id,
+                    "invoice": self.invoice.id,
+                    "invoice_line": self.invoice.invoice_line_ids[:1].id,
+                    "expense_type": expense_type.id,
                 }
             )
         )
         wiz.action_import_invoice_line()
+
+
+class TestPurchaseLandedCost(TestPurchaseLandedCostBase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls._import_invoice_line_wizard(cls, cls.type_qty)
 
     def test_distribution_without_lines(self):
         self.assertNotEqual(self.distribution.name, "/")

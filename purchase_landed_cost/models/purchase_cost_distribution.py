@@ -1,6 +1,7 @@
 # Copyright 2013 Joaquín Gutierrez
 # Copyright 2018 Tecnativa - Vicent Cubells
 # Copyright 2014-2018 Tecnativa - Pedro M. Baeza
+# Copyright 2021 Tecnativa - Víctor Martínez
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3
 
 
@@ -209,7 +210,10 @@ class PurchaseCostDistribution(models.Model):
             multiplier = 1
             divisor = len(expense_line.affected_lines) or len(distribution.cost_lines)
         else:
-            raise UserError(_("No valid distribution type."))
+            method = "_prepare_expense_line_%s" % expense_line.type.calculation_method
+            if not hasattr(self.env["purchase.cost.distribution"], method):
+                raise UserError(_("No valid distribution type."))
+            multiplier, divisor = getattr(self, method)(expense_line, cost_line)
         if divisor:
             expense_amount = expense_line.expense_amount * multiplier / divisor
         else:
