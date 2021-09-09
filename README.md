@@ -58,6 +58,7 @@ addon | version | maintainers | summary
 [purchase_order_product_recommendation](purchase_order_product_recommendation/) | 13.0.1.1.0 |  | Recommend products to buy to supplier based on history
 [purchase_order_product_recommendation_brand](purchase_order_product_recommendation_brand/) | 13.0.1.0.1 |  | Allow to filter recommendations by brand
 [purchase_order_product_recommendation_xlsx](purchase_order_product_recommendation_xlsx/) | 13.0.1.0.0 |  | Add a way to print recommended products for supplier
+[purchase_order_qty_change_no_recompute](purchase_order_qty_change_no_recompute/) | 13.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Prevent recompute if only quantity has changed in purchase order line
 [purchase_order_secondary_unit](purchase_order_secondary_unit/) | 13.0.1.1.1 |  | Purchase product in a secondary unit
 [purchase_order_type](purchase_order_type/) | 13.0.1.0.0 |  | Purchase Order Type
 [purchase_order_uninvoiced_amount](purchase_order_uninvoiced_amount/) | 13.0.2.1.2 |  | Purchase Order Univoiced Amount
