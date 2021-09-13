@@ -48,6 +48,11 @@ msgid "Approved"
 msgstr ""
 
 #. module: purchase_order_approved
+#: model_terms:ir.ui.view,arch_db:purchase_order_approved.view_purchase_order_filter
+msgid "Approved Orders"
+msgstr ""
+
+#. module: purchase_order_approved
 #: model:ir.model,name:purchase_order_approved.model_res_company
 msgid "Companies"
 msgstr "Enpresak"
