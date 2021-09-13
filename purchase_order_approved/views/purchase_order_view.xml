@@ -9,6 +9,11 @@
             <button name="button_draft" position="attributes">
                 <attribute name="states">cancel,to approve,approved</attribute>
             </button>
+            <button name="button_cancel" position="attributes">
+                <attribute
+                    name="states"
+                >draft,to approve,approved,sent,purchase</attribute>
+            </button>
             <button name="button_approve" position="after">
                 <button
                     name="button_release"
@@ -18,6 +23,20 @@
                     class="oe_highlight"
                 />
             </button>
+        </field>
+    </record>
+    <record id="view_purchase_order_filter" model="ir.ui.view">
+        <field name="name">request.quotation.select - purchase_order_approved</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.view_purchase_order_filter" />
+        <field name="arch" type="xml">
+            <filter name="approved" position="before">
+                <filter
+                    name="purchase_order_approved"
+                    string="Approved Orders"
+                    domain="[('state', '=', 'approved')]"
+                />
+            </filter>
         </field>
     </record>
     <record id="purchase.purchase_form_action" model="ir.actions.act_window">
