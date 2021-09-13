@@ -1,6 +1,5 @@
 # Copyright 2018 Tecnativa - Sergio Teruel
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo.odoo.tools.misc import file_open
 from odoo import fields
 from odoo.tests.common import SavepointCase, tagged
 
@@ -44,7 +43,7 @@ class TestPurchaseOrderIncotermExtend(SavepointCase):
                 'product_uom': cls.product.uom_id.id,
                 'price_unit': 1000.00,
                 'date_planned': fields.Datetime.now(),
-                 'incoterm_place': 'TestSentence',
+                'incoterm_place': 'TestSentence',
             })],
         }
         po = cls.purchase_order_obj.new(po_val)
@@ -55,20 +54,13 @@ class TestPurchaseOrderIncotermExtend(SavepointCase):
         self.assertTrue(self.order, 'Purchase: no purchase order created')
 
     def test_02_incoterm_place_allow_empty(self):
-        self.order.update({
-            'incoterm_place': '',
-        })
+        self.order.update({'incoterm_place': ''})
         self.assertTrue(self.order, 'Purchase: no purchase order created')
 
-
     def test_03_incoterm_place_able_to_update(self):
-        self.order.update({
-            'incoterm_place': 'TestSentence2',
-        })
+        self.order.update({'incoterm_place': 'TestSentence2'})
         self.assertTrue(self.order, 'Purchase: no purchase order created')
 
     def test_04_incoterm_place_able_to_contain_zenkaku_char(self):
-        self.order.update({
-            'incoterm_place': 'テスト　（全角スペース）文章',
-        })
+        self.order.update({'incoterm_place': 'テスト　（全角スペース）文章'})
         self.assertTrue(self.order, 'Purchase: no purchase order created')
