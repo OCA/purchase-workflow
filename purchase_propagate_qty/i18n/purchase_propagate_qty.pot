@@ -17,3 +17,16 @@ msgstr ""
 #: model:ir.model,name:purchase_propagate_qty.model_purchase_order_line
 msgid "Purchase Order Line"
 msgstr ""
+
+#. module: purchase_propagate_qty
+#: model:ir.model,name:purchase_propagate_qty.model_stock_move
+msgid "Stock Move"
+msgstr ""
+
+#. module: purchase_propagate_qty
+#: code:addons/purchase_propagate_qty/models/purchase.py:0
+#, python-format
+msgid ""
+"You cannot remove more that what remains to be done. Max removable quantity "
+"{}."
+msgstr ""
