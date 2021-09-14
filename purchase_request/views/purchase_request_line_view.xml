@@ -177,9 +177,9 @@
                                 mode="tree"
                                 attrs="{'readonly': [('purchase_state', 'in', ('cancel'))]}"
                                 domain="[('product_id', '=', product_id)]"
-                                context="{'form_view_ref' : 'purchase_order_line_form2_sub',
-                                             'tree_view_ref' : 'purchase_order_line_tree_sub',
-                                             'search_view_ref' : 'purchase_order_line_search_sub'}"
+                                context="{'form_view_ref' : 'purchase_request.purchase_order_line_form2_sub',
+                                             'tree_view_ref' : 'purchase_request.purchase_order_line_tree_sub',
+                                             'search_view_ref' : 'purchase_request.purchase_order_line_search_sub'}"
                             />
                         </page>
                         <page name="allocations" string="Allocations">
