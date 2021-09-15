@@ -37,4 +37,14 @@
             </xpath>
         </field>
     </record>
+    <record id="view_purchase_request_search" model="ir.ui.view">
+        <field name="name">purchase.request.list.select</field>
+        <field name="model">purchase.request</field>
+        <field name="inherit_id" ref="purchase_request.view_purchase_request_search" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="origin" />
+            </field>
+        </field>
+    </record>
 </odoo>
