@@ -34,7 +34,7 @@ addon | version | maintainers | summary
 [purchase_manual_currency](purchase_manual_currency/) | 14.0.1.0.0 |  | Allows to manual currency of Purchase
 [purchase_minimum_amount](purchase_minimum_amount/) | 14.0.1.0.0 |  | Purchase Minimum Amount
 [purchase_open_qty](purchase_open_qty/) | 14.0.1.0.1 |  | Allows to identify the purchase orders that have quantities pending to invoice or to receive.
-[purchase_order_approval_block](purchase_order_approval_block/) | 14.0.1.0.1 |  | Purchase Order Approval Block
+[purchase_order_approval_block](purchase_order_approval_block/) | 14.0.1.0.2 |  | Purchase Order Approval Block
 [purchase_order_approved](purchase_order_approved/) | 14.0.1.1.0 |  | Add a new state 'Approved' in purchase orders.
 [purchase_order_archive](purchase_order_archive/) | 14.0.1.0.0 |  | Archive Purchase Orders
 [purchase_order_line_deep_sort](purchase_order_line_deep_sort/) | 14.0.1.0.0 |  | Purchase Order Line Sort
