@@ -11,9 +11,20 @@
                     name="last_purchase_info"
                     attrs="{'invisible': [('product_variant_count', '&lt;=', 1)]}"
                 >
-                    <field name="last_supplier_id" />
+                    <field name="last_purchase_supplier_id" />
                     <field name="last_purchase_date" />
                     <field name="last_purchase_price" />
+                    <field name="show_last_purchase_price_currency" invisible="1" />
+                    <field
+                        name="last_purchase_currency_id"
+                        groups="base.group_multi_currency"
+                        attrs="{'invisible':[('show_last_purchase_price_currency', '=', False)]}"
+                    />
+                    <field
+                        name="last_purchase_price_currency"
+                        groups="base.group_multi_currency"
+                        attrs="{'invisible':[('show_last_purchase_price_currency', '=', False)]}"
+                    />
                 </group>
             </field>
         </field>
@@ -29,9 +40,20 @@
                     name="last_purchase_info"
                     attrs="{'invisible': [('product_variant_count', '&gt;', 1)]}"
                 >
-                    <field name="last_supplier_id" />
+                    <field name="last_purchase_supplier_id" />
                     <field name="last_purchase_date" />
                     <field name="last_purchase_price" />
+                    <field name="show_last_purchase_price_currency" invisible="1" />
+                    <field
+                        name="last_purchase_currency_id"
+                        groups="base.group_multi_currency"
+                        attrs="{'invisible':[('show_last_purchase_price_currency', '=', False)]}"
+                    />
+                    <field
+                        name="last_purchase_price_currency"
+                        groups="base.group_multi_currency"
+                        attrs="{'invisible':[('show_last_purchase_price_currency', '=', False)]}"
+                    />
                 </group>
             </field>
         </field>
