@@ -38,10 +38,7 @@ class PurchaseOrderLineInvoiceWizard(models.TransientModel):
     @api.model
     def default_get(self, fields):
         result = super().default_get(fields)
-        if self.env.context.get("active_domain", False):
-            domain = self.env.context.get("active_domain", False)
-        else:
-            domain = [("id", "in", self.env.context.get("active_ids", []))]
+        domain = [("id", "in", self.env.context.get("active_ids", []))]
         purchase_lines = self.env["purchase.order.line"].search(domain)
         if not purchase_lines:
             raise UserError(_("Please select a least one line to invoice."))
