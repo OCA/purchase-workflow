@@ -53,7 +53,7 @@ class TestPurchaseForceInvoiced(TransactionCase):
 
     def _create_invoice_from_purchase(self, purchase):
         invoice = self.account_invoice_model.create(
-            {"partner_id": purchase.partner_id.id, "type": "in_invoice"}
+            {"partner_id": purchase.partner_id.id, "move_type": "in_invoice"}
         )
         invoice.write({"purchase_id": purchase.id})
         invoice._onchange_purchase_auto_complete()
