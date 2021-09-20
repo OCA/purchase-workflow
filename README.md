@@ -29,7 +29,7 @@ addon | version | maintainers | summary
 [purchase_fop_shipping](purchase_fop_shipping/) | 14.0.1.0.0 |  | Purchase Free-Of-Payment shipping
 [purchase_invoice_plan](purchase_invoice_plan/) | 14.0.1.1.1 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Add to purchases order, ability to manage future invoice plan
 [purchase_isolated_rfq](purchase_isolated_rfq/) | 14.0.1.0.1 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Purchase Isolated RFQ
-[purchase_last_price_info](purchase_last_price_info/) | 14.0.1.0.0 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Purchase Product Last Price Info
+[purchase_last_price_info](purchase_last_price_info/) | 14.0.2.0.0 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Purchase Product Last Price Info
 [purchase_location_by_line](purchase_location_by_line/) | 14.0.1.0.1 |  | Allows to define a specific destination location on each PO line
 [purchase_manual_currency](purchase_manual_currency/) | 14.0.1.0.0 |  | Allows to manual currency of Purchase
 [purchase_minimum_amount](purchase_minimum_amount/) | 14.0.1.0.1 |  | Purchase Minimum Amount
