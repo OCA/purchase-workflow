@@ -72,7 +72,11 @@
                             >
                                 <tree string="Work Acceptance Lines" editable="bottom">
                                     <field name="purchase_line_id" invisible="1" />
-                                    <field name="product_id" />
+                                    <field
+                                        name="product_id"
+                                        readonly="1"
+                                        force_save="1"
+                                    />
                                     <field name="name" />
                                     <field name="product_qty" />
                                     <field name="product_uom" groups="uom.group_uom" />
