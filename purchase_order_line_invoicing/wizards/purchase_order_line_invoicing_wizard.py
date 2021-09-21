@@ -61,6 +61,9 @@ class PurchaseOrderLineInvoiceWizard(models.TransientModel):
             "partner_id": purchase_order[0].partner_id.id,
             "move_type": "in_invoice",
             "invoice_origin": ",".join(purchase_order.mapped("name")),
+            "fiscal_position_id": purchase_order[
+                0
+            ].partner_id.property_account_position_id,
         }
         journal_domain = [
             ("type", "=", "purchase"),
