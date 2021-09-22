@@ -40,7 +40,9 @@ class PurchaseOrderLine(models.Model):
         return self.product_id._select_seller(
             partner_id=self.order_id.partner_id,
             quantity=self.product_qty,
-            date=self.order_id.date_order.date(),
+            date=self.order_id.date_order
+            and self.order_id.date_order.date()
+            or fields.Date.today(),
             uom_id=self.product_uom,
         )
 

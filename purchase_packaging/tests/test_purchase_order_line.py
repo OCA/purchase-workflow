@@ -224,3 +224,40 @@ class TestPurchaseOrderLine(common.TransactionCase):
         self.assertEqual(16.0, po_line.product_qty)
         po_line.product_purchase_uom_id = self.env.ref("uom.product_uom_unit")
         self.assertEqual(2.0, po_line.product_qty)
+
+    def test_po_line_new_id(self):
+        """
+        Create a new Purchase order with new line
+        Set date_order to False
+        product_qty computation should succeeed
+        """
+        self.product_supplier_info.min_qty_uom_id = self.product_uom_8
+        self.product_supplier_info.min_qty = 2
+        self.product_supplier_info.packaging_id = self.product_packaging_dozen
+
+        po = self.env["purchase.order"].new(
+            {
+                "partner_id": self.product_supplier_info.name.id,
+                "order_line": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.product_id.id,
+                            "product_purchase_qty": 1.0,
+                            "product_purchase_uom_id": self.env[
+                                "purchase.order.line"
+                            ]._default_product_purchase_uom_id(),  # noqa
+                        },
+                    )
+                ],
+            }
+        )
+        # On interface, date_order field is False
+        po.date_order = False
+        po_line = po.order_line
+        po.order_line.onchange_product_id()
+        self.assertEqual(po_line.packaging_id.id, self.product_packaging_dozen.id)
+        self.assertEqual(po_line.product_purchase_uom_id.id, self.product_uom_8.id)
+        self.assertAlmostEqual(po_line.product_purchase_qty, 2)
+        self.assertAlmostEqual(po_line.product_qty, 16)
