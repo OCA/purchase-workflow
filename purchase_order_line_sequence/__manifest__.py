@@ -20,7 +20,6 @@
     'data': ['views/purchase_view.xml',
              'views/report_purchaseorder.xml',
              'views/report_purchasequotation.xml'],
-    'post_init_hook': 'post_init_hook',
     'installable': True,
     'auto_install': False,
     'license': "AGPL-3",

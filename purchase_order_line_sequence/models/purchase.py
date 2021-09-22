@@ -40,25 +40,6 @@ class PurchaseOrder(models.Model):
                         move.write({'sequence': line.sequence})
         return res
 
-    @api.multi
-    def _reset_sequence(self):
-        for rec in self:
-            current_sequence = 1
-            for line in rec.order_line:
-                line.sequence = current_sequence
-                current_sequence += 1
-
-    @api.multi
-    def write(self, line_values):
-        res = super(PurchaseOrder, self).write(line_values)
-        self._reset_sequence()
-        return res
-
-    @api.multi
-    def copy(self, default=None):
-        return super(PurchaseOrder,
-                     self.with_context(keep_line_sequence=True)).copy(default)
-
 
 class PurchaseOrderLine(models.Model):
     _inherit = 'purchase.order.line'
@@ -80,11 +61,3 @@ class PurchaseOrderLine(models.Model):
         for move, line in zip(res, self):
             move.update(sequence=line.sequence)
         return res
-
-    @api.model
-    def create(self, values):
-        line = super(PurchaseOrderLine, self).create(values)
-        # We do not reset the sequence when copying an entire purchase order
-        if not self.env.context.get('keep_line_sequence'):
-            line.order_id._reset_sequence()
-        return line
