@@ -17,6 +17,7 @@
         "views/purchase_views.xml",
         "views/res_config_settings_views.xml",
         "views/stock_picking_views.xml",
+        "views/stock_picking_type_views.xml",
         "views/work_acceptance_views.xml",
         "wizard/select_work_acceptance_wizard_views.xml",
         "wizard/work_accepted_date_wizard.xml",

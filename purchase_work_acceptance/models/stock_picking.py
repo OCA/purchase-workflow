@@ -21,12 +21,16 @@ class Picking(models.Model):
     )
 
     def _compute_require_wa(self):
-        if self.picking_type_code == "incoming":
-            self.require_wa = self.env.user.has_group(
-                "purchase_work_acceptance.group_enforce_wa_on_in"
-            )
-        else:
-            self.require_wa = False
+        for rec in self:
+            if rec.picking_type_id.bypass_wa:
+                rec.require_wa = False
+                continue
+            if rec.picking_type_code == "incoming":
+                rec.require_wa = self.env.user.has_group(
+                    "purchase_work_acceptance.group_enforce_wa_on_in"
+                )
+                continue
+            rec.require_wa = False
 
     @api.depends("require_wa")
     def _compute_wa_ids(self):
@@ -97,3 +101,12 @@ class Picking(models.Model):
                         wa_line[line.product_id.id] = qty - move_line.product_uom_qty
                     else:
                         move_line._origin.qty_done = qty
+
+
+class StockPickingType(models.Model):
+    _inherit = "stock.picking.type"
+
+    bypass_wa = fields.Boolean(
+        string="WA not required",
+        help="When 'Enforce WA on Goods Receipt' is set, this option type can by pass it",
+    )
