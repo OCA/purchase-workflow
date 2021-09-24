@@ -151,9 +151,9 @@ class WorkAcceptance(models.Model):
             ]
         )
         if doctype == "invoice":
-            used_wa = order.invoice_ids.filtered(lambda l: l.state == "posted").mapped(
-                "wa_id"
-            )
+            used_wa = order.invoice_ids.filtered(
+                lambda l: l.state in ("draft", "posted")
+            ).mapped("wa_id")
             return all_wa - used_wa
         if doctype == "picking":
             used_wa = order.picking_ids.mapped("wa_id")
