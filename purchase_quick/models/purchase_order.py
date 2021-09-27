@@ -25,6 +25,9 @@ class PurchaseOrder(models.Model):
         commercial = self.partner_id.commercial_partner_id.name
         res["name"] = "🔙 {} ({})".format(_("Product Variants"), commercial)
         res["view_id"] = (self.env.ref("purchase_quick.product_tree_view4purchase").id,)
+        res["search_view_id"] = (
+            self.env.ref("purchase_quick.product_search_form_view").id,
+        )
         return res
 
     def _get_quick_line(self, product):
