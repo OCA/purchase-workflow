@@ -226,6 +226,7 @@ class PurchaseReturnOrderLine(models.Model):
         "invoice_lines.move_id.state",
         "invoice_lines.quantity",
         "qty_delivered",
+        "refund_only",
         "product_uom_qty",
         "order_id.state",
     )
