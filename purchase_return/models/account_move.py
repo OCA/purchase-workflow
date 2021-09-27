@@ -29,7 +29,7 @@ class AccountMove(models.Model):
         return vendor_refs
 
     @api.onchange("purchase_return_id")
-    def _onchange_purchase_auto_complete(self):
+    def _onchange_purchase_return_auto_complete(self):
 
         if not self.purchase_return_id:
             return
@@ -65,7 +65,7 @@ class AccountMove(models.Model):
         if len(refs) == 1:
             self.payment_reference = refs[0]
 
-        self.purchase_id = False
+        self.purchase_return_id = False
         self._onchange_currency()
         self.partner_bank_id = (
             self.bank_partner_id.bank_ids and self.bank_partner_id.bank_ids[0]
