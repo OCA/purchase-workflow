@@ -9,4 +9,5 @@ class ProductPackaging(models.Model):
     default_packaging = fields.Many2one(
         comodel_name='product.packaging',
         string="Default Product Packaging",
+        company_dependent=True,
     )
