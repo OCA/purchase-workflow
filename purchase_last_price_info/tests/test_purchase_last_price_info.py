@@ -9,15 +9,17 @@ from odoo import fields
 class TestPurchaseLastPriceInfo(common.TransactionCase):
     def setUp(self):
         super().setUp()
-        self.currency_usd = self.env.ref("base.USD")
-        self.currency_eur = self.env.ref("base.EUR")
+        usd = self.env.ref("base.USD")
+        eur = self.env.ref("base.EUR")
+        self.currency = self.env.ref("base.main_company").currency_id
+        self.currency_extra = eur if self.currency == usd else usd
         self.purchase_model = self.env["purchase.order"]
         self.purchase_line_model = self.env["purchase.order.line"]
         self.product = self.env.ref("product.consu_delivery_01")
         self.partner = self.env.ref("base.res_partner_1")
-        # Create custom rates to USD + EUR
-        self._create_currency_rate(self.currency_usd, "2000-01-01", 1.0)
-        self._create_currency_rate(self.currency_eur, "2000-01-01", 2.0)
+        # Create custom rates to currency + currency_extra
+        self._create_currency_rate(self.currency, "2000-01-01", 1.0)
+        self._create_currency_rate(self.currency_extra, "2000-01-01", 2.0)
 
     def _create_currency_rate(self, currency_id, name, rate):
         self.env["res.currency.rate"].create(
@@ -27,7 +29,7 @@ class TestPurchaseLastPriceInfo(common.TransactionCase):
     def test_purchase_last_price_info_demo(self):
         purchase_order = self.env.ref("purchase.purchase_order_6")
         purchase_order.write(
-            {"date_order": "2000-01-01", "currency_id": self.currency_usd.id}
+            {"date_order": "2000-01-01", "currency_id": self.currency.id}
         )
         purchase_order.button_confirm()
         purchase_lines = self.purchase_line_model.search(
@@ -51,14 +53,14 @@ class TestPurchaseLastPriceInfo(common.TransactionCase):
         self.assertEqual(
             first_purchase_line.currency_id, self.product.last_purchase_currency_id
         )
-        self.assertEqual(self.product.last_purchase_currency_id, self.currency_usd)
+        self.assertEqual(self.product.last_purchase_currency_id, self.currency)
         self.assertEqual(self.product.last_purchase_price_currency, 1.0)
 
     def test_purchase_last_price_info_new_order(self):
         purchase_order = self.purchase_model.create(
             {
                 "date_order": "2000-01-01",
-                "currency_id": self.currency_eur.id,
+                "currency_id": self.currency_extra.id,
                 "partner_id": self.partner.id,
                 "order_line": [
                     (
@@ -83,8 +85,11 @@ class TestPurchaseLastPriceInfo(common.TransactionCase):
         )
         first_order_line = fields.first(purchase_order.order_line)
         self.assertEqual(first_order_line.price_unit, self.product.last_purchase_price)
-        self.assertEqual(first_order_line.price_unit, self.product.last_purchase_price)
-        self.assertEqual(self.product.last_purchase_currency_id, self.currency_eur)
+        self.assertEqual(
+            first_order_line.currency_id,
+            self.product.last_purchase_currency_id,
+        )
+        self.assertEqual(self.product.last_purchase_currency_id, self.currency_extra)
         self.assertEqual(self.product.last_purchase_price_currency, 2.0)
         self.assertEqual(self.partner, self.product.last_purchase_supplier_id)
         purchase_order.button_cancel()
