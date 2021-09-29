@@ -18,6 +18,25 @@ class ProductProduct(models.Model):
         inverse_name="product_id",
         help="Technical: used to compute quantities to purchase.",
     )
+    seller_price = fields.Float(compute="_compute_seller_price")
+
+    def _compute_seller_price(self):
+        po = self.pma_parent
+        for record in self:
+            seller = record._select_seller(
+                partner_id=po.partner_id,
+                quantity=record.qty_to_process or 1,
+                uom_id=record.quick_uom_id,
+            )
+            price_unit = record.uom_id._compute_price(
+                seller.price,
+                record.quick_uom_id,
+            )
+            if self.pma_parent.currency_id != seller.currency_id:
+                price_unit = seller.currency_id._convert(
+                    price_unit, po.currency_id, po.company_id, fields.Date.today()
+                )
+            record.seller_price = price_unit
 
     def _default_quick_uom_id(self):
         if self.env.context.get("parent_model", False) == "purchase.order":
