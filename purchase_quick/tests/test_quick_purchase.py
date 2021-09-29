@@ -6,31 +6,54 @@ from odoo.tests.common import Form, SavepointCase
 
 
 class TestQuickPurchase(SavepointCase):
-    def _setUpBasicSaleOrder(self):
-        self.po = self.env["purchase.order"].create({"partner_id": self.partner.id})
-        with Form(self.po, "purchase.purchase_order_form") as po_form:
-            po_form.partner_id = self.partner
-        ctx = {"parent_id": self.po.id, "parent_model": "purchase.order"}
-        self.product_1 = self.env.ref("product.product_product_8").with_context(ctx)
-        self.product_2 = self.env.ref("product.product_product_11").with_context(ctx)
-        self.product_1.qty_to_process = 5.0
-        self.product_2.qty_to_process = 6.0
+    @classmethod
+    def _add_seller(cls, product, prices):
+        # drop existing seller
+        product.seller_ids.filtered(lambda s: s.name == cls.partner).unlink()
+        for min_qty, price in prices:
+            cls.env["product.supplierinfo"].create(
+                {
+                    "product_tmpl_id": product.product_tmpl_id.id,
+                    "name": cls.partner.id,
+                    "price": price,
+                    "min_qty": min_qty,
+                }
+            )
 
-    def setUp(self):
-        super(TestQuickPurchase, self).setUp()
-        self.partner = self.env.ref("base.res_partner_1")
-        self.uom_unit = self.env.ref("uom.product_uom_unit")
-        self.uom_dozen = self.env.ref("uom.product_uom_dozen")
-        self.user = self.env.ref("base.user_demo")
-        self._setUpBasicSaleOrder()
+    @classmethod
+    def _setUpBasicSaleOrder(cls):
+        cls.po = cls.env["purchase.order"].create({"partner_id": cls.partner.id})
+        with Form(cls.po, "purchase.purchase_order_form") as po_form:
+            po_form.partner_id = cls.partner
+        ctx = {"parent_id": cls.po.id, "parent_model": "purchase.order"}
+        cls.product_1 = cls.product_1.with_context(ctx)
+        cls.product_2 = cls.product_2.with_context(ctx)
+        cls.product_1.qty_to_process = 5.0
+        cls.product_2.qty_to_process = 6.0
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.partner = cls.env.ref("base.res_partner_1")
+        cls.uom_unit = cls.env.ref("uom.product_uom_unit")
+        cls.uom_dozen = cls.env.ref("uom.product_uom_dozen")
+        cls.user = cls.env.ref("base.user_demo")
+        cls.product_1 = cls.env.ref("product.product_product_8")
+        cls.product_2 = cls.env.ref("product.product_product_11")
+        cls._add_seller(cls.product_1, [(0, 10), (10, 8)])
+        cls._add_seller(cls.product_2, [(0, 5), (10, 4)])
+        cls._setUpBasicSaleOrder()
 
     def test_quick_line_add_1(self):
         """
         set non-null quantity to any product with no PO line:
           -> a new PO line is created with that quantity
         """
-        self.assertAlmostEqual(self.po.order_line[0].product_uom_qty, 5.0)
-        self.assertAlmostEqual(self.po.order_line[1].product_uom_qty, 6.0)
+        line_1, line_2 = self.po.order_line
+        self.assertAlmostEqual(line_1.product_uom_qty, 5.0)
+        self.assertAlmostEqual(line_1.price_unit, 10)
+        self.assertAlmostEqual(line_2.product_uom_qty, 6.0)
+        self.assertAlmostEqual(line_2.price_unit, 5)
 
     def test_quick_line_add_2(self):
         """
@@ -43,12 +66,21 @@ class TestQuickPurchase(SavepointCase):
         with Form(po, "purchase.purchase_order_form") as po_form:
             po_form.partner_id = self.partner
         ctx = {"parent_id": self.po.id, "parent_model": "purchase.order"}
-        self.product_1 = self.env.ref("product.product_product_8").with_context(ctx)
-        self.product_2 = self.env.ref("product.product_product_11").with_context(ctx)
+        self.product_1 = self.product_1.with_context(ctx)
+        self.product_2 = self.product_2.with_context(ctx)
         self.product_1.write({"qty_to_process": 5.0, "quick_uom_id": self.uom_unit.id})
         self.product_2.write({"qty_to_process": 6.0, "quick_uom_id": self.uom_dozen.id})
-        self.assertEqual(self.po.order_line[0].product_uom, self.uom_unit)
-        self.assertEqual(self.po.order_line[1].product_uom, self.uom_dozen)
+
+        line_1, line_2 = self.po.order_line
+        self.assertAlmostEqual(line_1.product_uom_qty, 5.0)
+        self.assertAlmostEqual(line_1.product_qty, 5.0)
+        self.assertEqual(line_1.product_uom, self.uom_unit)
+        self.assertAlmostEqual(line_1.price_unit, 10)
+
+        self.assertAlmostEqual(line_2.product_uom_qty, 72.0)  # 12 * 6
+        self.assertAlmostEqual(line_2.product_qty, 6.0)
+        self.assertEqual(line_2.product_uom, self.uom_dozen)
+        self.assertAlmostEqual(line_2.price_unit, 48)  # 12 * 4
 
     def test_quick_line_update_1(self):
         """
@@ -57,8 +89,11 @@ class TestQuickPurchase(SavepointCase):
         """
         self.product_1.qty_to_process = 7.0
         self.product_2.qty_to_process = 13.0
-        self.assertAlmostEqual(self.po.order_line[0].product_qty, 7.0)
-        self.assertAlmostEqual(self.po.order_line[1].product_qty, 13.0)
+        line_1, line_2 = self.po.order_line
+        self.assertAlmostEqual(line_1.product_qty, 7.0)
+        self.assertAlmostEqual(line_1.price_unit, 10.0)
+        self.assertAlmostEqual(line_2.product_qty, 13.0)
+        self.assertAlmostEqual(line_2.price_unit, 4.0)
 
     def test_quick_line_update_2(self):
         """
@@ -66,8 +101,17 @@ class TestQuickPurchase(SavepointCase):
         """
         self.product_1.quick_uom_id = self.uom_dozen
         self.product_2.quick_uom_id = self.uom_unit
-        self.assertEqual(self.po.order_line[0].product_uom, self.uom_dozen)
-        self.assertEqual(self.po.order_line[1].product_uom, self.uom_unit)
+        line_1, line_2 = self.po.order_line
+
+        self.assertEqual(line_1.product_uom, self.uom_dozen)
+        self.assertAlmostEqual(line_1.product_qty, 5.0)
+        self.assertAlmostEqual(line_1.product_uom_qty, 60.0)
+        self.assertAlmostEqual(line_1.price_unit, 96)
+
+        self.assertEqual(line_2.product_uom, self.uom_unit)
+        self.assertAlmostEqual(line_2.product_qty, 6.0)
+        self.assertAlmostEqual(line_2.product_uom_qty, 6.0)
+        self.assertAlmostEqual(line_2.price_unit, 5.0)
 
     def test_quick_line_update_3(self):
         """
@@ -77,10 +121,20 @@ class TestQuickPurchase(SavepointCase):
         self.product_2.qty_to_process = 13.0
         self.product_1.quick_uom_id = self.uom_dozen
         self.product_2.quick_uom_id = self.uom_unit
-        self.assertEqual(self.po.order_line[0].product_uom, self.uom_dozen)
-        self.assertEqual(self.po.order_line[1].product_uom, self.uom_unit)
-        self.assertAlmostEqual(self.po.order_line[0].product_qty, 7.0)
-        self.assertAlmostEqual(self.po.order_line[1].product_qty, 13.0)
+
+        line_1, line_2 = self.po.order_line
+        self.assertEqual(line_1.product_uom, self.uom_dozen)
+        self.assertEqual(line_2.product_uom, self.uom_unit)
+
+        self.assertEqual(line_1.product_uom, self.uom_dozen)
+        self.assertAlmostEqual(line_1.product_qty, 7.0)
+        self.assertAlmostEqual(line_1.product_uom_qty, 84.0)
+        self.assertAlmostEqual(line_1.price_unit, 96)
+
+        self.assertEqual(line_2.product_uom, self.uom_unit)
+        self.assertAlmostEqual(line_2.product_qty, 13.0)
+        self.assertAlmostEqual(line_2.product_uom_qty, 13.0)
+        self.assertAlmostEqual(line_2.price_unit, 4.0)
 
     def test_quick_line_delete(self):
         """
