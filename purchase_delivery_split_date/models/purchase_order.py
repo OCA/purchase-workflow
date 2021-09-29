@@ -43,7 +43,7 @@ class PurchaseOrder(models.Model):
                         ):
                             if date_key not in pickings_by_date:
                                 copy_vals = line._first_picking_copy_vals(key, line)
-                                new_picking = move.picking_id.copy(copy_vals)
+                                new_picking = move.picking_id.sudo().copy(copy_vals)
                                 pickings_by_date[date_key] = new_picking
                             move._do_unreserve()
                             move.update(
