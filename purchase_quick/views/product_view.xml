@@ -7,8 +7,6 @@
         <field name="priority" eval="20" />
         <field name="arch" type="xml">
             <tree string="Products for purchase" create="0" editable="top">
-                <field name="lst_price" readonly="1" />
-                <field name="standard_price" readonly="1" />
                 <field name="display_name" readonly="1" />
                 <field name="qty_to_process" />
                 <field name="quick_uom_category_id" invisible="1" />
@@ -18,6 +16,7 @@
                     string="UoM"
                     groups="uom.group_uom"
                 />
+                <field name="seller_price" readonly="1" />
                 <field name="qty_available" />
                 <field name="incoming_qty" />
                 <button name="button_quick_open_product" string="Open" type="object" />
