@@ -52,6 +52,13 @@ class PurchaseOrder(models.Model):
         }
 
     def _complete_quick_line_vals(self, vals, lines_key=""):
+        # This params are need for playing correctly the onchange
+        vals.update(
+            {
+                "order_id": self.id,
+                "partner_id": self.partner_id.id,
+            }
+        )
         return super(PurchaseOrder, self)._complete_quick_line_vals(
             vals, lines_key="order_line"
         )
