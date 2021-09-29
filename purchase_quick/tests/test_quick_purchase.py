@@ -44,6 +44,24 @@ class TestQuickPurchase(SavepointCase):
         cls._add_seller(cls.product_2, [(0, 5), (10, 4)])
         cls._setUpBasicSaleOrder()
 
+    def test_product_seller_price(self):
+        self.assertEqual(self.product_1.seller_price, 10)
+        self.product_1.qty_to_process = 10.0
+        self.assertEqual(self.product_1.seller_price, 8)
+        self.product_1.quick_uom_id = self.uom_dozen
+        self.assertEqual(self.product_1.seller_price, 96)
+
+    def test_product_seller_price_with_currency(self):
+        self.po.currency_id = self.env.ref("base.EUR")
+        usd = self.env.ref("base.USD")
+        usd.rate_ids[1:].unlink()
+        usd.rate_ids.rate = 2
+        self.assertEqual(self.product_1.seller_price, 5)
+        self.product_1.qty_to_process = 10.0
+        self.assertEqual(self.product_1.seller_price, 4)
+        self.product_1.quick_uom_id = self.uom_dozen
+        self.assertEqual(self.product_1.seller_price, 48)
+
     def test_quick_line_add_1(self):
         """
         set non-null quantity to any product with no PO line:
