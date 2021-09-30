@@ -41,7 +41,7 @@ addon | version | maintainers | summary
 [purchase_invoice_plan](purchase_invoice_plan/) | 13.0.1.0.0 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Add to purchases order, ability to manage future invoice plan
 [purchase_isolated_rfq](purchase_isolated_rfq/) | 13.0.1.1.1 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Purchase Isolated RFQ
 [purchase_landed_cost](purchase_landed_cost/) | 13.0.1.1.0 |  | Purchase cost distribution
-[purchase_last_price_info](purchase_last_price_info/) | 13.0.2.0.0 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Purchase Product Last Price Info
+[purchase_last_price_info](purchase_last_price_info/) | 13.0.2.0.1 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Purchase Product Last Price Info
 [purchase_line_procurement_group](purchase_line_procurement_group/) | 13.0.1.0.1 |  | Group purchase order line according to procurement group
 [purchase_location_by_line](purchase_location_by_line/) | 13.0.1.0.0 |  | Allows to define a specific destination location on each PO line
 [purchase_manual_currency](purchase_manual_currency/) | 13.0.1.0.2 |  | Allows to manual currency of Purchase
@@ -72,7 +72,7 @@ addon | version | maintainers | summary
 [purchase_request_tier_validation](purchase_request_tier_validation/) | 13.0.1.1.0 |  | Extends the functionality of Purchase Requests to support a tier validation process.
 [purchase_requisition_tier_validation](purchase_requisition_tier_validation/) | 13.0.1.0.0 |  | Extends the functionality of Purchase Agreements to support a tier validation process.
 [purchase_security](purchase_security/) | 13.0.1.0.0 | [![joao-p-marques](https://github.com/joao-p-marques.png?size=30px)](https://github.com/joao-p-marques) | See only your purchase orders
-[purchase_stock_picking_show_currency_rate](purchase_stock_picking_show_currency_rate/) | 13.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Show currency rate in purchase stock picking.
+[purchase_stock_picking_show_currency_rate](purchase_stock_picking_show_currency_rate/) | 13.0.1.0.1 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Show currency rate in purchase stock picking.
 [purchase_stock_price_unit_sync](purchase_stock_price_unit_sync/) | 13.0.1.0.0 |  | Update cost price in stock moves already done
 [purchase_stock_secondary_unit](purchase_stock_secondary_unit/) | 13.0.1.0.0 |  | Get product quantities in a secondary unit
 [purchase_substate](purchase_substate/) | 13.0.1.0.0 |  | Purchase Sub State
