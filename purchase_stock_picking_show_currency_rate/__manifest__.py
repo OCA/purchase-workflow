@@ -3,7 +3,7 @@
 {
     "name": "Purchase Stock Picking Show Currency Rate",
     "summary": "Show currency rate in purchase stock picking.",
-    "version": "13.0.1.0.0",
+    "version": "13.0.1.0.1",
     "category": "Purchases",
     "website": "https://github.com/OCA/purchase-workflow",
     "author": "Tecnativa, Odoo Community Association (OCA)",
