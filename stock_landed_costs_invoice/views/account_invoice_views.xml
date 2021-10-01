@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="invoice_supplier_form_lc" model="ir.ui.view">
+        <field name="name">invoice_supplier_form_lc</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_supplier_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_line_ids']//field[@name='currency_id']" position="after">
+                <field name="landed_cost_ok" invisible="1"/>
+                <field name="invoice_state" invisible="1"/>
+                <button name="create_landed_cost" type="object" string="Create landed cost" icon="fa-truck"
+                    attrs="{'invisible': ['|', ('landed_cost_ok', '=', False), ('invoice_state', 'not in', ('open', 'in_payment', 'paid'))]}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
