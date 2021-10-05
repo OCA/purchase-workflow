@@ -18,12 +18,28 @@ stages:
 
 jobs:
   include:
+    # Test separately: purchase_order_type
     - stage: test
       env:
-        - TESTS=1 ODOO_REPO="odoo/odoo" MAKEPOT="1"
+        - TESTS=1 ODOO_REPO="odoo/odoo" MAKEPOT=1 INCLUDE="purchase_order_type"
     - stage: test
       env:
-        - TESTS=1 ODOO_REPO="OCA/OCB"
+        - TESTS=1 ODOO_REPO="OCA/OCB" INCLUDE="purchase_order_type"
+    # Test separately: purchase_quick
+    - stage: test
+      env:
+        - TESTS=1 ODOO_REPO="odoo/odoo" MAKEPOT=1 INCLUDE="purchase_quick"
+    - stage: test
+      env:
+        - TESTS=1 ODOO_REPO="OCA/OCB" INCLUDE="purchase_quick"
+    # Test all other addons together
+    - stage: test
+      env:
+        - TESTS=1 ODOO_REPO="odoo/odoo" MAKEPOT=1
+          EXCLUDE="purchase_order_type,purchase_quick"
+    - stage: test
+      env:
+        - TESTS=1 ODOO_REPO="OCA/OCB" EXCLUDE="purchase_order_type,purchase_quick"
 env:
   global:
     - VERSION="14.0" TESTS="0" LINT_CHECK="0" MAKEPOT="0"
