@@ -282,14 +282,6 @@
                                     />
                                     <field name="product_qty" />
                                     <field name="refund_only" />
-                                    <field name="qty_delivered_manual" invisible="1" />
-                                    <field name="qty_delivered_method" invisible="1" />
-                                    <field
-                                        name="qty_delivered"
-                                        string="Delivered"
-                                        attrs="{'column_invisible': [('parent.state', 'not in', ('purchase', 'done'))], 'readonly': [('qty_delivered_method', '!=', 'manual')]}"
-                                        optional="show"
-                                    />
                                     <field
                                         name="qty_invoiced"
                                         string="Refunded"
@@ -347,15 +339,6 @@
                                                     attrs="{'required': [('display_type', '=', False)]}"
                                                 />
                                                 </div>
-                                                <field
-                                                name="qty_delivered_method"
-                                                invisible="1"
-                                            />
-                                                <field
-                                                name="qty_delivered"
-                                                string="Delivered Quantity"
-                                                attrs="{'invisible': [('parent.state', 'not in', ('purchase', 'done'))], 'readonly': [('qty_delivered_method', '!=', 'manual')]}"
-                                            />
                                                 <field
                                                 name="qty_invoiced"
                                                 string="Refunded Quantity"
