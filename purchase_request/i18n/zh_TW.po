@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-17 00:52+0000\n"
-"PO-Revision-Date: 2021-10-07 16:34+0000\n"
+"PO-Revision-Date: 2021-10-08 02:34+0000\n"
 "Last-Translator: HTPIT <htpit@hantecprecision.com>\n"
 "Language-Team: Chinese (Taiwan) (https://www.transifex.com/oca/teams/23907/"
 "zh_TW/)\n"
@@ -38,7 +38,7 @@ msgstr "<li><b>%s</b>: 收貨數量 %s %s</li>"
 #: code:addons/purchase_request/models/stock_move_line.py:0
 #, python-format
 msgid "<li><b>%s</b>: Transferred quantity %s %s</li>"
-msgstr ""
+msgstr "<li><b>%s</b>: 調撥數量 %s %s</li>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
