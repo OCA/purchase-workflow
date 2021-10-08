@@ -21,3 +21,13 @@ class AccountMoveLine(models.Model):
         # OVERRIDE to copy the 'purchase_line_id' field as well.
         super(AccountMoveLine, self)._copy_data_extend_business_fields(values)
         values["purchase_return_line_id"] = self.purchase_line_id.id
+
+    def _get_computed_account(self):
+        account = super(AccountMoveLine, self)._get_computed_account()
+        if self.purchase_return_line_id.refund_only:
+            fiscal_position = self.move_id.fiscal_position_id
+            accounts = self.product_id.product_tmpl_id.get_product_accounts(
+                fiscal_pos=fiscal_position
+            )
+            return accounts["expense"]
+        return account
