@@ -37,6 +37,26 @@ class PurchaseOrderReturn(models.Model):
     def _compute_get_invoiced(self):
         self._get_invoiced()
 
+    def button_approve(self, force=False):
+        self = self.filtered(lambda order: order._approval_allowed())
+        self.write({"state": "purchase", "date_approve": fields.Datetime.now()})
+        self.filtered(lambda p: p.company_id.po_lock == "lock").write({"state": "done"})
+        return {}
+
+    def button_confirm(self):
+        for order in self:
+            if order.state not in ["draft", "sent"]:
+                continue
+            order._add_supplier_to_product()
+            # Deal with double validation process
+            if order._approval_allowed():
+                order.button_approve()
+            else:
+                order.write({"state": "to approve"})
+            if order.partner_id not in order.message_partner_ids:
+                order.message_subscribe([order.partner_id.id])
+        return True
+
     @api.model
     def create(self, vals):
         company_id = vals.get(
@@ -237,7 +257,7 @@ class PurchaseOrderReturn(models.Model):
     def _prepare_invoice(self):
         """Prepare the dict of values to create the new invoice for a purchase order."""
         self.ensure_one()
-        move_type = self._context.get("default_move_type", "in_refund")
+        move_type = "in_refund"
         journal = (
             self.env["account.move"]
             .with_context(default_move_type=move_type)
