@@ -1,3 +1,6 @@
+from datetime import datetime
+
+import odoo.odoo.exceptions
 from odoo import fields
 from odoo.tests import tagged
 
@@ -218,3 +221,98 @@ class TestPurchaseReturnOrder(AccountTestInvoicingCommon):
         invoice.invoice_date = fields.Date.today()
         invoice.action_post()
         self.assertEqual(invoice.state, "posted")
+
+    # Test to check if a ValiadationError is thrown when changing the company to
+    #  another one that is not the product's
+    def test_06(self):
+        try:
+            company_a = self.env["res.company"].create(
+                {
+                    "name": "Company A",
+                }
+            )
+            company_b = self.env["res.company"].create(
+                {
+                    "name": "Company B",
+                }
+            )
+            purchase_return_order = (
+                self.env["purchase.return.order"]
+                .with_context(tracking_disable=True)
+                .create(
+                    {
+                        "partner_id": self.partner_a.id,
+                        "company_id": company_b.id,
+                    }
+                )
+            )
+            self.product_order.company_id = company_b.id
+            PurchaseReturnOrderLine = self.env[
+                "purchase.return.order.line"
+            ].with_context(tracking_disable=True)
+            PurchaseReturnOrderLine.create(
+                {
+                    "name": self.product_order.name,
+                    "product_id": self.product_order.id,
+                    "product_qty": 10.0,
+                    "product_uom": self.product_order.uom_id.id,
+                    "price_unit": self.product_order.list_price,
+                    "order_id": purchase_return_order.id,
+                    "refund_only": False,
+                    "taxes_id": False,
+                    "company_id": company_b.id,
+                }
+            )
+            purchase_return_order.company_id = company_a.id
+        except odoo.exceptions.ValidationError:
+            pass
+        else:
+            self.fail(
+                "ValidationError was not raised when attempting to change"
+                "the company return order to one different to the product"
+                "in the product line"
+            )
+
+    # Test to make sure that when the date planned of a purchase return order is changed,
+    # so are the date_planned of the products.
+    def test_07(self):
+        testDate = datetime.strptime("07/28/2014 18:54:55.099", "%m/%d/%Y %H:%M:%S.%f")
+        purchase_return_order = (
+            self.env["purchase.return.order"]
+            .with_context(tracking_disable=True)
+            .create(
+                {
+                    "partner_id": self.partner_a.id,
+                }
+            )
+        )
+        PurchaseReturnOrderLine = self.env["purchase.return.order.line"].with_context(
+            tracking_disable=True
+        )
+        PurchaseReturnOrderLine.create(
+            {
+                "name": self.product_order.name,
+                "product_id": self.product_order.id,
+                "product_qty": 10.0,
+                "product_uom": self.product_order.uom_id.id,
+                "price_unit": self.product_order.list_price,
+                "order_id": purchase_return_order.id,
+                "refund_only": False,
+                "taxes_id": False,
+            }
+        )
+        PurchaseReturnOrderLine.create(
+            {
+                "name": self.service_order.name,
+                "product_id": self.service_order.id,
+                "product_qty": 10.0,
+                "product_uom": self.service_order.uom_id.id,
+                "price_unit": self.service_order.list_price,
+                "order_id": purchase_return_order.id,
+                "refund_only": False,
+                "taxes_id": False,
+            }
+        )
+        purchase_return_order.date_planned = testDate
+        for line in purchase_return_order:
+            self.assertEqual(line.date_planned, testDate)
