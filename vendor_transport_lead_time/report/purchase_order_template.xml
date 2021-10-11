@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2020 Camptocamp SA
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <template
+        id="report_purchaseorder_document"
+        inherit_id="purchase.report_purchaseorder_document"
+    >
+        <span t-field="line.date_planned" position="attributes">
+            <attribute name="style">display: None;</attribute>
+        </span>
+        <span t-field="line.date_planned" position="after">
+            <span t-field="line.report_date_planned" />
+        </span>
+    </template>
+</odoo>
