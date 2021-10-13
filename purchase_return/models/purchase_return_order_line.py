@@ -35,6 +35,8 @@ class PurchaseReturnOrderLine(models.Model):
         store=True,
     )
     refund_only = fields.Boolean(string="Refund only")
+    qty_received = fields.Float()  # This field will not be used. We want to
+    # override the standard behaviour.
 
     @api.depends(
         "invoice_lines.move_id.state",
