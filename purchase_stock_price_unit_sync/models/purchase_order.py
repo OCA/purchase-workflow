@@ -16,6 +16,15 @@ class PurchaseOrderLine(models.Model):
 
     def stock_price_unit_sync(self):
         for line in self.filtered(lambda l: l.state in ['purchase', 'done']):
+            # When the affected product is a kit we do nothing, which is the
+            # default behavior on the standard: the move is exploded into moves
+            # for the components and those get the default price_unit for the
+            # time being. We avoid a hard dependency as well.
+            if (
+                hasattr(line.product_id, "bom_ids")
+                and line.product_id._is_phantom_bom()
+            ):
+                continue
             line.move_ids.write({
                 'price_unit': line.with_context(skip_stock_price_unit_sync=True
                                                 )._get_stock_move_price_unit(),
