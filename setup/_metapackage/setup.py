@@ -42,6 +42,7 @@ setuptools.setup(
         'odoo13-addon-purchase_order_product_recommendation_xlsx',
         'odoo13-addon-purchase_order_qty_change_no_recompute',
         'odoo13-addon-purchase_order_secondary_unit',
+        'odoo13-addon-purchase_order_supplierinfo_update',
         'odoo13-addon-purchase_order_type',
         'odoo13-addon-purchase_order_uninvoiced_amount',
         'odoo13-addon-purchase_product_usage',
