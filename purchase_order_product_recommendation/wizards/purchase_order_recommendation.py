@@ -107,10 +107,14 @@ class PurchaseOrderRecommendation(models.TransientModel):
     def _get_move_line_domain(self, products, src, dst):
         """Allows to easily extend the domain by third modules"""
         combine = datetime.combine
+        # We can receive a context to be able to get different dates with
+        # the same wizard attributes, for example comparing periods
+        date_begin = self.env.context.get("period_date_begin", self.date_begin)
+        date_end = self.env.context.get("period_date_end", self.date_end)
         domain = [
             ('product_id', 'in', products.ids),
-            ('date', '>=', combine(self.date_begin, datetime.min.time())),
-            ('date', '<=', combine(self.date_end, datetime.max.time())),
+            ('date', '>=', combine(date_begin, datetime.min.time())),
+            ('date', '<=', combine(date_end, datetime.max.time())),
             ('location_id.usage', '=', src),
             ('location_dest_id.usage', '=', dst),
             ('state', '=', 'done'),
@@ -245,6 +249,12 @@ class PurchaseOrderRecommendation(models.TransientModel):
             found_dict[product]['qty_delivered'] = line.get('qty_done', 0)
             found_dict[product]['times_delivered'] = line.get(
                 'product_id_count', 0)
+            found_dict[product].update(
+                {
+                    k: v for k, v in line.items()
+                    if k not in found_dict[product].keys()
+                }
+            )
         RecomendationLine = self.env['purchase.order.recommendation.line']
         existing_product_ids = []
         # Add products from purchase order lines
