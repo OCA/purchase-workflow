@@ -17,6 +17,18 @@ class PurchaseOrderLine(models.Model):
 
     def stock_price_unit_sync(self):
         for line in self.filtered(lambda l: l.state in ["purchase", "done"]):
+            # When the affected product is a kit we do nothing, which is the
+            # default behavior on the standard: the move is exploded into moves
+            # for the components and those get the default price_unit for the
+            # time being. We avoid a hard dependency as well.
+            if hasattr(line.product_id, "bom_ids") and self.env[
+                "mrp.bom"
+            ].sudo()._bom_find(
+                product=line.product_id,
+                company_id=line.company_id.id,
+                bom_type="phantom",
+            ):
+                continue
             line.move_ids.mapped("stock_valuation_layer_ids").write(
                 {
                     "unit_cost": line.with_context(
