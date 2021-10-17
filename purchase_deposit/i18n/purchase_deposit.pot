@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 13.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -27,6 +27,11 @@ msgstr ""
 #. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
 msgid "Cancel"
+msgstr ""
+
+#. module: purchase_deposit
+#: model:ir.model,name:purchase_deposit.model_res_config_settings
+msgid "Config Settings"
 msgstr ""
 
 #. module: purchase_deposit
@@ -89,6 +94,9 @@ msgstr ""
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__display_name
+#: model:ir.model.fields,field_description:purchase_deposit.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:purchase_deposit.field_purchase_order_line__display_name
+#: model:ir.model.fields,field_description:purchase_deposit.field_res_config_settings__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -104,6 +112,9 @@ msgstr ""
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__id
+#: model:ir.model.fields,field_description:purchase_deposit.field_purchase_order__id
+#: model:ir.model.fields,field_description:purchase_deposit.field_purchase_order_line__id
+#: model:ir.model.fields,field_description:purchase_deposit.field_res_config_settings__id
 msgid "ID"
 msgstr ""
 
@@ -131,6 +142,9 @@ msgstr ""
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv____last_update
+#: model:ir.model.fields,field_description:purchase_deposit.field_purchase_order____last_update
+#: model:ir.model.fields,field_description:purchase_deposit.field_purchase_order_line____last_update
+#: model:ir.model.fields,field_description:purchase_deposit.field_res_config_settings____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -142,11 +156,6 @@ msgstr ""
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__write_date
 msgid "Last Updated on"
-msgstr ""
-
-#. module: purchase_deposit
-#: model:ir.model,name:purchase_deposit.model_res_config_settings
-msgid "Procurement purchase grouping settings"
 msgstr ""
 
 #. module: purchase_deposit
