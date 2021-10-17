@@ -13,6 +13,7 @@ setuptools.setup(
         'odoo14-addon-purchase_cancel_reason',
         'odoo14-addon-purchase_commercial_partner',
         'odoo14-addon-purchase_delivery_split_date',
+        'odoo14-addon-purchase_deposit',
         'odoo14-addon-purchase_discount',
         'odoo14-addon-purchase_exception',
         'odoo14-addon-purchase_fop_shipping',
