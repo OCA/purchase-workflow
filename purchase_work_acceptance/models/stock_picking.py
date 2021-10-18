@@ -63,7 +63,7 @@ class Picking(models.Model):
                 move_line = {}
                 for move in picking.move_ids_without_package:
                     qty = move.product_uom._compute_quantity(
-                        move.quantity_done, line.product_id.uom_id
+                        move.quantity_done, move.product_id.uom_id
                     )
                     if qty > 0.0:
                         if move.product_id.id in move_line.keys():
