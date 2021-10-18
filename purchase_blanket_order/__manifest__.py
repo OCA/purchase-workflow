@@ -6,7 +6,7 @@
     'license': 'AGPL-3',
     'author': 'Eficent,'
               'Odoo Community Association (OCA)',
-    'version': '11.0.1.0.0',
+    'version': '11.0.1.0.1',
     'website': 'https://github.com/OCA/purchase-workflow',
     'summary': "Purchase Blanket Orders",
     'depends': [
