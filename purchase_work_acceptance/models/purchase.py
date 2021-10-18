@@ -112,7 +112,9 @@ class PurchaseOrder(models.Model):
 
     def _compute_wa_accepted(self):
         for order in self:
-            lines = order.order_line.filtered(lambda l: l.qty_to_accept > 0)
+            lines = order.order_line.filtered(
+                lambda l: l.product_qty > 0 and l.qty_to_accept > 0
+            )
             order.wa_accepted = not any(lines)
 
     def _prepare_invoice(self):
