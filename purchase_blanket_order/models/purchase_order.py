@@ -138,7 +138,7 @@ class PurchaseOrderLine(models.Model):
     def check_date_planned(self):
         for line in self:
             date_planned = fields.Date.to_string(
-                fields.Date.from_string(self.date_planned))
+                fields.Date.from_string(line.date_planned))
             if line.blanket_order_line and \
                     line.blanket_order_line.date_schedule and \
                     line.blanket_order_line.date_schedule != date_planned:
