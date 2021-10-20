@@ -1,6 +1,9 @@
 # Copyright 2021 Tecnativa - Ernesto Tejeda
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+from dateutil.relativedelta import relativedelta
+
+from odoo import fields
 from odoo.tests import Form, SavepointCase
 
 
@@ -48,6 +51,8 @@ class TestPurchaseOrderSupplierinfoUpdate(SavepointCase):
         # Create first purchase
         po_form_1 = Form(self.env["purchase.order"])
         po_form_1.partner_id = self.supplier
+        now = fields.Datetime.now()
+        po_form_1.date_order = now - relativedelta(days=1)
         with po_form_1.order_line.new() as po_line_form:
             po_line_form.product_id = self.product
             po_line_form.taxes_id.clear()
