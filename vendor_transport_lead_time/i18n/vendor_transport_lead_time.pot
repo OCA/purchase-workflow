@@ -1,0 +1,96 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* vendor_transport_lead_time
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: vendor_transport_lead_time
+#: model:ir.model.fields,field_description:vendor_transport_lead_time.field_purchase_order_line__report_date_planned
+msgid "Date planned (used by report)"
+msgstr ""
+
+#. module: vendor_transport_lead_time
+#: model:ir.model.fields,field_description:vendor_transport_lead_time.field_product_supplierinfo__delay
+msgid "Delivery Lead Time"
+msgstr ""
+
+#. module: vendor_transport_lead_time
+#: model:ir.model.fields,field_description:vendor_transport_lead_time.field_product_supplierinfo__display_name
+#: model:ir.model.fields,field_description:vendor_transport_lead_time.field_purchase_order_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: vendor_transport_lead_time
+#: model:ir.model.fields,field_description:vendor_transport_lead_time.field_product_supplierinfo__id
+#: model:ir.model.fields,field_description:vendor_transport_lead_time.field_purchase_order_line__id
+msgid "ID"
+msgstr ""
+
+#. module: vendor_transport_lead_time
+#: model:ir.model.fields,field_description:vendor_transport_lead_time.field_product_supplierinfo____last_update
+#: model:ir.model.fields,field_description:vendor_transport_lead_time.field_purchase_order_line____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: vendor_transport_lead_time
+#: model:ir.model.fields,help:vendor_transport_lead_time.field_product_supplierinfo__delay
+msgid ""
+"Lead time in days between the confirmation of the purchase order and the "
+"receipt of the products in your warehouse. Used by the scheduler for "
+"automatic computation of the purchase order planning."
+msgstr ""
+
+#. module: vendor_transport_lead_time
+#: model:ir.model,name:vendor_transport_lead_time.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr ""
+
+#. module: vendor_transport_lead_time
+#: model:ir.model.fields,field_description:vendor_transport_lead_time.field_product_supplierinfo__supplier_delay
+msgid "Supplier Lead Time"
+msgstr ""
+
+#. module: vendor_transport_lead_time
+#: model:ir.model,name:vendor_transport_lead_time.model_product_supplierinfo
+msgid "Supplier Pricelist"
+msgstr ""
+
+#. module: vendor_transport_lead_time
+#: model:ir.model.fields,field_description:vendor_transport_lead_time.field_purchase_order_line__supplier_date_planned
+msgid "Supplier Scheduled Date"
+msgstr ""
+
+#. module: vendor_transport_lead_time
+#: model:ir.model.fields,help:vendor_transport_lead_time.field_product_supplierinfo__supplier_delay
+msgid "Supplier lead time in days."
+msgstr ""
+
+#. module: vendor_transport_lead_time
+#: model:ir.model.fields,field_description:vendor_transport_lead_time.field_product_supplierinfo__transport_delay
+msgid "Transport Lead Time"
+msgstr ""
+
+#. module: vendor_transport_lead_time
+#: model:ir.model.fields,help:vendor_transport_lead_time.field_product_supplierinfo__transport_delay
+msgid "Transport lead time in days."
+msgstr ""
+
+#. module: vendor_transport_lead_time
+#: code:addons/vendor_transport_lead_time/models/product_supplierinfo.py:0
+#, python-format
+msgid "You can't set a delay inferior to the transport delay."
+msgstr ""
+
+#. module: vendor_transport_lead_time
+#: model_terms:ir.ui.view,arch_db:vendor_transport_lead_time.product_supplierinfo_form_view
+msgid "days"
+msgstr ""

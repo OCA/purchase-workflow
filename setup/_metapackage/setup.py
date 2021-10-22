@@ -13,6 +13,7 @@ setuptools.setup(
         'odoo14-addon-purchase_cancel_reason',
         'odoo14-addon-purchase_commercial_partner',
         'odoo14-addon-purchase_delivery_split_date',
+        'odoo14-addon-purchase_deposit',
         'odoo14-addon-purchase_discount',
         'odoo14-addon-purchase_exception',
         'odoo14-addon-purchase_fop_shipping',
@@ -52,9 +53,11 @@ setuptools.setup(
         'odoo14-addon-purchase_work_acceptance_evaluation',
         'odoo14-addon-purchase_work_acceptance_invoice_plan',
         'odoo14-addon-purchase_work_acceptance_late_fines',
+        'odoo14-addon-vendor_transport_lead_time',
     ],
     classifiers=[
         'Programming Language :: Python',
         'Framework :: Odoo',
+        'Framework :: Odoo :: 14.0',
     ]
 )

@@ -24,6 +24,7 @@ addon | version | maintainers | summary
 [purchase_cancel_reason](purchase_cancel_reason/) | 14.0.1.0.0 |  | Purchase Cancel Reason
 [purchase_commercial_partner](purchase_commercial_partner/) | 14.0.1.0.0 |  | Add stored related field 'Commercial Supplier' on POs
 [purchase_delivery_split_date](purchase_delivery_split_date/) | 14.0.1.0.2 |  | Allows Purchase Order you confirm to generate one Incoming Shipment for each expected date indicated in the Purchase Order Lines
+[purchase_deposit](purchase_deposit/) | 14.0.1.0.0 |  | Option to create deposit from purchase order
 [purchase_discount](purchase_discount/) | 14.0.1.0.1 |  | Purchase order lines with discounts
 [purchase_exception](purchase_exception/) | 14.0.1.0.0 |  | Custom exceptions on purchase order
 [purchase_fop_shipping](purchase_fop_shipping/) | 14.0.1.1.0 |  | Purchase Free-Of-Payment shipping
@@ -59,10 +60,11 @@ addon | version | maintainers | summary
 [purchase_rfq_number](purchase_rfq_number/) | 14.0.1.0.0 |  | Different sequence for purchase for quotations
 [purchase_security](purchase_security/) | 14.0.1.0.0 | [![joao-p-marques](https://github.com/joao-p-marques.png?size=30px)](https://github.com/joao-p-marques) | See only your purchase orders
 [purchase_tier_validation](purchase_tier_validation/) | 14.0.2.0.0 |  | Extends the functionality of Purchase Orders to support a tier validation process.
-[purchase_work_acceptance](purchase_work_acceptance/) | 14.0.1.1.0 |  | Purchase Work Acceptance
+[purchase_work_acceptance](purchase_work_acceptance/) | 14.0.1.1.1 |  | Purchase Work Acceptance
 [purchase_work_acceptance_evaluation](purchase_work_acceptance_evaluation/) | 14.0.1.0.1 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Purchase Work Acceptance Evaluation
 [purchase_work_acceptance_invoice_plan](purchase_work_acceptance_invoice_plan/) | 14.0.1.0.1 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Purchase Work Acceptance Invoice Plan
 [purchase_work_acceptance_late_fines](purchase_work_acceptance_late_fines/) | 14.0.1.0.0 | [![Saran440](https://github.com/Saran440.png?size=30px)](https://github.com/Saran440) | Purchase Work Acceptance - Late Delivery Fines
+[vendor_transport_lead_time](vendor_transport_lead_time/) | 14.0.1.0.0 |  | Purchase delay based on transport and supplier delays
 
 [//]: # (end addons)
 
