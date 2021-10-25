@@ -1,0 +1,84 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_order_type_dashboard
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_order_type_dashboard
+#: model_terms:ir.ui.view,arch_db:purchase_order_type_dashboard.view_purchase_order_type_kanban
+msgid "<span>View</span>"
+msgstr ""
+
+#. module: purchase_order_type_dashboard
+#: model_terms:ir.ui.view,arch_db:purchase_order_type_dashboard.view_purchase_order_type_kanban
+msgid "All"
+msgstr ""
+
+#. module: purchase_order_type_dashboard
+#: model:ir.actions.act_window,name:purchase_order_type_dashboard.purchase_order_type_dashboard_action
+#: model:ir.ui.menu,name:purchase_order_type_dashboard.purchase_order_dashboard_menu
+msgid "Dashboard"
+msgstr ""
+
+#. module: purchase_order_type_dashboard
+#: model:ir.model.fields,field_description:purchase_order_type_dashboard.field_purchase_order_type__invoice_status_no_po_count
+#: model_terms:ir.ui.view,arch_db:purchase_order_type_dashboard.purchase_order_view_search
+#: model_terms:ir.ui.view,arch_db:purchase_order_type_dashboard.view_purchase_order_type_kanban
+msgid "Nothing to Bill"
+msgstr ""
+
+#. module: purchase_order_type_dashboard
+#: model_terms:ir.ui.view,arch_db:purchase_order_type_dashboard.view_purchase_order_type_kanban
+msgid "Number of Purchase Orders that have nothing to bill yet"
+msgstr ""
+
+#. module: purchase_order_type_dashboard
+#: model_terms:ir.ui.view,arch_db:purchase_order_type_dashboard.view_purchase_order_type_kanban
+msgid "Number of Purchase Orders waiting for bills"
+msgstr ""
+
+#. module: purchase_order_type_dashboard
+#: model_terms:ir.ui.view,arch_db:purchase_order_type_dashboard.view_purchase_order_type_kanban
+msgid "Number of Requests for Quotations"
+msgstr ""
+
+#. module: purchase_order_type_dashboard
+#: model:ir.actions.act_window,name:purchase_order_type_dashboard.action_purchase_order_from_dashboard
+msgid "Purchase Order"
+msgstr ""
+
+#. module: purchase_order_type_dashboard
+#: model:ir.model.fields,field_description:purchase_order_type_dashboard.field_purchase_order_type__purchase_order_ids
+msgid "Purchase Orders"
+msgstr ""
+
+#. module: purchase_order_type_dashboard
+#: model:ir.model.fields,field_description:purchase_order_type_dashboard.field_purchase_order_type__state_rfq_po_count
+#: model_terms:ir.ui.view,arch_db:purchase_order_type_dashboard.view_purchase_order_type_kanban
+msgid "RFQs"
+msgstr ""
+
+#. module: purchase_order_type_dashboard
+#: model:ir.actions.act_window,name:purchase_order_type_dashboard.action_purchase_rfq_from_dashboard
+msgid "Request for Quotation"
+msgstr ""
+
+#. module: purchase_order_type_dashboard
+#: model:ir.model,name:purchase_order_type_dashboard.model_purchase_order_type
+msgid "Type of purchase order"
+msgstr ""
+
+#. module: purchase_order_type_dashboard
+#: model:ir.model.fields,field_description:purchase_order_type_dashboard.field_purchase_order_type__invoice_status_ti_po_count
+#: model_terms:ir.ui.view,arch_db:purchase_order_type_dashboard.view_purchase_order_type_kanban
+msgid "Waiting Bills"
+msgstr ""
