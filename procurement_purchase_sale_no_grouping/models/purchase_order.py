@@ -5,7 +5,7 @@ from odoo import api, models
 
 
 class PurchaseOrder(models.Model):
-    _inherit = 'purchase.order'
+    _inherit = "purchase.order"
 
     @api.model
     def search(self, args, offset=0, limit=None, order=None, count=False):
