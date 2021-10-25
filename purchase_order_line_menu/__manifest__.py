@@ -10,9 +10,7 @@
     "license": "AGPL-3",
     "depends": ["purchase"],
     "category": "Inventory/Purchase",
-    "data": [
-        "views/purchase_order_line_views.xml",
-    ],
+    "data": ["views/purchase_order_line_views.xml",],
     "installable": True,
     "maintainer": "dreispt",
     "development_status": "Beta",
