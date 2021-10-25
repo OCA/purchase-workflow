@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="action_purchase_rfq_from_dashboard" model="ir.actions.act_window">
+        <field name="name">Request for Quotation</field>
+        <field name="res_model">purchase.order</field>
+        <field name="view_mode">tree,kanban,form,pivot,graph,calendar,activity</field>
+        <field name="view_id" ref="purchase.purchase_order_tree" />
+        <field name="search_view_id" ref="purchase.view_purchase_order_filter" />
+        <field name="context">
+            {'default_order_type': active_id}
+        </field>
+        <field name="domain">[('order_type', '=', active_id)]</field>
+    </record>
+
+    <record id="action_purchase_order_from_dashboard" model="ir.actions.act_window">
+        <field name="name">Purchase Order</field>
+        <field name="res_model">purchase.order</field>
+        <field name="view_mode">tree,kanban,form,pivot,graph,calendar,activity</field>
+        <field name="view_id" ref="purchase.purchase_order_view_tree" />
+        <field name="search_view_id" ref="purchase.purchase_order_view_search" />
+        <field name="context">
+            {'default_order_type': active_id}
+        </field>
+        <field
+            name="domain"
+        >[('order_type', '=', active_id), ('state','in',('purchase', 'done'))]</field>
+    </record>
+
+    <record id="purchase_order_view_search" model="ir.ui.view">
+        <field
+            name="name"
+        >purchase.order.select (in purchase_order_type_dashboard)</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_view_search" />
+        <field name="arch" type="xml">
+            <filter name="not_invoiced" position="before">
+                <filter
+                    name="invoice_status_no"
+                    string="Nothing to Bill"
+                    domain="[('invoice_status', '=', 'no')]"
+                />
+            </filter>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_purchase_order_type_tree" model="ir.ui.view">
+        <field
+            name="name"
+        >purchase.order.type.tree (in purchase_order_type_dashboard)</field>
+        <field name="model">purchase.order.type</field>
+        <field
+            name="inherit_id"
+            ref="purchase_order_type.view_purchase_order_type_tree"
+        />
+        <field name="arch" type="xml">
+            <field name="description" position="after">
+                <field name="state_rfq_po_count" />
+                <field name="invoice_status_ti_po_count" />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_purchase_order_type_kanban" model="ir.ui.view">
+        <field
+            name="name"
+        >purchase.order.type.kanban (in purchase_order_type_dashboard)</field>
+        <field name="model">purchase.order.type</field>
+        <field name="arch" type="xml">
+            <kanban class="oe_background_grey o_kanban_dashboard" create="0">
+                <field name="name" />
+                <field name="state_rfq_po_count" />
+                <field name="invoice_status_no_po_count" />
+                <field name="invoice_status_ti_po_count" />
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="o_kanban_card_header">
+                            <div class="o_kanban_card_header_title">
+                                <div class="o_primary">
+                                    <a
+                                        name="%(action_purchase_rfq_from_dashboard)d"
+                                        type="action"
+                                    >
+                                        <field name="name" />
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="o_kanban_manage_button_section">
+                                <a class="o_kanban_manage_toggle_button" href="#">
+                                    <i class="fa fa-ellipsis-v" />
+                                </a>
+                            </div>
+                            <div class="container o_kanban_card_content">
+                                <div class="row">
+                                    <div
+                                        class="col-6 o_kanban_primary_left"
+                                        style="padding-top:20px;"
+                                        name="rfq_data"
+                                        title="Number of Requests for Quotations"
+                                    >
+                                        <button
+                                            class="btn btn-primary"
+                                            name="%(action_purchase_rfq_from_dashboard)d"
+                                            type="action"
+                                            context="{'search_default_draft': 1}"
+                                        >
+                                            <t
+                                                t-esc="record.state_rfq_po_count.value"
+                                            /> RFQs
+                                        </button>
+                                    </div>
+                                    <div class="col-6 o_kanban_primary_right">
+                                        <div class="row" name="po_data">
+                                            <div
+                                                class="col-9"
+                                                title="Number of Purchase Orders that have nothing to bill yet"
+                                            >
+                                                <a
+                                                    name="%(action_purchase_order_from_dashboard)d"
+                                                    type="action"
+                                                    context="{'search_default_invoice_status_no': 1}"
+                                                >
+                                                    Nothing to Bill
+                                                </a>
+                                            </div>
+                                            <div class="col-3">
+                                                <t
+                                                    t-esc="record.invoice_status_no_po_count.value"
+                                                />
+                                            </div>
+                                            <div
+                                                class="col-9"
+                                                title="Number of Purchase Orders waiting for bills"
+                                            >
+                                                <a
+                                                    name="%(action_purchase_order_from_dashboard)d"
+                                                    type="action"
+                                                    context="{'search_default_not_invoiced': 1}"
+                                                >
+                                                    Waiting Bills
+                                                </a>
+                                            </div>
+                                            <div class="col-3">
+                                                <t
+                                                    t-esc="record.invoice_status_ti_po_count.value"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                class="container o_kanban_card_manage_pane dropdown-menu"
+                                role="menu"
+                            >
+                                <div class="row">
+                                    <div
+                                        class="col-6 o_kanban_card_manage_section o_kanban_manage_view"
+                                    >
+                                        <div class="o_kanban_card_manage_title">
+                                            <span>View</span>
+                                        </div>
+                                        <div>
+                                            <a
+                                                name="%(action_purchase_rfq_from_dashboard)d"
+                                                type="action"
+                                            >
+                                                All
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+</odoo>
