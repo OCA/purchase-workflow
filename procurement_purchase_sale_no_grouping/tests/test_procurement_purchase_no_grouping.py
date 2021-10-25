@@ -8,19 +8,19 @@ class TestProcurementPurchaseNoGrouping(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
         super(TestProcurementPurchaseNoGrouping, cls).setUpClass()
-        cls.category = cls.env["product.category"].create({"name": "Test category",})
-        cls.customer = cls.env["res.partner"].create({"name": "Test customer",})
-        cls.supplier = cls.env["res.partner"].create({"name": "Test supplier",})
+        cls.category = cls.env["product.category"].create({"name": "Test category"})
+        cls.customer = cls.env["res.partner"].create({"name": "Test customer"})
+        cls.supplier = cls.env["res.partner"].create({"name": "Test supplier"})
         cls.product = cls.env["product.product"].create(
             {
                 "name": "Test product service",
                 "type": "service",
                 "categ_id": cls.category.id,
                 "service_to_purchase": True,
-                "seller_ids": [(0, 0, {"name": cls.supplier.id, "min_qty": 1.0,}),],
+                "seller_ids": [(0, 0, {"name": cls.supplier.id, "min_qty": 1.0})],
             }
         )
-        cls.sale_order = cls.env["sale.order"].create({"partner_id": cls.customer.id,})
+        cls.sale_order = cls.env["sale.order"].create({"partner_id": cls.customer.id})
         cls.sale_order_line = cls.env["sale.order.line"].create(
             {
                 "order_id": cls.sale_order.id,
@@ -36,7 +36,7 @@ class TestProcurementPurchaseNoGrouping(common.SavepointCase):
         self.category.procured_purchase_grouping = "order"
         self.sale_order.action_confirm()
         orders = self.env["purchase.order"].search(
-            [("origin", "=", self.sale_order.name),]
+            [("origin", "=", self.sale_order.name)]
         )
         self.assertEqual(
             len(orders), 1, "Procured purchase orders are the same",
@@ -50,9 +50,7 @@ class TestProcurementPurchaseNoGrouping(common.SavepointCase):
         # Duplicate line to have 2 distinct lines with the same product
         sale_order_2.order_line.copy({"order_id": sale_order_2.id})
         sale_order_2.action_confirm()
-        orders = self.env["purchase.order"].search(
-            [("origin", "=", sale_order_2.name),]
-        )
+        orders = self.env["purchase.order"].search([("origin", "=", sale_order_2.name)])
         self.assertEqual(
             len(orders), 2, "Procured purchase orders are the same",
         )
