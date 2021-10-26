@@ -71,7 +71,6 @@ class PurchaseRequest(models.Model):
     )
     requested_by = fields.Many2one(
         comodel_name="res.users",
-        string="Requested by",
         required=True,
         copy=False,
         tracking=True,
@@ -91,11 +90,10 @@ class PurchaseRequest(models.Model):
         ],
         index=True,
     )
-    description = fields.Text(string="Description")
+    description = fields.Text()
     company_id = fields.Many2one(
         comodel_name="res.company",
-        string="Company",
-        required=True,
+        required=False,
         default=_company_get,
         tracking=True,
     )
@@ -122,9 +120,7 @@ class PurchaseRequest(models.Model):
         copy=False,
         default="draft",
     )
-    is_editable = fields.Boolean(
-        string="Is editable", compute="_compute_is_editable", readonly=True
-    )
+    is_editable = fields.Boolean(compute="_compute_is_editable", readonly=True)
     to_approve_allowed = fields.Boolean(compute="_compute_to_approve_allowed")
     picking_type_id = fields.Many2one(
         comodel_name="stock.picking.type",
@@ -167,7 +163,7 @@ class PurchaseRequest(models.Model):
             rec.purchase_count = len(rec.mapped("line_ids.purchase_lines.order_id"))
 
     def action_view_purchase_order(self):
-        action = self.env.ref("purchase.purchase_rfq").sudo().read()[0]
+        action = self.env["ir.actions.actions"]._for_xml_id("purchase.purchase_rfq")
         lines = self.mapped("line_ids.purchase_lines.order_id")
         if len(lines) > 1:
             action["domain"] = [("id", "in", lines.ids)]
@@ -185,15 +181,19 @@ class PurchaseRequest(models.Model):
                 rec.mapped("line_ids.purchase_request_allocation_ids.stock_move_id")
             )
 
-    def action_view_stock_move(self):
-        action = self.env.ref("stock.stock_move_action").sudo().read()[0]
+    def action_view_stock_picking(self):
+        action = self.env["ir.actions.actions"]._for_xml_id(
+            "stock.action_picking_tree_all"
+        )
         # remove default filters
         action["context"] = {}
-        lines = self.mapped("line_ids.purchase_request_allocation_ids.stock_move_id")
+        lines = self.mapped(
+            "line_ids.purchase_request_allocation_ids.stock_move_id.picking_id"
+        )
         if len(lines) > 1:
             action["domain"] = [("id", "in", lines.ids)]
         elif lines:
-            action["views"] = [(self.env.ref("stock.view_move_form").id, "form")]
+            action["views"] = [(self.env.ref("stock.view_picking_form").id, "form")]
             action["res_id"] = lines.id
         return action
 
