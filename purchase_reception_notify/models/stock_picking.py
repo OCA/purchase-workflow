@@ -8,20 +8,20 @@ class StockPicking(models.Model):
     _inherit = "stock.picking"
 
     @api.model
-    def _purchase_order_picking_confirm_message_content(self, picking, purchase_dict):
-        if not purchase_dict:
-            purchase_dict = {}
+    def _purchase_order_picking_confirm_message_content(self, picking, stock_move_dict):
+        if not stock_move_dict:
+            stock_move_dict = {}
         title = _("Receipt confirmation %s") % (picking.name)
         message = "<h3>%s</h3>" % title
         message += _(
             "The following items have now been received in Incoming Shipment %s:"
         ) % (picking.name)
         message += "<ul>"
-        for purchase_line_id in purchase_dict.values():
+        for stock_move_id in stock_move_dict.values():
             message += _("<li><b>%s</b>: Received quantity %s %s</li>") % (
-                purchase_line_id["purchase_line"].product_id.display_name,
-                purchase_line_id["stock_move"].product_qty,
-                purchase_line_id["stock_move"].product_uom.name,
+                stock_move_id["purchase_line"].product_id.display_name,
+                stock_move_id["stock_move"].product_qty,
+                stock_move_id["stock_move"].product_uom.name,
             )
         message += "</ul>"
         return message
@@ -35,9 +35,9 @@ class StockPicking(models.Model):
                 if pol_id.order_id not in purchase_dict.keys():
                     purchase_dict[pol_id.order_id] = {}
                 if pol_id.id not in purchase_dict[pol_id.order_id].keys():
-                    purchase_dict[pol_id.order_id][pol_id.id] = {}
+                    purchase_dict[pol_id.order_id][move.id] = {}
                 data = {"purchase_line": pol_id, "stock_move": move}
-                purchase_dict[pol_id.order_id][pol_id.id] = data
+                purchase_dict[pol_id.order_id][move.id] = data
             for po in purchase_dict.keys():
                 message = self._purchase_order_picking_confirm_message_content(
                     picking, purchase_dict[po]
