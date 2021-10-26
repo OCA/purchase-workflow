@@ -7,7 +7,7 @@
         <field name="model">purchase.request.line</field>
         <field name="arch" type="xml">
             <tree
-                string="Purchase Request Lines"
+                name="Purchase Request Lines"
                 create="false"
                 decoration-muted="cancelled == True"
                 decoration-info="request_state in ('draft', 'to_approve')"
@@ -497,7 +497,7 @@
         <field name="name">purchase.order.line.tree</field>
         <field name="model">purchase.order.line</field>
         <field name="arch" type="xml">
-            <tree string="Purchase Order Lines" create="true">
+            <tree name="Purchase Order Lines" create="true">
                 <field name="order_id" />
                 <field name="name" />
                 <field name="partner_id" string="Vendor" />
@@ -543,6 +543,98 @@
                     />
                 </group>
             </search>
+        </field>
+    </record>
+    <record id="view_purchase_request_line_details" model="ir.ui.view">
+        <field name="name">purchase.request.line.details.form</field>
+        <field name="model">purchase.request.line</field>
+        <field name="priority">1000</field>
+        <field name="arch" type="xml">
+        <form>
+            <sheet>
+                <group name="main">
+                    <group>
+                        <field name="is_editable" attrs="{'invisible': True}" />
+                        <field
+                                name="product_id"
+                                attrs="{'readonly': [('is_editable','=', False)]}"
+                            />
+                        <field
+                                name="name"
+                                attrs="{'readonly': [('is_editable','=', False)]}"
+                            />
+                        <label for="product_qty" />
+                        <div class="o_row">
+                            <field
+                                    name="product_qty"
+                                    class="oe_inline"
+                                    attrs="{'readonly': [('is_editable','=', False)]}"
+                                />
+                            <field
+                                    name="product_uom_id"
+                                    groups="uom.group_uom"
+                                    class="oe_inline"
+                                    attrs="{'readonly': [('is_editable','=', False)]}"
+                                />
+                        </div>
+                        <field
+                                name="analytic_account_id"
+                                groups="analytic.group_analytic_accounting"
+                                attrs="{'readonly': [('is_editable','=', False)]}"
+                            />
+                        <field
+                                name="analytic_tag_ids"
+                                groups="analytic.group_analytic_accounting"
+                                attrs="{'readonly': [('is_editable','=', False)]}"
+                            />
+                        <field
+                                name="date_required"
+                                attrs="{'readonly': [('is_editable','=', False)]}"
+                            />
+                        <field
+                                name="estimated_cost"
+                                widget="monetary"
+                                attrs="{'readonly': [('is_editable','=', False)]}"
+                            />
+                        <field name="currency_id" attrs="{'invisible': True}" />
+                        <field name="cancelled" widget="boolean" />
+                    </group>
+                </group>
+                <group name="specifications">
+                    <separator string="Specifications" />
+                    <newline />
+                    <field
+                            name="specifications"
+                            nolabel="1"
+                            attrs="{'readonly': [('is_editable','=', False)]}"
+                        />
+                </group>
+                <group name="quantities" string="Tracking">
+                    <group>
+                        <field name="pending_qty_to_receive" />
+                        <field name="qty_in_progress" />
+                        <field name="qty_done" />
+                        <field name="qty_cancelled" />
+                    </group>
+                </group>
+                <notebook>
+                    <page name="purchase_lines" string="Purchase Order Lines">
+                        <group>
+                            <group name="purchase_state">
+                                <field name="purchased_qty" />
+                                <field name="purchase_state" />
+                                <field name="qty_in_progress" />
+                                <field name="qty_done" />
+                            </group>
+                        </group>
+                        <newline />
+                        <group>
+                            <field name="purchase_lines" nolabel="1" />
+                        </group>
+                    </page>
+                </notebook>
+            </sheet>
+        </form>
         </field>
     </record>
     <menuitem
