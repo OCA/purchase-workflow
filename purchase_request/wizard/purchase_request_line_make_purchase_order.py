@@ -15,8 +15,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         comodel_name="res.partner",
         string="Supplier",
         required=True,
-        domain=[("is_company", "=", True)],
-        context={"res_partner_search_mode": "supplier", "default_is_company": True},
+        context={"res_partner_search_mode": "supplier"},
     )
     item_ids = fields.One2many(
         comodel_name="purchase.request.line.make.purchase.order.item",
@@ -199,7 +198,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
     @api.model
     def _get_purchase_line_name(self, order, line):
         product_lang = line.product_id.with_context(
-            {"lang": self.supplier_id.lang, "partner_id": self.supplier_id.id}
+            lang=self.supplier_id.lang, partner_id=self.supplier_id.id
         )
         name = product_lang.display_name
         if product_lang.description_purchase:
