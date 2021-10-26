@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo13-addon-procurement_purchase_no_grouping',
+        'odoo13-addon-procurement_purchase_sale_no_grouping',
         'odoo13-addon-product_form_purchase_link',
         'odoo13-addon-product_supplierinfo_qty_multiplier',
         'odoo13-addon-purchase_all_shipments',
