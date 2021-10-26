@@ -84,7 +84,7 @@
                         </button>
                         <button
                             type="object"
-                            name="action_view_stock_move"
+                            name="action_view_stock_picking"
                             class="oe_stat_button"
                             attrs="{'invisible':[('move_count', '=', 0)]}"
                             groups="stock.group_stock_manager"
@@ -93,7 +93,7 @@
                             <field
                                 name="move_count"
                                 widget="statinfo"
-                                string="Stock Moves"
+                                string="Pickings"
                             />
                         </button>
                     </div>
@@ -155,7 +155,10 @@
                     <notebook>
                         <page string="Products">
                             <field name="line_ids">
-                                <tree decoration-muted="cancelled == True">
+                                <tree
+                                    decoration-muted="cancelled == True"
+                                    editable="bottom"
+                                >
                                     <field name="product_id" />
                                     <field name="name" />
                                     <field name="product_qty" />
@@ -191,107 +194,14 @@
                                         decoration-warning="purchase_state == ('to_approve')"
                                         decoration-danger="purchase_state == 'cancelled'"
                                     />
+                                    <button
+                                        name="action_show_details"
+                                        type="object"
+                                        icon="fa-list"
+                                        width="0.1"
+                                        options='{"warn": true}'
+                                    />
                                 </tree>
-                                <form>
-                                    <sheet>
-                                        <group name="main">
-                                            <group>
-                                                <field
-                                                    name="is_editable"
-                                                    attrs="{'invisible': True}"
-                                                />
-                                                <field
-                                                    name="product_id"
-                                                    attrs="{'readonly': [('is_editable','=', False)]}"
-                                                />
-                                                <field
-                                                    name="name"
-                                                    attrs="{'readonly': [('is_editable','=', False)]}"
-                                                />
-                                                <label for="product_qty" />
-                                                <div class="o_row">
-                                                    <field
-                                                        name="product_qty"
-                                                        class="oe_inline"
-                                                        attrs="{'readonly': [('is_editable','=', False)]}"
-                                                    />
-                                                    <field
-                                                        name="product_uom_id"
-                                                        groups="uom.group_uom"
-                                                        class="oe_inline"
-                                                        attrs="{'readonly': [('is_editable','=', False)]}"
-                                                    />
-                                                </div>
-                                                <field
-                                                    name="analytic_account_id"
-                                                    groups="analytic.group_analytic_accounting"
-                                                    attrs="{'readonly': [('is_editable','=', False)]}"
-                                                />
-                                                <field
-                                                    name="analytic_tag_ids"
-                                                    groups="analytic.group_analytic_accounting"
-                                                    attrs="{'readonly': [('is_editable','=', False)]}"
-                                                />
-                                                <field
-                                                    name="date_required"
-                                                    attrs="{'readonly': [('is_editable','=', False)]}"
-                                                />
-                                                <field
-                                                    name="estimated_cost"
-                                                    widget="monetary"
-                                                    attrs="{'readonly': [('is_editable','=', False)]}"
-                                                />
-                                                <field
-                                                    name="currency_id"
-                                                    attrs="{'invisible': True}"
-                                                />
-                                                <field
-                                                    name="cancelled"
-                                                    widget="boolean"
-                                                />
-                                            </group>
-                                        </group>
-                                        <group name="specifications">
-                                            <separator string="Specifications" />
-                                            <newline />
-                                            <field
-                                                name="specifications"
-                                                nolabel="1"
-                                                attrs="{'readonly': [('is_editable','=', False)]}"
-                                            />
-                                        </group>
-                                        <group name="quantities" string="Tracking">
-                                            <group>
-                                                <field name="pending_qty_to_receive" />
-                                                <field name="qty_in_progress" />
-                                                <field name="qty_done" />
-                                                <field name="qty_cancelled" />
-                                            </group>
-                                        </group>
-                                        <notebook>
-                                            <page
-                                                name="purchase_lines"
-                                                string="Purchase Order Lines"
-                                            >
-                                                <group>
-                                                    <group name="purchase_state">
-                                                        <field name="purchased_qty" />
-                                                        <field name="purchase_state" />
-                                                        <field name="qty_in_progress" />
-                                                        <field name="qty_done" />
-                                                    </group>
-                                                </group>
-                                                <newline />
-                                                <group>
-                                                    <field
-                                                        name="purchase_lines"
-                                                        nolabel="1"
-                                                    />
-                                                </group>
-                                            </page>
-                                        </notebook>
-                                    </sheet>
-                                </form>
                             </field>
                             <group class="oe_subtotal_footer oe_right">
                                 <field name="currency_id" invisible="1" />
@@ -326,7 +236,7 @@
                 decoration-bf="message_needaction==True"
                 decoration-info="state in ('draft','to_approve')"
                 decoration-muted="state in ('rejected')"
-                string="Purchase Request"
+                name="Purchase Request"
             >
                 <field name="message_needaction" invisible="1" />
                 <field name="name" />
@@ -476,6 +386,7 @@
     <menuitem
         id="parent_menu_purchase_request"
         name="Purchase Requests"
+        sequence="22"
         web_icon="purchase_request,static/description/icon.png"
         groups="group_purchase_request_user,group_purchase_request_manager"
     />

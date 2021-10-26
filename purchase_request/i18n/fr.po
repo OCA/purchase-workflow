@@ -858,7 +858,7 @@ msgstr "Demande d'achat"
 #: code:addons/purchase_request/models/purchase_order.py:0
 #, fuzzy, python-format
 msgid "Purchase Request %s has already been completed"
-msgstr "Demande d'achat rejetée"
+msgstr "Demande d'achat %s rejetée"
 
 #. module: purchase_request
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
