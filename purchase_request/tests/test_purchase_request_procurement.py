@@ -5,7 +5,7 @@ from odoo import SUPERUSER_ID, fields
 from odoo.tests import common
 
 
-class TestPurchaseRequestProcurement(common.SavepointCase):
+class TestPurchaseRequestProcurement(common.TransactionCase):
     def setUp(self):
         super(TestPurchaseRequestProcurement, self).setUp()
 
