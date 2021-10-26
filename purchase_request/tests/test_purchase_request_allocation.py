@@ -83,7 +83,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         backorder_wiz_id = picking.button_validate()
         common.Form(
             self.env[backorder_wiz_id["res_model"]].with_context(
-                backorder_wiz_id["context"]
+                **backorder_wiz_id["context"]
             )
         ).save().process()
         self.assertEqual(purchase_request_line1.qty_done, 2.0)
@@ -94,7 +94,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         backorder_wiz_id2 = backorder_picking.button_validate()
         common.Form(
             self.env[backorder_wiz_id2["res_model"]].with_context(
-                backorder_wiz_id2["context"]
+                **backorder_wiz_id2["context"]
             )
         ).save().process()
 

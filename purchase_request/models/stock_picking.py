@@ -13,27 +13,30 @@ class StockPicking(models.Model):
     ):
         if not request_dict:
             request_dict = {}
-        title = _("Receipt confirmation %s for your Request %s") % (
-            picking.name,
-            request.name,
-        )
+        title = _(
+            "Receipt confirmation %(picking_name)s for your Request %(request_name)s"
+        ) % {"picking_name": picking.name, "request_name": request.name}
+
         message = "<h3>%s</h3>" % title
         message += _(
-            "The following requested items from Purchase Request %s "
-            "have now been received in Incoming Shipment %s:"
-        ) % (request.name, picking.name)
+            "The following requested items from Purchase Request %(picking_name)s "
+            "have now been received in Incoming Shipment %(request_name)s:"
+        ) % {"picking_name": picking.name, "request_name": request.name}
         message += "<ul>"
         for line in request_dict.values():
-            message += _("<li><b>%s</b>: Received quantity %s %s</li>") % (
-                line["name"],
-                line["product_qty"],
-                line["product_uom"],
-            )
+            message += _(
+                "<li><b>%(request_name)s</b>: "
+                "Received quantity %(product_qty)s %(product_uom)s</li>"
+            ) % {
+                "request_name": line["name"],
+                "product_qty": line["product_qty"],
+                "product_uom": line["product_uom"],
+            }
         message += "</ul>"
         return message
 
-    def action_done(self):
-        super(StockPicking, self).action_done()
+    def _action_done(self):
+        res = super(StockPicking, self)._action_done()
         request_obj = self.env["purchase.request"]
         for picking in self:
             requests_dict = {}
@@ -60,6 +63,7 @@ class StockPicking(models.Model):
                 )
                 request.sudo().message_post(
                     body=message,
-                    subtype="mail.mt_comment",
+                    subtype_id=self.env.ref("mail.mt_comment").id,
                     author_id=self.env.user.partner_id.id,
                 )
+        return res

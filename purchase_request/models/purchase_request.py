@@ -71,7 +71,6 @@ class PurchaseRequest(models.Model):
     )
     requested_by = fields.Many2one(
         comodel_name="res.users",
-        string="Requested by",
         required=True,
         copy=False,
         tracking=True,
@@ -91,10 +90,9 @@ class PurchaseRequest(models.Model):
         ],
         index=True,
     )
-    description = fields.Text(string="Description")
+    description = fields.Text()
     company_id = fields.Many2one(
         comodel_name="res.company",
-        string="Company",
         required=True,
         default=_company_get,
         tracking=True,
@@ -122,9 +120,7 @@ class PurchaseRequest(models.Model):
         copy=False,
         default="draft",
     )
-    is_editable = fields.Boolean(
-        string="Is editable", compute="_compute_is_editable", readonly=True
-    )
+    is_editable = fields.Boolean(compute="_compute_is_editable", readonly=True)
     to_approve_allowed = fields.Boolean(compute="_compute_to_approve_allowed")
     picking_type_id = fields.Many2one(
         comodel_name="stock.picking.type",

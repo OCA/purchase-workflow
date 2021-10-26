@@ -15,7 +15,7 @@
         <field name="name">purchase.request.allocation</field>
         <field name="model">purchase.request.allocation</field>
         <field name="arch" type="xml">
-            <tree string="Allocations">
+            <tree name="Allocations">
                 <field name="id" />
                 <field name="purchase_request_line_id" />
                 <field name="stock_move_id" />
