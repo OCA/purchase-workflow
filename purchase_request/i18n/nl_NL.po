@@ -838,13 +838,13 @@ msgstr "Offerte"
 #: code:addons/purchase_request/models/purchase_order.py:0
 #, fuzzy, python-format
 msgid "Purchase Request %s has already been completed"
-msgstr "Afgewezen Offertes"
+msgstr "Afgewezen %s Offertes"
 
 #. module: purchase_request
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
 #, fuzzy, python-format
 msgid "Purchase Request %s is not approved"
-msgstr "Goedgekeurde Offertes"
+msgstr "Goedgekeurde %s Offertes"
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_purchase_request_allocation

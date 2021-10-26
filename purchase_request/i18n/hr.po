@@ -844,13 +844,13 @@ msgstr "Zahtjev za nabavu"
 #: code:addons/purchase_request/models/purchase_order.py:0
 #, fuzzy, python-format
 msgid "Purchase Request %s has already been completed"
-msgstr "Zahtjev za nabau odbijen"
+msgstr "Zahtjev za nabau %s odbijen"
 
 #. module: purchase_request
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
 #, fuzzy, python-format
 msgid "Purchase Request %s is not approved"
-msgstr "Zahtjev za nabavu odobren"
+msgstr "Zahtjev za nabavu %s odobren"
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_purchase_request_allocation
