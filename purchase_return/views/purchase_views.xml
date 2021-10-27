@@ -8,7 +8,7 @@
             <field name="model">purchase.return.order</field>
             <field name="arch" type="xml">
                 <pivot
-                string="Purchase Order Return"
+                string="Purchase Return Order"
                 display_quantity="True"
                 sample="1"
             >
@@ -18,10 +18,10 @@
             </field>
         </record>
         <record model="ir.ui.view" id="purchase_return_order_graph">
-            <field name="name">purchase.order.graph</field>
-            <field name="model">purchase.order</field>
+            <field name="name">purchase.return.order.graph</field>
+            <field name="model">purchase.return.order</field>
             <field name="arch" type="xml">
-                <graph string="Purchase Order Return" sample="1">
+                <graph string="Purchase Return Order" sample="1">
                     <field name="partner_id" />
                     <field name="amount_total" type="measure" />
                 </graph>
@@ -32,7 +32,7 @@
             <field name="name">purchase.return.order.form</field>
             <field name="model">purchase.return.order</field>
             <field name="arch" type="xml">
-                <form string="Purchase Order Return" class="o_purchase_order">
+                <form string="Purchase Return Order" class="o_purchase_order">
                 <header>
                     <button
                         name="action_draft_send"
@@ -159,7 +159,7 @@
                         <span
                             class="o_form_label"
                             attrs="{'invisible': [('state','in',('draft','sent'))]}"
-                        >Purchase Order </span>
+                        >Purchase Return Order </span>
                         <h1>
                             <field name="name" readonly="1" />
                         </h1>
@@ -553,8 +553,8 @@
         </record>
 
        <record id="view_purchase_return_order_filter" model="ir.ui.view">
-            <field name="name">return.draft.select</field>
-            <field name="model">purchase.order</field>
+            <field name="name">purchase.return.draft.select</field>
+            <field name="model">purchase.return.order</field>
             <field name="arch" type="xml">
                 <search string="Search Purchase Return Order">
                     <field
@@ -1063,7 +1063,7 @@
             <field name="name">purchase.return.order.line.search</field>
             <field name="model">purchase.return.order.line</field>
             <field name="arch" type="xml">
-                <search string="Search Purchase Order">
+                <search string="Search Return Purchase Order">
                     <field name="order_id" />
                     <field name="product_id" />
                     <field

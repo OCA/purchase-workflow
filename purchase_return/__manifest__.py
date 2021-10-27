@@ -1,5 +1,5 @@
-# Copyright 2021 ForgeFlow S.L.
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
+# Copyright 2021 ForgeFlow, S.L. (https://www.forgeflow.com)
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 {
     "name": "Purchase Return",
     "summary": "Manage return orders.",
@@ -15,6 +15,8 @@
         "security/ir.model.access.csv",
         "security/purchase_security.xml",
         "data/purchase_data.xml",
+        "views/product_template_views.xml",
+        "views/product_category_views.xml",
         "views/purchase_views.xml",
         "views/account_move_views.xml",
         "views/purchase_return_template.xml",
