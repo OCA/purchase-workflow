@@ -1,3 +1,6 @@
+# Copyright 2021 ForgeFlow, S.L. (https://www.forgeflow.com)
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
+
 from odoo.tests import tagged
 
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
@@ -10,6 +13,13 @@ class TestPurchaseReturnOrderLine(AccountTestInvoicingCommon):
         super(TestPurchaseReturnOrderLine, cls).setUpClass()
         uom_unit = cls.env.ref("uom.product_uom_unit")
         uom_hour = cls.env.ref("uom.product_uom_hour")
+        returns_account = cls.env["account.account"].create(
+            {
+                "name": "Vendor Returns",
+                "code": "VR01",
+                "user_type_id": cls.env.ref("account.data_account_type_revenue").id,
+            }
+        )
         cls.product_order = cls.env["product.product"].create(
             {
                 "name": "Zed+ Antivirus",
@@ -21,6 +31,7 @@ class TestPurchaseReturnOrderLine(AccountTestInvoicingCommon):
                 "purchase_method": "purchase",
                 "default_code": "PROD_ORDER",
                 "taxes_id": False,
+                "property_account_vendor_return_id": returns_account.id,
             }
         )
         cls.service_order = cls.env["product.product"].create(
@@ -34,6 +45,7 @@ class TestPurchaseReturnOrderLine(AccountTestInvoicingCommon):
                 "purchase_method": "purchase",
                 "default_code": "PRE-PAID",
                 "taxes_id": False,
+                "property_account_vendor_return_id": returns_account.id,
             }
         )
 
@@ -71,44 +83,6 @@ class TestPurchaseReturnOrderLine(AccountTestInvoicingCommon):
         price_subtotal = po_line.product_qty * self.product_order.list_price
         self.assertEqual(po_line.price_subtotal, price_subtotal)
 
-    # Test to suggest a minimal quantity based on the seller
-    def test_suggest_quantity(self):
-        # Create a Purchase Return Order
-        purchase_return_order = (
-            self.env["purchase.return.order"]
-            .with_context(tracking_disable=True)
-            .create(
-                {
-                    "partner_id": self.partner_a.id,
-                }
-            )
-        )
-        # Create a Purchase Return Order Line
-        PurchaseReturnOrderLine = self.env["purchase.return.order.line"].with_context(
-            tracking_disable=True
-        )
-        po_line = PurchaseReturnOrderLine.create(
-            {
-                "name": self.product_order.name,
-                "product_id": self.product_order.id,
-                "product_qty": 10.0,
-                "product_uom": self.product_order.uom_id.id,
-                "price_unit": self.product_order.list_price,
-                "order_id": purchase_return_order.id,
-                "refund_only": True,
-                "taxes_id": False,
-            }
-        )
-        vendor = po_line.product_id.seller_ids.create(
-            {
-                "name": self.partner_a.id,
-                "min_qty": 50.0,
-            }
-        )
-        self.product_order.seller_ids = vendor
-        po_line._suggest_quantity()
-        self.assertEqual(po_line.product_qty, vendor.min_qty)
-
     # Test to update all columns of a Purchase Return Order Line on change product
     def test_onchange_product_id(self):
         # Create a Purchase Return Order
@@ -139,14 +113,13 @@ class TestPurchaseReturnOrderLine(AccountTestInvoicingCommon):
         )
         vendor = po_line.product_id.seller_ids.create(
             {
+                "product_tmpl_id": po_line.product_id.product_tmpl_id.id,
                 "name": self.partner_a.id,
-                "min_qty": 50.0,
             }
         )
         self.service_order.seller_ids = vendor
         po_line.product_id = self.service_order
         po_line.onchange_product_id()
         self.assertEqual(po_line.product_id, self.service_order)
-        self.assertEqual(po_line.product_qty, vendor.min_qty)
         self.assertEqual(po_line.product_uom, self.service_order.uom_id)
         self.assertEqual(po_line.order_id, purchase_return_order)

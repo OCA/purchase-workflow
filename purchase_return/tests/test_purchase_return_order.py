@@ -1,6 +1,9 @@
+# Copyright 2021 ForgeFlow, S.L. (https://www.forgeflow.com)
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
+
 from datetime import datetime
 
-import odoo.odoo.exceptions
+import odoo.exceptions
 from odoo import fields
 from odoo.tests import tagged
 
@@ -14,6 +17,13 @@ class TestPurchaseReturnOrder(AccountTestInvoicingCommon):
         super(TestPurchaseReturnOrder, cls).setUpClass()
         uom_unit = cls.env.ref("uom.product_uom_unit")
         uom_hour = cls.env.ref("uom.product_uom_hour")
+        returns_account = cls.env["account.account"].create(
+            {
+                "name": "Vendor Returns",
+                "code": "VR01",
+                "user_type_id": cls.env.ref("account.data_account_type_revenue").id,
+            }
+        )
         cls.product_order = cls.env["product.product"].create(
             {
                 "name": "Zed+ Antivirus",
@@ -25,6 +35,7 @@ class TestPurchaseReturnOrder(AccountTestInvoicingCommon):
                 "purchase_method": "purchase",
                 "default_code": "PROD_ORDER",
                 "taxes_id": False,
+                "property_account_vendor_return_id": returns_account.id,
             }
         )
         cls.service_order = cls.env["product.product"].create(
@@ -38,6 +49,7 @@ class TestPurchaseReturnOrder(AccountTestInvoicingCommon):
                 "purchase_method": "purchase",
                 "default_code": "PRE-PAID",
                 "taxes_id": False,
+                "property_account_vendor_return_id": returns_account.id,
             }
         )
 

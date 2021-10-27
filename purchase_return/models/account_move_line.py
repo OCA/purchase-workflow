@@ -1,3 +1,6 @@
+# Copyright 2021 ForgeFlow, S.L. (https://www.forgeflow.com)
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
+
 from odoo import fields, models
 
 
@@ -24,10 +27,10 @@ class AccountMoveLine(models.Model):
 
     def _get_computed_account(self):
         account = super(AccountMoveLine, self)._get_computed_account()
-        if self.purchase_return_line_id.refund_only:
+        if self.purchase_return_line_id:
             fiscal_position = self.move_id.fiscal_position_id
             accounts = self.product_id.product_tmpl_id.get_product_accounts(
                 fiscal_pos=fiscal_position
             )
-            return accounts["expense"]
+            return accounts["vendor_returns"]
         return account
