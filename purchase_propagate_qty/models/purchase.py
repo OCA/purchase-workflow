@@ -7,6 +7,10 @@ from odoo import _, exceptions, models
 from odoo.tools import float_compare, float_is_zero
 
 
+def equal(x, y, rounding):
+    return float_is_zero(x - y, precision_rounding=rounding)
+
+
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
@@ -29,9 +33,15 @@ class PurchaseOrderLine(models.Model):
                 move.product_uom_qty = line.product_uom_qty
                 if float_is_zero(move.product_uom_qty, precision_rounding=rounding):
                     move._action_cancel()
+            moves_done = line.move_ids.filtered(lambda r: r.state == "done")
+            qty_done = sum(moves_done.mapped("product_uom_qty"))
             moves = line.move_ids.filtered(lambda r: r.state not in ("cancel", "done"))
             previous_qty = sum(moves.mapped("product_uom_qty"))
             new_qty = line.product_uom_qty
+            # If the new qty equals the already received qty, cancel remaining moves
+            if qty_done and equal(qty_done, new_qty, rounding):
+                moves._action_cancel()
+                continue
             # Do nothing is qty has been increased, since odoo handles this case
             if new_qty >= previous_qty:
                 continue
