@@ -1,0 +1,39 @@
+<odoo>
+    <record model="ir.ui.view" id="view_purchase_order_line_tree">
+        <field name="name">purchase.order.line.tree</field>
+        <field name="model">purchase.order.line</field>
+        <field name="inherit_id" ref="purchase.purchase_order_line_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_id']" position="before">
+                <field name="currency_id" invisible="1" />
+            </xpath>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_purchase_order_line_pivot">
+        <field name="name">purchase.order.line.pivot</field>
+        <field name="model">purchase.order.line</field>
+        <field name="arch" type="xml">
+            <pivot string="Order Lines">
+                <field name="product_id" type="row" />
+                <field name="product_qty" type="col" />
+                <field name="price_subtotal" type="measure" />
+            </pivot>
+        </field>
+    </record>
+    <record id="action_purchase_orders_lines" model="ir.actions.act_window">
+        <field name="name">Purchase Order Lines</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">purchase.order.line</field>
+        <field name="view_mode">tree,pivot</field>
+    </record>
+
+    <menuitem
+        id="purchase_order_line_menu"
+        name="Purchase Order Lines"
+        action="action_purchase_orders_lines"
+        parent="purchase.menu_procurement_management"
+        sequence="7"
+    />
+
+
+</odoo>
