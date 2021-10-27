@@ -53,6 +53,7 @@ addon | version | maintainers | summary
 [purchase_order_approved](purchase_order_approved/) | 13.0.1.1.0 |  | Add a new state 'Approved' in purchase orders.
 [purchase_order_archive](purchase_order_archive/) | 13.0.1.0.0 |  | Archive Purchase Orders
 [purchase_order_line_deep_sort](purchase_order_line_deep_sort/) | 13.0.1.0.0 |  | Purchase Order Line Sort
+[purchase_order_line_menu](purchase_order_line_menu/) | 13.0.1.0.0 |  | Adds Purchase Order Lines Menu
 [purchase_order_line_packaging_qty](purchase_order_line_packaging_qty/) | 13.0.1.0.2 |  | Define quantities according to product packaging on purchase order lines
 [purchase_order_line_price_history](purchase_order_line_price_history/) | 13.0.1.0.0 |  | Purchase order line price history
 [purchase_order_line_price_history_discount](purchase_order_line_price_history_discount/) | 13.0.1.0.0 |  | Purchase order line price history discount
