@@ -17,3 +17,8 @@ msgstr ""
 #: model:ir.model,name:purchase_stock_secondary_unit.model_purchase_order_line
 msgid "Purchase Order Line"
 msgstr ""
+
+#. module: purchase_stock_secondary_unit
+#: model:ir.model,name:purchase_stock_secondary_unit.model_stock_move
+msgid "Stock Move"
+msgstr ""
