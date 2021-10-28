@@ -32,7 +32,7 @@ class WorkAcceptance(models.Model):
         string="Vendor",
         required=True,
         change_default=True,
-        track_visibility="always",
+        tracking=True,
         readonly=True,
         states={"draft": [("readonly", False)]},
     )
@@ -42,7 +42,7 @@ class WorkAcceptance(models.Model):
         default=lambda self: self.env.user,
         required=True,
         change_default=True,
-        track_visibility="always",
+        tracking=True,
         readonly=True,
         states={"draft": [("readonly", False)]},
     )
@@ -60,7 +60,7 @@ class WorkAcceptance(models.Model):
         index=True,
         copy=False,
         default="draft",
-        track_visibility="onchange",
+        tracking=True,
     )
     wa_line_ids = fields.One2many(
         comodel_name="work.acceptance.line",
@@ -79,7 +79,7 @@ class WorkAcceptance(models.Model):
         string="Work Acceptance Representative",
         default=lambda self: self.env.user,
         index=True,
-        track_visibility="onchange",
+        tracking=True,
     )
     company_id = fields.Many2one(
         comodel_name="res.company",
