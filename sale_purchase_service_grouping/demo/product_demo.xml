@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_partner_supplier" model="res.partner">
+        <field name="name">Outsourced Service Company</field>
+    </record>
+
+    <record id="product_attribute_1" model="product.attribute">
+        <field name="name">Service Level</field>
+    </record>
+
+    <record id="product_attribute_value_1" model="product.attribute.value">
+        <field name="attribute_id" ref="product_attribute_1"/>
+        <field name="name">Standard</field>
+        <field name="sequence">1</field>
+    </record>
+
+    <record id="product_attribute_value_2" model="product.attribute.value">
+        <field name="attribute_id" ref="product_attribute_1"/>
+        <field name="name">Premium</field>
+        <field name="sequence">2</field>
+    </record>
+
+    <record id="product_category" model="product.category">
+        <field name="name">Outsourced Service</field>
+        <field name="parent_id" ref="product.product_category_3" />
+        <field name="purchase_service_grouping">sale.order</field>
+    </record>
+
+    <record id="product_a_product_template" model="product.template">
+        <field name="name">Outsourced Service A</field>
+        <field name="categ_id" ref="product_category" />
+        <field name="standard_price">100.0</field>
+        <field name="list_price">150.0</field>
+        <field name="type">service</field>
+        <field name="service_to_purchase" eval="True" />
+        <field name="uom_id" ref="uom.product_uom_hour" />
+        <field name="uom_po_id" ref="uom.product_uom_hour" />
+        <field name="seller_ids" eval="[(0, 0, {'name': ref('res_partner_supplier')})]" />
+    </record>
+
+    <record id="product_a_1" model="product.product">
+        <field name="attribute_value_ids" eval="[(4, ref('product_attribute_value_1'))]"/>
+        <field name="product_tmpl_id" ref="product_a_product_template"/>
+    </record>
+
+    <record id="product_a_2" model="product.product">
+        <field name="attribute_value_ids" eval="[(4, ref('product_attribute_value_2'))]"/>
+        <field name="product_tmpl_id" ref="product_a_product_template"/>
+    </record>
+
+    <record id="product_a_attribute_line_1" model="product.template.attribute.line">
+        <field name="product_tmpl_id" ref="product_a_product_template"/>
+        <field name="attribute_id" ref="product_attribute_1"/>
+        <field name="value_ids" eval="[(6, 0, [ref('product_attribute_value_1'), ref('product_attribute_value_2')])]" />
+    </record>
+
+    <record id="product_b" model="product.product">
+        <field name="name">Outsourced Service B</field>
+        <field name="categ_id" ref="product_category" />
+        <field name="standard_price">100.0</field>
+        <field name="list_price">200.0</field>
+        <field name="type">service</field>
+        <field name="service_to_purchase" eval="True" />
+        <field name="uom_id" ref="uom.product_uom_hour" />
+        <field name="uom_po_id" ref="uom.product_uom_hour" />
+        <field name="seller_ids" eval="[(0, 0, {'name': ref('res_partner_supplier')})]" />
+    </record>
+
+</odoo>
