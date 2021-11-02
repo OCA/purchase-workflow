@@ -12,4 +12,14 @@
             </xpath>
         </field>
     </record>
+    <record id="product_supplierinfo_supplier_calendar_tree_view" model="ir.ui.view">
+        <field name="name">product.supplierinfo.supplier_calendar.tree.view</field>
+        <field name="model">product.supplierinfo</field>
+        <field name="inherit_id" ref="product.product_supplierinfo_tree_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='delay']" position="after">
+                <field name="delay_calendar_type" optional="hide" />
+            </xpath>
+        </field>
+    </record>
 </odoo>
