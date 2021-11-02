@@ -46,6 +46,7 @@ addon | version | maintainers | summary
 [purchase_order_secondary_unit](purchase_order_secondary_unit/) | 14.0.1.0.0 |  | Purchase product in a secondary unit
 [purchase_order_type](purchase_order_type/) | 14.0.1.0.2 |  | Purchase Order Type
 [purchase_order_uninvoiced_amount](purchase_order_uninvoiced_amount/) | 14.0.1.1.0 |  | Show uninvoiced amount on purchase order tree.
+[purchase_partner_incoterm](purchase_partner_incoterm/) | 14.0.1.0.0 |  | Add a an incoterm field for supplier and use it on purchase order
 [purchase_product_usage](purchase_product_usage/) | 14.0.1.1.0 |  | Purchase Product Usage
 [purchase_propagate_qty](purchase_propagate_qty/) | 14.0.1.0.0 |  | Quantity decrease on purchase line are propagated to the corresponding stock.move
 [purchase_quick](purchase_quick/) | 14.0.1.0.0 |  | Quick Purchase order
