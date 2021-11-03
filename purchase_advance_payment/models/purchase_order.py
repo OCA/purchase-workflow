@@ -51,6 +51,9 @@ class PurchaseOrder(models.Model):
         "account_payment_ids.move_id.line_ids.credit",
         "account_payment_ids.move_id.line_ids.currency_id",
         "account_payment_ids.move_id.line_ids.amount_currency",
+        "order_line.invoice_lines.move_id",
+        "order_line.invoice_lines.move_id.amount_total",
+        "order_line.invoice_lines.move_id.amount_residual",
     )
     def _compute_purchase_advance_payment(self):
         for order in self:
@@ -71,9 +74,15 @@ class PurchaseOrder(models.Model):
                     )
                 else:
                     advance_amount += line_amount
-            amount_residual = order.amount_total - advance_amount
+            # Consider payments in related invoices.
+            invoice_not_paid_amount = 0.0
+            for inv in order.invoice_ids:
+                invoice_not_paid_amount += inv.amount_total - inv.amount_residual
+            amount_residual = (
+                order.amount_total - advance_amount - invoice_not_paid_amount
+            )
             payment_state = "not_paid"
-            if mls:
+            if mls or order.invoice_ids:
                 has_due_amount = float_compare(
                     amount_residual, 0.0, precision_rounding=order.currency_id.rounding
                 )
