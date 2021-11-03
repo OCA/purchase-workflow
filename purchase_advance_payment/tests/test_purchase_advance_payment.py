@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html)
 
 
+from odoo import fields
 from odoo.exceptions import ValidationError
 from odoo.tests import common
 
@@ -120,7 +121,7 @@ class TestPurchaseAdvancePayment(common.SavepointCase):
             }
         )
 
-    def test_purchase_advance_payment(self):
+    def test_01_purchase_advance_payment(self):
         self.assertEqual(
             self.purchase_order_1.amount_residual,
             3600,
@@ -216,3 +217,52 @@ class TestPurchaseAdvancePayment(common.SavepointCase):
         )
         advance_payment_4.make_advance_payment()
         self.assertEqual(self.purchase_order_1.amount_residual, 2580)
+
+    def test_02_residual_amount_with_bill(self):
+        self.assertEqual(
+            self.purchase_order_1.amount_residual,
+            3600,
+        )
+        self.assertEqual(
+            self.purchase_order_1.amount_residual,
+            self.purchase_order_1.amount_total,
+        )
+        # Create Advance Payment 1 - EUR - bank
+        context_payment = {
+            "active_ids": [self.purchase_order_1.id],
+            "active_id": self.purchase_order_1.id,
+        }
+        # Create Advance Payment 2 - USD - cash
+        advance_payment_2 = (
+            self.env["account.voucher.wizard.purchase"]
+            .with_context(context_payment)
+            .create(
+                {
+                    "journal_id": self.journal_usd_cash.id,
+                    "amount_advance": 200,
+                    "order_id": self.purchase_order_1.id,
+                }
+            )
+        )
+        advance_payment_2.make_advance_payment()
+        self.assertEqual(self.purchase_order_1.amount_residual, 3400)
+        # generate bill, pay bill, check amount residual.
+        self.purchase_order_1.button_confirm()
+        self.assertEqual(self.purchase_order_1.invoice_status, "to invoice")
+        self.purchase_order_1.action_create_invoice()
+        self.assertEqual(self.purchase_order_1.invoice_status, "invoiced")
+        self.assertEqual(self.purchase_order_1.amount_residual, 3400)
+        invoice = self.purchase_order_1.invoice_ids
+        invoice.invoice_date = fields.Date.today()
+        invoice.action_post()
+        active_ids = invoice.ids
+        self.env["account.payment.register"].with_context(
+            active_model="account.move", active_ids=active_ids
+        ).create(
+            {
+                "amount": 1200.0,
+                "group_payment": True,
+                "payment_difference_handling": "open",
+            }
+        )._create_payments()
+        self.assertEqual(self.purchase_order_1.amount_residual, 2200)
