@@ -3,7 +3,7 @@
 
 {
     "name": "Purchase Reception Notify",
-    "version": "13.0.1.0.1",
+    "version": "13.0.1.0.2",
     "category": "Purchase Management",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
