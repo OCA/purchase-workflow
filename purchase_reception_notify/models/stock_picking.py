@@ -20,7 +20,7 @@ class StockPicking(models.Model):
         for stock_move_id in stock_move_dict.values():
             message += _("<li><b>%s</b>: Received quantity %s %s</li>") % (
                 stock_move_id["purchase_line"].product_id.display_name,
-                stock_move_id["stock_move"].product_qty,
+                stock_move_id["stock_move"].quantity_done,
                 stock_move_id["stock_move"].product_uom.name,
             )
         message += "</ul>"
@@ -30,7 +30,9 @@ class StockPicking(models.Model):
         super(StockPicking, self).action_done()
         for picking in self.filtered(lambda p: p.picking_type_id.code == "incoming"):
             purchase_dict = {}
-            for move in picking.move_lines.filtered("purchase_line_id"):
+            for move in picking.move_lines.filtered(
+                lambda x: x.purchase_line_id and x.quantity_done
+            ):
                 pol_id = move.purchase_line_id
                 if pol_id.order_id not in purchase_dict.keys():
                     purchase_dict[pol_id.order_id] = {}
