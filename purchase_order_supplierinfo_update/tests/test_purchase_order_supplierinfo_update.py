@@ -12,7 +12,7 @@ class TestPurchaseOrderSupplierinfoUpdate(SavepointCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.product = cls.env["product.product"].create(
-            {"name": "Product Test", "type": "product"}
+            {"name": "Product Test", "type": "consu"}  # do not depend on stock module
         )
         cls.supplier = cls.env["res.partner"].create({"name": "Supplier Test"})
         cls.supplierinfo = cls.env["product.supplierinfo"].create(
@@ -20,6 +20,16 @@ class TestPurchaseOrderSupplierinfoUpdate(SavepointCase):
                 "name": cls.supplier.id,
                 "product_tmpl_id": cls.product.product_tmpl_id.id,
                 "price": 100,
+            }
+        )
+        cls.product_2 = cls.env["product.product"].create(
+            {"name": "Product Test 2", "type": "consu"}
+        )
+        cls.supplierinfo_2 = cls.env["product.supplierinfo"].create(
+            {
+                "name": cls.supplier.id,
+                "product_tmpl_id": cls.product_2.product_tmpl_id.id,
+                "price": 10,
             }
         )
 
@@ -99,18 +109,8 @@ class TestPurchaseOrderSupplierinfoUpdate(SavepointCase):
         purchase_order_2.button_confirm()
         # Create a new line in the first purchase (that is already confirmed)
         # with another product.
-        product_2 = self.env["product.product"].create(
-            {"name": "Product Test 2", "type": "product"}
-        )
-        supplierinfo_2 = self.env["product.supplierinfo"].create(
-            {
-                "name": self.supplier.id,
-                "product_tmpl_id": product_2.product_tmpl_id.id,
-                "price": 10,
-            }
-        )
         with Form(purchase_order_1) as po_form:
             with po_form.order_line.new() as po_line_form:
-                po_line_form.product_id = product_2
+                po_line_form.product_id = self.product_2
                 po_line_form.price_unit = 20
-        self.assertEqual(supplierinfo_2.price, 20)
+        self.assertEqual(self.supplierinfo_2.price, 20)
