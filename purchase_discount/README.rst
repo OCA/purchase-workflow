@@ -14,16 +14,16 @@ Purchase order lines with discounts
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fpurchase--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/purchase-workflow/tree/14.0/purchase_discount
+    :target: https://github.com/OCA/purchase-workflow/tree/15.0/purchase_discount
     :alt: OCA/purchase-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/purchase-workflow-14-0/purchase-workflow-14-0-purchase_discount
+    :target: https://translation.odoo-community.org/projects/purchase-workflow-15-0/purchase-workflow-15-0-purchase_discount
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/142/14.0
+    :target: https://runbot.odoo-community.org/runbot/142/15.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module allows to define a discount per line in the purchase orders. This
 discount can be also negative, interpreting it as an increment.
@@ -37,20 +37,20 @@ it to purchase order lines:
   discounted in price.
 * You can set prices and discounts on the same screen.
 
-.. image:: https://raw.githubusercontent.com/OCA/purchase-workflow/14.0/purchase_discount/static/description/product_supplierinfo_form.png
+.. image:: https://raw.githubusercontent.com/OCA/purchase-workflow/15.0/purchase_discount/static/description/product_supplierinfo_form.png
 
 
 * A new field default_supplierinfo_discount is added on res.partner model.
   This value will be used as the default one, on each supplierinfo of that
   supplier.
 
-.. image:: https://raw.githubusercontent.com/OCA/purchase-workflow/14.0/purchase_discount/static/description/res_partner_company_form.png
+.. image:: https://raw.githubusercontent.com/OCA/purchase-workflow/15.0/purchase_discount/static/description/res_partner_company_form.png
 
 
 Note: this setting is a new 'company' setting, unavailable for related
 partners, as accounting-related Settings.
 
-.. image:: https://raw.githubusercontent.com/OCA/purchase-workflow/14.0/purchase_discount/static/description/res_partner_individual_form.png
+.. image:: https://raw.githubusercontent.com/OCA/purchase-workflow/15.0/purchase_discount/static/description/res_partner_individual_form.png
 
 **Table of contents**
 
@@ -114,6 +114,7 @@ Contributors
 * Lorenzo Battistini <https://github.com/eLBati>
 * Luisa Miguéns <luisa.miguens@solvos.es>
 * Vishnu Vanneri <vanneri.odoodev@gmail.com>
+* Moaad Bourhim <moaad.bourhim@gmail.com>
 
 Maintainers
 ~~~~~~~~~~~
@@ -128,6 +129,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/14.0/purchase_discount>`_ project on GitHub.
+This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/15.0/purchase_discount>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
