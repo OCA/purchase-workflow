@@ -152,15 +152,40 @@ class TestQtyUpdate(SavepointCase):
         self.assertEqual(move1.state, "cancel")
         self.assertEqual(move2.product_uom_qty, 12.0)
 
-    def test_reduce_purchase_qty_whith_canceled_moves(self):
+    def test_reduce_purchase_qty_with_canceled_moves(self):
         """ Check canceled moves are not taken into account."""
-        self.po.button_cancel()
+        self.po.button_cancel()  # Cancel the moves
         self.po.button_draft()
         self.po.button_confirm()
         line1 = self.po.order_line[0]
-        moves = self.env["stock.move"].search([("purchase_line_id", "=", line1.id)])
         # One canceled move one ready
-        self.assertEqual(len(moves), 2)
+        self.assertEqual(len(line1.move_ids), 2)
+        move_canceled = line1.move_ids.filtered_domain([("state", "=", "cancel")])
+        move_assigned = line1.move_ids.filtered_domain([("state", "=", "assigned")])
+        self.assertEqual(len(move_canceled), 1)
+        self.assertEqual(len(move_assigned), 1)
         line1.write({"product_qty": 10})
-        move = moves.filtered(lambda r: r.state != "cancel")
+        move = line1.move_ids.filtered(lambda r: r.state != "cancel")
         self.assertEqual(move.product_uom_qty, 10)
+
+    def test_reduce_purchase_qty_with_done_moves(self):
+        """ Check canceled moves are not taken into account."""
+        self.po.button_draft()
+        self.po.button_confirm()
+        line1 = self.po.order_line[0]
+        self.assertEqual(len(line1.move_ids), 1)
+        # Receiving a partial qty (here we split the existing move by
+        # convenience but we could generate a backorder as well)
+        new_move_id = line1.move_ids._split(10)
+        new_move = line1.move_ids.browse(new_move_id)
+        new_move._action_assign()
+        new_move.quantity_done = 10
+        new_move._action_done()  # Receive 10/42 qties
+        # Update the purchase order line to fit the received qty
+        #   => the remaining 32 qties have to be canceled
+        line1.write({"product_qty": 10})
+        move_canceled = line1.move_ids.filtered_domain([("state", "=", "cancel")])
+        move_done = line1.move_ids.filtered_domain([("state", "=", "done")])
+        self.assertEqual(move_canceled.product_uom_qty, 32)
+        self.assertEqual(move_done.product_uom_qty, 10)
+        self.assertEqual(sum(line1.move_ids.mapped("product_uom_qty")), 42)
