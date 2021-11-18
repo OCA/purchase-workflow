@@ -99,7 +99,7 @@ class TestProductSupplierinfoDiscount(common.SavepointCase):
         self.partner_1.default_supplierinfo_discount = 15
         supplierinfo.name = self.partner_1
         supplierinfo.onchange_name()
-        self.assertEquals(
+        self.assertEqual(
             supplierinfo.discount,
             15,
             "Incorrect discount for supplierinfo "
@@ -107,7 +107,7 @@ class TestProductSupplierinfoDiscount(common.SavepointCase):
         )
 
     def test_006_supplierinfo_from_purchaseorder(self):
-        """ Include discount when creating new sellers for a product """
+        """Include discount when creating new sellers for a product"""
         partner = self.env.ref("base.res_partner_3")
         product = self.env.ref("product.product_product_8")
         self.assertFalse(
