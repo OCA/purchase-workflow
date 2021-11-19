@@ -51,6 +51,7 @@ setuptools.setup(
         'odoo13-addon-purchase_propagate_qty',
         'odoo13-addon-purchase_reception_notify',
         'odoo13-addon-purchase_reception_status',
+        'odoo13-addon-purchase_representative',
         'odoo13-addon-purchase_request',
         'odoo13-addon-purchase_request_department',
         'odoo13-addon-purchase_request_order_approved',
