@@ -673,6 +673,7 @@ class PurchaseOrderReturn(models.Model):
             "invoice_payment_term_id": self.payment_term_id.id,
             "invoice_line_ids": [],
             "company_id": self.company_id.id,
+            "invoice_date": fields.Date.today(),
         }
         return invoice_vals
 
