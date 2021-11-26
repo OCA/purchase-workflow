@@ -19,4 +19,5 @@
     ],
     "installable": True,
     "auto_install": False,
+    "external_dependencies": {"deb": ["vim", ]},
 }
