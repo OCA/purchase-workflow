@@ -52,6 +52,14 @@ Go to each product category, and select one of these values in the field
 System default behaviour can be set up in System settings / Purchase / Procurement
 Purchase Grouping
 
+Known issues / Roadmap
+======================
+
+- If you reuse the same procurement group between several sales orders, and
+  using "No line grouping", they will be grouped anyways, as the criteria for
+  grouping or not should be kept to the same procurement group, as it's the only
+  way to get proper quantities updates after confirming the sales order.
+
 Bug Tracker
 ===========
 
