@@ -49,7 +49,7 @@ addon | version | maintainers | summary
 [purchase_order_uninvoiced_amount](purchase_order_uninvoiced_amount/) | 14.0.1.1.0 |  | Show uninvoiced amount on purchase order tree.
 [purchase_partner_incoterm](purchase_partner_incoterm/) | 14.0.1.0.0 |  | Add a an incoterm field for supplier and use it on purchase order
 [purchase_product_usage](purchase_product_usage/) | 14.0.1.1.0 |  | Purchase Product Usage
-[purchase_propagate_qty](purchase_propagate_qty/) | 14.0.1.0.0 |  | Quantity decrease on purchase line are propagated to the corresponding stock.move
+[purchase_propagate_qty](purchase_propagate_qty/) | 14.0.1.0.1 |  | Quantity decrease on purchase line are propagated to the corresponding stock.move
 [purchase_quick](purchase_quick/) | 14.0.1.0.0 |  | Quick Purchase order
 [purchase_reception_notify](purchase_reception_notify/) | 14.0.1.0.0 |  | Purchase Reception Notify
 [purchase_reception_status](purchase_reception_status/) | 14.0.1.0.0 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Add reception status on purchase orders
