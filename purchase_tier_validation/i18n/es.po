@@ -60,6 +60,11 @@ msgid "Needs my Review"
 msgstr "Necesita mi Revisión"
 
 #. module: purchase_tier_validation
+#: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__next_review
+msgid "Next Review"
+msgstr ""
+
+#. module: purchase_tier_validation
 #: model_terms:ir.ui.view,arch_db:purchase_tier_validation.view_purchase_order_filter
 msgid "POs validated and ready to be confirmed"
 msgstr "POs validadas y preparadas para ser confirmadas"
