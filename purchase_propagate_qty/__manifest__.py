@@ -5,7 +5,7 @@
 
 {
     "name": "Purchase Propagate Quantity",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "summary": "Quantity decrease on purchase line are propagated "
     "to the corresponding stock.move",
     "author": "Numerigraphe, Eficient, Camptocamp, Odoo Community Association (OCA)",
