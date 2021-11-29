@@ -57,6 +57,11 @@ msgid "Needs my Review"
 msgstr ""
 
 #. module: purchase_requisition_tier_validation
+#: model:ir.model.fields,field_description:purchase_requisition_tier_validation.field_purchase_requisition__next_review
+msgid "Next Review"
+msgstr ""
+
+#. module: purchase_requisition_tier_validation
 #: model_terms:ir.ui.view,arch_db:purchase_requisition_tier_validation.view_purchase_requisition_filter
 msgid "Purchase Agreements validated and ready to be confirmed"
 msgstr ""
