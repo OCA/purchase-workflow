@@ -55,6 +55,7 @@ addon | version | maintainers | summary
 [purchase_supplier_rounding_method_triple_discount](purchase_supplier_rounding_method_triple_discount/) | 8.0.1.0.0 |  | Supplier Rounding Method - Triple Discount - Glue Module
 [purchase_transport_document](purchase_transport_document/) | 8.0.0.1.0 |  | Add a new Transport Document object in the Purchase Order
 [purchase_triple_discount](purchase_triple_discount/) | 8.0.1.0.0 |  | Manage triple discount on purchase order lines
+[purchase_update_proposal](purchase_update_proposal/) | 8.0.0.1.0 | [![bealdav](https://github.com/bealdav.png?size=30px)](https://github.com/bealdav) | Allow to define alternate quantity, date on lines
 [quick_purchase](quick_purchase/) | 8.0.1.0.0 |  | Quick Purchase order
 [vendor_consignment_stock](vendor_consignment_stock/) | 8.0.0.2.0 |  | Manage stock in our warehouse that is owned by a vendor
 
