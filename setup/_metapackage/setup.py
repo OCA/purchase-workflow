@@ -45,6 +45,7 @@ setuptools.setup(
         'odoo8-addon-purchase_supplier_rounding_method_triple_discount',
         'odoo8-addon-purchase_transport_document',
         'odoo8-addon-purchase_triple_discount',
+        'odoo8-addon-purchase_update_proposal',
         'odoo8-addon-quick_purchase',
         'odoo8-addon-vendor_consignment_stock',
     ],
