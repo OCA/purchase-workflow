@@ -23,6 +23,7 @@
                     class="oe_stat_button"
                     icon="fa-clipboard"
                     attrs="{'invisible':[('wa_ids','=',[])]}"
+                    groups="purchase.group_purchase_user"
                 >
                     <field name="wa_count" widget="statinfo" string="WA" />
                     <field name="wa_ids" invisible="1" />
