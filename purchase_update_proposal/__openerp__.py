@@ -5,7 +5,7 @@
 {
     "name": "Purchase Update Proposal",
     "summary": "Allow to define alternate quantity, date on lines",
-    "version": "8.0.0.1.0",
+    "version": "8.0.0.2.0",
     "author": "Akretion,Odoo Community Association (OCA)",
     "category": "Purchase Management",
     "license": "AGPL-3",
