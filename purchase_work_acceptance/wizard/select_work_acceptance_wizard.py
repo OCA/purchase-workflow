@@ -41,6 +41,8 @@ class SelectWorkAcceptanceWizard(models.TransientModel):
                 _("%s was already used by some bill") % self.wa_id.name
             )
         order = self.env["purchase.order"].browse(order_id)
-        return order.with_context(
-            create_bill=False, wa_id=self.wa_id.id
-        ).action_create_invoice()
+        return (
+            order.with_context(create_bill=False, wa_id=self.wa_id.id)
+            .sudo()
+            .action_create_invoice()
+        )
