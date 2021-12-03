@@ -11,7 +11,7 @@
     "license": "AGPL-3",
     "depends": ["purchase"],
     "maintainers": ["joao-p-marques"],
-    "data": ["security/security.xml"],
+    "data": ["security/security.xml", "views/purchase_order_views.xml"],
     "installable": True,
     "auto_install": False,
 }
