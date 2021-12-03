@@ -9,14 +9,9 @@ class TestProductSupplierCodePurchase(TransactionCase):
         super(TestProductSupplierCodePurchase, self).setUp()
         self.supplierinfo_model = self.env["product.supplierinfo"]
         self.supplier = self.env["res.partner"].create(
-            {
-                "name": "name",
-                "email": "example@yourcompany.com",
-                "supplier": True,
-                "phone": 123456,
-            }
+            {"name": "name", "email": "example@yourcompany.com", "phone": 123456}
         )
-        self.product = self.env["product.product"].create({"name": "Test product",})
+        self.product = self.env["product.product"].create({"name": "Test product"})
         self.seller = self.env["product.supplierinfo"].create(
             {
                 "name": self.supplier.id,
@@ -56,7 +51,7 @@ class TestProductSupplierCodePurchase(TransactionCase):
         )
 
     def test_supplierinfo_update(self):
-        new_product = self.env["product.product"].create({"name": "Test product",})
+        new_product = self.env["product.product"].create({"name": "Test product"})
         purchase_order = self.purchase_model.create(
             {
                 "partner_id": self.supplier.id,

@@ -9,7 +9,6 @@ class PurchaseOrderLine(models.Model):
 
     product_supplier_code = fields.Char(string="Product Supplier Code")
 
-    @api.multi
     @api.onchange(
         "partner_id", "product_id",
     )
@@ -38,7 +37,6 @@ class PurchaseOrderLine(models.Model):
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
-    @api.multi
     def _add_supplier_to_product(self):
         super()._add_supplier_to_product()
         for line in self.order_line:
