@@ -1171,6 +1171,7 @@ msgstr ""
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/stock_move.py:0
+#: code:addons/purchase_request/models/stock_move.py:0
 #, python-format
 msgid ""
 "The company of the purchase request must match with that of the location."
