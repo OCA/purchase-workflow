@@ -30,5 +30,22 @@
             >['|',('user_id','=',user.id),('user_id','=',False)]</field>
             <field name="groups" eval="[(4,ref('group_purchase_own_orders'))]" />
         </record>
+        <record model="ir.rule" id="purchase_order_line_group_purchase_manager_rule">
+            <field name="name">View purchase order lines (manager)</field>
+            <field name="model_id" ref="purchase.model_purchase_order_line" />
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('purchase.group_purchase_manager'))]" />
+        </record>
+        <record
+            model="ir.rule"
+            id="purchase_order_line_group_purchase_order_own_orders"
+        >
+            <field name="name">View purchase order lines (own responsible)</field>
+            <field name="model_id" ref="purchase.model_purchase_order_line" />
+            <field
+                name="domain_force"
+            >['|',('order_id.user_id','=',user.id),('order_id.user_id','=',False)]</field>
+            <field name="groups" eval="[(4,ref('group_purchase_own_orders'))]" />
+        </record>
     </data>
 </odoo>
