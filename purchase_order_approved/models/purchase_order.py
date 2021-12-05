@@ -27,7 +27,7 @@ class PurchaseOrder(models.Model):
     picking_type_id = fields.Many2one(states=READONLY_STATES)
 
     def button_release(self):
-        super(PurchaseOrder, self).button_approve()
+        return super(PurchaseOrder, self).button_approve()
 
     def button_approve(self, force=False):
         two_steps_purchase_approval_ids = []
