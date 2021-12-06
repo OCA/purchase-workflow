@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="purchase_order_view_form_inherit" model="ir.ui.view">
+        <field name="name">purchase.order.form.purchase.stock.inherit</field>
+        <field name="model">purchase.order</field>
+        <field
+            name="inherit_id"
+            ref="purchase_order_line_packaging_qty.purchase_order_view_form_inherit"
+        />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='order_line']//form//field[@name='product_packaging']"
+                position="attributes"
+            >
+                <attribute
+                    name="domain"
+                >[('product_id','=',product_id), ('can_be_purchased', '=', True)]</attribute>
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']//tree//field[@name='product_packaging' and @optional='show']"
+                position="attributes"
+            >
+                <attribute
+                    name="domain"
+                >[('product_id','=',product_id), ('can_be_purchased', '=', True)]</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
