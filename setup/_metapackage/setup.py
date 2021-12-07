@@ -47,6 +47,7 @@ setuptools.setup(
         'odoo13-addon-purchase_order_supplierinfo_update',
         'odoo13-addon-purchase_order_type',
         'odoo13-addon-purchase_order_uninvoiced_amount',
+        'odoo13-addon-purchase_partner_selectable_option',
         'odoo13-addon-purchase_product_usage',
         'odoo13-addon-purchase_propagate_qty',
         'odoo13-addon-purchase_reception_notify',
