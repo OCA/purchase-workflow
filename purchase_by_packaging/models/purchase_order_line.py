@@ -69,7 +69,9 @@ class PurchaseOrderLine(models.Model):
         """
         self.ensure_one()
         qty = self.product_id._convert_purchase_packaging_qty(
-            self.product_qty, self.product_uom, packaging=self.product_packaging
+            self.product_qty,
+            self.product_uom or self.product_id.uom_id,
+            packaging=self.product_packaging,
         )
         self.product_qty = qty
         return True

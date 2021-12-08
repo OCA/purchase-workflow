@@ -50,6 +50,6 @@ class ProductProduct(models.Model):
         return self.packaging_ids.filtered(
             lambda pack: pack.can_be_purchased
             and not float_is_zero(
-                pack.qty, precision_rounding=pack.product_uom_id.rounding
+                pack.qty, precision_rounding=pack.product_uom_po_id.rounding
             )
         )

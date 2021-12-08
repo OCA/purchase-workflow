@@ -8,6 +8,7 @@
             <field name="qty" position="after">
                 <field name="can_be_purchased" />
                 <field name="force_purchase_qty" />
+                <field name="product_uom_po_id" />
             </field>
         </field>
     </record>
@@ -18,6 +19,7 @@
         <field name="arch" type="xml">
             <xpath expr="//sheet/group" position="inside">
                 <group id="purchase_group" string="Purchase">
+                    <field name="product_uom_po_id" />
                     <field name="can_be_purchased" />
                     <field name="purchase_rounding" />
                     <field name="force_purchase_qty" />
