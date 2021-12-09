@@ -1,11 +1,13 @@
 # Copyright 2016 Eficent Business and IT Consulting Services S.L.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0).
 
-from openerp import _, api, fields, models
+from odoo import _, api, fields, models
 
 
 class PurchaseRequisition(models.Model):
     _inherit = "purchase.requisition"
+
+    purchase_request_count = fields.Integer(compute="_compute_purchase_request_count",)
 
     @api.model
     def _purchase_request_confirm_message_content(self, pr, request, request_dict):
@@ -28,7 +30,6 @@ class PurchaseRequisition(models.Model):
         message += "</ul>"
         return message
 
-    @api.multi
     def _purchase_request_confirm_message(self):
         request_obj = self.env["purchase.request"]
         for pr in self:
@@ -49,36 +50,41 @@ class PurchaseRequisition(models.Model):
                 message = self._purchase_request_confirm_message_content(
                     pr, request, requests_dict[request_id]
                 )
-                request.message_post(body=message, subtype="mail.mt_comment")
+                request.message_post(body=message, subtype_xmlid="mail.mt_comment")
         return True
 
-    @api.multi
-    def tender_in_progress(self):
-        res = super(PurchaseRequisition, self).tender_in_progress()
+    def action_in_progress(self):
+        res = super().action_in_progress()
         self._purchase_request_confirm_message()
         return res
 
-    @api.model
-    def _prepare_purchase_order_line(
-        self, requisition, requisition_line, purchase_id, supplier
-    ):
-        vals = super(PurchaseRequisition, self)._prepare_purchase_order_line(
-            requisition, requisition_line, purchase_id, supplier
+    def _compute_purchase_request_count(self):
+        for rec in self:
+            rec.purchase_request_count = len(
+                rec.mapped("line_ids.purchase_request_lines.request_id")
+            )
+
+    def action_view_purchase_request(self):
+        action = (
+            self.env.ref("purchase_request.purchase_request_form_action")
+            .sudo()
+            .read()[0]
         )
-        vals.update(
-            {
-                "purchase_request_lines": [
-                    (4, line.id) for line in requisition_line.purchase_request_lines
-                ],
-            }
-        )
-        return vals
+        requests = self.mapped("line_ids.purchase_request_lines.request_id")
+        if len(requests) > 1:
+            action["domain"] = [("id", "in", requests.ids)]
+        elif requests:
+            action["views"] = [
+                (self.env.ref("purchase_request.view_purchase_request_form").id, "form")
+            ]
+            action["res_id"] = requests.id
+        action["context"] = {}
+        return action
 
 
 class PurchaseRequisitionLine(models.Model):
     _inherit = "purchase.requisition.line"
 
-    @api.multi
     def _compute_has_purchase_request_lines(self):
         for rec in self:
             rec.has_purchase_request_lines = bool(rec.purchase_request_lines)
@@ -97,7 +103,6 @@ class PurchaseRequisitionLine(models.Model):
         string="Has Purchase Request Lines",
     )
 
-    @api.multi
     def action_openRequestLineTreeView(self):
         """
         :return dict: dictionary value for created view
@@ -117,3 +122,15 @@ class PurchaseRequisitionLine(models.Model):
             "view_mode": "tree,form",
             "domain": domain,
         }
+
+    def _prepare_purchase_order_line(
+        self, name, product_qty=0.0, price_unit=0.0, taxes_ids=False
+    ):
+        res = super()._prepare_purchase_order_line(
+            name, product_qty, price_unit, taxes_ids
+        )
+        pr_lines = self.mapped("purchase_request_lines")
+        res["purchase_request_lines"] = (
+            pr_lines and [(4, line.id) for line in pr_lines] or []
+        )
+        return res

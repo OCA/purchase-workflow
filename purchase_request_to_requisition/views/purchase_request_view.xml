@@ -1,25 +1,24 @@
 <?xml version="1.0" ?>
 <!-- Copyright 2016 Eficent Business and IT Consulting Services S.L.
      License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
-<openerp>
-    <data>
+<odoo>
 
         <record model="ir.ui.view" id="view_purchase_request_form">
             <field name="name">purchase.request.form</field>
             <field name="model">purchase.request</field>
             <field
-                name="inherit_id"
-                ref="purchase_request.view_purchase_request_form"
-            />
+            name="inherit_id"
+            ref="purchase_request.view_purchase_request_form"
+        />
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='line_ids']/tree" position="inside">
                     <field name="requisition_qty" />
                     <field name="requisition_state" />
                 </xpath>
                 <xpath
-                    expr="//field[@name='line_ids']/form//notebook"
-                    position="inside"
-                >
+                expr="//field[@name='line_ids']/form//notebook"
+                position="inside"
+            >
                     <page name="requisition_lines" string="Requisition Lines">
                         <group>
                             <field name="requisition_qty" />
@@ -31,6 +30,21 @@
                         </group>
                     </page>
                 </xpath>
+                <div name="button_box" position="inside">
+                    <button
+                    name="action_view_purchase_requisition"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-file-text-o"
+                    attrs="{'invisible':[('requisition_count','=',0)]}"
+                >
+                        <field
+                        name="requisition_count"
+                        widget="statinfo"
+                        string="TEs"
+                    />
+                    </button>
+                </div>
             </field>
         </record>
 
@@ -38,9 +52,9 @@
             <field name="name">purchase.request.line.tree</field>
             <field name="model">purchase.request.line</field>
             <field
-                name="inherit_id"
-                ref="purchase_request.purchase_request_line_tree"
-            />
+            name="inherit_id"
+            ref="purchase_request.purchase_request_line_tree"
+        />
             <field name="arch" type="xml">
                 <field name="date_required" position="after">
                     <field name="requisition_qty" />
@@ -53,15 +67,15 @@
             <field name="name">purchase.request.line.form</field>
             <field name="model">purchase.request.line</field>
             <field
-                name="inherit_id"
-                ref="purchase_request.purchase_request_line_form"
-            />
+            name="inherit_id"
+            ref="purchase_request.purchase_request_line_form"
+        />
             <field name="arch" type="xml">
                 <notebook position="inside">
                     <page
-                        name="purchase_requisition_lines"
-                        string="Purchase Requisition Lines"
-                    >
+                    name="purchase_requisition_lines"
+                    string="Purchase Agreement Lines"
+                >
                         <group>
                             <field name="requisition_qty" />
                             <field name="requisition_state" />
@@ -69,23 +83,23 @@
                         <group>
                             <group>
                                 <field name="requisition_lines" nolabel="1">
-                                    <tree string="Purchase Requisition Lines">
+                                    <tree string="Purchase Agreement Lines">
                                         <field name="requisition_id" />
                                         <field name="product_id" />
                                         <field name="product_qty" />
                                         <field
-                                            name="product_uom_id"
-                                            groups="product.group_uom"
-                                        />
+                                        name="product_uom_id"
+                                        groups="uom.group_uom"
+                                    />
                                     </tree>
-                                    <form string="Purchase Requisition Lines">
+                                    <form string="Purchase Agreement Lines">
                                         <field name="requisition_id" />
                                         <field name="product_id" />
                                         <field name="product_qty" />
                                         <field
-                                            name="product_uom_id"
-                                            groups="product.group_uom"
-                                        />
+                                        name="product_uom_id"
+                                        groups="uom.group_uom"
+                                    />
                                     </form>
                                 </field>
                             </group>
@@ -100,50 +114,51 @@
             <field name="name">purchase.request.line.search</field>
             <field name="model">purchase.request.line</field>
             <field
-                name="inherit_id"
-                ref="purchase_request.purchase_request_line_search"
-            />
+            name="inherit_id"
+            ref="purchase_request.purchase_request_line_search"
+        />
             <field name="arch" type="xml">
                     <field name="date_required" position="after">
                         <filter
-                        name="requisition_state_none"
-                        string="No Bid"
-                        domain="[('requisition_state','=','none')]"
-                        help="No Bid has been created"
-                    />
+                    name="requisition_state_none"
+                    string="No Bid"
+                    domain="[('requisition_state','=','none')]"
+                    help="No Bid has been created"
+                />
                         <filter
-                        name="requisition_state_draft"
-                        string="New Bid"
-                        domain="[('requisition_state','=','draft')]"
-                        help="At least a Draft Bid has been created"
-                    />
+                    name="requisition_state_draft"
+                    string="New Bid"
+                    domain="[('requisition_state','=','draft')]"
+                    help="At least a Draft Bid has been created"
+                />
                         <filter
-                        name="requisition_state_in_progress"
-                        string="Bid Sent to Suppliers"
-                        domain="[('requisition_state','=','in_progress')]"
-                        help="At least a PO has been confirmed"
-                    />
+                    name="requisition_state_in_progress"
+                    string="Bid Sent to Suppliers"
+                    domain="[('requisition_state','=','in_progress')]"
+                    help="At least a PO has been confirmed"
+                />
                         <filter
-                        name="requisition_state_done"
-                        string="Bid completed"
-                        domain="[('requisition_state','=','done')]"
-                        help="At least one of the Bids has been completed"
-                    />
+                    name="requisition_state_done"
+                    string="Bid completed"
+                    domain="[('requisition_state','=','done')]"
+                    help="At least one of the Bids has been completed"
+                />
                     </field>
                     <group position="inside">
                         <filter
-                        string="Requisition Status"
-                        domain="[]"
-                        context="{'group_by':'requisition_state'}"
-                    />
+                    name="requisition_status"
+                    string="Requisition Status"
+                    domain="[]"
+                    context="{'group_by':'requisition_state'}"
+                />
                         <filter
-                        string="Request"
-                        domain="[]"
-                        context="{'group_by':'request_id'}"
-                    />
+                    name="request"
+                    string="Request"
+                    domain="[]"
+                    context="{'group_by':'request_id'}"
+                />
                     </group>
             </field>
         </record>
 
-    </data>
-</openerp>
+</odoo>

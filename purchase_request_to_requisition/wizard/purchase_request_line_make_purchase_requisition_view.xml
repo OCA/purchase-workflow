@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2016 Eficent Business and IT Consulting Services S.L.
      License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
-<openerp>
+<odoo>
     <data>
         <record
             id="view_purchase_request_line_make_purchase_requisition"
             model="ir.ui.view"
         >
-            <field name="name">Purchase Request Line Make Purchase Requisition</field>
+            <field name="name">Purchase Request Line Make Purchase Agreement</field>
             <field name="model">purchase.request.line.make.purchase.requisition</field>
             <field name="type">form</field>
             <field name="arch" type="xml">
-                 <form string="Create Call for Bids">
-                     <separator string="Existing draft Call for Bid to update:" />
+                 <form string="Create Purchase Agreements">
+                     <separator string="Existing draft purchase agreement to update:" />
                      <newline />
                      <group>
                         <field name="purchase_requisition_id" />
@@ -30,53 +30,67 @@
                                   <field name="product_id" />
                                   <field name="name" />
                                   <field name="product_qty" />
-                                  <field name="product_uom_id" />
+                                  <field name="product_uom_id" groups="uom.group_uom" />
                               </tree>
                          </field>
                      </group>
                      <newline />
-                     <group colspan="2">
-                         <button
+                     <footer>
+                        <button
                             name="make_purchase_requisition"
-                            string="Create Call for Bids"
                             type="object"
-                            class="oe_highlight"
+                            class="btn-primary"
+                            string="Create Purchase Agreements"
                         />
-                         <button special="cancel" string="Cancel" class="oe_link" />
-                     </group>
+                        <button special="cancel" string="Cancel" class="oe_link" />
+                    </footer>
                 </form>
             </field>
         </record>
 
+        <!-- Create requisition from PR Lines -->
         <record
             id="action_purchase_request_line_make_purchase_requisition"
             model="ir.actions.act_window"
         >
-            <field name="name">Create Call for Bids</field>
+            <field name="name">Create Purchase Agreements</field>
             <field name="type">ir.actions.act_window</field>
             <field
                 name="res_model"
             >purchase.request.line.make.purchase.requisition</field>
-            <field name="view_type">form</field>
             <field name="view_mode">form</field>
             <field
                 name="view_id"
                 ref="view_purchase_request_line_make_purchase_requisition"
             />
             <field name="target">new</field>
+            <field
+                name="binding_model_id"
+                ref="purchase_request.model_purchase_request_line"
+            />
         </record>
 
-        <record model="ir.values" id="purchase_request_line_make_purchase_requisition">
-            <field name="model_id" ref="model_purchase_request_line" />
-            <field name="name">Create Call for Bids</field>
-            <field name="key2">client_action_multi</field>
+        <!-- Create requisition from PRs -->
+        <record
+            id="action_purchase_request_make_purchase_requisition"
+            model="ir.actions.act_window"
+        >
+            <field name="name">Create Purchase Agreements</field>
+            <field name="type">ir.actions.act_window</field>
             <field
-                name="value"
-                eval="'ir.actions.act_window,' + str(ref('action_purchase_request_line_make_purchase_requisition'))"
+                name="res_model"
+            >purchase.request.line.make.purchase.requisition</field>
+            <field name="view_mode">form</field>
+            <field
+                name="view_id"
+                ref="view_purchase_request_line_make_purchase_requisition"
             />
-            <field name="key">action</field>
-            <field name="model">purchase.request.line</field>
+            <field name="target">new</field>
+            <field
+                name="binding_model_id"
+                ref="purchase_request.model_purchase_request"
+            />
         </record>
 
     </data>
-</openerp>
+</odoo>
