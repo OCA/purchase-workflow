@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="product_packaging_tree_view" model="ir.ui.view">
+        <field name="name">product.packaging.tree.view.inherit</field>
+        <field name="model">product.packaging</field>
+        <field name="inherit_id" ref="product.product_packaging_tree_view" />
+        <field name="arch" type="xml">
+            <field name="qty" position="after">
+                <field name="product_uom_po_id" groups="uom.group_uom" />
+            </field>
+        </field>
+    </record>
+    <record id="product_packaging_form_view" model="ir.ui.view">
+        <field name="name">product.packaging.form.view.inherit</field>
+        <field name="model">product.packaging</field>
+        <field name="inherit_id" ref="product.product_packaging_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/group" position="inside">
+                <group id="purchase_group" string="Purchase">
+                    <field name="product_uom_po_id" groups="uom.group_uom" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

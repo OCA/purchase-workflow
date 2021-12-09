@@ -34,9 +34,9 @@ class PurchaseOrderLine(models.Model):
                 pol.product_packaging_qty = 0
                 continue
             # Consider uom
-            if pol.product_id.uom_id != pol.product_uom:
+            if pol.product_id.uom_po_id != pol.product_uom:
                 product_qty = pol.product_uom._compute_quantity(
-                    pol.product_qty, pol.product_id.uom_id
+                    pol.product_qty, pol.product_id.uom_po_id
                 )
             else:
                 product_qty = pol.product_qty
@@ -45,7 +45,7 @@ class PurchaseOrderLine(models.Model):
     def _prepare_product_packaging_qty_values(self):
         return {
             "product_qty": self.product_packaging.qty * self.product_packaging_qty,
-            "product_uom": self.product_packaging.product_uom_id.id,
+            "product_uom": self.product_packaging.product_uom_po_id.id,
         }
 
     def _inverse_product_packaging_qty(self):
@@ -71,7 +71,7 @@ class PurchaseOrderLine(models.Model):
                 {
                     "product_packaging_qty": 1,
                     "product_qty": self.product_packaging.qty,
-                    "product_uom": self.product_id.uom_id,
+                    "product_uom": self.product_id.uom_po_id,
                 }
             )
         else:
@@ -92,7 +92,7 @@ class PurchaseOrderLine(models.Model):
         return res
 
     def _check_package(self):
-        default_uom = self.product_id.uom_id
+        default_uom = self.product_id.uom_po_id
         pack = self.product_packaging
         qty = self.product_qty
         q = default_uom._compute_quantity(pack.qty, self.product_uom)
