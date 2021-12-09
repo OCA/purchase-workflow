@@ -13,10 +13,6 @@ class ProductPackaging(models.Model):
         store=True,
     )
 
-    product_uom_po_id = fields.Many2one(
-        "uom.uom", related="product_id.uom_po_id", readonly=True,
-    )
-
     force_purchase_qty = fields.Boolean(
         string="Force purchase quantity",
         help="Determine if during the creation of a purchase order line, the "

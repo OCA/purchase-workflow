@@ -51,7 +51,7 @@ class PurchaseOrderLine(models.Model):
                 or float_compare(
                     line.product_packaging_qty,
                     0,
-                    precision_rounding=line.product_id.uom_id.rounding,
+                    precision_rounding=line.product_id.uom_po_id.rounding,
                 )
                 <= 0
             ):
@@ -70,7 +70,7 @@ class PurchaseOrderLine(models.Model):
         self.ensure_one()
         qty = self.product_id._convert_purchase_packaging_qty(
             self.product_qty,
-            self.product_uom or self.product_id.uom_id,
+            self.product_uom or self.product_id.uom_po_id,
             packaging=self.product_packaging,
         )
         self.product_qty = qty
@@ -84,8 +84,8 @@ class PurchaseOrderLine(models.Model):
         return res
 
     def _get_product_packaging_having_multiple_qty(self, product, qty, uom):
-        if uom != product.uom_id:
-            qty = uom._compute_quantity(qty, product.uom_id)
+        if uom != product.uom_po_id:
+            qty = uom._compute_quantity(qty, product.uom_po_id)
         return product.get_first_purchase_packaging_with_multiple_qty(qty)
 
     def _inverse_product_packaging_qty(self):
@@ -163,7 +163,7 @@ class PurchaseOrderLine(models.Model):
             )
             if self.product_packaging_qty != rounded_up_qty:
                 self.product_packaging_qty = rounded_up_qty
-                q = self.product_id.uom_id._compute_quantity(
+                q = self.product_id.uom_po_id._compute_quantity(
                     self.product_packaging.actual_purchase_qty, self.product_uom
                 )
                 qty = self.product_qty
@@ -179,10 +179,10 @@ class PurchaseOrderLine(models.Model):
                             )
                             % (
                                 new_qty,
-                                self.product_id.uom_id.name,
+                                self.product_id.uom_po_id.name,
                                 self.product_packaging.name,
                                 self.product_packaging.qty,
-                                self.product_id.uom_id.name,
+                                self.product_id.uom_po_id.name,
                                 round(1 / self.product_packaging.purchase_rounding, 0),
                             ),
                         },

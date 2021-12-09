@@ -24,7 +24,7 @@ class ProductProduct(models.Model):
             return qty
         self.ensure_one()
         if packaging.force_purchase_qty:
-            q = self.uom_id._compute_quantity(packaging.qty, uom)
+            q = self.uom_po_id._compute_quantity(packaging.qty, uom)
             if (
                 qty
                 and q

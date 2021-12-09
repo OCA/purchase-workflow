@@ -88,6 +88,6 @@ class Common(SavepointCase):
         purchase_form.partner_id = cls.partner
         with purchase_form.order_line.new() as line:
             line.product_id = cls.product
-            line.product_uom = cls.product.uom_id
+            line.product_uom = cls.product.uom_po_id
         cls.order = purchase_form.save()
         cls.order_line = cls.order.order_line
