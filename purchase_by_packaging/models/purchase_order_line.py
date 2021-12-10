@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 from odoo import _, api, models
 from odoo.exceptions import ValidationError
-from odoo.tools import float_compare, float_round
+from odoo.tools import float_compare, float_repr, float_round
 
 
 class PurchaseOrderLine(models.Model):
@@ -156,35 +156,57 @@ class PurchaseOrderLine(models.Model):
 
     def _check_package(self):
         if self.product_packaging:
-            rounded_up_qty = float_round(
-                self.product_packaging_qty,
-                precision_rounding=self.product_packaging.purchase_rounding,
-                rounding_method="UP",
+            product_precision = self.env["decimal.precision"].precision_get(
+                "Product Unit of Measure"
             )
-            if self.product_packaging_qty != rounded_up_qty:
-                self.product_packaging_qty = rounded_up_qty
-                q = self.product_id.uom_po_id._compute_quantity(
-                    self.product_packaging.actual_purchase_qty, self.product_uom
+            package_precision = self.product_packaging.purchase_rounding
+            multiplier = (
+                self.product_packaging_qty // self.product_packaging.actual_purchase_qty
+            )
+            rest = (
+                self.product_packaging_qty % self.product_packaging.actual_purchase_qty
+            )
+            product_packaging_qty = float_round(
+                (multiplier + (1 if rest else 0))
+                * self.product_packaging.actual_purchase_qty,
+                precision_digits=product_precision,
+            )
+            product_qty = product_packaging_qty * self.product_packaging.qty
+            if (
+                float_compare(
+                    self.product_packaging_qty,
+                    product_packaging_qty,
+                    precision_digits=product_precision,
                 )
-                qty = self.product_qty
-                if qty and q and round(qty % q, 2):
-                    new_qty = qty - (qty % q) + q
-                    return {
-                        "warning": {
-                            "title": _("Warning"),
-                            "message": _(
-                                "Increased quantity to %.2f %s since package '%s' "
-                                "contains %.2f %s and can only be splitted "
-                                "into %s pieces."
-                            )
-                            % (
-                                new_qty,
-                                self.product_id.uom_po_id.name,
-                                self.product_packaging.name,
-                                self.product_packaging.qty,
-                                self.product_id.uom_po_id.name,
-                                round(1 / self.product_packaging.purchase_rounding, 0),
+                != 0
+                or float_compare(
+                    self.product_qty, product_qty, precision_digits=product_precision,
+                )
+                != 0
+            ):
+                self.product_packaging_qty = product_packaging_qty
+                self.product_qty = product_qty
+                return {
+                    "warning": {
+                        "title": _("Warning"),
+                        "message": _(
+                            "Changed quantity to %s %s since package '%s' "
+                            "contains %s %s and can only be splitted "
+                            "into %s pieces."
+                        )
+                        % (
+                            float_repr(
+                                self.product_qty, precision_digits=product_precision
                             ),
-                        },
-                    }
+                            self.product_id.uom_po_id.name,
+                            self.product_packaging.name,
+                            float_repr(
+                                self.product_packaging.qty,
+                                precision_digits=product_precision,
+                            ),
+                            self.product_id.uom_po_id.name,
+                            round(1 / package_precision, 0),
+                        ),
+                    },
+                }
             return {}
