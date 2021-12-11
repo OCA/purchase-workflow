@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-10-08 05:34+0000\n"
+"PO-Revision-Date: 2021-12-11 04:39+0000\n"
 "Last-Translator: HTPIT <htpit@hantecprecision.com>\n"
 "Language-Team: none\n"
 "Language: zh_TW\n"
@@ -48,22 +48,22 @@ msgstr "關閉"
 #. module: purchase_request_tier_validation
 #: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_filter
 msgid "My Purchases to review"
-msgstr ""
+msgstr "需審查的採購"
 
 #. module: purchase_request_tier_validation
 #: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_filter
 msgid "Need actions"
-msgstr ""
+msgstr "需行動"
 
 #. module: purchase_request_tier_validation
 #: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_filter
 msgid "Needs my Review"
-msgstr ""
+msgstr "需我審查"
 
 #. module: purchase_request_tier_validation
 #: model:tier.definition,name:purchase_request_tier_validation.purchase_request_default_tier_definition
 msgid "New Tier Validation"
-msgstr ""
+msgstr "新層檢驗"
 
 #. module: purchase_request_tier_validation
 #: model:ir.model,name:purchase_request_tier_validation.model_purchase_request
@@ -73,32 +73,32 @@ msgstr "採購請求"
 #. module: purchase_request_tier_validation
 #: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_filter
 msgid "Purchase Requests validated and ready to be confirmed"
-msgstr ""
+msgstr "採購請求已驗證預備確認"
 
 #. module: purchase_request_tier_validation
 #: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_form_inherit_tier
 msgid "Reject"
-msgstr ""
+msgstr "拒絕"
 
 #. module: purchase_request_tier_validation
 #: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_form_inherit_tier
 msgid "Request Validation"
-msgstr ""
+msgstr "請求檢驗"
 
 #. module: purchase_request_tier_validation
 #: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_form_inherit_tier
 msgid "Restart Validation"
-msgstr ""
+msgstr "重新檢驗"
 
 #. module: purchase_request_tier_validation
 #: model:ir.model,name:purchase_request_tier_validation.model_tier_definition
 msgid "Tier Definition"
-msgstr ""
+msgstr "層定義"
 
 #. module: purchase_request_tier_validation
 #: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.tier_review_form_wiz
 msgid "Tier Review"
-msgstr ""
+msgstr "層級審查"
 
 #. module: purchase_request_tier_validation
 #: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_form_inherit_tier
