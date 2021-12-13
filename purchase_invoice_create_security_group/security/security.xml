@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="group_purchase_invoice_create" model="res.groups">
+        <field name="name">Create Invoice in Purchases</field>
+        <field name="comment">Allows to create invoices from purchase orders.</field>
+    </record>
+
+    <record id="account.group_account_user" model="res.groups">
+        <field
+            name="implied_ids"
+            eval="[(4, ref('purchase_invoice_create_security_group.group_purchase_invoice_create'))]"
+        />
+    </record>
+</odoo>

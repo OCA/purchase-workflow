@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+
+    <record model="ir.ui.view" id="purchase_order_form_view">
+        <field name="name">purchase.order.form (in purchase_invoice_group)</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//button[@name='action_create_invoice'][1]"
+                position="attributes"
+            >
+                <attribute
+                    name="groups"
+                >purchase_invoice_create_security_group.group_purchase_invoice_create</attribute>
+            </xpath>
+            <xpath
+                expr="//button[@name='action_create_invoice'][2]"
+                position="attributes"
+            >
+                <attribute
+                    name="groups"
+                >purchase_invoice_create_security_group.group_purchase_invoice_create</attribute>
+            </xpath>
+        </field>
+
+    </record>
+
+
+
+</odoo>
