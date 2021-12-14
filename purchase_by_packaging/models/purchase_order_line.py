@@ -108,7 +108,7 @@ class PurchaseOrderLine(models.Model):
             return super().write(vals)
         for line in self:
             line_vals = vals.copy()
-            packaging = self._get_autoassigned_packaging(line_vals)
+            packaging = line._get_autoassigned_packaging(line_vals)
             if packaging:
                 line_vals.update({"product_packaging": packaging})
             super(PurchaseOrderLine, line).write(line_vals)
