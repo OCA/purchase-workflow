@@ -7,7 +7,7 @@ from odoo import api, fields, models
 class ResConfigSettings(models.TransientModel):
     _inherit = "res.config.settings"
 
-    po_line_order_default = fields.Selection(
+    po_line_order_default = fields.Many2one(
         related="company_id.default_po_line_order", string="Line Order", readonly=False,
     )
     po_line_direction_default = fields.Selection(

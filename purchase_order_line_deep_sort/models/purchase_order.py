@@ -5,15 +5,16 @@
 
 from odoo import api, fields, models
 
-from .res_company import SORTING_CRITERIA, SORTING_DIRECTION
+from .res_company import SORTING_DIRECTION
 
 
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
-    line_order = fields.Selection(
-        selection=SORTING_CRITERIA,
+    line_order = fields.Many2one(
+        comodel_name="ir.model.fields",
         string="Sort Lines By",
+        domain="[('model', '=', 'purchase.order.line')]",
         default=lambda self: self.env.user.company_id.default_po_line_order,
     )
     line_direction = fields.Selection(
@@ -29,15 +30,11 @@ class PurchaseOrder(models.Model):
 
     def _sort_purchase_line(self):
         def resolve_subfields(obj, line_order):
-            subfields = line_order.split(".")
-            res = obj
             str_fields = ("text", "varchar", "timestamp", "date")
-            for subfield in subfields:
-                if res._fields[subfield].column_type[0] in str_fields:
-                    res = getattr(res, subfield) or ""
-                else:
-                    res = getattr(res, subfield)
-            return res
+            if obj._fields[line_order.name].column_type[0] in str_fields:
+                return getattr(obj, line_order.name) or ""
+            else:
+                return getattr(obj, line_order.name)
 
         if not self.line_order and not self.line_direction:
             return

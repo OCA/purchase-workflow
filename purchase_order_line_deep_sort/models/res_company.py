@@ -3,15 +3,6 @@
 
 from odoo import fields, models
 
-SORTING_CRITERIA = [
-    ("name", "By name"),
-    ("product_id.name", "By product name"),
-    ("product_id.default_code", "By product reference"),
-    ("date_planned", "By date planned"),
-    ("price_unit", "By price"),
-    ("product_qty", "By quantity"),
-]
-
 SORTING_DIRECTION = [
     ("asc", "Ascending"),
     ("desc", "Descending"),
@@ -21,10 +12,11 @@ SORTING_DIRECTION = [
 class ResCompany(models.Model):
     _inherit = "res.company"
 
-    default_po_line_order = fields.Selection(
-        selection=SORTING_CRITERIA,
+    default_po_line_order = fields.Many2one(
+        comodel_name="ir.model.fields",
         string="Line Order",
         help="Select a sorting criteria for purchase order lines.",
+        domain="[('model', '=', 'purchase.order.line')]",
     )
     default_po_line_direction = fields.Selection(
         selection=SORTING_DIRECTION,
