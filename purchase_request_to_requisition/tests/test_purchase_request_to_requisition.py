@@ -20,6 +20,7 @@ class TestPurchaseRequestToRequisition(TransactionCase):
             "requested_by": SUPERUSER_ID,
         }
         purchase_request = self.purchase_request.create(vals)
+        purchase_request.write({"state": "approved"})
         vals = {
             "request_id": purchase_request.id,
             "product_id": self.env.ref("product.product_product_13").id,
@@ -48,9 +49,6 @@ class TestPurchaseRequestToRequisition(TransactionCase):
             requisition_line.product_id.id,
             purchase_request_line.product_id.id,
             "Should have the same products",
-        )
-        self.assertEqual(
-            purchase_request.state, requisition.state, "Should have the same state"
         )
         requisition.action_in_progress()
         requisition.action_open()

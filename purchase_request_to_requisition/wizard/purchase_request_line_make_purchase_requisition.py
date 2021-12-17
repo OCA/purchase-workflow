@@ -17,6 +17,7 @@ class PurchaseRequestLineMakePurchaseRequisition(models.TransientModel):
         required=False,
         domain=[("state", "=", "draft")],
     )
+    not_approved_lines = fields.Boolean(default=False)
 
     @api.model
     def _prepare_item(self, line):
@@ -51,8 +52,15 @@ class PurchaseRequestLineMakePurchaseRequisition(models.TransientModel):
             return res
         assert active_model == "purchase.request.line", "Bad context propagation"
 
+        if request_line_obj.browse(request_line_ids).filtered(
+            lambda x: x.request_state != "approved"
+        ):
+            res["not_approved_lines"] = True
+
         items = []
-        for line in request_line_obj.browse(request_line_ids):
+        for line in request_line_obj.browse(request_line_ids).filtered(
+            lambda x: x.request_state == "approved"
+        ):
             items.append([0, 0, self._prepare_item(line)])
         res["item_ids"] = items
         return res
