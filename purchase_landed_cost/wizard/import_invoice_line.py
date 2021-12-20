@@ -8,20 +8,22 @@ class ImportInvoiceLine(models.TransientModel):
     _description = "Import supplier invoice line"
 
     supplier = fields.Many2one(
-        comodel_name="res.partner", string="Supplier", required=True,
+        comodel_name="res.partner",
+        string="Supplier",
+        required=True,
     )
     invoice = fields.Many2one(
         comodel_name="account.move",
         string="Invoice",
         required=True,
-        domain="[('partner_id', '=', supplier), ('type', '=', 'in_invoice'),"
+        domain="[('partner_id', '=', supplier), ('move_type', '=', 'in_invoice'),"
         "('state', '=', 'posted')]",
     )
     invoice_line = fields.Many2one(
         comodel_name="account.move.line",
         string="Invoice line",
         required=True,
-        domain="[('move_id', '=', invoice)]",
+        domain="[('move_id', '=', invoice), ('exclude_from_invoice_tab', '=', False)]",
     )
     expense_type = fields.Many2one(
         comodel_name="purchase.expense.type", string="Expense type", required=True

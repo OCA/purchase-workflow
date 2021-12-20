@@ -315,7 +315,7 @@
                 <field
                     name="invoice_line"
                     options="{'no_create': true, 'create_edit': false}"
-                    domain="[('invoice_id', '=', parent.id)]"
+                    domain="[('move_id', '=', parent.id)]"
                 />
                 <field name="type" />
                 <field name="calculation_method" />

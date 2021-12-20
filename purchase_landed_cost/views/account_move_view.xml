@@ -7,7 +7,7 @@
             <notebook position="inside">
                 <page
                     string="Landed costs"
-                    attrs="{'invisible': [('type', 'not in', ('in_invoice', 'in_refund'))]}"
+                    attrs="{'invisible': [('move_type', 'not in', ('in_invoice', 'in_refund'))]}"
                 >
                     <button
                         name="%(purchase_landed_cost.action_import_landed_cost_pickings_wizard)d"
