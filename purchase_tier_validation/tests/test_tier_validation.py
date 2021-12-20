@@ -1,20 +1,24 @@
 # Copyright 2018 ForgeFlow S.L.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
+from odoo_test_helper import FakeModelLoader
+
 from odoo.tests import common
 from odoo.tests.common import tagged
 
-from .common import setup_test_model, teardown_test_model
-from .tier_validation_tester import TierValidationTester
-
 
 @tagged("post_install", "-at_install")
-class TestPurchaseTierValidation(common.SavepointCase):
+class TestPurchaseTierValidation(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super(TestPurchaseTierValidation, cls).setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
+        cls.loader = FakeModelLoader(cls.env, cls.__module__)
+        cls.loader.backup_registry()
 
-        setup_test_model(cls.env, [TierValidationTester])
+        from .tier_validation_tester import TierValidationTester
+
+        cls.loader.update_registry((TierValidationTester,))
 
         cls.test_model = cls.env[TierValidationTester._name]
 
@@ -55,8 +59,8 @@ class TestPurchaseTierValidation(common.SavepointCase):
 
     @classmethod
     def tearDownClass(cls):
-        teardown_test_model(cls.env, [TierValidationTester])
-        super(TestPurchaseTierValidation, cls).tearDownClass()
+        cls.loader.restore_registry()
+        return super(TestPurchaseTierValidation, cls).tearDownClass()
 
     def test_01_tier_definition_models(self):
         """When the user can validate all future reviews, it is not needed
