@@ -28,6 +28,7 @@ class PurchaseOrder(models.Model):
         currency_field="currency_id",
         compute_sudo=True,  # Odoo core fields are storable so compute_sudo is True
         readonly=True,
+        store=True,
     )
     amount_untaxed_before_global_discounts = fields.Monetary(
         string="Amount Untaxed Before Discounts",
@@ -35,6 +36,7 @@ class PurchaseOrder(models.Model):
         currency_field="currency_id",
         compute_sudo=True,  # Odoo core fields are storable so compute_sudo is True
         readonly=True,
+        store=True,
     )
     amount_total_before_global_discounts = fields.Monetary(
         string="Amount Total Before Discounts",
@@ -42,6 +44,7 @@ class PurchaseOrder(models.Model):
         currency_field="currency_id",
         compute_sudo=True,  # Odoo core fields are storable so compute_sudo is True
         readonly=True,
+        store=True,
     )
 
     @api.model
