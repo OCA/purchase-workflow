@@ -18,16 +18,20 @@ class StockPicking(models.Model):
         ) % (picking.name)
         message += "<ul>"
         for purchase_line_id in purchase_dict.values():
-            message += _("<li><b>%s</b>: Received quantity %s %s</li>") % (
-                purchase_line_id["purchase_line"].product_id.display_name,
-                purchase_line_id["stock_move"].product_qty,
-                purchase_line_id["stock_move"].product_uom.name,
+            display_name = purchase_line_id["purchase_line"].product_id.display_name
+            product_qty = purchase_line_id["stock_move"].product_qty
+            uom = purchase_line_id["stock_move"].product_uom.name
+            message += _(
+                "<li><b>%(display_name)s</b>: Received quantity %(product_qty)s %(uom)s</li>",
+                display_name=display_name,
+                product_qty=product_qty,
+                uom=uom,
             )
         message += "</ul>"
         return message
 
     def _action_done(self):
-        super()._action_done()
+        res = super()._action_done()
         for picking in self.filtered(lambda p: p.picking_type_id.code == "incoming"):
             purchase_dict = {}
             for move in picking.move_lines.filtered("purchase_line_id"):
@@ -49,3 +53,4 @@ class StockPicking(models.Model):
                     ).id,
                     author_id=self.env.user.partner_id.id,
                 )
+        return res

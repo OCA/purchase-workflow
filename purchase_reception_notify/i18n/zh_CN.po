@@ -19,8 +19,9 @@ msgstr ""
 #. module: purchase_reception_notify
 #: code:addons/purchase_reception_notify/models/stock_picking.py:0
 #, python-format
-msgid "<li><b>%s</b>: Received quantity %s %s</li>"
-msgstr "<li><b>%s</b>：已收货数量 %s %s</li>"
+msgid ""
+"<li><b>%(display_name)s</b>: Received quantity %(product_qty)s %(uom)s</li>"
+msgstr ""
 
 #. module: purchase_reception_notify
 #: model:mail.message.subtype,name:purchase_reception_notify.mt_purchase_reception
@@ -43,3 +44,7 @@ msgstr "已在收货单 %s 中收到下列产品："
 #: model:ir.model,name:purchase_reception_notify.model_stock_picking
 msgid "Transfer"
 msgstr "调拨"
+
+#, python-format
+#~ msgid "<li><b>%s</b>: Received quantity %s %s</li>"
+#~ msgstr "<li><b>%s</b>：已收货数量 %s %s</li>"
