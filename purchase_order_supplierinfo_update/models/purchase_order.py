@@ -31,7 +31,9 @@ class PurchaseOrderLine(models.Model):
         return res
 
     def update_supplierinfo_price(self):
-        for line in self.filtered(lambda r: r.order_id.state in ["purchase", "done"]):
+        for line in self.filtered(
+            lambda r: not r.display_type and r.order_id.state in ["purchase", "done"]
+        ):
             domain = [
                 ("partner_id", "=", line.partner_id.id),
                 ("product_id", "=", line.product_id.id),
