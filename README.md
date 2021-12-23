@@ -24,7 +24,7 @@ addon | version | maintainers | summary
 [purchase_advance_payment](purchase_advance_payment/) | 14.0.1.0.0 |  | Allow to add advance payments on purchase orders
 [purchase_cancel_reason](purchase_cancel_reason/) | 14.0.1.0.0 |  | Purchase Cancel Reason
 [purchase_commercial_partner](purchase_commercial_partner/) | 14.0.1.0.0 |  | Add stored related field 'Commercial Supplier' on POs
-[purchase_delivery_split_date](purchase_delivery_split_date/) | 14.0.1.0.2 |  | Allows Purchase Order you confirm to generate one Incoming Shipment for each expected date indicated in the Purchase Order Lines
+[purchase_delivery_split_date](purchase_delivery_split_date/) | 14.0.1.1.0 |  | Allows Purchase Order you confirm to generate one Incoming Shipment for each expected date indicated in the Purchase Order Lines
 [purchase_deposit](purchase_deposit/) | 14.0.1.0.0 |  | Option to create deposit from purchase order
 [purchase_discount](purchase_discount/) | 14.0.1.0.1 |  | Purchase order lines with discounts
 [purchase_exception](purchase_exception/) | 14.0.1.0.0 |  | Custom exceptions on purchase order
