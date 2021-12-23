@@ -4,7 +4,7 @@
 
 {
     "name": "Purchase Delivery Split Date",
-    "version": "14.0.1.0.2",
+    "version": "14.0.1.1.0",
     "summary": "Allows Purchase Order you confirm to generate one Incoming "
     "Shipment for each expected date indicated in the Purchase Order Lines",
     "author": "Numerigraphe, ForgeFlow, Camptocamp, Odoo Community Association (OCA)",
