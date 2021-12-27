@@ -8,6 +8,7 @@
 
   * Pedro M. Baeza
   * Vicent Cubells <vicent.cubells@tecnativa.com>
+  * Carlos Roca
 
 * Sudhir Arya <sudhir@erpharbor.com>
 * Lorenzo Battistini <https://github.com/eLBati>
