@@ -21,6 +21,9 @@ class TestProductSupplierinfoDiscount(common.SavepointCase):
                 "name": cls.partner_3.id,
                 "product_tmpl_id": cls.product.product_tmpl_id.id,
                 "discount": 10,
+                "date_start": fields.Date.today(),
+                "date_end": fields.Date.today(),
+                "price": 100,
             }
         )
         cls.supplierinfo2 = cls.supplierinfo_model.create(
@@ -29,6 +32,9 @@ class TestProductSupplierinfoDiscount(common.SavepointCase):
                 "name": cls.partner_3.id,
                 "product_tmpl_id": cls.product.product_tmpl_id.id,
                 "discount": 20,
+                "date_start": fields.Date.today(),
+                "date_end": fields.Date.today(),
+                "price": 100,
             }
         )
         cls.purchase_order = cls.env["purchase.order"].create(
@@ -70,7 +76,7 @@ class TestProductSupplierinfoDiscount(common.SavepointCase):
         self.po_line_1.onchange_product_id()
         self.assertEquals(
             self.po_line_1.discount,
-            0.0,
+            10.0,
             "Incorrect discount for product 6 with partner 1 and qty 1",
         )
 
