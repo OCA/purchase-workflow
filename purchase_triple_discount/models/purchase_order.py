@@ -2,8 +2,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo import api, fields, models
 
-from odoo.addons import decimal_precision as dp
-
 
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
@@ -15,12 +13,12 @@ class PurchaseOrderLine(models.Model):
 
     discount2 = fields.Float(
         "Disc. 2 (%)",
-        digits=dp.get_precision("Discount"),
+        digits="Discount",
     )
 
     discount3 = fields.Float(
         "Disc. 3 (%)",
-        digits=dp.get_precision("Discount"),
+        digits="Discount",
     )
 
     _sql_constraints = [
@@ -51,3 +49,14 @@ class PurchaseOrderLine(models.Model):
             return
         self.discount2 = seller.discount2
         self.discount3 = seller.discount3
+
+    def _prepare_account_move_line(self, move=False):
+        self.ensure_one()
+        res = super()._prepare_account_move_line(move)
+        res.update(
+            {
+                "discount2": self.discount2,
+                "discount3": self.discount3,
+            }
+        )
+        return res
