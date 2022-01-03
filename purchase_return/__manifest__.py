@@ -24,4 +24,6 @@
         "report/purchase_return_order_templates.xml",
         "data/mail_template_data.xml",
     ],
+    "maintainers": ["JordiBForgeFlow"],
+    "development_status": "Alpha",
 }
