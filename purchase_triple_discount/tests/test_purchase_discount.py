@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.tests import common
+from odoo.tests.common import Form
 
 
 class TestPurchaseOrder(common.SavepointCase):
@@ -10,6 +11,7 @@ class TestPurchaseOrder(common.SavepointCase):
     def setUpClass(cls):
         super(TestPurchaseOrder, cls).setUpClass()
         cls.supplierinfo_obj = cls.env["product.supplierinfo"]
+        cls.account_move_model = cls.env["account.move"]
         cls.partner = cls.env["res.partner"].create(
             {
                 "name": "Mr. Odoo",
@@ -160,16 +162,12 @@ class TestPurchaseOrder(common.SavepointCase):
         self.po_line1.discount3 = 50.0
         self.po_line2.discount3 = 50.0
         self.order.button_confirm()
-        self.invoice = self.env["account.invoice"].create(
-            {
-                "partner_id": self.partner.id,
-                "purchase_id": self.order.id,
-                "account_id": self.partner.property_account_payable_id.id,
-                "type": "in_invoice",
-            }
+        invoice_form = Form(
+            self.account_move_model.with_context(default_move_type="in_invoice")
         )
-        self.invoice.purchase_order_change()
-        self.invoice._onchange_invoice_line_ids()
+        invoice_form.partner_id = self.order.partner_id
+        invoice_form.purchase_id = self.order
+        self.invoice = invoice_form.save()
         self.assertEqual(
             self.po_line1.discount, self.invoice.invoice_line_ids[0].discount
         )
@@ -186,14 +184,14 @@ class TestPurchaseOrder(common.SavepointCase):
 
     def test_05_purchase_order_default_discounts(self):
         self.po_line3._onchange_quantity()
-        self.assertEquals(self.po_line3.discount, 10)
-        self.assertEquals(self.po_line3.discount2, 20)
-        self.assertEquals(self.po_line3.discount3, 30)
+        self.assertEqual(self.po_line3.discount, 10)
+        self.assertEqual(self.po_line3.discount2, 20)
+        self.assertEqual(self.po_line3.discount3, 30)
         self.po_line3.product_qty = 10
         self.po_line3._onchange_quantity()
         self.assertFalse(self.po_line3.discount)
         self.assertFalse(self.po_line3.discount2)
-        self.assertEquals(self.po_line3.discount3, 50)
+        self.assertEqual(self.po_line3.discount3, 50)
 
     def test_06_default_supplier_discounts(self):
         self.partner2.default_supplierinfo_discount = 11
@@ -208,9 +206,9 @@ class TestPurchaseOrder(common.SavepointCase):
             }
         )
         supplierinfo.onchange_name()
-        self.assertEquals(supplierinfo.discount, 11)
-        self.assertEquals(supplierinfo.discount2, 22)
-        self.assertEquals(supplierinfo.discount3, 33)
+        self.assertEqual(supplierinfo.discount, 11)
+        self.assertEqual(supplierinfo.discount2, 22)
+        self.assertEqual(supplierinfo.discount3, 33)
 
     def test_07_supplierinfo_from_purchaseorder(self):
         self.order2.order_line.create(
@@ -255,4 +253,9 @@ class TestPurchaseOrder(common.SavepointCase):
         )
         self.assertEqual(rec.discount2, 50)
         self.assertEqual(rec.discount3, 20)
-        self.assertEqual(rec.price_total, 240)
+        # Changes value of comparison,
+        # because currently include taxes on field price_total
+        # https://bit.ly/3Hv2bEX
+        # https://bit.ly/3ESkdiO
+        self.assertEqual(self.po_line2.price_tax, 36)
+        self.assertEqual(rec.price_total, 276)
