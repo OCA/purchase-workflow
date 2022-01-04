@@ -1,0 +1,3 @@
+To use this module, you need to:
+
+* Go to Purchase Order click the button 'Add Products from BoM' inform the Product, BoM and quantity and click 'Get Products from BoM', will appear the list of products where you can change the Price or Quantity if necessary, in case of Purchase UoM are different from Product UoM the Product Quantity are automatic change, in the case of Finished Product has another Product with BoM inside the type Kit/phanton will be automaticlly exploded the type Manufacture this product/normal will appear with button 'Add Products from BoM' to make possible also exploded this product, select the products to be add in the purchase lines then click in button 'Add Products'.
