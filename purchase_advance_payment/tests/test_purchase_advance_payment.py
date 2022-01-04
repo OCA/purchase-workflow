@@ -245,6 +245,8 @@ class TestPurchaseAdvancePayment(common.SavepointCase):
             )
         )
         advance_payment_2.make_advance_payment()
+        pre_payment = self.purchase_order_1.account_payment_ids
+        self.assertEqual(len(pre_payment), 1)
         self.assertEqual(self.purchase_order_1.amount_residual, 3400)
         # generate bill, pay bill, check amount residual.
         self.purchase_order_1.button_confirm()
@@ -266,3 +268,97 @@ class TestPurchaseAdvancePayment(common.SavepointCase):
             }
         )._create_payments()
         self.assertEqual(self.purchase_order_1.amount_residual, 2200)
+
+        # Reconciling the pre-payment should not affect amount_residual in PO.
+        (
+            liquidity_lines,
+            counterpart_lines,
+            writeoff_lines,
+        ) = pre_payment._seek_for_lines()
+        (
+            counterpart_lines
+            + invoice.line_ids.filtered(
+                lambda line: line.account_internal_type == "payable"
+            )
+        ).reconcile()
+        self.purchase_order_1.invalidate_cache()
+        self.assertEqual(self.purchase_order_1.amount_residual, 2200)
+
+    def test_03_residual_amount_big_pre_payment(self):
+        self.assertEqual(
+            self.purchase_order_1.amount_residual,
+            3600,
+        )
+        self.assertEqual(
+            self.purchase_order_1.amount_residual,
+            self.purchase_order_1.amount_total,
+        )
+        # Create Advance Payment 1 - EUR - bank
+        context_payment = {
+            "active_ids": [self.purchase_order_1.id],
+            "active_id": self.purchase_order_1.id,
+        }
+        # Create Advance Payment 2 - USD - cash
+        advance_payment_2 = (
+            self.env["account.voucher.wizard.purchase"]
+            .with_context(context_payment)
+            .create(
+                {
+                    "journal_id": self.journal_usd_cash.id,
+                    "amount_advance": 2000,
+                    "order_id": self.purchase_order_1.id,
+                }
+            )
+        )
+        advance_payment_2.make_advance_payment()
+        pre_payment = self.purchase_order_1.account_payment_ids
+        self.assertEqual(len(pre_payment), 1)
+        self.assertEqual(self.purchase_order_1.amount_residual, 1600)
+        # generate a partial bill, reconcile with pre payment, check amount residual.
+        self.purchase_order_1.button_confirm()
+        self.assertEqual(self.purchase_order_1.invoice_status, "to invoice")
+        # Adjust billing method to then do a partial bill with a total amount
+        # smaller than the pre-payment.
+        self.product_1.purchase_method = "receive"
+        self.order_line_1.qty_received = 10.0
+        self.assertEqual(self.order_line_1.qty_to_invoice, 10.0)
+        self.product_2.purchase_method = "receive"
+        self.order_line_2.qty_received = 0.0
+        self.assertEqual(self.order_line_2.qty_to_invoice, 0.0)
+        self.product_3.purchase_method = "receive"
+        self.order_line_3.qty_received = 0.0
+        self.assertEqual(self.order_line_3.qty_to_invoice, 0.0)
+        self.purchase_order_1.action_create_invoice()
+        self.assertEqual(self.purchase_order_1.invoice_status, "invoiced")
+        self.assertEqual(self.purchase_order_1.amount_residual, 1600)
+        invoice = self.purchase_order_1.invoice_ids
+        invoice.invoice_date = fields.Date.today()
+        invoice.action_post()
+        self.assertEqual(invoice.amount_residual, 1200)
+        active_ids = invoice.ids
+        self.env["account.payment.register"].with_context(
+            active_model="account.move", active_ids=active_ids
+        ).create(
+            {
+                "amount": 300.0,
+                "group_payment": True,
+                "payment_difference_handling": "open",
+            }
+        )._create_payments()
+        self.assertEqual(invoice.amount_residual, 900)
+        self.assertEqual(self.purchase_order_1.amount_residual, 1300)
+
+        # Partially reconciling the pre-payment should not affect amount_residual in PO.
+        (
+            liquidity_lines,
+            counterpart_lines,
+            writeoff_lines,
+        ) = pre_payment._seek_for_lines()
+        (
+            counterpart_lines
+            + invoice.line_ids.filtered(
+                lambda line: line.account_internal_type == "payable"
+            )
+        ).reconcile()
+        self.purchase_order_1.invalidate_cache()
+        self.assertEqual(self.purchase_order_1.amount_residual, 1300)
