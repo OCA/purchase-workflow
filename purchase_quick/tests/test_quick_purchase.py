@@ -55,6 +55,7 @@ class TestQuickPurchase(SavepointCase):
         self.po.currency_id = self.env.ref("base.EUR")
         usd = self.env.ref("base.USD")
         usd.rate_ids[1:].unlink()
+        usd.rate_ids.name = self.po.date_order.date()
         usd.rate_ids.rate = 2
         self.assertEqual(self.product_1.seller_price, 5)
         self.product_1.qty_to_process = 10.0
