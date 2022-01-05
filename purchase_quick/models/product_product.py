@@ -34,7 +34,7 @@ class ProductProduct(models.Model):
             )
             if self.pma_parent.currency_id != seller.currency_id:
                 price_unit = seller.currency_id._convert(
-                    price_unit, po.currency_id, po.company_id, fields.Date.today()
+                    price_unit, po.currency_id, po.company_id, po.date_order.date()
                 )
             record.seller_price = price_unit
 
