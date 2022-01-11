@@ -5,10 +5,9 @@ Purchase Order Lines.
 
 Once the Purchase Order has been confirmed, subsequent changes made to the
 scheduled dates in the PO lines will produce a reorganization of the
-corresponding stock moves in the Incoming Shipments (**propagate_date on the
-purchase order line is not relevant anymore when this module is installed**),
-creating/deleting new Incoming Shipments when needed, to ensure that each
-Incoming Shipment contains moves to be received in the same date.
+corresponding stock moves in the Incoming Shipments, creating/deleting new
+Incoming Shipments when needed, to ensure that each Incoming Shipment contains
+moves to be received in the same date.
 
 Adding a new line on a confirmed PO will insert the new move in a picking with
 the corresponding date.

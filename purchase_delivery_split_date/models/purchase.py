@@ -13,7 +13,7 @@ class PurchaseOrderLine(models.Model):
         date_planned = picking.dt2date(self.date_planned)
         expected_dates = [
             picking.dt2date(expected_date)
-            for expected_date in picking.move_lines.mapped("date_expected")
+            for expected_date in picking.move_lines.mapped("date")
         ]
         return (
             picking.state not in ("done", "cancel")
@@ -103,13 +103,9 @@ class PurchaseOrderLine(models.Model):
         )
 
     def write(self, values):
-        if "date_planned" in values:
-            lines = self.filtered(lambda l: not l.propagate_date)
-            if lines:
-                lines.write({"propagate_date": True})
         res = super().write(values)
         if "date_planned" in values:
             for line in self.filtered(lambda l: not l.display_type):
-                # The move date_expected could have changed
+                # The move date expected could have changed
                 line._check_still_valid_picking()
         return res
