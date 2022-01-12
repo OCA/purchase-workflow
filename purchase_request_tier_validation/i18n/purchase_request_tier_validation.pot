@@ -19,6 +19,11 @@ msgid "Can Review"
 msgstr ""
 
 #. module: purchase_request_tier_validation
+#: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_form_inherit_tier
+msgid "Confirm"
+msgstr ""
+
+#. module: purchase_request_tier_validation
 #: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__display_name
 #: model:ir.model.fields,field_description:purchase_request_tier_validation.field_tier_definition__display_name
 msgid "Display Name"
