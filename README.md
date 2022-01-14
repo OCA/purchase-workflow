@@ -26,7 +26,7 @@ addon | version | maintainers | summary
 [purchase_commercial_partner](purchase_commercial_partner/) | 14.0.1.0.0 |  | Add stored related field 'Commercial Supplier' on POs
 [purchase_delivery_split_date](purchase_delivery_split_date/) | 14.0.1.1.0 |  | Allows Purchase Order you confirm to generate one Incoming Shipment for each expected date indicated in the Purchase Order Lines
 [purchase_deposit](purchase_deposit/) | 14.0.1.0.0 |  | Option to create deposit from purchase order
-[purchase_discount](purchase_discount/) | 14.0.1.1.0 |  | Purchase order lines with discounts
+[purchase_discount](purchase_discount/) | 14.0.1.1.1 |  | Purchase order lines with discounts
 [purchase_exception](purchase_exception/) | 14.0.1.0.0 |  | Custom exceptions on purchase order
 [purchase_fop_shipping](purchase_fop_shipping/) | 14.0.1.1.0 |  | Purchase Free-Of-Payment shipping
 [purchase_invoice_plan](purchase_invoice_plan/) | 14.0.1.1.1 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Add to purchases order, ability to manage future invoice plan
@@ -50,7 +50,7 @@ addon | version | maintainers | summary
 [purchase_partner_incoterm](purchase_partner_incoterm/) | 14.0.1.0.0 |  | Add a an incoterm field for supplier and use it on purchase order
 [purchase_product_usage](purchase_product_usage/) | 14.0.1.1.0 |  | Purchase Product Usage
 [purchase_propagate_qty](purchase_propagate_qty/) | 14.0.1.0.1 |  | Quantity decrease on purchase line are propagated to the corresponding stock.move
-[purchase_quick](purchase_quick/) | 14.0.1.0.0 |  | Quick Purchase order
+[purchase_quick](purchase_quick/) | 14.0.1.0.1 |  | Quick Purchase order
 [purchase_reception_notify](purchase_reception_notify/) | 14.0.1.0.0 |  | Purchase Reception Notify
 [purchase_reception_status](purchase_reception_status/) | 14.0.1.0.0 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Add reception status on purchase orders
 [purchase_report_menu_move](purchase_report_menu_move/) | 14.0.1.0.0 | [![newtratip](https://github.com/newtratip.png?size=30px)](https://github.com/newtratip) | Purchase Report Menu Move
