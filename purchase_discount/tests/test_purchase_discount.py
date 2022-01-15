@@ -23,6 +23,7 @@ class TestPurchaseOrder(common.SavepointCase):
         # Set the Exchange rate for the currency of the company to 1
         # to avoid issues with rates
         latest_currency_rate_line = currency_rate_model.search([
+            ('company_id', '=', cls.env.user.company_id.id),
             ('currency_id', '=', cls.env.user.company_id.currency_id.id),
             ('name', '=', fields.Date.today())], limit=1)
         if latest_currency_rate_line \
