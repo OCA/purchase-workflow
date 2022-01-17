@@ -7,7 +7,9 @@ from odoo import _, api, exceptions, fields, models
 class ProductPackagingType(models.Model):
     _inherit = "product.packaging.type"
 
-    can_be_purchased = fields.Boolean(string="Can be purchased", default=True)
+    can_be_purchased = fields.Boolean(
+        string="Can be purchased", default=True, index=True
+    )
     packaging_ids = fields.One2many(
         comodel_name="product.packaging", inverse_name="packaging_type_id"
     )
