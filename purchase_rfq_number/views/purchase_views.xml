@@ -9,6 +9,7 @@
                     name="rfq_number"
                     attrs="{'invisible': ['|', ('rfq_number', '=', 'New'), ('state','not in',('purchase','done'))]}"
                 />
+                <field name="po_number" invisible="1" />
             </field>
         </field>
     </record>
