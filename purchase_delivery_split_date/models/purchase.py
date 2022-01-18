@@ -93,7 +93,7 @@ class PurchaseOrderLine(models.Model):
         res = super()._onchange_quantity()
         # preserve the date which was presumably set on the PO line if it is
         # later than the date computed from the Vendor information
-        if self.date_planned <= date_planned:
+        if date_planned and self.date_planned <= date_planned:
             self.date_planned = date_planned
         return res
 
