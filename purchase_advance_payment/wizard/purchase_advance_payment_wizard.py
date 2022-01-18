@@ -2,11 +2,9 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html)
 
 from odoo import _, api, exceptions, fields, models
-from odoo.tools import float_compare
 
 
 class AccountVoucherWizardPurchase(models.TransientModel):
-
     _name = "account.voucher.wizard.purchase"
     _description = "Account Voucher Wizard Purchase"
 
@@ -25,13 +23,17 @@ class AccountVoucherWizardPurchase(models.TransientModel):
         compute="_compute_get_journal_currency",
     )
     currency_id = fields.Many2one("res.currency", "Currency", readonly=True)
-    amount_total = fields.Monetary("Amount total", readonly=True)
+    amount_total = fields.Monetary(readonly=True)
     amount_advance = fields.Monetary(
         "Amount advanced", required=True, currency_field="journal_currency_id"
     )
-    date = fields.Date("Date", required=True, default=fields.Date.context_today)
+    date = fields.Date(required=True, default=fields.Date.context_today)
     currency_amount = fields.Monetary(
-        "Curr. amount", readonly=True, currency_field="currency_id"
+        "Curr. amount",
+        readonly=True,
+        currency_field="currency_id",
+        compute="_compute_currency_amount",
+        store=True,
     )
     payment_ref = fields.Char("Ref.")
 
@@ -44,15 +46,12 @@ class AccountVoucherWizardPurchase(models.TransientModel):
 
     @api.constrains("amount_advance")
     def check_amount(self):
-        if self.amount_advance <= 0:
+        if self.journal_currency_id.compare_amounts(self.amount_advance, 0.0) <= 0:
             raise exceptions.ValidationError(_("Amount of advance must be positive."))
         if self.env.context.get("active_id", False):
-            self.onchange_date()
             if (
-                float_compare(
-                    self.currency_amount,
-                    self.order_id.amount_residual,
-                    precision_digits=2,
+                self.currency_id.compare_amounts(
+                    self.currency_amount, self.order_id.amount_residual
                 )
                 > 0
             ):
@@ -79,8 +78,8 @@ class AccountVoucherWizardPurchase(models.TransientModel):
 
         return res
 
-    @api.onchange("journal_id", "date", "amount_advance")
-    def onchange_date(self):
+    @api.depends("journal_id", "date", "amount_advance")
+    def _compute_currency_amount(self):
         if self.journal_currency_id != self.currency_id:
             amount_advance = self.journal_currency_id._convert(
                 self.amount_advance,
