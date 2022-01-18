@@ -36,12 +36,12 @@ msgstr ""
 
 #. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
-msgid "Create Invoices"
+msgid "Create and View bills"
 msgstr ""
 
 #. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
-msgid "Create and View Invoices"
+msgid "Create deposit"
 msgstr ""
 
 #. module: purchase_deposit
@@ -88,8 +88,8 @@ msgstr ""
 #. module: purchase_deposit
 #: model:ir.model.fields,help:purchase_deposit.field_purchase_order_line__is_deposit
 msgid ""
-"Deposit payments are made when creating invoices from a purhcase order. They"
-" are not copied when duplicating a purchase order."
+"Deposit payments are made when creating bills from a purhcase order. They "
+"are not copied when duplicating a purchase order."
 msgstr ""
 
 #. module: purchase_deposit
