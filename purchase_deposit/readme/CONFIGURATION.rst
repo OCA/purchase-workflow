@@ -1,5 +1,5 @@
 After install this module, you need to select the product "Purchase Deposit" in
-configuration window to be used as default product when create deposit invoice.
+configuration window to be used as default product when create deposit bill.
 
 Go to Purchase > Configuration > Settings, then select product "Purchase Deposit"
 
