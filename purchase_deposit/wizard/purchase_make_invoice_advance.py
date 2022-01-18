@@ -206,9 +206,10 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
                 }
             )
             del context
-            self._create_invoice(order, po_line, amount)
-        if self._context.get("open_invoices", False):
-            return purchases.action_view_invoice()
+
+            if self._context.get("create_bills", False):
+                self._create_invoice(order, po_line, amount)
+                return purchases.action_view_invoice()
         return {"type": "ir.actions.act_window_close"}
 
     def _prepare_deposit_product(self):
