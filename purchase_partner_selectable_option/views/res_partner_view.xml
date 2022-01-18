@@ -11,4 +11,19 @@
             </group>
         </field>
     </record>
+    <record id="res_partner_view_purchase_buttons" model="ir.ui.view">
+        <field name="name">res.partner.view.purchase.buttons</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="purchase.res_partner_view_purchase_buttons" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//button[@name='%(purchase.act_res_partner_2_purchase_order)d']"
+                position="attributes"
+            >
+                <attribute
+                    name="attrs"
+                >{'invisible': [('purchase_selectable', '=', False)]}</attribute>
+            </xpath>
+        </field>
+    </record>
 </odoo>
