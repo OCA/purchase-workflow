@@ -23,7 +23,7 @@ Purchase Deposit
     :target: https://runbot.odoo-community.org/runbot/142/14.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module allow purchase order to register deposit similar to that in sales order
 

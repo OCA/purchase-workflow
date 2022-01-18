@@ -23,7 +23,7 @@ class PurchaseOrderLine(models.Model):
 
     is_deposit = fields.Boolean(
         string="Is a deposit payment",
-        help="Deposit payments are made when creating invoices from a purhcase"
+        help="Deposit payments are made when creating bills from a purhcase"
         " order. They are not copied when duplicating a purchase order.",
     )
 
