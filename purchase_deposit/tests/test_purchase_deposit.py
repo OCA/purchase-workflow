@@ -62,6 +62,7 @@ class TestPurchaseDeposit(TransactionCase):
             "active_id": self.po.id,
             "active_ids": [self.po.id],
             "active_model": "purchase.order",
+            "create_bills": True,
         }
         CreateDeposit = self.env["purchase.advance.payment.inv"]
         self.po.button_confirm()
@@ -125,6 +126,7 @@ class TestPurchaseDeposit(TransactionCase):
             "active_id": self.po.id,
             "active_ids": [self.po.id],
             "active_model": "purchase.order",
+            "create_bills": True,
         }
         CreateDeposit = self.env["purchase.advance.payment.inv"]
         # 1. This action is allowed only in Purchase Order sate
