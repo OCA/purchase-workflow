@@ -67,7 +67,7 @@ addon | version | maintainers | summary
 [purchase_order_type](purchase_order_type/) | 13.0.1.0.1 |  | Purchase Order Type
 [purchase_order_type_dashboard](purchase_order_type_dashboard/) | 13.0.1.0.0 | [![dalonsod](https://github.com/dalonsod.png?size=30px)](https://github.com/dalonsod) | Purchase Order Type Dashboard
 [purchase_order_uninvoiced_amount](purchase_order_uninvoiced_amount/) | 13.0.2.1.2 |  | Purchase Order Univoiced Amount
-[purchase_partner_selectable_option](purchase_partner_selectable_option/) | 13.0.1.0.1 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Purchase Partner Selectable Option
+[purchase_partner_selectable_option](purchase_partner_selectable_option/) | 13.0.1.1.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Purchase Partner Selectable Option
 [purchase_product_usage](purchase_product_usage/) | 13.0.1.1.1 |  | Purchase Product Usage
 [purchase_propagate_qty](purchase_propagate_qty/) | 13.0.1.1.1 |  | Quantity decrease on purchase line are propagated to the corresponding stock.move
 [purchase_reception_notify](purchase_reception_notify/) | 13.0.1.0.2 |  | Purchase Reception Notify
