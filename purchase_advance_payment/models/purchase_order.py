@@ -30,7 +30,6 @@ class PurchaseOrder(models.Model):
             ("paid", "Paid"),
             ("partial", "Partially Paid"),
         ],
-        string="Advance Payment Status",
         store=True,
         readonly=True,
         copy=False,
