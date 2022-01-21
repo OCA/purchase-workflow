@@ -9,21 +9,17 @@
                     <group name="line_order">
                         <label for="line_order" />
                         <div>
+                            <b>Parameter 1: </b>
+                            <field name="line_order" options="{'no_create': True}" />
+                            <br />
+                            <b>Parameter 2: </b>
+                            <field name="line_order_2" options="{'no_create': True}" />
+                            <br />
+                            <b>Order: </b>
                             <field
-                                name="line_order"
-                                class="oe_inline"
-                                options="{'no_create': True}"
-                            />
-                            <field
-                                name="line_order_2"
-                                class="oe_inline"
-                                options="{'no_create': True}"
-                            />
-                            (<field
                                 name="line_direction"
-                                class="oe_inline"
                                 attrs="{'required': ['|', ('line_order', '!=', False), ('line_order_2', '!=', False)]}"
-                            />)
+                            />
                         </div>
                     </group>
                 </page>
