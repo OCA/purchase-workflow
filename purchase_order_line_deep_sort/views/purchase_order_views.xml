@@ -14,10 +14,15 @@
                                 class="oe_inline"
                                 options="{'no_create': True}"
                             />
+                            <field
+                                name="line_order_2"
+                                class="oe_inline"
+                                options="{'no_create': True}"
+                            />
                             (<field
                                 name="line_direction"
                                 class="oe_inline"
-                                attrs="{'required': [('line_order', '!=', False)]}"
+                                attrs="{'required': ['|', ('line_order', '!=', False), ('line_order_2', '!=', False)]}"
                             />)
                         </div>
                     </group>

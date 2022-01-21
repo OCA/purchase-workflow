@@ -25,12 +25,23 @@
                         <div class="content-group">
                             <div class="row mt16">
                                 <label
-                                    string="Line Order"
+                                    string="Line Order 1"
                                     for="po_line_order_default"
                                     class="col-lg-3 o_light_label"
                                 />
                                 <field
                                     name="po_line_order_default"
+                                    options="{'no_create': True}"
+                                />
+                            </div>
+                            <div class="row mt16">
+                                <label
+                                    string="Line Order 2"
+                                    for="po_line_order_2_default"
+                                    class="col-lg-3 o_light_label"
+                                />
+                                <field
+                                    name="po_line_order_2_default"
                                     options="{'no_create': True}"
                                 />
                             </div>
