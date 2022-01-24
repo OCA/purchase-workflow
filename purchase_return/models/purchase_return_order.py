@@ -13,7 +13,7 @@ from odoo.tools.misc import formatLang
 
 class PurchaseOrderReturn(models.Model):
     _name = "purchase.return.order"
-    _inherit = ["mail.thread", "mail.activity.mixin"]
+    _inherit = ["mail.thread", "mail.activity.mixin", "portal.mixin"]
     _description = "Purchase Return Order"
     _order = "id desc"
 

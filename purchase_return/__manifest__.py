@@ -10,7 +10,7 @@
     "license": "LGPL-3",
     "application": False,
     "installable": True,
-    "depends": ["purchase"],
+    "depends": ["purchase", "mail"],
     "data": [
         "security/ir.model.access.csv",
         "security/purchase_security.xml",
