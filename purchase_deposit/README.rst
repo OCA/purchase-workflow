@@ -23,7 +23,7 @@ Purchase Deposit
     :target: https://runbot.odoo-community.org/runbot/142/14.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 This module allow purchase order to register deposit similar to that in sales order
 
@@ -36,11 +36,11 @@ Usage
 =====
 
 When purchase order is confirmed, a new button "Register Deposit" will appear.
-Normally, deposit will be used to create the 1st invoice (as deposit).
+Normally, deposit will be used to create the 1st bill (as deposit).
 
 #. On confirmed purchase order, click Register Deposit button, wizard will open
-#. 2 type of deposit invoice can be create 1) Down Payment (percentage) 2) Deposit Payment (fixed amount)
-#. Fill in the value and click Create Invoice button.
+#. 2 type of deposit bill can be create 1) Down Payment (percentage) 2) Deposit Payment (fixed amount)
+#. Fill in the value and click Create bill or just create deposit.
 
 As deposit is created, when user click button "Create Bill" again in purchase order,
 the Vendor Bill will be created with deposit amount deducted.
@@ -70,6 +70,7 @@ Contributors
 * Dominique K. <dominique.k@elico-corp.com.sg>
 * Kitti Upariphutthiphong <kittiu@ecosoft.co.th>
 * Rattapong Chokmasermkul <rattapongc@ecosoft.co.th>
+* Joan Mateu <joan.mateu@forgeflow.com>
 
 Maintainers
 ~~~~~~~~~~~
