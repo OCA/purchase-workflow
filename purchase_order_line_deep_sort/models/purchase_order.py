@@ -41,6 +41,8 @@ class PurchaseOrder(models.Model):
             val = getattr(obj, line_order.name)
             # Odoo object
             if isinstance(val, models.BaseModel):
+                if not val:
+                    val = ""
                 if hasattr(val[0], "name"):
                     val = ",".join(val.mapped("name"))
                 else:
@@ -72,21 +74,17 @@ class PurchaseOrder(models.Model):
             or "line_order_2" in values
             or "line_direction" in values
         ):
-            self._sort_purchase_line()
+            for record in self:
+                record._sort_purchase_line()
         return res
-
-    @api.model
-    def create(self, values):
-        purchase = super().create(values)
-        purchase._sort_purchase_line()
-        return purchase
 
 
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
-    @api.model
-    def create(self, vals):
-        line = super().create(vals)
-        line.order_id._sort_purchase_line()
-        return line
+    @api.model_create_multi
+    def create(self, vals_list):
+        lines = super().create(vals_list)
+        for order_id in lines.mapped("order_id"):
+            order_id._sort_purchase_line()
+        return lines
