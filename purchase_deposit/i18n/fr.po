@@ -39,13 +39,13 @@ msgstr ""
 
 #. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
-msgid "Create Invoices"
-msgstr "Créer les factures"
+msgid "Create and View bills"
+msgstr ""
 
 #. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
-msgid "Create and View Invoices"
-msgstr "Créer et afficher les factures"
+msgid "Create deposit"
+msgstr ""
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__create_uid
@@ -91,11 +91,9 @@ msgstr "Acompte (montant fixe)"
 #. module: purchase_deposit
 #: model:ir.model.fields,help:purchase_deposit.field_purchase_order_line__is_deposit
 msgid ""
-"Deposit payments are made when creating invoices from a purhcase order. They"
-" are not copied when duplicating a purchase order."
+"Deposit payments are made when creating bills from a purhcase order. They "
+"are not copied when duplicating a purchase order."
 msgstr ""
-"Les acomptes sont faits lorsqu'on crée des factures d'un bon de commande. "
-"Ils ne sont pas copiés lors de la duplication d'un bon de commande."
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__display_name
@@ -226,9 +224,9 @@ msgstr ""
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
 #, python-format
 msgid ""
-"The product used to invoice a down payment should have an invoice policy set"
-" to \"Ordered quantities\". Please update your deposit product to be able to"
-" create a deposit invoice."
+"The product used to invoice a down payment should have an invoice policy set "
+"to \"Ordered quantities\". Please update your deposit product to be able to "
+"create a deposit invoice."
 msgstr ""
 "L'article utilisé pour l'acompte doit avoir une politique de contrôle \"Sur "
 "les quantités commandés\". merci d'utiliser un autre article ou modifier "
@@ -245,7 +243,8 @@ msgstr "La valeur de l'acompte doit être positive."
 #, python-format
 msgid ""
 "There is no purchase account defined for this product: %s.\n"
-"You may have to install a chart of account from Accounting app, settings menu."
+"You may have to install a chart of account from Accounting app, settings "
+"menu."
 msgstr ""
 "Il n'y a pas de compte de dépenses pour l'article : %s\n"
 "Vous devriez peut-être installer un plan comptable depuis le module de "
@@ -256,8 +255,8 @@ msgstr ""
 #, python-format
 msgid "This action is allowed only in Purchase Order sate"
 msgstr ""
-"Cette action n'est permise que pour les documents à l'état \"Bon de "
-"commande\""
+"Cette action n'est permise que pour les documents à l'état \"Bon de commande"
+"\""
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__deposit_taxes_id
@@ -268,3 +267,16 @@ msgstr "Taxes fournisseur"
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__advance_payment_method
 msgid "What do you want to invoice?"
 msgstr "Que voulez-vous facturer ?"
+
+#~ msgid "Create Invoices"
+#~ msgstr "Créer les factures"
+
+#~ msgid "Create and View Invoices"
+#~ msgstr "Créer et afficher les factures"
+
+#~ msgid ""
+#~ "Deposit payments are made when creating invoices from a purhcase order. "
+#~ "They are not copied when duplicating a purchase order."
+#~ msgstr ""
+#~ "Les acomptes sont faits lorsqu'on crée des factures d'un bon de commande. "
+#~ "Ils ne sont pas copiés lors de la duplication d'un bon de commande."
