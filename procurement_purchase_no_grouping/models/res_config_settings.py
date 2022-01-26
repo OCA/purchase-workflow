@@ -11,5 +11,6 @@ class ResConfigSettings(models.TransientModel):
     _description = "Procurement purchase grouping settings"
 
     procured_purchase_grouping = fields.Selection(
-        related="company_id.procured_purchase_grouping", readonly=False,
+        related="company_id.procured_purchase_grouping",
+        readonly=False,
     )
