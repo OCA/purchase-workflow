@@ -43,7 +43,7 @@ class PurchaseOrder(models.Model):
             if isinstance(val, models.BaseModel):
                 if not val:
                     val = ""
-                if hasattr(val[0], "name"):
+                elif hasattr(val[0], "name"):
                     val = ",".join(val.mapped("name"))
                 else:
                     val = ",".join([str(id) for id in val.mapped("id")])
