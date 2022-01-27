@@ -30,6 +30,7 @@ setuptools.setup(
         'odoo14-addon-purchase_order_approved',
         'odoo14-addon-purchase_order_archive',
         'odoo14-addon-purchase_order_line_deep_sort',
+        'odoo14-addon-purchase_order_line_description_picking',
         'odoo14-addon-purchase_order_line_menu',
         'odoo14-addon-purchase_order_line_packaging_qty',
         'odoo14-addon-purchase_order_line_price_history',
