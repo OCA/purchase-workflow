@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Tecnativa - Víctor Martínez
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_purchase_requisition_form" model="ir.ui.view">
+        <field name="name">purchase.requisition.form</field>
+        <field name="model">purchase.requisition</field>
+        <field
+            name="inherit_id"
+            ref="purchase_requisition.view_purchase_requisition_form"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='qty_ordered']" position="after">
+                <field name="proposed_qty" optional="hide" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
