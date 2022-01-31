@@ -3,6 +3,7 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 from odoo import api, models
+from odoo.tools.misc import get_lang
 
 
 class PurchaseOrderLine(models.Model):
@@ -13,9 +14,8 @@ class PurchaseOrderLine(models.Model):
         res = super(PurchaseOrderLine, self).onchange_product_id()
         if not self.product_id:
             return res
-        # TODO Use odoo.tools.misc.get_lang in v13+
         translated_product = self.product_id.with_context(
-            lang=self.partner_id.lang or self.env.lang
+            lang=self.partner_id.lang or get_lang(self.env).code
         )
         if (
             self.user_has_groups(
