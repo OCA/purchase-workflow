@@ -53,15 +53,15 @@ class WorkAcceptance(models.Model):
             move_ids = work_acceptances.mapped("fines_invoice_ids").ids
         if not move_ids:
             raise UserError(_("No fine invoices"))
-        action = self.env.ref("account.action_move_out_invoice_type")
-        result = action.sudo().read()[0]
+        xmlid = "account.action_move_out_invoice_type"
+        action = self.env["ir.actions.act_window"]._for_xml_id(xmlid)
         if len(move_ids) > 1:
-            result["domain"] = [("id", "in", move_ids)]
+            action["domain"] = [("id", "in", move_ids)]
         else:
             res = self.env.ref("account.view_move_form", False)
-            result["views"] = [(res and res.id or False, "form")]
-            result["res_id"] = move_ids[0]
-        return result
+            action["views"] = [(res and res.id or False, "form")]
+            action["res_id"] = move_ids[0]
+        return action
 
     def action_create_fines_invoice(self):
         AccountMove = self.env["account.move"]
