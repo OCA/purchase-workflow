@@ -22,6 +22,11 @@ msgid "Can Review"
 msgstr ""
 
 #. module: purchase_request_tier_validation
+#: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_form_inherit_tier
+msgid "Confirm"
+msgstr "Confirmar"
+
+#. module: purchase_request_tier_validation
 #: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__display_name
 #: model:ir.model.fields,field_description:purchase_request_tier_validation.field_tier_definition__display_name
 msgid "Display Name"
@@ -68,6 +73,11 @@ msgstr "Necesita mi revisión"
 #: model:tier.definition,name:purchase_request_tier_validation.purchase_request_default_tier_definition
 msgid "New Tier Validation"
 msgstr "Nueva capa de validación"
+
+#. module: purchase_request_tier_validation
+#: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__next_review
+msgid "Next Review"
+msgstr ""
 
 #. module: purchase_request_tier_validation
 #: model:ir.model,name:purchase_request_tier_validation.model_purchase_request
@@ -118,9 +128,6 @@ msgstr ""
 
 #~ msgid "<i class=\"fa fa-thumbs-up\"/> Operation has been <b>validated</b>!"
 #~ msgstr "<i class=\"fa fa-thumbs-up\"/> Operación ha sido <b>validada</b>!"
-
-#~ msgid "Confirm"
-#~ msgstr "Confirmar"
 
 #~ msgid "Dismiss"
 #~ msgstr "Descartar"

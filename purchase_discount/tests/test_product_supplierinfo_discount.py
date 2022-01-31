@@ -99,7 +99,7 @@ class TestProductSupplierinfoDiscount(common.SavepointCase):
         self.partner_1.default_supplierinfo_discount = 15
         supplierinfo.name = self.partner_1
         supplierinfo.onchange_name()
-        self.assertEquals(
+        self.assertEqual(
             supplierinfo.discount,
             15,
             "Incorrect discount for supplierinfo "

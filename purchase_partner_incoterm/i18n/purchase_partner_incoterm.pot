@@ -1,0 +1,48 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_partner_incoterm
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_partner_incoterm
+#: model:ir.model,name:purchase_partner_incoterm.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: purchase_partner_incoterm
+#: model:ir.model.fields,field_description:purchase_partner_incoterm.field_res_partner__purchase_incoterm_id
+#: model:ir.model.fields,field_description:purchase_partner_incoterm.field_res_users__purchase_incoterm_id
+msgid "Default Purchase Incoterm"
+msgstr ""
+
+#. module: purchase_partner_incoterm
+#: model:ir.model.fields,field_description:purchase_partner_incoterm.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:purchase_partner_incoterm.field_res_partner__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: purchase_partner_incoterm
+#: model:ir.model.fields,field_description:purchase_partner_incoterm.field_purchase_order__id
+#: model:ir.model.fields,field_description:purchase_partner_incoterm.field_res_partner__id
+msgid "ID"
+msgstr ""
+
+#. module: purchase_partner_incoterm
+#: model:ir.model.fields,field_description:purchase_partner_incoterm.field_purchase_order____last_update
+#: model:ir.model.fields,field_description:purchase_partner_incoterm.field_res_partner____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: purchase_partner_incoterm
+#: model:ir.model,name:purchase_partner_incoterm.model_purchase_order
+msgid "Purchase Order"
+msgstr ""

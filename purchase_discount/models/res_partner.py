@@ -13,4 +13,5 @@ class ResPartner(models.Model):
         digits="Discount",
         help="This value will be used as the default one, for each new"
         " supplierinfo line depending on that supplier.",
+        tracking=True,
     )
