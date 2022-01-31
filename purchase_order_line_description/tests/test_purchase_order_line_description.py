@@ -59,7 +59,7 @@ class TestPurchaseOrderLineDescription(common.SavepointCase):
     def test_onchange_product_id(self):
         self.assertEqual(self.product.name, self.order.order_line[0].name)
         # Test onchange product
-        self.order.order_line[0].sudo(self.test_user).onchange_product_id()
+        self.order.order_line[0].with_user(self.test_user).onchange_product_id()
         self.assertEqual(
             self.product.description_purchase, self.order.order_line[0].name
         )
@@ -71,7 +71,7 @@ class TestPurchaseOrderLineDescription(common.SavepointCase):
         self.product.with_context(
             lang="es_ES"
         ).description_purchase = "descripción para compras"
-        with common.Form(self.order.sudo(self.test_user)) as order:
+        with common.Form(self.order.with_user(self.test_user)) as order:
             with order.order_line.new() as line:
                 line.product_id = self.product
                 self.assertEqual(line.name, "descripción para compras")
