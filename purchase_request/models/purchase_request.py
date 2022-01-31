@@ -167,7 +167,8 @@ class PurchaseRequest(models.Model):
             rec.purchase_count = len(rec.mapped("line_ids.purchase_lines.order_id"))
 
     def action_view_purchase_order(self):
-        action = self.env.ref("purchase.purchase_rfq").sudo().read()[0]
+        xmlid = "purchase.purchase_rfq"
+        action = self.env["ir.actions.act_window"]._for_xml_id(xmlid)
         lines = self.mapped("line_ids.purchase_lines.order_id")
         if len(lines) > 1:
             action["domain"] = [("id", "in", lines.ids)]
@@ -186,7 +187,8 @@ class PurchaseRequest(models.Model):
             )
 
     def action_view_stock_move(self):
-        action = self.env.ref("stock.stock_move_action").sudo().read()[0]
+        xmlid = "stock.stock_move_action"
+        action = self.env["ir.actions.act_window"]._for_xml_id(xmlid)
         # remove default filters
         action["context"] = {}
         lines = self.mapped("line_ids.purchase_request_allocation_ids.stock_move_id")
@@ -203,11 +205,8 @@ class PurchaseRequest(models.Model):
             rec.line_count = len(rec.mapped("line_ids"))
 
     def action_view_purchase_request_line(self):
-        action = (
-            self.env.ref("purchase_request.purchase_request_line_form_action")
-            .sudo()
-            .read()[0]
-        )
+        xmlid = "purchase_request.purchase_request_line_form_action"
+        action = self.env["ir.actions.act_window"]._for_xml_id(xmlid)
         lines = self.mapped("line_ids")
         if len(lines) > 1:
             action["domain"] = [("id", "in", lines.ids)]
