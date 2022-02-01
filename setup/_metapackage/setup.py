@@ -58,6 +58,7 @@ setuptools.setup(
         'odoo13-addon-purchase_request_department',
         'odoo13-addon-purchase_request_order_approved',
         'odoo13-addon-purchase_request_tier_validation',
+        'odoo13-addon-purchase_requisition_grouped_by_procurement',
         'odoo13-addon-purchase_requisition_tier_validation',
         'odoo13-addon-purchase_security',
         'odoo13-addon-purchase_stock_picking_show_currency_rate',
