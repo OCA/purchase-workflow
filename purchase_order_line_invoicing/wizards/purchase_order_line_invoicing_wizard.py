@@ -84,9 +84,4 @@ class PurchaseOrderLineInvoiceWizard(models.TransientModel):
                 (0, 0, purchase_order_line._prepare_account_move_line())
             )
         invoice.write({"invoice_line_ids": invoice_lines_data})
-        result = self.env["ir.actions.act_window"]._for_xml_id(
-            "account.action_move_in_invoice_type"
-        )
-        self.env.ref("account.invoice_supplier_form", False)
-        result["res_id"] = invoice.id
-        return result
+        return purchase_order.action_view_invoice(invoice)
