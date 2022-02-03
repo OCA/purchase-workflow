@@ -33,8 +33,6 @@ class PurchaseOrderLine(models.Model):
                 or pol.product_packaging.qty == 0
             ):
                 pol.product_packaging_qty = 0
-                if pol.product_id and pol.product_id.default_packaging:
-                    pol.product_packaging = pol.product_id.default_packaging.id
                 continue
             # Consider UOM
             if pol.product_id.uom_id != pol.product_uom:
@@ -118,4 +116,13 @@ class PurchaseOrderLine(models.Model):
         if res and res[0]:
             res[0]["product_packaging"] = self.product_packaging.id
             res[0]["product_packaging_qty"] = self.product_packaging_qty
+        return res
+
+    @api.onchange('product_id')
+    def onchange_product_id(self):
+        res = super(PurchaseOrderLine, self).onchange_product_id()
+        for pol in self:
+            if pol.product_id and pol.product_id.default_packaging:
+                pol.product_packaging = pol.product_id.default_packaging.id
+                pol._onchange_product_packaging()
         return res
