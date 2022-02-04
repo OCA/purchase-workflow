@@ -160,15 +160,15 @@ class PurchaseOrderLine(models.Model):
                 "Product Unit of Measure"
             )
             package_precision = self.product_packaging.purchase_rounding
-            multiplier = (
-                self.product_packaging_qty // self.product_packaging.actual_purchase_qty
-            )
-            rest = (
-                self.product_packaging_qty % self.product_packaging.actual_purchase_qty
-            )
+            if self.product_packaging and self.product_packaging.qty:
+                pkg_qty = self.product_qty / self.product_packaging.qty
+            else:
+                pkg_qty = 0.00
+            multiplier = pkg_qty // self.product_packaging.purchase_rounding
+            rest = pkg_qty % self.product_packaging.purchase_rounding
             product_packaging_qty = float_round(
                 (multiplier + (1 if rest else 0))
-                * self.product_packaging.actual_purchase_qty,
+                * self.product_packaging.purchase_rounding,
                 precision_digits=product_precision,
             )
             product_qty = product_packaging_qty * self.product_packaging.qty
