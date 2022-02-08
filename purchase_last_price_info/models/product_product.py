@@ -56,7 +56,9 @@ class ProductProduct(models.Model):
             item.last_purchase_price = item.last_purchase_line_id.price_unit
             item.last_purchase_date = item.last_purchase_line_id.date_order
             item.last_purchase_supplier_id = item.last_purchase_line_id.partner_id
-            item.last_purchase_currency_id = item.last_purchase_line_id.currency_id
+            item.last_purchase_currency_id = (
+                item.last_purchase_line_id.currency_id or item.currency_id
+            )
 
     @api.depends("last_purchase_line_id", "last_purchase_currency_id")
     def _compute_show_last_purchase_price_currency(self):
