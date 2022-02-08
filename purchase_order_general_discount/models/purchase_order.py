@@ -4,15 +4,11 @@ from lxml import etree
 
 from odoo import api, fields, models
 
-from odoo.addons import decimal_precision as dp
-
 
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
-    general_discount = fields.Float(
-        digits=dp.get_precision("Discount"), string="Gen. Disc. (%)",
-    )
+    general_discount = fields.Float(digits="Discount", string="Gen. Disc. (%)",)
 
     _sql_constraints = [
         (
