@@ -41,6 +41,7 @@ class TestPurchaseRequisitionOrderRemainingQty(common.SavepointCase):
         self.assertEqual(requisition_line.proposed_qty, 0)
         # New order with qty: 5. Example: product_qty: 5, proposed_qty: 0
         order = self.action_purchase_requisition_to_so(requisition.id)
+        order.button_confirm()
         order_line = order.order_line.filtered(lambda x: x.product_id == self.product)
         self.assertEqual(order_line.product_qty, 5)
         self.assertEqual(requisition_line.proposed_qty, 5)
