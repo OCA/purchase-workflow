@@ -1,0 +1,321 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_receipt_expectation_manual
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_receipt_expectation_manual
+#: code:addons/purchase_receipt_expectation_manual/wizards/purchase_order_manual_receipt.py:0
+#, python-format
+msgid ""
+"\n"
+"\n"
+"These checks cannot be skipped!"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: code:addons/purchase_receipt_expectation_manual/wizards/purchase_order_manual_receipt.py:0
+#, python-format
+msgid "- {p}: to receive {q1} {u}, receivable {q2} {u}"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model:ir.model.fields,field_description:purchase_receipt_expectation_manual.field_purchase_order_manual_receipt_wizard__auto_confirm_picking
+msgid "Auto Confirm Picking"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model:ir.model.fields,help:purchase_receipt_expectation_manual.field_purchase_order_manual_receipt_wizard__auto_confirm_picking
+msgid "Automatically confirms the picking after creation."
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model_terms:ir.ui.view,arch_db:purchase_receipt_expectation_manual.purchase_order_manual_receipt_wizard
+msgid "Cancel"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model:ir.model.fields,field_description:purchase_receipt_expectation_manual.field_purchase_order_manual_receipt_wizard_line__uom_category_id
+msgid "Category"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model_terms:ir.ui.view,arch_db:purchase_receipt_expectation_manual.purchase_order_manual_receipt_wizard
+msgid "Check and Confirm"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model_terms:ir.ui.view,arch_db:purchase_receipt_expectation_manual.purchase_order_manual_receipt_wizard
+msgid "Check without Confirm"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model:ir.model.fields,field_description:purchase_receipt_expectation_manual.field_purchase_order_manual_receipt_wizard__checks_result
+msgid "Checks Result"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model:ir.model.fields,field_description:purchase_receipt_expectation_manual.field_purchase_order_manual_receipt_wizard__checks_result_msg
+msgid "Checks Result Msg"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model:ir.model.fields,help:purchase_receipt_expectation_manual.field_purchase_order_manual_receipt_wizard_line__uom_category_id
+msgid ""
+"Conversion between Units of Measure can only occur if they belong to the "
+"same category. The conversion will be made based on the ratios."
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model:ir.model.fields,field_description:purchase_receipt_expectation_manual.field_purchase_order_manual_receipt_wizard__create_uid
+#: model:ir.model.fields,field_description:purchase_receipt_expectation_manual.field_purchase_order_manual_receipt_wizard_line__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model:ir.model.fields,field_description:purchase_receipt_expectation_manual.field_purchase_order_manual_receipt_wizard__create_date
+#: model:ir.model.fields,field_description:purchase_receipt_expectation_manual.field_purchase_order_manual_receipt_wizard_line__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model:ir.model.fields,field_description:purchase_receipt_expectation_manual.field_purchase_order_manual_receipt_wizard_line__currency_id
+msgid "Currency"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model:ir.model.fields,help:purchase_receipt_expectation_manual.field_purchase_order__receipt_expectation
+msgid ""
+"Defines how reception pickings are managed when the order is approved.\n"
+"Default value is 'automatic', which means the picking will be created following the standard Odoo workflow."
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model:ir.model.fields,field_description:purchase_receipt_expectation_manual.field_purchase_order_manual_receipt_wizard__display_name
+#: model:ir.model.fields,field_description:purchase_receipt_expectation_manual.field_purchase_order_manual_receipt_wizard_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model:ir.model.fields.selection,name:purchase_receipt_expectation_manual.selection__purchase_order_manual_receipt_wizard__checks_result__failure
+msgid "Failure"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model:ir.model.fields,field_description:purchase_receipt_expectation_manual.field_purchase_order_line__feasible_for_manual_receipt
+msgid "Feasible For Manual Receipt"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model:ir.model.fields,field_description:purchase_receipt_expectation_manual.field_purchase_order_manual_receipt_wizard__id
+#: model:ir.model.fields,field_description:purchase_receipt_expectation_manual.field_purchase_order_manual_receipt_wizard_line__id
+msgid "ID"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model_terms:ir.ui.view,arch_db:purchase_receipt_expectation_manual.purchase_order_form_inherit
+msgid "In Manual Receipts"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model:ir.model.fields,field_description:purchase_receipt_expectation_manual.field_purchase_order_manual_receipt_wizard____last_update
+#: model:ir.model.fields,field_description:purchase_receipt_expectation_manual.field_purchase_order_manual_receipt_wizard_line____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model:ir.model.fields,field_description:purchase_receipt_expectation_manual.field_purchase_order_manual_receipt_wizard__write_uid
+#: model:ir.model.fields,field_description:purchase_receipt_expectation_manual.field_purchase_order_manual_receipt_wizard_line__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model:ir.model.fields,field_description:purchase_receipt_expectation_manual.field_purchase_order_manual_receipt_wizard__write_date
+#: model:ir.model.fields,field_description:purchase_receipt_expectation_manual.field_purchase_order_manual_receipt_wizard_line__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model:ir.model.fields,field_description:purchase_receipt_expectation_manual.field_purchase_order_manual_receipt_wizard__line_ids
+msgid "Line"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model_terms:ir.ui.view,arch_db:purchase_receipt_expectation_manual.purchase_order_manual_receipt_wizard
+msgid "Line to receive"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model:ir.model.fields.selection,name:purchase_receipt_expectation_manual.selection__purchase_order__receipt_expectation__manual
+msgid "Manual"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: code:addons/purchase_receipt_expectation_manual/wizards/purchase_order_manual_receipt.py:0
+#: model_terms:ir.ui.view,arch_db:purchase_receipt_expectation_manual.purchase_order_view_form_inherit
+#, python-format
+msgid "Manual Receipt"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model:ir.model.fields,field_description:purchase_receipt_expectation_manual.field_stock_move__manually_generated
+msgid "Manually Generated"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model:ir.model.fields,field_description:purchase_receipt_expectation_manual.field_purchase_order_line__manually_generated_move_ids
+msgid "Manually Generated Move"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model:ir.model.fields,field_description:purchase_receipt_expectation_manual.field_purchase_order_line__manually_receivable_qty
+msgid "Manually Receivable Qty"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model:ir.model.fields,field_description:purchase_receipt_expectation_manual.field_purchase_order_line__manually_receivable_qty_uom
+msgid "Manually Receivable Qty Uom"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model_terms:ir.ui.view,arch_db:purchase_receipt_expectation_manual.purchase_order_form_inherit
+msgid "Manually Received"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model:ir.model.fields,field_description:purchase_receipt_expectation_manual.field_purchase_order_line__manually_received_qty
+#: model:ir.model.fields,field_description:purchase_receipt_expectation_manual.field_stock_move__manually_received_qty
+msgid "Manually Received Qty"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model:ir.model.fields,field_description:purchase_receipt_expectation_manual.field_purchase_order_line__manually_received_qty_uom
+msgid "Manually Received Qty Uom"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model:ir.model,name:purchase_receipt_expectation_manual.model_purchase_order_manual_receipt_wizard
+msgid "PO Manual Receipt Wizard"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model:ir.model,name:purchase_receipt_expectation_manual.model_purchase_order_manual_receipt_wizard_line
+msgid "PO Manual Receipt Wizard Line"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: code:addons/purchase_receipt_expectation_manual/wizards/purchase_order_manual_receipt.py:0
+#, python-format
+msgid "Picking"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model:ir.model.fields,field_description:purchase_receipt_expectation_manual.field_purchase_order_manual_receipt_wizard_line__product_id
+msgid "Product"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model:ir.model.fields,field_description:purchase_receipt_expectation_manual.field_purchase_order_manual_receipt_wizard_line__purchase_line_id
+msgid "Purchase Line"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model:ir.model,name:purchase_receipt_expectation_manual.model_purchase_order
+#: model:ir.model.fields,field_description:purchase_receipt_expectation_manual.field_purchase_order_manual_receipt_wizard__purchase_order_id
+#: model:ir.model.fields,field_description:purchase_receipt_expectation_manual.field_purchase_order_manual_receipt_wizard_line__purchase_order_id
+msgid "Purchase Order"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model:ir.model,name:purchase_receipt_expectation_manual.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model:ir.model.fields,help:purchase_receipt_expectation_manual.field_purchase_order_line__manually_received_qty
+#: model:ir.model.fields,help:purchase_receipt_expectation_manual.field_purchase_order_line__manually_received_qty_uom
+msgid "Qty that has been received for current line (in product PO UoM)"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model:ir.model.fields,help:purchase_receipt_expectation_manual.field_stock_move__manually_received_qty
+msgid "Qty that has been received for stock move (in product's PO UoM)"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model:ir.model.fields,help:purchase_receipt_expectation_manual.field_purchase_order_line__manually_receivable_qty_uom
+msgid "Qty that has yet to be received for current line (in line UoM)"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model:ir.model.fields,help:purchase_receipt_expectation_manual.field_purchase_order_line__manually_receivable_qty
+msgid "Qty that has yet to be received for current line (in product PO UoM)"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: code:addons/purchase_receipt_expectation_manual/wizards/purchase_order_manual_receipt.py:0
+#, python-format
+msgid "Qty to receive exceeds the receivable qty:"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model:ir.model.fields,field_description:purchase_receipt_expectation_manual.field_purchase_order_manual_receipt_wizard_line__qty
+msgid "Quantity"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model:ir.model.fields,field_description:purchase_receipt_expectation_manual.field_purchase_order__receipt_expectation
+msgid "Receipt Expectation"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: code:addons/purchase_receipt_expectation_manual/wizards/purchase_order_manual_receipt.py:0
+#, python-format
+msgid ""
+"Receipts must have at least 1 line and every line must have strictly "
+"positive quantity."
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model:ir.model.fields,field_description:purchase_receipt_expectation_manual.field_purchase_order_manual_receipt_wizard__scheduled_date
+msgid "Scheduled Date"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model:ir.model,name:purchase_receipt_expectation_manual.model_stock_move
+msgid "Stock Move"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model:ir.model.fields,help:purchase_receipt_expectation_manual.field_purchase_order_manual_receipt_wizard__checks_result_msg
+msgid "Stores error messages result from executed checks"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model:ir.model.fields.selection,name:purchase_receipt_expectation_manual.selection__purchase_order_manual_receipt_wizard__checks_result__success
+msgid "Success"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model:ir.model.fields,field_description:purchase_receipt_expectation_manual.field_purchase_order_manual_receipt_wizard_line__unit_price
+msgid "Unit Price"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model:ir.model.fields,field_description:purchase_receipt_expectation_manual.field_purchase_order_manual_receipt_wizard_line__uom_id
+msgid "Unit of Measure"
+msgstr ""
+
+#. module: purchase_receipt_expectation_manual
+#: model:ir.model.fields,field_description:purchase_receipt_expectation_manual.field_purchase_order_manual_receipt_wizard_line__wizard_id
+msgid "Wizard"
+msgstr ""
