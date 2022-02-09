@@ -22,7 +22,7 @@ class PurchaseRequisitionLine(models.Model):
         for item in self:
             item.proposed_qty = sum(
                 item.requisition_id.purchase_ids.filtered(
-                    lambda x: x.state in ("draft", "sent", "to approve")
+                    lambda x: x.state not in ("cancel")
                 )
                 .order_line.filtered(lambda x: x.product_id == item.product_id)
                 .mapped("product_qty")
