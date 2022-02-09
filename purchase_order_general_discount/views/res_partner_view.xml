@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2019 Tecnativa - David Vidal
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record model="ir.ui.view" id="res_partner_form_view">
+         <field name="model">res.partner</field>
+         <field name="inherit_id" ref="base.view_partner_form" />
+         <field name="arch" type="xml">
+            <xpath expr="//group[@name='purchase']" position="inside">
+                <field
+                    name="purchase_general_discount"
+                    attrs="{'invisible': [('is_company', '=', False), ('parent_id', '!=', False)]}"
+                />
+            </xpath>
+         </field>
+     </record>
+
+</odoo>
