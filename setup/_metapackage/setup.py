@@ -33,6 +33,7 @@ setuptools.setup(
         'odoo13-addon-purchase_order_approval_block',
         'odoo13-addon-purchase_order_approved',
         'odoo13-addon-purchase_order_archive',
+        'odoo13-addon-purchase_order_general_discount',
         'odoo13-addon-purchase_order_line_deep_sort',
         'odoo13-addon-purchase_order_line_menu',
         'odoo13-addon-purchase_order_line_packaging_qty',
