@@ -5,7 +5,7 @@
     "name": "Purchase Order Line Packaging Quantity",
     "summary": "Define quantities according to product packaging"
     " on purchase order lines",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "development_status": "Alpha",
     "category": "Warehouse Management",
     "website": "https://github.com/OCA/purchase-workflow",
