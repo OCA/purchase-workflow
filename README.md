@@ -43,7 +43,7 @@ addon | version | maintainers | summary
 [purchase_order_line_deep_sort](purchase_order_line_deep_sort/) | 14.0.1.0.0 |  | Purchase Order Line Sort
 [purchase_order_line_description_picking](purchase_order_line_description_picking/) | 14.0.1.0.0 |  | Purchase Order Line Name To Picking
 [purchase_order_line_menu](purchase_order_line_menu/) | 14.0.1.0.0 |  | Adds Purchase Order Lines Menu
-[purchase_order_line_packaging_qty](purchase_order_line_packaging_qty/) | 14.0.1.0.0 |  | Define quantities according to product packaging on purchase order lines
+[purchase_order_line_packaging_qty](purchase_order_line_packaging_qty/) | 14.0.1.0.1 |  | Define quantities according to product packaging on purchase order lines
 [purchase_order_line_price_history](purchase_order_line_price_history/) | 14.0.1.0.0 |  | Purchase order line price history
 [purchase_order_line_sequence](purchase_order_line_sequence/) | 14.0.1.0.0 |  | Adds sequence to PO lines and propagates it toInvoice lines and Stock Moves
 [purchase_order_secondary_unit](purchase_order_secondary_unit/) | 14.0.1.0.0 |  | Purchase product in a secondary unit
