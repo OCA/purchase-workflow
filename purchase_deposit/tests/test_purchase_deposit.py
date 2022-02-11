@@ -66,7 +66,7 @@ class TestPurchaseDeposit(TransactionCase):
         }
         CreateDeposit = self.env["purchase.advance.payment.inv"]
         self.po.button_confirm()
-        with Form(CreateDeposit.with_context(ctx)) as f:
+        with Form(CreateDeposit.with_context(**ctx)) as f:
             f.advance_payment_method = "percentage"
             f.deposit_account_id = self.account_deposit
         wizard = f.save()
@@ -131,11 +131,11 @@ class TestPurchaseDeposit(TransactionCase):
         CreateDeposit = self.env["purchase.advance.payment.inv"]
         # 1. This action is allowed only in Purchase Order sate
         with self.assertRaises(UserError):
-            Form(CreateDeposit.with_context(ctx))  # Initi wizard
+            Form(CreateDeposit.with_context(**ctx))  # Initi wizard
         self.po.button_confirm()
         self.assertEqual(self.po.state, "purchase")
         # 2. The value of the deposit must be positive
-        f = Form(CreateDeposit.with_context(ctx))
+        f = Form(CreateDeposit.with_context(**ctx))
         f.advance_payment_method = "fixed"
         f.amount = 0.0
         f.deposit_account_id = self.account_deposit
