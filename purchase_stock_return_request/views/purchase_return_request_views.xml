@@ -34,7 +34,6 @@
         <field
             name="context"
         >{'default_return_type': 'supplier', 'default_to_refund': True}</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
 
