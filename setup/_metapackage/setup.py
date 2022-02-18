@@ -69,6 +69,7 @@ setuptools.setup(
         'odoo13-addon-purchase_substate',
         'odoo13-addon-purchase_tier_validation',
         'odoo13-addon-purchase_tier_validation_forward',
+        'odoo13-addon-purchase_triple_discount',
         'odoo13-addon-purchase_warn_message',
         'odoo13-addon-purchase_work_acceptance',
         'odoo13-addon-supplier_calendar',
