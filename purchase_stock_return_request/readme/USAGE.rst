@@ -1,6 +1,6 @@
 To use this module, you need to:
 
-#. Go to *Purchase > Purchase > Return Request* and place a new return.
+#. Go to *Purchase > Orders > Return Request* and place a new return.
 #. Select the supplier and enter the location from where the stock will be
    returned.
 #. Choose wether or not the return must be refunded.
