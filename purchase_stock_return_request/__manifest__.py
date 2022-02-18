@@ -5,17 +5,13 @@
     "version": "12.0.1.0.0",
     "category": "Stock",
     "website": "https://github.com/OCA/purchase-workflow",
-    "author": "Tecnativa, "
-              "Odoo Community Association (OCA)",
+    "author": "Tecnativa, " "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": [
-        "purchase",
-        "stock_return_request",
-    ],
+    "depends": ["purchase", "stock_return_request"],
     "data": [
-        'views/purchase_return_request_views.xml',
-        'report/stock_return_report.xml',
+        "views/purchase_return_request_views.xml",
+        "report/stock_return_report.xml",
     ],
 }
