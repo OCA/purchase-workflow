@@ -11,12 +11,14 @@ class AccountMoveLine(models.Model):
         "purchase.return.order.line",
         "Purchase Return Order Line",
         ondelete="set null",
+        copy=False,
         index=True,
     )
     purchase_return_order_id = fields.Many2one(
         "purchase.return.order",
         "Purchase Return Order",
         related="purchase_return_line_id.order_id",
+        copy=False,
         readonly=True,
     )
 
