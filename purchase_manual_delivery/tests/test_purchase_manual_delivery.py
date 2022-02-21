@@ -1,9 +1,9 @@
 # Copyright 2019 ForgeFlow S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.tests.common import TransactionCase
 from odoo import fields
 from odoo.exceptions import UserError
+from odoo.tests.common import TransactionCase
 
 
 class TestPurchaseManualDelivery(TransactionCase):
@@ -18,58 +18,70 @@ class TestPurchaseManualDelivery(TransactionCase):
         self.product2 = self.env.ref("product.product_product_25")
 
         # Sublocation
-        self.shelf2 = self.env.ref('stock.stock_location_14')
+        self.shelf2 = self.env.ref("stock.stock_location_14")
 
         # Purchase Orders
-        self.po1 = self.purchase_order_obj.create({
-            "partner_id": self.ref("base.res_partner_3"),
-        })
-        self.po1_line1 = self.purchase_order_line_obj.create({
-            "order_id": self.po1.id,
-            "product_id": self.product1.id,
-            "product_uom": self.product1.uom_id.id,
-            "name": self.product1.name,
-            "price_unit": self.product1.standard_price,
-            "date_planned": fields.datetime.now(),
-            "product_qty": 42.0,
-        })
-        self.po1_line2 = self.purchase_order_line_obj.create({
-            "order_id": self.po1.id,
-            "product_id": self.product2.id,
-            "product_uom": self.product2.uom_id.id,
-            "name": self.product2.name,
-            "price_unit": self.product2.standard_price,
-            "date_planned": fields.datetime.now(),
-            "product_qty": 12.0,
-        })
+        self.po1 = self.purchase_order_obj.create(
+            {
+                "partner_id": self.ref("base.res_partner_3"),
+            }
+        )
+        self.po1_line1 = self.purchase_order_line_obj.create(
+            {
+                "order_id": self.po1.id,
+                "product_id": self.product1.id,
+                "product_uom": self.product1.uom_id.id,
+                "name": self.product1.name,
+                "price_unit": self.product1.standard_price,
+                "date_planned": fields.datetime.now(),
+                "product_qty": 42.0,
+            }
+        )
+        self.po1_line2 = self.purchase_order_line_obj.create(
+            {
+                "order_id": self.po1.id,
+                "product_id": self.product2.id,
+                "product_uom": self.product2.uom_id.id,
+                "name": self.product2.name,
+                "price_unit": self.product2.standard_price,
+                "date_planned": fields.datetime.now(),
+                "product_qty": 12.0,
+            }
+        )
 
-        self.po2 = self.purchase_order_obj.create({
-            "partner_id": self.ref("base.res_partner_3"),
-        })
-        self.po2_line1 = self.purchase_order_line_obj.create({
-            "order_id": self.po2.id,
-            "product_id": self.product1.id,
-            "product_uom": self.product1.uom_id.id,
-            "name": self.product1.name,
-            "price_unit": self.product1.standard_price,
-            "date_planned": fields.datetime.now(),
-            "product_qty": 10.0,
-        })
-        self.po2_line2 = self.purchase_order_line_obj.create({
-            "order_id": self.po2.id,
-            "product_id": self.product2.id,
-            "product_uom": self.product2.uom_id.id,
-            "name": self.product2.name,
-            "price_unit": self.product2.standard_price,
-            "date_planned": fields.datetime.now(),
-            "product_qty": 22.0,
-        })
+        self.po2 = self.purchase_order_obj.create(
+            {
+                "partner_id": self.ref("base.res_partner_3"),
+            }
+        )
+        self.po2_line1 = self.purchase_order_line_obj.create(
+            {
+                "order_id": self.po2.id,
+                "product_id": self.product1.id,
+                "product_uom": self.product1.uom_id.id,
+                "name": self.product1.name,
+                "price_unit": self.product1.standard_price,
+                "date_planned": fields.datetime.now(),
+                "product_qty": 10.0,
+            }
+        )
+        self.po2_line2 = self.purchase_order_line_obj.create(
+            {
+                "order_id": self.po2.id,
+                "product_id": self.product2.id,
+                "product_uom": self.product2.uom_id.id,
+                "name": self.product2.name,
+                "price_unit": self.product2.standard_price,
+                "date_planned": fields.datetime.now(),
+                "product_qty": 22.0,
+            }
+        )
 
     def test_01_purchase_order_manual_delivery(self):
         """
-            Confirm Purchase Order 1, check no incoming shipments have been
-            pre-created, create them manually (create one with one PO line,
-            add second PO line to same picking afterwards)
+        Confirm Purchase Order 1, check no incoming shipments have been
+        pre-created, create them manually (create one with one PO line,
+        add second PO line to same picking afterwards)
         """
         # confirm RFQ
         self.po1.button_confirm_manual()
@@ -144,24 +156,26 @@ class TestPurchaseManualDelivery(TransactionCase):
 
     def test_02_purchase_order_line_manual_delivery(self):
         """
-            Confirm Purchase Order 1 and 2, try to create incoming shipment
-            from two PO lines from different PO (error), create one reception
-            for two PO lines from same PO twice.
+        Confirm Purchase Order 1 and 2, try to create incoming shipment
+        from two PO lines from different PO (error), create one reception
+        for two PO lines from same PO twice.
         """
         # confirm RFQ
         self.po1.button_confirm_manual()
         self.po2.button_confirm_manual()
         with self.assertRaises(UserError):
             # create a manual delivery for two lines different PO
-            self.env["create.stock.picking.wizard"].with_context({
-                "active_model": "purchase.order.line",
-                "active_ids": [self.po1_line1.id, self.po2_line1.id],
-            }).create({})
+            self.env["create.stock.picking.wizard"].with_context(
+                {
+                    "active_model": "purchase.order.line",
+                    "active_ids": [self.po1_line1.id, self.po2_line1.id],
+                }
+            ).create({})
 
         # create a manual delivery for lines in PO2
         wizard = (
             self.env["create.stock.picking.wizard"]
-                .with_context(
+            .with_context(
                 {
                     "active_model": "purchase.order.line",
                     "active_ids": self.po2.order_line.ids,
@@ -179,17 +193,17 @@ class TestPurchaseManualDelivery(TransactionCase):
 
     def test_03_purchase_order_line_location(self):
         """
-            Confirm Purchase Order 1, create one reception changing the
-            location, check location has been correctly set in Picking.
+        Confirm Purchase Order 1, create one reception changing the
+        location, check location has been correctly set in Picking.
         """
-        grp_multi_loc = self.env.ref('stock.group_stock_multi_locations')
-        self.env.user.write({'groups_id': [(4, grp_multi_loc.id, 0)]})
+        grp_multi_loc = self.env.ref("stock.group_stock_multi_locations")
+        self.env.user.write({"groups_id": [(4, grp_multi_loc.id, 0)]})
         # confirm RFQ
         self.po1.button_confirm_manual()
         # create a manual delivery for one line (product1)
         wizard = (
             self.env["create.stock.picking.wizard"]
-                .with_context(
+            .with_context(
                 {
                     "active_model": "purchase.order",
                     "active_id": self.po1.id,

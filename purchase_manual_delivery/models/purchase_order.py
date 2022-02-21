@@ -2,8 +2,9 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
-from odoo.addons import decimal_precision as dp
 from odoo.tools import float_compare
+
+from odoo.addons import decimal_precision as dp
 
 
 class PurchaseOrder(models.Model):
@@ -15,16 +16,13 @@ class PurchaseOrder(models.Model):
         for order in self:
             order.pending_to_receive = True
             if all(
-                val is False
-                for val in order.mapped("order_line.pending_to_receive")
+                val is False for val in order.mapped("order_line.pending_to_receive")
             ):
                 order.pending_to_receive = False
 
     @api.multi
     def button_confirm_manual(self):
-        super(
-            PurchaseOrder, self.with_context(manual_delivery=True)
-        ).button_confirm()
+        super(PurchaseOrder, self.with_context(manual_delivery=True)).button_confirm()
 
     @api.multi
     def _create_picking(self):
@@ -42,8 +40,7 @@ class PurchaseOrderLine(models.Model):
         compute="_compute_existing_qty",
         string="Existing Qty",
         digits=dp.get_precision("Product Unit of Measure"),
-        help="Quantity already planned or shipped (stock movements "
-        "already created)",
+        help="Quantity already planned or shipped (stock movements " "already created)",
     )
     pending_to_receive = fields.Boolean(
         compute="_compute_existing_qty",
