@@ -55,7 +55,6 @@
         <field name="name">Create Manual Stock Picking</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">create.stock.picking.wizard</field>
-        <field name="view_type">form</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
         <field name="binding_model_id" ref="purchase.model_purchase_order_line" />
