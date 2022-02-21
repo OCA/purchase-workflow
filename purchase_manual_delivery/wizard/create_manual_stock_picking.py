@@ -145,7 +145,7 @@ class CreateManualStockPickingWizard(models.TransientModel):
             lambda x: x.state not in ("done", "cancel")
         )._action_confirm()
         seq = 0
-        for move in sorted(moves, key=lambda move: move.date_expected):
+        for move in sorted(moves, key=lambda move: move.date_deadline or move.date):
             seq += 5
             move.sequence = seq
         moves._action_assign()
@@ -157,7 +157,6 @@ class CreateManualStockPickingWizard(models.TransientModel):
 
         return {
             "name": _("Stock Picking"),
-            "view_type": "form",
             "view_mode": "form",
             "res_model": "stock.picking",
             "view_id": self.env.ref("stock.view_picking_form").id,
@@ -225,7 +224,6 @@ class CreateManualStockPickingWizardLine(models.TransientModel):
         "account.tax", related="purchase_order_line_id.taxes_id"
     )
 
-    @api.multi
     def _compute_remaining_qty(self):
         for line in self:
             line.remaining_qty = line.product_qty - line.existing_qty
@@ -234,7 +232,6 @@ class CreateManualStockPickingWizardLine(models.TransientModel):
         po_line = self.purchase_order_line_id
         return po_line._prepare_stock_moves(picking)
 
-    @api.multi
     def _create_stock_moves(self, picking):
         values = []
         for line in self:

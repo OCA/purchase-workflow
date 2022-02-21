@@ -4,8 +4,6 @@
 from odoo import api, fields, models
 from odoo.tools import float_compare
 
-from odoo.addons import decimal_precision as dp
-
 
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
@@ -20,11 +18,9 @@ class PurchaseOrder(models.Model):
             ):
                 order.pending_to_receive = False
 
-    @api.multi
     def button_confirm_manual(self):
         super(PurchaseOrder, self.with_context(manual_delivery=True)).button_confirm()
 
-    @api.multi
     def _create_picking(self):
         if self.env.context.get("manual_delivery", False):
             # We do not want to create the picking when confirming the order
@@ -39,7 +35,7 @@ class PurchaseOrderLine(models.Model):
     existing_qty = fields.Float(
         compute="_compute_existing_qty",
         string="Existing Qty",
-        digits=dp.get_precision("Product Unit of Measure"),
+        digits="Product Unit of Measure",
         help="Quantity already planned or shipped (stock movements " "already created)",
     )
     pending_to_receive = fields.Boolean(
@@ -67,7 +63,8 @@ class PurchaseOrderLine(models.Model):
                                 move.product_uom_qty, line.product_uom
                             )
                     elif (
-                        move.origin_returned_move_id._is_dropshipped()
+                        move.origin_returned_move_id
+                        and move.origin_returned_move_id._is_dropshipped()
                         and not move._is_dropshipped_returned()
                     ):
                         # Edge case: the dropship is returned to the stock,
