@@ -13,6 +13,7 @@ class AccountMove(models.Model):
         readonly=True,
         states={"draft": [("readonly", False)]},
         string="Purchase Return Order",
+        copy=False,
         help="Auto-complete from a past purchase return order.",
     )
 
