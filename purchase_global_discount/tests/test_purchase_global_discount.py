@@ -175,6 +175,9 @@ class TestPurchaseGlobalDiscount(common.SavepointCase):
         """All the discounts go to the invoice"""
         self.purchase.partner_id = self.partner_2
         self.purchase.onchange_partner_id()
+        self.purchase.order_line.mapped("product_id").write(
+            {"purchase_method": "purchase"}
+        )
         self.purchase.button_confirm()
         act_data = self.purchase.action_create_invoice()
         move = self.env["account.move"].browse(act_data["res_id"])
@@ -216,8 +219,10 @@ class TestPurchaseGlobalDiscount(common.SavepointCase):
         self.purchase.order_line[1].taxes_id = [(6, 0, self.tax_1.ids)]
         with self.assertRaises(exceptions.UserError):
             self.purchase.global_discount_ids = self.global_discount_1
+            self.purchase._amount_all()
 
     def test_05_no_taxes(self):
         self.purchase.order_line[1].taxes_id = False
         with self.assertRaises(exceptions.UserError):
             self.purchase.global_discount_ids = self.global_discount_1
+            self.purchase._amount_all()
