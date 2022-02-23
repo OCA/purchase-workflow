@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template id="supplier_return_request_valued_total">
+        <div class="clearfix">
+            <div id="total" class="row">
+                <div class="col-xs-4 pull-right">
+                    <table
+                        class="table table-condensed"
+                        style="min-width: 250px;max-width: 400px;page-break-inside: avoid;"
+                    >
+                        <t
+                            t-set="amount_all"
+                            t-value="request_obj._get_po_amount_all(move_lines, currency_id)"
+                        />
+                        <tr class="border-black">
+                            <td><strong>Subtotal</strong></td>
+                            <td class="text-right">
+                                <span
+                                    t-esc="amount_all['amount_untaxed']"
+                                    t-options="{'widget': 'monetary', 'display_currency': currency_id}"
+                                />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Taxes</td>
+                            <td class="text-right">
+                                <span
+                                    t-esc="amount_all['amount_tax']"
+                                    t-options="{'widget': 'monetary', 'display_currency': currency_id}"
+                                />
+                            </td>
+                        </tr>
+                        <tr class="border-black">
+                            <td><strong>Total</strong></td>
+                            <td class="text-right">
+                                <span
+                                    t-esc="amount_all['amount_total']"
+                                    t-options="{'widget': 'monetary', 'display_currency': currency_id}"
+                                />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template
+        id="stock_move_lines_to_return_purchase_value"
+        inherit_id="stock_return_request.stock_move_lines_to_return"
+    >
+        <xpath
+            expr="//th[@name='th_qty']"
+            position="after"
+            groups="purchase.group_purchase_user"
+        >
+            <th name="th_to_refund" class="text-center">
+                <strong>To Refund</strong>
+            </th>
+            <th name="th_price_unit" class="text-right">
+                <strong>Price</strong>
+            </th>
+            <th name="th__sbtl" class="text-right">
+                <strong>Subtotal</strong>
+            </th>
+        </xpath>
+        <xpath
+            expr="//td[@name='td_qty']"
+            position="after"
+            groups="purchase.group_purchase_user"
+        >
+            <td name="td_to_refund" class="text-center">
+                <t t-if="move_line.move_id.to_refund">
+                    <span>&#9745;</span>
+                </t>
+                <t t-else="">
+                    <span>&#9744;</span>
+                </t>
+            </td>
+            <td name="td_price_unit" class="text-right">
+                <span
+                    t-esc="request_obj._get_po_price_unit(move_line)"
+                    t-options="{'widget': 'float', 'decimal_precision': 'Product Price'}"
+                />
+            </td>
+            <td name="td_subtl" class="text-right">
+                <span
+                    t-esc="request_obj._get_po_line_amount(move_line, move_line.qty_done)['price_subtotal']"
+                    t-options="{'widget': 'monetary', 'display_currency': move_line.move_id.purchase_line_id.currency_id}"
+                />
+            </td>
+        </xpath>
+        <xpath
+            expr="//th[@name='th_product']"
+            position="before"
+            groups="purchase.group_purchase_user"
+        >
+            <th name="th_po_info">
+                <strong>Order Ref.</strong>
+            </th>
+        </xpath>
+        <xpath
+            expr="//td[@name='td_product']"
+            position="before"
+            groups="purchase.group_purchase_user"
+        >
+            <td name="td_po_info">
+                <span>
+                    <t
+                        t-esc="move_line.move_id.purchase_line_id.order_id.partner_ref or ''"
+                    />
+                    [<t
+                        t-esc="move_line.move_id.purchase_line_id.order_id.name or ''"
+                    />]
+                </span>
+            </td>
+        </xpath>
+    </template>
+
+    <template
+        id="report_stock_return_request_document"
+        inherit_id="stock_return_request.report_stock_return_request_document"
+    >
+        <xpath expr="//t[@name='move_lines']" position="after">
+            <t
+                t-call="purchase_stock_return_request.supplier_return_request_valued_total"
+                name="purchase_return_total"
+                t-if="request.return_type == 'supplier'"
+                groups="purchase.group_purchase_user"
+            >
+                <t
+                    t-set="move_lines"
+                    t-value="request.returned_picking_ids.mapped('move_line_ids')"
+                />
+                <t t-set="request_obj" t-value="request" />
+                <t t-set="currency_id" t-value="res_company.currency_id" />
+            </t>
+        </xpath>
+        <xpath expr="//t[@name='move_lines']" position="inside">
+            <t t-set="request_obj" t-value="request" />
+        </xpath>
+    </template>
+
+</odoo>
