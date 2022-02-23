@@ -14,6 +14,7 @@
     "website": "https://github.com/OCA/purchase-workflow",
     "depends": ["purchase_stock"],
     "data": [
+        "security/ir.model.access.csv",
         "wizard/create_manual_stock_picking.xml",
         "views/purchase_order_views.xml",
         "views/res_config_view.xml",
