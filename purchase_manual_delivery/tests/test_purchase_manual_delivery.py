@@ -12,7 +12,7 @@ class TestPurchaseManualDelivery(TransactionCase):
         self.purchase_order_obj = self.env["purchase.order"]
         self.purchase_order_line_obj = self.env["purchase.order.line"]
         self.stock_picking_obj = self.env["stock.picking"]
-
+        self.env.company.purchase_manual_delivery = True
         # Products
         self.product1 = self.env.ref("product.product_product_13")
         self.product2 = self.env.ref("product.product_product_25")
