@@ -9,6 +9,10 @@ class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
     pending_to_receive = fields.Boolean(compute="_compute_pending_to_receive")
+    manual_delivery = fields.Boolean(
+        string="Purchase manual delivery?",
+        default=lambda self: self.env.company.purchase_manual_delivery,
+    )
 
     def _compute_pending_to_receive(self):
         for order in self:
@@ -22,7 +26,7 @@ class PurchaseOrder(models.Model):
         super(PurchaseOrder, self.with_context(manual_delivery=True)).button_confirm()
 
     def _create_picking(self):
-        if self.env.context.get("manual_delivery", False):
+        if self.env.context.get("manual_delivery", False) and self.manual_delivery:
             # We do not want to create the picking when confirming the order
             # if it comes from manual confirmation
             return
