@@ -16,5 +16,6 @@
     "data": [
         "wizard/create_manual_stock_picking.xml",
         "views/purchase_order_views.xml",
+        "views/res_config_view.xml",
     ],
 }
