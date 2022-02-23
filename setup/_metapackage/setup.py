@@ -65,6 +65,7 @@ setuptools.setup(
         'odoo13-addon-purchase_security',
         'odoo13-addon-purchase_stock_picking_show_currency_rate',
         'odoo13-addon-purchase_stock_price_unit_sync',
+        'odoo13-addon-purchase_stock_return_request',
         'odoo13-addon-purchase_stock_secondary_unit',
         'odoo13-addon-purchase_substate',
         'odoo13-addon-purchase_tier_validation',
