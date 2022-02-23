@@ -53,6 +53,9 @@
                     name="decoration-info"
                 >state == 'purchase' and pending_to_receive</attribute>
             </xpath>
+            <group name="other_info" position="inside">
+                <field name="manual_delivery" />
+            </group>
         </field>
     </record>
 
