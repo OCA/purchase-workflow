@@ -230,6 +230,7 @@ class PurchaseInvoicePlan(models.Model):
     def _compute_new_invoice_quantity(self, invoice):
         self.ensure_one()
         percent = self.percent
+        move = invoice.with_context({"check_move_validity": False})
         for line in invoice.invoice_line_ids:
             assert (
                 len(line.purchase_line_id) >= 0
@@ -246,7 +247,8 @@ class PurchaseInvoicePlan(models.Model):
                     % (plan_qty, line.quantity)
                 )
             line.with_context(check_move_validity=False).write({"quantity": plan_qty})
-
+        # Call this method to recompute dr/cr lines
+        move._move_autocomplete_invoice_lines_values()
     @api.model
     def _get_plan_qty(self, order_line, percent):
         plan_qty = order_line.product_qty * (percent / 100)
