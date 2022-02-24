@@ -81,6 +81,10 @@ class TestPurchaseManualDelivery(TransactionCase):
         """
         # confirm RFQ
         self.po1.button_confirm_manual()
+        self.assertTrue(self.po1_line1.pending_to_receive)
+        self.assertTrue(self.po1_line2.pending_to_receive)
+        self.assertEqual(self.po1_line1.qty_in_receipt, 0)
+        self.assertEqual(self.po1_line2.qty_in_receipt, 0)
         self.assertFalse(
             self.po1.picking_ids,
             "Purchase Manual Delivery: no picking should had been created",
@@ -147,6 +151,10 @@ class TestPurchaseManualDelivery(TransactionCase):
             "Purchase Manual Delivery: After picking \
             creation for all products, no lines should be left in the wizard",
         )
+        self.assertFalse(self.po1_line1.pending_to_receive)
+        self.assertFalse(self.po1_line2.pending_to_receive)
+        self.assertEqual(self.po1_line1.qty_in_receipt, self.po1_line1.product_qty)
+        self.assertEqual(self.po1_line2.qty_in_receipt, self.po1_line2.product_qty)
 
     def test_02_purchase_order_line_manual_delivery(self):
         """
@@ -157,6 +165,14 @@ class TestPurchaseManualDelivery(TransactionCase):
         # confirm RFQ
         self.po1.button_confirm_manual()
         self.po2.button_confirm_manual()
+        self.assertTrue(self.po1_line1.pending_to_receive)
+        self.assertTrue(self.po1_line2.pending_to_receive)
+        self.assertTrue(self.po2_line1.pending_to_receive)
+        self.assertTrue(self.po2_line2.pending_to_receive)
+        self.assertEqual(self.po1_line1.qty_in_receipt, 0)
+        self.assertEqual(self.po1_line2.qty_in_receipt, 0)
+        self.assertEqual(self.po2_line1.qty_in_receipt, 0)
+        self.assertEqual(self.po2_line2.qty_in_receipt, 0)
         with self.assertRaises(UserError):
             # create a manual delivery for two lines different PO
             self.env["create.stock.picking.wizard"].with_context(
@@ -184,6 +200,14 @@ class TestPurchaseManualDelivery(TransactionCase):
             'Purchase Manual Delivery: picking \
             should be created after "manual delivery" wizard call',
         )
+        self.assertTrue(self.po1_line1.pending_to_receive)
+        self.assertTrue(self.po1_line2.pending_to_receive)
+        self.assertFalse(self.po2_line1.pending_to_receive)
+        self.assertFalse(self.po2_line2.pending_to_receive)
+        self.assertEqual(self.po1_line1.qty_in_receipt, 0)
+        self.assertEqual(self.po1_line2.qty_in_receipt, 0)
+        self.assertEqual(self.po2_line1.qty_in_receipt, self.po2_line1.product_qty)
+        self.assertEqual(self.po2_line2.qty_in_receipt, self.po2_line2.product_qty)
 
     def test_03_purchase_order_line_location(self):
         """
@@ -194,6 +218,10 @@ class TestPurchaseManualDelivery(TransactionCase):
         self.env.user.write({"groups_id": [(4, grp_multi_loc.id, 0)]})
         # confirm RFQ
         self.po1.button_confirm_manual()
+        self.assertTrue(self.po1_line1.pending_to_receive)
+        self.assertTrue(self.po1_line2.pending_to_receive)
+        self.assertEqual(self.po1_line1.qty_in_receipt, 0)
+        self.assertEqual(self.po1_line2.qty_in_receipt, 0)
         # create a manual delivery for one line (product1)
         wizard = (
             self.env["create.stock.picking.wizard"]
@@ -215,3 +243,7 @@ class TestPurchaseManualDelivery(TransactionCase):
         # check picking is created
         picking_id = self.po1.picking_ids[0]
         self.assertEqual(picking_id.location_dest_id, self.shelf2)
+        self.assertFalse(self.po1_line1.pending_to_receive)
+        self.assertTrue(self.po1_line2.pending_to_receive)
+        self.assertEqual(self.po1_line1.qty_in_receipt, self.po1_line1.product_qty)
+        self.assertEqual(self.po1_line2.qty_in_receipt, 0)
