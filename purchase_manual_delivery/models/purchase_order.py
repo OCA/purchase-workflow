@@ -60,7 +60,9 @@ class PurchaseOrderLine(models.Model):
     )
     def _compute_qty_in_receipt(self):
         for line in self:
-            rounding = line.company_id.currency_id.rounding
+            precision_digits = self.env["decimal.precision"].precision_get(
+                "Product Unit of Measure"
+            )
             total = 0.0
             for move in line.move_ids:
                 if move.state not in ["done", "cancel"]:
@@ -89,7 +91,7 @@ class PurchaseOrderLine(models.Model):
             if float_compare(
                 line.product_uom_qty - line.qty_received,
                 line.qty_in_receipt,
-                precision_rounding=rounding,
+                precision_digits=precision_digits,
             ):
                 line.pending_to_receive = True
             else:
