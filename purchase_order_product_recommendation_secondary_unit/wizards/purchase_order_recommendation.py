@@ -6,8 +6,6 @@ from math import ceil
 from odoo import api, fields, models
 from odoo.tools.float_utils import float_compare, float_round
 
-from odoo.addons import decimal_precision as dp
-
 
 class PurchaseOrderRecommendation(models.TransientModel):
     _inherit = "purchase.order.recommendation"
@@ -47,7 +45,8 @@ class PurchaseOrderRecommendationLine(models.TransientModel):
         readonly=True,
     )
     secondary_uom_qty = fields.Float(
-        string="Secondary Qty", digits=dp.get_precision("Product Unit of Measure"),
+        string="Secondary Qty",
+        digits="Product Unit of Measure",
     )
 
     @api.onchange("secondary_uom_id", "secondary_uom_qty")
@@ -88,7 +87,6 @@ class PurchaseOrderRecommendationLine(models.TransientModel):
         ):
             self.secondary_uom_qty = qty
 
-    @api.multi
     def _prepare_update_po_line(self):
         res = super()._prepare_update_po_line()
         if self.secondary_uom_id and self.secondary_uom_qty:
@@ -100,7 +98,6 @@ class PurchaseOrderRecommendationLine(models.TransientModel):
             )
         return res
 
-    @api.multi
     def _prepare_new_po_line(self, sequence):
         res = super()._prepare_new_po_line(sequence)
         if self.secondary_uom_id and self.secondary_uom_qty:
