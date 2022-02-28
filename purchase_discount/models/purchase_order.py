@@ -13,6 +13,8 @@ class PurchaseOrderLine(models.Model):
 
     @api.depends('discount')
     def _compute_amount(self):
+        original_digits = self._fields["price_unit"]._digits
+        self._fields["price_unit"]._digits = (16, 8)
         for line in self:
             price_unit = False
             # This is always executed for allowing other modules to use this
@@ -25,6 +27,7 @@ class PurchaseOrderLine(models.Model):
             super(PurchaseOrderLine, line)._compute_amount()
             if price_unit:
                 line.price_unit = price_unit
+            self._fields["price_unit"]._digits = original_digits
 
     discount = fields.Float(
         string='Discount (%)', digits=dp.get_precision('Discount'),

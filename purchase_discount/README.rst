@@ -40,6 +40,7 @@ Contributors
 * OpenERP S.A.
 * Ignacio Ibeas <ignacio@acysos.com>
 * Pedro M. Baeza <pedro.baeza@tecnativa.com>
+* Isaac Gallart <igallart@puntsistemes.es>
 
 Icon
 ----
