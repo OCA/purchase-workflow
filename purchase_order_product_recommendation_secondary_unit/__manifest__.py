@@ -14,7 +14,5 @@
         "purchase_order_product_recommendation",
         "purchase_order_secondary_unit",
     ],
-    "data": [
-        "wizards/purchase_order_recommendation_view.xml",
-    ],
+    "data": ["wizards/purchase_order_recommendation_view.xml"],
 }
