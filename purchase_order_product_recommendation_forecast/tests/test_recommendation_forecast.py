@@ -1,8 +1,8 @@
 # Copyright 2021 Tecnativa - David Vidal
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import fields
-from odoo.addons.purchase_order_product_recommendation.tests import (
-    test_recommendation)
+
+from odoo.addons.purchase_order_product_recommendation.tests import test_recommendation
 
 
 class TestSaleProductClassification(test_recommendation.RecommendationCase):
@@ -11,14 +11,16 @@ class TestSaleProductClassification(test_recommendation.RecommendationCase):
         super().setUpClass()
         # Quickly generate 3 products with a different price each. We'll be
         # using a new set of products to avoid history pollution.
-        cls.forecasted_products = cls.env["product.product"].create([
-            {
-                "name": "Test product forecast {}".format(i + 4),
-                "type": "product",
-                "seller_ids": [(0, 0, {"name": cls.partner.id})],
-            }
-            for i in range(3)
-        ])
+        cls.forecasted_products = cls.env["product.product"].create(
+            [
+                {
+                    "name": "Test product forecast {}".format(i + 4),
+                    "type": "product",
+                    "seller_ids": [(0, 0, {"name": cls.partner.id})],
+                }
+                for i in range(3)
+            ]
+        )
         cls.prod_4, cls.prod_5, cls.prod_6 = cls.forecasted_products
         # History of deliveries we want to reproduce separeted for the periods
         # we'll evaluate.
@@ -42,31 +44,35 @@ class TestSaleProductClassification(test_recommendation.RecommendationCase):
         cls.sml_forecast = cls.env["stock.move.line"]
         for history_date, history_tuple in history_data.items():
             history_date = fields.Datetime.from_string(history_date)
-            cls.sml_forecast |= cls.env["stock.move.line"].create([
-                {
-                    "date": history_date,
-                    "product_id": product.id,
-                    "product_uom_id": product.uom_id.id,
-                    "qty_done": qty,
-                    "location_id": cls.wh1.lot_stock_id.id,
-                    "location_dest_id": cls.customer_loc.id,
-                }
-                for product, qty in zip(cls.forecasted_products, history_tuple)
-                if qty
-            ])
+            cls.sml_forecast |= cls.env["stock.move.line"].create(
+                [
+                    {
+                        "date": history_date,
+                        "product_id": product.id,
+                        "product_uom_id": product.uom_id.id,
+                        "qty_done": qty,
+                        "location_id": cls.wh1.lot_stock_id.id,
+                        "location_dest_id": cls.customer_loc.id,
+                    }
+                    for product, qty in zip(cls.forecasted_products, history_tuple)
+                    if qty
+                ]
+            )
         # Ensure that the state is set
         cls.sml_forecast.write({"state": "done"})
         # Initializa current stock:
         #  p4 | p5 | p6
         #  15 | 10 | 200
-        cls.env["stock.quant"].create([
-            {
-                "product_id": product.id,
-                "location_id": cls.wh1.lot_stock_id.id,
-                "quantity": qty,
-            }
-            for product, qty in zip(cls.forecasted_products, (15, 10, 200))
-        ])
+        cls.env["stock.quant"].create(
+            [
+                {
+                    "product_id": product.id,
+                    "location_id": cls.wh1.lot_stock_id.id,
+                    "quantity": qty,
+                }
+                for product, qty in zip(cls.forecasted_products, (15, 10, 200))
+            ]
+        )
 
     def test_recommendation_forecast(self):
         """Test forecast for different products and slices of time"""

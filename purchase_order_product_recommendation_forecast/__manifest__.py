@@ -10,10 +10,6 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": [
-        "purchase_order_product_recommendation",
-    ],
-    "data": [
-        "wizards/purchase_order_recommendation_view.xml",
-    ],
+    "depends": ["purchase_order_product_recommendation"],
+    "data": ["wizards/purchase_order_recommendation_view.xml"],
 }
