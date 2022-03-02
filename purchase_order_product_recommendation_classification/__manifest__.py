@@ -13,6 +13,5 @@
         "purchase_order_product_recommendation",
         "sale_product_classification",
     ],
-    "data": [
-    ]
+    "data": [],
 }

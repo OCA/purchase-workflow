@@ -4,15 +4,10 @@ from odoo import api, fields, models
 
 
 class PurchaseOrderRecommendation(models.TransientModel):
-    _inherit = 'purchase.order.recommendation'
+    _inherit = "purchase.order.recommendation"
 
     sale_classification = fields.Selection(
-        selection=[
-            ("a", "A"),
-            ("b", "B"),
-            ("c", "C"),
-            ("d", "D"),
-        ],
+        selection=[("a", "A"), ("b", "B"), ("c", "C"), ("d", "D"),],
         string="Sales classification",
     )
     seasonality_classification = fields.Selection(
@@ -30,13 +25,14 @@ class PurchaseOrderRecommendation(models.TransientModel):
         products = super()._get_products()
         if self.sale_classification:
             products = products.filtered(
-                lambda x: x.sale_classification == self.sale_classification)
+                lambda x: x.sale_classification == self.sale_classification
+            )
         if self.seasonality_classification:
             products = products.filtered(
                 lambda x: (
-                    x.seasonality_classification ==
-                    self.seasonality_classification
-            ))
+                    x.seasonality_classification == self.seasonality_classification
+                )
+            )
         return products
 
     def _get_all_products_domain(self):
@@ -46,11 +42,7 @@ class PurchaseOrderRecommendation(models.TransientModel):
             domain += [("sale_classification", "=", self.sale_classification)]
         if self.seasonality_classification:
             domain += [
-                (
-                    "seasonality_classification",
-                    "=",
-                    self.seasonality_classification
-                )
+                ("seasonality_classification", "=", self.seasonality_classification)
             ]
         return domain
 
@@ -61,13 +53,11 @@ class PurchaseOrderRecommendation(models.TransientModel):
 
 
 class PurchaseOrderRecommendationLine(models.TransientModel):
-    _inherit = 'purchase.order.recommendation.line'
+    _inherit = "purchase.order.recommendation.line"
 
     sale_classification = fields.Selection(
-        related='product_id.sale_classification',
-        readonly=True,
+        related="product_id.sale_classification", readonly=True,
     )
     seasonality_classification = fields.Selection(
-        related='product_id.seasonality_classification',
-        readonly=True,
+        related="product_id.seasonality_classification", readonly=True,
     )

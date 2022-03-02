@@ -1,7 +1,6 @@
 # Copyright 2021 Tecnativa
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo.addons.purchase_order_product_recommendation.tests import (
-    test_recommendation)
+from odoo.addons.purchase_order_product_recommendation.tests import test_recommendation
 
 
 class ClassificationRecommendationCase(test_recommendation.RecommendationCase):
@@ -18,7 +17,7 @@ class ClassificationRecommendationCase(test_recommendation.RecommendationCase):
     def test_recommendations_by_classification(self):
         """We can filter by brand"""
         wizard = self.wizard()
-        wizard.date_begin = wizard.date_end = '2019-02-01'
+        wizard.date_begin = wizard.date_end = "2019-02-01"
         # Just delivered from brand 1
         wizard.sale_classification = "b"
         wizard.seasonality_classification = "high"
