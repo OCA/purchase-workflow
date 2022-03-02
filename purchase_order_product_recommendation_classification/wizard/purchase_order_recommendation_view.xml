@@ -8,15 +8,33 @@
         />
         <field name="arch" type="xml">
             <field name="warehouse_ids" position="before">
-                <field name="sale_classification" />
+                <field name="abc_classification_profile_id" />
+                <field
+                    name="abc_classification_level_id"
+                    widget="selection"
+                    attrs="{'invisible': [('abc_classification_profile_id', '=', False)], 'required': [('abc_classification_profile_id', '!=', False)]}"
+                />
                 <field name="seasonality_classification" />
             </field>
             <xpath
-                expr="//field[@name='line_ids']//field[@name'product_id']"
+                expr="//field[@name='line_ids']//field[@name='product_id']"
                 position="after"
             >
-                <field name="sale_classification" string="Sale" />
-                <field name="seasonality_classification" string="Season" />
+                <field
+                    name="abc_classification_profile_id"
+                    string="Sale Profile"
+                    optional="show"
+                />
+                <field
+                    name="abc_classification_level_id"
+                    string="Sale"
+                    optional="show"
+                />
+                <field
+                    name="seasonality_classification"
+                    string="Season"
+                    optional="show"
+                />
             </xpath>
         </field>
     </record>

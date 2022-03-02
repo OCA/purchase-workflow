@@ -3,7 +3,7 @@
 {
     "name": "Purchase recommendations according to sales classification",
     "summary": "Extends the purchase recomendator with classification filters",
-    "version": "12.0.1.0.0",
+    "version": "13.0.1.0.0",
     "category": "Purchases",
     "website": "https://github.com/OCA/purchase-workflow",
     "author": "Tecnativa, Odoo Community Association (OCA)",
@@ -11,7 +11,7 @@
     "installable": True,
     "depends": [
         "purchase_order_product_recommendation",
-        "sale_product_classification",
+        "product_abc_classification_sale",
     ],
-    "data": [],
+    "data": ["wizard/purchase_order_recommendation_view.xml"],
 }
