@@ -7,9 +7,26 @@ class ClassificationRecommendationCase(test_recommendation.RecommendationCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.prod_1.sale_classification = "a"
-        cls.prod_2.sale_classification = "b"
-        cls.prod_3.sale_classification = "b"
+        cls.profile = cls.env["abc.classification.profile"].create(
+            {
+                "name": "Test Profile",
+                "classification_type": "fixed",
+                "data_source": "sale_report",
+                "value_criteria": "sold_delivered_value",
+            }
+        )
+        cls.a = cls.env["abc.classification.profile.level"].create(
+            {"profile_id": cls.profile.id, "fixed": 10000}
+        )
+        cls.b = cls.env["abc.classification.profile.level"].create(
+            {"profile_id": cls.profile.id, "fixed": 5000}
+        )
+        cls.prod_1.abc_classification_profile_id = cls.profile
+        cls.prod_2.abc_classification_profile_id = cls.profile
+        cls.prod_3.abc_classification_profile_id = cls.profile
+        cls.prod_1.abc_classification_level_id = cls.a
+        cls.prod_2.abc_classification_level_id = cls.b
+        cls.prod_3.abc_classification_level_id = cls.b
         cls.prod_1.seasonality_classification = "high"
         cls.prod_2.seasonality_classification = "high"
         cls.prod_3.seasonality_classification = "low"
@@ -19,7 +36,8 @@ class ClassificationRecommendationCase(test_recommendation.RecommendationCase):
         wizard = self.wizard()
         wizard.date_begin = wizard.date_end = "2019-02-01"
         # Just delivered from brand 1
-        wizard.sale_classification = "b"
+        wizard.abc_classification_profile_id = self.profile
+        wizard.abc_classification_level_id = self.b
         wizard.seasonality_classification = "high"
         wizard.show_all_partner_products = True
         wizard._generate_recommendations()

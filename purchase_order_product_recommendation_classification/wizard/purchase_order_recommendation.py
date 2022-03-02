@@ -6,9 +6,14 @@ from odoo import api, fields, models
 class PurchaseOrderRecommendation(models.TransientModel):
     _inherit = "purchase.order.recommendation"
 
-    sale_classification = fields.Selection(
-        selection=[("a", "A"), ("b", "B"), ("c", "C"), ("d", "D"),],
-        string="Sales classification",
+    abc_classification_profile_id = fields.Many2one(
+        comodel_name="abc.classification.profile",
+        string="Classification Profile",
+    )
+    abc_classification_level_id = fields.Many2one(
+        comodel_name="abc.classification.profile.level",
+        string="Classification Level",
+        domain="[('profile_id', '=', abc_classification_profile_id)]",
     )
     seasonality_classification = fields.Selection(
         selection=[
@@ -23,9 +28,11 @@ class PurchaseOrderRecommendation(models.TransientModel):
     def _get_products(self):
         """Filter products of the given classifications"""
         products = super()._get_products()
-        if self.sale_classification:
+        if self.abc_classification_profile_id and self.abc_classification_level_id:
             products = products.filtered(
-                lambda x: x.sale_classification == self.sale_classification
+                lambda x: x.abc_classification_profile_id
+                == self.abc_classification_profile_id
+                and x.abc_classification_level_id == self.abc_classification_level_id
             )
         if self.seasonality_classification:
             products = products.filtered(
@@ -38,15 +45,30 @@ class PurchaseOrderRecommendation(models.TransientModel):
     def _get_all_products_domain(self):
         """Filter products of the given classifications"""
         domain = super()._get_all_products_domain()
-        if self.sale_classification:
-            domain += [("sale_classification", "=", self.sale_classification)]
+        if self.abc_classification_profile_id and self.abc_classification_level_id:
+            domain += [
+                (
+                    "abc_classification_profile_id",
+                    "=",
+                    self.abc_classification_profile_id.id,
+                ),
+                (
+                    "abc_classification_level_id",
+                    "=",
+                    self.abc_classification_level_id.id,
+                ),
+            ]
         if self.seasonality_classification:
             domain += [
                 ("seasonality_classification", "=", self.seasonality_classification)
             ]
         return domain
 
-    @api.onchange("sale_classification", "seasonality_classification")
+    @api.onchange(
+        "abc_classification_profile_id",
+        "abc_classification_level_id",
+        "seasonality_classification",
+    )
     def _generate_classification_recommendations(self):
         """Trigger the general onchange method"""
         return super()._generate_recommendations()
@@ -55,9 +77,17 @@ class PurchaseOrderRecommendation(models.TransientModel):
 class PurchaseOrderRecommendationLine(models.TransientModel):
     _inherit = "purchase.order.recommendation.line"
 
-    sale_classification = fields.Selection(
-        related="product_id.sale_classification", readonly=True,
+    abc_classification_profile_id = fields.Many2one(
+        comodel_name="abc.classification.profile",
+        related="product_id.abc_classification_profile_id",
+        readonly=True,
+    )
+    abc_classification_level_id = fields.Many2one(
+        comodel_name="abc.classification.profile.level",
+        related="product_id.abc_classification_level_id",
+        readonly=True,
     )
     seasonality_classification = fields.Selection(
-        related="product_id.seasonality_classification", readonly=True,
+        related="product_id.seasonality_classification",
+        readonly=True,
     )
