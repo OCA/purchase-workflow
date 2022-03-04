@@ -132,11 +132,18 @@ class PurchaseOrderRecommendation(models.TransientModel):
 class PurchaseOrderRecommendationLine(models.TransientModel):
     _inherit = "purchase.order.recommendation.line"
 
-    forecasted_increment = fields.Float(readonly=True,)
-    forecasted_increment_text = fields.Char(
-        string="% inc.", compute="_compute_forecasted_increment_text", readonly=True,
+    forecasted_increment = fields.Float(
+        readonly=True,
     )
-    units_forecasted = fields.Float(string="Qty recommended", readonly=True,)
+    forecasted_increment_text = fields.Char(
+        string="% inc.",
+        compute="_compute_forecasted_increment_text",
+        readonly=True,
+    )
+    units_forecasted = fields.Float(
+        string="Qty recommended",
+        readonly=True,
+    )
 
     @api.depends("forecasted_increment")
     def _compute_forecasted_increment_text(self):

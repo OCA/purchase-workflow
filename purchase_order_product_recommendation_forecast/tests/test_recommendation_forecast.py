@@ -53,6 +53,7 @@ class TestSaleProductClassification(test_recommendation.RecommendationCase):
                         "qty_done": qty,
                         "location_id": cls.wh1.lot_stock_id.id,
                         "location_dest_id": cls.customer_loc.id,
+                        "company_id": cls.env.company.id,
                     }
                     for product, qty in zip(cls.forecasted_products, history_tuple)
                     if qty
@@ -86,8 +87,14 @@ class TestSaleProductClassification(test_recommendation.RecommendationCase):
         #    p4    |  p5   |   p6
         # ---------|-------|---------
         #  211,76% | 0,00% | -89,25%
-        line_p4, line_p5, line_p6 = wizard.line_ids.filtered(
-            lambda x: x.product_id in self.forecasted_products
+        line_p4 = wizard.line_ids.filtered(
+            lambda x: x.product_id == self.forecasted_products[0]
+        )
+        line_p5 = wizard.line_ids.filtered(
+            lambda x: x.product_id == self.forecasted_products[1]
+        )
+        line_p6 = wizard.line_ids.filtered(
+            lambda x: x.product_id == self.forecasted_products[2]
         )
         self.assertAlmostEqual(line_p4.forecasted_increment, 2.1176, 4)
         self.assertAlmostEqual(line_p5.forecasted_increment, 0)
