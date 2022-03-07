@@ -42,6 +42,7 @@ setuptools.setup(
         'odoo13-addon-purchase_order_line_stock_available',
         'odoo13-addon-purchase_order_product_recommendation',
         'odoo13-addon-purchase_order_product_recommendation_brand',
+        'odoo13-addon-purchase_order_product_recommendation_classification',
         'odoo13-addon-purchase_order_product_recommendation_forecast',
         'odoo13-addon-purchase_order_product_recommendation_secondary_unit',
         'odoo13-addon-purchase_order_product_recommendation_xlsx',
