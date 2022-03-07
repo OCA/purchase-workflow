@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="purchase_order_recommendation_view_form" model="ir.ui.view">
+        <field name="model">purchase.order.recommendation</field>
+        <field
+            name="inherit_id"
+            ref="purchase_order_product_recommendation.purchase_order_recommendation_view_form"
+        />
+        <field name="arch" type="xml">
+            <field name="warehouse_ids" position="before">
+                <field name="abc_classification_profile_id" />
+                <field
+                    name="abc_classification_level_id"
+                    widget="selection"
+                    attrs="{'invisible': [('abc_classification_profile_id', '=', False)], 'required': [('abc_classification_profile_id', '!=', False)]}"
+                />
+                <field name="seasonality_classification" />
+            </field>
+            <xpath
+                expr="//field[@name='line_ids']//field[@name='product_id']"
+                position="after"
+            >
+                <field
+                    name="abc_classification_profile_id"
+                    string="Sale Profile"
+                    optional="show"
+                />
+                <field
+                    name="abc_classification_level_id"
+                    string="Sale"
+                    optional="show"
+                />
+                <field
+                    name="seasonality_classification"
+                    string="Season"
+                    optional="show"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
