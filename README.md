@@ -61,6 +61,7 @@ addon | version | maintainers | summary
 [purchase_order_line_stock_available](purchase_order_line_stock_available/) | 13.0.1.0.0 |  | Purchase order line stock available
 [purchase_order_product_recommendation](purchase_order_product_recommendation/) | 13.0.1.1.0 |  | Recommend products to buy to supplier based on history
 [purchase_order_product_recommendation_brand](purchase_order_product_recommendation_brand/) | 13.0.1.0.1 |  | Allow to filter recommendations by brand
+[purchase_order_product_recommendation_classification](purchase_order_product_recommendation_classification/) | 13.0.1.0.0 |  | Extends the purchase recomendator with classification filters
 [purchase_order_product_recommendation_forecast](purchase_order_product_recommendation_forecast/) | 13.0.1.0.0 |  | Obtain linear progression forecast from reference years
 [purchase_order_product_recommendation_secondary_unit](purchase_order_product_recommendation_secondary_unit/) | 13.0.1.0.0 |  | Add secondary unit to recommend products wizard
 [purchase_order_product_recommendation_xlsx](purchase_order_product_recommendation_xlsx/) | 13.0.1.0.0 |  | Add a way to print recommended products for supplier
