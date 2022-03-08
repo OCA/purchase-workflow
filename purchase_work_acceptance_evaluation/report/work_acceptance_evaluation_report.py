@@ -1,7 +1,7 @@
 # Copyright 2021 Ecosoft Co., Ltd. (http://ecosoft.co.th)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import fields, models
+from odoo import fields, models, tools
 
 
 class WorkAcceptanceEvaluationReport(models.Model):
@@ -27,22 +27,20 @@ class WorkAcceptanceEvaluationReport(models.Model):
     note = fields.Char(string="Note",)
     company_id = fields.Many2one(comodel_name="res.company",)
 
-    def _select(self):
-        return """
-            select result.id, wa.partner_id, result.wa_id,
+    def init(self):
+        """Select lines which violate defined rules"""
+        tools.drop_view_if_exists(self.env.cr, self._table)
+        self._cr.execute(
+            """CREATE OR REPLACE VIEW %s AS (
+                select result.id, wa.partner_id, result.wa_id,
                    wa.state as wa_state,
                    wa.date_accept, result.case_id,
                    result.score_id, score.score, result.note,
                    wa.company_id
-        """
-
-    def _from(self):
-        return """
-            from work_acceptance_evaluation_result result
-            join work_acceptance_evaluation_score score on score.id = result.score_id
-            left join work_acceptance wa on result.wa_id = wa.id
-        """
-
-    @property
-    def _table_query(self):
-        return "%s %s" % (self._select(), self._from())
+                from work_acceptance_evaluation_result result
+                join work_acceptance_evaluation_score score on score.id = result.score_id
+                left join work_acceptance wa on result.wa_id = wa.id
+            )
+            """
+            % self._table
+        )
