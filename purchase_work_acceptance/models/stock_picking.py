@@ -35,15 +35,21 @@ class Picking(models.Model):
     @api.depends("require_wa")
     def _compute_wa_ids(self):
         for picking in self:
-            picking.wa_ids = self.env["work.acceptance"].sudo()._get_valid_wa(
-                "picking", picking.purchase_id.id
+            picking.wa_ids = (
+                self.env["work.acceptance"]
+                .sudo()
+                ._get_valid_wa("picking", picking.purchase_id.id)
             )
 
     def button_validate(self):
         for picking in self:
             if picking.wa_id:
                 order_id = self._context.get("active_id")
-                wa = self.env["work.acceptance"].sudo()._get_valid_wa("picking", order_id)
+                wa = (
+                    self.env["work.acceptance"]
+                    .sudo()
+                    ._get_valid_wa("picking", order_id)
+                )
                 wa += picking.wa_id
                 if picking.wa_id not in wa:
                     raise ValidationError(
