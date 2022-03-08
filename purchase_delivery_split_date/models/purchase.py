@@ -1,6 +1,6 @@
 # Copyright 2014-2016 Numérigraphe SARL
 # Copyright 2017 ForgeFlow, S.L.
-# Copyright 2021 Jacques-Etienne Baudoux (BCIM) <je@bcim.be>
+# Copyright 2021-2022 Jacques-Etienne Baudoux (BCIM) <je@bcim.be>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models
@@ -11,14 +11,14 @@ class PurchaseOrderLine(models.Model):
 
     def _is_valid_picking(self, picking):
         date_planned = picking.dt2date(self.date_planned)
-        expected_dates = [
+        expected_dates = {
             picking.dt2date(expected_date)
             for expected_date in picking.move_lines.mapped("date")
-        ]
+        }
         return (
             picking.state not in ("done", "cancel")
             and picking.dt2date(picking.scheduled_date) == date_planned
-            and len(set(expected_dates)) == 1
+            and len(expected_dates) == 1
             and picking.location_dest_id.usage in ("internal", "transit", "customer")
         )
 
@@ -33,7 +33,7 @@ class PurchaseOrderLine(models.Model):
         # new move is inserted in the right picking. So create move one by one.
         moves = self.env["stock.move"]
         for line in self:
-            moves |= super(PurchaseOrderLine, line)._create_stock_moves(picking)
+            moves += super(PurchaseOrderLine, line)._create_stock_moves(picking)
         return moves
 
     def _prepare_stock_moves(self, picking):
@@ -84,7 +84,6 @@ class PurchaseOrderLine(models.Model):
                 if not picking:
                     # No other valid picking
                     continue
-                picking_to_cancel |= move.picking_id
             else:
                 # Find an other valid picking
                 picking = fields.first(
@@ -95,6 +94,7 @@ class PurchaseOrderLine(models.Model):
                     picking = move.picking_id.copy(copy_vals)
                     pickings |= picking
             move._do_unreserve()
+            picking_to_cancel |= move.picking_id
             move.picking_id = picking
             move._merge_moves()
             move._action_assign()
@@ -109,3 +109,16 @@ class PurchaseOrderLine(models.Model):
                 # The move date expected could have changed
                 line._check_still_valid_picking()
         return res
+
+    def _update_move_date_deadline(self, new_date):
+        """ Also propagate new date to the moves. """
+        super()._update_move_date_deadline(new_date)
+        moves_to_update = self.move_ids.filtered(
+            lambda m: m.state not in ("done", "cancel")
+        )
+        if not moves_to_update:
+            moves_to_update = self.move_dest_ids.filtered(
+                lambda m: m.state not in ("done", "cancel")
+            )
+        for move in moves_to_update:
+            move.date = new_date
