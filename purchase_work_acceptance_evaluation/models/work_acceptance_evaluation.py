@@ -8,13 +8,8 @@ class WorkAcceptanceEvaluation(models.Model):
     _name = "work.acceptance.evaluation"
     _description = "Work Acceptance Evaluation"
 
-    name = fields.Char(
-        string="Case Name",
-        required=True,
-    )
-    active = fields.Boolean(
-        default=True,
-    )
+    name = fields.Char(string="Case Name", required=True,)
+    active = fields.Boolean(default=True,)
     state_required = fields.Selection(
         selection=[("draft", "Draft"), ("accept", "Accepted")],
         string="State Required",
@@ -32,17 +27,11 @@ class WorkAcceptanceEvaluationScore(models.Model):
     _description = "Work Acceptance Evaluation Score"
     _order = "score"
 
-    name = fields.Char(
-        string="Values",
-        required=True,
-    )
+    name = fields.Char(string="Values", required=True,)
     evaluation_id = fields.Many2one(
-        comodel_name="work.acceptance.evaluation",
-        string="Case Name",
+        comodel_name="work.acceptance.evaluation", string="Case Name",
     )
-    score = fields.Integer(
-        string="Score",
-    )
+    score = fields.Integer(string="Score",)
 
     def name_get(self):
         result = []
