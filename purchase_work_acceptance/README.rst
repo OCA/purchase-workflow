@@ -71,6 +71,7 @@ Note:
 
 * You can check 'Enable WA on Goods Receipt' and 'Enable WA on Vendor Bill' after checked 'Enable WA on Purchase Order'
 * You can check 'Enforce WA on Goods Receipt' after checked 'Enable WA on Goods Receipt'
+  * But you can bypass WA on some Picking Operation by setting 'WA not required' on Operation Type
 * You can check 'Enforce WA on Vendor Bill' after checked 'Enable WA on Vendor Bill'
 
 Usage
@@ -140,6 +141,14 @@ This module is maintained by the OCA.
 OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
+
+.. |maintainer-ps-tubtim| image:: https://github.com/ps-tubtim.png?size=40px
+    :target: https://github.com/ps-tubtim
+    :alt: ps-tubtim
+
+Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+
+|maintainer-ps-tubtim| 
 
 This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/14.0/purchase_work_acceptance>`_ project on GitHub.
 
