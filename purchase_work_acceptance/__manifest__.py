@@ -22,7 +22,7 @@
         "wizard/select_work_acceptance_wizard_views.xml",
         "wizard/work_accepted_date_wizard.xml",
     ],
-    "maintainer": ["ps-tubtim"],
+    "maintainers": ["ps-tubtim"],
     "installable": True,
     "development_status": "Alpha",
 }
