@@ -10,36 +10,22 @@ class WorkAcceptanceEvaluationReport(models.Model):
     _order = "partner_id,date_accept"
     _auto = False
 
-    partner_id = fields.Many2one(
-        comodel_name="res.partner",
-        string="Vendor",
-    )
-    wa_id = fields.Many2one(
-        comodel_name="work.acceptance",
-        string="WA Reference",
-    )
+    partner_id = fields.Many2one(comodel_name="res.partner", string="Vendor",)
+    wa_id = fields.Many2one(comodel_name="work.acceptance", string="WA Reference",)
     wa_state = fields.Selection(
         [("draft", "Draft"), ("accept", "Accepted"), ("cancel", "Cancelled")],
         string="Status",
     )
-    date_accept = fields.Datetime(
-        string="Accepted Date",
-    )
+    date_accept = fields.Datetime(string="Accepted Date",)
     case_id = fields.Many2one(
-        comodel_name="work.acceptance.evaluation",
-        string="Case Name",
+        comodel_name="work.acceptance.evaluation", string="Case Name",
     )
     score_id = fields.Many2one(
-        comodel_name="work.acceptance.evaluation.score",
-        string="Score ID",
+        comodel_name="work.acceptance.evaluation.score", string="Score ID",
     )
     score = fields.Integer()
-    note = fields.Char(
-        string="Note",
-    )
-    company_id = fields.Many2one(
-        comodel_name="res.company",
-    )
+    note = fields.Char(string="Note",)
+    company_id = fields.Many2one(comodel_name="res.company",)
 
     def _select(self):
         return """
