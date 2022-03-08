@@ -1,6 +1,7 @@
 * `Ecosoft <http://ecosoft.co.th>`__:
 
   * Kitti U. <kittiu@ecosoft.co.th>
+  * Tharathip C. <tharathipc@ecosoft.co.th>
 
 * `ProThai <http://prothaitechnology.com>`__:
 
