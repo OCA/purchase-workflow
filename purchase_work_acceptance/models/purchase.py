@@ -68,9 +68,11 @@ class PurchaseOrder(models.Model):
         return result
 
     def action_create_invoice(self):
-        if self.env.context.get("create_bill", False) and self.env.user.has_group(
+        enable_wa = self.env.user.has_group(
             "purchase_work_acceptance.group_enable_wa_on_invoice"
-        ):
+        )
+        ctx = self.env.context.copy()
+        if enable_wa and ctx.get("create_bill"):
             wizard = self.env.ref(
                 "purchase_work_acceptance.view_select_work_acceptance_wizard"
             )
@@ -83,12 +85,42 @@ class PurchaseOrder(models.Model):
                 "view_id": wizard.id,
                 "target": "new",
             }
-        return super().action_create_invoice()
+        res = super().action_create_invoice()
+        # Set 'ref' to WA
+        if (
+            ctx.get("wa_id")
+            and res.get("res_model") == "account.move"
+            and res.get("res_id")
+        ):
+            wa = self.env["work.acceptance"].browse(ctx["wa_id"])
+            invoice = self.env["account.move"].browse(res["res_id"])
+            # invoice.ref, adding "/ WA001"
+            refs = []
+            if invoice.ref:
+                refs.append(invoice.ref)
+            if wa.name:
+                refs.append(wa.name)
+            invoice.ref = " / ".join(refs)
+            # invoice.payment_reference, adding "/ <WA's invoice_ref>"
+            payment_refs = []
+            if invoice.payment_reference:
+                payment_refs.append(invoice.payment_reference)
+            if wa.invoice_ref:
+                payment_refs.append(wa.invoice_ref)
+            invoice.payment_reference = " / ".join(payment_refs)
+        return res
 
     def _compute_wa_accepted(self):
         for order in self:
-            lines = order.order_line.filtered(lambda l: l.qty_to_accept > 0)
+            lines = order.order_line.filtered(
+                lambda l: l.product_qty > 0 and l.qty_to_accept > 0
+            )
             order.wa_accepted = not any(lines)
+
+    def _prepare_invoice(self):
+        invoice_vals = super()._prepare_invoice()
+        invoice_vals["wa_id"] = self.env.context.get("wa_id")
+        return invoice_vals
 
 
 class PurchaseOrderLine(models.Model):
@@ -123,9 +155,10 @@ class PurchaseOrderLine(models.Model):
         )
 
     def _prepare_account_move_line(self, move=False):
-        res = super()._prepare_account_move_line(move)
-        if move and move.wa_id:
-            wa_line = self.wa_line_ids.filtered(lambda l: l.wa_id == move.wa_id)
+        res = super()._prepare_account_move_line(move=move)
+        wa_id = self.env.context.get("wa_id")
+        if wa_id:
+            wa_line = self.wa_line_ids.filtered(lambda l: l.wa_id.id == wa_id)
             res["quantity"] = wa_line.product_qty
             res["product_uom_id"] = wa_line.product_uom
         return res
@@ -145,7 +178,7 @@ class PurchaseOrderLine(models.Model):
                 lambda l: l.wa_id.state == "accept"
             ):
                 qty += wa_line.product_uom._compute_quantity(
-                    wa_line.product_qty, line.product_uom
+                    wa_line.product_qty, line.product_uom, round=False
                 )
             line.qty_accepted = qty
 

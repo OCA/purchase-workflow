@@ -1,7 +1,7 @@
 # Copyright 2019 Ecosoft Co., Ltd. (http://ecosoft.co.th)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, fields, models
+from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -13,10 +13,11 @@ class SelectWorkAcceptanceWizard(models.TransientModel):
     wa_id = fields.Many2one(
         comodel_name="work.acceptance",
         string="Work Acceptance",
-        domain=lambda self: [
-            ("state", "=", "accept"),
-            ("purchase_id", "=", self._context.get("active_id")),
-        ],
+        domain="[('id', 'in', wa_ids)]",
+    )
+    wa_ids = fields.Many2many(
+        comodel_name="work.acceptance",
+        compute="_compute_wa_ids",
     )
 
     def _get_require_wa(self):
@@ -24,21 +25,24 @@ class SelectWorkAcceptanceWizard(models.TransientModel):
             "purchase_work_acceptance.group_enforce_wa_on_invoice"
         )
 
+    @api.depends("require_wa")
+    def _compute_wa_ids(self):
+        self.ensure_one()
+        self.wa_ids = self.env["work.acceptance"]._get_valid_wa(
+            "invoice", self.env.context.get("active_id")
+        )
+
     def button_create_vendor_bill(self):
-        order = self.env["purchase.order"].browse(self._context.get("active_id"))
-        if any(
-            (invoice.wa_id and invoice.wa_id == self.wa_id)
-            for invoice in order.invoice_ids
-        ):
-            raise ValidationError(_("%s was used in some bill.") % self.wa_id.name)
-        xmlid = "account.action_move_in_invoice_type"
-        action = self.env["ir.actions.act_window"]._for_xml_id(xmlid)
-        action["context"] = {
-            "default_move_type": "in_invoice",
-            "default_wa_id": self.wa_id.id,
-            "default_purchase_id": self._context.get("active_id"),
-            "default_company_id": self.wa_id.company_id.id or self.env.company.id,
-        }
-        res = self.env.ref("account.view_move_form", False)
-        action["views"] = [(res and res.id or False, "form")]
-        return action
+        self.ensure_one()
+        order_id = self._context.get("active_id")
+        wa = self.env["work.acceptance"]._get_valid_wa("invoice", order_id)
+        if self.wa_id not in wa:
+            raise ValidationError(
+                _("%s was already used by some bill") % self.wa_id.name
+            )
+        order = self.env["purchase.order"].browse(order_id)
+        return (
+            order.with_context(create_bill=False, wa_id=self.wa_id.id)
+            .sudo()
+            .action_create_invoice()
+        )

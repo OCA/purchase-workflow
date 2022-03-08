@@ -103,14 +103,22 @@ class WorkAcceptance(models.Model):
         return super(WorkAcceptance, self).create(vals)
 
     def button_accept(self, force=False):
+        if self.env.context.get("manual_date_accept"):
+            wizard = self.env.ref(
+                "purchase_work_acceptance.view_work_accepted_date_wizard"
+            )
+            return {
+                "name": _("Select Accept Date"),
+                "type": "ir.actions.act_window",
+                "view_mode": "form",
+                "res_model": "work.accepted.date.wizard",
+                "views": [(wizard.id, "form")],
+                "view_id": wizard.id,
+                "target": "new",
+            }
         self._unlink_zero_quantity()
-        po_lines = self.purchase_id.order_line
-        for po_line in po_lines:
-            if po_line.product_id.type not in ["product", "consu"]:
-                po_line.qty_received = self.wa_line_ids.filtered(
-                    lambda l: l.purchase_line_id == po_line
-                ).product_qty
-        self.write({"state": "accept", "date_accept": fields.Datetime.now()})
+        date_accept = force or fields.Datetime.now()
+        self.write({"state": "accept", "date_accept": date_accept})
 
     def button_draft(self):
         picking_obj = self.env["stock.picking"]
@@ -133,6 +141,25 @@ class WorkAcceptance(models.Model):
         )
         wa_line_zero_quantity.unlink()
 
+    def _get_valid_wa(self, doctype, order_id):
+        """ Get unused WA when validate invoice or picking """
+        order = self.env["purchase.order"].browse(order_id)
+        all_wa = self.env["work.acceptance"].search(
+            [
+                ("state", "=", "accept"),
+                ("purchase_id", "=", order.id),
+            ]
+        )
+        if doctype == "invoice":
+            used_wa = order.invoice_ids.filtered(
+                lambda l: l.state in ("draft", "posted")
+            ).mapped("wa_id")
+            return all_wa - used_wa
+        if doctype == "picking":
+            used_wa = order.picking_ids.mapped("wa_id")
+            return all_wa - used_wa
+        return all_wa
+
 
 class WorkAcceptanceLine(models.Model):
     _name = "work.acceptance.line"
@@ -140,7 +167,9 @@ class WorkAcceptanceLine(models.Model):
     _order = "id"
 
     name = fields.Text(string="Description", required=True)
-    product_qty = fields.Float(string="Quantity", required=True)
+    product_qty = fields.Float(
+        string="Quantity", required=True, digits="Product Unit of Measure"
+    )
     product_id = fields.Many2one(
         comodel_name="product.product", string="Product", required=True
     )

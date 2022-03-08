@@ -27,4 +27,5 @@ Note:
 
 * You can check 'Enable WA on Goods Receipt' and 'Enable WA on Vendor Bill' after checked 'Enable WA on Purchase Order'
 * You can check 'Enforce WA on Goods Receipt' after checked 'Enable WA on Goods Receipt'
+  * But you can bypass WA on some Picking Operation by setting 'WA not required' on Operation Type
 * You can check 'Enforce WA on Vendor Bill' after checked 'Enable WA on Vendor Bill'

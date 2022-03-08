@@ -12,6 +12,7 @@
                         states="draft"
                         string="Accept"
                         class="oe_highlight"
+                        context="{'manual_date_accept': True}"
                     />
                     <button
                         name="button_draft"
@@ -71,7 +72,11 @@
                             >
                                 <tree string="Work Acceptance Lines" editable="bottom">
                                     <field name="purchase_line_id" invisible="1" />
-                                    <field name="product_id" />
+                                    <field
+                                        name="product_id"
+                                        readonly="1"
+                                        force_save="1"
+                                    />
                                     <field name="name" />
                                     <field name="product_qty" />
                                     <field name="product_uom" groups="uom.group_uom" />
@@ -145,6 +150,7 @@
                     groups="base.group_multi_currency"
                     options="{'no_create': True}"
                 />
+                <field name="purchase_id" optional="hide" />
                 <field name="state" />
             </tree>
         </field>
@@ -160,6 +166,7 @@
                 <field name="product_id" />
                 <field name="create_uid" />
                 <field name="user_id" />
+                <field name="purchase_id" />
                 <filter
                     name="my_wa"
                     string="My Work Acceptance"
@@ -188,6 +195,12 @@
                         name="vendor"
                         domain="[]"
                         context="{'group_by':'partner_id'}"
+                    />
+                    <filter
+                        string="Purchase Order"
+                        name="purchase"
+                        domain="[]"
+                        context="{'group_by':'purchase_id'}"
                     />
                     <filter
                         string="Due Date"
