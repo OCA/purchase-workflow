@@ -8,7 +8,7 @@ from odoo.tests.common import SavepointCase
 class TestProductCostPriceAvcoSync(SavepointCase):
     @classmethod
     def setUpClass(cls):
-        super(TestProductCostPriceAvcoSync, cls).setUpClass()
+        super().setUpClass()
         cls.partner = cls.env["res.partner"].create({"name": "Test Partner"})
         cls.product_category = cls.env["product.category"].create(
             {
@@ -51,7 +51,7 @@ class TestProductCostPriceAvcoSync(SavepointCase):
         picking = self.order.picking_ids[:1]
         move = picking.move_lines[:1]
         move.quantity_done = move.product_uom_qty
-        picking.action_done()
+        picking._action_done()
         self.assertAlmostEqual(move.stock_valuation_layer_ids[:1].unit_cost, 8.0, 2)
         self.order.order_line[:1].price_unit = 6.0
         self.assertAlmostEqual(move.stock_valuation_layer_ids[:1].unit_cost, 6.0, 2)
