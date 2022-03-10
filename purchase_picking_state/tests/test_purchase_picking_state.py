@@ -5,12 +5,12 @@ from datetime import datetime
 
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT as DTF
 
-from odoo.addons.account.tests.account_test_classes import AccountingTestCase
+from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
 
-class TestPurchasePickingState(AccountingTestCase):
+class TestPurchasePickingState(AccountTestInvoicingCommon):
     def setUp(self):
-        super(TestPurchasePickingState, self).setUp()
+        super().setUp()
         # Useful models
         self.PurchaseOrder = self.env["purchase.order"]
         self.StockPicking = self.env["stock.picking"]
@@ -64,9 +64,9 @@ class TestPurchasePickingState(AccountingTestCase):
         self.po.button_confirm()
         pick = self.po.picking_ids.filtered(lambda x: x.state not in ("done", "cancel"))
         pick.move_line_ids.write({"qty_done": 2})
-        pick.action_done()
+        pick._action_done()
         self.assertEqual(self.po.picking_state, "partially_received")
         backorders = self.StockPicking.search([("backorder_id", "=", pick.id)])
         backorders.move_line_ids.write({"qty_done": 3})
-        backorders.action_done()
+        backorders._action_done()
         self.assertEqual(self.po.picking_state, "done")
