@@ -12,4 +12,4 @@ class AccountInvoiceLine(models.Model):
     def _set_additional_fields(self, invoice):
         if self.purchase_line_id:
             self.sequence = self.purchase_line_id.sequence
-        super(AccountInvoiceLine, self)._set_additional_fields(invoice)
+        return super(AccountInvoiceLine, self)._set_additional_fields(invoice)

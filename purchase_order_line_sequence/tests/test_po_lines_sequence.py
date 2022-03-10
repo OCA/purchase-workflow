@@ -52,7 +52,8 @@ class TestPurchaseOrder(common.TransactionCase):
 
         self.category.property_account_expense_categ_id = self.account_expense
 
-        self.category.property_stock_journal = self.env["account.journal"].create(
+        self.category.property_stock_journal = \
+            self.env["account.journal"].create(
             {"name": "Stock journal", "type": "sale", "code": "STK00"}
         )
         self.product_id_1.categ_id = self.category
