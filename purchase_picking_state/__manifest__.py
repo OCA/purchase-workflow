@@ -3,8 +3,8 @@
 
 {
     "name": "Purchase Picking State",
-    "version": "12.0.1.1.0",
-    "author": "Akretion, " "Odoo Community Association (OCA)",
+    "version": "14.0.1.0.0",
+    "author": "Akretion, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "category": "Purchase Management",
     "website": "https://github.com/OCA/purchase-workflow",
