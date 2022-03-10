@@ -52,8 +52,7 @@ class TestPurchaseOrder(common.TransactionCase):
 
         self.category.property_account_expense_categ_id = self.account_expense
 
-        self.category.property_stock_journal = \
-            self.env["account.journal"].create(
+        self.category.property_stock_journal = self.env["account.journal"].create(
             {"name": "Stock journal", "type": "sale", "code": "STK00"}
         )
         self.product_id_1.categ_id = self.category
@@ -98,7 +97,6 @@ class TestPurchaseOrder(common.TransactionCase):
         return self.PurchaseOrder.create(po_vals)
 
     def test_purchase_order_line_sequence(self):
-
         self.po = self._create_purchase_order()
         self.po.button_confirm()
 
@@ -135,7 +133,6 @@ class TestPurchaseOrder(common.TransactionCase):
         )
 
     def test_invoice_sequence(self):
-
         po = self._create_purchase_order()
         po.button_confirm()
         po.order_line.qty_received = 5

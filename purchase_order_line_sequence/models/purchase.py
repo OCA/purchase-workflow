@@ -40,8 +40,7 @@ class PurchaseOrder(models.Model):
                 if pickings:
                     picking = pickings[0]
                     for move, line in zip(
-                        sorted(picking.move_lines, key=lambda m: m.id),
-                            order.order_line
+                        sorted(picking.move_lines, key=lambda m: m.id), order.order_line
                     ):
                         move.write({"sequence": line.sequence})
         return res
@@ -59,8 +58,7 @@ class PurchaseOrder(models.Model):
         return res
 
     def copy(self, default=None):
-        return super(PurchaseOrder,
-                     self.with_context(keep_line_sequence=True)).copy(
+        return super(PurchaseOrder, self.with_context(keep_line_sequence=True)).copy(
             default
         )
 
@@ -71,8 +69,7 @@ class PurchaseOrderLine(models.Model):
 
     sequence = fields.Integer(
         "Hidden Sequence",
-        help="Gives the sequence of the line when " 
-             "displaying the purchase order.",
+        help="Gives the sequence of the line when " "displaying the purchase order.",
         default=9999,
     )
 
