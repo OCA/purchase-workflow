@@ -29,7 +29,9 @@ class TestPurchaseStockSecondaryUnit(SavepointCase):
                 secondary_uom.factor = 5.0
         cls.product = product_form.save()
         cls.secondary_product_uom = cls.product.secondary_uom_ids[:1]
-        po = cls.env["purchase.order"].new({"partner_id": cls.partner.id})
+        po = cls.env["purchase.order"].new(
+            {"partner_id": cls.partner.id, "company_id": cls.env.user.company_id}
+        )
         po.onchange_partner_id()
         cls.purchase_order = cls.env["purchase.order"].create(
             po._convert_to_write(po._cache)

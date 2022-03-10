@@ -16,6 +16,7 @@ class PurchaseOrderLine(models.Model):
         move.product_uom = self.product_uom
         move.secondary_uom_id = self.secondary_uom_id
         move.product_uom_qty = product_uom_qty
+        move.onchange_secondary_unit_product_uom_qty()
         return move.secondary_uom_qty
 
     def _prepare_stock_moves(self, picking):

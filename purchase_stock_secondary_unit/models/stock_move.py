@@ -11,5 +11,5 @@ class StockMove(models.Model):
         if self.env.context.get("secondary_uom_for_update_moves"):
             for move in self:
                 move.secondary_uom_id = move.purchase_line_id.secondary_uom_id
-                move._compute_secondary_uom_qty()
+                move.onchange_secondary_unit_product_uom_qty()
         return res
