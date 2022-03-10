@@ -4,10 +4,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0+e\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-10 15:40+0000\n"
-"PO-Revision-Date: 2022-02-10 15:40+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -98,9 +96,7 @@ msgstr ""
 #: model:ir.model.fields,help:purchase_receipt_expectation_manual.field_purchase_order__receipt_expectation
 msgid ""
 "Defines how reception pickings are managed when the order is approved.\n"
-"Default value is 'automatic', which means the picking will be created following the standard Odoo workflow.\n"
-"New values added to this selection also require the definition of methods that manage such values.\n"
-"These methods must be named `_create_picking_for_<value>_receipt_expectation`."
+"Default value is 'automatic', which means the picking will be created following the standard Odoo workflow."
 msgstr ""
 
 #. module: purchase_receipt_expectation_manual
