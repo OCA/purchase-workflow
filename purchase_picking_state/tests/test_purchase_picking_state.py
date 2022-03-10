@@ -2,7 +2,9 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 from datetime import datetime
+
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT as DTF
+
 from odoo.addons.account.tests.account_test_classes import AccountingTestCase
 
 
@@ -16,9 +18,7 @@ class TestPurchasePickingState(AccountingTestCase):
         self.product_id_1 = self.env.ref("product.product_product_8")
         self.product_id_2 = self.env.ref("product.product_product_11")
 
-        (self.product_id_1 | self.product_id_2).write(
-            {"purchase_method": "purchase"}
-        )
+        (self.product_id_1 | self.product_id_2).write({"purchase_method": "purchase"})
         self.po_vals = {
             "partner_id": self.partner_id.id,
             "order_line": [
@@ -62,9 +62,7 @@ class TestPurchasePickingState(AccountingTestCase):
         self.po.button_cancel()
         self.po.button_draft()
         self.po.button_confirm()
-        pick = self.po.picking_ids.filtered(
-            lambda x: x.state not in ("done", "cancel")
-        )
+        pick = self.po.picking_ids.filtered(lambda x: x.state not in ("done", "cancel"))
         pick.move_line_ids.write({"qty_done": 2})
         pick.action_done()
         self.assertEqual(self.po.picking_state, "partially_received")
