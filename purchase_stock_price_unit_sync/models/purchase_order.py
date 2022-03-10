@@ -1,4 +1,5 @@
 # Copyright 2019 Tecnativa - Carlos Dauden
+# Copyright 2022 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import models
@@ -29,7 +30,14 @@ class PurchaseOrderLine(models.Model):
                 bom_type="phantom",
             ):
                 continue
-            line.move_ids.mapped("stock_valuation_layer_ids").write(
+            # We check if the stock_landed_costs addon is installed to exclude linked
+            # records.
+            stock_valuation_layers = line.move_ids.mapped("stock_valuation_layer_ids")
+            if hasattr(line.product_id, "landed_cost_ok"):
+                stock_valuation_layers = stock_valuation_layers.filtered(
+                    lambda x: not x.stock_landed_cost_id
+                )
+            stock_valuation_layers.write(
                 {
                     "unit_cost": line.with_context(
                         skip_stock_price_unit_sync=True
