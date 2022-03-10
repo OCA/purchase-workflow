@@ -1,7 +1,7 @@
 # Copyright 2016 Chafique DELLI @ Akretion
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-from odoo import models, fields, api
+from odoo import api, fields, models
 from odoo.tools.translate import _
 
 
@@ -22,14 +22,10 @@ class PurchaseOrder(models.Model):
     def _compute_picking_state(self):
         for purchase in self:
             if purchase.picking_ids:
-                pickings_state = set(
-                    [picking.state for picking in purchase.picking_ids]
-                )
-                if pickings_state == set(["cancel"]):
+                pickings_state = {picking.state for picking in purchase.picking_ids}
+                if pickings_state == {"cancel"}:
                     purchase.picking_state = "cancel"
-                elif pickings_state == set(
-                    ["cancel", "done"]
-                ) or pickings_state == set(["done"]):
+                elif pickings_state == {"cancel", "done"} or pickings_state == {"done"}:
                     purchase.picking_state = "done"
                 elif "done" in pickings_state:
                     purchase.picking_state = "partially_received"
