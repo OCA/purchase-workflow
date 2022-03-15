@@ -52,9 +52,10 @@ class StockRule(models.Model):
         :return: False
         """
         domain = (
-            ("state", "=", "draft"),
             ("picking_type_id", "=", self.picking_type_id.id),
             ("company_id", "=", values["company_id"].id),
+            ("product_id", "=", values["product_id"].id),
+            ("date_start", "=", values["date_planned"]),
         )
         gpo = self.group_propagation_option
         group_id = (
@@ -101,6 +102,7 @@ class StockRule(models.Model):
         purchase_request_line_model = self.env["purchase.request.line"]
         cache = {}
         pr = self.env["purchase.request"]
+        procurement.values["product_id"] = procurement.product_id
         domain = rule._make_pr_get_domain(procurement.values)
         if domain in cache:
             pr = cache[domain]
@@ -124,4 +126,20 @@ class StockRule(models.Model):
                 pr.write({"origin": procurement.origin})
         # Create Line
         request_line_data = rule._prepare_purchase_request_line(pr, procurement)
-        purchase_request_line_model.create(request_line_data)
+        # check if request has lines for same product and data
+        # if yes, update qty instead of creating new line
+        same_product_date_request_line = pr.line_ids.filtered_domain(
+            [
+                ("product_id", "=", request_line_data["product_id"]),
+                ("date_required", "=", request_line_data["date_required"]),
+            ],
+        )
+        if same_product_date_request_line:
+            new_product_qty = (
+                same_product_date_request_line.product_qty
+                + request_line_data["product_qty"]
+            )
+            same_product_date_request_line.write({"product_qty": new_product_qty})
+        else:
+            # Create Line
+            purchase_request_line_model.create(request_line_data)

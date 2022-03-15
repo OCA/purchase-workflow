@@ -1,6 +1,8 @@
 # Copyright 2018-2019 ForgeFlow, S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 
+from freezegun import freeze_time
+
 from odoo import SUPERUSER_ID, fields
 from odoo.tests import common
 
@@ -72,6 +74,7 @@ class TestPurchaseRequestProcurement(common.SavepointCase):
         )
         return self.env["procurement.group"].run(procurements)
 
+    @freeze_time("2022-03-14 01:00:00")
     def test_procure_purchase_request(self):
         has_route = self.procurement_group_run(
             "Test Purchase Request Procurement",
@@ -110,3 +113,39 @@ class TestPurchaseRequestProcurement(common.SavepointCase):
             "Test Test, Split", "Test, Split", self.product_1, 10
         )
         self.procurement_group_run("Test Test, Split", False, self.product_1, 10)
+
+    @freeze_time("2022-03-15 01:00:00")
+    def test_duplicated_purchase_request(self):
+        self.assertEqual(self.env["purchase.request"].search_count([]),0)
+        has_route = self.procurement_group_run(
+            "Test Purchase Request Single Line",
+            "Test Purchase Request Single Line",
+            self.product_1,
+            4,
+        )
+        self.assertTrue(has_route)
+        self.env["procurement.group"].run_scheduler()
+        pr = self.env["purchase.request"].search(
+            [("origin", "=", "Test Purchase Request Single Line")]
+        )
+        self.assertTrue(pr.to_approve_allowed)
+        self.assertEqual(pr.origin, "Test Purchase Request Single Line")
+
+        prl = self.env["purchase.request.line"].search([("request_id", "=", pr.id)])
+        self.assertEqual(prl.request_id, pr)
+        self.assertEqual(prl.product_qty, 4)
+        self.assertEqual(prl.product_id, self.product_1)
+
+        # another request
+        has_route = self.procurement_group_run(
+            "Test Purchase Request Single Line",
+            "Test Purchase Request Single Line",
+            self.product_1,
+            5,
+        )
+        self.assertTrue(has_route)
+        self.env["procurement.group"].run_scheduler()
+        # make sure no new PR is created
+        self.assertEqual(self.env["purchase.request"].search_count([]),1)
+        self.assertEqual(len(pr.line_ids), 1)
+        self.assertEqual(prl.product_qty, 9)
