@@ -1,0 +1,150 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_request_tier_validation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2020-05-29 05:19+0000\n"
+"Last-Translator: Alessandro Fiorino <alessandro.fiorino@digitaldomus.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.10\n"
+
+#. module: purchase_request_tier_validation
+#: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__can_review
+msgid "Can Review"
+msgstr ""
+
+#. module: purchase_request_tier_validation
+#: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_form_inherit_tier
+msgid "Confirm"
+msgstr "Conferma"
+
+#. module: purchase_request_tier_validation
+#: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__display_name
+#: model:ir.model.fields,field_description:purchase_request_tier_validation.field_tier_definition__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: purchase_request_tier_validation
+#: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__has_comment
+msgid "Has Comment"
+msgstr ""
+
+#. module: purchase_request_tier_validation
+#: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__id
+#: model:ir.model.fields,field_description:purchase_request_tier_validation.field_tier_definition__id
+msgid "ID"
+msgstr ""
+
+#. module: purchase_request_tier_validation
+#: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request____last_update
+#: model:ir.model.fields,field_description:purchase_request_tier_validation.field_tier_definition____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: purchase_request_tier_validation
+#: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_filter
+msgid "My Purchases to review"
+msgstr "I Miei Acquisti da controllare"
+
+#. module: purchase_request_tier_validation
+#: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__need_validation
+msgid "Need Validation"
+msgstr ""
+
+#. module: purchase_request_tier_validation
+#: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_filter
+msgid "Need actions"
+msgstr "Richiedono attività"
+
+#. module: purchase_request_tier_validation
+#: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_filter
+msgid "Needs my Review"
+msgstr "Richiedono la mia Approvazione"
+
+#. module: purchase_request_tier_validation
+#: model:tier.definition,name:purchase_request_tier_validation.purchase_request_default_tier_definition
+msgid "New Tier Validation"
+msgstr "Nuovo Tier di Validazione"
+
+#. module: purchase_request_tier_validation
+#: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__next_review
+msgid "Next Review"
+msgstr ""
+
+#. module: purchase_request_tier_validation
+#: model:ir.model,name:purchase_request_tier_validation.model_purchase_request
+msgid "Purchase Request"
+msgstr "Richiesta d'Acquisto"
+
+#. module: purchase_request_tier_validation
+#: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_filter
+msgid "Purchase Requests validated and ready to be confirmed"
+msgstr "Richiesta d'Acquisto validata e pronta per essere confermata"
+
+#. module: purchase_request_tier_validation
+#: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__rejected
+msgid "Rejected"
+msgstr ""
+
+#. module: purchase_request_tier_validation
+#: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__reviewer_ids
+msgid "Reviewers"
+msgstr ""
+
+#. module: purchase_request_tier_validation
+#: model:ir.model,name:purchase_request_tier_validation.model_tier_definition
+msgid "Tier Definition"
+msgstr "Definizione Tier"
+
+#. module: purchase_request_tier_validation
+#: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__validated
+#: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_filter
+msgid "Validated"
+msgstr "Approvato"
+
+#. module: purchase_request_tier_validation
+#: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__review_ids
+msgid "Validations"
+msgstr ""
+
+#~ msgid ""
+#~ "<i class=\"fa fa-info-circle\"/>This Purchase Request needs to be\n"
+#~ "                        validated."
+#~ msgstr ""
+#~ "<i class=\"fa fa-info-circle\"/>Questa Richiesta d'Acquisto deve essere "
+#~ "approvata."
+
+#~ msgid "<i class=\"fa fa-thumbs-down\"/> Operation has been <b>rejected</b>."
+#~ msgstr ""
+#~ "<i class=\"fa fa-thumbs-down\"/> L'operazione è stata <b>rifiutata</b>."
+
+#~ msgid "<i class=\"fa fa-thumbs-up\"/> Operation has been <b>validated</b>!"
+#~ msgstr ""
+#~ "<i class=\"fa fa-thumbs-up\"/> L'operazione è stata <b>approvata</b>!"
+
+#, fuzzy
+#~ msgid "Dismiss"
+#~ msgstr "Annulla"
+
+#~ msgid "Reject"
+#~ msgstr "Rifiuta"
+
+#~ msgid "Request Validation"
+#~ msgstr "Richiedi Approvazione"
+
+#~ msgid "Restart Validation"
+#~ msgstr "Reinizia Approvazione"
+
+#~ msgid "Tier Review"
+#~ msgstr "Verifica Tier"
+
+#~ msgid "Validate"
+#~ msgstr "Approva"
