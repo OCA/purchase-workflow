@@ -2,11 +2,11 @@
 # Copyright 2015-2019 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-import odoo.tests.common as common
 from odoo import fields
+from odoo.tests.common import TransactionCase
 
 
-class TestPurchaseOrder(common.SavepointCase):
+class TestPurchaseOrder(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super(TestPurchaseOrder, cls).setUpClass()
