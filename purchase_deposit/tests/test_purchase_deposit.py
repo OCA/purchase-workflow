@@ -73,7 +73,7 @@ class TestPurchaseDeposit(TransactionCase):
         wizard.amount = 10.0  # 10%
         wizard.create_invoices()
         # New Purchase Deposit is created automatically
-        deposit_id = self.default_model.get(
+        deposit_id = self.default_model.sudo().get(
             "purchase.advance.payment.inv", "purchase_deposit_product_id"
         )
         deposit = self.product_model.browse(deposit_id)
@@ -112,13 +112,11 @@ class TestPurchaseDeposit(TransactionCase):
             ],
         )
 
-    def test_create_deposit_invoice_exception(self):
+    def test_create_deposit_invoice_exception_1(self):
         """This test focus on exception cases, when create deposit invoice,
         1. This action is allowed only in Purchase Order sate
         2. The value of the deposit must be positive
         3. For type percentage, The percentage of the deposit must <= 100
-        4. Purchase Deposit Product's purchase_method != purchase
-        5. Purchase Deposit Product's type != service
         """
         self.assertEqual(len(self.po.order_line), 1)
         # We create invoice from expense
@@ -148,8 +146,29 @@ class TestPurchaseDeposit(TransactionCase):
         with self.assertRaises(UserError):
             wizard.create_invoices()
         wizard.amount = 10
+
+    def test_create_deposit_invoice_exception_2(self):
+        """This test focus on exception cases, when create deposit invoice,
+        4. Purchase Deposit Product's purchase_method != purchase
+        """
+        self.assertEqual(len(self.po.order_line), 1)
+        # We create invoice from expense
+        ctx = {
+            "active_id": self.po.id,
+            "active_ids": [self.po.id],
+            "active_model": "purchase.order",
+            "create_bills": True,
+        }
+        CreateDeposit = self.env["purchase.advance.payment.inv"]
+        self.po.button_confirm()
+        self.assertEqual(self.po.state, "purchase")
+        f = Form(CreateDeposit.with_context(**ctx))
+        f.advance_payment_method = "percentage"
+        f.amount = 101.0
+        f.deposit_account_id = self.account_deposit
+        wizard = f.save()
         # 4. Purchase Deposit Product's purchase_method != purchase
-        deposit_id = self.default_model.get(
+        deposit_id = self.default_model.sudo().get(
             "purchase.advance.payment.inv", "purchase_deposit_product_id"
         )
         deposit = self.product_model.browse(deposit_id)
@@ -157,7 +176,31 @@ class TestPurchaseDeposit(TransactionCase):
         wizard.purchase_deposit_product_id = deposit
         with self.assertRaises(UserError):
             wizard.create_invoices()
-        deposit.purchase_method = "purchase"
+
+    def test_create_deposit_invoice_exception_3(self):
+        """This test focus on exception cases, when create deposit invoice,
+        5. Purchase Deposit Product's type != service
+        """
+        self.assertEqual(len(self.po.order_line), 1)
+        # We create invoice from expense
+        ctx = {
+            "active_id": self.po.id,
+            "active_ids": [self.po.id],
+            "active_model": "purchase.order",
+            "create_bills": True,
+        }
+        CreateDeposit = self.env["purchase.advance.payment.inv"]
+        self.po.button_confirm()
+        self.assertEqual(self.po.state, "purchase")
+        f = Form(CreateDeposit.with_context(**ctx))
+        f.advance_payment_method = "percentage"
+        f.amount = 101.0
+        f.deposit_account_id = self.account_deposit
+        wizard = f.save()
+        deposit_id = self.default_model.sudo().get(
+            "purchase.advance.payment.inv", "purchase_deposit_product_id"
+        )
+        deposit = self.product_model.browse(deposit_id)
         # 5. Purchase Deposit Product's type != service
         deposit.type = "consu"
         with self.assertRaises(UserError):
