@@ -32,6 +32,7 @@ class PurchaseOrderLine(models.Model):
         inverse="_inverse_product_qty",
         store=True,
         readonly=False,
+        copy=False,
     )
 
     def _get_product_seller(self):
@@ -52,30 +53,33 @@ class PurchaseOrderLine(models.Model):
         """
         Compute the total quantity
         """
-        uom_categories = self.mapped("product_purchase_uom_id.category_id")
-        uom_obj = self.env["uom.uom"]
-        to_uoms = uom_obj.search(
-            [("category_id", "in", uom_categories.ids), ("uom_type", "=", "reference")]
-        )
-        uom_by_category = {to_uom.category_id: to_uom for to_uom in to_uoms}
+        uom_by_category = self._get_uom_by_category()
         for line in self:
             if line.display_type:
                 line.product_qty = 0
                 continue
-            line.product_qty = line.product_purchase_uom_id._compute_quantity(
+            line.with_context(
+                skip_inverse=True
+            ).product_qty = line.product_purchase_uom_id._compute_quantity(
                 line.product_purchase_qty,
                 uom_by_category.get(line.product_purchase_uom_id.category_id),
             )
 
+    def _get_uom_by_category(self):
+        uom_categories = self.mapped("product_purchase_uom_id.category_id")
+        uoms = self.mapped("product_purchase_uom_id")
+        if not all([bool(uom.uom_type == "reference") for uom in uoms]):
+            from_uoms = uom_categories.mapped("reference_uom_id")
+        else:
+            from_uoms = uoms
+        return {from_uom.category_id: from_uom for from_uom in from_uoms}
+
     def _inverse_product_qty(self):
         """ If product_quantity is set compute the purchase_qty
         """
-        uom_categories = self.mapped("product_purchase_uom_id.category_id")
-        uom_obj = self.env["uom.uom"]
-        from_uoms = uom_obj.search(
-            [("category_id", "in", uom_categories.ids), ("uom_type", "=", "reference")]
-        )
-        uom_by_category = {from_uom.category_id: from_uom for from_uom in from_uoms}
+        if self.env.context.get("skip_inverse"):
+            return
+        uom_by_category = self._get_uom_by_category()
         for line in self:
             purchase_qty = line.product_qty
             if line.product_id:
