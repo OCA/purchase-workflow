@@ -21,13 +21,14 @@ class PurchaseOrder(models.Model):
 
     @api.onchange("partner_id")
     def onchange_partner_id(self):
-        super().onchange_partner_id()
+        res = super().onchange_partner_id()
         purchase_type = (
             self.partner_id.purchase_type
             or self.partner_id.commercial_partner_id.purchase_type
         )
         if purchase_type:
             self.order_type = purchase_type
+        return res
 
     @api.onchange("order_type")
     def onchange_order_type(self):
