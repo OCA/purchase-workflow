@@ -3,7 +3,7 @@
     <record id="view_purchase_order_type_tree" model="ir.ui.view">
         <field name="model">purchase.order.type</field>
         <field name="arch" type="xml">
-            <tree string="Purchase Order Types" decoration-muted="active == False">
+            <tree name="Purchase Order Types" decoration-muted="active == False">
                 <field name="sequence" widget="handle" />
                 <field name="active" invisible="True" />
                 <field name="name" />

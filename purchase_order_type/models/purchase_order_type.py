@@ -24,7 +24,7 @@ class PurchaseOrderType(models.Model):
 
     name = fields.Char(required=True)
     active = fields.Boolean(default=True)
-    description = fields.Text(string="Description", translate=True)
+    description = fields.Text(translate=True)
     sequence_id = fields.Many2one(
         comodel_name="ir.sequence",
         string="Entry Sequence",

@@ -9,7 +9,7 @@ from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 
 @tagged("post_install", "-at_install")
-class TestPurchaseOrderType(common.SavepointCase):
+class TestPurchaseOrderType(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
