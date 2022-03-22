@@ -1,0 +1,16 @@
+<odoo>
+    <record id="view_partner_form" model="ir.ui.view">
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="priority">1</field>
+        <field name="arch" type="xml">
+
+            <xpath expr="//group[@name='purchase']" position="inside">
+                <field name="state" invisible="1" />
+                <field name="candidate_purchase" states="draft" />
+                <field name="purchase_ok" />
+            </xpath>
+
+        </field>
+    </record>
+</odoo>
