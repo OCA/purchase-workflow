@@ -1,12 +1,12 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* purchase_analytic_global
+# 	* purchase_analytic_global
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: <>\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,12 +19,28 @@ msgid "Analytic Account"
 msgstr ""
 
 #. module: purchase_analytic_global
+#: model:ir.model.fields,field_description:purchase_analytic_global.field_purchase_order__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: purchase_analytic_global
+#: model:ir.model.fields,field_description:purchase_analytic_global.field_purchase_order__id
+msgid "ID"
+msgstr ""
+
+#. module: purchase_analytic_global
+#: model:ir.model.fields,field_description:purchase_analytic_global.field_purchase_order____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: purchase_analytic_global
 #: model:ir.model,name:purchase_analytic_global.model_purchase_order
 msgid "Purchase Order"
 msgstr ""
 
 #. module: purchase_analytic_global
 #: model:ir.model.fields,help:purchase_analytic_global.field_purchase_order__account_analytic_id
-msgid "This account will be propagated to all lines, if you need to use different accounts, define the account at line level."
+msgid ""
+"This account will be propagated to all lines, if you need to use different "
+"accounts, define the account at line level."
 msgstr ""
-
