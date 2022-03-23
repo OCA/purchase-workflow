@@ -19,13 +19,28 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: purchase_picking_state
-#: code:addons/purchase_picking_state/models/purchase.py:15
+#: code:addons/purchase_picking_state/models/purchase.py:0
 #, python-format
 msgid "Cancelled"
 msgstr ""
 
 #. module: purchase_picking_state
-#: code:addons/purchase_picking_state/models/purchase.py:16
+#: model:ir.model.fields,field_description:purchase_picking_state.field_purchase_order__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: purchase_picking_state
+#: model:ir.model.fields,field_description:purchase_picking_state.field_purchase_order__id
+msgid "ID"
+msgstr ""
+
+#. module: purchase_picking_state
+#: model:ir.model.fields,field_description:purchase_picking_state.field_purchase_order____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: purchase_picking_state
+#: code:addons/purchase_picking_state/models/purchase.py:0
 #, python-format
 msgid "Not Received"
 msgstr ""
@@ -36,7 +51,7 @@ msgid "Overall status based on all pickings"
 msgstr "De algemene status gebaseerd op alle ontvangsten."
 
 #. module: purchase_picking_state
-#: code:addons/purchase_picking_state/models/purchase.py:17
+#: code:addons/purchase_picking_state/models/purchase.py:0
 #, python-format
 msgid "Partially Received"
 msgstr ""
@@ -52,7 +67,7 @@ msgid "Purchase Order"
 msgstr "Inkooporder"
 
 #. module: purchase_picking_state
-#: code:addons/purchase_picking_state/models/purchase.py:18
+#: code:addons/purchase_picking_state/models/purchase.py:0
 #, python-format
 msgid "Transferred"
 msgstr ""
