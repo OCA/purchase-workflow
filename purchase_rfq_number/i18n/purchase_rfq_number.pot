@@ -32,11 +32,6 @@ msgid "Companies"
 msgstr ""
 
 #. module: purchase_rfq_number
-#: model:ir.model,name:purchase_rfq_number.model_res_config_settings
-msgid "Config Settings"
-msgstr ""
-
-#. module: purchase_rfq_number
 #: model:ir.model.fields,field_description:purchase_rfq_number.field_purchase_order__display_name
 #: model:ir.model.fields,field_description:purchase_rfq_number.field_res_company__display_name
 #: model:ir.model.fields,field_description:purchase_rfq_number.field_res_config_settings__display_name
@@ -70,6 +65,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_rfq_number.field_res_company____last_update
 #: model:ir.model.fields,field_description:purchase_rfq_number.field_res_config_settings____last_update
 msgid "Last Modified on"
+msgstr ""
+
+#. module: purchase_rfq_number
+#: model:ir.model,name:purchase_rfq_number.model_res_config_settings
+msgid "Procurement purchase grouping settings"
 msgstr ""
 
 #. module: purchase_rfq_number
