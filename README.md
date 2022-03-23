@@ -23,6 +23,7 @@ addon | version | maintainers | summary
 [purchase_discount](purchase_discount/) | 15.0.1.0.2 |  | Purchase order lines with discounts
 [purchase_receipt_expectation](purchase_receipt_expectation/) | 15.0.1.0.0 |  | Purchase Receipt Expectation
 [purchase_receipt_expectation_manual](purchase_receipt_expectation_manual/) | 15.0.1.0.0 |  | Purchase Receipt Expectation - Manual
+[purchase_receipt_expectation_manual_split](purchase_receipt_expectation_manual_split/) | 15.0.1.0.0 |  | Purchase Receipt Expectation - Manual w/ Split
 [purchase_reception_notify](purchase_reception_notify/) | 15.0.1.0.0 |  | Purchase Reception Notify
 [purchase_request](purchase_request/) | 15.0.1.0.0 |  | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
 
