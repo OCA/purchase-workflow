@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo14-addon-procurement_batch_generator',
+        'odoo14-addon-procurement_purchase_no_grouping',
         'odoo14-addon-product_form_purchase_link',
         'odoo14-addon-purchase_advance_payment',
         'odoo14-addon-purchase_cancel_confirm',
