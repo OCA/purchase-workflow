@@ -70,11 +70,6 @@ msgid "Company"
 msgstr "公司"
 
 #. module: purchase_order_approved
-#: model:ir.model,name:purchase_order_approved.model_res_config_settings
-msgid "Config Settings"
-msgstr "配置设置"
-
-#. module: purchase_order_approved
 #: model_terms:ir.ui.view,arch_db:purchase_order_approved.purchase_order_form
 msgid "Convert to Purchase Order"
 msgstr "转换为采购订单"
@@ -133,6 +128,11 @@ msgid "Order Lines"
 msgstr "订单行"
 
 #. module: purchase_order_approved
+#: model:ir.model,name:purchase_order_approved.model_res_config_settings
+msgid "Procurement purchase grouping settings"
+msgstr ""
+
+#. module: purchase_order_approved
 #: model:ir.model,name:purchase_order_approved.model_purchase_order
 msgid "Purchase Order"
 msgstr "采购订单"
@@ -187,6 +187,9 @@ msgstr "供应商"
 #: model:ir.model.fields,help:purchase_order_approved.field_purchase_order__partner_id
 msgid "You can find a vendor by its Name, TIN, Email or Internal Reference."
 msgstr "您可以通过名称，TIN，电子邮件或内部参考找到供应商。"
+
+#~ msgid "Config Settings"
+#~ msgstr "配置设置"
 
 #~ msgid ""
 #~ "Depicts the date where the Quotation should be validated and converted "
