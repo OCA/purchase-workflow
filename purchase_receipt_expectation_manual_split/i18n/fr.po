@@ -1,0 +1,46 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_receipt_expectation_manual_split
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-02-10 15:41+0000\n"
+"PO-Revision-Date: 2022-02-10 15:41+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_receipt_expectation_manual_split
+#: model:ir.model.fields,field_description:purchase_receipt_expectation_manual_split.field_purchase_order_line__manually_split_from_line_id
+msgid "Manually Split From Line"
+msgstr "Split manuel depuis la ligne"
+
+#. module: purchase_receipt_expectation_manual_split
+#: model:ir.model.fields,field_description:purchase_receipt_expectation_manual_split.field_purchase_order_line__manually_split_into_line_ids
+msgid "Manually Split Into Line"
+msgstr "Split manuel sur la ligne"
+
+#. module: purchase_receipt_expectation_manual_split
+#: model:ir.model,name:purchase_receipt_expectation_manual_split.model_purchase_order_manual_receipt_wizard_line
+msgid "PO Manual Receipt Wizard Line"
+msgstr "Wizard de réception manuelle des PO lines"
+
+#. module: purchase_receipt_expectation_manual_split
+#: model:ir.model.fields,field_description:purchase_receipt_expectation_manual_split.field_purchase_order_line__product_qty_pre_split
+msgid "Pre-split Original Qty"
+msgstr "Quantité Originale Avant Pré-Split "
+
+#. module: purchase_receipt_expectation_manual_split
+#: model:ir.model,name:purchase_receipt_expectation_manual_split.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Ligne de commande d'achat"
+
+#. module: purchase_receipt_expectation_manual_split
+#: model:ir.model,name:purchase_receipt_expectation_manual_split.model_stock_picking
+msgid "Transfer"
+msgstr "Transfert"
