@@ -29,11 +29,6 @@ msgid "Computed amount. Can be overwritten"
 msgstr ""
 
 #. module: purchase_work_acceptance_late_fines
-#: model:ir.model,name:purchase_work_acceptance_late_fines.model_res_config_settings
-msgid "Config Settings"
-msgstr ""
-
-#. module: purchase_work_acceptance_late_fines
 #: model:ir.actions.server,name:purchase_work_acceptance_late_fines.action_account_invoice_from_list
 #: model_terms:ir.ui.view,arch_db:purchase_work_acceptance_late_fines.view_work_acceptance_fines_late_tab_form
 msgid "Create Fines Invoice"
@@ -159,6 +154,11 @@ msgstr ""
 #: code:addons/purchase_work_acceptance_late_fines/models/work_acceptance.py:0
 #, python-format
 msgid "No late fines on work acceptance(s)"
+msgstr ""
+
+#. module: purchase_work_acceptance_late_fines
+#: model:ir.model,name:purchase_work_acceptance_late_fines.model_res_config_settings
+msgid "Procurement purchase grouping settings"
 msgstr ""
 
 #. module: purchase_work_acceptance_late_fines
