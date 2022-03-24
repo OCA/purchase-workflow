@@ -7,10 +7,11 @@ from odoo.exceptions import AccessError
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
-    product_supplier_code = fields.Char(string="Product Supplier Code")
+    product_supplier_code = fields.Char()
 
     @api.onchange(
-        "partner_id", "product_id",
+        "partner_id",
+        "product_id",
     )
     def _onchange_product_code(self):
         for line in self:
@@ -38,7 +39,7 @@ class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
     def _add_supplier_to_product(self):
-        super()._add_supplier_to_product()
+        res = super()._add_supplier_to_product()
         for line in self.order_line:
             partner = (
                 self.partner_id
@@ -57,3 +58,4 @@ class PurchaseOrder(models.Model):
                         seller["product_code"] = line.product_supplier_code
                     except AccessError:
                         break
+        return res
