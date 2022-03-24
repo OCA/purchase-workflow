@@ -5,25 +5,23 @@ from odoo.exceptions import AccessError
 
 
 class PurchaseOrderLine(models.Model):
-    _inherit = 'purchase.order.line'
+    _inherit = "purchase.order.line"
 
-    product_supplier_code = fields.Char(string='Product Supplier Code')
+    product_supplier_code = fields.Char()
 
-    @api.multi
     @api.onchange(
-        'partner_id',
-        'product_id',
+        "partner_id",
+        "product_id",
     )
     def _onchange_product_code(self):
         for line in self:
             supplier_info = line.product_id.seller_ids.filtered(
                 lambda s: (
-                    s.product_id == line.product_id
-                    and s.name == line.partner_id
+                    s.product_id == line.product_id and s.name == line.partner_id
                 )
             )
             if supplier_info:
-                code = supplier_info[0].product_code or ''
+                code = supplier_info[0].product_code or ""
                 line.product_supplier_code = code
             else:
                 supplier_info = line.product_id.seller_ids.filtered(
@@ -33,32 +31,31 @@ class PurchaseOrderLine(models.Model):
                     )
                 )
                 if supplier_info:
-                    code = supplier_info[0].product_code or ''
+                    code = supplier_info[0].product_code or ""
                     line.product_supplier_code = code
 
 
 class PurchaseOrder(models.Model):
-    _inherit = 'purchase.order'
+    _inherit = "purchase.order"
 
-    @api.multi
     def _add_supplier_to_product(self):
-        super()._add_supplier_to_product()
+        res = super()._add_supplier_to_product()
         for line in self.order_line:
             partner = (
                 self.partner_id
                 if not self.partner_id.parent_id
                 else self.partner_id.parent_id
             )
-            if partner in line.product_id.seller_ids.mapped('name'):
+            if partner in line.product_id.seller_ids.mapped("name"):
                 seller = line.product_id._select_seller(
                     partner_id=line.partner_id,
                     quantity=line.product_qty,
-                    date=line.order_id.date_order
-                    and line.order_id.date_order.date(),
+                    date=line.order_id.date_order and line.order_id.date_order.date(),
                     uom_id=line.product_uom,
                 )
                 if seller:
                     try:
-                        seller['product_code'] = line.product_supplier_code
+                        seller["product_code"] = line.product_supplier_code
                     except AccessError:
                         break
+        return res
