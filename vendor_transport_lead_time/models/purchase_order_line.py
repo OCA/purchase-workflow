@@ -31,10 +31,12 @@ class PurchaseOrderLine(models.Model):
         self.ensure_one()
         if not self.product_id or not self.date_planned:
             return False
+        # When coming from an onchange, the 'order_id.date_order' could be False
+        date_order = self.order_id.date_order or self.order_id._origin.date_order
         seller = self.product_id._select_seller(
             partner_id=self.partner_id,
             quantity=self.product_qty,
-            date=self.order_id.date_order and self.order_id.date_order.date(),
+            date=date_order and date_order.date(),
             uom_id=self.product_uom,
         )
         if not seller:
