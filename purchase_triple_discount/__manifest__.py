@@ -16,6 +16,7 @@
         "views/product_supplierinfo_view.xml",
         "views/purchase_view.xml",
         "views/res_partner_view.xml",
+        "report/report_purchase_order.xml",
     ],
     "installable": True,
 }
