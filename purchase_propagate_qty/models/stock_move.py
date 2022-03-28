@@ -10,6 +10,8 @@ class StockMove(models.Model):
 
     def _deduce_qty(self, qty_to_remove, rounding):
         """Deduce the provided qty with respect to done qties."""
+        if self.move_dest_ids:
+            self.move_dest_ids._deduce_qty(qty_to_remove, rounding)
         self = self.with_context(do_not_unreserve=True)
         for move in self:
             if float_is_zero(qty_to_remove, precision_rounding=rounding):
