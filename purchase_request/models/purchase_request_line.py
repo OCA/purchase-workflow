@@ -183,6 +183,7 @@ class PurchaseRequestLine(models.Model):
         "purchase_request_allocation_ids.purchase_line_id",
         "purchase_request_allocation_ids.purchase_line_id.state",
         "request_id.state",
+        "product_qty",
     )
     def _compute_qty_to_buy(self):
         for pr in self:
