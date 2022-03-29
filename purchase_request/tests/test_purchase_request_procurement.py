@@ -16,6 +16,7 @@ class TestPurchaseRequestProcurement(common.SavepointCase):
         self.prl_model = self.env["purchase.request.line"]
         self.product_uom_model = self.env["uom.uom"]
         self.location = self.env.ref("stock.stock_location_stock")
+        self.wiz = self.env["purchase.request.line.make.purchase.order"]
 
         # Get required Model data
         self.uom_unit_categ = self.env.ref("uom.product_uom_categ_unit")
@@ -216,3 +217,50 @@ class TestPurchaseRequestProcurement(common.SavepointCase):
             self.assertEqual(self.env["purchase.request"].search_count([]), 2)
             self.assertEqual(len(pr.line_ids), 1)
             self.assertEqual(prl.product_qty, 5)
+
+    def test_existing_purchase_request_with_rfq(self):
+        self.assertEqual(self.env["purchase.request"].search_count([]), 0)
+        has_route = self.procurement_group_run(
+            "Test Purchase Request Single Line",
+            "Test Purchase Request Single Line",
+            self.product_1,
+            4,
+        )
+        self.assertTrue(has_route)
+        self.env["procurement.group"].run_scheduler()
+        pr = self.env["purchase.request"].search(
+            [("origin", "=", "Test Purchase Request Single Line")]
+        )
+        # self.assertTrue(pr.to_approve_allowed)
+        self.assertEqual(pr.origin, "Test Purchase Request Single Line")
+        pr.button_to_approve()
+        pr.button_approved()
+        prl = self.env["purchase.request.line"].search([("request_id", "=", pr.id)])
+        self.assertEqual(prl.request_id, pr)
+        self.assertEqual(prl.product_qty, 4)
+        self.assertEqual(prl.product_id, self.product_1)
+        vals = {"supplier_id": self.env.ref("base.res_partner_12").id}
+        wiz_id = self.wiz.with_context(
+            active_model="purchase.request.line",
+            active_ids=[prl.id],
+            active_id=prl.id,
+        ).create(vals)
+        wiz_id.make_purchase_order()
+        # make sure rfq is set on the line
+        self.assertNotEqual(prl.purchase_state, False)
+        self.assertEqual(pr.purchase_count, 1)
+        # another request
+        has_route = self.procurement_group_run(
+            "prod_1",
+            "prod_1",
+            self.product_1,
+            5,
+        )
+        self.assertTrue(has_route)
+        self.env["procurement.group"].run_scheduler()
+        pr_2 = self.env["purchase.request"].search([("origin", "=", "prod_1")])
+        prl = self.env["purchase.request.line"].search([("request_id", "=", pr_2.id)])
+        # make sure no new PR is created
+        self.assertEqual(self.env["purchase.request"].search_count([]), 2)
+        self.assertEqual(len(pr_2.line_ids), 1)
+        self.assertEqual(prl.product_qty, 5)
