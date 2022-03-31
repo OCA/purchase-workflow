@@ -142,7 +142,7 @@ class WorkAcceptance(models.Model):
         wa_line_zero_quantity.unlink()
 
     def _get_valid_wa(self, doctype, order_id):
-        """ Get unused WA when validate invoice or picking """
+        """Get unused WA when validate invoice or picking"""
         order = self.env["purchase.order"].browse(order_id)
         all_wa = self.env["work.acceptance"].search(
             [
