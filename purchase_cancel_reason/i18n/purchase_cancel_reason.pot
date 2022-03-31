@@ -15,7 +15,7 @@ msgstr ""
 
 #. module: purchase_cancel_reason
 #: model:ir.model,name:purchase_cancel_reason.model_purchase_order_cancel
-msgid " Ask a reason for the purchase order cancellation."
+msgid "Ask a reason for the purchase order cancellation."
 msgstr ""
 
 #. module: purchase_cancel_reason
