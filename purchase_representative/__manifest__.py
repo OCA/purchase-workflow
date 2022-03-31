@@ -4,7 +4,7 @@
     "name": "Purchase Representative",
     "summary": "Purchase Representatives will be the point of contact for "
     "RFQ's and PO's",
-    "version": "13.0.1.0.0",
+    "version": "14.0.1.0.0",
     "category": "Purchases",
     "website": "https://github.com/OCA/purchase-workflow",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
