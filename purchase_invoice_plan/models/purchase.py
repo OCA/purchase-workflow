@@ -267,7 +267,7 @@ class PurchaseInvoicePlan(models.Model):
         move._move_autocomplete_invoice_lines_values()  # recompute dr/cr
 
     def _update_new_quantity(self, line, percent):
-        """ Hook function """
+        """Hook function"""
         plan_qty = self._get_plan_qty(line.purchase_line_id, percent)
         prec = line.purchase_line_id.product_uom.rounding
         if float_compare(abs(plan_qty), abs(line.quantity), prec) == 1:
