@@ -14,7 +14,7 @@ ACTIONS = {
 
 
 def post_init_hook(cr, registry):
-    """ Set value for order_sequence on old records """
+    """Set value for order_sequence on old records"""
     cr.execute(
         """
         update purchase_order
@@ -25,7 +25,7 @@ def post_init_hook(cr, registry):
 
 
 def uninstall_hook(cr, registry):
-    """ Restore purchase.order action's domain/context """
+    """Restore purchase.order action's domain/context"""
     with api.Environment.manage():
         env = api.Environment(cr, SUPERUSER_ID, {})
         for action_id in ACTIONS:
