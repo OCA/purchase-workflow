@@ -85,7 +85,7 @@ class ProductProduct(models.Model):
 
     @api.model
     def check_access_rights(self, operation, raise_exception=True):
-        """ hijack product edition rights if we're in the mass edition menu """
+        """hijack product edition rights if we're in the mass edition menu"""
         if self.env.context.get("quick_access_rights_purchase"):
             return self.env["purchase.order.line"].check_access_rights(
                 operation, raise_exception
