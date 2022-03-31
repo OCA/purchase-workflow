@@ -8,7 +8,9 @@ class ImportInvoiceLine(models.TransientModel):
     _description = "Import supplier invoice line"
 
     supplier = fields.Many2one(
-        comodel_name="res.partner", string="Supplier", required=True,
+        comodel_name="res.partner",
+        string="Supplier",
+        required=True,
     )
     invoice = fields.Many2one(
         comodel_name="account.move",

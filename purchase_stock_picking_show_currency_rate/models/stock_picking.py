@@ -8,13 +8,17 @@ class StockPicking(models.Model):
     _inherit = "stock.picking"
 
     purchase_currency_id = fields.Many2one(
-        string="Purchase currency", related="purchase_id.currency_id", readonly=True,
+        string="Purchase currency",
+        related="purchase_id.currency_id",
+        readonly=True,
     )
     show_currency_rate_amount = fields.Boolean(
         compute="_compute_show_currency_rate_amount", readonly=True
     )
     currency_rate_amount = fields.Float(
-        string="Rate amount", compute="_compute_currency_rate_amount", digits=0,
+        string="Rate amount",
+        compute="_compute_currency_rate_amount",
+        digits=0,
     )
 
     @api.depends("purchase_currency_id", "purchase_currency_id.rate_ids", "company_id")

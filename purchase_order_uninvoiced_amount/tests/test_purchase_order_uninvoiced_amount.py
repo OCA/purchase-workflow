@@ -53,8 +53,7 @@ class TestPurchaseOrderUninvoiceAmount(SavepointCase):
         )
 
     def _create_purchase(self, product_qty=1, product_received=1):
-        """ Create a purchase order.
-        """
+        """Create a purchase order."""
         purchase = self.purchase_order_model.create(
             {"company_id": self.company.id, "partner_id": self.partner.id}
         )

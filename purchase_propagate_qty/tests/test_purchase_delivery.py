@@ -153,7 +153,7 @@ class TestQtyUpdate(SavepointCase):
         self.assertEqual(move2.product_uom_qty, 12.0)
 
     def test_reduce_purchase_qty_with_canceled_moves(self):
-        """ Check canceled moves are not taken into account."""
+        """Check canceled moves are not taken into account."""
         self.po.button_cancel()  # Cancel the moves
         self.po.button_draft()
         self.po.button_confirm()
@@ -169,7 +169,7 @@ class TestQtyUpdate(SavepointCase):
         self.assertEqual(move.product_uom_qty, 10)
 
     def test_reduce_purchase_qty_with_done_moves(self):
-        """ Check canceled moves are not taken into account."""
+        """Check canceled moves are not taken into account."""
         self.po.button_draft()
         self.po.button_confirm()
         line1 = self.po.order_line[0]

@@ -10,8 +10,8 @@ class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
     def _add_supplier_to_product(self):
-        """ Insert a mapping of products to PO lines to be picked up
-        in supplierinfo's create() """
+        """Insert a mapping of products to PO lines to be picked up
+        in supplierinfo's create()"""
         self.ensure_one()
         po_line_map = {
             line.product_id.product_tmpl_id.id: line for line in self.order_line

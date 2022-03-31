@@ -132,7 +132,7 @@ class TestDeliverySingle(TransactionCase):
 
         This can happen if another module changes the picking planned date
         before the _check_split_pickings is being called from the write method.
-         """
+        """
         self.po.order_line[0].date_planned = self.date_later
         self.po.button_confirm()
         moves = self.env["stock.move"].search(
