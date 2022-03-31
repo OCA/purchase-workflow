@@ -109,7 +109,7 @@ class TestPurchaseOrder(common.SavepointCase):
         )
 
     def test_01_purchase_order_classic_discount(self):
-        """ Tests with single discount """
+        """Tests with single discount"""
         self.po_line1.discount = 50.0
         self.po_line2.discount = 75.0
         self.assertEqual(self.po_line1.price_subtotal, 300.0)
@@ -121,7 +121,7 @@ class TestPurchaseOrder(common.SavepointCase):
         self.assertEqual(self.order.amount_tax, 22.5)
 
     def test_02_purchase_order_simple_triple_discount(self):
-        """ Tests on a single line """
+        """Tests on a single line"""
         self.po_line2.unlink()
         # Divide by two on every discount:
         self.po_line1.discount = 50.0
@@ -142,7 +142,7 @@ class TestPurchaseOrder(common.SavepointCase):
         self.assertEqual(self.order.amount_tax, 67.5)
 
     def test_03_purchase_order_complex_triple_discount(self):
-        """ Tests on multiple lines """
+        """Tests on multiple lines"""
         self.po_line1.discount = 50.0
         self.po_line1.discount2 = 50.0
         self.po_line1.discount3 = 50.0
