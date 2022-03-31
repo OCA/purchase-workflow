@@ -6,7 +6,7 @@ from odoo import fields, models
 
 class PurchaseOrderCancel(models.TransientModel):
 
-    """ Ask a reason for the purchase order cancellation."""
+    """Ask a reason for the purchase order cancellation."""
 
     _name = "purchase.order.cancel"
     _description = __doc__
