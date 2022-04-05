@@ -32,8 +32,8 @@ class StockPicking(models.Model):
         message += "</ul>"
         return message
 
-    def action_done(self):
-        super(StockPicking, self).action_done()
+    def _action_done(self):
+        super(StockPicking, self)._action_done()
         request_obj = self.env["purchase.request"]
         for picking in self:
             requests_dict = {}
@@ -60,6 +60,5 @@ class StockPicking(models.Model):
                 )
                 request.sudo().message_post(
                     body=message,
-                    subtype="mail.mt_comment",
                     author_id=self.env.user.partner_id.id,
                 )
