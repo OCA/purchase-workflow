@@ -41,6 +41,7 @@ setuptools.setup(
         'odoo14-addon-purchase_order_secondary_unit',
         'odoo14-addon-purchase_order_type',
         'odoo14-addon-purchase_order_uninvoiced_amount',
+        'odoo14-addon-purchase_partner_approval',
         'odoo14-addon-purchase_partner_incoterm',
         'odoo14-addon-purchase_picking_state',
         'odoo14-addon-purchase_product_usage',

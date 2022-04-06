@@ -107,7 +107,7 @@ class TestProductSupplierinfoDiscount(common.SavepointCase):
         )
 
     def test_006_supplierinfo_from_purchaseorder(self):
-        """ Include discount when creating new sellers for a product """
+        """Include discount when creating new sellers for a product"""
         partner = self.env.ref("base.res_partner_3")
         product = self.env.ref("product.product_product_8")
         self.assertFalse(

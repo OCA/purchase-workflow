@@ -1,4 +1,5 @@
-[![Runbot Status](https://runbot.odoo-community.org/runbot/badge/flat/142/14.0.svg)](https://runbot.odoo-community.org/runbot/repo/github-com-oca-purchase-workflow-142)
+
+[![Runboat](https://img.shields.io/badge/runboat-Try%20me-875A7B.png)](https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&target_branch=14.0)
 [![Build Status](https://travis-ci.com/OCA/purchase-workflow.svg?branch=14.0)](https://travis-ci.com/OCA/purchase-workflow)
 [![codecov](https://codecov.io/gh/OCA/purchase-workflow/branch/14.0/graph/badge.svg)](https://codecov.io/gh/OCA/purchase-workflow)
 [![Translation Status](https://translation.odoo-community.org/widgets/purchase-workflow-14-0/-/svg-badge.svg)](https://translation.odoo-community.org/engage/purchase-workflow-14-0/?utm_source=widget)
@@ -52,6 +53,7 @@ addon | version | maintainers | summary
 [purchase_order_secondary_unit](purchase_order_secondary_unit/) | 14.0.1.0.0 |  | Purchase product in a secondary unit
 [purchase_order_type](purchase_order_type/) | 14.0.1.0.2 |  | Purchase Order Type
 [purchase_order_uninvoiced_amount](purchase_order_uninvoiced_amount/) | 14.0.1.1.0 |  | Show uninvoiced amount on purchase order tree.
+[purchase_partner_approval](purchase_partner_approval/) | 14.0.1.0.0 | [![dreispt](https://github.com/dreispt.png?size=30px)](https://github.com/dreispt) | Control Partners that can be used in Purchase Orders
 [purchase_partner_incoterm](purchase_partner_incoterm/) | 14.0.1.0.0 |  | Add a an incoterm field for supplier and use it on purchase order
 [purchase_picking_state](purchase_picking_state/) | 14.0.1.0.0 |  | Purchase Picking State
 [purchase_product_usage](purchase_product_usage/) | 14.0.1.1.0 |  | Purchase Product Usage
@@ -61,7 +63,7 @@ addon | version | maintainers | summary
 [purchase_reception_status](purchase_reception_status/) | 14.0.1.0.0 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Add reception status on purchase orders
 [purchase_report_menu_move](purchase_report_menu_move/) | 14.0.1.0.0 | [![newtratip](https://github.com/newtratip.png?size=30px)](https://github.com/newtratip) | Purchase Report Menu Move
 [purchase_representative](purchase_representative/) | 14.0.1.0.0 |  | Purchase Representatives will be the point of contact for RFQ's and PO's
-[purchase_request](purchase_request/) | 14.0.1.3.2 |  | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
+[purchase_request](purchase_request/) | 14.0.1.3.4 |  | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
 [purchase_request_cancel_confirm](purchase_request_cancel_confirm/) | 14.0.1.0.0 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Purchase Request Cancel Confirm
 [purchase_request_department](purchase_request_department/) | 14.0.1.0.0 |  | Purchase Request Department
 [purchase_request_exception](purchase_request_exception/) | 14.0.1.0.0 |  | Custom exceptions on purchase request
@@ -76,7 +78,7 @@ addon | version | maintainers | summary
 [purchase_work_acceptance_evaluation](purchase_work_acceptance_evaluation/) | 14.0.2.0.0 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Purchase Work Acceptance Evaluation
 [purchase_work_acceptance_invoice_plan](purchase_work_acceptance_invoice_plan/) | 14.0.1.0.1 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Purchase Work Acceptance Invoice Plan
 [purchase_work_acceptance_late_fines](purchase_work_acceptance_late_fines/) | 14.0.1.0.0 | [![Saran440](https://github.com/Saran440.png?size=30px)](https://github.com/Saran440) | Purchase Work Acceptance - Late Delivery Fines
-[vendor_transport_lead_time](vendor_transport_lead_time/) | 14.0.1.0.0 |  | Purchase delay based on transport and supplier delays
+[vendor_transport_lead_time](vendor_transport_lead_time/) | 14.0.1.0.1 |  | Purchase delay based on transport and supplier delays
 
 [//]: # (end addons)
 
@@ -86,12 +88,11 @@ addon | version | maintainers | summary
 
 This repository is licensed under [AGPL-3.0](LICENSE).
 
-However, each module can have a totally different license, as long as they adhere to OCA
+However, each module can have a totally different license, as long as they adhere to Odoo Community Association (OCA)
 policy. Consult each module's `__manifest__.py` file, which contains a `license` key
 that explains its license.
 
 ----
-
 OCA, or the [Odoo Community Association](http://odoo-community.org/), is a nonprofit
 organization whose mission is to support the collaborative development of Odoo features
 and promote its widespread use.
