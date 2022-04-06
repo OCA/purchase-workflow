@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <button name="button_unlock" position="after">
+                <button
+                    name="update_lines_info"
+                    type="object"
+                    string=" Update lines info"
+                    icon="fa-refresh"
+                    confirm="This will update all the line prices based on the vendor currently set. Do you want to continue?"
+                    attrs="{'invisible': [('state', 'not in', ['draft', 'sent'])]}"
+                />
+            </button>
+        </field>
+    </record>
+</odoo>
