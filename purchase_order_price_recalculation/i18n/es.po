@@ -1,0 +1,52 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_order_price_recalculation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-05-03 08:04+0000\n"
+"PO-Revision-Date: 2022-05-03 10:06+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 2.3\n"
+
+#. module: purchase_order_price_recalculation
+#: model:ir.model.fields,field_description:purchase_order_price_recalculation.field_purchase_order__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: purchase_order_price_recalculation
+#: model:ir.model.fields,field_description:purchase_order_price_recalculation.field_purchase_order__id
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_order_price_recalculation
+#: model:ir.model.fields,field_description:purchase_order_price_recalculation.field_purchase_order____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: purchase_order_price_recalculation
+#: model:ir.model,name:purchase_order_price_recalculation.model_purchase_order
+msgid "Purchase Order"
+msgstr "Pedido de compra"
+
+#. module: purchase_order_price_recalculation
+#: model_terms:ir.ui.view,arch_db:purchase_order_price_recalculation.purchase_order_form
+msgid ""
+"This will update all the line prices based on the vendor currently set. Do "
+"you want to continue?"
+msgstr ""
+"Esto actualizará todos los precios de la línea según el proveedor "
+"establecido actualmente. ¿Quiere continuar?"
+
+#. module: purchase_order_price_recalculation
+#: model_terms:ir.ui.view,arch_db:purchase_order_price_recalculation.purchase_order_form
+msgid "Update lines info"
+msgstr "Actualizar información de líneas"
