@@ -53,7 +53,10 @@ class ProductProduct(models.Model):
     @api.depends("last_purchase_line_id")
     def _compute_last_purchase_line_id_info(self):
         for item in self:
-            item.last_purchase_price = item.last_purchase_line_id.price_unit
+            item.last_purchase_price = (
+                item.last_purchase_line_id.price_subtotal
+                / item.last_purchase_line_id.product_qty
+            )
             item.last_purchase_date = item.last_purchase_line_id.date_order
             item.last_purchase_supplier_id = item.last_purchase_line_id.partner_id
             item.last_purchase_currency_id = item.last_purchase_line_id.currency_id
