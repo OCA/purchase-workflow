@@ -3,8 +3,8 @@
 {
     "name": "Default purchase incoterm per partner",
     "summary": "Add a an incoterm field for supplier and use it on purchase order",
-    "version": "14.0.1.0.0",
-    "category": "Purchase",
+    "version": "15.0.1.0.0",
+    "category": "Inventory/Purchase",
     "author": "Camptocamp, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "depends": [
