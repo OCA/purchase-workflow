@@ -6,8 +6,8 @@ from odoo import fields, models
 
 class ResCompany(models.Model):
 
-    _inherit = 'res.company'
+    _inherit = "res.company"
 
     purchase_note = fields.Text(
-        string='Purchase Default Terms and Conditions',
-        translate=True)
+        string="Purchase Default Terms and Conditions", translate=True
+    )
