@@ -1,4 +1,5 @@
 # Copyright 2020 - TODAY, Escodoo
+# Copyright (C) 2022 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
@@ -15,5 +16,6 @@
     ],
     "data": [
         "views/res_config_settings.xml",
+        "views/res_partner_views.xml",
     ],
 }
