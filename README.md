@@ -23,6 +23,7 @@ addon | version | maintainers | summary
 --- | --- | --- | ---
 [product_form_purchase_link](product_form_purchase_link/) | 15.0.1.0.0 | [![rousseldenis](https://github.com/rousseldenis.png?size=30px)](https://github.com/rousseldenis) | Add an option to display the purchases lines from product
 [purchase_discount](purchase_discount/) | 15.0.1.0.2 |  | Purchase order lines with discounts
+[purchase_order_line_menu](purchase_order_line_menu/) | 15.0.1.0.0 |  | Adds Purchase Order Lines Menu
 [purchase_receipt_expectation](purchase_receipt_expectation/) | 15.0.1.0.0 |  | Purchase Receipt Expectation
 [purchase_receipt_expectation_manual](purchase_receipt_expectation_manual/) | 15.0.1.0.0 |  | Purchase Receipt Expectation - Manual
 [purchase_receipt_expectation_manual_split](purchase_receipt_expectation_manual_split/) | 15.0.1.0.0 |  | Purchase Receipt Expectation - Manual w/ Split
