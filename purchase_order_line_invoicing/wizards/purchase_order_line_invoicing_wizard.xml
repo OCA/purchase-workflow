@@ -1,0 +1,52 @@
+<odoo>
+        <record id="purchase_order_line_invoice_wizard_form" model="ir.ui.view">
+            <field name="name">purchase.order.line.invoice.wizard.form</field>
+            <field name="model">purchase.order.line.invoice.wizard</field>
+            <field name="groups_id" eval="[(4, ref('purchase.group_purchase_user'))]" />
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="purchase_order_line_details_ids" nolabel="1">
+                            <tree editable="bottom" create="0">
+                                <field name="purchase_order_line_id" invisible="1" />
+                                <field name="order_id" />
+                                <field name="name" />
+                                <field name="product_id" />
+                                <field name="price_unit" />
+                                <field name="product_qty" />
+                                <field name="qty_received" />
+                                <field name="qty_invoiced" />
+                                <field name="price_subtotal" />
+                                <field name="invoice_qty" />
+                            </tree>
+                        </field>
+                    </group>
+                    <footer>
+                       <button
+                        name="create_invoice"
+                        string="Create Invoice"
+                        type="object"
+                        class="oe_highlight"
+                        attrs="{'invisible': [('purchase_order_line_details_ids', '=', False)]}"
+                    />
+                       or
+                       <button string="Cancel" class="oe_link" special="cancel" />
+                   </footer>
+                </form>
+            </field>
+        </record>
+
+        <record
+        id="action_purchase_order_line_invoice_wizard"
+        model="ir.actions.act_window"
+    >
+            <field name="name">Create Invoice</field>
+            <field name="res_model">purchase.order.line.invoice.wizard</field>
+            <field name="view_id" ref="purchase_order_line_invoice_wizard_form" />
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="groups_id" eval="[(4, ref('purchase.group_purchase_user'))]" />
+            <field name="binding_model_id" ref="purchase.model_purchase_order_line" />
+        </record>
+
+</odoo>
