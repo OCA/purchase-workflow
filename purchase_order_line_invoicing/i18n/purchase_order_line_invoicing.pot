@@ -1,0 +1,183 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_order_line_invoicing
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_order_line_invoicing
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_invoicing.purchase_order_line_invoice_wizard_form
+msgid "Cancel"
+msgstr ""
+
+#. module: purchase_order_line_invoicing
+#: model:ir.model,name:purchase_order_line_invoicing.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: purchase_order_line_invoicing
+#: model:ir.actions.act_window,name:purchase_order_line_invoicing.action_purchase_order_line_invoice_wizard
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_invoicing.purchase_order_line_invoice_wizard_form
+msgid "Create Invoice"
+msgstr ""
+
+#. module: purchase_order_line_invoicing
+#: model:ir.model.fields,field_description:purchase_order_line_invoicing.field_purchase_order_line_invoice_details__create_uid
+#: model:ir.model.fields,field_description:purchase_order_line_invoicing.field_purchase_order_line_invoice_wizard__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: purchase_order_line_invoicing
+#: model:ir.model.fields,field_description:purchase_order_line_invoicing.field_purchase_order_line_invoice_details__create_date
+#: model:ir.model.fields,field_description:purchase_order_line_invoicing.field_purchase_order_line_invoice_wizard__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: purchase_order_line_invoicing
+#: model:ir.model.fields,field_description:purchase_order_line_invoicing.field_purchase_order_line_invoice_details__currency_id
+msgid "Currency"
+msgstr ""
+
+#. module: purchase_order_line_invoicing
+#: model:ir.model.fields,field_description:purchase_order_line_invoicing.field_purchase_order_line_invoice_details__name
+msgid "Description"
+msgstr ""
+
+#. module: purchase_order_line_invoicing
+#: model:ir.model.fields,field_description:purchase_order_line_invoicing.field_purchase_order_line_invoice_details__display_name
+#: model:ir.model.fields,field_description:purchase_order_line_invoicing.field_purchase_order_line_invoice_wizard__display_name
+#: model:ir.model.fields,field_description:purchase_order_line_invoicing.field_res_partner__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: purchase_order_line_invoicing
+#: model:ir.model.fields,field_description:purchase_order_line_invoicing.field_purchase_order_line_invoice_details__id
+#: model:ir.model.fields,field_description:purchase_order_line_invoicing.field_purchase_order_line_invoice_wizard__id
+#: model:ir.model.fields,field_description:purchase_order_line_invoicing.field_res_partner__id
+msgid "ID"
+msgstr ""
+
+#. module: purchase_order_line_invoicing
+#: model:ir.model.fields,field_description:purchase_order_line_invoicing.field_purchase_order_line_invoice_details____last_update
+#: model:ir.model.fields,field_description:purchase_order_line_invoicing.field_purchase_order_line_invoice_wizard____last_update
+#: model:ir.model.fields,field_description:purchase_order_line_invoicing.field_res_partner____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: purchase_order_line_invoicing
+#: model:ir.model.fields,field_description:purchase_order_line_invoicing.field_purchase_order_line_invoice_details__write_uid
+#: model:ir.model.fields,field_description:purchase_order_line_invoicing.field_purchase_order_line_invoice_wizard__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: purchase_order_line_invoicing
+#: model:ir.model.fields,field_description:purchase_order_line_invoicing.field_purchase_order_line_invoice_details__write_date
+#: model:ir.model.fields,field_description:purchase_order_line_invoicing.field_purchase_order_line_invoice_wizard__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: purchase_order_line_invoicing
+#: model:ir.model.fields,field_description:purchase_order_line_invoicing.field_purchase_order_line_invoice_details__order_id
+msgid "Order Reference"
+msgstr ""
+
+#. module: purchase_order_line_invoicing
+#: code:addons/purchase_order_line_invoicing/wizards/purchase_order_line_invoicing_wizard.py:0
+#, python-format
+msgid "Please select a least one line to invoice."
+msgstr ""
+
+#. module: purchase_order_line_invoicing
+#: model:ir.model.fields,field_description:purchase_order_line_invoicing.field_purchase_order_line_invoice_details__product_id
+msgid "Product"
+msgstr ""
+
+#. module: purchase_order_line_invoicing
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_invoicing.res_partner_view_purchase_buttons
+msgid "Purchase Lines"
+msgstr ""
+
+#. module: purchase_order_line_invoicing
+#: model:ir.model.fields,field_description:purchase_order_line_invoicing.field_purchase_order_line_invoice_details__purchase_order_line_id
+msgid "Purchase Order Line"
+msgstr ""
+
+#. module: purchase_order_line_invoicing
+#: model:ir.model.fields,field_description:purchase_order_line_invoicing.field_purchase_order_line_invoice_wizard__purchase_order_line_details_ids
+msgid "Purchase Order Line Details"
+msgstr ""
+
+#. module: purchase_order_line_invoicing
+#: model:ir.model,name:purchase_order_line_invoicing.model_purchase_order_line_invoice_wizard
+msgid "Purchase Order Line Invoice Wizard"
+msgstr ""
+
+#. module: purchase_order_line_invoicing
+#: model:ir.model,name:purchase_order_line_invoicing.model_purchase_order_line_invoice_details
+msgid "Purchase Order Line Invoice Wizard Details"
+msgstr ""
+
+#. module: purchase_order_line_invoicing
+#: model:ir.actions.act_window,name:purchase_order_line_invoicing.act_res_partner_2_purchase_order_line
+msgid "Purchase Order Lines"
+msgstr ""
+
+#. module: purchase_order_line_invoicing
+#: model:ir.model.fields,field_description:purchase_order_line_invoicing.field_res_partner__purchase_order_lines_count
+#: model:ir.model.fields,field_description:purchase_order_line_invoicing.field_res_users__purchase_order_lines_count
+msgid "Purchase Order Lines Count"
+msgstr ""
+
+#. module: purchase_order_line_invoicing
+#: model:ir.model.fields,field_description:purchase_order_line_invoicing.field_purchase_order_line_invoice_details__product_qty
+msgid "Quantity"
+msgstr ""
+
+#. module: purchase_order_line_invoicing
+#: model:ir.model.fields,field_description:purchase_order_line_invoicing.field_purchase_order_line_invoice_details__invoice_qty
+msgid "Quantity to Invoice"
+msgstr ""
+
+#. module: purchase_order_line_invoicing
+#: model:ir.model.fields,field_description:purchase_order_line_invoicing.field_purchase_order_line_invoice_details__qty_received
+msgid "Received Qty"
+msgstr ""
+
+#. module: purchase_order_line_invoicing
+#: model:ir.model.fields,field_description:purchase_order_line_invoicing.field_purchase_order_line_invoice_details__price_subtotal
+msgid "Subtotal"
+msgstr ""
+
+#. module: purchase_order_line_invoicing
+#: model:ir.model.fields,field_description:purchase_order_line_invoicing.field_purchase_order_line_invoice_details__qty_invoiced
+msgid "To Invoice Quantity"
+msgstr ""
+
+#. module: purchase_order_line_invoicing
+#: model:ir.model.fields,field_description:purchase_order_line_invoicing.field_purchase_order_line_invoice_details__price_unit
+msgid "Unit Price"
+msgstr ""
+
+#. module: purchase_order_line_invoicing
+#: model:ir.model.fields,field_description:purchase_order_line_invoicing.field_purchase_order_line_invoice_details__wizard_id
+msgid "Wizard"
+msgstr ""
+
+#. module: purchase_order_line_invoicing
+#: code:addons/purchase_order_line_invoicing/wizards/purchase_order_line_invoicing_wizard.py:0
+#, python-format
+msgid "You have to select line from only one supplier."
+msgstr ""
+
+#. module: purchase_order_line_invoicing
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_invoicing.purchase_order_line_invoice_wizard_form
+msgid "or"
+msgstr ""
