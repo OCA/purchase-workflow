@@ -299,7 +299,7 @@ class PurchaseOrderReturn(models.Model):
 
     @api.depends("order_line.date_planned")
     def _compute_date_planned(self):
-        """ date_planned = the earliest date_planned across all order lines. """
+        """date_planned = the earliest date_planned across all order lines."""
         for order in self:
             dates_list = order.order_line.filtered(
                 lambda x: not x.display_type and x.date_planned
@@ -657,7 +657,7 @@ class PurchaseOrderReturn(models.Model):
 
         partner_invoice_id = self.partner_id.address_get(["invoice"])["invoice"]
         invoice_vals = {
-            "ref": self.partner_ref or "",
+            "ref": self.partner_ref or self.name,
             "move_type": move_type,
             "narration": self.notes,
             "currency_id": self.currency_id.id,
