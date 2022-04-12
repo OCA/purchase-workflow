@@ -21,6 +21,7 @@ class PurchaseOrderLine(models.Model):
         return res
 
     def _propagage_qty_to_moves(self):
+        get_param = self.env["ir.config_parameter"].sudo().get_param
         for line in self:
             if line.state != "purchase":
                 continue
@@ -30,14 +31,22 @@ class PurchaseOrderLine(models.Model):
                     continue
                 if move.product_id != line.product_id:
                     continue
-                move.product_uom_qty = line.product_uom_qty
+                move.product_uom_qty = (
+                    line.product_qty
+                    if get_param("stock.propagate_uom") == "1"
+                    else line.product_uom_qty
+                )
                 if float_is_zero(move.product_uom_qty, precision_rounding=rounding):
                     move._action_cancel()
             moves_done = line.move_ids.filtered(lambda r: r.state == "done")
             qty_done = sum(moves_done.mapped("product_uom_qty"))
             moves = line.move_ids.filtered(lambda r: r.state not in ("cancel", "done"))
             previous_qty = sum(moves.mapped("product_uom_qty"))
-            new_qty = line.product_uom_qty
+            new_qty = (
+                line.product_qty
+                if get_param("stock.propagate_uom") == "1"
+                else line.product_uom_qty
+            )
             # If the new qty equals the already received qty, cancel remaining moves
             if qty_done and equal(qty_done, new_qty, rounding):
                 moves._action_cancel()
