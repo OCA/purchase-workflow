@@ -571,7 +571,7 @@ class PurchaseReturnOrderLine(models.Model):
 
     @api.model
     def _prepare_add_missing_fields(self, values):
-        """ Deduce missing required fields from the onchange """
+        """Deduce missing required fields from the onchange"""
         res = {}
         onchange_fields = [
             "name",
