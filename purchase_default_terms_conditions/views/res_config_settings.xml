@@ -35,7 +35,7 @@
                         >
                             <div class="mt16">
                                 <field
-                                    name="default_notes"
+                                    name="purchase_note"
                                     placeholder="Insert your terms &amp; conditions here..."
                                 />
                             </div>

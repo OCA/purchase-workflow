@@ -8,7 +8,7 @@ class ResConfigSettings(models.TransientModel):
 
     _inherit = "res.config.settings"
 
-    default_notes = fields.Text(
+    purchase_note = fields.Text(
         related="company_id.purchase_note",
         string="Purchase Terms & Conditions",
         default_model="purchase.order",
