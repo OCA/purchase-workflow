@@ -18,10 +18,9 @@ class PurchaseOrderLine(models.Model):
             and x.state not in ["draft", "done", "cancel"]
             and not x.price_unit
             # Allow zero price for 100% discounts:
-            and (
-                x.discount + getattr(x, "discount2", 0.0) + getattr(x, "discount3", 0.0)
-            )
-            != 100.0
+            and getattr(x, "discount", 0.0) != 100.0
+            and getattr(x, "discount2", 0.0) != 100.0
+            and getattr(x, "discount3", 0.0) != 100.0
         )
         if no_price_lines:
             raise exceptions.UserError(

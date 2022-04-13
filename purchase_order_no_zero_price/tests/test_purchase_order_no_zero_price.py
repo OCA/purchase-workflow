@@ -40,7 +40,6 @@ class TestPurchaseOrderNoZeroPrice(common.TransactionCase):
             }
         )
         self.purchase_order2 = self.purchase_order1.copy()
-        self.purchase_order2.order_line.write({"discount": 10.0, "price_unit": 0.0})
 
     def test_check_price_unit_zero(self):
         self.assertEqual(self.purchase_order1.state, "draft")
@@ -49,5 +48,6 @@ class TestPurchaseOrderNoZeroPrice(common.TransactionCase):
 
         self.assertEqual(self.purchase_order2.state, "draft")
         with self.assertRaises(UserError):
+            self.purchase_order2.order_line.write({"price_unit": 0.0})
             self.purchase_order2.button_confirm()
         self.assertEqual(self.purchase_order2.state, "draft")
