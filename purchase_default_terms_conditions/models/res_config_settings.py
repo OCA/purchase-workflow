@@ -11,11 +11,10 @@ class ResConfigSettings(models.TransientModel):
     purchase_note = fields.Text(
         related="company_id.purchase_note",
         string="Purchase Terms & Conditions",
-        default_model="purchase.order",
         readonly=False,
     )
 
     use_purchase_note = fields.Boolean(
         string="Use Purchase Default Terms & Conditions",
-        config_parameter="purchase.use_purchase_note",
+        config_parameter="purchase_default_terms_conditions.use_purchase_note",
     )
