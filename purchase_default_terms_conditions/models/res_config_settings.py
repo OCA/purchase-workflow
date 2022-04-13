@@ -16,5 +16,5 @@ class ResConfigSettings(models.TransientModel):
 
     use_purchase_note = fields.Boolean(
         string="Use Purchase Default Terms & Conditions",
-        config_parameter="purchase_default_terms_conditions.use_purchase_note",
+        config_parameter="purchase.use_purchase_note",
     )
