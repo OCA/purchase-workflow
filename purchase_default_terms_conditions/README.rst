@@ -25,7 +25,7 @@ Purchase Default Terms Conditions
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-This module allows purchase default terms & conditions
+This module allows purchase default terms & conditions from Suppler or Company
 
 **Table of contents**
 
@@ -40,6 +40,7 @@ To configure this module, you need to:
 #. Go to Purchase Settings
 #. Enable Default Terms & Conditions
 #. Set Default Terms & Conditions
+#. Set Terms & COndtions in Suppler
 
 Usage
 =====
@@ -74,7 +75,6 @@ Contributors
 
   * Marcel Savegnago <marcel.savegnago@escodoo.com.br>
   * Murtaza Mithaiwala <murtaza.m.serpentcs@gmail.com>
-  
 
 Other credits
 ~~~~~~~~~~~~~
