@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="excep_vendor_approved" model="exception.rule">
+        <field name="name">Vendor is Approved</field>
+        <field name="description">Vendor must be a vendor approved for Purchase</field>
+        <field name="model">purchase.order</field>
+        <field name="exception_type">by_domain</field>
+        <field name="domain">[('partner_id.purchase_ok', '=', False)]</field>
+        <field name="is_blocking">True</field>
+        <field name="active">False</field>
+    </record>
+    <record id="excep_vendor_dropship_approved" model="exception.rule">
+        <field name="name">Drop Ship Address is Approved</field>
+        <field
+            name="description"
+        >Drop Ship Address must be a contact approved for Purchase</field>
+        <field name="model">purchase.order</field>
+        <field name="exception_type">by_domain</field>
+        <field name="domain">[('dest_address_id.purchase_ok', '=', False)]</field>
+        <field name="is_blocking">True</field>
+        <field name="active">False</field>
+    </record>
+</odoo>
