@@ -12,13 +12,28 @@ class TestDeliverySingle(TransactionCase):
 
         # Create products:
         p1 = self.product1 = self.product_model.create(
-            {"name": "Test Product 1", "type": "product", "default_code": "PROD1"}
+            {
+                "name": "Test Product 1",
+                "type": "product",
+                "default_code": "PROD1",
+                "standard_price": 10,
+            }
         )
         p2 = self.product2 = self.product_model.create(
-            {"name": "Test Product 2", "type": "product", "default_code": "PROD2"}
+            {
+                "name": "Test Product 2",
+                "type": "product",
+                "default_code": "PROD2",
+                "standard_price": 10,
+            }
         )
         self.p3 = self.product2 = self.product_model.create(
-            {"name": "Test Product 3", "type": "product", "default_code": "PROD3"}
+            {
+                "name": "Test Product 3",
+                "type": "product",
+                "default_code": "PROD3",
+                "standard_price": 10,
+            }
         )
 
         # Two dates which we can use to test the features:
