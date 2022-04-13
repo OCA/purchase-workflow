@@ -89,3 +89,52 @@ class TestPurchaseLastPriceInfo(common.TransactionCase):
         self.assertEqual(self.partner, self.product.last_purchase_supplier_id)
         purchase_order.button_cancel()
         self.assertEqual(purchase_order.state, "cancel")
+
+    def test_purchase_last_price_info_domain_qty(self):
+        purchase_order = self.purchase_model.create(
+            {
+                "date_order": "2000-01-01",
+                "currency_id": self.currency_eur.id,
+                "partner_id": self.partner.id,
+                "order_line": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.product.id,
+                            "product_uom": self.product.uom_id.id,
+                            "price_unit": 54,
+                            "name": self.product.name,
+                            "date_planned": fields.Datetime.now(),
+                            "product_qty": 1,
+                        },
+                    ),
+                ],
+            }
+        )
+        purchase_order.button_confirm()
+        first_order_line = fields.first(purchase_order.order_line)
+        self.assertEqual(first_order_line.price_unit, self.product.last_purchase_price)
+        purchase_order = self.purchase_model.create(
+            {
+                "date_order": "2000-01-01",
+                "currency_id": self.currency_eur.id,
+                "partner_id": self.partner.id,
+                "order_line": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.product.id,
+                            "product_uom": self.product.uom_id.id,
+                            "price_unit": 33,
+                            "name": self.product.name,
+                            "date_planned": fields.Datetime.now(),
+                            "product_qty": 0,
+                        },
+                    ),
+                ],
+            }
+        )
+        purchase_order.button_confirm()
+        self.assertEqual(first_order_line.price_unit, self.product.last_purchase_price)

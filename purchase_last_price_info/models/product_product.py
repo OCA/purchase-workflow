@@ -12,7 +12,7 @@ class ProductProduct(models.Model):
     last_purchase_line_ids = fields.One2many(
         comodel_name="purchase.order.line",
         inverse_name="product_id",
-        domain=[("state", "in", ["purchase", "done"])],
+        domain=[("state", "in", ["purchase", "done"]), ("product_qty", ">", 0)],
         string="Last Purchase Order Lines",
     )
     last_purchase_line_id = fields.Many2one(
