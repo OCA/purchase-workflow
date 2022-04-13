@@ -72,6 +72,8 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         wiz_id.make_purchase_order()
         purchase_request1.action_view_purchase_order()
         po_line = purchase_request_line1.purchase_lines[0]
+        # Add unit price in PO Line
+        po_line.write({"price_unit": 10})
         purchase = po_line.order_id
         purchase.order_line.action_open_request_line_tree_view()
         purchase.button_confirm()
@@ -131,6 +133,8 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         wiz_id.make_purchase_order()
         purchase_request1.action_view_purchase_order()
         po_line = purchase_request_line1.purchase_lines[0]
+        # Add unit price in PO Line
+        po_line.write({"price_unit": 10})
         purchase = po_line.order_id
         purchase.button_confirm()
         self.assertEqual(purchase_request_line1.qty_in_progress, 2.0)
