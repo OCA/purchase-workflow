@@ -354,6 +354,8 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         wiz_id.make_purchase_order()
         # Check Purchase qty should be 6
         po_line = purchase_request_line2.purchase_lines[0]
+        # Add unit price in PO Line
+        po_line.write({"price_unit": 10})
         self.assertEqual(po_line.product_qty, 6.0, "Quantity should be 6")
         # auto change state to done
         po_line.order_id.button_confirm()
