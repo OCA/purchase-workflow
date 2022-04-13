@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -19,24 +19,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:purchase_request_department.purchase_request_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_request_department.view_purchase_request_search
 msgid "Department"
-msgstr ""
-
-#. module: purchase_request_department
-#: model:ir.model.fields,field_description:purchase_request_department.field_purchase_request__display_name
-#: model:ir.model.fields,field_description:purchase_request_department.field_purchase_request_line__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: purchase_request_department
-#: model:ir.model.fields,field_description:purchase_request_department.field_purchase_request__id
-#: model:ir.model.fields,field_description:purchase_request_department.field_purchase_request_line__id
-msgid "ID"
-msgstr ""
-
-#. module: purchase_request_department
-#: model:ir.model.fields,field_description:purchase_request_department.field_purchase_request____last_update
-#: model:ir.model.fields,field_description:purchase_request_department.field_purchase_request_line____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: purchase_request_department
