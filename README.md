@@ -23,6 +23,7 @@ addon | version | maintainers | summary
 --- | --- | --- | ---
 [product_form_purchase_link](product_form_purchase_link/) | 15.0.1.0.0 | [![rousseldenis](https://github.com/rousseldenis.png?size=30px)](https://github.com/rousseldenis) | Add an option to display the purchases lines from product
 [purchase_default_terms_conditions](purchase_default_terms_conditions/) | 15.0.1.0.1 |  | This module allows purchase default terms & conditions
+[purchase_delivery_split_date](purchase_delivery_split_date/) | 15.0.1.0.0 |  | Allows Purchase Order you confirm to generate one Incoming Shipment for each expected date indicated in the Purchase Order Lines
 [purchase_discount](purchase_discount/) | 15.0.1.0.2 |  | Purchase order lines with discounts
 [purchase_order_line_menu](purchase_order_line_menu/) | 15.0.1.0.0 |  | Adds Purchase Order Lines Menu
 [purchase_receipt_expectation](purchase_receipt_expectation/) | 15.0.1.0.0 |  | Purchase Receipt Expectation
