@@ -3,11 +3,13 @@
 
 from datetime import datetime
 
+from odoo.tests import tagged
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT as DTF
 
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
 
+@tagged("post_install", "-at_install")
 class TestPurchasePickingState(AccountTestInvoicingCommon):
     def setUp(self):
         super().setUp()
