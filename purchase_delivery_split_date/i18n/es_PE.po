@@ -1,0 +1,36 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * purchase_delivery_split_date
+#
+# Translators:
+# Henry Garcia <henry@yaroslab.com>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-07-15 06:42+0000\n"
+"PO-Revision-Date: 2017-07-15 06:42+0000\n"
+"Last-Translator: Henry Garcia <henry@yaroslab.com>, 2017\n"
+"Language-Team: Spanish (Peru) (https://www.transifex.com/oca/teams/23907/"
+"es_PE/)\n"
+"Language: es_PE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: purchase_delivery_split_date
+#: model:ir.model,name:purchase_delivery_split_date.model_purchase_order
+#, fuzzy
+msgid "Purchase Order"
+msgstr "Linea de orden de compra"
+
+#. module: purchase_delivery_split_date
+#: model:ir.model,name:purchase_delivery_split_date.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Linea de orden de compra"
+
+#. module: purchase_delivery_split_date
+#: model:ir.model,name:purchase_delivery_split_date.model_stock_picking
+msgid "Transfer"
+msgstr "Transferir"
