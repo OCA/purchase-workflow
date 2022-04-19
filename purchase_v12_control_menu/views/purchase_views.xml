@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="action_invoice_pending" model="ir.actions.act_window">
+        <field name="name">Vendor Bills</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">tree,kanban,form,pivot,graph</field>
+        <field eval="False" name="view_id" />
+        <field name="domain">[('type','=','in_invoice')]</field>
+        <field
+            name="context"
+        >{'default_type':'in_invoice', 'type':'in_invoice', 'journal_type': 'purchase'}</field>
+        <field name="search_view_id" ref="account.view_account_invoice_filter" />
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Create a vendor bill
+          </p><p>
+            Use this menu to control the invoices to be received from your
+            vendors. When registering a new bill, set the purchase order
+            and Odoo will fill the bill automatically according to ordered
+            or received quantities.
+          </p>
+        </field>
+    </record>
+    <menuitem
+        id="menu_purchase_control"
+        name="Control"
+        parent="purchase.menu_purchase_root"
+        sequence="4"
+    />
+    <menuitem
+        id="menu_action_picking_tree_in_move"
+        action="stock.action_receipt_picking_move"
+        parent="menu_purchase_control"
+        sequence="11"
+    />
+    <menuitem
+        id="menu_procurement_management_pending_invoice"
+        action="action_invoice_pending"
+        parent="menu_purchase_control"
+        sequence="13"
+    />
+</odoo>
