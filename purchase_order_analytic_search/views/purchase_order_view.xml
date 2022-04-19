@@ -47,31 +47,4 @@
             </xpath>
         </field>
     </record>
-
-#---------------------------------------------------------------------------------------------------------
-#   Extend menus
-#---------------------------------------------------------------------------------------------------------
-
-    <record id="purchase_line_form_action_3" model="ir.actions.act_window">
-        <field name="name">Purchase Order Lines</field>
-        <field name="type">ir.actions.act_window</field>
-        <field name="res_model">purchase.order.line</field>
-        <field name="view_mode">tree,form</field>
-        <field name="search_view_id" ref="purchase_order_line_search_analytic" />
-    </record>
-
-    <record id="purchase_line_form_action_tree3" model="ir.actions.act_window.view">
-        <field eval="1" name="sequence" />
-        <field name="view_mode">tree</field>
-        <field name="view_id" ref="purchase_order_line_tree_analytic" />
-        <field name="act_window_id" ref="purchase_line_form_action_3" />
-    </record>
-
-    <menuitem
-        action="purchase_line_form_action_3"
-        id="menu_purchase_line_order_analytic"
-        parent="purchase.menu_procurement_management"
-        sequence="7"
-    />
-
 </odoo>
