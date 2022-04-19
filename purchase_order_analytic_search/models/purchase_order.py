@@ -1,4 +1,4 @@
-# Copyright 2015 Eficent Business and IT Consulting Services S.L.
+# Copyright 2015 ForgeFlow S.L.
 # Copyright 2018 Camptocamp
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
@@ -18,9 +18,11 @@ class PurchaseOrder(models.Model):
 
     @api.model
     def _search_analytic_accounts(self, operator, value):
-        po_line_obj = self.env["purchase.order.line"]
+        po_line_obj = self.env["purchase.order.line"].filtered(
+            lambda x: x.account_analytic_id == value
+        )
         if not value:
-            return [("id", "=", False)]
+            return [("account_analytic_id", "=", False)]
         if isinstance(value, (tuple, list)):
             # we are searching on a list of ids
             domain = [("order_id", "!=", False), ("account_analytic_id", "in", value)]
@@ -28,13 +30,11 @@ class PurchaseOrder(models.Model):
             if isinstance(value, int):
                 # we are searching on the id of the analytic_account
                 domain = [
-                    ("order_id", "!=", False),
                     ("account_analytic_id", "=", value),
                 ]
             else:
                 # assume we are searching on the analytic account name
                 domain = [
-                    ("order_id", "!=", False),
                     ("account_analytic_id.name", "ilike", value),
                 ]
         po_lines = po_line_obj.search(domain)

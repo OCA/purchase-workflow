@@ -166,6 +166,6 @@ class TestAnalyticSearch(SavepointCase):
             self.analytic_account_1 + self.analytic_account_2,
         )
 
-    def test_filter_analytic_accounts_equal_false(self):
+    def test_filter_purchase_with_no_analytic_account(self):
         found = self.purchase_order_model.search([("account_analytic_ids", "=", False)])
-        self.assertFalse(found)
+        self.assertTrue(found)
