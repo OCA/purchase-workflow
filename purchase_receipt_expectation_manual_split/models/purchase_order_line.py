@@ -10,16 +10,17 @@ class PurchaseOrderLine(models.Model):
     product_qty_pre_split = fields.Float(
         digits="Product Unit of Measure",
         string="Pre-split Original Qty",
+        readonly=True,
     )
-
     manually_split_from_line_id = fields.Many2one(
         "purchase.order.line",
         ondelete="restrict",
+        readonly=True,
     )
-
     manually_split_into_line_ids = fields.One2many(
         "purchase.order.line",
         "manually_split_from_line_id",
+        readonly=True,
     )
 
     def _unlink_except_purchase_or_done(self):
