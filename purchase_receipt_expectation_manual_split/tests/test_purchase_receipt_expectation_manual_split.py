@@ -86,3 +86,59 @@ class TestPurchaseReceiptExpectationManualSplit(TestPurchaseReceiptExpectationMa
         self.assertFalse(split_line.exists())
         self.assertTrue(orig_line.exists())
         self.assertEqual(orig_line.product_qty, orig_line.product_qty_pre_split)
+
+    def test_02_manual_split_cancel_partial_picking_backorder(self):
+        """Tests backorder picking cancellation for manual receipt
+
+        Steps:
+            - Execute `test_00_manual_split_receipt_total()`
+            - Retrieve the test's order
+            - Partially receive the picking (with backorder)
+            - Cancel the backorder picking
+            - Check order lines
+
+        Expect:
+            - The unreceived quantity should go back to the origin
+        """
+        self.test_00_manual_split_receipt_total()
+        split_line = self.current_order.order_line.filtered(
+            "manually_split_from_line_id"
+        )
+        orig_line = split_line.manually_split_from_line_id
+        picking = self.current_order.picking_ids
+        picking.action_set_quantities_to_reservation()
+        picking.move_lines.move_line_ids[0].qty_done = 60.0
+        picking._action_done()
+        backorder = self.current_order.picking_ids - picking
+        backorder.action_cancel()
+        self.assertTrue(split_line.exists())
+        self.assertTrue(orig_line.exists())
+        self.assertEqual(orig_line.product_qty, 5.0)
+        self.assertEqual(split_line.product_qty, 60.0)
+
+    def test_03_manual_split_cancel_partial_picking(self):
+        """Tests backorder picking cancellation for manual receipt
+
+        Steps:
+            - Execute `test_00_manual_split_receipt_total()`
+            - Retrieve the test's order
+            - Partially receive the picking (no backorder)
+            - Cancel the backorder picking
+            - Check order lines
+
+        Expect:
+            - The unreceived quantity should go back to the origin
+        """
+        self.test_00_manual_split_receipt_total()
+        split_line = self.current_order.order_line.filtered(
+            "manually_split_from_line_id"
+        )
+        orig_line = split_line.manually_split_from_line_id
+        picking = self.current_order.picking_ids
+        picking.action_set_quantities_to_reservation()
+        picking.move_lines.move_line_ids[0].qty_done = 60.0
+        picking.with_context(cancel_backorder=True)._action_done()
+        self.assertTrue(split_line.exists())
+        self.assertTrue(orig_line.exists())
+        self.assertEqual(orig_line.product_qty, 5.0)
+        self.assertEqual(split_line.product_qty, 60.0)
