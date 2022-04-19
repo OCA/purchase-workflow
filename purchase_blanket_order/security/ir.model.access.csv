@@ -9,4 +9,3 @@ access_purchase_blanket_order_user,purchase.order user,model_purchase_blanket_or
 access_purchase_blanket_order_line_user,purchase.order.line user,model_purchase_blanket_order_line,base.group_user,1,0,0,0
 access_purchase_blanket_order_wizard,access_purchase_blanket_order_wizard,model_purchase_blanket_order_wizard,base.group_user,1,0,0,0
 access_purchase_blanket_order_wizard_line,access_purchase_blanket_order_wizard_line,model_purchase_blanket_order_wizard_line,base.group_user,1,0,0,0
-
