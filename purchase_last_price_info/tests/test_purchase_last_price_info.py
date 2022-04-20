@@ -138,3 +138,11 @@ class TestPurchaseLastPriceInfo(common.TransactionCase):
         )
         purchase_order.button_confirm()
         self.assertEqual(first_order_line.price_unit, self.product.last_purchase_price)
+
+    def test_purchase_last_price_info_no_po(self):
+        new_product = self.env["product.product"].create(
+            {
+                "name": "test no po",
+            }
+        )
+        self.assertEqual(0, new_product.last_purchase_price)
