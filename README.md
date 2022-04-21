@@ -78,7 +78,7 @@ addon | version | maintainers | summary
 [purchase_reception_notify](purchase_reception_notify/) | 13.0.1.0.2 |  | Purchase Reception Notify
 [purchase_reception_status](purchase_reception_status/) | 13.0.1.0.0 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Add reception status on purchase orders
 [purchase_representative](purchase_representative/) | 13.0.1.0.0 |  | Purchase Representatives will be the point of contact for RFQ's and PO's
-[purchase_request](purchase_request/) | 13.0.4.2.1 |  | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
+[purchase_request](purchase_request/) | 13.0.4.2.2 |  | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
 [purchase_request_department](purchase_request_department/) | 13.0.1.0.0 |  | Purchase Request Department
 [purchase_request_order_approved](purchase_request_order_approved/) | 13.0.1.0.0 |  | Purchase Request Order Approved
 [purchase_request_tier_validation](purchase_request_tier_validation/) | 13.0.1.1.0 |  | Extends the functionality of Purchase Requests to support a tier validation process.
