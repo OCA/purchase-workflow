@@ -288,7 +288,8 @@ class PurchaseInvoicePlan(models.Model):
 
     def _compute_new_invoice_quantity(self, invoice_move):
         self.ensure_one()
-        if self.last:  # For last install, let the system do the calc.
+        # For last install, let the system do the calc
+        if self._is_final():
             return
         percent = self.percent
         move = invoice_move.with_context({"check_move_validity": False})
@@ -328,3 +329,8 @@ class PurchaseInvoicePlan(models.Model):
                 % ", ".join(installments)
             )
         return super().unlink()
+
+    def _is_final(self):
+        """Final when only one installment not invoiced"""
+        plans = self.purchase_id.invoice_plan_ids
+        return len(plans.filtered(lambda l: not l.invoiced)) == 1

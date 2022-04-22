@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_select_purchase_invoice_plan_qty,access_select_purchase_invoice_plan_qty,model_select_purchase_invoice_plan_qty,,1,1,1,1
