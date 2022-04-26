@@ -5,7 +5,7 @@
 
 from datetime import datetime
 
-from odoo.tests import common
+from odoo.tests import Form, common
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 
@@ -138,15 +138,18 @@ class TestPurchaseOrder(common.TransactionCase):
         po = self._create_purchase_order()
         po.button_confirm()
         po.order_line.qty_received = 5
-        result = po.action_create_invoice()
-        self.invoice = self.AccountInvoice.browse(result["res_id"])
+        # Create and post invoice
+        inv_action = po.action_view_invoice()
+        inv_form = Form(self.env["account.move"].with_context(**inv_action["context"]))
+        invoice = inv_form.save()
+        invoice.action_post()
         self.assertEqual(
             po.order_line[0].sequence,
-            self.invoice.line_ids[0].sequence,
+            invoice.invoice_line_ids[0].sequence,
             "The Sequence is not copied properly",
         )
         self.assertEqual(
             po.order_line[1].sequence,
-            self.invoice.line_ids[1].sequence,
+            invoice.invoice_line_ids[1].sequence,
             "The Sequence is not copied properly",
         )
