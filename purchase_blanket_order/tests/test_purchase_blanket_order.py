@@ -50,7 +50,7 @@ class TestPurchaseBlanketOrders(common.TransactionCase):
         self.tomorrow = date.today() + timedelta(days=1)
 
     def test_01_create_blanket_order_flow(self):
-        """ We create a blanket order and check constrains to confirm BO """
+        """We create a blanket order and check constrains to confirm BO"""
         blanket_order = self.blanket_order_obj.create(
             {
                 "partner_id": self.partner.id,
@@ -105,7 +105,7 @@ class TestPurchaseBlanketOrders(common.TransactionCase):
         blanket_order._search_remaining_uom_qty(">=", 0.0)
 
     def test__02_create_purchase_orders_from_blanket_order(self):
-        """ We create a blanket order and create two purchase orders """
+        """We create a blanket order and create two purchase orders"""
         blanket_order = self.blanket_order_obj.create(
             {
                 "partner_id": self.partner.id,
@@ -166,8 +166,8 @@ class TestPurchaseBlanketOrders(common.TransactionCase):
         self.assertEqual(len(domain_ids), 2)
 
     def test_03_create_purchase_orders_from_blanket_order_line(self):
-        """ We create a blanket order and create two purchase orders
-            from the blanket order lines """
+        """We create a blanket order and create two purchase orders
+        from the blanket order lines"""
         blanket_order = self.blanket_order_obj.create(
             {
                 "partner_id": self.partner.id,
