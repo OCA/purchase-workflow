@@ -200,8 +200,8 @@ class TestPurchaseBlanketOrders(common.TransactionCase):
         blanket_order.sudo().onchange_partner_id()
         blanket_order.sudo().action_confirm()
 
-        bo_lines = self.blanket_order_line_obj.search([])
-        self.assertEqual(len(bo_lines), 2)
+        bo_lines = blanket_order.line_ids
+        self.assertEqual(blanket_order.line_count, 2)
 
         wizard1 = self.blanket_order_wiz_obj.with_context(
             active_ids=[bo_lines[0].id, bo_lines[1].id]
