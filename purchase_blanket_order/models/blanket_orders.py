@@ -56,7 +56,9 @@ class BlanketOrder(models.Model):
         readonly=True,
     )
     product_id = fields.Many2one(
-        "product.product", related="line_ids.product_id", string="Product",
+        "product.product",
+        related="line_ids.product_id",
+        string="Product",
     )
     currency_id = fields.Many2one(
         "res.currency",
@@ -171,7 +173,9 @@ class BlanketOrder(models.Model):
             blanket_order.purchase_count = len(blanket_order._get_purchase_orders())
 
     @api.depends(
-        "line_ids.remaining_uom_qty", "validity_date", "confirmed",
+        "line_ids.remaining_uom_qty",
+        "validity_date",
+        "confirmed",
     )
     def _compute_state(self):
         today = fields.Date.today()
@@ -305,7 +309,7 @@ class BlanketOrder(models.Model):
 
     def action_view_purchase_blanket_order_line(self):
         action = self.env.ref(
-            "purchase_blanket_order" ".act_open_purchase_blanket_order_lines_view_tree"
+            "purchase_blanket_order.act_open_purchase_blanket_order_lines_view_tree"
         ).read()[0]
         lines = self.mapped("line_ids")
         if len(lines) > 0:
@@ -492,7 +496,9 @@ class BlanketOrderLine(models.Model):
                     formatted_date = self._format_date(record.date_schedule)
                     res += " - {}: {}".format(_("Date Scheduled"), formatted_date)
                 res += " ({}: {} {})".format(
-                    _("remaining"), record.remaining_uom_qty, record.product_uom.name,
+                    _("remaining"),
+                    record.remaining_uom_qty,
+                    record.product_uom.name,
                 )
                 result.append((record.id, res))
             return result
