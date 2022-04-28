@@ -1,12 +1,12 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* purchase_manual_delivery
+# 	* purchase_manual_delivery
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: <>\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,6 +16,11 @@ msgstr ""
 #. module: purchase_manual_delivery
 #: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.view_create_stock_picking
 msgid "Cancel"
+msgstr ""
+
+#. module: purchase_manual_delivery
+#: model:ir.model,name:purchase_manual_delivery.model_res_company
+msgid "Companies"
 msgstr ""
 
 #. module: purchase_manual_delivery
@@ -71,6 +76,28 @@ msgid "Currency"
 msgstr ""
 
 #. module: purchase_manual_delivery
+#: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.res_config_settings_view_form
+msgid "Deliveries on purchase orders should be created manually."
+msgstr ""
+
+#. module: purchase_manual_delivery
+#: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.res_config_settings_view_form
+msgid "Delivery"
+msgstr ""
+
+#. module: purchase_manual_delivery
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__date_planned
+msgid "Delivery Date"
+msgstr ""
+
+#. module: purchase_manual_delivery
+#: model:ir.model.fields,help:purchase_manual_delivery.field_create_stock_picking_wizard_line__date_planned
+msgid ""
+"Delivery date expected from vendor. This date respectively defaults to "
+"vendor pricelist lead time then today's date."
+msgstr ""
+
+#. module: purchase_manual_delivery
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__name
 msgid "Description"
 msgstr ""
@@ -83,6 +110,10 @@ msgstr ""
 #. module: purchase_manual_delivery
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard__display_name
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__display_name
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_purchase_order_line__display_name
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_res_company__display_name
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_res_config_settings__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -110,12 +141,25 @@ msgstr ""
 #. module: purchase_manual_delivery
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard__id
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__id
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_purchase_order__id
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_purchase_order_line__id
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_res_company__id
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_res_config_settings__id
 msgid "ID"
+msgstr ""
+
+#. module: purchase_manual_delivery
+#: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.res_config_settings_view_form
+msgid "If active, Receipt of purchase orders should be manual created."
 msgstr ""
 
 #. module: purchase_manual_delivery
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard____last_update
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line____last_update
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_purchase_order____last_update
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_purchase_order_line____last_update
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_res_company____last_update
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_res_config_settings____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -139,6 +183,11 @@ msgstr ""
 #. module: purchase_manual_delivery
 #: model:ir.model.fields,help:purchase_manual_delivery.field_create_stock_picking_wizard__location_dest_id
 msgid "Location where the system will stock the received products."
+msgstr ""
+
+#. module: purchase_manual_delivery
+#: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.res_config_settings_view_form
+msgid "Manual Delivery"
 msgstr ""
 
 #. module: purchase_manual_delivery
@@ -167,15 +216,20 @@ msgid "Picking Scheduled Date"
 msgstr ""
 
 #. module: purchase_manual_delivery
-#: code:addons/purchase_manual_delivery/wizard/create_manual_stock_picking.py:60
+#: code:addons/purchase_manual_delivery/wizard/create_manual_stock_picking.py:0
 #, python-format
 msgid "Please select one partner at a time"
 msgstr ""
 
 #. module: purchase_manual_delivery
-#: code:addons/purchase_manual_delivery/wizard/create_manual_stock_picking.py:62
+#: code:addons/purchase_manual_delivery/wizard/create_manual_stock_picking.py:0
 #, python-format
 msgid "Please select one purchase order at a time"
+msgstr ""
+
+#. module: purchase_manual_delivery
+#: model:ir.model,name:purchase_manual_delivery.model_res_config_settings
+msgid "Procurement purchase grouping settings"
 msgstr ""
 
 #. module: purchase_manual_delivery
@@ -204,12 +258,23 @@ msgstr ""
 
 #. module: purchase_manual_delivery
 #: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.view_purchase_order_unreceived_line_filter
-msgid "Purchase Order Lines that are confirmed or done and an incoming shipment is created to satisfy them"
+msgid ""
+"Purchase Order Lines that are confirmed or done and an incoming shipment is "
+"created to satisfy them"
 msgstr ""
 
 #. module: purchase_manual_delivery
 #: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.view_purchase_order_unreceived_line_filter
-msgid "Purchase Order Lines that are confirmed or done and no incoming shipment is created to satisfy them"
+msgid ""
+"Purchase Order Lines that are confirmed or done and no incoming shipment is "
+"created to satisfy them"
+msgstr ""
+
+#. module: purchase_manual_delivery
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_purchase_order__manual_delivery
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_res_company__purchase_manual_delivery
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_res_config_settings__purchase_manual_delivery
+msgid "Purchase manual delivery?"
 msgstr ""
 
 #. module: purchase_manual_delivery
@@ -246,13 +311,14 @@ msgstr ""
 
 #. module: purchase_manual_delivery
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard__scheduled_date
-#: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__date_planned
 msgid "Scheduled Date"
 msgstr ""
 
 #. module: purchase_manual_delivery
 #: model:ir.model.fields,help:purchase_manual_delivery.field_create_stock_picking_wizard__scheduled_date
-msgid "Scheduled time for the first part of the shipment to be processed. Setting manually a value here would set it as expected date for all the stock moves."
+msgid ""
+"Scheduled time for the first part of the shipment to be processed. Setting "
+"manually a value here would set it as expected date for all the stock moves."
 msgstr ""
 
 #. module: purchase_manual_delivery
@@ -261,7 +327,7 @@ msgid "Search Undelivered Lines"
 msgstr ""
 
 #. module: purchase_manual_delivery
-#: code:addons/purchase_manual_delivery/wizard/create_manual_stock_picking.py:158
+#: code:addons/purchase_manual_delivery/wizard/create_manual_stock_picking.py:0
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard__picking_id
 #, python-format
 msgid "Stock Picking"
@@ -309,8 +375,9 @@ msgid "You can find a vendor by its Name, TIN, Email or Internal Reference."
 msgstr ""
 
 #. module: purchase_manual_delivery
-#: code:addons/purchase_manual_delivery/wizard/create_manual_stock_picking.py:136
+#: code:addons/purchase_manual_delivery/wizard/create_manual_stock_picking.py:0
 #, python-format
-msgid "You can not receive more than the remaining quantity. If you need to do so, please edit the purchase order first."
+msgid ""
+"You can not receive more than the remaining quantity. If you need to do so, "
+"please edit the purchase order first."
 msgstr ""
-
