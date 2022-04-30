@@ -136,6 +136,14 @@ msgid "Installment"
 msgstr ""
 
 #. module: purchase_invoice_plan
+#: code:addons/purchase_invoice_plan/models/purchase.py:0
+#, python-format
+msgid ""
+"Installment %s: already used and not allowed to delete.\n"
+"Please discard changes."
+msgstr ""
+
+#. module: purchase_invoice_plan
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_create_invoice_plan__installment_date
 msgid "Installment Date"
 msgstr ""
@@ -174,6 +182,12 @@ msgstr ""
 #. module: purchase_invoice_plan
 #: model:ir.model,name:purchase_invoice_plan.model_purchase_invoice_plan
 msgid "Invoice Planning Detail"
+msgstr ""
+
+#. module: purchase_invoice_plan
+#: code:addons/purchase_invoice_plan/models/purchase.py:0
+#, python-format
+msgid "Invoice plan total percentage must not exceed 100%"
 msgstr ""
 
 #. module: purchase_invoice_plan
@@ -221,6 +235,11 @@ msgstr ""
 #. module: purchase_invoice_plan
 #: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__to_invoice
 msgid "Next Invoice"
+msgstr ""
+
+#. module: purchase_invoice_plan
+#: model:ir.model.fields,field_description:purchase_invoice_plan.field_purchase_invoice_plan__no_edit
+msgid "No Edit"
 msgstr ""
 
 #. module: purchase_invoice_plan
