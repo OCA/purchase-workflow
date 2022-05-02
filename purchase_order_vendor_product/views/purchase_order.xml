@@ -10,10 +10,13 @@
                 position="attributes"
             >
                 <attribute name="domain">
-                    [('seller_ids.name','=',parent.partner_id),
-                    ('purchase_ok', '=', True), '|',
-                    ('company_id', '=', False),
-                    ('company_id', '=', parent.company_id)]
+                    [
+                    ('variant_seller_ids.name','=?',parent.partner_id),
+                    ('purchase_ok', '=', True),
+                    '|',
+                        ('company_id', '=', False),
+                        ('company_id', '=', parent.company_id),
+                    ]
                 </attribute>
             </xpath>
         </field>
