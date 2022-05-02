@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_purchase_advance_payment_inv" model="ir.ui.view">
+        <field name="name">Invoice Orders</field>
+        <field name="model">purchase.advance.payment.inv</field>
+        <field name="arch" type="xml">
+            <form string="Invoice Purchases Order">
+                <p class="oe_grey">
+                    Invoices will be created in draft so that you can review them before validation.
+                </p>
+                <group>
+                    <field
+                        name="advance_payment_method"
+                        class="oe_inline"
+                        widget="radio"
+                    />
+                    <field
+                        name="purchase_deposit_product_id"
+                        invisible="1"
+                        class="oe_inline"
+                        context="{'search_default_services': 1, 'default_type': 'service', 'default_invoice_policy': 'order'}"
+                    />
+                    <label for="amount" />
+                    <div>
+                        <field name="amount" class="oe_inline" widget="monetary" />
+                        <span
+                            attrs="{'invisible': [('advance_payment_method', '!=', 'percentage')]}"
+                            class="oe_inline"
+                        >%</span>
+                    </div>
+                    <field
+                        name="deposit_account_id"
+                        class="oe_inline"
+                        attrs="{'invisible': [('purchase_deposit_product_id', '!=', False)]}"
+                    />
+                    <field
+                        name="deposit_taxes_id"
+                        class="oe_inline"
+                        widget="many2many_tags"
+                        domain="[('type_tax_use','=','purchase')]"
+                        attrs="{'invisible': [('purchase_deposit_product_id', '!=', False)]}"
+                    />
+                </group>
+                <footer>
+                    <button
+                        name="create_invoices"
+                        string="Create and View bills"
+                        type="object"
+                        context="{'create_bills': True}"
+                        class="btn-primary"
+                    />
+                    <button
+                        name="create_invoices"
+                        string="Create deposit"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_view_purchase_advance_payment_inv" model="ir.actions.act_window">
+        <field name="name">Invoice Order</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">purchase.advance.payment.inv</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
