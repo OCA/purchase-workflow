@@ -13,7 +13,7 @@
     "data": [
         "security/purchase_product_usage.xml",
         "security/ir.model.access.csv",
-        "views/purchase_order_line_view.xml",
+        "views/purchase_order_line_component_views.xml",
         "views/purchase_product_usage_view.xml",
     ],
     "installable": True,
