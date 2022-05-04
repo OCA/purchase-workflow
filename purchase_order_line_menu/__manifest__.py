@@ -11,7 +11,7 @@
     "depends": ["purchase"],
     "category": "Inventory/Purchase",
     "data": [
-        "views/purchase_order_line_views.xml",
+        "views/purchase_order_line_component_views.xml",
     ],
     "installable": True,
     "maintainer": "dreispt",
