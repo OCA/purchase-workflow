@@ -40,6 +40,7 @@ setuptools.setup(
         'odoo14-addon-purchase_order_line_packaging_qty',
         'odoo14-addon-purchase_order_line_price_history',
         'odoo14-addon-purchase_order_line_sequence',
+        'odoo14-addon-purchase_order_price_recalculation',
         'odoo14-addon-purchase_order_secondary_unit',
         'odoo14-addon-purchase_order_type',
         'odoo14-addon-purchase_order_uninvoiced_amount',
