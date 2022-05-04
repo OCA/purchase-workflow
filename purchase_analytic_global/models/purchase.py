@@ -27,6 +27,4 @@ class PurchaseOrder(models.Model):
 
     def _inverse_analytic_account(self):
         for rec in self:
-            if rec.account_analytic_id:
-                for line in rec.order_line:
-                    line.account_analytic_id = rec.account_analytic_id
+            rec.order_line.account_analytic_id = rec.account_analytic_id
