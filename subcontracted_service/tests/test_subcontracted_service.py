@@ -40,7 +40,7 @@ class TestSubcontractedService(TransactionCase):
         )
         # 4. find a customer
         self.customer = self.env["res.partner"].search(
-            [("customer", "=", True)], limit=1
+            [("customer_rank", ">", 0)], limit=1
         )
 
     def test_wh_stock_rule(self):

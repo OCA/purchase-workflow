@@ -18,7 +18,6 @@ class StockWarehouse(models.Model):
             "purchase_stock.route_warehouse0_buy", raise_if_not_found=False
         ).id
 
-    @api.multi
     def _get_vals_for_proc_rule_subcontracting(self):
         self.ensure_one()
         picking_type = self.in_type_id
@@ -43,7 +42,6 @@ class StockWarehouse(models.Model):
             "location_id": picking_type.default_location_dest_id.id,
         }
 
-    @api.multi
     def _set_subcontracting_service_proc_rule(self):
         for rec in self:
             if not rec.subcontracting_service_proc_rule_id:
@@ -53,7 +51,6 @@ class StockWarehouse(models.Model):
         return True
 
     @api.model
-    @api.returns("self", lambda value: value.id)
     def create(self, vals):
         res = super(StockWarehouse, self).create(vals)
         res._set_subcontracting_service_proc_rule()
