@@ -13,6 +13,22 @@
     <field name="model">purchase.order</field>
     <field name="inherit_id" ref="purchase.purchase_order_form"/>
     <field name="arch" type="xml">
+        <header position="inside">
+            <button
+                    name="button_force_received"
+                    type="object"
+                    string="Force Received"
+                    groups="purchase.group_purchase_manager"
+                    attrs="{'invisible': ['|', ('state','!=','done'),'&amp;',('force_received','=',True),('state', '=','done')]}"
+                />
+            <button
+                    name="button_unforce_received"
+                    type="object"
+                    string="Unforce Received"
+                    groups="purchase.group_purchase_manager"
+                    attrs="{'invisible': ['|', ('state','!=','done'),'&amp;',('force_received','=',False),('state','=','done')]}"
+                />
+        </header>
         <field name="invoice_status" position="before">
             <field name="reception_status" states="purchase,done"/>
             <field name="force_received" groups="purchase.group_purchase_manager" states="purchase,done"/>

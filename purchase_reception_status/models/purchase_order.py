@@ -22,6 +22,14 @@ class PurchaseOrder(models.Model):
         "even if some lines are not fully received. "
         "To be able to modify this field, you must first lock the order.")
 
+    @api.multi
+    def button_force_received(self):
+        return self.write({'force_received': True})
+
+    @api.multi
+    def button_unforce_received(self):
+        return self.write({'force_received': False})
+
     @api.depends(
         'state', 'force_received',
         'order_line.qty_received', 'order_line.product_qty')
