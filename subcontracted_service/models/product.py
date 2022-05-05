@@ -6,8 +6,8 @@ from odoo import fields, models
 
 
 class ProductTemplate(models.Model):
-    _inherit = 'product.template'
+    _inherit = "product.template"
 
     property_subcontracted_service = fields.Boolean(
-        string="Subcontracted Service",
-        company_dependent=True)
+        string="Subcontracted Service", company_dependent=True
+    )
