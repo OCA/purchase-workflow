@@ -45,6 +45,7 @@
                 <field name="pending_to_receive" invisible="1" />
                 <field
                     name="existing_qty"
+                    optional="hide"
                     attrs="{'column_invisible': [('parent.state', 'not in', ('purchase', 'done'))]}"
                 />
             </field>
