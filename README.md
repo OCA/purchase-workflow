@@ -49,9 +49,9 @@ addon | version | maintainers | summary
 [purchase_line_procurement_group](purchase_line_procurement_group/) | 13.0.1.0.1 |  | Group purchase order line according to procurement group
 [purchase_location_by_line](purchase_location_by_line/) | 13.0.1.0.0 |  | Allows to define a specific destination location on each PO line
 [purchase_manual_currency](purchase_manual_currency/) | 13.0.1.0.2 |  | Allows to manual currency of Purchase
-[purchase_minimum_amount](purchase_minimum_amount/) | 13.0.1.0.0 |  | Purchase Minimum Amount
+[purchase_minimum_amount](purchase_minimum_amount/) | 13.0.1.0.1 |  | Purchase Minimum Amount
 [purchase_open_qty](purchase_open_qty/) | 13.0.1.0.1 |  | Allows to identify the purchase orders that have quantities pending to invoice or to receive.
-[purchase_order_approval_block](purchase_order_approval_block/) | 13.0.1.0.1 |  | Purchase Order Approval Block
+[purchase_order_approval_block](purchase_order_approval_block/) | 13.0.1.0.2 |  | Purchase Order Approval Block
 [purchase_order_approved](purchase_order_approved/) | 13.0.1.1.0 |  | Add a new state 'Approved' in purchase orders.
 [purchase_order_archive](purchase_order_archive/) | 13.0.1.0.0 |  | Archive Purchase Orders
 [purchase_order_general_discount](purchase_order_general_discount/) | 13.0.1.0.0 |  | General discount per purchase order
@@ -81,7 +81,7 @@ addon | version | maintainers | summary
 [purchase_representative](purchase_representative/) | 13.0.1.0.0 |  | Purchase Representatives will be the point of contact for RFQ's and PO's
 [purchase_request](purchase_request/) | 13.0.4.2.2 |  | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
 [purchase_request_department](purchase_request_department/) | 13.0.1.0.0 |  | Purchase Request Department
-[purchase_request_order_approved](purchase_request_order_approved/) | 13.0.1.0.0 |  | Purchase Request Order Approved
+[purchase_request_order_approved](purchase_request_order_approved/) | 13.0.1.0.1 |  | Purchase Request Order Approved
 [purchase_request_tier_validation](purchase_request_tier_validation/) | 13.0.1.1.0 |  | Extends the functionality of Purchase Requests to support a tier validation process.
 [purchase_requisition_grouped_by_procurement](purchase_requisition_grouped_by_procurement/) | 13.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Purchase Requisition Grouped by Procurement
 [purchase_requisition_order_remaining_qty](purchase_requisition_order_remaining_qty/) | 13.0.1.0.1 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Purchase Requisition Order Remaining Qty
@@ -90,10 +90,10 @@ addon | version | maintainers | summary
 [purchase_stock_picking_show_currency_rate](purchase_stock_picking_show_currency_rate/) | 13.0.1.0.1 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Show currency rate in purchase stock picking.
 [purchase_stock_price_unit_sync](purchase_stock_price_unit_sync/) | 13.0.1.0.1 |  | Update cost price in stock moves already done
 [purchase_stock_return_request](purchase_stock_return_request/) | 13.0.1.0.0 |  | Purchase Stock Return Request
-[purchase_stock_secondary_unit](purchase_stock_secondary_unit/) | 13.0.1.0.1 |  | Get product quantities in a secondary unit
+[purchase_stock_secondary_unit](purchase_stock_secondary_unit/) | 13.0.1.0.2 |  | Get product quantities in a secondary unit
 [purchase_substate](purchase_substate/) | 13.0.1.0.0 |  | Purchase Sub State
 [purchase_tier_validation](purchase_tier_validation/) | 13.0.1.0.0 |  | Extends the functionality of Purchase Orders to support a tier validation process.
-[purchase_tier_validation_forward](purchase_tier_validation_forward/) | 13.0.1.0.0 |  | Purchase Tier Validation - Forward Option
+[purchase_tier_validation_forward](purchase_tier_validation_forward/) | 13.0.1.0.1 |  | Purchase Tier Validation - Forward Option
 [purchase_triple_discount](purchase_triple_discount/) | 13.0.1.0.0 |  | Manage triple discount on purchase order lines
 [purchase_warn_message](purchase_warn_message/) | 13.0.1.0.3 |  | Add a popup warning on purchase to ensure warning is populated
 [purchase_work_acceptance](purchase_work_acceptance/) | 13.0.1.1.2 |  | Purchase Work Acceptance
