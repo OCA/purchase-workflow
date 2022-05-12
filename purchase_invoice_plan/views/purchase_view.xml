@@ -27,6 +27,7 @@
                     optional="show"
                     attrs="{'readonly': [('no_edit', '=', True)]}"
                 />
+                <field name="amount_invoiced" optional="hide" sum="Amount" />
                 <field name="to_invoice" />
                 <field name="invoiced" />
                 <field name="invoice_ids" optional="hide" widget="many2many_tags" />
@@ -191,6 +192,7 @@
                 <field name="invoice_type" />
                 <field name="percent" optional="show" sum="Percent" />
                 <field name="amount" optional="show" sum="Amount" />
+                <field name="amount_invoiced" optional="show" sum="Amount" />
                 <field name="to_invoice" />
                 <field name="invoiced" />
                 <field name="invoice_ids" widget="many2many_tags" />
