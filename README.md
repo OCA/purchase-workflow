@@ -95,6 +95,7 @@ addon | version | maintainers | summary
 [purchase_tier_validation](purchase_tier_validation/) | 13.0.1.0.0 |  | Extends the functionality of Purchase Orders to support a tier validation process.
 [purchase_tier_validation_forward](purchase_tier_validation_forward/) | 13.0.1.0.1 |  | Purchase Tier Validation - Forward Option
 [purchase_triple_discount](purchase_triple_discount/) | 13.0.1.0.0 |  | Manage triple discount on purchase order lines
+[purchase_v12_control_menu](purchase_v12_control_menu/) | 13.0.1.0.0 |  | Purchase Control Menu from v12
 [purchase_warn_message](purchase_warn_message/) | 13.0.1.0.3 |  | Add a popup warning on purchase to ensure warning is populated
 [purchase_work_acceptance](purchase_work_acceptance/) | 13.0.1.1.2 |  | Purchase Work Acceptance
 [supplier_calendar](supplier_calendar/) | 13.0.1.0.0 | [![NuriaMForgeFlow](https://github.com/NuriaMForgeFlow.png?size=30px)](https://github.com/NuriaMForgeFlow) | Supplier Calendar
