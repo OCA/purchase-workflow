@@ -10,6 +10,7 @@
     "application": False,
     "installable": True,
     "auto_install": True,
+    "development_status": "Alpha",
     "depends": ["base_tier_validation_forward", "purchase_tier_validation"],
     "data": ["views/purchase_order_view.xml"],
 }
