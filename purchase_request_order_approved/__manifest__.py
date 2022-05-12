@@ -4,7 +4,7 @@
 {
     "name": "Purchase Request Order Approved",
     "author": "Eficent, " "Odoo Community Association (OCA)",
-    "version": "13.0.1.0.0",
+    "version": "13.0.1.0.1",
     "website": "https://github.com/OCA/purchase-workflow",
     "category": "Purchase Management",
     "depends": ["purchase_request", "purchase_order_approved"],
