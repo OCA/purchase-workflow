@@ -36,6 +36,7 @@ class PurchaseOrder(models.Model):
         string="Total Amount",
     )
 
+    @api.depends("invoice_plan_ids")
     def _compute_ip_total(self):
         for rec in self:
             installments = rec.invoice_plan_ids.filtered("installment")
@@ -195,6 +196,11 @@ class PurchaseInvoicePlan(models.Model):
         string="Invoices",
         readonly=True,
     )
+    amount_invoiced = fields.Float(
+        compute="_compute_invoiced",
+        store=True,
+        readonly=False,
+    )
     to_invoice = fields.Boolean(
         string="Next Invoice",
         compute="_compute_to_invoice",
@@ -214,6 +220,12 @@ class PurchaseInvoicePlan(models.Model):
     @api.depends("percent")
     def _compute_amount(self):
         for rec in self:
+            # With invoice already created, no recompute
+            if rec.invoiced:
+                rec.amount = rec.amount_invoiced
+                rec.percent = rec.amount / rec.purchase_id.amount_untaxed * 100
+                continue
+            # For last line, amount is the left over
             if rec.last:
                 installments = rec.purchase_id.invoice_plan_ids.filtered(
                     lambda l: l.invoice_type == "installment"
@@ -259,6 +271,7 @@ class PurchaseInvoicePlan(models.Model):
                 lambda l: l.state in ("draft", "posted")
             )
             rec.invoiced = invoiced and True or False
+            rec.amount_invoiced = invoiced[:1].amount_untaxed
 
     def _compute_last(self):
         for rec in self:
