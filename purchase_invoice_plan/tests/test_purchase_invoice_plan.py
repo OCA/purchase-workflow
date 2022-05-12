@@ -134,3 +134,58 @@ class TestPurchaseInvoicePlan(TransactionCase):
             "\nProduct should be delivered before invoice"
         )
         self.assertEqual(e.exception.args[0], error_message)
+
+    def test_invoice_plan_po_edit(self):
+        """Case when some installment already invoiced,
+        but then, the PO line added. Test to ensure that
+        the invoiced amount of the done installment is fixed"""
+        ctx = {
+            "active_id": self.test_po_product.id,
+            "active_ids": [self.test_po_product.id],
+            "all_remain_invoices": False,
+        }
+        # Create purchase plan
+        with Form(self.PurchaseInvoicePlan) as p:
+            p.num_installment = 5
+        purchase_plan = p.save()
+        purchase_plan.with_context(ctx).purchase_create_invoice_plan()
+        # Change plan, so that the 1st installment is 1000 and 5th is 3000
+        self.assertEqual(len(self.test_po_product.invoice_plan_ids), 5)
+        first_install = self.test_po_product.invoice_plan_ids[0]
+        first_install.amount = 1000
+        self.test_po_product.invoice_plan_ids[4].amount = 3000
+        self.test_po_product.button_confirm()
+        self.assertEqual(self.test_po_product.state, "purchase")
+        # Receive all products
+        receive = self.test_po_product.picking_ids.filtered(lambda l: l.state != "done")
+        receive.move_ids_without_package.quantity_done = 10.0
+        receive._action_done()
+        purchase_create = self.env["purchase.make.planned.invoice"].create({})
+        # Create only the 1st invoice, amount should be 1000, and percent is 10
+        purchase_create.with_context(ctx).create_invoices_by_plan()
+        self.assertEqual(first_install.amount, 1000)
+        self.assertEqual(first_install.percent, 10)
+        # Add new PO line with amount = 1000, check that only percent is changed
+        self.test_po_product.write(
+            {
+                "order_line": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "PO-Product-NEW",
+                            "product_id": self.test_product.id,
+                            "date_planned": fields.Datetime.now(),
+                            "product_qty": 1,
+                            "product_uom": self.test_product.uom_id.id,
+                            "price_unit": 1000,
+                        },
+                    )
+                ],
+            }
+        )
+        # Overall amount changed to 11000, install amount not changed, only percent changed.
+        self.assertEqual(self.test_po_product.amount_total, 11000)
+        self.test_po_product.invoice_plan_ids._compute_amount()
+        self.assertEqual(first_install.amount, 1000)
+        self.assertEqual(first_install.percent, 9.090909)
