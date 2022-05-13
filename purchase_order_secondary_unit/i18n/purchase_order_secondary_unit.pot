@@ -30,11 +30,6 @@ msgid "Purchase Order Line"
 msgstr ""
 
 #. module: purchase_order_secondary_unit
-#: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_purchase_order_line__secondary_uom_qty
-msgid "Secondary Qty"
-msgstr ""
-
-#. module: purchase_order_secondary_unit
-#: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_purchase_order_line__secondary_uom_id
-msgid "Secondary uom"
+#: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_purchase_order_line__product_qty
+msgid "Quantity"
 msgstr ""
