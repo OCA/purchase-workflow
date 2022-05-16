@@ -54,7 +54,6 @@ class TestPurchaseOrderSecondaryUnit(SavepointCase):
         with purchase_order.order_line.edit(0) as line:
             # Test _compute product_qty
             line.secondary_uom_id = self.secondary_unit
-            self.assertEqual(line.product_qty, 0.0)
             line.secondary_uom_qty = 10.0
             self.assertEqual(line.product_qty, 7.0)
             # Test onchange product uom
