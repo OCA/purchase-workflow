@@ -9,7 +9,7 @@ class PurchaseOrderLine(models.Model):
     # adding discount2 and discount3 to depends
     @api.depends("discount2", "discount3")
     def _compute_amount(self):
-        super()._compute_amount()
+        return super()._compute_amount()
 
     discount2 = fields.Float(
         "Disc. 2 (%)",

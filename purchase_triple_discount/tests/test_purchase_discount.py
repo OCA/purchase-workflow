@@ -6,7 +6,7 @@ from odoo.tests import common
 from odoo.tests.common import Form
 
 
-class TestPurchaseOrder(common.SavepointCase):
+class TestPurchaseOrder(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super(TestPurchaseOrder, cls).setUpClass()
