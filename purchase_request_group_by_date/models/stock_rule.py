@@ -18,19 +18,10 @@ class StockRule(models.Model):
     def _make_pr_get_domain(self, values):
         domain = super()._make_pr_get_domain(values)
         if self.company_group_purchase_request:
-            domain = (
-                ("picking_type_id", "=", self.picking_type_id.id),
-                ("company_id", "=", values["company_id"].id),
-                ("date_start", "=", datetime.today().date()),
-            )
-            gpo = self.group_propagation_option
-            group_id = (
-                (gpo == "fixed" and self.group_id.id)
-                or (gpo == "propagate" and values["group_id"].id)
-                or False
-            )
-            if group_id:
-                domain += (("group_id", "=", group_id),)
+            lst_domain = [dom for dom in domain]
+            lst_domain.pop(0)
+            lst_domain += [("state", "in", ("draft","to_approve", "approved")),]
+            domain = tuple(lst_domain)
         return domain
 
     # override to change existing pr handling
@@ -52,6 +43,7 @@ class StockRule(models.Model):
                     .filtered(
                         lambda x: procurement.product_id
                         in x.line_ids.mapped("product_id")
+                        and x.purchase_count == 0
                     )
                 )
                 pr = pr[0] if pr else False
