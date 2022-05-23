@@ -24,7 +24,7 @@ class PurchaseOrderType(models.Model):
 
     name = fields.Char(required=True)
     active = fields.Boolean(default=True)
-    description = fields.Text("Description", translate=True)
+    description = fields.Text(translate=True)
     sequence_id = fields.Many2one(
         comodel_name="ir.sequence",
         string="Entry Sequence",
@@ -36,7 +36,8 @@ class PurchaseOrderType(models.Model):
     payment_term_id = fields.Many2one(
         comodel_name="account.payment.term", string="Payment Terms"
     )
-    incoterm_id = fields.Many2one(comodel_name="account.incoterms", string="Incoterm")
+    incoterm_id = fields.Many2one(
+        comodel_name="account.incoterms", string="Incoterm")
     sequence = fields.Integer(default=10)
     company_id = fields.Many2one(
         comodel_name="res.company",
