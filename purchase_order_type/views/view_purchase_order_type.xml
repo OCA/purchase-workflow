@@ -3,7 +3,7 @@
     <record id="view_purchase_order_type_tree" model="ir.ui.view">
         <field name="model">purchase.order.type</field>
         <field name="arch" type="xml">
-            <tree string="Purchase Order Types" decoration-muted="active == False">
+            <tree decoration-muted="active == False">
                 <field name="sequence" widget="handle" />
                 <field name="active" invisible="True" />
                 <field name="name" />
@@ -18,7 +18,7 @@
     <record id="view_purchase_order_type_form" model="ir.ui.view">
         <field name="model">purchase.order.type</field>
         <field name="arch" type="xml">
-            <form string="Type">
+            <form>
                 <sheet>
                     <div class="oe_button_box" name="button_box" />
                     <widget
@@ -57,7 +57,7 @@
     <record id="view_purchase_order_type_search" model="ir.ui.view">
         <field name="model">purchase.order.type</field>
         <field name="arch" type="xml">
-            <search string="Purchase Order Types">
+            <search>
                 <field name="name" />
                 <field name="sequence_id" />
                 <field name="payment_term_id" />
