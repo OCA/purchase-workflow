@@ -548,7 +548,7 @@ class BlanketOrderLine(models.Model):
         if self.product_id:
             name = self.product_id.name
             if not self.product_uom:
-                self.product_uom = self.product_id.uom_id.id
+                self.product_uom = self.product_id.uom_po_id or self.product_id.uom_id
             if self.order_id.partner_id and float_is_zero(
                 self.price_unit, precision_digits=precision
             ):
