@@ -14,6 +14,7 @@ setuptools.setup(
         'odoo14-addon-product_supplier_code_purchase',
         'odoo14-addon-purchase_advance_payment',
         'odoo14-addon-purchase_analytic_global',
+        'odoo14-addon-purchase_blanket_order',
         'odoo14-addon-purchase_cancel_confirm',
         'odoo14-addon-purchase_cancel_reason',
         'odoo14-addon-purchase_commercial_partner',
