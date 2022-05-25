@@ -26,6 +26,7 @@ addon | version | maintainers | summary
 [product_supplier_code_purchase](product_supplier_code_purchase/) | 14.0.1.0.0 |  | This module adds to the purchase order line the supplier code defined in the product.
 [purchase_advance_payment](purchase_advance_payment/) | 14.0.1.0.1 |  | Allow to add advance payments on purchase orders
 [purchase_analytic_global](purchase_analytic_global/) | 14.0.1.0.0 |  | Purchase - Analytic Account Global
+[purchase_blanket_order](purchase_blanket_order/) | 14.0.1.0.0 |  | Purchase Blanket Orders
 [purchase_cancel_confirm](purchase_cancel_confirm/) | 14.0.1.0.0 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Purchase Cancel Confirm
 [purchase_cancel_reason](purchase_cancel_reason/) | 14.0.1.0.0 |  | Purchase Cancel Reason
 [purchase_commercial_partner](purchase_commercial_partner/) | 14.0.1.0.0 |  | Add stored related field 'Commercial Supplier' on POs
