@@ -40,14 +40,14 @@ class BlanketOrder(models.Model):
         "res.partner",
         string="Vendor",
         readonly=True,
-        track_visibility="always",
+        tracking=True,
         states={"draft": [("readonly", False)]},
     )
     line_ids = fields.One2many(
         "purchase.blanket.order.line",
         "order_id",
         string="Order lines",
-        track_visibility="always",
+        tracking=True,
         copy=True,
     )
     line_count = fields.Integer(
@@ -82,12 +82,12 @@ class BlanketOrder(models.Model):
         compute="_compute_state",
         store=True,
         copy=False,
-        track_visibility="always",
+        tracking=True,
     )
     validity_date = fields.Date(
         readonly=True,
         states={"draft": [("readonly", False)]},
-        track_visibility="always",
+        tracking=True,
         help="Date until which the blanket order will be valid, after this "
         "date the blanket order will be marked as expired",
     )
@@ -125,7 +125,7 @@ class BlanketOrder(models.Model):
         store=True,
         readonly=True,
         compute="_compute_amount_all",
-        track_visibility="always",
+        tracking=True,
     )
     amount_tax = fields.Monetary(
         string="Taxes", store=True, readonly=True, compute="_compute_amount_all"
@@ -263,7 +263,7 @@ class BlanketOrder(models.Model):
                 assert len(order.line_ids) > 0, _("Must have some lines")
                 order.line_ids._validate()
         except AssertionError as e:
-            raise UserError(e)
+            raise UserError(e) from e
 
     def set_to_draft(self):
         for order in self:
@@ -297,7 +297,7 @@ class BlanketOrder(models.Model):
 
     def action_view_purchase_orders(self):
         purchase_orders = self._get_purchase_orders()
-        action = self.env.ref("purchase.purchase_rfq").read()[0]
+        action = self.env["ir.actions.actions"]._for_xml_id("purchase.purchase_rfq")
         if len(purchase_orders) > 0:
             action["domain"] = [("id", "in", purchase_orders.ids)]
             action["context"] = [("id", "in", purchase_orders.ids)]
@@ -306,9 +306,9 @@ class BlanketOrder(models.Model):
         return action
 
     def action_view_purchase_blanket_order_line(self):
-        action = self.env.ref(
+        action = self.env["ir.actions.actions"]._for_xml_id(
             "purchase_blanket_order.act_open_purchase_blanket_order_lines_view_tree"
-        ).read()[0]
+        )
         lines = self.mapped("line_ids")
         if len(lines) > 0:
             action["domain"] = [("id", "in", lines.ids)]
@@ -394,7 +394,7 @@ class BlanketOrderLine(models.Model):
                 }
             )
 
-    name = fields.Char("Description", track_visibility="onchange")
+    name = fields.Char(string="Description", tracking=True)
     sequence = fields.Integer()
     order_id = fields.Many2one(
         "purchase.blanket.order", required=True, ondelete="cascade"
@@ -611,4 +611,4 @@ class BlanketOrderLine(models.Model):
                     "Quantity must be greater than zero"
                 )
         except AssertionError as e:
-            raise UserError(e)
+            raise UserError(e) from e
