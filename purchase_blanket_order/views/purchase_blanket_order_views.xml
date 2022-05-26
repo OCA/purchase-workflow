@@ -267,7 +267,7 @@
         <field name="name">purchase.blanket.order.line.tree</field>
         <field name="model">purchase.blanket.order.line</field>
         <field name="arch" type="xml">
-            <tree string="Blanket Order Lines" create="false">
+            <tree create="false">
                 <field name="sequence" widget="handle" />
                 <field name="name" invisible="1" />
                 <field name="order_id" />

@@ -1,11 +1,11 @@
-# Copyright (C) 2019 ForgeFlow S.L. (https://www.forgeflow.com)
+# Copyright 2019-22 ForgeFlow S.L. (https://www.forgeflow.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "Purchase Blanket Orders",
     "category": "Purchase",
     "license": "AGPL-3",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
-    "version": "14.0.1.0.0",
+    "version": "15.0.1.0.0",
     "website": "https://github.com/OCA/purchase-workflow",
     "summary": "Purchase Blanket Orders",
     "depends": ["purchase", "web_action_conditionable"],
