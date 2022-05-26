@@ -66,7 +66,7 @@ class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
     blanket_order_line = fields.Many2one(
-        "purchase.blanket.order.line", "Blanket Order Line", copy=False
+        comodel_name="purchase.blanket.order.line", copy=False
     )
 
     def _get_assigned_bo_line(self, bo_lines):
