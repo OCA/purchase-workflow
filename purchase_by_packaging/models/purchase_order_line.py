@@ -62,18 +62,38 @@ class PurchaseOrderLine(models.Model):
                     )
                 )
 
+    def get_packaging_qty(self, vals=None):
+        if not vals:
+            vals = []
+        product = (
+            self.env["product.product"].browse(vals["product_id"])
+            if "product_id" in vals
+            else self.product_id
+        )
+
+        quantity = vals["product_qty"] if "product_qty" in vals else self.product_qty
+        uom = (
+            self.env["uom.uom"].browse(vals["product_uom"])
+            if "product_uom" in vals
+            else self.product_uom
+        )
+        packaging = (
+            self.env["product.packaging"].browse(vals["product_packaging"])
+            if "product_packaging" in vals
+            else self.product_packaging
+        )
+
+        return product._convert_purchase_packaging_qty(
+            quantity, uom or product.uom_po_id, packaging=packaging,
+        )
+
     def _force_qty_with_package(self):
         """
 
         :return:
         """
         self.ensure_one()
-        qty = self.product_id._convert_purchase_packaging_qty(
-            self.product_qty,
-            self.product_uom or self.product_id.uom_po_id,
-            packaging=self.product_packaging,
-        )
-        self.product_qty = qty
+        self.product_qty = self.get_packaging_qty()
         return True
 
     @api.onchange("product_qty", "product_uom")
@@ -108,10 +128,13 @@ class PurchaseOrderLine(models.Model):
             return super().write(vals)
         for line in self:
             line_vals = vals.copy()
-            if vals.get("product_id", False):
+            if line_vals.get("product_id", False):
                 packaging = line._get_autoassigned_packaging(line_vals)
                 if packaging:
                     line_vals.update({"product_packaging": packaging})
+            if line_vals.get("product_qty") or line_vals.get("product_uom"):
+                product_qty = line.get_packaging_qty(line_vals)
+                line_vals.update({"product_qty": product_qty})
             super(PurchaseOrderLine, line).write(line_vals)
         return True
 
@@ -123,6 +146,9 @@ class PurchaseOrderLine(models.Model):
             packaging = self._get_autoassigned_packaging(vals)
             if packaging:
                 vals.update({"product_packaging": packaging})
+        if vals.get("product_qty") or vals.get("product_uom"):
+            product_qty = self.get_packaging_qty(vals)
+            vals.update({"product_qty": product_qty})
         return super().create(vals)
 
     def _get_autoassigned_packaging(self, vals=None):
