@@ -122,6 +122,7 @@ repos:
         verbose: true
         additional_dependencies: &pylint_deps
           - pylint-odoo==3.5.0
+          - lxml==4.6.3
       - id: pylint
         name: pylint with mandatory checks
         args:
