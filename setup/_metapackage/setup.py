@@ -8,6 +8,7 @@ setuptools.setup(
     description="Meta package for oca-purchase-workflow Odoo addons",
     version=version,
     install_requires=[
+        'odoo14-addon-partner_supplierinfo_smartbutton',
         'odoo14-addon-procurement_batch_generator',
         'odoo14-addon-procurement_purchase_no_grouping',
         'odoo14-addon-product_form_purchase_link',

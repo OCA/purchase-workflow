@@ -20,14 +20,17 @@ class PurchaseRequestLine(models.Model):
     _inherit = ["mail.thread", "mail.activity.mixin"]
     _order = "id desc"
 
-    name = fields.Char(string="Description", tracking=True)
+    name = fields.Char(string="Description", tracking=True, required=True)
     product_uom_id = fields.Many2one(
         comodel_name="uom.uom",
         string="UoM",
         tracking=True,
     )
     product_qty = fields.Float(
-        string="Quantity", tracking=True, digits="Product Unit of Measure"
+        string="Quantity",
+        tracking=True,
+        required=True,
+        digits="Product Unit of Measure",
     )
     request_id = fields.Many2one(
         comodel_name="purchase.request",
@@ -178,10 +181,10 @@ class PurchaseRequestLine(models.Model):
     )
     currency_id = fields.Many2one(related="company_id.currency_id", readonly=True)
     product_id = fields.Many2one(
-        comodel_name="product.product",
+        "product.product",
         string="Product",
         domain=[("purchase_ok", "=", True)],
-        tracking=True,
+        required=True,
     )
 
     @api.depends(
