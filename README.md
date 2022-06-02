@@ -20,6 +20,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
+[partner_supplierinfo_smartbutton](partner_supplierinfo_smartbutton/) | 14.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Access supplied products from the vendor
 [procurement_batch_generator](procurement_batch_generator/) | 14.0.1.0.0 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Wizard to replenish from product tree view
 [procurement_purchase_no_grouping](procurement_purchase_no_grouping/) | 14.0.1.0.0 |  | Procurement Purchase No Grouping
 [product_form_purchase_link](product_form_purchase_link/) | 14.0.1.0.0 | [![rousseldenis](https://github.com/rousseldenis.png?size=30px)](https://github.com/rousseldenis) | Add an option to display the purchases lines from product
