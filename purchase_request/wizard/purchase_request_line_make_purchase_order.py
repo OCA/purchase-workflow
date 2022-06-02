@@ -352,7 +352,9 @@ class PurchaseRequestLineMakePurchaseOrderItem(models.TransientModel):
         string="UoM",
         related="product_id.uom_po_id",
         readonly=False,
+        domain="[('category_id', '=', product_uom_category_id)]",
     )
+    product_uom_category_id = fields.Many2one(related="product_id.uom_id.category_id")
     keep_description = fields.Boolean(
         string="Copy descriptions to new PO",
         help="Set true if you want to keep the "
