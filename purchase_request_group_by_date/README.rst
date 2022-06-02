@@ -26,7 +26,6 @@ Purchase Request Group by Date
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
 This module allows to merge purchase request lines for same product on the same day.
-To use functionality go to Inventory Settings and mark option `Group purchase request by product and date`
 
 **Table of contents**
 

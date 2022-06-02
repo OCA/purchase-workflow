@@ -1,4 +1,4 @@
-# Copyright 2018-2019 ForgeFlow, S.L.
+# Copyright 2022 Camptocamp
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 
 from freezegun import freeze_time
@@ -24,11 +24,6 @@ class TestPurchaseRequestGroupBy(common.SavepointCase):
         self.product_1.purchase_request = True
         self.product_2 = self.env.ref("product.product_product_13")
         self.uom_unit = self.env.ref("uom.product_uom_unit")
-        # to test company settings
-        self.user_admin = self.env.ref("base.user_admin")
-        self.env["res.config.settings"].with_user(self.user_admin).create(
-            {"company_group_purchase_request": True}
-        )
 
         # Create UoM
         self.uom_ten = self.product_uom_model.create(
@@ -173,18 +168,15 @@ class TestPurchaseRequestGroupBy(common.SavepointCase):
             )
             self.assertTrue(has_route)
             self.env["procurement.group"].run_scheduler()
-            pr = self.env["purchase.request"].search([("origin", "=", "prod_1")])
+            pr = self.env["purchase.request"].search(
+                [("origin", "=", "Test Purchase Request Single Line, prod_1")]
+            )
             self.product_1.purchase_request = True
-            self.assertTrue(pr.to_approve_allowed)
-            self.assertEqual(pr.origin, "prod_1")
-
+            # self.assertTrue(pr.to_approve_allowed)
+            self.assertEqual(pr.origin, "Test Purchase Request Single Line, prod_1")
             prl = self.env["purchase.request.line"].search([("request_id", "=", pr.id)])
-
-            # make sure new PR is created
-            self.assertEqual(self.env["purchase.request"].search_count([]), 2)
-            self.assertEqual(len(pr.line_ids), 1)
-            self.assertEqual(prl.product_qty, 5)
-
+            self.assertEqual(len(prl), 2)
+            self.assertEqual(sum(pr.line_ids.mapped("product_qty")), 9)
 
     def test_existing_purchase_request_with_rfq(self):
         self.assertEqual(self.env["purchase.request"].search_count([]), 0)

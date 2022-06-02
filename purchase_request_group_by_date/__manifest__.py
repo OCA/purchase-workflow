@@ -9,9 +9,7 @@
     "website": "https://github.com/OCA/purchase-workflow",
     "category": "Purchase Management",
     "depends": ["purchase_request", "stock", "product", "purchase_stock"],
-    "data": [
-        "views/res_config_settings.xml",
-    ],
+    "data": [],
     "license": "LGPL-3",
     "installable": True,
 }
