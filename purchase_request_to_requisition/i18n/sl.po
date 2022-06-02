@@ -1,0 +1,295 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * purchase_request_to_requisition
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-02-11 01:39+0000\n"
+"PO-Revision-Date: 2017-02-11 01:39+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: purchase_request_to_requisition
+#: code:addons/purchase_request_to_requisition/models/purchase_requisition.py:25
+#, python-format
+msgid "<li><b>%s</b>: Total bid quantity %s %s</li>"
+msgstr "<li><b>%s</b>: Skupna ponudbena količina %s %s</li>"
+
+#. module: purchase_request_to_requisition
+#: model:ir.ui.view,arch_db:purchase_request_to_requisition.purchase_request_line_search
+msgid "At least a Draft Bid has been created"
+msgstr "Ustvarjen je bil vsaj osnutek ponudbe"
+
+#. module: purchase_request_to_requisition
+#: model:ir.ui.view,arch_db:purchase_request_to_requisition.purchase_request_line_search
+msgid "At least a PO has been confirmed"
+msgstr "Potrjen je bil vsaj nabavni nalog"
+
+#. module: purchase_request_to_requisition
+#: model:ir.ui.view,arch_db:purchase_request_to_requisition.purchase_request_line_search
+msgid "At least one of the Bids has been completed"
+msgstr "Vsaj ena izmed ponudb je bila dokončana."
+
+#. module: purchase_request_to_requisition
+#: model:ir.ui.view,arch_db:purchase_request_to_requisition.purchase_request_line_search
+msgid "Bid Sent to Suppliers"
+msgstr "Ponudbe poslane dobaviteljem"
+
+#. module: purchase_request_to_requisition
+#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_requisition_state
+msgid "Bid Status"
+msgstr "Stanje ponudbe"
+
+#. module: purchase_request_to_requisition
+#: model:ir.ui.view,arch_db:purchase_request_to_requisition.purchase_request_line_search
+msgid "Bid completed"
+msgstr "Ponudba dokončana"
+
+#. module: purchase_request_to_requisition
+#: code:addons/purchase_request_to_requisition/models/purchase_requisition.py:16
+#, python-format
+msgid "Bid confirmation %s for your Request %s"
+msgstr "Potrditev ponudbe %s za vašo zahtevo %s"
+
+#. module: purchase_request_to_requisition
+#: model:ir.ui.view,arch_db:purchase_request_to_requisition.view_purchase_request_line_make_purchase_requisition
+msgid "Cancel"
+msgstr "Preklic"
+
+#. module: purchase_request_to_requisition
+#: model:ir.actions.act_window,name:purchase_request_to_requisition.action_purchase_request_line_make_purchase_requisition
+#: model:ir.ui.view,arch_db:purchase_request_to_requisition.view_purchase_request_line_make_purchase_requisition
+msgid "Create Call for Bids"
+msgstr "Ustvari razpis za ponudbe"
+
+#. module: purchase_request_to_requisition
+#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition_create_uid
+#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition_item_create_uid
+msgid "Created by"
+msgstr "Ustvaril"
+
+#. module: purchase_request_to_requisition
+#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition_create_date
+#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition_item_create_date
+msgid "Created on"
+msgstr "Ustvarjeno"
+
+#. module: purchase_request_to_requisition
+#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition_item_name
+msgid "Description"
+msgstr "Opis"
+
+#. module: purchase_request_to_requisition
+#: model:ir.ui.view,arch_db:purchase_request_to_requisition.view_purchase_request_line_make_purchase_requisition
+msgid "Details"
+msgstr "Podrobnosti"
+
+#. module: purchase_request_to_requisition
+#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition_display_name
+#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition_item_display_name
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: purchase_request_to_requisition
+#: code:addons/purchase_request_to_requisition/wizard/purchase_request_line_make_purchase_requisition.py:95
+#, python-format
+msgid "Enter a positive quantity."
+msgstr "Vnesite pozitivno količino."
+
+#. module: purchase_request_to_requisition
+#: model:ir.ui.view,arch_db:purchase_request_to_requisition.view_purchase_request_line_make_purchase_requisition
+msgid "Existing draft Call for Bid to update:"
+msgstr "Obstoječi osnutek ponudbenega razpisa za posodobitev:"
+
+#. module: purchase_request_to_requisition
+#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_requisition_line_has_purchase_request_lines
+msgid "Has Purchase Request Lines"
+msgstr "Vsebuje postavke nabavne zahteve"
+
+#. module: purchase_request_to_requisition
+#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition_id
+#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition_item_id
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_request_to_requisition
+#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition_item_ids
+msgid "Items"
+msgstr "Predmeti"
+
+#. module: purchase_request_to_requisition
+#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition___last_update
+#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition_item___last_update
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
+
+#. module: purchase_request_to_requisition
+#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition_item_write_uid
+#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition_write_uid
+msgid "Last Updated by"
+msgstr "Zadnji posodobil"
+
+#. module: purchase_request_to_requisition
+#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition_item_write_date
+#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition_write_date
+msgid "Last Updated on"
+msgstr "Zadnjič posodobljeno"
+
+#. module: purchase_request_to_requisition
+#: model:ir.ui.view,arch_db:purchase_request_to_requisition.purchase_request_line_search
+msgid "New Bid"
+msgstr "Nova ponudba"
+
+#. module: purchase_request_to_requisition
+#: model:ir.ui.view,arch_db:purchase_request_to_requisition.purchase_request_line_search
+msgid "No Bid"
+msgstr "Brez ponudb"
+
+#. module: purchase_request_to_requisition
+#: model:ir.ui.view,arch_db:purchase_request_to_requisition.purchase_request_line_search
+msgid "No Bid has been created"
+msgstr "Nobena ponudba ni bila ustvarjena"
+
+#. module: purchase_request_to_requisition
+#: code:addons/purchase_request_to_requisition/models/product.py:19
+#, python-format
+msgid "Only one selection of Purchase Request or Call for Bids allowed"
+msgstr "Dovoljena je le ena izbira nabavnega zahtevka ali ponudbenega razpisa"
+
+#. module: purchase_request_to_requisition
+#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition_item_product_id
+msgid "Product"
+msgstr "Proizvod"
+
+#. module: purchase_request_to_requisition
+#: model:ir.model,name:purchase_request_to_requisition.model_product_template
+msgid "Product Template"
+msgstr "Predloga proizvoda"
+
+#. module: purchase_request_to_requisition
+#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition_item_request_id
+msgid "Purchase Request"
+msgstr "Zahteva po nabavi"
+
+#. module: purchase_request_to_requisition
+#: model:ir.model,name:purchase_request_to_requisition.model_purchase_request_line
+#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition_item_line_id
+msgid "Purchase Request Line"
+msgstr "Postavka zahteve po nabavi"
+
+#. module: purchase_request_to_requisition
+#: model:ir.model,name:purchase_request_to_requisition.model_purchase_request_line_make_purchase_requisition
+msgid "Purchase Request Line Make Purchase Requisition"
+msgstr "Postavka nabavne zahteve izvede nabavni zahtevek"
+
+#. module: purchase_request_to_requisition
+#: model:ir.model,name:purchase_request_to_requisition.model_purchase_request_line_make_purchase_requisition_item
+msgid "Purchase Request Line Make Purchase Requisition Item"
+msgstr "Postavka nabavne zahteve izvede predmet nabavnega zahtevka"
+
+#. module: purchase_request_to_requisition
+#: code:addons/purchase_request_to_requisition/models/purchase_requisition.py:105
+#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_requisition_line_purchase_request_lines
+#, python-format
+msgid "Purchase Request Lines"
+msgstr "Postavke nabavne zahteve"
+
+#. module: purchase_request_to_requisition
+#: model:ir.ui.view,arch_db:purchase_request_to_requisition.view_purchase_requisition_form
+msgid "Purchase Request lines"
+msgstr "Postavke nabavne zahteve"
+
+#. module: purchase_request_to_requisition
+#: model:ir.model,name:purchase_request_to_requisition.model_purchase_requisition
+#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition_purchase_requisition_id
+msgid "Purchase Requisition"
+msgstr "Nabavni zahtevek"
+
+#. module: purchase_request_to_requisition
+#: model:ir.model,name:purchase_request_to_requisition.model_purchase_requisition_line
+msgid "Purchase Requisition Line"
+msgstr "Postavka nabavnega zahtevka"
+
+#. module: purchase_request_to_requisition
+#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_requisition_lines
+#: model:ir.ui.view,arch_db:purchase_request_to_requisition.purchase_request_line_form
+msgid "Purchase Requisition Lines"
+msgstr "Postavke nabavnega zahtevka"
+
+#. module: purchase_request_to_requisition
+#: code:addons/purchase_request_to_requisition/wizard/purchase_request_line_make_purchase_requisition.py:141
+#, python-format
+msgid "Purchase requisition"
+msgstr "Nabavni zahtevek"
+
+#. module: purchase_request_to_requisition
+#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_requisition_qty
+msgid "Quantity in a Bid"
+msgstr "Količina v ponudbi"
+
+#. module: purchase_request_to_requisition
+#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition_item_product_qty
+msgid "Quantity to Bid"
+msgstr "Ponudbena količina"
+
+#. module: purchase_request_to_requisition
+#: model:ir.ui.view,arch_db:purchase_request_to_requisition.purchase_request_line_search
+msgid "Request"
+msgstr "Zahteva"
+
+#. module: purchase_request_to_requisition
+#: model:ir.ui.view,arch_db:purchase_request_to_requisition.view_purchase_request_form
+msgid "Requisition Lines"
+msgstr "Postavke zahtevka"
+
+#. module: purchase_request_to_requisition
+#: model:ir.ui.view,arch_db:purchase_request_to_requisition.purchase_request_line_search
+msgid "Requisition Status"
+msgstr "Status zahtevka"
+
+#. module: purchase_request_to_requisition
+#: code:addons/purchase_request_to_requisition/models/purchase_requisition.py:19
+#, python-format
+msgid ""
+"The following requested items from Purchase Request %s have now being sent "
+"to Suppliers using Purchase Bid %s:"
+msgstr ""
+"Naslednji zahtevani predmeti iz nabavne zahteve %s so bili odposlani "
+"dobaviteljem preko nabavne ponudbe %s:"
+
+#. module: purchase_request_to_requisition
+#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition_item_product_uom_id
+msgid "UoM"
+msgstr "EM"
+
+#. module: purchase_request_to_requisition
+#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition_item_wiz_id
+msgid "Wizard"
+msgstr "Čarovnik"
+
+#. module: purchase_request_to_requisition
+#: code:addons/purchase_request_to_requisition/models/purchase_request.py:71
+#, python-format
+msgid "You cannot delete a record that refers to purchase lines!"
+msgstr "Zapisa, ki se sklicuje na nabavne postavke ne morete izbrisati!"
+
+#. module: purchase_request_to_requisition
+#: code:addons/purchase_request_to_requisition/wizard/purchase_request_line_make_purchase_requisition.py:101
+#, python-format
+msgid "You have to select lines from the same company."
+msgstr "Izbrati morate postavke za isto družbo."
+
+#. module: purchase_request_to_requisition
+#: code:addons/purchase_request_to_requisition/wizard/purchase_request_line_make_purchase_requisition.py:110
+#, python-format
+msgid "You have to select lines from the same picking type."
+msgstr "Izbrati morate postavke za isti tip zbirnika."
