@@ -7,11 +7,15 @@
     "category": "Purchase",
     "author": "Camptocamp, Odoo Community Association (OCA)",
     "license": "AGPL-3",
+    "maintainers": ["TDu", "bealdav"],
     "depends": [
         "account",
-        "purchase",
+        "purchase_stock",
     ],
     "website": "https://github.com/OCA/purchase-workflow",
-    "data": ["views/partner_view.xml"],
+    "data": [
+        "views/partner_view.xml",
+        "views/purchase_view.xml",
+    ],
     "installable": True,
 }

@@ -11,3 +11,8 @@ class ResPartner(models.Model):
         ondelete="restrict",
         string="Default Purchase Incoterm",
     )
+    purchase_incoterm_address_id = fields.Many2one(
+        comodel_name="res.partner",
+        ondelete="restrict",
+        string="Default Purchase Incoterm Address",
+    )

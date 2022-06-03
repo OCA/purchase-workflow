@@ -8,6 +8,7 @@
     <field name="arch" type="xml">
       <group name="purchase" position="inside">
         <field name="purchase_incoterm_id" />
+        <field name="purchase_incoterm_address_id" />
       </group>
     </field>
   </record>
