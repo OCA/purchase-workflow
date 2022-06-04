@@ -20,12 +20,18 @@ class PurchaseRequestLine(models.Model):
     _inherit = ["mail.thread", "mail.activity.mixin"]
     _order = "id desc"
 
-    name = fields.Char(string="Description", tracking=True, required=True)
-    product_uom_id = fields.Many2one(
-        comodel_name="uom.uom",
-        string="UoM",
-        tracking=True,
+    name = fields.Char(string="Description", tracking=True)
+    product_id = fields.Many2one(
+        "product.product",
+        string="Product",
+        domain=[("purchase_ok", "=", True)],
     )
+    product_uom_id = fields.Many2one(
+        "uom.uom",
+        string="UoM",
+        domain="[('category_id', '=', product_uom_category_id)]",
+    )
+    product_uom_category_id = fields.Many2one(related="product_id.uom_id.category_id")
     product_qty = fields.Float(
         string="Quantity",
         tracking=True,
@@ -180,12 +186,6 @@ class PurchaseRequestLine(models.Model):
         help="Estimated cost of Purchase Request Line, not propagated to PO.",
     )
     currency_id = fields.Many2one(related="company_id.currency_id", readonly=True)
-    product_id = fields.Many2one(
-        "product.product",
-        string="Product",
-        domain=[("purchase_ok", "=", True)],
-        required=True,
-    )
 
     @api.depends(
         "purchase_request_allocation_ids",
