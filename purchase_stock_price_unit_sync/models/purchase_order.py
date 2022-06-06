@@ -10,8 +10,11 @@ class PurchaseOrderLine(models.Model):
 
     def write(self, vals):
         res = super().write(vals)
-        if ("price_unit" in vals or "discount" in vals) and (
-            not self.env.context.get("skip_stock_price_unit_sync")
+        if (
+            ("price_unit" in vals or "discount" in vals)
+            and not self.env.context.get("skip_stock_price_unit_sync")
+            # This context is present when the purchase_discount hack is being made
+            and not self.env.context.get("purchase_discount")
         ):
             self.stock_price_unit_sync()
         return res
