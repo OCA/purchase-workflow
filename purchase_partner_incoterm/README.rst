@@ -25,7 +25,10 @@ Default purchase incoterm per partner
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-This module adds incoterms for suppliers and purchase order
+This module adds incoterms for suppliers and purchase order:
+
+* incoterm modes
+* incoterm address
 
 **Table of contents**
 
@@ -57,6 +60,8 @@ Contributors
     * Thierry Ducrest <thierry.ducrest@camptocamp.com>
 * `Trobz <https://trobz.com>`_:
     * Son Ho <sonhd@trobz.com>
+* `Akretion <https://akretion.com>`_:
+    * David BEAL <david.beal@akretion.com>
 
 Other credits
 ~~~~~~~~~~~~~
@@ -77,6 +82,17 @@ This module is maintained by the OCA.
 OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
+
+.. |maintainer-TDu| image:: https://github.com/TDu.png?size=40px
+    :target: https://github.com/TDu
+    :alt: TDu
+.. |maintainer-bealdav| image:: https://github.com/bealdav.png?size=40px
+    :target: https://github.com/bealdav
+    :alt: bealdav
+
+Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
+
+|maintainer-TDu| |maintainer-bealdav| 
 
 This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/14.0/purchase_partner_incoterm>`_ project on GitHub.
 
