@@ -3,7 +3,7 @@
 
 from dateutil import relativedelta
 
-from odoo import fields, models
+from odoo import models
 
 
 class StockOrderpoint(models.Model):
@@ -15,7 +15,7 @@ class StockOrderpoint(models.Model):
         res = super()._get_product_context()
         if not self.product_id or not self.location_id:
             return res
-        seller = fields.first(self.product_id._select_seller(quantity=None))
+        seller = self.product_id._select_seller(quantity=None)
         if seller:
             lead_days, __ = self.rule_ids._get_lead_days(self.product_id)
             availability_date = seller._get_next_availability_date()
