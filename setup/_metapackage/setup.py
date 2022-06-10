@@ -13,6 +13,7 @@ setuptools.setup(
         'odoo-addon-purchase_delivery_split_date>=15.0dev,<15.1dev',
         'odoo-addon-purchase_deposit>=15.0dev,<15.1dev',
         'odoo-addon-purchase_discount>=15.0dev,<15.1dev',
+        'odoo-addon-purchase_order_archive>=15.0dev,<15.1dev',
         'odoo-addon-purchase_order_line_menu>=15.0dev,<15.1dev',
         'odoo-addon-purchase_receipt_expectation>=15.0dev,<15.1dev',
         'odoo-addon-purchase_receipt_expectation_manual>=15.0dev,<15.1dev',
