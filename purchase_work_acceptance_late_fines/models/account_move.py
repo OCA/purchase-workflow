@@ -55,7 +55,7 @@ class AccountMove(models.Model):
     def _onchange_late_wa_id(self):
         """Auto fill values from WA delivery late fines"""
         MoveLine = self.env["account.move.line"]
-        if self.move_type == "out_invoice" and self.late_wa_id:
+        if self.move_type in ("out_invoice", "in_refund") and self.late_wa_id:
             self.invoice_line_ids = False
             self.line_ids = False
             move_dict = self._prepare_move_wa_late(self.late_wa_id)

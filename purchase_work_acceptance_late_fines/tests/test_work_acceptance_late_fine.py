@@ -127,7 +127,25 @@ class TestWorkAcceptanceLateFine(TransactionCase):
         work_acceptance = work_acceptance1 + work_acceptance2
         result = work_acceptance.with_context(**ctx).action_create_fines_invoice()
         # Should be tree view
-        self.assertEqual(result["res_id"], 0)
+        self.assertFalse(result.get("res_id"))
         domain = result["domain"]
         move_ids = self.env[result["res_model"]].browse(domain[0][2])
         self.assertEqual(move_ids.mapped("late_wa_id").ids, work_acceptance.ids)
+
+    def test_05_create_fines_invoice_refund(self):
+        """Test create fines as invoice and refund"""
+        work_acceptance1 = self._create_wa(self.late2days)
+        ctx = {"active_ids": [work_acceptance1.id]}
+        # Fines as Invoice or Refund
+        for move_type in ["out_invoice", "in_refund"]:
+            with Form(
+                self.env["work.acceptance.create.fines"].with_context(**ctx)
+            ) as f:
+                f.move_type = move_type
+            create_fine = f.save()
+            create_fine.action_create_fines()
+            self.assertEqual(len(work_acceptance1.fines_invoice_ids.ids), 1)
+            res = work_acceptance1.action_view_invoice()
+            move = self.env["account.move"].browse(res["res_id"])
+            self.assertEqual(move.move_type, move_type)
+            move.unlink()

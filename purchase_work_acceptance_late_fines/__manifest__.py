@@ -10,7 +10,9 @@
     "website": "https://github.com/OCA/purchase-workflow",
     "depends": ["purchase_work_acceptance"],
     "data": [
+        "security/ir.model.access.csv",
         "security/security.xml",
+        "wizards/work_acceptance_create_fines_views.xml",
         "views/res_config_settings_views.xml",
         "views/work_acceptance_views.xml",
         "views/account_move_views.xml",

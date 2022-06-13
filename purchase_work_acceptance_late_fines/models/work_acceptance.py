@@ -36,6 +36,19 @@ class WorkAcceptance(models.Model):
         inverse_name="late_wa_id",
         string="Fines Invoices",
     )
+    _sql_constraints = [
+        ("late_days", "CHECK (late_days>=0)", "Wrong Late Days, it must be positive!"),
+        (
+            "fines_rate",
+            "CHECK (fines_rate>=0)",
+            "Wrong Fines Rate, it must be positive!",
+        ),
+        (
+            "fines_late",
+            "CHECK (fines_late>=0)",
+            "Wrong Fines Amount, it must be positive!",
+        ),
+    ]
 
     @api.depends("fines_invoice_ids")
     def _compute_fines_invoice_count(self):
@@ -48,19 +61,27 @@ class WorkAcceptance(models.Model):
             active_ids = self.ids or self.env.context.get("active_ids", [])
             work_acceptances = self.env["work.acceptance"].browse(active_ids)
             move_ids = work_acceptances.mapped("fines_invoice_ids").ids
-            if not move_ids:
-                raise UserError(_("No fine invoices"))
-        xmlid = "account.action_move_out_invoice_type"
-        action = self.env["ir.actions.act_window"]._for_xml_id(xmlid)
+        if not move_ids:
+            raise UserError(_("No fine invoices"))
+        result = {
+            "name": _("Fines Invoice/Refund"),
+            "type": "ir.actions.act_window",
+            "view_mode": "tree,kanban,form",
+            "res_model": "account.move",
+        }
         if len(move_ids) > 1:
-            action["domain"] = [("id", "in", move_ids)]
+            result["domain"] = [("id", "in", move_ids)]
         else:
             res = self.env.ref("account.view_move_form", False)
-            action["views"] = [(res and res.id or False, "form")]
-            action["res_id"] = move_ids[0]
-        return action
+            result.update(
+                {
+                    "views": [(res and res.id or False, "form")],
+                    "res_id": move_ids[0],
+                }
+            )
+        return result
 
-    def action_create_fines_invoice(self):
+    def action_create_fines_invoice(self, move_type="out_invoice"):
         AccountMove = self.env["account.move"]
         active_ids = self.ids or self.env.context.get("active_ids", [])
         work_acceptances = self.browse(active_ids)
@@ -71,19 +92,22 @@ class WorkAcceptance(models.Model):
         )
         if fines_invoices:
             names = ", ".join(fines_invoices.mapped("late_wa_id").mapped("name"))
-            raise UserError(_("Invoice already created for {}").format(names))
-        move_dict = [
-            {
-                "partner_id": wa.partner_id.id,
-                "move_type": "out_invoice",
-                "late_wa_id": wa.id,
-                "invoice_line_ids": [(0, 0, wa._prepare_late_wa_move_line())],
-            }
-            for wa in work_acceptances
-        ]
+            raise UserError(_("Invoice already created for %s") % names)
+        move_dict = self._prepare_late_wa_moves(move_type)
         moves = AccountMove.create(move_dict)
         result = self.with_context(created_move_ids=moves.ids).action_view_invoice()
         return result
+
+    def _prepare_late_wa_moves(self, move_type):
+        return [
+            {
+                "partner_id": wa.partner_id.id,
+                "move_type": move_type,
+                "late_wa_id": wa.id,
+                "invoice_line_ids": [(0, 0, wa._prepare_late_wa_move_line())],
+            }
+            for wa in self
+        ]
 
     def _prepare_late_wa_move_line(self, name=False):
         return {

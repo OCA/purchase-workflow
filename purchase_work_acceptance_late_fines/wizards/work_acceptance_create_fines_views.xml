@@ -1,0 +1,40 @@
+<odoo>
+    <record id="view_wa_create_fines" model="ir.ui.view">
+        <field name="name">Create Fines Invoice/Refund</field>
+        <field name="model">work.acceptance.create.fines</field>
+        <field name="arch" type="xml">
+            <form string="Create Fines">
+                <p class="oe_grey">
+                    You can create fines as either customer invoice or vendor refund.
+                </p>
+                <group>
+                    <field name="move_type" string="Create Fines As" widget="radio" />
+                </group>
+                <footer>
+                    <button
+                        name="action_create_fines"
+                        id="action_create_fines"
+                        string="Create Fines"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_wa_create_fines" model="ir.actions.act_window">
+        <field name="name">Create Fines Invoice/Refund</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">work.acceptance.create.fines</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field
+            name="binding_model_id"
+            ref="purchase_work_acceptance.model_work_acceptance"
+        />
+        <field name="binding_view_types">list</field>
+    </record>
+
+</odoo>
