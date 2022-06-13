@@ -40,14 +40,14 @@ class BlanketOrder(models.Model):
         "res.partner",
         string="Vendor",
         readonly=True,
-        track_visibility="always",
+        tracking=True,
         states={"draft": [("readonly", False)]},
     )
     line_ids = fields.One2many(
         "purchase.blanket.order.line",
         "order_id",
         string="Order lines",
-        track_visibility="always",
+        tracking=True,
         copy=True,
     )
     line_count = fields.Integer(
@@ -82,12 +82,12 @@ class BlanketOrder(models.Model):
         compute="_compute_state",
         store=True,
         copy=False,
-        track_visibility="always",
+        tracking=True,
     )
     validity_date = fields.Date(
         readonly=True,
         states={"draft": [("readonly", False)]},
-        track_visibility="always",
+        tracking=True,
         help="Date until which the blanket order will be valid, after this "
         "date the blanket order will be marked as expired",
     )
@@ -125,7 +125,7 @@ class BlanketOrder(models.Model):
         store=True,
         readonly=True,
         compute="_compute_amount_all",
-        track_visibility="always",
+        tracking=True,
     )
     amount_tax = fields.Monetary(
         string="Taxes", store=True, readonly=True, compute="_compute_amount_all"
