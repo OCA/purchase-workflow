@@ -79,7 +79,7 @@ class TestPurchaseStockSecondaryUnit(SavepointCase):
         picking = self.purchase_order.picking_ids
         picking.action_assign()
         picking.move_line_ids.qty_done = picking.move_lines.product_uom_qty
-        picking.action_done()
+        picking.button_validate()
         with Form(self.purchase_order) as po_form:
             with po_form.order_line.edit(0) as line:
                 line.secondary_uom_qty = 5.0
