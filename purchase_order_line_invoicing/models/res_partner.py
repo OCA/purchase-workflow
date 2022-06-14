@@ -11,9 +11,23 @@ class ResPartner(models.Model):
     )
 
     def _compute_purchase_order_lines_count(self):
-        purchase_order_line_model = self.env["purchase.order.line"]
-        for partner in self:
-            domain = [("partner_id", "child_of", partner.id)]
-            partner.purchase_order_lines_count = purchase_order_line_model.search_count(
-                domain
-            )
+        # retrieve all children partners and prefetch 'parent_id' on them
+        all_partners = self.with_context(active_test=False).search(
+            [("id", "child_of", self.ids)]
+        )
+        all_partners.read(["parent_id"])
+
+        purchase_order_line_groups = self.env["purchase.order.line"].read_group(
+            domain=[("partner_id", "in", all_partners.ids)],
+            fields=["partner_id"],
+            groupby=["partner_id"],
+        )
+        partners = self.browse()
+        for group in purchase_order_line_groups:
+            partner = self.browse(group["partner_id"][0])
+            while partner:
+                if partner in self:
+                    partner.purchase_order_lines_count += group["partner_id_count"]
+                    partners |= partner
+                partner = partner.parent_id
+        (self - partners).purchase_order_lines_count = 0
