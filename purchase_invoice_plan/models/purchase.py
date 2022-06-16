@@ -119,7 +119,7 @@ class PurchaseOrder(models.Model):
 
     def action_view_invoice(self, invoices=False):
         invoice_plan_id = self._context.get("invoice_plan_id")
-        if invoice_plan_id:
+        if invoice_plan_id and invoices:
             plan = self.env["purchase.invoice.plan"].browse(invoice_plan_id)
             for invoice in invoices:
                 plan._compute_new_invoice_quantity(invoice)
