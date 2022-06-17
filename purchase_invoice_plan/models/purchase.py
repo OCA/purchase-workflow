@@ -264,6 +264,10 @@ class PurchaseInvoicePlan(models.Model):
                 rec.to_invoice = True
                 break
 
+    def _get_amount_invoice(self, invoices):
+        """Hook function"""
+        return sum(invoices.mapped("amount_untaxed"))
+
     @api.depends("invoice_ids.state")
     def _compute_invoiced(self):
         for rec in self:
@@ -271,7 +275,7 @@ class PurchaseInvoicePlan(models.Model):
                 lambda l: l.state in ("draft", "posted")
             )
             rec.invoiced = invoiced and True or False
-            rec.amount_invoiced = invoiced[:1].amount_untaxed
+            rec.amount_invoiced = rec._get_amount_invoice(invoiced[:1])
 
     def _compute_last(self):
         for rec in self:
