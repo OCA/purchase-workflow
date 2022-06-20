@@ -18,6 +18,7 @@ msgstr ""
 "X-Generator: Poedit 2.3\n"
 
 #. module: purchase_order_product_attachment_mgmt
+#: model:ir.actions.server,name:purchase_order_product_attachment_mgmt.action_see_purchase_order_attachments
 #: model_terms:ir.ui.view,arch_db:purchase_order_product_attachment_mgmt.purchase_order_form
 msgid "Attachments"
 msgstr "Adjuntos"
