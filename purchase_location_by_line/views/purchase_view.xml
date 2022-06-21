@@ -9,7 +9,11 @@
                 expr="//field[@name='order_line']//field[@name='date_planned']"
                 position="after"
             >
-                <field name="location_dest_id" />
+                <field name="state" invisible="1" />
+                <field
+                    name="location_dest_id"
+                    attrs="{'readonly': [('state', 'in', ('purchase','done', 'cancel'))]}"
+                />
             </xpath>
         </field>
     </record>
@@ -19,7 +23,11 @@
         <field name="inherit_id" ref="purchase.purchase_order_line_form2" />
         <field name="arch" type="xml">
             <field name='date_planned' position="after">
-                <field name="location_dest_id" />
+                <field name="state" invisible="1" />
+                <field
+                    name="location_dest_id"
+                    attrs="{'readonly': [('state', 'in', ('purchase','done', 'cancel'))]}"
+                />
             </field>
         </field>
     </record>
