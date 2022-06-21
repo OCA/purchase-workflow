@@ -64,7 +64,7 @@ addon | version | maintainers | summary
 [purchase_order_vendor_product](purchase_order_vendor_product/) | 14.0.1.1.0 |  | Show only products from the selected vendor in PO line
 [purchase_partner_approval](purchase_partner_approval/) | 14.0.1.0.0 | [![dreispt](https://github.com/dreispt.png?size=30px)](https://github.com/dreispt) | Control Partners that can be used in Purchase Orders
 [purchase_partner_incoterm](purchase_partner_incoterm/) | 14.0.2.0.0 | [![TDu](https://github.com/TDu.png?size=30px)](https://github.com/TDu) [![bealdav](https://github.com/bealdav.png?size=30px)](https://github.com/bealdav) | Add a an incoterm field for supplier and use it on purchase order
-[purchase_picking_state](purchase_picking_state/) | 14.0.1.0.1 |  | Purchase Picking State
+[purchase_picking_state](purchase_picking_state/) | 14.0.1.1.0 |  | Purchase Picking State
 [purchase_product_usage](purchase_product_usage/) | 14.0.1.1.0 |  | Purchase Product Usage
 [purchase_propagate_qty](purchase_propagate_qty/) | 14.0.1.0.2 |  | Quantity decrease on purchase line are propagated to the corresponding stock.move
 [purchase_quick](purchase_quick/) | 14.0.1.0.1 |  | Quick Purchase order
