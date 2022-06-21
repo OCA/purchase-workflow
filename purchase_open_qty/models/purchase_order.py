@@ -98,7 +98,6 @@ class PurchaseOrder(models.Model):
 
     qty_to_invoice = fields.Float(
         compute="_compute_qty_to_invoice",
-        search="_search_qty_to_invoice",
         string="Qty to Bill",
         default=0.0,
     )
@@ -109,7 +108,6 @@ class PurchaseOrder(models.Model):
     )
     qty_to_receive = fields.Float(
         compute="_compute_qty_to_receive",
-        search="_search_qty_to_receive",
         string="Qty to Receive",
         default=0.0,
     )
