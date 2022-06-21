@@ -24,6 +24,19 @@
             </field>
         </field>
     </record>
+    <!-- Show open quantities fields wherever the tree view is used -->
+    <record model="ir.ui.view" id="view_purchase_order_line_tree">
+        <field name="model">purchase.order.line</field>
+        <field name="inherit_id" ref="purchase.purchase_order_line_tree" />
+        <field name="arch" type="xml">
+            <field name="product_qty" position="after">
+                <field name="qty_to_receive" optional="hide" />
+                <field name="qty_received" optional="hide" />
+                <field name="qty_to_invoice" optional="hide" />
+                <field name="qty_invoiced" optional="hide" />
+            </field>
+        </field>
+    </record>
     <record id="view_purchase_order_filter" model="ir.ui.view">
         <field name="name">request.quotation.select -- open qty filters</field>
         <field name="model">purchase.order</field>
