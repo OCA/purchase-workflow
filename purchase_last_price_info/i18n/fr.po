@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-03-08 10:15+0000\n"
-"PO-Revision-Date: 2022-06-22 14:05+0000\n"
+"PO-Revision-Date: 2022-06-23 18:05+0000\n"
 "Last-Translator: Khalid Hazam <k.hazam@badep.ma>\n"
 "Language-Team: French (http://www.transifex.com/oca/"
 "OCA-purchase-workflow-8-0/language/fr/)\n"
@@ -53,7 +53,7 @@ msgstr "Dernière date d'achat"
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_product__last_purchase_line_id
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_template__last_purchase_line_id
 msgid "Last Purchase Line"
-msgstr ""
+msgstr "Dernière ligne de commande"
 
 #. module: purchase_last_price_info
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_product__last_purchase_line_ids
