@@ -9,25 +9,25 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-23 17:50+0000\n"
-"PO-Revision-Date: 2018-02-23 17:50+0000\n"
-"Last-Translator: Quentin THEURET <odoo@kerpeo.com>, 2018\n"
+"PO-Revision-Date: 2022-06-23 18:05+0000\n"
+"Last-Translator: Khalid Hazam <k.hazam@badep.ma>\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: purchase_exception
 #: model:ir.model.fields,field_description:purchase_exception.field_exception_rule__model
 msgid "Apply on"
-msgstr ""
+msgstr "Appliquer sur"
 
 #. module: purchase_exception
 #: model_terms:ir.ui.view,arch_db:purchase_exception.view_purchase_order_filter
-#, fuzzy
 msgid "Blocked in Draft"
-msgstr "Bloquée en brouillon"
+msgstr "Bloqué en brouillon"
 
 #. module: purchase_exception
 #: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__create_uid
@@ -57,9 +57,8 @@ msgstr "Exceptions"
 
 #. module: purchase_exception
 #: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__exception_ids
-#, fuzzy
 msgid "Exceptions to resolve"
-msgstr "Règles d'exception"
+msgstr "Exceptions à régler"
 
 #. module: purchase_exception
 #: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__id
@@ -69,9 +68,8 @@ msgstr "ID"
 #. module: purchase_exception
 #: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__ignore
 #: model:ir.model.fields,field_description:purchase_exception.field_purchase_order_line__ignore_exception
-#, fuzzy
 msgid "Ignore Exceptions"
-msgstr "Exceptions"
+msgstr "Ignorer les exceptions"
 
 #. module: purchase_exception
 #: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm____last_update
@@ -137,9 +135,8 @@ msgstr "La quantité sur la ligne doit être positive"
 
 #. module: purchase_exception
 #: model:ir.model.fields.selection,name:purchase_exception.selection__exception_rule__model__purchase_order
-#, fuzzy
 msgid "Purchase order"
-msgstr "Commande"
+msgstr "Bon de Commande"
 
 #. module: purchase_exception
 #: model:ir.model.fields.selection,name:purchase_exception.selection__exception_rule__model__purchase_order_line
@@ -156,14 +153,13 @@ msgstr "Achat : Test des exceptions des commandes en brouillon"
 
 #. module: purchase_exception
 #: model:ir.model.fields,field_description:purchase_exception.field_exception_rule__purchase_ids
-#, fuzzy
 msgid "Purchases"
-msgstr "Achat"
+msgstr "Achats"
 
 #. module: purchase_exception
 #: model:exception.rule,name:purchase_exception.pol_excep_qty_check
 msgid "Quantity not positive"
-msgstr ""
+msgstr "Quantité non positive"
 
 #. module: purchase_exception
 #: model_terms:ir.ui.view,arch_db:purchase_exception.view_order_form
