@@ -53,6 +53,8 @@ class PurchaseOrder(models.Model):
             return mydata
 
         result = super().onchange(values, field_name, field_onchange)
+        if not values.get("dispatch_date") and not values.get("date_planned"):
+            return result
         # we tracks these fields to amend behavior
         ffields = [
             "dispatch_date",
@@ -62,7 +64,8 @@ class PurchaseOrder(models.Model):
         ]
         trigger = False
         for elm in ffields:
-            trigger = trigger or True
+            if field_onchange.get(elm) == "1":
+                trigger = trigger or True
         if trigger:
             vals = {}
             ffields.append("state")
@@ -76,13 +79,15 @@ class PurchaseOrder(models.Model):
         return result
 
     def _update_freight_fields_and_co(self, vals=None):
-        self.ensure_one()
-        from_onchange, to_update = False, False
+        from_onchange = False
         if vals:
             from_onchange = True
         else:
-            # we switch to dict to share behavior
-            # required while there are onchange in native code
+            self.ensure_one()
+            if not self.dispatch_date and not self.date_planned:
+                return
+            # we switch to dict to share behavior between compute and onchange.
+            # it's required while there are onchanges in native code
             vals = {
                 "dispatch_date": self.dispatch_date,
                 "date_planned": self.date_planned,
@@ -94,30 +99,24 @@ class PurchaseOrder(models.Model):
             return vals
         if not vals["dispatch_date"]:
             # initialisation
-            # TODO sometimes dispatch_date is reset to False, I don't know why
-            vals["dispatch_date"] = (
-                self._origin.dispatch_date
-                or vals["date_planned"]
-            )
-        if vals["freight_duration_policy"] == "dispatch":
+            # TOFIX While form is not saved, dispatch_date is reset to False
+            vals["dispatch_date"] = self._origin.dispatch_date or vals["date_planned"]
+        if vals["freight_duration_policy"] == "dispatch" or not vals["dispatch_date"]:
             vals["dispatch_date"] = vals["date_planned"] - timedelta(
                 days=vals["freight_duration"] or 0
             )
-            to_update = "dispatch_date"
         else:
             vals["date_planned"] = vals["dispatch_date"] + timedelta(
                 days=vals["freight_duration"] or 0
             )
-            to_update = "date_planned"
         if from_onchange:
             return vals
         else:
-            # we switch back to standard syntax
-            if to_update:
-                self.dispatch_date = vals["dispatch_date"]
-                self.date_planned = vals["date_planned"]
-                self.freight_duration = vals["freight_duration"]
-                self.freight_duration_policy = vals["freight_duration_policy"]
+            # we switch back to compute syntax
+            self.dispatch_date = vals["dispatch_date"]
+            self.date_planned = vals["date_planned"]
+            self.freight_duration = vals["freight_duration"]
+            self.freight_duration_policy = vals["freight_duration_policy"]
 
     @api.depends("freight_duration", "date_planned")
     def _compute_dispatch_date(self):
@@ -140,15 +139,15 @@ class PurchaseOrder(models.Model):
             rec._update_freight_fields_and_co()
             if rec.freight_duration and rec.freight_rule_id:
                 rec.freight_rule_id = False
-            if not rec.freight_duration:
-                rec._set_initial_date_planned
+            if not rec.freight_duration and not rec.freight_rule_id:
+                rec.order_line._set_initial_date_planned(self)
 
     def _prepare_picking(self):
         # TODO
         res = super()._prepare_picking()
         res.update(
             {
-                "freight_rule_id": self.freight_rule_id.id,
+                # "freight_rule_id": self.freight_rule_id.id,
                 "freight_duration": self.freight_duration,
                 "dispatch_date": self.dispatch_date,
             }
