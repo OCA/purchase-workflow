@@ -7,12 +7,12 @@
             <field name="invoice_line_ids" position="before">
                 <field
                     name="use_only_supplied_product"
-                    attrs="{'invisible': ['|', ('state', '!=', 'draft'), ('type', 'not in', ('in_invoice', 'in_refund', 'in_receipt'))]}"
+                    attrs="{'invisible': ['|', ('state', '!=', 'draft'), ('move_type', 'not in', ('in_invoice', 'in_refund', 'in_receipt'))]}"
                     class="oe_edit_only"
                 />
                 <label
                     for="use_only_supplied_product"
-                    attrs="{'invisible': ['|', ('state', '!=', 'draft'), ('type', 'not in', ('in_invoice', 'in_refund', 'in_receipt'))]}"
+                    attrs="{'invisible': ['|', ('state', '!=', 'draft'), ('move_type', 'not in', ('in_invoice', 'in_refund', 'in_receipt'))]}"
                     class="oe_edit_only"
                 />
             </field>
@@ -23,7 +23,7 @@
                 <attribute name="context">{
                     'restrict_supplier_id': parent.partner_id,
                     'use_only_supplied_product':
-                        parent.type in ('in_invoice', 'in_refund', 'in_receipt')
+                        parent.move_type in ('in_invoice', 'in_refund', 'in_receipt')
                         and parent.use_only_supplied_product
                 }</attribute>
             </xpath>
@@ -37,7 +37,7 @@
                 <attribute name="context">{
                     'restrict_supplier_id': parent.partner_id,
                     'use_only_supplied_product':
-                        parent.type in ('in_invoice', 'in_refund', 'in_receipt')
+                        parent.move_type in ('in_invoice', 'in_refund', 'in_receipt')
                         and parent.use_only_supplied_product
                 }</attribute>
             </field>

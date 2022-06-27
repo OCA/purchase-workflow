@@ -8,7 +8,7 @@ from odoo.tests.common import Form, TransactionCase
 
 class TestPurchaseAllowedProduct(TransactionCase):
     def setUp(self):
-        super(TestPurchaseAllowedProduct, self).setUp()
+        super().setUp()
         self.supplierinfo_model = self.env["product.supplierinfo"]
         self.product_model = self.env["product.product"]
         self.partner_4 = self.env.ref("base.res_partner_4")
@@ -53,7 +53,7 @@ class TestPurchaseAllowedProduct(TransactionCase):
         """A user creates a invoice from the form."""
         self.partner_4.use_only_supplied_product = True
         with Form(
-            self.env["account.move"].with_context(default_type="out_invoice"),
+            self.env["account.move"].with_context(default_move_type="out_invoice"),
             view="account.view_move_form",
         ) as invoice_form:
             invoice_form.partner_id = self.partner_4
