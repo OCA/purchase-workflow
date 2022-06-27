@@ -1,0 +1,3 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"freight_manager","freight_manager","model_freight_rule","stock.group_stock_manager",1,1,1,1
+"freight_user","freight_user","model_freight_rule",,1,0,0,0

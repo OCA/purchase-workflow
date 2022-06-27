@@ -1,0 +1,11 @@
+<odoo>
+
+    <record id="base.res_partner_10" model="res.partner">
+        <field name="ref">JGR</field>
+    </record>
+
+    <record id="base.main_partner" model="res.partner">
+        <field name="ref">SFO</field>
+    </record>
+
+</odoo>
