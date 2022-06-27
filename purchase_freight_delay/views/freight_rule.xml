@@ -1,0 +1,63 @@
+<odoo>
+
+    <record id="freight_rule_form" model="ir.ui.view">
+        <field name="model">freight.rule</field>
+        <field name="arch" type="xml">
+            <form>
+                <group name="main">
+                    <group colspan="4">
+                        <div>
+                            <h1>
+                                <field name="display_name" />
+                            </h1>
+                        </div>
+                    </group>
+                    <group name="left" string="Misc">
+                        <field
+                            name="freight_type"
+                            widget="radio"
+                            options="{'horizontal': true}"
+                        />
+                        <field name="duration" />
+                        <field name="sequence" />
+                    </group>
+                    <group name="right" string="Addresses">
+                        <field name="partner_src_id" />
+                        <field name="partner_dest_id" />
+                        <field name="logistics_partner_id" />
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="freight_rule_tree" model="ir.ui.view">
+        <field name="model">freight.rule</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence" widget="handle" />
+                <field name="freight_type" />
+                <field name="duration" />
+                <field name="partner_src_id" />
+                <field name="partner_dest_id" />
+                <field name="logistics_partner_id" />
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="freight_rule_action">
+        <field name="name">Freight Rules</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">freight.rule</field>
+        <field name="view_mode">tree,form</field>
+        <!-- <field name="search_view_id" ref="model_name_view_search"/> -->
+    </record>
+
+    <menuitem
+        id="freight_rule_menu"
+        parent="stock.menu_stock_config_settings"
+        sequence="20"
+        action="freight_rule_action"
+    />
+
+</odoo>

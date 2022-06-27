@@ -1,0 +1,18 @@
+<odoo>
+
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='purchase_delivery_invoice']/group[1]" position="inside">
+                <group name="freight" string="Freight" cols="2">
+                    <field name="dispatch_date" attrs="{'invisible': [('freight_duration', '=', 0)]}"/>
+                    <field name="freight_duration_policy" string="Policy Update" widget="radio" options="{'horizontal': true}" attrs="{'invisible': [('freight_duration', '=', 0)]}"/>
+                    <field name="freight_duration" string="Duration" attrs="{'invisible': [('freight_duration', '=', 0)]}"/>
+                    <field name="freight_rule_id" string="Rule"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
