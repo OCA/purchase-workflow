@@ -49,6 +49,9 @@ class TestPurchaseBlanketOrders(common.TransactionCase):
         self.yesterday = date.today() - timedelta(days=1)
         self.tomorrow = date.today() + timedelta(days=1)
 
+    def _get_po_from_wizard(self, res):
+        return self.env[res["res_model"]].search(res["domain"])
+
     def test_01_create_blanket_order_flow(self):
         """We create a blanket order and check constrains to confirm BO"""
         blanket_order = self.blanket_order_obj.create(
@@ -109,6 +112,7 @@ class TestPurchaseBlanketOrders(common.TransactionCase):
         blanket_order = self.blanket_order_obj.create(
             {
                 "partner_id": self.partner.id,
+                "partner_ref": "REF",
                 "validity_date": fields.Date.to_string(self.tomorrow),
                 "payment_term_id": self.payment_term.id,
                 "line_ids": [
@@ -143,13 +147,17 @@ class TestPurchaseBlanketOrders(common.TransactionCase):
             # Wizard quantity greater than remaining quantity
             wizard1.sudo().create_purchase_order()
         wizard1.line_ids[0].write({"qty": 10.0})
-        wizard1.sudo().create_purchase_order()
+        res = wizard1.sudo().create_purchase_order()
+        po = self._get_po_from_wizard(res)
+        self.assertEqual(po.partner_ref, "REF")
 
         wizard2 = self.blanket_order_wiz_obj.with_context(
             active_id=blanket_order.id, active_model="purchase.blanket.order"
         ).create({})
         wizard2.line_ids[0].write({"qty": 10.0})
-        wizard2.sudo().create_purchase_order()
+        res = wizard2.sudo().create_purchase_order()
+        po = self._get_po_from_wizard(res)
+        self.assertEqual(po.partner_ref, "REF")
 
         with self.assertRaises(UserError):
             # Blanket order already completed
@@ -171,6 +179,7 @@ class TestPurchaseBlanketOrders(common.TransactionCase):
         blanket_order = self.blanket_order_obj.create(
             {
                 "partner_id": self.partner.id,
+                "partner_ref": "REF",
                 "validity_date": fields.Date.to_string(self.tomorrow),
                 "payment_term_id": self.payment_term.id,
                 "line_ids": [
