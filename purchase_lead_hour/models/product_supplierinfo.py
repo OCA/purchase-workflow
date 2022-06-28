@@ -7,9 +7,9 @@ from odoo import fields, models
 class ProductSupplierinfo(models.Model):
     _inherit = "product.supplierinfo"
 
-    # In odoo core, this field is an Integer, which in some cases,
-    # could not be accurate enough.
-    delay = fields.Float()
+    # In odoo core, we can only set an amount of days,
+    # which could not be accurate enough.
+    delay_hour = fields.Integer("Delivery Lead Time Hour")
 
     def _get_next_availability_date(self):
         # A hook to ease overrides

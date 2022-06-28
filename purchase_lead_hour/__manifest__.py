@@ -13,4 +13,5 @@
     "installable": True,
     "auto_install": False,
     "depends": ["purchase_stock"],
+    "data": ["views/product_supplierinfo.xml"],
 }
