@@ -10,6 +10,8 @@
                 decoration-info="state in ('draft','to_approve')"
                 decoration-muted="state in ('expired')"
             >
+                <field name="date_start" />
+                <field name="partner_ref" optional="hide" />
                 <field name="name" />
                 <field name="user_id" />
                 <field name="partner_id" />
@@ -95,6 +97,7 @@
                                 context="{'res_partner_search_mode': 'supplier', 'show_address': 1}"
                                 options='{"always_reload": True}'
                             />
+                            <field name="partner_ref" />
                             <field name="payment_term_id" />
                         </group>
                         <group name="group_top_right">
