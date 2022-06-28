@@ -14,8 +14,12 @@ class BlanketOrderWizard(models.TransientModel):
     @api.model
     def _default_order(self):
         # in case the cron hasn't run
+        active_model = self.env.context.get("active_model", False)
         self.env["purchase.blanket.order"].expire_orders()
-        if not self.env.context.get("active_id"):
+        if (
+            not self.env.context.get("active_id")
+            or active_model != "purchase.blanket.order"
+        ):
             return False
         blanket_order = self.env["purchase.blanket.order"].search(
             [("id", "=", self.env.context["active_id"])], limit=1
@@ -84,9 +88,13 @@ class BlanketOrderWizard(models.TransientModel):
         ]
         return lines
 
-    blanket_order_id = fields.Many2one("purchase.blanket.order", readonly=True)
+    blanket_order_id = fields.Many2one(
+        "purchase.blanket.order", readonly=True, default=_default_order
+    )
     purchase_order_id = fields.Many2one(
-        "purchase.order", string="Purchase Order", domain=[("state", "=", "draft")]
+        "purchase.order",
+        string="Purchase Order",
+        domain=[("state", "=", "draft")],
     )
     line_ids = fields.One2many(
         "purchase.blanket.order.wizard.line",
@@ -151,7 +159,12 @@ class BlanketOrderWizard(models.TransientModel):
                 "partner_id": int(supplier),
             }
             if self.blanket_order_id:
-                order_vals.update({"origin": self.blanket_order_id.name})
+                order_vals.update(
+                    {
+                        "partner_ref": self.blanket_order_id.partner_ref,
+                        "origin": self.blanket_order_id.name,
+                    }
+                )
             order_vals.update(
                 {
                     "currency_id": currency_id if currency_id else False,

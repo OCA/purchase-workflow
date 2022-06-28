@@ -11,6 +11,7 @@ class BlanketOrder(models.Model):
     _name = "purchase.blanket.order"
     _inherit = ["mail.thread", "mail.activity.mixin"]
     _description = "Blanket Order"
+    _order = "date_start desc, id desc"
 
     @api.model
     def _default_currency(self):
@@ -43,6 +44,7 @@ class BlanketOrder(models.Model):
         tracking=True,
         states={"draft": [("readonly", False)]},
     )
+    partner_ref = fields.Char(string="Vendor Reference", copy=False)
     line_ids = fields.One2many(
         "purchase.blanket.order.line",
         "order_id",
