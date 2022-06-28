@@ -18,7 +18,11 @@ MONDAY_3_WEEK_AT_11 = datetime(**{"year": 2022, "month": 7, "day": 4, "hour": 11
 
 FUTURE_DAYS = [MONDAY_1_WEEK, MONDAY_2_WEEK, MONDAY_3_WEEK]
 
-DELAYS = [0.0, 0.5, 1.0]
+DELAYS = [
+    (0, 0),
+    (0, 12),
+    (1, 0),
+]
 
 QTY_INCREMENT = 10
 
@@ -110,10 +114,11 @@ class TestForecastedQty(SavepointCase):
         # we shouldn't need to order goods.
         # This unit test ensures that at `move.date - delay` the qty_to_order is
         # incremented, while at `move.date - delay - 1hour`, it is not.
-        for delay in DELAYS:
-            self.suppinfo.delay = delay
+        for delay_day, delay_hour in DELAYS:
+            self.suppinfo.delay = delay_day
+            self.suppinfo.delay_hour = delay_hour
             for day, expected_qty in EXPECTED_QTIES_MAPPING:
-                day -= timedelta(days=delay)
+                day -= timedelta(days=delay_day, hours=delay_hour)
                 with freeze_time(day):
                     self.orderpoint._compute_qty()
                     self.assertEqual(expected_qty, self.orderpoint.qty_to_order)
