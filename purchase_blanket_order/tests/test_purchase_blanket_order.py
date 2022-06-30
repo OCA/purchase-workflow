@@ -89,13 +89,17 @@ class TestPurchaseBlanketOrders(common.TransactionCase):
             blanket_order.sudo().action_confirm()
 
         blanket_order.validity_date = fields.Date.to_string(self.tomorrow)
+        initial_name = blanket_order.name
         blanket_order.sudo().action_confirm()
+        self.assertNotEqual(initial_name, blanket_order.name)
 
         blanket_order.sudo().action_cancel()
         self.assertEqual(blanket_order.state, "expired")
         blanket_order.sudo().set_to_draft()
         self.assertEqual(blanket_order.state, "draft")
+        previous_name = blanket_order.name
         blanket_order.sudo().action_confirm()
+        self.assertEqual(previous_name, blanket_order.name)
 
         self.assertEqual(blanket_order.state, "open")
         blanket_order.action_view_purchase_blanket_order_line()
