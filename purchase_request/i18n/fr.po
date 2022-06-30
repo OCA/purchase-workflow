@@ -19,7 +19,7 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-24 07:53+0000\n"
-"PO-Revision-Date: 2022-06-23 18:05+0000\n"
+"PO-Revision-Date: 2022-06-30 11:05+0000\n"
 "Last-Translator: Khalid Hazam <k.hazam@badep.ma>\n"
 "Language-Team: French (http://www.transifex.com/oca/"
 "OCA-purchase-workflow-10-0/language/fr/)\n"
@@ -178,8 +178,9 @@ msgstr "Activités"
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__activity_exception_decoration
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__activity_exception_decoration
+#, fuzzy
 msgid "Activity Exception Decoration"
-msgstr ""
+msgstr "Décoration d'activité d'exception"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__activity_state
@@ -719,9 +720,9 @@ msgstr "Référence de la demande"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_order.py:0
-#, python-format
+#, fuzzy, python-format
 msgid "Order confirmation %s for your Request %s"
-msgstr ""
+msgstr "Ordre de confirmation %s pour la demande %s"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__orderpoint_id
@@ -796,13 +797,13 @@ msgstr "Articles à acheter"
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #, fuzzy
 msgid "Purchase Confirmed"
-msgstr "Demandes d'achat"
+msgstr "Demande d'achat confirmée"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #, fuzzy
 msgid "Purchase Done"
-msgstr "Demande d'achat"
+msgstr "Demande effectuée"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__purchase_line_id
@@ -813,7 +814,6 @@ msgstr "Demande d'achat"
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_purchase_order
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order__purchase_order_id
-#, fuzzy
 msgid "Purchase Order"
 msgstr "Demandes d'achat"
 
@@ -858,7 +858,7 @@ msgstr "Demande d'achat"
 #: code:addons/purchase_request/models/purchase_order.py:0
 #, fuzzy, python-format
 msgid "Purchase Request %s has already been completed"
-msgstr "Demande d'achat rejetée"
+msgstr "Demande d'achat %s clôturé"
 
 #. module: purchase_request
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
