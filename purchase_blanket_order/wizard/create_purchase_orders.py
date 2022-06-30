@@ -92,7 +92,9 @@ class BlanketOrderWizard(models.TransientModel):
         "purchase.blanket.order", readonly=True, default=_default_order
     )
     purchase_order_id = fields.Many2one(
-        "purchase.order", string="Purchase Order", domain=[("state", "=", "draft")],
+        "purchase.order",
+        string="Purchase Order",
+        domain=[("state", "=", "draft")],
     )
     line_ids = fields.One2many(
         "purchase.blanket.order.wizard.line",

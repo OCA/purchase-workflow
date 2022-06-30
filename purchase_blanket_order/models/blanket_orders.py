@@ -396,7 +396,7 @@ class BlanketOrderLine(models.Model):
                 }
             )
 
-    name = fields.Char("Description", track_visibility="onchange")
+    name = fields.Char("Description", tracking=True)
     sequence = fields.Integer()
     order_id = fields.Many2one(
         "purchase.blanket.order", required=True, ondelete="cascade"
