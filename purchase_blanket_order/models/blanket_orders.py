@@ -271,13 +271,17 @@ class BlanketOrder(models.Model):
     def action_confirm(self):
         self._validate()
         for order in self:
-            sequence_obj = self.env["ir.sequence"]
-            if order.company_id:
-                sequence_obj = sequence_obj.with_context(
-                    force_company=order.company_id.id
-                )
-            name = sequence_obj.next_by_code("purchase.blanket.order")
-            order.write({"confirmed": True, "name": name})
+            vals = {"confirmed": True}
+            # Set name by sequence only if is necessary
+            if order.name == _("Draft"):
+                sequence_obj = self.env["ir.sequence"]
+                if order.company_id:
+                    sequence_obj = sequence_obj.with_context(
+                        force_company=order.company_id.id
+                    )
+                name = sequence_obj.next_by_code("purchase.blanket.order") or _("Draft")
+                vals.update({"name": name})
+            order.write(vals)
         return True
 
     def action_cancel(self):
