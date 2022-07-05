@@ -31,4 +31,5 @@ class PurchaseOrderManualReceiptLine(models.TransientModel):
             "product_qty": self.qty,
             "product_uom": self.uom_id.id,
             "price_unit": self.unit_price,
+            "date_planned": self.wizard_id.scheduled_date,
         }
