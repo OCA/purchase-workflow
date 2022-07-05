@@ -39,6 +39,6 @@ msgid "Purchase Order Line"
 msgstr ""
 
 #. module: purchase_receipt_expectation_manual_split
-#: model:ir.model,name:purchase_receipt_expectation_manual_split.model_stock_picking
-msgid "Transfer"
+#: model:ir.model,name:purchase_receipt_expectation_manual_split.model_stock_move
+msgid "Stock Move"
 msgstr ""
