@@ -39,7 +39,7 @@ addon | version | maintainers | summary
 [purchase_commercial_partner](purchase_commercial_partner/) | 13.0.1.0.0 |  | Add stored related field 'Commercial Supplier' on POs
 [purchase_delivery_split_date](purchase_delivery_split_date/) | 13.0.1.0.5 |  | Allows Purchase Order you confirm to generate one Incoming Shipment for each expected date indicated in the Purchase Order Lines
 [purchase_deposit](purchase_deposit/) | 13.0.1.0.1 |  | Option to create deposit from purchase order
-[purchase_discount](purchase_discount/) | 13.0.1.0.5 |  | Purchase order lines with discounts
+[purchase_discount](purchase_discount/) | 13.0.1.0.6 |  | Purchase order lines with discounts
 [purchase_exception](purchase_exception/) | 13.0.1.0.0 |  | Custom exceptions on purchase order
 [purchase_force_invoiced](purchase_force_invoiced/) | 13.0.1.0.0 |  | Allows to force the billing status of the purchase order to "Invoiced"
 [purchase_invoice_plan](purchase_invoice_plan/) | 13.0.1.0.0 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Add to purchases order, ability to manage future invoice plan
@@ -88,7 +88,7 @@ addon | version | maintainers | summary
 [purchase_requisition_tier_validation](purchase_requisition_tier_validation/) | 13.0.1.0.0 |  | Extends the functionality of Purchase Agreements to support a tier validation process.
 [purchase_security](purchase_security/) | 13.0.1.1.0 | [![joao-p-marques](https://github.com/joao-p-marques.png?size=30px)](https://github.com/joao-p-marques) | See only your purchase orders
 [purchase_stock_picking_show_currency_rate](purchase_stock_picking_show_currency_rate/) | 13.0.1.0.1 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Show currency rate in purchase stock picking.
-[purchase_stock_price_unit_sync](purchase_stock_price_unit_sync/) | 13.0.1.0.1 |  | Update cost price in stock moves already done
+[purchase_stock_price_unit_sync](purchase_stock_price_unit_sync/) | 13.0.1.0.2 |  | Update cost price in stock moves already done
 [purchase_stock_return_request](purchase_stock_return_request/) | 13.0.1.0.0 |  | Purchase Stock Return Request
 [purchase_stock_secondary_unit](purchase_stock_secondary_unit/) | 13.0.1.0.2 |  | Get product quantities in a secondary unit
 [purchase_substate](purchase_substate/) | 13.0.1.0.0 |  | Purchase Sub State
