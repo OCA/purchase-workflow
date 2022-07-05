@@ -61,7 +61,7 @@ class PurchaseOrderLine(models.Model):
         value before calling super and restoring it later for assuring
         maximum inheritability.
 
-        HACK: This is needed while https://github.com/odoo/odoo/pull/29983
+        HACK: This is needed while https://github.com/odoo/odoo/pull/92933
         is not merged.
         """
         price_unit = False
@@ -69,10 +69,10 @@ class PurchaseOrderLine(models.Model):
         if price != self.price_unit:
             # Only change value if it's different
             price_unit = self.price_unit
-            self.price_unit = price
+            self.with_context(purchase_discount=True).price_unit = price
         price = super()._get_stock_move_price_unit()
         if price_unit:
-            self.price_unit = price_unit
+            self.with_context(purchase_discount=True).price_unit = price_unit
         return price
 
     @api.onchange("product_qty", "product_uom")
