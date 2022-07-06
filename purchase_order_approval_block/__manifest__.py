@@ -1,5 +1,5 @@
 # Copyright 2017 ForgeFlow S.L.
-# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 {
     "name": "Purchase Order Approval Block",
@@ -15,6 +15,6 @@
         "views/purchase_approval_block_reason_view.xml",
         "views/purchase_order_view.xml",
     ],
-    "license": "LGPL-3",
+    "license": "AGPL-3",
     "installable": True,
 }
