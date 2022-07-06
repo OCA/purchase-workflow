@@ -140,8 +140,8 @@ class PurchaseOrderRecommendation(models.TransientModel):
         return domain
 
     def _find_move_line(self, src="internal", dst="customer"):
-        """"Returns a dictionary from the move lines in a range of dates
-            from and to given location types"""
+        """ "Returns a dictionary from the move lines in a range of dates
+        from and to given location types"""
         products = self._get_products()
         domain = self._get_move_line_domain(products, src, dst)
         found_lines = self.env["stock.move.line"].read_group(
@@ -150,7 +150,10 @@ class PurchaseOrderRecommendation(models.TransientModel):
         # Manual ordering that circumvents ORM limitations
         found_lines = sorted(
             found_lines,
-            key=lambda res: (res["product_id_count"], res["qty_done"],),
+            key=lambda res: (
+                res["product_id_count"],
+                res["qty_done"],
+            ),
             reverse=True,
         )
         product_dict = {p.id: p for p in products}
@@ -193,16 +196,16 @@ class PurchaseOrderRecommendation(models.TransientModel):
         product_id = order_line and order_line.product_id or vals["product_id"]
         if self.warehouse_ids:
             units_available = sum(
-                [
+                
                     product_id.with_context(warehouse=wh).qty_available
                     for wh in self.warehouse_ids.ids
-                ]
+                
             )
             units_virtual_available = sum(
-                [
+                
                     product_id.with_context(warehouse=wh).virtual_available
                     for wh in self.warehouse_ids.ids
-                ]
+                
             )
         else:
             units_available = product_id.qty_available
@@ -319,21 +322,45 @@ class PurchaseOrderRecommendationLine(models.TransientModel):
     _description = "Recommended product for current purchase order"
     _order = "id"
 
-    currency_id = fields.Many2one(related="product_id.currency_id", readonly=True,)
-    partner_id = fields.Many2one(
-        related="wizard_id.order_id.partner_id", readonly=True,
+    currency_id = fields.Many2one(
+        related="product_id.currency_id",
+        readonly=True,
     )
-    product_id = fields.Many2one(comodel_name="product.product", string="Product",)
+    partner_id = fields.Many2one(
+        related="wizard_id.order_id.partner_id",
+        readonly=True,
+    )
+    product_id = fields.Many2one(
+        comodel_name="product.product",
+        string="Product",
+    )
     product_name = fields.Char(string="Product name")
     product_code = fields.Char(string="Product reference")
-    price_unit = fields.Monetary(readonly=True,)
-    times_delivered = fields.Integer(readonly=True,)
-    times_received = fields.Integer(readonly=True,)
-    units_received = fields.Float(readonly=True,)
-    units_delivered = fields.Float(readonly=True,)
-    units_avg_delivered = fields.Float(digits="Product Unit of Measure", readonly=True,)
-    units_available = fields.Float(readonly=True,)
-    units_virtual_available = fields.Float(readonly=True,)
+    price_unit = fields.Monetary(
+        readonly=True,
+    )
+    times_delivered = fields.Integer(
+        readonly=True,
+    )
+    times_received = fields.Integer(
+        readonly=True,
+    )
+    units_received = fields.Float(
+        readonly=True,
+    )
+    units_delivered = fields.Float(
+        readonly=True,
+    )
+    units_avg_delivered = fields.Float(
+        digits="Product Unit of Measure",
+        readonly=True,
+    )
+    units_available = fields.Float(
+        readonly=True,
+    )
+    units_virtual_available = fields.Float(
+        readonly=True,
+    )
     units_included = fields.Float()
     wizard_id = fields.Many2one(
         comodel_name="purchase.order.recommendation",
@@ -342,7 +369,9 @@ class PurchaseOrderRecommendationLine(models.TransientModel):
         required=True,
         readonly=True,
     )
-    purchase_line_id = fields.Many2one(comodel_name="purchase.order.line",)
+    purchase_line_id = fields.Many2one(
+        comodel_name="purchase.order.line",
+    )
     is_modified = fields.Boolean()
 
     @api.onchange("units_included")
