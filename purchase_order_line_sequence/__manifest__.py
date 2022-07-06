@@ -24,7 +24,7 @@
         "views/report_purchasequotation.xml",
     ],
     "post_init_hook": "post_init_hook",
-    "installable": True,
+    "installable": False,
     "auto_install": False,
     "license": "AGPL-3",
 }
