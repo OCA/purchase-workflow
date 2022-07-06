@@ -196,16 +196,12 @@ class PurchaseOrderRecommendation(models.TransientModel):
         product_id = order_line and order_line.product_id or vals["product_id"]
         if self.warehouse_ids:
             units_available = sum(
-                
-                    product_id.with_context(warehouse=wh).qty_available
-                    for wh in self.warehouse_ids.ids
-                
+                product_id.with_context(warehouse=wh).qty_available
+                for wh in self.warehouse_ids.ids
             )
             units_virtual_available = sum(
-                
-                    product_id.with_context(warehouse=wh).virtual_available
-                    for wh in self.warehouse_ids.ids
-                
+                product_id.with_context(warehouse=wh).virtual_available
+                for wh in self.warehouse_ids.ids
             )
         else:
             units_available = product_id.qty_available
@@ -334,7 +330,7 @@ class PurchaseOrderRecommendationLine(models.TransientModel):
         comodel_name="product.product",
         string="Product",
     )
-    product_name = fields.Char(string="Product name")
+    product_name = fields.Char()
     product_code = fields.Char(string="Product reference")
     price_unit = fields.Monetary(
         readonly=True,
