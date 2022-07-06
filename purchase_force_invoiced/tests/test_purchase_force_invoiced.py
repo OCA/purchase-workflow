@@ -108,27 +108,27 @@ class TestPurchaseForceInvoiced(TransactionCase):
         pol1.qty_received = 1
         pol2.qty_received = 2
 
-        self.assertEquals(
+        self.assertEqual(
             po.invoice_status, "to invoice", "The invoice status should be To Invoice"
         )
 
         invoice = self._create_invoice_from_purchase(po)
         self.create_invoice_line(pol1, invoice)
         self.create_invoice_line(pol2, invoice)
-        self.assertEquals(
+        self.assertEqual(
             po.invoice_status, "invoiced", "The invoice status should be Invoiced"
         )
 
         # Reduce the invoiced qty
         for line in pol2.invoice_lines:
             line.with_context(check_move_validity=False).unlink()
-        self.assertEquals(
+        self.assertEqual(
             po.invoice_status, "to invoice", "The invoice status should be To Invoice"
         )
         # We set the force invoiced.
         po.button_done()
         po.force_invoiced = True
-        self.assertEquals(
+        self.assertEqual(
             po.invoice_status, "invoiced", "The invoice status should be Invoiced"
         )
         invoice = self._create_invoice_from_purchase(po)
@@ -136,7 +136,7 @@ class TestPurchaseForceInvoiced(TransactionCase):
         self.assertEqual(invoice_qty, 0.0)
         # We remove the force invoiced.
         po.force_invoiced = False
-        self.assertEquals(
+        self.assertEqual(
             po.invoice_status, "to invoice", "The invoice status should be To Invoice"
         )
         self.create_invoice_line(pol2, invoice)
