@@ -56,7 +56,6 @@ addon | version | maintainers | summary
 [purchase_order_line_menu](purchase_order_line_menu/) | 14.0.1.0.0 |  | Adds Purchase Order Lines Menu
 [purchase_order_line_packaging_qty](purchase_order_line_packaging_qty/) | 14.0.1.0.1 |  | Define quantities according to product packaging on purchase order lines
 [purchase_order_line_price_history](purchase_order_line_price_history/) | 14.0.1.0.0 |  | Purchase order line price history
-[purchase_order_line_sequence](purchase_order_line_sequence/) | 14.0.1.0.0 |  | Adds sequence to PO lines and propagates it toInvoice lines and Stock Moves
 [purchase_order_price_recalculation](purchase_order_price_recalculation/) | 14.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Price recalculation in purchases orders
 [purchase_order_product_attachment_mgmt](purchase_order_product_attachment_mgmt/) | 14.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Purchase Order Product Attachment Mgmt
 [purchase_order_secondary_unit](purchase_order_secondary_unit/) | 14.0.2.0.1 |  | Purchase product in a secondary unit
@@ -92,6 +91,13 @@ addon | version | maintainers | summary
 [purchase_work_acceptance_invoice_plan](purchase_work_acceptance_invoice_plan/) | 14.0.1.0.1 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Purchase Work Acceptance Invoice Plan
 [purchase_work_acceptance_late_fines](purchase_work_acceptance_late_fines/) | 14.0.1.0.0 | [![Saran440](https://github.com/Saran440.png?size=30px)](https://github.com/Saran440) | Purchase Work Acceptance - Late Delivery Fines
 [vendor_transport_lead_time](vendor_transport_lead_time/) | 14.0.1.0.1 |  | Purchase delay based on transport and supplier delays
+
+
+Unported addons
+---------------
+addon | version | maintainers | summary
+--- | --- | --- | ---
+[purchase_order_line_sequence](purchase_order_line_sequence/) | 14.0.1.0.0 (unported) |  | Adds sequence to PO lines and propagates it toInvoice lines and Stock Moves
 
 [//]: # (end addons)
 
