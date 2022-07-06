@@ -7,7 +7,6 @@ class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
     force_invoiced = fields.Boolean(
-        string="Force invoiced",
         readonly=True,
         states={"done": [("readonly", False)]},
         copy=False,
@@ -19,8 +18,9 @@ class PurchaseOrder(models.Model):
 
     @api.depends("force_invoiced")
     def _get_invoiced(self):
-        super(PurchaseOrder, self)._get_invoiced()
+        res = super(PurchaseOrder, self)._get_invoiced()
         for order in self.filtered(
             lambda po: po.force_invoiced and po.invoice_status == "to invoice"
         ):
             order.invoice_status = "invoiced"
+        return res
