@@ -4,7 +4,7 @@
 {
     "name": "Purchase Order Product Recommendation",
     "summary": "Recommend products to buy to supplier based on history",
-    "version": "13.0.1.1.0",
+    "version": "15.0.1.0.0",
     "category": "Purchases",
     "website": "https://github.com/OCA/purchase-workflow",
     "author": "Tecnativa, Odoo Community Association (OCA)",
@@ -13,6 +13,7 @@
     "installable": True,
     "depends": ["purchase_stock"],
     "data": [
+        "security/ir.model.access.csv",
         "wizards/purchase_order_recommendation_view.xml",
         "views/purchase_order_view.xml",
     ],
