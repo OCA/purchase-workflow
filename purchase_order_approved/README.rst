@@ -9,7 +9,8 @@ Purchase Order Approved
 This module extends the functionality of purchases adding a new state
 *Approved* in purchase orders before the *Purchase Order* state. Additionally
 add the possibility to set back to draft a purchase order in all the states
-previous to *Purchase Order*.
+previous to *Purchase Order*. From a user point of view, this change introduces
+a two-step validation process of the purchase order.
 
 In this new *Approved* state:
 
@@ -31,11 +32,21 @@ The new state diagram is depicted below:
 Configuration
 =============
 
-To configure this module:
+This new workflow can be activated by company and by supplier.
+
+To activate the new workflow by company:
 
 #. Go to 'Purchases > Configuration > Settings'.
-#. In the *Logistics* section in the *Configuration* tab you can set the *Use 
+#. In the *Logistics* section in the *Configuration* tab you can set the *Use
    State 'Approved' in Purchase Orders*.
+
+To activate the new workflow by supplier:
+
+#. Open the supplier form view.
+#. In the *Purchase* section in the *Sales & Purchases* tab the field
+   *Purchase requires second approval* allows you to select the policy to
+   apply for the current supplier. 'Never' | 'Always' | 'Based on company policy'
+
 
 Bug Tracker
 ===========
@@ -57,6 +68,7 @@ Contributors
 ------------
 
 * Lois Rilo <lois.rilo@eficent.com>
+* Laurent Mignon <laurent.mignon@acsone.eu>
 
 Maintainer
 ----------
