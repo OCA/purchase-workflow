@@ -1,6 +1,7 @@
 
 [![Runboat](https://img.shields.io/badge/runboat-Try%20me-875A7B.png)](https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&target_branch=14.0)
-[![Build Status](https://travis-ci.com/OCA/purchase-workflow.svg?branch=14.0)](https://travis-ci.com/OCA/purchase-workflow)
+[![Pre-commit Status](https://github.com/OCA/purchase-workflow/actions/workflows/pre-commit.yml/badge.svg?branch=14.0)](https://github.com/OCA/purchase-workflow/actions/workflows/pre-commit.yml?query=branch%3A14.0)
+[![Build Status](https://github.com/OCA/purchase-workflow/actions/workflows/test.yml/badge.svg?branch=14.0)](https://github.com/OCA/purchase-workflow/actions/workflows/test.yml?query=branch%3A14.0)
 [![codecov](https://codecov.io/gh/OCA/purchase-workflow/branch/14.0/graph/badge.svg)](https://codecov.io/gh/OCA/purchase-workflow)
 [![Translation Status](https://translation.odoo-community.org/widgets/purchase-workflow-14-0/-/svg-badge.svg)](https://translation.odoo-community.org/engage/purchase-workflow-14-0/?utm_source=widget)
 
@@ -44,9 +45,9 @@ addon | version | maintainers | summary
 [purchase_lot](purchase_lot/) | 14.0.1.0.0 | [![florian-dacosta](https://github.com/florian-dacosta.png?size=30px)](https://github.com/florian-dacosta) | Purchase Lot
 [purchase_manual_currency](purchase_manual_currency/) | 14.0.1.0.0 |  | Allows to manual currency of Purchase
 [purchase_manual_delivery](purchase_manual_delivery/) | 14.0.1.0.0 |  | Prevents pickings to be auto generated upon Purchase Order confirmation and adds the ability to manually generate them as the supplier confirms the different purchase order lines.
-[purchase_minimum_amount](purchase_minimum_amount/) | 14.0.1.0.1 |  | Purchase Minimum Amount
+[purchase_minimum_amount](purchase_minimum_amount/) | 14.0.1.0.2 |  | Purchase Minimum Amount
 [purchase_open_qty](purchase_open_qty/) | 14.0.1.1.0 |  | Allows to identify the purchase orders that have quantities pending to invoice or to receive.
-[purchase_order_approval_block](purchase_order_approval_block/) | 14.0.1.0.2 |  | Purchase Order Approval Block
+[purchase_order_approval_block](purchase_order_approval_block/) | 14.0.1.0.3 |  | Purchase Order Approval Block
 [purchase_order_approved](purchase_order_approved/) | 14.0.1.1.0 |  | Add a new state 'Approved' in purchase orders.
 [purchase_order_archive](purchase_order_archive/) | 14.0.1.0.0 |  | Archive Purchase Orders
 [purchase_order_line_deep_sort](purchase_order_line_deep_sort/) | 14.0.1.0.0 |  | Purchase Order Line Sort
@@ -55,7 +56,6 @@ addon | version | maintainers | summary
 [purchase_order_line_menu](purchase_order_line_menu/) | 14.0.1.0.0 |  | Adds Purchase Order Lines Menu
 [purchase_order_line_packaging_qty](purchase_order_line_packaging_qty/) | 14.0.1.0.1 |  | Define quantities according to product packaging on purchase order lines
 [purchase_order_line_price_history](purchase_order_line_price_history/) | 14.0.1.0.0 |  | Purchase order line price history
-[purchase_order_line_sequence](purchase_order_line_sequence/) | 14.0.1.0.0 |  | Adds sequence to PO lines and propagates it toInvoice lines and Stock Moves
 [purchase_order_price_recalculation](purchase_order_price_recalculation/) | 14.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Price recalculation in purchases orders
 [purchase_order_product_attachment_mgmt](purchase_order_product_attachment_mgmt/) | 14.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Purchase Order Product Attachment Mgmt
 [purchase_order_secondary_unit](purchase_order_secondary_unit/) | 14.0.2.0.1 |  | Purchase product in a secondary unit
@@ -91,6 +91,13 @@ addon | version | maintainers | summary
 [purchase_work_acceptance_invoice_plan](purchase_work_acceptance_invoice_plan/) | 14.0.1.0.1 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Purchase Work Acceptance Invoice Plan
 [purchase_work_acceptance_late_fines](purchase_work_acceptance_late_fines/) | 14.0.1.0.0 | [![Saran440](https://github.com/Saran440.png?size=30px)](https://github.com/Saran440) | Purchase Work Acceptance - Late Delivery Fines
 [vendor_transport_lead_time](vendor_transport_lead_time/) | 14.0.1.0.1 |  | Purchase delay based on transport and supplier delays
+
+
+Unported addons
+---------------
+addon | version | maintainers | summary
+--- | --- | --- | ---
+[purchase_order_line_sequence](purchase_order_line_sequence/) | 14.0.1.0.0 (unported) |  | Adds sequence to PO lines and propagates it toInvoice lines and Stock Moves
 
 [//]: # (end addons)
 
