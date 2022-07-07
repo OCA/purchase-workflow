@@ -64,11 +64,18 @@ jobs:
             include: "purchase_quick"
             name: test with OCB
           - container: ghcr.io/oca/oca-ci/py3.6-odoo14.0:latest
-            exclude: "purchase_cancel_reason,purchase_cancel_confirm,purchase_order_type,purchase_quick"
+            include: "purchase_packaging"
             makepot: "true"
             name: test with Odoo
           - container: ghcr.io/oca/oca-ci/py3.6-ocb14.0:latest
-            exclude: "purchase_cancel_reason,purchase_cancel_confirm,purchase_order_type,purchase_quick"
+            include: "purchase_packaging"
+            name: test with OCB
+          - container: ghcr.io/oca/oca-ci/py3.6-odoo14.0:latest
+            exclude: "purchase_cancel_reason,purchase_cancel_confirm,purchase_order_type,purchase_quick,purchase_packaging"
+            makepot: "true"
+            name: test with Odoo
+          - container: ghcr.io/oca/oca-ci/py3.6-ocb14.0:latest
+            exclude: "purchase_cancel_reason,purchase_cancel_confirm,purchase_order_type,purchase_quick,purchase_packaging"
             name: test with OCB
     services:
       postgres:
