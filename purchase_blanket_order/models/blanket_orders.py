@@ -10,7 +10,7 @@ from odoo.tools import float_is_zero
 class BlanketOrder(models.Model):
     _name = "purchase.blanket.order"
     _inherit = ["mail.thread", "mail.activity.mixin"]
-    _description = "Blanket Order"
+    _description = "Purchase Blanket Order"
     _order = "date_start desc, id desc"
 
     @api.model
@@ -377,7 +377,7 @@ class BlanketOrder(models.Model):
 
 class BlanketOrderLine(models.Model):
     _name = "purchase.blanket.order.line"
-    _description = "Blanket Order Line"
+    _description = "Purchase Blanket Order Line"
     _inherit = ["mail.thread", "mail.activity.mixin"]
 
     @api.depends("original_uom_qty", "price_unit", "taxes_id")
