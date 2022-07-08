@@ -107,14 +107,12 @@ msgid "Blanket Line"
 msgstr ""
 
 #. module: purchase_blanket_order
-#: model:ir.model,name:purchase_blanket_order.model_purchase_blanket_order
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_wizard__blanket_order_id
 #: model_terms:ir.ui.view,arch_db:purchase_blanket_order.view_purchase_blanket_order_form
 msgid "Blanket Order"
 msgstr ""
 
 #. module: purchase_blanket_order
-#: model:ir.model,name:purchase_blanket_order.model_purchase_blanket_order_line
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_order_line__blanket_order_line
 msgid "Blanket Order Line"
 msgstr ""
@@ -249,6 +247,11 @@ msgid "Description"
 msgstr ""
 
 #. module: purchase_blanket_order
+#: model:res.groups,name:purchase_blanket_order.purchase_blanket_orders_disable_adding_lines
+msgid "Disable adding more lines to POs from Purchase Blanket Orders"
+msgstr ""
+
+#. module: purchase_blanket_order
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_res_config_settings__group_purchase_blanket_disable_adding_lines
 msgid "Disable adding more lines to SOs"
 msgstr ""
@@ -256,11 +259,6 @@ msgstr ""
 #. module: purchase_blanket_order
 #: model_terms:ir.ui.view,arch_db:purchase_blanket_order.purchase_config_settings_form_view
 msgid "Disable adding more lines to SOs from Blanket Orders"
-msgstr ""
-
-#. module: purchase_blanket_order
-#: model:res.groups,name:purchase_blanket_order.purchase_blanket_orders_disable_adding_lines
-msgid "Disable adding more lines to SOs from Purchase Blanket Orders"
 msgstr ""
 
 #. module: purchase_blanket_order
@@ -581,6 +579,7 @@ msgstr ""
 
 #. module: purchase_blanket_order
 #: model:ir.actions.report,name:purchase_blanket_order.report_blanket_order
+#: model:ir.model,name:purchase_blanket_order.model_purchase_blanket_order
 msgid "Purchase Blanket Order"
 msgstr ""
 
@@ -591,6 +590,7 @@ msgid "Purchase Blanket Order %s is not open"
 msgstr ""
 
 #. module: purchase_blanket_order
+#: model:ir.model,name:purchase_blanket_order.model_purchase_blanket_order_line
 #: model_terms:ir.ui.view,arch_db:purchase_blanket_order.purchase_blanket_order_line_form
 msgid "Purchase Blanket Order Line"
 msgstr ""
