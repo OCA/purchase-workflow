@@ -23,13 +23,9 @@ msgid "Companies"
 msgstr "Compañías"
 
 #. module: sale_purchase_force_vendor
-#: model:ir.model,name:sale_purchase_force_vendor.model_res_config_settings
-msgid "Config Settings"
-msgstr "Ajustes de configuración"
-
-#. module: sale_purchase_force_vendor
 #: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_res_company__display_name
 #: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_sale_order__display_name
 #: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_sale_order_line__display_name
 #: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_stock_move__display_name
 msgid "Display Name"
@@ -38,6 +34,7 @@ msgstr "Nombre mostrado"
 #. module: sale_purchase_force_vendor
 #: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_res_company__id
 #: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_res_config_settings__id
+#: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_sale_order__id
 #: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_sale_order_line__id
 #: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_stock_move__id
 msgid "ID"
@@ -46,10 +43,16 @@ msgstr "ID"
 #. module: sale_purchase_force_vendor
 #: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_res_company____last_update
 #: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_res_config_settings____last_update
+#: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_sale_order____last_update
 #: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_sale_order_line____last_update
 #: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_stock_move____last_update
 msgid "Last Modified on"
 msgstr "Última modificación el"
+
+#. module: sale_purchase_force_vendor
+#: model:ir.model,name:sale_purchase_force_vendor.model_res_config_settings
+msgid "Procurement purchase grouping settings"
+msgstr ""
 
 #. module: sale_purchase_force_vendor
 #: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_sale_order_line__allowed_vendor_ids
@@ -59,8 +62,14 @@ msgstr "Proveedor"
 #. module: sale_purchase_force_vendor
 #: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_res_company__sale_purchase_force_vendor_restrict
 #: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_res_config_settings__sale_purchase_force_vendor_restrict
+#: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_sale_order__sale_purchase_force_vendor_restrict
 msgid "Restrict allowed vendors in sale orders"
 msgstr "Restringir proveedores permitidos en pedidos de venta"
+
+#. module: sale_purchase_force_vendor
+#: model:ir.model,name:sale_purchase_force_vendor.model_sale_order
+msgid "Sales Order"
+msgstr ""
 
 #. module: sale_purchase_force_vendor
 #: model:ir.model,name:sale_purchase_force_vendor.model_sale_order_line
@@ -76,3 +85,6 @@ msgstr "Movimiento de existencias"
 #: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_sale_order_line__vendor_id
 msgid "Vendor"
 msgstr "Proveedor"
+
+#~ msgid "Config Settings"
+#~ msgstr "Ajustes de configuración"
