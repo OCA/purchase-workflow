@@ -39,7 +39,9 @@ class TestProcurementPurchaseNoGrouping(common.SavepointCase):
             [("origin", "=", self.sale_order.name)]
         )
         self.assertEqual(
-            len(orders), 1, "Procured purchase orders are the same",
+            len(orders),
+            1,
+            "Procured purchase orders are the same",
         )
         self.assertEqual(
             len(orders.mapped("order_line")),
@@ -52,7 +54,9 @@ class TestProcurementPurchaseNoGrouping(common.SavepointCase):
         sale_order_2.action_confirm()
         orders = self.env["purchase.order"].search([("origin", "=", sale_order_2.name)])
         self.assertEqual(
-            len(orders), 2, "Procured purchase orders are the same",
+            len(orders),
+            2,
+            "Procured purchase orders are the same",
         )
         self.assertEqual(
             len(orders.mapped("order_line")),
