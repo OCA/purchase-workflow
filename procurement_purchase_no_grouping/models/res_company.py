@@ -14,7 +14,6 @@ class ResCompany(models.Model):
             ("order", "No order grouping"),
             ("product_category", "Product category grouping"),
         ],
-        string="Procured purchase grouping",
         default="standard",
         help="Select the behaviour for grouping procured purchases for the "
         "the products of this category:\n"
