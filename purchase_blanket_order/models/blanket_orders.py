@@ -277,11 +277,11 @@ class BlanketOrder(models.Model):
         for order in self:
             vals = {"confirmed": True}
             # Set name by sequence only if is necessary
-            if order.name == _("Draft"):
+            if order.name == "Draft":
                 sequence_obj = self.env["ir.sequence"]
                 if order.company_id:
                     sequence_obj = sequence_obj.with_company(order.company_id)
-                name = sequence_obj.next_by_code("purchase.blanket.order") or _("Draft")
+                name = sequence_obj.next_by_code("purchase.blanket.order") or "Draft"
                 vals.update({"name": name})
             order.write(vals)
         return True
