@@ -5,6 +5,7 @@
   * Carlos Dauden
   * Alexandre Díaz
   * Víctor Martínez
+  * César A. Sánchez
 
 * Ana Juaristi <ajuaristo@gmail.com>
 * Alfredo de la Fuente <alfredodelafuente@avanzosc.es>
