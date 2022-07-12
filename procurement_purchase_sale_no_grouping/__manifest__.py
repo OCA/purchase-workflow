@@ -3,7 +3,7 @@
 
 {
     "name": "Procurement Purchase Service No Grouping",
-    "version": "13.0.1.0.0",
+    "version": "15.0.1.0.0",
     "author": "Tecnativa," "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
     "category": "Procurements",
