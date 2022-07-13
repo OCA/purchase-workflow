@@ -275,10 +275,7 @@ msgid "Done"
 msgstr ""
 
 #. module: purchase_blanket_order
-#: code:addons/purchase_blanket_order/models/blanket_orders.py:0
-#: code:addons/purchase_blanket_order/models/blanket_orders.py:0
 #: model:ir.model.fields.selection,name:purchase_blanket_order.selection__purchase_blanket_order__state__draft
-#, python-format
 msgid "Draft"
 msgstr ""
 
