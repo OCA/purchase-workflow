@@ -111,9 +111,6 @@ class Test(SavepointCase):
         with freeze_time(TIME):
             order = self._create_order(freight=True)
             order.freight_change_policy = "dispatch"
-            import pdb
-
-            pdb.set_trace()
             order.freight_rule_id = ref(self, "plane1").id
             order.receive_date = "2022-10-30"
             self.check_planned_dispatch_date_with_duration(order)
@@ -129,15 +126,14 @@ class Test(SavepointCase):
             order.receive_date - timedelta(days=order.freight_duration),
         )
 
-    # def test_picking(self):
-    #     with freeze_time(TIME):
-    #         order = self._create_order()
-    #         order.freight_rule_id = self.freight.id
-    #         order.freight_duration = 99
-    #         order.button_confirm()
-    #         picking = order.picking_ids[0]
-    #         self.assertEqual(picking.freight_rule_id, order.freight_rule_id)
-    #         self.assertEqual(picking.freight_duration, order.freight_duration)
+    def test_picking(self):
+        with freeze_time(TIME):
+            order = self._create_order(freight=True)
+            order.freight_change_policy = "dispatch"
+            order.freight_duration = 99
+            order.button_confirm()
+            picking = order.picking_ids[0]
+            self.assertEqual(picking.freight_duration, order.freight_duration)
 
 
 def ref(self, idstring):
