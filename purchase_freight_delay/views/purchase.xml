@@ -4,14 +4,41 @@
         <field name="model">purchase.order</field>
         <field name="inherit_id" ref="purchase.purchase_order_form" />
         <field name="arch" type="xml">
-            <xpath expr="//page[@name='purchase_delivery_invoice']/group[1]" position="inside">
+            <xpath
+                expr="//page[@name='purchase_delivery_invoice']/group[1]"
+                position="inside"
+            >
                 <group name="freight" string="Freight" cols="2">
-                    <field name="dispatch_date" attrs="{'invisible': [('freight_duration', '=', 0)]}"/>
-                    <field name="freight_duration_policy" string="Policy Update" widget="radio" options="{'horizontal': true}" attrs="{'invisible': [('freight_duration', '=', 0)]}"/>
-                    <field name="freight_duration" string="Duration" attrs="{'invisible': [('freight_duration', '=', 0)]}"/>
-                    <field name="freight_rule_id" string="Rule"/>
+                    <field
+                        name="freight_change_policy"
+                        string="Policy Update"
+                        widget="radio"
+                        options="{'horizontal': true}"
+                    />
+                    <field
+                        name="dispatch_date"
+                        attrs="{'readonly':[['freight_change_policy', '=', 'dispatch']]}"
+                    />
+                    <field
+                        name="receive_date"
+                        attrs="{'readonly':[['freight_change_policy', '=', 'receive']]}"
+                    />
+                    <field
+                        name="freight_duration"
+                        attrs="{'readonly':[['freight_change_policy', '=', 'duration']]}"
+                    />
+                    <field
+                        name="freight_rule_id"
+                        attrs="{'readonly':[['freight_change_policy', '=', 'duration']]}"
+                    />
                 </group>
             </xpath>
+            <field name="incoterm_address_id" position="after">
+                <field
+                    name="incoterm_date"
+                    attrs="{'readonly':[['freight_change_policy', '=', 'dispatch']]}"
+                />
+            </field>
         </field>
     </record>
 

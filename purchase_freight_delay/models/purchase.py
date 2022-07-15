@@ -1,172 +1,165 @@
 # © 2022 David BEAL @ Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from datetime import datetime, timedelta
+from datetime import timedelta
 
 from odoo import api, fields, models
-from odoo.tools import (
-    DEFAULT_SERVER_DATETIME_FORMAT as DTF,
-    DEFAULT_SERVER_DATE_FORMAT as DF,
-)
 
-HELP_DURATION = "Duration is substracted from Received date or added to Dispatch date"
+HELP_DURATION = "Duration is substracted from Receive date or added to Dispatch date"
 HELP_DISPATCH = "When the goods exit the boarding place"
 
 
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
-    freight_rule_id = fields.Many2one(comodel_name="freight.rule", copy=False)
+    freight_rule_id = fields.Many2one(
+        comodel_name="freight.rule",
+        domain="[['partner_src_id','in', (False, incoterm_address_id)]]",
+    )
     freight_duration = fields.Integer(
         compute="_compute_freight_duration",
         inverse="_inverse_freight_duration",
         store=True,
-        copy=False,
         help=HELP_DURATION,
     )
-    dispatch_date = fields.Date(
-        copy=False,
+    receive_date = fields.Datetime(
+        compute="_compute_receive_date",
+        store=True,
+    )
+    dispatch_date = fields.Datetime(
         readonly=False,
+        store=True,
         compute="_compute_dispatch_date",
-        inverse="_inverse_dispatch_date",
         help=HELP_DISPATCH,
     )
-    freight_duration_policy = fields.Selection(
+    freight_change_policy = fields.Selection(
         string="Duration impact",
-        selection=[("dispatch", "Dispatch"), ("received", "Received")],
+        selection=[
+            ("dispatch", "Dispatch"),
+            ("receive", "Received"),
+            ("duration", "Duration"),
+        ],
         required=True,
-        copy=False,
         default="dispatch",
         ondelete={"dispatch": "set default", "received": "set default"},
-        help="Choose which date field'll be impacted modifying duration field",
+        help="Choose which field will be recomputed",
     )
 
-    def onchange(self, values, field_name, field_onchange):
-        def get_data(myfield):
-            "Get current data after all onchanges played"
-            mydata = result["value"].get(myfield) or values.get(myfield) or False
-            if "date" in myfield and isinstance(mydata, str):
-                format_date = DTF
-                if myfield == "dispatch_date":
-                    format_date = DF
-                mydata = datetime.strptime(mydata, format_date)
-            return mydata
+    incoterm_date = fields.Datetime(
+        related="dispatch_date",
+        string="Incoterm date",
+        help="Date of transfert of responsibility (is freight dispatch date)",
+    )
 
-        result = super().onchange(values, field_name, field_onchange)
-        if not values.get("dispatch_date") and not values.get("date_planned"):
-            return result
-        # we tracks these fields to amend behavior
-        ffields = [
-            "dispatch_date",
-            "date_planned",
-            "freight_duration",
-            "freight_duration_policy",
-        ]
-        trigger = False
-        for elm in ffields:
-            if field_onchange.get(elm) == "1":
-                trigger = trigger or True
-        if trigger:
-            vals = {}
-            ffields.append("state")
-            for myfield in ffields:
-                vals[myfield] = get_data(myfield)
-            res = self._update_freight_fields_and_co(vals=vals)
-            if res:
-                res["dispatch_date"] = res["dispatch_date"].strftime(DF)
-                res["date_planned"] = res["date_planned"].strftime(DTF)
-                result["value"].update(res)
-        return result
+    def _set_freight_fields(
+        self, receive_date, dispatch_date, freight_duration, policy
+    ):
+        res = {
+            "receive_date": receive_date,
+            "dispatch_date": dispatch_date or receive_date,  # init
+            "freight_duration": freight_duration or 0,
+        }
 
-    def _update_freight_fields_and_co(self, vals=None):
-        from_onchange = False
-        if vals:
-            from_onchange = True
-        else:
-            self.ensure_one()
-            if not self.dispatch_date and not self.date_planned:
-                return
-            # we switch to dict to share behavior between compute and onchange.
-            # it's required while there are onchanges in native code
-            vals = {
-                "dispatch_date": self.dispatch_date,
-                "date_planned": self.date_planned,
-                "freight_duration": self.freight_duration,
-                "freight_duration_policy": self.freight_duration_policy,
-                "state": self.state,
-            }
-        if vals["state"] in ("done", "cancel"):
-            return vals
-        if not vals["dispatch_date"]:
-            # initialisation
-            # TOFIX While form is not saved, dispatch_date is reset to False
-            vals["dispatch_date"] = self._origin.dispatch_date or vals["date_planned"]
-        if vals["freight_duration_policy"] == "dispatch" or not vals["dispatch_date"]:
-            vals["dispatch_date"] = vals["date_planned"] - timedelta(
-                days=vals["freight_duration"] or 0
+        def recompute_freight_duration():
+            if receive_date and dispatch_date:
+                res["freight_duration"] = (receive_date - dispatch_date).days
+
+        def recompute_dispatch_date():
+            if receive_date:
+                res["dispatch_date"] = receive_date - timedelta(days=freight_duration)
+
+        def recompute_receive_date():
+            if dispatch_date:
+                res["receive_date"] = dispatch_date + timedelta(days=freight_duration)
+
+        {
+            "freight_duration": recompute_freight_duration,
+            "dispatch_date": recompute_dispatch_date,
+            "receive_date": recompute_receive_date,
+        }[policy]()
+
+        return res
+
+    def _compute_freight(self, origin):
+
+        lk = {
+            "_compute_receive_date": {
+                "policy": "receive",
+                "field": "receive_date",
+            },
+            "_compute_dispatch_date": {
+                "policy": "dispatch",
+                "field": "dispatch_date",
+            },
+            "_compute_freight_duration": {
+                "policy": "duration",
+                "field": "freight_duration",
+            },
+        }
+        policy = lk[origin]["policy"]
+        field = lk[origin]["field"]
+
+        for rec in self:
+            if rec.freight_change_policy != policy:
+                continue
+            res = self._set_freight_fields(
+                rec.receive_date, rec.dispatch_date, rec.freight_duration, field
             )
-        else:
-            vals["date_planned"] = vals["dispatch_date"] + timedelta(
-                days=vals["freight_duration"] or 0
-            )
-        if from_onchange:
-            return vals
-        else:
-            # we switch back to compute syntax
-            self.dispatch_date = vals["dispatch_date"]
-            self.date_planned = vals["date_planned"]
-            self.freight_duration = vals["freight_duration"]
-            self.freight_duration_policy = vals["freight_duration_policy"]
+            rec[field] = res[field]
 
-    @api.depends("freight_duration", "date_planned")
+    @api.depends("freight_duration", "dispatch_date")
+    def _compute_receive_date(self):
+        self._compute_freight("_compute_receive_date")
+
+    @api.depends("freight_duration", "receive_date")
     def _compute_dispatch_date(self):
-        for rec in self:
-            rec._update_freight_fields_and_co()
+        self._compute_freight("_compute_dispatch_date")
 
-    def _inverse_dispatch_date(self):
-        for rec in self:
-            rec._update_freight_fields_and_co()
-
-    @api.depends("freight_rule_id")
+    @api.depends("freight_rule_id", "dispatch_date", "receive_date")
     def _compute_freight_duration(self):
         for rec in self:
+            # inject duration from freight_rule
             if rec.freight_rule_id:
                 rec.freight_duration = rec.freight_rule_id.duration
-                rec._update_freight_fields_and_co()
+            self._compute_freight("_compute_freight_duration")
 
     def _inverse_freight_duration(self):
         for rec in self:
-            rec._update_freight_fields_and_co()
-            if rec.freight_duration and rec.freight_rule_id:
+            # remove freight_rule when duration changes
+            if (
+                rec.freight_rule_id
+                and rec.freight_duration != rec.freight_rule_id.duration
+            ):
                 rec.freight_rule_id = False
-            if not rec.freight_duration and not rec.freight_rule_id:
-                rec.order_line._set_initial_date_planned(self)
 
     def _prepare_picking(self):
-        # TODO
         res = super()._prepare_picking()
         res.update(
             {
-                # "freight_rule_id": self.freight_rule_id.id,
                 "freight_duration": self.freight_duration,
                 "dispatch_date": self.dispatch_date,
             }
         )
         return res
 
+    def write(self, vals):
+        # change date_planned with ours
+        super().write(vals)
+        if "receive_date" or "dispatch_date" or "freight_duration" in vals:
+            # not really efficient
+            super().write({"date_planned": self.receive_date})
+
 
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
-    def _set_initial_date_planned(self, po):
-        """Same code as in _onchange_quantity() and other places"""
-        for rec in self:
-            seller = rec.product_id._select_seller(
-                partner_id=po.partner_id,
-                quantity=rec.product_qty,
-                date=po.date_order and po.date_order.date(),
-                uom_id=rec.product_uom,
-                params={"order_id": po},
-            )
-            if seller:
-                rec.date_planned = rec._get_date_planned(seller).strftime(DTF)
+    def _prepare_stock_move_vals(
+        self, picking, price_unit, product_uom_qty, product_uom
+    ):
+        # propagate to purchase lines
+        values = super()._prepare_stock_move_vals(
+            picking, price_unit, product_uom_qty, product_uom
+        )
+        if self.order_id.receive_date:
+            values["date"] = self.order_id.receive_date
+        return values
