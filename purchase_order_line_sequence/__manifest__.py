@@ -16,7 +16,6 @@
     "website": "https://github.com/OCA/purchase-workflow",
     "depends": [
         "purchase_stock",
-        "stock_picking_line_sequence",
     ],
     "data": [
         "views/purchase_view.xml",
@@ -24,7 +23,7 @@
         "views/report_purchasequotation.xml",
     ],
     "post_init_hook": "post_init_hook",
-    "installable": False,
+    "installable": True,
     "auto_install": False,
     "license": "AGPL-3",
 }
