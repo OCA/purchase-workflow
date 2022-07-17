@@ -17,6 +17,13 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: purchase_deposit
+#: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
+msgid ""
+"<span attrs=\"{'invisible': [('advance_payment_method', '!=', "
+"'percentage')]}\" class=\"oe_inline\">%</span>"
+msgstr ""
+
+#. module: purchase_deposit
 #: model:ir.model.fields,help:purchase_deposit.field_purchase_advance_payment_inv__deposit_account_id
 msgid "Account used for deposits"
 msgstr "Compte utilisé pour les acomptes"
@@ -31,11 +38,6 @@ msgstr "Acompte : %s"
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
 msgid "Cancel"
 msgstr "Annuler"
-
-#. module: purchase_deposit
-#: model:ir.model,name:purchase_deposit.model_res_config_settings
-msgid "Config Settings"
-msgstr ""
 
 #. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
@@ -97,9 +99,6 @@ msgstr ""
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__display_name
-#: model:ir.model.fields,field_description:purchase_deposit.field_purchase_order__display_name
-#: model:ir.model.fields,field_description:purchase_deposit.field_purchase_order_line__display_name
-#: model:ir.model.fields,field_description:purchase_deposit.field_res_config_settings__display_name
 msgid "Display Name"
 msgstr "Nom affiché"
 
@@ -115,9 +114,6 @@ msgstr "Compte de dépense"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__id
-#: model:ir.model.fields,field_description:purchase_deposit.field_purchase_order__id
-#: model:ir.model.fields,field_description:purchase_deposit.field_purchase_order_line__id
-#: model:ir.model.fields,field_description:purchase_deposit.field_res_config_settings__id
 msgid "ID"
 msgstr "ID"
 
@@ -147,9 +143,6 @@ msgstr "Est un acompte"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv____last_update
-#: model:ir.model.fields,field_description:purchase_deposit.field_purchase_order____last_update
-#: model:ir.model.fields,field_description:purchase_deposit.field_purchase_order_line____last_update
-#: model:ir.model.fields,field_description:purchase_deposit.field_res_config_settings____last_update
 msgid "Last Modified on"
 msgstr "Dernière modification le"
 
@@ -162,6 +155,11 @@ msgstr "Dernière modification par"
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__write_date
 msgid "Last Updated on"
 msgstr "Dernière mise-à-jour le"
+
+#. module: purchase_deposit
+#: model:ir.model,name:purchase_deposit.model_res_config_settings
+msgid "Procurement purchase grouping settings"
+msgstr ""
 
 #. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.res_config_settings_view_form_purchase
