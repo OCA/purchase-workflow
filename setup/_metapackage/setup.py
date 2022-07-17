@@ -8,6 +8,7 @@ setuptools.setup(
     description="Meta package for oca-purchase-workflow Odoo addons",
     version=version,
     install_requires=[
+        'odoo-addon-procurement_purchase_no_grouping>=15.0dev,<15.1dev',
         'odoo-addon-product_form_purchase_link>=15.0dev,<15.1dev',
         'odoo-addon-purchase_analytic_global>=15.0dev,<15.1dev',
         'odoo-addon-purchase_blanket_order>=15.0dev,<15.1dev',
