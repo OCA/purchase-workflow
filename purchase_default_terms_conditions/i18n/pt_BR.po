@@ -34,9 +34,9 @@ msgid "Companies"
 msgstr "Empresas"
 
 #. module: purchase_default_terms_conditions
-#: model:ir.model,name:purchase_default_terms_conditions.model_res_config_settings
-msgid "Config Settings"
-msgstr "Ajuste de Configurações"
+#: model:ir.model,name:purchase_default_terms_conditions.model_res_partner
+msgid "Contact"
+msgstr ""
 
 #. module: purchase_default_terms_conditions
 #: model_terms:ir.ui.view,arch_db:purchase_default_terms_conditions.res_config_settings_view_form_purchase
@@ -44,12 +44,24 @@ msgid "Insert your terms & conditions here..."
 msgstr "Insira seus termos e condições aqui..."
 
 #. module: purchase_default_terms_conditions
+#: model:ir.model,name:purchase_default_terms_conditions.model_res_config_settings
+msgid "Procurement purchase grouping settings"
+msgstr ""
+
+#. module: purchase_default_terms_conditions
 #: model:ir.model.fields,field_description:purchase_default_terms_conditions.field_res_company__purchase_note
+#: model:ir.model.fields,field_description:purchase_default_terms_conditions.field_res_partner__purchase_note
+#: model:ir.model.fields,field_description:purchase_default_terms_conditions.field_res_users__purchase_note
 msgid "Purchase Default Terms and Conditions"
 msgstr "Termos e Condições Padrão de Compra"
 
 #. module: purchase_default_terms_conditions
-#: model:ir.model.fields,field_description:purchase_default_terms_conditions.field_res_config_settings__default_notes
+#: model:ir.model,name:purchase_default_terms_conditions.model_purchase_order
+msgid "Purchase Order"
+msgstr "Ordem de Compra"
+
+#. module: purchase_default_terms_conditions
+#: model:ir.model.fields,field_description:purchase_default_terms_conditions.field_res_config_settings__purchase_note
 msgid "Purchase Terms & Conditions"
 msgstr "Termos e Condições de Compra"
 
@@ -63,5 +75,5 @@ msgstr "Mostre termos e condições padrão em pedidos"
 msgid "Use Purchase Default Terms & Conditions"
 msgstr "Use termos e condições padrão de compra"
 
-#~ msgid "Purchase Order"
-#~ msgstr "Ordem de Compra"
+#~ msgid "Config Settings"
+#~ msgstr "Ajuste de Configurações"
