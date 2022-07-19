@@ -10,11 +10,11 @@
             >
                 <group name="freight" string="Freight" cols="2">
                     <field
-                        name="freight_change_policy"
-                        string="Policy Update"
+                        name="freight_change_selector"
                         widget="radio"
                         options="{'horizontal': true}"
                     />
+                    <field name="freight_change_policy" invisible="1" />
                     <field
                         name="dispatch_date"
                         attrs="{'readonly':[['freight_change_policy', '=', 'dispatch']]}"
@@ -34,10 +34,7 @@
                 </group>
             </xpath>
             <field name="incoterm_address_id" position="after">
-                <field
-                    name="incoterm_date"
-                    attrs="{'readonly':[['freight_change_policy', '=', 'dispatch']]}"
-                />
+                <field name="incoterm_date" />
             </field>
         </field>
     </record>

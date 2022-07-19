@@ -14,8 +14,11 @@ class PurchaseOrder(models.Model):
 
     freight_rule_id = fields.Many2one(
         comodel_name="freight.rule",
-        domain="[['partner_src_id','in', (False, incoterm_address_id)]]",
+        domain="[['partner_src_id','in', (False)]]",
+        # recomputed with more incoterm_address_id
+        # in onchange()
     )
+
     freight_duration = fields.Integer(
         compute="_compute_freight_duration",
         inverse="_inverse_freight_duration",
@@ -27,20 +30,37 @@ class PurchaseOrder(models.Model):
         store=True,
     )
     dispatch_date = fields.Datetime(
+        # dispatch_date is computed
+        # use case:
+        # PO is created from a procurement with a receive_date (date_planned)
+        # then, a duration is choosen (based on avg supplier transit delay)
+        # so dispatch_date = recieve_date - duration
+        # dispatch date is the date asked to the supplier
         readonly=False,
         store=True,
         compute="_compute_dispatch_date",
         help=HELP_DISPATCH,
     )
+    freight_change_selector = fields.Selection(
+        # choosen by the user
+        # it's easier for user to reason about he can change
+        # (change_selector) rather than computed field (change_policy)
+        selection=[
+            ("date", "Date"),
+            ("duration", "Duration"),
+        ],
+        default="duration",
+    )
     freight_change_policy = fields.Selection(
-        string="Duration impact",
+        # freight_change_policy: the field to recompute
         selection=[
             ("dispatch", "Dispatch"),
             ("receive", "Received"),
             ("duration", "Duration"),
         ],
+        compute="_compute_freight_change_policy",
         required=True,
-        default="dispatch",
+        default="receive",
         ondelete={"dispatch": "set default", "received": "set default"},
         help="Choose which field will be recomputed",
     )
@@ -49,7 +69,18 @@ class PurchaseOrder(models.Model):
         related="dispatch_date",
         string="Incoterm date",
         help="Date of transfert of responsibility (is freight dispatch date)",
+        readonly=True,
     )
+
+    @api.onchange("incoterm_address_id")
+    def onchange_freight_rule_id(self):
+        return {
+            "domain": {
+                "freight_rule_id": [
+                    ("partner_src_id", "in", (False, self.incoterm_address_id.id))
+                ]
+            }
+        }
 
     def _set_freight_fields(
         self, receive_date, dispatch_date, freight_duration, policy
@@ -131,6 +162,14 @@ class PurchaseOrder(models.Model):
                 and rec.freight_duration != rec.freight_rule_id.duration
             ):
                 rec.freight_rule_id = False
+
+    @api.depends("freight_change_selector")
+    def _compute_freight_change_policy(self):
+        for rec in self:
+            if rec.freight_change_selector == "date":
+                rec.freight_change_policy = "duration"
+            else:
+                rec.freight_change_policy = "receive"
 
     def _prepare_picking(self):
         res = super()._prepare_picking()
