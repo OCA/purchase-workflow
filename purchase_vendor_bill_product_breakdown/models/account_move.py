@@ -19,4 +19,4 @@ class AccountMove(models.Model):
 class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
-    qty_components = fields.Float(stirng="Component Qty", default=0.0)
+    qty_components = fields.Float(string="Component Qty", default=0.0)

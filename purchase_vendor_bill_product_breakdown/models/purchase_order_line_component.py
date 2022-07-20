@@ -6,7 +6,7 @@ class PurchaseOrderLineComponent(models.Model):
     _description = "Purchase Order Line Component"
 
     line_id = fields.Many2one(
-        "purchase.order.line", string="Purchase Order Line", reuired=True
+        "purchase.order.line", string="Purchase Order Line", required=True
     )
     component_id = fields.Many2one("product.product", string="Component", required=True)
     component_uom_category_id = fields.Many2one(
