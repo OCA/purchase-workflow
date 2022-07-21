@@ -68,6 +68,11 @@ msgid "Last Modified on"
 msgstr ""
 
 #. module: purchase_rfq_number
+#: model:ir.model.fields,field_description:purchase_rfq_number.field_purchase_order__po_number
+msgid "PO Reference"
+msgstr ""
+
+#. module: purchase_rfq_number
 #: model:ir.model,name:purchase_rfq_number.model_res_config_settings
 msgid "Procurement purchase grouping settings"
 msgstr ""
