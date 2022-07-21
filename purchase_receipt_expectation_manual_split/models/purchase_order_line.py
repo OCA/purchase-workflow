@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
+from odoo.tools import float_is_zero
 
 
 class PurchaseOrderLine(models.Model):
@@ -10,16 +11,17 @@ class PurchaseOrderLine(models.Model):
     product_qty_pre_split = fields.Float(
         digits="Product Unit of Measure",
         string="Pre-split Original Qty",
+        readonly=True,
     )
-
     manually_split_from_line_id = fields.Many2one(
         "purchase.order.line",
         ondelete="restrict",
+        readonly=True,
     )
-
     manually_split_into_line_ids = fields.One2many(
         "purchase.order.line",
         "manually_split_from_line_id",
+        readonly=True,
     )
 
     def _unlink_except_purchase_or_done(self):
@@ -69,38 +71,24 @@ class PurchaseOrderLine(models.Model):
         if not self.manually_split_into_line_ids:
             self.product_qty_pre_split = self.product_qty
         # Copy the original line to a new line with wizard line data
-        orig = self.with_context(skip_picking_create=True)
-        new = orig.copy(copy_vals)
+        new = self.copy(copy_vals)
         # Remove the new line's qty from the original line's qty
-        to_remove = new.product_uom._compute_quantity(new.product_qty, orig.product_uom)
-        orig.product_qty = max(0, orig.product_qty - to_remove)
+        to_remove = new.product_uom._compute_quantity(new.product_qty, self.product_uom)
+        self.product_qty = max(0, self.product_qty - to_remove)
         return new
 
-    def _merge_back_into_original_lines(self):
+    def _merge_back_into_original_line(self, quantity):
         """Reverts quantity from split lines to their origin lines"""
-        to_merge = self.filtered("manually_split_from_line_id")
-        if to_merge:
-            to_merge = to_merge.with_context(
-                # Skip picking update when original line qty is updated
-                skip_picking_create=True,
-                # Skip order check when lines are deleted post-merge
-                skip_order_state_check=True,
-            )
-            split_map = {
-                orig: orig.manually_split_into_line_ids
-                for orig in to_merge.manually_split_from_line_id
-            }
-            for orig, lines in split_map.items():
-                lines_to_merge = lines & to_merge
-                if lines_to_merge == lines:
-                    # Shortcut: we're deleting every split lines, so we'll
-                    # simply revert the original qty without going through
-                    # the `for` cycle
-                    orig.product_qty = orig.product_qty_pre_split
-                    continue
-                for line in lines_to_merge:
-                    from_uom = line.product_uom
-                    qty = line.product_qty
-                    to_uom = orig.product_uom
-                    orig.product_qty += from_uom._compute_quantity(qty, to_uom)
-            to_merge.unlink()
+        if not self.manually_split_from_line_id:
+            return
+        self.ensure_one()
+        origin = self.manually_split_from_line_id
+        origin.product_qty += self.product_uom._compute_quantity(
+            quantity, origin.product_uom
+        )
+        self.product_qty -= quantity
+        # Remove empty lines with no done moves attached
+        if float_is_zero(
+            self.product_qty, precision_rounding=self.product_uom.rounding
+        ) and not any(move.state == "done" for move in self.move_ids):
+            self.unlink()
