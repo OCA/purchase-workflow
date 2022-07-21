@@ -6,8 +6,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-24 08:24+0000\n"
-"PO-Revision-Date: 2022-06-24 08:24+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -47,13 +45,13 @@ msgid "Invoice"
 msgstr ""
 
 #. module: purchase_start_end_dates
-#: code:addons/purchase_start_end_dates/models/purchase_order.py:125
+#: code:addons/purchase_start_end_dates/models/purchase_order.py:111
 #, python-format
 msgid "Missing End Date for purchase order line with Product '%s'."
 msgstr ""
 
 #. module: purchase_start_end_dates
-#: code:addons/purchase_start_end_dates/models/purchase_order.py:117
+#: code:addons/purchase_start_end_dates/models/purchase_order.py:103
 #, python-format
 msgid "Missing Start Date for purchase order line with Product '%s'."
 msgstr ""
@@ -69,7 +67,7 @@ msgid "Number of Days"
 msgstr ""
 
 #. module: purchase_start_end_dates
-#: code:addons/purchase_start_end_dates/models/purchase_order.py:95
+#: code:addons/purchase_start_end_dates/models/purchase_order.py:81
 #, python-format
 msgid "On purchase order line with product '%s', the number of days is negative (%d) ; this is not allowed. The number of days has been forced to 1."
 msgstr ""
@@ -90,13 +88,13 @@ msgid "Start Date"
 msgstr ""
 
 #. module: purchase_start_end_dates
-#: code:addons/purchase_start_end_dates/models/purchase_order.py:133
+#: code:addons/purchase_start_end_dates/models/purchase_order.py:119
 #, python-format
 msgid "Start Date should be before or be the same as End Date for purchase order line with Product '%s'."
 msgstr ""
 
 #. module: purchase_start_end_dates
-#: code:addons/purchase_start_end_dates/models/purchase_order.py:94
+#: code:addons/purchase_start_end_dates/models/purchase_order.py:80
 #, python-format
 msgid "Wrong number of days"
 msgstr ""
