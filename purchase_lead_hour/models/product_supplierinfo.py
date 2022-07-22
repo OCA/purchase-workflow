@@ -12,5 +12,9 @@ class ProductSupplierinfo(models.Model):
     delay_hour = fields.Integer("Delivery Lead Time Hour")
 
     def _get_next_availability_date(self):
-        # A hook to ease overrides
         return fields.Datetime.now()
+
+    def _get_delay_days(self):
+        delay_days = super()._get_delay_days()
+        delay_hours = self.delay_hour / 24
+        return delay_days + delay_hours
