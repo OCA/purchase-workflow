@@ -4,3 +4,4 @@
     * Son Ho <sonhd@trobz.com>
 * `Akretion <https://akretion.com>`_:
     * David BEAL <david.beal@akretion.com>
+    * Raphaël Reverdy <raphael.reverdy@akretion.com>
