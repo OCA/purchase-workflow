@@ -34,6 +34,7 @@ addon | version | maintainers | summary
 [purchase_order_product_recommendation](purchase_order_product_recommendation/) | 15.0.1.0.0 |  | Recommend products to buy to supplier based on history
 [purchase_order_qty_change_no_recompute](purchase_order_qty_change_no_recompute/) | 15.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Prevent recompute if only quantity has changed in purchase order line
 [purchase_order_type](purchase_order_type/) | 15.0.1.0.0 |  | Purchase Order Type
+[purchase_partner_selectable_option](purchase_partner_selectable_option/) | 15.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Purchase Partner Selectable Option
 [purchase_receipt_expectation](purchase_receipt_expectation/) | 15.0.1.0.0 |  | Purchase Receipt Expectation
 [purchase_receipt_expectation_manual](purchase_receipt_expectation_manual/) | 15.0.1.0.0 |  | Purchase Receipt Expectation - Manual
 [purchase_receipt_expectation_manual_split](purchase_receipt_expectation_manual_split/) | 15.0.2.0.0 |  | Purchase Receipt Expectation - Manual w/ Split
