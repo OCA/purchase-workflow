@@ -6,46 +6,48 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2022-07-26 13:06+0000\n"
+"Last-Translator: Pedro Castro Silva <pedrocs@exo.pt>\n"
 "Language-Team: none\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: purchase_discount
 #: model_terms:ir.ui.view,arch_db:purchase_discount.report_purchaseorder_document
 msgid "<strong>Disc. (%)</strong>"
-msgstr ""
+msgstr "<strong>Desc. (%)</strong>"
 
 #. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contacto"
 
 #. module: purchase_discount
 #: model:ir.model.fields,field_description:purchase_discount.field_res_partner__default_supplierinfo_discount
 #: model:ir.model.fields,field_description:purchase_discount.field_res_users__default_supplierinfo_discount
 msgid "Default Supplier Discount (%)"
-msgstr ""
+msgstr "Desconto Padrão de Fornecedor (%)"
 
 #. module: purchase_discount
 #: model:ir.model.fields,field_description:purchase_discount.field_product_supplierinfo__discount
 #: model:ir.model.fields,field_description:purchase_discount.field_purchase_order_line__discount
 #: model:ir.model.fields,field_description:purchase_discount.field_purchase_report__discount
 msgid "Discount (%)"
-msgstr ""
+msgstr "Desconto (%)"
 
 #. module: purchase_discount
 #: model:ir.model.constraint,message:purchase_discount.constraint_purchase_order_line_discount_limit
 msgid "Discount must be lower than 100%."
-msgstr ""
+msgstr "O desconto deve ser inferior a 100%."
 
 #. module: purchase_discount
 #: model_terms:ir.ui.view,arch_db:purchase_discount.res_partner_form_view
 msgid "Discount-related settings are managed on"
-msgstr ""
+msgstr "A parametrização relacionada com descontos é gerida em"
 
 #. module: purchase_discount
 #: model:ir.model.fields,field_description:purchase_discount.field_product_supplierinfo__display_name
@@ -55,7 +57,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_discount.field_res_partner__display_name
 #: model:ir.model.fields,field_description:purchase_discount.field_stock_move__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome a Apresentar"
 
 #. module: purchase_discount
 #: model:ir.model.fields,field_description:purchase_discount.field_product_supplierinfo__id
@@ -65,7 +67,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_discount.field_res_partner__id
 #: model:ir.model.fields,field_description:purchase_discount.field_stock_move__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: purchase_discount
 #: model:ir.model.fields,field_description:purchase_discount.field_product_supplierinfo____last_update
@@ -75,32 +77,32 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_discount.field_res_partner____last_update
 #: model:ir.model.fields,field_description:purchase_discount.field_stock_move____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última Modificação Em"
 
 #. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_purchase_order
 msgid "Purchase Order"
-msgstr ""
+msgstr "Encomenda de Compra"
 
 #. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Linha de Encomenda de Compra"
 
 #. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_purchase_report
 msgid "Purchase Report"
-msgstr ""
+msgstr "Relatório de Compra"
 
 #. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_stock_move
 msgid "Stock Move"
-msgstr ""
+msgstr "Movimento de Stock"
 
 #. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_product_supplierinfo
 msgid "Supplier Pricelist"
-msgstr ""
+msgstr "Lista de Preços de Fornecedor"
 
 #. module: purchase_discount
 #: model:ir.model.fields,help:purchase_discount.field_res_partner__default_supplierinfo_discount
@@ -109,8 +111,10 @@ msgid ""
 "This value will be used as the default one, for each new supplierinfo line "
 "depending on that supplier."
 msgstr ""
+"Este valor será usado como padrão para cada nova linha de informação deste "
+"fornecedor."
 
 #. module: purchase_discount
 #: model_terms:ir.ui.view,arch_db:purchase_discount.res_partner_form_view
 msgid "the parent company"
-msgstr ""
+msgstr "a empresa ascendente"
