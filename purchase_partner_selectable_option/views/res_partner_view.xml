@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_partner_form" model="ir.ui.view">
+        <field name="name">Add selectable_in_purchases_orders to partner form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <group name="purchase" position="inside">
+                <field name="purchase_selectable" string="Selectable in orders" />
+            </group>
+        </field>
+    </record>
+    <record id="res_partner_view_purchase_buttons" model="ir.ui.view">
+        <field name="name">res.partner.view.purchase.buttons</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="purchase.res_partner_view_purchase_buttons" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//button[@name='%(purchase.act_res_partner_2_purchase_order)d']"
+                position="attributes"
+            >
+                <attribute
+                    name="attrs"
+                >{'invisible': [('purchase_selectable', '=', False)]}</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
