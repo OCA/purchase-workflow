@@ -1,0 +1,59 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* stock_account_purchase_mrp
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-08-09 09:24+0000\n"
+"PO-Revision-Date: 2022-08-09 09:24+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: stock_account_purchase_mrp
+#: model:ir.model,name:stock_account_purchase_mrp.model_mrp_bom
+msgid "Bill of Material"
+msgstr ""
+
+#. module: stock_account_purchase_mrp
+#: model:ir.model.fields.selection,name:stock_account_purchase_mrp.selection__mrp_bom__valuation_price_type__none
+msgid "None"
+msgstr ""
+
+#. module: stock_account_purchase_mrp
+#: model:ir.model,name:stock_account_purchase_mrp.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr ""
+
+#. module: stock_account_purchase_mrp
+#: model:ir.model,name:stock_account_purchase_mrp.model_stock_move
+msgid "Stock Move"
+msgstr ""
+
+#. module: stock_account_purchase_mrp
+#: model:ir.model.fields,field_description:stock_account_purchase_mrp.field_mrp_bom__valuation_price_type
+msgid "Valuation Price Type"
+msgstr ""
+
+#. module: stock_account_purchase_mrp
+#: model:ir.model.fields.selection,name:stock_account_purchase_mrp.selection__mrp_bom__valuation_price_type__by_lines
+msgid "Valuation by lines"
+msgstr ""
+
+#. module: stock_account_purchase_mrp
+#: model:ir.model.fields,help:stock_account_purchase_mrp.field_mrp_bom__valuation_price_type
+msgid ""
+"Valuation by lines: Divide the cost of the product in all bom lines, and "
+"then divide this amount into the quantity of each bom line.Valuation by "
+"quantities: Sum all quantities subcomponents and divide the the cost"
+msgstr ""
+
+#. module: stock_account_purchase_mrp
+#: model:ir.model.fields.selection,name:stock_account_purchase_mrp.selection__mrp_bom__valuation_price_type__by_quantities
+msgid "Valuation by quantities"
+msgstr ""

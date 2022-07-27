@@ -1,0 +1,62 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* stock_account_purchase_mrp
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-08-09 09:25+0000\n"
+"PO-Revision-Date: 2022-08-09 09:25+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: stock_account_purchase_mrp
+#: model:ir.model,name:stock_account_purchase_mrp.model_mrp_bom
+msgid "Bill of Material"
+msgstr "Lista de materiales"
+
+#. module: stock_account_purchase_mrp
+#: model:ir.model.fields.selection,name:stock_account_purchase_mrp.selection__mrp_bom__valuation_price_type__none
+msgid "None"
+msgstr "Estándar"
+
+#. module: stock_account_purchase_mrp
+#: model:ir.model,name:stock_account_purchase_mrp.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Línea de pedido de compra"
+
+#. module: stock_account_purchase_mrp
+#: model:ir.model,name:stock_account_purchase_mrp.model_stock_move
+msgid "Stock Move"
+msgstr "Movimiento de existencias"
+
+#. module: stock_account_purchase_mrp
+#: model:ir.model.fields,field_description:stock_account_purchase_mrp.field_mrp_bom__valuation_price_type
+msgid "Valuation Price Type"
+msgstr "Política de valoración"
+
+#. module: stock_account_purchase_mrp
+#: model:ir.model.fields.selection,name:stock_account_purchase_mrp.selection__mrp_bom__valuation_price_type__by_lines
+msgid "Valuation by lines"
+msgstr "Valoración por líneas"
+
+#. module: stock_account_purchase_mrp
+#: model:ir.model.fields,help:stock_account_purchase_mrp.field_mrp_bom__valuation_price_type
+msgid ""
+"Valuation by lines: Divide the cost of the product in all bom lines, and "
+"then divide this amount into the quantity of each bom line.Valuation by "
+"quantities: Sum all quantities subcomponents and divide the the cost"
+msgstr ""
+"Valoración por líneas: Tomamos el coste del producto padre, y dividimos  "
+"equitativamente por la cantidad de cada componente "
+"Valoración por cantidades: Tomamos el coste del producto padre, y dividimos  por cada componente"
+
+#. module: stock_account_purchase_mrp
+#: model:ir.model.fields.selection,name:stock_account_purchase_mrp.selection__mrp_bom__valuation_price_type__by_quantities
+msgid "Valuation by quantities"
+msgstr "Valoración por cantidades"
