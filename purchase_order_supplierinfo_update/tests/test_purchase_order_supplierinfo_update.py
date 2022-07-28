@@ -4,10 +4,10 @@
 from dateutil.relativedelta import relativedelta
 
 from odoo import fields
-from odoo.tests import Form, SavepointCase
+from odoo.tests import Form, TransactionCase
 
 
-class TestPurchaseOrderSupplierinfoUpdate(SavepointCase):
+class TestPurchaseOrderSupplierinfoUpdate(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -109,8 +109,21 @@ class TestPurchaseOrderSupplierinfoUpdate(SavepointCase):
         purchase_order_2.button_confirm()
         # Create a new line in the first purchase (that is already confirmed)
         # with another product.
-        with Form(purchase_order_1) as po_form:
-            with po_form.order_line.new() as po_line_form:
-                po_line_form.product_id = self.product_2
-                po_line_form.price_unit = 20
+        # We can not use a Form due to a modifier restriction on purchase order view
+        # purchase/views/purchase_views.xml#L230
+        purchase_order_1.write(
+            {
+                "order_line": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.product_2.id,
+                            "product_uom": self.product_2.uom_po_id.id,
+                            "price_unit": 20.00,
+                        },
+                    )
+                ]
+            }
+        )
         self.assertEqual(self.supplierinfo_2.price, 20)
