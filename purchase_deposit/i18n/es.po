@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-07-14 15:06+0000\n"
+"PO-Revision-Date: 2022-07-28 08:08+0000\n"
 "Last-Translator: Rafa Martínez <rmartinez@puntsistemes.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -248,7 +248,7 @@ msgid ""
 msgstr ""
 "No hay una cuenta contable definida para este producto: %s.\n"
 "Es posible que tengas que instalar un plan contable desde la aplicación "
-"Contabiliad, en el menú de configuración"
+"Contabilidad, en el menú de configuración"
 
 #. module: purchase_deposit
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
