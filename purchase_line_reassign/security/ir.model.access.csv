@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_purchase_order_line_reassign_wiz,access_purchase_order_line_reassign_wiz,model_purchase_order_line_reassign_wiz,base.group_user,1,1,1,1
