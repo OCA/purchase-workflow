@@ -65,15 +65,16 @@ class PurchaseOrderLine(models.Model):
         HACK: This is needed while https://github.com/odoo/odoo/pull/29983
         is not merged.
         """
+        bypass_price_unit = self.env.context.get("bypass_override_price_unit")
         price_unit = False
         price = self._get_discounted_price_unit()
-        if price != self.price_unit:
+        if price != self.price_unit and not bypass_price_unit:
             # Only change value if it's different
             price_unit = self.price_unit
-            self.price_unit = price
+            self.with_context(bypass_override_price_unit=True).price_unit = price
         price = super()._get_stock_move_price_unit()
-        if price_unit:
-            self.price_unit = price_unit
+        if price_unit and not bypass_price_unit:
+            self.with_context(bypass_override_price_unit=True).price_unit = price_unit
         return price
 
     @api.onchange("product_qty", "product_uom")
