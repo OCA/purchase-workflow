@@ -177,6 +177,7 @@ class PurchaseOrder(models.Model):
             {
                 "freight_duration": self.freight_duration,
                 "dispatch_date": self.dispatch_date,
+                "scheduled_date": self.receive_date,
             }
         )
         return res
