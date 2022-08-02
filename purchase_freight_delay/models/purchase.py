@@ -14,8 +14,11 @@ class PurchaseOrder(models.Model):
 
     freight_rule_id = fields.Many2one(
         comodel_name="freight.rule",
-        domain="[['partner_src_id','in', (False, incoterm_address_id)]]",
+        domain="[['partner_src_id','in', (False)]]",
+        # recomputed with more incoterm_address_id
+        # in onchange()
     )
+
     freight_duration = fields.Integer(
         compute="_compute_freight_duration",
         inverse="_inverse_freight_duration",
@@ -57,7 +60,7 @@ class PurchaseOrder(models.Model):
         ],
         compute="_compute_freight_change_policy",
         required=True,
-        default="duration",
+        default="receive",
         ondelete={"dispatch": "set default", "received": "set default"},
         help="Choose which field will be recomputed",
     )
@@ -66,7 +69,18 @@ class PurchaseOrder(models.Model):
         related="dispatch_date",
         string="Incoterm date",
         help="Date of transfert of responsibility (is freight dispatch date)",
+        readonly=True,
     )
+
+    @api.onchange("incoterm_address_id")
+    def onchange_freight_rule_id(self):
+        return {
+            "domain": {
+                "freight_rule_id": [
+                    ("partner_src_id", "in", (False, self.incoterm_address_id.id))
+                ]
+            }
+        }
 
     def _set_freight_fields(
         self, receive_date, dispatch_date, freight_duration, policy
