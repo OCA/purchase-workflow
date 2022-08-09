@@ -95,63 +95,6 @@ class TestQtyUpdate(SavepointCase):
         self.assertEqual(move1.product_uom_qty, 0)
         self.assertEqual(move1.state, "cancel")
 
-    def test_purchase_line_split_move(self):
-        line1 = self.po.order_line[0]
-        move1 = self.env["stock.move"].search([("purchase_line_id", "=", line1.id)])
-        self.assertEqual(len(move1), 1)
-        # change price so when qty is updated, price is as well, an triggers the split
-        self.assertEqual(self.p1.seller_ids.price, 10.0)
-        self.p1.seller_ids.price = 9.0
-        line1._onchange_quantity()
-        line1.write({"product_qty": 64})
-        moves = self.env["stock.move"].search([("purchase_line_id", "=", line1.id)])
-        self.assertEqual(len(moves), 2)
-        self.assertEqual(moves.mapped("product_uom_qty"), [42.0, 22.0])
-        # Then, decrease 11
-        line1.write({"product_qty": 53})
-        self.assertEqual(moves.mapped("product_uom_qty"), [42.0, 11.0])
-        # Again, decrease 11
-        line1.write({"product_qty": 42})
-        self.assertEqual(moves.mapped("product_uom_qty"), [42.0, 0.0])
-        active_move = moves.filtered(lambda m: m.state != "cancel")
-        inactive_move = moves.filtered(lambda m: m.state == "cancel")
-        self.assertEqual(active_move.product_uom_qty, 42)
-        self.assertEqual(inactive_move.product_uom_qty, 0)
-
-    def test_purchase_line_split_move_w_reserved_qty(self):
-        line1 = self.po.order_line[0]
-        move1 = self.env["stock.move"].search([("purchase_line_id", "=", line1.id)])
-        self.assertEqual(len(move1), 1)
-        # change price so when qty is updated, price is as well, an triggers the split
-        self.assertEqual(self.p1.seller_ids.price, 10.0)
-        self.p1.seller_ids.price = 9.0
-        line1._onchange_quantity()
-        # Increase qty by 22, move1 should be split
-        line1.write({"product_qty": 64})
-        moves = self.env["stock.move"].search([("purchase_line_id", "=", line1.id)])
-        move2 = moves - move1
-        # reserve 12 qty
-        move2.quantity_done = 12
-        self.assertEqual(move2._get_removable_qty(), 10)
-        line1.write({"product_qty": 60})
-        self.assertEqual(moves.mapped("product_uom_qty"), [42.0, 18.0])
-        # We cannot remove more than 10 on move2, deduce the max from it,
-        # then deduce from move1
-        line1.write({"product_qty": 50})
-        self.assertEqual(moves.mapped("product_uom_qty"), [38.0, 12.0])
-        # We should not be able to set a qty < to 12, since 12 products are reserved
-        exception_regex = (
-            "You cannot remove more that what remains to be done. "
-            "Max removable quantity 38.0."
-        )
-        with self.assertRaisesRegex(UserError, exception_regex):
-            line1.write({"product_qty": 11})
-        # with 12, move1 should be cancelled
-        line1.write({"product_qty": 12})
-        self.assertEqual(move1.product_uom_qty, 0.0)
-        self.assertEqual(move1.state, "cancel")
-        self.assertEqual(move2.product_uom_qty, 12.0)
-
     def test_reduce_purchase_qty_with_canceled_moves(self):
         """Check canceled moves are not taken into account."""
         self.po.button_cancel()  # Cancel the moves
