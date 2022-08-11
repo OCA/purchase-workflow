@@ -5,10 +5,30 @@ class PurchaseOrderLineComponent(models.Model):
     _name = "purchase.order.line.component"
     _description = "Purchase Order Line Component"
 
+    def get_component_domain(self):
+        variant_ids = self._context.get("parent_product_ids", False)
+        return [("id", "not in", variant_ids)] if variant_ids else []
+
     line_id = fields.Many2one(
         "purchase.order.line", string="Purchase Order Line", required=True
     )
-    component_id = fields.Many2one("product.product", string="Component", required=True)
+    component_id = fields.Many2one(
+        comodel_name="product.product",
+        domain=get_component_domain,
+        string="Component",
+        required=True,
+    )
+
+    valid_supplier_ids = fields.Many2many(
+        comodel_name="product.supplierinfo",
+        compute="_compute_valid_supplier_ids",
+        store=True,
+    )
+    component_supplier_id = fields.Many2one(
+        comodel_name="product.supplierinfo",
+        string="Select Pricelist",
+        required=True,
+    )
     component_uom_category_id = fields.Many2one(
         related="component_id.uom_id.category_id"
     )
@@ -40,6 +60,7 @@ class PurchaseOrderLineComponent(models.Model):
     price_unit = fields.Float(
         string="Unit Price",
         required=True,
+        compute="_compute_price_unit",
         digits="Unit Price",
     )
     price_subtotal = fields.Monetary(
@@ -136,9 +157,20 @@ class PurchaseOrderLineComponent(models.Model):
                     "product_uom_qty": 1,
                     "product_uom_id": self.component_id.uom_po_id
                     or self.component_id.uom_id,
-                    "price_unit": self.component_id.standard_price,
+                    "price_unit": 0.0,
+                    "component_supplier_id": self.env["product.supplierinfo"],
                 }
             )
+
+    @api.depends("component_id")
+    def _compute_valid_supplier_ids(self):
+        for rec in self:
+            rec.valid_supplier_ids = rec.component_id.seller_ids
+
+    @api.depends("component_supplier_id")
+    def _compute_price_unit(self):
+        for rec in self:
+            rec.price_unit = rec.component_supplier_id.price
 
     @api.model
     def create(self, vals):

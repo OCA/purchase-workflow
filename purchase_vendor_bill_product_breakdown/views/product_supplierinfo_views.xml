@@ -7,11 +7,12 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="bill_components" invisible="1" />
+                <field name="product_bill_components" invisible="1" />
                 <button
                     name="action_open_component_view"
                     type="object"
                     icon="fa-list"
-                    attrs="{'invisible': [('bill_components', '=', False)]}"
+                    attrs="{'invisible': ['|', ('bill_components', '=', False), ('product_bill_components', '=', False)]}"
                 />
             </tree>
         </field>
@@ -34,7 +35,13 @@
                             </control>
                             <field name="supplierinfo_id" invisible="1" />
                             <field name="component_uom_category_id" invisible="1" />
+                            <field name="valid_supplier_ids" invisible="1" />
                             <field name="component_id" />
+                            <field
+                                name="component_supplier_id"
+                                domain="[('id', 'in', valid_supplier_ids)]"
+                            />
+                            <field name="price" />
                             <field name="product_uom_qty" />
                             <field name="product_uom_id" />
                         </tree>
