@@ -11,16 +11,16 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-04-02 00:52+0000\n"
-"PO-Revision-Date: 2020-08-28 16:59+0000\n"
-"Last-Translator: Sandie FAVRE <sandie.favre@grap.coop>\n"
-"Language-Team: French (http://www.transifex.com/oca/OCA-purchase-"
-"workflow-9-0/language/fr/)\n"
+"PO-Revision-Date: 2022-08-12 17:07+0000\n"
+"Last-Translator: Khalid Hazam <k.hazam@badep.ma>\n"
+"Language-Team: French (http://www.transifex.com/oca/"
+"OCA-purchase-workflow-9-0/language/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: purchase_picking_state
 #: code:addons/purchase_picking_state/models/purchase.py:0
@@ -31,17 +31,17 @@ msgstr "Annulé"
 #. module: purchase_picking_state
 #: model:ir.model.fields,field_description:purchase_picking_state.field_purchase_order__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nom affiché"
 
 #. module: purchase_picking_state
 #: model:ir.model.fields,field_description:purchase_picking_state.field_purchase_order__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: purchase_picking_state
 #: model:ir.model.fields,field_description:purchase_picking_state.field_purchase_order____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Dernière modification le"
 
 #. module: purchase_picking_state
 #: code:addons/purchase_picking_state/models/purchase.py:0
