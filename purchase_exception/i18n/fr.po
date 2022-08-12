@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-23 17:50+0000\n"
-"PO-Revision-Date: 2022-06-23 18:05+0000\n"
+"PO-Revision-Date: 2022-08-12 17:07+0000\n"
 "Last-Translator: Khalid Hazam <k.hazam@badep.ma>\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "Language: fr\n"
@@ -46,9 +46,8 @@ msgstr "Nom affiché"
 
 #. module: purchase_exception
 #: model:ir.model,name:purchase_exception.model_exception_rule
-#, fuzzy
 msgid "Exception Rule"
-msgstr "Règles d'exception"
+msgstr "Règle de l'exception"
 
 #. module: purchase_exception
 #: model:ir.ui.menu,name:purchase_exception.menu_purchase_exception_parent
@@ -119,14 +118,14 @@ msgstr "Commande"
 
 #. module: purchase_exception
 #: model:ir.model,name:purchase_exception.model_purchase_order_line
-#, fuzzy
 msgid "Purchase Order Line"
-msgstr "Commande"
+msgstr "Ligne de commande"
 
 #. module: purchase_exception
 #: model:ir.model,name:purchase_exception.model_purchase_exception_confirm
+#, fuzzy
 msgid "Purchase exception wizard"
-msgstr ""
+msgstr "Wizard d'exception d'achat"
 
 #. module: purchase_exception
 #: model:exception.rule,description:purchase_exception.pol_excep_qty_check
@@ -140,9 +139,8 @@ msgstr "Bon de Commande"
 
 #. module: purchase_exception
 #: model:ir.model.fields.selection,name:purchase_exception.selection__exception_rule__model__purchase_order_line
-#, fuzzy
 msgid "Purchase order line"
-msgstr "Commande"
+msgstr "Ligne de commande d'achat"
 
 #. module: purchase_exception
 #: model:ir.actions.server,name:purchase_exception.ir_cron_test_po_order_except_ir_actions_server
