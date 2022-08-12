@@ -6,64 +6,66 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2022-08-12 17:07+0000\n"
+"Last-Translator: Khalid Hazam <k.hazam@badep.ma>\n"
 "Language-Team: none\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: purchase_order_line_packaging_qty
 #: model:ir.model.fields,field_description:purchase_order_line_packaging_qty.field_purchase_order_line__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nom affiché"
 
 #. module: purchase_order_line_packaging_qty
 #: model:ir.model.fields,field_description:purchase_order_line_packaging_qty.field_purchase_order_line__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: purchase_order_line_packaging_qty
 #: model:ir.model.fields,field_description:purchase_order_line_packaging_qty.field_purchase_order_line____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Dernière modification le"
 
 #. module: purchase_order_line_packaging_qty
 #: model:ir.model.fields,field_description:purchase_order_line_packaging_qty.field_purchase_order_line__product_packaging
 msgid "Package"
-msgstr ""
+msgstr "Colis"
 
 #. module: purchase_order_line_packaging_qty
 #: model:ir.model.fields,field_description:purchase_order_line_packaging_qty.field_purchase_order_line__product_packaging_qty
 msgid "Package quantity"
-msgstr ""
+msgstr "Quantité de colis"
 
 #. module: purchase_order_line_packaging_qty
 #: code:addons/purchase_order_line_packaging_qty/models/purchase_order_line.py:0
 #, python-format
 msgid "Please select a packaging with a quantity bigger than 0"
-msgstr ""
+msgstr "Veuillez choisir un emballage dont la quantité est supérieure à 0"
 
 #. module: purchase_order_line_packaging_qty
 #: model:ir.model,name:purchase_order_line_packaging_qty.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Ligne de commande d'achat"
 
 #. module: purchase_order_line_packaging_qty
 #: code:addons/purchase_order_line_packaging_qty/models/purchase_order_line.py:0
 #, python-format
 msgid "This product is packaged by %.2f %s. You should sell %.2f %s."
-msgstr ""
+msgstr "Ce produit est emballé par %.2f%s. Vous devriez vendre %.2f%s."
 
 #. module: purchase_order_line_packaging_qty
 #: code:addons/purchase_order_line_packaging_qty/models/purchase_order_line.py:0
 #, python-format
 msgid "Warning"
-msgstr ""
+msgstr "Avertissement"
 
 #. module: purchase_order_line_packaging_qty
 #: code:addons/purchase_order_line_packaging_qty/models/purchase_order_line.py:0
 #, python-format
 msgid "You must define a package before setting a quantity of said package."
-msgstr ""
+msgstr "Vous devez définir un paquet avant de fixer une quantité de ce paquet."
