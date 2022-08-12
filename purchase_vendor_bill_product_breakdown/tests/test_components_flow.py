@@ -30,6 +30,12 @@ class TestComponentsFlow(common.TransactionCase):
         self.res_partner_test_with_bill_components = ResPartner.create(
             {"name": "Partner #1", "bill_components": True}
         )
+        self.res_partner_supplier_1 = ResPartner.create(
+            {"name": "Partner Supplier #1", "bill_components": False}
+        )
+        self.res_partner_supplier_2 = ResPartner.create(
+            {"name": "Partner Supplier #2", "bill_components": False}
+        )
 
         self.res_partner_test_without_bill_components = ResPartner.create(
             {
@@ -41,7 +47,6 @@ class TestComponentsFlow(common.TransactionCase):
         self.product_component_test_1 = ProductProduct.create(
             {
                 "name": "Product Component #1",
-                "standard_price": 1.0,
                 "type": "consu",
                 "uom_id": uom_unit_id,
             }
@@ -50,7 +55,6 @@ class TestComponentsFlow(common.TransactionCase):
         self.product_component_test_2 = ProductProduct.create(
             {
                 "name": "Product Component #2",
-                "standard_price": 2.0,
                 "type": "consu",
                 "uom_id": uom_unit_id,
             }
@@ -59,7 +63,6 @@ class TestComponentsFlow(common.TransactionCase):
         self.product_component_test_3 = ProductProduct.create(
             {
                 "name": "Product Component #3",
-                "standard_price": 3.0,
                 "type": "consu",
                 "uom_id": uom_unit_id,
             }
@@ -68,7 +71,6 @@ class TestComponentsFlow(common.TransactionCase):
         self.product_product_test_1 = ProductProduct.create(
             {
                 "name": "Product #1",
-                "standard_price": 10.0,
                 "type": "consu",
                 "uom_id": uom_unit_id,
             }
@@ -77,7 +79,6 @@ class TestComponentsFlow(common.TransactionCase):
         self.product_product_test_2 = ProductProduct.create(
             {
                 "name": "Product #2",
-                "standard_price": 20.0,
                 "type": "consu",
                 "uom_id": uom_unit_id,
             }
@@ -86,7 +87,6 @@ class TestComponentsFlow(common.TransactionCase):
         self.product_product_test_3 = ProductProduct.create(
             {
                 "name": "Product #3",
-                "standard_price": 30.0,
                 "type": "consu",
                 "uom_id": uom_unit_id,
             }
@@ -100,12 +100,48 @@ class TestComponentsFlow(common.TransactionCase):
                 "currency_id": currency_id,
             }
         )
+        self.product_supplierinfo_test_1_1 = ProductSupplierinfo.create(
+            {
+                "name": self.res_partner_supplier_1.id,
+                "product_id": self.product_component_test_1.id,
+                "price": 100.0,
+                "currency_id": currency_id,
+            }
+        )
+
+        self.product_supplierinfo_test_1_2 = ProductSupplierinfo.create(
+            {
+                "name": self.res_partner_supplier_2.id,
+                "product_id": self.product_component_test_1.id,
+                "price": 200.0,
+                "currency_id": currency_id,
+            }
+        )
+
+        self.product_supplierinfo_test_2 = ProductSupplierinfo.create(
+            {
+                "name": self.res_partner_supplier_1.id,
+                "product_id": self.product_component_test_2.id,
+                "price": 150.0,
+                "currency_id": currency_id,
+            }
+        )
+
+        self.product_supplierinfo_test_3 = ProductSupplierinfo.create(
+            {
+                "name": self.res_partner_supplier_2.id,
+                "product_id": self.product_component_test_3.id,
+                "price": 200.0,
+                "currency_id": currency_id,
+            }
+        )
 
         self.product_supplierinfo_component_test_1 = (
             ProductSupplierinfoComponent.create(
                 {
                     "supplierinfo_id": self.product_supplierinfo.id,
                     "component_id": self.product_component_test_1.id,
+                    "component_supplier_id": self.product_supplierinfo_test_1_1.id,
                     "product_uom_qty": 1.0,
                     "product_uom_id": uom_unit_id,
                 }
@@ -117,6 +153,7 @@ class TestComponentsFlow(common.TransactionCase):
                 {
                     "supplierinfo_id": self.product_supplierinfo.id,
                     "component_id": self.product_component_test_2.id,
+                    "component_supplier_id": self.product_supplierinfo_test_2.id,
                     "product_uom_qty": 2.0,
                     "product_uom_id": uom_unit_id,
                 }
@@ -128,6 +165,7 @@ class TestComponentsFlow(common.TransactionCase):
                 {
                     "supplierinfo_id": self.product_supplierinfo.id,
                     "component_id": self.product_component_test_3.id,
+                    "component_supplier_id": self.product_supplierinfo_test_3.id,
                     "product_uom_qty": 3.0,
                     "product_uom_id": uom_unit_id,
                 }
@@ -147,22 +185,78 @@ class TestComponentsFlow(common.TransactionCase):
         self.product_product_test_1.write(
             {"seller_ids": [(6, 0, self.product_supplierinfo.ids)]}
         )
+        self.product_component_test_1.write(
+            {
+                "seller_ids": [
+                    (
+                        6,
+                        0,
+                        [
+                            self.product_supplierinfo_test_1_1.id,
+                            self.product_supplierinfo_test_1_2.id,
+                        ],
+                    )
+                ]
+            }
+        )
+        self.product_component_test_2.write(
+            {"seller_ids": [(6, 0, self.product_supplierinfo_test_2.ids)]}
+        )
+        self.product_component_test_3.write(
+            {"seller_ids": [(6, 0, self.product_supplierinfo_test_3.ids)]}
+        )
 
         self.product_additional_component_test_1 = ProductProduct.create(
             {
                 "name": "Additional Component #1",
-                "standard_price": 100.0,
                 "type": "consu",
                 "uom_id": uom_unit_id,
+            }
+        )
+
+        self.product_supplierinfo_additional_component_test_1 = (
+            ProductSupplierinfo.create(
+                {
+                    "name": self.res_partner_supplier_1.id,
+                    "product_id": self.product_additional_component_test_1.id,
+                    "price": 180.0,
+                    "currency_id": currency_id,
+                }
+            )
+        )
+
+        self.product_additional_component_test_1.write(
+            {
+                "seller_ids": [
+                    (6, 0, self.product_supplierinfo_additional_component_test_1.ids)
+                ]
             }
         )
 
         self.product_additional_component_test_2 = ProductProduct.create(
             {
                 "name": "Additional Component #2",
-                "standard_price": 200.0,
                 "type": "consu",
                 "uom_id": uom_unit_id,
+            }
+        )
+
+        self.product_supplierinfo_additional_component_test_2 = (
+            ProductSupplierinfo.create(
+                {
+                    "name": self.res_partner_supplier_2.id,
+                    "product_id": self.product_additional_component_test_2.id,
+                    "price": 170.0,
+                    "currency_id": currency_id,
+                }
+            )
+        )
+
+        self.product_additional_component_test_2.write(
+            {
+                "seller_ids": [
+                    (6, 0, self.product_supplierinfo_additional_component_test_2.ids)
+                ]
             }
         )
 
@@ -239,9 +333,15 @@ class TestComponentsFlow(common.TransactionCase):
         purchase_order_line = Form(purchase_order_line_2, view=view_id)
         with purchase_order_line.component_ids.new() as line:
             line.component_id = self.product_additional_component_test_1
+            line.component_supplier_id = (
+                self.product_supplierinfo_additional_component_test_1
+            )
             line.product_uom_qty = 3
         with purchase_order_line.component_ids.new() as line:
             line.component_id = self.product_additional_component_test_2
+            line.component_supplier_id = (
+                self.product_supplierinfo_additional_component_test_2
+            )
             line.product_uom_qty = 2
         purchase_order_line.save()
 
@@ -351,12 +451,12 @@ class TestComponentsFlow(common.TransactionCase):
             round(invoice_1_line_1.quantity, 2), 4.52, msg="Qty must be equal 4.52"
         )
         self.assertEqual(
-            invoice_1_line_1.price_unit, 1.0, msg="Unit Price must be equal 1"
+            invoice_1_line_1.price_unit, 100.0, msg="Unit Price must be equal 100.0"
         )
         self.assertEqual(
             round(invoice_1_line_1.price_subtotal, 2),
-            4.52,
-            msg="Subtotal must be equal 45.2",
+            452.0,
+            msg="Subtotal must be equal 452.0",
         )
 
         invoice_1_line_2 = purchase_order_line_1.invoice_lines.filtered(
@@ -364,10 +464,10 @@ class TestComponentsFlow(common.TransactionCase):
         )
         self.assertEqual(invoice_1_line_2.quantity, 6, msg="Qty must be equal 6")
         self.assertEqual(
-            invoice_1_line_2.price_unit, 2.0, msg="Unit price must be equal 2.0"
+            invoice_1_line_2.price_unit, 150.0, msg="Unit price must be equal 150.0"
         )
         self.assertEqual(
-            invoice_1_line_2.price_subtotal, 12, msg="Subtotal must be equal 12"
+            invoice_1_line_2.price_subtotal, 900.0, msg="Subtotal must be equal 900.0"
         )
 
         invoice_1_line_3 = purchase_order_line_1.invoice_lines.filtered(
@@ -375,10 +475,10 @@ class TestComponentsFlow(common.TransactionCase):
         )
         self.assertEqual(invoice_1_line_3.quantity, 9, msg="Qty must be equal 9")
         self.assertEqual(
-            invoice_1_line_3.price_unit, 3.0, msg="Unit price must be equal 3.0"
+            invoice_1_line_3.price_unit, 200.0, msg="Unit price must be equal 200.0"
         )
         self.assertEqual(
-            invoice_1_line_3.price_subtotal, 27, msg="Subtotal must be equal 27"
+            invoice_1_line_3.price_subtotal, 1800.0, msg="Subtotal must be equal 1800.0"
         )
 
         invoice_2_line_1 = purchase_order_line_2.invoice_lines.filtered(
@@ -386,10 +486,10 @@ class TestComponentsFlow(common.TransactionCase):
         )
         self.assertEqual(invoice_2_line_1.quantity, 9, msg="Qty must be equal 9")
         self.assertEqual(
-            invoice_2_line_1.price_unit, 100, msg="Unit price must be equal 100"
+            invoice_2_line_1.price_unit, 180.0, msg="Unit price must be equal 180.0"
         )
         self.assertEqual(
-            invoice_2_line_1.price_subtotal, 900, msg="Subtotal must be equal 900"
+            invoice_2_line_1.price_subtotal, 1620.0, msg="Subtotal must be equal 1620.0"
         )
 
         invoice_2_line_2 = purchase_order_line_2.invoice_lines.filtered(
@@ -397,10 +497,10 @@ class TestComponentsFlow(common.TransactionCase):
         )
         self.assertEqual(invoice_2_line_2.quantity, 6, msg="Qty must be equal 6")
         self.assertEqual(
-            invoice_2_line_2.price_unit, 200, msg="Unit price must be equal 200"
+            invoice_2_line_2.price_unit, 170.0, msg="Unit price must be equal 170.0"
         )
         self.assertEqual(
-            invoice_2_line_2.price_subtotal, 1200, msg="Subtotal must be equal 1200"
+            invoice_2_line_2.price_subtotal, 1020.0, msg="Subtotal must be equal 1020.0"
         )
 
         invoice_3_line_1 = purchase_order_line_3.invoice_lines.filtered(
@@ -522,7 +622,9 @@ class TestComponentsFlow(common.TransactionCase):
             round(invoice_1_line_1.quantity, 2), 2, msg="Qty must be equal 2"
         )
         self.assertEqual(
-            round(invoice_1_line_1.price_subtotal, 2), 2, msg="Subtotal must be equal 2"
+            round(invoice_1_line_1.price_subtotal, 2),
+            200.0,
+            msg="Subtotal must be equal 200.0",
         )
 
         invoice_1_line_2 = purchase_order_line_1.invoice_lines.filtered(
@@ -531,7 +633,7 @@ class TestComponentsFlow(common.TransactionCase):
         )
         self.assertEqual(invoice_1_line_2.quantity, 4, msg="Qty must be equal 4")
         self.assertEqual(
-            invoice_1_line_2.price_subtotal, 8, msg="Subtotal must be equal 8"
+            invoice_1_line_2.price_subtotal, 600.0, msg="Subtotal must be equal 600.0"
         )
 
         invoice_1_line_3 = purchase_order_line_1.invoice_lines.filtered(
@@ -540,7 +642,7 @@ class TestComponentsFlow(common.TransactionCase):
         )
         self.assertEqual(invoice_1_line_3.quantity, 6, msg="Qty must be equal 6")
         self.assertEqual(
-            invoice_1_line_3.price_subtotal, 18, msg="Subtotal must be equal 18"
+            invoice_1_line_3.price_subtotal, 1200.0, msg="Subtotal must be equal 1200.0"
         )
 
         invoice_2_line_1 = purchase_order_line_2.invoice_lines.filtered(
@@ -549,7 +651,7 @@ class TestComponentsFlow(common.TransactionCase):
         )
         self.assertEqual(invoice_2_line_1.quantity, 6, msg="Qty must be equal 6")
         self.assertEqual(
-            invoice_2_line_1.price_subtotal, 600, msg="Subtotal must be equal 600"
+            invoice_2_line_1.price_subtotal, 1080.0, msg="Subtotal must be equal 1080.0"
         )
 
         invoice_2_line_2 = purchase_order_line_2.invoice_lines.filtered(
@@ -558,7 +660,7 @@ class TestComponentsFlow(common.TransactionCase):
         )
         self.assertEqual(invoice_2_line_2.quantity, 4, msg="Qty must be equal 4")
         self.assertEqual(
-            invoice_2_line_2.price_subtotal, 800, msg="Subtotal must be equal 800"
+            invoice_2_line_2.price_subtotal, 680.0, msg="Subtotal must be equal 680.0"
         )
 
         invoice_3_line_1 = purchase_order_line_3.invoice_lines.filtered(
@@ -879,6 +981,6 @@ class TestComponentsFlow(common.TransactionCase):
         )
         self.assertEqual(
             purchase_order_line_component.price_unit,
-            1.0,
-            msg="Price Unit must be equal 10.0",
+            0.0,
+            msg="Price Unit must be equal 0.0",
         )

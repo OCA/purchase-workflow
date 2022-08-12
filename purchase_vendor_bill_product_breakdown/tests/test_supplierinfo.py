@@ -14,6 +14,7 @@ class TestSupplierInfo(TransactionCase):
         self.res_partner_test = ResPartner.create(
             {"name": "Test Partner #1", "bill_components": True}
         )
+        self.res_partner_supplier = ResPartner.create({"name": "Test Partner Supplier"})
 
         self.product_product_test_1 = ProductProduct.create(
             {
@@ -27,19 +28,43 @@ class TestSupplierInfo(TransactionCase):
         self.product_product_component_test_1 = ProductProduct.create(
             {
                 "name": "Test Component #1",
-                "standard_price": 5.0,
                 "type": "consu",
                 "uom_id": uom_unit_id,
             }
         )
 
+        self.product_supplier_component_test_1 = ProductSupplierInfo.create(
+            {
+                "name": self.res_partner_supplier.id,
+                "product_id": self.product_product_component_test_1.id,
+                "price": 5.0,
+                "currency_id": currency_id,
+            }
+        )
+
+        self.product_product_component_test_1.write(
+            {"seller_ids": [(6, 0, self.product_supplier_component_test_1.ids)]}
+        )
+
         self.product_product_component_test_2 = ProductProduct.create(
             {
                 "name": "Test Component #2",
-                "standard_price": 3.0,
                 "type": "consu",
                 "uom_id": uom_unit_id,
             }
+        )
+
+        self.product_supplier_component_test_2 = ProductSupplierInfo.create(
+            {
+                "name": self.res_partner_supplier.id,
+                "product_id": self.product_product_component_test_2.id,
+                "price": 3.0,
+                "currency_id": currency_id,
+            }
+        )
+
+        self.product_product_component_test_2.write(
+            {"seller_ids": [(6, 0, self.product_supplier_component_test_2.ids)]}
         )
 
         self.product_supplier_info = ProductSupplierInfo.create(
@@ -54,6 +79,7 @@ class TestSupplierInfo(TransactionCase):
                         0,
                         {
                             "component_id": self.product_product_component_test_1.id,
+                            "component_supplier_id": self.product_supplier_component_test_1.id,
                             "product_uom_qty": 1.0,
                             "product_uom_id": uom_unit_id,
                         },
@@ -63,6 +89,7 @@ class TestSupplierInfo(TransactionCase):
                         0,
                         {
                             "component_id": self.product_product_component_test_2.id,
+                            "component_supplier_id": self.product_supplier_component_test_2.id,
                             "product_uom_qty": 2.0,
                             "product_uom_id": uom_unit_id,
                         },
