@@ -15,8 +15,9 @@ class PurchaseTransactionCase(TransactionCase):
         self.res_partner_test_bill_components = ResPartner.create(
             {"name": "Test Partner #2", "bill_components": True}
         )
-        self.res_partner_supplier = ResPartner.create(
-            {"name": "TestP Partner Supplier"}
+        self.res_partner_supplier = ResPartner.create({"name": "Test Partner Supplier"})
+        self.res_partner_supplier_2 = ResPartner.create(
+            {"name": "Test Partner Supllier #2"}
         )
 
         self.product_product_test_1 = ProductProduct.create(
@@ -55,8 +56,28 @@ class PurchaseTransactionCase(TransactionCase):
             }
         )
 
+        self.product_supplier_component_test_1_2 = ProductSupplierInfo.create(
+            {
+                "name": self.res_partner_supplier_2.id,
+                "product_id": self.product_product_component_test_1.id,
+                "price": 6.0,
+                "currency_id": currency_id,
+            }
+        )
+
         self.product_product_component_test_1.write(
-            {"seller_ids": [(6, 0, self.product_supplier_component_test_1.ids)]}
+            {
+                "seller_ids": [
+                    (
+                        6,
+                        0,
+                        [
+                            self.product_supplier_component_test_1.id,
+                            self.product_supplier_component_test_1_2.id,
+                        ],
+                    )
+                ]
+            }
         )
 
         self.product_product_component_test_2 = ProductProduct.create(
