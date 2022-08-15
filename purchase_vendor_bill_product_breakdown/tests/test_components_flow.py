@@ -30,6 +30,9 @@ class TestComponentsFlow(common.TransactionCase):
         self.res_partner_test_with_bill_components = ResPartner.create(
             {"name": "Partner #1", "bill_components": True}
         )
+        self.res_partner_not_supplier = ResPartner.create(
+            {"name": "Partner #2", "bill_components": True}
+        )
 
         self.res_partner_test_without_bill_components = ResPartner.create(
             {
@@ -914,6 +917,9 @@ class TestComponentsFlow(common.TransactionCase):
                 "partner_id": self.res_partner_test_with_bill_components.id,
             }
         )
+        purchase_order_test_2 = PurchaseOrder.create(
+            {"partner_id": self.res_partner_not_supplier.id}
+        )
 
         test_line_1 = PurchaseOrderLine.create(
             {
@@ -925,6 +931,21 @@ class TestComponentsFlow(common.TransactionCase):
             }
         )
 
+        test_line_2 = PurchaseOrderLine.create(
+            {
+                "order_id": purchase_order_test_2.id,
+                "product_id": self.product_product_test_1.id,
+                "name": self.product_product_test_1.name,
+                "price_unit": 4.0,
+                "product_qty": 4.0,
+            }
+        )
+
+        purchase_order_line_inv_component = PurchaseOrderLineComponent.new(
+            {"line_id": test_line_2.id, "product_uom_qty": 1.0}
+        )
+        result = purchase_order_line_inv_component.onchange_component_id()
+        self.assertIsNone(result, msg="Result must be None")
         purchase_order_line_component = PurchaseOrderLineComponent.new(
             {
                 "line_id": test_line_1.id,
