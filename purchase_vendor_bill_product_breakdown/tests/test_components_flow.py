@@ -30,12 +30,6 @@ class TestComponentsFlow(common.TransactionCase):
         self.res_partner_test_with_bill_components = ResPartner.create(
             {"name": "Partner #1", "bill_components": True}
         )
-        self.res_partner_supplier_1 = ResPartner.create(
-            {"name": "Partner Supplier #1", "bill_components": False}
-        )
-        self.res_partner_supplier_2 = ResPartner.create(
-            {"name": "Partner Supplier #2", "bill_components": False}
-        )
 
         self.res_partner_test_without_bill_components = ResPartner.create(
             {
@@ -102,7 +96,7 @@ class TestComponentsFlow(common.TransactionCase):
         )
         self.product_supplierinfo_test_1_1 = ProductSupplierinfo.create(
             {
-                "name": self.res_partner_supplier_1.id,
+                "name": self.res_partner_test_with_bill_components.id,
                 "product_id": self.product_component_test_1.id,
                 "price": 100.0,
                 "currency_id": currency_id,
@@ -111,7 +105,7 @@ class TestComponentsFlow(common.TransactionCase):
 
         self.product_supplierinfo_test_1_2 = ProductSupplierinfo.create(
             {
-                "name": self.res_partner_supplier_2.id,
+                "name": self.res_partner_test_with_bill_components.id,
                 "product_id": self.product_component_test_1.id,
                 "price": 200.0,
                 "currency_id": currency_id,
@@ -120,7 +114,7 @@ class TestComponentsFlow(common.TransactionCase):
 
         self.product_supplierinfo_test_2 = ProductSupplierinfo.create(
             {
-                "name": self.res_partner_supplier_1.id,
+                "name": self.res_partner_test_with_bill_components.id,
                 "product_id": self.product_component_test_2.id,
                 "price": 150.0,
                 "currency_id": currency_id,
@@ -129,7 +123,7 @@ class TestComponentsFlow(common.TransactionCase):
 
         self.product_supplierinfo_test_3 = ProductSupplierinfo.create(
             {
-                "name": self.res_partner_supplier_2.id,
+                "name": self.res_partner_test_with_bill_components.id,
                 "product_id": self.product_component_test_3.id,
                 "price": 200.0,
                 "currency_id": currency_id,
@@ -141,7 +135,6 @@ class TestComponentsFlow(common.TransactionCase):
                 {
                     "supplierinfo_id": self.product_supplierinfo.id,
                     "component_id": self.product_component_test_1.id,
-                    "component_supplier_id": self.product_supplierinfo_test_1_1.id,
                     "product_uom_qty": 1.0,
                     "product_uom_id": uom_unit_id,
                 }
@@ -153,7 +146,6 @@ class TestComponentsFlow(common.TransactionCase):
                 {
                     "supplierinfo_id": self.product_supplierinfo.id,
                     "component_id": self.product_component_test_2.id,
-                    "component_supplier_id": self.product_supplierinfo_test_2.id,
                     "product_uom_qty": 2.0,
                     "product_uom_id": uom_unit_id,
                 }
@@ -165,7 +157,6 @@ class TestComponentsFlow(common.TransactionCase):
                 {
                     "supplierinfo_id": self.product_supplierinfo.id,
                     "component_id": self.product_component_test_3.id,
-                    "component_supplier_id": self.product_supplierinfo_test_3.id,
                     "product_uom_qty": 3.0,
                     "product_uom_id": uom_unit_id,
                 }
@@ -217,7 +208,7 @@ class TestComponentsFlow(common.TransactionCase):
         self.product_supplierinfo_additional_component_test_1 = (
             ProductSupplierinfo.create(
                 {
-                    "name": self.res_partner_supplier_1.id,
+                    "name": self.res_partner_test_with_bill_components.id,
                     "product_id": self.product_additional_component_test_1.id,
                     "price": 180.0,
                     "currency_id": currency_id,
@@ -244,7 +235,7 @@ class TestComponentsFlow(common.TransactionCase):
         self.product_supplierinfo_additional_component_test_2 = (
             ProductSupplierinfo.create(
                 {
-                    "name": self.res_partner_supplier_2.id,
+                    "name": self.res_partner_test_with_bill_components.id,
                     "product_id": self.product_additional_component_test_2.id,
                     "price": 170.0,
                     "currency_id": currency_id,
@@ -333,15 +324,9 @@ class TestComponentsFlow(common.TransactionCase):
         purchase_order_line = Form(purchase_order_line_2, view=view_id)
         with purchase_order_line.component_ids.new() as line:
             line.component_id = self.product_additional_component_test_1
-            line.component_supplier_id = (
-                self.product_supplierinfo_additional_component_test_1
-            )
             line.product_uom_qty = 3
         with purchase_order_line.component_ids.new() as line:
             line.component_id = self.product_additional_component_test_2
-            line.component_supplier_id = (
-                self.product_supplierinfo_additional_component_test_2
-            )
             line.product_uom_qty = 2
         purchase_order_line.save()
 
@@ -368,7 +353,7 @@ class TestComponentsFlow(common.TransactionCase):
             lambda l: l.component_id == self.product_component_test_2
         )
         self.assertEqual(
-            pol_1_component_2.total_qty, 6, msg="Component total Qty must be equal 6"
+            pol_1_component_2.total_qty, 6, msg="Component total Qty must be equal to 6"
         )
 
         pol_1_component_3 = purchase_order_line_1.component_ids.filtered(
@@ -473,7 +458,7 @@ class TestComponentsFlow(common.TransactionCase):
         invoice_1_line_3 = purchase_order_line_1.invoice_lines.filtered(
             lambda l: l.product_id == self.product_component_test_3
         )
-        self.assertEqual(invoice_1_line_3.quantity, 9, msg="Qty must be equal 9")
+        self.assertEqual(invoice_1_line_3.quantity, 9, msg="Qty must be equal to 9")
         self.assertEqual(
             invoice_1_line_3.price_unit, 200.0, msg="Unit price must be equal 200.0"
         )
@@ -538,26 +523,28 @@ class TestComponentsFlow(common.TransactionCase):
             msg="Invoiced Qty must be equal 4.52",
         )
         self.assertEqual(
-            pol_1_component_2.qty_invoiced, 6, msg="Invoiced Qty must be equal 6"
+            pol_1_component_2.qty_invoiced, 6, msg="Invoiced Qty must be equal to 6"
         )
         self.assertEqual(
-            pol_1_component_3.qty_invoiced, 9, msg="Invoiced Qty must be equal 9"
+            pol_1_component_3.qty_invoiced, 9, msg="Invoiced Qty must be equal to 9"
         )
         self.assertEqual(
-            pol_2_component_1.qty_invoiced, 9, msg="Invoiced Qty must be equal 9"
+            pol_2_component_1.qty_invoiced, 9, msg="Invoiced Qty must be equal to 9"
         )
         self.assertEqual(
-            pol_2_component_2.qty_invoiced, 6, msg="Invoiced Qty must be equal 6"
+            pol_2_component_2.qty_invoiced, 6, msg="Invoiced Qty must be equal to 6"
         )
 
         purchase_order.order_line.write({"qty_received": 5})
         self.assertEqual(
             round(pol_1_component_1.total_qty, 2),
             6.52,
-            msg="Component total Qty must be equal 6.52",
+            msg="Component total Qty must be equal t0 6.52",
         )
         self.assertEqual(
-            pol_1_component_2.total_qty, 10, msg="Component total Qty must be equal 10"
+            pol_1_component_2.total_qty,
+            10,
+            msg="Component total Qty must be equal to 10",
         )
         self.assertEqual(
             pol_1_component_3.total_qty, 15, msg="Component total Qty must be equal 15"
@@ -944,17 +931,16 @@ class TestComponentsFlow(common.TransactionCase):
                 "product_uom_qty": 2.0,
             }
         )
-
+        self.assertEqual(
+            purchase_order_line_component.product_uom_qty,
+            2,
+            msg="Product UOM Qty must be equal to 2",
+        )
         purchase_order_line_component.onchange_component_id()
         self.assertEqual(
             purchase_order_line_component.price_unit,
             0.0,
-            msg="Price Unit must be equal 0.0",
-        )
-        self.assertEqual(
-            purchase_order_line_component.product_uom_qty,
-            2,
-            msg="Product UOM Qty must be equal 2",
+            msg="Price Unit must be equal to 0.0",
         )
         self.assertEqual(
             purchase_order_line_component.product_uom_id,
@@ -972,15 +958,15 @@ class TestComponentsFlow(common.TransactionCase):
         self.assertEqual(
             purchase_order_line_component.product_uom_qty,
             1,
-            msg="Product UOM Qty must be equal 1",
+            msg="Product UOM Qty must be equal to 1",
         )
         self.assertEqual(
             purchase_order_line_component.product_uom_id.id,
             uom_unit_id,
-            msg="Product UOM must be equal {}".format(uom_unit_id),
+            msg="Product UOM must be equal to {}".format(uom_unit_id),
         )
         self.assertEqual(
             purchase_order_line_component.price_unit,
-            0.0,
-            msg="Price Unit must be equal 0.0",
+            100.0,
+            msg="Price Unit must be equal to 100.0",
         )

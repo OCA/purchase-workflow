@@ -29,18 +29,26 @@ class ProductSupplierInfoComponent(models.Model):
         readonly=True,
     )
     product_uom_qty = fields.Float(
-        compute="_compute_current_price",
         string="Qty per Unit",
         default=1.0,
         required=True,
+        readonly=False,
     )
     product_uom_id = fields.Many2one(
         comodel_name="uom.uom",
         string="Unit of Measure",
         domain="[('category_id', '=', component_uom_category_id)]",
-        compute="_compute_current_price",
         required=True,
     )
+    price_total = fields.Float(
+        compute="_compute_price_total",
+        store=True,
+    )
+
+    @api.depends("product_uom_qty", "current_price")
+    def _compute_price_total(self):
+        for rec in self:
+            rec.price_total = rec.current_price * rec.product_uom_qty
 
     @api.depends("component_id")
     def _compute_current_price(self):
@@ -54,16 +62,21 @@ class ProductSupplierInfoComponent(models.Model):
                     "current_price": supplier_id[0].price
                     if supplier_id
                     else rec.component_id.standard_price,
-                    "product_uom_qty": 1.0,
-                    "product_uom_id": rec.component_id.uom_po_id
-                    or rec.component_id.uom_id,
                 }
             )
 
     @api.onchange("component_id")
     def onchange_component_id(self):
         """Set default value at component onchange"""
-        if not self.component_id:
-            parent_component = self.supplierinfo_id.product_variant_ids
-            components = self.supplierinfo_id.component_ids.mapped("component_id")
-            self.invalid_component_ids = parent_component | components
+        if self.component_id:
+            return
+        parent_component = self.supplierinfo_id.product_variant_ids
+        components = self.supplierinfo_id.component_ids.mapped("component_id")
+        self.write(
+            {
+                "product_uom_qty": 1.0,
+                "product_uom_id": self.component_id.uom_po_id
+                or self.component_id.uom_id,
+                "invalid_component_ids": parent_component | components,
+            }
+        )

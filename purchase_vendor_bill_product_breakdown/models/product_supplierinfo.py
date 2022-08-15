@@ -14,6 +14,14 @@ class SupplierInfo(models.Model):
         compute="_compute_product_variant_ids",
         store=True,
     )
+    price = fields.Float(compute="_compute_price", store=True, readonly=True)
+
+    @api.depends("component_ids", "bill_components")
+    def _compute_price(self):
+        for rec in self.filtered(
+            lambda item: len(item.component_ids) > 0 and item.bill_components
+        ):
+            rec.price = sum(rec.component_ids.mapped("price_total"))
 
     @api.depends("product_tmpl_id", "product_tmpl_id.product_variant_ids")
     def _compute_product_variant_ids(self):

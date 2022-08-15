@@ -43,6 +43,7 @@
                             <field name="current_price" />
                             <field name="product_uom_qty" />
                             <field name="product_uom_id" />
+                            <field name="price_total" />
                         </tree>
                     </field>
                     <footer>

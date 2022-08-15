@@ -23,7 +23,6 @@ class PurchaseOrderLineComponent(models.Model):
     product_uom_qty = fields.Float(
         string="Quantity per Unit",
         default=1.0,
-        compute="_compute_price_unit",
         required=True,
     )
     total = fields.Float(string="Quantity", compute="_compute_total")
@@ -44,7 +43,6 @@ class PurchaseOrderLineComponent(models.Model):
     product_uom_id = fields.Many2one(
         "uom.uom",
         string="Unit of Measure",
-        compute="_compute_price_unit",
         domain="[('category_id', '=', component_uom_category_id)]",
         required=True,
     )
@@ -53,6 +51,8 @@ class PurchaseOrderLineComponent(models.Model):
         string="Unit Price",
         required=True,
         compute="_compute_price_unit",
+        store=True,
+        default=0.0,
         digits="Unit Price",
     )
     price_subtotal = fields.Monetary(
@@ -149,7 +149,6 @@ class PurchaseOrderLineComponent(models.Model):
             )
             rec.write(
                 {
-                    "product_uom_qty": 1,
                     "product_uom_id": rec.component_id.uom_po_id
                     or rec.component_id.uom_id,
                     "price_unit": supplier_id[0].price
@@ -162,6 +161,13 @@ class PurchaseOrderLineComponent(models.Model):
     def onchange_component_id(self):
         """Set default value at component onchange"""
         if self.component_id:
+            self.write(
+                {
+                    "product_uom_qty": 1,
+                    "product_uom_id": self.component_id.uom_po_id
+                    or self.component_id.uom_id,
+                }
+            )
             return
         supplier_id = self.line_id.get_supplier()
         if not supplier_id:

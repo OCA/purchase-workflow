@@ -79,7 +79,6 @@ class TestSupplierInfo(TransactionCase):
                         0,
                         {
                             "component_id": self.product_product_component_test_1.id,
-                            "component_supplier_id": self.product_supplier_component_test_1.id,
                             "product_uom_qty": 1.0,
                             "product_uom_id": uom_unit_id,
                         },
@@ -89,7 +88,6 @@ class TestSupplierInfo(TransactionCase):
                         0,
                         {
                             "component_id": self.product_product_component_test_2.id,
-                            "component_supplier_id": self.product_supplier_component_test_2.id,
                             "product_uom_qty": 2.0,
                             "product_uom_id": uom_unit_id,
                         },
