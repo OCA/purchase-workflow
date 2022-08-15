@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2022-08-15 13:07+0000\n"
+"Last-Translator: Khalid Hazam <k.hazam@badep.ma>\n"
 "Language-Team: none\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: purchase_request_exception
 #: model_terms:ir.ui.view,arch_db:purchase_request_exception.view_purchase_request_form
@@ -22,12 +24,12 @@ msgstr ""
 #. module: purchase_request_exception
 #: model:ir.model.fields,field_description:purchase_request_exception.field_exception_rule__model
 msgid "Apply on"
-msgstr ""
+msgstr "Appliquer sur"
 
 #. module: purchase_request_exception
 #: model_terms:ir.ui.view,arch_db:purchase_request_exception.view_purchase_request_search
 msgid "Blocked in Draft"
-msgstr ""
+msgstr "Bloqué à l'état brouillon"
 
 #. module: purchase_request_exception
 #: model_terms:ir.ui.view,arch_db:purchase_request_exception.view_purchase_request_form
@@ -39,12 +41,12 @@ msgstr ""
 #. module: purchase_request_exception
 #: model:ir.model.fields,field_description:purchase_request_exception.field_purchase_request_exception_confirm__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Créée par"
 
 #. module: purchase_request_exception
 #: model:ir.model.fields,field_description:purchase_request_exception.field_purchase_request_exception_confirm__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Créée le"
 
 #. module: purchase_request_exception
 #: model:ir.model.fields,field_description:purchase_request_exception.field_exception_rule__display_name
@@ -52,27 +54,27 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_request_exception.field_purchase_request_exception_confirm__display_name
 #: model:ir.model.fields,field_description:purchase_request_exception.field_purchase_request_line__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nom affiché"
 
 #. module: purchase_request_exception
 #: model:ir.model,name:purchase_request_exception.model_exception_rule
 msgid "Exception Rule"
-msgstr ""
+msgstr "Règle de l'exception"
 
 #. module: purchase_request_exception
 #: model:ir.model.fields,field_description:purchase_request_exception.field_purchase_request__exception_ids
 msgid "Exceptions"
-msgstr ""
+msgstr "Exceptions"
 
 #. module: purchase_request_exception
 #: model:ir.model.fields,field_description:purchase_request_exception.field_purchase_request__exceptions_summary
 msgid "Exceptions Summary"
-msgstr ""
+msgstr "Gestionnaire d'exception"
 
 #. module: purchase_request_exception
 #: model:ir.model.fields,field_description:purchase_request_exception.field_purchase_request_exception_confirm__exception_ids
 msgid "Exceptions to resolve"
-msgstr ""
+msgstr "Règles de restriction"
 
 #. module: purchase_request_exception
 #: model:ir.model.fields,field_description:purchase_request_exception.field_exception_rule__id
