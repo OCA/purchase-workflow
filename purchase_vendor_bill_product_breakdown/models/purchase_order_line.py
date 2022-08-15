@@ -38,7 +38,6 @@ class PurchaseOrderLine(models.Model):
                         {
                             "line_id": self.id,
                             "component_id": component.component_id.id,
-                            "component_supplier_id": component.component_supplier_id.id,
                             "product_uom_qty": component.product_uom_qty,
                             "total_qty": 0,
                             "product_uom_id": component.product_uom_id.id,
@@ -78,8 +77,7 @@ class PurchaseOrderLine(models.Model):
         view_id = self.env.ref(
             "purchase_vendor_bill_product_breakdown.purchase_order_line_components_form_view"
         ).id
-        supplierinfo = self.get_supplier()
-        product_ids = supplierinfo.product_variant_ids.ids if supplierinfo else []
+        self.get_supplier()
         return {
             "name": _("Product Components"),
             "type": "ir.actions.act_window",
@@ -89,7 +87,6 @@ class PurchaseOrderLine(models.Model):
             "views": [(view_id, "form")],
             "view_id": view_id,
             "target": "new",
-            "context": {"parent_product_ids": product_ids},
         }
 
     def _prepare_component_account_move_line(self):

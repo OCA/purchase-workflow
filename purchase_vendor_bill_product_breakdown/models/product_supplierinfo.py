@@ -35,7 +35,4 @@ class SupplierInfo(models.Model):
             "views": [(view_id, "form")],
             "view_id": view_id,
             "target": "new",
-            "context": {
-                "parent_product_ids": self.product_variant_ids.ids,
-            },
         }

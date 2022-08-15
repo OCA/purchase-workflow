@@ -41,15 +41,11 @@
                             </control>
                             <field name="line_id" invisible="1" />
                             <field name="component_uom_category_id" invisible="1" />
+                            <field name="invalid_component_ids" invisible="1" />
                             <field
                                 name="component_id"
+                                domain="[('id', 'not in', invalid_component_ids)]"
                                 attrs="{'readonly': [('parent.last_qty_invoiced', '>', 0)]}"
-                            />
-                            <field name="valid_supplier_ids" invisible="1" />
-                            <field
-                                name="component_supplier_id"
-                                domain="[('id', 'in', valid_supplier_ids)]"
-                                optional="show"
                             />
                             <field
                                 name="product_uom_qty"

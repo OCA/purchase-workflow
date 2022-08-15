@@ -5,35 +5,26 @@ class PurchaseOrderLineComponent(models.Model):
     _name = "purchase.order.line.component"
     _description = "Purchase Order Line Component"
 
-    def get_component_domain(self):
-        variant_ids = self._context.get("parent_product_ids", False)
-        return [("id", "not in", variant_ids)] if variant_ids else []
-
     line_id = fields.Many2one(
         "purchase.order.line", string="Purchase Order Line", required=True
     )
+    partner_id = fields.Many2one(
+        comodel_name="res.partner", related="line_id.order_id.partner_id"
+    )
+    invalid_component_ids = fields.Many2many(comodel_name="product.product")
     component_id = fields.Many2one(
         comodel_name="product.product",
-        domain=get_component_domain,
         string="Component",
-        required=True,
-    )
-
-    valid_supplier_ids = fields.Many2many(
-        comodel_name="product.supplierinfo",
-        compute="_compute_valid_supplier_ids",
-        store=True,
-    )
-    component_supplier_id = fields.Many2one(
-        comodel_name="product.supplierinfo",
-        string="Select Pricelist",
         required=True,
     )
     component_uom_category_id = fields.Many2one(
         related="component_id.uom_id.category_id"
     )
     product_uom_qty = fields.Float(
-        string="Quantity per Unit", default=1.0, required=True
+        string="Quantity per Unit",
+        default=1.0,
+        compute="_compute_price_unit",
+        required=True,
     )
     total = fields.Float(string="Quantity", compute="_compute_total")
     total_qty = fields.Float(string="Received", required=True)
@@ -53,6 +44,7 @@ class PurchaseOrderLineComponent(models.Model):
     product_uom_id = fields.Many2one(
         "uom.uom",
         string="Unit of Measure",
+        compute="_compute_price_unit",
         domain="[('category_id', '=', component_uom_category_id)]",
         required=True,
     )
@@ -148,36 +140,32 @@ class PurchaseOrderLineComponent(models.Model):
             else:
                 line.qty_to_invoice = 0
 
-    @api.onchange("component_id")
-    def onchange_component_id(self):
-        """Set default value at component onchange"""
-        if len(self.component_id) == 1:
-            self.write(
+    @api.depends("component_id")
+    def _compute_price_unit(self):
+        """Compute component price by Product Supplier or take standard_price"""
+        for rec in self:
+            supplier_id = rec.component_id.seller_ids.filtered(
+                lambda s: s.name == rec.partner_id
+            )
+            rec.write(
                 {
                     "product_uom_qty": 1,
-                    "product_uom_id": self.component_id.uom_po_id
-                    or self.component_id.uom_id,
-                    "price_unit": 0.0,
-                    "component_supplier_id": self.env["product.supplierinfo"],
+                    "product_uom_id": rec.component_id.uom_po_id
+                    or rec.component_id.uom_id,
+                    "price_unit": supplier_id[0].price
+                    if supplier_id
+                    else rec.component_id.standard_price,
                 }
             )
 
-    @api.depends("component_id")
-    def _compute_valid_supplier_ids(self):
-        for rec in self:
-            rec.valid_supplier_ids = rec.component_id.seller_ids
-
-    @api.depends("component_supplier_id")
-    def _compute_price_unit(self):
-        for rec in self:
-            rec.price_unit = rec.component_supplier_id.price
-
-    @api.model
-    def create(self, vals):
-        # set default unit price
-        component_id = vals.get("component_id", False)
-        if not vals.get("price_unit", False) and component_id:
-            component = self.env["product.product"].search([("id", "=", component_id)])
-            if len(component) == 1:
-                vals.update(price_unit=component.standard_price)
-        return super(PurchaseOrderLineComponent, self).create(vals)
+    @api.onchange("component_id")
+    def onchange_component_id(self):
+        """Set default value at component onchange"""
+        if self.component_id:
+            return
+        supplier_id = self.line_id.get_supplier()
+        if not supplier_id:
+            return
+        parent_component = supplier_id.product_variant_ids
+        components = self.line_id.component_ids.mapped("component_id")
+        self.invalid_component_ids = parent_component | components

@@ -35,8 +35,11 @@
                             </control>
                             <field name="supplierinfo_id" invisible="1" />
                             <field name="component_uom_category_id" invisible="1" />
-                            <field name="component_supplier_id" invisible="1" />
-                            <field name="component_id" />
+                            <field name="invalid_component_ids" invisible="1" />
+                            <field
+                                name="component_id"
+                                domain="[('id', 'not in', invalid_component_ids)]"
+                            />
                             <field name="current_price" />
                             <field name="product_uom_qty" />
                             <field name="product_uom_id" />
