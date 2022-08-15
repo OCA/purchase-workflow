@@ -23,7 +23,7 @@ class TestProductSupplierInfoComponent(PurchaseTransactionCase):
             msg="Component must be equal product 'Test Component #2'",
         )
         self.assertEqual(
-            component.product_uom_qty, 5.0, msg="Product Qty must be equal 5.0"
+            component.product_uom_qty, 1.0, msg="Product Qty must be equal 1.0"
         )
 
     def test_onchange_price(self):

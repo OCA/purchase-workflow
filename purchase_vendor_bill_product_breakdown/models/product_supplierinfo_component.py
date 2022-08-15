@@ -68,8 +68,6 @@ class ProductSupplierInfoComponent(models.Model):
     @api.onchange("component_id")
     def onchange_component_id(self):
         """Set default value at component onchange"""
-        if self.component_id:
-            return
         parent_component = self.supplierinfo_id.product_variant_ids
         components = self.supplierinfo_id.component_ids.mapped("component_id")
         self.write(
