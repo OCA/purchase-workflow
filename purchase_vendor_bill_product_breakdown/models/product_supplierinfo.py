@@ -6,7 +6,9 @@ class SupplierInfo(models.Model):
 
     product_bill_components = fields.Boolean(related="product_tmpl_id.bill_components")
     bill_components = fields.Boolean(related="name.bill_components")
-    component_ids = fields.One2many("product.supplierinfo.component", "supplierinfo_id")
+    component_ids = fields.One2many(
+        comodel_name="product.supplierinfo.component", inverse_name="supplierinfo_id"
+    )
     product_variant_ids = fields.Many2many(
         comodel_name="product.product",
         compute="_compute_product_variant_ids",
