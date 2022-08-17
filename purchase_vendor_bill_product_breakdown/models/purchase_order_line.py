@@ -107,8 +107,7 @@ class PurchaseOrderLine(models.Model):
                             "product_id": component.component_id.id,
                             "product_uom_id": component.product_uom_id.id,
                             "quantity": component.qty_to_invoice,
-                            "qty_components": self.qty_received
-                            - self.last_qty_invoiced,
+                            "component_qty": self.qty_received - self.last_qty_invoiced,
                             "price_unit": self.currency_id._convert(
                                 component.price_unit,
                                 self.currency_id,
@@ -146,13 +145,13 @@ class PurchaseOrderLine(models.Model):
                 line.qty_invoiced = line.last_qty_invoiced
 
     @api.model
-    def _compute_invoice_qty(self, qty_components, invoice_count):
+    def _compute_invoice_qty(self, component_qty, invoice_count):
         index = 0
-        count_components = len(qty_components)
+        count_components = len(component_qty)
         invoice_qty = 0.0
         iter_index = int(count_components / invoice_count)
         while index != count_components:
-            invoice_qty += sum(set(qty_components[index : index + iter_index]))
+            invoice_qty += sum(set(component_qty[index : index + iter_index]))
             index += iter_index
         return invoice_qty
 
@@ -172,11 +171,11 @@ class PurchaseOrderLine(models.Model):
                 0
                 if move_count == 0
                 else self._compute_invoice_qty(
-                    invoice_lines.mapped("qty_components"),
+                    invoice_lines.mapped("component_qty"),
                     move_count,
                 )
             )
-            # invoice_qty = sum(set(invoice_lines.mapped("qty_components")))
+            # invoice_qty = sum(set(invoice_lines.mapped("component_qty")))
             invoice_move_type = set(invoice_lines.mapped("move_id").mapped("move_type"))
             line.last_qty_invoiced = (
                 invoice_qty
