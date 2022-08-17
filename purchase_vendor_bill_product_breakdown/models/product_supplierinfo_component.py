@@ -13,6 +13,8 @@ class ProductSupplierInfoComponent(models.Model):
     )
     invalid_component_ids = fields.Many2many(
         comodel_name="product.product",
+        help="Technical: used for the excluding components "
+        "when choice component in 'component_id' field",
     )
     component_id = fields.Many2one(
         comodel_name="product.product",
@@ -26,7 +28,6 @@ class ProductSupplierInfoComponent(models.Model):
         compute="_compute_current_price",
         store=True,
         string="Current price",
-        readonly=True,
     )
     product_uom_qty = fields.Float(
         string="Qty per Unit",
@@ -57,7 +58,7 @@ class ProductSupplierInfoComponent(models.Model):
             supplier_id = rec.component_id.seller_ids.filtered(
                 lambda s: s.name == rec.supplierinfo_id.name
             )
-            rec.write(
+            rec.update(
                 {
                     "current_price": supplier_id[0].price
                     if supplier_id
@@ -70,7 +71,7 @@ class ProductSupplierInfoComponent(models.Model):
         """Set default value at component onchange"""
         parent_component = self.supplierinfo_id.product_variant_ids
         components = self.supplierinfo_id.component_ids.mapped("component_id")
-        self.write(
+        self.update(
             {
                 "product_uom_qty": 1.0,
                 "product_uom_id": self.component_id.uom_po_id
