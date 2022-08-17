@@ -18,7 +18,7 @@ class PurchaseOrderLine(models.Model):
         suppliers = self.product_id.seller_ids.filtered(
             lambda seller: seller.name.id == partner_id
         )
-        return suppliers[0] if len(suppliers) > 0 else False
+        return suppliers[0] if suppliers else False
 
     def _update_purchase_order_line_components(self):
         """
@@ -49,7 +49,7 @@ class PurchaseOrderLine(models.Model):
         )
 
     def _has_components(self):
-        return len(self.component_ids) > 0 and self.bill_components
+        return self.component_ids and self.bill_components
 
     @api.model
     def create(self, vals):
@@ -145,7 +145,7 @@ class PurchaseOrderLine(models.Model):
                 line.qty_invoiced = line.last_qty_invoiced
 
     @api.model
-    def _compute_invoice_qty(self, component_qty, invoice_count):
+    def _compute_invoiced_qty(self, component_qty, invoice_count):
         index = 0
         count_components = len(component_qty)
         invoice_qty = 0.0
@@ -170,7 +170,7 @@ class PurchaseOrderLine(models.Model):
             invoice_qty = (
                 0
                 if move_count == 0
-                else self._compute_invoice_qty(
+                else self._compute_invoiced_qty(
                     invoice_lines.mapped("component_qty"),
                     move_count,
                 )
