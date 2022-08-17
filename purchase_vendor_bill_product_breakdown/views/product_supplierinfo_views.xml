@@ -6,13 +6,13 @@
         <field name="inherit_id" ref="purchase.product_supplierinfo_tree_view2" />
         <field name="arch" type="xml">
             <tree>
-                <field name="bill_components" invisible="1" />
+                <field name="partner_bill_components" invisible="1" />
                 <field name="product_bill_components" invisible="1" />
                 <button
                     name="action_open_component_view"
                     type="object"
                     icon="fa-list"
-                    attrs="{'invisible': ['|', ('bill_components', '=', False), ('product_bill_components', '=', False)]}"
+                    attrs="{'invisible': ['|', ('partner_bill_components', '=', False), ('product_bill_components', '=', False)]}"
                 />
             </tree>
         </field>
