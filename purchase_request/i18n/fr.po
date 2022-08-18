@@ -19,7 +19,7 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-24 07:53+0000\n"
-"PO-Revision-Date: 2022-08-12 17:07+0000\n"
+"PO-Revision-Date: 2022-08-18 11:07+0000\n"
 "Last-Translator: Khalid Hazam <k.hazam@badep.ma>\n"
 "Language-Team: French (http://www.transifex.com/oca/"
 "OCA-purchase-workflow-10-0/language/fr/)\n"
@@ -62,7 +62,7 @@ msgid ""
 "                                <br/>"
 msgstr ""
 "<strong>Assigné à:</strong>\n"
-"……………………<br/>"
+"<br/>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
@@ -71,7 +71,7 @@ msgid ""
 "                                <br/>"
 msgstr ""
 "<strong>Date de création:</strong>\n"
-"……………………<br/>"
+"<br/>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
@@ -80,7 +80,7 @@ msgid ""
 "                                <br/>"
 msgstr ""
 "<strong>Description:</strong>\n"
-"……………………<br/>"
+"<br/>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
@@ -99,7 +99,7 @@ msgid ""
 "                                <br/>"
 msgstr ""
 "<strong>Type de prélèvement:</strong>\n"
-"……………………<br/>"
+"<br/>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
@@ -118,7 +118,7 @@ msgid ""
 "                                <br/>"
 msgstr ""
 "<strong>Demande de référence:</strong>\n"
-"……………………<br/>"
+"<br/>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
@@ -132,7 +132,7 @@ msgid ""
 "                                <br/>"
 msgstr ""
 "<strong>Demandé par:</strong>\n"
-"……………………<br/>"
+"<br/>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
@@ -141,7 +141,7 @@ msgid ""
 "                                <br/>"
 msgstr ""
 "<strong>Origine:</strong>\n"
-"……………………<br/>"
+"<br/>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
@@ -156,8 +156,8 @@ msgid ""
 "            available at a certain point in time."
 msgstr ""
 "Une demande d'achat est une instruction d'achat pour se procurer \n"
-"………une certaine quantité de matériaux, de sorte qu'ils soient \n"
-"………disponibles à un moment donné."
+"une certaine quantité de matériaux, de sorte qu'ils soient \n"
+"disponibles à un moment donné."
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/stock_move.py:0
