@@ -271,6 +271,11 @@ msgid "Cancelled Quantity"
 msgstr "Cantidad anulada"
 
 #. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__product_uom_category_id
+msgid "Category"
+msgstr ""
+
+#. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_product_product__purchase_request
 #: model:ir.model.fields,help:purchase_request.field_product_template__purchase_request
 msgid ""
@@ -291,6 +296,13 @@ msgstr "Clic para iniciar una nueva requisición de compra."
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__company_id
 msgid "Company"
 msgstr "Compañia"
+
+#. module: purchase_request
+#: model:ir.model.fields,help:purchase_request.field_purchase_request_line__product_uom_category_id
+msgid ""
+"Conversion between Units of Measure can only occur if they belong to the "
+"same category. The conversion will be made based on the ratios."
+msgstr ""
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__keep_description

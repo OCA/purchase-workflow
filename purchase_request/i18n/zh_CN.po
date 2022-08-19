@@ -275,6 +275,11 @@ msgid "Cancelled Quantity"
 msgstr "已取消数量"
 
 #. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__product_uom_category_id
+msgid "Category"
+msgstr ""
+
+#. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_product_product__purchase_request
 #: model:ir.model.fields,help:purchase_request.field_product_template__purchase_request
 msgid ""
@@ -293,6 +298,13 @@ msgstr "单击启动新的采购申请流程。"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__company_id
 msgid "Company"
 msgstr "订货组织"
+
+#. module: purchase_request
+#: model:ir.model.fields,help:purchase_request.field_purchase_request_line__product_uom_category_id
+msgid ""
+"Conversion between Units of Measure can only occur if they belong to the "
+"same category. The conversion will be made based on the ratios."
+msgstr ""
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__keep_description
