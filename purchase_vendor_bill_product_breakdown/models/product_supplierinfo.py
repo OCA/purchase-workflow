@@ -11,11 +11,7 @@ class SupplierInfo(models.Model):
     component_ids = fields.One2many(
         comodel_name="product.supplierinfo.component", inverse_name="supplierinfo_id"
     )
-    product_variant_ids = fields.Many2many(
-        comodel_name="product.product",
-        compute="_compute_product_variant_ids",
-        store=True,
-    )
+    product_variant_ids = fields.One2many(related="product_tmpl_id.product_variant_ids")
     price = fields.Float(compute="_compute_price", store=True, readonly=True)
 
     @api.depends("component_ids", "partner_bill_components")
@@ -24,11 +20,6 @@ class SupplierInfo(models.Model):
             lambda item: item.component_ids and item.partner_bill_components
         ):
             rec.price = sum(rec.component_ids.mapped("price_total"))
-
-    @api.depends("product_tmpl_id", "product_tmpl_id.product_variant_ids")
-    def _compute_product_variant_ids(self):
-        for rec in self:
-            rec.product_variant_ids = rec.product_tmpl_id.product_variant_ids
 
     def action_open_component_view(self):
         """Open product components view"""
