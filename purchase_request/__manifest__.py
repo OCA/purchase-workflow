@@ -23,6 +23,7 @@
         "views/purchase_request_report.xml",
         "views/product_template.xml",
         "views/purchase_order_view.xml",
+        "views/res_config_settings.xml",
         "views/stock_move_views.xml",
         "views/stock_picking_views.xml",
     ],
