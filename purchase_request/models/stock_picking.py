@@ -55,10 +55,12 @@ class StockPicking(models.Model):
                         requests_dict[request_id][request_line.id] = data
             for request_id in requests_dict:
                 request = request_obj.sudo().browse(request_id)
-                message = self._purchase_request_picking_confirm_message_content(
-                    picking, request, requests_dict[request_id]
-                )
-                request.sudo().message_post(
-                    body=message,
-                    author_id=self.env.user.partner_id.id,
-                )
+                send_mail = request.company_id.notify_request_allocations
+                if send_mail:
+                    message = self._purchase_request_picking_confirm_message_content(
+                        picking, request, requests_dict[request_id]
+                    )
+                    request.sudo().message_post(
+                        body=message,
+                        author_id=self.env.user.partner_id.id,
+                    )

@@ -52,12 +52,14 @@ class PurchaseOrder(models.Model):
                     requests_dict[request_id][request_line.id] = data
             for request_id in requests_dict:
                 request = request_obj.sudo().browse(request_id)
-                message = po._purchase_request_confirm_message_content(
-                    request, requests_dict[request_id]
-                )
-                request.message_post(
-                    body=message, subtype_id=self.env.ref("mail.mt_comment").id
-                )
+                send_mail = request.company_id.notify_request_allocations
+                if send_mail:
+                    message = po._purchase_request_confirm_message_content(
+                        request, requests_dict[request_id]
+                    )
+                    request.message_post(
+                        body=message, subtype_id=self.env.ref("mail.mt_comment").id
+                    )
         return True
 
     def _purchase_request_line_check(self):
@@ -167,16 +169,18 @@ class PurchaseOrderLine(models.Model):
                     alloc._notify_allocation(qty_left)
                     qty_left = 0
                 alloc.write({"allocated_product_qty": allocated_product_qty})
+                send_mail = alloc.company_id.notify_request_allocations
+                if send_mail:
 
-                message_data = self._prepare_request_message_data(
-                    alloc, alloc.purchase_request_line_id, allocated_product_qty
-                )
-                message = self._purchase_request_confirm_done_message_content(
-                    message_data
-                )
-                alloc.purchase_request_line_id.request_id.message_post(
-                    body=message, subtype_id=self.env.ref("mail.mt_comment").id
-                )
+                    message_data = self._prepare_request_message_data(
+                        alloc, alloc.purchase_request_line_id, allocated_product_qty
+                    )
+                    message = self._purchase_request_confirm_done_message_content(
+                        message_data
+                    )
+                    alloc.purchase_request_line_id.request_id.message_post(
+                        body=message, subtype_id=self.env.ref("mail.mt_comment").id
+                    )
 
                 alloc.purchase_request_line_id._compute_qty()
         return True
