@@ -233,10 +233,15 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
                 item.onchange_product_id()
         wiz_id.make_purchase_order()
         self.assertEquals(
-            purchase_request_line1.purchased_qty, 1.0, "Should be a quantity of 1"
+            purchase_request_line1.rfq_qty, 1.0, "Quantity in RFQ should be 1"
         )
         self.assertEquals(
-            purchase_request_line2.purchased_qty, 1.0, "Should be a quantity of 1"
+            purchase_request_line2.rfq_qty, 1.0, "Quantity in RFQ should be 1"
+        )
+        purchase_request_line1.purchase_lines.order_id.button_confirm()
+        purchase_request_line1._compute_purchased_qty()
+        self.assertEquals(
+            purchase_request_line1.purchased_qty, 1.0, "Purchased quantity should be 1"
         )
 
     def test_purchase_request_to_purchase_rfq_multiple_PO_purchaseUoM(self):
