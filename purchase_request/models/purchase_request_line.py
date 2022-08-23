@@ -92,7 +92,12 @@ class PurchaseRequestLine(models.Model):
     cancelled = fields.Boolean(readonly=True, default=False, copy=False)
 
     purchased_qty = fields.Float(
-        string="RFQ/PO Qty",
+        string="Purchased Quantity",
+        digits="Product Unit of Measure",
+        compute="_compute_purchased_qty",
+    )
+    rfq_qty = fields.Float(
+        string="Quantity in RFQ",
         digits="Product Unit of Measure",
         compute="_compute_purchased_qty",
     )
@@ -106,13 +111,21 @@ class PurchaseRequestLine(models.Model):
         copy=False,
     )
     purchase_state = fields.Selection(
-        compute="_compute_purchase_state",
+        [
+            ("draft", "RFQ"),
+            ("sent", "RFQ Sent"),
+            ("to approve", "To Approve"),
+            ("approved", "Approved"),
+            ("partially", "Partially Purchased"),
+            ("purchase", "Purchased"),
+            ("done", "Locked"),
+            ("cancel", "Cancelled"),
+        ],
         string="Purchase Status",
-        selection=lambda self: self.env["purchase.order"]
-        ._fields["state"]
-        ._description_selection(self.env),
+        compute="_compute_purchase_state",
         store=True,
     )
+
     move_dest_ids = fields.One2many(
         comodel_name="stock.move",
         inverse_name="created_purchase_request_line_id",
@@ -275,14 +288,11 @@ class PurchaseRequestLine(models.Model):
     @api.onchange("product_id")
     def onchange_product_id(self):
         if self.product_id:
-            name = self.product_id.name
-            if self.product_id.code:
-                name = "[{}] {}".format(self.product_id.code, name)
+            self.name = self.product_id.display_name
             if self.product_id.description_purchase:
-                name += "\n" + self.product_id.description_purchase
-            self.product_uom_id = self.product_id.uom_id.id
+                self.name += " " + self.product_id.description_purchase
+            self.product_uom_id = self.product_id.uom_po_id.id
             self.product_qty = 1
-            self.name = name
 
     def do_cancel(self):
         """Actions to perform when cancelling a purchase request line."""
@@ -302,30 +312,53 @@ class PurchaseRequestLine(models.Model):
     def _compute_purchased_qty(self):
         for rec in self:
             rec.purchased_qty = 0.0
-            for line in rec.purchase_lines.filtered(lambda x: x.state != "cancel"):
-                if rec.product_uom_id and line.product_uom != rec.product_uom_id:
+            rec.rfq_qty = 0.0
+            for line in rec.purchase_lines:
+                if line.state in ["purchase", "done"]:
                     rec.purchased_qty += line.product_uom._compute_quantity(
                         line.product_qty, rec.product_uom_id
                     )
                 else:
-                    rec.purchased_qty += line.product_qty
+                    rec.rfq_qty += line.product_uom._compute_quantity(
+                        line.product_qty, rec.product_uom_id
+                    )
 
     @api.depends("purchase_lines.state", "purchase_lines.order_id.state")
     def _compute_purchase_state(self):
         for rec in self:
             temp_purchase_state = False
             if rec.purchase_lines:
-                if any(po_line.state == "done" for po_line in rec.purchase_lines):
-                    temp_purchase_state = "done"
-                elif all(po_line.state == "cancel" for po_line in rec.purchase_lines):
-                    temp_purchase_state = "cancel"
-                elif any(po_line.state == "purchase" for po_line in rec.purchase_lines):
-                    temp_purchase_state = "purchase"
+                if any([po_line.state == "done" for po_line in rec.purchase_lines]):
+                    qty_done = sum(
+                        [
+                            po_line.product_uom._compute_quantity(
+                                po_line.product_qty, rec.product_uom_id
+                            )
+                            for po_line in rec.purchase_lines.filtered(
+                                lambda po: po.state == "done"
+                            )
+                        ]
+                    )
+                    temp_purchase_state = (
+                        "done" if qty_done >= rec.product_qty else "partially"
+                    )
                 elif any(
-                    po_line.state == "to approve" for po_line in rec.purchase_lines
+                    [po_line.state == "purchase" for po_line in rec.purchase_lines]
                 ):
-                    temp_purchase_state = "to approve"
-                elif any(po_line.state == "sent" for po_line in rec.purchase_lines):
+                    qty_purchased = sum(
+                        [
+                            po_line.product_uom._compute_quantity(
+                                po_line.product_qty, rec.product_uom_id
+                            )
+                            for po_line in rec.purchase_lines.filtered(
+                                lambda po: po.state == "purchase"
+                            )
+                        ]
+                    )
+                    temp_purchase_state = (
+                        "purchase" if qty_purchased >= rec.product_qty else "partially"
+                    )
+                elif any([po_line.state == "sent" for po_line in rec.purchase_lines]):
                     temp_purchase_state = "sent"
                 elif all(
                     po_line.state in ("draft", "cancel")
