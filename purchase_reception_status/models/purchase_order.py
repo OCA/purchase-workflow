@@ -16,11 +16,9 @@ class PurchaseOrder(models.Model):
             ("received", "Fully Received"),
         ],
         compute="_compute_reception_status",
-        string="Reception Status",
         store=True,
     )
     force_received = fields.Boolean(
-        string="Force Received",
         readonly=True,
         states={"done": [("readonly", False)]},
         copy=False,
