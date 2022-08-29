@@ -30,10 +30,22 @@ class PurchaseOrder(models.Model):
         super(PurchaseOrder, self).button_approve()
 
     def button_approve(self, force=False):
-        approve_purchases = self.filtered(
-            lambda p: p.company_id.purchase_approve_active
-        )
-        approve_purchases.write({"state": "approved"})
-        return super(PurchaseOrder, self - approve_purchases).button_approve(
+        two_steps_purchase_approval_ids = []
+        for rec in self:
+            partner_requires_approve = (
+                rec.partner_id.purchase_requires_second_approval == "always"
+            )
+            company_requires_approve = (
+                rec.partner_id.purchase_requires_second_approval == "based_on_company"
+                and rec.company_id.purchase_approve_active
+            )
+            if rec.state != "approved" and (
+                partner_requires_approve or company_requires_approve
+            ):
+                two_steps_purchase_approval_ids.append(rec.id)
+        two_steps_purchase_approval = self.browse(two_steps_purchase_approval_ids)
+        two_steps_purchase_approval.write({"state": "approved"})
+        one_step_purchase_approval = self - two_steps_purchase_approval
+        return super(PurchaseOrder, one_step_purchase_approval).button_approve(
             force=force
         )

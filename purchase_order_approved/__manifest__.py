@@ -6,10 +6,14 @@
     "version": "14.0.1.1.0",
     "category": "Purchases",
     "website": "https://github.com/OCA/purchase-workflow",
-    "author": "ForgeFlow, Odoo Community Association (OCA)",
+    "author": "ForgeFlow, ACSONE SA/NV, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
     "depends": ["purchase_stock"],
-    "data": ["views/purchase_order_view.xml", "views/res_config_view.xml"],
+    "data": [
+        "views/res_partner.xml",
+        "views/purchase_order_view.xml",
+        "views/res_config_view.xml",
+    ],
 }
