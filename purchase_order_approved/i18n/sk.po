@@ -43,6 +43,11 @@ msgid ""
 msgstr ""
 
 #. module: purchase_order_approved
+#: model:ir.model.fields.selection,name:purchase_order_approved.selection__res_partner__purchase_requires_second_approval__always
+msgid "Always"
+msgstr ""
+
+#. module: purchase_order_approved
 #: model:ir.model.fields.selection,name:purchase_order_approved.selection__purchase_order__state__approved
 msgid "Approved"
 msgstr ""
@@ -50,6 +55,11 @@ msgstr ""
 #. module: purchase_order_approved
 #: model_terms:ir.ui.view,arch_db:purchase_order_approved.view_purchase_order_filter
 msgid "Approved Orders"
+msgstr ""
+
+#. module: purchase_order_approved
+#: model:ir.model.fields.selection,name:purchase_order_approved.selection__res_partner__purchase_requires_second_approval__based_on_company
+msgid "Based on company policy"
 msgstr ""
 
 #. module: purchase_order_approved
@@ -62,6 +72,11 @@ msgstr "Spoločnosti"
 #, fuzzy
 msgid "Company"
 msgstr "Spoločnosti"
+
+#. module: purchase_order_approved
+#: model:ir.model,name:purchase_order_approved.model_res_partner
+msgid "Contact"
+msgstr ""
 
 #. module: purchase_order_approved
 #: model_terms:ir.ui.view,arch_db:purchase_order_approved.purchase_order_form
@@ -89,6 +104,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__display_name
 #: model:ir.model.fields,field_description:purchase_order_approved.field_res_company__display_name
 #: model:ir.model.fields,field_description:purchase_order_approved.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_partner__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -101,6 +117,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__id
 #: model:ir.model.fields,field_description:purchase_order_approved.field_res_company__id
 #: model:ir.model.fields,field_description:purchase_order_approved.field_res_config_settings__id
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_partner__id
 msgid "ID"
 msgstr ""
 
@@ -108,7 +125,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order____last_update
 #: model:ir.model.fields,field_description:purchase_order_approved.field_res_company____last_update
 #: model:ir.model.fields,field_description:purchase_order_approved.field_res_config_settings____last_update
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_partner____last_update
 msgid "Last Modified on"
+msgstr ""
+
+#. module: purchase_order_approved
+#: model:ir.model.fields.selection,name:purchase_order_approved.selection__res_partner__purchase_requires_second_approval__never
+msgid "Never"
 msgstr ""
 
 #. module: purchase_order_approved
@@ -129,6 +152,12 @@ msgstr ""
 #. module: purchase_order_approved
 #: model:ir.model,name:purchase_order_approved.model_purchase_order
 msgid "Purchase Order"
+msgstr ""
+
+#. module: purchase_order_approved
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_partner__purchase_requires_second_approval
+#: model:ir.model.fields,field_description:purchase_order_approved.field_res_users__purchase_requires_second_approval
+msgid "Purchase Requires Second Approval"
 msgstr ""
 
 #. module: purchase_order_approved
