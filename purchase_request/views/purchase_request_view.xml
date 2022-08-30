@@ -160,6 +160,10 @@
                                     <field name="name" />
                                     <field name="product_qty" />
                                     <field
+                                        name="product_uom_category_id"
+                                        invisible="1"
+                                    />
+                                    <field
                                         name="product_uom_id"
                                         groups="uom.group_uom"
                                     />
@@ -214,6 +218,10 @@
                                                         name="product_qty"
                                                         class="oe_inline"
                                                         attrs="{'readonly': [('is_editable','=', False)]}"
+                                                    />
+                                                    <field
+                                                        name="product_uom_category_id"
+                                                        invisible="1"
                                                     />
                                                     <field
                                                         name="product_uom_id"
