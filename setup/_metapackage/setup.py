@@ -70,6 +70,7 @@ setuptools.setup(
         'odoo14-addon-purchase_requisition_tier_validation',
         'odoo14-addon-purchase_rfq_number',
         'odoo14-addon-purchase_security',
+        'odoo14-addon-purchase_stock_price_unit_sync',
         'odoo14-addon-purchase_stock_secondary_unit',
         'odoo14-addon-purchase_tag',
         'odoo14-addon-purchase_tier_validation',
