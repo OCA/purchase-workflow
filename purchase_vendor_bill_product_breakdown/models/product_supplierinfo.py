@@ -12,7 +12,19 @@ class SupplierInfo(models.Model):
         comodel_name="product.supplierinfo.component", inverse_name="supplierinfo_id"
     )
     product_variant_ids = fields.One2many(related="product_tmpl_id.product_variant_ids")
-    price = fields.Float(compute="_compute_price", store=True, readonly=True)
+    price = fields.Float(
+        compute="_compute_price",
+        inverse="_inverse_price",
+        store=True,
+    )
+    price_manual = fields.Float(
+        copy=False,
+    )
+
+    @api.onchange("price")
+    def _inverse_price(self):
+        for rec in self.filtered(lambda item: not item.component_ids):
+            rec.price_manual = rec.price
 
     @api.depends("component_ids", "partner_bill_components")
     def _compute_price(self):

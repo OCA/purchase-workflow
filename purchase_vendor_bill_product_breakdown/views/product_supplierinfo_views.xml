@@ -15,6 +15,11 @@
                     attrs="{'invisible': ['|', ('partner_bill_components', '=', False), ('product_bill_components', '=', False)]}"
                 />
             </tree>
+            <field name="price" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'readonly': [('partner_bill_components', '=', True), ('product_bill_components', '=', True)]}</attribute>
+            </field>
         </field>
     </record>
 
