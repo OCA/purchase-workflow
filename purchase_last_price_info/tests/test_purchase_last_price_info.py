@@ -57,3 +57,42 @@ class TestPurchaseLastPriceInfo(common.TransactionCase):
             self.product.last_purchase_price)
         self.assertEqual(
             self.partner, self.product.last_supplier_id)
+
+    def test_purchase_last_price_info_update(self):
+        """
+        A product having 'Update Purchase Price' proposes
+        the last price in new purchase orders.
+        """
+        # Arrange: Create a product whose price will be updated and that won't.
+        update_product = self.product
+        update_product.update_last_purchase_price = True
+        no_update_product = self.env.ref('product.consu_delivery_02')
+        self.assertFalse(no_update_product.update_last_purchase_price)
+
+        first_price = 10
+        last_price = 20
+        products = update_product | no_update_product
+        self._create_purchase(products, first_price)
+        # First time the product is purchased,
+        # the price is proposed in following orders from the core
+        self._create_purchase(products, last_price)
+
+        # Act: Create a purchase order
+        order = self._create_purchase(products)
+
+        # Assert: Only the product that updates the price
+        # has the last price as default
+        no_update_line = order.order_line.filtered(
+            lambda l: l.product_id == no_update_product
+        )
+        self.assertEqual(
+            no_update_line.price_unit,
+            first_price,
+        )
+        update_line = order.order_line.filtered(
+            lambda l: l.product_id == update_product
+        )
+        self.assertEqual(
+            update_line.price_unit,
+            last_price,
+        )

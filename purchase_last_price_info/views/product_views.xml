@@ -12,6 +12,7 @@
 					<field name="last_supplier_id"/>
 					<field name="last_purchase_date"/>
 					<field name="last_purchase_price"/>
+					<field name="update_last_purchase_price"/>
 				</group>
 			</group>
 		</field>
@@ -28,6 +29,7 @@
 					<field name="last_supplier_id"/>
 					<field name="last_purchase_date"/>
 					<field name="last_purchase_price"/>
+					<field name="update_last_purchase_price"/>
 				</group>
 			</group>
 		</field>

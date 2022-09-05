@@ -48,6 +48,22 @@ class ProductProduct(models.Model):
                     last_line.price_unit, last_line.product_uom)
                 last_supplier = last_line.order_id.partner_id
 
+                if product.update_last_purchase_price:
+                    supplier_info = product.seller_ids.filtered(
+                        lambda si: si.name == last_supplier
+                    )
+                    if supplier_info:
+                        # Compute Price Unit in the Product Currency
+                        product_price = last_line.currency_id._convert(
+                            price_unit_uom,
+                            product.currency_id,
+                            last_line.company_id,
+                            date_order or fields.Date.today(),
+                            round=False,
+                        )
+                        supplier_info = supplier_info[0]
+                        supplier_info.price = product_price
+
             # Assign values to record
             product.write({
                 "last_purchase_date": date_order,
@@ -63,6 +79,10 @@ class ProductProduct(models.Model):
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
+    update_last_purchase_price = fields.Boolean(
+        string="Update Purchase Price",
+        help="Set last Purchase Price in new Purchase Orders",
+    )
     last_purchase_price = fields.Float(
         string='Last Purchase Price', digits=dp.get_precision('Product Price'))
     last_purchase_date = fields.Date(
