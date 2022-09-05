@@ -14,7 +14,6 @@ class TestPurchaseLastPriceInfo(common.TransactionCase):
         self.purchase_line_model = self.env['purchase.order.line']
         self.product = self.env.ref('product.consu_delivery_01')
         self.partner = self.env.ref('base.res_partner_1')
-        self.picking_type = self.env.ref('stock.picking_type_in')
 
     def test_purchase_last_price_info_demo(self):
         purchase_order = self.env.ref('purchase.purchase_order_6')
@@ -34,20 +33,20 @@ class TestPurchaseLastPriceInfo(common.TransactionCase):
             purchase_lines[:1].order_id.partner_id,
             self.product.last_supplier_id)
 
-    def test_purchase_last_price_info_new_order(self):
-        purchase_order = self.purchase_model.create({
-            'partner_id': self.partner.id,
-            'picking_type_id': self.picking_type.id,
-            'order_line': [(0, 0, {
-                'product_id': self.product.id,
-                'product_uom': self.product.uom_id.id,
-                'price_unit': self.product.standard_price,
-                'name': self.product.name,
-                'date_planned': fields.Datetime.now(),
-                'product_qty': 1,
-            })]
-        })
+    def _create_purchase(self, products, price=None):
+        purchase_order_form = common.Form(self.purchase_model)
+        purchase_order_form.partner_id = self.partner
+        for product in products:
+            with purchase_order_form.order_line.new() as line:
+                line.product_id = product
+                if price is not None:
+                    line.price_unit = price
+        purchase_order = purchase_order_form.save()
         purchase_order.button_confirm()
+        return purchase_order
+
+    def test_purchase_last_price_info_new_order(self):
+        purchase_order = self._create_purchase(self.product)
         self.assertEqual(
             fields.Datetime.from_string(
                 purchase_order.date_order).date(),
