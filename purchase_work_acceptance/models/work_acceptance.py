@@ -67,7 +67,7 @@ class WorkAcceptance(models.Model):
         inverse_name="wa_id",
         string="Work Acceptance Lines",
     )
-    notes = fields.Text(string="Notes")
+    notes = fields.Text()
     product_id = fields.Many2one(
         comodel_name="product.product",
         related="wa_line_ids.product_id",
