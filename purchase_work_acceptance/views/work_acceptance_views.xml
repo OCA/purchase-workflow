@@ -4,7 +4,7 @@
         <field name="name">work.acceptance.form</field>
         <field name="model">work.acceptance</field>
         <field name="arch" type="xml">
-            <form string="Work Acceptance">
+            <form>
                 <header>
                     <button
                         name="button_accept"
@@ -70,7 +70,7 @@
                                 name="wa_line_ids"
                                 attrs="{'readonly': [('state', '!=', 'draft')]}"
                             >
-                                <tree string="Work Acceptance Lines" editable="bottom">
+                                <tree editable="bottom">
                                     <field name="purchase_line_id" invisible="1" />
                                     <field
                                         name="product_id"
@@ -87,7 +87,7 @@
                                         sum="Total"
                                     />
                                 </tree>
-                                <form string="Work Acceptance Line">
+                                <form>
                                     <sheet>
                                         <group>
                                             <group>
@@ -133,7 +133,7 @@
         <field name="name">work.acceptance.tree</field>
         <field name="model">work.acceptance</field>
         <field name="arch" type="xml">
-            <tree string="Work Acceptance" decoration-muted="state=='cancel'">
+            <tree decoration-muted="state=='cancel'">
                 <field name="name" string="Reference" />
                 <field name="date_due" />
                 <field name="date_receive" />
@@ -159,7 +159,7 @@
         <field name="name">work.acceptance.search</field>
         <field name="model">work.acceptance</field>
         <field name="arch" type="xml">
-            <search string="Work Acceptance">
+            <search>
                 <field name="name" string="Reference" />
                 <field name="partner_id" operator="child_of" />
                 <field name="responsible_id" operator="child_of" />

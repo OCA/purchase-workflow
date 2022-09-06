@@ -148,7 +148,7 @@ class TestPurchaseWorkAcceptance(TransactionCase):
 
         res = purchase_order.with_context(create_wa=True).action_view_wa()
         ctx = res.get("context")
-        work_acceptance = Form(self.env["work.acceptance"].with_context(ctx))
+        work_acceptance = Form(self.env["work.acceptance"].with_context(**ctx))
         self.assertEqual(work_acceptance.state, "draft")
 
     def test_02_flow_product(self):
@@ -157,7 +157,7 @@ class TestPurchaseWorkAcceptance(TransactionCase):
         purchase_order = self._create_purchase_order(qty, self.product_product)
         purchase_order.button_confirm()
         self.assertEqual(purchase_order.state, "purchase")
-        self.assertEqual(purchase_order.picking_count, 1)
+        self.assertEqual(purchase_order.incoming_picking_count, 1)
         # Create Work Acceptance
         work_acceptance = self._create_work_acceptance(qty, purchase_order)
         work_acceptance.button_accept()
