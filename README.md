@@ -61,7 +61,7 @@ addon | version | maintainers | summary
 [purchase_order_product_attachment_mgmt](purchase_order_product_attachment_mgmt/) | 14.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Purchase Order Product Attachment Mgmt
 [purchase_order_secondary_unit](purchase_order_secondary_unit/) | 14.0.2.0.1 |  | Purchase product in a secondary unit
 [purchase_order_type](purchase_order_type/) | 14.0.1.0.2 |  | Purchase Order Type
-[purchase_order_uninvoiced_amount](purchase_order_uninvoiced_amount/) | 14.0.1.1.0 |  | Show uninvoiced amount on purchase order tree.
+[purchase_order_uninvoiced_amount](purchase_order_uninvoiced_amount/) | 14.0.1.2.0 |  | Show uninvoiced amount on purchase order tree.
 [purchase_order_vendor_product](purchase_order_vendor_product/) | 14.0.1.1.0 |  | Show only products from the selected vendor in PO line
 [purchase_partner_approval](purchase_partner_approval/) | 14.0.1.0.0 | [![dreispt](https://github.com/dreispt.png?size=30px)](https://github.com/dreispt) | Control Partners that can be used in Purchase Orders
 [purchase_partner_incoterm](purchase_partner_incoterm/) | 14.0.2.0.0 | [![TDu](https://github.com/TDu.png?size=30px)](https://github.com/TDu) [![bealdav](https://github.com/bealdav.png?size=30px)](https://github.com/bealdav) | Add a an incoterm field for supplier and use it on purchase order
