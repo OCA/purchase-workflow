@@ -44,4 +44,5 @@ class PurchaseOrder(models.Model):
         readonly=True,
         compute="_compute_amount_uninvoiced",
         tracking=True,
+        store=True,
     )
