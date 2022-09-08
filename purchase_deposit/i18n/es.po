@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-09-08 14:39+0000\n"
-"Last-Translator: Harald Panten <harald.panten@sygel.es>\n"
+"PO-Revision-Date: 2022-09-08 17:07+0000\n"
+"Last-Translator: Jesarregui <jesarreguisan@gmail.com>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -166,48 +166,48 @@ msgstr ""
 #. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.res_config_settings_view_form_purchase
 msgid "Product used for deposit payments"
-msgstr ""
+msgstr "Producto usado para los anticipos"
 
 #. module: purchase_deposit
 #: model:ir.model,name:purchase_deposit.model_purchase_advance_payment_inv
 msgid "Purchase Advance Payment Invoice"
-msgstr ""
+msgstr "Factura de anticipo"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_res_config_settings__default_purchase_deposit_product_id
 msgid "Purchase Deposit Product"
-msgstr ""
+msgstr "Producto anticipo"
 
 #. module: purchase_deposit
 #: model:ir.model,name:purchase_deposit.model_purchase_order
 msgid "Purchase Order"
-msgstr ""
+msgstr "Pedido de compra"
 
 #. module: purchase_deposit
 #: model:ir.model,name:purchase_deposit.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr "Línea orden de compra"
+msgstr "Línea de pedido de compra"
 
 #. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_order_form_inherit
 msgid "Register Deposit"
-msgstr ""
+msgstr "Crear anticipo"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,help:purchase_deposit.field_purchase_advance_payment_inv__deposit_taxes_id
 msgid "Taxes used for deposits"
-msgstr ""
+msgstr "Impuestos para los anticipos"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,help:purchase_deposit.field_purchase_advance_payment_inv__amount
 msgid "The amount to be invoiced in advance, taxes excluded."
-msgstr ""
+msgstr "Importe a facturar por adelantado, sin impuestos."
 
 #. module: purchase_deposit
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
 #, python-format
 msgid "The percentage of the deposit must be not over 100"
-msgstr ""
+msgstr "El porcentaje del anticipo no puede ser superior al 100"
 
 #. module: purchase_deposit
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
@@ -216,6 +216,8 @@ msgid ""
 "The product used to invoice a down payment should be of type \"Service\". "
 "Please use another product or update this product."
 msgstr ""
+"El producto utilizado para facturar un anticipo debe de ser del tipo "
+"\"Servicio\". Utilice otro producto o actualice este."
 
 #. module: purchase_deposit
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
@@ -225,12 +227,15 @@ msgid ""
 " to \"Ordered quantities\". Please update your deposit product to be able to"
 " create a deposit invoice."
 msgstr ""
+"El producto para facturar anticipos debería de tener la política de "
+"facturación \"Sobre cantidades pedidas\". Actualice el producto anticipo o "
+"si lo prefieres crea uno nuevo."
 
 #. module: purchase_deposit
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
 #, python-format
 msgid "The value of the deposit must be positive."
-msgstr ""
+msgstr "El importe del anticipo debe de ser positivo."
 
 #. module: purchase_deposit
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
@@ -239,19 +244,22 @@ msgid ""
 "There is no purchase account defined for this product: %s.\n"
 "You may have to install a chart of account from Accounting app, settings menu."
 msgstr ""
+"No hay una cuenta contable definida para este producto:%s.\n"
+"Es posible que tengas que instalar un plan contable desde la aplicación "
+"Contabilidad, en el menú de configuración."
 
 #. module: purchase_deposit
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
 #, python-format
 msgid "This action is allowed only in Purchase Order sate"
-msgstr ""
+msgstr "Esta acción solo es posible en el estado Pedido de compra"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__deposit_taxes_id
 msgid "Vendor Taxes"
-msgstr ""
+msgstr "Impuestos de proveedor"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__advance_payment_method
 msgid "What do you want to invoice?"
-msgstr ""
+msgstr "¿Que quieres facturar?"
