@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "PO-Revision-Date: 2022-09-08 14:39+0000\n"
-"Last-Translator: Jesarregui <jesarreguisan@gmail.com>\n"
+"Last-Translator: Harald Panten <harald.panten@sygel.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -26,23 +26,23 @@ msgstr ""
 #. module: purchase_deposit
 #: model:ir.model.fields,help:purchase_deposit.field_purchase_advance_payment_inv__deposit_account_id
 msgid "Account used for deposits"
-msgstr ""
+msgstr "Cuenta contable para el anticipo"
 
 #. module: purchase_deposit
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
 #, python-format
 msgid "Advance: %s"
-msgstr ""
+msgstr "Anticipo:%s"
 
 #. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
 msgid "Create and View bills"
-msgstr ""
+msgstr "Crear y ver facturas"
 
 #. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
@@ -52,12 +52,12 @@ msgstr "Crear anticipo"
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creado por"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creado en"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,help:purchase_deposit.field_res_config_settings__default_purchase_deposit_product_id
@@ -102,7 +102,7 @@ msgstr ""
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nombre mostrado"
 
 #. module: purchase_deposit
 #: model:ir.model.fields.selection,name:purchase_deposit.selection__purchase_advance_payment_inv__advance_payment_method__percentage
@@ -146,17 +146,17 @@ msgstr "Es un anticipo"
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última modificación el"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Última actualización por"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Última actualización el"
 
 #. module: purchase_deposit
 #: model:ir.model,name:purchase_deposit.model_res_config_settings
@@ -186,7 +186,7 @@ msgstr ""
 #. module: purchase_deposit
 #: model:ir.model,name:purchase_deposit.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Línea orden de compra"
 
 #. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_order_form_inherit
