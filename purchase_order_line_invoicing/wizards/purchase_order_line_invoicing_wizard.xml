@@ -35,22 +35,14 @@
             </field>
         </record>
 
-        <record id="action_purchase_order_line_invoice_wizard" model="ir.actions.act_window" >
+        <record id="action_purchase_order_line_invoice_wizard" model="ir.actions.act_window">
             <field name="name">Create Invoice</field>
             <field name="res_model">purchase.order.line.invoice.wizard</field>
-            <field name="view_id" ref="purchase_order_line_invoice_wizard_form"/>
-            <field name="view_type">form</field>
+            <field name="view_id" ref="purchase_order_line_invoice_wizard_form" />
             <field name="view_mode">form</field>
             <field name="target">new</field>
+            <field name="binding_model_id" ref="purchase.model_purchase_order_line" />
             <field name="groups_id" eval="[(4, ref('purchase.group_purchase_user'))]"/>
-        </record>
-
-        <record id="ir_purchase_order_line_invoice_wizard" model="ir.values">
-            <field eval="'client_action_multi'" name="key2"/>
-            <field eval="'purchase.order.line'" name="model"/>
-            <field name="name">Stock Level</field>
-            <field eval="'ir.actions.act_window,'+str(action_purchase_order_line_invoice_wizard)" name="value"/>
         </record>
     </data>
 </odoo>
-
