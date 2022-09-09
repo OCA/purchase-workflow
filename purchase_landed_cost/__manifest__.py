@@ -4,7 +4,7 @@
 
 {
     "name": "Purchase landed costs - Alternative option",
-    "version": "13.0.1.1.0",
+    "version": "13.0.1.2.0",
     "author": "AvanzOSC,"
     "Tecnativa,"
     "Joaquín Gutierrez,"
