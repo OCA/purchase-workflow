@@ -237,8 +237,11 @@ class CreateManualStockPickingWizardLine(models.TransientModel):
         for line in self:
             for val in line._prepare_stock_moves(picking):
                 if val.get("product_uom_qty", False):
+                    # CHECK ME: We can receive more than one move
                     val["product_uom_qty"] = line.product_uom._compute_quantity(
-                        line.qty, line.product_uom, rounding_method="HALF-UP"
+                        val["product_uom_qty"],
+                        line.product_uom,
+                        rounding_method="HALF-UP",
                     )
                 if (
                     val.get("location_dest_id", False)
