@@ -298,6 +298,11 @@ msgid "Click to start a new purchase request process."
 msgstr "Klicken um einen neuen Bestellvorgang zu starten."
 
 #. module: purchase_request
+#: model:ir.model,name:purchase_request.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__company_id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__company_id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__company_id
@@ -387,6 +392,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__display_name
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order__display_name
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__display_name
+#: model:ir.model.fields,field_description:purchase_request.field_res_company__display_name
+#: model:ir.model.fields,field_description:purchase_request.field_res_config_settings__display_name
 #: model:ir.model.fields,field_description:purchase_request.field_stock_move__display_name
 #: model:ir.model.fields,field_description:purchase_request.field_stock_move_line__display_name
 #: model:ir.model.fields,field_description:purchase_request.field_stock_picking__display_name
@@ -498,6 +505,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order__id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__id
+#: model:ir.model.fields,field_description:purchase_request.field_res_company__id
+#: model:ir.model.fields,field_description:purchase_request.field_res_config_settings__id
 #: model:ir.model.fields,field_description:purchase_request.field_stock_move__id
 #: model:ir.model.fields,field_description:purchase_request.field_stock_move_line__id
 #: model:ir.model.fields,field_description:purchase_request.field_stock_picking__id
@@ -565,6 +574,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line____last_update
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order____last_update
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item____last_update
+#: model:ir.model.fields,field_description:purchase_request.field_res_company____last_update
+#: model:ir.model.fields,field_description:purchase_request.field_res_config_settings____last_update
 #: model:ir.model.fields,field_description:purchase_request.field_stock_move____last_update
 #: model:ir.model.fields,field_description:purchase_request.field_stock_move_line____last_update
 #: model:ir.model.fields,field_description:purchase_request.field_stock_picking____last_update
@@ -677,6 +688,11 @@ msgid "No RFQ or Purchase has been created"
 msgstr ""
 
 #. module: purchase_request
+#: model_terms:ir.ui.view,arch_db:purchase_request.res_config_settings_view_form
+msgid "Notify followers on request allocation"
+msgstr ""
+
+#. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_needaction_counter
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_needaction_counter
 msgid "Number of Actions"
@@ -764,6 +780,11 @@ msgstr "Bevorzugter Lieferant"
 #, fuzzy
 msgid "Procurement Group"
 msgstr "Fertigungsauftrag"
+
+#. module: purchase_request
+#: model:ir.model,name:purchase_request.model_res_config_settings
+msgid "Procurement purchase grouping settings"
+msgstr ""
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__product_id
@@ -1131,6 +1152,11 @@ msgid "Request is to be approved"
 msgstr "Anfrage ist zu genehmigen"
 
 #. module: purchase_request
+#: model_terms:ir.ui.view,arch_db:purchase_request.res_config_settings_view_form
+msgid "Request mail options"
+msgstr ""
+
+#. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__request_state
 msgid "Request state"
 msgstr "Anfragestatus"
@@ -1188,6 +1214,16 @@ msgstr "Durchsuche Kaufanfragen"
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Search Purchase Request"
 msgstr "Durchsuche Kaufanfragen"
+
+#. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_res_company__notify_request_allocations
+msgid "Send emails on confirmaion"
+msgstr ""
+
+#. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_res_config_settings__notify_request_allocations
+msgid "Send emails with request confirmaion"
+msgstr ""
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_allocation__purchase_line_id
