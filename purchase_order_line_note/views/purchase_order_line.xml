@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright (C) 2022 Akretion (<http://www.akretion.com>).
+     @author Kévin Roche <kevin.roche@akretion.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="purchase_order_view_form" model="ir.ui.view">
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//tree/field[@name='name']" position="after">
+                <field name="note" optional="hide" />
+            </xpath>
+            <xpath expr="//form/field[@name='name']" position="after">
+                <label
+                    for="note"
+                    string="Note"
+                    attrs="{'invisible': [('display_type', '!=', False)]}"
+                />
+                <field
+                    name="note"
+                    optional="hide"
+                    attrs="{'invisible': [('display_type', '!=', False)]}"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
