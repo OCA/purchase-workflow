@@ -91,7 +91,9 @@ class StockMoveLine(models.Model):
                     )
 
                 request = allocation.purchase_request_line_id.request_id
-                if allocated_qty:
+                send_mail = request.company_id.notify_request_allocations
+
+                if allocated_qty and send_mail:
                     message_data = self._prepare_message_data(
                         ml, request, allocated_qty
                     )
