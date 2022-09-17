@@ -14,6 +14,7 @@
         "views/view_purchase_order_type.xml",
         "views/menu_purchase_order.xml",
     ],
+    "demo": ["demo/purchase_order_type_dashboard.xml"],
     "maintainers": ["dalonsod"],
     "installable": True,
     "auto_install": False,
