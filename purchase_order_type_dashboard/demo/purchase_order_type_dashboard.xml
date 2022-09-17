@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="purchase.purchase_order_1" model="purchase.order">
+        <field name="order_type" ref="purchase_order_type.po_type_regular" />
+    </record>
+    <record id="purchase.purchase_order_2" model="purchase.order">
+        <field name="order_type" ref="purchase_order_type.po_type_regular" />
+    </record>
+    <record id="purchase.purchase_order_3" model="purchase.order">
+        <field name="order_type" ref="purchase_order_type.po_type_blanket" />
+    </record>
+    <record id="purchase.purchase_order_4" model="purchase.order">
+        <field name="order_type" ref="purchase_order_type.po_type_planned" />
+    </record>
+    <record id="purchase.purchase_order_5" model="purchase.order">
+        <field name="order_type" ref="purchase_order_type.po_type_planned" />
+    </record>
+    <record id="purchase.purchase_order_6" model="purchase.order">
+        <field name="order_type" ref="purchase_order_type.po_type_planned" />
+    </record>
+</odoo>

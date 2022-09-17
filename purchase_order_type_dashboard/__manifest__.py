@@ -3,7 +3,7 @@
 
 {
     "name": "Purchase Order Type Dashboard",
-    "version": "13.0.1.0.0",
+    "version": "14.0.1.0.0",
     "author": "Solvos, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "category": "Purchase Management",
@@ -14,6 +14,7 @@
         "views/view_purchase_order_type.xml",
         "views/menu_purchase_order.xml",
     ],
+    "demo": ["demo/purchase_order_type_dashboard.xml"],
     "maintainers": ["dalonsod"],
     "installable": True,
     "auto_install": False,
