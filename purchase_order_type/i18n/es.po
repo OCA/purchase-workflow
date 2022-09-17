@@ -23,8 +23,8 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-16 12:06+0000\n"
-"PO-Revision-Date: 2022-02-14 15:16+0000\n"
-"Last-Translator: Olga Marco Puértolas <olga.marco@creublanca.es>\n"
+"PO-Revision-Date: 2022-09-17 12:07+0000\n"
+"Last-Translator: David Alonso (Solvos) <david.alonso@solvos.es>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/"
 "OCA-purchase-workflow-8-0/language/es/)\n"
 "Language: es\n"
@@ -106,7 +106,7 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__incoterm_id
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
 msgid "Incoterm"
-msgstr ""
+msgstr "Incoterm"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type____last_update
@@ -136,9 +136,8 @@ msgstr "Plazo de pago"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__payment_term_id
-#, fuzzy
 msgid "Payment Terms"
-msgstr "Términos de pago"
+msgstr "Plazos de pago"
 
 #. module: purchase_order_type
 #: model:ir.model,name:purchase_order_type.model_purchase_order
@@ -149,9 +148,8 @@ msgstr "Orden de Compra"
 #: model:ir.model.fields,field_description:purchase_order_type.field_res_partner__purchase_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_res_users__purchase_type
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.res_partner_purchase_type_form_view
-#, fuzzy
 msgid "Purchase Order Type"
-msgstr "Tipo de orden de compra"
+msgstr "Tipo de pedido de compra"
 
 #. module: purchase_order_type
 #: model:ir.actions.act_window,name:purchase_order_type.action_purchase_order_type_view
@@ -159,7 +157,7 @@ msgstr "Tipo de orden de compra"
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_tree
 msgid "Purchase Order Types"
-msgstr "Tipos de órdenes de compra"
+msgstr "Tipos de pedido de compra"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__sequence
@@ -175,9 +173,8 @@ msgstr "Tipo"
 
 #. module: purchase_order_type
 #: model:ir.model,name:purchase_order_type.model_purchase_order_type
-#, fuzzy
 msgid "Type of purchase order"
-msgstr "Tipo de orden de compra"
+msgstr "Tipo de pedido de compra"
 
 #~ msgid "Create Invoice"
 #~ msgstr "Crear factura"
