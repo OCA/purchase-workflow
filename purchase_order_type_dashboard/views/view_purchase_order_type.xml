@@ -11,9 +11,52 @@
         />
         <field name="arch" type="xml">
             <field name="description" position="after">
-                <field name="state_rfq_po_count" />
-                <field name="invoice_status_ti_po_count" />
+                <field name="state_rfq_po_count" sum="Total RFQs" />
+                <field name="invoice_status_no_po_count" sum="Total Nothing to Bill" />
+                <field name="invoice_status_ti_po_count" sum="Total Waiting Bills" />
             </field>
+        </field>
+    </record>
+
+    <record id="view_purchase_order_type_form" model="ir.ui.view">
+        <field
+            name="name"
+        >purchase.order.type.form (in purchase_order_type_dashboard)</field>
+        <field name="model">purchase.order.type</field>
+        <field
+            name="inherit_id"
+            ref="purchase_order_type.view_purchase_order_type_form"
+        />
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button
+                    class="oe_stat_button"
+                    name="%(action_purchase_rfq_from_dashboard)d"
+                    type="action"
+                    icon="fa-shopping-cart"
+                    context="{'search_default_draft': 1}"
+                >
+                    <field name="state_rfq_po_count" widget="statinfo" />
+                </button>
+                <button
+                    class="oe_stat_button"
+                    name="%(action_purchase_order_from_dashboard)d"
+                    type="action"
+                    icon="fa-truck"
+                    context="{'search_default_invoice_status_no': 1}"
+                >
+                    <field name="invoice_status_no_po_count" widget="statinfo" />
+                </button>
+                <button
+                    class="oe_stat_button"
+                    name="%(action_purchase_order_from_dashboard)d"
+                    type="action"
+                    icon="fa-usd"
+                    context="{'search_default_not_invoiced': 1}"
+                >
+                    <field name="invoice_status_ti_po_count" widget="statinfo" />
+                </button>
+            </div>
         </field>
     </record>
 
@@ -42,7 +85,11 @@
                                 </div>
                             </div>
                             <div class="o_kanban_manage_button_section">
-                                <a class="o_kanban_manage_toggle_button" href="#">
+                                <a
+                                    class="o_kanban_manage_toggle_button"
+                                    href="#"
+                                    title="Show other options"
+                                >
                                     <i class="fa fa-ellipsis-v" />
                                 </a>
                             </div>
