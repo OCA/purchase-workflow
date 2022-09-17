@@ -27,19 +27,16 @@ class TestPurchaseOrderTypeDashboard(common.SavepointCase):
         purchase = self._create_purchase(
             [(self.product1, 1), (self.product2, 5), (self.product3, 8)]
         )
-        self.assertEquals(self.type1.state_rfq_po_count, po_type1_rfq_count + 1)
+        self.assertEqual(self.type1.state_rfq_po_count, po_type1_rfq_count + 1)
 
         purchase.button_confirm()
         po_type1_is_no_count = self.type1.invoice_status_no_po_count
         po_type1_is_ti_count = self.type1.invoice_status_ti_po_count
-        purchase_picking = purchase.picking_ids
-        for move in purchase_picking.move_ids_without_package:
-            move.move_line_ids.write({"qty_done": move.purchase_line_id.product_qty})
-        purchase_picking.action_done()
-        self.assertEquals(
+        purchase.order_line[0].qty_received = 1.0
+        self.assertEqual(
             self.type1.invoice_status_no_po_count, po_type1_is_no_count - 1
         )
-        self.assertEquals(
+        self.assertEqual(
             self.type1.invoice_status_ti_po_count, po_type1_is_ti_count + 1
         )
 
