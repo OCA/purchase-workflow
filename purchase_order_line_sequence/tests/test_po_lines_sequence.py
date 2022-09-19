@@ -5,10 +5,11 @@
 
 from datetime import datetime
 
-from odoo.tests import common
+from odoo.tests import common, tagged
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 
+@tagged('post_install', '-at_install')
 class TestPurchaseOrder(common.TransactionCase):
     def setUp(self):
         super(TestPurchaseOrder, self).setUp()
