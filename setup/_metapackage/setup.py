@@ -10,6 +10,7 @@ setuptools.setup(
     install_requires=[
         'odoo-addon-procurement_purchase_no_grouping>=15.0dev,<15.1dev',
         'odoo-addon-product_form_purchase_link>=15.0dev,<15.1dev',
+        'odoo-addon-purchase_advance_payment>=15.0dev,<15.1dev',
         'odoo-addon-purchase_analytic_global>=15.0dev,<15.1dev',
         'odoo-addon-purchase_blanket_order>=15.0dev,<15.1dev',
         'odoo-addon-purchase_default_terms_conditions>=15.0dev,<15.1dev',
