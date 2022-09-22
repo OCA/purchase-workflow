@@ -163,6 +163,17 @@ class Test(common.SavepointCase):
         assert order.order_line[0].state == "cancel"
         assert order.order_line[0].product_qty == 99
 
+    def test_proposal_without_change(self):
+        "Proposal lines with no change are avoided without break other changes"
+        order = self.get_order_with_user(alternate_user=True)
+        order.order_line[0].button_update_proposal()
+        order.order_line[1].button_update_proposal()
+        order.proposal_ids[1].qty = 99
+        order = self.get_order_with_user()
+        order.submit_proposal()
+        order.approve_proposal()
+        assert order.order_line[1].product_qty == 99
+
     def get_order_with_user(self, alternate_user=None):
         order = self.order_main
         if alternate_user:

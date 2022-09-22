@@ -65,7 +65,10 @@ class PurchaseOrder(models.Model):
                 rec.partially_received = False
 
     def _check_updatable_proposal(self):
-        """ Override original method """
+        """In some cases we want to avoid to update Purchase to prevent
+        to break things.
+        Here we prevent to update product_qty in partially delivered Purchases
+        """
         for rec in self:
             prevent_update = False
             if rec.partially_received:
@@ -174,7 +177,7 @@ class PurchaseOrder(models.Model):
         self.write({"proposal_state": "approved"})
 
     def _product_qty_key_in_data(self, data):
-        """ Check if 'product_qty' key is anywhere in data """
+        """Check if 'product_qty' key is anywhere in data"""
         self.ensure_one()
         qty2update = False
         for __, vals in data.items():
@@ -184,10 +187,6 @@ class PurchaseOrder(models.Model):
                 else:
                     qty2update = qty2update or False
         return qty2update
-
-    def _hook_for_cancel_process(self):
-        "TODO remove: Kept for compatibility"
-        self._hook_pending_proposal_approval()
 
     def _hook_pending_proposal_approval(self):
         """Cancellation here is a fake one, in fact it's a workaround
@@ -223,18 +222,15 @@ class PurchaseOrder(models.Model):
                 updated_vals = {x: vals[x] for x in vals if vals[x] != elm[x]}
                 vals = updated_vals
             res[elm.line_id].append(vals)
-        self._check_data2update(res)
         if len(res) == 0:
             return {}
         return res
 
-    def _check_data2update(self, data):
-        for key, val in data.items():
-            if isinstance(val, list) and not val[0]:
-                raise UserError(_("No data to update for line ID '%s'") % key.id)
-
     def _update_proposal_to_purchase_line(self, data, body):
         for line_id in data:
+            if not data[line_id]:
+                # data in proposal and purch line are the same
+                continue
             # we update first line
             line_id.write(data[line_id][0])
             body.append(_("Updated line '%s' with %s") % (line_id.id, data[line_id][0]))
