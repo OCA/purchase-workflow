@@ -12,6 +12,8 @@ class TestPurchaseLastPriceInfo(common.TransactionCase):
         super().setUp()
         usd = self.env.ref("base.USD")
         eur = self.env.ref("base.EUR")
+        self.uom_unit = self.env.ref("uom.product_uom_unit")
+        self.uom_dozen = self.env.ref("uom.product_uom_dozen")
         self.currency = self.env.ref("base.main_company").currency_id
         self.currency_extra = eur if self.currency == usd else usd
         self.purchase_model = self.env["purchase.order"]
@@ -94,3 +96,30 @@ class TestPurchaseLastPriceInfo(common.TransactionCase):
         self.assertEqual(self.partner, self.product.last_purchase_supplier_id)
         purchase_order.button_cancel()
         self.assertEqual(purchase_order.state, "cancel")
+
+    def test_purchase_last_price_info_different_uom(self):
+        product = self.product
+        product.uom_po_id = self.uom_unit
+
+        purchase_order = self.purchase_model.create(
+            {
+                "date_order": "2000-01-01",
+                "partner_id": self.partner.id,
+                "order_line": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": product.id,
+                            "product_uom": self.uom_dozen.id,
+                            "price_unit": 12000,
+                            "name": self.product.name,
+                            "date_planned": fields.Datetime.now(),
+                            "product_qty": 1,
+                        },
+                    )
+                ],
+            }
+        )
+        purchase_order.button_confirm()
+        self.assertEqual(product.last_purchase_price, 1000)
