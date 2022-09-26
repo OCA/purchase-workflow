@@ -18,3 +18,10 @@ class ProductSupplierinfo(models.Model):
         delay_days = super()._get_delay_days()
         delay_hours = self.delay_hour / 24
         return delay_days + delay_hours
+
+    def _get_next_delivery_date(self):
+        self.ensure_one()
+        availability_date = self._get_next_availability_date()
+        context = {"purchase_lead_hour__availability_date": availability_date}
+        delay = self.with_context(context)._get_delay_delta()
+        return availability_date + delay

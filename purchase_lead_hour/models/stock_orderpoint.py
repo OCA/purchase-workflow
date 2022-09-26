@@ -14,7 +14,6 @@ class StockOrderpoint(models.Model):
             return res
         seller = self.product_id._select_seller(quantity=None)
         if seller:
-            lead_days, __ = self.rule_ids._get_lead_days(self.product_id)
-            availability_date = seller._get_next_availability_date()
-            res.update({"to_date": availability_date + seller._get_delay_delta()})
+            delivery_date = seller._get_next_delivery_date()
+            res.update({"to_date": delivery_date})
         return res
