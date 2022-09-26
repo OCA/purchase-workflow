@@ -51,7 +51,7 @@
                     <tbody class="purchase_tbody">
                         <t t-foreach="doc.line_ids" t-as="l">
                             <tr>
-                                <td>
+                                <td name="td_name" class="text-left">
                                     <span t-field="l.product_id" />
                                 </td>
                                 <td class="text-right">
@@ -77,8 +77,8 @@
                         </t>
                     </tbody>
                 </table>
-                <div class="row">
-                    <div class="col-xs-4 pull-right">
+                <div id="total" class="row justify-content-end">
+                    <div class="col-4">
                         <table class="table table-condensed">
                             <tr class="border-black">
                                 <td>
