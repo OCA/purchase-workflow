@@ -6,5 +6,6 @@
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">purchase_blanket_order.report_blanketorder</field>
         <field name="report_file">purchase_blanket_order.report_blanketorder</field>
+        <field name="binding_model_id" ref="model_purchase_blanket_order" />
     </record>
 </odoo>
