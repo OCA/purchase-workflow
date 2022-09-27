@@ -46,10 +46,7 @@ msgid "Created on"
 msgstr ""
 
 #. module: purchase_exception
-#: model:ir.model.fields,field_description:purchase_exception.field_exception_rule__display_name
 #: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__display_name
-#: model:ir.model.fields,field_description:purchase_exception.field_purchase_order__display_name
-#: model:ir.model.fields,field_description:purchase_exception.field_purchase_order_line__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -74,10 +71,7 @@ msgid "Exceptions to resolve"
 msgstr ""
 
 #. module: purchase_exception
-#: model:ir.model.fields,field_description:purchase_exception.field_exception_rule__id
 #: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__id
-#: model:ir.model.fields,field_description:purchase_exception.field_purchase_order__id
-#: model:ir.model.fields,field_description:purchase_exception.field_purchase_order_line__id
 msgid "ID"
 msgstr ""
 
@@ -90,10 +84,7 @@ msgid "Ignore Exceptions"
 msgstr ""
 
 #. module: purchase_exception
-#: model:ir.model.fields,field_description:purchase_exception.field_exception_rule____last_update
 #: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm____last_update
-#: model:ir.model.fields,field_description:purchase_exception.field_purchase_order____last_update
-#: model:ir.model.fields,field_description:purchase_exception.field_purchase_order_line____last_update
 msgid "Last Modified on"
 msgstr ""
 
