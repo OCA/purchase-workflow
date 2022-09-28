@@ -1,5 +1,7 @@
 # Copyright 2022 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+import json
+
 from odoo import api, fields, models
 
 
@@ -18,24 +20,21 @@ class SaleOrderLine(models.Model):
         comodel_name="res.partner",
         string="Vendor",
     )
-    allowed_vendor_ids = fields.One2many(
-        comodel_name="res.partner",
-        string="Proveedor",
-        compute="_compute_allowed_vendor_ids",
+    vendor_id_domain = fields.Char(
+        compute="_compute_vendor_id_domain",
+        readonly=True,
+        store=False,
     )
 
     @api.depends("product_id")
-    def _compute_allowed_vendor_ids(self):
-        supplierinfo_model = self.env["product.supplierinfo"]
-        self.allowed_vendor_ids = self.allowed_vendor_ids
-        for item in self.filtered(lambda x: x.product_id):
-            item.allowed_vendor_ids = supplierinfo_model.search(
-                [
-                    "|",
-                    ("product_tmpl_id", "=", item.product_id.product_tmpl_id.id),
-                    ("product_id", "=", item.product_id.id),
-                ]
-            ).mapped("name")
+    def _compute_vendor_id_domain(self):
+        for item in self:
+            domain = (
+                [("id", "in", item.product_id.variant_seller_ids.name.ids)]
+                if item.order_id.sale_purchase_force_vendor_restrict
+                else []
+            )
+            item.vendor_id_domain = json.dumps(domain)
 
     def _prepare_procurement_values(self, group_id=False):
         """Inject in the procurement values the preferred vendor if any, and create
