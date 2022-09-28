@@ -33,7 +33,10 @@ class PurchaseOrderLine(models.Model):
         purpose.
         """
         res = super().onchange_product_id()
-        self.secondary_uom_id = self.product_id.purchase_secondary_uom_id
+        # Check to avoid executing onchange unnecessarily,
+        # which can sometimes cause tests of other modules to fail
+        if self.secondary_uom_id != self.product_id.purchase_secondary_uom_id:
+            self.secondary_uom_id = self.product_id.purchase_secondary_uom_id
         if self.secondary_uom_id:
             self.secondary_uom_qty = 1.0
         return res
