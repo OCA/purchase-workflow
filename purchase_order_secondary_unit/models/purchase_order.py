@@ -18,8 +18,8 @@ class PurchaseOrderLine(models.Model):
     @api.depends("secondary_uom_qty", "secondary_uom_id")
     def _compute_product_qty(self):
         if hasattr(super(), "_compute_product_qty"):
-            super()._compute_product_qty()
-        self._compute_helper_target_field_qty()
+            return super()._compute_product_qty()
+        return self._compute_helper_target_field_qty()
 
     @api.onchange("product_uom")
     def onchange_product_uom_for_secondary(self):
