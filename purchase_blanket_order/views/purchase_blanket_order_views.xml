@@ -132,7 +132,7 @@
                         <page string="Order Lines">
                             <field
                                 name="line_ids"
-                                attrs="{'readonly': [('state', 'in', ('open','expired'))]}"
+                                attrs="{'readonly': [('state', 'in', ('done','expired'))]}"
                             >
                                 <tree editable="bottom">
                                     <field name="sequence" widget="handle" />
