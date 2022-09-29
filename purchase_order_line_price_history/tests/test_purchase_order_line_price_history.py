@@ -1,50 +1,41 @@
 # Copyright 2020 Tecnativa - Ernesto Tejeda
+# Copyright 2022 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.tests import Form, SavepointCase
+from odoo.tests import Form, TransactionCase
 
 
-class TestPurchaseOrderLinePriceHistoryBase(SavepointCase):
+class TestPurchaseOrderLinePriceHistoryBase(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.partner_1 = cls.env["res.partner"].create({"name": "Partner 1"})
         cls.partner_2 = cls.env["res.partner"].create({"name": "Partner 2"})
         cls.product = cls.env["product.product"].create({"name": "Product 1"})
-        # Compatible with purchase_order_type, if installed.
-        cls.order_type = cls.env.ref("purchase_order_type.po_type_regular", False)
+        cls.purchase_order_model = cls.env["purchase.order"]
         # Two confirmed purchase orders with the same data and
         # different partners
-        purchase_form = Form(cls.env["purchase.order"])
-        purchase_form.partner_id = cls.partner_1
-        if "order_type" in purchase_form._model:
-            purchase_form.order_type = cls.order_type
-        with purchase_form.order_line.new() as line_form:
-            line_form.product_id = cls.product
-            line_form.product_qty = 2
-            line_form.price_unit = 10
-        cls.purchase_order_1 = purchase_form.save()
+        cls.purchase_order_1 = cls._create_purchase_order(
+            cls, cls.partner_1, [cls.product, 2, 10]
+        )
         cls.purchase_order_1.button_confirm()
-        purchase_form = Form(cls.env["purchase.order"])
-        purchase_form.partner_id = cls.partner_2
-        if "order_type" in purchase_form._model:
-            purchase_form.order_type = cls.order_type
-        with purchase_form.order_line.new() as line_form:
-            line_form.product_id = cls.product
-            line_form.product_qty = 2
-            line_form.price_unit = 20
-        cls.purchase_order_2 = purchase_form.save()
+        cls.purchase_order_2 = cls._create_purchase_order(
+            cls, cls.partner_2, [cls.product, 2, 20]
+        )
         # A non-confirmed purchase orders with the same partner
         # of cls.purchase_order_2
-        purchase_form = Form(cls.env["purchase.order"])
-        purchase_form.partner_id = cls.partner_2
-        if "order_type" in purchase_form._model:
-            purchase_form.order_type = cls.order_type
+        cls.purchase_order_3 = cls._create_purchase_order(
+            cls, cls.partner_2, [cls.product, 2, 30]
+        )
+
+    def _create_purchase_order(self, partner, product_info):
+        purchase_form = Form(self.purchase_order_model)
+        purchase_form.partner_id = partner
         with purchase_form.order_line.new() as line_form:
-            line_form.product_id = cls.product
-            line_form.product_qty = 2
-            line_form.price_unit = 30
-        cls.purchase_order_3 = purchase_form.save()
+            line_form.product_id = product_info[0]
+            line_form.product_qty = product_info[1]
+            line_form.price_unit = product_info[2]
+        return purchase_form.save()
 
     def launch_wizard(self, active_id):
         wizard_obj = self.env["purchase.order.line.price.history"]
@@ -84,13 +75,9 @@ class TestPurchaseOrderLinePriceHistory(TestPurchaseOrderLinePriceHistoryBase):
     def test_onchange_partner_id_include_rfq(self):
         # Another purchase orders with the same partner of cls.purchase_order_2
         # and cls.purchase_order_3
-        purchase_form = Form(self.env["purchase.order"])
-        purchase_form.partner_id = self.partner_2
-        with purchase_form.order_line.new() as line_form:
-            line_form.product_id = self.product
-            line_form.product_qty = 2
-            line_form.price_unit = 40
-        self.purchase_order_4 = purchase_form.save()
+        self.purchase_order_4 = self._create_purchase_order(
+            self.partner_2, [self.product, 2, 40]
+        )
         # Create a wizard from self.purchase_order_4 order line.
         # Only one history line should be shown and should be
         # associated with self.purchase_order_2 order line
@@ -116,13 +103,9 @@ class TestPurchaseOrderLinePriceHistory(TestPurchaseOrderLinePriceHistoryBase):
         partner_2_child = self.env["res.partner"].create(
             {"name": "Child of Partner 2", "parent_id": self.partner_2.id},
         )
-        purchase_form = Form(self.env["purchase.order"])
-        purchase_form.partner_id = partner_2_child
-        with purchase_form.order_line.new() as line_form:
-            line_form.product_id = self.product
-            line_form.product_qty = 2
-            line_form.price_unit = 40
-        self.purchase_order_4 = purchase_form.save()
+        self.purchase_order_4 = self._create_purchase_order(
+            partner_2_child, [self.product, 2, 40]
+        )
         # Create a wizard from self.purchase_order_4 order line. As
         # include_commercial_partner is checked by default, one history line
         # should be shown and associated with self.purchase_order_2 order line

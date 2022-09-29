@@ -10,7 +10,6 @@
             <xpath expr="//field[@name='order_line']/tree">
                 <button
                     name="%(purchase_order_line_price_history_action)d"
-                    string="Price history"
                     type="action"
                     icon="fa-clock-o"
                 />
