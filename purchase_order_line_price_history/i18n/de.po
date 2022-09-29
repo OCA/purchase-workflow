@@ -118,11 +118,6 @@ msgid "Partner"
 msgstr "Partner"
 
 #. module: purchase_order_line_price_history
-#: model_terms:ir.ui.view,arch_db:purchase_order_line_price_history.purchase_order_form
-msgid "Price history"
-msgstr "Preishistorie"
-
-#. module: purchase_order_line_price_history
 #: model:ir.actions.act_window,name:purchase_order_line_price_history.purchase_order_line_price_history_action
 msgid "Price history per supplier"
 msgstr "Preishistorie des Lieferanten"
@@ -182,3 +177,6 @@ msgstr "Mengeneinheit"
 #: model:ir.model.fields,help:purchase_order_line_price_history.field_purchase_order_line_price_history_line__partner_id
 msgid "You can find a vendor by its Name, TIN, Email or Internal Reference."
 msgstr ""
+
+#~ msgid "Price history"
+#~ msgstr "Preishistorie"

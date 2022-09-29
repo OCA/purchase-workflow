@@ -121,11 +121,6 @@ msgid "Partner"
 msgstr "Contact"
 
 #. module: purchase_order_line_price_history
-#: model_terms:ir.ui.view,arch_db:purchase_order_line_price_history.purchase_order_form
-msgid "Price history"
-msgstr "Historique de prix"
-
-#. module: purchase_order_line_price_history
 #: model:ir.actions.act_window,name:purchase_order_line_price_history.purchase_order_line_price_history_action
 msgid "Price history per supplier"
 msgstr "Historique de prix par fournisseur"
@@ -189,3 +184,6 @@ msgid "You can find a vendor by its Name, TIN, Email or Internal Reference."
 msgstr ""
 "Vous pouvez trouver un fournisseur par son Nom, TIN, Courriel ou sa "
 "Référence interne."
+
+#~ msgid "Price history"
+#~ msgstr "Historique de prix"
