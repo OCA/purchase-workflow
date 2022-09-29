@@ -132,6 +132,7 @@
                         <page string="Order Lines">
                             <field
                                 name="line_ids"
+                                force_save="1"
                                 attrs="{'readonly': [('state', 'in', ('done','expired'))]}"
                             >
                                 <tree editable="bottom">
