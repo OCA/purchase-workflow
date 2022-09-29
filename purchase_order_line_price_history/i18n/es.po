@@ -187,6 +187,3 @@ msgid "You can find a vendor by its Name, TIN, Email or Internal Reference."
 msgstr ""
 "Puede encontrar un vendedor por su nombre, NIF, correo electrónico o "
 "referencia interna."
-
-#~ msgid "history purchase order line"
-#~ msgstr "Línea de pedido de compra"
