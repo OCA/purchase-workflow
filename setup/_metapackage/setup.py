@@ -25,6 +25,7 @@ setuptools.setup(
         'odoo-addon-purchase_order_product_recommendation>=15.0dev,<15.1dev',
         'odoo-addon-purchase_order_qty_change_no_recompute>=15.0dev,<15.1dev',
         'odoo-addon-purchase_order_type>=15.0dev,<15.1dev',
+        'odoo-addon-purchase_partner_incoterm>=15.0dev,<15.1dev',
         'odoo-addon-purchase_partner_selectable_option>=15.0dev,<15.1dev',
         'odoo-addon-purchase_receipt_expectation>=15.0dev,<15.1dev',
         'odoo-addon-purchase_receipt_expectation_manual>=15.0dev,<15.1dev',
