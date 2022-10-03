@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-29 03:23+0000\n"
-"PO-Revision-Date: 2022-09-22 23:08+0000\n"
+"PO-Revision-Date: 2022-10-03 17:36+0000\n"
 "Last-Translator: Douglas Custódio <douglascstd@yahoo.com>\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
 "23907/pt_BR/)\n"
@@ -28,9 +28,9 @@ msgstr ""
 #. module: product_supplier_code_purchase
 #: model:ir.model,name:product_supplier_code_purchase.model_purchase_order
 msgid "Purchase Order"
-msgstr "Ordem de Compra"
+msgstr "Pedido de Compra"
 
 #. module: product_supplier_code_purchase
 #: model:ir.model,name:product_supplier_code_purchase.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr "Linha da Ordem de Compra"
+msgstr "Linha do Pedido de Compra"
