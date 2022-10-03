@@ -10,15 +10,16 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-16 12:06+0000\n"
-"PO-Revision-Date: 2016-11-25 14:55+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-"
-"purchase-workflow-8-0/language/pt_BR/)\n"
+"PO-Revision-Date: 2022-10-03 15:53+0000\n"
+"Last-Translator: Douglas Custódio <douglascstd@yahoo.com>\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/"
+"OCA-purchase-workflow-8-0/language/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__active
@@ -133,7 +134,7 @@ msgstr ""
 #. module: purchase_order_type
 #: model:ir.model,name:purchase_order_type.model_purchase_order
 msgid "Purchase Order"
-msgstr "Ordem de Compra"
+msgstr "Pedido de Compra"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_res_partner__purchase_type
@@ -166,7 +167,7 @@ msgstr "Tipo"
 #: model:ir.model,name:purchase_order_type.model_purchase_order_type
 #, fuzzy
 msgid "Type of purchase order"
-msgstr "Ordem de Compra"
+msgstr "Pedido de Compra"
 
 #~ msgid "Partner"
 #~ msgstr "Parceiro"
