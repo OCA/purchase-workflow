@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: odoomrp-utils (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-08 08:45+0000\n"
-"PO-Revision-Date: 2020-09-25 23:00+0000\n"
-"Last-Translator: Marcel Savegnago <marcel.savegnago@gmail.com>\n"
+"PO-Revision-Date: 2022-10-03 18:36+0000\n"
+"Last-Translator: Douglas Custódio <douglascstd@yahoo.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/"
 "odoomrp-utils-8-0/language/pt_BR/)\n"
 "Language: pt_BR\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: purchase_order_line_stock_available
 #: model:ir.model.fields,field_description:purchase_order_line_stock_available.field_purchase_order_line__virtual_available
@@ -40,4 +40,4 @@ msgstr ""
 #. module: purchase_order_line_stock_available
 #: model:ir.model,name:purchase_order_line_stock_available.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr "Linha da Ordem de Compra"
+msgstr "Linha do Pedido de Compra"
