@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-24 07:53+0000\n"
-"PO-Revision-Date: 2022-10-03 17:36+0000\n"
+"PO-Revision-Date: 2022-10-04 00:42+0000\n"
 "Last-Translator: Douglas Custódio <douglascstd@yahoo.com>\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
 "23907/pt_BR/)\n"
@@ -25,14 +25,14 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:purchase_open_qty.purchase_order_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_open_qty.view_purchase_order_filter
 msgid "Pending Qty to Bill"
-msgstr ""
+msgstr "Qtd Pendente para Faturar"
 
 #. module: purchase_open_qty
 #: model:ir.model.fields,field_description:purchase_open_qty.field_purchase_order__pending_qty_to_receive
 #: model_terms:ir.ui.view,arch_db:purchase_open_qty.purchase_order_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_open_qty.view_purchase_order_filter
 msgid "Pending Qty to Receive"
-msgstr ""
+msgstr "Qtd Pendente para Receber"
 
 #. module: purchase_open_qty
 #: model:ir.model,name:purchase_open_qty.model_purchase_order
@@ -48,16 +48,16 @@ msgstr "Linha do Pedido de Compra"
 #: model:ir.model.fields,field_description:purchase_open_qty.field_purchase_order__qty_to_invoice
 #: model:ir.model.fields,field_description:purchase_open_qty.field_purchase_order_line__qty_to_invoice
 msgid "Qty to Bill"
-msgstr ""
+msgstr "Qtd para Faturar"
 
 #. module: purchase_open_qty
 #: model:ir.model.fields,field_description:purchase_open_qty.field_purchase_order__qty_to_receive
 #: model:ir.model.fields,field_description:purchase_open_qty.field_purchase_order_line__qty_to_receive
 msgid "Qty to Receive"
-msgstr ""
+msgstr "Qtd para Receber"
 
 #. module: purchase_open_qty
 #: code:addons/purchase_open_qty/models/purchase_order.py:0
 #, python-format
 msgid "Unsupported search operator"
-msgstr ""
+msgstr "Operador de busca não suportado"
