@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-23 17:50+0000\n"
-"PO-Revision-Date: 2018-02-23 17:50+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
-"teams/23907/pt_BR/)\n"
+"PO-Revision-Date: 2022-10-03 17:36+0000\n"
+"Last-Translator: Douglas Custódio <douglascstd@yahoo.com>\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
+"23907/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: purchase_minimum_amount
 #: model:ir.model,name:purchase_minimum_amount.model_res_partner
@@ -43,4 +44,4 @@ msgstr ""
 #. module: purchase_minimum_amount
 #: model:ir.model,name:purchase_minimum_amount.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr "Linha da Ordem de Compra"
+msgstr "Linha do Pedido de Compra"
