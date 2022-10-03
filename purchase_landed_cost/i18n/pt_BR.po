@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: odoomrp-wip (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-07 10:44+0000\n"
-"PO-Revision-Date: 2020-09-25 23:00+0000\n"
-"Last-Translator: Marcel Savegnago <marcel.savegnago@gmail.com>\n"
+"PO-Revision-Date: 2022-10-03 18:36+0000\n"
+"Last-Translator: Douglas Custódio <douglascstd@yahoo.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/"
 "odoomrp-wip-8-0/language/pt_BR/)\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_expense__affected_lines
@@ -579,7 +579,7 @@ msgstr "Linha de Custo da Compra"
 #. module: purchase_landed_cost
 #: model:ir.model,name:purchase_landed_cost.model_purchase_order
 msgid "Purchase Order"
-msgstr "Ordem de Compra"
+msgstr "Pedido de Compra"
 
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
@@ -643,7 +643,7 @@ msgstr "Ordem de compra"
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__purchase_line_id
 msgid "Purchase order line"
-msgstr "Linha da Ordem de Compra"
+msgstr "Linha do Pedido de Compra"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,help:purchase_landed_cost.field_purchase_cost_distribution_expense__affected_lines
