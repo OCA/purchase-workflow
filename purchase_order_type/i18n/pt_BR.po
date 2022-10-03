@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-16 12:06+0000\n"
-"PO-Revision-Date: 2022-09-22 23:07+0000\n"
+"PO-Revision-Date: 2022-10-03 17:36+0000\n"
 "Last-Translator: Douglas Custódio <douglascstd@yahoo.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/"
 "OCA-purchase-workflow-8-0/language/pt_BR/)\n"
@@ -134,7 +134,7 @@ msgstr ""
 #. module: purchase_order_type
 #: model:ir.model,name:purchase_order_type.model_purchase_order
 msgid "Purchase Order"
-msgstr "Ordem de Compra"
+msgstr "Pedido de Compra"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_res_partner__purchase_type
@@ -167,7 +167,7 @@ msgstr "Tipo"
 #: model:ir.model,name:purchase_order_type.model_purchase_order_type
 #, fuzzy
 msgid "Type of purchase order"
-msgstr "Ordem de Compra"
+msgstr "Pedido de Compra"
 
 #~ msgid "Partner"
 #~ msgstr "Parceiro"
