@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* purchase_triple_discount
+# 	* purchase_triple_discount
 #
 msgid ""
 msgstr ""
@@ -15,6 +15,16 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 3.8\n"
+
+#. module: purchase_triple_discount
+#: model_terms:ir.ui.view,arch_db:purchase_triple_discount.report_purchaseorder_document_triple_discount
+msgid "<strong>Disc. 2 (%)</strong>"
+msgstr ""
+
+#. module: purchase_triple_discount
+#: model_terms:ir.ui.view,arch_db:purchase_triple_discount.report_purchaseorder_document_triple_discount
+msgid "<strong>Disc. 3 (%)</strong>"
+msgstr ""
 
 #. module: purchase_triple_discount
 #: model:ir.model,name:purchase_triple_discount.model_res_partner
@@ -50,7 +60,7 @@ msgid "Discount 2 (%)"
 msgstr "折扣2(%)"
 
 #. module: purchase_triple_discount
-#: sql_constraint:purchase.order.line:0
+#: model:ir.model.constraint,message:purchase_triple_discount.constraint_purchase_order_line_discount2_limit
 msgid "Discount 2 must be lower than 100%."
 msgstr "折扣2必须低于100％。"
 
@@ -61,14 +71,33 @@ msgid "Discount 3 (%)"
 msgstr "折扣3(%)"
 
 #. module: purchase_triple_discount
-#: sql_constraint:purchase.order.line:0
+#: model:ir.model.constraint,message:purchase_triple_discount.constraint_purchase_order_line_discount3_limit
 msgid "Discount 3 must be lower than 100%."
 msgstr "折扣3必须低于100％。"
 
 #. module: purchase_triple_discount
-#: model:ir.model,name:purchase_triple_discount.model_account_invoice
-msgid "Invoice"
-msgstr "发票"
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_product_supplierinfo__display_name
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_purchase_order_line__display_name
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_purchase_report__display_name
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_res_partner__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: purchase_triple_discount
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_product_supplierinfo__id
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_purchase_order_line__id
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_purchase_report__id
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_res_partner__id
+msgid "ID"
+msgstr ""
+
+#. module: purchase_triple_discount
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_product_supplierinfo____last_update
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_purchase_order_line____last_update
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_purchase_report____last_update
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_res_partner____last_update
+msgid "Last Modified on"
+msgstr ""
 
 #. module: purchase_triple_discount
 #: model:ir.model,name:purchase_triple_discount.model_purchase_order_line
@@ -81,11 +110,6 @@ msgid "Purchase Report"
 msgstr "采购报告"
 
 #. module: purchase_triple_discount
-#: model:ir.model,name:purchase_triple_discount.model_stock_rule
-msgid "Stock Rule"
-msgstr "库存规则"
-
-#. module: purchase_triple_discount
 #: model:ir.model,name:purchase_triple_discount.model_product_supplierinfo
 msgid "Supplier Pricelist"
 msgstr "供应商价格表"
@@ -95,5 +119,13 @@ msgstr "供应商价格表"
 #: model:ir.model.fields,help:purchase_triple_discount.field_res_partner__default_supplierinfo_discount3
 #: model:ir.model.fields,help:purchase_triple_discount.field_res_users__default_supplierinfo_discount2
 #: model:ir.model.fields,help:purchase_triple_discount.field_res_users__default_supplierinfo_discount3
-msgid "This value will be used as the default one, for each new supplierinfo line depending on that supplier."
+msgid ""
+"This value will be used as the default one, for each new supplierinfo line "
+"depending on that supplier."
 msgstr "根据供应商的不同，此值将用作每个新供应商信息行的默认值。"
+
+#~ msgid "Invoice"
+#~ msgstr "发票"
+
+#~ msgid "Stock Rule"
+#~ msgstr "库存规则"

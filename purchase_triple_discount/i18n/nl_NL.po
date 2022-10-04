@@ -20,6 +20,16 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: purchase_triple_discount
+#: model_terms:ir.ui.view,arch_db:purchase_triple_discount.report_purchaseorder_document_triple_discount
+msgid "<strong>Disc. 2 (%)</strong>"
+msgstr ""
+
+#. module: purchase_triple_discount
+#: model_terms:ir.ui.view,arch_db:purchase_triple_discount.report_purchaseorder_document_triple_discount
+msgid "<strong>Disc. 3 (%)</strong>"
+msgstr ""
+
+#. module: purchase_triple_discount
 #: model:ir.model,name:purchase_triple_discount.model_res_partner
 msgid "Contact"
 msgstr ""
@@ -53,7 +63,7 @@ msgid "Discount 2 (%)"
 msgstr ""
 
 #. module: purchase_triple_discount
-#: sql_constraint:purchase.order.line:0
+#: model:ir.model.constraint,message:purchase_triple_discount.constraint_purchase_order_line_discount2_limit
 msgid "Discount 2 must be lower than 100%."
 msgstr ""
 
@@ -64,14 +74,33 @@ msgid "Discount 3 (%)"
 msgstr ""
 
 #. module: purchase_triple_discount
-#: sql_constraint:purchase.order.line:0
+#: model:ir.model.constraint,message:purchase_triple_discount.constraint_purchase_order_line_discount3_limit
 msgid "Discount 3 must be lower than 100%."
 msgstr ""
 
 #. module: purchase_triple_discount
-#: model:ir.model,name:purchase_triple_discount.model_account_invoice
-msgid "Invoice"
-msgstr "Factuur"
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_product_supplierinfo__display_name
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_purchase_order_line__display_name
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_purchase_report__display_name
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_res_partner__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: purchase_triple_discount
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_product_supplierinfo__id
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_purchase_order_line__id
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_purchase_report__id
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_res_partner__id
+msgid "ID"
+msgstr ""
+
+#. module: purchase_triple_discount
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_product_supplierinfo____last_update
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_purchase_order_line____last_update
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_purchase_report____last_update
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_res_partner____last_update
+msgid "Last Modified on"
+msgstr ""
 
 #. module: purchase_triple_discount
 #: model:ir.model,name:purchase_triple_discount.model_purchase_order_line
@@ -83,11 +112,6 @@ msgstr "Inkooporderregel"
 #, fuzzy
 msgid "Purchase Report"
 msgstr "Inkooporderregel"
-
-#. module: purchase_triple_discount
-#: model:ir.model,name:purchase_triple_discount.model_stock_rule
-msgid "Stock Rule"
-msgstr ""
 
 #. module: purchase_triple_discount
 #: model:ir.model,name:purchase_triple_discount.model_product_supplierinfo
@@ -103,3 +127,6 @@ msgid ""
 "This value will be used as the default one, for each new supplierinfo line "
 "depending on that supplier."
 msgstr ""
+
+#~ msgid "Invoice"
+#~ msgstr "Factuur"
