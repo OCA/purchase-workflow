@@ -13,6 +13,7 @@
         "account_invoice_triple_discount",
     ],
     "data": [
+        "views/purchase_order_report.xml",
         "views/product_supplierinfo_view.xml",
         "views/purchase_view.xml",
         "views/res_partner_view.xml",

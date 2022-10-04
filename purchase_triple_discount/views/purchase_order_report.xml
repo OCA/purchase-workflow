@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="report_purchaseorder_document_triple_discount"
+        inherit_id="purchase_discount.report_purchaseorder_document"
+    >
+        <xpath expr="//table/thead/tr/th[@name='th_discount']" position="after">
+            <th name="th_discount2" class="text-right">
+                <strong>Disc. 2 (%)</strong>
+            </th>
+           <th name="th_discount3" class="text-right">
+                <strong>Disc. 3 (%)</strong>
+            </th>
+        </xpath>
+        <xpath expr="//table/tbody//tr//td[@name='td_discount']" position="after">
+            <td name="td_discount2" class="text-right">
+                <span t-field="line.discount2" />
+            </td>
+            <td name="td_discount3" class="text-right">
+                <span t-field="line.discount3" />
+            </td>
+        </xpath>
+    </template>
+</odoo>
