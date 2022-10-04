@@ -88,7 +88,7 @@ addon | version | maintainers | summary
 [purchase_stock_secondary_unit](purchase_stock_secondary_unit/) | 14.0.1.0.0 |  | Get product quantities in a secondary unit
 [purchase_tag](purchase_tag/) | 14.0.1.0.0 |  | Allows to add multiple tags to purchase orders
 [purchase_tier_validation](purchase_tier_validation/) | 14.0.2.0.1 |  | Extends the functionality of Purchase Orders to support a tier validation process.
-[purchase_triple_discount](purchase_triple_discount/) | 14.0.1.0.1 |  | Manage triple discount on purchase order lines
+[purchase_triple_discount](purchase_triple_discount/) | 14.0.1.1.0 |  | Manage triple discount on purchase order lines
 [purchase_work_acceptance](purchase_work_acceptance/) | 14.0.1.2.0 | [![ps-tubtim](https://github.com/ps-tubtim.png?size=30px)](https://github.com/ps-tubtim) | Purchase Work Acceptance
 [purchase_work_acceptance_evaluation](purchase_work_acceptance_evaluation/) | 14.0.2.0.0 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Purchase Work Acceptance Evaluation
 [purchase_work_acceptance_invoice_plan](purchase_work_acceptance_invoice_plan/) | 14.0.1.0.1 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Purchase Work Acceptance Invoice Plan
