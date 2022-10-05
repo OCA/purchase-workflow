@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
 
-from odoo import models
+from odoo import api, models
 
 
 class StockOrderpoint(models.Model):
@@ -17,3 +17,7 @@ class StockOrderpoint(models.Model):
             delivery_date = seller._get_next_delivery_date()
             res.update({"to_date": delivery_date})
         return res
+
+    @api.depends("product_id.seller_ids.delay_hour")
+    def _compute_lead_days(self):
+        return super()._compute_lead_days()
