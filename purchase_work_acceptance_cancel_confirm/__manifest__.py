@@ -9,7 +9,11 @@
     "license": "AGPL-3",
     "website": "https://github.com/OCA/purchase-workflow",
     "depends": ["base_cancel_confirm", "purchase_work_acceptance"],
+    "data": [
+        "data/config_parameter.xml",
+    ],
     "auto_install": False,
     "installable": True,
     "maintainers": ["ps-tubtim"],
+    "development_status": "Alpha",
 }
