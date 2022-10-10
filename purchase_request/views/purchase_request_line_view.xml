@@ -44,10 +44,6 @@
                     name="analytic_account_id"
                     groups="analytic.group_analytic_accounting"
                 />
-                <field
-                    name="analytic_tag_ids"
-                    groups="analytic.group_analytic_accounting"
-                />
                 <field name="supplier_id" />
                 <field
                     name="company_id"
@@ -130,11 +126,6 @@
                             </div>
                             <field
                                 name="analytic_account_id"
-                                groups="analytic.group_analytic_accounting"
-                                attrs="{'readonly': [('is_editable','=', False)]}"
-                            />
-                            <field
-                                name="analytic_tag_ids"
                                 groups="analytic.group_analytic_accounting"
                                 attrs="{'readonly': [('is_editable','=', False)]}"
                             />
@@ -477,11 +468,12 @@
                                 options="{'no_create': True}"
                             />
                             <field
-                                name="account_analytic_id"
+                                name="analytic_distribution_stored_char"
                                 attrs="{'readonly': True}"
                                 colspan="4"
-                                groups="analytic.group_analytic_accounting"
                             />
+<!--                                groups="analytic.group_analytic_accounting"-->
+<!--                            />-->
                         </group>
                     </group>
                     <field name="name" attrs="{'readonly': True}" />
@@ -509,7 +501,7 @@
                 <field name="product_uom" groups="uom.group_uom" />
                 <field name="price_subtotal" widget="monetary" />
                 <field name="date_planned" widget="date" />
-                <field name="purchase_request_lines" attrs="{'invisible': True}" />
+                <field name="purchase_request_lines" invisible="1" />
             </tree>
         </field>
     </record>
@@ -585,11 +577,11 @@
                                 groups="analytic.group_analytic_accounting"
                                 attrs="{'readonly': [('is_editable','=', False)]}"
                             />
-                        <field
-                                name="analytic_tag_ids"
-                                groups="analytic.group_analytic_accounting"
-                                attrs="{'readonly': [('is_editable','=', False)]}"
-                            />
+<!--                        <field-->
+<!--                                name="analytic_tag_ids"-->
+<!--                                groups="analytic.group_analytic_accounting"-->
+<!--                                attrs="{'readonly': [('is_editable','=', False)]}"-->
+<!--                            />-->
                         <field
                                 name="date_required"
                                 attrs="{'readonly': [('is_editable','=', False)]}"
