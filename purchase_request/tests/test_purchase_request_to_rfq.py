@@ -74,6 +74,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
             'product_id': self.env.ref('product.product_product_13').id,
             'product_uom_id': self.env.ref('uom.product_uom_unit').id,
             'product_qty': 5.0,
+            'estimated_cost': 50.0,
         }
         purchase_request_line = self.purchase_request_line_obj.create(vals)
         purchase_request.button_to_approve()
@@ -87,6 +88,9 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
             active_model="purchase.request.line",
             active_ids=[purchase_request_line.id],
             active_id=purchase_request_line.id,).create(vals)
+        for item in wiz_id.item_ids:
+            if item.line_id.id == purchase_request_line.id:
+                item.keep_estimated_cost = True
         wiz_id.make_purchase_order()
         self.assertTrue(
             len(purchase_request_line.purchase_lines),
@@ -104,6 +108,10 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
             purchase_order.payment_term_id.id,
             supplier.property_supplier_payment_term_id.id,
             'Should have same supplier payment term')
+        self.assertEquals(
+            purchase_order.order_line.price_total,
+            purchase_request_line.estimated_cost,
+            'Should have same price')
 
     def test_bug_is_editable_multiple_lines(self):
         # Check that reading multiple lines is still possible
