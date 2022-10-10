@@ -306,7 +306,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
             {
                 "name": "Widget",
                 "type": "product",
-                "seller_ids": [(0, 0, {"name": supplier.id, "min_qty": 5})],
+                "seller_ids": [(0, 0, {"partner_id": supplier.id, "min_qty": 5})],
             }
         )
         # Create Purchase Order with qty = 3 throw Purchase Request
