@@ -378,7 +378,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         self.env["account.analytic.distribution.model"].create(
             {
                 "analytic_distribution": {analytic_account_default.id: 100},
-                "product_id": self.product_order.id,
+                "product_id": self.env.ref("product.product_product_10").id,
             }
         )
         analytic_distribution_manual = {str(analytic_account_manual.id): 100}
