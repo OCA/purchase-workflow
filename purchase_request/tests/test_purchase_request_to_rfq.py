@@ -18,7 +18,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         )
         self.env["product.supplierinfo"].create(
             {
-                "name": vendor.id,
+                "partner_id": vendor.id,
                 "product_tmpl_id": self.service_product.product_tmpl_id.id,
             }
         )
@@ -306,7 +306,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
             {
                 "name": "Widget",
                 "type": "product",
-                "seller_ids": [(0, 0, {"name": supplier.id, "min_qty": 5})],
+                "seller_ids": [(0, 0, {"partner_id": supplier.id, "min_qty": 5})],
             }
         )
         # Create Purchase Order with qty = 3 throw Purchase Request
@@ -378,7 +378,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         self.env["account.analytic.distribution.model"].create(
             {
                 "analytic_distribution": {analytic_account_default.id: 100},
-                "product_id": self.product_order.id,
+                "product_id": self.env.ref("product.product_product_10").id,
             }
         )
         analytic_distribution_manual = {str(analytic_account_manual.id): 100}

@@ -363,7 +363,7 @@ class PurchaseRequestLineMakePurchaseOrderItem(models.TransientModel):
                     "|",
                     ("product_id", "=", self.product_id.id),
                     ("product_tmpl_id", "=", self.product_id.product_tmpl_id.id),
-                    ("name", "=", self.wiz_id.supplier_id.id),
+                    ("partner_id", "=", self.wiz_id.supplier_id.id),
                 ]
             )
             if sup_info_id:
