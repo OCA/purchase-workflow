@@ -41,12 +41,10 @@
                 <field name="product_uom_category_id" invisible="1" />
                 <field name="product_uom_id" groups="uom.group_uom" />
                 <field
-                    name="analytic_account_id"
+                    name="analytic_distribution"
+                    widget="analytic_distribution"
                     groups="analytic.group_analytic_accounting"
-                />
-                <field
-                    name="analytic_tag_ids"
-                    groups="analytic.group_analytic_accounting"
+                    options="{'product_field': 'product_id', 'business_domain': 'purchase_order'}"
                 />
                 <field name="supplier_id" />
                 <field
@@ -129,14 +127,10 @@
                                 />
                             </div>
                             <field
-                                name="analytic_account_id"
+                                name="analytic_distribution"
+                                widget="analytic_distribution"
                                 groups="analytic.group_analytic_accounting"
-                                attrs="{'readonly': [('is_editable','=', False)]}"
-                            />
-                            <field
-                                name="analytic_tag_ids"
-                                groups="analytic.group_analytic_accounting"
-                                attrs="{'readonly': [('is_editable','=', False)]}"
+                                options="{'product_field': 'product_id', 'business_domain': 'purchase_order'}"
                             />
                             <field
                                 name="date_required"
@@ -243,7 +237,12 @@
                     domain="[('purchase_state','=','done')]"
                     help="At least a PO has been completed"
                 />
-                <field name="analytic_account_id" />
+                <field
+                    name="analytic_distribution"
+                    widget="analytic_distribution"
+                    groups="analytic.group_analytic_accounting"
+                    options="{'product_field': 'product_id', 'business_domain': 'purchase_order'}"
+                />
                 <field name="cancelled" attrs="{'invisible': True}" />
                 <filter
                     name="request_state_draft"
@@ -328,12 +327,6 @@
                         string="Request status"
                         domain="[]"
                         context="{'group_by':'request_state'}"
-                    />
-                    <filter
-                        name="analytic_account"
-                        string="Analytic Account"
-                        domain="[]"
-                        context="{'group_by':'analytic_account_id'}"
                     />
                     <filter
                         name="purchase_status"
@@ -477,10 +470,10 @@
                                 options="{'no_create': True}"
                             />
                             <field
-                                name="account_analytic_id"
-                                attrs="{'readonly': True}"
-                                colspan="4"
+                                name="analytic_distribution"
+                                widget="analytic_distribution"
                                 groups="analytic.group_analytic_accounting"
+                                options="{'product_field': 'product_id', 'business_domain': 'purchase_order'}"
                             />
                         </group>
                     </group>
@@ -509,7 +502,7 @@
                 <field name="product_uom" groups="uom.group_uom" />
                 <field name="price_subtotal" widget="monetary" />
                 <field name="date_planned" widget="date" />
-                <field name="purchase_request_lines" attrs="{'invisible': True}" />
+                <field name="purchase_request_lines" invisible="1" />
             </tree>
         </field>
     </record>
@@ -581,14 +574,10 @@
                                 />
                         </div>
                         <field
-                                name="analytic_account_id"
+                                name="analytic_distribution"
+                                widget="analytic_distribution"
                                 groups="analytic.group_analytic_accounting"
-                                attrs="{'readonly': [('is_editable','=', False)]}"
-                            />
-                        <field
-                                name="analytic_tag_ids"
-                                groups="analytic.group_analytic_accounting"
-                                attrs="{'readonly': [('is_editable','=', False)]}"
+                                options="{'product_field': 'product_id', 'business_domain': 'purchase_order'}"
                             />
                         <field
                                 name="date_required"
