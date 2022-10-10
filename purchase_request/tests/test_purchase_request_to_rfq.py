@@ -18,7 +18,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         )
         self.env["product.supplierinfo"].create(
             {
-                "name": vendor.id,
+                "partner_id": vendor.id,
                 "product_tmpl_id": self.service_product.product_tmpl_id.id,
             }
         )
