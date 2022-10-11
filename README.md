@@ -78,6 +78,7 @@ addon | version | maintainers | summary
 [purchase_request_cancel_confirm](purchase_request_cancel_confirm/) | 14.0.1.0.0 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Purchase Request Cancel Confirm
 [purchase_request_department](purchase_request_department/) | 14.0.1.0.0 |  | Purchase Request Department
 [purchase_request_exception](purchase_request_exception/) | 14.0.1.0.0 |  | Custom exceptions on purchase request
+[purchase_request_substate](purchase_request_substate/) | 14.0.1.0.0 |  | Purchase Request Sub State
 [purchase_request_tier_validation](purchase_request_tier_validation/) | 14.0.2.1.0 |  | Extends the functionality of Purchase Requests to support a tier validation process.
 [purchase_request_to_requisition](purchase_request_to_requisition/) | 14.0.1.0.0 |  | Purchase Request to Purchase Agreement
 [purchase_request_type](purchase_request_type/) | 14.0.1.0.1 |  | Purchase Request Type
