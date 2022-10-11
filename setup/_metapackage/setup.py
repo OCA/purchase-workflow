@@ -65,6 +65,7 @@ setuptools.setup(
         'odoo14-addon-purchase_request_cancel_confirm',
         'odoo14-addon-purchase_request_department',
         'odoo14-addon-purchase_request_exception',
+        'odoo14-addon-purchase_request_substate',
         'odoo14-addon-purchase_request_tier_validation',
         'odoo14-addon-purchase_request_to_requisition',
         'odoo14-addon-purchase_request_type',
