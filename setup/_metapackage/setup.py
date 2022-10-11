@@ -35,6 +35,7 @@ setuptools.setup(
         'odoo-addon-purchase_request_tier_validation>=15.0dev,<15.1dev',
         'odoo-addon-purchase_requisition_tier_validation>=15.0dev,<15.1dev',
         'odoo-addon-purchase_tier_validation>=15.0dev,<15.1dev',
+        'odoo-addon-purchase_triple_discount>=15.0dev,<15.1dev',
     ],
     classifiers=[
         'Programming Language :: Python',
