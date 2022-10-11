@@ -1,0 +1,99 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* purchase_triple_discount
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2019-09-02 14:40+0000\n"
+"Last-Translator: 黎伟杰 <674416404@qq.com>\n"
+"Language-Team: none\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.8\n"
+
+#. module: purchase_triple_discount
+#: model:ir.model,name:purchase_triple_discount.model_res_partner
+msgid "Contact"
+msgstr "联系人"
+
+#. module: purchase_triple_discount
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_res_partner__default_supplierinfo_discount2
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_res_users__default_supplierinfo_discount2
+msgid "Default Supplier Discount 2 (%)"
+msgstr "默认供应商折扣2 (%)"
+
+#. module: purchase_triple_discount
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_res_partner__default_supplierinfo_discount3
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_res_users__default_supplierinfo_discount3
+msgid "Default Supplier Discount 3 (%)"
+msgstr "默认供应商折扣3(%)"
+
+#. module: purchase_triple_discount
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_purchase_order_line__discount2
+msgid "Disc. 2 (%)"
+msgstr "折扣2(%)"
+
+#. module: purchase_triple_discount
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_purchase_order_line__discount3
+msgid "Disc. 3 (%)"
+msgstr "折扣3 (%)"
+
+#. module: purchase_triple_discount
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_product_supplierinfo__discount2
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_purchase_report__discount2
+msgid "Discount 2 (%)"
+msgstr "折扣2(%)"
+
+#. module: purchase_triple_discount
+#: sql_constraint:purchase.order.line:0
+msgid "Discount 2 must be lower than 100%."
+msgstr "折扣2必须低于100％。"
+
+#. module: purchase_triple_discount
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_product_supplierinfo__discount3
+#: model:ir.model.fields,field_description:purchase_triple_discount.field_purchase_report__discount3
+msgid "Discount 3 (%)"
+msgstr "折扣3(%)"
+
+#. module: purchase_triple_discount
+#: sql_constraint:purchase.order.line:0
+msgid "Discount 3 must be lower than 100%."
+msgstr "折扣3必须低于100％。"
+
+#. module: purchase_triple_discount
+#: model:ir.model,name:purchase_triple_discount.model_account_invoice
+msgid "Invoice"
+msgstr "发票"
+
+#. module: purchase_triple_discount
+#: model:ir.model,name:purchase_triple_discount.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "采购订单行"
+
+#. module: purchase_triple_discount
+#: model:ir.model,name:purchase_triple_discount.model_purchase_report
+msgid "Purchase Report"
+msgstr "采购报告"
+
+#. module: purchase_triple_discount
+#: model:ir.model,name:purchase_triple_discount.model_stock_rule
+msgid "Stock Rule"
+msgstr "库存规则"
+
+#. module: purchase_triple_discount
+#: model:ir.model,name:purchase_triple_discount.model_product_supplierinfo
+msgid "Supplier Pricelist"
+msgstr "供应商价格表"
+
+#. module: purchase_triple_discount
+#: model:ir.model.fields,help:purchase_triple_discount.field_res_partner__default_supplierinfo_discount2
+#: model:ir.model.fields,help:purchase_triple_discount.field_res_partner__default_supplierinfo_discount3
+#: model:ir.model.fields,help:purchase_triple_discount.field_res_users__default_supplierinfo_discount2
+#: model:ir.model.fields,help:purchase_triple_discount.field_res_users__default_supplierinfo_discount3
+msgid "This value will be used as the default one, for each new supplierinfo line depending on that supplier."
+msgstr "根据供应商的不同，此值将用作每个新供应商信息行的默认值。"
