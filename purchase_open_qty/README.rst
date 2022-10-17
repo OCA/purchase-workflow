@@ -65,7 +65,6 @@ Contributors
 * Eric Antones <eantones@nuobit.com>
 * Juany Davila <juany.davila@forgeflow.com>
 
-
 Maintainers
 ~~~~~~~~~~~
 
