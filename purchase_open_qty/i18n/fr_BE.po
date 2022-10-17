@@ -1,0 +1,65 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * purchase_open_qty
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-03-03 03:48+0000\n"
+"PO-Revision-Date: 2021-02-18 11:45+0000\n"
+"Last-Translator: Yves Le Doeuff <yld@alliasys.fr>\n"
+"Language-Team: French (Belgium) (https://www.transifex.com/oca/teams/23907/"
+"fr_BE/)\n"
+"Language: fr_BE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.3.2\n"
+
+#. module: purchase_open_qty
+#: model:ir.model.fields,field_description:purchase_open_qty.field_purchase_order__pending_qty_to_invoice
+#: model_terms:ir.ui.view,arch_db:purchase_open_qty.purchase_order_line_search
+#: model_terms:ir.ui.view,arch_db:purchase_open_qty.view_purchase_order_filter
+#, fuzzy
+msgid "Pending Qty to Bill"
+msgstr "Quantité en attente de facturation"
+
+#. module: purchase_open_qty
+#: model:ir.model.fields,field_description:purchase_open_qty.field_purchase_order__pending_qty_to_receive
+#: model_terms:ir.ui.view,arch_db:purchase_open_qty.purchase_order_line_search
+#: model_terms:ir.ui.view,arch_db:purchase_open_qty.view_purchase_order_filter
+#, fuzzy
+msgid "Pending Qty to Receive"
+msgstr "Quantité en attente de livraison"
+
+#. module: purchase_open_qty
+#: model:ir.model,name:purchase_open_qty.model_purchase_order
+msgid "Purchase Order"
+msgstr "Commande fournisseur"
+
+#. module: purchase_open_qty
+#: model:ir.model,name:purchase_open_qty.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Ligne de commande d'achat"
+
+#. module: purchase_open_qty
+#: model:ir.model.fields,field_description:purchase_open_qty.field_purchase_order__qty_to_invoice
+#: model:ir.model.fields,field_description:purchase_open_qty.field_purchase_order_line__qty_to_invoice
+msgid "Qty to Bill"
+msgstr "Quantité à facturer"
+
+#. module: purchase_open_qty
+#: model:ir.model.fields,field_description:purchase_open_qty.field_purchase_order__qty_to_receive
+#: model:ir.model.fields,field_description:purchase_open_qty.field_purchase_order_line__qty_to_receive
+msgid "Qty to Receive"
+msgstr "Quantité à recevoir"
+
+#. module: purchase_open_qty
+#: code:addons/purchase_open_qty/models/purchase_order.py:0
+#, python-format
+msgid "Unsupported search operator"
+msgstr ""
