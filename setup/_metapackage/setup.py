@@ -19,6 +19,7 @@ setuptools.setup(
         'odoo-addon-purchase_discount>=15.0dev,<15.1dev',
         'odoo-addon-purchase_exception>=15.0dev,<15.1dev',
         'odoo-addon-purchase_location_by_line>=15.0dev,<15.1dev',
+        'odoo-addon-purchase_open_qty>=15.0dev,<15.1dev',
         'odoo-addon-purchase_order_line_menu>=15.0dev,<15.1dev',
         'odoo-addon-purchase_order_line_price_history>=15.0dev,<15.1dev',
         'odoo-addon-purchase_order_no_zero_price>=15.0dev,<15.1dev',
