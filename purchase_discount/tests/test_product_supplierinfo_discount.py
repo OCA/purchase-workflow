@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import fields
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import Form, TransactionCase
 
 
 class TestProductSupplierinfoDiscount(TransactionCase):
@@ -18,7 +18,7 @@ class TestProductSupplierinfoDiscount(TransactionCase):
         cls.supplierinfo = cls.supplierinfo_model.create(
             {
                 "min_qty": 0.0,
-                "name": cls.partner_3.id,
+                "partner_id": cls.partner_3.id,
                 "product_tmpl_id": cls.product.product_tmpl_id.id,
                 "discount": 10,
             }
@@ -26,7 +26,7 @@ class TestProductSupplierinfoDiscount(TransactionCase):
         cls.supplierinfo2 = cls.supplierinfo_model.create(
             {
                 "min_qty": 10.0,
-                "name": cls.partner_3.id,
+                "partner_id": cls.partner_3.id,
                 "product_tmpl_id": cls.product.product_tmpl_id.id,
                 "discount": 20,
             }
@@ -47,32 +47,37 @@ class TestProductSupplierinfoDiscount(TransactionCase):
         )
 
     def test_001_purchase_order_partner_3_qty_1(self):
-        self.po_line_1._onchange_quantity()
-        self.assertEqual(
-            self.po_line_1.discount,
-            10,
-            "Incorrect discount for product 6 with partner 3 and qty 1: "
-            "Should be 10%",
-        )
+        purchase_form = Form(self.purchase_order)
+        with purchase_form.order_line.edit(0) as line:
+            line.product_qty = 1.0
+            self.assertEqual(
+                line.discount,
+                10,
+                "Incorrect discount for product 6 with partner 3 and qty 1: "
+                "Should be 10%",
+            )
 
     def test_002_purchase_order_partner_3_qty_10(self):
-        self.po_line_1.write({"product_qty": 10})
-        self.po_line_1._onchange_quantity()
-        self.assertEqual(
-            self.po_line_1.discount,
-            20.0,
-            "Incorrect discount for product 6 with partner 3 and qty 10: "
-            "Should be 20%",
-        )
+        purchase_form = Form(self.purchase_order)
+        with purchase_form.order_line.edit(0) as line:
+            line.product_qty = 10.0
+            self.assertEqual(
+                line.discount,
+                20.0,
+                "Incorrect discount for product 6 with partner 3 and qty 10: "
+                "Should be 20%",
+            )
 
     def test_003_purchase_order_partner_1_qty_1(self):
-        self.po_line_1.write({"partner_id": self.partner_1.id, "product_qty": 1})
-        self.po_line_1.onchange_product_id()
-        self.assertEqual(
-            self.po_line_1.discount,
-            0.0,
-            "Incorrect discount for product 6 with partner 1 and qty 1",
-        )
+        purchase_form = Form(self.purchase_order)
+        purchase_form.partner_id = self.partner_1
+        with purchase_form.order_line.edit(0) as line:
+            line.product_qty = 1
+            self.assertEqual(
+                line.discount,
+                0.0,
+                "Incorrect discount for product 6 with partner 1 and qty 1",
+            )
 
     def test_004_prepare_purchase_order_line(self):
         res = self.purchase_order_line_model._prepare_purchase_order_line(
@@ -90,21 +95,21 @@ class TestProductSupplierinfoDiscount(TransactionCase):
         supplierinfo = self.supplierinfo_model.create(
             {
                 "min_qty": 0.0,
-                "name": self.partner_3.id,
+                "partner_id": self.partner_3.id,
                 "product_tmpl_id": self.product.product_tmpl_id.id,
                 "discount": 10,
             }
         )
         # Change the partner and raise onchange function
         self.partner_1.default_supplierinfo_discount = 15
-        supplierinfo.name = self.partner_1
-        supplierinfo.onchange_name()
-        self.assertEqual(
-            supplierinfo.discount,
-            15,
-            "Incorrect discount for supplierinfo "
-            " after changing partner that has default discount defined.",
-        )
+        with Form(supplierinfo) as supplierinfo_form:
+            supplierinfo_form.partner_id = self.partner_1
+            self.assertEqual(
+                supplierinfo_form.discount,
+                15,
+                "Incorrect discount for supplierinfo "
+                " after changing partner that has default discount defined.",
+            )
 
     def test_006_supplierinfo_from_purchaseorder(self):
         """Include discount when creating new sellers for a product"""
@@ -113,7 +118,7 @@ class TestProductSupplierinfoDiscount(TransactionCase):
         self.assertFalse(
             self.supplierinfo_model.search(
                 [
-                    ("name", "=", partner.id),
+                    ("partner_id", "=", partner.id),
                     ("product_tmpl_id", "=", product.product_tmpl_id.id),
                 ]
             )
@@ -134,7 +139,7 @@ class TestProductSupplierinfoDiscount(TransactionCase):
         order.button_confirm()
         seller = self.supplierinfo_model.search(
             [
-                ("name", "=", partner.id),
+                ("partner_id", "=", partner.id),
                 ("product_tmpl_id", "=", product.product_tmpl_id.id),
             ]
         )

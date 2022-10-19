@@ -59,7 +59,7 @@ class TestPurchaseOrder(TransactionCase):
             {
                 "name": "Test account",
                 "code": "TEST",
-                "user_type_id": cls.env.ref("account.data_account_type_expenses").id,
+                "account_type": "expense",
             }
         )
         cls.tax = cls.env["account.tax"].create(
@@ -124,7 +124,7 @@ class TestPurchaseOrder(TransactionCase):
     def test_move_price_unit(self):
         self.purchase_order.button_confirm()
         picking = self.purchase_order.picking_ids
-        moves = picking.move_lines
+        moves = picking.move_ids
         move1 = moves.filtered(lambda x: x.purchase_line_id == self.po_line_1)
         self.assertEqual(move1.price_unit, 5)
         move2 = moves.filtered(lambda x: x.purchase_line_id == self.po_line_2)
@@ -138,6 +138,29 @@ class TestPurchaseOrder(TransactionCase):
         # Check data in PO remains the same - This is due to the hack
         self.assertAlmostEqual(self.po_line_1.price_unit, 10.0)
         self.assertAlmostEqual(self.po_line_1.discount, 50.0)
+
+    def test_move_price_unit_discount_sync(self):
+        self.purchase_order.button_confirm()
+        picking = self.purchase_order.picking_ids
+        moves = picking.move_ids
+        self.po_line_1.discount = 25
+        self.po_line_2.discount = 50
+        self.po_line_3.discount = 10
+        move1 = moves.filtered(lambda x: x.purchase_line_id == self.po_line_1)
+        self.assertEqual(move1.price_unit, 7.5)
+        move2 = moves.filtered(lambda x: x.purchase_line_id == self.po_line_2)
+        self.assertEqual(move2.price_unit, 115.0)
+        move3 = moves.filtered(lambda x: x.purchase_line_id == self.po_line_3)
+        self.assertEqual(move3.price_unit, 9.0)
+        self.po_line_1.price_unit = 1000
+        self.po_line_2.price_unit = 500
+        self.po_line_3.price_unit = 250
+        move1 = moves.filtered(lambda x: x.purchase_line_id == self.po_line_1)
+        self.assertEqual(move1.price_unit, 750.0)
+        move2 = moves.filtered(lambda x: x.purchase_line_id == self.po_line_2)
+        self.assertEqual(move2.price_unit, 250.0)
+        move3 = moves.filtered(lambda x: x.purchase_line_id == self.po_line_3)
+        self.assertEqual(move3.price_unit, 225.0)
 
     def test_report_price_unit(self):
         rec = self.env["purchase.report"].search(
