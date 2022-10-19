@@ -51,11 +51,6 @@ msgid "Procurement purchase grouping settings"
 msgstr ""
 
 #. module: sale_purchase_force_vendor
-#: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_sale_order_line__allowed_vendor_ids
-msgid "Proveedor"
-msgstr ""
-
-#. module: sale_purchase_force_vendor
 #: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_res_company__sale_purchase_force_vendor_restrict
 #: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_res_config_settings__sale_purchase_force_vendor_restrict
 #: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_sale_order__sale_purchase_force_vendor_restrict
@@ -80,4 +75,9 @@ msgstr ""
 #. module: sale_purchase_force_vendor
 #: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_sale_order_line__vendor_id
 msgid "Vendor"
+msgstr ""
+
+#. module: sale_purchase_force_vendor
+#: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_sale_order_line__vendor_id_domain
+msgid "Vendor Id Domain"
 msgstr ""
