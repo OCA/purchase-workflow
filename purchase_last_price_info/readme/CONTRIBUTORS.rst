@@ -11,3 +11,7 @@
 
   * Víctor Martínez
   * Pedro M. Baeza
+
+* `Bloopark systems <https://www.bloopark.de/>`_:
+
+  * Achraf Mhadhbi <machraf@bloopark.de>
