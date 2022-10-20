@@ -364,10 +364,24 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         picking.button_validate()
 
     def test_purchase_request_to_purchase_order_analytic_data_propagation(self):
-        analytic_tags = self.env.ref("analytic.tag_contract")
-        analytic_account = self.env["account.analytic.account"].create(
-            {"name": "Test analytic account"}
+        self.env.user.groups_id += self.env.ref("analytic.group_analytic_accounting")
+        analytic_plan = self.env["account.analytic.plan"].create(
+            {"name": "Plan Test", "company_id": False}
         )
+        analytic_account_default = self.env["account.analytic.account"].create(
+            {"name": "default", "plan_id": analytic_plan.id}
+        )
+        analytic_account_manual = self.env["account.analytic.account"].create(
+            {"name": "manual", "plan_id": analytic_plan.id}
+        )
+
+        self.env["account.analytic.distribution.model"].create(
+            {
+                "analytic_distribution": {analytic_account_default.id: 100},
+                "product_id": self.product_order.id,
+            }
+        )
+        analytic_distribution_manual = {str(analytic_account_manual.id): 100}
         vals = {
             "picking_type_id": self.env.ref("stock.picking_type_in").id,
             "requested_by": SUPERUSER_ID,
@@ -379,8 +393,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
                         "product_id": self.env.ref("product.product_product_10").id,
                         "product_uom_id": self.env.ref("uom.product_uom_unit").id,
                         "product_qty": 5.0,
-                        "analytic_account_id": analytic_account.id,
-                        "analytic_tag_ids": [(6, 0, analytic_tags.ids)],
+                        "analytic_distribution": analytic_distribution_manual,
                     },
                 )
             ],
@@ -399,5 +412,6 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         ).create(vals)
         wiz_id.make_purchase_order()
         po_line = purchase_request["line_ids"][0].purchase_lines[0]
-        self.assertEqual(po_line.account_analytic_id, analytic_account)
-        self.assertEqual(po_line.analytic_tag_ids.ids, analytic_tags.ids)
+        self.assertRecordValues(
+            po_line, [{"analytic_distribution": analytic_distribution_manual}]
+        )
