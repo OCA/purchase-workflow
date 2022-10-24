@@ -281,6 +281,12 @@ class PurchaseRequest(models.Model):
         return self.write({"state": "rejected"})
 
     def button_done(self):
+        incomplete_lines = self.line_ids.filtered(
+            lambda l: l.purchased_qty < l.product_qty
+        )
+        # Related move lines will hang out forever as waiting for another operation
+        # if requests lines aren't completely purchased.
+        incomplete_lines._set_dest_move_as_mts()
         return self.write({"state": "done"})
 
     def check_auto_reject(self):

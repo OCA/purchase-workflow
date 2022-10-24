@@ -300,19 +300,37 @@ class PurchaseRequestLine(models.Model):
         """Actions to perform when cancelling a purchase request line."""
         # Changing the procure method, since related moves should pick
         # goods from stock after request lines are cancelled.
-        for line in self:
-            move_dest_ids = line.move_dest_ids
-            move_dest_ids.write({"procure_method": "make_to_stock"})
-            move_dest_ids._recompute_state()
+        self._set_dest_move_as_mts()
         self.write({"cancelled": True})
 
     def do_uncancel(self):
         """Actions to perform when uncancelling a purchase request line."""
-        for line in self:
-            move_dest_ids = line.move_dest_ids
-            move_dest_ids.write({"procure_method": "make_to_order"})
-            move_dest_ids._recompute_state()
+        self._set_dest_move_as_mto()
         self.write({"cancelled": False})
+
+    def _set_dest_move_as_mto(self):
+        """Sets related moves as `make_to_order`.
+
+        This should be called when a purchase line is cancelled or rejected,
+        so the related moves won't wait for this purchase request to be done.
+        """
+        dest_moves = self.move_dest_ids.filtered(
+            lambda m: m.state not in ["done", "cancel"]
+        )
+        dest_moves.write({"procure_method": "make_to_order"})
+        dest_moves._recompute_state()
+
+    def _set_dest_move_as_mts(self):
+        """Sets related moves as `make_to_stock`.
+
+        This should be called when a PRL is reset, so related moves will
+        wait back for it to be processed, instead of picking goods from stock.
+        """
+        dest_moves = self.move_dest_ids.filtered(
+            lambda m: m.state not in ["done", "cancel"]
+        )
+        dest_moves.write({"procure_method": "make_to_stock"})
+        dest_moves._recompute_state()
 
     def write(self, vals):
         res = super(PurchaseRequestLine, self).write(vals)
