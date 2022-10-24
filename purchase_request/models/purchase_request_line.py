@@ -298,10 +298,20 @@ class PurchaseRequestLine(models.Model):
 
     def do_cancel(self):
         """Actions to perform when cancelling a purchase request line."""
+        # Changing the procure method, since related moves should pick
+        # goods from stock after request lines are cancelled.
+        for line in self:
+            move_dest_ids = line.move_dest_ids
+            move_dest_ids.write({"procure_method": "make_to_stock"})
+            move_dest_ids._recompute_state()
         self.write({"cancelled": True})
 
     def do_uncancel(self):
         """Actions to perform when uncancelling a purchase request line."""
+        for line in self:
+            move_dest_ids = line.move_dest_ids
+            move_dest_ids.write({"procure_method": "make_to_order"})
+            move_dest_ids._recompute_state()
         self.write({"cancelled": False})
 
     def write(self, vals):
