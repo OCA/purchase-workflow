@@ -23,12 +23,12 @@ Purchase Order General Discount
     :target: https://runbot.odoo-community.org/runbot/142/13.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module allows to set a general discount in a purchase order. This general
 discount is applied to each line order.
 
-You can also set a default general discount on suppliers and configure to wich
+You can also set a default general discount on suppliers and configure to which
 line field the discount will be applied.
 
 **Table of contents**
@@ -102,6 +102,11 @@ Contributors
     * Pedro M. Baeza
     * Rafael Blasco
     * Carlos Roca
+
+* `Aures TIC <https://aurestic.es>`_:
+
+    * Jose Zambudio
+    * Anna Martinez
 
 Maintainers
 ~~~~~~~~~~~
