@@ -17,8 +17,8 @@ class ResCompany(models.Model):
     @api.model
     def _get_purchase_discount_fields(self):
         """Extensible method to add possible discounts. We offer in advance
-           the posibility of using purchase_triple_discount so no bridge
-           module is needed """
+        the posibility of using purchase_triple_discount so no bridge
+        module is needed"""
         discount_fields = [("discount", _("Discount"))]
         purchase_line_fields = self.env["purchase.order.line"]._fields.keys()
         if "discount2" in purchase_line_fields:
