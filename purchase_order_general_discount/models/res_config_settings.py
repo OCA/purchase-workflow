@@ -7,5 +7,6 @@ class ResConfigSettings(models.TransientModel):
     _inherit = "res.config.settings"
 
     purchase_general_discount_field = fields.Selection(
-        related="company_id.purchase_general_discount_field", readonly=False,
+        related="company_id.purchase_general_discount_field",
+        readonly=False,
     )
