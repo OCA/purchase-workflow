@@ -4,12 +4,12 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 from odoo import fields
-from odoo.tests.common import Form, SavepointCase
+from odoo.tests.common import Form, TransactionCase
 
 
-class TestPurchaseOrderUninvoiceAmount(SavepointCase):
+class TestPurchaseOrderUninvoiceAmount(TransactionCase):
     def setUp(self):
-        super(TestPurchaseOrderUninvoiceAmount, self).setUp()
+        super().setUp()
         # Environmet
         self.purchase_order_model = self.env["purchase.order"]
         self.purchase_order_line_model = self.env["purchase.order.line"]
@@ -75,7 +75,7 @@ class TestPurchaseOrderUninvoiceAmount(SavepointCase):
 
     def _create_invoice_from_purchase(self, purchase):
         invoice_form = Form(
-            self.account_move_model.with_context(default_type="in_invoice")
+            self.account_move_model.with_context(default_move_type="in_invoice")
         )
         invoice_form.partner_id = purchase.partner_id
         invoice_form.purchase_id = purchase
