@@ -35,11 +35,6 @@ msgid "Date end:"
 msgstr "Fecha final:"
 
 #. module: purchase_order_product_recommendation_xlsx
-#: model:ir.model.fields,field_description:purchase_order_product_recommendation_xlsx.field_report_purchase_order_product_recommendation_xlsx_summary__display_name
-msgid "Display Name"
-msgstr "Nombre a mostrar"
-
-#. module: purchase_order_product_recommendation_xlsx
 #: model_terms:ir.ui.view,arch_db:purchase_order_product_recommendation_xlsx.purchase_order_recommendation_view_form
 msgid "Export"
 msgstr "Exportar"
@@ -48,16 +43,6 @@ msgstr "Exportar"
 #: model:ir.model.fields,field_description:purchase_order_product_recommendation_xlsx.field_purchase_order_recommendation_line__units_virtual_available
 msgid "Forecasted Qty"
 msgstr "Ctd Prevista"
-
-#. module: purchase_order_product_recommendation_xlsx
-#: model:ir.model.fields,field_description:purchase_order_product_recommendation_xlsx.field_report_purchase_order_product_recommendation_xlsx_summary__id
-msgid "ID"
-msgstr "ID (identificación)"
-
-#. module: purchase_order_product_recommendation_xlsx
-#: model:ir.model.fields,field_description:purchase_order_product_recommendation_xlsx.field_report_purchase_order_product_recommendation_xlsx_summary____last_update
-msgid "Last Modified on"
-msgstr "Última modificación en"
 
 #. module: purchase_order_product_recommendation_xlsx
 #: code:addons/purchase_order_product_recommendation_xlsx/report/recommendation_xlsx.py:0
@@ -91,7 +76,6 @@ msgstr "Ctd"
 #. module: purchase_order_product_recommendation_xlsx
 #: model:ir.model.fields,field_description:purchase_order_product_recommendation_xlsx.field_purchase_order_recommendation_line__units_avg_delivered
 #, fuzzy
-#| msgid "Qty Dlvd./day"
 msgid "Qty Dlvd./day"
 msgstr "Ctd entrg./día"
 
@@ -113,7 +97,6 @@ msgstr "Ctd entregada"
 #. module: purchase_order_product_recommendation_xlsx
 #: model:ir.model,name:purchase_order_product_recommendation_xlsx.model_purchase_order_recommendation_line
 #, fuzzy
-#| msgid "Recommended products for current purchase order"
 msgid "Recommended product for current purchase order"
 msgstr "Productos recomendados para el pedido de compra en curso"
 
@@ -127,3 +110,12 @@ msgstr "Productos recomendados para el pedido de compra en curso"
 #, python-format
 msgid "Recommended products for supplier:"
 msgstr "Productos recomendados para el proveedor:"
+
+#~ msgid "Display Name"
+#~ msgstr "Nombre a mostrar"
+
+#~ msgid "ID"
+#~ msgstr "ID (identificación)"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación en"
