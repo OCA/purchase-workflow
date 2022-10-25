@@ -9,6 +9,6 @@ class RecommendationCase(test_recommendation.RecommendationCase):
         wizard = self.wizard()
         report_xlsx = self.env.ref(
             "purchase_order_product_recommendation_xlsx.recommendation_xlsx"
-        ).render(wizard.ids)
+        )._render(wizard.ids)
         self.assertGreaterEqual(len(report_xlsx[0]), 1)
         self.assertEqual(report_xlsx[1], "xlsx")
