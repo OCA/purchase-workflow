@@ -57,7 +57,7 @@ class TestPurchaseOrderLineInput(SavepointCase):
     def test_03_default_line_discount_value(self):
         res = self.order.fields_view_get(
             view_id=self.env.ref(
-                "purchase_order_general_discount." "purchase_order_form"
+                "purchase_order_general_discount.purchase_order_form"
             ).id,
             view_type="form",
         )

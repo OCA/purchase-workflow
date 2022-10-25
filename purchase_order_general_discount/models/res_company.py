@@ -10,7 +10,7 @@ class ResCompany(models.Model):
         selection="_get_purchase_discount_fields",
         string="Purchase Discount Field",
         default="discount",
-        help="Set the purchase line discount field in wich the "
+        help="Set the purchase line discount field in which the "
         "discounts will be applied.",
     )
 
