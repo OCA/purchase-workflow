@@ -53,8 +53,7 @@ class TestPurchaseOrderUninvoiceAmount(SavepointCase):
         )
 
     def _create_purchase(self, product_qty=1, product_received=1):
-        """ Create a purchase order.
-        """
+        """Create a purchase order."""
         purchase = self.purchase_order_model.create(
             {"company_id": self.company.id, "partner_id": self.partner.id}
         )
@@ -84,12 +83,12 @@ class TestPurchaseOrderUninvoiceAmount(SavepointCase):
 
     def test_create_purchase_and_not_invoiced(self):
         purchase = self._create_purchase(1, 1)
-        self.assertEquals(
+        self.assertEqual(
             purchase.invoice_status,
             "to invoice",
             "The purchase status should be To Invoice",
         )
-        self.assertEquals(
+        self.assertEqual(
             purchase.amount_uninvoiced,
             purchase.amount_untaxed,
             "The purchase amount uninvoiced must be the amount untaxed",
@@ -97,47 +96,47 @@ class TestPurchaseOrderUninvoiceAmount(SavepointCase):
 
     def test_create_purchase_and_no_receive(self):
         purchase = self._create_purchase(2, 0)
-        self.assertEquals(
+        self.assertEqual(
             purchase.amount_uninvoiced, 0, "The purchase amount uninvoiced must be 0"
         )
 
     def test_create_purchase_and_invoiced_a_part(self):
         purchase = self._create_purchase(10, 5)
-        self.assertEquals(purchase.amount_uninvoiced, 500)
+        self.assertEqual(purchase.amount_uninvoiced, 500)
         invoice = self._create_invoice_from_purchase(purchase)
         with Form(invoice) as invoice_form:
             with invoice_form.invoice_line_ids.edit(0) as line_form:
                 line_form.quantity = 3
-        self.assertEquals(purchase.amount_uninvoiced, 200)
+        self.assertEqual(purchase.amount_uninvoiced, 200)
 
     def test_create_purchase_create_and_invoiced_with_all_units(self):
         purchase = self._create_purchase(2, 2)
         self._create_invoice_from_purchase(purchase)
-        self.assertEquals(
+        self.assertEqual(
             purchase.amount_uninvoiced, 0, "The purchase amount uninvoiced must be 0"
         )
 
     def test_create_purchase_qty_0(self):
         purchase = self._create_purchase(0, 0)
-        self.assertEquals(purchase.amount_uninvoiced, 0)
+        self.assertEqual(purchase.amount_uninvoiced, 0)
 
     def test_on_ordered_quantities_policy(self):
         self.product_1.purchase_method = "purchase"
         purchase = self._create_purchase(10, 0)
-        self.assertEquals(purchase.amount_uninvoiced, 1000)
+        self.assertEqual(purchase.amount_uninvoiced, 1000)
         invoice = self._create_invoice_from_purchase(purchase)
         with Form(invoice) as invoice_form:
             with invoice_form.invoice_line_ids.edit(0) as line_form:
                 line_form.quantity = 6
-        self.assertEquals(purchase.amount_uninvoiced, 400)
+        self.assertEqual(purchase.amount_uninvoiced, 400)
         self._create_invoice_from_purchase(purchase)
-        self.assertEquals(purchase.amount_uninvoiced, 0)
+        self.assertEqual(purchase.amount_uninvoiced, 0)
 
     def test_create_purchase_receive_and_invoice_more_qty(self):
         purchase = self._create_purchase(10, 10)
-        self.assertEquals(purchase.amount_uninvoiced, 1000)
+        self.assertEqual(purchase.amount_uninvoiced, 1000)
         invoice = self._create_invoice_from_purchase(purchase)
         with Form(invoice) as invoice_form:
             with invoice_form.invoice_line_ids.edit(0) as line_form:
                 line_form.quantity = 20
-        self.assertEquals(purchase.amount_uninvoiced, -1000)
+        self.assertEqual(purchase.amount_uninvoiced, -1000)
