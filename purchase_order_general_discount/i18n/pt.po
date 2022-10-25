@@ -93,7 +93,7 @@ msgstr ""
 #. module: purchase_order_general_discount
 #: model:ir.model.fields,help:purchase_order_general_discount.field_res_company__purchase_general_discount_field
 #: model:ir.model.fields,help:purchase_order_general_discount.field_res_config_settings__purchase_general_discount_field
-msgid "Set the purchase line discount field in wich the discounts will be applied."
+msgid "Set the purchase line discount field in which the discounts will be applied."
 msgstr ""
 "Defina o campo de desconto de linha de compra ao qual serão aplicados os "
 "descontos."
