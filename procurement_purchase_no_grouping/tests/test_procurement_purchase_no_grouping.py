@@ -6,7 +6,7 @@ from odoo import fields
 from odoo.tests import common
 
 
-class TestProcurementPurchaseNoGrouping(common.SavepointCase):
+class TestProcurementPurchaseNoGrouping(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super(TestProcurementPurchaseNoGrouping, cls).setUpClass()
