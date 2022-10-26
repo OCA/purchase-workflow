@@ -5,7 +5,7 @@ from lxml import etree
 from odoo.tests import common
 
 
-class TestPurchasePartnerSelectableOption(common.SavepointCase):
+class TestPurchasePartnerSelectableOption(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
