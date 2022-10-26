@@ -3,7 +3,7 @@
 {
     "name": "Purchase Order Qty change no recompute",
     "summary": "Prevent recompute if only quantity has changed in purchase order line",
-    "version": "15.0.1.0.0",
+    "version": "15.0.1.0.1",
     "category": "Purchases",
     "website": "https://github.com/OCA/purchase-workflow",
     "author": "Tecnativa, Odoo Community Association (OCA)",
