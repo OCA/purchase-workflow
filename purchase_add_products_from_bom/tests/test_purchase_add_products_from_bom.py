@@ -96,7 +96,6 @@ class PurchaseAddProductsFromBoMTest(SavepointCase):
             if count == len(wizard.raw_product_line_ids):
                 break
             count += 1
-            line.selected_product = True
 
         wizard.add_products()
         # test the qty of lines add from BoM
@@ -106,9 +105,6 @@ class PurchaseAddProductsFromBoMTest(SavepointCase):
         # in this case it should only sum the Product Qty not duplicate line
         wizard_2 = wizard_obj.create(wizard_values)
         wizard_2.button_get_products_from_bom()
-        # Select Products to Add in Purchase Line
-        for line in wizard_2.raw_product_line_ids:
-            line.selected_product = True
 
         wizard_2.add_products()
 

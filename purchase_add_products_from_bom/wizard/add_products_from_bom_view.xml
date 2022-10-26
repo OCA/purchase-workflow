@@ -27,6 +27,7 @@
                 <group>
                     <field name="raw_product_line_ids" nolabel="1">
                         <tree editable="top" decoration-danger="product_qty_stock &lt;= 0" decoration-bf="exploded_product==True" create="0" delete="0">
+                            <field name="selected_product" attrs="{'readonly': [('exploded_product', '=', True)]}" />
                             <field name="has_bom" invisible="1" />
                             <field name="product_id" required="1" readonly="1" domain="[('id', '!=', parent.product_id)]" options="{'no_open': True, 'no_create': True}" />
                             <field name="orig_bom_product_id" options="{'no_open': True, 'no_create': True}" />
@@ -56,7 +57,6 @@
                             <field name="total_product_value" />
                             <field name="product_qty_stock" />
                             <field name="product_qty_after_buy" />
-                            <field name="selected_product" attrs="{'readonly': [('exploded_product', '=', True)]}" />
                         </tree>
                     </field>
                 </group>

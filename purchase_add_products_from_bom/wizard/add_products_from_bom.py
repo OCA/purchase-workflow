@@ -38,6 +38,7 @@ class AddProductsFromBoM(models.TransientModel):
         string='Quantity',
         digits=dp.get_precision('Product Unit of Measure'),
         required=True,
+        default=1,
     )
     currency_id = fields.Many2one(
         comodel_name='res.currency',
@@ -83,12 +84,6 @@ class AddProductsFromBoM(models.TransientModel):
             finished_product, factor, picking_type=bom_id.picking_type_id)
 
         for line in lines:
-            # LINE: (mrp.bom.line(19,), {
-            #    'qty': 1.0,
-            #    'product': product.product(8,),
-            #    'original_qty': 1.0,
-            #    'parent_line': False
-            # })
             product = line[0].product_id
             product_qty = line[1].get('qty')
             product_uom = line[0].product_uom_id
@@ -138,7 +133,6 @@ class AddProductsFromBoM(models.TransientModel):
         # product_qty should be pass in context
         if not self.env.context.get('default_product_qty'):
             self.bom_id = False
-            self.product_qty = 0
             self.product_uom_id = False
             self.list_prod_already_exp = False
             self.raw_product_line_ids = [(5, 0, 0)]
@@ -278,7 +272,10 @@ class AddProductsFromBoMLines(models.TransientModel):
         currency_field='currency_id',
         compute='_compute_total_product_value',
     )
-    selected_product = fields.Boolean(string='Selected Product')
+    selected_product = fields.Boolean(
+        string='Selected Product',
+        default=True,
+    )
     exploded_product = fields.Boolean(string='Already Exploded Product')
 
     # Use for Return Products from BoM
@@ -355,7 +352,6 @@ class AddProductsFromBoMLines(models.TransientModel):
             self.create(values)
 
         return {
-            # 'context': self.env.context,
             'view_type': 'form',
             'view_mode': 'form',
             'res_model': 'add.products.from.bom',
@@ -375,7 +371,6 @@ class AddProductsFromBoMLines(models.TransientModel):
         products_to_delete.unlink()
         self.exploded_product = False
         return {
-            # 'context': self.env.context,
             'view_type': 'form',
             'view_mode': 'form',
             'res_model': 'add.products.from.bom',
