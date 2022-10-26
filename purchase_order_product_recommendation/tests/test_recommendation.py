@@ -3,13 +3,13 @@
 # Copyright 2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo import fields
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 
-class RecommendationCase(SavepointCase):
+class RecommendationCase(TransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(RecommendationCase, cls).setUpClass()
+        super().setUpClass()
         cls.partner = cls.env["res.partner"].create({"name": "Mr. Odoo"})
         cls.category_obj = cls.env["product.category"]
         cls.categ1 = cls.category_obj.create({"name": "Test Cat 1"})
