@@ -138,8 +138,8 @@ msgstr "Categorías de productos"
 
 #. module: purchase_order_product_recommendation
 #: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__product_name
-msgid "Product name"
-msgstr "Nombre de producto"
+msgid "Product Name"
+msgstr ""
 
 #. module: purchase_order_product_recommendation
 #: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__product_code
@@ -280,6 +280,9 @@ msgstr "Asistente"
 #: model:ir.model.fields,help:purchase_order_product_recommendation.field_purchase_order_recommendation_line__partner_id
 msgid "You can find a vendor by its Name, TIN, Email or Internal Reference."
 msgstr ""
+
+#~ msgid "Product name"
+#~ msgstr "Nombre de producto"
 
 #~ msgid "Price Unit"
 #~ msgstr "Precio unitario"
