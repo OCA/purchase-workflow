@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "Purchase Partner Selectable Option",
-    "version": "15.0.1.0.0",
+    "version": "15.0.1.0.1",
     "category": "Purchase",
     "website": "https://github.com/OCA/purchase-workflow",
     "author": "Tecnativa, Odoo Community Association (OCA)",
