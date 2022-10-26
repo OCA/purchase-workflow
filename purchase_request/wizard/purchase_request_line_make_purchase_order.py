@@ -3,6 +3,8 @@
 
 from datetime import datetime
 
+import pytz
+
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
@@ -237,6 +239,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         purchase_obj = self.env["purchase.order"]
         po_line_obj = self.env["purchase.order.line"]
         pr_line_obj = self.env["purchase.request.line"]
+        user_tz = pytz.timezone(self.env.user.tz or "UTC")
         purchase = False
 
         for item in self.item_ids:
@@ -301,8 +304,16 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             # The onchange quantity is altering the scheduled date of the PO
             # lines. We do not want that:
             date_required = item.line_id.date_required
-            po_line.date_planned = datetime(
-                date_required.year, date_required.month, date_required.day
+            # we enforce to save the datetime value in the current tz of the user
+            po_line.date_planned = (
+                datetime(
+                    date_required.year,
+                    date_required.month,
+                    date_required.day,
+                    tzinfo=user_tz,
+                )
+                .astimezone(pytz.UTC)
+                .replace(tzinfo=None)
             )
             res.append(purchase.id)
 
