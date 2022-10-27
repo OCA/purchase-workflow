@@ -12,7 +12,7 @@ class TestPurchase(common.TransactionCase):
         self.company = self.env.ref("base.main_company")
         self.partner = self.env["res.partner"].create({"name": "Test partner"})
         self.product = self.env["product.product"].create(
-            {"name": "Test product", "type": "product"}
+            {"name": "Test product", "detailed_type": "product"}
         )
         self.location_stock = self.env.ref("stock.stock_location_stock")
         self.location_suppliers = self.env.ref("stock.stock_location_suppliers")
