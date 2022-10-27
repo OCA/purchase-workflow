@@ -1,0 +1,96 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_discount
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2019-09-01 16:00+0000\n"
+"Last-Translator: 黎伟杰 <674416404@qq.com>\n"
+"Language-Team: none\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.8\n"
+
+#. module: purchase_discount
+#: model_terms:ir.ui.view,arch_db:purchase_discount.report_purchaseorder_document
+msgid "<strong>Disc. (%)</strong>"
+msgstr "<strong>折扣(%)</strong>"
+
+#. module: purchase_discount
+#: model:ir.model,name:purchase_discount.model_res_partner
+msgid "Contact"
+msgstr "联系人"
+
+#. module: purchase_discount
+#: model:ir.model.fields,field_description:purchase_discount.field_res_partner__default_supplierinfo_discount
+#: model:ir.model.fields,field_description:purchase_discount.field_res_users__default_supplierinfo_discount
+msgid "Default Supplier Discount (%)"
+msgstr "默认供应商折扣 (%)"
+
+#. module: purchase_discount
+#: model:ir.model.fields,field_description:purchase_discount.field_product_supplierinfo__discount
+#: model:ir.model.fields,field_description:purchase_discount.field_purchase_order_line__discount
+#: model:ir.model.fields,field_description:purchase_discount.field_purchase_report__discount
+msgid "Discount (%)"
+msgstr "折扣(%)"
+
+#. module: purchase_discount
+#: model:ir.model.constraint,message:purchase_discount.constraint_purchase_order_line_discount_limit
+msgid "Discount must be lower than 100%."
+msgstr "折扣必须低于100％。"
+
+#. module: purchase_discount
+#: model_terms:ir.ui.view,arch_db:purchase_discount.res_partner_form_view
+msgid "Discount-related settings are managed on"
+msgstr "与折扣相关的设置进行管理"
+
+#. module: purchase_discount
+#: model:ir.model,name:purchase_discount.model_purchase_order
+msgid "Purchase Order"
+msgstr "采购订单"
+
+#. module: purchase_discount
+#: model:ir.model,name:purchase_discount.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "采购订单行"
+
+#. module: purchase_discount
+#: model:ir.model,name:purchase_discount.model_purchase_report
+msgid "Purchase Report"
+msgstr "采购报告"
+
+#. module: purchase_discount
+#: model:ir.model,name:purchase_discount.model_stock_move
+msgid "Stock Move"
+msgstr "库存移动"
+
+#. module: purchase_discount
+#: model:ir.model,name:purchase_discount.model_stock_rule
+msgid "Stock Rule"
+msgstr "库存规则"
+
+#. module: purchase_discount
+#: model:ir.model,name:purchase_discount.model_product_supplierinfo
+msgid "Supplier Pricelist"
+msgstr "供应商价格表"
+
+#. module: purchase_discount
+#: model:ir.model.fields,help:purchase_discount.field_res_partner__default_supplierinfo_discount
+#: model:ir.model.fields,help:purchase_discount.field_res_users__default_supplierinfo_discount
+msgid ""
+"This value will be used as the default one, for each new supplierinfo line "
+"depending on that supplier."
+msgstr "根据供应商的不同，此值将用作每个新供应商信息行的默认值。"
+
+#. module: purchase_discount
+#: model_terms:ir.ui.view,arch_db:purchase_discount.res_partner_form_view
+msgid "the parent company"
+msgstr "上级公司"
+
+#~ msgid "Invoice"
+#~ msgstr "发票"

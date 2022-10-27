@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="purchase_order_line_form2">
+        <field name="name">purchase_discount.order.line.form2</field>
+        <field name="model">purchase.order.line</field>
+        <field name="inherit_id" ref="purchase.purchase_order_line_form2" />
+        <field name="arch" type="xml">
+            <field name="price_unit" position="after">
+                <field name="discount" />
+            </field>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="purchase_order_line_tree">
+        <field name="name">purchase_discount.order.line.tree</field>
+        <field name="model">purchase.order.line</field>
+        <field name="inherit_id" ref="purchase.purchase_order_line_tree" />
+        <field name="arch" type="xml">
+            <field name="price_unit" position="after">
+                <field name="discount" />
+            </field>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="purchase_order_form">
+        <field name="name">purchase_discount.purchase.order.form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='order_line']/tree/field[@name='price_unit']"
+                position="after"
+            >
+                <field name="discount" />
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/form//field[@name='price_unit']"
+                position="after"
+            >
+                <field name="discount" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
