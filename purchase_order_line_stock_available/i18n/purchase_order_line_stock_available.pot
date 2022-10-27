@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -12,16 +12,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-
-#. module: purchase_order_line_stock_available
-#: model:ir.model.fields,field_description:purchase_order_line_stock_available.field_purchase_order_line__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: purchase_order_line_stock_available
-#: model:ir.model.fields,field_description:purchase_order_line_stock_available.field_purchase_order_line__virtual_available
-msgid "Forecast Quantity"
-msgstr ""
 
 #. module: purchase_order_line_stock_available
 #: model:ir.model.fields,help:purchase_order_line_stock_available.field_purchase_order_line__virtual_available
@@ -33,13 +23,8 @@ msgid ""
 msgstr ""
 
 #. module: purchase_order_line_stock_available
-#: model:ir.model.fields,field_description:purchase_order_line_stock_available.field_purchase_order_line__id
-msgid "ID"
-msgstr ""
-
-#. module: purchase_order_line_stock_available
-#: model:ir.model.fields,field_description:purchase_order_line_stock_available.field_purchase_order_line____last_update
-msgid "Last Modified on"
+#: model:ir.model.fields,field_description:purchase_order_line_stock_available.field_purchase_order_line__virtual_available
+msgid "Forecasted Quantity"
 msgstr ""
 
 #. module: purchase_order_line_stock_available
