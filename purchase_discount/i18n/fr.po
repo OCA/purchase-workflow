@@ -74,11 +74,6 @@ msgid "Stock Move"
 msgstr "Mouvement de stock"
 
 #. module: purchase_discount
-#: model:ir.model,name:purchase_discount.model_stock_rule
-msgid "Stock Rule"
-msgstr "Règle de stock"
-
-#. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_product_supplierinfo
 msgid "Supplier Pricelist"
 msgstr "Liste de prix fournisseur"
@@ -97,6 +92,9 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:purchase_discount.res_partner_form_view
 msgid "the parent company"
 msgstr "Société parente"
+
+#~ msgid "Stock Rule"
+#~ msgstr "Règle de stock"
 
 #~ msgid "Invoice"
 #~ msgstr "Facture"
