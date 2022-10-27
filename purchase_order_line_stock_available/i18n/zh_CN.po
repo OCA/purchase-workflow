@@ -17,20 +17,26 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: purchase_order_line_stock_available
-#: model:ir.model.fields,field_description:purchase_order_line_stock_available.field_purchase_order_line__virtual_available
-msgid "Forecast Quantity"
-msgstr "预测库存"
-
-#. module: purchase_order_line_stock_available
 #: model:ir.model.fields,help:purchase_order_line_stock_available.field_purchase_order_line__virtual_available
 msgid ""
 "Forecast quantity (computed as Quantity On Hand - Outgoing + Incoming)\n"
-"In a context with a single Stock Location, this includes goods stored in this location, or any of its children.\n"
-"In a context with a single Warehouse, this includes goods stored in the Stock Location of this Warehouse, or any of its children.\n"
-"Otherwise, this includes goods stored in any Stock Location with 'internal' type."
+"In a context with a single Stock Location, this includes goods stored in "
+"this location, or any of its children.\n"
+"In a context with a single Warehouse, this includes goods stored in the "
+"Stock Location of this Warehouse, or any of its children.\n"
+"Otherwise, this includes goods stored in any Stock Location with 'internal' "
+"type."
+msgstr ""
+
+#. module: purchase_order_line_stock_available
+#: model:ir.model.fields,field_description:purchase_order_line_stock_available.field_purchase_order_line__virtual_available
+msgid "Forecasted Quantity"
 msgstr ""
 
 #. module: purchase_order_line_stock_available
 #: model:ir.model,name:purchase_order_line_stock_available.model_purchase_order_line
 msgid "Purchase Order Line"
 msgstr "采购订单明细"
+
+#~ msgid "Forecast Quantity"
+#~ msgstr "预测库存"
