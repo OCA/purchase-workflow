@@ -38,6 +38,7 @@ setuptools.setup(
         'odoo14-addon-purchase_order_approval_block',
         'odoo14-addon-purchase_order_approved',
         'odoo14-addon-purchase_order_archive',
+        'odoo14-addon-purchase_order_general_discount',
         'odoo14-addon-purchase_order_line_deep_sort',
         'odoo14-addon-purchase_order_line_description_picking',
         'odoo14-addon-purchase_order_line_invoicing',
