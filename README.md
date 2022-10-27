@@ -51,6 +51,7 @@ addon | version | maintainers | summary
 [purchase_order_approval_block](purchase_order_approval_block/) | 14.0.1.0.3 |  | Purchase Order Approval Block
 [purchase_order_approved](purchase_order_approved/) | 14.0.1.2.0 |  | Add a new state 'Approved' in purchase orders.
 [purchase_order_archive](purchase_order_archive/) | 14.0.1.0.0 |  | Archive Purchase Orders
+[purchase_order_general_discount](purchase_order_general_discount/) | 14.0.1.0.0 |  | General discount per purchase order
 [purchase_order_line_deep_sort](purchase_order_line_deep_sort/) | 14.0.1.0.0 |  | Purchase Order Line Sort
 [purchase_order_line_description_picking](purchase_order_line_description_picking/) | 14.0.1.0.0 |  | Purchase Order Line Name To Picking
 [purchase_order_line_invoicing](purchase_order_line_invoicing/) | 14.0.1.0.0 |  | Allows to invoice lines of multiple purchase orders
