@@ -1,5 +1,7 @@
 # Copyright 2017-19 Tecnativa - David Vidal
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+import functools
+
 from odoo import api, fields, models
 
 
@@ -34,13 +36,17 @@ class PurchaseOrderLine(models.Model):
         ),
     ]
 
-    def _get_discounted_price_unit(self):
-        price_unit = super()._get_discounted_price_unit()
-        if self.discount2:
-            price_unit *= 1 - self.discount2 / 100.0
-        if self.discount3:
-            price_unit *= 1 - self.discount3 / 100.0
-        return price_unit
+    def _convert_to_tax_base_line_dict(self):
+        vals = super()._convert_to_tax_base_line_dict()
+        vals.update({"discount": self._compute_aggregated_discount(self.discount)})
+        return vals
+
+    def _compute_aggregated_discount(self, base_discount):
+        self.ensure_one()
+        discounts = [base_discount]
+        for discount_fname in self._get_multiple_discount_field_names():
+            discounts.append(getattr(self, discount_fname, 0.0))
+        return self._get_aggregated_multiple_discounts(discounts)
 
     @api.model
     def _apply_value_from_seller(self, seller):
@@ -60,3 +66,15 @@ class PurchaseOrderLine(models.Model):
             }
         )
         return res
+
+    def _get_aggregated_multiple_discounts(self, discounts):
+        discount_values = []
+        for discount in discounts:
+            discount_values.append(1 - (discount or 0.0) / 100.0)
+        aggregated_discount = (
+            1 - functools.reduce((lambda x, y: x * y), discount_values)
+        ) * 100
+        return aggregated_discount
+
+    def _get_multiple_discount_field_names(self):
+        return ["discount2", "discount3"]
