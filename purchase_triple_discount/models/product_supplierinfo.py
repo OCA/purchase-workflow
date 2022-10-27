@@ -10,19 +10,29 @@ class ProductSupplierInfo(models.Model):
     discount2 = fields.Float(
         string="Discount 2 (%)",
         digits="Discount",
+        compute="_compute_discount2",
+        store=True,
+        readonly=False,
     )
     discount3 = fields.Float(
         string="Discount 3 (%)",
         digits="Discount",
+        compute="_compute_discount3",
+        store=True,
+        readonly=False,
     )
 
-    @api.onchange("name")
-    def onchange_name(self):
-        """Apply the default supplier discounts of the selected supplier"""
-        for supplierinfo in self.filtered("name"):
-            supplierinfo.discount2 = supplierinfo.name.default_supplierinfo_discount2
-            supplierinfo.discount3 = supplierinfo.name.default_supplierinfo_discount3
-        return super().onchange_name()
+    @api.depends("partner_id")
+    def _compute_discount2(self):
+        """Apply the default supplier discount of the selected supplier"""
+        for record in self:
+            record.discount2 = record.partner_id.default_supplierinfo_discount2
+
+    @api.depends("partner_id")
+    def _compute_discount3(self):
+        """Apply the default supplier discount of the selected supplier"""
+        for record in self:
+            record.discount3 = record.partner_id.default_supplierinfo_discount3
 
     @api.model
     def _get_po_to_supplierinfo_synced_fields(self):

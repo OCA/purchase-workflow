@@ -37,7 +37,7 @@ class TestPurchaseOrder(common.TransactionCase):
         cls.supplierinfo = cls.supplierinfo_obj.create(
             {
                 "min_qty": 0.0,
-                "name": cls.partner2.id,
+                "partner_id": cls.partner2.id,
                 "product_tmpl_id": cls.product1.product_tmpl_id.id,
                 "discount": 10,
                 "discount2": 20,
@@ -47,7 +47,7 @@ class TestPurchaseOrder(common.TransactionCase):
         cls.supplierinfo2 = cls.supplierinfo_obj.create(
             {
                 "min_qty": 10.0,
-                "name": cls.partner2.id,
+                "partner_id": cls.partner2.id,
                 "product_tmpl_id": cls.product1.product_tmpl_id.id,
                 "discount3": 50,
             }
@@ -166,8 +166,11 @@ class TestPurchaseOrder(common.TransactionCase):
             self.account_move_model.with_context(default_move_type="in_invoice")
         )
         invoice_form.partner_id = self.order.partner_id
-        invoice_form.purchase_id = self.order
+
         self.invoice = invoice_form.save()
+        self.invoice.purchase_id = self.order.id
+        self.invoice._onchange_purchase_auto_complete()
+
         self.assertEqual(
             self.po_line1.discount, self.invoice.invoice_line_ids[0].discount
         )
@@ -183,15 +186,15 @@ class TestPurchaseOrder(common.TransactionCase):
         self.assertEqual(self.order.amount_total, self.invoice.amount_total)
 
     def test_05_purchase_order_default_discounts(self):
-        self.po_line3._onchange_quantity()
-        self.assertEqual(self.po_line3.discount, 10)
-        self.assertEqual(self.po_line3.discount2, 20)
-        self.assertEqual(self.po_line3.discount3, 30)
-        self.po_line3.product_qty = 10
-        self.po_line3._onchange_quantity()
-        self.assertFalse(self.po_line3.discount)
-        self.assertFalse(self.po_line3.discount2)
-        self.assertEqual(self.po_line3.discount3, 50)
+        with Form(self.order2).order_line.edit(0) as line:
+            line.product_qty = 1.0
+            self.assertEqual(line.discount, 10)
+            self.assertEqual(line.discount2, 20)
+            self.assertEqual(line.discount3, 30)
+            line.product_qty = 10
+            self.assertFalse(line.discount)
+            self.assertFalse(line.discount2)
+            self.assertEqual(line.discount3, 50)
 
     def test_06_default_supplier_discounts(self):
         self.partner2.default_supplierinfo_discount = 11
@@ -200,13 +203,12 @@ class TestPurchaseOrder(common.TransactionCase):
         supplierinfo = self.supplierinfo_obj.new(
             {
                 "min_qty": 0.0,
-                "name": self.partner2.id,
+                "partner_id": self.partner2.id,
                 "product_tmpl_id": self.product1.product_tmpl_id.id,
                 "discount": 10,
             }
         )
-        supplierinfo.onchange_name()
-        self.assertEqual(supplierinfo.discount, 11)
+        self.assertEqual(supplierinfo.discount, 10)
         self.assertEqual(supplierinfo.discount2, 22)
         self.assertEqual(supplierinfo.discount3, 33)
 
@@ -229,7 +231,7 @@ class TestPurchaseOrder(common.TransactionCase):
         self.order2.button_confirm()
         seller = self.supplierinfo_obj.search(
             [
-                ("name", "=", self.partner2.id),
+                ("partner_id", "=", self.partner2.id),
                 ("product_tmpl_id", "=", self.product2.product_tmpl_id.id),
             ]
         )

@@ -9,15 +9,25 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-24 07:53+0000\n"
-"PO-Revision-Date: 2020-02-26 20:13+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-12-20 18:34+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: purchase_triple_discount
+#: model_terms:ir.ui.view,arch_db:purchase_triple_discount.report_purchaseorder_document_triple_discount
+msgid "<strong>Disc. 2 (%)</strong>"
+msgstr "<strong>Sc. 2 (%)</strong>"
+
+#. module: purchase_triple_discount
+#: model_terms:ir.ui.view,arch_db:purchase_triple_discount.report_purchaseorder_document_triple_discount
+msgid "<strong>Disc. 3 (%)</strong>"
+msgstr "<strong>Sc. 3 (%)</strong>"
 
 #. module: purchase_triple_discount
 #: model:ir.model,name:purchase_triple_discount.model_res_partner
@@ -53,7 +63,7 @@ msgid "Discount 2 (%)"
 msgstr "Sconto 2 (%)"
 
 #. module: purchase_triple_discount
-#: sql_constraint:purchase.order.line:0
+#: model:ir.model.constraint,message:purchase_triple_discount.constraint_purchase_order_line_discount2_limit
 msgid "Discount 2 must be lower than 100%."
 msgstr "Sconto 2 deve essere inferiore di 100%."
 
@@ -64,29 +74,19 @@ msgid "Discount 3 (%)"
 msgstr "Sconto 3 (%)"
 
 #. module: purchase_triple_discount
-#: sql_constraint:purchase.order.line:0
+#: model:ir.model.constraint,message:purchase_triple_discount.constraint_purchase_order_line_discount3_limit
 msgid "Discount 3 must be lower than 100%."
 msgstr "Sconto 3 deve essere inferiore di 100%."
 
 #. module: purchase_triple_discount
-#: model:ir.model,name:purchase_triple_discount.model_account_invoice
-msgid "Invoice"
-msgstr "Fattura"
-
-#. module: purchase_triple_discount
 #: model:ir.model,name:purchase_triple_discount.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr "Riga Ordine d'Acquisto"
+msgstr "Riga ordine di acquisto"
 
 #. module: purchase_triple_discount
 #: model:ir.model,name:purchase_triple_discount.model_purchase_report
 msgid "Purchase Report"
-msgstr "Report Ordine d'Acquisto"
-
-#. module: purchase_triple_discount
-#: model:ir.model,name:purchase_triple_discount.model_stock_rule
-msgid "Stock Rule"
-msgstr "Regola Stock"
+msgstr "Resoconto di acquisto"
 
 #. module: purchase_triple_discount
 #: model:ir.model,name:purchase_triple_discount.model_product_supplierinfo
@@ -104,3 +104,9 @@ msgid ""
 msgstr ""
 "Questo valore verrà usato come predefinito per ogni nuova riga d'ordine di "
 "acquisto che dipende da questo fornitore."
+
+#~ msgid "Invoice"
+#~ msgstr "Fattura"
+
+#~ msgid "Stock Rule"
+#~ msgstr "Regola Stock"
