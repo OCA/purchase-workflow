@@ -18,11 +18,6 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 
 #. module: purchase_order_line_stock_available
-#: model:ir.model.fields,field_description:purchase_order_line_stock_available.field_purchase_order_line__virtual_available
-msgid "Forecast Quantity"
-msgstr "Cantidad Prevista"
-
-#. module: purchase_order_line_stock_available
 #: model:ir.model.fields,help:purchase_order_line_stock_available.field_purchase_order_line__virtual_available
 msgid ""
 "Forecast quantity (computed as Quantity On Hand - Outgoing + Incoming)\n"
@@ -43,6 +38,14 @@ msgstr ""
 "ubicaciones de tipo interno."
 
 #. module: purchase_order_line_stock_available
+#: model:ir.model.fields,field_description:purchase_order_line_stock_available.field_purchase_order_line__virtual_available
+msgid "Forecasted Quantity"
+msgstr ""
+
+#. module: purchase_order_line_stock_available
 #: model:ir.model,name:purchase_order_line_stock_available.model_purchase_order_line
 msgid "Purchase Order Line"
 msgstr "Línea pedido de compra"
+
+#~ msgid "Forecast Quantity"
+#~ msgstr "Cantidad Prevista"
