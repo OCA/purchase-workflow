@@ -31,7 +31,7 @@
         <field name="name">purchase.tag.view.tree</field>
         <field name="model">purchase.tag</field>
         <field name="arch" type="xml">
-            <tree string="Tags" editable="bottom">
+            <tree editable="bottom">
                 <field name="name" />
                 <field name="color" widget="color_picker" />
             </tree>
