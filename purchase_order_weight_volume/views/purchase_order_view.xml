@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="purchase_order_form_inerit" model="ir.ui.view">
+        <field name="name">purchase.order.form.inherit</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='order_line']//tree//field[@name='price_unit']"
+                position="before"
+            >
+                <field name="line_weight" optional="show" />
+                <field name="line_volume" optional="show" />
+            </xpath>
+            <field name="fiscal_position_id" position="after">
+                <label
+                    for="total_weight"
+                    attrs="{'invisible':[('weight_uom_name', '=', '')]}"
+                />
+                <div
+                    name="total_weight"
+                    attrs="{'invisible':[('weight_uom_name', '=', '')]}"
+                >
+                    <field name="total_weight" class="oe_inline" />
+                    <span style="margin-left:3px;"><field
+                            name="weight_uom_name"
+                            class="oe_inline"
+                        /></span>
+                </div>
+                <label
+                    for="total_volume"
+                    attrs="{'invisible':[('volume_uom_name', '=', '')]}"
+                />
+                <div
+                    name="total_volume"
+                    attrs="{'invisible':[('volume_uom_name', '=', '')]}"
+                >
+                    <field name="total_volume" string="Volume" class="oe_inline" />
+                    <span style="margin-left:3px;"><field
+                            name="volume_uom_name"
+                            class="oe_inline"
+                        /></span>
+                </div>
+                <field name="display_total_weight_in_report" />
+                <field name="display_total_volume_in_report" />
+            </field>
+        </field>
+    </record>
+
+</odoo>
