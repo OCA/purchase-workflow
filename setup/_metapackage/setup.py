@@ -36,6 +36,7 @@ setuptools.setup(
         'odoo-addon-purchase_receipt_expectation_manual_split>=15.0dev,<15.1dev',
         'odoo-addon-purchase_reception_notify>=15.0dev,<15.1dev',
         'odoo-addon-purchase_request>=15.0dev,<15.1dev',
+        'odoo-addon-purchase_request_department>=15.0dev,<15.1dev',
         'odoo-addon-purchase_request_tier_validation>=15.0dev,<15.1dev',
         'odoo-addon-purchase_requisition_tier_validation>=15.0dev,<15.1dev',
         'odoo-addon-purchase_tier_validation>=15.0dev,<15.1dev',
