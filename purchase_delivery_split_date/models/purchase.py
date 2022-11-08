@@ -92,36 +92,51 @@ class PurchaseOrder(models.Model):
                     ("state", "not in", ("cancel", "done")),
                 ]
             )
-            pickings = moves.mapped("picking_id")
-            pickings_by_date = {}
-            for pick in pickings:
-                pickings_by_date[pick.scheduled_date.date()] = pick
+            all_pickings = moves.mapped("picking_id")
 
-            order_lines = moves.mapped("purchase_line_id")
-            date_groups = groupby(
-                order_lines, lambda l: l._get_group_keys(l.order_id, l)
-            )
-            for key, lines in date_groups:
-                date_key = fields.Date.from_string(key[0]["date_planned"])
-                for line in lines:
-                    for move in line.move_ids:
-                        if move.state in ("cancel", "done"):
-                            continue
-                        if (
-                            move.picking_id.scheduled_date.date() != date_key
-                            or pickings_by_date[date_key] != move.picking_id
+            def picking_keys(x):
+                return (
+                    x["picking_type_id"].id,
+                    x["location_id"].id,
+                    x["location_dest_id"].id,
+                )
+
+            sorted_pickings = sorted(all_pickings, key=picking_keys)
+            grouped_pickings = groupby(sorted_pickings, picking_keys)
+            for _key, picking_iterator in grouped_pickings:
+                pickings_by_date = {}
+                pickings = self.env["stock.picking"]
+                for pick in picking_iterator:
+                    pickings_by_date[pick.scheduled_date.date()] = pick
+                    pickings += pick
+
+                order_lines = pickings.mapped("move_lines").mapped("purchase_line_id")
+                date_groups = groupby(
+                    order_lines, lambda l: l._get_group_keys(l.order_id, l)
+                )
+                for key, lines in date_groups:
+                    date_key = fields.Date.from_string(key[0]["date_planned"])
+                    for line in lines:
+                        for move in line.move_ids.filtered(
+                            lambda m: m.picking_id.id in pickings.ids
                         ):
-                            if date_key not in pickings_by_date:
-                                copy_vals = line._first_picking_copy_vals(key, line)
-                                new_picking = move.picking_id.copy(copy_vals)
-                                pickings_by_date[date_key] = new_picking
-                            move._do_unreserve()
-                            move.picking_id = pickings_by_date[date_key]
-                            move.date_expected = date_key
-                            move._action_assign()
-            for picking in pickings:
-                if len(picking.move_lines) == 0:
-                    picking.write({"state": "cancel"})
+                            if move.state in ("cancel", "done"):
+                                continue
+                            if (
+                                move.picking_id.scheduled_date.date() != date_key
+                                or pickings_by_date[date_key] != move.picking_id
+                            ):
+                                if date_key not in pickings_by_date:
+                                    copy_vals = line._first_picking_copy_vals(key, line)
+                                    new_picking = move.picking_id.copy(copy_vals)
+                                    pickings_by_date[date_key] = new_picking
+                                move._do_unreserve()
+                                move.picking_id = pickings_by_date[date_key]
+                                move.date_expected = date_key
+                                move._action_assign()
+                for picking in pickings:
+                    if len(picking.move_lines) == 0:
+                        picking.write({"state": "cancel"})
 
 
 class StockPicking(models.Model):
