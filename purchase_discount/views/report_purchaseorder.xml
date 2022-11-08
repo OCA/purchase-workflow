@@ -9,7 +9,7 @@
                 <strong>Disc. (%)</strong>
             </th>
         </xpath>
-        <xpath expr="//td[span[@t-field='line.price_subtotal']]" position="after">
+        <xpath expr="//td[span[@t-field='line.price_subtotal']]" position="before">
             <td class="text-right border-3">
                 <span t-field="line.discount" />
             </td>
