@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2020 Tecnativa - Manuel Calero
+    License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
+-->
+<odoo>
+    <record id="purchase_order_tree" model="ir.ui.view">
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_tree" />
+        <field name="arch" type="xml">
+            <field name="amount_untaxed" position="before">
+                <field
+                    name="amount_uninvoiced"
+                    sum="Total Uninvoiced amount"
+                    widget="monetary"
+                    optional="show"
+                />
+            </field>
+        </field>
+    </record>
+    <record id="purchase_order_view_tree" model="ir.ui.view">
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_view_tree" />
+        <field name="arch" type="xml">
+            <field name="amount_untaxed" position="before">
+                <field
+                    name="amount_uninvoiced"
+                    sum="Total Uninvoiced amount"
+                    widget="monetary"
+                    optional="show"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
