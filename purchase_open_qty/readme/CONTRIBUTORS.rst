@@ -2,3 +2,7 @@
 * Andreas Dian Sukarno Putro <andreasdian777@gmail.com>
 * Kitti Upariphutthiphong <kittiu@ecosoft.co.th>
 * Eric Antones <eantones@nuobit.com>
+
+* `Tecnativa <https://www.tecnativa.com>`_:
+
+  * Carlos Roca
