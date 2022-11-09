@@ -64,6 +64,10 @@ Contributors
 * Kitti Upariphutthiphong <kittiu@ecosoft.co.th>
 * Eric Antones <eantones@nuobit.com>
 
+* `Tecnativa <https://www.tecnativa.com>`_:
+
+  * Carlos Roca
+
 Maintainers
 ~~~~~~~~~~~
 
