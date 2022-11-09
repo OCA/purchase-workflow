@@ -74,6 +74,7 @@ class BlanketOrder(models.Model):
         states={"draft": [("readonly", False)]},
     )
     confirmed = fields.Boolean(copy=False)
+    cancelled = fields.Boolean(copy=False)
     state = fields.Selection(
         selection=[
             ("draft", "Draft"),
@@ -178,6 +179,7 @@ class BlanketOrder(models.Model):
         "line_ids.remaining_uom_qty",
         "validity_date",
         "confirmed",
+        "cancelled",
     )
     def _compute_state(self):
         today = fields.Date.today()
@@ -185,9 +187,9 @@ class BlanketOrder(models.Model):
             "Product Unit of Measure"
         )
         for order in self:
-            if not order.confirmed:
+            if not order.confirmed and not order.cancelled:
                 order.state = "draft"
-            elif order.validity_date <= today:
+            elif order.validity_date <= today or order.cancelled:
                 order.state = "expired"
             elif float_is_zero(
                 sum(order.line_ids.mapped("remaining_uom_qty")),
@@ -238,7 +240,7 @@ class BlanketOrder(models.Model):
 
     def unlink(self):
         for order in self:
-            if order.state not in ("draft", "cancel"):
+            if order.state not in ("draft", "expired"):
                 raise UserError(
                     _(
                         "You can not delete an open blanket order! "
@@ -269,7 +271,7 @@ class BlanketOrder(models.Model):
 
     def set_to_draft(self):
         for order in self:
-            order.write({"state": "draft"})
+            order.write({"cancelled": False})
         return True
 
     def action_confirm(self):
@@ -298,7 +300,7 @@ class BlanketOrder(models.Model):
                                 "Try to cancel them before."
                             )
                         )
-            order.write({"state": "expired"})
+            order.write({"cancelled": True, "confirmed": False})
         return True
 
     def action_view_purchase_orders(self):
