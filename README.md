@@ -50,7 +50,7 @@ addon | version | maintainers | summary
 [purchase_location_by_line](purchase_location_by_line/) | 13.0.1.0.0 |  | Allows to define a specific destination location on each PO line
 [purchase_manual_currency](purchase_manual_currency/) | 13.0.1.0.2 |  | Allows to manual currency of Purchase
 [purchase_minimum_amount](purchase_minimum_amount/) | 13.0.1.0.1 |  | Purchase Minimum Amount
-[purchase_open_qty](purchase_open_qty/) | 13.0.1.1.0 |  | Allows to identify the purchase orders that have quantities pending to invoice or to receive.
+[purchase_open_qty](purchase_open_qty/) | 13.0.1.2.0 |  | Allows to identify the purchase orders that have quantities pending to invoice or to receive.
 [purchase_order_approval_block](purchase_order_approval_block/) | 13.0.1.0.2 |  | Purchase Order Approval Block
 [purchase_order_approved](purchase_order_approved/) | 13.0.1.1.0 |  | Add a new state 'Approved' in purchase orders.
 [purchase_order_archive](purchase_order_archive/) | 13.0.1.0.0 |  | Archive Purchase Orders
