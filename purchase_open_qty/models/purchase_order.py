@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import _, api, fields, models
-from odoo.tools import float_compare
+from odoo.tools import float_compare, float_is_zero
 
 
 class PurchaseOrderLine(models.Model):
@@ -61,9 +61,12 @@ class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
     def _compute_qty_to_invoice(self):
+        dp = self.env["decimal.precision"].precision_get("Product Unit of Measure")
         for po in self:
             qty_to_invoice = sum(po.mapped("order_line.qty_to_invoice"))
-            po.pending_qty_to_invoice = qty_to_invoice > 0.0
+            po.pending_qty_to_invoice = not float_is_zero(
+                qty_to_invoice, precision_digits=dp
+            )
             po.qty_to_invoice = qty_to_invoice
 
     def _compute_qty_to_receive(self):
