@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+     <record id="recommendation_xlsx" model="ir.actions.report">
+         <field name="name">Product Recommendation XLSX</field>
+         <field name="model">purchase.order.recommendation</field>
+         <field name="report_type">xlsx</field>
+         <field
+            name="report_name"
+        >purchase_order_product_recommendation_xlsx.summary</field>
+         <field
+            name="report_file"
+        >purchase_order_product_recommendation_xlsx.summary</field>
+    </record>
+</odoo>
