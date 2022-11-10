@@ -155,6 +155,11 @@ msgid "Cancel"
 msgstr ""
 
 #. module: purchase_blanket_order
+#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__cancelled
+msgid "Cancelled"
+msgstr ""
+
+#. module: purchase_blanket_order
 #: code:addons/purchase_blanket_order/models/purchase_order.py:0
 #, python-format
 msgid ""
