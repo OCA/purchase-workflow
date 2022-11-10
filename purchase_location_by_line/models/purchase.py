@@ -15,16 +15,20 @@ class PurchaseOrderLine(models.Model):
         domain=[("usage", "in", ["internal", "transit"])],
     )
 
-    @api.model
-    def _first_picking_copy_vals(self, key, lines):
-        """The data to be copied to new pickings is updated with data from the
-        grouping key.  This method is designed for extensibility, so that
-        other modules can store more data based on new keys."""
-        vals = super(PurchaseOrderLine, self)._first_picking_copy_vals(key, lines)
-        for key_element in key:
-            if "location_dest_id" in key_element.keys():
-                vals["location_dest_id"] = key_element["location_dest_id"].id
-        return vals
+    # -----------------
+    # Removed, because picking should use location_dest_id from stock.move
+    # not from purchase.order.line
+    # -----------------
+    # @api.model
+    # def _first_picking_copy_vals(self, key, lines):
+    #     """The data to be copied to new pickings is updated with data from the
+    #     grouping key.  This method is designed for extensibility, so that
+    #     other modules can store more data based on new keys."""
+    #     vals = super(PurchaseOrderLine, self)._first_picking_copy_vals(key, lines)
+    #     for key_element in key:
+    #         if "location_dest_id" in key_element.keys():
+    #             vals["location_dest_id"] = key_element["location_dest_id"].id
+    #     return vals
 
     @api.model
     def _get_group_keys(self, order, line, picking=False):

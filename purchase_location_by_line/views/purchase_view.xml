@@ -6,7 +6,11 @@
         <field name="inherit_id" ref="purchase.purchase_order_form" />
         <field name="arch" type="xml">
             <field name='date_planned' position="after">
-                <field name="location_dest_id" />
+                <field name="state" invisible="True" />
+                <field
+                    name="location_dest_id"
+                    attrs="{'readonly': [('state', '!=', 'draft')]}"
+                />
             </field>
         </field>
     </record>
@@ -16,7 +20,11 @@
         <field name="inherit_id" ref="purchase.purchase_order_line_form2" />
         <field name="arch" type="xml">
             <field name='date_planned' position="after">
-                <field name="location_dest_id" />
+                <field name="state" invisible="True" />
+                <field
+                    name="location_dest_id"
+                    attrs="{'readonly': [('state', '!=', 'draft')]}"
+                />
             </field>
         </field>
     </record>
@@ -26,7 +34,11 @@
         <field name="inherit_id" ref="purchase.purchase_order_line_tree" />
         <field name="arch" type="xml">
             <field name='date_planned' position="after">
-                <field name="location_dest_id" />
+                <field name="state" invisible="True" />
+                <field
+                    name="location_dest_id"
+                    attrs="{'readonly': [('state', '!=', 'draft')]}"
+                />
             </field>
         </field>
     </record>
