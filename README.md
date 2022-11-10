@@ -25,7 +25,7 @@ addon | version | maintainers | summary
 [product_form_purchase_link](product_form_purchase_link/) | 15.0.1.0.0 | [![rousseldenis](https://github.com/rousseldenis.png?size=30px)](https://github.com/rousseldenis) | Add an option to display the purchases lines from product
 [purchase_advance_payment](purchase_advance_payment/) | 15.0.1.0.0 |  | Allow to add advance payments on purchase orders
 [purchase_analytic_global](purchase_analytic_global/) | 15.0.1.0.1 |  | Purchase - Analytic Account Global
-[purchase_blanket_order](purchase_blanket_order/) | 15.0.1.3.0 |  | Purchase Blanket Orders
+[purchase_blanket_order](purchase_blanket_order/) | 15.0.1.3.1 |  | Purchase Blanket Orders
 [purchase_default_terms_conditions](purchase_default_terms_conditions/) | 15.0.1.0.1 |  | This module allows purchase default terms & conditions
 [purchase_delivery_split_date](purchase_delivery_split_date/) | 15.0.1.0.0 |  | Allows Purchase Order you confirm to generate one Incoming Shipment for each expected date indicated in the Purchase Order Lines
 [purchase_deposit](purchase_deposit/) | 15.0.1.0.0 |  | Option to create deposit from purchase order
