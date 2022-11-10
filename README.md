@@ -29,7 +29,7 @@ addon | version | maintainers | summary
 [purchase_advance_payment](purchase_advance_payment/) | 14.0.1.0.1 |  | Allow to add advance payments on purchase orders
 [purchase_allowed_product](purchase_allowed_product/) | 14.0.1.0.0 |  | This module allows to select only products that can be supplied by the vendor
 [purchase_analytic_global](purchase_analytic_global/) | 14.0.1.0.0 |  | Purchase - Analytic Account Global
-[purchase_blanket_order](purchase_blanket_order/) | 14.0.1.3.0 |  | Purchase Blanket Orders
+[purchase_blanket_order](purchase_blanket_order/) | 14.0.1.3.1 |  | Purchase Blanket Orders
 [purchase_cancel_confirm](purchase_cancel_confirm/) | 14.0.1.0.0 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Purchase Cancel Confirm
 [purchase_cancel_reason](purchase_cancel_reason/) | 14.0.1.0.0 |  | Purchase Cancel Reason
 [purchase_commercial_partner](purchase_commercial_partner/) | 14.0.1.0.0 |  | Add stored related field 'Commercial Supplier' on POs
