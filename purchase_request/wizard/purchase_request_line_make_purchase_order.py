@@ -110,7 +110,8 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         if not request_line_ids:
             return res
         res["item_ids"] = self.get_items(request_line_ids)
-        res["item_ids"] = list(filter(lambda item: (item[2]['product_qty'] > 0), res["item_ids"]))
+        res["item_ids"] = list(filter(lambda item: (
+            item[2]['product_qty'] > 0), res["item_ids"]))
         request_lines = self.env["purchase.request.line"].browse(request_line_ids)
         supplier_ids = request_lines.mapped("supplier_id").ids
         if len(supplier_ids) == 1:
