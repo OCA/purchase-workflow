@@ -5,7 +5,7 @@
     "category": "Purchase",
     "license": "AGPL-3",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
-    "version": "14.0.1.3.0",
+    "version": "14.0.1.3.1",
     "website": "https://github.com/OCA/purchase-workflow",
     "summary": "Purchase Blanket Orders",
     "depends": ["purchase", "web_action_conditionable"],
