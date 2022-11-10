@@ -65,7 +65,7 @@
                 <filter
                     name="pending_qty_to_invoice"
                     string="Pending Qty to Bill"
-                    domain="[('qty_to_invoice','>',0.0)]"
+                    domain="[('qty_to_invoice','!=',0.0)]"
                 />
                 <filter
                     name="pending_qty_to_receive"
