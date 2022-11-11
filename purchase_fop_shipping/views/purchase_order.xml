@@ -52,7 +52,7 @@
                     groups="purchase_fop_shipping.group_fop_shipping_purchase_manager"
                 />
             </xpath>
-            <field name="amount_total" position="after">
+            <field name="tax_totals_json" position="after">
                  <field
                     name="fop_shipping"
                     readonly="1"
