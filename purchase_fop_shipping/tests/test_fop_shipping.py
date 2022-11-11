@@ -4,10 +4,10 @@
 
 from odoo import fields
 from odoo.exceptions import UserError
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 
-class TestPurchaseOrder(SavepointCase):
+class TestPurchaseOrder(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super(TestPurchaseOrder, cls).setUpClass()
