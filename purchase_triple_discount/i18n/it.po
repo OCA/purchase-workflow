@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-24 07:53+0000\n"
-"PO-Revision-Date: 2020-02-26 20:13+0000\n"
+"PO-Revision-Date: 2022-11-14 11:44+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -17,17 +17,17 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: purchase_triple_discount
 #: model_terms:ir.ui.view,arch_db:purchase_triple_discount.report_purchaseorder_document_triple_discount
 msgid "<strong>Disc. 2 (%)</strong>"
-msgstr ""
+msgstr "<strong>Sc. 2 (%)</strong>"
 
 #. module: purchase_triple_discount
 #: model_terms:ir.ui.view,arch_db:purchase_triple_discount.report_purchaseorder_document_triple_discount
 msgid "<strong>Disc. 3 (%)</strong>"
-msgstr ""
+msgstr "<strong>Sc. 3 (%)</strong>"
 
 #. module: purchase_triple_discount
 #: model:ir.model,name:purchase_triple_discount.model_res_partner
@@ -84,7 +84,7 @@ msgstr "Sconto 3 deve essere inferiore di 100%."
 #: model:ir.model.fields,field_description:purchase_triple_discount.field_purchase_report__display_name
 #: model:ir.model.fields,field_description:purchase_triple_discount.field_res_partner__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome da visualizzare"
 
 #. module: purchase_triple_discount
 #: model:ir.model.fields,field_description:purchase_triple_discount.field_product_supplierinfo__id
@@ -92,7 +92,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_triple_discount.field_purchase_report__id
 #: model:ir.model.fields,field_description:purchase_triple_discount.field_res_partner__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: purchase_triple_discount
 #: model:ir.model.fields,field_description:purchase_triple_discount.field_product_supplierinfo____last_update
@@ -100,7 +100,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_triple_discount.field_purchase_report____last_update
 #: model:ir.model.fields,field_description:purchase_triple_discount.field_res_partner____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: purchase_triple_discount
 #: model:ir.model,name:purchase_triple_discount.model_purchase_order_line
