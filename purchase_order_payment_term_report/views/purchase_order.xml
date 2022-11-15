@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+    <record id="purchase_order_form_payment_terms" model="ir.ui.view">
+        <field name="name">purchase.order.inherited.form.payment.terms</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath
+                    expr="//page[@name='purchase_delivery_invoice']//group[@name='invoice_info']"
+                    position="inside"
+                >
+                <field name="display_payment_terms_in_report" />
+            </xpath>
+        </field>
+    </record>
+</data>
+</odoo>
