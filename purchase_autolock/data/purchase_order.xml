@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record model="ir.cron" id="cron_auto_lock_purchase">
+        <field name="name">Purchase Auto Lock</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field
+            name="nextcall"
+            eval="(DateTime.now() + timedelta(days=1)).strftime('%Y-%m-%d 04:00:00')"
+        />
+        <field name="doall" eval="True" />
+        <field name="model_id" ref="purchase.model_purchase_order" />
+        <field name="state">code</field>
+        <field name="code">
+            model.cron_auto_lock_purchase()
+        </field>
+    </record>
+</odoo>
