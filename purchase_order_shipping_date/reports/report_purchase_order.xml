@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template
+        id="report_purchase_order_form_shipping_date"
+        inherit_id="purchase.report_purchaseorder_document"
+    >
+        <xpath expr="//div[@id='informations']" position="inside">
+            <div t-if="o.shipping_date" class="col-3 bm-2">
+                <strong>Shipping Date:</strong>
+                <p t-field="o.shipping_date" class="m-0" />
+            </div>
+        </xpath>
+    </template>
+
+    <template
+        id="report_purchase_quotation_form_shipping_date"
+        inherit_id="purchase.report_purchasequotation_document"
+    >
+        <xpath expr="//table[hasclass('table','table-sm')]" position="before">
+            <div class="row mt32 mb32">
+                <div t-if="o.shipping_date" class="col-3 bm-2">
+                    <strong>Shipping Date:</strong>
+                    <p t-field="o.shipping_date" class="m-0" />
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+</odoo>
