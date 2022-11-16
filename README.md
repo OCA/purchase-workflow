@@ -89,6 +89,7 @@ addon | version | maintainers | summary
 [purchase_security](purchase_security/) | 14.0.1.0.0 | [![joao-p-marques](https://github.com/joao-p-marques.png?size=30px)](https://github.com/joao-p-marques) | See only your purchase orders
 [purchase_stock_price_unit_sync](purchase_stock_price_unit_sync/) | 14.0.1.0.0 |  | Update cost price in stock moves already done
 [purchase_stock_secondary_unit](purchase_stock_secondary_unit/) | 14.0.1.0.0 |  | Get product quantities in a secondary unit
+[purchase_supplierinfo_product_breakdown](purchase_supplierinfo_product_breakdown/) | 14.0.1.0.0 |  | Purchase Supplierinfo Product Breakdown
 [purchase_tag](purchase_tag/) | 14.0.1.0.0 |  | Allows to add multiple tags to purchase orders
 [purchase_tier_validation](purchase_tier_validation/) | 14.0.2.0.1 |  | Extends the functionality of Purchase Orders to support a tier validation process.
 [purchase_triple_discount](purchase_triple_discount/) | 14.0.1.1.0 |  | Manage triple discount on purchase order lines
