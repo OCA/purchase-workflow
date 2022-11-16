@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="product_supplierinfo_component_form_view" model="ir.ui.view">
+        <field name="name">product.supplierinfo.component.form.view</field>
+        <field name="model">product.supplierinfo</field>
+        <field name="priority">200</field>
+        <field name="arch" type="xml">
+            <form string="Product Components">
+                <sheet>
+                    <field name="component_ids" widget="one2many">
+                        <tree string="Product Components" editable="bottom">
+                            <control>
+                                <create
+                                    name="add_product_control"
+                                    string="Add a Component"
+                                />
+                            </control>
+                            <field name="supplierinfo_id" invisible="1" />
+                            <field name="component_uom_category_id" invisible="1" />
+                            <field name="parent_product_ids" invisible="1" />
+                            <field name="component_id" />
+                            <field name="product_uom_qty" />
+                            <field name="product_uom_id" />
+                        </tree>
+                    </field>
+                    <footer>
+                        <button string="Save" class="btn-primary" special="save" />
+                        <button
+                            string="Cancel"
+                            class="btn-secondary"
+                            special="cancel"
+                        />
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="product_supplierinfo_tree_view3" model="ir.ui.view">
+        <field name="name">product.spplierinfo.inherit.tree.view</field>
+        <field name="model">product.supplierinfo</field>
+        <field name="inherit_id" ref="purchase.product_supplierinfo_tree_view2" />
+        <field name="arch" type="xml">
+            <tree>
+                <field name="partner_use_components" invisible="1" />
+                <field name="product_use_components" invisible="1" />
+                <button
+                    name="action_open_component_view"
+                    type="object"
+                    icon="fa-list"
+                    attrs="{'invisible': ['|', ('partner_use_components', '=', False), ('product_use_components', '=', False)]}"
+                />
+            </tree>
+        </field>
+    </record>
+</odoo>

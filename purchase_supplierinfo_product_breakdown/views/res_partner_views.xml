@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_partner_property_form" model="ir.ui.view">
+        <field name="name">res.partner.purchase.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="purchase.view_partner_property_form" />
+        <field name="arch" type="xml">
+            <group name="purchase" position="inside">
+                <label for="use_product_components" />
+                <div
+                    name="partner_use_components"
+                    groups="purchase.group_purchase_user"
+                >
+                    <field name="use_product_components" />
+                </div>
+            </group>
+        </field>
+    </record>
+</odoo>

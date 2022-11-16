@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="1">
+
+    <record id="res_partner_test_demo_anna" model="res.partner">
+        <field name="name">Anna</field>
+        <field name="use_product_components">True</field>
+    </record>
+    <record id="res_partner_supplier_test_demo_max" model="res.partner">
+        <field name="name">Max</field>
+    </record>
+    <record id="product_product_test_demo_toolbox" model="product.product">
+        <field name="name">Toolbox</field>
+        <field name="standard_price">100.0</field>
+        <field name="type">consu</field>
+        <field name="uom_id" ref="uom.product_uom_unit" />
+    </record>
+    <record id="product_product_test_demo_hammer" model="product.product">
+        <field name="name">Hammer</field>
+        <field name="standard_price">5.0</field>
+        <field name="type">consu</field>
+        <field name="uom_id" ref="uom.product_uom_unit" />
+    </record>
+    <record id="product_product_test_demo_saw" model="product.product">
+        <field name="name">Saw</field>
+        <field name="standard_price">3.0</field>
+        <field name="type">consu</field>
+        <field name="uom_id" ref="uom.product_uom_unit" />
+    </record>
+    <record id="product_product_test_demo_drill" model="product.product">
+        <field name="name">Drill</field>
+        <field name="standard_price">10.0</field>
+        <field name="type">consu</field>
+        <field name="uom_id" ref="uom.product_uom_unit" />
+    </record>
+
+</odoo>
