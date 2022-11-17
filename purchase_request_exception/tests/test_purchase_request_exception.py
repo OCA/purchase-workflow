@@ -105,11 +105,9 @@ class TestPurchaseRequestException(TransactionCase):
         # Simulation the opening of the wizard purchase_request_exception_confirm and
         # set ignore_exception to True
         pr_except_confirm = self.purchase_request_exception_confirm.with_context(
-            {
-                "active_id": self.pr.id,
-                "active_ids": [self.pr.id],
-                "active_model": self.pr._name,
-            }
+            active_id=self.pr.id,
+            active_ids=[self.pr.id],
+            active_model=self.pr._name,
         ).create({"ignore": True})
         pr_except_confirm.action_confirm()
         self.assertTrue(self.pr.ignore_exception)
