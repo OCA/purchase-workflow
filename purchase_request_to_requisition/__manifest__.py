@@ -3,13 +3,13 @@
 
 {
     "name": "Purchase Request to Purchase Agreement",
-    "version": "14.0.1.0.0",
+    "version": "15.0.1.0.0",
     "author": "Eficent,Acsone SA/NV,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
     "category": "Purchase Management",
     "depends": [
         "purchase_request",
-        "purchase_requisition",
+        "purchase_requisition_stock",
     ],
     "data": [
         "security/ir.model.access.csv",
