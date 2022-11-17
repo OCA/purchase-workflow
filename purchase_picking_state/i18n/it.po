@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-18 07:33+0000\n"
-"PO-Revision-Date: 2022-11-16 19:44+0000\n"
+"PO-Revision-Date: 2022-11-17 10:44+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -28,17 +28,17 @@ msgstr ""
 #. module: purchase_picking_state
 #: model:ir.model.fields,field_description:purchase_picking_state.field_purchase_order__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome da visualizzare"
 
 #. module: purchase_picking_state
 #: model:ir.model.fields,field_description:purchase_picking_state.field_purchase_order__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: purchase_picking_state
 #: model:ir.model.fields,field_description:purchase_picking_state.field_purchase_order____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: purchase_picking_state
 #: code:addons/purchase_picking_state/models/purchase.py:0
