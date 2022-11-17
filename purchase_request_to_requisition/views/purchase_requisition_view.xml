@@ -3,7 +3,7 @@
      License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
 <odoo>
 
-    <record model="ir.actions.act_window" id="action_purchase_purchase_list">
+    <record id="action_purchase_purchase_list" model="ir.actions.act_window">
         <field name="name">Purchase Requests</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">purchase.request</field>
@@ -16,40 +16,40 @@
         </field>
     </record>
 
-    <record model="ir.ui.view" id="view_purchase_requisition_form">
+    <record id="view_purchase_requisition_form" model="ir.ui.view">
         <field name="name">purchase.requisition.form</field>
         <field name="model">purchase.requisition</field>
         <field
             name="inherit_id"
             ref="purchase_requisition.view_purchase_requisition_form"
         />
-            <field name="arch" type="xml">
-                <xpath expr="//field[@name='line_ids']/tree" position="inside">
-                    <field name="has_purchase_request_lines" invisible="1" />
-                    <button
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='line_ids']/tree" position="inside">
+                <field name="has_purchase_request_lines" invisible="1" />
+                <button
                     string="PR Lines"
                     attrs="{'invisible':[('has_purchase_request_lines','=',False)]}"
-                    name="action_openRequestLineTreeView"
+                    name="action_open_request_line_tree_view"
                     type="object"
                     icon="fa-folder-open-o"
                 />
-                </xpath>
-                <div name="button_box" position="inside">
-                    <button
+            </xpath>
+            <div name="button_box" position="inside">
+                <button
                     name="action_view_purchase_request"
                     type="object"
                     class="oe_stat_button"
                     icon="fa-file-text-o"
                     attrs="{'invisible':[('purchase_request_count','=',0)]}"
                 >
-                        <field
+                    <field
                         name="purchase_request_count"
                         widget="statinfo"
                         string="PRs"
                     />
-                    </button>
-                </div>
-            </field>
-        </record>
+                </button>
+            </div>
+        </field>
+    </record>
 
 </odoo>
