@@ -6,51 +6,53 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2022-11-17 10:44+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: purchase_supplierinfo_product_breakdown
 #: model_terms:ir.ui.view,arch_db:purchase_supplierinfo_product_breakdown.product_supplierinfo_component_form_view
 msgid "Add a Component"
-msgstr ""
+msgstr "Aggiungi un componente"
 
 #. module: purchase_supplierinfo_product_breakdown
 #: model_terms:ir.ui.view,arch_db:purchase_supplierinfo_product_breakdown.product_supplierinfo_component_form_view
 msgid "Cancel"
-msgstr ""
+msgstr "Annulla"
 
 #. module: purchase_supplierinfo_product_breakdown
 #: model:ir.model.fields,field_description:purchase_supplierinfo_product_breakdown.field_product_supplierinfo_component__component_uom_category_id
 msgid "Category"
-msgstr ""
+msgstr "Categoria"
 
 #. module: purchase_supplierinfo_product_breakdown
 #: model:ir.model.fields,field_description:purchase_supplierinfo_product_breakdown.field_product_supplierinfo__component_ids
 #: model:ir.model.fields,field_description:purchase_supplierinfo_product_breakdown.field_product_supplierinfo_component__component_id
 msgid "Component"
-msgstr ""
+msgstr "Componente"
 
 #. module: purchase_supplierinfo_product_breakdown
 #: code:addons/purchase_supplierinfo_product_breakdown/models/product_supplierinfo.py:0
 #, python-format
 msgid "Components must be unique!"
-msgstr ""
+msgstr "I componenti devono essere univoci!"
 
 #. module: purchase_supplierinfo_product_breakdown
 #: code:addons/purchase_supplierinfo_product_breakdown/models/product_supplierinfo.py:0
 #, python-format
 msgid "Components must not contain parent products!"
-msgstr ""
+msgstr "I componenti non possono contenere prodotti padre!"
 
 #. module: purchase_supplierinfo_product_breakdown
 #: model:ir.model,name:purchase_supplierinfo_product_breakdown.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contatto"
 
 #. module: purchase_supplierinfo_product_breakdown
 #: model:ir.model.fields,help:purchase_supplierinfo_product_breakdown.field_product_supplierinfo_component__component_uom_category_id
@@ -58,16 +60,18 @@ msgid ""
 "Conversion between Units of Measure can only occur if they belong to the "
 "same category. The conversion will be made based on the ratios."
 msgstr ""
+"La conversione tra Unità di misura può avvenire solo se appartengono alla "
+"stessa categoria. La conversione verrà fatta basata sul rapporto."
 
 #. module: purchase_supplierinfo_product_breakdown
 #: model:ir.model.fields,field_description:purchase_supplierinfo_product_breakdown.field_product_supplierinfo_component__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creato da"
 
 #. module: purchase_supplierinfo_product_breakdown
 #: model:ir.model.fields,field_description:purchase_supplierinfo_product_breakdown.field_product_supplierinfo_component__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creato il"
 
 #. module: purchase_supplierinfo_product_breakdown
 #: model:ir.model.fields,field_description:purchase_supplierinfo_product_breakdown.field_product_supplierinfo__display_name
@@ -75,19 +79,19 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_supplierinfo_product_breakdown.field_product_template__display_name
 #: model:ir.model.fields,field_description:purchase_supplierinfo_product_breakdown.field_res_partner__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome da visualizzare"
 
 #. module: purchase_supplierinfo_product_breakdown
 #: model:product.product,name:purchase_supplierinfo_product_breakdown.product_product_test_demo_drill
 #: model:product.template,name:purchase_supplierinfo_product_breakdown.product_product_test_demo_drill_product_template
 msgid "Drill"
-msgstr ""
+msgstr "Trapano"
 
 #. module: purchase_supplierinfo_product_breakdown
 #: model:product.product,name:purchase_supplierinfo_product_breakdown.product_product_test_demo_hammer
 #: model:product.template,name:purchase_supplierinfo_product_breakdown.product_product_test_demo_hammer_product_template
 msgid "Hammer"
-msgstr ""
+msgstr "Martello"
 
 #. module: purchase_supplierinfo_product_breakdown
 #: model:ir.model.fields,field_description:purchase_supplierinfo_product_breakdown.field_product_supplierinfo__id
@@ -95,7 +99,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_supplierinfo_product_breakdown.field_product_template__id
 #: model:ir.model.fields,field_description:purchase_supplierinfo_product_breakdown.field_res_partner__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: purchase_supplierinfo_product_breakdown
 #: model:ir.model.fields,field_description:purchase_supplierinfo_product_breakdown.field_product_supplierinfo____last_update
@@ -103,77 +107,77 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_supplierinfo_product_breakdown.field_product_template____last_update
 #: model:ir.model.fields,field_description:purchase_supplierinfo_product_breakdown.field_res_partner____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: purchase_supplierinfo_product_breakdown
 #: model:ir.model.fields,field_description:purchase_supplierinfo_product_breakdown.field_product_supplierinfo_component__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultimo aggiornamento di"
 
 #. module: purchase_supplierinfo_product_breakdown
 #: model:ir.model.fields,field_description:purchase_supplierinfo_product_breakdown.field_product_supplierinfo_component__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultimo aggiornamento il"
 
 #. module: purchase_supplierinfo_product_breakdown
 #: code:addons/purchase_supplierinfo_product_breakdown/models/product_supplierinfo.py:0
 #: model_terms:ir.ui.view,arch_db:purchase_supplierinfo_product_breakdown.product_supplierinfo_component_form_view
 #, python-format
 msgid "Product Components"
-msgstr ""
+msgstr "Componenti prodotto"
 
 #. module: purchase_supplierinfo_product_breakdown
 #: model:ir.model,name:purchase_supplierinfo_product_breakdown.model_product_template
 msgid "Product Template"
-msgstr ""
+msgstr "Modello prodotto"
 
 #. module: purchase_supplierinfo_product_breakdown
 #: model:ir.model.fields,field_description:purchase_supplierinfo_product_breakdown.field_product_supplierinfo__product_variant_ids
 #: model:ir.model.fields,field_description:purchase_supplierinfo_product_breakdown.field_product_supplierinfo_component__parent_product_ids
 msgid "Products"
-msgstr ""
+msgstr "Prodotti"
 
 #. module: purchase_supplierinfo_product_breakdown
 #: model:ir.model.fields,field_description:purchase_supplierinfo_product_breakdown.field_product_supplierinfo_component__product_uom_qty
 msgid "Qty per Unit"
-msgstr ""
+msgstr "Qtà per Unità"
 
 #. module: purchase_supplierinfo_product_breakdown
 #: model_terms:ir.ui.view,arch_db:purchase_supplierinfo_product_breakdown.product_supplierinfo_component_form_view
 msgid "Save"
-msgstr ""
+msgstr "Salva"
 
 #. module: purchase_supplierinfo_product_breakdown
 #: model:product.product,name:purchase_supplierinfo_product_breakdown.product_product_test_demo_saw
 #: model:product.template,name:purchase_supplierinfo_product_breakdown.product_product_test_demo_saw_product_template
 msgid "Saw"
-msgstr ""
+msgstr "Sega"
 
 #. module: purchase_supplierinfo_product_breakdown
 #: model:ir.model.fields,field_description:purchase_supplierinfo_product_breakdown.field_product_supplierinfo_component__supplierinfo_id
 msgid "Supplier Info"
-msgstr ""
+msgstr "Listino fornitore"
 
 #. module: purchase_supplierinfo_product_breakdown
 #: model:ir.model,name:purchase_supplierinfo_product_breakdown.model_product_supplierinfo
 msgid "Supplier Pricelist"
-msgstr ""
+msgstr "Listino Fornitore"
 
 #. module: purchase_supplierinfo_product_breakdown
 #: model:ir.model,name:purchase_supplierinfo_product_breakdown.model_product_supplierinfo_component
 msgid "Supplierinfo Product Component"
-msgstr ""
+msgstr "Componente Listino Fornitore"
 
 #. module: purchase_supplierinfo_product_breakdown
 #: model:product.product,name:purchase_supplierinfo_product_breakdown.product_product_test_demo_toolbox
 #: model:product.template,name:purchase_supplierinfo_product_breakdown.product_product_test_demo_toolbox_product_template
 msgid "Toolbox"
-msgstr ""
+msgstr "Cassetta degli attrezzi"
 
 #. module: purchase_supplierinfo_product_breakdown
 #: model:ir.model.fields,field_description:purchase_supplierinfo_product_breakdown.field_product_supplierinfo_component__product_uom_id
 msgid "Unit of Measure"
-msgstr ""
+msgstr "Unità di Misura"
 
 #. module: purchase_supplierinfo_product_breakdown
 #: model:product.product,uom_name:purchase_supplierinfo_product_breakdown.product_product_test_demo_drill
@@ -185,7 +189,7 @@ msgstr ""
 #: model:product.template,uom_name:purchase_supplierinfo_product_breakdown.product_product_test_demo_saw_product_template
 #: model:product.template,uom_name:purchase_supplierinfo_product_breakdown.product_product_test_demo_toolbox_product_template
 msgid "Units"
-msgstr ""
+msgstr "Unità"
 
 #. module: purchase_supplierinfo_product_breakdown
 #: model:ir.model.fields,field_description:purchase_supplierinfo_product_breakdown.field_product_product__use_product_components
@@ -195,17 +199,17 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_supplierinfo_product_breakdown.field_res_partner__use_product_components
 #: model:ir.model.fields,field_description:purchase_supplierinfo_product_breakdown.field_res_users__use_product_components
 msgid "Use Product Components"
-msgstr ""
+msgstr "Usa Componenti Prodotto"
 
 #. module: purchase_supplierinfo_product_breakdown
 #: model:ir.model.fields,field_description:purchase_supplierinfo_product_breakdown.field_product_supplierinfo_component__partner_id
 msgid "Vendor"
-msgstr ""
+msgstr "Fornitore"
 
 #. module: purchase_supplierinfo_product_breakdown
 #: model:ir.model.fields,help:purchase_supplierinfo_product_breakdown.field_product_supplierinfo_component__partner_id
 msgid "Vendor of this product"
-msgstr ""
+msgstr "Fornitore di questo prodotto"
 
 #. module: purchase_supplierinfo_product_breakdown
 #: code:addons/purchase_supplierinfo_product_breakdown/models/product_supplierinfo.py:0
@@ -214,3 +218,5 @@ msgid ""
 "You need to activate 'Use Product Component' in both Product and Vendor to "
 "use it."
 msgstr ""
+"Devi attivare \"Usa Componenti Prodotto\" sia nel Prodotto che nel Fornitore "
+"per utilizzarlo."
