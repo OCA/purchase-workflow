@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-10 05:30+0000\n"
-"PO-Revision-Date: 2022-11-16 19:44+0000\n"
+"PO-Revision-Date: 2022-11-17 10:44+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -77,17 +77,17 @@ msgstr "Aziende"
 #. module: purchase_order_approved
 #: model:ir.model,name:purchase_order_approved.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contatto"
 
 #. module: purchase_order_approved
 #: model_terms:ir.ui.view,arch_db:purchase_order_approved.purchase_order_form
 msgid "Convert to Purchase Order"
-msgstr ""
+msgstr "Converti in Ordine di acquisto"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__currency_id
 msgid "Currency"
-msgstr ""
+msgstr "Valuta"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__picking_type_id
@@ -107,7 +107,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_order_approved.field_res_config_settings__display_name
 #: model:ir.model.fields,field_description:purchase_order_approved.field_res_partner__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome da visualizzare"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__dest_address_id
@@ -120,7 +120,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_order_approved.field_res_config_settings__id
 #: model:ir.model.fields,field_description:purchase_order_approved.field_res_partner__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order____last_update
@@ -128,12 +128,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_order_approved.field_res_config_settings____last_update
 #: model:ir.model.fields,field_description:purchase_order_approved.field_res_partner____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields.selection,name:purchase_order_approved.selection__res_partner__purchase_requires_second_approval__never
 msgid "Never"
-msgstr ""
+msgstr "Mai"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__date_order
@@ -203,7 +203,7 @@ msgstr ""
 #. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__partner_id
 msgid "Vendor"
-msgstr ""
+msgstr "Fornitore"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,help:purchase_order_approved.field_purchase_order__partner_id
