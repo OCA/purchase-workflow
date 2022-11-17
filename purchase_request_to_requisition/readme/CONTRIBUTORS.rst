@@ -3,3 +3,4 @@
 * Aarón Henríquez <ahenriquez@eficent.com>
 * Adrien Peiffer <adrien.peiffer@acsone.eu>
 * Kitti U. <kittiu@ecosoft.co.th>
+* Saran Lim. <saranl@ecosoft.co.th>
