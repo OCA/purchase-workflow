@@ -36,6 +36,7 @@ class TestPurchaseStockSecondaryUnit(SavepointCase):
         )
         with Form(cls.purchase_order) as po_form:
             po_form.partner_id = cls.partner
+            po_form.company_id = cls.env.company
             with po_form.order_line.new() as line:
                 line.product_id = cls.product
                 line.secondary_uom_id = cls.secondary_product_uom
