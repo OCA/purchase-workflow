@@ -66,6 +66,7 @@ addon | version | maintainers | summary
 [purchase_order_type](purchase_order_type/) | 14.0.1.0.2 |  | Purchase Order Type
 [purchase_order_uninvoiced_amount](purchase_order_uninvoiced_amount/) | 14.0.1.2.0 |  | Show uninvoiced amount on purchase order tree.
 [purchase_order_vendor_product](purchase_order_vendor_product/) | 14.0.1.1.0 |  | Show only products from the selected vendor in PO line
+[purchase_order_weight_volume](purchase_order_weight_volume/) | 14.0.1.0.0 |  | Display purchase order weight and volume
 [purchase_partner_approval](purchase_partner_approval/) | 14.0.1.0.0 | [![dreispt](https://github.com/dreispt.png?size=30px)](https://github.com/dreispt) | Control Partners that can be used in Purchase Orders
 [purchase_partner_incoterm](purchase_partner_incoterm/) | 14.0.3.0.0 | [![TDu](https://github.com/TDu.png?size=30px)](https://github.com/TDu) [![bealdav](https://github.com/bealdav.png?size=30px)](https://github.com/bealdav) | Add a an incoterm field for supplier and use it on purchase order
 [purchase_picking_state](purchase_picking_state/) | 14.0.1.1.0 |  | Purchase Picking State
