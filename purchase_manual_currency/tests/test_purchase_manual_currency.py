@@ -17,7 +17,7 @@ class TestPurchaseManualCurrency(TransactionCase):
             WHERE id = %s""",
             (self.main_company.id, self.currency_eur.id),
         )
-        self.purchase_order = self.env.ref("purchase.purchase_order_6")
+        self.purchase_order = self.env.ref("purchase.purchase_order_6").copy()
 
     def test_01_purchase_manual_currency(self):
         # Update purchase to main currency
