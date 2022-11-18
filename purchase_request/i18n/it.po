@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-17 03:38+0000\n"
-"PO-Revision-Date: 2022-11-17 10:44+0000\n"
+"PO-Revision-Date: 2022-11-18 16:44+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/"
 "OCA-purchase-workflow-10-0/language/it/)\n"
@@ -301,7 +301,7 @@ msgstr "Click per iniziare un nuovo processo di richiesta d'acquisto."
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Aziende"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__company_id
@@ -776,7 +776,7 @@ msgstr ""
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_res_config_settings
 msgid "Procurement purchase grouping settings"
-msgstr ""
+msgstr "Impostazioni raggruppamento approvvigionamento acquisti"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__product_id
@@ -832,7 +832,7 @@ msgstr "Ordine di acquisto"
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr "Riga Ordine d'Acquisto"
+msgstr "Riga ordine di acquisto"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__purchase_lines
@@ -841,7 +841,7 @@ msgstr "Riga Ordine d'Acquisto"
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_form
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Purchase Order Lines"
-msgstr "Linee Ordine acquisto"
+msgstr "Righe ordine di acquisto"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
