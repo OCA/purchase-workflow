@@ -1,0 +1,22 @@
+{
+    "name": "Choice of columns for printing",
+    "summary": "Purchase order report selection, choice of columns for printing",
+    "author": "Ooops404, Cetmix, Odoo Community Association (OCA)",
+    "version": "14.0.1.0.0",
+    "website": "https://github.com/OCA/purchase-workflow",
+    "category": "Inventory/Purchase",
+    "depends": ["purchase", "base_dynamic_report_field_selection"],
+    "maintainers": ["dessanhemrayev", "CetmixGitDrone"],
+    "data": [
+        "security/ir.model.access.csv",
+        "views/assets.xml",
+        "views/purchase_order_view.xml",
+        "report/report_purchaseorder.xml",
+        "report/report_purchasequotation.xml",
+    ],
+    "post_init_hook": "post_init_hook",
+    "license": "AGPL-3",
+    "installable": True,
+    "auto_install": False,
+    "application": False,
+}

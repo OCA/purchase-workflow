@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<odoo>
+    <record id="purchase_order_form_view_inherit_purchase" model="ir.ui.view">
+        <field name="name">purchase_order_form view_inherit</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='purchase_delivery_invoice']" position="after">
+                <page name="custom_report" string="Report">
+                   <field name="report_field_ids">
+                    <tree editable="bottom">
+                        <field name="sequence" widget="handle" />
+                        <field
+                                name="field_id"
+                                widget="report_fields"
+                                required="1"
+                                options="{'no_create': True}"
+                            />
+                        <field name="is_show_rfq" />
+                        <field name="is_show_po" />
+                    </tree>
+
+                </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
