@@ -300,10 +300,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             po_line._onchange_quantity()
             # The onchange quantity is altering the scheduled date of the PO
             # lines. We do not want that:
-            date_required = item.line_id.date_required
-            po_line.date_planned = datetime(
-                date_required.year, date_required.month, date_required.day
-            )
+            po_line.date_planned = item._get_date_planned()
             res.append(purchase.id)
 
         return {
@@ -356,6 +353,10 @@ class PurchaseRequestLineMakePurchaseOrderItem(models.TransientModel):
         "descriptions provided in the "
         "wizard in the new PO.",
     )
+
+    def _get_date_planned(self):
+        date_required = self.line_id.date_required
+        return datetime(date_required.year, date_required.month, date_required.day)
 
     @api.onchange("product_id")
     def onchange_product_id(self):
