@@ -1,0 +1,1 @@
+Fix compatibility with purchase_product_matrix
