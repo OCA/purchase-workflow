@@ -10,11 +10,7 @@
     "website": "https://github.com/OCA/purchase-workflow",
     "category": "Purchase",
     "version": "15.0.1.0.0",
-    "depends": [
-        "purchase_stock",
-    ],
-    "data": [
-        "views/purchase_views.xml",
-    ],
+    "depends": ["purchase_stock",],
+    "data": ["views/purchase_views.xml",],
     "installable": True,
 }
