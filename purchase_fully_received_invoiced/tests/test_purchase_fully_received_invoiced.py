@@ -1,8 +1,6 @@
 # Copyright 2022 ForgeFlow, S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from datetime import datetime
-
 from odoo import fields
 from odoo.tests import Form, common, tagged
 
@@ -16,7 +14,6 @@ class TestPurchaseOrderAutoLock(common.TransactionCase):
         self.purchase_order = self.env["purchase.order"]
         self.partner_id = self.env.ref("base.res_partner_1")
         self.product_id_1 = self.env.ref("product.product_product_8")
-        self.account_model = self.env["account.account"]
 
         self.product_id_1.write({"purchase_method": "purchase"})
         self.po_vals = {
@@ -68,7 +65,7 @@ class TestPurchaseOrderAutoLock(common.TransactionCase):
         self.po.picking_ids.move_lines.write({"quantity_done": 5})
         self.po.picking_ids[0].button_validate()
         move_form = Form(
-            self.env["account.move"].with_context(default_move_type="in_invoice")
+            self.env["account.move"].with_context(default_type="in_invoice")
         )
         move_form.partner_id = self.supplier
         move_form.currency_id = self.currency_eur
@@ -85,12 +82,11 @@ class TestPurchaseOrderAutoLock(common.TransactionCase):
         self.po.picking_ids.move_lines.write({"quantity_done": 5})
         self.po.picking_ids[0].button_validate()
         move_form = Form(
-            self.env["account.move"].with_context(default_move_type="in_invoice")
+            self.env["account.move"].with_context(default_type="in_invoice")
         )
         move_form.partner_id = self.supplier
         move_form.currency_id = self.currency_eur
         move_form.purchase_id = self.po
-        move_form.invoice_date = datetime.now()
         invoice = move_form.save()
         invoice.action_post()
         # Run the action and check it is closed
