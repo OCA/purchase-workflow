@@ -4,6 +4,7 @@
 <odoo>
     <record id="action_report_purchase_requests" model="ir.actions.report">
         <field name="name">Purchase Request</field>
+        <field name="binding_model_id" ref="model_purchase_request" />
         <field name="model">purchase.request</field>
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">purchase_request.report_purchase_request</field>
