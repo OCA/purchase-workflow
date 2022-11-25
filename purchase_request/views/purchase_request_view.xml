@@ -75,6 +75,7 @@
                             class="oe_stat_button"
                             attrs="{'invisible':[('purchase_count', '=', 0)]}"
                             icon="fa-shopping-cart"
+                            string="Purchase Order"
                         >
                             <field
                                 name="purchase_count"
@@ -89,6 +90,7 @@
                             attrs="{'invisible':[('move_count', '=', 0)]}"
                             groups="stock.group_stock_manager"
                             icon="fa-truck"
+                            string="Picking"
                         >
                             <field
                                 name="move_count"
@@ -101,7 +103,7 @@
                         <label for="name" class="oe_inline" />
                     </div>
                     <h1>
-                        <field name="is_editable" attrs="{'invisible': True}" />
+                        <field name="is_editable" invisible="1" />
                         <field name="is_name_editable" invisible="1" />
                         <field
                             name="name"
@@ -168,15 +170,18 @@
                                     />
                                     <field
                                         name="product_uom_id"
+                                        invisible="1"
+                                        groups="!uom.group_uom"
+                                    />
+                                    <field
+                                        name="product_uom_id"
                                         groups="uom.group_uom"
                                     />
                                     <field
-                                        name="analytic_account_id"
+                                        name="analytic_distribution"
+                                        widget="analytic_distribution"
                                         groups="analytic.group_analytic_accounting"
-                                    />
-                                    <field
-                                        name="analytic_tag_ids"
-                                        groups="analytic.group_analytic_accounting"
+                                        options="{'product_field': 'product_id', 'business_domain': 'purchase_order'}"
                                     />
                                     <field name="date_required" />
                                     <field name="estimated_cost" widget="monetary" />
@@ -202,6 +207,7 @@
                                         name="action_show_details"
                                         type="object"
                                         icon="fa-list"
+                                        title="Show Details"
                                         width="0.1"
                                         options='{"warn": true}'
                                     />

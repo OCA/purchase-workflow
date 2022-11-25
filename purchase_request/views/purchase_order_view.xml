@@ -12,6 +12,7 @@
                 <button
                     attrs="{'invisible': [('purchase_request_lines', '=', [])]}"
                     name="action_open_request_line_tree_view"
+                    title="Request Lines"
                     type="object"
                     icon="fa-folder-open-o"
                 />
@@ -39,6 +40,7 @@
                 <button
                     attrs="{'invisible': [('purchase_request_lines', '=', [])]}"
                     name="action_open_request_line_tree_view"
+                    title="Request Lines"
                     type="object"
                     icon="fa-folder-open-o"
                 />

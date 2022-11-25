@@ -6,3 +6,4 @@
 * Héctor Villarreal <hector.villarreal@forgeflow.com>
 * Ben Cai <ben.cai@elico-corp.com>
 * Rattapong Chokmasermkul <rattapongc@ecosoft.co.th>
+* Stefan Rijnhart <stefan@opener.amsterdam>
