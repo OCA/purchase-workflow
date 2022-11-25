@@ -41,12 +41,11 @@
                 <field name="product_uom_category_id" invisible="1" />
                 <field name="product_uom_id" groups="uom.group_uom" />
                 <field
-                    name="analytic_account_id"
+                    name="analytic_distribution"
+                    widget="analytic_distribution"
+                    optional="hide"
                     groups="analytic.group_analytic_accounting"
-                />
-                <field
-                    name="analytic_tag_ids"
-                    groups="analytic.group_analytic_accounting"
+                    options="{'product_field': 'product_id', 'business_domain': 'purchase_order'}"
                 />
                 <field name="supplier_id" />
                 <field
@@ -102,7 +101,7 @@
                                 widget="selection"
                                 attrs="{'readonly': [('is_editable','=', False)]}"
                             />
-                            <field name="is_editable" attrs="{'invisible': True}" />
+                            <field name="is_editable" invisible="1" />
                         </group>
                         <group name="settings">
                             <field
@@ -129,14 +128,10 @@
                                 />
                             </div>
                             <field
-                                name="analytic_account_id"
+                                name="analytic_distribution"
+                                widget="analytic_distribution"
                                 groups="analytic.group_analytic_accounting"
-                                attrs="{'readonly': [('is_editable','=', False)]}"
-                            />
-                            <field
-                                name="analytic_tag_ids"
-                                groups="analytic.group_analytic_accounting"
-                                attrs="{'readonly': [('is_editable','=', False)]}"
+                                options="{'product_field': 'product_id', 'business_domain': 'purchase_order'}"
                             />
                             <field
                                 name="date_required"
@@ -147,7 +142,7 @@
                                 widget="monetary"
                                 attrs="{'readonly': [('is_editable','=', False)]}"
                             />
-                            <field name="currency_id" attrs="{'invisible': True}" />
+                            <field name="currency_id" invisible="1" />
                             <field name="cancelled" />
                         </group>
                     </group>
@@ -243,8 +238,11 @@
                     domain="[('purchase_state','=','done')]"
                     help="At least a PO has been completed"
                 />
-                <field name="analytic_account_id" />
-                <field name="cancelled" attrs="{'invisible': True}" />
+                <field
+                    name="analytic_distribution"
+                    groups="analytic.group_analytic_accounting"
+                />
+                <field name="cancelled" invisible="1" />
                 <filter
                     name="request_state_draft"
                     string="Draft"
@@ -330,10 +328,11 @@
                         context="{'group_by':'request_state'}"
                     />
                     <filter
-                        name="analytic_account"
-                        string="Analytic Account"
+                        name="group_analytic_distribution"
+                        string="Analytic Distribution"
                         domain="[]"
-                        context="{'group_by':'analytic_account_id'}"
+                        context="{'group_by':'analytic_distribution'}"
+                        groups="analytic.group_analytic_accounting"
                     />
                     <filter
                         name="purchase_status"
@@ -395,102 +394,73 @@
         <field name="name">purchase.order.line.form2</field>
         <field name="model">purchase.order.line</field>
         <field name="arch" type="xml">
-            <form
-                string="Purchase Order Lines"
-                create="false"
-                attrs="{'readonly': True}"
-            >
+            <form string="Purchase Order Lines" create="false" readonly="1">
                 <sheet>
-                    <label
-                        for="order_id"
-                        attrs="{'readonly': True}"
-                        class="oe_edit_only"
-                    />
+                    <label for="order_id" readonly="1" class="oe_edit_only" />
                     <h1>
-                        <field
-                            name="order_id"
-                            attrs="{'readonly': True}"
-                            class="oe_inline"
-                        />
+                        <field name="order_id" readonly="1" class="oe_inline" />
                         <label
                             for="date_order"
                             string=","
-                            attrs="{'readonly': True, 'invisible':[('date_order','=',False)]}"
+                            readonly="1"
+                            attrs="{'invisible':[('date_order','=',False)]}"
                         />
-                        <field
-                            name="date_order"
-                            attrs="{'readonly': True}"
-                            class="oe_inline"
-                        />
+                        <field name="date_order" readonly="1" class="oe_inline" />
                     </h1>
-                    <label
-                        for="partner_id"
-                        attrs="{'readonly': True}"
-                        class="oe_edit_only"
-                    />
+                    <label for="partner_id" readonly="1" class="oe_edit_only" />
                     <h2>
-                        <field name="partner_id" attrs="{'readonly': True}" />
+                        <field name="partner_id" readonly="1" />
                     </h2>
                     <group>
                         <group>
-                            <field name="product_id" attrs="{'readonly': True}" />
-                            <label for="product_qty" attrs="{'readonly': True}" />
+                            <field name="product_id" readonly="1" />
+                            <label for="product_qty" readonly="1" />
                             <div>
                                 <field
                                     name="product_qty"
-                                    attrs="{'readonly': True}"
+                                    readonly="1"
                                     class="oe_inline"
                                 />
                                 <field
                                     name="product_uom"
-                                    attrs="{'readonly': True}"
+                                    readonly="1"
                                     groups="uom.group_uom"
                                     class="oe_inline"
                                 />
-                                <field
-                                    name="product_uom_category_id"
-                                    attrs="{'invisible': True}"
-                                />
+                                <field name="product_uom_category_id" invisible="1" />
                             </div>
-                            <field
-                                name="price_unit"
-                                widget="monetary"
-                                attrs="{'readonly': True}"
-                            />
+                            <field name="price_unit" widget="monetary" readonly="1" />
                         </group>
                         <group>
                             <field
                                 name="taxes_id"
                                 widget="many2many_tags"
                                 domain="[('type_tax_use', '=', 'purchase')]"
-                                attrs="{'readonly': True}"
+                                readonly="1"
                             />
-                            <field
-                                name="date_planned"
-                                widget="date"
-                                attrs="{'readonly': True}"
-                            />
+                            <field name="date_planned" widget="date" readonly="1" />
                             <field
                                 name="company_id"
-                                attrs="{'readonly': True}"
+                                readonly="1"
                                 groups="base.group_multi_company"
                                 options="{'no_create': True}"
                             />
                             <field
-                                name="account_analytic_id"
-                                attrs="{'readonly': True}"
-                                colspan="4"
+                                name="analytic_distribution"
+                                widget="analytic_distribution"
                                 groups="analytic.group_analytic_accounting"
+                                options="{'product_field': 'product_id', 'business_domain': 'purchase_order'}"
+                                colspan="4"
                             />
                         </group>
                     </group>
-                    <field name="name" attrs="{'readonly': True}" />
+                    <field name="name" readonly="1" />
                     <separator string="Manual Invoices" />
-                    <field name="invoice_lines" attrs="{'readonly': True}" />
+                    <field name="invoice_lines" readonly="1" />
                     <separator string="Stock Moves" />
-                    <field name="move_ids" attrs="{'readonly': True}" />
+                    <field name="move_ids" readonly="1" />
                     <separator string="Purchase Request Lines" />
-                    <field name="purchase_request_lines" attrs="{'readonly': True}" />
+                    <field name="purchase_request_lines" readonly="1" />
                 </sheet>
             </form>
         </field>
@@ -509,7 +479,7 @@
                 <field name="product_uom" groups="uom.group_uom" />
                 <field name="price_subtotal" widget="monetary" />
                 <field name="date_planned" widget="date" />
-                <field name="purchase_request_lines" attrs="{'invisible': True}" />
+                <field name="purchase_request_lines" invisible="1" />
             </tree>
         </field>
     </record>
@@ -556,7 +526,7 @@
             <sheet>
                 <group name="main">
                     <group>
-                        <field name="is_editable" attrs="{'invisible': True}" />
+                        <field name="is_editable" invisible="1" />
                         <field
                                 name="product_id"
                                 attrs="{'readonly': [('is_editable','=', False)]}"
@@ -581,13 +551,10 @@
                                 />
                         </div>
                         <field
-                                name="analytic_account_id"
+                                name="analytic_distribution"
+                                widget="analytic_distribution"
                                 groups="analytic.group_analytic_accounting"
-                                attrs="{'readonly': [('is_editable','=', False)]}"
-                            />
-                        <field
-                                name="analytic_tag_ids"
-                                groups="analytic.group_analytic_accounting"
+                                options="{'product_field': 'product_id', 'business_domain': 'purchase_order'}"
                                 attrs="{'readonly': [('is_editable','=', False)]}"
                             />
                         <field
@@ -599,7 +566,7 @@
                                 widget="monetary"
                                 attrs="{'readonly': [('is_editable','=', False)]}"
                             />
-                        <field name="currency_id" attrs="{'invisible': True}" />
+                        <field name="currency_id" invisible="1" />
                         <field name="cancelled" widget="boolean" />
                     </group>
                 </group>

@@ -44,7 +44,11 @@ class TestPurchaseRequestProcurement(common.TransactionCase):
                     (
                         0,
                         0,
-                        {"name": self.supplier.id, "price": 100.0, "company_id": False},
+                        {
+                            "partner_id": self.supplier.id,
+                            "price": 100.0,
+                            "company_id": False,
+                        },
                     )
                 ]
             }
