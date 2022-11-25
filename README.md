@@ -63,6 +63,7 @@ addon | version | maintainers | summary
 [purchase_order_product_attachment_mgmt](purchase_order_product_attachment_mgmt/) | 14.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Purchase Order Product Attachment Mgmt
 [purchase_order_qty_change_no_recompute](purchase_order_qty_change_no_recompute/) | 14.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Prevent recompute if only quantity has changed in purchase order line
 [purchase_order_secondary_unit](purchase_order_secondary_unit/) | 14.0.2.0.1 |  | Purchase product in a secondary unit
+[purchase_order_shipping_date](purchase_order_shipping_date/) | 14.0.1.0.0 |  | Add field Shipping Date in PO and Report
 [purchase_order_type](purchase_order_type/) | 14.0.1.0.2 |  | Purchase Order Type
 [purchase_order_uninvoiced_amount](purchase_order_uninvoiced_amount/) | 14.0.1.2.0 |  | Show uninvoiced amount on purchase order tree.
 [purchase_order_vendor_product](purchase_order_vendor_product/) | 14.0.1.1.0 |  | Show only products from the selected vendor in PO line
