@@ -65,6 +65,7 @@
                             name="action_view_purchase_request_line"
                             class="oe_stat_button"
                             attrs="{'invisible':[('line_count', '=', 0)]}"
+                            title="Lines"
                             icon="fa-list"
                         >
                             <field name="line_count" widget="statinfo" string="Lines" />
@@ -74,6 +75,7 @@
                             name="action_view_purchase_order"
                             class="oe_stat_button"
                             attrs="{'invisible':[('purchase_count', '=', 0)]}"
+                            title="Purchase Order"
                             icon="fa-shopping-cart"
                         >
                             <field
@@ -85,6 +87,7 @@
                         <button
                             type="object"
                             name="action_view_stock_picking"
+                            title="Pickings"
                             class="oe_stat_button"
                             attrs="{'invisible':[('move_count', '=', 0)]}"
                             groups="stock.group_stock_manager"
@@ -174,10 +177,10 @@
                                         name="analytic_account_id"
                                         groups="analytic.group_analytic_accounting"
                                     />
-                                    <field
+                                    <!-- <field
                                         name="analytic_tag_ids"
                                         groups="analytic.group_analytic_accounting"
-                                    />
+                                    /> -->
                                     <field name="date_required" />
                                     <field name="estimated_cost" widget="monetary" />
                                     <field name="currency_id" invisible="1" />
@@ -200,6 +203,7 @@
                                     />
                                     <button
                                         name="action_show_details"
+                                        title="Show Details"
                                         type="object"
                                         icon="fa-list"
                                         width="0.1"

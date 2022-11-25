@@ -18,7 +18,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         )
         self.env["product.supplierinfo"].create(
             {
-                "name": vendor.id,
+                "partner_id": vendor.id,
                 "product_tmpl_id": self.service_product.product_tmpl_id.id,
             }
         )
@@ -306,7 +306,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
             {
                 "name": "Widget",
                 "type": "product",
-                "seller_ids": [(0, 0, {"name": supplier.id, "min_qty": 5})],
+                "seller_ids": [(0, 0, {"partner_id": supplier.id, "min_qty": 5})],
             }
         )
         # Create Purchase Order with qty = 3 throw Purchase Request
@@ -364,9 +364,11 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         picking.button_validate()
 
     def test_purchase_request_to_purchase_order_analytic_data_propagation(self):
-        analytic_tags = self.env.ref("analytic.tag_contract")
+        default_plan = self.env["account.analytic.plan"].create(
+            {"name": "Default", "company_id": False}
+        )
         analytic_account = self.env["account.analytic.account"].create(
-            {"name": "Test analytic account"}
+            {"name": "Test analytic account", "plan_id": default_plan.id}
         )
         vals = {
             "picking_type_id": self.env.ref("stock.picking_type_in").id,
@@ -380,7 +382,6 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
                         "product_uom_id": self.env.ref("uom.product_uom_unit").id,
                         "product_qty": 5.0,
                         "analytic_account_id": analytic_account.id,
-                        "analytic_tag_ids": [(6, 0, analytic_tags.ids)],
                     },
                 )
             ],
@@ -398,6 +399,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
             active_id=purchase_request["line_ids"][0].id,
         ).create(vals)
         wiz_id.make_purchase_order()
-        po_line = purchase_request["line_ids"][0].purchase_lines[0]
-        self.assertEqual(po_line.account_analytic_id, analytic_account)
-        self.assertEqual(po_line.analytic_tag_ids.ids, analytic_tags.ids)
+        self.assertEqual(
+            purchase_request["line_ids"][0].analytic_account_id, analytic_account
+        )
+        # self.assertEqual(po_line.analytic_tag_ids.ids, analytic_tags.ids)

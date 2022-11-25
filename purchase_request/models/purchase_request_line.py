@@ -50,9 +50,9 @@ class PurchaseRequestLine(models.Model):
         string="Analytic Account",
         tracking=True,
     )
-    analytic_tag_ids = fields.Many2many(
-        "account.analytic.tag", string="Analytic Tags", tracking=True
-    )
+    # analytic_tag_ids = fields.Many2many(
+    #     "account.analytic.tag", string="Analytic Tags", tracking=True
+    # )
     requested_by = fields.Many2one(
         comodel_name="res.users",
         related="request_id.requested_by",
@@ -274,7 +274,7 @@ class PurchaseRequestLine(models.Model):
             sellers = rec.product_id.seller_ids.filtered(
                 lambda si: not si.company_id or si.company_id == rec.company_id
             )
-            rec.supplier_id = sellers[0].name if sellers else False
+            rec.supplier_id = sellers[0].partner_id if sellers else False
 
     @api.onchange("product_id")
     def onchange_product_id(self):
@@ -342,9 +342,9 @@ class PurchaseRequestLine(models.Model):
     def _get_supplier_min_qty(self, product, partner_id=False):
         seller_min_qty = 0.0
         if partner_id:
-            seller = product.seller_ids.filtered(lambda r: r.name == partner_id).sorted(
-                key=lambda r: r.min_qty
-            )
+            seller = product.seller_ids.filtered(
+                lambda r: r.partner_id == partner_id
+            ).sorted(key=lambda r: r.min_qty)
         else:
             seller = product.seller_ids.sorted(key=lambda r: r.min_qty)
         if seller:

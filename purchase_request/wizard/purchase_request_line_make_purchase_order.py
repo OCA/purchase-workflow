@@ -181,17 +181,17 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             "product_uom": product.uom_po_id.id or product.uom_id.id,
             "price_unit": 0.0,
             "product_qty": qty,
-            "account_analytic_id": item.line_id.analytic_account_id.id,
+            # "account_analytic_id": item.line_id.account_analytic_id.id,
             "purchase_request_lines": [(4, item.line_id.id)],
             "date_planned": datetime(
                 date_required.year, date_required.month, date_required.day
             ),
             "move_dest_ids": [(4, x.id) for x in item.line_id.move_dest_ids],
         }
-        if item.line_id.analytic_tag_ids:
-            vals["analytic_tag_ids"] = [
-                (4, ati) for ati in item.line_id.analytic_tag_ids.ids
-            ]
+        # if item.line_id.analytic_tag_ids:
+        #     vals["analytic_tag_ids"] = [
+        #         (4, ati) for ati in item.line_id.analytic_tag_ids.ids
+        #     ]
         self._execute_purchase_line_onchange(vals)
         return vals
 
@@ -214,7 +214,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             ("name", "=", name),
             ("product_id", "=", item.product_id.id or False),
             ("product_uom", "=", vals["product_uom"]),
-            ("account_analytic_id", "=", item.line_id.analytic_account_id.id or False),
+            # ("account_analytic_id", "=", item.line_id.analytic_account_id.id or False),
         ]
         if self.sync_data_planned:
             date_required = item.line_id.date_required
@@ -296,7 +296,8 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                 line, po_line=po_line, new_pr_line=new_pr_line
             )
             po_line.product_qty = new_qty
-            po_line._onchange_quantity()
+            # po_line._suggest_quantity()
+            po_line._compute_price_unit_and_date_planned_and_name()
             # The onchange quantity is altering the scheduled date of the PO
             # lines. We do not want that:
             date_required = item.line_id.date_required
@@ -367,7 +368,7 @@ class PurchaseRequestLineMakePurchaseOrderItem(models.TransientModel):
                     "|",
                     ("product_id", "=", self.product_id.id),
                     ("product_tmpl_id", "=", self.product_id.product_tmpl_id.id),
-                    ("name", "=", self.wiz_id.supplier_id.id),
+                    ("partner_id", "=", self.wiz_id.supplier_id.id),
                 ]
             )
             if sup_info_id:
