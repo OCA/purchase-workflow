@@ -1,10 +1,10 @@
 # Copyright 2018-2019 ForgeFlow, S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0).
-
 from datetime import datetime
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
+from odoo.tools import get_lang
 
 
 class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
@@ -28,7 +28,11 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         domain=[("state", "=", "draft")],
     )
     sync_data_planned = fields.Boolean(
-        string="Merge on PO lines with equal Scheduled Date"
+        string="Match existing PO lines by Scheduled Date",
+        help=(
+            "When checked, PO lines on the selected purchase order are only reused "
+            "if the scheduled date matches as well."
+        ),
     )
 
     @api.model
@@ -133,23 +137,6 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         }
         return data
 
-    @api.model
-    def _get_purchase_line_onchange_fields(self):
-        return ["product_uom", "price_unit", "name", "taxes_id"]
-
-    @api.model
-    def _execute_purchase_line_onchange(self, vals):
-        cls = self.env["purchase.order.line"]
-        onchanges_dict = {
-            "onchange_product_id": self._get_purchase_line_onchange_fields()
-        }
-        for onchange_method, changed_fields in onchanges_dict.items():
-            if any(f not in vals for f in changed_fields):
-                obj = cls.new(vals)
-                getattr(obj, onchange_method)()
-                for field in changed_fields:
-                    vals[field] = obj._fields[field].convert_to_write(obj[field], obj)
-
     def create_allocation(self, po_line, pr_line, new_qty, alloc_uom):
         vals = {
             "requested_product_uom_qty": new_qty,
@@ -174,31 +161,27 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         min_qty = item.line_id._get_supplier_min_qty(product, po.partner_id)
         qty = max(qty, min_qty)
         date_required = item.line_id.date_required
-        vals = {
-            "name": product.name,
+        return {
             "order_id": po.id,
             "product_id": product.id,
             "product_uom": product.uom_po_id.id or product.uom_id.id,
             "price_unit": 0.0,
             "product_qty": qty,
-            "account_analytic_id": item.line_id.analytic_account_id.id,
+            "analytic_distribution": item.line_id.analytic_distribution,
             "purchase_request_lines": [(4, item.line_id.id)],
             "date_planned": datetime(
                 date_required.year, date_required.month, date_required.day
             ),
             "move_dest_ids": [(4, x.id) for x in item.line_id.move_dest_ids],
         }
-        if item.line_id.analytic_tag_ids:
-            vals["analytic_tag_ids"] = [
-                (4, ati) for ati in item.line_id.analytic_tag_ids.ids
-            ]
-        self._execute_purchase_line_onchange(vals)
-        return vals
 
     @api.model
     def _get_purchase_line_name(self, order, line):
+        """Fetch the product name as per supplier settings"""
         product_lang = line.product_id.with_context(
-            lang=self.supplier_id.lang, partner_id=self.supplier_id.id
+            lang=get_lang(self.env, self.supplier_id.lang).code,
+            partner_id=self.supplier_id.id,
+            company_id=order.company_id.id,
         )
         name = product_lang.display_name
         if product_lang.description_purchase:
@@ -212,9 +195,9 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         order_line_data = [
             ("order_id", "=", order.id),
             ("name", "=", name),
-            ("product_id", "=", item.product_id.id or False),
+            ("product_id", "=", item.product_id.id),
             ("product_uom", "=", vals["product_uom"]),
-            ("account_analytic_id", "=", item.line_id.analytic_account_id.id or False),
+            ("analytic_distribution", "=?", item.line_id.analytic_distribution),
         ]
         if self.sync_data_planned:
             date_required = item.line_id.date_required
@@ -296,9 +279,9 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                 line, po_line=po_line, new_pr_line=new_pr_line
             )
             po_line.product_qty = new_qty
-            po_line._onchange_quantity()
-            # The onchange quantity is altering the scheduled date of the PO
-            # lines. We do not want that:
+            # The quantity update triggers a compute method that alters the
+            # unit price (which is what we want, to honor graduate pricing)
+            # but also the scheduled date which is what we don't want.
             date_required = item.line_id.date_required
             po_line.date_planned = datetime(
                 date_required.year, date_required.month, date_required.day
@@ -367,7 +350,7 @@ class PurchaseRequestLineMakePurchaseOrderItem(models.TransientModel):
                     "|",
                     ("product_id", "=", self.product_id.id),
                     ("product_tmpl_id", "=", self.product_id.product_tmpl_id.id),
-                    ("name", "=", self.wiz_id.supplier_id.id),
+                    ("partner_id", "=", self.wiz_id.supplier_id.id),
                 ]
             )
             if sup_info_id:
