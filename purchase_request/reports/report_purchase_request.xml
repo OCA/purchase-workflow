@@ -13,37 +13,37 @@
                             <span t-field="o.name" />
                         </h2>
                         <div class="row mt32 mb32">
-                            <div class="col-xs-3">
+                            <div class="col-auto">
                                 <strong>Request Reference:</strong>
                                 <br />
                                 <span t-field="o.name" />
                             </div>
-                            <div class="col-xs-3">
+                            <div class="col-auto">
                                 <strong>Creation Date:</strong>
                                 <br />
                                 <span t-field="o.date_start" />
                             </div>
-                            <div class="col-xs-3">
+                            <div class="col-auto">
                                 <strong>Source:</strong>
                                 <br />
                                 <span t-field="o.origin" />
                             </div>
-                            <div class="col-xs-3">
+                            <div class="col-auto">
                                 <strong>Description:</strong>
                                 <br />
                                 <span t-field="o.description" />
                             </div>
-                            <div class="col-xs-3">
+                            <div class="col-auto">
                                 <strong>Requested by:</strong>
                                 <br />
                                 <span t-field="o.requested_by" />
                             </div>
-                            <div class="col-xs-3">
+                            <div class="col-auto">
                                 <strong>Assigned to:</strong>
                                 <br />
                                 <span t-field="o.assigned_to" />
                             </div>
-                            <div class="col-xs-3">
+                            <div class="col-auto">
                                 <strong>Picking Type:</strong>
                                 <br />
                                 <span t-field="o.picking_type_id" />
@@ -58,7 +58,7 @@
                                             <strong>Description</strong>
                                         </th>
                                         <th groups="analytic.group_analytic_accounting">
-                                            <strong>Analytic Account</strong>
+                                            <strong>Analytic Distribution</strong>
                                         </th>
                                         <th class="text-right">
                                             <strong>Qty</strong>
@@ -78,17 +78,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr t-foreach="o.line_ids" t-as="line_ids">
+                                    <tr t-foreach="o.line_ids" t-as="line_id">
                                         <td>
-                                            <span t-field="line_ids.name" />
+                                            <span t-field="line_id.name" />
                                         </td>
                                         <td groups="analytic.group_analytic_accounting">
                                             <span
-                                                t-field="line_ids.analytic_account_id"
+                                                t-field="line_id.analytic_distribution"
                                             />
                                         </td>
                                         <td class="text-right">
-                                            <span t-field="line_ids.product_qty" />
+                                            <span t-field="line_id.product_qty" />
                                         </td>
                                         <t>
                                             <td
@@ -96,18 +96,18 @@
                                                 groups="uom.group_uom"
                                             >
                                                 <span
-                                                    t-field="line_ids.product_uom_id.category_id.name"
+                                                    t-field="line_id.product_uom_id.category_id.name"
                                                 />
                                             </td>
                                         </t>
                                         <td>
-                                            <span t-field="line_ids.estimated_cost" />
+                                            <span t-field="line_id.estimated_cost" />
                                         </td>
                                         <td class="text-right">
-                                            <span t-field="line_ids.date_required" />
+                                            <span t-field="line_id.date_required" />
                                         </td>
                                         <td>
-                                            <span t-field="line_ids.specifications" />
+                                            <span t-field="line_id.specifications" />
                                         </td>
                                     </tr>
                                 </tbody>

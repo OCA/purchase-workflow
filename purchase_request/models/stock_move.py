@@ -36,16 +36,6 @@ class StockMove(models.Model):
         distinct_fields += ["created_purchase_request_line_id"]
         return distinct_fields
 
-    @api.model
-    def _prepare_merge_move_sort_method(self, move):
-        move.ensure_one()
-        keys_sorted = super(StockMove, self)._prepare_merge_move_sort_method(move)
-        keys_sorted += [
-            move.purchase_line_id.id,
-            move.created_purchase_request_line_id.id,
-        ]
-        return keys_sorted
-
     def _action_cancel(self):
         for move in self:
             if move.created_purchase_request_line_id:

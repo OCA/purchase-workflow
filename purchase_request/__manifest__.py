@@ -4,13 +4,13 @@
 {
     "name": "Purchase Request",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
-    "version": "15.0.1.1.0",
+    "version": "16.0.1.0.0",
     "summary": "Use this module to have notification of requirements of "
     "materials and/or external services and keep track of such "
     "requirements.",
     "website": "https://github.com/OCA/purchase-workflow",
     "category": "Purchase Management",
-    "depends": ["purchase", "product", "purchase_stock"],
+    "depends": ["purchase_stock"],
     "data": [
         "security/purchase_request.xml",
         "security/ir.model.access.csv",
