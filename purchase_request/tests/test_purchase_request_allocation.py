@@ -25,13 +25,13 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         )
         self.env["product.supplierinfo"].create(
             {
-                "name": vendor.id,
+                "partner_id": vendor.id,
                 "product_tmpl_id": self.service_product.product_tmpl_id.id,
             }
         )
         self.env["product.supplierinfo"].create(
             {
-                "name": vendor.id,
+                "partner_id": vendor.id,
                 "product_tmpl_id": self.product_product.product_tmpl_id.id,
             }
         )
@@ -192,7 +192,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         vendor1 = self.env.ref("base.res_partner_1")
         self.env["product.supplierinfo"].create(
             {
-                "name": vendor1.id,
+                "partner_id": vendor1.id,
                 "product_tmpl_id": self.product_product.product_tmpl_id.id,
                 "min_qty": 8,
             }
@@ -379,7 +379,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         vendor3 = self.env["res.partner"].create({"name": "Partner #3"})
         supinfo = self.env["product.supplierinfo"].create(
             {
-                "name": vendor3.id,
+                "partner_id": vendor3.id,
                 "product_tmpl_id": product.product_tmpl_id.id,
                 "company_id": self.env.ref("stock.res_company_1").id,
             }
@@ -389,7 +389,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         vendor4 = self.env["res.partner"].create({"name": "Partner #4"})
         supinfo = self.env["product.supplierinfo"].create(
             {
-                "name": vendor4.id,
+                "partner_id": vendor4.id,
                 "product_tmpl_id": product.product_tmpl_id.id,
                 "company_id": self.env.ref("base.main_company").id,
             }
@@ -400,7 +400,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         # A supplierinfo without company leads to supplier assignment as well
         self.env["product.supplierinfo"].create(
             {
-                "name": vendor4.id,
+                "partner_id": vendor4.id,
                 "product_tmpl_id": product.product_tmpl_id.id,
                 "company_id": False,
             }
