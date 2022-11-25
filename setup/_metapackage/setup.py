@@ -50,6 +50,7 @@ setuptools.setup(
         'odoo14-addon-purchase_order_product_attachment_mgmt',
         'odoo14-addon-purchase_order_qty_change_no_recompute',
         'odoo14-addon-purchase_order_secondary_unit',
+        'odoo14-addon-purchase_order_shipping_date',
         'odoo14-addon-purchase_order_type',
         'odoo14-addon-purchase_order_uninvoiced_amount',
         'odoo14-addon-purchase_order_vendor_product',
