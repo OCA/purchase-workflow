@@ -236,15 +236,17 @@ class PurchaseRequest(models.Model):
         user_id = request.assigned_to or self.env.user
         return user_id.partner_id.id
 
-    @api.model
-    def create(self, vals):
-        if vals.get("name", _("New")) == _("New"):
-            vals["name"] = self._get_default_name()
-        request = super(PurchaseRequest, self).create(vals)
-        if vals.get("assigned_to"):
-            partner_id = self._get_partner_id(request)
-            request.message_subscribe(partner_ids=[partner_id])
-        return request
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get("name", _("New")) == _("New"):
+                vals["name"] = self._get_default_name()
+        requests = super(PurchaseRequest, self).create(vals_list)
+        for vals, request in zip(vals_list, requests):
+            if vals.get("assigned_to"):
+                partner_id = self._get_partner_id(request)
+                request.message_subscribe(partner_ids=[partner_id])
+        return requests
 
     def write(self, vals):
         res = super(PurchaseRequest, self).write(vals)
