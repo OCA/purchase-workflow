@@ -46,6 +46,7 @@ msgstr ""
 
 #. module: product_form_purchase_link
 #: model:ir.model.fields,field_description:product_form_purchase_link.field_product_product__purchase_lines_count
+#: model:ir.model.fields,field_description:product_form_purchase_link.field_product_template__purchase_lines_count
 msgid "Purchased"
 msgstr ""
 
@@ -56,8 +57,3 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:product_form_purchase_link.view_product_template_purchase_buttons_from
 msgid "Purchases"
 msgstr "Achats"
-
-#. module: product_form_purchase_link
-#: model:ir.model.fields,field_description:product_form_purchase_link.field_product_template__purchase_lines_count
-msgid "Sold"
-msgstr ""
