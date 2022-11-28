@@ -5,7 +5,7 @@
     "name": "Product Form Purchase Link",
     "summary": """
         Add an option to display the purchases lines from product""",
-    "version": "14.0.2.0.0",
+    "version": "14.0.2.1.0",
     "license": "AGPL-3",
     "development_status": "Beta",
     "maintainers": ["rousseldenis"],
