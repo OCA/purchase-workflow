@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import _, api, fields, models
-from odoo.tools import float_compare
+from odoo.tools import float_is_zero
 
 
 class PurchaseOrderLine(models.Model):
@@ -19,12 +19,18 @@ class PurchaseOrderLine(models.Model):
         for line in self:
             if line.product_id.purchase_method == "receive":
                 qty = line.qty_received - line.qty_invoiced
-                if float_compare(qty, 0.0, precision_digits=precision):
-                    line.qty_to_invoice = qty
-                else:
-                    line.qty_to_invoice = 0.0
+                # Check if the result is zero with the correct precision to avoid
+                # floats like 0.000001 that don't match the filter qty_to_invoice != 0
+                if float_is_zero(qty, precision_digits=precision):
+                    qty = 0.0
+                line.qty_to_invoice = qty
             else:
-                line.qty_to_invoice = line.product_qty - line.qty_invoiced
+                qty = line.product_qty - line.qty_invoiced
+                # Check if the result is zero with the correct precision to avoid
+                # floats like 0.000001 that don't match the filter qty_to_invoice != 0
+                if float_is_zero(qty, precision_digits=precision):
+                    qty = 0.0
+                line.qty_to_invoice = qty
 
     @api.depends("move_ids.state", "move_ids.product_uom", "move_ids.product_uom_qty")
     def _compute_qty_to_receive(self):
@@ -61,9 +67,12 @@ class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
     def _compute_qty_to_invoice(self):
+        dp = self.env["decimal.precision"].precision_get("Product Unit of Measure")
         for po in self:
             qty_to_invoice = sum(po.mapped("order_line.qty_to_invoice"))
-            po.pending_qty_to_invoice = qty_to_invoice > 0.0
+            po.pending_qty_to_invoice = not float_is_zero(
+                qty_to_invoice, precision_digits=dp
+            )
             po.qty_to_invoice = qty_to_invoice
 
     def _compute_qty_to_receive(self):
