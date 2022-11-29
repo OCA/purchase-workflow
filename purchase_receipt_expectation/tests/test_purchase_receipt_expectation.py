@@ -44,7 +44,7 @@ class TestPurchaseReceiptExpectation(TransactionCase):
             - `receipt_expectation` must be "automatic" (as default value)
             - At least one picking should have been created
         """
-        order = self.env["purchase.order"].create(self.po_vals)
+        order = self.env["purchase.order"].create(self.po_vals.copy())
         self.assertEqual(order.receipt_expectation, "automatic")
         order.button_confirm()
         self.assertTrue(order.picking_ids)
@@ -91,14 +91,14 @@ class TestPurchaseReceiptExpectation(TransactionCase):
         self.registry.setup_models(self.cr)
 
         succeeding_order = self.env["purchase.order"].create(
-            dict(self.po_vals, receipt_expectation="succeeding")
+            dict(self.po_vals.copy(), receipt_expectation="succeeding")
         )
         self.assertEqual(succeeding_order.receipt_expectation, "succeeding")
         succeeding_order.button_confirm()
         self.assertTrue(succeeding_order.picking_ids)
 
         failing_order = self.env["purchase.order"].create(
-            dict(self.po_vals, receipt_expectation="failing")
+            dict(self.po_vals.copy(), receipt_expectation="failing")
         )
         with self.assertRaises(NotImplementedError) as error:
             failing_order.button_confirm()
