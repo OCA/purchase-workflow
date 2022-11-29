@@ -13,6 +13,7 @@ class StockPicking(models.Model):
     dispatch_date = fields.Datetime(
         # dispatch_date is not computed on purpose
         help=HELP_DISPATCH,
+        copy=False,
         tracking=True,
     )
     freight_duration = fields.Integer(
