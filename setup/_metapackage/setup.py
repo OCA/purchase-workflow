@@ -86,6 +86,7 @@ setuptools.setup(
         'odoo14-addon-purchase_work_acceptance_evaluation',
         'odoo14-addon-purchase_work_acceptance_invoice_plan',
         'odoo14-addon-purchase_work_acceptance_late_fines',
+        'odoo14-addon-purchase_work_acceptance_tier_validation',
         'odoo14-addon-sale_purchase_force_vendor',
         'odoo14-addon-vendor_transport_lead_time',
     ],
