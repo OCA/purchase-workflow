@@ -87,7 +87,9 @@ class PurchaseOrder(models.Model):
             for alloc in (
                 rec.order_line.mapped("purchase_request_lines")
                 .mapped("purchase_request_allocation_ids")
-                .filtered(lambda alloc: alloc.purchase_line_id.order_id.id == rec.id)
+                .filtered(
+                    lambda alloc, rec=rec: alloc.purchase_line_id.order_id.id == rec.id
+                )
             ):
                 alloc_to_unlink += alloc
         res = super().unlink()
