@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_purchase_order_line_component_base,access.purchase.order.line.component.base,model_purchase_order_line_component,base.group_user,1,0,0,0
+access_purchase_order_line_component_user,access.purchase.order.line.component.user,model_purchase_order_line_component,purchase.group_purchase_user,1,1,1,1
