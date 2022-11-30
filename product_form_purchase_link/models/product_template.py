@@ -12,7 +12,7 @@ class ProductTemplate(models.Model):
     _inherit = "product.template"
 
     purchase_lines_count = fields.Float(
-        compute="_compute_purchase_lines_count", string="Purchased"
+        compute="_compute_purchase_lines_count", string="Times purchased"
     )
 
     @api.depends("product_variant_ids.purchase_lines_count")
