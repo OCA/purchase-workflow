@@ -19,7 +19,8 @@ class TestPurchaseForceInvoiced(TransactionCase):
                     "user_type_id",
                     "=",
                     self.env.ref("account.data_account_type_revenue").id,
-                )
+                ),
+                ("company_id", "=", self.env.company.id),
             ],
             limit=1,
         )
