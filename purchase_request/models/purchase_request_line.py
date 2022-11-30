@@ -258,7 +258,7 @@ class PurchaseRequestLine(models.Model):
     def _compute_supplier_id(self):
         for rec in self:
             sellers = rec.product_id.seller_ids.filtered(
-                lambda si: not si.company_id or si.company_id == rec.company_id
+                lambda si, rec=rec: not si.company_id or si.company_id == rec.company_id
             )
             rec.supplier_id = sellers[0].partner_id if sellers else False
 
