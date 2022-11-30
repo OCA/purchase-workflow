@@ -17,6 +17,7 @@
                         name="action_update_general_discount"
                         class="oe_link oe_edit_only fa fa-refresh"
                         type="object"
+                        title="Update general discounts"
                         help="Update general discounts"
                     />
                 </div>
