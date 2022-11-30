@@ -81,6 +81,35 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         self.assertEqual(purchase_request_line1.qty_in_progress, 2.0)
         self.assertEqual(purchase_request_line2.qty_in_progress, 2.0)
         picking = purchase.picking_ids[0]
+
+        # Check the move
+        move = picking.move_ids
+        self.assertEqual(move.purchase_request_ids, purchase_request1)
+        # Do a move split/merge roundtrip and check that the allocatable
+        # quantity remains the same.
+        self.assertEqual(
+            sum(move.purchase_request_allocation_ids.mapped("open_product_qty")), 4
+        )
+        split_move = self.env["stock.move"].create(move._split(1))
+        split_move._action_confirm(merge=False)
+        self.assertEqual(split_move.purchase_request_ids, purchase_request1)
+        # The quantity of 4 is now split between the two moves
+        self.assertEqual(
+            sum(move.purchase_request_allocation_ids.mapped("open_product_qty")), 3
+        )
+        self.assertEqual(
+            sum(split_move.purchase_request_allocation_ids.mapped("open_product_qty")),
+            1,
+        )
+        split_move._merge_moves(merge_into=move)
+        self.assertFalse(split_move.exists())
+        self.assertEqual(
+            sum(move.purchase_request_allocation_ids.mapped("open_product_qty")), 4
+        )
+        # Reset reserved quantities messed up by the roundtrip
+        move._do_unreserve()
+        move._action_assign()
+
         picking.move_line_ids[0].write({"qty_done": 2.0})
         backorder_wiz_id = picking.button_validate()
         common.Form(
@@ -88,8 +117,8 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
                 **backorder_wiz_id["context"]
             )
         ).save().process()
-        self.assertEqual(purchase_request_line1.qty_done, 2.0)
-        self.assertEqual(purchase_request_line2.qty_done, 0.0)
+        request_lines = purchase_request_line1 + purchase_request_line2
+        self.assertEqual(sum(request_lines.mapped("qty_done")), 2.0)
 
         backorder_picking = purchase.picking_ids.filtered(lambda p: p.id != picking.id)
         backorder_picking.move_line_ids[0].write({"qty_done": 1.0})
@@ -100,15 +129,12 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
             )
         ).save().process()
 
-        self.assertEqual(purchase_request_line1.qty_done, 2.0)
-        self.assertEqual(purchase_request_line2.qty_done, 1.0)
+        self.assertEqual(sum(request_lines.mapped("qty_done")), 3.0)
         for pick in purchase.picking_ids:
             if pick.state == "assigned":
                 pick.action_cancel()
-        self.assertEqual(purchase_request_line1.qty_cancelled, 0.0)
-        self.assertEqual(purchase_request_line2.qty_cancelled, 1.0)
-        self.assertEqual(purchase_request_line1.pending_qty_to_receive, 0.0)
-        self.assertEqual(purchase_request_line2.pending_qty_to_receive, 1.0)
+        self.assertEqual(sum(request_lines.mapped("qty_cancelled")), 1.0)
+        self.assertEqual(sum(request_lines.mapped("pending_qty_to_receive")), 1.0)
 
     def test_purchase_request_allocation_services(self):
         vals = {
@@ -165,7 +191,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
             active_model="purchase.request.line", active_ids=[purchase_request_line2.id]
         ).create(vals)
         wiz_id.make_purchase_order()
-        purchase_request2.action_view_purchase_order()
+        (purchase_request1 + purchase_request2).action_view_purchase_order()
         po_line = purchase_request_line2.purchase_lines[0]
         purchase2 = po_line.order_id
         purchase2.button_confirm()
