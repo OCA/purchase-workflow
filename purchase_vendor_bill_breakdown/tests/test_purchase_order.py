@@ -17,31 +17,11 @@ class TestPurchaseOrder(PurchaseTransactionCase):
 
     def setUp(self):
         super(TestPurchaseOrder, self).setUp()
-        PurchaseOrder = self.env["purchase.order"]
 
-        form = Form(PurchaseOrder)
-        form.partner_id = self.res_partner_test
-        with form.order_line.new() as line:
-            line.product_id = self.product_product_test_1
-            line.price_unit = 79.80
-            line.product_qty = 15.0
-        self.purchase_order_1 = form.save()
-
-        form = Form(PurchaseOrder)
-        form.partner_id = self.res_partner_test_use_product_components
-        with form.order_line.new() as line:
+        with Form(self.purchase_order_test_1) as form, form.order_line.new() as line:
             line.product_id = self.product_product_test_1
             line.price_unit = 500.0
             line.product_qty = 5.0
-        self.purchase_order_2 = form.save()
-
-        form = Form(PurchaseOrder)
-        form.partner_id = self.res_partner_test_use_product_components
-        with form.order_line.new() as line:
-            line.product_id = self.product_product_test_1
-            line.price_unit = 500
-            line.product_qty = 5.0
-        self.purchase_order_3 = form.save()
 
     # TEST 1 - Changed state 'Use Product Component' when partner changed
     def test_purchase_order_set_use_product_component(self):
@@ -62,7 +42,7 @@ class TestPurchaseOrder(PurchaseTransactionCase):
     # TEST 2 - Check invoice line struct by 'use_product_components' state
     def test_prepare_invoice(self):
         """Check invoice line struct by 'use_product_components' state"""
-        order = self.purchase_order_2
+        order = self.purchase_order_test_1
         order.write({"use_product_components": False})
         invoice_vals = order._prepare_invoice()
         self.assertFalse(
@@ -82,7 +62,7 @@ class TestPurchaseOrder(PurchaseTransactionCase):
     # TEST 3 - Creating an invoice with state 'to invoice'
     def test_get_invoiced(self):
         """Creating an invoice with state 'to invoice'"""
-        order = self.purchase_order_3
+        order = self.purchase_order_test_1
         order.button_confirm()
         self.assertEqual(
             order.invoice_status, "no", msg="Invoice status must be equal to 'no'"
@@ -104,7 +84,7 @@ class TestPurchaseOrder(PurchaseTransactionCase):
     # TEST 4 - Creating an invoice with state 'refund'
     def test_refund_components(self):
         """Creating an invoice with state 'refund'"""
-        order = self.purchase_order_3
+        order = self.purchase_order_test_1
         order.button_confirm()
         order.order_line.write({"qty_received": 2})
         component_1, component_2 = order.order_line.component_ids
