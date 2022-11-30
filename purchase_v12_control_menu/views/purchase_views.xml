@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="action_invoice_pending" model="ir.actions.act_window">
+        <field name="name">Vendor Bills</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">tree,kanban,form,pivot,graph</field>
+        <field eval="False" name="view_id" />
+        <field name="domain">[('move_type','=','in_invoice')]</field>
+        <field
+            name="context"
+        >{'default_type':'in_invoice', 'move_type':'in_invoice', 'journal_type': 'purchase'}</field>
+        <field name="search_view_id" ref="account.view_account_invoice_filter" />
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a vendor bill
+            </p>
+            <p>
+                Use this menu to control the invoices to be received from your
+                vendors. When registering a new bill, set the purchase order
+                and Odoo will fill the bill automatically according to ordered
+                or received quantities.
+            </p>
+        </field>
+    </record>
+
+    <record id="stock_move_view_kanban" model="ir.ui.view">
+        <field name="name">stock.move.kanban2</field>
+        <field name="model">stock.move</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile" quick_create="false">
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click">
+                            <div class="row mb4">
+                                <div class="col-8">
+                                    <strong>
+                                        <span>
+                                            <field name="product_id" />
+                                        </span>
+                                    </strong>
+                                </div>
+                                <div class="col-4">
+                                    <span class="float-right text-right">
+                                        <field
+                                            name="state"
+                                            widget="label_selection"
+                                            readonly="1"
+                                            options="{'classes': {'draft': 'default', 'cancel': 'danger',
+                                        'assigned': 'success', 'confirmed': 'default'}}"
+                                        />
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <strong>
+                                        <span>
+                                            <field name="priority" widget="priority" />
+                                        </span>
+                                    </strong>
+                                </div>
+                                <div class="col-8">
+                                    <span class="float-right">
+                                        <i
+                                            class="fa fa-clock-o"
+                                            role="img"
+                                            aria-label="Date"
+                                            title="Date"
+                                        />
+                                        <field name="date" />
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="action_receipt_picking_move" model="ir.actions.act_window">
+        <field name="name">Incoming  Products</field>
+        <field name="res_model">stock.move</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field
+            name="domain"
+            eval="[('picking_id.picking_type_id.code','=','incoming'), ('location_id.usage','!=','internal'), ('location_dest_id.usage', '=', 'internal')]"
+        />
+        <field
+            name="view_ids"
+            eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('stock.view_move_tree_receipt_picking')}),
+            (0, 0, {'view_mode': 'kanban', 'view_id': ref('stock_move_view_kanban')})]"
+        />
+        <field
+            name="context"
+        >{'product_receive': True, 'search_default_future': True}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Register a product receipt
+            </p>
+            <p>
+                Here you can receive individual products, no matter what
+                purchase order or picking order they come from. You will find
+                the list of all products you are waiting for.
+            </p>
+            <p>
+                Once you receive an order, you can filter based on the name of
+                the vendor or the purchase order reference. Then you can confirm
+                all products received using the buttons on the right of each line.
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+        id="menu_purchase_control"
+        name="Control"
+        parent="purchase.menu_purchase_root"
+        sequence="4"
+    />
+    <menuitem
+        id="menu_action_picking_tree_in_move"
+        action="action_receipt_picking_move"
+        parent="menu_purchase_control"
+        sequence="11"
+    />
+    <menuitem
+        id="menu_procurement_management_pending_invoice"
+        action="action_invoice_pending"
+        parent="menu_purchase_control"
+        sequence="13"
+    />
+</odoo>
