@@ -39,7 +39,6 @@ msgstr ""
 
 #. module: purchase_open_qty
 #: model:ir.model.fields,field_description:purchase_open_qty.field_purchase_order__qty_to_invoice
-#: model:ir.model.fields,field_description:purchase_open_qty.field_purchase_order_line__qty_to_invoice
 msgid "Qty to Bill"
 msgstr ""
 
