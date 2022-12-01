@@ -9,29 +9,6 @@ from odoo.tools import float_is_zero
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
-    @api.depends(
-        "product_qty", "qty_invoiced", "product_id.purchase_method", "qty_received"
-    )
-    def _compute_qty_to_invoice(self):
-        precision = self.env["decimal.precision"].precision_get(
-            "Product Unit of Measure"
-        )
-        for line in self:
-            if line.product_id.purchase_method == "receive":
-                qty = line.qty_received - line.qty_invoiced
-                # Check if the result is zero with the correct precision to avoid
-                # floats like 0.000001 that don't match the filter qty_to_invoice != 0
-                if float_is_zero(qty, precision_digits=precision):
-                    qty = 0.0
-                line.qty_to_invoice = qty
-            else:
-                qty = line.product_qty - line.qty_invoiced
-                # Check if the result is zero with the correct precision to avoid
-                # floats like 0.000001 that don't match the filter qty_to_invoice != 0
-                if float_is_zero(qty, precision_digits=precision):
-                    qty = 0.0
-                line.qty_to_invoice = qty
-
     @api.depends("move_ids.state", "move_ids.product_uom", "move_ids.product_uom_qty")
     def _compute_qty_to_receive(self):
         for line in self:
@@ -47,13 +24,6 @@ class PurchaseOrderLine(models.Model):
                     total += move.product_uom_qty
             line.qty_to_receive = total
 
-    qty_to_invoice = fields.Float(
-        compute="_compute_qty_to_invoice",
-        digits="Product Unit of Measure",
-        copy=False,
-        string="Qty to Bill",
-        store=True,
-    )
     qty_to_receive = fields.Float(
         compute="_compute_qty_to_receive",
         digits="Product Unit of Measure",
