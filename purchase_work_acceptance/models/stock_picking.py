@@ -20,6 +20,7 @@ class Picking(models.Model):
         compute="_compute_wa_ids",
     )
 
+    @api.depends("picking_type_id")
     def _compute_require_wa(self):
         for rec in self:
             if rec.picking_type_id.bypass_wa:
