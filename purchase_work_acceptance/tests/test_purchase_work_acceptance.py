@@ -1,6 +1,8 @@
 # Copyright 2019 Ecosoft Co., Ltd. (http://ecosoft.co.th)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+import ast
+
 from odoo import fields
 from odoo.exceptions import UserError, ValidationError
 from odoo.tests.common import Form, TransactionCase
@@ -20,6 +22,15 @@ class TestPurchaseWorkAcceptance(TransactionCase):
         self.env["res.config.settings"].create(
             {"group_enable_wa_on_po": True}
         ).execute()
+
+        self.picking_type_return = self.env["stock.picking.type"].search(
+            [
+                ("code", "=", "incoming"),
+                ("return_picking_type_id", "=", False),
+                ("company_id", "=", self.main_company.id),
+            ],
+            limit=1,
+        )
 
     def _create_purchase_order(self, qty, product):
         purchase_order = self.env["purchase.order"].create(
@@ -138,6 +149,21 @@ class TestPurchaseWorkAcceptance(TransactionCase):
         self.assertEqual(work_acceptance.state, "cancel")
         work_acceptance.button_draft()
         self.assertEqual(work_acceptance.state, "draft")
+        # Test open wizard
+        wizard = self.env.ref("purchase_work_acceptance.view_work_accepted_date_wizard")
+        res = work_acceptance.with_context(manual_date_accept=True).button_accept()
+        self.assertEqual(res["res_model"], "work.accepted.date.wizard")
+        self.assertEqual(res["view_id"], wizard.id)
+        ctx = {
+            "active_ids": [work_acceptance.id],
+            "active_id": work_acceptance.id,
+            "active_model": work_acceptance._name,
+        }
+        WorkAcceptanceWizard = self.env["work.accepted.date.wizard"]
+        with Form(WorkAcceptanceWizard.with_context(**ctx)) as f:
+            f.date_accept = self.date_now
+        wa_wizard = f.save()
+        wa_wizard.button_accept()
 
     def test_01_action_view_wa(self):
         # Create Purchase Order
@@ -150,6 +176,19 @@ class TestPurchaseWorkAcceptance(TransactionCase):
         ctx = res.get("context")
         work_acceptance = Form(self.env["work.acceptance"].with_context(**ctx))
         self.assertEqual(work_acceptance.state, "draft")
+        # Open with 1 WA
+        work_acceptance1 = self._create_work_acceptance(1, purchase_order)
+        res = purchase_order.action_view_wa()
+        self.assertEqual(res["res_id"], work_acceptance1.id)
+        work_acceptance1.button_accept()
+        purchase_order._compute_wa_accepted()
+        # Open with 2 WA
+        work_acceptance2 = self._create_work_acceptance(2, purchase_order)
+        purchase_order._compute_wa_ids()
+        res = purchase_order.action_view_wa()
+        res_domain = ast.literal_eval(res["domain"])
+        wa_ids = (work_acceptance1 + work_acceptance2).ids
+        self.assertEqual(res_domain[0][2], wa_ids)
 
     def test_02_flow_product(self):
         # Create Purchase Order
@@ -238,6 +277,23 @@ class TestPurchaseWorkAcceptance(TransactionCase):
         ).button_create_vendor_bill()
         invoice = self.env["account.move"].browse(res["res_id"])
         self.assertEqual(sum(invoice.invoice_line_ids.mapped("quantity")), qty)
+
+        # Create Return with required WA
+        self.env["res.config.settings"].create(
+            {"group_enforce_wa_on_in": True}
+        ).execute()
+        picking = self.env["stock.picking"].create(
+            {
+                "picking_type_id": self.picking_type_return.id,
+                "location_id": 4,
+                "location_dest_id": 8,
+            }
+        )
+        # Set bypass reutrn not required wa
+        self.assertTrue(picking.require_wa)
+        self.picking_type_return.bypass_wa = True
+        picking._compute_require_wa()
+        self.assertFalse(picking.require_wa)
 
     def test_05_create_multi_lines(self):
         qty = 5.0
