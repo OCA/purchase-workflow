@@ -57,6 +57,7 @@ addon | version | maintainers | summary
 [purchase_request_department](purchase_request_department/) | 15.0.1.0.0 |  | Purchase Request Department
 [purchase_request_tier_validation](purchase_request_tier_validation/) | 15.0.1.0.0 |  | Extends the functionality of Purchase Requests to support a tier validation process.
 [purchase_requisition_tier_validation](purchase_requisition_tier_validation/) | 15.0.1.0.0 |  | Extends the functionality of Purchase Agreements to support a tier validation process.
+[purchase_stock_price_unit_sync](purchase_stock_price_unit_sync/) | 15.0.1.0.0 |  | Update cost price in stock moves already done
 [purchase_tier_validation](purchase_tier_validation/) | 15.0.1.0.0 |  | Extends the functionality of Purchase Orders to support a tier validation process.
 [purchase_triple_discount](purchase_triple_discount/) | 15.0.1.0.0 |  | Manage triple discount on purchase order lines
 [purchase_v12_control_menu](purchase_v12_control_menu/) | 15.0.1.0.0 |  | Purchase Control Menu from v12
