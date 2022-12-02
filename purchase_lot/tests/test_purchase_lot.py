@@ -1,10 +1,10 @@
 # Copyright (C) 2022 Akretion (<http://www.akretion.com>).
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 
-class TestPurchaseLot(SavepointCase):
+class TestPurchaseLot(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -27,20 +27,20 @@ class TestPurchaseLot(SavepointCase):
             {
                 "product_tmpl_id": cls.large_cabinet.product_tmpl_id.id,
                 "product_id": cls.large_cabinet.id,
-                "name": cls.env.ref("base.res_partner_1").id,
+                "partner_id": cls.env.ref("base.res_partner_1").id,
             }
         )
         cls.out_picking_type = cls.env.ref("stock.picking_type_out")
 
     def test_purchase_lot(self):
-        lot1 = self.env["stock.production.lot"].create(
+        lot1 = self.env["stock.lot"].create(
             {
                 "name": "lot1",
                 "product_id": self.large_cabinet.id,
                 "company_id": self.warehouse.company_id.id,
             }
         )
-        lot2 = self.env["stock.production.lot"].create(
+        lot2 = self.env["stock.lot"].create(
             {
                 "name": "lot2",
                 "product_id": self.large_cabinet.id,

@@ -9,7 +9,7 @@ class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
     lot_id = fields.Many2one(
-        "stock.production.lot", string="Serial Number", readonly=True, copy=False
+        "stock.lot", string="Serial Number", readonly=True, copy=False
     )
 
     @api.model
