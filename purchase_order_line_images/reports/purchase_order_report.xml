@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="report_purchase_order_product_image"
+        inherit_id="purchase.report_purchaseorder_document"
+    >
+        <xpath
+            expr="//table[hasclass('o_main_table')]//thead//tr//th[@name='th_taxes']"
+            position="before"
+        >
+             <t
+                t-set="recaptcha_public_key"
+                t-value="request.env['ir.config_parameter'].sudo().get_param('purchase_order_line_images.show_product_image_in_purchase_report')"
+            />
+            <t
+                t-if="request.env['ir.config_parameter'].sudo().get_param('purchase_order_line_images.show_product_image_in_purchase_report') == 'True'"
+            >
+                <th name="th_image"><strong>Image</strong></th>
+            </t>
+        </xpath>
+
+        <xpath
+            expr="//table[hasclass('o_main_table')]//tbody//tr//t//td[@id='product']"
+            position="after"
+        >
+            <t
+                t-if="request.env['ir.config_parameter'].sudo().get_param('purchase_order_line_images.show_product_image_in_purchase_report') == 'True'"
+            >
+                <td
+                    class="text-right"
+                    style="height:20px !important; max-height:20px !important; width:15px !important; max-width:15px !important;"
+                >
+                    <span
+                        t-field="line.product_image_1920"
+                        t-options='{"widget": "image"}'
+                        style="height:20px !important; max-height:20px !important; width:15px !important; max-width:15px !important;"
+                    />
+                </td>
+            </t>
+        </xpath>
+    </template>
+
+    <template
+        id="report_purchase_quotation_product_image"
+        inherit_id="purchase.report_purchasequotation_document"
+    >
+        <xpath
+            expr="//table[hasclass('table','table-sm')]//thead//tr//th[@name='th_description']"
+            position="after"
+        >
+            <t
+                t-if="request.env['ir.config_parameter'].sudo().get_param('purchase_order_line_images.show_product_image_in_purchase_report') == 'True'"
+            >
+                <th name="th_image"><strong>Image</strong></th>
+            </t>
+        </xpath>
+        <xpath
+            expr="//table[hasclass('table','table-sm')]//tbody//t//tr//t//td[@id='product']"
+            position="after"
+        >
+            <t
+                t-if="request.env['ir.config_parameter'].sudo().get_param('purchase_order_line_images.show_product_image_in_purchase_report') == 'True'"
+            >
+                <td
+                    class="text-right"
+                    style="height:20px !important; max-height:20px !important; width:15px !important; max-width:15px !important;"
+                >
+                    <span
+                        t-field="order_line.product_image_1920"
+                        t-options='{"widget": "image"}'
+                        style="height:20px !important; max-height:20px !important; width:15px !important; max-width:15px !important;"
+                    />
+                </td>
+            </t>
+        </xpath>
+
+    </template>
+
+</odoo>

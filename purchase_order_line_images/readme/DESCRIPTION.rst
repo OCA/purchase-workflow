@@ -1,0 +1,1 @@
+This module adds a flag 'Show Product Image In Purchase Report' in purchase settings, it will allows to see the product images in purchase order line and also allow us to print the product image in report.
