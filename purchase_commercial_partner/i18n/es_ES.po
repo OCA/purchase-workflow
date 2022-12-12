@@ -16,23 +16,10 @@ msgstr ""
 
 #. module: purchase_commercial_partner
 #: model:ir.model.fields,field_description:purchase_commercial_partner.field_purchase_order__commercial_partner_id
+#: model_terms:ir.ui.view,arch_db:purchase_commercial_partner.purchase_order_view_search
+#: model_terms:ir.ui.view,arch_db:purchase_commercial_partner.purchase_report_search
 #: model_terms:ir.ui.view,arch_db:purchase_commercial_partner.view_purchase_order_filter
 msgid "Commercial Vendor"
-msgstr ""
-
-#. module: purchase_commercial_partner
-#: model:ir.model.fields,field_description:purchase_commercial_partner.field_purchase_order__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: purchase_commercial_partner
-#: model:ir.model.fields,field_description:purchase_commercial_partner.field_purchase_order__id
-msgid "ID"
-msgstr ""
-
-#. module: purchase_commercial_partner
-#: model:ir.model.fields,field_description:purchase_commercial_partner.field_purchase_order____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: purchase_commercial_partner
