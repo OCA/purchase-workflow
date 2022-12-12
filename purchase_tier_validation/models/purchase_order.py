@@ -11,3 +11,9 @@ class PurchaseOrder(models.Model):
     _state_to = ["purchase", "approved"]
 
     _tier_validation_manual_config = False
+
+    # Do not merge purchase orders under validation
+    def _make_po_get_domain(self, company_id, values, partner):
+        domain = super()._make_po_get_domain(company_id, values, partner)
+        domain += (('reviewer_ids', '=', False), )
+        return domain
