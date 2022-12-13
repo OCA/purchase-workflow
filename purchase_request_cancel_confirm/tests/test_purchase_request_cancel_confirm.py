@@ -8,6 +8,9 @@ class TestPurchaseRequestCancelConfirm(TransactionCase):
     def setUp(self):
         super(TestPurchaseRequestCancelConfirm, self).setUp()
         self.purchase_request_obj = self.env["purchase.request"]
+        self.env["ir.config_parameter"].sudo().set_param(
+            "purchase.request.cancel_confirm_disable", "False"
+        )
         self.purchase_request_line_obj = self.env["purchase.request.line"]
         vals = {
             "picking_type_id": self.env.ref("stock.picking_type_in").id,
