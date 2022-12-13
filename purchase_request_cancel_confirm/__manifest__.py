@@ -3,7 +3,7 @@
 
 {
     "name": "Purchase Request Cancel Confirm",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "author": "Ecosoft,Odoo Community Association (OCA)",
     "category": "Usability",
     "license": "AGPL-3",
