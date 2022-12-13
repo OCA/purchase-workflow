@@ -1,0 +1,45 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_order_payment_term_report
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_order_payment_term_report
+#: model_terms:ir.ui.view,arch_db:purchase_order_payment_term_report.report_purchase_order_form_payment_terms
+#: model_terms:ir.ui.view,arch_db:purchase_order_payment_term_report.report_purchase_quotation_form_payment_terms
+msgid "<strong class=\"ml16\">Payment Terms:</strong>"
+msgstr ""
+
+#. module: purchase_order_payment_term_report
+#: model:ir.model.fields,field_description:purchase_order_payment_term_report.field_purchase_order__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: purchase_order_payment_term_report
+#: model:ir.model.fields,field_description:purchase_order_payment_term_report.field_purchase_order__display_payment_terms_in_report
+msgid "Display Payment Terms In Report"
+msgstr ""
+
+#. module: purchase_order_payment_term_report
+#: model:ir.model.fields,field_description:purchase_order_payment_term_report.field_purchase_order__id
+msgid "ID"
+msgstr ""
+
+#. module: purchase_order_payment_term_report
+#: model:ir.model.fields,field_description:purchase_order_payment_term_report.field_purchase_order____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: purchase_order_payment_term_report
+#: model:ir.model,name:purchase_order_payment_term_report.model_purchase_order
+msgid "Purchase Order"
+msgstr ""
