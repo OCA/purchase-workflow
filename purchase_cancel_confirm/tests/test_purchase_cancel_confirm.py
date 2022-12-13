@@ -7,6 +7,9 @@ class TestPurchaseCancelConfirm(TransactionCase):
     def setUp(self):
         super(TestPurchaseCancelConfirm, self).setUp()
         self.purchase_order_obj = self.env["purchase.order"]
+        self.env["ir.config_parameter"].sudo().set_param(
+            "purchase.order.cancel_confirm_disable", "False"
+        )
         self.purchase_order = self.purchase_order_obj.create(
             {
                 "partner_id": self.env.ref("base.res_partner_12").id,
