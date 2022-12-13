@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="report_purchase_order_form_payment_terms"
+        inherit_id="purchase.report_purchaseorder_document"
+    >
+        <xpath expr="//p[@t-field='o.notes']" position="before">
+            <t t-if="o.display_payment_terms_in_report and o.payment_term_id">
+                <strong class="ml16">Payment Terms:</strong> <span
+                    t-field="o.payment_term_id.name"
+                />
+            </t>
+        </xpath>
+    </template>
+
+    <template
+        id="report_purchase_quotation_form_payment_terms"
+        inherit_id="purchase.report_purchasequotation_document"
+    >
+        <xpath expr="//p[@t-field='o.notes']" position="before">
+            <t t-if="o.display_payment_terms_in_report and o.payment_term_id">
+                <strong class="ml16">Payment Terms:</strong> <span
+                    t-field="o.payment_term_id.name"
+                />
+            </t>
+        </xpath>
+    </template>
+
+</odoo>
