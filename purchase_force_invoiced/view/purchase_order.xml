@@ -9,7 +9,12 @@
         <field name="inherit_id" ref="purchase.purchase_order_form" />
         <field name="arch" type="xml">
             <field name="invoice_status" position="after">
-                <field name="force_invoiced" groups="purchase.group_purchase_manager" />
+                <field
+                    name="force_invoiced"
+                    groups="purchase.group_purchase_manager"
+                    attrs="{'invisible': [('state', 'not in', ('purchase', 'done'))]}"
+                    widget="boolean_toggle"
+                />
             </field>
         </field>
     </record>
