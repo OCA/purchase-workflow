@@ -2,7 +2,7 @@
 
 {
     "name": "Purchase Order security",
-    "version": "14.0.1.0.0",
+    "version": "15.0.1.0.0",
     "category": "Purchase",
     "development_status": "Production/Stable",
     "author": "Tecnativa, Odoo Community Association (OCA)",
@@ -10,7 +10,7 @@
     "website": "https://github.com/OCA/purchase-workflow",
     "license": "AGPL-3",
     "depends": ["purchase"],
-    "maintainers": ["joao-p-marques"],
+    "maintainers": ["pilarvargas-tecnativa"],
     "data": ["security/security.xml"],
     "installable": True,
     "auto_install": False,
