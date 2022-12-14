@@ -10,6 +10,7 @@ class PurchaseOrder(models.Model):
         readonly=True,
         states={"done": [("readonly", False)]},
         copy=False,
+        tracking=True,
         help="When you set this field, the purchase order will be "
         "considered as fully billed, even when there may be ordered "
         "or delivered quantities pending to bill. To use this field, "
@@ -18,7 +19,7 @@ class PurchaseOrder(models.Model):
 
     @api.depends("force_invoiced")
     def _get_invoiced(self):
-        res = super(PurchaseOrder, self)._get_invoiced()
+        res = super()._get_invoiced()
         for order in self.filtered(
             lambda po: po.force_invoiced and po.invoice_status == "to invoice"
         ):
