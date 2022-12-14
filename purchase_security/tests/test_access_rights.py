@@ -3,12 +3,12 @@
 
 import logging
 
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 _logger = logging.getLogger(__name__)
 
 
-class TestPurchaseOrderSecurity(SavepointCase):
+class TestPurchaseOrderSecurity(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super(TestPurchaseOrderSecurity, cls).setUpClass()
