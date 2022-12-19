@@ -27,7 +27,7 @@ class PurchaseOrderLine(models.Model):
         """The data to be copied to new pickings is updated with data from the
         grouping key.  This method is designed for extensibility, so that
         other modules can store more data based on new keys."""
-        vals = {"move_lines": []}
+        vals = {"move_ids": []}
         for key_element in key:
             if "date_planned" in key_element.keys():
                 vals["scheduled_date"] = key_element["date_planned"]
@@ -137,7 +137,7 @@ class PurchaseOrder(models.Model):
                             move.date_deadline = date_key
                             move._action_assign()
             for picking in pickings:
-                if len(picking.move_lines) == 0:
+                if len(picking.move_ids) == 0:
                     picking.write({"state": "cancel"})
 
 

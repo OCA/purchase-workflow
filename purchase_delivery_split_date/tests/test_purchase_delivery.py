@@ -2,12 +2,12 @@
 # Copyright 2017 ForgeFlow, S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import Form, TransactionCase
 
 
 class TestDeliverySingle(TransactionCase):
     def setUp(self):
-        super(TestDeliverySingle, self).setUp()
+        super().setUp()
         self.product_model = self.env["product.product"]
 
         # Create products:
@@ -242,3 +242,11 @@ class TestDeliverySingle(TransactionCase):
         # No time difference so will be another day (2 pickings)
         line2.write({"date_planned": "2021-05-04 23:00:00"})
         self.assertEqual(len(self.po.picking_ids), 2)
+
+    def test_create_from_form(self):
+        partner_purchase = self.env["res.partner"].create(
+            {"name": "Partner 1 of purchase on create from form"}
+        )
+        with Form(self.env["purchase.order"]) as purchase_form:
+            purchase_form.partner_id = partner_purchase
+        self.assertEqual(purchase_form.partner_id, partner_purchase)
