@@ -39,6 +39,11 @@ Usage
 * Only products available from this vendor can be selectod in the Purchase Order Lines
 * Note: you can manage Vendors in the 'Purchase' tab of the Product form
 
+Known issues / Roadmap
+======================
+
+Fix compatibility with purchase_product_matrix
+
 Changelog
 =========
 
