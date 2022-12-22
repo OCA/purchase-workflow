@@ -23,10 +23,11 @@ class PurchaseOrder(models.Model):
 
     @api.onchange("partner_id")
     def onchange_partner_id(self):
-        super().onchange_partner_id()
+        res = super().onchange_partner_id()
         self.general_discount = (
             self.partner_id.commercial_partner_id.purchase_general_discount
         )
+        return res
 
     def _get_general_discount_field(self):
         """We can set in settings another discount field to be applied
