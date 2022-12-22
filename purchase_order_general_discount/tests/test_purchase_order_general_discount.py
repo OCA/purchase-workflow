@@ -1,12 +1,12 @@
 # Copyright 2019 Tecnativa - David Vidal
+# Copyright 2022 Tecnativa - Pilar Vargas
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from lxml import etree
 
-from odoo import fields
-from odoo.tests import SavepointCase
+from odoo.tests import TransactionCase, common
 
 
-class TestPurchaseOrderLineInput(SavepointCase):
+class TestPurchaseOrderLineInput(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -16,25 +16,13 @@ class TestPurchaseOrderLineInput(SavepointCase):
         cls.product = cls.env["product.product"].create(
             {"name": "test_product", "type": "service"}
         )
-        cls.order = cls.env["purchase.order"].create(
-            {
-                "partner_id": cls.partner.id,
-                "order_line": [
-                    (
-                        0,
-                        0,
-                        {
-                            "date_planned": fields.Datetime.now(),
-                            "name": cls.product.name,
-                            "product_id": cls.product.id,
-                            "product_qty": 1,
-                            "product_uom": cls.product.uom_id.id,
-                            "price_unit": 1000.00,
-                        },
-                    )
-                ],
-            }
-        )
+        order_form = common.Form(cls.env["purchase.order"])
+        order_form.partner_id = cls.partner
+        with order_form.order_line.new() as line_form:
+            line_form.product_id = cls.product
+            line_form.product_uom = cls.product.uom_id
+            line_form.price_unit = 1000.00
+        cls.order = order_form.save()
         cls.View = cls.env["ir.ui.view"]
 
     def test_01_default_partner_discount(self):
