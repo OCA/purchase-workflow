@@ -4,6 +4,7 @@
     * Pedro M. Baeza
     * Rafael Blasco
     * Carlos Roca
+    * Pilar Vargas
 
 * `Aures TIC <https://www.aurestic.es>`_:
 
