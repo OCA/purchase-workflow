@@ -3,7 +3,7 @@
 {
     "name": "Purchase Order General Discount",
     "summary": "General discount per purchase order",
-    "version": "14.0.1.0.0",
+    "version": "15.0.1.0.0",
     "category": "Purchases",
     "website": "https://github.com/OCA/purchase-workflow",
     "author": "Tecnativa, Odoo Community Association (OCA)",
