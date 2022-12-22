@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="purchase_order_recommendation_view_form" model="ir.ui.view">
+        <field name="model">purchase.order.recommendation</field>
+        <field
+            name="inherit_id"
+            ref="purchase_order_product_recommendation.purchase_order_recommendation_view_form"
+        />
+        <field name="arch" type="xml">
+            <field name="warehouse_ids" position="before">
+                <field
+                    name="product_brand_ids"
+                    widget="many2many_tags"
+                    options="{'no_open': True, 'no_create': True}"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
