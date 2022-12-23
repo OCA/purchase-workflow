@@ -95,19 +95,15 @@ class PurchaseOrder(models.Model):
             wa = self.env["work.acceptance"].browse(ctx["wa_id"])
             invoice = self.env["account.move"].browse(res["res_id"])
             # invoice.ref, adding "/ WA001"
-            refs = []
-            if invoice.ref:
-                refs.append(invoice.ref)
-            if wa.name:
-                refs.append(wa.name)
-            invoice.ref = " / ".join(refs)
+            invoice.ref = (
+                "{} / {}".format(invoice.ref, wa.name) if invoice.ref else wa.name
+            )
             # invoice.payment_reference, adding "/ <WA's invoice_ref>"
-            payment_refs = []
-            if invoice.payment_reference:
-                payment_refs.append(invoice.payment_reference)
-            if wa.invoice_ref:
-                payment_refs.append(wa.invoice_ref)
-            invoice.payment_reference = " / ".join(payment_refs)
+            invoice.payment_reference = (
+                "{} / {}".format(invoice.payment_reference, wa.invoice_ref)
+                if invoice.payment_reference
+                else wa.invoice_ref
+            )
         return res
 
     def _compute_wa_accepted(self):
@@ -173,14 +169,14 @@ class PurchaseOrderLine(models.Model):
     def _compute_qty_accepted(self):
         for line in self:
             # compute qty_accepted
-            qty = 0.0
+            qty_accepted = 0.0
             for wa_line in line.wa_line_ids.filtered(
                 lambda l: l.wa_id.state == "accept"
             ):
-                qty += wa_line.product_uom._compute_quantity(
+                qty_accepted += wa_line.product_uom._compute_quantity(
                     wa_line.product_qty, line.product_uom, round=False
                 )
-            line.qty_accepted = qty
+            line.qty_accepted = qty_accepted
 
             # compute qty_to_accept
-            line.qty_to_accept = line.product_uom_qty - line.qty_accepted
+            line.qty_to_accept = line.product_uom_qty - qty_accepted
