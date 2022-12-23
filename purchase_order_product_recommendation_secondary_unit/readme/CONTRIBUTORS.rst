@@ -2,3 +2,4 @@
 
   * David Vidal
   * Carlos Roca
+  * Pilar Vargas
