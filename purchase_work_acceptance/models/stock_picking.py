@@ -25,13 +25,12 @@ class Picking(models.Model):
         for rec in self:
             if rec.picking_type_id.bypass_wa:
                 rec.require_wa = False
-                continue
-            if rec.picking_type_code == "incoming":
+            elif rec.picking_type_code == "incoming":
                 rec.require_wa = self.env.user.has_group(
                     "purchase_work_acceptance.group_enforce_wa_on_in"
                 )
-                continue
-            rec.require_wa = False
+            else:
+                rec.require_wa = False
 
     @api.depends("require_wa")
     def _compute_wa_ids(self):
@@ -62,22 +61,18 @@ class Picking(models.Model):
                         line.product_qty, line.product_id.uom_id
                     )
                     if qty > 0.0 and line.product_id.type in ["product", "consu"]:
-                        if line.product_id.id in wa_line.keys():
-                            qty_old = wa_line[line.product_id.id]
-                            wa_line[line.product_id.id] = qty_old + qty
-                        else:
-                            wa_line[line.product_id.id] = qty
+                        wa_line[line.product_id.id] = (
+                            wa_line.get(line.product_id.id, 0) + qty
+                        )
                 move_line = {}
                 for move in picking.move_ids_without_package:
                     qty = move.product_uom._compute_quantity(
                         move.quantity_done, move.product_id.uom_id
                     )
                     if qty > 0.0:
-                        if move.product_id.id in move_line.keys():
-                            qty_old = move_line[move.product_id.id]
-                            move_line[move.product_id.id] = qty_old + qty
-                        else:
-                            move_line[move.product_id.id] = qty
+                        move_line[move.product_id.id] = (
+                            move_line.get(move.product_id.id, 0) + qty
+                        )
                 if wa_line != move_line:
                     raise ValidationError(
                         _(
@@ -95,13 +90,12 @@ class Picking(models.Model):
                 qty = line.product_uom._compute_quantity(
                     line.product_qty, line.product_id.uom_id
                 )
-                if line.product_id.id in wa_line.keys():
-                    qty_old = wa_line[line.product_id.id]
-                    wa_line[line.product_id.id] = qty_old + qty
+                if line.product_id.id in wa_line:
+                    wa_line[line.product_id.id] += qty
                 else:
                     wa_line[line.product_id.id] = qty
             for move_line in self.move_line_ids_without_package:
-                if move_line.product_id.id in wa_line.keys():
+                if move_line.product_id.id in wa_line:
                     qty = wa_line[move_line.product_id.id]
                     if move_line.product_uom_qty < qty:
                         move_line._origin.qty_done = move_line.product_uom_qty
