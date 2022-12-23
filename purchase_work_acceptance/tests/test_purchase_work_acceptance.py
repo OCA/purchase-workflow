@@ -272,9 +272,14 @@ class TestPurchaseWorkAcceptance(TransactionCase):
         res = purchase_order.with_context(create_bill=True).action_create_invoice()
         self.assertEqual(res.get("res_model"), "select.work.acceptance.wizard")
         wizard = self.env[res.get("res_model")].create({"wa_id": work_acceptance.id})
-        res = wizard.with_context(
-            active_id=purchase_order.id
-        ).button_create_vendor_bill()
+        wizard = wizard.with_context(active_id=purchase_order.id)
+        self.assertEqual(wizard.wa_ids, work_acceptance)
+        res = wizard.button_create_vendor_bill()
+        invoice = self.env["account.move"].browse(res["res_id"])
+        self.assertEqual(sum(invoice.invoice_line_ids.mapped("quantity")), qty)
+        # Test create wa is used
+        with self.assertRaises(ValidationError):
+            wizard.button_create_vendor_bill()
         invoice = self.env["account.move"].browse(res["res_id"])
         self.assertEqual(sum(invoice.invoice_line_ids.mapped("quantity")), qty)
 
