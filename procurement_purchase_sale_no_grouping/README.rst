@@ -23,7 +23,7 @@ Procurement Purchase Service No Grouping
     :target: https://runbot.odoo-community.org/runbot/142/15.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 This module adds compatibility between sale_purchase and
 procurement_purchase_no_grouping modules when 'No order grouping' option
