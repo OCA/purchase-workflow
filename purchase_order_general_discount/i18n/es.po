@@ -31,35 +31,30 @@ msgid "Companies"
 msgstr "Compañías"
 
 #. module: purchase_order_general_discount
-#: model:ir.model,name:purchase_order_general_discount.model_res_config_settings
-msgid "Config Settings"
-msgstr ""
-
-#. module: purchase_order_general_discount
 #: model:ir.model,name:purchase_order_general_discount.model_res_partner
 msgid "Contact"
 msgstr "Contacto"
 
 #. module: purchase_order_general_discount
-#: code:addons/purchase_order_general_discount/models/res_company.py:22
+#: code:addons/purchase_order_general_discount/models/res_company.py:0
 #, python-format
 msgid "Discount"
 msgstr "Descuento"
 
 #. module: purchase_order_general_discount
-#: code:addons/purchase_order_general_discount/models/res_company.py:26
+#: code:addons/purchase_order_general_discount/models/res_company.py:0
 #, python-format
 msgid "Discount 2"
 msgstr "Descuento 2"
 
 #. module: purchase_order_general_discount
-#: code:addons/purchase_order_general_discount/models/res_company.py:30
+#: code:addons/purchase_order_general_discount/models/res_company.py:0
 #, python-format
 msgid "Discount 3"
 msgstr "Descuento 3"
 
 #. module: purchase_order_general_discount
-#: sql_constraint:purchase.order:0
+#: model:ir.model.constraint,message:purchase_order_general_discount.constraint_purchase_order_general_discount_limit
 msgid "Discount must be lower than 100%."
 msgstr "El descuento debe ser menor del 100%."
 
@@ -67,6 +62,11 @@ msgstr "El descuento debe ser menor del 100%."
 #: model:ir.model.fields,field_description:purchase_order_general_discount.field_purchase_order__general_discount
 msgid "Gen. Disc. (%)"
 msgstr "Desc. Gen. (%)"
+
+#. module: purchase_order_general_discount
+#: model:ir.model,name:purchase_order_general_discount.model_res_config_settings
+msgid "Procurement purchase grouping settings"
+msgstr ""
 
 #. module: purchase_order_general_discount
 #: model:ir.model.fields,field_description:purchase_order_general_discount.field_res_company__purchase_general_discount_field
