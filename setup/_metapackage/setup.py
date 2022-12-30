@@ -83,6 +83,7 @@ setuptools.setup(
         'odoo14-addon-purchase_tag',
         'odoo14-addon-purchase_tier_validation',
         'odoo14-addon-purchase_triple_discount',
+        'odoo14-addon-purchase_vendor_bill_breakdown',
         'odoo14-addon-purchase_work_acceptance',
         'odoo14-addon-purchase_work_acceptance_evaluation',
         'odoo14-addon-purchase_work_acceptance_invoice_plan',
