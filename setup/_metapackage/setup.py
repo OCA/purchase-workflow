@@ -10,6 +10,7 @@ setuptools.setup(
     install_requires=[
         'odoo-addon-purchase_commercial_partner>=16.0dev,<16.1dev',
         'odoo-addon-purchase_discount>=16.0dev,<16.1dev',
+        'odoo-addon-purchase_request>=16.0dev,<16.1dev',
     ],
     classifiers=[
         'Programming Language :: Python',
