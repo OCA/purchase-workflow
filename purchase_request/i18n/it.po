@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-17 03:38+0000\n"
-"PO-Revision-Date: 2022-12-28 22:48+0000\n"
-"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"PO-Revision-Date: 2022-12-30 11:57+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/"
 "OCA-purchase-workflow-10-0/language/it/)\n"
 "Language: it\n"
@@ -1080,7 +1080,7 @@ msgstr "Imposta a Bozza"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__activity_user_id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__activity_user_id
 msgid "Responsible User"
-msgstr "Utente Responsabile"
+msgstr "Utente responsabile"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_search_sub
@@ -1337,7 +1337,7 @@ msgstr "Messaggi non letti"
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__website_message_ids
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__website_message_ids
 msgid "Website communication history"
-msgstr "Cronologia delle comunicazioni del sito Web"
+msgstr "Cronologia comunicazioni sito web"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__wiz_id
