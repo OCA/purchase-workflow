@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="1">
+    <!-- Partners Demo -->
+    <record id="res_partner_test_demo_oleg" model="res.partner">
+        <field name="name">Oleg</field>
+    </record>
+    <record id="res_partner_test_demo_petya" model="res.partner">
+        <field name="name">Petya</field>
+        <field name="use_product_components">True</field>
+    </record>
+    <record id="res_partner_supplier_test_demo_mts" model="res.partner">
+        <field name="name">MTS</field>
+    </record>
+    <record id="res_partner_supplier_test_demo_bbc" model="res.partner">
+        <field name="name">BBC</field>
+        <field name="use_product_components">True</field>
+    </record>
+    <!-- Partners Demo END -->
+
+    <!-- Products Demo -->
+    <record id="product_product_test_demo_tools" model="product.product">
+        <field name="name">Tools</field>
+        <field name="standard_price">50.0</field>
+        <field name="type">consu</field>
+        <field name="uom_id" ref="uom.product_uom_unit" />
+    </record>
+    <record id="product_product_test_demo_vegetables" model="product.product">
+        <field name="name">Vegetables</field>
+        <field name="standard_price">100.0</field>
+        <field name="type">consu</field>
+        <field name="uom_id" ref="uom.product_uom_unit" />
+    </record>
+    <record id="product_product_test_demo_carrot" model="product.product">
+        <field name="name">Carrot</field>
+        <field name="type">consu</field>
+        <field name="uom_id" ref="uom.product_uom_unit" />
+    </record>
+    <record id="product_product_test_demo_potato" model="product.product">
+        <field name="name">Potato</field>
+        <field name="type">consu</field>
+        <field name="uom_id" ref="uom.product_uom_unit" />
+    </record>
+    <record id="product_product_test_demo_tomato" model="product.product">
+        <field name="name">Tomato</field>
+        <field name="type">consu</field>
+        <field name="uom_id" ref="uom.product_uom_unit" />
+    </record>
+    <!-- Products Demo END -->
+</odoo>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field name="name">purchase.order.form.inherit</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <group name="invoice_info" position="inside">
+                <label
+                    for="use_product_components"
+                    groups="purchase.group_purchase_user"
+                />
+                <div name="purchase_order_use_product_components">
+                    <field name="use_product_components" />
+                </div>
+            </group>
+            <xpath expr="//field[@name='order_line']/tree" position="inside">
+                <field name="use_product_components" invisible="1" />
+                <field name="show_breakdown" invisible="1" />
+                <button
+                    name="action_open_component_view"
+                    type="object"
+                    icon="fa-list"
+                    attrs="{'invisible': [('show_breakdown', '=', False)]}"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="purchase_order_line_components_form_view" model="ir.ui.view">
+        <field name="name">purchase.order.line.components.form.view</field>
+        <field name="model">purchase.order.line</field>
+        <field name="priority">200</field>
+        <field name="arch" type="xml">
+            <form string="Product Components">
+                <sheet>
+                    <field name="last_qty_invoiced" invisible="1" />
+                    <field name="invoice_lines" invisible="1" />
+                    <field name="component_ids" widget="one2many" readonly="1">
+                        <tree string="Components" editable="bottom">
+                            <control>
+                                <create
+                                    name="add_product_control"
+                                    string="Add a Component"
+                                />
+                            </control>
+                            <field name="line_id" invisible="1" />
+                            <field name="component_uom_category_id" invisible="1" />
+                            <field
+                                name="component_id"
+                                attrs="{'readonly': [('parent.last_qty_invoiced', '>', 0)]}"
+                            />
+                            <field
+                                name="product_uom_qty"
+                                attrs="{'readonly': [('parent.last_qty_invoiced', '>', 0)]}"
+                                optional="show"
+                            />
+                            <field name="total" optional="show" />
+                            <field name="total_qty" optional="show" />
+                            <field name="qty_invoiced" optional="show" />
+                            <field
+                                name="product_uom_id"
+                                attrs="{'readonly': [('parent.last_qty_invoiced', '>', 0)]}"
+                                optional="show"
+                            />
+                            <field
+                                name="price_unit"
+                                attrs="{'readonly': [('parent.last_qty_invoiced', '>', 0)]}"
+                                optional="show"
+                            />
+                            <field name="price_subtotal" optional="show" />
+                        </tree>
+                    </field>
+                    <footer>
+                        <button string="Save" class="btn-primary" special="save" />
+                        <button
+                            string="Cancel"
+                            class="btn-secondary"
+                            special="cancel"
+                        />
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
