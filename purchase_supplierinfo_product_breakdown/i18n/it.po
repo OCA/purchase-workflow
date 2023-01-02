@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-11-17 10:44+0000\n"
+"PO-Revision-Date: 2023-01-02 12:46+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -60,8 +60,9 @@ msgid ""
 "Conversion between Units of Measure can only occur if they belong to the "
 "same category. The conversion will be made based on the ratios."
 msgstr ""
-"La conversione tra Unità di misura può avvenire solo se appartengono alla "
-"stessa categoria. La conversione verrà fatta basata sul rapporto."
+"Le conversioni tra unità di misura possono avvenire solo se appartengono "
+"alla stessa categoria. La conversione verrà effettuata in base alle "
+"proporzioni."
 
 #. module: purchase_supplierinfo_product_breakdown
 #: model:ir.model.fields,field_description:purchase_supplierinfo_product_breakdown.field_product_supplierinfo_component__create_uid
@@ -161,7 +162,7 @@ msgstr "Listino fornitore"
 #. module: purchase_supplierinfo_product_breakdown
 #: model:ir.model,name:purchase_supplierinfo_product_breakdown.model_product_supplierinfo
 msgid "Supplier Pricelist"
-msgstr "Listino Fornitore"
+msgstr "Listino prezzi fornitore"
 
 #. module: purchase_supplierinfo_product_breakdown
 #: model:ir.model,name:purchase_supplierinfo_product_breakdown.model_product_supplierinfo_component
