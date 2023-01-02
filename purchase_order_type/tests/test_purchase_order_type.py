@@ -21,9 +21,12 @@ class TestPurchaseOrderType(common.SavepointCase):
         cls.product1 = cls.env.ref("product.product_product_7")
         cls.product2 = cls.env.ref("product.product_product_9")
         cls.product3 = cls.env.ref("product.product_product_11")
+        # Picking Type
+        cls.picking_type1 = cls.env.ref("stock.picking_type_in")
         # Purchase Type
         cls.type1 = cls.env.ref("purchase_order_type.po_type_regular")
         cls.type2 = cls.env.ref("purchase_order_type.po_type_planned")
+        cls.type2.write({"picking_type_id": cls.picking_type1.id})
         # Payment Term
         cls.payterm = cls.env.ref("account.account_payment_term_immediate")
         # Incoterm
@@ -42,6 +45,7 @@ class TestPurchaseOrderType(common.SavepointCase):
         self.assertFalse(purchase.payment_term_id)
         purchase.onchange_partner_id()
         self.assertEqual(purchase.order_type, self.type2)
+        self.assertEqual(purchase.picking_type_id, self.picking_type1)
         purchase.onchange_order_type()
         self.assertEqual(purchase.incoterm_id, self.incoterm)
         self.assertEqual(purchase.payment_term_id, self.payterm)
@@ -74,6 +78,7 @@ class TestPurchaseOrderType(common.SavepointCase):
         order = self.po_obj.new({"partner_id": self.partner1.id})
         order.onchange_partner_id()
         self.assertEqual(order.order_type, self.type2)
+        self.assertEqual(order.picking_type_id, self.picking_type1)
         order._onchange_company()
         self.assertEqual(order.order_type, self.type2)
         order.write({"order_type": False})
