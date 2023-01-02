@@ -1,37 +1,19 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * purchase_order_type
+# 	* purchase_order_type
 #
-# Translators:
-# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
-# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
-# Antonio Trueba, 2016
-# Armando Vulcano Junior <vulcano@uol.com.br>, 2015
-# Carles Antoli <carlesantoli@hotmail.com>, 2015
-# Carles Antoli <carlesantoli@hotmail.com>, 2015
-# danimaribeiro <danimaribeiro@gmail.com>, 2016
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2012
-# Kostas Goutoudis <goutoudis@gmail.com>, 2015
-# Kostas Goutoudis <goutoudis@gmail.com>, 2015
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
-# Paolo Valier, 2016
-# Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
-# Rudolf Schnapka <rs@techno-flex.de>, 2016
-# SaFi J. <safi2266@gmail.com>, 2015
 msgid ""
 msgstr ""
-"Project-Id-Version: purchase-workflow (8.0)\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-16 12:06+0000\n"
-"PO-Revision-Date: 2016-11-25 14:55+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/OCA-purchase-"
-"workflow-8-0/language/es/)\n"
-"Language: es\n"
+"POT-Creation-Date: 2023-01-02 07:41+0000\n"
+"PO-Revision-Date: 2023-01-02 07:41+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__active
@@ -46,18 +28,18 @@ msgstr ""
 #. module: purchase_order_type
 #: model_terms:ir.actions.act_window,help:purchase_order_type.action_purchase_order_type_view
 msgid "Click to set a new type for purchase order."
-msgstr ""
+msgstr "Haz click para fijar un nuevo tipo para los pedidos de compra"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__company_id
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
 msgid "Company"
-msgstr ""
+msgstr "Compañía"
 
 #. module: purchase_order_type
 #: model:ir.model,name:purchase_order_type.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contacto"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__create_uid
@@ -72,7 +54,7 @@ msgstr "Creado en"
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__description
 msgid "Description"
-msgstr ""
+msgstr "Descripción"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order__display_name
@@ -83,27 +65,28 @@ msgstr "Nombre mostrado"
 
 #. module: purchase_order_type
 #: code:addons/purchase_order_type/models/purchase_order.py:0
+#: code:addons/purchase_order_type/models/purchase_order.py:0
 #, python-format
 msgid "Document's company and type's company mismatch"
-msgstr ""
+msgstr "Documentos de la compañía y tipos de compañía no coinciden"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__sequence_id
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
 msgid "Entry Sequence"
-msgstr ""
+msgstr "Secuencia de entrada"
 
 #. module: purchase_order_type
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
 msgid "Group By"
-msgstr ""
+msgstr "Agrupar por"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order__id
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__id
 #: model:ir.model.fields,field_description:purchase_order_type.field_res_partner__id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__incoterm_id
@@ -136,36 +119,41 @@ msgstr "Nombre"
 #. module: purchase_order_type
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
 msgid "Payment Term"
-msgstr ""
+msgstr "Plazo de pago"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__payment_term_id
 msgid "Payment Terms"
-msgstr ""
+msgstr "Plazos de pago"
 
 #. module: purchase_order_type
 #: model:ir.model,name:purchase_order_type.model_purchase_order
 msgid "Purchase Order"
-msgstr "Orden de Compra"
+msgstr "Pedido de compra"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_res_partner__purchase_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_res_users__purchase_type
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.res_partner_purchase_type_form_view
 msgid "Purchase Order Type"
-msgstr ""
+msgstr "Tipo de pedido de compra"
 
 #. module: purchase_order_type
 #: model:ir.actions.act_window,name:purchase_order_type.action_purchase_order_type_view
 #: model:ir.ui.menu,name:purchase_order_type.menu_purchase_order_type
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
 msgid "Purchase Order Types"
-msgstr ""
+msgstr "Tipos de pedido de compra"
+
+#. module: purchase_order_type
+#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__picking_type_id
+msgid "Send to"
+msgstr "Entregar a"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Secuencia"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order__order_type
@@ -176,12 +164,5 @@ msgstr "Tipo"
 
 #. module: purchase_order_type
 #: model:ir.model,name:purchase_order_type.model_purchase_order_type
-#, fuzzy
 msgid "Type of purchase order"
 msgstr "Orden de Compra"
-
-#~ msgid "Create Invoice"
-#~ msgstr "Crear factura"
-
-#~ msgid "Partner"
-#~ msgstr "Empresa"

@@ -27,7 +27,12 @@ class PurchaseOrder(models.Model):
             or self.partner_id.commercial_partner_id.purchase_type
         )
         if purchase_type:
-            self.order_type = purchase_type
+            self.write(
+                {
+                    "order_type": purchase_type.id,
+                    "picking_type_id": purchase_type.picking_type_id.id,
+                }
+            )
 
     @api.onchange("order_type")
     def onchange_order_type(self):
@@ -36,6 +41,8 @@ class PurchaseOrder(models.Model):
                 order.payment_term_id = order.order_type.payment_term_id.id
             if order.order_type.incoterm_id:
                 order.incoterm_id = order.order_type.incoterm_id.id
+            if order.order_type.picking_type_id:
+                order.picking_type_id = order.order_type.picking_type_id.id
 
     @api.model
     def create(self, vals):
@@ -65,3 +72,5 @@ class PurchaseOrder(models.Model):
     @api.onchange("company_id")
     def _onchange_company(self):
         self.order_type = self._default_order_type()
+        if self.order_type:
+            self.picking_type_id = self.order_type.picking_type_id.id
