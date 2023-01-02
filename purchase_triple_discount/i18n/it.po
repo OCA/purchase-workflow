@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-24 07:53+0000\n"
-"PO-Revision-Date: 2022-11-18 16:44+0000\n"
+"PO-Revision-Date: 2023-01-02 12:46+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -115,7 +115,7 @@ msgstr "Report Ordine d'Acquisto"
 #. module: purchase_triple_discount
 #: model:ir.model,name:purchase_triple_discount.model_product_supplierinfo
 msgid "Supplier Pricelist"
-msgstr "Listino Fornitore"
+msgstr "Listino prezzi fornitore"
 
 #. module: purchase_triple_discount
 #: model:ir.model.fields,help:purchase_triple_discount.field_res_partner__default_supplierinfo_discount2
