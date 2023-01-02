@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: odoomrp-wip (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-23 16:33+0000\n"
-"PO-Revision-Date: 2019-08-30 00:23+0000\n"
-"Last-Translator: Marco Calcagni <mcalcagni@dinamicheaziendali.it>\n"
+"PO-Revision-Date: 2023-01-02 12:47+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/odoomrp-wip-8-0/"
 "language/it/)\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.8\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_expense_affected_lines
@@ -87,7 +87,7 @@ msgstr "Metodo di calcolo"
 #: model:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
 #: selection:purchase.cost.distribution,state:0
 msgid "Cancel"
-msgstr "Cancel"
+msgstr "Annulla"
 
 #. module: purchase_landed_cost
 #: model:ir.actions.act_window,help:purchase_landed_cost.action_purchase_cost_distribution
@@ -106,7 +106,7 @@ msgstr "Click per creare un nuovo tipo di costo."
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_expense_company_id
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_expense_type_company_id
 msgid "Company"
-msgstr "Company"
+msgstr "Azienda"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,help:purchase_landed_cost.field_purchase_cost_distribution_line_expense_picking_date_done
@@ -574,7 +574,7 @@ msgstr "Riga costo d'acquisto"
 #. module: purchase_landed_cost
 #: model:ir.model,name:purchase_landed_cost.model_purchase_order
 msgid "Purchase Order"
-msgstr "Ordine d'acquisto"
+msgstr "Ordine di acquisto"
 
 #. module: purchase_landed_cost
 #: model:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
@@ -638,7 +638,7 @@ msgstr "Ordine d'acquisto"
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_purchase_line_id
 msgid "Purchase order line"
-msgstr "Riga ordine acquisto"
+msgstr "Riga ordine di acquisto"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,help:purchase_landed_cost.field_purchase_cost_distribution_expense_affected_lines
