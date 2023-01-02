@@ -6,72 +6,74 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2023-01-02 12:46+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: purchase_vendor_bill_breakdown
 #: model_terms:ir.ui.view,arch_db:purchase_vendor_bill_breakdown.purchase_order_line_components_form_view
 msgid "Add a Component"
-msgstr ""
+msgstr "Aggiungi un componente"
 
 #. module: purchase_vendor_bill_breakdown
 #: model:ir.model.fields,field_description:purchase_vendor_bill_breakdown.field_purchase_order_line_component__qty_invoiced
 msgid "Billed"
-msgstr ""
+msgstr "Fatturato"
 
 #. module: purchase_vendor_bill_breakdown
 #: model:ir.model.fields,field_description:purchase_vendor_bill_breakdown.field_purchase_order_line__last_qty_invoiced
 msgid "Billed Qty"
-msgstr ""
+msgstr "Qtà fatturata"
 
 #. module: purchase_vendor_bill_breakdown
 #: model_terms:ir.ui.view,arch_db:purchase_vendor_bill_breakdown.purchase_order_line_components_form_view
 msgid "Cancel"
-msgstr ""
+msgstr "Annulla"
 
 #. module: purchase_vendor_bill_breakdown
 #: model:product.product,name:purchase_vendor_bill_breakdown.product_product_test_demo_carrot
 #: model:product.template,name:purchase_vendor_bill_breakdown.product_product_test_demo_carrot_product_template
 msgid "Carrot"
-msgstr ""
+msgstr "Carota"
 
 #. module: purchase_vendor_bill_breakdown
 #: model:ir.model.fields,field_description:purchase_vendor_bill_breakdown.field_purchase_order_line_component__component_uom_category_id
 msgid "Category"
-msgstr ""
+msgstr "Categoria"
 
 #. module: purchase_vendor_bill_breakdown
 #: model:ir.model.fields,field_description:purchase_vendor_bill_breakdown.field_purchase_order_line__component_ids
 #: model:ir.model.fields,field_description:purchase_vendor_bill_breakdown.field_purchase_order_line_component__component_id
 msgid "Component"
-msgstr ""
+msgstr "Componente"
 
 #. module: purchase_vendor_bill_breakdown
 #: model:ir.model.fields,field_description:purchase_vendor_bill_breakdown.field_account_move_line__component_qty
 msgid "Component Qty"
-msgstr ""
+msgstr "Qtà componente"
 
 #. module: purchase_vendor_bill_breakdown
 #: model_terms:ir.ui.view,arch_db:purchase_vendor_bill_breakdown.purchase_order_line_components_form_view
 msgid "Components"
-msgstr ""
+msgstr "Componenti"
 
 #. module: purchase_vendor_bill_breakdown
 #: code:addons/purchase_vendor_bill_breakdown/models/purchase_order_line.py:0
 #, python-format
 msgid "Components must be unique!"
-msgstr ""
+msgstr "I componenti devono essere univoci!"
 
 #. module: purchase_vendor_bill_breakdown
 #: code:addons/purchase_vendor_bill_breakdown/models/purchase_order_line.py:0
 #, python-format
 msgid "Components must not contain parent products!"
-msgstr ""
+msgstr "I componenti non possono contenere prodotti padre!"
 
 #. module: purchase_vendor_bill_breakdown
 #: model:ir.model.fields,help:purchase_vendor_bill_breakdown.field_purchase_order_line_component__component_uom_category_id
@@ -79,26 +81,29 @@ msgid ""
 "Conversion between Units of Measure can only occur if they belong to the "
 "same category. The conversion will be made based on the ratios."
 msgstr ""
+"Le conversioni tra unità di misura possono avvenire solo se appartengono "
+"alla stessa categoria. La conversione verrà effettuata in base alle "
+"proporzioni."
 
 #. module: purchase_vendor_bill_breakdown
 #: model:ir.model.fields,field_description:purchase_vendor_bill_breakdown.field_purchase_order_line_component__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creato da"
 
 #. module: purchase_vendor_bill_breakdown
 #: model:ir.model.fields,field_description:purchase_vendor_bill_breakdown.field_purchase_order_line_component__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creato il"
 
 #. module: purchase_vendor_bill_breakdown
 #: model:ir.model.fields,field_description:purchase_vendor_bill_breakdown.field_purchase_order_line_component__currency_id
 msgid "Currency"
-msgstr ""
+msgstr "Valuta"
 
 #. module: purchase_vendor_bill_breakdown
 #: model:ir.model.fields,field_description:purchase_vendor_bill_breakdown.field_product_supplierinfo_component__current_price
 msgid "Current price"
-msgstr ""
+msgstr "Prezzo attuale"
 
 #. module: purchase_vendor_bill_breakdown
 #: model:ir.model.fields,field_description:purchase_vendor_bill_breakdown.field_account_move__display_name
@@ -109,7 +114,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_vendor_bill_breakdown.field_purchase_order_line__display_name
 #: model:ir.model.fields,field_description:purchase_vendor_bill_breakdown.field_purchase_order_line_component__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome da visualizzare"
 
 #. module: purchase_vendor_bill_breakdown
 #: model:ir.model.fields,field_description:purchase_vendor_bill_breakdown.field_account_move__id
@@ -120,17 +125,17 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_vendor_bill_breakdown.field_purchase_order_line__id
 #: model:ir.model.fields,field_description:purchase_vendor_bill_breakdown.field_purchase_order_line_component__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: purchase_vendor_bill_breakdown
 #: model:ir.model,name:purchase_vendor_bill_breakdown.model_account_move
 msgid "Journal Entry"
-msgstr ""
+msgstr "Registrazione contabile"
 
 #. module: purchase_vendor_bill_breakdown
 #: model:ir.model,name:purchase_vendor_bill_breakdown.model_account_move_line
 msgid "Journal Item"
-msgstr ""
+msgstr "Movimento contabile"
 
 #. module: purchase_vendor_bill_breakdown
 #: model:ir.model.fields,field_description:purchase_vendor_bill_breakdown.field_account_move____last_update
@@ -141,135 +146,135 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_vendor_bill_breakdown.field_purchase_order_line____last_update
 #: model:ir.model.fields,field_description:purchase_vendor_bill_breakdown.field_purchase_order_line_component____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: purchase_vendor_bill_breakdown
 #: model:ir.model.fields,field_description:purchase_vendor_bill_breakdown.field_purchase_order_line_component__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultimo aggiornamento di"
 
 #. module: purchase_vendor_bill_breakdown
 #: model:ir.model.fields,field_description:purchase_vendor_bill_breakdown.field_purchase_order_line_component__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultimo aggiornamento il"
 
 #. module: purchase_vendor_bill_breakdown
 #: model:product.product,name:purchase_vendor_bill_breakdown.product_product_test_demo_potato
 #: model:product.template,name:purchase_vendor_bill_breakdown.product_product_test_demo_potato_product_template
 msgid "Potato"
-msgstr ""
+msgstr "Patata"
 
 #. module: purchase_vendor_bill_breakdown
 #: model:ir.model.fields,field_description:purchase_vendor_bill_breakdown.field_product_supplierinfo__price
 #: model:ir.model.fields,field_description:purchase_vendor_bill_breakdown.field_product_supplierinfo__price_manual
 msgid "Price"
-msgstr ""
+msgstr "Prezzo"
 
 #. module: purchase_vendor_bill_breakdown
 #: model:ir.model.fields,field_description:purchase_vendor_bill_breakdown.field_product_supplierinfo_component__price_total
 msgid "Price Total"
-msgstr ""
+msgstr "Totale prezzo"
 
 #. module: purchase_vendor_bill_breakdown
 #: code:addons/purchase_vendor_bill_breakdown/models/purchase_order_line.py:0
 #: model_terms:ir.ui.view,arch_db:purchase_vendor_bill_breakdown.purchase_order_line_components_form_view
 #, python-format
 msgid "Product Components"
-msgstr ""
+msgstr "Componenti prodotto"
 
 #. module: purchase_vendor_bill_breakdown
 #: model:ir.model,name:purchase_vendor_bill_breakdown.model_purchase_order
 msgid "Purchase Order"
-msgstr ""
+msgstr "Ordine di acquisto"
 
 #. module: purchase_vendor_bill_breakdown
 #: model:ir.model,name:purchase_vendor_bill_breakdown.model_purchase_order_line
 #: model:ir.model.fields,field_description:purchase_vendor_bill_breakdown.field_purchase_order_line_component__line_id
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Riga ordine di acquisto"
 
 #. module: purchase_vendor_bill_breakdown
 #: model:ir.model,name:purchase_vendor_bill_breakdown.model_purchase_order_line_component
 msgid "Purchase Order Line Component"
-msgstr ""
+msgstr "Componente riga ordine di acquisto"
 
 #. module: purchase_vendor_bill_breakdown
 #: model:ir.model.fields,field_description:purchase_vendor_bill_breakdown.field_purchase_order_line_component__total
 msgid "Quantity"
-msgstr ""
+msgstr "Quantità"
 
 #. module: purchase_vendor_bill_breakdown
 #: model:ir.model.fields,field_description:purchase_vendor_bill_breakdown.field_purchase_order_line_component__product_uom_qty
 msgid "Quantity per Unit"
-msgstr ""
+msgstr "Quantità per unità"
 
 #. module: purchase_vendor_bill_breakdown
 #: model:ir.model.fields,field_description:purchase_vendor_bill_breakdown.field_purchase_order_line_component__total_qty
 msgid "Received"
-msgstr ""
+msgstr "Ricevuto"
 
 #. module: purchase_vendor_bill_breakdown
 #: model_terms:ir.ui.view,arch_db:purchase_vendor_bill_breakdown.purchase_order_line_components_form_view
 msgid "Save"
-msgstr ""
+msgstr "Salva"
 
 #. module: purchase_vendor_bill_breakdown
 #: model:ir.model.fields,field_description:purchase_vendor_bill_breakdown.field_purchase_order_line__show_breakdown
 msgid "Show Breakdown"
-msgstr ""
+msgstr "Mostra dettagli"
 
 #. module: purchase_vendor_bill_breakdown
 #: model:ir.model.fields,field_description:purchase_vendor_bill_breakdown.field_purchase_order_line_component__price_subtotal
 msgid "Subtotal"
-msgstr ""
+msgstr "Subtotale"
 
 #. module: purchase_vendor_bill_breakdown
 #: model:ir.model.fields,field_description:purchase_vendor_bill_breakdown.field_purchase_order_line__supplier_id
 #: model:ir.model.fields,field_description:purchase_vendor_bill_breakdown.field_purchase_order_line_component__supplier_id
 msgid "Supplier"
-msgstr ""
+msgstr "Fornitore"
 
 #. module: purchase_vendor_bill_breakdown
 #: model:ir.model,name:purchase_vendor_bill_breakdown.model_product_supplierinfo
 msgid "Supplier Pricelist"
-msgstr ""
+msgstr "Listino prezzi fornitore"
 
 #. module: purchase_vendor_bill_breakdown
 #: model:ir.model,name:purchase_vendor_bill_breakdown.model_product_supplierinfo_component
 msgid "Supplierinfo Product Component"
-msgstr ""
+msgstr "Componente listino prezzi fornitore"
 
 #. module: purchase_vendor_bill_breakdown
 #: model:ir.model.fields,help:purchase_vendor_bill_breakdown.field_product_supplierinfo__price
 msgid "The price to purchase a product"
-msgstr ""
+msgstr "Il prezzo di acquisto di un prodotto"
 
 #. module: purchase_vendor_bill_breakdown
 #: model:ir.model.fields,field_description:purchase_vendor_bill_breakdown.field_purchase_order_line_component__qty_to_invoice
 msgid "To Invoice Quantity"
-msgstr ""
+msgstr "Quantità da fatturare"
 
 #. module: purchase_vendor_bill_breakdown
 #: model:product.product,name:purchase_vendor_bill_breakdown.product_product_test_demo_tomato
 #: model:product.template,name:purchase_vendor_bill_breakdown.product_product_test_demo_tomato_product_template
 msgid "Tomato"
-msgstr ""
+msgstr "Pomodoro"
 
 #. module: purchase_vendor_bill_breakdown
 #: model:product.product,name:purchase_vendor_bill_breakdown.product_product_test_demo_tools
 #: model:product.template,name:purchase_vendor_bill_breakdown.product_product_test_demo_tools_product_template
 msgid "Tools"
-msgstr ""
+msgstr "Strumenti"
 
 #. module: purchase_vendor_bill_breakdown
 #: model:ir.model.fields,field_description:purchase_vendor_bill_breakdown.field_purchase_order_line_component__price_unit
 msgid "Unit Price"
-msgstr ""
+msgstr "Prezzo unitario"
 
 #. module: purchase_vendor_bill_breakdown
 #: model:ir.model.fields,field_description:purchase_vendor_bill_breakdown.field_purchase_order_line_component__product_uom_id
 msgid "Unit of Measure"
-msgstr ""
+msgstr "Unità di misura"
 
 #. module: purchase_vendor_bill_breakdown
 #: model:product.product,uom_name:purchase_vendor_bill_breakdown.product_product_test_demo_carrot
@@ -283,29 +288,31 @@ msgstr ""
 #: model:product.template,uom_name:purchase_vendor_bill_breakdown.product_product_test_demo_tools_product_template
 #: model:product.template,uom_name:purchase_vendor_bill_breakdown.product_product_test_demo_vegetables_product_template
 msgid "Units"
-msgstr ""
+msgstr "Unità"
 
 #. module: purchase_vendor_bill_breakdown
 #: model:ir.model.fields,field_description:purchase_vendor_bill_breakdown.field_purchase_order__use_product_components
 #: model:ir.model.fields,field_description:purchase_vendor_bill_breakdown.field_purchase_order_line__use_product_components
 msgid "Use Product Components"
-msgstr ""
+msgstr "Usa Componenti Prodotto"
 
 #. module: purchase_vendor_bill_breakdown
 #: model:product.product,name:purchase_vendor_bill_breakdown.product_product_test_demo_vegetables
 #: model:product.template,name:purchase_vendor_bill_breakdown.product_product_test_demo_vegetables_product_template
 msgid "Vegetables"
-msgstr ""
+msgstr "Verdure"
 
 #. module: purchase_vendor_bill_breakdown
 #: model:ir.model.fields,field_description:purchase_vendor_bill_breakdown.field_purchase_order_line_component__partner_id
 msgid "Vendor"
-msgstr ""
+msgstr "Fornitore"
 
 #. module: purchase_vendor_bill_breakdown
 #: model:ir.model.fields,help:purchase_vendor_bill_breakdown.field_purchase_order_line_component__partner_id
 msgid "You can find a vendor by its Name, TIN, Email or Internal Reference."
 msgstr ""
+"Un fornitore può essere trovato per nome, codice fiscale, e-mail o "
+"riferimento interno."
 
 #. module: purchase_vendor_bill_breakdown
 #: code:addons/purchase_vendor_bill_breakdown/models/purchase_order.py:0
@@ -314,9 +321,12 @@ msgid ""
 "You can not activate Product Components if the Order has an invoice for any "
 "product."
 msgstr ""
+"Non puoi attivare i componenti prodotto se l'ordine ha una fattura per "
+"qualsiasi prodotto."
 
 #. module: purchase_vendor_bill_breakdown
 #: code:addons/purchase_vendor_bill_breakdown/models/purchase_order_line.py:0
 #, python-format
 msgid "You need to activate 'Use Product Component' to use it."
 msgstr ""
+"Devi attivare \"Usa componenti prodotto\" per utilizzare le sue funzioni."
