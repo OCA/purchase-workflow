@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 02:48+0000\n"
-"PO-Revision-Date: 2022-12-02 14:45+0000\n"
+"PO-Revision-Date: 2023-01-02 12:48+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -81,7 +81,7 @@ msgstr "Ordine di acquisto"
 #. module: purchase_allowed_product
 #: model:ir.model,name:purchase_allowed_product.model_product_supplierinfo
 msgid "Supplier Pricelist"
-msgstr "Listino Fornitore"
+msgstr "Listino prezzi fornitore"
 
 #. module: purchase_allowed_product
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_account_bank_statement_line__use_only_supplied_product
