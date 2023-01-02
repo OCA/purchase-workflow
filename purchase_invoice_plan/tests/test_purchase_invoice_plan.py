@@ -70,7 +70,7 @@ class TestPurchaseInvoicePlan(TransactionCase):
         with Form(self.PurchaseInvoicePlan) as p:
             p.num_installment = 5
         purchase_plan = p.save()
-        purchase_plan.with_context(ctx).purchase_create_invoice_plan()
+        purchase_plan.with_context(**ctx).purchase_create_invoice_plan()
         # Change plan, so that the 1st installment is 1000 and 5th is 3000
         self.assertEqual(len(self.test_po_product.invoice_plan_ids), 5)
         self.test_po_product.invoice_plan_ids[0].amount = 1000
@@ -82,7 +82,7 @@ class TestPurchaseInvoicePlan(TransactionCase):
         receive.move_ids_without_package.quantity_done = 10.0
         receive._action_done()
         purchase_create = self.env["purchase.make.planned.invoice"].create({})
-        purchase_create.with_context(ctx).create_invoices_by_plan()
+        purchase_create.with_context(**ctx).create_invoices_by_plan()
         self.assertEqual(
             self.test_po_product.amount_total,
             sum(self.test_po_product.invoice_ids.mapped("amount_total")),
@@ -96,7 +96,7 @@ class TestPurchaseInvoicePlan(TransactionCase):
         with Form(self.PurchaseInvoicePlan) as p:
             p.num_installment = 5
         plan = p.save()
-        plan.with_context(ctx).purchase_create_invoice_plan()
+        plan.with_context(**ctx).purchase_create_invoice_plan()
         # Remove it
         self.test_po_product.remove_invoice_plan()
         self.assertFalse(self.test_po_product.invoice_plan_ids)
@@ -118,7 +118,7 @@ class TestPurchaseInvoicePlan(TransactionCase):
         with Form(self.PurchaseInvoicePlan) as p:
             p.num_installment = 5
         purchase_plan = p.save()
-        purchase_plan.with_context(ctx).purchase_create_invoice_plan()
+        purchase_plan.with_context(**ctx).purchase_create_invoice_plan()
         self.test_po_product.button_confirm()
         self.assertEqual(self.test_po_product.state, "purchase")
         # Receive product 1 unit
@@ -128,7 +128,7 @@ class TestPurchaseInvoicePlan(TransactionCase):
         # ValidationError Create all invoice plan - Receive < Invoice require
         purchase_create = self.env["purchase.make.planned.invoice"].create({})
         with self.assertRaises(ValidationError) as e:
-            purchase_create.with_context(ctx).create_invoices_by_plan()
+            purchase_create.with_context(**ctx).create_invoices_by_plan()
         error_message = (
             "Plan quantity: 2.0, exceed invoiceable quantity: 1.0"
             "\nProduct should be delivered before invoice"
@@ -148,7 +148,7 @@ class TestPurchaseInvoicePlan(TransactionCase):
         with Form(self.PurchaseInvoicePlan) as p:
             p.num_installment = 5
         purchase_plan = p.save()
-        purchase_plan.with_context(ctx).purchase_create_invoice_plan()
+        purchase_plan.with_context(**ctx).purchase_create_invoice_plan()
         # Change plan, so that the 1st installment is 1000 and 5th is 3000
         self.assertEqual(len(self.test_po_product.invoice_plan_ids), 5)
         first_install = self.test_po_product.invoice_plan_ids[0]
@@ -162,7 +162,7 @@ class TestPurchaseInvoicePlan(TransactionCase):
         receive._action_done()
         purchase_create = self.env["purchase.make.planned.invoice"].create({})
         # Create only the 1st invoice, amount should be 1000, and percent is 10
-        purchase_create.with_context(ctx).create_invoices_by_plan()
+        purchase_create.with_context(**ctx).create_invoices_by_plan()
         self.assertEqual(first_install.amount, 1000)
         self.assertEqual(first_install.percent, 10)
         # Add new PO line with amount = 1000, check that only percent is changed
