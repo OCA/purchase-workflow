@@ -14,10 +14,7 @@
     "Serpent CS, "
     "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
-    "depends": [
-        "purchase_stock",
-        "stock_picking_line_sequence",
-    ],
+    "depends": ["purchase_stock", "stock_picking_line_sequence",],
     "data": [
         "views/purchase_view.xml",
         "views/report_purchaseorder.xml",
