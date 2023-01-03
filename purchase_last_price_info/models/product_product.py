@@ -23,12 +23,8 @@ class ProductProduct(models.Model):
         compute="_compute_last_purchase_line_id",
         string="Last Purchase Line",
     )
-    last_purchase_price = fields.Float(
-        compute="_compute_last_purchase_line_id_info", string="Last Purchase Price"
-    )
-    last_purchase_date = fields.Datetime(
-        compute="_compute_last_purchase_line_id_info", string="Last Purchase Date"
-    )
+    last_purchase_price = fields.Float(compute="_compute_last_purchase_line_id_info")
+    last_purchase_date = fields.Datetime(compute="_compute_last_purchase_line_id_info")
     last_purchase_supplier_id = fields.Many2one(
         comodel_name="res.partner",
         compute="_compute_last_purchase_line_id_info",
