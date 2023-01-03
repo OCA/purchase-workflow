@@ -50,7 +50,7 @@ class PurchaseReturnRequestCase(StockReturnRequestCase):
             for ml in picking.move_line_ids:
                 ml.write({"lot_id": cls.prod_3_lot1.id, "qty_done": 10.0})
                 ml.copy({"lot_id": cls.prod_3_lot2.id, "qty_done": 40.0})
-            picking.action_done()
+            picking._action_done()
 
     def test_01_return_purchase_stock_to_supplier(self):
         """Return stock to supplier and the corresponding
