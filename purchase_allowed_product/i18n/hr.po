@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-07-11 12:52+0000\n"
-"PO-Revision-Date: 2017-07-11 12:52+0000\n"
-"Last-Translator: Bole <bole@dajmi5.com>, 2017\n"
+"PO-Revision-Date: 2023-01-04 02:40+0000\n"
+"Last-Translator: Bole <bole@dajmi5.com>\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
@@ -19,11 +19,12 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: purchase_allowed_product
 #: model:ir.model,name:purchase_allowed_product.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Kontakt"
 
 #. module: purchase_allowed_product
 #: model:ir.model.fields,help:purchase_allowed_product.field_res_partner__use_only_supplied_product
@@ -46,7 +47,7 @@ msgstr ""
 msgid "If checked, only the products provided by this supplier will be shown."
 msgstr ""
 "Ako je označeno samo proizvodi dobavljivi kod ovog dobavljača će biti "
-"prikazani"
+"prikazani."
 
 #. module: purchase_allowed_product
 #: model:ir.model,name:purchase_allowed_product.model_account_move
@@ -82,7 +83,7 @@ msgstr "Nabavni nalog"
 #. module: purchase_allowed_product
 #: model:ir.model,name:purchase_allowed_product.model_product_supplierinfo
 msgid "Supplier Pricelist"
-msgstr ""
+msgstr "Cjenik dobavljača"
 
 #. module: purchase_allowed_product
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_account_bank_statement_line__use_only_supplied_product
