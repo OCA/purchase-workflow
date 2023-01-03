@@ -54,7 +54,7 @@ class PurchaseReturnRequestCase(StockReturnRequestCase):
 
     def test_01_return_purchase_stock_to_supplier(self):
         """Return stock to supplier and the corresponding
-           purchases are ready for refund"""
+        purchases are ready for refund"""
         self.return_request_supplier.write(
             {
                 "partner_id": self.partner_supplier_2.id,

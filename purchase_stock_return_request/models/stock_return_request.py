@@ -46,7 +46,7 @@ class StockReturnRequest(models.Model):
 
     @api.model
     def _get_po_price_unit(self, move_line):
-        """We take the price applied in the original """
+        """We take the price applied in the original"""
         po_line = move_line.move_id and move_line.move_id.purchase_line_id
         return po_line and po_line._get_stock_move_price_unit() or 0.0
 
