@@ -2,7 +2,7 @@
 
 {
     "name": "Purchase Product Last Price Info",
-    "version": "14.0.2.0.1",
+    "version": "15.0.2.0.1",
     "category": "Purchase Management",
     "license": "AGPL-3",
     "author": "AvanzOSC, Tecnativa, Odoo Community Association (OCA)",
