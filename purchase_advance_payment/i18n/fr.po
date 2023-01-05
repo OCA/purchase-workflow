@@ -37,6 +37,11 @@ msgid "Amount Residual"
 msgstr ""
 
 #. module: purchase_advance_payment
+#: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__amount_total
+msgid "Amount Total"
+msgstr ""
+
+#. module: purchase_advance_payment
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__amount_advance
 msgid "Amount advanced"
 msgstr ""
@@ -47,20 +52,17 @@ msgid "Amount in Order Currency"
 msgstr ""
 
 #. module: purchase_advance_payment
+#. odoo-python
 #: code:addons/purchase_advance_payment/wizard/purchase_advance_payment_wizard.py:0
 #, python-format
 msgid "Amount of advance is greater than residual amount on purchase"
 msgstr ""
 
 #. module: purchase_advance_payment
+#. odoo-python
 #: code:addons/purchase_advance_payment/wizard/purchase_advance_payment_wizard.py:0
 #, python-format
 msgid "Amount of advance must be positive."
-msgstr ""
-
-#. module: purchase_advance_payment
-#: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__amount_total
-msgid "Amount total"
 msgstr ""
 
 #. module: purchase_advance_payment
@@ -95,16 +97,12 @@ msgid "Date"
 msgstr ""
 
 #. module: purchase_advance_payment
-#: model:ir.model.fields,field_description:purchase_advance_payment.field_account_payment__display_name
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__display_name
-#: model:ir.model.fields,field_description:purchase_advance_payment.field_purchase_order__display_name
 msgid "Display Name"
 msgstr ""
 
 #. module: purchase_advance_payment
-#: model:ir.model.fields,field_description:purchase_advance_payment.field_account_payment__id
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__id
-#: model:ir.model.fields,field_description:purchase_advance_payment.field_purchase_order__id
 msgid "ID"
 msgstr ""
 
@@ -119,9 +117,7 @@ msgid "Journal Currency"
 msgstr ""
 
 #. module: purchase_advance_payment
-#: model:ir.model.fields,field_description:purchase_advance_payment.field_account_payment____last_update
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase____last_update
-#: model:ir.model.fields,field_description:purchase_advance_payment.field_purchase_order____last_update
 msgid "Last Modified on"
 msgstr ""
 
