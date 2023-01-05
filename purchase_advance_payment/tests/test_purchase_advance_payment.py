@@ -11,6 +11,7 @@ class TestPurchaseAdvancePayment(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
 
         # Partners
         cls.res_partner_1 = cls.env["res.partner"].create({"name": "Wood Corner"})
@@ -46,6 +47,21 @@ class TestPurchaseAdvancePayment(common.TransactionCase):
         cls.purchase_order_1 = cls.env["purchase.order"].create(
             {"partner_id": cls.res_partner_1.id}
         )
+        cls.purchase_order_2 = cls.env["purchase.order"].create(
+            {"partner_id": cls.res_partner_2.id}
+        )
+
+        cls.order_line_2_1 = cls.env["purchase.order.line"].create(
+            {
+                "order_id": cls.purchase_order_2.id,
+                "product_id": cls.product_1.id,
+                "product_uom": cls.product_1.uom_id.id,
+                "product_qty": 10.0,
+                "price_unit": 100.0,
+                "taxes_id": cls.tax,
+            }
+        )
+
         cls.order_line_1 = cls.env["purchase.order.line"].create(
             {
                 "order_id": cls.purchase_order_1.id,
@@ -130,37 +146,46 @@ class TestPurchaseAdvancePayment(common.TransactionCase):
             }
         )
 
+    def test_00_with_context_payment(self):
+        context_payment_2 = {
+            "active_ids": [self.purchase_order_2.id],
+            "active_id": self.purchase_order_2.id,
+        }
+        advance_payment_with_context = (
+            self.env["account.voucher.wizard.purchase"]
+            .with_context(**context_payment_2)
+            .create(
+                {
+                    "journal_id": self.journal_eur_bank.id,
+                    "amount_advance": 10,
+                }
+            )
+        )
+        self.assertEqual(advance_payment_with_context.order_id, self.purchase_order_2)
+
+        advance_payment_without_context = self.env[
+            "account.voucher.wizard.purchase"
+        ].create(
+            {
+                "journal_id": self.journal_eur_bank.id,
+                "amount_advance": 20,
+                "order_id": self.purchase_order_1.id,
+            }
+        )
+        self.assertEqual(
+            advance_payment_without_context.order_id, self.purchase_order_1
+        )
+
     def test_01_purchase_advance_payment(self):
         self.assertEqual(
             self.purchase_order_1.amount_residual,
             3600,
-        )
-        self.assertEqual(
-            self.purchase_order_1.amount_residual,
-            self.purchase_order_1.amount_total,
-            "Amounts should match",
         )
 
         context_payment = {
             "active_ids": [self.purchase_order_1.id],
             "active_id": self.purchase_order_1.id,
         }
-
-        # Check residual > advance payment and the comparison takes
-        # into account the currency. 3001*1.2 > 3600
-        with self.assertRaises(ValidationError):
-            advance_payment_0 = (
-                self.env["account.voucher.wizard.purchase"]
-                .with_context(**context_payment)
-                .create(
-                    {
-                        "journal_id": self.journal_eur_bank.id,
-                        "amount_advance": 3001,
-                        "order_id": self.purchase_order_1.id,
-                    }
-                )
-            )
-            advance_payment_0.make_advance_payment()
 
         # Create Advance Payment 1 - EUR - bank
         advance_payment_1 = (
@@ -287,10 +312,10 @@ class TestPurchaseAdvancePayment(common.TransactionCase):
         (
             counterpart_lines
             + invoice.line_ids.filtered(
-                lambda line: line.account_internal_type == "payable"
+                lambda line: line.account_type == "liability_payable"
             )
         ).reconcile()
-        self.purchase_order_1.invalidate_cache()
+        self.purchase_order_1.env.invalidate_all()
         self.assertEqual(self.purchase_order_1.amount_residual, 2200)
 
     def test_03_residual_amount_big_pre_payment(self):
@@ -366,8 +391,76 @@ class TestPurchaseAdvancePayment(common.TransactionCase):
         (
             counterpart_lines
             + invoice.line_ids.filtered(
-                lambda line: line.account_internal_type == "payable"
+                lambda line: line.account_type == "liability_payable"
             )
         ).reconcile()
-        self.purchase_order_1.invalidate_cache()
+        self.purchase_order_1.env.invalidate_all()
         self.assertEqual(self.purchase_order_1.amount_residual, 1300)
+
+    def test_04_residual_amount_with_no_amount_left(self):
+        self.assertEqual(
+            self.purchase_order_1.amount_residual,
+            3600,
+        )
+        context_payment = {
+            "active_ids": [self.purchase_order_1.id],
+            "active_id": self.purchase_order_1.id,
+        }
+        # Create Advance Payment with the same residual amount
+        advance_payment = (
+            self.env["account.voucher.wizard.purchase"]
+            .with_context(**context_payment)
+            .create(
+                {
+                    "journal_id": self.journal_usd_cash.id,
+                    "amount_advance": 3600,
+                    "order_id": self.purchase_order_1.id,
+                }
+            )
+        )
+        advance_payment.make_advance_payment()
+        self.assertEqual(self.purchase_order_1.amount_residual, 0)
+        self.assertEqual(self.purchase_order_1.advance_payment_status, "paid")
+
+    def test_05_check_residual_amount_warning(self):
+        self.assertEqual(
+            self.purchase_order_1.amount_residual,
+            3600,
+        )
+        self.assertEqual(
+            self.purchase_order_1.amount_residual,
+            self.purchase_order_1.amount_total,
+            "Amounts should match",
+        )
+
+        context_payment = {
+            "active_ids": [self.purchase_order_1.id],
+            "active_id": self.purchase_order_1.id,
+        }
+
+        # Check residual > advance payment and the comparison takes
+        # into account the currency. 3001*1.2 > 3600
+        mes = "Amount of advance is greater than residual amount on purchase"
+        with self.assertRaisesRegex(ValidationError, mes):
+            advance_payment_0 = (
+                self.env["account.voucher.wizard.purchase"]
+                .with_context(**context_payment)
+                .create(
+                    {
+                        "journal_id": self.journal_eur_bank.id,
+                        "amount_advance": 3001,
+                        "order_id": self.purchase_order_1.id,
+                    }
+                )
+            )
+            advance_payment_0.make_advance_payment()
+        # Check positive advance payment
+        mes2 = "Amount of advance must be positive."
+        with self.assertRaisesRegex(ValidationError, mes2):
+            self.env["account.voucher.wizard.purchase"].create(
+                {
+                    "journal_id": self.journal_eur_bank.id,
+                    "amount_advance": -300,
+                    "order_id": self.purchase_order_2.id,
+                }
+            )
