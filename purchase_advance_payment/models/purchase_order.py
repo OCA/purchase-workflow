@@ -57,7 +57,7 @@ class PurchaseOrder(models.Model):
     def _compute_purchase_advance_payment(self):
         for order in self:
             mls = order.account_payment_ids.mapped("move_id.line_ids").filtered(
-                lambda x: x.account_id.internal_type == "payable"
+                lambda x: x.account_id.account_type == "liability_payable"
                 and x.parent_state == "posted"
             )
             advance_amount = 0.0
