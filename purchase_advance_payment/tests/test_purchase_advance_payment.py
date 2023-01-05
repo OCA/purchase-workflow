@@ -87,7 +87,19 @@ class TestPurchaseAdvancePayment(common.TransactionCase):
         if not cls.currency_euro.active:
             cls.currency_euro.active = True
             cls.active_euro = True
-        cls.currency_usd = cls.env["res.currency"].search([("name", "=", "USD")])
+
+        cls.active_usd = False
+        cls.currency_usd = (
+            cls.env["res.currency"]
+            .with_context(active_test=False)
+            .search([("name", "=", "USD")])
+        )
+        # active usd currency if inactive for test
+        if not cls.currency_usd.active:
+            cls.currency_usd.active = True
+            cls.active_usd = True
+
+        cls.purchase_order_1.write({"currency_id": cls.currency_usd.id})
         cls.currency_rate = cls.env["res.currency.rate"].create(
             {
                 "rate": 1.20,
@@ -287,10 +299,10 @@ class TestPurchaseAdvancePayment(common.TransactionCase):
         (
             counterpart_lines
             + invoice.line_ids.filtered(
-                lambda line: line.account_internal_type == "payable"
+                lambda line: line.account_type == "liability_payable"
             )
         ).reconcile()
-        self.purchase_order_1.invalidate_cache()
+        self.env.invalidate_all()
         self.assertEqual(self.purchase_order_1.amount_residual, 2200)
 
     def test_03_residual_amount_big_pre_payment(self):
@@ -366,8 +378,8 @@ class TestPurchaseAdvancePayment(common.TransactionCase):
         (
             counterpart_lines
             + invoice.line_ids.filtered(
-                lambda line: line.account_internal_type == "payable"
+                lambda line: line.account_type == "liability_payable"
             )
         ).reconcile()
-        self.purchase_order_1.invalidate_cache()
+        self.env.invalidate_all()
         self.assertEqual(self.purchase_order_1.amount_residual, 1300)
