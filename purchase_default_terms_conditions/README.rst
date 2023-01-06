@@ -23,7 +23,7 @@ Purchase Default Terms Conditions
     :target: https://runbot.odoo-community.org/runbot/142/15.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module allows purchase default terms & conditions from Suppler or Company
 
@@ -75,6 +75,7 @@ Contributors
 
   * Marcel Savegnago <marcel.savegnago@escodoo.com.br>
   * Murtaza Mithaiwala <murtaza.m.serpentcs@gmail.com>
+  * Quan Nguyen <quan.nhm@komit-consulting.com>
 
 Other credits
 ~~~~~~~~~~~~~
