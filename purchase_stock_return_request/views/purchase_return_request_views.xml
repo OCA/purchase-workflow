@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_stock_return_request_form" model="ir.ui.view">
+        <field name="model">stock.return.request</field>
+        <field
+            name="inherit_id"
+            ref="stock_return_request.view_stock_return_request_form"
+        />
+        <field name="groups_id" eval="[(4, ref('purchase.group_purchase_user'))]" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <field name="purchase_order_ids" invisible="1" />
+                <button
+                    name="action_view_purchases"
+                    string="Purchases"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-shopping-cart"
+                    attrs="{'invisible': [('purchase_order_ids', '=', [])]}"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record
+        id="action_purchase_stock_return_request_tree"
+        model="ir.actions.act_window"
+    >
+        <field name="name">Purchase Return Requests</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">stock.return.request</field>
+        <field name="domain">[('return_type', '=', 'supplier')]</field>
+        <field
+            name="context"
+        >{'default_return_type': 'supplier', 'default_to_refund': True}</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        action="action_purchase_stock_return_request_tree"
+        id="menu_purchase_stock_return_request"
+        groups="purchase.group_purchase_manager"
+        name="Return Request"
+        parent="purchase.menu_procurement_management"
+        sequence="99"
+    />
+
+</odoo>
