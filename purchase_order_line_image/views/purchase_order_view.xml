@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="purchase_order_form" model="ir.ui.view">
+            <field name="name">purchase.order.inherited.form</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form" />
+            <field name="arch" type="xml">
+                  <xpath
+                    expr="//field[@name='order_line']//tree/field[@name='product_id']"
+                    position="after"
+                >
+                      <field
+                        name="product_image_1920"
+                        widget="image"
+                        options="{'preview_image': 'image_128'}"
+                        style="height:50px;width:40px;block-size: auto;"
+                    />
+                  </xpath>
+                  <xpath
+                    expr="//field[@name='order_line']//form//group//group[2]//field[@name='date_planned']"
+                    position="after"
+                >
+                      <field
+                        name="product_image_1920"
+                        widget="image"
+                        options="{'preview_image': 'image_128'}"
+                        style="height:50px;width:40px;block-size: auto;"
+                    />
+                  </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
