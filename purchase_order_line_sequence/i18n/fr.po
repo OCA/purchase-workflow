@@ -39,11 +39,6 @@ msgid "Hidden Sequence"
 msgstr "Séquence masquée"
 
 #. module: purchase_order_line_sequence
-#: model:ir.model,name:purchase_order_line_sequence.model_account_invoice_line
-msgid "Invoice Line"
-msgstr "Ligne de facture"
-
-#. module: purchase_order_line_sequence
 #: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order__max_line_sequence
 msgid "Max sequence in lines"
 msgstr ""
@@ -62,6 +57,9 @@ msgstr "Ligne de bon de commande"
 #: model:ir.model.fields,field_description:purchase_order_line_sequence.field_purchase_order_line__sequence2
 msgid "Sequence"
 msgstr "Séquence"
+
+#~ msgid "Invoice Line"
+#~ msgstr "Ligne de facture"
 
 #~ msgid "Purchase Order Line Make Invoice"
 #~ msgstr "Créer la facture des lignes de commande d'achat"
