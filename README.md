@@ -61,6 +61,7 @@ addon | version | maintainers | summary
 [purchase_order_line_packaging_qty](purchase_order_line_packaging_qty/) | 13.0.1.0.2 |  | Define quantities according to product packaging on purchase order lines
 [purchase_order_line_price_history](purchase_order_line_price_history/) | 13.0.1.0.0 |  | Purchase order line price history
 [purchase_order_line_price_history_discount](purchase_order_line_price_history_discount/) | 13.0.1.0.0 |  | Purchase order line price history discount
+[purchase_order_line_sequence](purchase_order_line_sequence/) | 13.0.1.0.0 |  | Adds sequence to PO lines and propagates it toInvoice lines and Stock Moves
 [purchase_order_line_stock_available](purchase_order_line_stock_available/) | 13.0.1.0.0 |  | Purchase order line stock available
 [purchase_order_product_recommendation](purchase_order_product_recommendation/) | 13.0.1.1.0 |  | Recommend products to buy to supplier based on history
 [purchase_order_product_recommendation_brand](purchase_order_product_recommendation_brand/) | 13.0.1.0.1 |  | Allow to filter recommendations by brand
