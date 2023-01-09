@@ -14,6 +14,7 @@ setuptools.setup(
         'odoo13-addon-product_supplierinfo_qty_multiplier',
         'odoo13-addon-purchase_all_shipments',
         'odoo13-addon-purchase_allowed_product',
+        'odoo13-addon-purchase_analytic_global',
         'odoo13-addon-purchase_blanket_order',
         'odoo13-addon-purchase_commercial_partner',
         'odoo13-addon-purchase_delivery_split_date',
