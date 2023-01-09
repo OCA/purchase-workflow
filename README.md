@@ -35,6 +35,7 @@ addon | version | maintainers | summary
 [product_supplierinfo_qty_multiplier](product_supplierinfo_qty_multiplier/) | 13.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Product supplierinfo qty multiplier
 [purchase_all_shipments](purchase_all_shipments/) | 13.0.1.0.0 |  | Purchase All Shipments
 [purchase_allowed_product](purchase_allowed_product/) | 13.0.1.0.0 |  | This module allows to select only products that can be supplied by the vendor
+[purchase_analytic_global](purchase_analytic_global/) | 13.0.1.0.0 |  | Purchase - Analytic Account Global
 [purchase_blanket_order](purchase_blanket_order/) | 13.0.2.3.0 |  | Purchase Blanket Orders
 [purchase_commercial_partner](purchase_commercial_partner/) | 13.0.1.0.0 |  | Add stored related field 'Commercial Supplier' on POs
 [purchase_delivery_split_date](purchase_delivery_split_date/) | 13.0.1.0.5 |  | Allows Purchase Order you confirm to generate one Incoming Shipment for each expected date indicated in the Purchase Order Lines
