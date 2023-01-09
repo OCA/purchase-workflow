@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2020 Akretion France (http://www.akretion.com/)
+  @author: Alexis de Lattre <alexis.delattre@akretion.com>
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field name="name">received_status.purchase.order.form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <field name="invoice_status" position="before">
+                <field name="reception_status" states="purchase,done" />
+                <field
+                    name="force_received"
+                    groups="purchase.group_purchase_manager"
+                    states="purchase,done"
+                />
+            </field>
+        </field>
+    </record>
+    <record id="purchase_order_tree" model="ir.ui.view">
+        <field name="name">received_status.purchase.order.tree</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_tree" />
+        <field name="arch" type="xml">
+            <field name="invoice_status" position="before">
+                <field
+                    name="reception_status"
+                    widget="badge"
+                    decoration-info="reception_status == 'partial'"
+                    decoration-success="reception_status == 'received'"
+                />
+            </field>
+        </field>
+    </record>
+    <record id="purchase_order_view_tree" model="ir.ui.view">
+        <field name="name">received_status.purchase.order.tree</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_view_tree" />
+        <field name="arch" type="xml">
+            <field name="invoice_status" position="before">
+                <field
+                    name="reception_status"
+                    widget="badge"
+                    decoration-info="reception_status == 'partial'"
+                    decoration-success="reception_status == 'received'"
+                />
+            </field>
+        </field>
+    </record>
+    <record id="view_purchase_order_filter" model="ir.ui.view">
+        <field name="name">received_status.purchase.order.search</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_view_search" />
+        <field name="arch" type="xml">
+            <filter name="not_invoiced" position="before">
+                <filter
+                    name="not_fully_received"
+                    string="Not Fully Received"
+                    domain="[('reception_status', 'in', ('no', 'partial'))]"
+                />
+                <filter
+                    name="fully_received"
+                    string="Fully Received"
+                    domain="[('reception_status', '=', 'received')]"
+                />
+                <separator />
+            </filter>
+            <group expand="0" position="inside">
+                <filter
+                    string="Reception Status"
+                    name="reception_status_groupby"
+                    context="{'group_by': 'reception_status'}"
+                />
+            </group>
+        </field>
+    </record>
+</odoo>
