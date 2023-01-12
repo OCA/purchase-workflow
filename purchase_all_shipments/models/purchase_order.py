@@ -26,19 +26,26 @@ class PurchaseOrder(models.Model):
             rec.all_picking_ids = all_picking_ids
 
     def action_view_all_pickings(self):
-        """Similar to the view_picking method in the purchase module"""
-        action_data = self.env.ref("stock.action_picking_tree_all").read()[0]
-        pickings = self.mapped("all_picking_ids")
+        return self._get_action_view_all_pickings(self.all_picking_ids)
 
-        # override the context to get rid of the default filtering on
-        # picking type
-        action_data["context"] = {}
+    def _get_action_view_all_pickings(self, picking_ids):
+        """Similar to the _get_action_view_picking method in the purchase module"""
+        self.ensure_one()
+        result = self.env["ir.actions.actions"]._for_xml_id(
+            "stock.action_picking_tree_all"
+        )
+        # override the context to get rid of the default filtering on picking type
+        result["context"] = {}
 
-        # choose the view_mode accordingly
-        if len(pickings) > 1:
-            action_data["domain"] = [("id", "in", pickings.ids)]
-        else:
-            form_view = self.env.ref("stock.view_picking_form")
-            action_data["views"] = [(form_view.id, "form")]
-            action_data["res_id"] = pickings.id
-        return action_data
+        if not picking_ids or len(picking_ids) > 1:
+            result["domain"] = [("id", "in", picking_ids.ids)]
+        elif len(picking_ids) == 1:
+            res = self.env.ref("stock.view_picking_form", False)
+            form_view = [(res and res.id or False, "form")]
+            result["views"] = form_view + [
+                (state, view)
+                for state, view in result.get("views", [])
+                if view != "form"
+            ]
+            result["res_id"] = picking_ids.id
+        return result
