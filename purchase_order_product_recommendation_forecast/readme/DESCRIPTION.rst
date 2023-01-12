@@ -11,7 +11,7 @@ making a simple linear progression.
 An example to illustrate this. I want to forecast sales for April and I'm going to
 analyze sales on March, but I want to forecast how the recommended products behave
 from this period to the next one. I also want to analyze, a normal year as 2020 was
-very irrugular due to pandemy, so I'll use 2019 as my year of reference.
+very irregular due to pandemy, so I'll use 2019 as my year of reference.
 
 The wizard will take the deliveries from March 2019 and then the deliveries from
 April 2019 and then it will compute the increment between those two periods.
