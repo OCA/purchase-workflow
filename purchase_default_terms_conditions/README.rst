@@ -47,7 +47,7 @@ Usage
 
 To use this module, you need to:
 
-#. Go do Purchase App
+#. Go to Purchase App
 #. Create a New Purchase/Quotation Order
 
 Bug Tracker
