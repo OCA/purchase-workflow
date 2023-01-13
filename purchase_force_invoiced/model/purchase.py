@@ -18,7 +18,7 @@ class PurchaseOrder(models.Model):
 
     @api.depends("force_invoiced")
     def _get_invoiced(self):
-        res = super(PurchaseOrder, self)._get_invoiced()
+        res = super()._get_invoiced()
         for order in self.filtered(
             lambda po: po.force_invoiced and po.invoice_status == "to invoice"
         ):

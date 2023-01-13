@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 
 from odoo import fields
+from odoo.exceptions import UserError
 from odoo.tests.common import TransactionCase
 
 
@@ -15,11 +16,7 @@ class TestPurchaseForceInvoiced(TransactionCase):
         self.account_invoice_line = self.env["account.move.line"]
         self.invoice_account = self.env["account.account"].search(
             [
-                (
-                    "user_type_id",
-                    "=",
-                    self.env.ref("account.data_account_type_revenue").id,
-                ),
+                ("account_type", "=", "income"),
                 ("company_id", "=", self.env.company.id),
             ],
             limit=1,
@@ -53,13 +50,8 @@ class TestPurchaseForceInvoiced(TransactionCase):
         return product
 
     def _create_invoice_from_purchase(self, purchase):
-        invoice = self.account_invoice_model.create(
-            {"partner_id": purchase.partner_id.id, "move_type": "in_invoice"}
-        )
-        invoice.write({"purchase_id": purchase.id})
-        invoice._onchange_purchase_auto_complete()
-
-        return invoice
+        purchase.action_create_invoice()
+        return self.account_invoice_model.search([], order="id desc", limit=1)
 
     def create_invoice_line(self, line, invoice):
         vals = [
@@ -132,14 +124,14 @@ class TestPurchaseForceInvoiced(TransactionCase):
         self.assertEqual(
             po.invoice_status, "invoiced", "The invoice status should be Invoiced"
         )
-        invoice = self._create_invoice_from_purchase(po)
-        invoice_qty = sum(invoice.mapped("invoice_line_ids.quantity"))
-        self.assertEqual(invoice_qty, 0.0)
+        with self.assertRaises(UserError):
+            self._create_invoice_from_purchase(po)
         # We remove the force invoiced.
         po.force_invoiced = False
         self.assertEqual(
             po.invoice_status, "to invoice", "The invoice status should be To Invoice"
         )
+        invoice = self._create_invoice_from_purchase(po)
         self.create_invoice_line(pol2, invoice)
         invoice_qty = sum(invoice.mapped("invoice_line_ids.quantity"))
         self.assertEqual(invoice_qty, 2.0)
