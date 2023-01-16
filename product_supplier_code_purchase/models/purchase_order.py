@@ -7,32 +7,31 @@ from odoo.exceptions import AccessError
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
-    product_supplier_code = fields.Char()
-
-    @api.onchange(
-        "partner_id",
-        "product_id",
+    product_supplier_code = fields.Char(
+        compute="_compute_product_supplier_code", store=True, readonly=False
     )
-    def _onchange_product_code(self):
+
+    @api.depends("partner_id", "product_id")
+    def _compute_product_supplier_code(self):
         for line in self:
+            code = ""
             supplier_info = line.product_id.seller_ids.filtered(
                 lambda s: (
-                    s.product_id == line.product_id and s.name == line.partner_id
+                    s.product_id == line.product_id and s.partner_id == line.partner_id
                 )
             )
             if supplier_info:
                 code = supplier_info[0].product_code or ""
-                line.product_supplier_code = code
             else:
                 supplier_info = line.product_id.seller_ids.filtered(
                     lambda s: (
                         s.product_tmpl_id == line.product_id.product_tmpl_id
-                        and s.name == line.partner_id
+                        and s.partner_id == line.partner_id
                     )
                 )
                 if supplier_info:
                     code = supplier_info[0].product_code or ""
-                    line.product_supplier_code = code
+            line.product_supplier_code = code
 
 
 class PurchaseOrder(models.Model):
@@ -46,7 +45,7 @@ class PurchaseOrder(models.Model):
                 if not self.partner_id.parent_id
                 else self.partner_id.parent_id
             )
-            if partner in line.product_id.seller_ids.mapped("name"):
+            if partner in line.product_id.seller_ids.mapped("partner_id"):
                 seller = line.product_id._select_seller(
                     partner_id=line.partner_id,
                     quantity=line.product_qty,
