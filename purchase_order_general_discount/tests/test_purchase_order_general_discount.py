@@ -21,6 +21,7 @@ class TestPurchaseOrderLineInput(TransactionCase):
         with order_form.order_line.new() as line_form:
             line_form.product_id = cls.product
             line_form.product_uom = cls.product.uom_id
+            line_form.product_qty = 1
             line_form.price_unit = 1000.00
         cls.order = order_form.save()
         cls.View = cls.env["ir.ui.view"]
