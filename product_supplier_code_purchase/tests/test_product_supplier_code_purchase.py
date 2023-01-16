@@ -14,7 +14,7 @@ class TestProductSupplierCodePurchase(TransactionCase):
         self.product = self.env["product.product"].create({"name": "Test product"})
         self.seller = self.env["product.supplierinfo"].create(
             {
-                "name": self.supplier.id,
+                "partner_id": self.supplier.id,
                 "product_id": self.product.id,
                 "product_tmpl_id": self.product.product_tmpl_id.id,
                 "product_code": "00001",
@@ -43,7 +43,6 @@ class TestProductSupplierCodePurchase(TransactionCase):
                 ],
             }
         )
-        purchase_order.order_line._onchange_product_code()
         self.assertEqual(
             purchase_order.order_line[0].product_supplier_code,
             "00001",
