@@ -1,0 +1,63 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* purchase_compute_order_min_package
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-26 03:03+0000\n"
+"PO-Revision-Date: 2023-04-26 03:03+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_compute_order_min_package
+#: model:ir.model,name:purchase_compute_order_min_package.model_computed_purchase_order
+msgid "Computed Purchase Order"
+msgstr "Calcul de commande d'achat"
+
+#. module: purchase_compute_order_min_package
+#: model:ir.model,name:purchase_compute_order_min_package.model_computed_purchase_order_line
+msgid "Computed Purchase Order Line"
+msgstr "Ligne de calcul de commande d'achat"
+
+#. module: purchase_compute_order_min_package
+#: code:addons/purchase_compute_order_min_package/models/computed_purchase_order_line.py:52
+#, python-format
+msgid "Don't allow to change the number of package for the product {product} is greater than Max. Nb of Package configured: {max_nb}"
+msgstr "Ne pas autoriser la modification Nombre de colis pour le produit {product} est supérieur à Nb. Colis MAX configuré : {max_nb}"
+
+#. module: purchase_compute_order_min_package
+#: model:ir.model.fields,field_description:purchase_compute_order_min_package.field_product_supplierinfo__max_nb_of_package
+msgid "Max. Nb of Package"
+msgstr "Nb. Colis MAX"
+
+#. module: purchase_compute_order_min_package
+#: code:addons/purchase_compute_order_min_package/models/product_supplierinfo.py:44
+#, python-format
+msgid "Max. Nb of Package must be greater than Min. Nb of Package"
+msgstr "Nb. Colis MAX doit être supérieur à Nb. Colis MIN"
+
+#. module: purchase_compute_order_min_package
+#: model:ir.model.fields,field_description:purchase_compute_order_min_package.field_product_supplierinfo__min_nb_of_package
+msgid "Min. Nb of Package"
+msgstr "Nb. Colis MIN"
+
+#. module: purchase_compute_order_min_package
+#: model:ir.model,name:purchase_compute_order_min_package.model_product_supplierinfo
+msgid "Supplier Pricelist"
+msgstr "Liste de prix du fournisseur"
+
+#. module: purchase_compute_order_min_package
+#: model:ir.model.fields,help:purchase_compute_order_min_package.field_product_supplierinfo__max_nb_of_package
+msgid "The maximum number of package you can buy."
+msgstr ""
+
+#. module: purchase_compute_order_min_package
+#: model:ir.model.fields,help:purchase_compute_order_min_package.field_product_supplierinfo__min_nb_of_package
+msgid "The minimum number of package you have to buy to get the lowest price."
+msgstr ""
