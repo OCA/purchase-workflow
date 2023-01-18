@@ -42,7 +42,7 @@ class TestPoApprovalBlockReason(TestPurchaseOrderApprovalBlock):
         po_except_confirm = (
             self.env["purchase.exception.confirm"]
             .with_context(
-                {
+                **{
                     "active_id": purchase.id,
                     "active_ids": [purchase.id],
                     "active_model": purchase._name,
