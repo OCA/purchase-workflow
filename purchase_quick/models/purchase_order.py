@@ -36,12 +36,13 @@ class PurchaseOrder(models.Model):
         )
         nr_lines = len(result.ids)
         if nr_lines > 1:
+            # pylint: disable=W8120
             raise ValidationError(
                 _(
                     "Must have only 1 line per product for mass addition, but "
                     "there are %s lines for the product %s"
-                    % (nr_lines, product.display_name),
                 )
+                % (nr_lines, product.display_name)
             )
         return result
 
