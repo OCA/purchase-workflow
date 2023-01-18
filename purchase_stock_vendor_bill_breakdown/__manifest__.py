@@ -9,4 +9,5 @@
     "maintainers": ["geomer198", "CetmixGitDrone"],
     "license": "AGPL-3",
     "installable": True,
+    "auto_install": True,
 }
