@@ -1,6 +1,6 @@
 {
     "name": "Purchase Order Vendor Products",
-    "version": "14.0.1.1.0",
+    "version": "15.0.1.0.0",
     "summary": "Show only products from the selected vendor in PO line",
     "author": "Ooops, Cetmix, Odoo Community Association (OCA)",
     "license": "AGPL-3",
