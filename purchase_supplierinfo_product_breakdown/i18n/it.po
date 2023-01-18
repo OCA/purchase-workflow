@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-01-02 12:46+0000\n"
+"PO-Revision-Date: 2023-01-18 11:48+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -178,7 +178,7 @@ msgstr "Cassetta degli attrezzi"
 #. module: purchase_supplierinfo_product_breakdown
 #: model:ir.model.fields,field_description:purchase_supplierinfo_product_breakdown.field_product_supplierinfo_component__product_uom_id
 msgid "Unit of Measure"
-msgstr "Unità di Misura"
+msgstr "Unità di misura"
 
 #. module: purchase_supplierinfo_product_breakdown
 #: model:product.product,uom_name:purchase_supplierinfo_product_breakdown.product_product_test_demo_drill
