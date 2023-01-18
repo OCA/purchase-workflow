@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-22 02:44+0000\n"
-"PO-Revision-Date: 2023-01-02 12:47+0000\n"
+"PO-Revision-Date: 2023-01-18 09:46+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -346,7 +346,7 @@ msgstr ""
 #. module: purchase_request_to_rfq
 #: model:ir.model,name:purchase_request_to_rfq.model_stock_picking
 msgid "Transfer"
-msgstr "Trasferisci"
+msgstr "Trasferimento"
 
 #. module: purchase_request_to_rfq
 #: model:ir.model.fields,field_description:purchase_request_to_rfq.field_purchase_request_line_make_purchase_order_item_product_uom_id
