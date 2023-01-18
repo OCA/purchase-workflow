@@ -8,14 +8,16 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-28 01:50+0000\n"
-"PO-Revision-Date: 2017-10-16 11:28+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Italian (http://www.transifex.com/oca/OCA-purchase-workflow-8-0/language/it/)\n"
+"PO-Revision-Date: 2023-01-18 11:48+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"Language-Team: Italian (http://www.transifex.com/oca/"
+"OCA-purchase-workflow-8-0/language/it/)\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: procurement_batch_generator
 #: code:addons/procurement_batch_generator/wizard/procurement_batch_generator.py:75
@@ -129,7 +131,7 @@ msgstr "Fornitore"
 #. module: procurement_batch_generator
 #: field:procurement.batch.generator.line,uom_id:0
 msgid "Unit of Measure"
-msgstr "Unità di Misura"
+msgstr "Unità di misura"
 
 #. module: procurement_batch_generator
 #: view:procurement.batch.generator:procurement_batch_generator.procurement_batch_generator_form
