@@ -42,7 +42,12 @@ class TestStockPurchaseOrderLine(PurchaseTransactionCase):
             6,
             msg="Received Qty must be equal to 6",
         )
-
+        self.env.add_to_compute(
+            order.order_line._fields["qty_received"], order.order_line
+        )
+        order.order_line.recompute()
+        order.order_line.flush()
+        component_1, component_2 = order.order_line.mapped("component_ids")
         # Get Product Components
         self.assertEqual(
             component_1.total_qty, 30.0, msg="Total Qty must be equal to 30.0"
@@ -77,8 +82,12 @@ class TestStockPurchaseOrderLine(PurchaseTransactionCase):
             10,
             msg="Received Qty must be equal to 10",
         )
-
-        order.order_line._compute_qty_received()
+        self.env.add_to_compute(
+            order.order_line._fields["qty_received"], order.order_line
+        )
+        order.order_line.recompute()
+        order.order_line.flush()
+        # order.order_line._compute_qty_received()
         component_1, component_2 = order.order_line.mapped("component_ids")
         self.assertEqual(
             component_1.total_qty, 50.0, msg="Total Qty must be equal to 50.0"
