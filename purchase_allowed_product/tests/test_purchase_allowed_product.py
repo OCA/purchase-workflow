@@ -40,11 +40,10 @@ class TestPurchaseAllowedProduct(TransactionCase):
             )
 
             self.assertEqual(purchase_form.use_only_supplied_product, True)
-            context = {
-                "restrict_supplier_id": purchase_form.partner_id.id,
-                "use_only_supplied_product": purchase_form.use_only_supplied_product,
-            }
-        supplied_product = self.product_model.with_context(context)._search([])
+        supplied_product = self.product_model.with_context(
+            restrict_supplier_id=purchase_form.partner_id.id,
+            use_only_supplied_product=purchase_form.use_only_supplied_product,
+        )._search([])
         self.assertEqual(
             set(supplied_product), set(self.partner_4_supplied_products.ids)
         )
@@ -65,11 +64,10 @@ class TestPurchaseAllowedProduct(TransactionCase):
             )
 
             self.assertEqual(invoice_form.use_only_supplied_product, True)
-            context = {
-                "restrict_supplier_id": invoice_form.partner_id.id,
-                "use_only_supplied_product": invoice_form.use_only_supplied_product,
-            }
-        supplied_product = self.product_model.with_context(context)._search([])
+        supplied_product = self.product_model.with_context(
+            restrict_supplier_id=invoice_form.partner_id.id,
+            use_only_supplied_product=invoice_form.use_only_supplied_product,
+        )._search([])
         self.assertEqual(
             set(supplied_product), set(self.partner_4_supplied_products.ids)
         )

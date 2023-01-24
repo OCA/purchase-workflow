@@ -9,3 +9,4 @@
 * `Via laurea <https://www.vialaurea.com>`__:
 
   * Darius Žižys
+* Manuel Regidor <manuel.regidor@sygel.es>
