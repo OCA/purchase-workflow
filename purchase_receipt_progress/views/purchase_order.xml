@@ -11,6 +11,24 @@
                     <field name="purchased_quantity_total"/>
                 </group>
             </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='qty_received']" position="after">
+                <field name="to_receive" optional="hide"/>
+            </xpath>
+            <xpath expr="//page[@name='purchase_delivery_invoice']" position="after">
+                <page string="Received by Product Category" name="page_purchase_received_by_product_category">
+                    <group name="purchase_received_by_product_category_group">
+                        <field name="received_by_category_ids" nolabel="1">
+                            <tree>
+                                <field name="order_id" invisible="1"/>
+                                <field name="category_id"/>
+                                <field name="product_qty"/>
+                                <field name="qty_received"/>
+                                <field name="to_receive"/>
+                            </tree>
+                        </field>
+                    </group>
+                </page>
+            </xpath>
         </field>
     </record>
 

@@ -9,6 +9,7 @@
     "website": "https://github.com/OCA/purchase-workflow",
     "license": "AGPL-3",
     "data": [
+        "security/ir.model.access.csv",
         "views/purchase_order.xml",
     ],
     "depends": [

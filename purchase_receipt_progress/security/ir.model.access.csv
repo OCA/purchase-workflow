@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+received_by_category_wizard_purchase_user,received_by_category_wizard_purchase_user,purchase_receipt_progress.model_purchase_order_received_by_category,purchase.group_purchase_user,1,1,1,1
