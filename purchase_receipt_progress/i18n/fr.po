@@ -1,0 +1,102 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_receipt_progress
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-01-25 13:57+0000\n"
+"PO-Revision-Date: 2023-01-25 13:57+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_receipt_progress
+#: model:ir.model.fields,field_description:purchase_receipt_progress.field_purchase_order_received_by_category__category_id
+msgid "Category"
+msgstr "Catégorie"
+
+#. module: purchase_receipt_progress
+#: model:ir.model.fields,field_description:purchase_receipt_progress.field_purchase_order_received_by_category__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: purchase_receipt_progress
+#: model:ir.model.fields,field_description:purchase_receipt_progress.field_purchase_order_received_by_category__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: purchase_receipt_progress
+#: model:ir.model.fields,field_description:purchase_receipt_progress.field_purchase_order__delivery_status
+msgid "Delivery Status"
+msgstr "État de livraison"
+
+#. module: purchase_receipt_progress
+#: model:ir.model.fields,field_description:purchase_receipt_progress.field_purchase_order_received_by_category__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: purchase_receipt_progress
+#: model:ir.model.fields,field_description:purchase_receipt_progress.field_purchase_order_received_by_category__id
+msgid "ID"
+msgstr ""
+
+#. module: purchase_receipt_progress
+#: model:ir.model.fields,field_description:purchase_receipt_progress.field_purchase_order_received_by_category____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: purchase_receipt_progress
+#: model:ir.model.fields,field_description:purchase_receipt_progress.field_purchase_order_received_by_category__write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: purchase_receipt_progress
+#: model:ir.model.fields,field_description:purchase_receipt_progress.field_purchase_order_received_by_category__write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: purchase_receipt_progress
+#: model:ir.model.fields,field_description:purchase_receipt_progress.field_purchase_order_received_by_category__order_id
+msgid "Order"
+msgstr "Commande"
+
+#. module: purchase_receipt_progress
+#: model:ir.model.fields,field_description:purchase_receipt_progress.field_purchase_order_received_by_category__product_qty
+msgid "Product Qty"
+msgstr "Qtté produit"
+
+#. module: purchase_receipt_progress
+#: model:ir.model,name:purchase_receipt_progress.model_purchase_order_received_by_category
+msgid "Purchase Order Received by Category"
+msgstr "Qtté reçue par catégorie"
+
+#. module: purchase_receipt_progress
+#: model:ir.model.fields,field_description:purchase_receipt_progress.field_purchase_order_received_by_category__qty_received
+msgid "Qty Received"
+msgstr "Qtté reçue"
+
+#. module: purchase_receipt_progress
+#: model:ir.model.fields,field_description:purchase_receipt_progress.field_purchase_order__received_by_category_ids
+msgid "Received by Category"
+msgstr "Reçu par catégorie"
+
+#. module: purchase_receipt_progress
+#: model_terms:ir.ui.view,arch_db:purchase_receipt_progress.purchase_order_view_form_inherit
+msgid "Received by Product Category"
+msgstr "Reçu par catégorie de produit"
+
+#. module: purchase_receipt_progress
+#: model:ir.model.fields,field_description:purchase_receipt_progress.field_purchase_order_line__to_receive
+#: model:ir.model.fields,field_description:purchase_receipt_progress.field_purchase_order_received_by_category__to_receive
+msgid "To Receive"
+msgstr "Reste à recevoir"
+
+#. module: purchase_receipt_progress
+#: model:ir.model.fields,field_description:purchase_receipt_progress.field_purchase_order__purchased_quantity_total
+msgid "Total Quantity"
+msgstr "Quantité totale"
