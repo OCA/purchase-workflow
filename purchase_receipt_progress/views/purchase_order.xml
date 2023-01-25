@@ -4,26 +4,44 @@
     <record id="purchase_order_view_form_inherit" model="ir.ui.view">
         <field name="name">purchase.order.view.form.inherit</field>
         <field name="model">purchase.order</field>
-        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
         <field name="arch" type="xml">
-            <xpath expr="//group[@class='oe_subtotal_footer oe_right']" position="before">
+            <xpath
+                expr="//field[@name='tax_totals_json']/parent::group"
+                position="before"
+            >
                 <group name="purchased_quantity_total">
-                    <field name="purchased_quantity_total"/>
+                    <label for="purchased_quantity_total" string="Quantity Total" />
+                    <div class="o_row no-gutters d-flex">
+                        <field
+                            name="purchased_quantity_total"
+                            class="oe_inline text-left"
+                        />
+                    </div>
                 </group>
             </xpath>
-            <xpath expr="//field[@name='order_line']/tree/field[@name='qty_received']" position="after">
-                <field name="to_receive" optional="hide"/>
+            <xpath
+                expr="//field[@name='order_line']/tree/field[@name='qty_received']"
+                position="after"
+            >
+                <field name="to_receive" optional="hide" />
+            </xpath>
+            <xpath expr="//field[@name='picking_type_id']" position="after">
+                <field name="delivery_status" widget="percentage" />
             </xpath>
             <xpath expr="//page[@name='purchase_delivery_invoice']" position="after">
-                <page string="Received by Product Category" name="page_purchase_received_by_product_category">
+                <page
+                    string="Received by Product Category"
+                    name="page_purchase_received_by_product_category"
+                >
                     <group name="purchase_received_by_product_category_group">
                         <field name="received_by_category_ids" nolabel="1">
                             <tree>
-                                <field name="order_id" invisible="1"/>
-                                <field name="category_id"/>
-                                <field name="product_qty"/>
-                                <field name="qty_received"/>
-                                <field name="to_receive"/>
+                                <field name="order_id" invisible="1" />
+                                <field name="category_id" />
+                                <field name="product_qty" />
+                                <field name="qty_received" />
+                                <field name="to_receive" />
                             </tree>
                         </field>
                     </group>
