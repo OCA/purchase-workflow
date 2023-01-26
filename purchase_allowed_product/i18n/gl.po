@@ -1,0 +1,103 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * purchase_allowed_product
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-01 02:48+0000\n"
+"PO-Revision-Date: 2017-06-01 02:48+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Galician (https://www.transifex.com/oca/teams/23907/gl/)\n"
+"Language: gl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: purchase_allowed_product
+#: model:ir.model,name:purchase_allowed_product.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: purchase_allowed_product
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_supplied_product_mixin__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: purchase_allowed_product
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_supplied_product_mixin__id
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_allowed_product
+#: model:ir.model.fields,help:purchase_allowed_product.field_res_partner__use_only_supplied_product
+#: model:ir.model.fields,help:purchase_allowed_product.field_res_users__use_only_supplied_product
+msgid ""
+"If checked, by default you will only be able to select products that can be "
+"supplied by this supplier when creating a supplier invoice or purchase for "
+"it. This value can be changed by invoice or purchase."
+msgstr ""
+
+#. module: purchase_allowed_product
+#: model:ir.model.fields,help:purchase_allowed_product.field_account_invoice__use_only_supplied_product
+#: model:ir.model.fields,help:purchase_allowed_product.field_purchase_order__use_only_supplied_product
+#: model:ir.model.fields,help:purchase_allowed_product.field_supplied_product_mixin__use_only_supplied_product
+msgid "If checked, only the products provided by this supplier will be shown."
+msgstr ""
+
+#. module: purchase_allowed_product
+#: model:ir.model,name:purchase_allowed_product.model_account_invoice
+msgid "Invoice"
+msgstr ""
+
+#. module: purchase_allowed_product
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_supplied_product_mixin____last_update
+msgid "Last Modified on"
+msgstr "Modificado por última vez o"
+
+#. module: purchase_allowed_product
+#: model:ir.model,name:purchase_allowed_product.model_supplied_product_mixin
+msgid "Mixin for documents that want to restrict products"
+msgstr ""
+
+#. module: purchase_allowed_product
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_res_partner__use_only_supplied_product
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_res_users__use_only_supplied_product
+msgid "Order and invoice only supplied products"
+msgstr ""
+
+#. module: purchase_allowed_product
+#: model:ir.model,name:purchase_allowed_product.model_product_product
+msgid "Product"
+msgstr "Produto"
+
+#. module: purchase_allowed_product
+#: model:ir.model,name:purchase_allowed_product.model_purchase_order
+msgid "Purchase Order"
+msgstr "Orde de compra"
+
+#. module: purchase_allowed_product
+#: model:ir.model,name:purchase_allowed_product.model_product_supplierinfo
+msgid "Supplier Pricelist"
+msgstr ""
+
+#. module: purchase_allowed_product
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_account_invoice__use_only_supplied_product
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_purchase_order__use_only_supplied_product
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_supplied_product_mixin__use_only_supplied_product
+msgid "Use only allowed products"
+msgstr ""
+
+#. module: purchase_allowed_product
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_product_supplierinfo__name
+msgid "Vendor"
+msgstr ""
+
+#. module: purchase_allowed_product
+#: model:ir.model.fields,help:purchase_allowed_product.field_product_supplierinfo__name
+msgid "Vendor of this product"
+msgstr ""
