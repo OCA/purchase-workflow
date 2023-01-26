@@ -117,7 +117,9 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         return res
 
     @api.model
-    def _prepare_purchase_order(self, picking_type, group_id, company, origin):
+    def _prepare_purchase_order(
+        self, picking_type, group_id, company, currency, origin
+    ):
         if not self.supplier_id:
             raise UserError(_("Enter a supplier."))
         supplier = self.supplier_id
@@ -129,6 +131,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             or False,
             "picking_type_id": picking_type.id,
             "company_id": company.id,
+            "currency_id": currency.id,
             "group_id": group_id.id,
         }
         return data
@@ -249,6 +252,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                     line.request_id.picking_type_id,
                     line.request_id.group_id,
                     line.company_id,
+                    line.currency_id,
                     line.origin,
                 )
                 purchase = purchase_obj.create(po_data)

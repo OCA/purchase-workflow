@@ -170,7 +170,7 @@ class PurchaseRequestLine(models.Model):
         default=0.0,
         help="Estimated cost of Purchase Request Line, not propagated to PO.",
     )
-    currency_id = fields.Many2one(related="company_id.currency_id", readonly=True)
+    currency_id = fields.Many2one(related="request_id.currency_id")
     product_id = fields.Many2one(
         comodel_name="product.product",
         string="Product",
