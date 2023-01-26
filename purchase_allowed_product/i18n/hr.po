@@ -26,16 +26,6 @@ msgid "Contact"
 msgstr ""
 
 #. module: purchase_allowed_product
-#: model:ir.model.fields,field_description:purchase_allowed_product.field_supplied_product_mixin__display_name
-msgid "Display Name"
-msgstr "Prikaži naziv"
-
-#. module: purchase_allowed_product
-#: model:ir.model.fields,field_description:purchase_allowed_product.field_supplied_product_mixin__id
-msgid "ID"
-msgstr "ID"
-
-#. module: purchase_allowed_product
 #: model:ir.model.fields,help:purchase_allowed_product.field_res_partner__use_only_supplied_product
 #: model:ir.model.fields,help:purchase_allowed_product.field_res_users__use_only_supplied_product
 msgid ""
@@ -48,7 +38,9 @@ msgstr ""
 "vrijednost može biti izmijenjena na računu ili nalogu za nabavu."
 
 #. module: purchase_allowed_product
-#: model:ir.model.fields,help:purchase_allowed_product.field_account_invoice__use_only_supplied_product
+#: model:ir.model.fields,help:purchase_allowed_product.field_account_bank_statement_line__use_only_supplied_product
+#: model:ir.model.fields,help:purchase_allowed_product.field_account_move__use_only_supplied_product
+#: model:ir.model.fields,help:purchase_allowed_product.field_account_payment__use_only_supplied_product
 #: model:ir.model.fields,help:purchase_allowed_product.field_purchase_order__use_only_supplied_product
 #: model:ir.model.fields,help:purchase_allowed_product.field_supplied_product_mixin__use_only_supplied_product
 msgid "If checked, only the products provided by this supplier will be shown."
@@ -57,14 +49,9 @@ msgstr ""
 "prikazani"
 
 #. module: purchase_allowed_product
-#: model:ir.model,name:purchase_allowed_product.model_account_invoice
-msgid "Invoice"
-msgstr "Račun"
-
-#. module: purchase_allowed_product
-#: model:ir.model.fields,field_description:purchase_allowed_product.field_supplied_product_mixin____last_update
-msgid "Last Modified on"
-msgstr "Zadnja izmjena na"
+#: model:ir.model,name:purchase_allowed_product.model_account_move
+msgid "Journal Entry"
+msgstr ""
 
 #. module: purchase_allowed_product
 #: model:ir.model,name:purchase_allowed_product.model_supplied_product_mixin
@@ -93,7 +80,9 @@ msgid "Supplier Pricelist"
 msgstr ""
 
 #. module: purchase_allowed_product
-#: model:ir.model.fields,field_description:purchase_allowed_product.field_account_invoice__use_only_supplied_product
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_account_bank_statement_line__use_only_supplied_product
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_account_move__use_only_supplied_product
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_account_payment__use_only_supplied_product
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_purchase_order__use_only_supplied_product
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_supplied_product_mixin__use_only_supplied_product
 msgid "Use only allowed products"
@@ -108,6 +97,18 @@ msgstr ""
 #: model:ir.model.fields,help:purchase_allowed_product.field_product_supplierinfo__name
 msgid "Vendor of this product"
 msgstr ""
+
+#~ msgid "Display Name"
+#~ msgstr "Prikaži naziv"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Invoice"
+#~ msgstr "Račun"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Zadnja izmjena na"
 
 #~ msgid "Information about a product vendor"
 #~ msgstr "Informacije o dobavljaču proizvoda"

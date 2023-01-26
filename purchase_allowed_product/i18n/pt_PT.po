@@ -25,16 +25,6 @@ msgid "Contact"
 msgstr ""
 
 #. module: purchase_allowed_product
-#: model:ir.model.fields,field_description:purchase_allowed_product.field_supplied_product_mixin__display_name
-msgid "Display Name"
-msgstr "Nome a Apresentar"
-
-#. module: purchase_allowed_product
-#: model:ir.model.fields,field_description:purchase_allowed_product.field_supplied_product_mixin__id
-msgid "ID"
-msgstr "ID"
-
-#. module: purchase_allowed_product
 #: model:ir.model.fields,help:purchase_allowed_product.field_res_partner__use_only_supplied_product
 #: model:ir.model.fields,help:purchase_allowed_product.field_res_users__use_only_supplied_product
 msgid ""
@@ -44,21 +34,18 @@ msgid ""
 msgstr ""
 
 #. module: purchase_allowed_product
-#: model:ir.model.fields,help:purchase_allowed_product.field_account_invoice__use_only_supplied_product
+#: model:ir.model.fields,help:purchase_allowed_product.field_account_bank_statement_line__use_only_supplied_product
+#: model:ir.model.fields,help:purchase_allowed_product.field_account_move__use_only_supplied_product
+#: model:ir.model.fields,help:purchase_allowed_product.field_account_payment__use_only_supplied_product
 #: model:ir.model.fields,help:purchase_allowed_product.field_purchase_order__use_only_supplied_product
 #: model:ir.model.fields,help:purchase_allowed_product.field_supplied_product_mixin__use_only_supplied_product
 msgid "If checked, only the products provided by this supplier will be shown."
 msgstr ""
 
 #. module: purchase_allowed_product
-#: model:ir.model,name:purchase_allowed_product.model_account_invoice
-msgid "Invoice"
+#: model:ir.model,name:purchase_allowed_product.model_account_move
+msgid "Journal Entry"
 msgstr ""
-
-#. module: purchase_allowed_product
-#: model:ir.model.fields,field_description:purchase_allowed_product.field_supplied_product_mixin____last_update
-msgid "Last Modified on"
-msgstr "Última Modificação em"
 
 #. module: purchase_allowed_product
 #: model:ir.model,name:purchase_allowed_product.model_supplied_product_mixin
@@ -87,7 +74,9 @@ msgid "Supplier Pricelist"
 msgstr ""
 
 #. module: purchase_allowed_product
-#: model:ir.model.fields,field_description:purchase_allowed_product.field_account_invoice__use_only_supplied_product
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_account_bank_statement_line__use_only_supplied_product
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_account_move__use_only_supplied_product
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_account_payment__use_only_supplied_product
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_purchase_order__use_only_supplied_product
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_supplied_product_mixin__use_only_supplied_product
 msgid "Use only allowed products"
@@ -102,3 +91,12 @@ msgstr ""
 #: model:ir.model.fields,help:purchase_allowed_product.field_product_supplierinfo__name
 msgid "Vendor of this product"
 msgstr ""
+
+#~ msgid "Display Name"
+#~ msgstr "Nome a Apresentar"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última Modificação em"
