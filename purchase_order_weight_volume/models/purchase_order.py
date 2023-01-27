@@ -22,12 +22,11 @@ class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
     total_weight = fields.Float(
-        "Total Weight",
         compute="_compute_total_physical_properties",
         digits="Stock Weight",
     )
     total_volume = fields.Float(
-        "Total Volume", compute="_compute_total_physical_properties", digits="Volume"
+        compute="_compute_total_physical_properties", digits="Volume"
     )
     weight_uom_name = fields.Char(compute="_compute_total_physical_properties")
     volume_uom_name = fields.Char(compute="_compute_total_physical_properties")
