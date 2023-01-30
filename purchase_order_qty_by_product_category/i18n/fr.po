@@ -1,0 +1,192 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_order_qty_by_product_category
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-01-30 09:35+0000\n"
+"PO-Revision-Date: 2023-01-30 09:35+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_order_qty_by_product_category
+#: model:ir.model.fields,field_description:purchase_order_qty_by_product_category.field_purchase_order_qty_by_product_category__category_id
+msgid "Category"
+msgstr "Catégorie"
+
+#. module: purchase_order_qty_by_product_category
+#: model:ir.model.fields,field_description:purchase_order_qty_by_product_category.field_purchase_order__category_qty_split_by_uom
+msgid "Category Qty Split By Uom"
+msgstr ""
+
+#. module: purchase_order_qty_by_product_category
+#: model:ir.model.fields,field_description:purchase_order_qty_by_product_category.field_purchase_order__category_qty_split_by_uom_reference
+msgid "Category Qty Split By Uom Reference"
+msgstr ""
+
+#. module: purchase_order_qty_by_product_category
+#: model:ir.model,name:purchase_order_qty_by_product_category.model_res_company
+msgid "Companies"
+msgstr "Sociétés"
+
+#. module: purchase_order_qty_by_product_category
+#: model:ir.model,name:purchase_order_qty_by_product_category.model_res_config_settings
+msgid "Config Settings"
+msgstr "Paramètres de config"
+
+#. module: purchase_order_qty_by_product_category
+#: model:ir.model.fields,field_description:purchase_order_qty_by_product_category.field_purchase_order_qty_by_product_category__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: purchase_order_qty_by_product_category
+#: model:ir.model.fields,field_description:purchase_order_qty_by_product_category.field_purchase_order_qty_by_product_category__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: purchase_order_qty_by_product_category
+#: model:ir.model.fields,field_description:purchase_order_qty_by_product_category.field_purchase_order_qty_by_product_category__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: purchase_order_qty_by_product_category
+#: model:ir.model.fields,field_description:purchase_order_qty_by_product_category.field_purchase_order_qty_by_product_category__id
+msgid "ID"
+msgstr ""
+
+#. module: purchase_order_qty_by_product_category
+#: model:ir.model.fields,field_description:purchase_order_qty_by_product_category.field_purchase_order_qty_by_product_category____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: purchase_order_qty_by_product_category
+#: model:ir.model.fields,field_description:purchase_order_qty_by_product_category.field_purchase_order_qty_by_product_category__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: purchase_order_qty_by_product_category
+#: model:ir.model.fields,field_description:purchase_order_qty_by_product_category.field_purchase_order_qty_by_product_category__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: purchase_order_qty_by_product_category
+#: model:ir.model.fields,field_description:purchase_order_qty_by_product_category.field_purchase_order_line__qty_by_product_category_id
+msgid "Order Line Qty By Category"
+msgstr ""
+
+#. module: purchase_order_qty_by_product_category
+#: model:ir.model.fields,field_description:purchase_order_qty_by_product_category.field_purchase_order__qty_by_product_category_ids
+msgid "Order Qty By Category"
+msgstr ""
+
+#. module: purchase_order_qty_by_product_category
+#: model:ir.model,name:purchase_order_qty_by_product_category.model_purchase_order_qty_by_product_category
+msgid "PO quantities split by product category"
+msgstr ""
+
+#. module: purchase_order_qty_by_product_category
+#: model:ir.model.fields,field_description:purchase_order_qty_by_product_category.field_res_company__po_category_qty_split_by_uom
+#: model:ir.model.fields,field_description:purchase_order_qty_by_product_category.field_res_config_settings__po_category_qty_split_by_uom
+msgid "Po Category Qty Split By Uom"
+msgstr ""
+
+#. module: purchase_order_qty_by_product_category
+#: model:ir.model.fields,field_description:purchase_order_qty_by_product_category.field_res_company__po_category_qty_split_by_uom_reference
+#: model:ir.model.fields,field_description:purchase_order_qty_by_product_category.field_res_config_settings__po_category_qty_split_by_uom_reference
+msgid "Po Category Qty Split By Uom Reference"
+msgstr ""
+
+#. module: purchase_order_qty_by_product_category
+#: model:ir.model.fields,field_description:purchase_order_qty_by_product_category.field_purchase_order_qty_by_product_category__purchase_line_ids
+msgid "Purchase Line"
+msgstr ""
+
+#. module: purchase_order_qty_by_product_category
+#: model:ir.model,name:purchase_order_qty_by_product_category.model_purchase_order
+#: model:ir.model.fields,field_description:purchase_order_qty_by_product_category.field_purchase_order_qty_by_product_category__purchase_order_id
+msgid "Purchase Order"
+msgstr "Commande fournisseur"
+
+#. module: purchase_order_qty_by_product_category
+#: model:ir.model,name:purchase_order_qty_by_product_category.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Ligne de commande d'achat"
+
+#. module: purchase_order_qty_by_product_category
+#: model:ir.model.fields,field_description:purchase_order_qty_by_product_category.field_purchase_order_qty_by_product_category__qty_ordered
+msgid "Qty Ordered"
+msgstr "Commandée"
+
+#. module: purchase_order_qty_by_product_category
+#: model:ir.model.fields,field_description:purchase_order_qty_by_product_category.field_purchase_order_qty_by_product_category__qty_received
+msgid "Qty Received"
+msgstr "Reçue"
+
+#. module: purchase_order_qty_by_product_category
+#: model:ir.model.fields,field_description:purchase_order_qty_by_product_category.field_purchase_order_qty_by_product_category__qty_to_receive
+msgid "Qty To Receive"
+msgstr "À recevoir"
+
+#. module: purchase_order_qty_by_product_category
+#: model:ir.model.fields,field_description:purchase_order_qty_by_product_category.field_purchase_order_qty_by_product_category__qty_uom_id
+msgid "Qty Uom"
+msgstr "UdM"
+
+#. module: purchase_order_qty_by_product_category
+#: model_terms:ir.ui.view,arch_db:purchase_order_qty_by_product_category.purchase_order_view_form_inherit
+msgid "Qty by Product Category"
+msgstr ""
+
+#. module: purchase_order_qty_by_product_category
+#: code:addons/purchase_order_qty_by_product_category/models/purchase_order_qty_by_product_category.py:0
+#, python-format
+msgid "Qty group for order %s, category %s and UoM %s already exists"
+msgstr ""
+
+#. module: purchase_order_qty_by_product_category
+#: model_terms:ir.ui.view,arch_db:purchase_order_qty_by_product_category.res_config_settings_view_form_purchase
+msgid "Split Quantity Category By Reference UoM"
+msgstr ""
+
+#. module: purchase_order_qty_by_product_category
+#: model_terms:ir.ui.view,arch_db:purchase_order_qty_by_product_category.res_config_settings_view_form_purchase
+msgid "Split Quantity Category By UoM"
+msgstr ""
+
+#. module: purchase_order_qty_by_product_category
+#: model_terms:ir.ui.view,arch_db:purchase_order_qty_by_product_category.purchase_order_view_form_inherit
+msgid "Split by UoM"
+msgstr ""
+
+#. module: purchase_order_qty_by_product_category
+#: model_terms:ir.ui.view,arch_db:purchase_order_qty_by_product_category.purchase_order_view_form_inherit
+msgid "To Receive"
+msgstr "À recevoir"
+
+#. module: purchase_order_qty_by_product_category
+#: model_terms:ir.ui.view,arch_db:purchase_order_qty_by_product_category.purchase_order_view_form_inherit
+msgid "Use Reference UoM"
+msgstr ""
+
+#. module: purchase_order_qty_by_product_category
+#: model_terms:ir.ui.view,arch_db:purchase_order_qty_by_product_category.res_config_settings_view_form_purchase
+msgid ""
+"When grouping PO quantities per product category and UoM, use reference UoM"
+msgstr ""
+
+#. module: purchase_order_qty_by_product_category
+#: model_terms:ir.ui.view,arch_db:purchase_order_qty_by_product_category.res_config_settings_view_form_purchase
+msgid "When grouping PO quantities per product category, also group by UoM"
+msgstr ""
+
+#. module: purchase_order_qty_by_product_category
+#: code:addons/purchase_order_qty_by_product_category/models/purchase_order_qty_by_product_category.py:0
+#, python-format
+msgid "undefined"
+msgstr ""
