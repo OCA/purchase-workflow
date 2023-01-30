@@ -4,10 +4,10 @@ from dateutil.relativedelta import relativedelta
 
 from odoo import fields
 from odoo.exceptions import UserError
-from odoo.tests.common import Form, SavepointCase
+from odoo.tests.common import Form, TransactionCase
 
 
-class TestWorkAcceptanceLateFine(SavepointCase):
+class TestWorkAcceptanceLateFine(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -90,8 +90,8 @@ class TestWorkAcceptanceLateFine(SavepointCase):
         move = self.env["account.move"].create({"move_type": "out_invoice"})
         self.assertEqual(move.currency_id.id, self.currency_eur.id)
         with Form(move) as m:
-            m.partner_id = self.res_partner
             m.late_wa_id = work_acceptance
+            m.partner_id = self.res_partner
         move = m.save()
         self.assertEqual(move.currency_id.id, self.currency_usd.id)
 
@@ -114,6 +114,9 @@ class TestWorkAcceptanceLateFine(SavepointCase):
         # Not late can't create fines
         with self.assertRaises(UserError):
             work_acceptance2.action_create_fines_invoice()
+        # Check no invoice (fines) in WA
+        with self.assertRaises(UserError):
+            work_acceptance2.action_view_invoice()
         # Button from wa to fines
         work_acceptance1.action_view_invoice()
 
@@ -122,7 +125,7 @@ class TestWorkAcceptanceLateFine(SavepointCase):
         work_acceptance2 = self._create_wa(self.late2days)
         ctx = {"active_ids": [work_acceptance1.id, work_acceptance2.id]}
         work_acceptance = work_acceptance1 + work_acceptance2
-        result = work_acceptance.with_context(ctx).action_create_fines_invoice()
+        result = work_acceptance.with_context(**ctx).action_create_fines_invoice()
         # Should be tree view
         self.assertEqual(result["res_id"], 0)
         domain = result["domain"]

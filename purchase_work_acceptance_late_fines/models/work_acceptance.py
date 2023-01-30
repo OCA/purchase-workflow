@@ -9,14 +9,12 @@ class WorkAcceptance(models.Model):
     _inherit = "work.acceptance"
 
     late_days = fields.Integer(
-        string="Late Days",
         readonly=True,
         states={"draft": [("readonly", False)]},
         tracking=True,
         help="Late day(s) from Received Date - Due Date",
     )
     fines_rate = fields.Monetary(
-        string="Fines Rate",
         default=lambda self: self.env.company.wa_fines_rate,
         readonly=True,
         states={"draft": [("readonly", False)]},
@@ -31,7 +29,6 @@ class WorkAcceptance(models.Model):
         help="Computed amount. Can be overwritten",
     )
     fines_invoice_count = fields.Integer(
-        string="Fines Invoice Count",
         compute="_compute_fines_invoice_count",
     )
     fines_invoice_ids = fields.One2many(
@@ -51,8 +48,8 @@ class WorkAcceptance(models.Model):
             active_ids = self.ids or self.env.context.get("active_ids", [])
             work_acceptances = self.env["work.acceptance"].browse(active_ids)
             move_ids = work_acceptances.mapped("fines_invoice_ids").ids
-        if not move_ids:
-            raise UserError(_("No fine invoices"))
+            if not move_ids:
+                raise UserError(_("No fine invoices"))
         xmlid = "account.action_move_out_invoice_type"
         action = self.env["ir.actions.act_window"]._for_xml_id(xmlid)
         if len(move_ids) > 1:
@@ -74,7 +71,7 @@ class WorkAcceptance(models.Model):
         )
         if fines_invoices:
             names = ", ".join(fines_invoices.mapped("late_wa_id").mapped("name"))
-            raise UserError(_("Invoice already created for %s" % names))
+            raise UserError(_("Invoice already created for {}").format(names))
         move_dict = [
             {
                 "partner_id": wa.partner_id.id,
@@ -97,11 +94,8 @@ class WorkAcceptance(models.Model):
 
     @api.onchange("date_receive", "date_due")
     def _onchange_late_days(self):
-        if self.date_receive and self.date_due:
-            late_days = (self.date_receive - self.date_due).days
-            self.late_days = late_days > 0 and late_days or 0
-        else:
-            self.late_days = 0
+        late_days = (self.date_receive - self.date_due).days
+        self.late_days = late_days > 0 and late_days or 0
 
     @api.onchange("late_days", "fines_rate")
     def _onchange_fines_late(self):
