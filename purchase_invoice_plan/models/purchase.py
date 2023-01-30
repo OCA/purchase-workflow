@@ -18,7 +18,6 @@ class PurchaseOrder(models.Model):
         copy=False,
     )
     use_invoice_plan = fields.Boolean(
-        string="Use Invoice Plan",
         default=False,
         copy=False,
     )
@@ -158,11 +157,8 @@ class PurchaseInvoicePlan(models.Model):
         store=True,
         index=True,
     )
-    installment = fields.Integer(
-        string="Installment",
-    )
+    installment = fields.Integer()
     plan_date = fields.Date(
-        string="Plan Date",
         required=True,
     )
     invoice_type = fields.Selection(
@@ -177,12 +173,10 @@ class PurchaseInvoicePlan(models.Model):
         help="Last installment will create invoice use remaining amount",
     )
     percent = fields.Float(
-        string="Percent",
         digits="Purchase Invoice Plan Percent",
         help="This percent will be used to calculate new quantity",
     )
     amount = fields.Float(
-        string="Amount",
         digits="Product Price",
         compute="_compute_amount",
         inverse="_inverse_amount",
@@ -295,7 +289,7 @@ class PurchaseInvoicePlan(models.Model):
         if self.last:  # For last install, let the system do the calc.
             return
         percent = self.percent
-        move = invoice_move.with_context({"check_move_validity": False})
+        move = invoice_move.with_context(**{"check_move_validity": False})
         for line in move.invoice_line_ids:
             self._update_new_quantity(line, percent)
         move.line_ids.filtered("exclude_from_invoice_tab").unlink()
@@ -308,10 +302,10 @@ class PurchaseInvoicePlan(models.Model):
         if float_compare(abs(plan_qty), abs(line.quantity), prec) == 1:
             raise ValidationError(
                 _(
-                    "Plan quantity: %s, exceed invoiceable quantity: %s"
+                    "Plan quantity: %(plan)s, exceed invoiceable quantity: %(qty)s"
                     "\nProduct should be delivered before invoice"
                 )
-                % (plan_qty, line.quantity)
+                % {"plan": plan_qty, "qty": line.quantity}
             )
         line.write({"quantity": plan_qty})
 
