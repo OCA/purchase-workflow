@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="work_acceptance_evaluation_report_tree_view" model="ir.ui.view">
         <field name="name">work.acceptance.evaluation.report.tree.view</field>
