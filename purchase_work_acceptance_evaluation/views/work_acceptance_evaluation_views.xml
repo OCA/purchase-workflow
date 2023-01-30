@@ -1,9 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="view_work_acceptance_evaluation_tree" model="ir.ui.view">
         <field name="name">work.acceptance.evaluation.tree</field>
         <field name="model">work.acceptance.evaluation</field>
         <field name="arch" type="xml">
-            <tree string="Work Acceptance Evaluation">
+            <tree>
                 <field name="name" />
                 <field name="state_required" />
             </tree>
@@ -33,7 +34,7 @@
                     <notebook>
                         <page string="Score" name="score">
                             <field name="score_ids">
-                                <tree string="Score Lines" editable="bottom">
+                                <tree editable="bottom">
                                     <field name="name" optional="show" />
                                     <field name="score" />
                                 </tree>

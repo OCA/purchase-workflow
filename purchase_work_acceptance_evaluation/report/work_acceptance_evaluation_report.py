@@ -34,9 +34,7 @@ class WorkAcceptanceEvaluationReport(models.Model):
         string="Score ID",
     )
     score = fields.Integer()
-    note = fields.Char(
-        string="Note",
-    )
+    note = fields.Char()
     company_id = fields.Many2one(
         comodel_name="res.company",
     )

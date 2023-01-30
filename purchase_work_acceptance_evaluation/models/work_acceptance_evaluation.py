@@ -17,7 +17,6 @@ class WorkAcceptanceEvaluation(models.Model):
     )
     state_required = fields.Selection(
         selection=[("draft", "Draft"), ("accept", "Accepted")],
-        string="State Required",
         help="Status of Work Acceptance that user need to fill the evaluation",
     )
     score_ids = fields.One2many(
@@ -40,12 +39,8 @@ class WorkAcceptanceEvaluationScore(models.Model):
         comodel_name="work.acceptance.evaluation",
         string="Case Name",
     )
-    score = fields.Integer(
-        string="Score",
-    )
+    score = fields.Integer()
 
     def name_get(self):
-        result = []
-        for rec in self:
-            result.append((rec.id, "{} ({})".format(rec.name, rec.score)))
+        result = [(rec.id, "{} ({})".format(rec.name, rec.score)) for rec in self]
         return result
