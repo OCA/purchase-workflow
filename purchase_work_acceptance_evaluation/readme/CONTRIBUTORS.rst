@@ -2,6 +2,7 @@
 
   * Kitti U. <kittiu@ecosoft.co.th>
   * Tharathip C. <tharathipc@ecosoft.co.th>
+  * Saran Lim. <saranl@ecosoft.co.th>
 
 * `ProThai <http://prothaitechnology.com>`__:
 
