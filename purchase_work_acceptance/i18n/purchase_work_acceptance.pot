@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -165,13 +165,7 @@ msgid "Description"
 msgstr ""
 
 #. module: purchase_work_acceptance
-#: model:ir.model.fields,field_description:purchase_work_acceptance.field_account_move__display_name
-#: model:ir.model.fields,field_description:purchase_work_acceptance.field_purchase_order__display_name
-#: model:ir.model.fields,field_description:purchase_work_acceptance.field_purchase_order_line__display_name
-#: model:ir.model.fields,field_description:purchase_work_acceptance.field_res_config_settings__display_name
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_select_work_acceptance_wizard__display_name
-#: model:ir.model.fields,field_description:purchase_work_acceptance.field_stock_picking__display_name
-#: model:ir.model.fields,field_description:purchase_work_acceptance.field_stock_picking_type__display_name
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__display_name
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance_line__display_name
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_accepted_date_wizard__display_name
@@ -227,11 +221,6 @@ msgid "Followers"
 msgstr ""
 
 #. module: purchase_work_acceptance
-#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__message_channel_ids
-msgid "Followers (Channels)"
-msgstr ""
-
-#. module: purchase_work_acceptance
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__message_partner_ids
 msgid "Followers (Partners)"
 msgstr ""
@@ -247,13 +236,12 @@ msgid "Group By"
 msgstr ""
 
 #. module: purchase_work_acceptance
-#: model:ir.model.fields,field_description:purchase_work_acceptance.field_account_move__id
-#: model:ir.model.fields,field_description:purchase_work_acceptance.field_purchase_order__id
-#: model:ir.model.fields,field_description:purchase_work_acceptance.field_purchase_order_line__id
-#: model:ir.model.fields,field_description:purchase_work_acceptance.field_res_config_settings__id
+#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: purchase_work_acceptance
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_select_work_acceptance_wizard__id
-#: model:ir.model.fields,field_description:purchase_work_acceptance.field_stock_picking__id
-#: model:ir.model.fields,field_description:purchase_work_acceptance.field_stock_picking_type__id
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__id
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance_line__id
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_accepted_date_wizard__id
@@ -298,13 +286,7 @@ msgid "Journal Entry"
 msgstr ""
 
 #. module: purchase_work_acceptance
-#: model:ir.model.fields,field_description:purchase_work_acceptance.field_account_move____last_update
-#: model:ir.model.fields,field_description:purchase_work_acceptance.field_purchase_order____last_update
-#: model:ir.model.fields,field_description:purchase_work_acceptance.field_purchase_order_line____last_update
-#: model:ir.model.fields,field_description:purchase_work_acceptance.field_res_config_settings____last_update
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_select_work_acceptance_wizard____last_update
-#: model:ir.model.fields,field_description:purchase_work_acceptance.field_stock_picking____last_update
-#: model:ir.model.fields,field_description:purchase_work_acceptance.field_stock_picking_type____last_update
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance____last_update
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance_line____last_update
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_accepted_date_wizard____last_update
@@ -681,21 +663,16 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_select_work_acceptance_wizard__wa_id
 #: model:ir.ui.menu,name:purchase_work_acceptance.menu_work_acceptance
 #: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.res_config_settings_view_form_purchase
-#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_work_acceptance_form
-#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_work_acceptance_search
-#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_work_acceptance_tree
 msgid "Work Acceptance"
 msgstr ""
 
 #. module: purchase_work_acceptance
 #: model:ir.model,name:purchase_work_acceptance.model_work_acceptance_line
-#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_work_acceptance_form
 msgid "Work Acceptance Line"
 msgstr ""
 
 #. module: purchase_work_acceptance
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__wa_line_ids
-#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_work_acceptance_form
 msgid "Work Acceptance Lines"
 msgstr ""
 
