@@ -8,7 +8,13 @@
         <field name="arch" type="xml">
             <form string="Product Components">
                 <sheet>
-                    <field name="component_ids" widget="one2many">
+                    <field name="product_tmpl_id" invisible="1" />
+                    <field name="company_id" invisible="1" />
+                    <field
+                        name="component_ids"
+                        widget="one2many"
+                        readonly="context.get('product_id', False)"
+                    >
                         <tree string="Product Components" editable="bottom">
                             <control>
                                 <create
@@ -20,6 +26,12 @@
                             <field name="component_uom_category_id" invisible="1" />
                             <field name="parent_product_ids" invisible="1" />
                             <field name="component_id" />
+                            <field
+                                name="variant_ids"
+                                widget="many2many_tags"
+                                groups="product.group_product_variant"
+                                domain="[('product_tmpl_id', '=', parent.product_tmpl_id)]"
+                            />
                             <field name="product_uom_qty" />
                             <field name="product_uom_id" />
                         </tree>

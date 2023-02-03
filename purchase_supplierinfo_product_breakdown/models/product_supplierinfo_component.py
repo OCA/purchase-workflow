@@ -30,6 +30,11 @@ class ProductSupplierInfoComponent(models.Model):
         domain=[("category_id", "=", component_uom_category_id)],
         required=True,
     )
+    variant_ids = fields.Many2many(
+        comodel_name="product.template.attribute.value",
+        relation="product_supplierinfo_component_product_attribute_value_rel",
+        string="Apply to Variant",
+    )
 
     @api.onchange("component_id")
     def onchange_component_id(self):

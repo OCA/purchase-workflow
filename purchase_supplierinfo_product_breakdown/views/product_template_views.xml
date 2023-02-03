@@ -13,7 +13,17 @@
                     'default_product_tmpl_id':context.get('product_tmpl_id',active_id),
                     'product_template_invisible_variant': True,
                     'tree_view_ref':'purchase_supplierinfo_product_breakdown.product_supplierinfo_tree_view3'
-                }
+                    }
+                </attribute>
+            </field>
+            <field name="variant_seller_ids" position="attributes">
+                <attribute name="context">{
+                    'parent_active_model':active_model,
+                    'default_product_tmpl_id':context.get('product_tmpl_id',active_id),
+                    'product_id': context.get('product_id', active_id) if active_model == 'product.product' else False,
+                    'product_template_invisible_variant': True,
+                    'tree_view_ref':'purchase_supplierinfo_product_breakdown.product_supplierinfo_tree_view3'
+                    }
                 </attribute>
             </field>
         </field>
