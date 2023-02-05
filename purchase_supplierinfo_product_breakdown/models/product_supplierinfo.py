@@ -4,17 +4,12 @@ from odoo import _, api, fields, models
 class ProductSupplierInfo(models.Model):
     _inherit = "product.supplierinfo"
 
-    def _domain_component_ids(self):
-        return []
-
     product_use_components = fields.Boolean(
         related="product_tmpl_id.use_product_components"
     )
     partner_use_components = fields.Boolean(related="name.use_product_components")
     component_ids = fields.One2many(
-        comodel_name="product.supplierinfo.component",
-        inverse_name="supplierinfo_id",
-        domain=lambda self: self._domain_component_ids(),
+        comodel_name="product.supplierinfo.component", inverse_name="supplierinfo_id"
     )
     product_variant_ids = fields.One2many(related="product_tmpl_id.product_variant_ids")
 

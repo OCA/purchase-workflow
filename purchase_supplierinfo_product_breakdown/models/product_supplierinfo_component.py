@@ -46,3 +46,17 @@ class ProductSupplierInfoComponent(models.Model):
                 "product_uom_id": component.uom_po_id or component.uom_id,
             }
         )
+
+    def search(self, args, offset=0, limit=None, order=None, count=False):
+        result = super(ProductSupplierInfoComponent, self).search(
+            args, offset, limit, order, count
+        )
+        product_id = self._context.get("product_id")
+        if not product_id:
+            return result
+        product = self.env["product.product"].browse(product_id)
+        product_variant_ids = set(product.product_template_attribute_value_ids.ids)
+        return result.filtered(
+            lambda c: set(c.variant_ids.ids).intersection(product_variant_ids)
+            or not c.variant_ids
+        )
