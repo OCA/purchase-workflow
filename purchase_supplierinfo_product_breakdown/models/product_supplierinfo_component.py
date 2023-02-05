@@ -52,7 +52,9 @@ class ProductSupplierInfoComponent(models.Model):
             args, offset, limit, order, count
         )
         product_id = self._context.get("product_id")
-        if not product_id:
+        if not product_id and not self.env.user.user_has_groups(
+            "product.group_product_variant"
+        ):
             return result
         product = self.env["product.product"].browse(product_id)
         product_variant_ids = set(product.product_template_attribute_value_ids.ids)
