@@ -70,23 +70,23 @@ class TestPurchaseWorkAcceptanceInvoicePlan(TransactionCase):
         with Form(self.PurchaseInvoicePlan) as p:
             p.num_installment = 2
         purchase_plan = p.save()
-        purchase_plan.with_context(ctx).purchase_create_invoice_plan()
+        purchase_plan.with_context(**ctx).purchase_create_invoice_plan()
         invoice_plan = purchase_order.invoice_plan_ids
         # Check invoice plan can editable
         self.assertFalse(invoice_plan[0].no_edit)
         purchase_order.button_confirm()
         # Check create wa with last invoice plan, it should warning
-        wa_installment = self.WaInstallmentWizard.with_context(ctx).create(
+        wa_installment = self.WaInstallmentWizard.with_context(**ctx).create(
             {"installment_id": invoice_plan[1].id}
         )
         check_installment = wa_installment._onchange_installment_id()
         self.assertTrue(check_installment.get("warning"))
         # Check select base on match amount, it not found and raise error
         with self.assertRaises(UserError):
-            with Form(self.WaInstallmentWizard.with_context(ctx)) as wa_wizard:
+            with Form(self.WaInstallmentWizard.with_context(**ctx)) as wa_wizard:
                 wa_wizard.installment_id = invoice_plan[0]
                 wa_wizard.apply_method_id = self.apply_match_amount
-        with Form(self.WaInstallmentWizard.with_context(ctx)) as wa_wizard:
+        with Form(self.WaInstallmentWizard.with_context(**ctx)) as wa_wizard:
             wa_wizard.installment_id = invoice_plan[0]
             wa_wizard.apply_method_id = self.apply_all
         wizard = wa_wizard.save()
@@ -114,7 +114,7 @@ class TestPurchaseWorkAcceptanceInvoicePlan(TransactionCase):
         res = wizard.button_create_wa()
         # Check Work Acceptance
         ctx_wa = res.get("context")
-        work_acceptance = Form(self.env["work.acceptance"].with_context(ctx_wa))
+        work_acceptance = Form(self.env["work.acceptance"].with_context(**ctx_wa))
         wa = work_acceptance.save()
         self.assertEqual(wa.state, "draft")
         purchase_order.action_view_wa()
@@ -122,7 +122,7 @@ class TestPurchaseWorkAcceptanceInvoicePlan(TransactionCase):
         wa.button_accept()
         self.assertEqual(wa.state, "accept")
         # Check create wa duplicate, it will error
-        wa_installment = self.WaInstallmentWizard.with_context(ctx_wa).create(
+        wa_installment = self.WaInstallmentWizard.with_context(**ctx_wa).create(
             {"installment_id": invoice_plan[0].id}
         )
         with self.assertRaises(UserError):
@@ -137,7 +137,7 @@ class TestPurchaseWorkAcceptanceInvoicePlan(TransactionCase):
         picking.move_ids_without_package[0].quantity_done = 5.0
         picking.button_validate()
         # Create invoice following wa
-        with Form(self.WaInvoiceWizard.with_context(ctx)) as wa_inv_wizard:
+        with Form(self.WaInvoiceWizard.with_context(**ctx)) as wa_inv_wizard:
             wa_inv_wizard.wa_id = wa
         wiz = wa_inv_wizard.save()
         res = wiz.button_create_vendor_bill()
