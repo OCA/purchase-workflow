@@ -27,6 +27,7 @@ setuptools.setup(
         'odoo14-addon-purchase_fop_shipping',
         'odoo14-addon-purchase_force_invoiced',
         'odoo14-addon-purchase_invoice_plan',
+        'odoo14-addon-purchase_invoice_plan_retention',
         'odoo14-addon-purchase_isolated_rfq',
         'odoo14-addon-purchase_last_price_info',
         'odoo14-addon-purchase_location_by_line',
