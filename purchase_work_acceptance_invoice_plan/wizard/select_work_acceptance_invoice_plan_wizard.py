@@ -99,7 +99,7 @@ class SelectWorkAcceptanceInvoicePlanWizard(models.TransientModel):
                 "installment_id": self.installment_id.id,
                 "purchase_id": self.env.context.get("active_id"),
             }
-            order_line_ids = self.apply_method_id.with_context(ctx).run()
+            order_line_ids = self.apply_method_id.with_context(**ctx).run()
             if not order_line_ids:
                 raise UserError(_("No product line with matched amount!"))
             self.order_line_ids = order_line_ids  # [1,2,3,4]
@@ -151,10 +151,9 @@ class SelectWorkAcceptanceInvoicePlanWizard(models.TransientModel):
                 "warning": {
                     "title": _("Installment Warning:"),
                     "message": _(
-                        "The 1st installment is 'Invoice Plan %s' "
-                        "but you are choosing 'Invoice Plan %s'"
-                    )
-                    % (min_installment, self.installment_id.installment),
+                        "The 1st installment is 'Invoice Plan {}' "
+                        "but you are choosing 'Invoice Plan {}'"
+                    ).format(min_installment, self.installment_id.installment),
                 }
             }
 
@@ -162,10 +161,8 @@ class SelectWorkAcceptanceInvoicePlanWizard(models.TransientModel):
         purchase = self.env["purchase.order"].browse(self.env.context.get("active_id"))
         if self.installment_id not in self.active_installment_ids:
             raise UserError(
-                _(
-                    "Installment {} is already used by other WA.".format(
-                        self.installment_id.installment
-                    )
+                _("Installment {} is already used by other WA.").format(
+                    self.installment_id.installment
                 )
             )
         res = purchase.with_context(
@@ -216,7 +213,6 @@ class ComputeWorkAcceptanceInvoicePlan(models.TransientModel):
         digits="Product Unit of Measure",
     )
     amount = fields.Monetary(
-        string="Amount",
         compute="_compute_amount",
         inverse="_inverse_amount",
     )
