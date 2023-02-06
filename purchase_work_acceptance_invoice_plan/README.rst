@@ -25,8 +25,13 @@ Purchase Work Acceptance Invoice Plan
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-This module add ability to create Work Acceptance based on the predefined invoice plan,
-one by one.
+This module add ability to create Work Acceptance based on the predefined invoice plan, one by one.
+
+**Note:**
+
+Because WA is now based on invoice plan, the option "Create Bill by Plan" will be removed.
+
+User will be left with only option "Create Bill" (and to choose WA), the chosen WA is now used to control the quantity in invoice instead of the invoice plan.
 
 .. IMPORTANT::
    This is an alpha version, the data model and design can change at any time without warning.
@@ -41,13 +46,17 @@ one by one.
 Usage
 =====
 
-** Usual process of Purchasing with Work Acceptance using Invoice Plan **
+**Usual process of Purchasing with Work Acceptance using Invoice Plan**
 
 - Go to menu Purchase > Create a New Purchase Order.
 - Select option "Use Invoice Plan" and fill information in Invoice Plan Tab.
-- Confirm Order > Create WA by Installment
-- Select the invoice plan relating to this creating Work Acceptance.
+- Confirm Purchase Order
+- To create Work Acceptance, click button "Create WA by Installment"
+    - Select the installment
+    - For better control of product line to be on WA, select **Based On** 1) All product lines 2) Product line with matched amount
 - Accept the Work Acceptance.
+
+**Note:** the **Based On** option is create by server action, it is possible to create more option.
 
 Bug Tracker
 ===========
