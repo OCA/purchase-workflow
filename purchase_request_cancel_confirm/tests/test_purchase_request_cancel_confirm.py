@@ -35,7 +35,7 @@ class TestPurchaseRequestCancelConfirm(TransactionCase):
         ctx = res.get("context")
         self.assertEqual(ctx["cancel_method"], "button_rejected")
         self.assertEqual(ctx["default_has_cancel_reason"], "optional")
-        wizard = Form(self.env["cancel.confirm"].with_context(ctx))
+        wizard = Form(self.env["cancel.confirm"].with_context(**ctx))
         wizard.cancel_reason = "Wrong information"
         wiz = wizard.save()
         # Confirm cancel on wizard
