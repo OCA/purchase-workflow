@@ -1,0 +1,105 @@
+<odoo>
+    <record id="view_work_acceptance_search" model="ir.ui.view">
+        <field name="name">work.acceptance.search</field>
+        <field name="model">work.acceptance</field>
+        <field
+            name="inherit_id"
+            ref="purchase_work_acceptance.view_work_acceptance_search"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//search/filter[@name='my_wa']" position="after">
+                <filter
+                    string="Fines"
+                    name="fines"
+                    domain="[('fines_late', '>', 0.0)]"
+                />
+            </xpath>
+        </field>
+    </record>
+    <record id="view_work_acceptance_fines_late_tab_form" model="ir.ui.view">
+        <field name="name">work.acceptance.late.fines.tab.form</field>
+        <field name="model">work.acceptance</field>
+        <field
+            name="inherit_id"
+            ref="purchase_work_acceptance.view_work_acceptance_form"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button
+                    name="action_create_fines_invoice"
+                    string="Create Fines Invoice"
+                    type="object"
+                    class="oe_highlight"
+                    attrs="{'invisible': ['|', '|', ('state', '!=', 'accept'), ('fines_late', '=', 0.0), ('fines_invoice_ids', '!=', [])]}"
+                    groups="account.group_account_invoice"
+                />
+                <button
+                    name="action_create_fines_invoice"
+                    string="Create Fines Invoice"
+                    type="object"
+                    attrs="{'invisible': ['|', '|', ('state', '!=', 'accept'), ('fines_late', '=', 0.0), ('fines_invoice_ids', '=', [])]}"
+                />
+            </xpath>
+            <xpath expr="//sheet/div[hasclass('oe_title')]" position="before">
+                <div class="oe_button_box" name="button_box">
+                    <button
+                        type="object"
+                        name="action_view_invoice"
+                        class="oe_stat_button"
+                        icon="fa-pencil-square-o"
+                        attrs="{'invisible': [('fines_invoice_ids', '=', [])]}"
+                        context="{'default_partner_id': partner_id}"
+                    >
+                        <field
+                            name="fines_invoice_count"
+                            widget="statinfo"
+                            string="Late Fines"
+                        />
+                        <field name="fines_invoice_ids" invisible="1" />
+                    </button>
+                </div>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page
+                    string="Late Fines"
+                    name="fines_late"
+                    groups="purchase_work_acceptance_late_fines.group_enable_fines_on_wa"
+                >
+                    <group>
+                        <group name="Fines">
+                            <label for="late_days" />
+                            <div>
+                                <field name="late_days" class="oe_inline" />
+                                <t
+                                    class="text-muted"
+                                    attrs="{'invisible': [('state', '!=', 'draft')]}"
+                                > (Approximately)</t>
+                            </div>
+                            <label for="fines_rate" />
+                            <div>
+                                    <field
+                                    name="fines_rate"
+                                    class="oe_inline"
+                                /> per day
+                                </div>
+                            <field name="fines_late" />
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    <record id="action_account_invoice_from_list" model="ir.actions.server">
+        <field name="name">Create Fines Invoice</field>
+        <field name="model_id" ref="purchase_work_acceptance.model_work_acceptance" />
+        <field
+            name="binding_model_id"
+            ref="purchase_work_acceptance.model_work_acceptance"
+        />
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">
+            action = model.action_create_fines_invoice()
+        </field>
+    </record>
+</odoo>
