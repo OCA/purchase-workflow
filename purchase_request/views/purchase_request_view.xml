@@ -177,6 +177,7 @@
                                     <field
                                         name="analytic_tag_ids"
                                         groups="analytic.group_analytic_accounting"
+                                        widget="many2many_tags"
                                     />
                                     <field name="date_required" />
                                     <field name="estimated_cost" widget="monetary" />
