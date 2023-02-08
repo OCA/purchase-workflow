@@ -69,6 +69,28 @@ class TestPurchaseOpenQty(TransactionCase):
         self.purchase_order_line_2 = purchase_order_line_model.sudo().create(pl_dict2)
         self.purchase_order_2.button_confirm()
 
+        # Purchase Order Num 3 (service)
+        po_dict3 = {"partner_id": self.partner2.id}
+        self.purchase_order_3 = self.purchase_order_model.create(po_dict3)
+        pr_dict3 = {
+            "name": "Product Test 3",
+            "uom_id": uom_id,
+            "purchase_method": "receive",
+            "type": "service",
+        }
+        self.product3 = prod_model.sudo().create(pr_dict3)
+        pl_dict3 = {
+            "date_planned": Datetime.now(),
+            "name": "PO03",
+            "order_id": self.purchase_order_3.id,
+            "product_id": self.product3.id,
+            "product_uom": uom_id,
+            "price_unit": 10.0,
+            "product_qty": 5.0,
+        }
+        self.purchase_order_line_3 = purchase_order_line_model.sudo().create(pl_dict3)
+        self.purchase_order_3.button_confirm()
+
     def test_compute_qty_to_invoice_and_receive(self):
         self.assertEqual(
             self.purchase_order_line_1.qty_to_invoice,
@@ -166,4 +188,27 @@ class TestPurchaseOpenQty(TransactionCase):
             self.purchase_order_2.id not in found.ids,
             "Expected PO %s not to be in POs %s"
             % (self.purchase_order_2.id, found.ids),
+        )
+
+    def test_03_po_line_with_services(self):
+        self.assertEqual(
+            self.purchase_order_line_3.qty_to_receive,
+            5.0,
+        )
+        self.assertEqual(
+            self.purchase_order_line_3.qty_received,
+            0.0,
+        )
+        self.purchase_order_line_3.qty_received = 3.0
+        self.assertEqual(
+            self.purchase_order_line_3.qty_to_receive,
+            2.0,
+        )
+        self.assertEqual(
+            self.purchase_order_line_3.qty_received,
+            3.0,
+        )
+        self.assertEqual(
+            self.purchase_order_line_3.qty_to_invoice,
+            3.0,
         )
