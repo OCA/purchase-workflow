@@ -9,9 +9,16 @@ from odoo.tools import float_is_zero
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
-    @api.depends("move_ids.state", "move_ids.product_uom", "move_ids.product_uom_qty")
+    @api.depends(
+        "move_ids.state",
+        "move_ids.product_uom",
+        "move_ids.product_uom_qty",
+        "product_qty",
+        "qty_received",
+    )
     def _compute_qty_to_receive(self):
-        for line in self:
+        service_lines = self.filtered(lambda l: l.product_id.type == "service")
+        for line in self - service_lines:
             total = 0.0
             for move in line.move_ids.filtered(
                 lambda m: m.state not in ("cancel", "done")
@@ -23,6 +30,8 @@ class PurchaseOrderLine(models.Model):
                 else:
                     total += move.product_uom_qty
             line.qty_to_receive = total
+        for line in service_lines:
+            line.qty_to_receive = line.product_qty - line.qty_received
 
     qty_to_receive = fields.Float(
         compute="_compute_qty_to_receive",
