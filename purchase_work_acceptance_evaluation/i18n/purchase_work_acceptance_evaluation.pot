@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -69,8 +69,6 @@ msgid "Created on"
 msgstr ""
 
 #. module: purchase_work_acceptance_evaluation
-#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_res_config_settings__display_name
-#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance__display_name
 #: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation__display_name
 #: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation_report__display_name
 #: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation_result__display_name
@@ -102,7 +100,6 @@ msgstr ""
 
 #. module: purchase_work_acceptance_evaluation
 #: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance__evaluation_result_ids
-#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance_evaluation.view_work_acceptance_evaluation_tab_form
 msgid "Evaluation Results"
 msgstr ""
 
@@ -112,8 +109,6 @@ msgid "Group By"
 msgstr ""
 
 #. module: purchase_work_acceptance_evaluation
-#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_res_config_settings__id
-#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance__id
 #: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation__id
 #: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation_report__id
 #: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation_result__id
@@ -122,8 +117,6 @@ msgid "ID"
 msgstr ""
 
 #. module: purchase_work_acceptance_evaluation
-#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_res_config_settings____last_update
-#: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance____last_update
 #: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation____last_update
 #: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation_report____last_update
 #: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation_result____last_update
@@ -183,11 +176,6 @@ msgid "Score ID"
 msgstr ""
 
 #. module: purchase_work_acceptance_evaluation
-#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance_evaluation.view_work_acceptance_evaluation_form
-msgid "Score Lines"
-msgstr ""
-
-#. module: purchase_work_acceptance_evaluation
 #: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation__state_required
 msgid "State Required"
 msgstr ""
@@ -231,7 +219,6 @@ msgstr ""
 #: model:ir.ui.menu,name:purchase_work_acceptance_evaluation.menu_work_acceptance_evaluation
 #: model_terms:ir.ui.view,arch_db:purchase_work_acceptance_evaluation.view_work_acceptance_evaluation_form
 #: model_terms:ir.ui.view,arch_db:purchase_work_acceptance_evaluation.view_work_acceptance_evaluation_search
-#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance_evaluation.view_work_acceptance_evaluation_tree
 msgid "Work Acceptance Evaluation"
 msgstr ""
 
