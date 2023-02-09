@@ -4,7 +4,7 @@ from odoo import fields
 from odoo.tests import common
 
 
-class TestPurchaseOrderLineDeepSort(common.SavepointCase):
+class TestPurchaseOrderLineDeepSort(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

@@ -8,7 +8,7 @@ SORTING_CRITERIA = [
     ("product_id.name", "By product name"),
     ("product_id.default_code", "By product reference"),
     ("date_planned", "By date planned"),
-    ("price_unit", "By price"),
+    ("price_unit", "By unit price"),
     ("product_qty", "By quantity"),
 ]
 
