@@ -2,6 +2,7 @@
 
   * Vicent Cubells <vicent.cubells@tecnativa.com>
   * Pedro M. Baeza
+  * Stefan Ungureanu
 
 * `Prothai <https://www.prothaitechnology.com:>`_:
 
