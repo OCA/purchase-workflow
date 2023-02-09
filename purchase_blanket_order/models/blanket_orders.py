@@ -305,7 +305,7 @@ class BlanketOrder(models.Model):
 
     def action_view_purchase_orders(self):
         purchase_orders = self._get_purchase_orders()
-        action = self.env.ref("purchase.purchase_rfq").read()[0]
+        action = self.env["ir.actions.act_window"]._for_xml_id("purchase.purchase_rfq")
         if len(purchase_orders) > 0:
             action["domain"] = [("id", "in", purchase_orders.ids)]
             action["context"] = [("id", "in", purchase_orders.ids)]
@@ -314,9 +314,9 @@ class BlanketOrder(models.Model):
         return action
 
     def action_view_purchase_blanket_order_line(self):
-        action = self.env.ref(
+        action = self.env["ir.actions.act_window"]._for_xml_id(
             "purchase_blanket_order.act_open_purchase_blanket_order_lines_view_tree"
-        ).read()[0]
+        )
         lines = self.mapped("line_ids")
         if len(lines) > 0:
             action["domain"] = [("id", "in", lines.ids)]
