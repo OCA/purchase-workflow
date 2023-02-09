@@ -16,7 +16,7 @@ class PurchaseOrder(models.Model):
             ("res_model", "=", "product.template"),
             ("res_id", "in", products.mapped("product_tmpl_id").ids),
         ]
-        res = self.env.ref("base.action_attachment").read()[0]
+        res = self.env["ir.actions.act_window"]._for_xml_id("base.action_attachment")
         ctx = {"create": False, "edit": False}
         res.update({"domain": domain, "context": ctx})
         return res
