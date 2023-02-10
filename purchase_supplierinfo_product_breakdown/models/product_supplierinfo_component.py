@@ -52,7 +52,8 @@ class ProductSupplierInfoComponent(models.Model):
             args, offset, limit, order, count
         )
         product_id = self._context.get("product_id")
-        if not product_id and not self.env.user.user_has_groups(
+
+        if not product_id or not self.env.user.user_has_groups(
             "product.group_product_variant"
         ):
             return result
