@@ -58,10 +58,23 @@ class PurchaseOrderLine(models.Model):
                 limit=1,
             )
 
+    def _get_component_by_product_variant(self, components):
+        """Get components by product variant"""
+        product_variant_ids = set(
+            self.product_id.product_template_attribute_value_ids.ids
+        )
+        return components.filtered(
+            lambda c: set(c.variant_ids.ids).intersection(product_variant_ids)
+            or not c.variant_ids
+        )
+
     def _update_purchase_order_line_components(self):
         """Updates purchase order line components based on supplierinfo"""
         if self.supplier_id:
             self.component_ids.unlink()
+            components = self.supplier_id.component_ids
+            if self.env.user.has_group("product.group_product_variant"):
+                components = self._get_component_by_product_variant(components)
             self.write(
                 {
                     "component_ids": [
@@ -76,8 +89,8 @@ class PurchaseOrderLine(models.Model):
                                 "product_uom_id": component.product_uom_id.id,
                             },
                         )
-                        for component in self.supplier_id.component_ids
-                    ]
+                        for component in components
+                    ],
                 }
             )
 
@@ -215,3 +228,51 @@ class PurchaseOrderLine(models.Model):
             if "in_refund" in move_ids.mapped("move_type"):
                 invoice_qty *= -1
             line.last_qty_invoiced = invoice_qty
+
+    @api.onchange("product_qty", "product_uom")
+    def _onchange_quantity(self):
+        super(PurchaseOrderLine, self)._onchange_quantity()
+        if (
+            not self.product_id
+            or self.invoice_lines
+            or not self.env.user.has_group("product.group_product_variant")
+        ):
+            return
+        # Compute unit price by product variant components
+        params = {"order_id": self.order_id}
+        seller = self.product_id._select_seller(
+            partner_id=self.partner_id,
+            quantity=self.product_qty,
+            date=self.order_id.date_order and self.order_id.date_order.date(),
+            uom_id=self.product_uom,
+            params=params,
+        )
+        price = sum(
+            self._get_component_by_product_variant(seller.component_ids).mapped(
+                "price_total"
+            )
+        )
+        price_unit = (
+            self.env["account.tax"]._fix_tax_included_price_company(
+                price, self.product_id.supplier_taxes_id, self.taxes_id, self.company_id
+            )
+            if seller
+            else 0.0
+        )
+        if (
+            price_unit
+            and seller
+            and self.order_id.currency_id
+            and seller.currency_id != self.order_id.currency_id
+        ):
+            price_unit = seller.currency_id._convert(
+                price_unit,
+                self.order_id.currency_id,
+                self.order_id.company_id,
+                self.date_order or fields.Date.today(),
+            )
+
+        if seller and self.product_uom and seller.product_uom != self.product_uom:
+            price_unit = seller.product_uom._compute_price(price_unit, self.product_uom)
+
+        self.price_unit = price_unit
