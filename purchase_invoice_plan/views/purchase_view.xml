@@ -103,7 +103,7 @@
                     />
                     <field
                         name="invoice_plan_ids"
-                        context="{'tree_view_ref': 'view_purchase_invoice_plan_tree'}"
+                        context="{'tree_view_ref': 'purchase_invoice_plan.view_purchase_invoice_plan_tree'}"
                         attrs="{'invisible': [('invoice_plan_ids', '=', [])]}"
                     />
                     <group class="oe_subtotal_footer oe_right">
