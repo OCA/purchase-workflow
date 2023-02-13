@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="report_purchase_order_product_image"
+        inherit_id="purchase.report_purchaseorder_document"
+        priority="99"
+    >
+        <xpath
+            expr="//table[hasclass('o_main_table')]/thead/tr/th[@name='th_taxes']"
+            position="after"
+        >
+            <t
+                t-set="show_image"
+                t-value="o.check_show_product_image_in_purchase_report()"
+            />
+
+            <t t-if="show_image">
+                <th name="th_image"><strong>Image</strong></th>
+            </t>
+        </xpath>
+
+        <xpath
+            expr="//table[hasclass('o_main_table')]/tbody/t/tr[1]/t[1]/td[@name='td_taxes']"
+            position="after"
+        >
+            <t t-if="show_image">
+                <td
+                    class="text-right"
+                    style="height:20px !important; max-height:20px !important; width:15px !important; max-width:15px !important;"
+                >
+                    <span
+                        t-field="line.product_image_1920"
+                        t-options='{"widget": "image"}'
+                        style="height:20px !important; max-height:20px !important; width:15px !important; max-width:15px !important;"
+                    />
+                </td>
+            </t>
+        </xpath>
+    </template>
+
+    <template
+        id="report_purchase_quotation_product_image"
+        inherit_id="purchase.report_purchasequotation_document"
+        priority="99"
+    >
+        <xpath
+            expr="//table[hasclass('table','table-sm')]/thead/tr/th[1]"
+            position="after"
+        >
+        <t
+                t-set="show_image"
+                t-value="o.check_show_product_image_in_purchase_report()"
+            />
+
+        <t t-if="show_image">
+                <th name="th_image"><strong>Image</strong></th>
+            </t>
+        </xpath>
+        <xpath
+            expr="//table[hasclass('table','table-sm')]/tbody/t/tr[1]/t[1]/td[1]"
+            position="after"
+        >
+        <t t-if="show_image">
+                <td
+                    class="text-right"
+                    style="height:20px !important; max-height:20px !important; width:15px !important; max-width:15px !important;"
+                >
+                    <span
+                        t-field="order_line.product_image_1920"
+                        t-options='{"widget": "image"}'
+                        style="height:20px !important; max-height:20px !important; width:15px !important; max-width:15px !important;"
+                    />
+                </td>
+            </t>
+        </xpath>
+
+    </template>
+
+</odoo>
