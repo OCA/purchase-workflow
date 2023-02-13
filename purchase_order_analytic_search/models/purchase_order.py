@@ -19,7 +19,7 @@ class PurchaseOrder(models.Model):
     @api.model
     def _search_analytic_accounts(self, operator, value):
         po_line_obj = self.env["purchase.order.line"].filtered(
-            lambda x: x.account_analytic_ids == value
+            lambda x: x.account_analytic_id == value
         )
         if not value:
             return [("account_analytic_id", "=", False)]

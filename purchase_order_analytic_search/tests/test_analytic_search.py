@@ -1,12 +1,12 @@
-# Copyright 2015-17 Eficent Business and IT Consulting Services S.L.
+# Copyright 2015-17 ForgeFlow S.L.
 # Copyright 2018 Camptocamp
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 from odoo.fields import Datetime
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 
-class TestAnalyticSearch(SavepointCase):
+class TestAnalyticSearch(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super(TestAnalyticSearch, cls).setUpClass()
