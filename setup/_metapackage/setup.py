@@ -42,6 +42,7 @@ setuptools.setup(
         'odoo14-addon-purchase_order_general_discount',
         'odoo14-addon-purchase_order_line_deep_sort',
         'odoo14-addon-purchase_order_line_description_picking',
+        'odoo14-addon-purchase_order_line_image',
         'odoo14-addon-purchase_order_line_invoicing',
         'odoo14-addon-purchase_order_line_menu',
         'odoo14-addon-purchase_order_line_packaging_qty',
