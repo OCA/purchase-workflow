@@ -1,0 +1,67 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_order_line_image
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_order_line_image
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_image.report_purchase_order_product_image
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_image.report_purchase_quotation_product_image
+msgid "<strong>Image</strong>"
+msgstr ""
+
+#. module: purchase_order_line_image
+#: model:ir.model.fields,field_description:purchase_order_line_image.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:purchase_order_line_image.field_purchase_order_line__display_name
+#: model:ir.model.fields,field_description:purchase_order_line_image.field_res_config_settings__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: purchase_order_line_image
+#: model:ir.model.fields,field_description:purchase_order_line_image.field_purchase_order__id
+#: model:ir.model.fields,field_description:purchase_order_line_image.field_purchase_order_line__id
+#: model:ir.model.fields,field_description:purchase_order_line_image.field_res_config_settings__id
+msgid "ID"
+msgstr ""
+
+#. module: purchase_order_line_image
+#: model:ir.model.fields,field_description:purchase_order_line_image.field_purchase_order____last_update
+#: model:ir.model.fields,field_description:purchase_order_line_image.field_purchase_order_line____last_update
+#: model:ir.model.fields,field_description:purchase_order_line_image.field_res_config_settings____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: purchase_order_line_image
+#: model:ir.model,name:purchase_order_line_image.model_res_config_settings
+msgid "Procurement purchase grouping settings"
+msgstr ""
+
+#. module: purchase_order_line_image
+#: model:ir.model.fields,field_description:purchase_order_line_image.field_purchase_order_line__product_image_1920
+msgid "Product Image"
+msgstr ""
+
+#. module: purchase_order_line_image
+#: model:ir.model,name:purchase_order_line_image.model_purchase_order
+msgid "Purchase Order"
+msgstr ""
+
+#. module: purchase_order_line_image
+#: model:ir.model,name:purchase_order_line_image.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr ""
+
+#. module: purchase_order_line_image
+#: model:ir.model.fields,field_description:purchase_order_line_image.field_res_config_settings__show_product_image_in_purchase_report
+#: model_terms:ir.ui.view,arch_db:purchase_order_line_image.res_config_settings_view_form_purchase
+msgid "Show Product Image In Purchase Report"
+msgstr ""
