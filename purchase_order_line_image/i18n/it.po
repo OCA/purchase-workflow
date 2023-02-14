@@ -6,63 +6,65 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2023-02-14 12:22+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: purchase_order_line_image
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_image.report_purchase_order_product_image
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_image.report_purchase_quotation_product_image
 msgid "<strong>Image</strong>"
-msgstr ""
+msgstr "<strong>Immagine</strong>"
 
 #. module: purchase_order_line_image
 #: model:ir.model.fields,field_description:purchase_order_line_image.field_purchase_order__display_name
 #: model:ir.model.fields,field_description:purchase_order_line_image.field_purchase_order_line__display_name
 #: model:ir.model.fields,field_description:purchase_order_line_image.field_res_config_settings__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: purchase_order_line_image
 #: model:ir.model.fields,field_description:purchase_order_line_image.field_purchase_order__id
 #: model:ir.model.fields,field_description:purchase_order_line_image.field_purchase_order_line__id
 #: model:ir.model.fields,field_description:purchase_order_line_image.field_res_config_settings__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: purchase_order_line_image
 #: model:ir.model.fields,field_description:purchase_order_line_image.field_purchase_order____last_update
 #: model:ir.model.fields,field_description:purchase_order_line_image.field_purchase_order_line____last_update
 #: model:ir.model.fields,field_description:purchase_order_line_image.field_res_config_settings____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: purchase_order_line_image
 #: model:ir.model,name:purchase_order_line_image.model_res_config_settings
 msgid "Procurement purchase grouping settings"
-msgstr ""
+msgstr "Impostazioni raggruppamento approvvigionamento acquisti"
 
 #. module: purchase_order_line_image
 #: model:ir.model.fields,field_description:purchase_order_line_image.field_purchase_order_line__product_image_1920
 msgid "Product Image"
-msgstr ""
+msgstr "Immagine prodotto"
 
 #. module: purchase_order_line_image
 #: model:ir.model,name:purchase_order_line_image.model_purchase_order
 msgid "Purchase Order"
-msgstr ""
+msgstr "Ordine di acquisto"
 
 #. module: purchase_order_line_image
 #: model:ir.model,name:purchase_order_line_image.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Riga ordine di acquisto"
 
 #. module: purchase_order_line_image
 #: model:ir.model.fields,field_description:purchase_order_line_image.field_res_config_settings__show_product_image_in_purchase_report
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_image.res_config_settings_view_form_purchase
 msgid "Show Product Image In Purchase Report"
-msgstr ""
+msgstr "Mostra immagine prodotto nella stampa PO"
