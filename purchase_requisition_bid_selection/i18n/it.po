@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-11 05:25+0000\n"
-"PO-Revision-Date: 2023-01-02 12:46+0000\n"
+"PO-Revision-Date: 2023-02-14 12:23+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/"
 "OCA-purchase-workflow-8-0/language/it/)\n"
@@ -522,7 +522,7 @@ msgstr "Ordine di acquisto"
 #. module: purchase_requisition_bid_selection
 #: model:ir.model,name:purchase_requisition_bid_selection.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr "Riga Ordine d'Acquisto"
+msgstr "Riga ordine di acquisto"
 
 #. module: purchase_requisition_bid_selection
 #: model:ir.model,name:purchase_requisition_bid_selection.model_purchase_requisition
