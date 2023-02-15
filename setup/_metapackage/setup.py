@@ -32,6 +32,7 @@ setuptools.setup(
         'odoo-addon-purchase_order_line_menu>=15.0dev,<15.1dev',
         'odoo-addon-purchase_order_line_price_history>=15.0dev,<15.1dev',
         'odoo-addon-purchase_order_line_price_history_discount>=15.0dev,<15.1dev',
+        'odoo-addon-purchase_order_line_qty_to_receive>=15.0dev,<15.1dev',
         'odoo-addon-purchase_order_line_stock_available>=15.0dev,<15.1dev',
         'odoo-addon-purchase_order_no_zero_price>=15.0dev,<15.1dev',
         'odoo-addon-purchase_order_product_recommendation>=15.0dev,<15.1dev',
