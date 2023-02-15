@@ -45,6 +45,7 @@ addon | version | maintainers | summary
 [purchase_order_line_menu](purchase_order_line_menu/) | 15.0.1.0.0 |  | Adds Purchase Order Lines Menu
 [purchase_order_line_price_history](purchase_order_line_price_history/) | 15.0.1.0.0 |  | Purchase order line price history
 [purchase_order_line_price_history_discount](purchase_order_line_price_history_discount/) | 15.0.1.0.0 |  | Purchase order line price history discount
+[purchase_order_line_qty_to_receive](purchase_order_line_qty_to_receive/) | 15.0.1.0.0 |  | Purchase Line - Qty To Receive
 [purchase_order_line_stock_available](purchase_order_line_stock_available/) | 15.0.1.0.0 |  | Purchase order line stock available
 [purchase_order_no_zero_price](purchase_order_no_zero_price/) | 15.0.1.0.0 |  | Prevent zero price lines on Purchase Orders
 [purchase_order_product_recommendation](purchase_order_product_recommendation/) | 15.0.1.0.1 |  | Recommend products to buy to supplier based on history
