@@ -1,12 +1,13 @@
 # Copyright 2014-2016 Numérigraphe SARL
 # Copyright 2017 ForgeFlow, S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+from freezegun import freeze_time
 
+from odoo.fields import Datetime
 from odoo.tests.common import Form, TransactionCase
 
 
 class TestDeliverySingle(TransactionCase):
-
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -104,6 +105,33 @@ class TestDeliverySingle(TransactionCase):
             str(self.po.picking_ids[0].scheduled_date)[:10],
             self.date_sooner,
             "The picking must be planned at the expected date",
+        )
+
+    def test_adding_line(self):
+        # A modification on line product quantity will recompute the
+        # date_planned field with the seller (supplierinfo) lead time
+        # Check if the original date planned is kept if new date_planned is before
+
+        # We first add a seller to the product
+        self.env["product.supplierinfo"].create(
+            {
+                "partner_id": self.env.ref("base.res_partner_3").id,
+                "product_tmpl_id": self.p1.product_tmpl_id.id,
+            }
+        )
+        # Set today earlier as planned date
+        today = "2015-12-01"
+        self.po.date_order = today
+
+        self.po.order_line[0].date_planned = self.date_later
+
+        # Then change the line quantity
+        with freeze_time(today):
+            self.po.order_line[0].product_qty = 43.0
+
+        # We check the later planned date is kept
+        self.assertEqual(
+            Datetime.to_datetime("2015-12-13"), self.po.order_line[0].date_planned
         )
 
     def test_check_multiple_dates(self):
