@@ -15,26 +15,45 @@ class TestPurchaseManualCurrency(TransactionCase):
         self.env.cr.execute(
             """UPDATE res_company SET currency_id = %s
             WHERE id = %s""",
-            (self.main_company.id, self.currency_eur.id),
+            (self.currency_eur.id, self.main_company.id),
         )
         self.purchase_order = self.env.ref("purchase.purchase_order_6").copy()
 
     def test_01_purchase_manual_currency(self):
-        # Update purchase to main currency
+        # Update purchase to company currency
         self.purchase_order.currency_id = self.currency_eur
         self.assertEqual(self.purchase_order.currency_id.name, "EUR")
-        # change currency
-        self.assertEqual(self.purchase_order.custom_rate, 0.0)
+        self.assertEqual(
+            self.purchase_order.order_line[0].price_subtotal,
+            self.purchase_order.order_line[0].subtotal_company_currency,
+        )
+        self.assertFalse(self.purchase_order.currency_diff)
+        # Change currency
+        self.assertEqual(self.purchase_order.manual_currency_rate, 0.0)
         with Form(self.purchase_order) as p:
             p.currency_id = self.currency_usd
             p.manual_currency = True
-        self.assertNotEqual(self.purchase_order.custom_rate, 0.0)
-        # check function refresh
-        currency_rate = self.purchase_order.custom_rate
-        self.purchase_order.custom_rate += 5.0
-        self.assertNotEqual(self.purchase_order.custom_rate, currency_rate)
+            p.type_currency = "company_rate"
+        # Manual currency rate will default following rate standard
+        self.assertNotEqual(self.purchase_order.manual_currency_rate, 0.0)
+        self.assertNotEqual(
+            self.purchase_order.order_line[0].price_subtotal,
+            self.purchase_order.order_line[0].subtotal_company_currency,
+        )
+        company_rate = self.purchase_order.manual_currency_rate
+        # Check type curreny -> company currency (USD -> EUR)
+        with Form(self.purchase_order) as p:
+            p.type_currency = "inverse_company_rate"
+        self.assertEqual(
+            round(self.purchase_order.manual_currency_rate, 8),
+            round(1 / company_rate, 8),
+        )
+        # Check function refresh
+        currency_rate = self.purchase_order.manual_currency_rate
+        self.purchase_order.manual_currency_rate += 5.0
+        self.assertNotEqual(self.purchase_order.manual_currency_rate, currency_rate)
         self.purchase_order.action_refresh_currency()
-        self.assertAlmostEqual(self.purchase_order.custom_rate, currency_rate)
+        self.assertAlmostEqual(self.purchase_order.manual_currency_rate, currency_rate)
         self.purchase_order.button_confirm()
         self.assertEqual(self.purchase_order.state, "purchase")
         with self.assertRaises(ValidationError):
