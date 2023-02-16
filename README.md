@@ -39,6 +39,7 @@ addon | version | maintainers | summary
 [purchase_exception](purchase_exception/) | 14.0.1.0.0 |  | Custom exceptions on purchase order
 [purchase_fop_shipping](purchase_fop_shipping/) | 14.0.1.1.0 |  | Purchase Free-Of-Payment shipping
 [purchase_force_invoiced](purchase_force_invoiced/) | 14.0.1.0.2 |  | Allows to force the billing status of the purchase order to "Invoiced"
+[purchase_invoice_method](purchase_invoice_method/) | 14.0.1.0.0 |  | Allow to force the invoice method of a purchase
 [purchase_invoice_plan](purchase_invoice_plan/) | 14.0.1.3.1 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Add to purchases order, ability to manage future invoice plan
 [purchase_invoice_plan_retention](purchase_invoice_plan_retention/) | 14.0.1.0.0 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Add to purchase invoice plan, the retention on each invoice
 [purchase_isolated_rfq](purchase_isolated_rfq/) | 14.0.1.0.1 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Purchase Isolated RFQ
