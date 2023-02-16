@@ -87,14 +87,21 @@ class PurchaseOrderLine(models.Model):
             line.order_id._check_split_pickings()
         return line
 
-    @api.onchange("product_qty", "product_uom")
-    def _onchange_quantity(self):
-        date_planned = self.date_planned
-        res = super()._onchange_quantity()
-        # preserve the date which was presumably set on the PO line if it is
-        # later than the date computed from the Vendor information
-        if date_planned and self.date_planned <= date_planned:
-            self.date_planned = date_planned
+    def _compute_price_unit_and_date_planned_and_name(self):
+        """
+        If the line product quantity is changed and a seller is found,
+        the date_planned is updated from the supplier (in _get_date_planned())
+        """
+        date_planned_by_record = dict()
+        for line in self:
+            date_planned_by_record[line.id] = line.date_planned
+        res = super()._compute_price_unit_and_date_planned_and_name()
+        for line in self:
+            if (
+                date_planned_by_record[line.id]
+                and line.date_planned <= date_planned_by_record[line.id]
+            ):
+                line.date_planned = date_planned_by_record[line.id]
         return res
 
 
