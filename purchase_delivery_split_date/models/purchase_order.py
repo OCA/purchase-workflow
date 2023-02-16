@@ -11,12 +11,16 @@ class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
     def _check_split_pickings(self):
+        # Avoid one search query per order
+        purchases_moves = self.env["stock.move"].search(
+            [
+                ("purchase_line_id", "in", self.order_line.ids),
+                ("state", "not in", ("cancel", "done")),
+            ]
+        )
         for order in self:
-            moves = self.env["stock.move"].search(
-                [
-                    ("purchase_line_id", "in", order.order_line.ids),
-                    ("state", "not in", ("cancel", "done")),
-                ]
+            moves = purchases_moves.filtered(
+                lambda move: move.purchase_line_id.id in order.order_line.ids
             )
             pickings = moves.mapped("picking_id")
             pickings_by_date = {}
@@ -42,9 +46,13 @@ class PurchaseOrder(models.Model):
                                 new_picking = move.picking_id.copy(copy_vals)
                                 pickings_by_date[date_key] = new_picking
                             move._do_unreserve()
-                            move.picking_id = pickings_by_date[date_key]
-                            move.date_deadline = date_key
+                            move.update(
+                                {
+                                    "picking_id": pickings_by_date[date_key],
+                                    "date_deadline": date_key,
+                                }
+                            )
                             move._action_assign()
-            for picking in pickings:
-                if len(picking.move_ids) == 0:
-                    picking.write({"state": "cancel"})
+            pickings.filtered(lambda picking: not picking.move_ids).write(
+                {"state": "cancel"}
+            )
