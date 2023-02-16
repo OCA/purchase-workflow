@@ -6,12 +6,14 @@ from odoo.tests.common import Form, TransactionCase
 
 
 class TestDeliverySingle(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.product_model = self.env["product.product"]
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.product_model = cls.env["product.product"]
 
         # Create products:
-        p1 = self.product1 = self.product_model.create(
+        cls.p1 = cls.product1 = cls.product_model.create(
             {
                 "name": "Test Product 1",
                 "type": "product",
@@ -19,7 +21,7 @@ class TestDeliverySingle(TransactionCase):
                 "standard_price": 10,
             }
         )
-        p2 = self.product2 = self.product_model.create(
+        cls.p2 = cls.product2 = cls.product_model.create(
             {
                 "name": "Test Product 2",
                 "type": "product",
@@ -27,7 +29,7 @@ class TestDeliverySingle(TransactionCase):
                 "standard_price": 10,
             }
         )
-        self.p3 = self.product2 = self.product_model.create(
+        cls.p3 = cls.product2 = cls.product_model.create(
             {
                 "name": "Test Product 3",
                 "type": "product",
@@ -37,23 +39,23 @@ class TestDeliverySingle(TransactionCase):
         )
 
         # Two dates which we can use to test the features:
-        self.date_sooner = "2015-01-01"
-        self.date_later = "2015-12-13"
-        self.date_3rd = "2015-12-31"
+        cls.date_sooner = "2015-01-01"
+        cls.date_later = "2015-12-13"
+        cls.date_3rd = "2015-12-31"
 
-        self.po = self.env["purchase.order"].create(
+        cls.po = cls.env["purchase.order"].create(
             {
-                "partner_id": self.ref("base.res_partner_3"),
+                "partner_id": cls.env.ref("base.res_partner_3").id,
                 "order_line": [
                     (
                         0,
                         0,
                         {
-                            "product_id": p1.id,
-                            "product_uom": p1.uom_id.id,
-                            "name": p1.name,
-                            "price_unit": p1.standard_price,
-                            "date_planned": self.date_sooner,
+                            "product_id": cls.p1.id,
+                            "product_uom": cls.p1.uom_id.id,
+                            "name": cls.p1.name,
+                            "price_unit": cls.p1.standard_price,
+                            "date_planned": cls.date_sooner,
                             "product_qty": 42.0,
                         },
                     ),
@@ -61,11 +63,11 @@ class TestDeliverySingle(TransactionCase):
                         0,
                         0,
                         {
-                            "product_id": p2.id,
-                            "product_uom": p2.uom_id.id,
-                            "name": p2.name,
-                            "price_unit": p2.standard_price,
-                            "date_planned": self.date_sooner,
+                            "product_id": cls.p2.id,
+                            "product_uom": cls.p2.uom_id.id,
+                            "name": cls.p2.name,
+                            "price_unit": cls.p2.standard_price,
+                            "date_planned": cls.date_sooner,
                             "product_qty": 12.0,
                         },
                     ),
@@ -73,11 +75,11 @@ class TestDeliverySingle(TransactionCase):
                         0,
                         0,
                         {
-                            "product_id": p1.id,
-                            "product_uom": p1.uom_id.id,
-                            "name": p1.name,
-                            "price_unit": p1.standard_price,
-                            "date_planned": self.date_sooner,
+                            "product_id": cls.p1.id,
+                            "product_uom": cls.p1.uom_id.id,
+                            "name": cls.p1.name,
+                            "price_unit": cls.p1.standard_price,
+                            "date_planned": cls.date_sooner,
                             "product_qty": 1.0,
                         },
                     ),
