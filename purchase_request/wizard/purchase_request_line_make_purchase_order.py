@@ -15,8 +15,6 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         comodel_name="res.partner",
         string="Supplier",
         required=True,
-        domain=[("is_company", "=", True)],
-        context={"res_partner_search_mode": "supplier", "default_is_company": True},
     )
     item_ids = fields.One2many(
         comodel_name="purchase.request.line.make.purchase.order.item",
