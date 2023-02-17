@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-23 17:50+0000\n"
-"PO-Revision-Date: 2023-02-01 11:45+0000\n"
+"PO-Revision-Date: 2023-02-17 12:23+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -65,7 +65,7 @@ msgstr "Riga ordine di acquisto"
 #. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_purchase_report
 msgid "Purchase Report"
-msgstr "Report Acquisti"
+msgstr "Resoconto di acquisto"
 
 #. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_stock_move
