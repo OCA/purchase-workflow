@@ -24,6 +24,7 @@ addon | version | maintainers | summary
 [purchase_allowed_product](purchase_allowed_product/) | 16.0.1.0.0 |  | This module allows to select only products that can be supplied by the vendor
 [purchase_commercial_partner](purchase_commercial_partner/) | 16.0.1.0.0 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Add stored related field 'Commercial Supplier' on POs
 [purchase_discount](purchase_discount/) | 16.0.1.0.0 |  | Purchase order lines with discounts
+[purchase_force_invoiced](purchase_force_invoiced/) | 16.0.1.0.0 |  | Allows to force the billing status of the purchase order to "Invoiced"
 [purchase_order_line_menu](purchase_order_line_menu/) | 16.0.1.0.0 |  | Adds Purchase Order Lines Menu
 [purchase_request](purchase_request/) | 16.0.1.0.0 |  | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
 [purchase_request_tier_validation](purchase_request_tier_validation/) | 16.0.1.0.0 |  | Extends the functionality of Purchase Requests to support a tier validation process.
