@@ -30,14 +30,10 @@ class PurchaseOrderLine(models.Model):
                 bom_type="phantom",
             ):
                 continue
-            # We check if the stock_landed_costs addon is installed to exclude linked
-            # records.
-            stock_valuation_layers = line.move_ids.mapped("stock_valuation_layer_ids")
-            if hasattr(line.product_id, "landed_cost_ok"):
-                stock_valuation_layers = stock_valuation_layers.filtered(
-                    lambda x: not x.stock_landed_cost_id
-                )
-            stock_valuation_layers.write(
+            line.move_ids.mapped("stock_valuation_layer_ids").filtered(
+                # Filter children SVLs (like landed cost)
+                lambda x: not x.stock_valuation_layer_id
+            ).write(
                 {
                     "unit_cost": line.with_context(
                         skip_stock_price_unit_sync=True
