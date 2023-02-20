@@ -118,7 +118,9 @@ class WorkAcceptance(models.Model):
 
     @api.onchange("date_receive", "date_due")
     def _onchange_late_days(self):
-        late_days = (self.date_receive - self.date_due).days
+        late_days = 0
+        if self.date_receive and self.date_due:
+            late_days = (self.date_receive - self.date_due).days
         self.late_days = late_days > 0 and late_days or 0
 
     @api.onchange("late_days", "fines_rate")
