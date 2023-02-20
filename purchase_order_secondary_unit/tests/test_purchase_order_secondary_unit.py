@@ -14,16 +14,19 @@ class TestPurchaseOrderSecondaryUnit(TransactionCase):
         cls.product_uom_kg = cls.env.ref("uom.product_uom_kgm")
         cls.product_uom_gram = cls.env.ref("uom.product_uom_gram")
         cls.product_uom_unit = cls.env.ref("uom.product_uom_unit")
-        with Form(cls.env["product.product"]) as form:
-            form.name = "Test"
-            form.uom_id = cls.product_uom_kg
-            form.uom_po_id = cls.product_uom_kg
-            with form.secondary_uom_ids.new() as line:
-                line.name = "unit-700"
-                line.uom_id = cls.product_uom_unit
-                line.factor = 0.7
-        cls.product = form.save()
-        cls.secondary_unit = cls.product.secondary_uom_ids
+        # Create a product
+        product_form = Form(cls.env["product.product"])
+        product_form.name = "Test"
+        product_form.uom_id = cls.product_uom_kg
+        product_form.uom_po_id = cls.product_uom_kg
+        cls.product = product_form.save()
+        # Set a secondary unit on the template of the previously created product
+        with Form(cls.product.product_tmpl_id) as template_form:
+            with template_form.secondary_uom_ids.new() as secondary_uom_form:
+                secondary_uom_form.name = "unit-700"
+                secondary_uom_form.uom_id = cls.product_uom_unit
+                secondary_uom_form.factor = 0.7
+        cls.secondary_unit = cls.product.product_tmpl_id.secondary_uom_ids
         cls.product.purchase_secondary_uom_id = cls.secondary_unit.id
         cls.partner = cls.env["res.partner"].create({"name": "test - partner"})
         cls.purchase_order_obj = cls.env["purchase.order"]
