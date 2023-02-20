@@ -20,6 +20,10 @@
                 <field
                     name="secondary_uom_id"
                     class="oe_inline"
+                    domain="['|', ('product_id', '=', product_id),
+                                '&amp;', ('product_tmpl_id.product_variant_ids', 'in', [product_id]),
+                                         ('product_id', '=', False)]"
+                    options="{'no_create': True}"
                     attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
                 />
             </xpath>
@@ -33,7 +37,9 @@
                 />
                 <field
                     name="secondary_uom_id"
-                    domain="[('product_tmpl_id.product_variant_ids', 'in', product_id and [product_id] or [])]"
+                    domain="['|', ('product_id', '=', product_id),
+                                '&amp;', ('product_tmpl_id.product_variant_ids', 'in', [product_id]),
+                                         ('product_id', '=', False)]"
                     options="{'no_create': True}"
                     attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
                 />
