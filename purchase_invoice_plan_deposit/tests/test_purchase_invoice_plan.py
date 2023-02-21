@@ -29,7 +29,7 @@ class TestPurchaseInvoicePlanDeposit(TestPurchaseInvoicePlan, TestPurchaseDeposi
             p.num_installment = num_installment
             p.advance = True
         purchase_plan = p.save()
-        purchase_plan.with_context(ctx).purchase_create_invoice_plan()
+        purchase_plan.with_context(**ctx).purchase_create_invoice_plan()
         # Check invoice plan created
         self.assertTrue(self.test_po_service.invoice_plan_ids)
         with self.assertRaises(UserError):
@@ -50,7 +50,7 @@ class TestPurchaseInvoicePlanDeposit(TestPurchaseInvoicePlan, TestPurchaseDeposi
         with self.assertRaises(UserError):
             self.test_po_service.action_create_invoice()
         purchase_create = self.env["purchase.make.planned.invoice"].create({})
-        purchase_create.with_context(ctx).create_invoices_by_plan()
+        purchase_create.with_context(**ctx).create_invoices_by_plan()
         # Valid number of invoices, including advance
         invoices = self.test_po_service.invoice_ids
         self.assertEqual(
