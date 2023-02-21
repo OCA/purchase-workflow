@@ -8,7 +8,6 @@ class PurchaseRequisitionType(models.Model):
     _inherit = "purchase.requisition.type"
 
     quantity_copy = fields.Selection(
-        selection_add=(
-            [("remaining_qty", "Use remaining quantities of agreement"), ("none",)]
-        )
+        selection_add=([("remaining_qty", "Use remaining quantities of agreement")]),
+        ondelete={"remaining_qty": "set default"},
     )

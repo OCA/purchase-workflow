@@ -1,10 +1,10 @@
 # Copyright 2021 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.tests import Form, common
+from odoo.tests import Form, TransactionCase
 
 
-class TestPurchaseRequisitionOrderRemainingQty(common.SavepointCase):
+class TestPurchaseRequisitionOrderRemainingQty(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -23,6 +23,7 @@ class TestPurchaseRequisitionOrderRemainingQty(common.SavepointCase):
         with requisition_form.line_ids.new() as line_form:
             line_form.product_id = self.product
             line_form.product_qty = 5
+            line_form.price_unit = 1
         return requisition_form.save()
 
     def action_purchase_requisition_to_so(self, requisition_id):
