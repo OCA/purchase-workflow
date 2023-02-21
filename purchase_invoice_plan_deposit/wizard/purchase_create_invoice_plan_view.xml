@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_purchase_create_invoice_plan" model="ir.ui.view">
+        <field name="name">Create Invoice Plan</field>
+        <field name="model">purchase.create.invoice.plan</field>
+        <field
+            name="inherit_id"
+            ref="purchase_invoice_plan.view_purchase_create_invoice_plan"
+        />
+        <field name="arch" type="xml">
+            <label for="interval" position="before">
+                <label for="advance" />
+                <div name="advance_div" class="o_row">
+                    <field name="advance" class="oe_inline" />
+                    <field
+                        name="advance_percent"
+                        class="oe_inline"
+                        attrs="{'invisible': [('advance', '=', False)]}"
+                    />
+                    <span
+                        class="oe_inline"
+                        attrs="{'invisible': [('advance', '=', False)]}"
+                    >%</span>
+                </div>
+            </label>
+        </field>
+    </record>
+</odoo>
