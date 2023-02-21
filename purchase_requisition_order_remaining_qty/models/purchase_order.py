@@ -11,5 +11,6 @@ class PurchaseOrder(models.Model):
     def _onchange_requisition_id(self):
         """In this function the lines are added to the order. At the end we will
         auto-delete the lines with quantity 0."""
-        super()._onchange_requisition_id()
+        result = super()._onchange_requisition_id()
         self.order_line -= self.order_line.filtered(lambda x: x.product_qty == 0)
+        return result
