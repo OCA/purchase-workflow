@@ -1,7 +1,8 @@
 # Copyright 2021 Ecosoft Co., Ltd (http://ecosoft.co.th/)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 
-from odoo import fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class PurchaseCreateInvoicePlan(models.TransientModel):
@@ -22,3 +23,8 @@ class PurchaseCreateInvoicePlan(models.TransientModel):
             advance=self.advance, advance_percent=self.advance_percent
         )
         return super().purchase_create_invoice_plan()
+
+    @api.constrains("num_installment")
+    def _check_num_installment(self):
+        if self.num_installment <= 1 and not self.advance:
+            raise ValidationError(_("Number Installment must greater than 1"))
