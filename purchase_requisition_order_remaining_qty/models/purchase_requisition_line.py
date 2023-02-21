@@ -7,9 +7,7 @@ from odoo import api, fields, models
 class PurchaseRequisitionLine(models.Model):
     _inherit = "purchase.requisition.line"
 
-    proposed_qty = fields.Float(
-        compute="_compute_proposed_qty", store=True, string="Proposed Qty"
-    )
+    proposed_qty = fields.Float(compute="_compute_proposed_qty", store=True)
 
     @api.depends(
         "requisition_id.purchase_ids",
