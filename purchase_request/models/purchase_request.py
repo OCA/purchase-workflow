@@ -145,7 +145,11 @@ class PurchaseRequest(models.Model):
     purchase_count = fields.Integer(
         string="Purchases count", compute="_compute_purchase_count", readonly=True
     )
-    currency_id = fields.Many2one(related="company_id.currency_id", readonly=True)
+    currency_id = fields.Many2one(
+        comodel_name="res.currency",
+        default=lambda self: self.env.user.company_id.currency_id,
+        required=True,
+    )
     estimated_cost = fields.Monetary(
         compute="_compute_estimated_cost",
         string="Total Estimated Cost",
