@@ -68,7 +68,7 @@ class PurchaseOrderLine(models.Model):
             if self.env.user.has_group("product.group_product_variant"):
                 components = self.env[
                     "product.supplierinfo.component"
-                ]._get_component_by_product_variant(components)
+                ]._get_component_by_product_variant(self.product_id, components)
             self.write(
                 {
                     "component_ids": [
@@ -242,9 +242,9 @@ class PurchaseOrderLine(models.Model):
             params=params,
         )
         price = sum(
-            self._get_component_by_product_variant(seller.component_ids).mapped(
-                "price_total"
-            )
+            self.env["product.supplierinfo.component"]
+            ._get_component_by_product_variant(self.product_id, seller.component_ids)
+            .mapped("price_total")
         )
         price_unit = (
             self.env["account.tax"]._fix_tax_included_price_company(
