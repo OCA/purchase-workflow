@@ -121,6 +121,7 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
                         "purchase_line_id": po_line.id,
                         "tax_ids": [(6, 0, tax_ids)],
                         "analytic_account_id": po_line.account_analytic_id.id or False,
+                        "analytic_tag_ids": [(6, 0, po_line.analytic_tag_ids.ids)],
                     },
                 )
             ],
