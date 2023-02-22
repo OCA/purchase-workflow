@@ -523,7 +523,6 @@ msgstr "Si esta activado, algunos mensajes tiene error en la entrega."
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__is_editable
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__is_editable
 msgid "Is Editable"
 msgstr ""
 
@@ -537,6 +536,11 @@ msgstr "Es seguidor"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__is_name_editable
 msgid "Is Name Editable"
 msgstr ""
+
+#. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__is_editable
+msgid "Is editable"
+msgstr "Es editable"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order__item_ids
@@ -1449,9 +1453,6 @@ msgstr "Has seleccionado líneas de la misma compañía."
 
 #~ msgid "Followers (Channels)"
 #~ msgstr "Seguidores (canales)"
-
-#~ msgid "Is editable"
-#~ msgstr "Es editable"
 
 #~ msgid "Order confirmation %s for your Request %s"
 #~ msgstr "Confirmación de orden %s para tu requisición %s"

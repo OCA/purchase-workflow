@@ -519,7 +519,6 @@ msgstr ""
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__is_editable
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__is_editable
 msgid "Is Editable"
 msgstr ""
 
@@ -533,6 +532,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__is_name_editable
 msgid "Is Name Editable"
 msgstr ""
+
+#. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__is_editable
+msgid "Is editable"
+msgstr "Moguće uređivati"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order__item_ids
@@ -1449,9 +1453,6 @@ msgstr ""
 #, python-format
 msgid "You have to select lines from the same company."
 msgstr ""
-
-#~ msgid "Is editable"
-#~ msgstr "Moguće uređivati"
 
 #~ msgid "Purchase requests"
 #~ msgstr "Zahtjevi za nabavom"

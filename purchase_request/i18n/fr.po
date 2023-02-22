@@ -535,7 +535,6 @@ msgstr "Si coché, certains messages ont une erreur d'envoi."
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__is_editable
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__is_editable
 msgid "Is Editable"
 msgstr ""
 
@@ -549,6 +548,11 @@ msgstr "Est un abonné"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__is_name_editable
 msgid "Is Name Editable"
 msgstr ""
+
+#. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__is_editable
+msgid "Is editable"
+msgstr "Est éditable"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order__item_ids
@@ -1477,9 +1481,6 @@ msgstr ""
 
 #~ msgid "Followers (Channels)"
 #~ msgstr "Abonnés (canaux)"
-
-#~ msgid "Is editable"
-#~ msgstr "Est éditable"
 
 #~ msgid "Purchase requests"
 #~ msgstr "Demandes d'achat"
