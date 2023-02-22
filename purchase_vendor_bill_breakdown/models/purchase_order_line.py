@@ -58,23 +58,15 @@ class PurchaseOrderLine(models.Model):
                 limit=1,
             )
 
-    def _get_component_by_product_variant(self, components):
-        """Get components by product variant"""
-        product_variant_ids = set(
-            self.product_id.product_template_attribute_value_ids.ids
-        )
-        return components.filtered(
-            lambda c: set(c.variant_ids.ids).intersection(product_variant_ids)
-            or not c.variant_ids
-        )
-
     def _update_purchase_order_line_components(self):
         """Updates purchase order line components based on supplierinfo"""
         if self.supplier_id:
             self.component_ids.unlink()
             components = self.supplier_id.component_ids
             if self.env.user.has_group("product.group_product_variant"):
-                components = self._get_component_by_product_variant(components)
+                components = self.env[
+                    "product.supplierinfo.component"
+                ]._get_component_by_product_variant(components)
             self.write(
                 {
                     "component_ids": [
