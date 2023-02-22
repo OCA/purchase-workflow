@@ -6,7 +6,9 @@ class PurchaseOrderLine(models.Model):
 
     use_product_components = fields.Boolean(related="order_id.use_product_components")
     component_ids = fields.One2many(
-        comodel_name="purchase.order.line.component", inverse_name="line_id"
+        comodel_name="purchase.order.line.component",
+        inverse_name="line_id",
+        ondelete="cascade",
     )
     last_qty_invoiced = fields.Float(
         compute="_compute_last_qty_invoiced",
