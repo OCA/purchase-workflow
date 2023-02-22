@@ -47,19 +47,34 @@ class ProductSupplierInfoComponent(models.Model):
             }
         )
 
+    @api.model
+    def _get_component_by_product_variant(self, product, components):
+        """Get components by product variant"""
+        new_components = self.env["product.supplierinfo.component"]
+        attribute_value_ids = product.product_template_attribute_value_ids
+        for component in components:
+            arr = []
+            if not component.variant_ids:
+                new_components |= component
+            for attr in component.variant_ids.mapped("attribute_id"):
+                arr.append(
+                    component.variant_ids.filtered(lambda l: l.attribute_id == attr)
+                )
+            state = False
+            for item in arr:
+                if set(item.ids).intersection(attribute_value_ids.ids):
+                    state = True
+            if state:
+                new_components |= component
+        return new_components
+
     def search(self, args, offset=0, limit=None, order=None, count=False):
         result = super(ProductSupplierInfoComponent, self).search(
             args, offset, limit, order, count
         )
         product_id = self._context.get("product_id")
 
-        if not product_id or not self.env.user.user_has_groups(
-            "product.group_product_variant"
-        ):
+        if not product_id or not self.user_has_groups("product.group_product_variant"):
             return result
         product = self.env["product.product"].browse(product_id)
-        product_variant_ids = set(product.product_template_attribute_value_ids.ids)
-        return result.filtered(
-            lambda c: set(c.variant_ids.ids).intersection(product_variant_ids)
-            or not c.variant_ids
-        )
+        return self._get_component_by_product_variant(product, result)
