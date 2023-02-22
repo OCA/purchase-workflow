@@ -46,7 +46,7 @@
         <field name="name">Purchase Order Cancel Reason</field>
         <field name="model">purchase.order.cancel.reason</field>
         <field name="arch" type="xml">
-            <tree string="Purchase Order Cancel Reasons">
+            <tree>
                 <field name="name" />
             </tree>
         </field>
