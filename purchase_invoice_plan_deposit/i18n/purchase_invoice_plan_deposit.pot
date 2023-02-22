@@ -1,0 +1,118 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_invoice_plan_deposit
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_invoice_plan_deposit
+#: model:ir.model.fields.selection,name:purchase_invoice_plan_deposit.selection__purchase_invoice_plan__invoice_type__advance
+msgid "Deposit"
+msgstr ""
+
+#. module: purchase_invoice_plan_deposit
+#: model:ir.model.fields,field_description:purchase_invoice_plan_deposit.field_purchase_create_invoice_plan__advance
+msgid "Deposit on 1st Invoice"
+msgstr ""
+
+#. module: purchase_invoice_plan_deposit
+#: model:ir.model.fields,field_description:purchase_invoice_plan_deposit.field_purchase_advance_payment_inv__display_name
+#: model:ir.model.fields,field_description:purchase_invoice_plan_deposit.field_purchase_create_invoice_plan__display_name
+#: model:ir.model.fields,field_description:purchase_invoice_plan_deposit.field_purchase_invoice_plan__display_name
+#: model:ir.model.fields,field_description:purchase_invoice_plan_deposit.field_purchase_make_planned_invoice__display_name
+#: model:ir.model.fields,field_description:purchase_invoice_plan_deposit.field_purchase_order__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: purchase_invoice_plan_deposit
+#: model:ir.model,name:purchase_invoice_plan_deposit.model_purchase_create_invoice_plan
+msgid "Fillig invoice planning criteria"
+msgstr ""
+
+#. module: purchase_invoice_plan_deposit
+#: model:ir.model.fields,field_description:purchase_invoice_plan_deposit.field_purchase_advance_payment_inv__id
+#: model:ir.model.fields,field_description:purchase_invoice_plan_deposit.field_purchase_create_invoice_plan__id
+#: model:ir.model.fields,field_description:purchase_invoice_plan_deposit.field_purchase_invoice_plan__id
+#: model:ir.model.fields,field_description:purchase_invoice_plan_deposit.field_purchase_make_planned_invoice__id
+#: model:ir.model.fields,field_description:purchase_invoice_plan_deposit.field_purchase_order__id
+msgid "ID"
+msgstr ""
+
+#. module: purchase_invoice_plan_deposit
+#: model:ir.actions.act_window,name:purchase_invoice_plan_deposit.action_view_purchase_advance_payment_inv_highlight
+msgid "Invoice Order"
+msgstr ""
+
+#. module: purchase_invoice_plan_deposit
+#: model:ir.model,name:purchase_invoice_plan_deposit.model_purchase_invoice_plan
+msgid "Invoice Planning Detail"
+msgstr ""
+
+#. module: purchase_invoice_plan_deposit
+#: code:addons/purchase_invoice_plan_deposit/models/purchase.py:0
+#, python-format
+msgid "Invoice plan requires deposit, please register deposit first."
+msgstr ""
+
+#. module: purchase_invoice_plan_deposit
+#: model:ir.model.fields,field_description:purchase_invoice_plan_deposit.field_purchase_advance_payment_inv____last_update
+#: model:ir.model.fields,field_description:purchase_invoice_plan_deposit.field_purchase_create_invoice_plan____last_update
+#: model:ir.model.fields,field_description:purchase_invoice_plan_deposit.field_purchase_invoice_plan____last_update
+#: model:ir.model.fields,field_description:purchase_invoice_plan_deposit.field_purchase_make_planned_invoice____last_update
+#: model:ir.model.fields,field_description:purchase_invoice_plan_deposit.field_purchase_order____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: purchase_invoice_plan_deposit
+#: model:ir.model.fields,field_description:purchase_invoice_plan_deposit.field_purchase_order__need_advance
+msgid "Need Advance"
+msgstr ""
+
+#. module: purchase_invoice_plan_deposit
+#: code:addons/purchase_invoice_plan_deposit/models/purchase.py:0
+#, python-format
+msgid "Only installment 0 can be of type 'Deposit'"
+msgstr ""
+
+#. module: purchase_invoice_plan_deposit
+#: model:ir.model.fields,field_description:purchase_invoice_plan_deposit.field_purchase_create_invoice_plan__advance_percent
+msgid "Percent Deposit"
+msgstr ""
+
+#. module: purchase_invoice_plan_deposit
+#: model:ir.model,name:purchase_invoice_plan_deposit.model_purchase_advance_payment_inv
+msgid "Purchase Advance Payment Invoice"
+msgstr ""
+
+#. module: purchase_invoice_plan_deposit
+#: model:ir.model,name:purchase_invoice_plan_deposit.model_purchase_order
+msgid "Purchase Order"
+msgstr ""
+
+#. module: purchase_invoice_plan_deposit
+#: model_terms:ir.ui.view,arch_db:purchase_invoice_plan_deposit.view_purchase_order_form_inherit
+msgid "Register Deposit"
+msgstr ""
+
+#. module: purchase_invoice_plan_deposit
+#: model:ir.model.fields,help:purchase_invoice_plan_deposit.field_purchase_order__need_advance
+msgid "True if use 1st deposit invoice plan, but no deposit yet"
+msgstr ""
+
+#. module: purchase_invoice_plan_deposit
+#: model:ir.model.fields,field_description:purchase_invoice_plan_deposit.field_purchase_invoice_plan__invoice_type
+msgid "Type"
+msgstr ""
+
+#. module: purchase_invoice_plan_deposit
+#: model:ir.model,name:purchase_invoice_plan_deposit.model_purchase_make_planned_invoice
+msgid "Wizard when create invoice by plan"
+msgstr ""
