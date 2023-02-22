@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     "name": "Purchase Cancel Reason",
-    "version": "14.0.1.0.0",
+    "version": "16.0.1.0.0",
     "author": "Camptocamp, Okia SPRL, Odoo Community Association (OCA)",
     "category": "Purchase",
     "license": "AGPL-3",
