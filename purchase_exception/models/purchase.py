@@ -27,16 +27,25 @@ class PurchaseOrder(models.Model):
         all_exceptions += lines.detect_exceptions()
         return all_exceptions
 
-    @api.constrains("ignore_exception", "order_line", "state")
+    def _fields_trigger_check_exception(self):
+        return ["ignore_exception", "order_line", "state"]
+
+    def _check_purchase_check_exception(self, vals):
+        check_exceptions = any(
+            field in vals for field in self._fields_trigger_check_exception()
+        )
+        if check_exceptions:
+            self.purchase_check_exception()
+
+    def write(self, vals):
+        result = super().write(vals)
+        self._check_purchase_check_exception(vals)
+        return result
+
     def purchase_check_exception(self):
         orders = self.filtered(lambda s: s.state == "purchase")
         if orders:
             orders._check_exception()
-
-    @api.onchange("order_line")
-    def onchange_ignore_exception(self):
-        if self.state == "purchase":
-            self.ignore_exception = False
 
     def button_confirm(self):
         if self.detect_exceptions() and not self.ignore_exception:
@@ -50,6 +59,10 @@ class PurchaseOrder(models.Model):
             order.main_exception_id = False
             order.ignore_exception = False
         return res
+
+    def _purchase_get_lines(self):
+        self.ensure_one()
+        return self.order_line
 
     @api.model
     def _get_popup_action(self):

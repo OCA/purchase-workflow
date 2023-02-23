@@ -73,15 +73,11 @@ class TestPurchaseException(TransactionCase):
         self.assertEqual(self.po.state, "purchase")
 
         # Add a order line to test after PO is confirmed
-        # set ignore_exception = False  (Done by onchange of order_line)
         field_onchange = self.PurchaseOrder._onchange_spec()
         self.assertEqual(field_onchange.get("order_line"), "1")
-        self.env.cache.invalidate()
         self.po3New = self.PurchaseOrder.new(self.po_vals.copy())
         self.po3New.ignore_exception = True
         self.po3New.state = "purchase"
-        self.po3New.onchange_ignore_exception()
-        self.assertFalse(self.po3New.ignore_exception)
         self.po.write(
             {
                 "order_line": [
