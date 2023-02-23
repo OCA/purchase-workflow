@@ -1,7 +1,8 @@
 # © 2013 Guewen Baconnier, Camptocamp SA
 # Copyright 2017 Okia SPRL
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from odoo import fields, models
+from odoo import _, fields, models
+from odoo.exceptions import UserError
 
 
 class PurchaseOrderCancel(models.TransientModel):
@@ -21,7 +22,8 @@ class PurchaseOrderCancel(models.TransientModel):
         purchase_ids = self._context.get("active_ids")
         if purchase_ids is None:
             return act_close
-        assert len(purchase_ids) == 1, "Only 1 purchase ID expected"
+        if len(purchase_ids) > 1:
+            raise UserError(_("Only 1 purchase ID expected"))
         purchase = self.env["purchase.order"].browse(purchase_ids)
         purchase.cancel_reason_id = self.reason_id.id
         purchase.button_cancel()
