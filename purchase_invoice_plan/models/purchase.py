@@ -214,10 +214,11 @@ class PurchaseInvoicePlan(models.Model):
     @api.depends("percent")
     def _compute_amount(self):
         for rec in self:
+            amount_untaxed = rec.purchase_id._origin.amount_untaxed
             # With invoice already created, no recompute
             if rec.invoiced:
                 rec.amount = rec.amount_invoiced
-                rec.percent = rec.amount / rec.purchase_id.amount_untaxed * 100
+                rec.percent = rec.amount / amount_untaxed * 100
                 continue
             # For last line, amount is the left over
             if rec.last:
@@ -225,9 +226,9 @@ class PurchaseInvoicePlan(models.Model):
                     lambda l: l.invoice_type == "installment"
                 )
                 prev_amount = sum((installments - rec).mapped("amount"))
-                rec.amount = rec.purchase_id.amount_untaxed - prev_amount
+                rec.amount = amount_untaxed - prev_amount
                 continue
-            rec.amount = rec.percent * rec.purchase_id.amount_untaxed / 100
+            rec.amount = rec.percent * amount_untaxed / 100
 
     @api.onchange("amount", "percent")
     def _inverse_amount(self):
