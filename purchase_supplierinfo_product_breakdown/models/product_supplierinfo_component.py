@@ -53,19 +53,17 @@ class ProductSupplierInfoComponent(models.Model):
         new_components = self.env["product.supplierinfo.component"]
         attribute_value_ids = product.product_template_attribute_value_ids
         for component in components:
-            arr = []
             if not component.variant_ids:
                 new_components |= component
-            for attr in component.variant_ids.mapped("attribute_id"):
-                arr.append(
-                    component.variant_ids.filtered(lambda l: l.attribute_id == attr)
-                )
-            state = True
-            for item in arr:
-                if not set(item.ids).intersection(attribute_value_ids.ids):
-                    state = False
-                    break
-            if state:
+            arr = [
+                component.variant_ids.filtered(lambda l: l.attribute_id == attr)
+                for attr in component.variant_ids.mapped("attribute_id")
+            ]
+            state = [
+                bool(set(item.ids).intersection(attribute_value_ids.ids))
+                for item in arr
+            ]
+            if all(state):
                 new_components |= component
         return new_components
 
