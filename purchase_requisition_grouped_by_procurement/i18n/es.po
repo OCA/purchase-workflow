@@ -1,0 +1,33 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_requisition_grouped_by_procurement
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-02-01 07:30+0000\n"
+"PO-Revision-Date: 2022-02-01 08:30+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 2.3\n"
+
+#. module: purchase_requisition_grouped_by_procurement
+#: model:ir.model.fields,field_description:purchase_requisition_grouped_by_procurement.field_purchase_requisition__group_id
+msgid "Group"
+msgstr "Grupo"
+
+#. module: purchase_requisition_grouped_by_procurement
+#: model:ir.model,name:purchase_requisition_grouped_by_procurement.model_purchase_requisition
+msgid "Purchase Requisition"
+msgstr "Solicitud de compra"
+
+#. module: purchase_requisition_grouped_by_procurement
+#: model:ir.model,name:purchase_requisition_grouped_by_procurement.model_stock_rule
+msgid "Stock Rule"
+msgstr "Regla de Inventario"
