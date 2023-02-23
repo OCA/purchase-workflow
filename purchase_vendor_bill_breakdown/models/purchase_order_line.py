@@ -118,6 +118,12 @@ class PurchaseOrderLine(models.Model):
                 rec._update_purchase_order_line_components()
         return result
 
+    def unlink(self):
+        if self:
+            for rec in self:
+                rec.component_ids.unlink()
+        return super(PurchaseOrderLine, self).unlink()
+
     def action_open_component_view(self):
         """Open view with product components"""
         self.ensure_one()
