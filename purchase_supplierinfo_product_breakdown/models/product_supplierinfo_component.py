@@ -60,10 +60,11 @@ class ProductSupplierInfoComponent(models.Model):
                 arr.append(
                     component.variant_ids.filtered(lambda l: l.attribute_id == attr)
                 )
-            state = False
+            state = True
             for item in arr:
-                if set(item.ids).intersection(attribute_value_ids.ids):
-                    state = True
+                if not set(item.ids).intersection(attribute_value_ids.ids):
+                    state = False
+                    break
             if state:
                 new_components |= component
         return new_components
