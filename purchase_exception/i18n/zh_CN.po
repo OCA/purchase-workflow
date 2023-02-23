@@ -17,6 +17,11 @@ msgstr ""
 "X-Generator: Weblate 3.8\n"
 
 #. module: purchase_exception
+#: model_terms:ir.ui.view,arch_db:purchase_exception.view_order_form
+msgid "<strong>There are exceptions blocking this Purchase Order:</strong>"
+msgstr ""
+
+#. module: purchase_exception
 #: model:ir.model.fields,field_description:purchase_exception.field_exception_rule__model
 msgid "Apply on"
 msgstr "应用于"
@@ -25,6 +30,12 @@ msgstr "应用于"
 #: model_terms:ir.ui.view,arch_db:purchase_exception.view_purchase_order_filter
 msgid "Blocked in Draft"
 msgstr "在草稿中阻止"
+
+#. module: purchase_exception
+#: model_terms:ir.ui.view,arch_db:purchase_exception.view_order_form
+msgid ""
+"Click here to be able to confirm this Agreement regardless of the exceptions."
+msgstr ""
 
 #. module: purchase_exception
 #: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__create_uid
@@ -47,9 +58,14 @@ msgid "Exception Rule"
 msgstr "异常规则"
 
 #. module: purchase_exception
-#: model:ir.ui.menu,name:purchase_exception.menu_purchase_exception_parent
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_order__exception_ids
 msgid "Exceptions"
 msgstr "异常"
+
+#. module: purchase_exception
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_order__exceptions_summary
+msgid "Exceptions Summary"
+msgstr ""
 
 #. module: purchase_exception
 #: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__exception_ids
@@ -63,7 +79,9 @@ msgstr "ID"
 
 #. module: purchase_exception
 #: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__ignore
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_order__ignore_exception
 #: model:ir.model.fields,field_description:purchase_exception.field_purchase_order_line__ignore_exception
+#: model_terms:ir.ui.view,arch_db:purchase_exception.view_order_form
 msgid "Ignore Exceptions"
 msgstr "忽略异常"
 
@@ -81,6 +99,11 @@ msgstr "最后更新者"
 #: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__write_date
 msgid "Last Updated on"
 msgstr "最后更新时间"
+
+#. module: purchase_exception
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_order__main_exception_id
+msgid "Main Exception"
+msgstr ""
 
 #. module: purchase_exception
 #: model:exception.rule,description:purchase_exception.po_excep_no_email
@@ -141,7 +164,6 @@ msgstr "采购订单行"
 #. module: purchase_exception
 #: model:ir.actions.server,name:purchase_exception.ir_cron_test_po_order_except_ir_actions_server
 #: model:ir.cron,cron_name:purchase_exception.ir_cron_test_po_order_except
-#: model:ir.cron,name:purchase_exception.ir_cron_test_po_order_except
 msgid "Purchase: Test Draft Orders Exception"
 msgstr "购买：测试草稿订单异常"
 
@@ -155,14 +177,12 @@ msgstr "采购"
 msgid "Quantity not positive"
 msgstr ""
 
-#. module: purchase_exception
-#: model_terms:ir.ui.view,arch_db:purchase_exception.view_order_form
-msgid ""
-"You have an outstanding\n"
-"                    exception to manage:"
-msgstr ""
-"你有一个突出的\n"
-"                    异常需要管理："
+#~ msgid ""
+#~ "You have an outstanding\n"
+#~ "                    exception to manage:"
+#~ msgstr ""
+#~ "你有一个突出的\n"
+#~ "                    异常需要管理："
 
 #~ msgid "Quantity not negative"
 #~ msgstr "数量不是负数"

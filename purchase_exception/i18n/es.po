@@ -10,6 +10,7 @@ msgstr ""
 "PO-Revision-Date: 2023-02-21 14:26+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -33,8 +34,7 @@ msgstr "Bloqueado en presupuesto"
 #. module: purchase_exception
 #: model_terms:ir.ui.view,arch_db:purchase_exception.view_order_form
 msgid ""
-"Click here to be able to confirm this Agreement regardless of the "
-"exceptions."
+"Click here to be able to confirm this Agreement regardless of the exceptions."
 msgstr ""
 
 #. module: purchase_exception

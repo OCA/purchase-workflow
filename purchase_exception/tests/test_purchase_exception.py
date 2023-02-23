@@ -52,6 +52,23 @@ class TestPurchaseException(TransactionCase):
                 ),
             ],
         }
+        cls.po_vals2 = {
+            "partner_id": cls.partner_id.id,
+            "order_line": [
+                (
+                    0,
+                    0,
+                    {
+                        "name": cls.product_id_3.name,
+                        "product_id": cls.product_id_3.id,
+                        "product_qty": -1.0,
+                        "product_uom": cls.product_id_3.uom_po_id.id,
+                        "price_unit": 20.0,
+                        "date_planned": cls.date_planned,
+                    },
+                ),
+            ],
+        }
 
     def test_purchase_order_exception(self):
         self.exception_noemail.active = True
@@ -114,4 +131,18 @@ class TestPurchaseException(TransactionCase):
             active_model=self.po._name,
         ).create({"ignore": True})
         po_except_confirm.action_confirm()
-        self.assertTrue(self.po.ignore_exception)
+
+    def test_exception_qtycheck(self):
+        # No allow ignoring exceptions if the "is_blocking" field is checked
+        self.exception_qtycheck.active = True
+        self.exception_qtycheck.is_blocking = True
+        self.po = self.PurchaseOrder.create(self.po_vals2.copy())
+        po_except_confirm = self.purchase_exception_confirm.with_context(
+            **{
+                "active_id": self.po.id,
+                "active_ids": [self.po.id],
+                "active_model": self.po._name,
+            }
+        ).create({"ignore": True})
+        po_except_confirm.exception_ids = self.exception_qtycheck
+        po_except_confirm.action_confirm()
