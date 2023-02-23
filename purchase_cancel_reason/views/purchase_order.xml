@@ -18,14 +18,14 @@
                 />
             </xpath>
             <xpath expr="/form/sheet/div/h1" position="after">
-                <h2 attrs="{'invisible': [('state', '!=', 'cancel')]}">
+                <h5 class="mb-3" attrs="{'invisible': [('state', '!=', 'cancel')]}">
                     <label for="cancel_reason_id" string="Cancellation reason:" />
                     <field
                         name="cancel_reason_id"
                         class="oe_inline"
                         options='{"no_open": True}'
                     />
-                </h2>
+                </h5>
             </xpath>
         </field>
     </record>
