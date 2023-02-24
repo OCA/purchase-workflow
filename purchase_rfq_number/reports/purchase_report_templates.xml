@@ -5,6 +5,7 @@
         id="report_purchasequotation_document"
         inherit_id="purchase.report_purchasequotation_document"
     >
+        <!-- pylint:disable=dangerous-qweb-replace-wo-priority -->
         <xpath expr="//span[@t-field='o.name']" position="replace">
             <t t-if="o.rfq_number != 'New'">
                 <span t-field="o.rfq_number" />
