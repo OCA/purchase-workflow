@@ -3,12 +3,12 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 import logging
 
-from odoo.tests import Form, SavepointCase
+from odoo.tests import Form, TransactionCase
 
 _logger = logging.getLogger(__name__)
 
 
-class TestPurchaseStockSecondaryUnit(SavepointCase):
+class TestPurchaseStockSecondaryUnit(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -22,7 +22,6 @@ class TestPurchaseStockSecondaryUnit(SavepointCase):
         cls.partner = cls.env["res.partner"].create({"name": "test - partner"})
         with Form(cls.env["product.product"]) as product_form:
             product_form.name = "Test"
-            product_form.type = "product"
             with product_form.secondary_uom_ids.new() as secondary_uom:
                 secondary_uom.name = "box"
                 secondary_uom.uom_id = cls.product_uom_unit
