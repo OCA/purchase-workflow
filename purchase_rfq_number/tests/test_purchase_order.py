@@ -70,6 +70,7 @@ class TestPurchaseOrder(TransactionCase):
         next_name = sequence_id.get_next_char(sequence_id.number_next_actual)
         try:
             order.button_confirm()
+        # pylint: disable=W7938
         except UserError:
             pass
         order.update({"state": "draft"})
