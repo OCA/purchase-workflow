@@ -4,7 +4,7 @@
 {
     "name": "Purchase Stock Secondary Unit",
     "summary": "Get product quantities in a secondary unit",
-    "version": "14.0.1.0.0",
+    "version": "15.0.1.0.0",
     "development_status": "Beta",
     "category": "stock",
     "website": "https://github.com/OCA/purchase-workflow",
