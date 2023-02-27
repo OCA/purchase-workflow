@@ -2,10 +2,10 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
 from odoo import fields
-from odoo.tests.common import Form, SavepointCase
+from odoo.tests.common import Form, TransactionCase
 
 
-class TestPurchaseOrderDelay(SavepointCase):
+class TestPurchaseOrderDelay(TransactionCase):
     at_install = False
     post_install = True
 
