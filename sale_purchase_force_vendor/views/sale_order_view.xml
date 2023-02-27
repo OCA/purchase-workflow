@@ -20,17 +20,17 @@
                     optional="hide"
                 />
            </xpath>
-           <xpath
-                expr="//field[@name='order_line']/form/group/group/field[@name='price_unit']"
-                position="before"
-            >
-            <field name="vendor_id_domain" invisible="1" />
-                <field
-                    name="vendor_id"
-                    domain="vendor_id_domain"
-                    options='{"no_create": True}'
-                />
-           </xpath>
+            <xpath expr="//field[@name='order_line']/form/group" position="inside">
+                <group string="Vendor" name="vendor">
+                    <field name="vendor_id_domain" invisible="1" />
+                    <field
+                        name="vendor_id"
+                        domain="vendor_id_domain"
+                        attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
+                        options='{"no_create": True}'
+                    />
+                </group>
+            </xpath>
         </field>
     </record>
 </odoo>
