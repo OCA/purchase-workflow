@@ -15,6 +15,7 @@ setuptools.setup(
         'odoo-addon-purchase_order_line_menu>=16.0dev,<16.1dev',
         'odoo-addon-purchase_request>=16.0dev,<16.1dev',
         'odoo-addon-purchase_request_tier_validation>=16.0dev,<16.1dev',
+        'odoo-addon-purchase_requisition_tier_validation>=16.0dev,<16.1dev',
         'odoo-addon-purchase_stock_packaging>=16.0dev,<16.1dev',
         'odoo-addon-purchase_tier_validation>=16.0dev,<16.1dev',
     ],
