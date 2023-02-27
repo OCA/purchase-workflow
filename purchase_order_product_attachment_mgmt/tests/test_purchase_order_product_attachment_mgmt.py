@@ -5,7 +5,7 @@ import base64
 from odoo.tests import Form, common
 
 
-class TestPurchaseOrderProductAttachmentMgmt(common.SavepointCase):
+class TestPurchaseOrderProductAttachmentMgmt(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
