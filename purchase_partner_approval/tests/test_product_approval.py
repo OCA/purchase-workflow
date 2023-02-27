@@ -47,3 +47,15 @@ class TestPurchaseOrderapproval(TransactionCase):
             order.review_ids.write({"status": "approved"})
         order.button_confirm()
         self.assertIn(order.state, ["purchase", "done"])
+
+    def test_child_customer_purchase_ok(self):
+        # Child Customer
+        customer = self.env["res.partner"].create(
+            {"name": "A Customer", "candidate_purchase": False}
+        )
+        child_customer = self.env["res.partner"].create(
+            {"name": "Child", "parent_id": customer.id}
+        )
+        customer.stage_id = self.env.ref("partner_stage.partner_stage_active")
+        child_customer.stage_id = self.env.ref("partner_stage.partner_stage_active")
+        self.assertEqual(customer.purchase_ok, child_customer.purchase_ok)

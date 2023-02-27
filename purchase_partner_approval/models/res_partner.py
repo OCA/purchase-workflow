@@ -34,7 +34,7 @@ class Partner(models.Model):
                 ok = partner.parent_id.purchase_ok
             else:
                 ok = partner.candidate_purchase and partner.stage_id.approved_purchase
-            super(Partner, partner).write({"purchase_ok": ok})
+            return super(Partner, partner).write({"purchase_ok": ok})
 
     @api.model
     def create(self, vals):
