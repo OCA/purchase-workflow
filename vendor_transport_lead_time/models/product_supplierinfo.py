@@ -47,4 +47,4 @@ class ProductSupplierinfo(models.Model):
         # "remove" the default lambda on "delay" field (from 'product' module)
         # to not let Odoo put a value in this field when 'create' is called
         self._fields["delay"].default = False
-        super()._setup_fields()
+        return super()._setup_fields()
