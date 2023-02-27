@@ -8,6 +8,7 @@ setuptools.setup(
     description="Meta package for oca-purchase-workflow Odoo addons",
     version=version,
     install_requires=[
+        'odoo-addon-purchase_advance_payment>=16.0dev,<16.1dev',
         'odoo-addon-purchase_allowed_product>=16.0dev,<16.1dev',
         'odoo-addon-purchase_commercial_partner>=16.0dev,<16.1dev',
         'odoo-addon-purchase_discount>=16.0dev,<16.1dev',
