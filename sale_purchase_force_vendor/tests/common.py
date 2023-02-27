@@ -4,7 +4,7 @@
 from odoo.tests import Form, common
 
 
-class TestSalePurchaseForceVendorBase(common.SavepointCase):
+class TestSalePurchaseForceVendorBase(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
