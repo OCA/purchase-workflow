@@ -39,26 +39,25 @@ class PurchaseOrder(models.Model):
             raise ValidationError(
                 _(
                     "Must have only 1 line per product for mass addition, but "
-                    "there are %s lines for the product %s"
-                    % (nr_lines, product.display_name),
-                )
+                    "there are {} lines for the product {}"
+                ).format(nr_lines, product.display_name),
             )
         return result
 
     def _get_quick_line_qty_vals(self, product):
         return {
-            "product_qty": product.qty_to_process,
             "product_uom": product.quick_uom_id.id,
+            "product_qty": product.qty_to_process,
         }
 
     def _complete_quick_line_vals(self, vals, lines_key=""):
         # This params are need for playing correctly the onchange
-        vals.update(
-            {
-                "order_id": self.id,
-                "partner_id": self.partner_id.id,
-            }
-        )
+        vals_to_add = {
+            "order_id": self.id,
+            "partner_id": self.partner_id.id,
+        }
+        vals_to_add.update(vals)
+        vals = vals_to_add
         return super(PurchaseOrder, self)._complete_quick_line_vals(
             vals, lines_key="order_line"
         )
