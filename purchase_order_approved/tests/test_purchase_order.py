@@ -27,7 +27,6 @@ class TestPurchaseOrder(TransactionCase):
                 "price_unit": 100.0,
             }
         )
-        cls.purchase_order.refresh()
 
     def test_01(self):
         """
