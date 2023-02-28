@@ -193,11 +193,11 @@ msgstr "供应商"
 msgid "You can find a vendor by its Name, TIN, Email or Internal Reference."
 msgstr "您可以通过名称，TIN，电子邮件或内部参考找到供应商。"
 
-#~ msgid "Drop Ship Address"
-#~ msgstr "代发货地址"
-
 #~ msgid "Config Settings"
 #~ msgstr "配置设置"
+
+#~ msgid "Drop Ship Address"
+#~ msgstr "代发货地址"
 
 #~ msgid ""
 #~ "Depicts the date where the Quotation should be validated and converted "
