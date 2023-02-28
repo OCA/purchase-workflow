@@ -2,10 +2,10 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo.exceptions import AccessError, ValidationError
-from odoo.tests.common import Form, SavepointCase
+from odoo.tests.common import Form, TransactionCase
 
 
-class TestQuickPurchase(SavepointCase):
+class TestQuickPurchase(TransactionCase):
     @classmethod
     def _add_seller(cls, product, prices):
         # drop existing seller
@@ -22,12 +22,15 @@ class TestQuickPurchase(SavepointCase):
 
     @classmethod
     def _setUpBasicSaleOrder(cls):
-        cls.po = cls.env["purchase.order"].create({"partner_id": cls.partner.id})
+        vals = {"partner_id": cls.partner.id}
+        if hasattr(cls.env["purchase.order"], "order_type"):
+            vals["order_type"] = cls.env.ref("purchase_order_type.po_type_blanket").id
+        cls.po = cls.env["purchase.order"].create(vals)
         with Form(cls.po, "purchase.purchase_order_form") as po_form:
             po_form.partner_id = cls.partner
         ctx = {"parent_id": cls.po.id, "parent_model": "purchase.order"}
-        cls.product_1 = cls.product_1.with_context(ctx)
-        cls.product_2 = cls.product_2.with_context(ctx)
+        cls.product_1 = cls.product_1.with_context(**ctx)
+        cls.product_2 = cls.product_2.with_context(**ctx)
         cls.product_1.qty_to_process = 5.0
         cls.product_2.qty_to_process = 6.0
 
@@ -81,12 +84,15 @@ class TestQuickPurchase(SavepointCase):
         write on qty_to_process as well as quick_uom_id
         (we want to make sure to test _inverse function when it is triggered twice)
         """
-        po = self.env["purchase.order"].create({"partner_id": self.partner.id})
+        vals = {"partner_id": self.partner.id}
+        if hasattr(self.env["purchase.order"], "order_type"):
+            vals["order_type"] = self.env.ref("purchase_order_type.po_type_blanket").id
+        po = self.env["purchase.order"].create(vals)
         with Form(po, "purchase.purchase_order_form") as po_form:
             po_form.partner_id = self.partner
         ctx = {"parent_id": self.po.id, "parent_model": "purchase.order"}
-        self.product_1 = self.product_1.with_context(ctx)
-        self.product_2 = self.product_2.with_context(ctx)
+        self.product_1 = self.product_1.with_context(**ctx)
+        self.product_2 = self.product_2.with_context(**ctx)
         self.product_1.write({"qty_to_process": 5.0, "quick_uom_id": self.uom_unit.id})
         self.product_2.write({"qty_to_process": 6.0, "quick_uom_id": self.uom_dozen.id})
 
@@ -204,7 +210,7 @@ class TestQuickPurchase(SavepointCase):
             product.with_user(self.user).write(
                 {"qty_to_process": 5.0, "quick_uom_id": self.uom_unit.id}
             )
-        product_in_quick_edit = product.with_user(self.user).with_context(ctx)
+        product_in_quick_edit = product.with_user(self.user).with_context(**ctx)
         product_in_quick_edit.write(
             {"qty_to_process": 5.0, "quick_uom_id": self.uom_unit.id}
         )
