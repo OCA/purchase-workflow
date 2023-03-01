@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="product_product_last_purchase_info_form_view" model="ir.ui.view">
+        <field name="name">product.product.last.purchase.info.form</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view" />
+        <field name="arch" type="xml">
+            <field name="seller_ids" position="before">
+                <group
+                    string="Purchase"
+                    name="last_purchase_info"
+                    attrs="{'invisible': [('product_variant_count', '&lt;=', 1)]}"
+                >
+                    <field name="last_purchase_supplier_id" />
+                    <field name="last_purchase_date" />
+                    <field name="last_purchase_price" />
+                    <field name="show_last_purchase_price_currency" invisible="1" />
+                    <field
+                        name="last_purchase_currency_id"
+                        groups="base.group_multi_currency"
+                        attrs="{'invisible':[('show_last_purchase_price_currency', '=', False)]}"
+                    />
+                    <field
+                        name="last_purchase_price_currency"
+                        groups="base.group_multi_currency"
+                        attrs="{'invisible':[('show_last_purchase_price_currency', '=', False)]}"
+                    />
+                </group>
+            </field>
+        </field>
+    </record>
+    <record id="product_template_last_purchase_info_form_view" model="ir.ui.view">
+        <field name="name">product.template.form.last.purchase.info</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="purchase.view_product_supplier_inherit" />
+        <field name="arch" type="xml">
+            <field name="seller_ids" position="before">
+                <group
+                    string="Purchase"
+                    name="last_purchase_info"
+                    attrs="{'invisible': [('product_variant_count', '&gt;', 1)]}"
+                >
+                    <field name="last_purchase_supplier_id" />
+                    <field name="last_purchase_date" />
+                    <field name="last_purchase_price" />
+                    <field name="show_last_purchase_price_currency" invisible="1" />
+                    <field
+                        name="last_purchase_currency_id"
+                        groups="base.group_multi_currency"
+                        attrs="{'invisible':[('show_last_purchase_price_currency', '=', False)]}"
+                    />
+                    <field
+                        name="last_purchase_price_currency"
+                        groups="base.group_multi_currency"
+                        attrs="{'invisible':[('show_last_purchase_price_currency', '=', False)]}"
+                    />
+                </group>
+            </field>
+        </field>
+    </record>
+    <record id="product_product_tree_view" model="ir.ui.view">
+        <field name="name">product.product.tree</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_product_tree_view" />
+        <field name="arch" type="xml">
+            <field name="lst_price" position="after">
+                <field name="last_purchase_price" />
+            </field>
+        </field>
+    </record>
+    <record id="product_template_tree_view" model="ir.ui.view">
+        <field name="name">product.template.product.tree</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_tree_view" />
+        <field name="arch" type="xml">
+            <field name="standard_price" position="after">
+                <field name="last_purchase_price" />
+            </field>
+        </field>
+    </record>
+</odoo>
