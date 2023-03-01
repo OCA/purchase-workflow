@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 # © 2020 David BEAL @ Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+from openerp.exceptions import AccessError, Warning as UserError
 from openerp.tests import common
-from openerp.exceptions import Warning as UserError, AccessError
 
 
 class Test(common.SavepointCase):
@@ -53,7 +52,7 @@ class Test(common.SavepointCase):
         order.onchange_proposal_date()
         dates = [x.date for x in order.proposal_ids]
         assert len(dates) == 2
-        dates = set([x.date for x in order.proposal_ids])
+        dates = {x.date for x in order.proposal_ids}
         assert len(dates) == 1
         assert order.proposal_date == list(dates)[0]
 

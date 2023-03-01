@@ -1,52 +1,105 @@
-<?xml version="1.0" encoding="utf-8"?>
-<openerp>
-<data>
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
 
     <record id="purchase_order_form" model="ir.ui.view">
         <field name="model">purchase.order</field>
-        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="before">
-                <field name="proposal_count" invisible="1"/>
-                <field name="id" attrs="{'invisible': [('proposal_count', '=', 0)]}"/>
+            <xpath
+                expr="//field[@name='order_line']/tree/field[@name='product_id']"
+                position="before"
+            >
+                <field name="proposal_count" invisible="1" />
+                <field name="id" attrs="{'invisible': [('proposal_count', '=', 0)]}" />
             </xpath>
             <field name="order_line" position="before">
                 <group>
-                    <button name="button_switch2other_view" string="Supplier view" type="object" context="{'from_supplier_view': 0}"/>
-                    <field name="proposal_display" attrs="{'invisible': ['|', ('proposal_count', '=', 0), ('proposal_state', '!=', 'rejected')]}" groups="purchase.group_purchase_user"/>
+                    <button
+                        name="button_switch2other_view"
+                        string="Supplier view"
+                        type="object"
+                        context="{'from_supplier_view': 0}"
+                    />
+                    <field
+                        name="proposal_display"
+                        attrs="{'invisible': ['|', ('proposal_count', '=', 0), ('proposal_state', '!=', 'rejected')]}"
+                        groups="purchase.group_purchase_user"
+                    />
                 </group>
-                <group col="4" attrs="{'invisible': ['|', ('proposal_count', '=', 0), ('proposal_display', '=', True)]}">
-                    <div colspan="4"
-                         style="background-color:AntiqueWhite; text-align:center; font-weight: bold; padding: 8px">
+                <group
+                    col="4"
+                    attrs="{'invisible': ['|', ('proposal_count', '=', 0), ('proposal_display', '=', True)]}"
+                >
+                    <div
+                        colspan="4"
+                        style="background-color:AntiqueWhite; text-align:center; font-weight: bold; padding: 8px"
+                    >
                         Update Proposal
                     </div>
                     <group>
-                        <field name="proposal_state" colspan="2"/>
-                        <button name="approve_proposal" help="Approve Proposal" type="object" string="Approve" class="oe_highlight"
-                                attrs="{'invisible': [('proposal_state', 'in', ['approved', 'draft'])]}"
-                                groups="purchase.group_purchase_user"/>
-                        <button name="reject_proposal" help="Reject Proposal" type="object" string="Reject"
-                                attrs="{'invisible': [('proposal_state', 'in', ['draft', 'approved', 'rejected'])]}"
-                                groups="purchase.group_purchase_user"/>
-                        <button name="submit_proposal" help="Submit Proposal" type="object" string="Submit" class="oe_highlight"
-                                attrs="{'invisible': [('proposal_state', 'in', ['approved', 'submitted', 'rejected'])]}"
-                                groups="purchase_update_proposal.group_purchase_proposal_user"/>
-                        <button name="reset_proposal" help="Reset Proposal" type="object" string="Reset"
-                                attrs="{'invisible': [('proposal_state', 'in', ['draft', 'approved'])]}"
-                                groups="purchase_update_proposal.group_purchase_proposal_user"/>
-                        <field name="proposal_count" invisible="1"/>
+                        <field name="proposal_state" colspan="2" />
+                        <button
+                            name="approve_proposal"
+                            help="Approve Proposal"
+                            type="object"
+                            string="Approve"
+                            class="oe_highlight"
+                            attrs="{'invisible': [('proposal_state', 'in', ['approved', 'draft'])]}"
+                            groups="purchase.group_purchase_user"
+                        />
+                        <button
+                            name="reject_proposal"
+                            help="Reject Proposal"
+                            type="object"
+                            string="Reject"
+                            attrs="{'invisible': [('proposal_state', 'in', ['draft', 'approved', 'rejected'])]}"
+                            groups="purchase.group_purchase_user"
+                        />
+                        <button
+                            name="submit_proposal"
+                            help="Submit Proposal"
+                            type="object"
+                            string="Submit"
+                            class="oe_highlight"
+                            attrs="{'invisible': [('proposal_state', 'in', ['approved', 'submitted', 'rejected'])]}"
+                            groups="purchase_update_proposal.group_purchase_proposal_user"
+                        />
+                        <button
+                            name="reset_proposal"
+                            help="Reset Proposal"
+                            type="object"
+                            string="Reset"
+                            attrs="{'invisible': [('proposal_state', 'in', ['draft', 'approved'])]}"
+                            groups="purchase_update_proposal.group_purchase_proposal_user"
+                        />
+                        <field name="proposal_count" invisible="1" />
                     </group>
-                    <group colspan="4" attrs="{'invisible': [('proposal_count', '=', 0)]}">
-                        <field name="proposal_ids" colspan="4" attrs="{'readonly': [('proposal_updatable', '=', 'no')]}" nolabel="1"/>
-                        <div attrs="{'invisible': [('check_price_on_proposal', '=', True)]}" colspan="2" style="text-align:center;">Prices are not updated for this supplier</div>
-                        <field name="check_price_on_proposal" invisible="1"/>
-                        <field name="proposal_updatable" invisible="1"/>
-                        <div attrs="{'invisible': [('proposal_updatable', '!=', 'no')]}" colspan="2"
-                             style="background-color:red; color:white; text-align:center; font-weight: bold;">
+                    <group
+                        colspan="4"
+                        attrs="{'invisible': [('proposal_count', '=', 0)]}"
+                    >
+                        <field
+                            name="proposal_ids"
+                            colspan="4"
+                            attrs="{'readonly': [('proposal_updatable', '=', 'no')]}"
+                            nolabel="1"
+                        />
+                        <div
+                            attrs="{'invisible': [('check_price_on_proposal', '=', True)]}"
+                            colspan="2"
+                            style="text-align:center;"
+                        >Prices are not updated for this supplier</div>
+                        <field name="check_price_on_proposal" invisible="1" />
+                        <field name="proposal_updatable" invisible="1" />
+                        <div
+                            attrs="{'invisible': [('proposal_updatable', '!=', 'no')]}"
+                            colspan="2"
+                            style="background-color:red; color:white; text-align:center; font-weight: bold;"
+                        >
                             We can't complete your request because our incoming workflow is partially finished or cancelled
                         </div>
                     </group>
-                    <hr style="background: AntiqueWhite; height: 12px" colspan="4"/>
+                    <hr style="background: AntiqueWhite; height: 12px" colspan="4" />
                 </group>
             </field>
         </field>
@@ -54,13 +107,16 @@
 
     <record id="view_purchase_order_filter" model="ir.ui.view">
         <field name="model">purchase.order</field>
-        <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+        <field name="inherit_id" ref="purchase.view_purchase_order_filter" />
         <field name="arch" type="xml">
             <filter name="approved" position="after">
-                <filter name="submitted" string="Submitted" domain="[('proposal_state','=', 'submitted')]"/>
+                <filter
+                    name="submitted"
+                    string="Submitted"
+                    domain="[('proposal_state','=', 'submitted')]"
+                />
             </filter>
         </field>
     </record>
 
-</data>
-</openerp>
+</odoo>

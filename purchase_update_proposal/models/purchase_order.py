@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # © 2021 David BEAL @ Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
@@ -65,7 +64,7 @@ class PurchaseOrder(models.Model):
                 rec.partially_received = False
 
     def _check_updatable_proposal(self):
-        """ Override original method """
+        """Override original method"""
         for rec in self:
             prevent_update = False
             if rec.partially_received:
@@ -174,7 +173,7 @@ class PurchaseOrder(models.Model):
         self.write({"proposal_state": "approved"})
 
     def _product_qty_key_in_data(self, data):
-        """ Check if 'product_qty' key is anywhere in data """
+        """Check if 'product_qty' key is anywhere in data"""
         self.ensure_one()
         qty2update = False
         for __, vals in data.items():
