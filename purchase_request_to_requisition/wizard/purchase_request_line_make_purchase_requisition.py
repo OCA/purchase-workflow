@@ -59,11 +59,12 @@ class PurchaseRequestLineMakePurchaseRequisition(models.TransientModel):
         return res
 
     @api.model
-    def _prepare_purchase_requisition(self, picking_type_id, company_id):
+    def _prepare_purchase_requisition(self, item, picking_type_id, company_id):
         data = {
             "origin": "",
             "picking_type_id": picking_type_id,
             "company_id": company_id,
+            "currency_id": item.request_id.currency_id.id,
         }
         return data
 
@@ -122,7 +123,7 @@ class PurchaseRequestLineMakePurchaseRequisition(models.TransientModel):
                 requisition = self.purchase_requisition_id
             if not requisition:
                 preq_data = self._prepare_purchase_requisition(
-                    picking_type_id, company_id
+                    item, picking_type_id, company_id
                 )
                 requisition = pr_obj.create(preq_data)
 
