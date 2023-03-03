@@ -23,6 +23,16 @@ class TestPurchaseOrder(common.SavepointCase):
                             "price": 100,
                         },
                     ),
+                    (
+                        0,
+                        False,
+                        {
+                            "name": cls.partner.id,
+                            "min_qty": 100,
+                            "multiplier_qty": 2,
+                            "price": 95,
+                        },
+                    ),
                 ],
             }
         )
@@ -44,3 +54,20 @@ class TestPurchaseOrder(common.SavepointCase):
         self.assertEqual(line_a.product_qty, 1)
         line_b = purchase.order_line.filtered(lambda x: x.product_id == self.product_b)
         self.assertEqual(line_b.product_qty, 2)
+
+    def test_various_prices(self):
+        purchase_form = Form(self.env["purchase.order"])
+        purchase_form.partner_id = self.partner
+        with purchase_form.order_line.new() as line_form_1:
+            line_form_1.product_id = self.product_b
+            line_form_1.product_qty = 3
+        purchase = purchase_form.save()
+        self.assertEqual(line_form_1.product_qty, 4)
+        self.assertEqual(line_form_1.price_unit, 100)
+
+        with purchase_form.order_line.new() as line_form_2:
+            line_form_2.product_id = self.product_b
+            line_form_2.product_qty = 99
+        purchase = purchase_form.save()
+        self.assertEqual(line_form_2.product_qty, 100)
+        self.assertEqual(line_form_2.price_unit, 95)

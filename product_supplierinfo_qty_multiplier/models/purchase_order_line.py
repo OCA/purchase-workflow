@@ -12,7 +12,7 @@ class PurchaseOrderLine(models.Model):
 
     @api.onchange("product_qty")
     def _onchange_quantity(self):
-        res = super()._onchange_quantity() or {}
+        res = {}
         if not self.product_id:
             return res
         params = {"order_id": self.order_id}
@@ -43,4 +43,5 @@ class PurchaseOrderLine(models.Model):
                     }
                 }
             )
-            return res
+        res.update(super()._onchange_quantity() or {})
+        return res
