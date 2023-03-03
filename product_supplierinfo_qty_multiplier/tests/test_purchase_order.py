@@ -11,7 +11,7 @@ class TestPurchaseOrder(common.SavepointCase):
         cls.product_a = cls.env["product.product"].create({"name": "Product A"})
         cls.product_b = cls.env["product.product"].create(
             {
-                "name": "Product A",
+                "name": "Product B",
                 "seller_ids": [
                     (
                         0,
