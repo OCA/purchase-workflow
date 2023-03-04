@@ -49,7 +49,7 @@ class TestPurchaseCancelReason(TransactionCase):
             "active_ids": [self.purchase_order.id],
         }
         wizard = PurchaseOrderCancel.create({"reason_id": self.reason.id})
-        wizard.with_context(context).confirm_cancel()
+        wizard.with_context(**context).confirm_cancel()
         self.assertEqual(
             self.purchase_order.state, "cancel", "the purchase order should be canceled"
         )
