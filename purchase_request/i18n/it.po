@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-18 07:27+0000\n"
-"PO-Revision-Date: 2023-01-18 11:48+0000\n"
+"PO-Revision-Date: 2023-03-07 19:26+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -79,7 +79,7 @@ msgstr "Azienda"
 #: field:purchase.request,create_uid:0
 #: field:purchase.request.line,create_uid:0
 msgid "Created by"
-msgstr "Created by"
+msgstr "Creato da"
 
 #. module: purchase_request
 #: field:purchase.request,create_date:0
