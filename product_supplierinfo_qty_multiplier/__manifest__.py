@@ -5,10 +5,10 @@
     "version": "12.0.1.0.0",
     "category": "Purchases",
     "website": "https://github.com/OCA/purchase-workflow",
-    "author": "Tecnativa, Odoo Community Association (OCA)",
+    "author": "Tecnativa,GRAP, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,
     "depends": ["purchase", "web_notify"],
-    "maintainers": ["victoralmau"],
+    "maintainers": ["victoralmau", "legalsylvain"],
     "data": ["views/product_supplierinfo_view.xml"],
 }
