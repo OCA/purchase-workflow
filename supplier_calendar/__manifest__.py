@@ -7,6 +7,7 @@
     "category": "Purchase Management",
     "author": "ForgeFlow,"
                "Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/purchase-workflow",
     "maintainers": ["NuriaMForgeFlow"],
     "license": "LGPL-3",
     'application': False,
