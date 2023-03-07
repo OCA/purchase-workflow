@@ -61,13 +61,13 @@ class TestPurchaseOrder(common.SavepointCase):
         with purchase_form.order_line.new() as line_form_1:
             line_form_1.product_id = self.product_b
             line_form_1.product_qty = 3
-        purchase = purchase_form.save()
+        purchase_form.save()
         self.assertEqual(line_form_1.product_qty, 4)
         self.assertEqual(line_form_1.price_unit, 100)
 
         with purchase_form.order_line.new() as line_form_2:
             line_form_2.product_id = self.product_b
             line_form_2.product_qty = 99
-        purchase = purchase_form.save()
+        purchase_form.save()
         self.assertEqual(line_form_2.product_qty, 100)
         self.assertEqual(line_form_2.price_unit, 95)
