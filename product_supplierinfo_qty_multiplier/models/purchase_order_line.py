@@ -12,9 +12,8 @@ class PurchaseOrderLine(models.Model):
 
     @api.onchange("product_qty")
     def _onchange_quantity(self):
-        res = {}
         if not self.product_id:
-            return res
+            return super()._onchange_quantity()
         params = {"order_id": self.order_id}
         seller = self.product_id._select_seller(
             partner_id=self.partner_id,
@@ -26,22 +25,14 @@ class PurchaseOrderLine(models.Model):
         qty = self.product_qty
         if seller and seller.multiplier_qty and qty % seller.multiplier_qty:
             self.product_qty = ceil(qty / seller.multiplier_qty) * seller.multiplier_qty
-            res.update(
-                {
-                    "warning": {
-                        "title": _("Warning"),
-                        "message": _(
-                            "The selected supplier only sells this product by %s %s.\n"
-                            "The quantity has been automatically changed to %s %s"
-                        )
-                        % (
-                            seller.multiplier_qty,
-                            seller.product_uom.name,
-                            self.product_qty,
-                            seller.product_uom.name,
-                        ),
-                    }
-                }
+            warn_msg = _(
+                "The selected supplier only sells this product by %s %s.\n"
+                "The quantity has been automatically changed to %s %s"
+            ) % (
+                seller.multiplier_qty,
+                seller.product_uom.name,
+                self.product_qty,
+                seller.product_uom.name,
             )
-        res.update(super()._onchange_quantity() or {})
-        return res
+            self.env.user.notify_warning(title=_("Warning"), message=warn_msg)
+        return super()._onchange_quantity()

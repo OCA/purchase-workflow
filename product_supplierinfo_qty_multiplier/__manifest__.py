@@ -8,7 +8,7 @@
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,
-    "depends": ["purchase"],
+    "depends": ["purchase", "web_notify"],
     "maintainers": ["victoralmau"],
     "data": ["views/product_supplierinfo_view.xml"],
 }
