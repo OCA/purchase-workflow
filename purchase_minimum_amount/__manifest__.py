@@ -15,6 +15,6 @@
         'views/purchase_order_view.xml',
         'views/res_partner_view.xml',
     ],
-    "license": 'LGPL-3',
+    "license": 'AGPL-3',
     "installable": True
 }
