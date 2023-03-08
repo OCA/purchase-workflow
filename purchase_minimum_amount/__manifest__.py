@@ -4,7 +4,7 @@
 {
     "name": "Purchase Minimum Amount",
     "author": "Eficent, Odoo Community Association (OCA)",
-    "version": "12.0.1.0.0",
+    "version": "12.0.1.0.1",
     "website": "https://github.com/OCA/purchase-workflow",
     "depends": [
         'purchase',
