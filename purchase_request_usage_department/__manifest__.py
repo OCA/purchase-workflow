@@ -15,6 +15,6 @@
     "data": [
         "views/hr_department_view.xml",
     ],
-    "license": 'LGPL-3',
+    "license": 'AGPL-3',
     "installable": True
 }

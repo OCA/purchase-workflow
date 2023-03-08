@@ -10,6 +10,7 @@
                "materials and/or external services and keep track of such "
                "requirements.",
     "category": "Purchase Management",
+    "website": "https://github.com/OCA/purchase-workflow",
     "depends": [
         "purchase",
         "product",

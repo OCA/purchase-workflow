@@ -7,7 +7,7 @@
     'version': '12.0.1.0.1',
     'author': 'Ecosoft,Odoo Community Association (OCA)',
     'license': 'AGPL-3',
-    'website': 'https://github.com/OCA/purchase-workflow/',
+    'website': 'https://github.com/OCA/purchase-workflow',
     'category': 'Purchase',
     'depends': ['account',
                 'purchase_open_qty',
