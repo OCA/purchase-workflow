@@ -11,7 +11,7 @@
     "website": "https://github.com/OCA/purchase-workflow",
     "author": "Akretion, Odoo Community Association (OCA)",
     "license": "AGPL-3",
-    "depends": ["purchase"],
+    "depends": ["purchase", "base_view_inheritance_extension"],
     "data": [
         "views/res_partner_views.xml",
         "views/account_move_views.xml",
