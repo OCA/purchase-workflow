@@ -44,3 +44,15 @@ class PurchaseOrderLine(models.Model):
                 self.procurement_group_id.id or self.order_id.group_id.id
             )
         return res
+
+    def _prepare_purchase_order_line_from_procurement(
+        self, product_id, product_qty, product_uom, company_id, values, po
+    ):
+        """Add procurement group to values"""
+        res = super()._prepare_purchase_order_line_from_procurement(
+            product_id, product_qty, product_uom, company_id, values, po
+        )
+        procurement_group = values.get("group_id")
+        if procurement_group:
+            res["procurement_group_id"] = procurement_group.id
+        return res
