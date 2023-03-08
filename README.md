@@ -35,25 +35,25 @@ addon | version | maintainers | summary
 [purchase_discount](purchase_discount/) | 12.0.1.0.8 |  | Purchase order lines with discounts
 [purchase_exception](purchase_exception/) | 12.0.1.1.0 |  | Custom exceptions on purchase order
 [purchase_force_invoiced](purchase_force_invoiced/) | 12.0.1.0.0 |  | Allows to force the billing status of the purchase order to "Invoiced"
-[purchase_invoice_plan](purchase_invoice_plan/) | 12.0.1.0.1 |  | Add to purchases order, ability to manage future invoice plan
-[purchase_invoice_plan_deposit](purchase_invoice_plan_deposit/) | 12.0.1.0.0 |  | Bridge module for purchase_invoice_plan and purchase_deposit
+[purchase_invoice_plan](purchase_invoice_plan/) | 12.0.1.0.2 |  | Add to purchases order, ability to manage future invoice plan
+[purchase_invoice_plan_deposit](purchase_invoice_plan_deposit/) | 12.0.1.0.1 |  | Bridge module for purchase_invoice_plan and purchase_deposit
 [purchase_landed_cost](purchase_landed_cost/) | 12.0.1.1.1 |  | Purchase cost distribution
 [purchase_last_price_info](purchase_last_price_info/) | 12.0.1.1.0 | [![lreficent](https://github.com/lreficent.png?size=30px)](https://github.com/lreficent) | Purchase Product Last Price Info
 [purchase_line_procurement_group](purchase_line_procurement_group/) | 12.0.1.0.1 |  | Group purchase order line according to procurement group
 [purchase_location_by_line](purchase_location_by_line/) | 12.0.1.0.0 |  | Allows to define a specific destination location on each PO line
 [purchase_manual_delivery](purchase_manual_delivery/) | 12.0.1.0.0 |  | Prevents pickings to be auto generated upon Purchase Order confirmation and adds the ability to manually generate them as the supplier confirms the different purchase order lines.
-[purchase_minimum_amount](purchase_minimum_amount/) | 12.0.1.0.0 |  | Purchase Minimum Amount
+[purchase_minimum_amount](purchase_minimum_amount/) | 12.0.1.0.1 |  | Purchase Minimum Amount
 [purchase_open_qty](purchase_open_qty/) | 12.0.1.1.2 |  | Allows to identify the purchase orders that have quantities pending to invoice or to receive.
 [purchase_order_analytic_search](purchase_order_analytic_search/) | 12.0.1.0.0 |  | Search purchase orders by analytic account. New menu entry in Purchasing to list purchase order lines.
-[purchase_order_approval_block](purchase_order_approval_block/) | 12.0.1.0.0 |  | Purchase Order Approval Block
+[purchase_order_approval_block](purchase_order_approval_block/) | 12.0.1.0.1 |  | Purchase Order Approval Block
 [purchase_order_approved](purchase_order_approved/) | 12.0.1.1.0 |  | Add a new state 'Approved' in purchase orders.
 [purchase_order_archive](purchase_order_archive/) | 12.0.1.0.0 |  | Archive Purchase Orders
 [purchase_order_general_discount](purchase_order_general_discount/) | 12.0.1.0.0 |  | General discount per purchase order
 [purchase_order_line_deep_sort](purchase_order_line_deep_sort/) | 12.0.1.0.0 |  | Purchase Order Line Sort
 [purchase_order_line_description](purchase_order_line_description/) | 12.0.1.0.1 |  | Purchase order line description
 [purchase_order_line_packaging_qty](purchase_order_line_packaging_qty/) | 12.0.1.2.0 |  | Define quantities according to product packaging on purchase order lines
-[purchase_order_line_price_history](purchase_order_line_price_history/) | 12.0.1.0.3 |  | Purchase order line price history
-[purchase_order_line_price_history_discount](purchase_order_line_price_history_discount/) | 12.0.1.0.1 |  | Purchase order line price history discount
+[purchase_order_line_price_history](purchase_order_line_price_history/) | 12.0.1.0.4 |  | Purchase order line price history
+[purchase_order_line_price_history_discount](purchase_order_line_price_history_discount/) | 12.0.1.0.2 |  | Purchase order line price history discount
 [purchase_order_line_sequence](purchase_order_line_sequence/) | 12.0.1.0.1 |  | Adds sequence to PO lines and propagates it toInvoice lines and Stock Moves
 [purchase_order_line_stock_available](purchase_order_line_stock_available/) | 12.0.1.0.0 |  | Purchase order line stock available
 [purchase_order_product_recommendation](purchase_order_product_recommendation/) | 12.0.1.2.3 |  | Recommend products to buy to supplier based on history
@@ -70,12 +70,12 @@ addon | version | maintainers | summary
 [purchase_quick](purchase_quick/) | 12.0.1.0.3 | [![PierrickBrun](https://github.com/PierrickBrun.png?size=30px)](https://github.com/PierrickBrun) [![bealdav](https://github.com/bealdav.png?size=30px)](https://github.com/bealdav) | Quick Purchase order
 [purchase_reception_notify](purchase_reception_notify/) | 12.0.1.0.0 |  | Purchase Reception Notify
 [purchase_reception_status](purchase_reception_status/) | 12.0.1.0.0 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Add reception status on purchase orders
-[purchase_request](purchase_request/) | 12.0.5.3.0 |  | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
+[purchase_request](purchase_request/) | 12.0.5.3.1 |  | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
 [purchase_request_department](purchase_request_department/) | 12.0.1.0.0 |  | Purchase Request Department
-[purchase_request_order_approved](purchase_request_order_approved/) | 12.0.1.0.0 |  | Purchase Request Order Approved
+[purchase_request_order_approved](purchase_request_order_approved/) | 12.0.1.0.1 |  | Purchase Request Order Approved
 [purchase_request_product_usage](purchase_request_product_usage/) | 12.0.1.0.0 |  | Purchase Request Product Usage
 [purchase_request_tier_validation](purchase_request_tier_validation/) | 12.0.1.1.0 |  | Extends the functionality of Purchase Requests to support a tier validation process.
-[purchase_request_usage_department](purchase_request_usage_department/) | 12.0.1.0.0 |  | Purchase Request Usage Department
+[purchase_request_usage_department](purchase_request_usage_department/) | 12.0.1.0.1 |  | Purchase Request Usage Department
 [purchase_requisition_auto_rfq](purchase_requisition_auto_rfq/) | 12.0.2.0.0 |  | Automatically create RFQs from a purchase requisition
 [purchase_requisition_line_description](purchase_requisition_line_description/) | 12.0.1.0.0 |  | Extends the functionality of Purchase Agreements to show line description.
 [purchase_requisition_tier_validation](purchase_requisition_tier_validation/) | 12.0.1.0.0 |  | Extends the functionality of Purchase Agreements to support a tier validation process.
@@ -86,8 +86,8 @@ addon | version | maintainers | summary
 [purchase_tier_validation](purchase_tier_validation/) | 12.0.1.0.0 |  | Extends the functionality of Purchase Orders to support a tier validation process.
 [purchase_triple_discount](purchase_triple_discount/) | 12.0.1.1.0 |  | Manage triple discount on purchase order lines
 [purchase_work_acceptance](purchase_work_acceptance/) | 12.0.1.1.0 |  | Purchase Work Acceptance
-[subcontracted_service](subcontracted_service/) | 12.0.1.0.1 |  | Subcontracted service
-[supplier_calendar](supplier_calendar/) | 12.0.1.0.0 | [![NuriaMForgeFlow](https://github.com/NuriaMForgeFlow.png?size=30px)](https://github.com/NuriaMForgeFlow) | Supplier Calendar
+[subcontracted_service](subcontracted_service/) | 12.0.1.0.2 |  | Subcontracted service
+[supplier_calendar](supplier_calendar/) | 12.0.1.0.1 | [![NuriaMForgeFlow](https://github.com/NuriaMForgeFlow.png?size=30px)](https://github.com/NuriaMForgeFlow) | Supplier Calendar
 
 [//]: # (end addons)
 
