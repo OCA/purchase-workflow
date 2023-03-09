@@ -4,7 +4,6 @@ from odoo import fields, models
 
 
 class PurchaseOrderLine(models.Model):
-
     _inherit = "purchase.order.line"
 
     procurement_group_id = fields.Many2one("procurement.group")
