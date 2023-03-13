@@ -43,8 +43,15 @@ class PurchaseOrderLine(models.Model):
             default_picking_location_id
         )
         location = line.location_dest_id or default_picking_location
-        picking_type = (self.env["stock.picking.type"].search([("code", "=", "incoming"), (
-            "default_location_dest_id", "=", line.location_dest_id.id)]) or line.order_id.picking_type_id)
+        picking_type = (
+            self.env["stock.picking.type"].search(
+                [
+                    ("code", "=", "incoming"),
+                    ("default_location_dest_id", "=", line.location_dest_id.id),
+                ]
+            )
+            or line.order_id.picking_type_id
+        )
         return key + ({"location_dest_id": location, "picking_type_id": picking_type},)
 
     def _create_stock_moves(self, picking):
@@ -59,8 +66,15 @@ class PurchaseOrderLine(models.Model):
                 line.move_ids.filtered(lambda m: m.state != "done").write(
                     {"location_dest_id": location.id}
                 )
-                picking_type = (self.env["stock.picking.type"].search([("code", "=", "incoming"), (
-                    "default_location_dest_id", "=", location.id)]) or line.order_id.picking_type_id)
+                picking_type = (
+                    self.env["stock.picking.type"].search(
+                        [
+                            ("code", "=", "incoming"),
+                            ("default_location_dest_id", "=", location.id),
+                        ]
+                    )
+                    or line.order_id.picking_type_id
+                )
                 if picking_type:
                     line.move_ids.filtered(lambda m: m.state != "done").write(
                         {"picking_type_id": picking_type}
