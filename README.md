@@ -67,6 +67,7 @@ addon | version | maintainers | summary
 [purchase_representative](purchase_representative/) | 15.0.1.0.0 |  | Purchase Representatives will be the point of contact for RFQ's and PO's
 [purchase_request](purchase_request/) | 15.0.1.1.1 |  | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
 [purchase_request_department](purchase_request_department/) | 15.0.1.0.0 |  | Purchase Request Department
+[purchase_request_exception](purchase_request_exception/) | 15.0.1.0.0 |  | Custom exceptions on purchase request
 [purchase_request_tier_validation](purchase_request_tier_validation/) | 15.0.1.0.0 |  | Extends the functionality of Purchase Requests to support a tier validation process.
 [purchase_request_to_requisition](purchase_request_to_requisition/) | 15.0.1.0.0 |  | Purchase Request to Purchase Agreement
 [purchase_requisition_grouped_by_procurement](purchase_requisition_grouped_by_procurement/) | 15.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Purchase Requisition Grouped by Procurement
