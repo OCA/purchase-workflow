@@ -31,7 +31,7 @@ addon | version | maintainers | summary
 [purchase_blanket_order](purchase_blanket_order/) | 15.0.1.3.1 |  | Purchase Blanket Orders
 [purchase_default_terms_conditions](purchase_default_terms_conditions/) | 15.0.1.0.1 |  | This module allows purchase default terms & conditions
 [purchase_delivery_split_date](purchase_delivery_split_date/) | 15.0.1.0.0 |  | Allows Purchase Order you confirm to generate one Incoming Shipment for each expected date indicated in the Purchase Order Lines
-[purchase_deposit](purchase_deposit/) | 15.0.1.0.0 |  | Option to create deposit from purchase order
+[purchase_deposit](purchase_deposit/) | 15.0.1.0.1 |  | Option to create deposit from purchase order
 [purchase_discount](purchase_discount/) | 15.0.1.1.0 |  | Purchase order lines with discounts
 [purchase_exception](purchase_exception/) | 15.0.1.0.0 |  | Custom exceptions on purchase order
 [purchase_fop_shipping](purchase_fop_shipping/) | 15.0.1.0.0 |  | Purchase Free-Of-Payment shipping
