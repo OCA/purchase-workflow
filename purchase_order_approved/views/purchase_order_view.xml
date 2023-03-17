@@ -1,0 +1,50 @@
+<!-- Copyright 2017 ForgeFlow S.L.
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field name="name">purchase.order.form - purchase_order_approved</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <button name="button_draft" position="attributes">
+                <attribute name="states">cancel,to approve,approved</attribute>
+            </button>
+            <button name="button_cancel" position="attributes">
+                <attribute
+                    name="states"
+                >draft,to approve,approved,sent,purchase</attribute>
+            </button>
+            <button name="button_approve" position="after">
+                <button
+                    name="button_release"
+                    type="object"
+                    states="approved"
+                    string="Convert to Purchase Order"
+                    class="oe_highlight"
+                />
+            </button>
+            <field name="order_line" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'readonly': [('state', 'in', ('done', 'cancel', 'approved'))]}</attribute>
+            </field>
+        </field>
+    </record>
+    <record id="view_purchase_order_filter" model="ir.ui.view">
+        <field name="name">request.quotation.select - purchase_order_approved</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.view_purchase_order_filter" />
+        <field name="arch" type="xml">
+            <filter name="approved" position="before">
+                <filter
+                    name="purchase_order_approved"
+                    string="Approved Orders"
+                    domain="[('state', '=', 'approved')]"
+                />
+            </filter>
+        </field>
+    </record>
+    <record id="purchase.purchase_form_action" model="ir.actions.act_window">
+        <field name="domain">[('state','in',('approved', 'purchase', 'done'))]</field>
+    </record>
+</odoo>
