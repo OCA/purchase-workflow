@@ -80,6 +80,11 @@ msgid "Company"
 msgstr "公司"
 
 #. module: purchase_order_approved
+#: model:ir.model,name:purchase_order_approved.model_res_config_settings
+msgid "Config Settings"
+msgstr "配置设置"
+
+#. module: purchase_order_approved
 #: model:ir.model,name:purchase_order_approved.model_res_partner
 msgid "Contact"
 msgstr ""
@@ -125,11 +130,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__order_line
 msgid "Order Lines"
 msgstr "订单行"
-
-#. module: purchase_order_approved
-#: model:ir.model,name:purchase_order_approved.model_res_config_settings
-msgid "Procurement purchase grouping settings"
-msgstr ""
 
 #. module: purchase_order_approved
 #: model:ir.model,name:purchase_order_approved.model_purchase_order
@@ -195,9 +195,6 @@ msgstr "您可以通过名称，TIN，电子邮件或内部参考找到供应商
 
 #~ msgid "Drop Ship Address"
 #~ msgstr "代发货地址"
-
-#~ msgid "Config Settings"
-#~ msgstr "配置设置"
 
 #~ msgid ""
 #~ "Depicts the date where the Quotation should be validated and converted "
