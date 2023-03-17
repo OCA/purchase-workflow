@@ -43,6 +43,7 @@
                         <group>
                             <field name="partner_id" />
                             <field name="responsible_id" />
+                            <field name="purchase_id" />
                             <field name="invoice_ref" />
                             <field
                                 name="currency_id"
