@@ -26,18 +26,19 @@
         <field name="arch" type="xml">
             <xpath expr="//header" position="inside">
                 <button
-                    name="action_create_fines_invoice"
-                    string="Create Fines Invoice"
-                    type="object"
+                    name="%(purchase_work_acceptance_late_fines.action_wa_create_fines)d"
+                    string="Create Fines"
+                    type="action"
                     class="oe_highlight"
                     attrs="{'invisible': ['|', '|', ('state', '!=', 'accept'), ('fines_late', '=', 0.0), ('fines_invoice_ids', '!=', [])]}"
                     groups="account.group_account_invoice"
                 />
                 <button
-                    name="action_create_fines_invoice"
-                    string="Create Fines Invoice"
-                    type="object"
+                    name="%(purchase_work_acceptance_late_fines.action_wa_create_fines)d"
+                    string="Create Fines"
+                    type="action"
                     attrs="{'invisible': ['|', '|', ('state', '!=', 'accept'), ('fines_late', '=', 0.0), ('fines_invoice_ids', '=', [])]}"
+                    groups="account.group_account_invoice"
                 />
             </xpath>
             <xpath expr="//sheet/div[hasclass('oe_title')]" position="before">
@@ -87,19 +88,6 @@
                     </group>
                 </page>
             </xpath>
-        </field>
-    </record>
-    <record id="action_account_invoice_from_list" model="ir.actions.server">
-        <field name="name">Create Fines Invoice</field>
-        <field name="model_id" ref="purchase_work_acceptance.model_work_acceptance" />
-        <field
-            name="binding_model_id"
-            ref="purchase_work_acceptance.model_work_acceptance"
-        />
-        <field name="binding_view_types">list</field>
-        <field name="state">code</field>
-        <field name="code">
-            action = model.action_create_fines_invoice()
         </field>
     </record>
 </odoo>
