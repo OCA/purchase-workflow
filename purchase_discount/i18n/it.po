@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-23 17:50+0000\n"
-"PO-Revision-Date: 2023-02-17 12:23+0000\n"
+"PO-Revision-Date: 2023-03-17 20:23+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -33,7 +33,7 @@ msgstr "Contatto"
 #: model:ir.model.fields,field_description:purchase_discount.field_res_partner__default_supplierinfo_discount
 #: model:ir.model.fields,field_description:purchase_discount.field_res_users__default_supplierinfo_discount
 msgid "Default Supplier Discount (%)"
-msgstr "Sconto Default Fornitore (%)"
+msgstr "Sconto predefinito fornitore (%)"
 
 #. module: purchase_discount
 #: model:ir.model.fields,field_description:purchase_discount.field_product_supplierinfo__discount
@@ -89,8 +89,8 @@ msgid ""
 "This value will be used as the default one, for each new supplierinfo line "
 "depending on that supplier."
 msgstr ""
-"Questo valore sarà usato come default, per ogni nuova riga fornitore "
-"dipendente da quel fornitore."
+"Questo valore sarà usato come predefinito per ogni nuova riga listino "
+"fornitore relazionata a quel fornitore."
 
 #. module: purchase_discount
 #: model_terms:ir.ui.view,arch_db:purchase_discount.res_partner_form_view
