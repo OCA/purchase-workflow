@@ -55,6 +55,7 @@ setuptools.setup(
         'odoo-addon-purchase_request>=15.0dev,<15.1dev',
         'odoo-addon-purchase_request_department>=15.0dev,<15.1dev',
         'odoo-addon-purchase_request_exception>=15.0dev,<15.1dev',
+        'odoo-addon-purchase_request_substate>=15.0dev,<15.1dev',
         'odoo-addon-purchase_request_tier_validation>=15.0dev,<15.1dev',
         'odoo-addon-purchase_request_to_requisition>=15.0dev,<15.1dev',
         'odoo-addon-purchase_requisition_grouped_by_procurement>=15.0dev,<15.1dev',
