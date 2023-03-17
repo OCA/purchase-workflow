@@ -19,6 +19,11 @@ msgid "(Approximately)"
 msgstr ""
 
 #. module: purchase_work_acceptance_late_fines
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance_late_fines.view_wa_create_fines
+msgid "Cancel"
+msgstr ""
+
+#. module: purchase_work_acceptance_late_fines
 #: model:ir.model,name:purchase_work_acceptance_late_fines.model_res_company
 msgid "Companies"
 msgstr ""
@@ -29,9 +34,39 @@ msgid "Computed amount. Can be overwritten"
 msgstr ""
 
 #. module: purchase_work_acceptance_late_fines
-#: model:ir.actions.server,name:purchase_work_acceptance_late_fines.action_account_invoice_from_list
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance_late_fines.view_wa_create_fines
 #: model_terms:ir.ui.view,arch_db:purchase_work_acceptance_late_fines.view_work_acceptance_fines_late_tab_form
-msgid "Create Fines Invoice"
+msgid "Create Fines"
+msgstr ""
+
+#. module: purchase_work_acceptance_late_fines
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance_late_fines.view_wa_create_fines
+msgid "Create Fines As"
+msgstr ""
+
+#. module: purchase_work_acceptance_late_fines
+#: model:ir.actions.act_window,name:purchase_work_acceptance_late_fines.action_wa_create_fines
+msgid "Create Fines Invoice/Refund"
+msgstr ""
+
+#. module: purchase_work_acceptance_late_fines
+#: model:ir.model,name:purchase_work_acceptance_late_fines.model_work_acceptance_create_fines
+msgid "Create Fines Invoice/Refund from WA"
+msgstr ""
+
+#. module: purchase_work_acceptance_late_fines
+#: model:ir.model.fields,field_description:purchase_work_acceptance_late_fines.field_work_acceptance_create_fines__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: purchase_work_acceptance_late_fines
+#: model:ir.model.fields,field_description:purchase_work_acceptance_late_fines.field_work_acceptance_create_fines__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: purchase_work_acceptance_late_fines
+#: model:ir.model.fields.selection,name:purchase_work_acceptance_late_fines.selection__work_acceptance_create_fines__move_type__out_invoice
+msgid "Customer Invoice"
 msgstr ""
 
 #. module: purchase_work_acceptance_late_fines
@@ -44,6 +79,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_work_acceptance_late_fines.field_res_company__display_name
 #: model:ir.model.fields,field_description:purchase_work_acceptance_late_fines.field_res_config_settings__display_name
 #: model:ir.model.fields,field_description:purchase_work_acceptance_late_fines.field_work_acceptance__display_name
+#: model:ir.model.fields,field_description:purchase_work_acceptance_late_fines.field_work_acceptance_create_fines__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -66,6 +102,12 @@ msgstr ""
 #. module: purchase_work_acceptance_late_fines
 #: model:ir.model.fields,field_description:purchase_work_acceptance_late_fines.field_work_acceptance__fines_invoice_count
 msgid "Fines Invoice Count"
+msgstr ""
+
+#. module: purchase_work_acceptance_late_fines
+#: code:addons/purchase_work_acceptance_late_fines/models/work_acceptance.py:0
+#, python-format
+msgid "Fines Invoice/Refund"
 msgstr ""
 
 #. module: purchase_work_acceptance_late_fines
@@ -94,6 +136,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_work_acceptance_late_fines.field_res_company__id
 #: model:ir.model.fields,field_description:purchase_work_acceptance_late_fines.field_res_config_settings__id
 #: model:ir.model.fields,field_description:purchase_work_acceptance_late_fines.field_work_acceptance__id
+#: model:ir.model.fields,field_description:purchase_work_acceptance_late_fines.field_work_acceptance_create_fines__id
 msgid "ID"
 msgstr ""
 
@@ -113,7 +156,18 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_work_acceptance_late_fines.field_res_company____last_update
 #: model:ir.model.fields,field_description:purchase_work_acceptance_late_fines.field_res_config_settings____last_update
 #: model:ir.model.fields,field_description:purchase_work_acceptance_late_fines.field_work_acceptance____last_update
+#: model:ir.model.fields,field_description:purchase_work_acceptance_late_fines.field_work_acceptance_create_fines____last_update
 msgid "Last Modified on"
+msgstr ""
+
+#. module: purchase_work_acceptance_late_fines
+#: model:ir.model.fields,field_description:purchase_work_acceptance_late_fines.field_work_acceptance_create_fines__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: purchase_work_acceptance_late_fines
+#: model:ir.model.fields,field_description:purchase_work_acceptance_late_fines.field_work_acceptance_create_fines__write_date
+msgid "Last Updated on"
 msgstr ""
 
 #. module: purchase_work_acceptance_late_fines
@@ -162,6 +216,16 @@ msgid "Procurement purchase grouping settings"
 msgstr ""
 
 #. module: purchase_work_acceptance_late_fines
+#: model:ir.model.fields,field_description:purchase_work_acceptance_late_fines.field_work_acceptance_create_fines__move_type
+msgid "Type"
+msgstr ""
+
+#. module: purchase_work_acceptance_late_fines
+#: model:ir.model.fields.selection,name:purchase_work_acceptance_late_fines.selection__work_acceptance_create_fines__move_type__in_refund
+msgid "Vendor Refund"
+msgstr ""
+
+#. module: purchase_work_acceptance_late_fines
 #: model:ir.model,name:purchase_work_acceptance_late_fines.model_work_acceptance
 msgid "Work Acceptance"
 msgstr ""
@@ -170,6 +234,26 @@ msgstr ""
 #: code:addons/purchase_work_acceptance_late_fines/models/work_acceptance.py:0
 #, python-format
 msgid "Work Acceptance Late Delivery Fines %s"
+msgstr ""
+
+#. module: purchase_work_acceptance_late_fines
+#: model:ir.model.constraint,message:purchase_work_acceptance_late_fines.constraint_work_acceptance_fines_late
+msgid "Wrong Fines Amount, it must be positive!"
+msgstr ""
+
+#. module: purchase_work_acceptance_late_fines
+#: model:ir.model.constraint,message:purchase_work_acceptance_late_fines.constraint_work_acceptance_fines_rate
+msgid "Wrong Fines Rate, it must be positive!"
+msgstr ""
+
+#. module: purchase_work_acceptance_late_fines
+#: model:ir.model.constraint,message:purchase_work_acceptance_late_fines.constraint_work_acceptance_late_days
+msgid "Wrong Late Days, it must be positive!"
+msgstr ""
+
+#. module: purchase_work_acceptance_late_fines
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance_late_fines.view_wa_create_fines
+msgid "You can create fines as either customer invoice or vendor refund."
 msgstr ""
 
 #. module: purchase_work_acceptance_late_fines
