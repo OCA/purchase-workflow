@@ -10,6 +10,12 @@ from odoo import _, api, models
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
+    @api.onchange('product_id')
+    def onchange_product_id(self):
+        return super(
+            PurchaseOrderLine, self.with_context(no_multiplier_qty_message=True)
+        ).onchange_product_id()
+
     @api.onchange("product_qty")
     def _onchange_quantity(self):
         if not self.product_id:
@@ -25,14 +31,15 @@ class PurchaseOrderLine(models.Model):
         qty = self.product_qty
         if seller and seller.multiplier_qty and qty % seller.multiplier_qty:
             self.product_qty = ceil(qty / seller.multiplier_qty) * seller.multiplier_qty
-            warn_msg = _(
-                "The selected supplier only sells this product by %s %s.\n"
-                "The quantity has been automatically changed to %s %s"
-            ) % (
-                seller.multiplier_qty,
-                seller.product_uom.name,
-                self.product_qty,
-                seller.product_uom.name,
-            )
-            self.env.user.notify_warning(title=_("Warning"), message=warn_msg)
+            if not self.env.context.get("no_multiplier_qty_message"):
+                warn_msg = _(
+                    "The selected supplier only sells this product by %s %s.\n"
+                    "The quantity has been automatically changed to %s %s"
+                ) % (
+                    seller.multiplier_qty,
+                    seller.product_uom.name,
+                    self.product_qty,
+                    seller.product_uom.name,
+                )
+                self.env.user.notify_warning(title=_("Warning"), message=warn_msg)
         return super()._onchange_quantity()
