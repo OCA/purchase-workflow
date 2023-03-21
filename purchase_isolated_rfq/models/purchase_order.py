@@ -7,7 +7,7 @@ from odoo.exceptions import UserError
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
-    order_sequence = fields.Boolean(string="Order Sequence", readonly=True, index=True)
+    order_sequence = fields.Boolean(readonly=True, index=True)
     quote_id = fields.Many2one(
         comodel_name="purchase.order",
         string="Quotation",

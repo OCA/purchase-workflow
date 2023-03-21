@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 {
     "name": "Purchase Isolated RFQ",
-    "version": "14.0.1.0.1",
+    "version": "15.0.1.0.1",
     "author": "Ecosoft, Odoo Community Association (OCA)",
     "category": "Purchases",
     "website": "https://github.com/OCA/purchase-workflow",
