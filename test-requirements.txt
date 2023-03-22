@@ -1,1 +1,2 @@
-odoo_test_helper
+odoo-addon-purchase_order_secondary_unit @ git+https://github.com/OCA/purchase-workflow.git@refs/pull/1708/head#subdirectory=setup/purchase_order_secondary_unit
+odoo-addon-product_secondary_unit @ git+https://github.com/OCA/product-attribute.git@refs/pull/1246/head#subdirectory=setup/product_secondary_unit
