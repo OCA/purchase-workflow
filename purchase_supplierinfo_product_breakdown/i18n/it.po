@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-01-18 11:48+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-03-23 13:24+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -80,7 +80,7 @@ msgstr "Creato il"
 #: model:ir.model.fields,field_description:purchase_supplierinfo_product_breakdown.field_product_template__display_name
 #: model:ir.model.fields,field_description:purchase_supplierinfo_product_breakdown.field_res_partner__display_name
 msgid "Display Name"
-msgstr "Nome da visualizzare"
+msgstr "Nome visualizzato"
 
 #. module: purchase_supplierinfo_product_breakdown
 #: model:product.product,name:purchase_supplierinfo_product_breakdown.product_product_test_demo_drill
