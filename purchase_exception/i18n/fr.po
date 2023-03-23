@@ -19,6 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: purchase_exception
+#: model_terms:ir.ui.view,arch_db:purchase_exception.view_order_form
+msgid "<strong>There are exceptions blocking this Purchase Order:</strong>"
+msgstr ""
+
+#. module: purchase_exception
 #: model:ir.model.fields,field_description:purchase_exception.field_exception_rule__model
 msgid "Apply on"
 msgstr ""
@@ -28,6 +33,12 @@ msgstr ""
 #, fuzzy
 msgid "Blocked in Draft"
 msgstr "Bloquée en brouillon"
+
+#. module: purchase_exception
+#: model_terms:ir.ui.view,arch_db:purchase_exception.view_order_form
+msgid ""
+"Click here to be able to confirm this Agreement regardless of the exceptions."
+msgstr ""
 
 #. module: purchase_exception
 #: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__create_uid
@@ -51,9 +62,14 @@ msgid "Exception Rule"
 msgstr "Règles d'exception"
 
 #. module: purchase_exception
-#: model:ir.ui.menu,name:purchase_exception.menu_purchase_exception_parent
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_order__exception_ids
 msgid "Exceptions"
 msgstr "Exceptions"
+
+#. module: purchase_exception
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_order__exceptions_summary
+msgid "Exceptions Summary"
+msgstr ""
 
 #. module: purchase_exception
 #: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__exception_ids
@@ -68,7 +84,9 @@ msgstr "ID"
 
 #. module: purchase_exception
 #: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__ignore
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_order__ignore_exception
 #: model:ir.model.fields,field_description:purchase_exception.field_purchase_order_line__ignore_exception
+#: model_terms:ir.ui.view,arch_db:purchase_exception.view_order_form
 #, fuzzy
 msgid "Ignore Exceptions"
 msgstr "Exceptions"
@@ -87,6 +105,11 @@ msgstr "Dernière mise à jour par"
 #: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__write_date
 msgid "Last Updated on"
 msgstr "Dernière mise à jour le"
+
+#. module: purchase_exception
+#: model:ir.model.fields,field_description:purchase_exception.field_purchase_order__main_exception_id
+msgid "Main Exception"
+msgstr ""
 
 #. module: purchase_exception
 #: model:exception.rule,description:purchase_exception.po_excep_no_email
@@ -150,7 +173,6 @@ msgstr "Commande"
 #. module: purchase_exception
 #: model:ir.actions.server,name:purchase_exception.ir_cron_test_po_order_except_ir_actions_server
 #: model:ir.cron,cron_name:purchase_exception.ir_cron_test_po_order_except
-#: model:ir.cron,name:purchase_exception.ir_cron_test_po_order_except
 msgid "Purchase: Test Draft Orders Exception"
 msgstr "Achat : Test des exceptions des commandes en brouillon"
 
@@ -165,14 +187,12 @@ msgstr "Achat"
 msgid "Quantity not positive"
 msgstr ""
 
-#. module: purchase_exception
-#: model_terms:ir.ui.view,arch_db:purchase_exception.view_order_form
-msgid ""
-"You have an outstanding\n"
-"                    exception to manage:"
-msgstr ""
-"Vous avez une exception\n"
-"                   non résolue à traiter :"
+#~ msgid ""
+#~ "You have an outstanding\n"
+#~ "                    exception to manage:"
+#~ msgstr ""
+#~ "Vous avez une exception\n"
+#~ "                   non résolue à traiter :"
 
 #~ msgid "Quantity not negative"
 #~ msgstr "Quantité non négative"
