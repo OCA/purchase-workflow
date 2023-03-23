@@ -1,0 +1,35 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_all_shipments
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_all_shipments
+#: model:ir.model.fields,field_description:purchase_all_shipments.field_purchase_order__all_picking_ids
+#: model_terms:ir.ui.view,arch_db:purchase_all_shipments.purchase_order_view_form_inherit
+msgid "All Pickings"
+msgstr ""
+
+#. module: purchase_all_shipments
+#: model:ir.model.fields,field_description:purchase_all_shipments.field_purchase_order__all_picking_count
+msgid "All Pickings Count"
+msgstr ""
+
+#. module: purchase_all_shipments
+#: model_terms:ir.ui.view,arch_db:purchase_all_shipments.purchase_order_view_form_inherit
+msgid "All Pickings, including chained"
+msgstr ""
+
+#. module: purchase_all_shipments
+#: model:ir.model,name:purchase_all_shipments.model_purchase_order
+msgid "Purchase Order"
+msgstr ""
