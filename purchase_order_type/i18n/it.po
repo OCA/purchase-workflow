@@ -22,8 +22,8 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-16 12:06+0000\n"
-"PO-Revision-Date: 2023-01-26 11:49+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-04-05 11:24+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/"
 "OCA-purchase-workflow-8-0/language/it/)\n"
 "Language: it\n"
@@ -79,7 +79,7 @@ msgstr "Descrizione"
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__display_name
 #: model:ir.model.fields,field_description:purchase_order_type.field_res_partner__display_name
 msgid "Display Name"
-msgstr "Nome da visualizzare"
+msgstr "Nome visualizzato"
 
 #. module: purchase_order_type
 #: code:addons/purchase_order_type/models/purchase_order.py:0
@@ -96,7 +96,7 @@ msgstr "Sequenza Registrazione"
 #. module: purchase_order_type
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
 msgid "Group By"
-msgstr "Raggruppa Per"
+msgstr "Raggruppa per"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order__id
