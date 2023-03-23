@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-17 03:38+0000\n"
-"PO-Revision-Date: 2023-02-14 16:32+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-12-06 15:36+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/"
 "OCA-purchase-workflow-10-0/language/it/)\n"
 "Language: it\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: purchase_request
 #. odoo-python
@@ -110,7 +110,7 @@ msgstr "<strong>UdM Prodotto</strong>"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 msgid "<strong>Qty</strong>"
-msgstr "<strong>Qta</strong>"
+msgstr "<strong>Q.tà</strong>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
@@ -398,7 +398,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order__display_name
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__display_name
 msgid "Display Name"
-msgstr "Nome da visualizzare"
+msgstr "Nome visualizzato"
 
 #. module: purchase_request
 #: model:ir.model.fields.selection,name:purchase_request.selection__purchase_request__state__done
@@ -569,7 +569,7 @@ msgstr "Ultima modifica il"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order__write_uid
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__write_uid
 msgid "Last Updated by"
-msgstr "Last Updated by"
+msgstr "Ultimo aggiornamento di"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__write_date
@@ -589,12 +589,12 @@ msgstr "Linee"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_main_attachment_id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_main_attachment_id
 msgid "Main Attachment"
-msgstr "Allegato Principale"
+msgstr "Allegato principale"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_form2_sub
 msgid "Manual Invoices"
-msgstr "Fatture Manuali"
+msgstr "Fatture manuali"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order__sync_data_planned
@@ -669,7 +669,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_needaction_counter
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_needaction_counter
 msgid "Number of Actions"
-msgstr "Numero di Azioni"
+msgstr "Numero di azioni"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_has_error_counter
@@ -698,7 +698,7 @@ msgstr "Quantità Aperta"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_search_sub
 msgid "Order Reference"
-msgstr "Riferimento Ordine"
+msgstr "Riferimento ordine"
 
 #. module: purchase_request
 #. odoo-python
@@ -721,7 +721,7 @@ msgstr "Descrizione RdA"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__pending_qty_to_receive
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Pending Qty to Receive"
-msgstr "Qta da Ricevere in Attesa"
+msgstr "Q.tà da Ricevere in Attesa"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
@@ -731,12 +731,12 @@ msgstr ""
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__picking_type_id
 msgid "Picking Type"
-msgstr "Tipo Picking"
+msgstr "Tipologia prelievo"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Pickings"
-msgstr ""
+msgstr "Prelievi"
 
 #. module: purchase_request
 #. odoo-python
@@ -957,7 +957,7 @@ msgstr "Stato Acquisto"
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__purchase_count
 msgid "Purchases count"
-msgstr "Numero acquisti"
+msgstr "Conteggio acquisti"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
@@ -967,7 +967,7 @@ msgstr ""
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__qty_cancelled
 msgid "Qty Cancelled"
-msgstr "Qta Annullata"
+msgstr "Q.tà annullata"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__qty_done
@@ -977,7 +977,7 @@ msgstr ""
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__qty_in_progress
 msgid "Qty In Progress"
-msgstr "Qta in lavorazione"
+msgstr "Q.tà in lavorazione"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__product_qty
@@ -1016,7 +1016,7 @@ msgstr ""
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__product_qty
 msgid "Quantity to purchase"
-msgstr "Qta da acquistare"
+msgstr "Q.tà da acquistare"
 
 #. module: purchase_request
 #. odoo-python
@@ -1064,7 +1064,7 @@ msgstr "Richiesta"
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__date_required
 msgid "Request Date"
-msgstr "Data Richiesta"
+msgstr "Data richiesta"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_form
@@ -1198,7 +1198,7 @@ msgstr "Origine"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__origin
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__origin
 msgid "Source Document"
-msgstr "Documento Fonte"
+msgstr "Documento di origine"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__specifications
@@ -1210,7 +1210,7 @@ msgstr "Specifiche"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Start Date"
-msgstr "Data di inizio"
+msgstr "Data inizio"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__state
