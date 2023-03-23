@@ -25,6 +25,7 @@ setuptools.setup(
         'odoo-addon-purchase_force_invoiced>=15.0dev,<15.1dev',
         'odoo-addon-purchase_invoice_plan>=15.0dev,<15.1dev',
         'odoo-addon-purchase_location_by_line>=15.0dev,<15.1dev',
+        'odoo-addon-purchase_merge>=15.0dev,<15.1dev',
         'odoo-addon-purchase_open_qty>=15.0dev,<15.1dev',
         'odoo-addon-purchase_order_approved>=15.0dev,<15.1dev',
         'odoo-addon-purchase_order_general_discount>=15.0dev,<15.1dev',
