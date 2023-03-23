@@ -40,6 +40,7 @@ addon | version | maintainers | summary
 [purchase_location_by_line](purchase_location_by_line/) | 15.0.1.0.0 |  | Allows to define a specific destination location on each PO line
 [purchase_merge](purchase_merge/) | 15.0.1.0.0 |  | Wizard to merge purchase with required conditions
 [purchase_open_qty](purchase_open_qty/) | 15.0.2.0.1 |  | Allows to identify the purchase orders that have quantities pending to invoice or to receive.
+[purchase_order_analytic_search](purchase_order_analytic_search/) | 15.0.1.0.0 |  | Search purchase orders by analytic account. New menu entry in Purchasing to list purchase order lines.
 [purchase_order_approved](purchase_order_approved/) | 15.0.1.0.0 |  | Add a new state 'Approved' in purchase orders.
 [purchase_order_general_discount](purchase_order_general_discount/) | 15.0.1.0.1 |  | General discount per purchase order
 [purchase_order_line_deep_sort](purchase_order_line_deep_sort/) | 15.0.1.0.0 |  | Purchase Order Line Sort
