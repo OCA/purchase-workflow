@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-12-20 12:45+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-03-23 13:24+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr "<strong class=\"ml16\">Termini di pagamento:</strong>"
 #. module: purchase_order_payment_term_report
 #: model:ir.model.fields,field_description:purchase_order_payment_term_report.field_purchase_order__display_name
 msgid "Display Name"
-msgstr "Nome da visualizzare"
+msgstr "Nome visualizzato"
 
 #. module: purchase_order_payment_term_report
 #: model:ir.model.fields,field_description:purchase_order_payment_term_report.field_purchase_order__display_payment_terms_in_report
