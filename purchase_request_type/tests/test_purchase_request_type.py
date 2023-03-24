@@ -10,7 +10,7 @@ from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 
 @tagged("post_install", "-at_install")
-class TestPurchaseRequestType(common.SavepointCase):
+class TestPurchaseRequestType(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -25,6 +25,7 @@ class TestPurchaseRequestType(common.SavepointCase):
         cls.type2 = cls.env.ref("purchase_request_type.pr_type_reduce_step")
         # Picking Type
         cls.picking_type = cls.env.ref("stock.picking_type_in")
+        cls.picking_type2 = cls.env.ref("stock.picking_type_internal")
         cls.type2.picking_type_id = cls.picking_type
         cls.company2 = cls.company_obj.create({"name": "company2"})
 
@@ -34,7 +35,7 @@ class TestPurchaseRequestType(common.SavepointCase):
         )
         self.assertEqual(purchase_request.request_type, self.type1)
         purchase_request.onchange_request_type()
-        self.assertEqual(purchase_request.picking_type_id, self.picking_type)
+        self.assertEqual(purchase_request.picking_type_id, self.picking_type2)
 
     def _create_purchase_request(self, line_products):
         """Create a purchase request.
@@ -54,6 +55,7 @@ class TestPurchaseRequestType(common.SavepointCase):
         purchase_request = self.pr_obj.create(
             {
                 "request_type": self.type1.id,
+                "picking_type_id": self.picking_type2.id,
                 "line_ids": lines,
             }
         )
