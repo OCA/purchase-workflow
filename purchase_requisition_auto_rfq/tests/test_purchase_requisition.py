@@ -10,31 +10,63 @@ class TestPurchaseRequisition(tests.SavepointCase):
         self._init_requisitions()
 
     def _init_products(self):
-        self._kitchenset = self.env.ref('purchase_requisition_auto_rfq.kitchenset')
-        self._blankets = self.env.ref('purchase_requisition_auto_rfq.blankets')
-        self._tarpaulin = self.env.ref('purchase_requisition_auto_rfq.tarpaulin')
+        self._kitchenset = self.env.ref("purchase_requisition_auto_rfq.kitchenset")
+        self._blankets = self.env.ref("purchase_requisition_auto_rfq.blankets")
+        self._tarpaulin = self.env.ref("purchase_requisition_auto_rfq.tarpaulin")
 
     def _init_requisitions(self):
         uom = self._kitchenset.uom_po_id
-        self._requisition1 = self.env['purchase.requisition'].create({
-            'name': "PR01",
-            'line_ids': [
-                (0, False, {'product_id': self._kitchenset.id,
-                            'product_qty': 10, 'product_uom_id': uom.id}),
-                (0, False, {'product_id': self._blankets.id,
-                            'product_qty': 100, 'product_uom_id': uom.id}),
-            ]
-        })
+        self._requisition1 = self.env["purchase.requisition"].create(
+            {
+                "name": "PR01",
+                "line_ids": [
+                    (
+                        0,
+                        False,
+                        {
+                            "product_id": self._kitchenset.id,
+                            "product_qty": 10,
+                            "product_uom_id": uom.id,
+                        },
+                    ),
+                    (
+                        0,
+                        False,
+                        {
+                            "product_id": self._blankets.id,
+                            "product_qty": 100,
+                            "product_uom_id": uom.id,
+                        },
+                    ),
+                ],
+            }
+        )
 
-        self._requisition2 = self.env['purchase.requisition'].create({
-            'name': "PR02",
-            'line_ids': [
-                (0, False, {'product_id': self._tarpaulin.id,
-                            'product_qty': 10, 'product_uom_id': uom.id}),
-                (0, False, {'product_id': self._blankets.id,
-                            'product_qty': 100, 'product_uom_id': uom.id}),
-            ]
-        })
+        self._requisition2 = self.env["purchase.requisition"].create(
+            {
+                "name": "PR02",
+                "line_ids": [
+                    (
+                        0,
+                        False,
+                        {
+                            "product_id": self._tarpaulin.id,
+                            "product_qty": 10,
+                            "product_uom_id": uom.id,
+                        },
+                    ),
+                    (
+                        0,
+                        False,
+                        {
+                            "product_id": self._blankets.id,
+                            "product_qty": 100,
+                            "product_uom_id": uom.id,
+                        },
+                    ),
+                ],
+            }
+        )
 
     def test_auto_rfq_from_suppliers(self):
         rfqs = self._requisition1.auto_rfq_from_suppliers()
@@ -44,9 +76,9 @@ class TestPurchaseRequisition(tests.SavepointCase):
 
         actual = self._get_supplier_products(rfqs)
         expected = {
-            self.env.ref('base.res_partner_3'): [self._kitchenset, self._blankets],
-            self.env.ref('base.res_partner_2'): [self._kitchenset],
-            self.env.ref('base.res_partner_4'): [self._blankets],
+            self.env.ref("base.res_partner_3"): [self._kitchenset, self._blankets],
+            self.env.ref("base.res_partner_2"): [self._kitchenset],
+            self.env.ref("base.res_partner_4"): [self._blankets],
         }
 
         self.assertDictEqual(expected, dict(actual))
@@ -56,8 +88,7 @@ class TestPurchaseRequisition(tests.SavepointCase):
 
     def _get_supplier_products(self, rfqs):
         return {
-            rfq.partner_id: [l.product_id for l in rfq.order_line]
-            for rfq in rfqs
+            rfq.partner_id: [line.product_id for line in rfq.order_line] for rfq in rfqs
         }
 
     def test_auto_rfq_from_suppliers_no_supplier(self):
@@ -68,8 +99,8 @@ class TestPurchaseRequisition(tests.SavepointCase):
 
         actual = self._get_supplier_products(rfqs)
         expected = {
-            self.env.ref('base.res_partner_3'): [self._blankets],
-            self.env.ref('base.res_partner_4'): [self._blankets],
+            self.env.ref("base.res_partner_3"): [self._blankets],
+            self.env.ref("base.res_partner_4"): [self._blankets],
         }
 
         self.assertDictEqual(expected, dict(actual))
@@ -77,8 +108,8 @@ class TestPurchaseRequisition(tests.SavepointCase):
 
         found = False
         for msg in self._requisition2.message_ids:
-            if msg.body and u'RFQ generation' in msg.body:
-                self.assertIn('Tarpaulin', msg.body)
+            if msg.body and "RFQ generation" in msg.body:
+                self.assertIn("Tarpaulin", msg.body)
                 found = True
 
         self.assertTrue(found, msg="No message about missing supplier found")
