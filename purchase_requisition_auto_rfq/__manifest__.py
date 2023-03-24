@@ -3,7 +3,7 @@
 {
     "name": "Purchase Requisition Auto RFQ",
     "summary": "Automatically create RFQs from a purchase requisition",
-    "version": "12.0.2.0.0",
+    "version": "14.0.1.0.0",
     "author": "Camptocamp, Métal Sartigan, Odoo Community Association (OCA)",
     "category": "Purchases",
     "website": "https://github.com/OCA/purchase-workflow",
@@ -12,7 +12,7 @@
         "purchase_requisition",
     ],
     "demo": [
-        'demo/product_product.xml',
+        "demo/product_product.xml",
     ],
     "data": [
         "view/purchase_requisition.xml",
