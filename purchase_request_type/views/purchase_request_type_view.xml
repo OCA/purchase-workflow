@@ -3,7 +3,7 @@
     <record id="view_purchase_request_type_tree" model="ir.ui.view">
         <field name="model">purchase.request.type</field>
         <field name="arch" type="xml">
-            <tree string="Purchase Request Types" decoration-muted="active == False">
+            <tree decoration-muted="active == False">
                 <field name="sequence" widget="handle" />
                 <field name="active" invisible="True" />
                 <field name="name" />
@@ -53,8 +53,6 @@
                                 groups="base.group_multi_company"
                             />
                         </group>
-                    </group>
-                    <group>
                         <field name="description" nolabel="1" />
                     </group>
                 </sheet>

@@ -32,10 +32,10 @@ class PurchaseRequest(models.Model):
     @api.depends("request_type")
     def _compute_request_type(self):
         for obj in self:
+            reduce_step = False
             if obj.request_type:
-                obj.reduce_step = obj.request_type.reduce_step
-            else:
-                obj.reduce_step = False
+                reduce_step = obj.request_type.reduce_step
+            obj.reduce_step = reduce_step
 
     @api.onchange("request_type")
     def onchange_request_type(self):
@@ -43,17 +43,16 @@ class PurchaseRequest(models.Model):
             if request.request_type.picking_type_id:
                 request.picking_type_id = request.request_type.picking_type_id.id
 
-    @api.model
-    def create(self, vals):
-        if vals.get("name", "/") == "/" and vals.get("request_type"):
-            purchase_type = self.env["purchase.request.type"].browse(
-                vals["request_type"]
-            )
-            if purchase_type and purchase_type.sequence_id:
-                vals["name"] = purchase_type.sequence_id.next_by_id()
-            else:
-                vals["name"] = self.env["ir.sequence"].next_by_code("purchase.request")
-        return super().create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get("name", "/") == "/" and vals.get("request_type"):
+                purchase_type = self.env["purchase.request.type"].browse(
+                    vals["request_type"]
+                )
+                if purchase_type and purchase_type.sequence_id:
+                    vals["name"] = purchase_type.sequence_id.next_by_id()
+        return super().create(vals_list)
 
     @api.constrains("company_id")
     def _check_pr_type_company(self):
