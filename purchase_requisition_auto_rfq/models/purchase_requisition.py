@@ -2,13 +2,12 @@
 
 from collections import defaultdict
 
-from odoo import _, api, models
+from odoo import _, models
 
 
 class PurchaseRequisition(models.Model):
     _inherit = "purchase.requisition"
 
-    @api.multi
     def auto_rfq_from_suppliers(self):
         """create purchase orders from registered suppliers for products in the
         requisition.
@@ -23,14 +22,14 @@ class PurchaseRequisition(models.Model):
         return self._create_rfqs(seller_products)
 
     def _get_sellers(self):
-        seller_products = defaultdict(set)
+        seller_products = defaultdict(lambda: self.env["product.product"])
         products_without_supplier = []
         for line in self.line_ids:
             sellers = line.product_id.product_tmpl_id.seller_ids
             if not sellers:
                 products_without_supplier.append(line.product_id)
             for seller in sellers:
-                seller_products[seller.name.id].add(line.product_id)
+                seller_products[seller.name.id] |= line.product_id
         return seller_products, products_without_supplier
 
     def _create_rfqs(self, seller_products):

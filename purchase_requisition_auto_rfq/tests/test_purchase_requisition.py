@@ -1,9 +1,9 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import tests
+from odoo.tests.common import SavepointCase
 
 
-class TestPurchaseRequisition(tests.SavepointCase):
+class TestPurchaseRequisition(SavepointCase):
     def setUp(self):
         super().setUp()
         self._init_products()
@@ -72,7 +72,7 @@ class TestPurchaseRequisition(tests.SavepointCase):
         rfqs = self._requisition1.auto_rfq_from_suppliers()
 
         msg = "Expected 3 distinct RFQs, got %r" % rfqs
-        self.assertEquals(3, len(rfqs), msg=msg)
+        self.assertEqual(3, len(rfqs), msg=msg)
 
         actual = self._get_supplier_products(rfqs)
         expected = {
@@ -83,8 +83,8 @@ class TestPurchaseRequisition(tests.SavepointCase):
 
         self.assertDictEqual(expected, dict(actual))
 
-        msg = "Expected 2 messages, got: %d" % len(self._requisition1.message_ids)
-        self.assertEquals(2, len(self._requisition1.message_ids), msg=msg)
+        msg = "Expected 1 messages, got: %d" % len(self._requisition1.message_ids)
+        self.assertEquals(1, len(self._requisition1.message_ids), msg=msg)
 
     def _get_supplier_products(self, rfqs):
         return {
@@ -95,7 +95,7 @@ class TestPurchaseRequisition(tests.SavepointCase):
         rfqs = self._requisition2.auto_rfq_from_suppliers()
 
         msg = "Expected 2 distinct RFQs, got %r" % rfqs
-        self.assertEquals(2, len(rfqs), msg=msg)
+        self.assertEqual(2, len(rfqs), msg=msg)
 
         actual = self._get_supplier_products(rfqs)
         expected = {
@@ -104,7 +104,7 @@ class TestPurchaseRequisition(tests.SavepointCase):
         }
 
         self.assertDictEqual(expected, dict(actual))
-        self.assertEquals(3, len(self._requisition2.message_ids))
+        self.assertEquals(2, len(self._requisition2.message_ids))
 
         found = False
         for msg in self._requisition2.message_ids:
