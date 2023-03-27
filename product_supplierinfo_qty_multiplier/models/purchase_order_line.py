@@ -5,6 +5,7 @@
 from math import ceil
 
 from odoo import _, api, models
+from openerp.tools import frozendict
 
 
 class PurchaseOrderLine(models.Model):
@@ -12,9 +13,12 @@ class PurchaseOrderLine(models.Model):
 
     @api.onchange('product_id')
     def onchange_product_id(self):
-        return super(
-            PurchaseOrderLine, self.with_context(no_multiplier_qty_message=True)
-        ).onchange_product_id()
+        # Change context in a compatible way with onchange usage
+        # See : https://github.com/odoo/odoo/issues/7472#issuecomment-119503916
+        self.env.context = frozendict(self.env.context, multiplier_qty_message=False)
+        res = super().onchange_product_id()
+        self.env.context = frozendict(self.env.context, multiplier_qty_message=True)
+        return res
 
     @api.onchange("product_qty")
     def _onchange_quantity(self):
@@ -31,7 +35,7 @@ class PurchaseOrderLine(models.Model):
         qty = self.product_qty
         if seller and seller.multiplier_qty and qty % seller.multiplier_qty:
             self.product_qty = ceil(qty / seller.multiplier_qty) * seller.multiplier_qty
-            if not self.env.context.get("no_multiplier_qty_message"):
+            if self.env.context.get("multiplier_qty_message", True):
                 warn_msg = _(
                     "The selected supplier only sells this product by %s %s.\n"
                     "The quantity has been automatically changed to %s %s"
