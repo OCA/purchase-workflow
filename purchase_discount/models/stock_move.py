@@ -7,6 +7,11 @@ from odoo import models
 class StockMove(models.Model):
     _inherit = "stock.move"
 
+    def write(self, values):
+        if self.env.context.get("skip_update_price_unit") and values.get("price_unit"):
+            values.pop("price_unit")
+        return super().write(values)
+
     def _get_price_unit(self):
         """Get correct price with discount replacing current price_unit
         value before calling super and restoring it later for assuring
