@@ -78,6 +78,7 @@ setuptools.setup(
         'odoo-addon-purchase_work_acceptance_invoice_plan>=15.0dev,<15.1dev',
         'odoo-addon-purchase_work_acceptance_late_fines>=15.0dev,<15.1dev',
         'odoo-addon-purchase_work_acceptance_tier_validation>=15.0dev,<15.1dev',
+        'odoo-addon-sale_purchase_force_vendor>=15.0dev,<15.1dev',
     ],
     classifiers=[
         'Programming Language :: Python',
