@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="sale_purchase_force_vendor_restrict" invisible="1" />
+            </field>
+            <xpath
+                expr="//field[@name='order_line']/tree/field[@name='price_unit']"
+                position="before"
+            >
+                <field name="vendor_id_domain" invisible="1" />
+                <field
+                    name="vendor_id"
+                    domain="vendor_id_domain"
+                    options='{"no_create": True}'
+                    optional="hide"
+                />
+           </xpath>
+            <xpath expr="//field[@name='order_line']/form/group" position="inside">
+                <group string="Vendor" name="vendor">
+                    <field name="vendor_id_domain" invisible="1" />
+                    <field
+                        name="vendor_id"
+                        domain="vendor_id_domain"
+                        attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
+                        options='{"no_create": True}'
+                    />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
