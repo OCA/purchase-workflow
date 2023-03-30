@@ -7,7 +7,8 @@
     "name": "Purchase Order Line Sequence",
     "summary": "Adds sequence to PO lines and propagates it to"
     "Invoice lines and Stock Moves",
-    "version": "14.0.1.0.0",
+    "version": "15.0.1.0.0",
+    "license": "AGPL-3",
     "category": "Purchase Management",
     "author": "Camptocamp, "
     "Eficent, "
@@ -16,7 +17,6 @@
     "website": "https://github.com/OCA/purchase-workflow",
     "depends": [
         "purchase_stock",
-        "stock_picking_line_sequence",
     ],
     "data": [
         "views/purchase_view.xml",
@@ -24,7 +24,4 @@
         "views/report_purchasequotation.xml",
     ],
     "post_init_hook": "post_init_hook",
-    "installable": False,
-    "auto_install": False,
-    "license": "AGPL-3",
 }
