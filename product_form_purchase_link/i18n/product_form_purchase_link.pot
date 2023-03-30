@@ -44,7 +44,7 @@ msgstr ""
 #. module: product_form_purchase_link
 #: model:ir.model.fields,field_description:product_form_purchase_link.field_product_product__purchase_lines_count
 #: model:ir.model.fields,field_description:product_form_purchase_link.field_product_template__purchase_lines_count
-msgid "Purchased"
+msgid "Purchased products"
 msgstr ""
 
 #. module: product_form_purchase_link
