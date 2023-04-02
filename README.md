@@ -40,7 +40,7 @@ addon | version | maintainers | summary
 [purchase_commercial_partner](purchase_commercial_partner/) | 13.0.1.0.0 |  | Add stored related field 'Commercial Supplier' on POs
 [purchase_delivery_split_date](purchase_delivery_split_date/) | 13.0.1.0.5 |  | Allows Purchase Order you confirm to generate one Incoming Shipment for each expected date indicated in the Purchase Order Lines
 [purchase_deposit](purchase_deposit/) | 13.0.1.0.1 |  | Option to create deposit from purchase order
-[purchase_discount](purchase_discount/) | 13.0.1.0.6 |  | Purchase order lines with discounts
+[purchase_discount](purchase_discount/) | 13.0.1.1.0 |  | Purchase order lines with discounts
 [purchase_exception](purchase_exception/) | 13.0.1.0.0 |  | Custom exceptions on purchase order
 [purchase_force_invoiced](purchase_force_invoiced/) | 13.0.1.0.1 |  | Allows to force the billing status of the purchase order to "Invoiced"
 [purchase_invoice_plan](purchase_invoice_plan/) | 13.0.1.0.0 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Add to purchases order, ability to manage future invoice plan
