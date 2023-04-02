@@ -75,7 +75,7 @@ class PurchaseOrderLine(models.Model):
                     )
                     or line.order_id.picking_type_id
                 )
-                if picking_type:
+                if len(picking_type) == 1:
                     line.move_ids.filtered(lambda m: m.state != "done").write(
                         {"picking_type_id": picking_type}
                     )
