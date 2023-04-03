@@ -43,7 +43,7 @@ class TestPurchaseReceptionNotify(TransactionCase):
     def test_reception_notification(self):
         # Now we receive the products
         for picking in self.purchase_order.picking_ids:
-            picking.move_lines.write({"quantity_done": 5.0})
+            picking.move_ids.write({"quantity_done": 5.0})
             picking.button_validate()
             self.assertTrue(
                 "Receipt confirmation %s" % picking.name

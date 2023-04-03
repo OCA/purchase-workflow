@@ -34,7 +34,7 @@ class StockPicking(models.Model):
         res = super()._action_done()
         for picking in self.filtered(lambda p: p.picking_type_id.code == "incoming"):
             purchase_dict = {}
-            for move in picking.move_lines.filtered("purchase_line_id"):
+            for move in picking.move_ids.filtered("purchase_line_id"):
                 pol_id = move.purchase_line_id
                 if pol_id.order_id not in purchase_dict.keys():
                     purchase_dict[pol_id.order_id] = {}
