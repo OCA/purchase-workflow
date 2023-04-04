@@ -18,8 +18,15 @@ msgstr ""
 
 #. module: purchase_order_product_recommendation_secondary_unit
 #: model:ir.model.fields,field_description:purchase_order_product_recommendation_secondary_unit.field_purchase_order_recommendation_line__secondary_uom_id
-msgid "Default unit purchase"
-msgstr "Ud. de compra"
+msgid "Default secondary unit for purchases"
+msgstr ""
+
+#. module: purchase_order_product_recommendation_secondary_unit
+#: model:ir.model.fields,help:purchase_order_product_recommendation_secondary_unit.field_purchase_order_recommendation_line__secondary_uom_id
+msgid ""
+"In order to set a value, please first add at least one record in 'Secondary "
+"Unit of Measure'"
+msgstr ""
 
 #. module: purchase_order_product_recommendation_secondary_unit
 #: model:ir.model,name:purchase_order_product_recommendation_secondary_unit.model_purchase_order_recommendation_line
@@ -35,3 +42,6 @@ msgstr "Productos recomendados para el pedido de compra en curso"
 #: model:ir.model.fields,field_description:purchase_order_product_recommendation_secondary_unit.field_purchase_order_recommendation_line__secondary_uom_qty
 msgid "Secondary Qty"
 msgstr "Ctd secundaria"
+
+#~ msgid "Default unit purchase"
+#~ msgstr "Ud. de compra"
