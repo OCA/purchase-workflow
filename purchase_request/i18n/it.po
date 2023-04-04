@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-17 03:38+0000\n"
-"PO-Revision-Date: 2023-03-30 14:33+0000\n"
+"PO-Revision-Date: 2023-04-04 15:25+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/"
 "OCA-purchase-workflow-10-0/language/it/)\n"
@@ -513,7 +513,7 @@ msgstr "Righe"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_main_attachment_id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_main_attachment_id
 msgid "Main Attachment"
-msgstr "Allegato Principale"
+msgstr "Allegato principale"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_form2_sub
@@ -529,7 +529,7 @@ msgstr "Unisci su linee PO con uguale Data programmata"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_has_error
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_has_error
 msgid "Message Delivery error"
-msgstr "Errore di Consegna del messaggio"
+msgstr "Errore consegna messaggio"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_ids
@@ -558,19 +558,19 @@ msgstr "Nuovi dettagli PO:"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__activity_date_deadline
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__activity_date_deadline
 msgid "Next Activity Deadline"
-msgstr "Scadenza prossima Attività"
+msgstr "Scadenza attività successiva"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__activity_summary
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__activity_summary
 msgid "Next Activity Summary"
-msgstr "Riepilogo prossima Attività"
+msgstr "Sommario attività successiva"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__activity_type_id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__activity_type_id
 msgid "Next Activity Type"
-msgstr "Tipo prossima Attività"
+msgstr "Tipo attività successiva"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
