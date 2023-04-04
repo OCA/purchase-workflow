@@ -6,3 +6,5 @@
 * `Akretion <https://akretion.com>`_:
     * David BEAL <david.beal@akretion.com>
     * Raphaël Reverdy <raphael.reverdy@akretion.com>
+* `InitOS <https://www.initos.com>`_:
+    * Dhara Solanki <dhara.solanki@initos.com>

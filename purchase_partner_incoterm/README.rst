@@ -14,7 +14,7 @@ Default purchase incoterm per partner
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fpurchase--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/purchase-workflow/tree/15.0/purchase_partner_incoterm
+    :target: https://github.com/OCA/purchase-workflow/tree/16.0/purchase_partner_incoterm
     :alt: OCA/purchase-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
     :target: https://translation.odoo-community.org/projects/purchase-workflow-15-0/purchase-workflow-15-0-purchase_partner_incoterm
@@ -29,6 +29,8 @@ This module adds incoterms for suppliers and purchase order:
 
 * incoterm modes
 * incoterm address
+
+Based on Partner/Supplier It will add Incoterm address.
 
 **Table of contents**
 
@@ -64,6 +66,8 @@ Contributors
 * `Akretion <https://akretion.com>`_:
     * David BEAL <david.beal@akretion.com>
     * Raphaël Reverdy <raphael.reverdy@akretion.com>
+* `InitOS <https://www.initos.com>`_:
+    * Dhara Solanki <dhara.solanki@initos.com>
 
 Other credits
 ~~~~~~~~~~~~~
@@ -96,6 +100,6 @@ Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-TDu| |maintainer-bealdav| 
 
-This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/15.0/purchase_partner_incoterm>`_ project on GitHub.
+This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/16.0/purchase_partner_incoterm>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
