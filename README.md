@@ -54,6 +54,7 @@ addon | version | maintainers | summary
 [purchase_order_product_recommendation_brand](purchase_order_product_recommendation_brand/) | 15.0.1.0.0 |  | Allow to filter recommendations by brand
 [purchase_order_product_recommendation_classification](purchase_order_product_recommendation_classification/) | 15.0.1.0.0 |  | Extends the purchase recomendator with classification filters
 [purchase_order_product_recommendation_forecast](purchase_order_product_recommendation_forecast/) | 15.0.1.0.0 |  | Obtain linear progression forecast from reference years
+[purchase_order_product_recommendation_secondary_unit](purchase_order_product_recommendation_secondary_unit/) | 15.0.1.0.0 |  | Add secondary unit to recommend products wizard
 [purchase_order_product_recommendation_xlsx](purchase_order_product_recommendation_xlsx/) | 15.0.1.0.0 |  | Add a way to print recommended products for supplier
 [purchase_order_qty_change_no_recompute](purchase_order_qty_change_no_recompute/) | 15.0.1.0.1 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Prevent recompute if only quantity has changed in purchase order line
 [purchase_order_secondary_unit](purchase_order_secondary_unit/) | 15.0.1.0.0 |  | Purchase product in a secondary unit
