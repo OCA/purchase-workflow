@@ -14,7 +14,7 @@ Purchase Order Qty change no recompute
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fpurchase--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/purchase-workflow/tree/15.0/purchase_order_qty_change_no_recompute
+    :target: https://github.com/OCA/purchase-workflow/tree/16.0/purchase_order_qty_change_no_recompute
     :alt: OCA/purchase-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
     :target: https://translation.odoo-community.org/projects/purchase-workflow-15-0/purchase-workflow-15-0-purchase_order_qty_change_no_recompute
@@ -69,6 +69,10 @@ Contributors
   * Pedro M. Baeza
   * César A. Sánchez
 
+* `InitOS <https://www.initos.com>`_:
+
+  * Dhara Solanki <dhara.solanki@initos.com>
+
 Maintainers
 ~~~~~~~~~~~
 
@@ -90,6 +94,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-victoralmau| 
 
-This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/15.0/purchase_order_qty_change_no_recompute>`_ project on GitHub.
+This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/16.0/purchase_order_qty_change_no_recompute>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
