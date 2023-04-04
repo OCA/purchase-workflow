@@ -47,7 +47,7 @@ class TestPurchaseOrderNoZeroPrice(common.TransactionCase):
         self.assertEqual(self.purchase_order1.state, "purchase")
 
         self.assertEqual(self.purchase_order2.state, "draft")
-        with self.assertRaises(UserError):
+        with self.assertRaises(UserError), self.cr.savepoint():
             self.purchase_order2.order_line.write({"price_unit": 0.0})
             self.purchase_order2.button_confirm()
         self.assertEqual(self.purchase_order2.state, "draft")
