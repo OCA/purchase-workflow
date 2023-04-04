@@ -5,3 +5,5 @@
 * `Tecnativa <https://www.tecnativa.com>`_:
 
   * Víctor Martínez
+
+* Urvisha Desai <udesai@opensourceintegrators.com>
