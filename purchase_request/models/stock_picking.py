@@ -13,22 +13,24 @@ class StockPicking(models.Model):
     ):
         if not request_dict:
             request_dict = {}
-        title = _("Receipt confirmation %s for your Request %s") % (
-            picking.name,
-            request.name,
-        )
-        message = "<h3>%s</h3>" % title
+        title = _(
+            "Receipt confirmation %(picking_name)s for your Request %(request_name)s"
+        ) % {"picking_name": picking.name, "request_name": request.name}
+        message = "<h3>%(title)s</h3>" % {"title": title}
         message += _(
-            "The following requested items from Purchase Request %s "
-            "have now been received in Incoming Shipment %s:"
-        ) % (request.name, picking.name)
+            "The following requested items from Purchase Request %(request_name)s "
+            "have now been received in Incoming Shipment %(picking_name)s:"
+        ) % {"request_name": request.name, "picking_name": picking.name}
         message += "<ul>"
         for line in request_dict.values():
-            message += _("<li><b>%s</b>: Received quantity %s %s</li>") % (
-                line["name"],
-                line["product_qty"],
-                line["product_uom"],
-            )
+            message += _(
+                "<li><b>%(line_name)s</b>: Received quantity "
+                "%(line_product_qty)s %(line_product_uom)s</li>"
+            ) % {
+                "line_name": line["name"],
+                "line_product_qty": line["product_qty"],
+                "line_product_uom": line["product_uom"],
+            }
         message += "</ul>"
         return message
 
@@ -64,3 +66,4 @@ class StockPicking(models.Model):
                         body=message,
                         author_id=self.env.user.partner_id.id,
                     )
+        return
