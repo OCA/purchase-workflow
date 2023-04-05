@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: odoomrp-wip (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-23 16:33+0000\n"
-"PO-Revision-Date: 2023-01-18 09:46+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-04-05 11:24+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/odoomrp-wip-8-0/"
 "language/it/)\n"
 "Language: it\n"
@@ -346,7 +346,7 @@ msgstr "Peso lordo"
 #. module: purchase_landed_cost
 #: model:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_expense_search
 msgid "Group By"
-msgstr "Group By"
+msgstr "Raggruppa per"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_import_invoice_line_wizard_id
