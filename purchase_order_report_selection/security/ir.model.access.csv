@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_purchase_report_user,purchase.report.field,model_purchase_report_field,purchase.group_purchase_user,1,1,1,1

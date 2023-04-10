@@ -1,0 +1,196 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<odoo>
+    <template
+        id="report_purchaseorder_document_fields"
+        inherit_id="purchase.report_purchaseorder_document"
+    >
+        <xpath expr="//table/thead/tr" position="attributes">
+            <attribute name="style">display:none;</attribute>
+        </xpath>
+        <xpath expr="//table/thead/tr" position="after">
+            <t t-if="o.report_field_ids.count_po_fields() &gt; 0">
+                <tr>
+                    <t
+                        t-foreach="o.report_field_ids.sorted(lambda l: l.sequence)"
+                        t-as="report_field"
+                    >
+                        <t
+                            t-if="o.state in ['sent', 'to approve','purchase','done'] and report_field.is_show_po == True"
+                        >
+                            <th
+                                t-attf-name="th-{{report_field.field_id.field_description}}"
+                            >
+                                <strong>
+                                    <t
+                                        t-esc="report_field.field_id.field_description"
+                                    />
+                                </strong>
+                            </th>
+                        </t>
+                        <t
+                            t-elif="o.state == 'draft' and report_field.is_show_po == True"
+                        >
+                            <th
+                                t-attf-name="th-{{report_field.field_id.field_description}}"
+                            >
+                                <strong>
+                                    <t
+                                        t-esc="report_field.field_id.field_description"
+                                    />
+                                </strong>
+                            </th>
+                        </t>
+                    </t>
+                </tr>
+            </t>
+            <t t-else="">
+                <tr>
+                    <th name="th_description"><strong>Description</strong></th>
+                    <th name="th_taxes"><strong>Taxes</strong></th>
+                    <th name="th_date_req" class="text-center"><strong
+                        >Date Req.</strong></th>
+                    <th name="th_quantity" class="text-right"><strong>Qty</strong></th>
+                    <th name="th_price_unit" class="text-right"><strong
+                        >Unit Price</strong></th>
+                    <th name="th_amount" class="text-right"><strong>Amount</strong></th>
+                </tr>
+            </t>
+
+
+        </xpath>
+
+        <xpath expr="//table/tbody" position="attributes">
+                <attribute name="style">display:none;</attribute>
+        </xpath>
+        <xpath expr="//table/tbody" position="after">
+            <t t-if="o.report_field_ids.count_po_fields() &gt; 0">
+                <t t-foreach="o.order_line.sorted(lambda l: l.sequence)" t-as="line">
+                    <tr
+                        t-att-class="'bg-200 font-weight-bold o_line_section' if line.display_type == 'line_section' else 'font-italic o_line_note' if line.display_type == 'line_note' else ''"
+                    >
+                        <t t-foreach="o.report_field_ids" t-as="report_field">
+                            <t
+                                t-if="o.state in ['sent', 'to approve','purchase','done'] and report_field.is_show_po == True"
+                            >
+                                <t t-set="field" t-value="report_field.field_id.name" />
+                                <td
+                                    t-attf-id="{{report_field.field_id.field_description}}"
+                                >
+                                <t t-if="report_field.field_id.ttype=='binary'">
+                                    <span
+                                            t-esc="line.get_field_data(report_field.field_id.name)"
+                                            t-options='{"widget": "image"}'
+                                            class="custom_product_image"
+                                            style="height:20px !important; max-height:20px !important; width:15px !important; max-width:15px !important;"
+                                        />
+                                </t>
+                                <t t-else="">
+                                    <span
+                                            t-esc="line.get_field_data(report_field.field_id.name)"
+                                        />
+                                </t>
+                                </td>
+                            </t>
+                            <t
+                                t-elif="o.state == 'draft' and report_field.is_show_po == True"
+                            >
+                                <t t-set="field" t-value="report_field.field_id.name" />
+                                <td
+                                    t-attf-id="{{report_field.field_id.field_description}}"
+                                >
+                                <t t-if="report_field.field_id.ttype=='binary'">
+                                    <span
+                                            t-esc="line.get_field_data(report_field.field_id.name)"
+                                            t-options='{"widget": "image"}'
+                                            class="custom_product_image"
+                                            style="height:20px !important; max-height:20px !important; width:15px !important; max-width:15px !important;"
+                                        />
+                                </t>
+                                <t t-else="">
+                                    <span
+                                            t-esc="line.get_field_data(report_field.field_id.name)"
+                                        />
+                                </t>
+                                </td>
+                            </t>
+                        </t>
+                    </tr>
+                </t>
+            </t>
+            <t t-else="">
+                <t t-set="current_subtotal" t-value="0" />
+                    <t t-foreach="o.order_line" t-as="line">
+                        <t
+                        t-set="current_subtotal"
+                        t-value="current_subtotal + line.price_subtotal"
+                        groups="account.group_show_line_subtotals_tax_excluded"
+                    />
+                        <t
+                        t-set="current_subtotal"
+                        t-value="current_subtotal + line.price_total"
+                        groups="account.group_show_line_subtotals_tax_included"
+                    />
+
+                        <tr
+                        t-att-class="'bg-200 font-weight-bold o_line_section' if line.display_type == 'line_section' else 'font-italic o_line_note' if line.display_type == 'line_note' else ''"
+                    >
+                            <t t-if="not line.display_type">
+                                <td id="product">
+                                    <span t-field="line.name" />
+                                </td>
+                                <td name="td_taxes">
+                                    <span
+                                    t-esc="', '.join(map(lambda x: x.name, line.taxes_id))"
+                                />
+                                </td>
+                                <td class="text-center">
+                                    <span t-field="line.date_planned" />
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="line.product_qty" />
+                                    <span
+                                    t-field="line.product_uom.name"
+                                    groups="uom.group_uom"
+                                />
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="line.price_unit" />
+                                </td>
+                                <td class="text-right">
+                                    <span
+                                    t-field="line.price_subtotal"
+                                    t-options='{"widget": "monetary", "display_currency": o.currency_id}'
+                                />
+                                </td>
+                            </t>
+                            <t t-if="line.display_type == 'line_section'">
+                                <td colspan="99" id="section">
+                                    <span t-field="line.name" />
+                                </td>
+                                <t t-set="current_section" t-value="line" />
+                                <t t-set="current_subtotal" t-value="0" />
+                            </t>
+                            <t t-if="line.display_type == 'line_note'">
+                                <td colspan="99" id="note">
+                                    <span t-field="line.name" />
+                                </td>
+                            </t>
+                        </tr>
+                        <t
+                        t-if="current_section and (line_last or o.order_line[line_index+1].display_type == 'line_section')"
+                    >
+                            <tr class="is-subtotal text-right">
+                                <td colspan="99" id="subtotal">
+                                    <strong class="mr16">Subtotal</strong>
+                                    <span
+                                    t-esc="current_subtotal"
+                                    t-options='{"widget": "monetary", "display_currency": o.currency_id}'
+                                />
+                                </td>
+                            </tr>
+                        </t>
+                    </t>
+            </t>
+        </xpath>
+    </template>
+</odoo>
