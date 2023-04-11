@@ -50,6 +50,7 @@ setuptools.setup(
         'odoo-addon-purchase_order_uninvoiced_amount>=15.0dev,<15.1dev',
         'odoo-addon-purchase_partner_incoterm>=15.0dev,<15.1dev',
         'odoo-addon-purchase_partner_selectable_option>=15.0dev,<15.1dev',
+        'odoo-addon-purchase_quick>=15.0dev,<15.1dev',
         'odoo-addon-purchase_receipt_expectation>=15.0dev,<15.1dev',
         'odoo-addon-purchase_receipt_expectation_from_partner>=15.0dev,<15.1dev',
         'odoo-addon-purchase_receipt_expectation_manual>=15.0dev,<15.1dev',
