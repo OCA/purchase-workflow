@@ -1,0 +1,106 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_quick
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_quick
+#: model_terms:ir.ui.view,arch_db:purchase_quick.view_purchase_form
+msgid "Add"
+msgstr ""
+
+#. module: purchase_quick
+#: model:ir.model.fields,field_description:purchase_quick.field_product_product__display_name
+#: model:ir.model.fields,field_description:purchase_quick.field_purchase_order__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: purchase_quick
+#: model_terms:ir.ui.view,arch_db:purchase_quick.product_search_form_view
+msgid "Filter products supplied by the supplier of the current parent object"
+msgstr ""
+
+#. module: purchase_quick
+#: model_terms:ir.ui.view,arch_db:purchase_quick.product_search_form_view
+msgid "For current supplier"
+msgstr ""
+
+#. module: purchase_quick
+#: model:ir.model.fields,field_description:purchase_quick.field_product_product__id
+#: model:ir.model.fields,field_description:purchase_quick.field_purchase_order__id
+msgid "ID"
+msgstr ""
+
+#. module: purchase_quick
+#: model:ir.model.fields,field_description:purchase_quick.field_product_product____last_update
+#: model:ir.model.fields,field_description:purchase_quick.field_purchase_order____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: purchase_quick
+#: code:addons/purchase_quick/models/purchase_order.py:0
+#, python-format
+msgid ""
+"Must have only 1 line per product for mass addition, but there are %s lines "
+"for the product %s"
+msgstr ""
+
+#. module: purchase_quick
+#: model_terms:ir.ui.view,arch_db:purchase_quick.product_tree_view4purchase
+msgid "Open"
+msgstr ""
+
+#. module: purchase_quick
+#: model:ir.model.fields,field_description:purchase_quick.field_product_product__po_line_ids
+msgid "Po Line"
+msgstr ""
+
+#. module: purchase_quick
+#: model:ir.model,name:purchase_quick.model_product_product
+msgid "Product"
+msgstr ""
+
+#. module: purchase_quick
+#: code:addons/purchase_quick/models/purchase_order.py:0
+#, python-format
+msgid "Product Variants"
+msgstr ""
+
+#. module: purchase_quick
+#: model_terms:ir.ui.view,arch_db:purchase_quick.product_tree_view4purchase
+msgid "Products for purchase"
+msgstr ""
+
+#. module: purchase_quick
+#: model:ir.model,name:purchase_quick.model_purchase_order
+msgid "Purchase Order"
+msgstr ""
+
+#. module: purchase_quick
+#: model:ir.model.fields,field_description:purchase_quick.field_product_product__seller_price
+msgid "Seller Price"
+msgstr ""
+
+#. module: purchase_quick
+#: model:ir.model.fields,help:purchase_quick.field_product_product__po_line_ids
+msgid "Technical: used to compute quantities to purchase."
+msgstr ""
+
+#. module: purchase_quick
+#: model_terms:ir.ui.view,arch_db:purchase_quick.product_tree_view4purchase
+msgid "UoM"
+msgstr ""
+
+#. module: purchase_quick
+#: model:ir.model.fields,field_description:purchase_quick.field_product_product__variant_specific_seller_ids
+msgid "Variant Specific Seller"
+msgstr ""
