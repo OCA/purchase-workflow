@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
+from odoo.exceptions import UserError
 
 
 class PurchaseOrder(models.Model):
@@ -19,7 +20,11 @@ class PurchaseOrder(models.Model):
         string="WA Lines",
         readonly=True,
     )
-    wa_accepted = fields.Boolean(string="WA Accepted", compute="_compute_wa_accepted")
+    wa_accepted = fields.Boolean(
+        string="WA Accepted",
+        compute="_compute_wa_accepted",
+        search="_search_wa_accepted",
+    )
 
     def _compute_wa_ids(self):
         for order in self:
@@ -112,6 +117,13 @@ class PurchaseOrder(models.Model):
                 lambda l: l.product_qty > 0 and l.qty_to_accept > 0
             )
             order.wa_accepted = not any(lines)
+
+    @api.model
+    def _search_wa_accepted(self, operator, value):
+        if operator not in ["=", "!="] or not isinstance(value, bool):
+            raise UserError(_("Operation not supported"))
+        recs = self.search([]).filtered(lambda l: l.wa_accepted is value)
+        return [("id", "in", recs.ids)]
 
     def _prepare_invoice(self):
         invoice_vals = super()._prepare_invoice()
