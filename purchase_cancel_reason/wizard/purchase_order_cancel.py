@@ -20,7 +20,8 @@ class PurchaseOrderCancel(models.TransientModel):
         self.ensure_one()
         act_close = {"type": "ir.actions.act_window_close"}
         purchase_ids = self._context.get("active_ids")
-        if purchase_ids is None:
+        active_model = self._context.get("active_model")
+        if purchase_ids is None or active_model != "purchase.order":
             return act_close
         if len(purchase_ids) > 1:
             raise UserError(_("Only 1 purchase ID expected"))
