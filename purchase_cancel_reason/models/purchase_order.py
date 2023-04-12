@@ -13,10 +13,3 @@ class PurchaseOrder(models.Model):
         readonly=True,
         ondelete="restrict",
     )
-
-
-class PurchaseOrderCancelReason(models.Model):
-    _name = "purchase.order.cancel.reason"
-    _description = "Purchase Order Cancel Reason"
-
-    name = fields.Char(string="Reason", required=True, translate=True)
