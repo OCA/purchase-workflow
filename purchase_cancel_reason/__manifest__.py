@@ -11,9 +11,10 @@
     "website": "https://github.com/OCA/purchase-workflow",
     "depends": ["purchase"],
     "data": [
-        "wizard/purchase_cancel_reason_view.xml",
-        "views/purchase_order.xml",
         "security/ir.model.access.csv",
+        "wizard/purchase_order_cancel.xml",
+        "views/purchase_order.xml",
+        "views/purchase_order_cancel_reason.xml",
         "data/purchase_order_cancel_reason.xml",
     ],
     "auto_install": False,
