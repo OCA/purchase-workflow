@@ -1,6 +1,48 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <record model="ir.ui.view" id="purchase_order_form_inherit">
+    <!-- Search RFQ -->
+    <record id="view_purchase_order_filter" model="ir.ui.view">
+        <field name="name">request.quotation.select</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.view_purchase_order_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//search/separator[1]" position="after">
+                <filter
+                    name="wa_accepted"
+                    string="WA Accepted"
+                    domain="[('wa_accepted', '=', True)]"
+                />
+                <filter
+                    name="wa_not_accepted"
+                    string="WA Not Accepted"
+                    domain="[('wa_accepted', '=', False)]"
+                />
+                <separator />
+            </xpath>
+        </field>
+    </record>
+    <!-- Search Purchase Order -->
+    <record id="purchase_order_view_search" model="ir.ui.view">
+        <field name="name">purchase.order.select</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_view_search" />
+        <field name="arch" type="xml">
+            <xpath expr="//search/separator[1]" position="after">
+                <filter
+                    name="wa_accepted"
+                    string="WA Accepted"
+                    domain="[('wa_accepted', '=', True)]"
+                />
+                <filter
+                    name="wa_not_accepted"
+                    string="WA Not Accepted"
+                    domain="[('wa_accepted', '=', False)]"
+                />
+                <separator />
+            </xpath>
+        </field>
+    </record>
+    <record id="purchase_order_form_inherit" model="ir.ui.view">
         <field name="name">purchase.order.form.inherit</field>
         <field name="model">purchase.order</field>
         <field name="inherit_id" ref="purchase.purchase_order_form" />
