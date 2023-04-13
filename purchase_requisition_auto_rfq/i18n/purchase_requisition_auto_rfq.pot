@@ -1,12 +1,12 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* purchase_requisition_auto_rfq
+# 	* purchase_requisition_auto_rfq
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: <>\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -14,9 +14,11 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: purchase_requisition_auto_rfq
-#: code:addons/purchase_requisition_auto_rfq/models/purchase_requisition.py:50
+#: code:addons/purchase_requisition_auto_rfq/models/purchase_requisition.py:0
 #, python-format
-msgid "<p><b>RFQ generation</b></p><p>The following products have no registered suppliers and are not included in the generated RFQs:<ul>%s</ul></p>"
+msgid ""
+"<p><b>RFQ generation</b></p><p>The following products have no registered "
+"suppliers and are not included in the generated RFQs:<ul>%s</ul></p>"
 msgstr ""
 
 #. module: purchase_requisition_auto_rfq
@@ -26,8 +28,18 @@ msgid "Blankets"
 msgstr ""
 
 #. module: purchase_requisition_auto_rfq
+#: model:ir.model.fields,field_description:purchase_requisition_auto_rfq.field_purchase_requisition__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: purchase_requisition_auto_rfq
 #: model_terms:ir.ui.view,arch_db:purchase_requisition_auto_rfq.purchase_requisition_form_inherit
 msgid "Generate quotations from suppliers"
+msgstr ""
+
+#. module: purchase_requisition_auto_rfq
+#: model:ir.model.fields,field_description:purchase_requisition_auto_rfq.field_purchase_requisition__id
+msgid "ID"
 msgstr ""
 
 #. module: purchase_requisition_auto_rfq
@@ -37,12 +49,17 @@ msgid "Kitchen Set"
 msgstr ""
 
 #. module: purchase_requisition_auto_rfq
+#: model:ir.model.fields,field_description:purchase_requisition_auto_rfq.field_purchase_requisition____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: purchase_requisition_auto_rfq
 #: model:ir.model,name:purchase_requisition_auto_rfq.model_purchase_requisition
 msgid "Purchase Requisition"
 msgstr ""
 
 #. module: purchase_requisition_auto_rfq
-#: code:addons/purchase_requisition_auto_rfq/models/purchase_requisition.py:57
+#: code:addons/purchase_requisition_auto_rfq/models/purchase_requisition.py:0
 #, python-format
 msgid "RFQ Generation"
 msgstr ""
@@ -60,16 +77,5 @@ msgstr ""
 #: model:product.template,uom_name:purchase_requisition_auto_rfq.blankets_product_template
 #: model:product.template,uom_name:purchase_requisition_auto_rfq.kitchenset_product_template
 #: model:product.template,uom_name:purchase_requisition_auto_rfq.tarpaulin_product_template
-msgid "Unit(s)"
+msgid "Units"
 msgstr ""
-
-#. module: purchase_requisition_auto_rfq
-#: model:product.product,weight_uom_name:purchase_requisition_auto_rfq.blankets
-#: model:product.product,weight_uom_name:purchase_requisition_auto_rfq.kitchenset
-#: model:product.product,weight_uom_name:purchase_requisition_auto_rfq.tarpaulin
-#: model:product.template,weight_uom_name:purchase_requisition_auto_rfq.blankets_product_template
-#: model:product.template,weight_uom_name:purchase_requisition_auto_rfq.kitchenset_product_template
-#: model:product.template,weight_uom_name:purchase_requisition_auto_rfq.tarpaulin_product_template
-msgid "kg"
-msgstr ""
-
