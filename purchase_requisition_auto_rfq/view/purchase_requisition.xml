@@ -11,9 +11,15 @@
                 <button
                     name="auto_rfq_from_suppliers"
                     type="object"
-                    string="Generate quotations from suppliers"
+                    string="Generate RFQs for suppliers"
                     attrs="{'invisible': ['|', ('line_ids', '=', []), ('state', '!=', 'in_progress')]}"
                 />
+            </xpath>
+            <xpath expr="//field[@name='line_ids']/tree" position="inside">
+                <field name="prod_has_supplier" invisible="1" />
+            </xpath>
+            <xpath expr="//field[@name='line_ids']/tree" position="attributes">
+                <attribute name="decoration-danger">not prod_has_supplier</attribute>
             </xpath>
         </field>
     </record>

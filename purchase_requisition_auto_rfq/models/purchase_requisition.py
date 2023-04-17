@@ -2,7 +2,7 @@
 
 from collections import defaultdict
 
-from odoo import _, models
+from odoo import _, api, fields, models
 
 
 class PurchaseRequisition(models.Model):
@@ -61,3 +61,16 @@ class PurchaseRequisition(models.Model):
         po = self.env["purchase.order"].with_context(**ctx).create(vals)
         po._onchange_requisition_id()
         return po
+
+
+class PurchaseRequisitionLine(models.Model):
+    _inherit = "purchase.requisition.line"
+
+    prod_has_supplier = fields.Boolean(
+        compute="_compute_prod_has_supplier", string="Product without suppliers"
+    )
+
+    @api.depends("product_id.product_tmpl_id.seller_ids")
+    def _compute_prod_has_supplier(self):
+        for rec in self:
+            rec.prod_has_supplier = bool(rec.product_id.product_tmpl_id.seller_ids)
