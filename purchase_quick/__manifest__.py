@@ -10,7 +10,7 @@
     "website": "https://github.com/OCA/purchase-workflow",
     "license": "AGPL-3",
     "category": "Purchase",
-    "depends": ["base_product_mass_addition", "purchase"],
+    "depends": ["base_product_mass_addition", "purchase", "product_supplier_search"],
     "data": ["views/purchase_view.xml", "views/product_view.xml"],
     "installable": True,
 }

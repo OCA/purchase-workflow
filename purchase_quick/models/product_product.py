@@ -5,14 +5,14 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 
+from lxml import etree
+
 from odoo import api, fields, models
 
 
 class ProductProduct(models.Model):
     _inherit = "product.product"
 
-    # for searching purpose
-    variant_specific_seller_ids = fields.One2many("product.supplierinfo", "product_id")
     po_line_ids = fields.One2many(
         comodel_name="purchase.order.line",
         inverse_name="product_id",
@@ -69,19 +69,26 @@ class ProductProduct(models.Model):
                 [("order_id", "=", purchase.id)]
             )
             args.append(("id", "in", po_lines.mapped("product_id").ids))
-        if self.env.context.get("for_current_supplier") and purchase:
-            seller = purchase.partner_id
-            seller = seller.commercial_partner_id or seller
-            args += [
-                "|",
-                ("variant_specific_seller_ids.name", "=", seller.id),
-                "&",
-                ("seller_ids.name", "=", seller.id),
-                ("product_variant_ids", "!=", False),
-            ]
         return super(ProductProduct, self).search(
             args, offset=offset, limit=limit, order=order, count=count
         )
+
+    @api.model
+    def fields_view_get(
+        self, view_id=None, view_type="form", toolbar=False, submenu=False
+    ):
+        res = super().fields_view_get(
+            view_id=view_id, view_type=view_type, toolbar=toolbar, submenu=False
+        )
+        current_partner = self.env.context.get("search_default_supplier_partner_ids")
+        if view_type == "search" and current_partner:
+            doc = etree.XML(res["arch"])
+            for node in doc.xpath("//filter[@name='filter_for_current_supplier']"):
+                node.attrib[
+                    "domain"
+                ] = "[('supplier_partner_ids', '=', current_partner.id)])"
+                res["arch"] = etree.tostring(doc, pretty_print=True)
+        return res
 
     @api.model
     def check_access_rights(self, operation, raise_exception=True):
