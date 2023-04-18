@@ -95,6 +95,7 @@ addon | version | maintainers | summary
 [purchase_stock_price_unit_sync](purchase_stock_price_unit_sync/) | 13.0.1.0.2 |  | Update cost price in stock moves already done
 [purchase_stock_return_request](purchase_stock_return_request/) | 13.0.1.0.0 |  | Purchase Stock Return Request
 [purchase_stock_secondary_unit](purchase_stock_secondary_unit/) | 13.0.1.0.2 |  | Get product quantities in a secondary unit
+[purchase_stock_tier_validation](purchase_stock_tier_validation/) | 13.0.1.0.0 |  | Exclude RFQs pending to validate when procuring
 [purchase_substate](purchase_substate/) | 13.0.1.0.0 |  | Purchase Sub State
 [purchase_tier_validation](purchase_tier_validation/) | 13.0.1.0.0 |  | Extends the functionality of Purchase Orders to support a tier validation process.
 [purchase_tier_validation_forward](purchase_tier_validation_forward/) | 13.0.1.0.1 |  | Purchase Tier Validation - Forward Option
