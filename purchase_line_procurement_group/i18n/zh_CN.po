@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* purchase_line_procurement_group
+# 	* purchase_line_procurement_group
 #
 msgid ""
 msgstr ""
@@ -31,7 +31,5 @@ msgstr "采购订单行"
 msgid "Stock Move"
 msgstr "库存移动"
 
-#. module: purchase_line_procurement_group
-#: model:ir.model,name:purchase_line_procurement_group.model_stock_rule
-msgid "Stock Rule"
-msgstr "库存规则"
+#~ msgid "Stock Rule"
+#~ msgstr "库存规则"
