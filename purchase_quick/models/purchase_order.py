@@ -40,7 +40,7 @@ class PurchaseOrder(models.Model):
                 "search_default_filter_to_purchase": 1,
                 "search_default_filter_for_current_supplier": 1,
                 "quick_access_rights_purchase": 1,
-                "search_default_supplier_partner_ids": commercial.id,
+                "po_partner_id": commercial.id,
             }
         )
 

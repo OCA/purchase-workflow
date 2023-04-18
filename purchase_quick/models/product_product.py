@@ -73,6 +73,15 @@ class ProductProduct(models.Model):
             args, offset=offset, limit=limit, order=order, count=count
         )
 
+    def _get_supplier_domain(self, partner_id):
+        return [
+            "|",
+            ("variant_specific_seller_ids.name", "=", partner_id),
+            "&",
+            ("seller_ids.name", "=", partner_id),
+            ("product_variant_ids", "!=", False),
+        ]
+
     @api.model
     def fields_view_get(
         self, view_id=None, view_type="form", toolbar=False, submenu=False
@@ -80,13 +89,12 @@ class ProductProduct(models.Model):
         res = super().fields_view_get(
             view_id=view_id, view_type=view_type, toolbar=toolbar, submenu=False
         )
-        current_partner = self.env.context.get("search_default_supplier_partner_ids")
-        if view_type == "search" and current_partner:
+        po_partner_id = self.env.context.get("po_partner_id")
+        if view_type == "search" and po_partner_id:
             doc = etree.XML(res["arch"])
-            for node in doc.xpath("//filter[@name='filter_for_current_supplier']"):
-                node.attrib[
-                    "domain"
-                ] = "[('supplier_partner_ids', '=', current_partner.id)])"
+            node = doc.xpath("//filter[@name='filter_for_current_supplier']")
+            if node:
+                node[0].attrib["domain"] = str(self._get_supplier_domain(po_partner_id))
                 res["arch"] = etree.tostring(doc, pretty_print=True)
         return res
 
