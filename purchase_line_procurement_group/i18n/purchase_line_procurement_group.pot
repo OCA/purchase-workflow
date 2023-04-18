@@ -27,8 +27,3 @@ msgstr ""
 #: model:ir.model,name:purchase_line_procurement_group.model_stock_move
 msgid "Stock Move"
 msgstr ""
-
-#. module: purchase_line_procurement_group
-#: model:ir.model,name:purchase_line_procurement_group.model_stock_rule
-msgid "Stock Rule"
-msgstr ""
