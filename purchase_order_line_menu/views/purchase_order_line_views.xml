@@ -154,7 +154,7 @@
         <field name="name">Purchase Order Lines</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">purchase.order.line</field>
-        <field name="view_mode">tree,form,pivot</field>
+        <field name="view_mode">tree,pivot</field>
         <field
             name="search_view_id"
             ref="purchase_order_line_menu.purchase_order_line_search"
