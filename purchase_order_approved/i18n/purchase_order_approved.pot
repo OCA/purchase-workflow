@@ -75,6 +75,11 @@ msgid "Depicts the date where the Quotation should be validated and converted in
 msgstr ""
 
 #. module: purchase_order_approved
+#: selection:purchase.order,state:0
+msgid "Draft"
+msgstr ""
+
+#. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__dest_address_id
 msgid "Drop Ship Address"
 msgstr ""
@@ -106,18 +111,13 @@ msgid "Put an address if you want to deliver directly from the vendor to the cus
 msgstr ""
 
 #. module: purchase_order_approved
-#: selection:purchase.order,state:0
-msgid "RFQ"
-msgstr ""
-
-#. module: purchase_order_approved
-#: selection:purchase.order,state:0
-msgid "RFQ Sent"
-msgstr ""
-
-#. module: purchase_order_approved
 #: model:ir.model.fields,help:purchase_order_approved.field_purchase_order__origin
 msgid "Reference of the document that generated this purchase order request (e.g. a sales order)"
+msgstr ""
+
+#. module: purchase_order_approved
+#: selection:purchase.order,state:0
+msgid "Sent"
 msgstr ""
 
 #. module: purchase_order_approved
