@@ -7,14 +7,12 @@ from odoo import api, fields, models
 
 
 class PurchaseOrder(models.Model):
-    _inherit = 'purchase.order'
+    _inherit = "purchase.order"
 
-    state = fields.Selection(
-        selection_add=[('draft', 'Draft'), ('sent', 'Sent')]
-    )
+    state = fields.Selection(selection_add=[("draft", "Draft"), ("sent", "Sent")])
 
     @api.multi
     def print_quotation(self):
-        self.write({'state': "sent"})
-        report = self.env.ref('purchase.action_report_purchase_order')
+        self.write({"state": "sent"})
+        report = self.env.ref("purchase.action_report_purchase_order")
         return report.report_action(self)
