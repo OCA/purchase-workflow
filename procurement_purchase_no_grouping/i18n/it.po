@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-24 07:53+0000\n"
-"PO-Revision-Date: 2023-02-01 09:40+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-04-19 15:12+0000\n"
+"Last-Translator: Sergio Corato <sergiocorato@gmail.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -22,27 +22,27 @@ msgstr ""
 #. module: procurement_purchase_no_grouping
 #: selection:product.category,procured_purchase_grouping:0
 msgid "No line grouping"
-msgstr ""
+msgstr "Non raggruppa le righe"
 
 #. module: procurement_purchase_no_grouping
 #: selection:product.category,procured_purchase_grouping:0
 msgid "No order grouping"
-msgstr ""
+msgstr "Non raggruppa gli ordini"
 
 #. module: procurement_purchase_no_grouping
 #: model:ir.model.fields,field_description:procurement_purchase_no_grouping.field_product_category__procured_purchase_grouping
 msgid "Procured purchase grouping"
-msgstr ""
+msgstr "Raggruppamento acquisti"
 
 #. module: procurement_purchase_no_grouping
 #: model:ir.model,name:procurement_purchase_no_grouping.model_product_category
 msgid "Product Category"
-msgstr ""
+msgstr "Categoria prodotto"
 
 #. module: procurement_purchase_no_grouping
 #: selection:product.category,procured_purchase_grouping:0
 msgid "Product category grouping"
-msgstr ""
+msgstr "Raggruppamento categoria prodotto"
 
 #. module: procurement_purchase_no_grouping
 #: model:ir.model,name:procurement_purchase_no_grouping.model_purchase_order_line
@@ -62,16 +62,27 @@ msgid ""
 "* Product category grouping: This option groups products in the same "
 "purchase order that belongs to the same product category."
 msgstr ""
+"Selezione il comportamento per il raggruppamento degli acquisti da "
+"schedulatore per i prodotti di questa categoria:\n"
+"* Standard (default): gli approvvigionamenti creeranno degli ordini di "
+"acquisto come sempre, raggruppando righe e ordini quando possibile.\n"
+"* Non raggruppa le righe: se ci sono ordini di acquisto aperti per lo stesso "
+"fornitore, saranno riutilizzati, ma le righe non saranno unite.\n"
+"* Non raggruppa gli ordini: quest'opzione disattiva qualsiasi tipo di "
+"raggruppamento.\n"
+"* Raggruppa per categoria di prodotto: quest'opzione raggruppa i prodotti "
+"nello stesso ordine di acquisto se appartengono alla stessa categoria di "
+"prodotti."
 
 #. module: procurement_purchase_no_grouping
 #: selection:product.category,procured_purchase_grouping:0
 msgid "Standard grouping"
-msgstr ""
+msgstr "Standard"
 
 #. module: procurement_purchase_no_grouping
 #: model:ir.model,name:procurement_purchase_no_grouping.model_stock_rule
 msgid "Stock Rule"
-msgstr ""
+msgstr "Regola di magazzino"
 
 #~ msgid "Purchase Order"
 #~ msgstr "Ordine Acquisto"
