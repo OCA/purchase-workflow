@@ -15,3 +15,5 @@ def uninstall_hook(cr, registry):
                 "sequence": 0,
             }
         )
+        # ReCreate ir.actions.report
+        env.ref("purchase.report_purchase_quotation").create_action()

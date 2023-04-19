@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class PurchaseOrder(models.Model):
@@ -11,8 +11,8 @@ class PurchaseOrder(models.Model):
 
     state = fields.Selection(selection_add=[("draft", "Draft"), ("sent", "Sent")])
 
-    @api.multi
     def print_quotation(self):
-        self.write({"state": "sent"})
+        orders = self.filtered(lambda x: x.state == "draft")
+        orders.write({"state": "sent"})
         report = self.env.ref("purchase.action_report_purchase_order")
         return report.report_action(self)
