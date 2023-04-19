@@ -3,7 +3,7 @@
 {
     "name": "Purchase Stock Tier Validation",
     "summary": "Exclude RFQs pending to validate when procuring",
-    "version": "13.0.1.0.0",
+    "version": "14.0.1.0.0",
     "category": "Purchase Management",
     "website": "https://github.com/OCA/purchase-workflow",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
