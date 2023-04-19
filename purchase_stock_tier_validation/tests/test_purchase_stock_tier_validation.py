@@ -50,8 +50,8 @@ class TestPurchaseStockTierValidation(common.TransactionCase):
 
     def test_procurement_in_new_rfq(self):
         """
-            Procure a product with the same supplier as one open RFQ under validation
-            and check if it includes the procurement in that RFQ or in a new one.
+        Procure a product with the same supplier as one open RFQ under validation
+        and check if it includes the procurement in that RFQ or in a new one.
         """
         po = self.env["purchase.order"].create(
             {
