@@ -26,8 +26,8 @@ msgid ""
 "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
 "specific.\" groups=\"base.group_multi_company\"/>"
 msgstr ""
-"<span class=\"fa fa-lg fa-building-o\" title=\"此处设置的值特定于公司。\" groups=\"base."
-"group_multi_company\"/>"
+"<span class=\"fa fa-lg fa-building-o\" title=\"此处设置的值特定于公司。\" "
+"groups=\"base.group_multi_company\"/>"
 
 #. module: purchase_order_approved
 #: model_terms:ir.ui.view,arch_db:purchase_order_approved.view_purchase_configuration
@@ -45,8 +45,9 @@ msgid ""
 "back to draft. You can release the creation of the incoming shipments moving "
 "the purchase order to state 'Purchase Order'."
 msgstr ""
-"在“采购订单”之前的采购订单中添加额外状态。确认和批准采购订单后，将进入“已批准”状态。在此状态下，尚未创建传入装运，您仍可以返回草稿状态。您可以释放将采"
-"购订单移动到状态“采购订单”的传入发货的创建。"
+"在“采购订单”之前的采购订单中添加额外状态。确认和批准采购订单后，将进入“已批"
+"准”状态。在此状态下，尚未创建传入装运，您仍可以返回草稿状态。您可以释放将采购"
+"订单移动到状态“采购订单”的传入发货的创建。"
 
 #. module: purchase_order_approved
 #: selection:purchase.order,state:0
@@ -96,6 +97,11 @@ msgid ""
 msgstr "描述报价单验证转换为采购订单的日期。"
 
 #. module: purchase_order_approved
+#: selection:purchase.order,state:0
+msgid "Draft"
+msgstr ""
+
+#. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__dest_address_id
 msgid "Drop Ship Address"
 msgstr "代发货地址"
@@ -126,17 +132,9 @@ msgstr "采购订单"
 msgid ""
 "Put an address if you want to deliver directly from the vendor to the "
 "customer. Otherwise, keep empty to deliver to your own company."
-msgstr "如果你想直接从供应商发货给客户，就填写一个地址。否则，留空把货物运到你的公司仓库。"
-
-#. module: purchase_order_approved
-#: selection:purchase.order,state:0
-msgid "RFQ"
-msgstr "询价单"
-
-#. module: purchase_order_approved
-#: selection:purchase.order,state:0
-msgid "RFQ Sent"
-msgstr "发送询价单"
+msgstr ""
+"如果你想直接从供应商发货给客户，就填写一个地址。否则，留空把货物运到你的公司"
+"仓库。"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,help:purchase_order_approved.field_purchase_order__origin
@@ -144,6 +142,11 @@ msgid ""
 "Reference of the document that generated this purchase order request (e.g. a "
 "sales order)"
 msgstr "生成此采购订单请求的文档参考（例如销售订单）"
+
+#. module: purchase_order_approved
+#: selection:purchase.order,state:0
+msgid "Sent"
+msgstr ""
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__origin
@@ -184,3 +187,9 @@ msgstr "供应商"
 #: model:ir.model.fields,help:purchase_order_approved.field_purchase_order__partner_id
 msgid "You can find a vendor by its Name, TIN, Email or Internal Reference."
 msgstr "您可以通过名称，TIN，电子邮件或内部参考找到供应商。"
+
+#~ msgid "RFQ"
+#~ msgstr "询价单"
+
+#~ msgid "RFQ Sent"
+#~ msgstr "发送询价单"

@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2017-06-10 05:30+0000\n"
 "PO-Revision-Date: 2022-09-22 23:08+0000\n"
 "Last-Translator: Douglas Custódio <douglascstd@yahoo.com>\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
-"23907/pt_BR/)\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
+"teams/23907/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -92,6 +92,11 @@ msgid ""
 msgstr ""
 
 #. module: purchase_order_approved
+#: selection:purchase.order,state:0
+msgid "Draft"
+msgstr ""
+
+#. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__dest_address_id
 msgid "Drop Ship Address"
 msgstr "Endereço Remessa Direta"
@@ -125,20 +130,15 @@ msgid ""
 msgstr ""
 
 #. module: purchase_order_approved
-#: selection:purchase.order,state:0
-msgid "RFQ"
-msgstr ""
-
-#. module: purchase_order_approved
-#: selection:purchase.order,state:0
-msgid "RFQ Sent"
-msgstr ""
-
-#. module: purchase_order_approved
 #: model:ir.model.fields,help:purchase_order_approved.field_purchase_order__origin
 msgid ""
 "Reference of the document that generated this purchase order request (e.g. a "
 "sales order)"
+msgstr ""
+
+#. module: purchase_order_approved
+#: selection:purchase.order,state:0
+msgid "Sent"
 msgstr ""
 
 #. module: purchase_order_approved

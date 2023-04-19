@@ -96,6 +96,11 @@ msgstr ""
 "ordine di acquisto."
 
 #. module: purchase_order_approved
+#: selection:purchase.order,state:0
+msgid "Draft"
+msgstr ""
+
+#. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__dest_address_id
 msgid "Drop Ship Address"
 msgstr ""
@@ -131,16 +136,6 @@ msgstr ""
 "cliente. Altrimenti, lasciare vuoto per consegnare alla propria azienda."
 
 #. module: purchase_order_approved
-#: selection:purchase.order,state:0
-msgid "RFQ"
-msgstr "RDP"
-
-#. module: purchase_order_approved
-#: selection:purchase.order,state:0
-msgid "RFQ Sent"
-msgstr "RDP Inviata"
-
-#. module: purchase_order_approved
 #: model:ir.model.fields,help:purchase_order_approved.field_purchase_order__origin
 msgid ""
 "Reference of the document that generated this purchase order request (e.g. a "
@@ -148,6 +143,11 @@ msgid ""
 msgstr ""
 "Riferimento al documento che ha generato questa richiesta di ordine di "
 "acquisto (es. ordine di vendita)"
+
+#. module: purchase_order_approved
+#: selection:purchase.order,state:0
+msgid "Sent"
+msgstr ""
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__origin
@@ -190,3 +190,9 @@ msgid "You can find a vendor by its Name, TIN, Email or Internal Reference."
 msgstr ""
 "Un fornitore può essere trovato per nome, codice fiscale, e-mail o "
 "riferimento interno."
+
+#~ msgid "RFQ"
+#~ msgstr "RDP"
+
+#~ msgid "RFQ Sent"
+#~ msgstr "RDP Inviata"
