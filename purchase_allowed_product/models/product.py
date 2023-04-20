@@ -27,7 +27,7 @@ class ProductProduct(models.Model):
                 .commercial_partner_id
             )
             supplierinfos = self.env["product.supplierinfo"].search(
-                [("name", "=", seller.id)]
+                [("partner_id", "=", seller.id)]
             )
             args += [
                 "|",
