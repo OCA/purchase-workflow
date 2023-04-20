@@ -13,7 +13,7 @@ class TestPurchaseAllowedProduct(TransactionCase):
         self.product_model = self.env["product.product"]
         self.partner_4 = self.env.ref("base.res_partner_4")
         self.supplierinfo = self.supplierinfo_model.search(
-            [("name", "=", self.partner_4.id)]
+            [("partner_id", "=", self.partner_4.id)]
         )
         self.partner_4_supplied_products = self.product_model.search(
             [
