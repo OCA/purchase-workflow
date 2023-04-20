@@ -9,7 +9,9 @@ class TestPurchaseStockTierValidation(common.TransactionCase):
     def setUp(self):
         super(TestPurchaseStockTierValidation, self).setUp()
         # Get purchase order model
-        self.po_model = self.env.ref("purchase.model_purchase_order")
+        self.po_model = self.env.ref("purchase.model_purchase_order").with_context(
+            tracking_disable=True, no_reset_password=True
+        )
 
         # Create users
         group_ids = self.env.ref("base.group_system").ids
@@ -78,13 +80,14 @@ class TestPurchaseStockTierValidation(common.TransactionCase):
         self.assertEqual(len(po.mapped("order_line")), 1)
         po.request_validation()
         po.with_user(self.test_user_1).validate_tier()
+        date_planned = fields.Datetime.now()
         group = self.env["procurement.group"].create(
             {"name": "Test", "move_type": "direct"}
         )
         values = {
             "company_id": self.warehouse.company_id,
             "group_id": group,
-            "date_planned": "2018-11-13 12:12:59",
+            "date_planned": date_planned,
             "warehouse_id": self.warehouse,
         }
         procurements = [
