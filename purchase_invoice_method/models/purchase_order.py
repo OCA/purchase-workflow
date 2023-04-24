@@ -24,7 +24,7 @@ class PurchaseOrderLine(models.Model):
         "order_id.invoice_method",
     )
     def _compute_qty_invoiced(self):
-        super()._compute_qty_invoiced()
+        ret = super()._compute_qty_invoiced()
         for line in self.filtered(
             lambda r: r.order_id.invoice_method
             and r.order_id.state in ["purchase", "done"]
@@ -33,3 +33,4 @@ class PurchaseOrderLine(models.Model):
                 line.qty_to_invoice = line.product_qty - line.qty_invoiced
             elif line.order_id.invoice_method == "receive":
                 line.qty_to_invoice = line.qty_received - line.qty_invoiced
+        return ret
