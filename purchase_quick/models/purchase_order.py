@@ -35,15 +35,14 @@ class PurchaseOrder(models.Model):
         self.ensure_one()
         res = self._common_action_keys()
         commercial = self.partner_id.commercial_partner_id
+        res["domain"] = "[('purchase_ok', '=', True)]"
         res["context"].update(
             {
-                "search_default_filter_to_purchase": 1,
                 "search_default_filter_for_current_supplier": 1,
                 "quick_access_rights_purchase": 1,
                 "po_partner_id": commercial.id,
             }
         )
-
         res["name"] = "🔙 {} ({})".format(_("Product Variants"), commercial.name)
         res["view_id"] = (self.env.ref("purchase_quick.product_tree_view4purchase").id,)
         res["search_view_id"] = (
