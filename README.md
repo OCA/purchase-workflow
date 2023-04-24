@@ -36,6 +36,7 @@ addon | version | maintainers | summary
 [purchase_exception](purchase_exception/) | 15.0.1.0.0 |  | Custom exceptions on purchase order
 [purchase_fop_shipping](purchase_fop_shipping/) | 15.0.1.0.0 |  | Purchase Free-Of-Payment shipping
 [purchase_force_invoiced](purchase_force_invoiced/) | 15.0.1.0.1 |  | Allows to force the billing status of the purchase order to "Invoiced"
+[purchase_invoice_method](purchase_invoice_method/) | 15.0.1.0.0 |  | Allow to force the invoice method of a purchase
 [purchase_invoice_plan](purchase_invoice_plan/) | 15.0.1.0.0 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Add to purchases order, ability to manage future invoice plan
 [purchase_location_by_line](purchase_location_by_line/) | 15.0.1.0.0 |  | Allows to define a specific destination location on each PO line
 [purchase_merge](purchase_merge/) | 15.0.1.0.0 |  | Wizard to merge purchase with required conditions
