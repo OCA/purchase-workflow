@@ -27,6 +27,7 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
         comodel_name="product.product",
         string="Deposit Payment Product",
         domain=[("type", "=", "service")],
+        default=lambda self: self.env.company.purchase_deposit_product_id,
     )
     amount = fields.Float(
         string="Deposit Payment Amount",
@@ -36,25 +37,23 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
     deposit_account_id = fields.Many2one(
         comodel_name="account.account",
         string="Expense Account",
+        compute="_compute_deposit_account",
+        store=True,
+        readonly=False,
         domain=[("deprecated", "=", False)],
         help="Account used for deposits",
     )
     deposit_taxes_id = fields.Many2many(
         comodel_name="account.tax",
         string="Vendor Taxes",
+        compute="_compute_deposit_account",
+        store=True,
+        readonly=False,
         help="Taxes used for deposits",
     )
 
-    @api.model
-    def view_init(self, fields):
-        active_id = self._context.get("active_id")
-        purchase = self.env["purchase.order"].browse(active_id)
-        if purchase.state != "purchase":
-            raise UserError(_("This action is allowed only in Purchase Order sate"))
-        return super().view_init(fields)
-
-    @api.onchange("purchase_deposit_product_id")
-    def _onchagne_purchase_deposit_product_id(self):
+    @api.depends("purchase_deposit_product_id")
+    def _compute_deposit_account(self):
         product = self.purchase_deposit_product_id
         self.deposit_account_id = product.property_account_expense_id
         self.deposit_taxes_id = product.supplier_taxes_id
@@ -120,8 +119,7 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
                         "product_id": product.id,
                         "purchase_line_id": po_line.id,
                         "tax_ids": [(6, 0, tax_ids)],
-                        "analytic_account_id": po_line.account_analytic_id.id or False,
-                        "analytic_tag_ids": [(6, 0, po_line.analytic_tag_ids.ids)],
+                        "analytic_distribution": po_line.analytic_distribution,
                     },
                 )
             ],
@@ -160,7 +158,6 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
 
     def create_invoices(self):
         Purchase = self.env["purchase.order"]
-        IrDefault = self.env["ir.default"].sudo()
         purchases = Purchase.browse(self._context.get("active_ids", []))
         # Create deposit product if necessary
         product = self.purchase_deposit_product_id
@@ -169,11 +166,7 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
             product = self.purchase_deposit_product_id = self.env[
                 "product.product"
             ].create(vals)
-            IrDefault.set(
-                "purchase.advance.payment.inv",
-                "purchase_deposit_product_id",
-                product.id,
-            )
+            self.env.company.purchase_deposit_product_id = product
         PurchaseLine = self.env["purchase.order.line"]
         for order in purchases:
             amount = self.amount

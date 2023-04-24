@@ -17,14 +17,14 @@
                     <div class="o_setting_left_pane" />
                     <div class="o_setting_right_pane">
                         <label
-                            for="default_purchase_deposit_product_id"
+                            for="purchase_deposit_product_id"
                             string="Deposit Payments"
                         />
                         <div class="text-muted">
                             Product used for deposit payments
                         </div>
                         <div class="text-muted">
-                            <field name="default_purchase_deposit_product_id" />
+                            <field name="purchase_deposit_product_id" />
                         </div>
                     </div>
                 </div>

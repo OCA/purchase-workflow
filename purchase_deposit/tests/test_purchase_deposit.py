@@ -8,25 +8,23 @@ from odoo.tests.common import Form, TransactionCase
 
 
 class TestPurchaseDeposit(TransactionCase):
-    def setUp(self):
-        super(TestPurchaseDeposit, self).setUp()
-        self.product_model = self.env["product.product"]
-        self.account_model = self.env["account.account"]
-        self.invoice_model = self.env["account.move"]
-        self.default_model = self.env["ir.default"]
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.product_model = cls.env["product.product"]
+        cls.account_model = cls.env["account.account"]
+        cls.invoice_model = cls.env["account.move"]
 
         # Create Deposit Account
-        self.account_deposit = self.account_model.create(
+        cls.account_deposit = cls.account_model.create(
             {
                 "name": "Purchase Deposit",
                 "code": "11620",
-                "user_type_id": self.env.ref(
-                    "account.data_account_type_current_assets"
-                ).id,
+                "account_type": "asset_current",
             }
         )
         # Create products:
-        p1 = self.product1 = self.product_model.create(
+        p1 = cls.product1 = cls.product_model.create(
             {
                 "name": "Test Product 1",
                 "type": "service",
@@ -35,9 +33,9 @@ class TestPurchaseDeposit(TransactionCase):
             }
         )
 
-        self.po = self.env["purchase.order"].create(
+        cls.po = cls.env["purchase.order"].create(
             {
-                "partner_id": self.ref("base.res_partner_3"),
+                "partner_id": cls.env.ref("base.res_partner_3").id,
                 "order_line": [
                     (
                         0,
@@ -68,14 +66,12 @@ class TestPurchaseDeposit(TransactionCase):
         self.po.button_confirm()
         with Form(CreateDeposit.with_context(**ctx)) as f:
             f.advance_payment_method = "percentage"
-            f.deposit_account_id = self.account_deposit
         wizard = f.save()
         wizard.amount = 10.0  # 10%
+        wizard.deposit_account_id = self.account_deposit
         wizard.create_invoices()
         # New Purchase Deposit is created automatically
-        deposit_id = self.default_model.sudo().get(
-            "purchase.advance.payment.inv", "purchase_deposit_product_id"
-        )
+        deposit_id = self.env.company.purchase_deposit_product_id.id
         deposit = self.product_model.browse(deposit_id)
         self.assertEqual(deposit.name, "Purchase Deposit")
         # 1 Deposit Invoice is created
@@ -127,12 +123,9 @@ class TestPurchaseDeposit(TransactionCase):
             "create_bills": True,
         }
         CreateDeposit = self.env["purchase.advance.payment.inv"]
-        # 1. This action is allowed only in Purchase Order sate
-        with self.assertRaises(UserError):
-            Form(CreateDeposit.with_context(**ctx))  # Initi wizard
         self.po.button_confirm()
         self.assertEqual(self.po.state, "purchase")
-        # 2. The value of the deposit must be positive
+        # 1. The value of the deposit must be positive
         f = Form(CreateDeposit.with_context(**ctx))
         f.advance_payment_method = "fixed"
         f.amount = 0.0
@@ -140,7 +133,7 @@ class TestPurchaseDeposit(TransactionCase):
         wizard = f.save()
         with self.assertRaises(UserError):
             wizard.create_invoices()
-        # 3. For type percentage, The percentage of the deposit must <= 100
+        # 2. For type percentage, The percentage of the deposit must <= 100
         wizard.advance_payment_method = "percentage"
         wizard.amount = 101.0
         with self.assertRaises(UserError):
@@ -168,9 +161,7 @@ class TestPurchaseDeposit(TransactionCase):
         f.deposit_account_id = self.account_deposit
         wizard = f.save()
         # 4. Purchase Deposit Product's purchase_method != purchase
-        deposit_id = self.default_model.sudo().get(
-            "purchase.advance.payment.inv", "purchase_deposit_product_id"
-        )
+        deposit_id = self.env.company.purchase_deposit_product_id.id
         deposit = self.product_model.browse(deposit_id)
         deposit.purchase_method = "receive"
         wizard.purchase_deposit_product_id = deposit
@@ -197,9 +188,7 @@ class TestPurchaseDeposit(TransactionCase):
         f.amount = 101.0
         f.deposit_account_id = self.account_deposit
         wizard = f.save()
-        deposit_id = self.default_model.sudo().get(
-            "purchase.advance.payment.inv", "purchase_deposit_product_id"
-        )
+        deposit_id = self.env.company.purchase_deposit_product_id.id
         deposit = self.product_model.browse(deposit_id)
         # 5. Purchase Deposit Product's type != service
         deposit.type = "consu"
