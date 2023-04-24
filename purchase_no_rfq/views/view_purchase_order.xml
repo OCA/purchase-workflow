@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_purchase_order_tree" model="ir.ui.view">
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_view_tree" />
+        <field name="arch" type="xml">
+            <!-- Add missing decoration-info on that tree view-->
+            <xpath expr="//tree" position="attributes">
+                <attribute name="decoration-info">state in ('draft','sent')</attribute>
+            </xpath>
+            <field name="state" position="attributes">
+                <attribute name="invisible">0</attribute>
+                <attribute name="optional">show</attribute>
+                <attribute name="widget">badge</attribute>
+                <attribute
+                    name="decoration-info"
+                >state == 'draft' or state == 'sent'</attribute>
+                <attribute name="decoration-warning">state == 'to approve'</attribute>
+                <attribute
+                    name="decoration-success"
+                >state == 'purchase' or state == 'done'</attribute>
+            </field>
+            <field name="date_order" position="attributes">
+                <attribute name="widget">remaining_days</attribute>
+                <attribute
+                    name="attrs"
+                >{'invisible': [('state', 'in', ['purchase', 'done', 'cancel'])]}</attribute>
+            </field>
+        </field>
+    </record>
+
+
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="priority">100</field>
+        <field name="arch" type="xml">
+            <!-- Rename title from 'Request for Quotation' into 'Purchase Order' -->
+            <xpath expr="//div[hasclass('oe_title')]/span[1]" position="replace">
+                <span
+                    class="o_form_label"
+                    attrs="{'invisible': [('state','not in',('draft','sent'))]}"
+                >Purchase Order </span>
+            </xpath>
+
+            <!-- Change context for "Send by mail" buttons" -->
+            <xpath
+                expr="//button[@name='action_rfq_send' and @states='draft']"
+                position="attributes"
+            >
+                <attribute name="context">{'send_rfq':False}</attribute>
+            </xpath>
+            <xpath
+                expr="//button[@name='action_rfq_send' and @states='sent']"
+                position="attributes"
+            >
+                <attribute name="context">{'send_rfq':False}</attribute>
+            </xpath>
+
+            <!-- Rename print button from  'Print RFQ' into 'Print' -->
+            <xpath
+                expr="//button[@name='print_quotation' and @states='draft']"
+                position="attributes"
+            >
+                <attribute name="string">Print</attribute>
+            </xpath>
+            <xpath
+                expr="//button[@name='print_quotation' and @states='sent']"
+                position="attributes"
+            >
+                <attribute name="string">Print</attribute>
+            </xpath>
+
+            <!-- Add a print button, displayed in non draft and sent states -->
+            <xpath
+                expr="//button[@name='print_quotation' and @states='sent']"
+                position="after"
+            >
+                    <button
+                    name="print_quotation"
+                    string="Print"
+                    type="object"
+                    states="to approve,purchase,done,cancel"
+                    groups="base.group_user"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <!-- hide Request for quotation menu item -->
+    <record id="purchase.menu_purchase_rfq" model="ir.ui.menu">
+        <field name="groups_id" eval="[(4, ref('base.group_no_one'))]" />
+        <field name="sequence">999</field>
+    </record>
+
+    <!-- remove domain on purchase.order actions -->
+    <record id="purchase.purchase_form_action" model="ir.actions.act_window">
+        <field name="domain">[]</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <function model="ir.actions.report" name="unlink_action">
+        <value eval="[ref('purchase.report_purchase_quotation')]" />
+    </function>
+
+    <record id="purchase.action_report_purchase_order" model="ir.actions.report">
+        <field name="print_report_name">'Purchase Order - %s' % (object.name)</field>
+    </record>
+
+</odoo>
