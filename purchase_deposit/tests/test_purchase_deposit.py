@@ -4,9 +4,11 @@
 
 from odoo import fields
 from odoo.exceptions import UserError
+from odoo.tests import tagged
 from odoo.tests.common import Form, TransactionCase
 
 
+@tagged("post_install", "-at_install")
 class TestPurchaseDeposit(TransactionCase):
     def setUp(self):
         super(TestPurchaseDeposit, self).setUp()
