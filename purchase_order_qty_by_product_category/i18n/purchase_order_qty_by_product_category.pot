@@ -4,10 +4,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0+e\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-30 09:34+0000\n"
-"PO-Revision-Date: 2023-01-30 09:34+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -33,11 +31,6 @@ msgstr ""
 #. module: purchase_order_qty_by_product_category
 #: model:ir.model,name:purchase_order_qty_by_product_category.model_res_company
 msgid "Companies"
-msgstr ""
-
-#. module: purchase_order_qty_by_product_category
-#: model:ir.model,name:purchase_order_qty_by_product_category.model_res_config_settings
-msgid "Config Settings"
 msgstr ""
 
 #. module: purchase_order_qty_by_product_category
@@ -103,6 +96,11 @@ msgid "Po Category Qty Split By Uom Reference"
 msgstr ""
 
 #. module: purchase_order_qty_by_product_category
+#: model:ir.model,name:purchase_order_qty_by_product_category.model_res_config_settings
+msgid "Procurement purchase grouping settings"
+msgstr ""
+
+#. module: purchase_order_qty_by_product_category
 #: model:ir.model.fields,field_description:purchase_order_qty_by_product_category.field_purchase_order_qty_by_product_category__purchase_line_ids
 msgid "Purchase Line"
 msgstr ""
@@ -146,7 +144,9 @@ msgstr ""
 #. module: purchase_order_qty_by_product_category
 #: code:addons/purchase_order_qty_by_product_category/models/purchase_order_qty_by_product_category.py:0
 #, python-format
-msgid "Qty group for order %s, category %s and UoM %s already exists"
+msgid ""
+"Qty group for order '%(order)s', category '%(categ)s' and UoM '%(uom)s' "
+"already exists"
 msgstr ""
 
 #. module: purchase_order_qty_by_product_category
@@ -162,6 +162,11 @@ msgstr ""
 #. module: purchase_order_qty_by_product_category
 #: model_terms:ir.ui.view,arch_db:purchase_order_qty_by_product_category.purchase_order_view_form_inherit
 msgid "Split by UoM"
+msgstr ""
+
+#. module: purchase_order_qty_by_product_category
+#: model_terms:ir.ui.view,arch_db:purchase_order_qty_by_product_category.purchase_order_view_form_inherit
+msgid "To Receive"
 msgstr ""
 
 #. module: purchase_order_qty_by_product_category
