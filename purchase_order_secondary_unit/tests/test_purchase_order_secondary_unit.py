@@ -52,7 +52,7 @@ class TestPurchaseOrderSecondaryUnit(TransactionCase):
         po.onchange_partner_id()
         cls.order = cls.purchase_order_obj.create(po._convert_to_write(po._cache))
 
-    def test_purchase_order(self):
+    def test_purchase_order_01(self):
         purchase_order = Form(self.order)
         with purchase_order.order_line.edit(0) as line:
             # Test _compute product_qty
@@ -63,8 +63,11 @@ class TestPurchaseOrderSecondaryUnit(TransactionCase):
             line.secondary_uom_qty = 3500.0
             line.product_uom = self.product_uom_gram
             self.assertEqual(line.secondary_uom_qty, 3.5)
-        # Test default purchase order line secondary uom
+
+    def test_purchase_order_02(self):
+        purchase_order = Form(self.order)
         with purchase_order.order_line.new() as line_new:
+            # Test default purchase order line secondary uom
             line_new.product_id = self.product
             self.assertEqual(line_new.secondary_uom_id, self.secondary_unit)
             self.assertEqual(line_new.secondary_uom_qty, 1.0)
