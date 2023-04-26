@@ -11,9 +11,12 @@ class StockMove(models.Model):
         move.
         """
         res = super()._prepare_procurement_values()
-        if self.sale_line_id.vendor_id:
-            res_order_line = self.sale_line_id._prepare_procurement_values(
-                group_id=self.group_id
+        # Get all chained moves to get sale line
+        moves = self.browse(list(self._rollup_move_dests({self.id})))
+        move_sale = moves.filtered("sale_line_id")[:1]
+        if move_sale.sale_line_id.vendor_id:
+            res_order_line = move_sale.sale_line_id._prepare_procurement_values(
+                group_id=move_sale.group_id
             )
             res.update({"supplierinfo_id": res_order_line["supplierinfo_id"]})
         return res
