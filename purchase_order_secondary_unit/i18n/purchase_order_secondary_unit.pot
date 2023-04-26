@@ -14,6 +14,12 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: purchase_order_secondary_unit
+#: model_terms:ir.ui.view,arch_db:purchase_order_secondary_unit.report_purchaseorder_document
+#: model_terms:ir.ui.view,arch_db:purchase_order_secondary_unit.report_purchasequotation_document
+msgid "<strong>Second Qty</strong>"
+msgstr ""
+
+#. module: purchase_order_secondary_unit
 #: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_product_product__purchase_secondary_uom_id
 #: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_product_template__purchase_secondary_uom_id
 msgid "Default secondary unit for purchases"
