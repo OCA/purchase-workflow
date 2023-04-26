@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="purchase_order_view_form_inherit" model="ir.ui.view">
+        <field name="name">purchase.order.view.form.inherit</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='purchase_delivery_invoice']" position="after">
+                <page
+                    string="Qty by Product Category"
+                    name="page_qty_by_product_category"
+                >
+                    <group name="group_qty_by_product_category">
+                        <field
+                            name="category_qty_split_by_uom"
+                            widget="boolean_toggle"
+                            string="Split by UoM"
+                        />
+                        <field
+                            name="category_qty_split_by_uom_reference"
+                            widget="boolean_toggle"
+                            string="Use Reference UoM"
+                            attrs="{'invisible': [('category_qty_split_by_uom', '=', False)]}"
+                        />
+                    </group>
+                    <field name="qty_by_product_category_ids" nolabel="1" colspan="4">
+                        <tree>
+                            <field name="purchase_order_id" invisible="1" />
+                            <field name="category_id" />
+                            <field name="qty_ordered" />
+                            <field name="qty_received" />
+                            <field name="qty_to_receive" string="To Receive" />
+                            <field name="qty_uom_id" groups="uom.group_uom" />
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

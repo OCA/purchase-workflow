@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="res_config_settings_view_form_purchase" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.purchase</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="25" />
+        <field name="inherit_id" ref="base.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='matrix_setting_container']" position="inside">
+                <div
+                    class="col-12 col-lg-6 o_setting_box"
+                    id="po_category_qty_split_by_uom"
+                >
+                    <div class="o_setting_left_pane">
+                        <field name="po_category_qty_split_by_uom" />
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label
+                            for="po_category_qty_split_by_uom"
+                            string="Split Quantity Category By UoM"
+                        />
+                        <div
+                            class="text-muted"
+                        >When grouping PO quantities per product category, also group by UoM</div>
+                    </div>
+                </div>
+                <div
+                    class="col-12 col-lg-6 o_setting_box"
+                    id="po_category_qty_split_by_uom_reference"
+                    attrs="{'invisible': [('po_category_qty_split_by_uom', '=', False)]}"
+                >
+                    <div class="o_setting_left_pane">
+                        <field name="po_category_qty_split_by_uom_reference" />
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label
+                            for="po_category_qty_split_by_uom_reference"
+                            string="Split Quantity Category By Reference UoM"
+                        />
+                        <div
+                            class="text-muted"
+                        >When grouping PO quantities per product category and UoM, use reference UoM</div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

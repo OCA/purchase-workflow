@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+purchase_order_qty_by_product_category_access,purchase_order_qty_by_product_category_access,purchase_order_qty_by_product_category.model_purchase_order_qty_by_product_category,purchase.group_purchase_user,1,1,1,1
