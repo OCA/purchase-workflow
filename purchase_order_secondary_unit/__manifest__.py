@@ -13,5 +13,10 @@
     "installable": True,
     "auto_install": True,
     "depends": ["purchase", "product_secondary_unit"],
-    "data": ["views/product_views.xml", "views/purchase_order_views.xml"],
+    "data": [
+        "views/product_views.xml",
+        "views/purchase_order_views.xml",
+        "reports/purchase_order_templates.xml",
+        "reports/purchase_quotation_templates.xml",
+    ],
 }
