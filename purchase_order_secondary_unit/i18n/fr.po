@@ -6,59 +6,61 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2023-04-28 12:10+0000\n"
+"Last-Translator: Julie LeBrun <julie.lebrun@numigi.com>\n"
 "Language-Team: none\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: purchase_order_secondary_unit
 #: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_product_product__purchase_secondary_uom_id
 #: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_product_template__purchase_secondary_uom_id
 msgid "Default secondary unit for purchases"
-msgstr ""
+msgstr "Unité secondaire par défaut pour les achats"
 
 #. module: purchase_order_secondary_unit
 #: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_product_template__display_name
 #: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_purchase_order_line__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nom affiché"
 
 #. module: purchase_order_secondary_unit
 #: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_product_template__id
 #: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_purchase_order_line__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: purchase_order_secondary_unit
 #: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_product_template____last_update
 #: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_purchase_order_line____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Dernière modification le"
 
 #. module: purchase_order_secondary_unit
 #: model:ir.model,name:purchase_order_secondary_unit.model_product_template
 msgid "Product Template"
-msgstr ""
+msgstr "Article"
 
 #. module: purchase_order_secondary_unit
 #: model:ir.model,name:purchase_order_secondary_unit.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Ligne de la commande"
 
 #. module: purchase_order_secondary_unit
 #: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_purchase_order_line__product_qty
 msgid "Quantity"
-msgstr ""
+msgstr "Quantité"
 
 #. module: purchase_order_secondary_unit
 #: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_purchase_order_line__secondary_uom_id
 msgid "Second unit"
-msgstr ""
+msgstr "Unité secondaire"
 
 #. module: purchase_order_secondary_unit
 #: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_purchase_order_line__secondary_uom_qty
 msgid "Secondary Qty"
-msgstr ""
+msgstr "2e unité"
