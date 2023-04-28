@@ -21,7 +21,7 @@ class RecommendationCase(TransactionCase):
                 "name": "Test Product 1",
                 "categ_id": cls.categ1.id,
                 "type": "product",
-                "seller_ids": [(0, 0, {"name": cls.partner.id, "price": 5})],
+                "seller_ids": [(0, 0, {"partner_id": cls.partner.id, "price": 5})],
             }
         )
         cls.prod_2 = cls.product_obj.create(
@@ -30,7 +30,7 @@ class RecommendationCase(TransactionCase):
                 "name": "Test Product 2",
                 "categ_id": cls.categ2.id,
                 "type": "product",
-                "seller_ids": [(0, 0, {"name": cls.partner.id, "price": 10})],
+                "seller_ids": [(0, 0, {"partner_id": cls.partner.id, "price": 10})],
             }
         )
         cls.prod_3 = cls.product_obj.create(
@@ -39,7 +39,7 @@ class RecommendationCase(TransactionCase):
                 "name": "Test Product 3",
                 "categ_id": cls.categ2.id,
                 "type": "product",
-                "seller_ids": [(0, 0, {"name": cls.partner.id, "price": 7})],
+                "seller_ids": [(0, 0, {"partner_id": cls.partner.id, "price": 7})],
             }
         )
         # Warehouses
@@ -248,7 +248,6 @@ class RecommendationCaseTests(RecommendationCase):
         )
         po_line.onchange_product_id()
         po_line.product_qty = 10
-        po_line._onchange_quantity()
         self.new_po.order_line = po_line
         # Create wizard and set dates
         wizard = self.wizard()
