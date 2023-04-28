@@ -141,6 +141,7 @@
                 <field name="date_accept" />
                 <field name="partner_id" />
                 <field name="responsible_id" />
+                <field name="invoice_ref" optional="show" />
                 <field
                     name="company_id"
                     groups="base.group_multi_company"
@@ -164,6 +165,7 @@
                 <field name="name" string="Reference" />
                 <field name="partner_id" operator="child_of" />
                 <field name="responsible_id" operator="child_of" />
+                <field name="invoice_ref" />
                 <field name="product_id" />
                 <field name="create_uid" />
                 <field name="user_id" />
