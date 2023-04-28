@@ -84,7 +84,7 @@ class PurchaseOrderRecommendation(models.TransientModel):
             prefetch_fields=False
         )
         partner = self.order_id.partner_id.commercial_partner_id
-        supplierinfos = supplierinfo_obj.search([("name", "=", partner.id)])
+        supplierinfos = supplierinfo_obj.search([("partner_id", "=", partner.id)])
         product_tmpls = supplierinfos.mapped("product_tmpl_id").filtered(
             lambda x: x.active and x.purchase_ok
         )
