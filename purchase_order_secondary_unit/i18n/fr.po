@@ -15,27 +15,27 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 
 #. module: purchase_order_secondary_unit
+#: model_terms:ir.ui.view,arch_db:purchase_order_secondary_unit.report_purchaseorder_document
+#: model_terms:ir.ui.view,arch_db:purchase_order_secondary_unit.report_purchasequotation_document
+msgid "<strong>Second Qty</strong>"
+msgstr ""
+
+#. module: purchase_order_secondary_unit
 #: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_product_product__purchase_secondary_uom_id
 #: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_product_template__purchase_secondary_uom_id
 msgid "Default secondary unit for purchases"
 msgstr ""
 
 #. module: purchase_order_secondary_unit
-#: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_product_template__display_name
-#: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_purchase_order_line__display_name
-msgid "Display Name"
+#: model:ir.model.fields,help:purchase_order_secondary_unit.field_product_product__purchase_secondary_uom_id
+msgid ""
+"In order to set a value, please first add at least one record in 'Secondary "
+"Unit of Measure'"
 msgstr ""
 
 #. module: purchase_order_secondary_unit
-#: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_product_template__id
-#: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_purchase_order_line__id
-msgid "ID"
-msgstr ""
-
-#. module: purchase_order_secondary_unit
-#: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_product_template____last_update
-#: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_purchase_order_line____last_update
-msgid "Last Modified on"
+#: model:ir.model,name:purchase_order_secondary_unit.model_product_product
+msgid "Product"
 msgstr ""
 
 #. module: purchase_order_secondary_unit
