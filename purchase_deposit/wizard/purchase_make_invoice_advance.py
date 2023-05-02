@@ -37,7 +37,7 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
     deposit_account_id = fields.Many2one(
         comodel_name="account.account",
         string="Expense Account",
-        compute="_compute_deposit_account",
+        compute="_compute_deposit_account_id",
         store=True,
         readonly=False,
         domain=[("deprecated", "=", False)],
@@ -46,14 +46,14 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
     deposit_taxes_id = fields.Many2many(
         comodel_name="account.tax",
         string="Vendor Taxes",
-        compute="_compute_deposit_account",
+        compute="_compute_deposit_account_id",
         store=True,
         readonly=False,
         help="Taxes used for deposits",
     )
 
     @api.depends("purchase_deposit_product_id")
-    def _compute_deposit_account(self):
+    def _compute_deposit_account_id(self):
         product = self.purchase_deposit_product_id
         self.deposit_account_id = product.property_account_expense_id
         self.deposit_taxes_id = product.supplier_taxes_id
