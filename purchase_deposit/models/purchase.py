@@ -13,7 +13,8 @@ class PurchaseOrder(models.Model):
             default = {}
         default["order_line"] = [
             (0, 0, line.copy_data()[0])
-            for line in self.order_line.filtered(lambda l: not l.is_deposit)
+            for line in self.order_line
+            if not line.is_deposit
         ]
         return super().copy_data(default)
 
