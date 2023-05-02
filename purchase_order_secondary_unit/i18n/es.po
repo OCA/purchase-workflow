@@ -21,7 +21,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:purchase_order_secondary_unit.report_purchaseorder_document
 #: model_terms:ir.ui.view,arch_db:purchase_order_secondary_unit.report_purchasequotation_document
 #, fuzzy
-#| msgid "<strong>Second unit</strong>"
 msgid "<strong>Second Qty</strong>"
 msgstr "<strong>Ud. secund.</strong>"
 
