@@ -39,6 +39,7 @@ class TestPurchaseReceiptExpectationManual(TestPurchaseReceiptExpectation):
         self.assertEqual(order.receipt_expectation, "manual")
         order.button_confirm()
         self.assertEqual(order.incoming_picking_count, 0)
+
         return order
 
     def _button_wiz_checks_success(self, wiz):
@@ -75,10 +76,10 @@ class TestPurchaseReceiptExpectationManual(TestPurchaseReceiptExpectation):
         for fname, value in expected_picking_data:
             self.assertEqual(picking[fname], value)
         self.assertEqual(
-            len(picking.move_lines), max(i + 1 for i, _, _ in expected_move_lines_data)
+            len(picking.move_ids), max(i + 1 for i, _, _ in expected_move_lines_data)
         )
         for index, fname, value in expected_move_lines_data:
-            self.assertEqual(picking.move_lines[index][fname], value)
+            self.assertEqual(picking.move_ids[index][fname], value)
 
     def test_00_manual_receipt_total(self):
         """Tests manual workflow for total receipt
