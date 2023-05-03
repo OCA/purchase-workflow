@@ -9,7 +9,7 @@
             ref="purchase_stock.purchase_order_view_form_inherit"
         />
         <field name="arch" type="xml">
-            <button name="action_view_picking" position="before">
+            <xpath expr="//button[@name='action_view_picking'][1]" position="before">
                 <button
                     name="button_open_manual_receipt_wizard"
                     string="Manual Receipt"
@@ -18,7 +18,7 @@
                     attrs="{'invisible': ['|', ('receipt_expectation', '!=', 'manual'), ('state', 'not in', ('purchase', 'done'))]}"
                     groups="stock.group_stock_user"
                 />
-            </button>
+            </xpath>
         </field>
     </record>
 

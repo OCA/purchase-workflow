@@ -211,7 +211,7 @@ class PurchaseOrderManualReceipt(models.TransientModel):
         """
         self.ensure_one()
         vals = self._get_picking_vals()
-        vals["move_lines"] = [(0, 0, v) for v in self._get_move_vals_list()]
+        vals["move_ids"] = [(0, 0, v) for v in self._get_move_vals_list()]
         picking = self.env["stock.picking"].create(vals)
         if self.auto_confirm_picking:
             picking.action_confirm()
