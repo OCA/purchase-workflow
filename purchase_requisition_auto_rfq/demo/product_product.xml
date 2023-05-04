@@ -2,7 +2,7 @@
 <data noupdate="1">
     <record id="kitchenset" model="product.product">
         <field name="name">Kitchen Set</field>
-        <field name="type">product</field>
+        <field name="type">consu</field>
         <field
                 name="seller_ids"
                 eval="[
@@ -14,7 +14,7 @@
 
     <record id="blankets" model="product.product">
         <field name="name">Blankets</field>
-        <field name="type">product</field>
+        <field name="type">consu</field>
         <field
                 name="seller_ids"
                 eval="[
@@ -26,7 +26,7 @@
 
     <record id="tarpaulin" model="product.product">
         <field name="name">Tarpaulin</field>
-        <field name="type">product</field>
+        <field name="type">consu</field>
     </record>
 </data>
 </odoo>
