@@ -37,6 +37,7 @@ addon | version | maintainers | summary
 [purchase_order_approved](purchase_order_approved/) | 16.0.1.0.0 |  | Add a new state 'Approved' in purchase orders.
 [purchase_order_line_menu](purchase_order_line_menu/) | 16.0.1.1.0 |  | Adds Purchase Order Lines Menu
 [purchase_order_owner](purchase_order_owner/) | 16.0.1.0.0 |  | Purchase Order Owner
+[purchase_order_product_recommendation](purchase_order_product_recommendation/) | 16.0.1.0.0 |  | Recommend products to buy to supplier based on history
 [purchase_request](purchase_request/) | 16.0.1.0.0 |  | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
 [purchase_request_tier_validation](purchase_request_tier_validation/) | 16.0.1.0.0 |  | Extends the functionality of Purchase Requests to support a tier validation process.
 [purchase_requisition_tier_validation](purchase_requisition_tier_validation/) | 16.0.1.0.0 |  | Extends the functionality of Purchase Agreements to support a tier validation process.
