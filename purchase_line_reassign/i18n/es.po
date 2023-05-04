@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-14 04:34+0000\n"
-"PO-Revision-Date: 2022-07-14 06:36+0200\n"
+"POT-Creation-Date: 2023-05-04 08:25+0000\n"
+"PO-Revision-Date: 2023-05-04 10:29+0200\n"
 "Last-Translator: Carlos Dauden <carlos.dauden@tecnativa.com>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -15,7 +15,17 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. module: purchase_line_reassign
+#: model:ir.model.fields,field_description:purchase_line_reassign.field_purchase_order_line_reassign_wiz__allow_different_suppliers
+msgid "Allow Different Suppliers"
+msgstr "Permitir proveedores diferentes"
+
+#. module: purchase_line_reassign
+#: model:ir.model.fields,help:purchase_line_reassign.field_purchase_order_line_reassign_wiz__allow_different_suppliers
+msgid "Allow selecting orders from other suppliers."
+msgstr "Permitir seleccionar pedidos de otros proveedores"
 
 #. module: purchase_line_reassign
 #: model_terms:ir.ui.view,arch_db:purchase_line_reassign.purchase_order_line_reassign_wiz
@@ -73,7 +83,7 @@ msgid "Purchase Order Lines"
 msgstr "Lineas pedido de compra"
 
 #. module: purchase_line_reassign
-#: model:ir.actions.act_window,name:purchase_line_reassign.action_sale_order_line_reassign_wiz
+#: model:ir.actions.act_window,name:purchase_line_reassign.action_purchase_order_line_reassign_wiz
 msgid "Reassign Lines to Other Purchase"
 msgstr "Asignar lineas a otro pedido de compra"
 

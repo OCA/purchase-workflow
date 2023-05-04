@@ -27,6 +27,9 @@ class PurchaseOrderLineReassignWiz(models.TransientModel):
         string="Vendor",
         default=lambda self: self._default_partner_id(),
     )
+    allow_different_suppliers = fields.Boolean(
+        help="Allow selecting orders from other suppliers."
+    )
 
     def action_apply(self):
         active_ids = self.env.context.get("active_ids")
