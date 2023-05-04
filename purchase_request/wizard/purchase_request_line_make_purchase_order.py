@@ -2,6 +2,8 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0).
 from datetime import datetime
 
+import pytz
+
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools import get_lang
@@ -220,6 +222,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         res = []
         purchase_obj = self.env["purchase.order"]
         po_line_obj = self.env["purchase.order.line"]
+        user_tz = pytz.timezone(self.env.user.tz or "UTC")
         purchase = False
 
         for item in self.item_ids:
@@ -276,6 +279,18 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                 all_qty = min(po_line_product_uom_qty, wizard_product_uom_qty)
                 self.create_allocation(po_line, line, all_qty, alloc_uom)
             self._post_process_po_line(item, po_line, new_pr_line)
+            # we enforce to save the datetime value in the current tz of the user
+            date_required = item.line_id.date_required
+            po_line.date_planned = (
+                datetime(
+                    date_required.year,
+                    date_required.month,
+                    date_required.day,
+                    tzinfo=user_tz,
+                )
+                .astimezone(pytz.UTC)
+                .replace(tzinfo=None)
+            )
             res.append(purchase.id)
 
         purchase_requests = self.item_ids.mapped("request_id")
