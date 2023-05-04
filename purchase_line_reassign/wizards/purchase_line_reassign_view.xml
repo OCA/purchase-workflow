@@ -10,9 +10,10 @@
                 <field name="partner_id" invisible="1" />
                 <field
                         name="purchase_order_id"
-                        domain="[('partner_id', '=', partner_id), ('state', 'not in', ['done', 'cancel']), ('invoice_status', '!=', 'invoiced')]"
+                        domain="allow_different_suppliers and [('state', 'not in', ['done', 'cancel']), ('invoice_status', '!=', 'invoiced')] or [('partner_id', '=', partner_id), ('state', 'not in', ['done', 'cancel']), ('invoice_status', '!=', 'invoiced')]"
                         context="{'default_partner_id': partner_id}"
                     />
+                <field name="allow_different_suppliers" />
             </group>
             <footer>
                 <button
