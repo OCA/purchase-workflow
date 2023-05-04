@@ -29,16 +29,18 @@ msgstr ""
 
 #. module: purchase_requisition_auto_rfq
 #: model:ir.model.fields,field_description:purchase_requisition_auto_rfq.field_purchase_requisition__display_name
+#: model:ir.model.fields,field_description:purchase_requisition_auto_rfq.field_purchase_requisition_line__display_name
 msgid "Display Name"
 msgstr ""
 
 #. module: purchase_requisition_auto_rfq
 #: model_terms:ir.ui.view,arch_db:purchase_requisition_auto_rfq.purchase_requisition_form_inherit
-msgid "Generate quotations from suppliers"
+msgid "Generate RFQs for suppliers"
 msgstr ""
 
 #. module: purchase_requisition_auto_rfq
 #: model:ir.model.fields,field_description:purchase_requisition_auto_rfq.field_purchase_requisition__id
+#: model:ir.model.fields,field_description:purchase_requisition_auto_rfq.field_purchase_requisition_line__id
 msgid "ID"
 msgstr ""
 
@@ -50,12 +52,23 @@ msgstr ""
 
 #. module: purchase_requisition_auto_rfq
 #: model:ir.model.fields,field_description:purchase_requisition_auto_rfq.field_purchase_requisition____last_update
+#: model:ir.model.fields,field_description:purchase_requisition_auto_rfq.field_purchase_requisition_line____last_update
 msgid "Last Modified on"
+msgstr ""
+
+#. module: purchase_requisition_auto_rfq
+#: model:ir.model.fields,field_description:purchase_requisition_auto_rfq.field_purchase_requisition_line__prod_has_supplier
+msgid "Product without suppliers"
 msgstr ""
 
 #. module: purchase_requisition_auto_rfq
 #: model:ir.model,name:purchase_requisition_auto_rfq.model_purchase_requisition
 msgid "Purchase Requisition"
+msgstr ""
+
+#. module: purchase_requisition_auto_rfq
+#: model:ir.model,name:purchase_requisition_auto_rfq.model_purchase_requisition_line
+msgid "Purchase Requisition Line"
 msgstr ""
 
 #. module: purchase_requisition_auto_rfq
