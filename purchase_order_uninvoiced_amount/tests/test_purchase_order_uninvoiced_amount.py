@@ -75,10 +75,12 @@ class TestPurchaseOrderUninvoiceAmount(TransactionCase):
 
     def _create_invoice_from_purchase(self, purchase):
         invoice_form = Form(
-            self.account_move_model.with_context(default_move_type="in_invoice")
+            self.account_move_model.with_context(
+                default_move_type="in_invoice",
+                default_purchase_id=purchase,
+                default_partner_id=purchase.partner_id,
+            )
         )
-        invoice_form.partner_id = purchase.partner_id
-        invoice_form.purchase_id = purchase
         return invoice_form.save()
 
     def test_create_purchase_and_not_invoiced(self):
