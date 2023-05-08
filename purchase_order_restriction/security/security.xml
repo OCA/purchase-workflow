@@ -1,0 +1,16 @@
+<odoo noupdate="1">
+    <record model="ir.rule" id="purchase_order_restriction_users">
+        <field name="name">View purchase orders (own or unrestricted)</field>
+        <field name="model_id" ref="model_purchase_order" />
+        <field
+            name="domain_force"
+        >['|',('is_restricted','=',False),('user_id','=',user.id)]</field>
+        <field name="groups" eval="[(4,ref('purchase.group_purchase_user'))]" />
+    </record>
+    <record model="ir.rule" id="purchase_order_restriction_managers">
+        <field name="name">View purchase orders (managers)</field>
+        <field name="model_id" ref="model_purchase_order" />
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4,ref('purchase.group_purchase_manager'))]" />
+    </record>
+</odoo>
