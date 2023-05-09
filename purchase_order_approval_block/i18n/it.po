@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-24 07:53+0000\n"
-"PO-Revision-Date: 2023-01-02 12:47+0000\n"
+"PO-Revision-Date: 2023-05-09 13:36+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -80,7 +80,7 @@ msgstr "Ultima modifica il"
 #. module: purchase_order_approval_block
 #: model:ir.model.fields,field_description:purchase_order_approval_block.field_purchase_approval_block_reason_write_uid
 msgid "Last Updated by"
-msgstr "Last Updated by"
+msgstr "Ultimo aggiornamento di"
 
 #. module: purchase_order_approval_block
 #: model:ir.model.fields,field_description:purchase_order_approval_block.field_purchase_approval_block_reason_write_date
