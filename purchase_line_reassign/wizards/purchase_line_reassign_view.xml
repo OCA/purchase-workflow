@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+<record id="purchase_order_line_reassign_wiz" model="ir.ui.view">
+    <field name="name">purchase.order.line.reasign.wiz</field>
+    <field name="model">purchase.order.line.reassign.wiz</field>
+    <field name="arch" type="xml">
+        <form string="Purchase Order Lines">
+            <group>
+                <field name="partner_id" invisible="1" />
+                <field
+                        name="purchase_order_id"
+                        domain="allow_different_suppliers and [('state', 'not in', ['done', 'cancel']), ('invoice_status', '!=', 'invoiced')] or [('partner_id', '=', partner_id), ('state', 'not in', ['done', 'cancel']), ('invoice_status', '!=', 'invoiced')]"
+                        context="{'default_partner_id': partner_id}"
+                    />
+                <field name="allow_different_suppliers" />
+            </group>
+            <footer>
+                <button
+                        string="Apply"
+                        class="oe_highlight"
+                        name="action_apply"
+                        type="object"
+                    />
+                <button string="Close" class="oe_link" special="cancel" />
+            </footer>
+        </form>
+    </field>
+</record>
+
+<record id="action_purchase_order_line_reassign_wiz" model="ir.actions.act_window">
+    <field name="name">Reassign Lines to Other Purchase</field>
+    <field name="res_model">purchase.order.line.reassign.wiz</field>
+    <field name="binding_model_id" ref="purchase.model_purchase_order_line" />
+    <field name="view_mode">form</field>
+    <field name="target">new</field>
+</record>
+</odoo>
