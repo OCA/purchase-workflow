@@ -85,6 +85,31 @@ class TestPurchaseOpenQty(TransactionCase):
             purchase_order_line_model.sudo().create(pl_dict2)
         self.purchase_order_2.button_confirm()
 
+        # Purchase Order Num 3 with different uom
+        po_dict3 = {
+            'partner_id': self.partner2.id,
+        }
+        self.purchase_order_3 = self.purchase_order_model.create(po_dict3)
+        pr_dict3 = {
+            'name': 'Product Test 3',
+            'uom_id': self.env.ref('uom.product_uom_unit').id,
+            'purchase_method': 'receive',
+        }
+        self.product3 = prod_model.sudo().create(pr_dict3)
+        pl_dict3 = {
+            'date_planned': Datetime.now(),
+            'name': 'PO03',
+            'order_id': self.purchase_order_3.id,
+            'product_id': self.product3.id,
+            'product_uom': self.env.ref('uom.product_uom_dozen').id,
+            'price_unit': 1.0,
+            'product_qty': 2.0,
+            'account_analytic_id': self.analytic_account_1.id,
+        }
+        self.purchase_order_line_3 = \
+            purchase_order_line_model.sudo().create(pl_dict3)
+        self.purchase_order_3.button_confirm()
+
     def test_compute_qty_to_invoice_and_receive(self):
         self.assertEqual(self.purchase_order_line_1.qty_to_invoice, 5.0,
                          "Expected 5 as qty_to_invoice in the PO line")
@@ -103,6 +128,15 @@ class TestPurchaseOpenQty(TransactionCase):
                          "Expected 0 as qty_to_invoice in the PO")
         self.assertEqual(self.purchase_order_2.qty_to_receive, 5.0,
                          "Expected 5 as qty_to_receive in the PO")
+
+        self.assertEqual(self.purchase_order_line_3.qty_to_invoice, 0.0,
+                         "Expected 0 as qty_to_invoice in the PO line")
+        self.assertEqual(self.purchase_order_line_3.qty_to_receive, 2.0,
+                         "Expected 2 as qty_to_receive in the PO line")
+        self.assertEqual(self.purchase_order_3.qty_to_invoice, 0.0,
+                         "Expected 0 as qty_to_invoice in the PO")
+        self.assertEqual(self.purchase_order_3.qty_to_receive, 2.0,
+                         "Expected 2 as qty_to_receive in the PO")
 
         # Now we receive the products
         for picking in self.purchase_order_2.picking_ids:
@@ -123,6 +157,25 @@ class TestPurchaseOpenQty(TransactionCase):
         self.assertEqual(self.purchase_order_2.qty_to_receive, 0.0,
                          "Expected 0 as qty_to_receive in the PO")
 
+        # Now we receive the products for purchase order 3 (2 dozens)
+        for picking in self.purchase_order_3.picking_ids:
+            picking.action_confirm()
+            picking.move_lines.write({'quantity_done': 24.0})
+            picking.button_validate()
+
+        # The value is computed when you run it as at user but not in the test
+        self.purchase_order_3._compute_qty_to_invoice()
+        self.purchase_order_3._compute_qty_to_receive()
+
+        self.assertEqual(self.purchase_order_line_3.qty_to_invoice, 2.0,
+                         "Expected 2 as qty_to_invoice in the PO line")
+        self.assertEqual(self.purchase_order_line_3.qty_to_receive, 0.0,
+                         "Expected 0 as qty_to_receive in the PO line")
+        self.assertEqual(self.purchase_order_3.qty_to_invoice, 2.0,
+                         "Expected 2 as qty_to_invoice in the PO")
+        self.assertEqual(self.purchase_order_3.qty_to_receive, 0.0,
+                         "Expected 0 as qty_to_receive in the PO")
+
     def test_search_qty_to_invoice_and_receive(self):
         found = self.purchase_order_model.search(
             ['|', ('pending_qty_to_invoice', '=', True),
@@ -137,3 +190,10 @@ class TestPurchaseOpenQty(TransactionCase):
             self.purchase_order_2.id not in found.ids,
             'Expected PO %s not to be in POs %s' % (
                 self.purchase_order_2.id, found.ids))
+        found = self.purchase_order_model.search(
+            ['|', ('pending_qty_to_invoice', '=', False),
+             ('pending_qty_to_receive', '=', False)])
+        self.assertFalse(
+            self.purchase_order_3.id not in found.ids,
+            'Expected PO %s not to be in POs %s' % (
+                self.purchase_order_3.id, found.ids))
