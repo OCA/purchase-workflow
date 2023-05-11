@@ -61,7 +61,7 @@ addon | version | maintainers | summary
 [purchase_order_line_invoicing](purchase_order_line_invoicing/) | 14.0.1.0.0 |  | Allows to invoice lines of multiple purchase orders
 [purchase_order_line_menu](purchase_order_line_menu/) | 14.0.1.0.0 |  | Adds Purchase Order Lines Menu
 [purchase_order_line_packaging_qty](purchase_order_line_packaging_qty/) | 14.0.1.0.1 |  | Define quantities according to product packaging on purchase order lines
-[purchase_order_line_price_history](purchase_order_line_price_history/) | 14.0.1.0.0 |  | Purchase order line price history
+[purchase_order_line_price_history](purchase_order_line_price_history/) | 14.0.1.1.0 |  | Purchase order line price history
 [purchase_order_line_stock_available](purchase_order_line_stock_available/) | 14.0.1.0.0 |  | Purchase order line stock available
 [purchase_order_payment_term_report](purchase_order_payment_term_report/) | 14.0.1.0.0 |  | Display Purchase Payment Terms in PO Report
 [purchase_order_price_recalculation](purchase_order_price_recalculation/) | 14.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Price recalculation in purchases orders
