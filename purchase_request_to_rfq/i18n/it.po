@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-22 02:44+0000\n"
-"PO-Revision-Date: 2023-02-01 09:40+0000\n"
+"PO-Revision-Date: 2023-05-12 12:56+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -138,7 +138,7 @@ msgstr "Ultima modifica il"
 #: model:ir.model.fields,field_description:purchase_request_to_rfq.field_purchase_request_line_make_purchase_order_item_write_uid
 #: model:ir.model.fields,field_description:purchase_request_to_rfq.field_purchase_request_line_make_purchase_order_write_uid
 msgid "Last Updated by"
-msgstr "Last Updated by"
+msgstr "Ultimo aggiornamento di"
 
 #. module: purchase_request_to_rfq
 #: model:ir.model.fields,field_description:purchase_request_to_rfq.field_purchase_request_line_make_purchase_order_item_write_date
