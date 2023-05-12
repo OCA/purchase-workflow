@@ -99,6 +99,7 @@ addon | version | maintainers | summary
 [purchase_stock_secondary_unit](purchase_stock_secondary_unit/) | 14.0.1.0.0 |  | Get product quantities in a secondary unit
 [purchase_stock_tier_validation](purchase_stock_tier_validation/) | 14.0.1.0.0 |  | Exclude RFQs pending to validate when procuring
 [purchase_stock_vendor_bill_breakdown](purchase_stock_vendor_bill_breakdown/) | 14.0.1.0.0 | [![geomer198](https://github.com/geomer198.png?size=30px)](https://github.com/geomer198) [![CetmixGitDrone](https://github.com/CetmixGitDrone.png?size=30px)](https://github.com/CetmixGitDrone) | Purchase Stock Vendor Bill Product Breakdown
+[purchase_substate](purchase_substate/) | 14.0.1.0.0 |  | Purchase Sub State
 [purchase_supplierinfo_product_breakdown](purchase_supplierinfo_product_breakdown/) | 14.0.1.0.0 |  | Purchase Supplierinfo Product Breakdown
 [purchase_tag](purchase_tag/) | 14.0.1.0.0 |  | Allows to add multiple tags to purchase orders
 [purchase_tier_validation](purchase_tier_validation/) | 14.0.2.0.1 |  | Extends the functionality of Purchase Orders to support a tier validation process.
