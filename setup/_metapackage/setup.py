@@ -86,6 +86,7 @@ setuptools.setup(
         'odoo14-addon-purchase_stock_secondary_unit',
         'odoo14-addon-purchase_stock_tier_validation',
         'odoo14-addon-purchase_stock_vendor_bill_breakdown',
+        'odoo14-addon-purchase_substate',
         'odoo14-addon-purchase_supplierinfo_product_breakdown',
         'odoo14-addon-purchase_tag',
         'odoo14-addon-purchase_tier_validation',
