@@ -17,7 +17,7 @@ class TestPurchaseOrderSupplierinfoUpdate(TransactionCase):
         cls.supplier = cls.env["res.partner"].create({"name": "Supplier Test"})
         cls.supplierinfo = cls.env["product.supplierinfo"].create(
             {
-                "name": cls.supplier.id,
+                "partner_id": cls.supplier.id,
                 "product_tmpl_id": cls.product.product_tmpl_id.id,
                 "price": 100,
             }
@@ -27,7 +27,7 @@ class TestPurchaseOrderSupplierinfoUpdate(TransactionCase):
         )
         cls.supplierinfo_2 = cls.env["product.supplierinfo"].create(
             {
-                "name": cls.supplier.id,
+                "partner_id": cls.supplier.id,
                 "product_tmpl_id": cls.product_2.product_tmpl_id.id,
                 "price": 10,
             }
