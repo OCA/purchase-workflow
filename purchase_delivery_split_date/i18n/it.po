@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-24 13:09+0000\n"
-"PO-Revision-Date: 2023-04-07 16:34+0000\n"
+"PO-Revision-Date: 2023-05-15 19:34+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -29,7 +29,7 @@ msgstr "Riga Ordine d'Acquisto"
 #. module: purchase_delivery_split_date
 #: model:ir.model,name:purchase_delivery_split_date.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr "Riga Ordine d'Acquisto"
+msgstr "Riga ordine di acquisto"
 
 #. module: purchase_delivery_split_date
 #: model:ir.model,name:purchase_delivery_split_date.model_stock_picking
