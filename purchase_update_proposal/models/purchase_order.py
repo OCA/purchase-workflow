@@ -4,8 +4,8 @@
 import logging
 from collections import defaultdict
 
-from openerp import _, api, fields, models
-from openerp.exceptions import Warning as UserError
+from odoo import _, fields, models
+from odoo.exceptions import UserError
 
 logger = logging.getLogger(__name__)
 
@@ -54,7 +54,6 @@ class PurchaseOrder(models.Model):
         help="Checked if at least partially delivered",
     )
 
-    @api.multi
     def _compute_partially_received(self):
         for rec in self:
             received = [x.received for x in rec.order_line if x.received]
@@ -81,12 +80,10 @@ class PurchaseOrder(models.Model):
             else:
                 rec.proposal_updatable = "yes"
 
-    @api.multi
     def _compute_proposal(self):
         for rec in self:
             rec.proposal_count = len(rec.proposal_ids)
 
-    @api.multi
     def populate_all_purchase_lines(self):
         self.ensure_one()
         lines = self.order_line.filtered(
@@ -96,13 +93,6 @@ class PurchaseOrder(models.Model):
         self.write({"proposal_date": False})
         lines.button_update_proposal()
 
-    @api.onchange("proposal_date")
-    def onchange_proposal_date(self):
-        for rec in self:
-            vals = [(1, x.id, {"date": rec.proposal_date}) for x in rec.proposal_ids]
-            rec.proposal_ids = vals
-
-    @api.multi
     def submit_proposal(self):
         self.ensure_one()
         self._prepare_proposal_data()
@@ -110,19 +100,16 @@ class PurchaseOrder(models.Model):
         if self.proposal_updatable == "yes":
             self.write({"proposal_state": "submitted"})
 
-    @api.multi
     def reset_proposal(self):
         self.ensure_one()
         self.write({"proposal_state": "draft"})
         self._check_updatable_proposal()
 
-    @api.multi
     def reject_proposal(self):
         self.ensure_one()
         self.write({"proposal_state": "rejected"})
         self._check_updatable_proposal()
 
-    @api.multi
     def approve_proposal(self):
         """
         We need to update purchase lines with approved lines.
@@ -138,13 +125,9 @@ class PurchaseOrder(models.Model):
             return
         body = []
         initial_state = False
-        # these proposals'll cancel these lines
-        to_cancel_lines = self.proposal_ids.filtered(lambda s: s.qty == 0.0).mapped(
+        # these proposals'll reset these lines
+        lines_to_0 = self.proposal_ids.filtered(lambda s: s.qty == 0.0).mapped(
             "line_id"
-        )
-        # intially cancelled lines should stay cancelled, first we keep trace
-        previous_cancelled_lines = self.order_line.filtered(
-            lambda s: s.state == "cancel" and s.id not in to_cancel_lines.ids
         )
         data = self._prepare_proposal_data()
         if data:
@@ -164,10 +147,8 @@ class PurchaseOrder(models.Model):
             self.signal_workflow("purchase_confirm")
             self.signal_workflow("purchase_approve")
         # Cancellation cases
-        if to_cancel_lines:
-            to_cancel_lines.action_cancel()
-        if previous_cancelled_lines:
-            previous_cancelled_lines.action_cancel()
+        if lines_to_0:
+            lines_to_0.cancel_from_proposal()
         # clean accepted proposals
         self.env["purchase.line.proposal"].search([("order_id", "=", self.id)]).unlink()
         self.write({"proposal_state": "approved"})
@@ -236,7 +217,10 @@ class PurchaseOrder(models.Model):
         for line_id in data:
             # we update first line
             line_id.write(data[line_id][0])
-            body.append(_("Updated line '%s' with %s") % (line_id.id, data[line_id][0]))
+            body.append(
+                _("Updated line '%(line)s' with %(data)s")
+                % {"line": line_id.id, "data": data[line_id][0]}
+            )
             if len(data[line_id]) > 1:
                 todo = len(data[line_id]) - 1
                 while todo:
@@ -247,10 +231,9 @@ class PurchaseOrder(models.Model):
                         if elm in vals:
                             new_vals.update({elm: vals[elm]})
                     line_id.copy(new_vals)
-                    body.append(_("Created line: %s" % vals))
+                    body.append(_("Created line: %s") % vals)
                     todo -= 1
 
-    @api.multi
     def write(self, vals):
         if not self._get_purchase_groups() and self._fields_prevent_to_update(vals):
             # The user is not an Odoo purchaser, we must prevent to update other fields
@@ -280,13 +263,6 @@ class PurchaseOrder(models.Model):
             return True
         return False
 
-    @api.multi
-    def wkf_confirm_order(self):
-        for rec in self:
-            rec._subscribe_portal_vendor()
-        return super(PurchaseOrder, self).wkf_confirm_order()
-
-    @api.multi
     def _subscribe_portal_vendor(self):
         self.ensure_one()
         cial_partner = self.partner_id.commercial_partner_id
@@ -303,7 +279,6 @@ class PurchaseOrder(models.Model):
             if users:
                 self.message_subscribe_users(users.ids)
 
-    @api.multi
     def button_switch2other_view(self):
         self.ensure_one()
         view = self.env.ref("purchase_update_proposal.supplier_purchase_order_form")

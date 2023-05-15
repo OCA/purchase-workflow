@@ -3,8 +3,8 @@
 
 import logging
 
-from openerp import _, api, fields, models
-from openerp.exceptions import Warning as UserError
+from odoo import _, fields, models
+from odoo.exceptions import UserError
 
 logger = logging.getLogger(__name__)
 
@@ -14,7 +14,7 @@ class PurchaseOrderLine(models.Model):
 
     proposal_count = fields.Integer(related="order_id.proposal_count", store=False)
     supplier_cancel_status = fields.Char(
-        string="Status",
+        string="Cancel Status",
         compute="_compute_supplier_cancel_status",
         help="Indicate if the line is cancelled",
     )
@@ -41,13 +41,21 @@ class PurchaseOrderLine(models.Model):
             else:
                 rec.received = "partially"
 
-    @api.multi
     def _compute_supplier_cancel_status(self):
         for rec in self:
+            cancel_status = False
             if rec.state == "cancel":
-                rec.supplier_cancel_status = _("Cancel")
+                cancel_status = _("Cancel")
+            rec.supplier_cancel_status = cancel_status
 
-    @api.multi
+    def cancel_from_proposal(self):
+        """Default behavior when proposal is to not ship a line is to set qty to 0.
+        It could be any other rule in your custom business, i.e. :
+             - remove purchase order line
+             - keep info of previous quantity on purchase line
+        """
+        self.product_qty = 0
+
     def button_update_proposal(self):
         order_ids = [x.order_id for x in self]
         if len(set(order_ids)) > 1:
@@ -80,7 +88,6 @@ class PurchaseOrderLine(models.Model):
             action["view_id"] = self.env.ref("purchase.purchase_order_form").id
         return action
 
-    @api.multi
     def button_supplier_update_proposal(self):
         """Call button_update_proposal() but from the view supplier_purchase_order_form
         We can't pass the context from the view because

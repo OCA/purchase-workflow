@@ -4,7 +4,7 @@
     <record id="view_supplier_purchase_order_filter" model="ir.ui.view">
         <field name="model">purchase.order</field>
         <field name="arch" type="xml">
-            <search string="Search Purchase Order">
+            <search>
                 <field name="name" string="Reference" />
                 <field name="product_id" />
                 <filter
@@ -16,11 +16,6 @@
                     name="confirmed"
                     string="Confirmed"
                     domain="[('state','=','confirmed')]"
-                />
-                <filter
-                    name="exception"
-                    string="Exception"
-                    domain="[('state','in',('except_invoice','except_picking'))]"
                 />
                 <separator />
                 <filter
@@ -40,23 +35,23 @@
                     domain="[('proposal_state','=', 'rejected')]"
                 />
                 <separator />
-                <filter
+<!--                 <filter
                     string="New Mail"
                     name="message_unread"
                     domain="[('message_unread','=',True)]"
-                />
+                /> -->
                 <group expand="0" string="Group By">
                     <filter
-                        string="Order Month"
-                        icon="terp-go-month"
+                        string="Order Date"
+                        name="date_order"
                         domain="[]"
-                        context="{'group_by':'date_order'}"
+                        context="{'group_by': 'date_order'}"
                     />
                     <filter
                         string="Expected Month"
-                        icon="terp-go-month"
+                        name="date_planned"
                         domain="[]"
-                        context="{'group_by':'minimum_planned_date'}"
+                        context="{'group_by':'date_planned'}"
                     />
                 </group>
             </search>
@@ -67,19 +62,20 @@
         <field name="model">purchase.order</field>
         <field eval="100" name="priority" />
         <field name="arch" type="xml">
-            <tree
+<!--             <tree
                 fonts="bold:message_unread==True"
                 colors="blue:state in ('wait','confirmed');red:state in ('except_invoice','except_picking')"
                 string="Purchase Order"
                 create="0"
                 edit="0"
-            >
-                <field name="message_unread" invisible="1" />
+            > -->
+            <tree>
+                <!-- <field name="message_unread" invisible="1" /> -->
                 <field name="name" string="Reference" />
                 <field name="date_order" />
                 <field name="partner_id" />
                 <field name="picking_type_id" />
-                <field name="minimum_planned_date" />
+                <field name="date_planned" />
                 <field name="origin" />
                 <field name="proposal_state" />
                 <field
@@ -98,15 +94,8 @@
         <!-- This view should not replace the original view -->
         <field eval="100" name="priority" />
         <field name="arch" type="xml">
-            <form string="Purchase Order" create="0" edit="1">
+            <form create="0" edit="1">
             <header>
-                <button
-                        name="purchase_supplier_confirm"
-                        type="object"
-                        string="Approve Order"
-                        class="oe_highlight oe_read_only"
-                        attrs="{'invisible': ['|', ('proposal_count', '>', 0), ('state', '!=', 'confirmed')]}"
-                    />
                 <field
                         name="state"
                         widget="statusbar"
@@ -119,6 +108,7 @@
                 <div class="oe_title">
                     <h1>
                         <label
+                                for="name"
                                 string="Purchase Order "
                                 attrs="{'invisible': [('state','in',('draft','sent','bid'))]}"
                             />
@@ -132,7 +122,7 @@
                     </group>
                     <group>
                         <field name="date_order" readonly="1" />
-                        <field name="minimum_planned_date" readonly="1" />
+                        <field name="date_planned" readonly="1" />
                         <field name="picking_type_id" readonly="1" />
                     </group>
                 </group>
@@ -240,7 +230,7 @@
                             </group>
                         </group>
                         <field name="order_line" readonly="1">
-                            <tree string="Purchase Order Lines" editable="bottom">
+                            <tree editable="bottom">
                                 <button
                                         name="button_supplier_update_proposal"
                                         help="Suggest Modification"
@@ -311,7 +301,6 @@
         <field name="name">Purchase Order Supplier</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">purchase.order</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field
             name="domain"
@@ -320,7 +309,7 @@
         <field name="search_view_id" ref="view_supplier_purchase_order_filter" />
     </record>
 
-    <record
+     <record
         id="supplier_purchase_order_tree_view_action"
         model="ir.actions.act_window.view"
     >

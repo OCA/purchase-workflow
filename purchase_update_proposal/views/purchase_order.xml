@@ -23,8 +23,8 @@
                     <field
                         name="proposal_display"
                         attrs="{'invisible': ['|', ('proposal_count', '=', 0), ('proposal_state', '!=', 'rejected')]}"
-                        groups="purchase.group_purchase_user"
                     />
+                        <!-- groups="purchase.group_purchase_user" -->
                 </group>
                 <group
                     col="4"
@@ -105,14 +105,14 @@
         </field>
     </record>
 
-    <record id="view_purchase_order_filter" model="ir.ui.view">
+    <record id="purchase_order_view_search" model="ir.ui.view">
         <field name="model">purchase.order</field>
-        <field name="inherit_id" ref="purchase.view_purchase_order_filter" />
+        <field name="inherit_id" ref="purchase.purchase_order_view_search" />
         <field name="arch" type="xml">
-            <filter name="approved" position="after">
+            <filter name="unconfirmed" position="after">
                 <filter
                     name="submitted"
-                    string="Submitted"
+                    string="Submitted Proposal"
                     domain="[('proposal_state','=', 'submitted')]"
                 />
             </filter>
