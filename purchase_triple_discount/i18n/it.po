@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-24 07:53+0000\n"
-"PO-Revision-Date: 2023-02-17 12:23+0000\n"
+"PO-Revision-Date: 2023-05-15 19:35+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -86,7 +86,7 @@ msgstr "Resoconto di acquisto"
 #. module: purchase_triple_discount
 #: model:ir.model,name:purchase_triple_discount.model_stock_rule
 msgid "Stock Rule"
-msgstr "Regola Stock"
+msgstr "Regola di giacenza"
 
 #. module: purchase_triple_discount
 #: model:ir.model,name:purchase_triple_discount.model_product_supplierinfo
