@@ -36,6 +36,7 @@ addon | version | maintainers | summary
 [purchase_no_rfq](purchase_no_rfq/) | 16.0.1.0.0 | [![legalsylvain](https://github.com/legalsylvain.png?size=30px)](https://github.com/legalsylvain) | Purchase Order - No Request For Quotation
 [purchase_order_approved](purchase_order_approved/) | 16.0.1.0.0 |  | Add a new state 'Approved' in purchase orders.
 [purchase_order_line_menu](purchase_order_line_menu/) | 16.0.1.1.0 |  | Adds Purchase Order Lines Menu
+[purchase_order_no_zero_price](purchase_order_no_zero_price/) | 16.0.1.0.0 |  | Prevent zero price lines on Purchase Orders
 [purchase_order_owner](purchase_order_owner/) | 16.0.1.0.0 |  | Purchase Order Owner
 [purchase_order_product_recommendation](purchase_order_product_recommendation/) | 16.0.1.0.0 |  | Recommend products to buy to supplier based on history
 [purchase_order_supplierinfo_update](purchase_order_supplierinfo_update/) | 16.0.1.0.0 | [![ernestotejeda](https://github.com/ernestotejeda.png?size=30px)](https://github.com/ernestotejeda) | Update product supplierinfo with the last purchase price
@@ -46,7 +47,6 @@ addon | version | maintainers | summary
 [purchase_stock_packaging](purchase_stock_packaging/) | 16.0.1.0.0 | [![rousseldenis](https://github.com/rousseldenis.png?size=30px)](https://github.com/rousseldenis) | Allows to transmit the product packaging from the procurement values to the generated purchase order line
 [purchase_tier_validation](purchase_tier_validation/) | 16.0.1.0.0 |  | Extends the functionality of Purchase Orders to support a tier validation process.
 [purchase_triple_discount](purchase_triple_discount/) | 16.0.1.0.0 |  | Manage triple discount on purchase order lines
-[purchase_order_no_zero_price](purchase_order_no_zero_price/) | 16.0.1.0.0 |  | Prevent zero price lines on Purchase Orders
 
 [//]: # (end addons)
 
