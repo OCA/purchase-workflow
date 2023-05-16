@@ -25,7 +25,7 @@ class ProductSupplierInfo(models.Model):
     @api.model
     def _get_po_to_supplierinfo_synced_fields(self):
         """Overwrite this method for adding other fields to be synchronized
-        with product.supplierinfo.
+        with .py
         """
         return ["discount"]
 

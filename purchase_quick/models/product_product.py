@@ -74,9 +74,9 @@ class ProductProduct(models.Model):
             seller = seller.commercial_partner_id or seller
             args += [
                 "|",
-                ("variant_specific_seller_ids.name", "=", seller.id),
+                ("variant_specific_seller_ids.partner_id", "=", seller.id),
                 "&",
-                ("seller_ids.name", "=", seller.id),
+                ("seller_ids.partner_id", "=", seller.id),
                 ("product_variant_ids", "!=", False),
             ]
         return super(ProductProduct, self).search(
