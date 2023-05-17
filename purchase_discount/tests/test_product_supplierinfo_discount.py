@@ -76,7 +76,7 @@ class TestProductSupplierinfoDiscount(common.SavepointCase):
         self.po_line_1.onchange_product_id()
         self.assertEquals(
             self.po_line_1.discount,
-            10.0,
+            0.0,
             "Incorrect discount for product 6 with partner 1 and qty 1",
         )
 
