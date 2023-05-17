@@ -46,19 +46,11 @@ class PurchaseOrderLine(models.Model):
         for line in self:
             if not line.product_id.purchase_only_by_packaging:
                 continue
-            if (
-                not line.product_packaging
-                or float_compare(
-                    line.product_packaging_qty,
-                    0,
-                    precision_rounding=line.product_id.uom_po_id.rounding,
-                )
-                <= 0
-            ):
+            if not line.product_packaging:
                 raise ValidationError(
                     _(
-                        "Product %s can only be purchased with a packaging and a "
-                        "packaging quantity." % line.product_id.name
+                        "Product %s can only be purchased with a packaging."
+                        % line.product_id.name
                     )
                 )
 
