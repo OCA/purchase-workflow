@@ -4,7 +4,7 @@
 
 {
     "name": "Purchase Reception Status",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.1.0",
     "category": "Purchases",
     "license": "AGPL-3",
     "summary": "Add reception status on purchase orders",
