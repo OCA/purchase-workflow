@@ -19,6 +19,7 @@ rebel_module_groups:
 - purchase_cancel_confirm
 - purchase_order_type
 - purchase_quick
+- purchase_packaging
 repo_description: 'TODO: add repo description.'
 repo_name: purchase-workflow
 repo_slug: purchase-workflow
