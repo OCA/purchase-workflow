@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-17 03:38+0000\n"
-"PO-Revision-Date: 2023-05-17 16:36+0000\n"
+"PO-Revision-Date: 2023-05-18 13:37+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/"
 "OCA-purchase-workflow-10-0/language/it/)\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.16.4\n"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_order.py:24
@@ -687,13 +687,12 @@ msgstr "Prodotto"
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_stock_move_line
 msgid "Product Moves (Stock Move Line)"
-msgstr "Movimenti Prodotto (Stock Move Line)"
+msgstr "Movimenti prodotto (riga movimento di magazzino)"
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_product_template
-#, fuzzy
 msgid "Product Template"
-msgstr "Prodotto"
+msgstr "Modello prodotto"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__product_uom_id
@@ -911,12 +910,12 @@ msgstr "Qtà Annullata"
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__qty_done
 msgid "Qty Done"
-msgstr "Qtà Completata"
+msgstr "Qtà completata"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__qty_in_progress
 msgid "Qty In Progress"
-msgstr "Qtà In Corso"
+msgstr "Qtà in lavorazione"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__product_qty
@@ -978,7 +977,7 @@ msgstr ""
 #: code:addons/purchase_request/models/stock_picking.py:16
 #, python-format
 msgid "Receipt confirmation %s for your Request %s"
-msgstr "Conferma Ricevuta %s per la tua Richiesta %s"
+msgstr "Ricevuta di conferma %s per la tua richiesta %s"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/stock_move_line.py:31
