@@ -26,7 +26,13 @@
         <field name="inherit_id" ref="purchase.purchase_order_tree" />
         <field name="arch" type="xml">
             <field name="invoice_status" position="before">
-                <field name="reception_status" />
+                <field
+                    name="reception_status"
+                    decoration-success="reception_status == 'received'"
+                    decoration-info="reception_status == 'partial'"
+                    decoration-warning="reception_status == 'no'"
+                    widget="badge"
+                />
             </field>
         </field>
     </record>
@@ -36,7 +42,29 @@
         <field name="inherit_id" ref="purchase.purchase_order_view_tree" />
         <field name="arch" type="xml">
             <field name="invoice_status" position="before">
-                <field name="reception_status" />
+                <field
+                    name="reception_status"
+                    decoration-success="reception_status == 'received'"
+                    decoration-info="reception_status == 'partial'"
+                    decoration-warning="reception_status == 'no'"
+                    widget="badge"
+                />
+            </field>
+        </field>
+    </record>
+    <record id="purchase_order_kpis_tree" model="ir.ui.view">
+        <field name="name">received_status.purchase.order.tree</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_kpis_tree" />
+        <field name="arch" type="xml">
+            <field name="invoice_status" position="before">
+                <field
+                    name="reception_status"
+                    decoration-success="reception_status == 'received'"
+                    decoration-info="reception_status == 'partial'"
+                    decoration-warning="reception_status == 'no'"
+                    widget="badge"
+                />
             </field>
         </field>
     </record>
