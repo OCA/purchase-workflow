@@ -70,6 +70,7 @@ addon | version | maintainers | summary
 [purchase_order_secondary_unit](purchase_order_secondary_unit/) | 14.0.2.0.1 |  | Purchase product in a secondary unit
 [purchase_order_shipping_date](purchase_order_shipping_date/) | 14.0.1.0.0 |  | Add field Shipping Date in PO and Report
 [purchase_order_type](purchase_order_type/) | 14.0.1.0.2 |  | Purchase Order Type
+[purchase_order_type_dashboard](purchase_order_type_dashboard/) | 14.0.1.0.0 | [![dalonsod](https://github.com/dalonsod.png?size=30px)](https://github.com/dalonsod) | Purchase Order Type Dashboard
 [purchase_order_uninvoiced_amount](purchase_order_uninvoiced_amount/) | 14.0.1.2.0 |  | Show uninvoiced amount on purchase order tree.
 [purchase_order_vendor_product](purchase_order_vendor_product/) | 14.0.1.1.0 |  | Show only products from the selected vendor in PO line
 [purchase_order_weight_volume](purchase_order_weight_volume/) | 14.0.1.0.0 |  | Display purchase order weight and volume
