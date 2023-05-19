@@ -46,7 +46,9 @@ class TestPurchaseStockTierValidation(common.TransactionCase):
                 "name": "Test Scrap Component 1",
                 "type": "product",
                 "route_ids": [(6, 0, [route_buy])],
-                "seller_ids": [(0, 0, {"name": self.test_partner.id, "price": 20.0})],
+                "seller_ids": [
+                    (0, 0, {"partner_id": self.test_partner.id, "price": 20.0})
+                ],
             }
         )
 
