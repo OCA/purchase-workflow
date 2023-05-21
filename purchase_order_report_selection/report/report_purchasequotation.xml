@@ -8,7 +8,7 @@
             <attribute name="style">display:none;</attribute>
     </xpath>
         <xpath expr="//table/thead/tr" position="after">
-            <t t-if="o.report_field_ids.count_rfq_fields() &gt; 0">
+            <t t-if="o.count_rfq_fields() &gt; 0">
                 <tr>
                     <t
                         t-foreach="o.report_field_ids.sorted(lambda l: l.sequence)"
@@ -60,7 +60,7 @@
         </xpath>
 
         <xpath expr="//table/tbody" position="after">
-            <t t-if="o.report_field_ids.count_rfq_fields() &gt; 0">
+            <t t-if="o.count_rfq_fields() &gt; 0">
                 <t t-foreach="o.order_line" t-as="line">
                     <tr
                         t-att-class="'bg-200 font-weight-bold o_line_section' if line.display_type == 'line_section' else 'font-italic o_line_note' if line.display_type == 'line_note' else ''"

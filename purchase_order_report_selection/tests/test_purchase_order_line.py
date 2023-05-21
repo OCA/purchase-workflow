@@ -9,9 +9,33 @@ class TestPurchaseOrderLine(TransactionCase):
 
         self.partner1 = self.env["res.partner"].create({"name": "Test"})
         self.product1 = self.env["product.product"].create({"name": "desktop"})
+        self.purchase_report_field = self.env["purchase.report.field"]
+
+        self.po_report_template_1 = self.env["po.line.report.template"].create(
+            {
+                "name": "Template 1",
+                "report_field_ids": self.purchase_report_field.generate_data(),
+            }
+        )
+
+        self.po_report_template_2 = self.env["po.line.report.template"].create(
+            {
+                "name": "Template 2",
+            }
+        )
 
         self.purchase_order_1 = self.env["purchase.order"].create(
-            {"partner_id": self.partner1.id}
+            {
+                "partner_id": self.partner1.id,
+                "po_line_report_template_id": self.po_report_template_1.id,
+            }
+        )
+
+        self.purchase_order_2 = self.env["purchase.order"].create(
+            {
+                "partner_id": self.partner1.id,
+                "po_line_report_template_id": self.po_report_template_2.id,
+            }
         )
 
         self.tax = self.env["account.tax"].create(
@@ -49,17 +73,30 @@ class TestPurchaseOrderLine(TransactionCase):
         )
 
     def test_count_rfq_fields(self):
-        default_count = len(self.purchase_order_1._default_report_rfq_fields())
+        default_count = len(self.purchase_report_field._default_report_rfq_fields())
+        self.purchase_order_1._onchange_po_line_report_template()
         self.assertEqual(
-            self.purchase_order_1.report_field_ids.count_rfq_fields(),
+            self.purchase_order_1.count_rfq_fields(),
             default_count,  # default count fields_rfq
             "Must be equal to {count}".format(count=default_count),
         )
 
     def test_count_po_fields(self):
-        default_count = len(self.purchase_order_1._default_report_po_fields())
+        default_count = len(self.purchase_report_field._default_report_po_fields())
+        self.purchase_order_1._onchange_po_line_report_template()
         self.assertEqual(
-            self.purchase_order_1.report_field_ids.count_po_fields(),
+            self.purchase_order_1.count_po_fields(),
+            default_count,  # default count fields_po
+            "Must be equal to {count}".format(count=default_count),
+        )
+
+    def test_add_new_fields(self):
+        self.purchase_order_2.report_field_ids = (
+            self.purchase_report_field.generate_data()
+        )
+        default_count = len(self.purchase_report_field._default_report_po_fields())
+        self.assertEqual(
+            self.purchase_order_2.count_po_fields(),
             default_count,  # default count fields_po
             "Must be equal to {count}".format(count=default_count),
         )

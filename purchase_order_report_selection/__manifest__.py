@@ -11,6 +11,8 @@
         "security/ir.model.access.csv",
         "views/assets.xml",
         "views/purchase_order_view.xml",
+        "views/po_line_report_template.xml",
+        "views/menu.xml",
         "report/report_purchaseorder.xml",
         "report/report_purchasequotation.xml",
     ],
