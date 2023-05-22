@@ -37,7 +37,7 @@ class TestProcurementPurchaseNoGrouping(common.TransactionCase):
             {
                 "name": name,
                 "categ_id": category.id,
-                "seller_ids": [(0, 0, {"name": partner.id, "min_qty": 1.0})],
+                "seller_ids": [(0, 0, {"partner_id": partner.id, "min_qty": 1.0})],
             }
         )
         return product
