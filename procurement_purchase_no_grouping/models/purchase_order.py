@@ -29,10 +29,11 @@ class PurchaseOrderLine(models.Model):
         modules, and on standard operation mode, procurement groups are not reused
         between sales orders.
         """
-        obj = self
         if values.get("grouping") == "line":
-            obj = self.filtered(lambda x: x.order_id.group_id == values.get("group_id"))
-        return super(PurchaseOrderLine, obj)._find_candidate(
+            self = self.filtered(
+                lambda x: x.order_id.group_id == values.get("group_id")
+            )
+        return super()._find_candidate(
             product_id,
             product_qty,
             product_uom,

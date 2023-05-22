@@ -130,6 +130,3 @@ msgstr ""
 #: model:ir.model,name:procurement_purchase_no_grouping.model_stock_rule
 msgid "Stock Rule"
 msgstr ""
-
-#~ msgid "Purchase Order"
-#~ msgstr "Commande fournisseur"
