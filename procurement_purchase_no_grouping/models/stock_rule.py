@@ -15,10 +15,10 @@ class StockRule(models.Model):
 
     def _run_buy(self, procurements):
         for procurement, _rule in procurements:
-            grouping = procurement.product_id.categ_id.procured_purchase_grouping
-            if not grouping:
-                grouping = self.env.company.procured_purchase_grouping
-            procurement.values["grouping"] = grouping
+            procurement.values["grouping"] = (
+                procurement.product_id.categ_id.procured_purchase_grouping
+                or self.env.company.procured_purchase_grouping
+            )
         return super()._run_buy(procurements)
 
     def _make_po_get_domain(self, company_id, values, partner):
