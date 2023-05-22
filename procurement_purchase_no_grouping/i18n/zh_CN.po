@@ -131,26 +131,3 @@ msgstr "标准合并"
 #: model:ir.model,name:procurement_purchase_no_grouping.model_stock_rule
 msgid "Stock Rule"
 msgstr "库存规则"
-
-#~ msgid "Procured purchase grouping"
-#~ msgstr "采购补货组"
-
-#~ msgid ""
-#~ "Select the behaviour for grouping procured purchases for the the products "
-#~ "of this category:\n"
-#~ "* Standard grouping (default): Procurements will generate purchase orders "
-#~ "as always, grouping lines and orders when possible.\n"
-#~ "* No line grouping: If there are any open purchase order for the same "
-#~ "supplier, it will be reused, but lines won't be merged.\n"
-#~ "* No order grouping: This option will prevent any kind of grouping."
-#~ msgstr ""
-#~ "选择此产品类别采购时补货组合并行为：\n"
-#~ "* 标准合并（默认）：采购将总是生成采购订单，并尽可能对订单和明细的补货组进"
-#~ "行合并。\n"
-#~ "* 明细不合并：如果同一供应商有任何未结采购订单，则会重复使用，但不会合并明"
-#~ "细。\n"
-#~ "* 订单不合并：此选项将阻止任何类型的补货组合并。"
-
-#, fuzzy
-#~ msgid "Procurement Rule"
-#~ msgstr "补货"

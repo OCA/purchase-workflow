@@ -3,23 +3,14 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
 from odoo import fields
-from odoo.tests import common
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestProcurementPurchaseNoGrouping(common.TransactionCase):
+class TestProcurementPurchaseNoGrouping(BaseCommon):
     @classmethod
     def setUpClass(cls):
-        super(TestProcurementPurchaseNoGrouping, cls).setUpClass()
-        # Remove this variable in v16 and put instead:
-        # from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
-        DISABLED_MAIL_CONTEXT = {
-            "tracking_disable": True,
-            "mail_create_nolog": True,
-            "mail_create_nosubscribe": True,
-            "mail_notrack": True,
-            "no_reset_password": True,
-        }
-        cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT))
+        super().setUpClass()
         cls.category = cls.env["product.category"].create({"name": "Test category"})
         cls.partner = cls.env["res.partner"].create({"name": "Test partner"})
         cls.product_1 = cls._create_product(
@@ -47,7 +38,7 @@ class TestProcurementPurchaseNoGrouping(common.TransactionCase):
             {
                 "name": name,
                 "categ_id": category.id,
-                "seller_ids": [(0, 0, {"name": partner.id, "min_qty": 1.0})],
+                "seller_ids": [(0, 0, {"partner_id": partner.id, "min_qty": 1.0})],
             }
         )
         return product
