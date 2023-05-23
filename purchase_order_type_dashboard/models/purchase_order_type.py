@@ -46,15 +46,13 @@ class PurchaseOrderType(models.Model):
         ]
         for order in self:
             order.state_rfq_po_count = sum(
-                [r[3] for r in result if r[0] == order.id and r[1] in rfq_states]
+                r[3] for r in result if r[0] == order.id and r[1] in rfq_states
             )
             order.invoice_status_no_po_count = sum(
-                [
-                    r[3]
-                    for r in result
-                    if r[0] == order.id and r[1] in po_states and r[2] == "no"
-                ]
+                r[3]
+                for r in result
+                if r[0] == order.id and r[1] in po_states and r[2] == "no"
             )
             order.invoice_status_ti_po_count = sum(
-                [r[3] for r in result if r[0] == order.id and r[2] == "to invoice"]
+                r[3] for r in result if r[0] == order.id and r[2] == "to invoice"
             )
