@@ -7,14 +7,20 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='partner_ref']" position="after">
                 <field
-                    name="account_analytic_id"
+                    name="analytic_distribution"
+                    widget="analytic_distribution"
+                    invisible="1"
+                />
+                <field
+                    name="analytic_distribution"
+                    widget="analytic_distribution"
                     groups="analytic.group_analytic_accounting"
                 />
             </xpath>
             <field name="order_line" position="attributes">
                 <attribute
                     name="context"
-                >{'default_account_analytic_id': account_analytic_id}</attribute>
+                >{'default_analytic_distribution': analytic_distribution}</attribute>
             </field>
         </field>
     </record>

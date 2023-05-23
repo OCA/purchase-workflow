@@ -5,27 +5,24 @@ from odoo import api, fields, models
 
 
 class PurchaseOrder(models.Model):
-    _inherit = "purchase.order"
+    _name = "purchase.order"
+    _inherit = ["purchase.order", "analytic.mixin"]
 
-    account_analytic_id = fields.Many2one(
-        "account.analytic.account",
-        string="Analytic Account",
-        compute="_compute_analytic_account",
-        inverse="_inverse_analytic_account",
-        help="This account will be propagated to all lines, if you need "
-        "to use different accounts, define the account at line level.",
-    )
+    analytic_distribution = fields.Json(inverse="_inverse_analytic_distribution")
 
-    @api.depends("order_line.account_analytic_id")
-    def _compute_analytic_account(self):
+    @api.depends("order_line.analytic_distribution")
+    def _compute_analytic_distribution(self):
         for rec in self:
-            account = rec.mapped("order_line.account_analytic_id")
-            if len(account) == 1:
-                rec.account_analytic_id = account
+            analytic = rec.mapped("order_line.analytic_distribution")
+            analytic = list(filter(lambda x: x is not False, analytic))
+            if len(analytic) > 1:
+                analytic = [dict(t) for t in {tuple(d.items()) for d in analytic}]
+            if len(analytic) == 1:
+                rec.analytic_distribution = analytic and analytic[0] or False
             else:
-                rec.account_analytic_id = False
+                rec.analytic_distribution = False
 
-    def _inverse_analytic_account(self):
+    def _inverse_analytic_distribution(self):
         for rec in self:
-            if rec.account_analytic_id:
-                rec.order_line.account_analytic_id = rec.account_analytic_id
+            if rec.analytic_distribution:
+                rec.order_line.analytic_distribution = rec.analytic_distribution

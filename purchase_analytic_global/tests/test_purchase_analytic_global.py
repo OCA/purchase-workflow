@@ -2,7 +2,7 @@
 
 from datetime import date
 
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests.common import TransactionCase
 
 
 class TestPurchaseAnalyticGlobal(TransactionCase):
@@ -15,16 +15,24 @@ class TestPurchaseAnalyticGlobal(TransactionCase):
         cls.partner1 = cls.partner_model.create({"name": "Partner1"})
         cls.partner2 = cls.partner_model.create({"name": "Partner2"})
         cls.analytic_account1 = cls.analytic_account_model.create(
-            {"name": "Analytic Account 1"}
+            {
+                "name": "Analytic Account 1",
+                "plan_id": cls.env.ref("analytic.analytic_plan_departments").id,
+            }
         )
         cls.analytic_account2 = cls.analytic_account_model.create(
-            {"name": "Analytic Account 2"}
+            {
+                "name": "Analytic Account 2",
+                "plan_id": cls.env.ref("analytic.analytic_plan_projects").id,
+            }
         )
+        cls.analytic_account1_json = {str(cls.analytic_account1): 100}
+        cls.analytic_account2_json = {str(cls.analytic_account2): 100}
         cls.product = cls.env.ref("product.product_product_4")
         cls.purchase_order1 = cls.purchase_order_model.create(
             {
                 "partner_id": cls.partner1.id,
-                "account_analytic_id": cls.analytic_account1.id,
+                "analytic_distribution": cls.analytic_account1_json,
                 "order_line": [
                     (
                         0,
@@ -53,7 +61,7 @@ class TestPurchaseAnalyticGlobal(TransactionCase):
                             "name": cls.product.name,
                             "product_qty": 5,
                             "price_unit": 40,
-                            "account_analytic_id": cls.analytic_account2.id,
+                            "analytic_distribution": cls.analytic_account2_json,
                             "product_uom": cls.product.uom_id.id,
                             "date_planned": date.today(),
                         },
@@ -64,20 +72,25 @@ class TestPurchaseAnalyticGlobal(TransactionCase):
 
     def test_purchase_order_check(self):
         self.assertEqual(
-            self.purchase_order1.order_line[0].account_analytic_id,
-            self.analytic_account1,
+            self.purchase_order1.order_line[0].analytic_distribution,
+            self.analytic_account1_json,
         )
         self.assertEqual(
-            self.purchase_order2.account_analytic_id, self.analytic_account2
+            self.purchase_order2.analytic_distribution, self.analytic_account2_json
         )
-        purchase_form = Form(self.purchase_order2)
-        with purchase_form.order_line.new() as line_form:
-            line_form.product_id = self.product
-            line_form.name = self.product.name
-            line_form.product_qty = 10
-            line_form.price_unit = 20
-            line_form.account_analytic_id = self.analytic_account1
-            line_form.product_uom = self.product.uom_id
-            line_form.date_planned = date.today()
-        purchase_form.save()
-        self.assertFalse(self.purchase_order2.account_analytic_id)
+        self.purchase_order2.order_line = [
+            (
+                0,
+                0,
+                {
+                    "product_id": self.product.id,
+                    "name": self.product.name,
+                    "product_qty": 10,
+                    "price_unit": 20,
+                    "analytic_distribution": self.analytic_account1_json,
+                    "product_uom": self.product.uom_id.id,
+                    "date_planned": date.today(),
+                },
+            )
+        ]
+        self.assertFalse(self.purchase_order2.analytic_distribution)
