@@ -9,21 +9,22 @@ from odoo.tests.common import Form, TransactionCase
 
 
 class TestPurchaseInvoicePlan(TransactionCase):
-    def setUp(self):
-        super(TestPurchaseInvoicePlan, self).setUp()
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
         # Create a PO
-        self.PurchaseOrder = self.env["purchase.order"]
-        self.PurchaseInvoicePlan = self.env["purchase.create.invoice.plan"]
-        self.StockBackorderConfirm = self.env["stock.backorder.confirmation"]
-        self.StockPicking = self.env["stock.picking"]
+        cls.PurchaseOrder = cls.env["purchase.order"]
+        cls.PurchaseInvoicePlan = cls.env["purchase.create.invoice.plan"]
+        cls.StockBackorderConfirm = cls.env["stock.backorder.confirmation"]
+        cls.StockPicking = cls.env["stock.picking"]
 
-        self.test_partner = self.env.ref("base.res_partner_12")
-        self.test_service = self.env.ref("product.product_product_2")
-        self.test_product = self.env.ref("product.product_product_7")
+        cls.test_partner = cls.env.ref("base.res_partner_12")
+        cls.test_service = cls.env.ref("product.product_product_2")
+        cls.test_product = cls.env.ref("product.product_product_7")
 
-        self.test_po_service = self.env["purchase.order"].create(
+        cls.test_po_service = cls.env["purchase.order"].create(
             {
-                "partner_id": self.test_partner.id,
+                "partner_id": cls.test_partner.id,
                 "use_invoice_plan": True,
                 "order_line": [
                     (
@@ -31,19 +32,19 @@ class TestPurchaseInvoicePlan(TransactionCase):
                         0,
                         {
                             "name": "PO-Service",
-                            "product_id": self.test_service.id,
+                            "product_id": cls.test_service.id,
                             "date_planned": fields.Datetime.now(),
                             "product_qty": 1,
-                            "product_uom": self.test_service.uom_id.id,
+                            "product_uom": cls.test_service.uom_id.id,
                             "price_unit": 500,
                         },
                     )
                 ],
             }
         )
-        self.test_po_product = self.env["purchase.order"].create(
+        cls.test_po_product = cls.env["purchase.order"].create(
             {
-                "partner_id": self.test_partner.id,
+                "partner_id": cls.test_partner.id,
                 "use_invoice_plan": True,
                 "order_line": [
                     (
@@ -51,10 +52,10 @@ class TestPurchaseInvoicePlan(TransactionCase):
                         0,
                         {
                             "name": "PO-Product",
-                            "product_id": self.test_product.id,
+                            "product_id": cls.test_product.id,
                             "date_planned": fields.Datetime.now(),
                             "product_qty": 10,
-                            "product_uom": self.test_product.uom_id.id,
+                            "product_uom": cls.test_product.uom_id.id,
                             "price_unit": 1000,
                         },
                     )
