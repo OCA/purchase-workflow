@@ -6,90 +6,94 @@ from odoo.tests.common import TransactionCase
 
 
 class TestPurchaseOpenQty(TransactionCase):
-    def setUp(self):
-        super(TestPurchaseOpenQty, self).setUp()
-        self.purchase_order_model = self.env["purchase.order"]
-        purchase_order_line_model = self.env["purchase.order.line"]
-        partner_model = self.env["res.partner"]
-        prod_model = self.env["product.product"]
-        analytic_account_model = self.env["account.analytic.account"]
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.purchase_order_model = cls.env["purchase.order"]
+        purchase_order_line_model = cls.env["purchase.order.line"]
+        partner_model = cls.env["res.partner"]
+        prod_model = cls.env["product.product"]
+        analytic_account_model = cls.env["account.analytic.account"]
 
         # partners
         pa_dict = {"name": "Partner 1"}
-        self.partner = partner_model.sudo().create(pa_dict)
+        cls.partner = partner_model.sudo().create(pa_dict)
         pa_dict2 = {"name": "Partner 2"}
-        self.partner2 = partner_model.sudo().create(pa_dict2)
+        cls.partner2 = partner_model.sudo().create(pa_dict2)
 
         # account
-        ac_dict = {"name": "analytic account 1"}
-        self.analytic_account_1 = analytic_account_model.sudo().create(ac_dict)
+        ac_dict = {
+            "name": "analytic account 1",
+            "plan_id": cls.env.ref("analytic.analytic_plan_projects").id,
+        }
+        cls.analytic_account_1 = analytic_account_model.sudo().create(ac_dict)
 
         # Purchase Order Num 1
-        po_dict = {"partner_id": self.partner.id}
-        self.purchase_order_1 = self.purchase_order_model.create(po_dict)
+        po_dict = {"partner_id": cls.partner.id}
+        cls.purchase_order_1 = cls.purchase_order_model.create(po_dict)
         uom_id = prod_model.uom_id.search([("name", "=", "Units")], limit=1).id
         pr_dict = {
             "name": "Product Test",
             "uom_id": uom_id,
             "purchase_method": "purchase",
         }
-        self.product = prod_model.sudo().create(pr_dict)
+        cls.product = prod_model.sudo().create(pr_dict)
         pl_dict1 = {
             "date_planned": Datetime.now(),
             "name": "PO01",
-            "order_id": self.purchase_order_1.id,
-            "product_id": self.product.id,
+            "order_id": cls.purchase_order_1.id,
+            "product_id": cls.product.id,
             "product_uom": uom_id,
             "price_unit": 1.0,
             "product_qty": 5.0,
-            "account_analytic_id": self.analytic_account_1.id,
+            "analytic_distribution": {cls.analytic_account_1.id: 100},
         }
-        self.purchase_order_line_1 = purchase_order_line_model.sudo().create(pl_dict1)
-        self.purchase_order_1.button_confirm()
+        cls.purchase_order_line_1 = purchase_order_line_model.sudo().create(pl_dict1)
+        cls.purchase_order_1.button_confirm()
 
         # Purchase Order Num 2
-        po_dict2 = {"partner_id": self.partner2.id}
-        self.purchase_order_2 = self.purchase_order_model.create(po_dict2)
+        po_dict2 = {"partner_id": cls.partner2.id}
+        cls.purchase_order_2 = cls.purchase_order_model.create(po_dict2)
         pr_dict2 = {
             "name": "Product Test 2",
             "uom_id": uom_id,
             "purchase_method": "receive",
         }
-        self.product2 = prod_model.sudo().create(pr_dict2)
+        cls.product2 = prod_model.sudo().create(pr_dict2)
         pl_dict2 = {
             "date_planned": Datetime.now(),
             "name": "PO02",
-            "order_id": self.purchase_order_2.id,
-            "product_id": self.product2.id,
+            "order_id": cls.purchase_order_2.id,
+            "product_id": cls.product2.id,
             "product_uom": uom_id,
             "price_unit": 1.0,
             "product_qty": 5.0,
-            "account_analytic_id": self.analytic_account_1.id,
+            "analytic_distribution": {cls.analytic_account_1.id: 100},
         }
-        self.purchase_order_line_2 = purchase_order_line_model.sudo().create(pl_dict2)
-        self.purchase_order_2.button_confirm()
+        cls.purchase_order_line_2 = purchase_order_line_model.sudo().create(pl_dict2)
+        cls.purchase_order_2.button_confirm()
 
         # Purchase Order Num 3 (service)
-        po_dict3 = {"partner_id": self.partner2.id}
-        self.purchase_order_3 = self.purchase_order_model.create(po_dict3)
+        po_dict3 = {"partner_id": cls.partner2.id}
+        cls.purchase_order_3 = cls.purchase_order_model.create(po_dict3)
         pr_dict3 = {
             "name": "Product Test 3",
             "uom_id": uom_id,
             "purchase_method": "receive",
             "type": "service",
         }
-        self.product3 = prod_model.sudo().create(pr_dict3)
+        cls.product3 = prod_model.sudo().create(pr_dict3)
         pl_dict3 = {
             "date_planned": Datetime.now(),
             "name": "PO03",
-            "order_id": self.purchase_order_3.id,
-            "product_id": self.product3.id,
+            "order_id": cls.purchase_order_3.id,
+            "product_id": cls.product3.id,
             "product_uom": uom_id,
             "price_unit": 10.0,
             "product_qty": 5.0,
         }
-        self.purchase_order_line_3 = purchase_order_line_model.sudo().create(pl_dict3)
-        self.purchase_order_3.button_confirm()
+        cls.purchase_order_line_3 = purchase_order_line_model.sudo().create(pl_dict3)
+        cls.purchase_order_3.button_confirm()
 
     def test_compute_qty_to_invoice_and_receive(self):
         self.assertEqual(
@@ -137,7 +141,7 @@ class TestPurchaseOpenQty(TransactionCase):
         # Now we receive the products
         for picking in self.purchase_order_2.picking_ids:
             picking.action_confirm()
-            picking.move_lines.write({"quantity_done": 5.0})
+            picking.move_ids.write({"quantity_done": 5.0})
             picking.button_validate()
 
         # The value is computed when you run it as at user but not in the test
