@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-16 12:06+0000\n"
-"PO-Revision-Date: 2023-05-22 15:11+0000\n"
+"PO-Revision-Date: 2023-05-24 10:11+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -72,7 +72,7 @@ msgstr "Descrizione"
 #: field:purchase.add.product.supplierinfo,display_name:0
 #: field:purchase.add.product.supplierinfo.line,display_name:0
 msgid "Display Name"
-msgstr "Nome da visualizzare"
+msgstr "Nome visualizzato"
 
 #. module: purchase_add_product_supplierinfo
 #: field:purchase.add.product.supplierinfo,id:0
