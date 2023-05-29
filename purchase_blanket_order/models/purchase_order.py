@@ -128,18 +128,16 @@ class PurchaseOrderLine(models.Model):
 
     @api.onchange("product_qty", "product_uom")
     def _onchange_quantity(self):
-        res = super()._onchange_quantity()
         if self.product_id and not self.env.context.get("skip_blanket_find", False):
             return self.get_assigned_bo_line()
-        return res
 
     @api.onchange("blanket_order_line")
     def onchange_blanket_order_line(self):
         bol = self.blanket_order_line
         if bol:
-            self.product_id = bol.product_id
             if bol.date_schedule:
                 self.date_planned = bol.date_schedule
+            self.product_id = bol.product_id
             if bol.product_uom != self.product_uom:
                 price_unit = bol.product_uom._compute_price(
                     bol.price_unit, self.product_uom

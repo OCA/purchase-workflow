@@ -2,3 +2,4 @@
 * Jordi Ballester Alomar <jordi.ballester@forgeflow.com>
 * Héctor Villarreal <hector.villarreal@forgeflow.com>
 * Lois Rilo <lois.rilo@forgeflow.com>
+* Dhara Solanki <dhara.solanki@initos.com>

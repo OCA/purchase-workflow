@@ -141,11 +141,13 @@
                                     <field
                                         name="product_id"
                                         context="{'partner_id':parent.partner_id, 'quantity':original_uom_qty, 'company_id': parent.company_id}"
+                                        groups="base.group_multi_company"
                                     />
                                     <field
                                         name="original_uom_qty"
                                         string="Original Qty"
                                         context="{'partner_id':parent.partner_id, 'quantity':original_uom_qty, 'company_id': parent.company_id}"
+                                        groups="base.group_multi_company"
                                     />
                                     <field name="product_uom" groups="uom.group_uom" />
                                     <field name="price_unit" />
@@ -278,6 +280,7 @@
                 <field
                     name="product_id"
                     context="{'partner_id':parent.partner_id, 'quantity':original_uom_qty, 'company_id': parent.company_id}"
+                    groups="base.group_multi_company"
                 />
                 <field name="product_uom" invisible="1" />
                 <field name="price_unit" />
@@ -286,6 +289,7 @@
                     name="original_uom_qty"
                     string="Original Qty"
                     context="{'partner_id':parent.partner_id, 'quantity':original_uom_qty, 'company_id': parent.company_id}"
+                    groups="base.group_multi_company"
                 />
                 <field name="ordered_uom_qty" />
                 <field name="invoiced_uom_qty" />

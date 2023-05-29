@@ -21,7 +21,7 @@ class TestPurchaseBlanketOrders(common.TransactionCase):
 
         # Seller IDS
         seller = self.env["product.supplierinfo"].create(
-            {"name": self.partner.id, "price": 30.0}
+            {"partner_id": self.partner.id, "price": 30.0}
         )
 
         self.product = self.env["product.product"].create(
