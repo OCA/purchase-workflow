@@ -23,7 +23,11 @@ class TestPurchaseOrderQtyChange(TransactionCase):
                 "name": "Test Product 1",
                 "taxes_id": False,
                 "seller_ids": [
-                    (0, False, {"name": cls.partner.id, "min_qty": 1, "price": 25.00}),
+                    (
+                        0,
+                        False,
+                        {"partner_id": cls.partner.id, "min_qty": 1, "price": 25.00},
+                    ),
                 ],
             }
         )
@@ -32,7 +36,11 @@ class TestPurchaseOrderQtyChange(TransactionCase):
                 "name": "Test Product 2",
                 "taxes_id": False,
                 "seller_ids": [
-                    (0, False, {"name": cls.partner.id, "min_qty": 1, "price": 30.00}),
+                    (
+                        0,
+                        False,
+                        {"partner_id": cls.partner.id, "min_qty": 1, "price": 30.00},
+                    ),
                 ],
             }
         )
