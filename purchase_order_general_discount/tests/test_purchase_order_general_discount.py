@@ -1,9 +1,8 @@
 # Copyright 2019 Tecnativa - David Vidal
 # Copyright 2022 Tecnativa - Pilar Vargas
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from lxml import etree
 
-from odoo.tests import TransactionCase, common
+from odoo.tests import Form, TransactionCase, common
 
 
 class TestPurchaseOrderLineInput(TransactionCase):
@@ -37,35 +36,14 @@ class TestPurchaseOrderLineInput(TransactionCase):
         self.order.action_update_general_discount()
         self.assertEqual(self.order.order_line.price_subtotal, 900.00)
 
-    def _get_ctx_from_view(self, res):
-        order_xml = etree.XML(res["arch"])
-        order_line_path = "//field[@name='order_line']"
-        order_line_field = order_xml.xpath(order_line_path)[0]
-        return order_line_field.attrib.get("context", "{}")
-
-    def test_03_default_line_discount_value(self):
-        res = self.order.fields_view_get(
-            view_id=self.env.ref(
-                "purchase_order_general_discount.purchase_order_form"
-            ).id,
-            view_type="form",
-        )
-        ctx = self._get_ctx_from_view(res)
-        self.assertTrue("default_discount" in ctx)
-        view = self.View.create(
-            {
-                "name": "test",
-                "type": "form",
-                "model": "purchase.order",
-                "arch": """
-                <data>
-                    <field name='order_line'
-                        context="{'default_product_uom_qty': 3.0}">
-                    </field>
-                </data>
-            """,
-            }
-        )
-        res = self.order.fields_view_get(view_id=view.id, view_type="form")
-        ctx = self._get_ctx_from_view(res)
-        self.assertTrue("default_discount" in ctx)
+    def test_03_get_view_set_default_line_discount_value(self):
+        company = self.order.company_id
+        company.purchase_general_discount_field = "discount"
+        po_form_view_xmlid = "purchase_order_general_discount.purchase_order_form"
+        with Form(self.order, po_form_view_xmlid) as order_form:
+            order_form.general_discount = 8
+            with order_form.order_line.edit(0) as line_form:
+                self.assertEqual(line_form.discount, 8)
+            order_form.general_discount = 10
+            with order_form.order_line.edit(0) as line_form:
+                self.assertEqual(line_form.discount, 10)
