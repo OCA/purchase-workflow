@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -53,15 +53,8 @@ msgid "Base Substate Type"
 msgstr ""
 
 #. module: purchase_substate
-#: model:ir.model.fields,field_description:purchase_substate.field_base_substate_type__display_name
-#: model:ir.model.fields,field_description:purchase_substate.field_purchase_order__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: purchase_substate
-#: model:ir.model.fields,field_description:purchase_substate.field_base_substate_type__id
-#: model:ir.model.fields,field_description:purchase_substate.field_purchase_order__id
-msgid "ID"
+#: model:mail.template,name:purchase_substate.mail_template_data_purchase_substate_delivery
+msgid "In delevery"
 msgstr ""
 
 #. module: purchase_substate
@@ -72,12 +65,6 @@ msgstr ""
 #. module: purchase_substate
 #: model:base.substate,name:purchase_substate.base_substate_in_receipt
 msgid "In receipt"
-msgstr ""
-
-#. module: purchase_substate
-#: model:ir.model.fields,field_description:purchase_substate.field_base_substate_type____last_update
-#: model:ir.model.fields,field_description:purchase_substate.field_purchase_order____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: purchase_substate
@@ -133,6 +120,7 @@ msgstr ""
 
 #. module: purchase_substate
 #: model:base.substate,name:purchase_substate.base_substate_wait_docs
+#: model:mail.template,name:purchase_substate.mail_template_data_purchase_substate_wait_docs
 msgid "Waiting for legal documents"
 msgstr ""
 
