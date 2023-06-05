@@ -16,6 +16,7 @@ setuptools.setup(
         'odoo-addon-purchase_allowed_product>=15.0dev,<15.1dev',
         'odoo-addon-purchase_analytic_global>=15.0dev,<15.1dev',
         'odoo-addon-purchase_blanket_order>=15.0dev,<15.1dev',
+        'odoo-addon-purchase_cancel_confirm>=15.0dev,<15.1dev',
         'odoo-addon-purchase_default_terms_conditions>=15.0dev,<15.1dev',
         'odoo-addon-purchase_delivery_split_date>=15.0dev,<15.1dev',
         'odoo-addon-purchase_deposit>=15.0dev,<15.1dev',
