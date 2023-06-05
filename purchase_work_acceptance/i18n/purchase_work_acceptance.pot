@@ -385,6 +385,12 @@ msgid "Number of unread messages"
 msgstr ""
 
 #. module: purchase_work_acceptance
+#: code:addons/purchase_work_acceptance/models/purchase.py:0
+#, python-format
+msgid "Operation not supported"
+msgstr ""
+
+#. module: purchase_work_acceptance
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance_line__partner_id
 msgid "Partner"
 msgstr ""
@@ -607,6 +613,8 @@ msgstr ""
 
 #. module: purchase_work_acceptance
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_purchase_order__wa_accepted
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.purchase_order_view_search
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_purchase_order_filter
 msgid "WA Accepted"
 msgstr ""
 
@@ -614,6 +622,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_purchase_order__wa_line_ids
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_purchase_order_line__wa_line_ids
 msgid "WA Lines"
+msgstr ""
+
+#. module: purchase_work_acceptance
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.purchase_order_view_search
+#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_purchase_order_filter
+msgid "WA Not Accepted"
 msgstr ""
 
 #. module: purchase_work_acceptance
