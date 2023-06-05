@@ -10,23 +10,19 @@ class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
     @api.model
-    def fields_view_get(
-        self, view_id=None, view_type="form", toolbar=False, submenu=False
-    ):
-        res = super().fields_view_get(
-            view_id=view_id,
-            view_type=view_type,
-            toolbar=toolbar,
-            submenu=submenu,
-        )
+    def get_view(self, view_id=None, view_type="form", **options):
+        res = super().get_view(view_id, view_type, **options)
+
         if view_type == "form":
-            order_xml = etree.XML(res["arch"])
-            partner_id_fields = order_xml.xpath("//field[@name='partner_id']")
-            if partner_id_fields:
-                partner_id_field = partner_id_fields[0]
-                domain = partner_id_field.get("domain", "[]").replace(
+            purchase_xml = etree.XML(res["arch"])
+            partner_fields = purchase_xml.xpath('//field[@name="partner_id"]')
+
+            if partner_fields:
+                partner_fields = partner_fields[0]
+                domain = partner_fields.get("domain", "[]").replace(
                     "[", "[('purchase_selectable', '=', True),"
                 )
-                partner_id_field.attrib["domain"] = domain
-                res["arch"] = etree.tostring(order_xml)
+                partner_fields.attrib["domain"] = domain
+                res["arch"] = etree.tostring(purchase_xml, encoding="unicode")
+
         return res
