@@ -352,3 +352,8 @@ class TestPurchaseWorkAcceptance(TransactionCase):
         work_acceptance.button_accept()
         purchase_order._compute_wa_accepted()
         self.assertEqual(purchase_order.wa_accepted, True)
+        # Search wa accepted
+        purchase_order._search_wa_accepted("=", True)
+        # Search with not `=` or `!=`
+        with self.assertRaises(UserError):
+            purchase_order._search_wa_accepted(">", True)
