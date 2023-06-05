@@ -1,6 +1,5 @@
 # Copyright 2019 Tecnativa - David Vidal
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from lxml import etree
 
 from odoo import api, fields, models
 
@@ -47,25 +46,17 @@ class PurchaseOrder(models.Model):
             order.onchange_general_discount()
 
     @api.model
-    def fields_view_get(
-        self, view_id=None, view_type="form", toolbar=False, submenu=False
-    ):
+    def _get_view(self, view_id=None, view_type="form", **options):
         """The purpose of this is to write a context on "order_line" field
         respecting other contexts on this field.
         There is a PR (https://github.com/odoo/odoo/pull/26607) to odoo for
         avoiding this. If merged, remove this method and add the attribute
         in the field.
         """
-        res = super().fields_view_get(
-            view_id=view_id,
-            view_type=view_type,
-            toolbar=toolbar,
-            submenu=submenu,
-        )
+        arch, view = super()._get_view(view_id=view_id, view_type=view_type, **options)
         if view_type == "form":
             discount_field = self._get_general_discount_field()
-            order_xml = etree.XML(res["arch"])
-            order_line_fields = order_xml.xpath("//field[@name='order_line']")
+            order_line_fields = arch.xpath("//field[@name='order_line']")
             if order_line_fields:
                 order_line_field = order_line_fields[0]
                 context = order_line_field.attrib.get("context", "{}").replace(
@@ -74,5 +65,4 @@ class PurchaseOrder(models.Model):
                     1,
                 )
                 order_line_field.attrib["context"] = context
-                res["arch"] = etree.tostring(order_xml)
-        return res
+        return arch, view
