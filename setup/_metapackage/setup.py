@@ -50,6 +50,7 @@ setuptools.setup(
         'odoo-addon-purchase_order_secondary_unit>=15.0dev,<15.1dev',
         'odoo-addon-purchase_order_supplierinfo_update>=15.0dev,<15.1dev',
         'odoo-addon-purchase_order_type>=15.0dev,<15.1dev',
+        'odoo-addon-purchase_order_type_dashboard>=15.0dev,<15.1dev',
         'odoo-addon-purchase_order_uninvoiced_amount>=15.0dev,<15.1dev',
         'odoo-addon-purchase_partner_incoterm>=15.0dev,<15.1dev',
         'odoo-addon-purchase_partner_selectable_option>=15.0dev,<15.1dev',
