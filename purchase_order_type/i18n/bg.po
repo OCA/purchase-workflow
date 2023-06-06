@@ -60,13 +60,12 @@ msgid "Description"
 msgstr ""
 
 #. module: purchase_order_type
-#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order__display_name
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__display_name
-#: model:ir.model.fields,field_description:purchase_order_type.field_res_partner__display_name
 msgid "Display Name"
 msgstr "Име за Показване"
 
 #. module: purchase_order_type
+#. odoo-python
 #: code:addons/purchase_order_type/models/purchase_order.py:0
 #, python-format
 msgid "Document's company and type's company mismatch"
@@ -84,9 +83,7 @@ msgid "Group By"
 msgstr ""
 
 #. module: purchase_order_type
-#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order__id
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__id
-#: model:ir.model.fields,field_description:purchase_order_type.field_res_partner__id
 msgid "ID"
 msgstr "ID"
 
@@ -97,9 +94,7 @@ msgid "Incoterm"
 msgstr ""
 
 #. module: purchase_order_type
-#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order____last_update
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type____last_update
-#: model:ir.model.fields,field_description:purchase_order_type.field_res_partner____last_update
 msgid "Last Modified on"
 msgstr "Последно обновено на"
 
@@ -144,7 +139,6 @@ msgstr ""
 #: model:ir.actions.act_window,name:purchase_order_type.action_purchase_order_type_view
 #: model:ir.ui.menu,name:purchase_order_type.menu_purchase_order_type
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
-#: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_tree
 msgid "Purchase Order Types"
 msgstr ""
 
