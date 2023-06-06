@@ -13,8 +13,8 @@ def get_depends(self, model):
         "price_unit",
         "discount",
     }:
-        if "product_uom_qty" in depends:
-            depends.remove("product_uom_qty")
+        if "product_qty" in depends:
+            depends.remove("product_qty")
         if "product_uom" in depends:
             depends.remove("product_uom")
     return depends, depends_context
