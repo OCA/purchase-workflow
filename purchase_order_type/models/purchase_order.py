@@ -38,13 +38,16 @@ class PurchaseOrder(models.Model):
             if order.order_type.incoterm_id:
                 order.incoterm_id = order.order_type.incoterm_id.id
 
-    @api.model
-    def create(self, vals):
-        if vals.get("name", "/") == "/" and vals.get("order_type"):
-            purchase_type = self.env["purchase.order.type"].browse(vals["order_type"])
-            if purchase_type.sequence_id:
-                vals["name"] = purchase_type.sequence_id.next_by_id()
-        return super().create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        for values in vals_list:
+            if values.get("name", "/") == "/" and values.get("order_type"):
+                purchase_type = self.env["purchase.order.type"].browse(
+                    values["order_type"]
+                )
+                if purchase_type.sequence_id:
+                    values["name"] = purchase_type.sequence_id.next_by_id()
+        return super().create(vals_list)
 
     @api.constrains("company_id")
     def _check_po_type_company(self):
