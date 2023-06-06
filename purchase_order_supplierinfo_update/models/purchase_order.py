@@ -11,7 +11,9 @@ class PurchaseOrder(models.Model):
         no_updated = self.filtered(lambda r: r.state not in ["purchase", "done"])
         res = super().write(vals)
         if vals.get("state", "") in ["purchase", "done"]:
-            no_updated.mapped("order_line").update_supplierinfo_price()
+            no_updated.mapped("order_line").filtered(
+                lambda r: not r.display_type
+            ).update_supplierinfo_price()
         return res
 
 

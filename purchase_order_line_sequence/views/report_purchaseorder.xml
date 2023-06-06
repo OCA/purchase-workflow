@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="report_purchase_order_sequence_qweb"
+        inherit_id="purchase.report_purchaseorder_document"
+    >
+        <xpath expr="//table/thead/tr/th[1]" position="before">
+            <th><strong>Sequence</strong></th>
+        </xpath>
+        <!--complicated expr to be compatible with other modules-->
+        <xpath expr="//table/tbody//span[1]/.." position="before">
+             <td>
+                <span t-field="line.sequence2" />
+             </td>
+        </xpath>
+    </template>
+</odoo>

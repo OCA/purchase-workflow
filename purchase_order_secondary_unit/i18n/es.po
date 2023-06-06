@@ -34,11 +34,12 @@ msgid "Purchase Order Line"
 msgstr "Línea pedido de compra"
 
 #. module: purchase_order_secondary_unit
-#: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_purchase_order_line__secondary_uom_qty
-msgid "Secondary Qty"
-msgstr "Cdad. secundaria"
+#: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_purchase_order_line__product_qty
+msgid "Quantity"
+msgstr ""
 
-#. module: purchase_order_secondary_unit
-#: model:ir.model.fields,field_description:purchase_order_secondary_unit.field_purchase_order_line__secondary_uom_id
-msgid "Secondary uom"
-msgstr "UdM Secundaría"
+#~ msgid "Secondary Qty"
+#~ msgstr "Cdad. secundaria"
+
+#~ msgid "Secondary uom"
+#~ msgstr "UdM Secundaría"

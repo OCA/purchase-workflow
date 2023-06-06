@@ -59,9 +59,8 @@ Credits
 Authors
 ~~~~~~~
 
-* OdooMRP team
 * AvanzOSC
-* Tecnativa - Pedro M. Baeza
+* Tecnativa
 
 Contributors
 ~~~~~~~~~~~~

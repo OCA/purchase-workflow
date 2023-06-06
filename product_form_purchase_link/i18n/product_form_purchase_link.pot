@@ -14,9 +14,19 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: product_form_purchase_link
+#: model_terms:ir.ui.view,arch_db:product_form_purchase_link.purchase_order_line_search
+msgid "Purchase Orders"
+msgstr ""
+
+#. module: product_form_purchase_link
 #: model:ir.actions.act_window,name:product_form_purchase_link.action_purchase_line_product_product_tree
 #: model:ir.actions.act_window,name:product_form_purchase_link.action_purchase_line_product_tree
 #: model_terms:ir.ui.view,arch_db:product_form_purchase_link.product_normal_form_view_inherit_purchase
 #: model_terms:ir.ui.view,arch_db:product_form_purchase_link.view_product_template_purchase_buttons_from
 msgid "Purchases"
+msgstr ""
+
+#. module: product_form_purchase_link
+#: model_terms:ir.ui.view,arch_db:product_form_purchase_link.purchase_order_line_search
+msgid "RFQs"
 msgstr ""

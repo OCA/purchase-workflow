@@ -25,7 +25,9 @@ class PurchaseRequestLine(models.Model):
         comodel_name="uom.uom",
         string="Product Unit of Measure",
         track_visibility="onchange",
+        domain="[('category_id', '=', product_uom_category_id)]",
     )
+    product_uom_category_id = fields.Many2one(related="product_id.uom_id.category_id")
     product_qty = fields.Float(
         string="Quantity", track_visibility="onchange", digits="Product Unit of Measure"
     )

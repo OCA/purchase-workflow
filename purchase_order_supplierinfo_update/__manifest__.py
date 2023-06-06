@@ -3,7 +3,7 @@
 {
     "name": "Purchase Order Supplierinfo Update",
     "summary": "Update product supplierinfo with the last purchase price",
-    "version": "13.0.1.0.1",
+    "version": "13.0.1.0.2",
     "category": "Purchase",
     "website": "https://github.com/OCA/purchase-workflow",
     "author": "Tecnativa, Odoo Community Association (OCA)",

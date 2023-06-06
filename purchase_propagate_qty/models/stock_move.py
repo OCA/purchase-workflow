@@ -39,7 +39,9 @@ class StockMove(models.Model):
                 or (move.origin_returned_move_id and move.to_refund)
             )
         )
-        assert (
-            len(set(moves.mapped("product_uom"))) == 1
-        ), "moves doesn't share the same UoM"
+        # moves filtered can be empty
+        if moves:
+            assert (
+                len(set(moves.mapped("product_uom"))) == 1
+            ), "moves doesn't share the same UoM"
         return sum([move.product_uom_qty - move.quantity_done for move in moves])

@@ -29,6 +29,11 @@ msgid "Purchase Order Line"
 msgstr ""
 
 #. module: purchase_force_invoiced
+#: model:ir.model,name:purchase_force_invoiced.model_purchase_report
+msgid "Purchase Report"
+msgstr ""
+
+#. module: purchase_force_invoiced
 #: model:ir.model.fields,help:purchase_force_invoiced.field_purchase_order__force_invoiced
 msgid ""
 "When you set this field, the purchase order will be considered as fully "
