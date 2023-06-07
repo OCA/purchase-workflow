@@ -29,6 +29,7 @@ msgid "Account used for deposits"
 msgstr "Cuenta contable para el anticipo"
 
 #. module: purchase_deposit
+#. odoo-python
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
 #, python-format
 msgid "Advance: %s"
@@ -40,14 +41,24 @@ msgid "Cancel"
 msgstr "Cancelar"
 
 #. module: purchase_deposit
-#: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
-msgid "Create and View bills"
-msgstr "Crear y ver facturas"
+#: model:ir.model,name:purchase_deposit.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: purchase_deposit
+#: model:ir.model,name:purchase_deposit.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
 
 #. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
-msgid "Create deposit"
-msgstr "Crear anticipo"
+msgid "Create Bill"
+msgstr ""
+
+#. module: purchase_deposit
+#: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
+msgid "Create and View bills"
+msgstr "Crear y ver facturas"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__create_uid
@@ -60,11 +71,13 @@ msgid "Created on"
 msgstr "Creado en"
 
 #. module: purchase_deposit
-#: model:ir.model.fields,help:purchase_deposit.field_res_config_settings__default_purchase_deposit_product_id
+#: model:ir.model.fields,help:purchase_deposit.field_res_company__purchase_deposit_product_id
+#: model:ir.model.fields,help:purchase_deposit.field_res_config_settings__purchase_deposit_product_id
 msgid "Default product used for payment advances."
 msgstr "Producto usado para pagos adelantados."
 
 #. module: purchase_deposit
+#. odoo-python
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
 #, python-format
 msgid "Deposit Payment"
@@ -91,6 +104,11 @@ msgid "Deposit payment (fixed amount)"
 msgstr "Anticipo (cantidad fija)"
 
 #. module: purchase_deposit
+#: model:ir.model.fields.selection,name:purchase_deposit.selection__purchase_advance_payment_inv__advance_payment_method__percentage
+msgid "Deposit payment (percentage)"
+msgstr ""
+
+#. module: purchase_deposit
 #: model:ir.model.fields,help:purchase_deposit.field_purchase_order_line__is_deposit
 msgid ""
 "Deposit payments are made when creating bills from a purhcase order. They "
@@ -103,11 +121,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
-
-#. module: purchase_deposit
-#: model:ir.model.fields.selection,name:purchase_deposit.selection__purchase_advance_payment_inv__advance_payment_method__percentage
-msgid "Down payment (percentage)"
-msgstr "Anticipo (porcentaje)"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__deposit_account_id
@@ -144,6 +157,11 @@ msgid "Is a deposit payment"
 msgstr "Es un anticipo"
 
 #. module: purchase_deposit
+#: model:ir.model,name:purchase_deposit.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv____last_update
 msgid "Last Modified on"
 msgstr "Última modificación el"
@@ -159,11 +177,6 @@ msgid "Last Updated on"
 msgstr "Última actualización el"
 
 #. module: purchase_deposit
-#: model:ir.model,name:purchase_deposit.model_res_config_settings
-msgid "Procurement purchase grouping settings"
-msgstr ""
-
-#. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.res_config_settings_view_form_purchase
 msgid "Product used for deposit payments"
 msgstr "Producto usado para los anticipos"
@@ -174,7 +187,8 @@ msgid "Purchase Advance Payment Invoice"
 msgstr "Factura de anticipo"
 
 #. module: purchase_deposit
-#: model:ir.model.fields,field_description:purchase_deposit.field_res_config_settings__default_purchase_deposit_product_id
+#: model:ir.model.fields,field_description:purchase_deposit.field_res_company__purchase_deposit_product_id
+#: model:ir.model.fields,field_description:purchase_deposit.field_res_config_settings__purchase_deposit_product_id
 msgid "Purchase Deposit Product"
 msgstr "Producto anticipo"
 
@@ -204,12 +218,14 @@ msgid "The amount to be invoiced in advance, taxes excluded."
 msgstr "Importe a facturar por adelantado, sin impuestos."
 
 #. module: purchase_deposit
+#. odoo-python
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
 #, python-format
 msgid "The percentage of the deposit must be not over 100"
 msgstr "El porcentaje del anticipo no puede ser superior al 100"
 
 #. module: purchase_deposit
+#. odoo-python
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
 #, python-format
 msgid ""
@@ -220,39 +236,37 @@ msgstr ""
 "\"Servicio\". Utilice otro producto o actualice este."
 
 #. module: purchase_deposit
+#. odoo-python
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
 #, python-format
 msgid ""
-"The product used to invoice a down payment should have an invoice policy set"
-" to \"Ordered quantities\". Please update your deposit product to be able to"
-" create a deposit invoice."
+"The product used to invoice a down payment should have an invoice policy set "
+"to \"Ordered quantities\". Please update your deposit product to be able to "
+"create a deposit invoice."
 msgstr ""
 "El producto para facturar anticipos debería de tener la política de "
 "facturación \"Sobre cantidades pedidas\". Actualice el producto anticipo o "
 "si lo prefieres crea uno nuevo."
 
 #. module: purchase_deposit
+#. odoo-python
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
 #, python-format
 msgid "The value of the deposit must be positive."
 msgstr "El importe del anticipo debe de ser positivo."
 
 #. module: purchase_deposit
+#. odoo-python
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
 #, python-format
 msgid ""
 "There is no purchase account defined for this product: %s.\n"
-"You may have to install a chart of account from Accounting app, settings menu."
+"You may have to install a chart of account from Accounting app, settings "
+"menu."
 msgstr ""
 "No hay una cuenta contable definida para este producto:%s.\n"
 "Es posible que tengas que instalar un plan contable desde la aplicación "
 "Contabilidad, en el menú de configuración."
-
-#. module: purchase_deposit
-#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
-#, python-format
-msgid "This action is allowed only in Purchase Order sate"
-msgstr "Esta acción solo es posible en el estado Pedido de compra"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__deposit_taxes_id
@@ -263,3 +277,13 @@ msgstr "Impuestos de proveedor"
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__advance_payment_method
 msgid "What do you want to invoice?"
 msgstr "¿Que quieres facturar?"
+
+#~ msgid "Create deposit"
+#~ msgstr "Crear anticipo"
+
+#~ msgid "Down payment (percentage)"
+#~ msgstr "Anticipo (porcentaje)"
+
+#, python-format
+#~ msgid "This action is allowed only in Purchase Order sate"
+#~ msgstr "Esta acción solo es posible en el estado Pedido de compra"
