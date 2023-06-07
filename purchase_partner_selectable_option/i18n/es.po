@@ -1,0 +1,39 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_partner_selectable_option
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-12-02 16:01+0000\n"
+"PO-Revision-Date: 2021-12-02 17:02+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 2.3\n"
+
+#. module: purchase_partner_selectable_option
+#: model:ir.model,name:purchase_partner_selectable_option.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: purchase_partner_selectable_option
+#: model:ir.model,name:purchase_partner_selectable_option.model_purchase_order
+msgid "Purchase Order"
+msgstr ""
+
+#. module: purchase_partner_selectable_option
+#: model_terms:ir.ui.view,arch_db:purchase_partner_selectable_option.view_partner_form
+msgid "Selectable in orders"
+msgstr "Seleccionable en pedidos"
+
+#. module: purchase_partner_selectable_option
+#: model:ir.model.fields,field_description:purchase_partner_selectable_option.field_res_partner__purchase_selectable
+#: model:ir.model.fields,field_description:purchase_partner_selectable_option.field_res_users__purchase_selectable
+msgid "Selectable in purchase orders"
+msgstr "Seleccionable en pedidos de compra"
