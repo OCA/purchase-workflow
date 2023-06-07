@@ -16,7 +16,7 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
 
     advance_payment_method = fields.Selection(
         [
-            ("percentage", "Down payment (percentage)"),
+            ("percentage", "Deposit payment (percentage)"),
             ("fixed", "Deposit payment (fixed amount)"),
         ],
         string="What do you want to invoice?",
@@ -202,9 +202,8 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
             )
             po_line = PurchaseLine.create(adv_po_line_dict)
             del context
-
-            if self._context.get("create_bills", False):
-                self._create_invoice(order, po_line, amount)
+            self._create_invoice(order, po_line, amount)
+            if self._context.get("open_bills", False):
                 return purchases.action_view_invoice()
         return {"type": "ir.actions.act_window_close"}
 

@@ -27,6 +27,7 @@ msgid "Account used for deposits"
 msgstr ""
 
 #. module: purchase_deposit
+#. odoo-python
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
 #, python-format
 msgid "Advance: %s"
@@ -38,13 +39,23 @@ msgid "Cancel"
 msgstr ""
 
 #. module: purchase_deposit
-#: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
-msgid "Create and View bills"
+#: model:ir.model,name:purchase_deposit.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: purchase_deposit
+#: model:ir.model,name:purchase_deposit.model_res_config_settings
+msgid "Config Settings"
 msgstr ""
 
 #. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
-msgid "Create deposit"
+msgid "Create Bill"
+msgstr ""
+
+#. module: purchase_deposit
+#: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
+msgid "Create and View bills"
 msgstr ""
 
 #. module: purchase_deposit
@@ -58,11 +69,13 @@ msgid "Created on"
 msgstr ""
 
 #. module: purchase_deposit
-#: model:ir.model.fields,help:purchase_deposit.field_res_config_settings__default_purchase_deposit_product_id
+#: model:ir.model.fields,help:purchase_deposit.field_res_company__purchase_deposit_product_id
+#: model:ir.model.fields,help:purchase_deposit.field_res_config_settings__purchase_deposit_product_id
 msgid "Default product used for payment advances."
 msgstr ""
 
 #. module: purchase_deposit
+#. odoo-python
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
 #, python-format
 msgid "Deposit Payment"
@@ -89,6 +102,11 @@ msgid "Deposit payment (fixed amount)"
 msgstr ""
 
 #. module: purchase_deposit
+#: model:ir.model.fields.selection,name:purchase_deposit.selection__purchase_advance_payment_inv__advance_payment_method__percentage
+msgid "Deposit payment (percentage)"
+msgstr ""
+
+#. module: purchase_deposit
 #: model:ir.model.fields,help:purchase_deposit.field_purchase_order_line__is_deposit
 msgid ""
 "Deposit payments are made when creating bills from a purhcase order. They "
@@ -98,11 +116,6 @@ msgstr ""
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__display_name
 msgid "Display Name"
-msgstr ""
-
-#. module: purchase_deposit
-#: model:ir.model.fields.selection,name:purchase_deposit.selection__purchase_advance_payment_inv__advance_payment_method__percentage
-msgid "Down payment (percentage)"
 msgstr ""
 
 #. module: purchase_deposit
@@ -138,6 +151,11 @@ msgid "Is a deposit payment"
 msgstr ""
 
 #. module: purchase_deposit
+#: model:ir.model,name:purchase_deposit.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv____last_update
 msgid "Last Modified on"
 msgstr ""
@@ -153,11 +171,6 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: purchase_deposit
-#: model:ir.model,name:purchase_deposit.model_res_config_settings
-msgid "Procurement purchase grouping settings"
-msgstr ""
-
-#. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.res_config_settings_view_form_purchase
 msgid "Product used for deposit payments"
 msgstr ""
@@ -168,7 +181,8 @@ msgid "Purchase Advance Payment Invoice"
 msgstr ""
 
 #. module: purchase_deposit
-#: model:ir.model.fields,field_description:purchase_deposit.field_res_config_settings__default_purchase_deposit_product_id
+#: model:ir.model.fields,field_description:purchase_deposit.field_res_company__purchase_deposit_product_id
+#: model:ir.model.fields,field_description:purchase_deposit.field_res_config_settings__purchase_deposit_product_id
 msgid "Purchase Deposit Product"
 msgstr ""
 
@@ -198,12 +212,14 @@ msgid "The amount to be invoiced in advance, taxes excluded."
 msgstr ""
 
 #. module: purchase_deposit
+#. odoo-python
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
 #, python-format
 msgid "The percentage of the deposit must be not over 100"
 msgstr ""
 
 #. module: purchase_deposit
+#. odoo-python
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
 #, python-format
 msgid ""
@@ -212,32 +228,30 @@ msgid ""
 msgstr ""
 
 #. module: purchase_deposit
+#. odoo-python
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
 #, python-format
 msgid ""
-"The product used to invoice a down payment should have an invoice policy set"
-" to \"Ordered quantities\". Please update your deposit product to be able to"
-" create a deposit invoice."
+"The product used to invoice a down payment should have an invoice policy set "
+"to \"Ordered quantities\". Please update your deposit product to be able to "
+"create a deposit invoice."
 msgstr ""
 
 #. module: purchase_deposit
+#. odoo-python
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
 #, python-format
 msgid "The value of the deposit must be positive."
 msgstr ""
 
 #. module: purchase_deposit
+#. odoo-python
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
 #, python-format
 msgid ""
 "There is no purchase account defined for this product: %s.\n"
-"You may have to install a chart of account from Accounting app, settings menu."
-msgstr ""
-
-#. module: purchase_deposit
-#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
-#, python-format
-msgid "This action is allowed only in Purchase Order sate"
+"You may have to install a chart of account from Accounting app, settings "
+"menu."
 msgstr ""
 
 #. module: purchase_deposit

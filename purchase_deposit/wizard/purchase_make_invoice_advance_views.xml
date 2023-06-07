@@ -46,12 +46,12 @@
                         name="create_invoices"
                         string="Create and View bills"
                         type="object"
-                        context="{'create_bills': True}"
+                        context="{'open_bills': True}"
                         class="btn-primary"
                     />
                     <button
                         name="create_invoices"
-                        string="Create deposit"
+                        string="Create Bill"
                         type="object"
                         class="btn-primary"
                     />
