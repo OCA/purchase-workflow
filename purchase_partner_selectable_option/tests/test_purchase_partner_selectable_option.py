@@ -11,7 +11,7 @@ class TestPurchasePartnerSelectableOption(common.TransactionCase):
         super().setUpClass()
 
     def test_sale_order(self):
-        result = self.env["purchase.order"].fields_view_get(
+        result = self.env["purchase.order"].get_view(
             view_id=self.env.ref("purchase.purchase_order_form").id,
             view_type="form",
         )
