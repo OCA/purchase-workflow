@@ -58,7 +58,7 @@ class TestPurchaseOrderSecurity(TransactionCase):
         # Partner for the POs
         cls.partner_po = cls.env["res.partner"].create({"name": "PO Partner"})
         # Purchase Order
-        cls.env["purchase.order"].create(
+        cls.orders = cls.env["purchase.order"].create(
             (
                 {
                     "name": "po_security_1",
@@ -95,6 +95,13 @@ class TestPurchaseOrderSecurity(TransactionCase):
             ),
             2,
         )
+        self.assertFalse(
+            self.orders.filtered(
+                lambda x: x.user_id == self.user_group_purchase_own_orders
+            )
+            .with_user(self.user_group_purchase_own_orders)[0]
+            .is_user_id_editable
+        )
 
     def test_access_user_po_user(self):
         # Normal PO user should have access to all of them
@@ -108,6 +115,7 @@ class TestPurchaseOrderSecurity(TransactionCase):
             ),
             4,
         )
+        self.assertTrue(self.orders.with_user(self.user_po_user)[0].is_user_id_editable)
 
     def test_access_user_po_manager(self):
         # Manager PO user should have access to all of them
@@ -119,6 +127,9 @@ class TestPurchaseOrderSecurity(TransactionCase):
                 .ids
             ),
             4,
+        )
+        self.assertTrue(
+            self.orders.with_user(self.user_po_manager)[1].is_user_id_editable
         )
 
     def test_access_user_without_groups(self):
