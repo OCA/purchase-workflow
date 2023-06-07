@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="purchase_order_form_filter_invoice_status_validated" model="ir.ui.view">
+        <field name="name">purchase.order.form.invoice_status_validated</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <field name="company_id" position="after">
+                <field name="invoice_status_validated" invisible="1" />
+            </field>
+        </field>
+    </record>
+    <record id="fully_invoice_fully_invoiced_filters_view_search" model="ir.ui.view">
+        <field name="name">fully_invoice_full_invoiced_filters</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_view_search" />
+        <field name="arch" type="xml">
+            <filter name="invoiced" position="after">
+                <filter
+                    name="fully_invoice_validated"
+                    string="Bills Received and Validated"
+                    domain="[('invoice_status_validated', '=', 'invoiced')]"
+                    help="Purchase orders that are Fully Invoiced and with all invoices validated"
+                />
+            </filter>
+        </field>
+    </record>
+</odoo>
