@@ -27,6 +27,7 @@ addon | version | maintainers | summary
 [purchase_commercial_partner](purchase_commercial_partner/) | 16.0.1.0.0 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Add stored related field 'Commercial Supplier' on POs
 [purchase_default_terms_conditions](purchase_default_terms_conditions/) | 16.0.1.0.1 |  | This module allows purchase default terms & conditions
 [purchase_delivery_split_date](purchase_delivery_split_date/) | 16.0.1.0.0 |  | Allows Purchase Order you confirm to generate one Incoming Shipment for each expected date indicated in the Purchase Order Lines
+[purchase_deposit](purchase_deposit/) | 16.0.1.0.0 |  | Option to create deposit from purchase order
 [purchase_discount](purchase_discount/) | 16.0.1.1.0 |  | Purchase order lines with discounts
 [purchase_exception](purchase_exception/) | 16.0.1.0.0 |  | Custom exceptions on purchase order
 [purchase_force_invoiced](purchase_force_invoiced/) | 16.0.1.0.0 |  | Allows to force the billing status of the purchase order to "Invoiced"
@@ -43,11 +44,12 @@ addon | version | maintainers | summary
 [purchase_order_supplierinfo_update](purchase_order_supplierinfo_update/) | 16.0.1.0.0 | [![ernestotejeda](https://github.com/ernestotejeda.png?size=30px)](https://github.com/ernestotejeda) | Update product supplierinfo with the last purchase price
 [purchase_order_type](purchase_order_type/) | 16.0.1.0.0 |  | Purchase Order Type
 [purchase_order_uninvoiced_amount](purchase_order_uninvoiced_amount/) | 16.0.1.0.0 |  | Purchase Order Univoiced Amount
-[purchase_partner_selectable_option](purchase_partner_selectable_option/) | 16.0.1.0.1 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Purchase Partner Selectable Option
+[purchase_partner_selectable_option](purchase_partner_selectable_option/) | 16.0.1.0.2 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Purchase Partner Selectable Option
 [purchase_request](purchase_request/) | 16.0.1.0.0 |  | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
 [purchase_request_tier_validation](purchase_request_tier_validation/) | 16.0.1.0.0 |  | Extends the functionality of Purchase Requests to support a tier validation process.
 [purchase_requisition_tier_validation](purchase_requisition_tier_validation/) | 16.0.1.0.0 |  | Extends the functionality of Purchase Agreements to support a tier validation process.
 [purchase_stock_packaging](purchase_stock_packaging/) | 16.0.1.0.0 | [![rousseldenis](https://github.com/rousseldenis.png?size=30px)](https://github.com/rousseldenis) | Allows to transmit the product packaging from the procurement values to the generated purchase order line
+[purchase_tag](purchase_tag/) | 16.0.1.0.0 |  | Allows to add multiple tags to purchase orders
 [purchase_tier_validation](purchase_tier_validation/) | 16.0.1.0.0 |  | Extends the functionality of Purchase Orders to support a tier validation process.
 [purchase_triple_discount](purchase_triple_discount/) | 16.0.1.0.0 |  | Manage triple discount on purchase order lines
 
