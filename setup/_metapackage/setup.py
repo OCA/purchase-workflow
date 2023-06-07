@@ -14,6 +14,7 @@ setuptools.setup(
         'odoo-addon-purchase_commercial_partner>=16.0dev,<16.1dev',
         'odoo-addon-purchase_default_terms_conditions>=16.0dev,<16.1dev',
         'odoo-addon-purchase_delivery_split_date>=16.0dev,<16.1dev',
+        'odoo-addon-purchase_deposit>=16.0dev,<16.1dev',
         'odoo-addon-purchase_discount>=16.0dev,<16.1dev',
         'odoo-addon-purchase_exception>=16.0dev,<16.1dev',
         'odoo-addon-purchase_force_invoiced>=16.0dev,<16.1dev',
