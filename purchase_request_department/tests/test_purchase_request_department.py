@@ -5,7 +5,7 @@ from odoo.tests.common import TransactionCase
 
 
 class TestPurchaseRequest(TransactionCase):
-    def setUp(self):
+    def setUpClass(self):
         super(TestPurchaseRequest, self).setUp()
         self.pr_model = self.env["purchase.request"]
         self.prl_model = self.env["purchase.request.line"]
