@@ -42,6 +42,11 @@ msgid "Product Template"
 msgstr ""
 
 #. module: product_form_purchase_link
+#: model_terms:ir.ui.view,arch_db:product_form_purchase_link.purchase_order_line_search
+msgid "Purchase Orders"
+msgstr ""
+
+#. module: product_form_purchase_link
 #: model:ir.model.fields,field_description:product_form_purchase_link.field_product_product__purchase_lines_count
 #: model:ir.model.fields,field_description:product_form_purchase_link.field_product_template__purchase_lines_count
 msgid "Purchased products"
@@ -53,4 +58,9 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:product_form_purchase_link.product_normal_form_view_inherit_purchase
 #: model_terms:ir.ui.view,arch_db:product_form_purchase_link.view_product_template_purchase_buttons_from
 msgid "Purchases"
+msgstr ""
+
+#. module: product_form_purchase_link
+#: model_terms:ir.ui.view,arch_db:product_form_purchase_link.purchase_order_line_search
+msgid "RFQs"
 msgstr ""
