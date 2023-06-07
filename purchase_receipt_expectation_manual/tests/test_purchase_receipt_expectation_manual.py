@@ -75,10 +75,10 @@ class TestPurchaseReceiptExpectationManual(TestPurchaseReceiptExpectation):
         for fname, value in expected_picking_data:
             self.assertEqual(picking[fname], value)
         self.assertEqual(
-            len(picking.move_lines), max(i + 1 for i, _, _ in expected_move_lines_data)
+            len(picking.move_ids), max(i + 1 for i, _, _ in expected_move_lines_data)
         )
         for index, fname, value in expected_move_lines_data:
-            self.assertEqual(picking.move_lines[index][fname], value)
+            self.assertEqual(picking.move_ids[index][fname], value)
 
     def test_00_manual_receipt_total(self):
         """Tests manual workflow for total receipt
