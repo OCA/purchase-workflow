@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-21 14:34+0000\n"
-"PO-Revision-Date: 2023-06-07 17:10+0000\n"
+"PO-Revision-Date: 2023-06-08 11:10+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -164,7 +164,7 @@ msgstr "Ultimo aggiornamento di"
 #: field:purchase.request.line.make.purchase.requisition,write_date:0
 #: field:purchase.request.line.make.purchase.requisition.item,write_date:0
 msgid "Last Updated on"
-msgstr "Last Updated on"
+msgstr "Ultimo aggiornamento il"
 
 #. module: purchase_request_to_requisition
 #: view:purchase.request.line:purchase_request_to_requisition.purchase_request_line_search
