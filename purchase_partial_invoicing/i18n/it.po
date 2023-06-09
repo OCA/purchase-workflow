@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-17 04:15+0000\n"
-"PO-Revision-Date: 2023-06-07 13:14+0000\n"
+"PO-Revision-Date: 2023-06-09 12:09+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/"
 "OCA-purchase-workflow-8-0/language/it/)\n"
@@ -202,7 +202,7 @@ msgstr ""
 #: field:purchase.order.line_cancel_quantity_line,price_unit:0
 #: field:purchase.order.line_invoice.line,price_unit:0
 msgid "Unit Price"
-msgstr "Prezzo Unitario"
+msgstr "Prezzo unitario"
 
 #. module: purchase_partial_invoicing
 #: view:purchase.order.line:purchase_partial_invoicing.purchase_order_line_search
