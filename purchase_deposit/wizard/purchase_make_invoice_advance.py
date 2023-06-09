@@ -163,10 +163,10 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
         product = self.purchase_deposit_product_id
         if not product:
             vals = self._prepare_deposit_product()
-            product = self.purchase_deposit_product_id = self.env[
-                "product.product"
-            ].create(vals)
-            self.env.company.purchase_deposit_product_id = product
+            product = self.purchase_deposit_product_id = (
+                self.env["product.product"].sudo().create(vals)
+            )
+            self.env.company.sudo().purchase_deposit_product_id = product
         PurchaseLine = self.env["purchase.order.line"]
         for order in purchases:
             amount = self.amount
