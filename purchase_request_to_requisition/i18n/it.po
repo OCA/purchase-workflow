@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-21 14:34+0000\n"
-"PO-Revision-Date: 2023-06-08 11:10+0000\n"
+"PO-Revision-Date: 2023-06-10 12:10+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -299,7 +299,7 @@ msgstr "UdM"
 #. module: purchase_request_to_requisition
 #: field:purchase.request.line.make.purchase.requisition.item,wiz_id:0
 msgid "Wizard"
-msgstr "Wizard"
+msgstr "Procedura guidata"
 
 #. module: purchase_request_to_requisition
 #: code:addons/purchase_request_to_requisition/models/purchase_request.py:80
