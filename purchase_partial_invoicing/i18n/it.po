@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-17 04:15+0000\n"
-"PO-Revision-Date: 2023-06-09 12:09+0000\n"
+"PO-Revision-Date: 2023-06-10 12:10+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/"
 "OCA-purchase-workflow-8-0/language/it/)\n"
@@ -213,7 +213,7 @@ msgstr ""
 #: field:purchase.order.line_cancel_quantity_line,wizard_id:0
 #: field:purchase.order.line_invoice.line,wizard_id:0
 msgid "Wizard"
-msgstr "Wizard"
+msgstr "Procedura guidata"
 
 #. module: purchase_partial_invoicing
 #: view:purchase.order.line_cancel_quantity:purchase_partial_invoicing.view_purchase_line_cancel
