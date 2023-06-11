@@ -16,16 +16,16 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-24 07:53+0000\n"
-"PO-Revision-Date: 2022-10-03 15:53+0000\n"
-"Last-Translator: Douglas Custódio <douglascstd@yahoo.com>\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-"
-"purchase-workflow-10-0/language/pt_BR/)\n"
+"PO-Revision-Date: 2023-06-11 04:10+0000\n"
+"Last-Translator: Adriano Prado <adrianojprado@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/"
+"OCA-purchase-workflow-10-0/language/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: purchase_request
 #. odoo-python
@@ -35,6 +35,8 @@ msgid ""
 "<li><b>%(prl_name)s</b>: Ordered quantity %(prl_qty)s %(prl_uom)s, Planned "
 "date %(prl_date_planned)s</li>"
 msgstr ""
+"<li><b>%(prl_name)s</b>:Quantidade Pedida%(prl_qty)s %(prl_uom)s, Data "
+"planejada %(prl_date_planned)s</li>"
 
 #. module: purchase_request
 #. odoo-python
@@ -45,6 +47,8 @@ msgid ""
 "<li><b>%(product_name)s</b>: Received quantity %(product_qty)s "
 "%(product_uom)s</li>"
 msgstr ""
+"<li><b>%(product_name)s</b>: Quantidade Recebida %(product_qty)s "
+"%(product_uom)s</li>"
 
 #. module: purchase_request
 #. odoo-python
@@ -54,6 +58,8 @@ msgid ""
 "<li><b>%(product_name)s</b>: Transferred quantity %(product_qty)s "
 "%(product_uom)s</li>"
 msgstr ""
+"<li><b>%(product_name)s</b>: Transferred quantity %(product_qty)s "
+"%(product_uom)s</li>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
@@ -86,13 +92,12 @@ msgstr "Descrição"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 msgid "<strong>Description</strong>"
-msgstr ""
+msgstr "<strong>Descrição</strong>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
-#, fuzzy
 msgid "<strong>Estimated Cost</strong>"
-msgstr "Data de requisição"
+msgstr "<strong>Custo Estimado</strong>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
@@ -104,12 +109,12 @@ msgstr ""
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 msgid "<strong>Product UoM</strong>"
-msgstr ""
+msgstr "<strong>UdM Produto</strong>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 msgid "<strong>Qty</strong>"
-msgstr ""
+msgstr "<strong>Qtd</strong>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
@@ -117,6 +122,8 @@ msgid ""
 "<strong>Request Reference:</strong>\n"
 "                                <br/>"
 msgstr ""
+"<strong>Solicitar Referência:</strong>\n"
+"                                <br/>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
