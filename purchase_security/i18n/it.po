@@ -17,6 +17,16 @@ msgstr ""
 "X-Generator: Weblate 3.10\n"
 
 #. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_order__is_user_id_editable
+msgid "Is User Id Editable"
+msgstr ""
+
+#. module: purchase_security
+#: model:ir.model,name:purchase_security.model_purchase_order
+msgid "Purchase Order"
+msgstr ""
+
+#. module: purchase_security
 #: model:res.groups,name:purchase_security.group_purchase_own_orders
 msgid "User (own orders)"
 msgstr "Utente (solo propri ordini)"
