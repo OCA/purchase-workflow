@@ -50,6 +50,7 @@ addon | version | maintainers | summary
 [purchase_line_procurement_group](purchase_line_procurement_group/) | 13.0.1.0.1 |  | Group purchase order line according to procurement group
 [purchase_location_by_line](purchase_location_by_line/) | 13.0.1.0.0 |  | Allows to define a specific destination location on each PO line
 [purchase_manual_currency](purchase_manual_currency/) | 13.0.1.0.2 |  | Allows to manual currency of Purchase
+[purchase_manual_delivery](purchase_manual_delivery/) | 13.0.1.0.0 |  | Prevents pickings to be auto generated upon Purchase Order confirmation and adds the ability to manually generate them as the supplier confirms the different purchase order lines.
 [purchase_minimum_amount](purchase_minimum_amount/) | 13.0.1.0.1 |  | Purchase Minimum Amount
 [purchase_open_qty](purchase_open_qty/) | 13.0.1.3.1 |  | Allows to identify the purchase orders that have quantities pending to invoice or to receive.
 [purchase_order_approval_block](purchase_order_approval_block/) | 13.0.1.0.2 |  | Purchase Order Approval Block
