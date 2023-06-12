@@ -29,6 +29,7 @@ setuptools.setup(
         'odoo13-addon-purchase_line_procurement_group',
         'odoo13-addon-purchase_location_by_line',
         'odoo13-addon-purchase_manual_currency',
+        'odoo13-addon-purchase_manual_delivery',
         'odoo13-addon-purchase_minimum_amount',
         'odoo13-addon-purchase_open_qty',
         'odoo13-addon-purchase_order_approval_block',
