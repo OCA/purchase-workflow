@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-11 05:24+0000\n"
-"PO-Revision-Date: 2023-01-02 12:46+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-06-13 16:10+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/"
 "OCA-purchase-workflow-8-0/language/it/)\n"
 "Language: it\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: purchase_fiscal_position_update
 #: model:ir.model,name:purchase_fiscal_position_update.model_purchase_order
@@ -49,4 +49,4 @@ msgstr ""
 #: code:addons/purchase_fiscal_position_update/purchase.py:49
 #, python-format
 msgid "Warning"
-msgstr "Warning"
+msgstr "Attenzione"
