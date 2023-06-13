@@ -6,7 +6,6 @@ from odoo.tools import float_compare
 
 
 class PurchaseOrder(models.Model):
-
     _inherit = "purchase.order"
 
     account_payment_ids = fields.One2many(
@@ -84,7 +83,11 @@ class PurchaseOrder(models.Model):
             # Consider payments in related invoices.
             invoice_paid_amount = 0.0
             for inv in order.invoice_ids:
-                invoice_paid_amount += inv.amount_total - inv.amount_residual
+                # use the reconciled payment amounts instead of the invoice
+                # amount_residual that also includes reconciled credit notes.
+                for payment in inv._get_reconciled_invoices_partials():
+                    if payment[2].journal_id.type != "purchase":
+                        invoice_paid_amount += payment[1]
             amount_residual = order.amount_total - advance_amount - invoice_paid_amount
             payment_state = "not_paid"
             if mls or order.invoice_ids:

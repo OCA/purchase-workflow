@@ -34,7 +34,7 @@ addon | version | maintainers | summary
 [purchase_cancel_reason](purchase_cancel_reason/) | 14.0.1.0.0 |  | Purchase Cancel Reason
 [purchase_commercial_partner](purchase_commercial_partner/) | 14.0.1.0.0 |  | Add stored related field 'Commercial Supplier' on POs
 [purchase_delivery_split_date](purchase_delivery_split_date/) | 14.0.1.1.1 |  | Allows Purchase Order you confirm to generate one Incoming Shipment for each expected date indicated in the Purchase Order Lines
-[purchase_deposit](purchase_deposit/) | 14.0.1.1.1 |  | Option to create deposit from purchase order
+[purchase_deposit](purchase_deposit/) | 14.0.1.1.2 |  | Option to create deposit from purchase order
 [purchase_discount](purchase_discount/) | 14.0.1.2.0 |  | Purchase order lines with discounts
 [purchase_exception](purchase_exception/) | 14.0.1.0.0 |  | Custom exceptions on purchase order
 [purchase_fop_shipping](purchase_fop_shipping/) | 14.0.1.1.0 |  | Purchase Free-Of-Payment shipping
