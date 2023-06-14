@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-10 05:30+0000\n"
-"PO-Revision-Date: 2023-06-12 17:09+0000\n"
+"PO-Revision-Date: 2023-06-14 13:12+0000\n"
 "Last-Translator: Adriano Prado <adrianojprado@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
 "23907/pt_BR/)\n"
@@ -26,12 +26,16 @@ msgid ""
 "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
 "specific.\" groups=\"base.group_multi_company\"/>"
 msgstr ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Os valores definidos aqui são "
+"específicos da empresa.\" groups=\"base.group_multi_company\"/>"
 
 #. module: purchase_order_approved
 #: model_terms:ir.ui.view,arch_db:purchase_order_approved.view_purchase_configuration
 msgid ""
 "Adds an extra state in purchase orders previous to 'Purchase Order' state."
 msgstr ""
+"Adiciona um estado extra nos pedidos de compra anteriores ao estado 'Pedido "
+"de Compra'."
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,help:purchase_order_approved.field_res_company__purchase_approve_active
@@ -43,26 +47,31 @@ msgid ""
 "back to draft. You can release the creation of the incoming shipments moving "
 "the purchase order to state 'Purchase Order'."
 msgstr ""
+"Adiciona um estado extra nos pedidos de compra anteriores ao 'Pedido de "
+"Compra'. Após confirmar e aprovar um pedido de compra, ele irá para o estado "
+"'Aprovado'. Neste estado, as remessas recebidas ainda não foram criadas e "
+"você ainda pode voltar ao rascunho. Você pode liberar a criação das remessas "
+"recebidas movendo o pedido de compra para o estado 'Pedido de compra'."
 
 #. module: purchase_order_approved
 #: model:ir.model.fields.selection,name:purchase_order_approved.selection__res_partner__purchase_requires_second_approval__always
 msgid "Always"
-msgstr ""
+msgstr "Sempre"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields.selection,name:purchase_order_approved.selection__purchase_order__state__approved
 msgid "Approved"
-msgstr ""
+msgstr "Aprovado"
 
 #. module: purchase_order_approved
 #: model_terms:ir.ui.view,arch_db:purchase_order_approved.view_purchase_order_filter
 msgid "Approved Orders"
-msgstr ""
+msgstr "Pedidos Aprovados"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields.selection,name:purchase_order_approved.selection__res_partner__purchase_requires_second_approval__based_on_company
 msgid "Based on company policy"
-msgstr ""
+msgstr "Com base na política da empresa"
 
 #. module: purchase_order_approved
 #: model:ir.model,name:purchase_order_approved.model_res_company
@@ -111,7 +120,7 @@ msgstr ""
 #. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__dest_address_id
 msgid "Dropship Address"
-msgstr ""
+msgstr "Endereço de Entrega Direta"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields.selection,name:purchase_order_approved.selection__res_partner__purchase_requires_second_approval__never
@@ -191,6 +200,8 @@ msgstr "Vendedor"
 #: model:ir.model.fields,help:purchase_order_approved.field_purchase_order__partner_id
 msgid "You can find a vendor by its Name, TIN, Email or Internal Reference."
 msgstr ""
+"Você pode encontrar um fornecedor por seu nome, TIN, e-mail ou referência "
+"interna."
 
 #~ msgid "Drop Ship Address"
 #~ msgstr "Endereço Remessa Direta"
