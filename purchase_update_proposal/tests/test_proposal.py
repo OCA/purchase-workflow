@@ -104,14 +104,13 @@ class Test(common.TransactionCase):
         with self.assertRaises(UserError):
             order.write({"partner_ref": "bla"})
 
-    # TO FIX
-    # def test_supplier_should_not_approve(self):
-    #     order = self.get_order_with_user(alternate_user=True)
-    #     order.order_line[0].button_update_proposal()
-    #     order.proposal_ids[0].qty = 99
-    #     order.submit_proposal()
-    #     with self.assertRaises(AccessError):
-    #         order.approve_proposal()
+    def test_supplier_should_not_approve(self):
+        order = self.get_order_with_user(alternate_user=True)
+        order.order_line[0].button_update_proposal()
+        order.proposal_ids[0].qty = 99
+        order.submit_proposal()
+        with self.assertRaises(UserError):
+            order.approve_proposal()
 
     def test_one_null_qty_in_proposal_not_in_orderline(self):
         order = self.get_order_with_user()

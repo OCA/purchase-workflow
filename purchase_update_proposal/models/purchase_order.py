@@ -117,7 +117,7 @@ class PurchaseOrder(models.Model):
         we update the first one and create another purchase line
         """
         self.ensure_one()
-        if not self._get_purchase_groups:
+        if not self._get_purchase_groups():
             raise UserError(_("You are not authorized to approve this proposal"))
         self._check_updatable_proposal()
         if self.proposal_updatable == "no":
