@@ -26,18 +26,19 @@
                     />
                         <!-- groups="purchase.group_purchase_user" -->
                 </group>
-                <group
-                    col="4"
+                <div
                     attrs="{'invisible': ['|', ('proposal_count', '=', 0), ('proposal_display', '=', True)]}"
                 >
                     <div
-                        colspan="4"
+                        class="col-lg-12"
                         style="background-color:AntiqueWhite; text-align:center; font-weight: bold; padding: 8px"
                     >
                         Update Proposal
                     </div>
-                    <group>
-                        <field name="proposal_state" colspan="2" />
+                    <group class="col-lg-12">
+                        <field name="proposal_state"/>
+                    </group>
+                    <group class="col-lg-12">
                         <button
                             name="approve_proposal"
                             help="Approve Proposal"
@@ -74,33 +75,35 @@
                         />
                         <field name="proposal_count" invisible="1" />
                     </group>
-                    <group
-                        colspan="4"
-                        attrs="{'invisible': [('proposal_count', '=', 0)]}"
+                    <field
+                        class="col-lg-12"
+                        name="proposal_ids"
+                        mode="tree"
+                        nolabel="1"
+                        attrs="{'readonly': [('proposal_updatable', '=', 'no')]}"
                     >
-                        <field
-                            name="proposal_ids"
-                            colspan="4"
-                            attrs="{'readonly': [('proposal_updatable', '=', 'no')]}"
-                            nolabel="1"
-                        />
-                        <div
-                            attrs="{'invisible': [('check_price_on_proposal', '=', True)]}"
-                            colspan="2"
-                            style="text-align:center;"
-                        >Prices are not updated for this supplier</div>
-                        <field name="check_price_on_proposal" invisible="1" />
-                        <field name="proposal_updatable" invisible="1" />
-                        <div
-                            attrs="{'invisible': [('proposal_updatable', '!=', 'no')]}"
-                            colspan="2"
-                            style="background-color:red; color:white; text-align:center; font-weight: bold;"
-                        >
-                            We can't complete your request because our incoming workflow is partially finished or cancelled
-                        </div>
-                    </group>
+                        <tree>
+                            <field name="line_id_"/>
+                            <field name="product_id"/>
+                            <field name="qty"/>
+                            <field name="product_qty"/>
+                        </tree>
+                    </field>
+                    <div
+                        class="col-lg-12"
+                        attrs="{'invisible': [('check_price_on_proposal', '=', True)]}"
+                        style="text-align:center;"
+                    >Prices are not updated for this supplier</div>
+                    <field name="check_price_on_proposal" invisible="1" />
+                    <field name="proposal_updatable" invisible="1" />
+                    <div
+                        attrs="{'invisible': [('proposal_updatable', '!=', 'no')]}"
+                        style="background-color:red; color:white; text-align:center; font-weight: bold;"
+                    >
+                        We can't complete your request because our incoming workflow is partially finished or cancelled
+                    </div>
                     <hr style="background: AntiqueWhite; height: 12px" colspan="4" />
-                </group>
+                </div>
             </field>
         </field>
     </record>

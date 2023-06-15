@@ -146,89 +146,79 @@
                                 />
                             <span />
                         </group>
-                        <group
-                                col="4"
+                        <div
                                 attrs="{'invisible': [('proposal_count', '=', 0)]}"
                             >
                              <div
-                                    colspan="4"
                                     style="background-color:AntiqueWhite; text-align:center; font-weight: bold; padding: 8px"
                                 >
                                 Update Proposal
                             </div>
                             <group>
-                                <group>
-                                    <field name="proposal_state" colspan="2" />
-                                    <button
-                                            name="submit_proposal"
-                                            help="Submit Proposal"
-                                            type="object"
-                                            string="Submit"
-                                            class="oe_highlight"
-                                            attrs="{'invisible': [('proposal_state', 'in', ['approved', 'submitted', 'rejected'])]}"
-                                            groups="purchase_update_proposal.group_purchase_proposal_user,purchase_update_proposal.group_supplier_own_purchase"
-                                        />
-                                    <button
-                                            name="reset_proposal"
-                                            help="Reset Proposal"
-                                            type="object"
-                                            string="Reset"
-                                            attrs="{'invisible': [('proposal_state', 'in', ['draft', 'approved'])]}"
-                                            groups="purchase_update_proposal.group_purchase_proposal_user,purchase_update_proposal.group_supplier_own_purchase"
-                                        />
-                                    <field name="proposal_count" invisible="1" />
-                                    <field name="partially_received" invisible="1" />
-                                </group>
-                                <group
-                                        colspan="4"
-                                        attrs="{'invisible': [('proposal_count', '=', 0)]}"
-                                    >
-                                    <div>
-                                        <span
-                                                attrs="{'invisible': [('proposal_state', '!=', 'submitted')]}"
-                                            >These data have to be approved before update purchase line. </span>
-                                        <span
-                                                attrs="{'invisible': [('proposal_state', '!=', 'draft')]}"
-                                            >Update new fields below and submit modifications. </span>
-                                        <span
-                                                attrs="{'invisible': [('check_price_on_proposal', '=', True)]}"
-                                            >Prices are not updated for this supplier.</span>
-                                    </div>
-                                    <field
-                                            name="proposal_ids"
-                                            colspan="4"
-                                            attrs="{'readonly': [('proposal_updatable', '=', 'no')]}"
-                                            nolabel="1"
-                                        />
-                                    <field
-                                            name="check_price_on_proposal"
-                                            invisible="1"
-                                        />
-                                    <field name="proposal_updatable" invisible="1" />
-                                    <div
-                                            attrs="{'invisible': [('proposal_updatable', '!=', 'no')]}"
-                                            colspan="2"
-                                            style="background-color:red; color:white; text-align:center; font-weight: bold;"
-                                        >
-                                        We can't complete your request because our incoming workflow is partially finished or cancelled
-                                    </div>
-                                </group>
-                                <group
-                                        colspan="4"
-                                        attrs="{'invisible': [('proposal_count', '&lt;', 1)]}"
-                                    >
-                                    <field name="proposal_date" />
-                                </group>
-                                <hr
-                                        style="background: AntiqueWhite; height: 12px"
-                                        colspan="4"
-                                    />
-                                <div
-                                        style="text-align:center; font-weight: bold;"
-                                        colspan="4"
-                                    >Purchase content before update</div>
+                                <field name="proposal_state"/>
                             </group>
-                        </group>
+                            <group>
+                                <button
+                                        name="submit_proposal"
+                                        help="Submit Proposal"
+                                        type="object"
+                                        string="Submit"
+                                        class="oe_highlight"
+                                        attrs="{'invisible': [('proposal_state', 'in', ['approved', 'submitted', 'rejected'])]}"
+                                        groups="purchase_update_proposal.group_purchase_proposal_user,purchase_update_proposal.group_supplier_own_purchase"
+                                    />
+                                <button
+                                        name="reset_proposal"
+                                        help="Reset Proposal"
+                                        type="object"
+                                        string="Reset"
+                                        attrs="{'invisible': [('proposal_state', 'in', ['draft', 'approved'])]}"
+                                        groups="purchase_update_proposal.group_purchase_proposal_user,purchase_update_proposal.group_supplier_own_purchase"
+                                    />
+                            </group>
+                            <field name="proposal_count" invisible="1" />
+                            <field name="partially_received" invisible="1" />
+                            <div
+                                    attrs="{'invisible': [('proposal_count', '=', 0)]}"
+                                >
+                                <div
+                                        attrs="{'invisible': [('proposal_state', '!=', 'submitted')]}"
+                                    >These data have to be approved before update purchase line. </div>
+                                <div
+                                        attrs="{'invisible': [('proposal_state', '!=', 'draft')]}"
+                                    >Update new fields below and submit modifications. </div>
+                                <div
+                                        attrs="{'invisible': [('check_price_on_proposal', '=', True)]}"
+                                    >Prices are not updated for this supplier.</div>
+                            </div>
+                            <field
+                                    name="proposal_ids"
+                                    attrs="{'readonly': [('proposal_updatable', '=', 'no')]}"
+                                    nolabel="1"
+                                />
+                            <field
+                                    name="check_price_on_proposal"
+                                    invisible="1"
+                                />
+                            <field name="proposal_updatable" invisible="1" />
+                            <div
+                                    attrs="{'invisible': [('proposal_updatable', '!=', 'no')]}"
+                                    style="background-color:red; color:white; text-align:center; font-weight: bold;"
+                                >
+                                We can't complete your request because our incoming workflow is partially finished or cancelled
+                            </div>
+                            <div
+                                    attrs="{'invisible': [('proposal_count', '&lt;', 1)]}"
+                                >
+                                <field name="proposal_date" />
+                            </div>
+                            <hr
+                                    style="background: AntiqueWhite; height: 12px"
+                                />
+                            <div
+                                    style="text-align:center; font-weight: bold;"
+                                >Purchase content before update</div>
+                        </div>
                         <field name="order_line" readonly="1">
                             <tree editable="bottom">
                                 <button

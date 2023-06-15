@@ -4,7 +4,7 @@
     <record id="purchase_line_proposal_tree" model="ir.ui.view">
         <field name="model">purchase.line.proposal</field>
         <field name="arch" type="xml">
-            <tree editable="bottom">
+            <tree editable="bottom" class="col-lg-12">
             <!-- TODO Define a class instead of fonts-->
             <!-- <tree editable="bottom" fonts="bold:qty!=product_qty"> -->
                 <field name="line_id_" string="ID" />
