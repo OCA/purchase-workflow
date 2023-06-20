@@ -35,10 +35,19 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
     def create_invoices(self):
         order = self.env["purchase.order"].browse(self.env.context.get("active_id"))
         if order.use_invoice_plan:
-            plan_advance = order.invoice_plan_ids.filtered(lambda l: l.installment == 0)
-            if plan_advance:
+            # Filter and sort plan_advance records by Plan Date and ID
+            plan_advance = sorted(
+                order.invoice_plan_ids.filtered(
+                    lambda l: l.installment == 0 and not l.advance_created
+                ),
+                key=lambda l: (l.plan_date, l.id),
+            )
+            # Retrieve the first advance record, if any
+            advance = next((rec for rec in plan_advance), False)
+            if advance:
+                advance.write({"advance_created": True})
                 return super(
                     PurchaseAdvancePaymentInv,
-                    self.with_context(invoice_plan_id=plan_advance.id),
+                    self.with_context(invoice_plan_id=advance.id),
                 ).create_invoices()
         return super(PurchaseAdvancePaymentInv, self).create_invoices()

@@ -39,6 +39,7 @@ class PurchaseOrder(models.Model):
     ):
         advance = self.env.context.get("advance")
         advance_percent = self.env.context.get("advance_percent")
+        advance_number = self.env.context.get("num_advance", 1)
         advance_date = installment_date
         if advance:  # installment_date will be after advance_date
             installment_date = self._next_date(advance_date, interval, interval_type)
@@ -46,24 +47,33 @@ class PurchaseOrder(models.Model):
         res = super().create_invoice_plan(
             num_installment, installment_date, interval, interval_type
         )
-        # Advance
+        # Create advance following advance number
         if advance:
-            vals = {
-                "installment": 0,
-                "plan_date": advance_date,
-                "invoice_type": "advance",
-                "percent": advance_percent,
-            }
-            self.write({"invoice_plan_ids": [(0, 0, vals)]})
+            plan_deposit = [
+                (
+                    0,
+                    0,
+                    {
+                        "installment": 0,
+                        "plan_date": advance_date,
+                        "invoice_type": "advance",
+                        "percent": advance_percent,
+                    },
+                )
+                for num in range(advance_number)
+            ]
+            self.write({"invoice_plan_ids": plan_deposit})
         return res
 
     def _compute_need_advance(self):
         for order in self:
             advance = order.invoice_plan_ids.filtered_domain(
-                [("invoice_type", "=", "advance")]
+                [
+                    ("invoice_type", "=", "advance"),
+                    ("advance_created", "=", False),
+                ]
             )
-            deposit = order.order_line.filtered("is_deposit")
-            order.need_advance = advance and not deposit
+            order.need_advance = bool(advance)
 
     def action_create_invoice(self):
         """If there is deposit installment, and no invoice is_deposit yet.
@@ -83,6 +93,7 @@ class PurchaseInvoicePlan(models.Model):
         selection_add=[("advance", "Deposit")],
         ondelete={"advance": "cascade"},
     )
+    advance_created = fields.Boolean()
 
     def _update_new_quantity(self, line, percent):
         if line.purchase_line_id.is_deposit:  # based on 1 unit

@@ -22,6 +22,10 @@
                         attrs="{'invisible': [('advance', '=', False)]}"
                     >%</span>
                 </div>
+                <field
+                    name="num_advance"
+                    attrs="{'invisible': [('advance', '=', False)]}"
+                />
             </label>
         </field>
     </record>
