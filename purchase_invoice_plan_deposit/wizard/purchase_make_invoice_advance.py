@@ -13,7 +13,7 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
         if invoice_plan_id:
             plan = self.env["purchase.invoice.plan"].browse(invoice_plan_id)
             plan.invoice_ids += invoice
-            invoice.write(
+            invoice.sudo().write(
                 {
                     "date": plan.plan_date,
                     "invoice_date": plan.plan_date,
@@ -24,21 +24,34 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
     @api.model
     def default_get(self, fields_list):
         res = super().default_get(fields_list)
-        # Default advance amount from installment 0
         order = self.env["purchase.order"].browse(self.env.context.get("active_id"))
         if order.use_invoice_plan:
-            advance = order.invoice_plan_ids.filtered(lambda l: l.installment == 0)
-            if advance:
-                res["amount"] = advance[:1].percent
+            advance_list = sorted(
+                order.invoice_plan_ids.filtered(
+                    lambda pln: pln.installment == 0 and not pln.advance_created
+                ),
+                key=lambda pln: (pln.plan_date, pln.id),
+            )
+            if advance_list:
+                res["amount"] = advance_list[0].percent
         return res
 
     def create_invoices(self):
         order = self.env["purchase.order"].browse(self.env.context.get("active_id"))
         if order.use_invoice_plan:
-            plan_advance = order.invoice_plan_ids.filtered(lambda l: l.installment == 0)
-            if plan_advance:
+            # Filter and sort plan_advance records by Plan Date and ID
+            plan_advance = sorted(
+                order.invoice_plan_ids.filtered(
+                    lambda pln: pln.installment == 0 and not pln.advance_created
+                ),
+                key=lambda pln: (pln.plan_date, pln.id),
+            )
+            # Retrieve the first advance record, if any
+            advance = next((rec for rec in plan_advance), False)
+            if advance:
+                advance.write({"advance_created": True})
                 return super(
                     PurchaseAdvancePaymentInv,
-                    self.with_context(invoice_plan_id=plan_advance.id),
+                    self.with_context(invoice_plan_id=advance.id),
                 ).create_invoices()
         return super().create_invoices()

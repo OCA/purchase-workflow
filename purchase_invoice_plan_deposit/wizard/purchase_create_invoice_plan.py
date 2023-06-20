@@ -11,6 +11,11 @@ class PurchaseCreateInvoicePlan(models.TransientModel):
         string="Deposit on 1st Invoice",
         default=False,
     )
+    num_advance = fields.Integer(
+        string="Number of Advance",
+        default=1,
+        required=True,
+    )
     advance_percent = fields.Float(
         string="Percent Deposit",
         default=1,
@@ -19,6 +24,8 @@ class PurchaseCreateInvoicePlan(models.TransientModel):
 
     def purchase_create_invoice_plan(self):
         self = self.with_context(
-            advance=self.advance, advance_percent=self.advance_percent
+            advance=self.advance,
+            advance_percent=self.advance_percent,
+            num_advance=self.num_advance,
         )
         return super().purchase_create_invoice_plan()

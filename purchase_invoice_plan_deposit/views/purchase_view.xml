@@ -22,7 +22,7 @@
                 <field name="need_advance" invisible="1" />
                 <button
                     name="%(action_view_purchase_advance_payment_inv_highlight)d"
-                    attrs="{'invisible': ['|', ('state', '!=', 'purchase'), ('need_advance', '=', False)]}"
+                    invisible="state != 'purchase' or not need_advance"
                     type="action"
                     string="Register Deposit"
                     class="oe_highlight"
@@ -33,7 +33,7 @@
                 name="%(purchase_deposit.action_view_purchase_advance_payment_inv)d"
                 position="attributes"
             >
-                <attribute name="invisible">True</attribute>
+                <attribute name="invisible">1</attribute>
             </button>
         </field>
     </record>

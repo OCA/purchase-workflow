@@ -12,7 +12,7 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
         purchase = self.env["purchase.order"].browse(self._context.get("active_id"))
         purchase.ensure_one()
         plan_advance = purchase.invoice_plan_ids.filtered(
-            lambda l: l.to_invoice and l.invoice_type == "advance"
+            lambda pln: pln.to_invoice and pln.invoice_type == "advance"
         )
         if plan_advance:  # Create advance invoice using percentage
             MakeInvoice = self.env["purchase.advance.payment.inv"]

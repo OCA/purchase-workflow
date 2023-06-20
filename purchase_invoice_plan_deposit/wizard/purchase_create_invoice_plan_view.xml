@@ -15,13 +15,11 @@
                     <field
                         name="advance_percent"
                         class="oe_inline"
-                        attrs="{'invisible': [('advance', '=', False)]}"
+                        invisible="not advance"
                     />
-                    <span
-                        class="oe_inline"
-                        attrs="{'invisible': [('advance', '=', False)]}"
-                    >%</span>
+                    <span class="oe_inline" invisible="not advance">%</span>
                 </div>
+                <field name="num_advance" invisible="not advance" />
             </label>
         </field>
     </record>
