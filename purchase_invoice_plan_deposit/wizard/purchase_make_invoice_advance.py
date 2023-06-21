@@ -13,7 +13,7 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
         if invoice_plan_id:
             plan = self.env["purchase.invoice.plan"].browse(invoice_plan_id)
             plan.invoice_ids += invoice
-            invoice.write(
+            invoice.sudo().write(
                 {
                     "date": plan.plan_date,
                     "invoice_date": plan.plan_date,

@@ -25,7 +25,7 @@ class PurchaseOrder(models.Model):
         for rec in self:
             has_invoice_plan = rec.use_invoice_plan and rec.invoice_plan_ids
             to_invoice = rec.invoice_plan_ids.filtered(lambda l: not l.invoiced)
-            if rec.state == "purchase" and has_invoice_plan and to_invoice:
+            if rec.state in ["purchase", "done"] and has_invoice_plan and to_invoice:
                 if rec.invoice_status == "to invoice" or (
                     rec.invoice_status == "no"
                     and "advance" in to_invoice.mapped("invoice_type")
