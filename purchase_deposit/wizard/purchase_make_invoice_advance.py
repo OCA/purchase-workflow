@@ -49,8 +49,10 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
     def view_init(self, fields):
         active_id = self._context.get("active_id")
         purchase = self.env["purchase.order"].browse(active_id)
-        if purchase.state != "purchase":
-            raise UserError(_("This action is allowed only in Purchase Order sate"))
+        if purchase.state not in ["purchase", "done"]:
+            raise UserError(
+                _("This action are allowed only in Purchase Order and Done state")
+            )
         return super().view_init(fields)
 
     @api.onchange("purchase_deposit_product_id")
