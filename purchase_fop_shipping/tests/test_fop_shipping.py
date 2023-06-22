@@ -40,7 +40,7 @@ class TestPurchaseOrder(TransactionCase):
             po.button_approve()
         self.assertTrue(
             "You cannot confirm a purchase order with amount under "
-            "FOP shipping" in e.exception.name
+            "FOP shipping" in e.exception.args[0]
         )
 
         po.force_order_under_fop = True
