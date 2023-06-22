@@ -54,6 +54,7 @@ Contributors
 ------------
 
 * Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com.br>
+* Dhara Solanki <dhara.solanki@initos.com>
 
 Funders
 -------
