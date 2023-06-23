@@ -14,7 +14,8 @@ class TestPurchaseOrderSecurity(TransactionCase):
         super(TestPurchaseOrderSecurity, cls).setUpClass()
         # Users
         users = cls.env["res.users"].with_context(no_reset_password=True)
-        group_name = "group_purchase_own_orders"
+        cls.team1 = cls.env["purchase.team"].create({"name": "Team1"})
+        cls.team2 = cls.env["purchase.team"].create({"name": "Team2"})
         # User in group_purchase_own_orders
         cls.user_group_purchase_own_orders = users.create(
             {
@@ -22,7 +23,73 @@ class TestPurchaseOrderSecurity(TransactionCase):
                 "login": "group_purchase_own_orders",
                 "email": "group_purchase_own_orders@example.com",
                 "groups_id": [
-                    (6, 0, [cls.env.ref("purchase_security.%s" % group_name).id])
+                    (
+                        6,
+                        0,
+                        [cls.env.ref("purchase_security.group_purchase_own_orders").id],
+                    )
+                ],
+            }
+        )
+        # User 1 in group_purchase_group_orders
+        cls.user_group_team_1 = users.create(
+            {
+                "name": "group_purchase_team_1_orders",
+                "login": "group_purchase_team_1_orders",
+                "email": "group_purchase_team_1_orders@example.com",
+                "groups_id": [
+                    (
+                        6,
+                        0,
+                        [
+                            cls.env.ref(
+                                "purchase_security.group_purchase_group_orders"
+                            ).id
+                        ],
+                    )
+                ],
+            }
+        )
+        # Adding user 1 to both teams
+        cls.team1.write({"user_ids": [(4, cls.user_group_team_1.id)]})
+        cls.team2.write({"user_ids": [(4, cls.user_group_team_1.id)]})
+        # User 2 in group_purchase_group_orders
+        cls.user_group_team_2 = users.create(
+            {
+                "name": "group_purchase_team_2_orders",
+                "login": "group_purchase_team_2_orders",
+                "email": "group_purchase_team_2_orders@example.com",
+                "groups_id": [
+                    (
+                        6,
+                        0,
+                        [
+                            cls.env.ref(
+                                "purchase_security.group_purchase_group_orders"
+                            ).id
+                        ],
+                    )
+                ],
+            }
+        )
+        # Adding user 2 to only one team
+        cls.team1.write({"user_ids": [(4, cls.user_group_team_2.id)]})
+        # User with group permission but without being assigned to any team
+        cls.user_group_team_3 = users.create(
+            {
+                "name": "group_purchase_team_3_orders",
+                "login": "group_purchase_team_3_orders",
+                "email": "group_purchase_team_3_orders@example.com",
+                "groups_id": [
+                    (
+                        6,
+                        0,
+                        [
+                            cls.env.ref(
+                                "purchase_security.group_purchase_group_orders"
+                            ).id
+                        ],
+                    )
                 ],
             }
         )
@@ -74,11 +141,13 @@ class TestPurchaseOrderSecurity(TransactionCase):
                     "name": "po_security_3",
                     "user_id": cls.user_po_manager.id,
                     "partner_id": cls.partner_po.id,
+                    "team_id": cls.team1.id,
                 },
                 {
                     "name": "po_security_4",
                     "user_id": cls.user_group_purchase_own_orders.id,
                     "partner_id": cls.partner_po.id,
+                    "team_id": cls.team2.id,
                 },
             )
         )
@@ -137,4 +206,46 @@ class TestPurchaseOrderSecurity(TransactionCase):
         self.assertEqual(
             len(self.env["purchase.order"].with_user(self.user_without_groups).read()),
             0,
+        )
+
+    def test_access_user_user_group_purchase_group_orders_1(self):
+        # User in group should have access PO's without any team assigned,
+        # and to those to whose team he belongs. In this case, it belongs to
+        # both teams
+        self.assertEqual(
+            len(
+                self.env["purchase.order"]
+                .with_user(self.user_group_team_1)
+                .search([("name", "like", "po_security")])
+                .ids
+            ),
+            4,
+        )
+
+    def test_access_user_user_group_purchase_group_orders_2(self):
+        # User in group should have access PO's without any team assigned,
+        # and to those to whose team he belongs. In this case, it belongs to
+        # only one team, so the other order won't be seen
+        self.assertEqual(
+            len(
+                self.env["purchase.order"]
+                .with_user(self.user_group_team_2)
+                .search([("name", "like", "po_security")])
+                .ids
+            ),
+            3,
+        )
+
+    def test_access_user_user_group_purchase_group_orders_3(self):
+        # User in group should have access PO's without any team assigned,
+        # and to those to whose team he belongs. In this case, it does not
+        # belongs to any team, so the other orders won't be seen
+        self.assertEqual(
+            len(
+                self.env["purchase.order"]
+                .with_user(self.user_group_team_3)
+                .search([("name", "like", "po_security")])
+                .ids
+            ),
+            2,
         )
