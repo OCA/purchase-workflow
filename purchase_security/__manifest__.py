@@ -11,7 +11,12 @@
     "license": "AGPL-3",
     "depends": ["purchase"],
     "maintainers": ["pilarvargas-tecnativa"],
-    "data": ["security/security.xml", "views/purchase_order_views.xml"],
+    "data": [
+        "security/security.xml",
+        "security/ir.model.access.csv",
+        "views/purchase_order_views.xml",
+        "views/purchase_team_views.xml",
+    ],
     "installable": True,
     "auto_install": False,
 }
