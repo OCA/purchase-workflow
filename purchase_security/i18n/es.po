@@ -6,17 +6,94 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-12-07 17:39+0000\n"
-"Last-Translator: David Alonso (Solvos) <david.alonso@solvos.es>\n"
-"Language-Team: none\n"
+"POT-Creation-Date: 2023-07-24 18:38+0000\n"
+"PO-Revision-Date: 2023-07-24 20:39+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__id
+msgid "ID"
+msgstr "ID (identificación)"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team____last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__write_uid
+msgid "Last Updated by"
+msgstr "Modificado por"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__write_date
+msgid "Last Updated on"
+msgstr "Última modificación el"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: purchase_security
+#: model:ir.model,name:purchase_security.model_purchase_order
+msgid "Purchase Order"
+msgstr "Pedido de compra"
+
+#. module: purchase_security
+#: model:ir.model,name:purchase_security.model_purchase_team
+msgid "Purchase Team"
+msgstr "Equipo de compra"
+
+#. module: purchase_security
+#: model:ir.actions.act_window,name:purchase_security.action_purchase_team_display
+#: model:ir.ui.menu,name:purchase_security.menu_purchase_team_tree
+msgid "Purchase Teams"
+msgstr "Equipos de compra"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__user_ids
+msgid "Purchase Users"
+msgstr "Usuarios de compra"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_team__sequence
+msgid "Sequence"
+msgstr "Secuencia"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_purchase_order__team_id
+msgid "Team"
+msgstr "Equipo"
 
 #. module: purchase_security
 #: model:res.groups,name:purchase_security.group_purchase_own_orders
 msgid "User (own orders)"
-msgstr "Usuario (sus propios pedidos)"
+msgstr "Usuario (pedidos propios)"
+
+#. module: purchase_security
+#: model:res.groups,name:purchase_security.group_purchase_group_orders
+msgid "User (team orders)"
+msgstr "Usuario (pedidos del equipo)"
