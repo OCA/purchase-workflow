@@ -14,6 +14,18 @@
                 }</attribute>
                 <attribute name="force_save">1</attribute>
             </field>
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field
+                    name="team_id"
+                    readonly="1"
+                    groups="!purchase_security.group_purchase_group_orders"
+                />
+                <field
+                    name="team_id"
+                    readonly="0"
+                    groups="purchase_security.group_purchase_group_orders"
+                />
+            </xpath>
         </field>
     </record>
 </odoo>
