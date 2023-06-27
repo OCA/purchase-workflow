@@ -20,6 +20,7 @@ setuptools.setup(
         'odoo-addon-purchase_force_invoiced>=16.0dev,<16.1dev',
         'odoo-addon-purchase_last_price_info>=16.0dev,<16.1dev',
         'odoo-addon-purchase_line_procurement_group>=16.0dev,<16.1dev',
+        'odoo-addon-purchase_location_by_line>=16.0dev,<16.1dev',
         'odoo-addon-purchase_lot>=16.0dev,<16.1dev',
         'odoo-addon-purchase_merge>=16.0dev,<16.1dev',
         'odoo-addon-purchase_no_rfq>=16.0dev,<16.1dev',
