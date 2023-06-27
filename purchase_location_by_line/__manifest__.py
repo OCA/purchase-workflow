@@ -6,12 +6,12 @@
 {
     "name": "Purchase Location by Line",
     "summary": "Allows to define a specific destination location on each PO line",
-    "version": "15.0.1.0.0",
+    "version": "16.0.1.0.0",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
     "category": "Purchase Management",
     "depends": ["purchase_stock", "purchase_delivery_split_date"],
     "license": "AGPL-3",
-    "data": ["views/purchase_view.xml"],
+    "data": ["views/purchase_views.xml"],
     "installable": True,
 }

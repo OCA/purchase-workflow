@@ -20,7 +20,7 @@ class PurchaseOrderLine(models.Model):
         """The data to be copied to new pickings is updated with data from the
         grouping key.  This method is designed for extensibility, so that
         other modules can store more data based on new keys."""
-        vals = super(PurchaseOrderLine, self)._first_picking_copy_vals(key, lines)
+        vals = super()._first_picking_copy_vals(key, lines)
         for key_element in key:
             if "location_dest_id" in key_element.keys():
                 vals["location_dest_id"] = key_element["location_dest_id"].id
@@ -33,9 +33,7 @@ class PurchaseOrderLine(models.Model):
         dictionary element with the field that you want to group by. This
         method is designed for extensibility, so that other modules can add
         additional keys or replace them by others."""
-        key = super(PurchaseOrderLine, self)._get_group_keys(
-            order, line, picking=picking
-        )
+        key = super()._get_group_keys(order, line, picking=picking)
         default_picking_location_id = line.order_id._get_destination_location()
         default_picking_location = self.env["stock.location"].browse(
             default_picking_location_id
@@ -47,11 +45,11 @@ class PurchaseOrderLine(models.Model):
         """Return a tuple of keys to use in order to sort the order lines.
         This method is designed for extensibility, so that other modules can
         add additional keys or replace them by others."""
-        keys = super(PurchaseOrderLine, self)._get_sorted_keys(line)
+        keys = super()._get_sorted_keys(line)
         return keys + (line.location_dest_id.id,)
 
     def _create_stock_moves(self, picking):
-        res = super(PurchaseOrderLine, self)._create_stock_moves(picking)
+        res = super()._create_stock_moves(picking)
         for line in self:
             default_picking_location_id = line.order_id._get_destination_location()
             default_picking_location = self.env["stock.location"].browse(
