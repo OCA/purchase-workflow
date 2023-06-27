@@ -9,7 +9,7 @@ from odoo.tests.common import TransactionCase
 
 class TestDeliverySingle(TransactionCase):
     def setUp(self):
-        super(TestDeliverySingle, self).setUp()
+        super().setUp()
         # Products
         p1 = self.env.ref("product.product_product_13")
         p2 = self.env.ref("product.product_product_25")
