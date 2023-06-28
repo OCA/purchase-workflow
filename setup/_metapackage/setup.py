@@ -24,6 +24,7 @@ setuptools.setup(
         'odoo-addon-purchase_lot>=16.0dev,<16.1dev',
         'odoo-addon-purchase_merge>=16.0dev,<16.1dev',
         'odoo-addon-purchase_no_rfq>=16.0dev,<16.1dev',
+        'odoo-addon-purchase_open_qty>=16.0dev,<16.1dev',
         'odoo-addon-purchase_order_approved>=16.0dev,<16.1dev',
         'odoo-addon-purchase_order_line_menu>=16.0dev,<16.1dev',
         'odoo-addon-purchase_order_no_zero_price>=16.0dev,<16.1dev',
