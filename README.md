@@ -47,6 +47,7 @@ addon | version | maintainers | summary
 [purchase_order_type](purchase_order_type/) | 16.0.1.0.0 |  | Purchase Order Type
 [purchase_order_type_dashboard](purchase_order_type_dashboard/) | 16.0.1.0.0 | [![dalonsod](https://github.com/dalonsod.png?size=30px)](https://github.com/dalonsod) | Purchase Order Type Dashboard
 [purchase_order_uninvoiced_amount](purchase_order_uninvoiced_amount/) | 16.0.1.0.0 |  | Purchase Order Univoiced Amount
+[purchase_partner_incoterm](purchase_partner_incoterm/) | 16.0.1.0.0 | [![TDu](https://github.com/TDu.png?size=30px)](https://github.com/TDu) [![bealdav](https://github.com/bealdav.png?size=30px)](https://github.com/bealdav) | Add a an incoterm field for supplier and use it on purchase order
 [purchase_partner_selectable_option](purchase_partner_selectable_option/) | 16.0.1.0.2 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Purchase Partner Selectable Option
 [purchase_request](purchase_request/) | 16.0.1.0.0 |  | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
 [purchase_request_tier_validation](purchase_request_tier_validation/) | 16.0.1.0.0 |  | Extends the functionality of Purchase Requests to support a tier validation process.
@@ -56,7 +57,6 @@ addon | version | maintainers | summary
 [purchase_tag](purchase_tag/) | 16.0.1.0.0 |  | Allows to add multiple tags to purchase orders
 [purchase_tier_validation](purchase_tier_validation/) | 16.0.1.0.0 |  | Extends the functionality of Purchase Orders to support a tier validation process.
 [purchase_triple_discount](purchase_triple_discount/) | 16.0.1.0.0 |  | Manage triple discount on purchase order lines
-[purchase_partner_incoterm](purchase_partner_incoterm/) | 16.0.1.0.0 |  | Add a an incoterm field for supplier and use it on purchase order
 
 [//]: # (end addons)
 
