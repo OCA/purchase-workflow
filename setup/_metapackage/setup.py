@@ -34,6 +34,7 @@ setuptools.setup(
         'odoo-addon-purchase_order_type>=16.0dev,<16.1dev',
         'odoo-addon-purchase_order_type_dashboard>=16.0dev,<16.1dev',
         'odoo-addon-purchase_order_uninvoiced_amount>=16.0dev,<16.1dev',
+        'odoo-addon-purchase_partner_incoterm>=16.0dev,<16.1dev',
         'odoo-addon-purchase_partner_selectable_option>=16.0dev,<16.1dev',
         'odoo-addon-purchase_request>=16.0dev,<16.1dev',
         'odoo-addon-purchase_request_tier_validation>=16.0dev,<16.1dev',
