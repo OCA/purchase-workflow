@@ -236,7 +236,7 @@ msgstr ""
 #. module: purchase_deposit
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
 #, python-format
-msgid "This action is allowed only in Purchase Order sate"
+msgid "This action are allowed only in Purchase Order and Done state"
 msgstr ""
 
 #. module: purchase_deposit
