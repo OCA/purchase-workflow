@@ -215,9 +215,9 @@ msgstr ""
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
 #, python-format
 msgid ""
-"The product used to invoice a down payment should have an invoice policy set"
-" to \"Ordered quantities\". Please update your deposit product to be able to"
-" create a deposit invoice."
+"The product used to invoice a down payment should have an invoice policy set "
+"to \"Ordered quantities\". Please update your deposit product to be able to "
+"create a deposit invoice."
 msgstr ""
 
 #. module: purchase_deposit
@@ -231,13 +231,14 @@ msgstr ""
 #, python-format
 msgid ""
 "There is no purchase account defined for this product: %s.\n"
-"You may have to install a chart of account from Accounting app, settings menu."
+"You may have to install a chart of account from Accounting app, settings "
+"menu."
 msgstr ""
 
 #. module: purchase_deposit
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
 #, python-format
-msgid "This action is allowed only in Purchase Order sate"
+msgid "This action are allowed only in Purchase Order and Done state"
 msgstr ""
 
 #. module: purchase_deposit

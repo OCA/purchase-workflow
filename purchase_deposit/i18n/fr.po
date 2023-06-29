@@ -251,10 +251,8 @@ msgstr ""
 #. module: purchase_deposit
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
 #, python-format
-msgid "This action is allowed only in Purchase Order sate"
+msgid "This action are allowed only in Purchase Order and Done state"
 msgstr ""
-"Cette action n'est permise que pour les documents à l'état \"Bon de commande"
-"\""
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__deposit_taxes_id
@@ -265,6 +263,12 @@ msgstr "Taxes fournisseur"
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__advance_payment_method
 msgid "What do you want to invoice?"
 msgstr "Que voulez-vous facturer ?"
+
+#, python-format
+#~ msgid "This action is allowed only in Purchase Order sate"
+#~ msgstr ""
+#~ "Cette action n'est permise que pour les documents à l'état \"Bon de "
+#~ "commande\""
 
 #~ msgid "Create Invoices"
 #~ msgstr "Créer les factures"

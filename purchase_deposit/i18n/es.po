@@ -223,9 +223,9 @@ msgstr ""
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
 #, python-format
 msgid ""
-"The product used to invoice a down payment should have an invoice policy set"
-" to \"Ordered quantities\". Please update your deposit product to be able to"
-" create a deposit invoice."
+"The product used to invoice a down payment should have an invoice policy set "
+"to \"Ordered quantities\". Please update your deposit product to be able to "
+"create a deposit invoice."
 msgstr ""
 "El producto para facturar anticipos debería de tener la política de "
 "facturación \"Sobre cantidades pedidas\". Actualice el producto anticipo o "
@@ -242,7 +242,8 @@ msgstr "El importe del anticipo debe de ser positivo."
 #, python-format
 msgid ""
 "There is no purchase account defined for this product: %s.\n"
-"You may have to install a chart of account from Accounting app, settings menu."
+"You may have to install a chart of account from Accounting app, settings "
+"menu."
 msgstr ""
 "No hay una cuenta contable definida para este producto:%s.\n"
 "Es posible que tengas que instalar un plan contable desde la aplicación "
@@ -251,8 +252,8 @@ msgstr ""
 #. module: purchase_deposit
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
 #, python-format
-msgid "This action is allowed only in Purchase Order sate"
-msgstr "Esta acción solo es posible en el estado Pedido de compra"
+msgid "This action are allowed only in Purchase Order and Done state"
+msgstr ""
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__deposit_taxes_id
@@ -263,3 +264,7 @@ msgstr "Impuestos de proveedor"
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__advance_payment_method
 msgid "What do you want to invoice?"
 msgstr "¿Que quieres facturar?"
+
+#, python-format
+#~ msgid "This action is allowed only in Purchase Order sate"
+#~ msgstr "Esta acción solo es posible en el estado Pedido de compra"
