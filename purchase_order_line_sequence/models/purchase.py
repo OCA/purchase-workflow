@@ -70,6 +70,20 @@ class PurchaseOrder(models.Model):
             default
         )
 
+    def action_create_invoice(self):
+
+        res = super(PurchaseOrder, self).action_create_invoice()
+
+        if res["res_id"]:
+            invoice = self.env["account.move"].browse(res["res_id"])
+        else:
+            invoice = self.env["account.move"].search(res["domain"])
+
+        for inv in invoice:
+            for line in inv.line_ids:
+                line.sequence = line.purchase_line_id.sequence
+        return res
+
 
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
