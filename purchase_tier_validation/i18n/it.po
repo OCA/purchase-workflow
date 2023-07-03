@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-06-30 10:09+0000\n"
+"PO-Revision-Date: 2023-07-03 11:10+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -52,17 +52,17 @@ msgstr "I Miei Acquisti da controllare"
 #. module: purchase_tier_validation
 #: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__need_validation
 msgid "Need Validation"
-msgstr "Richiede approvazione"
+msgstr "Richiede conferma"
 
 #. module: purchase_tier_validation
 #: model_terms:ir.ui.view,arch_db:purchase_tier_validation.view_purchase_order_filter
 msgid "Needs my Review"
-msgstr "Richiede la mia approvazione"
+msgstr "Richiede la mia revisione"
 
 #. module: purchase_tier_validation
 #: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__next_review
 msgid "Next Review"
-msgstr "Prossima approvazione"
+msgstr "Prossima revisione"
 
 #. module: purchase_tier_validation
 #: model_terms:ir.ui.view,arch_db:purchase_tier_validation.view_purchase_order_filter
@@ -113,4 +113,4 @@ msgstr "Messaggio validato"
 #. module: purchase_tier_validation
 #: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__review_ids
 msgid "Validations"
-msgstr "Approvazioni"
+msgstr "Validazioni"
