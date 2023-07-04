@@ -23,17 +23,19 @@ class PurchaseOrder(models.Model):
     )
 
     @api.model_create_multi
-    def create(self, vals):
+    def create(self, vals_list):
+        for vals in vals_list:
+            if "company_id" in vals:
+                keep_name_po = (
+                    self.env["res.company"].browse(vals.get("company_id")).keep_name_po
+                )
+            else:
+                keep_name_po = self.env.company.keep_name_po
 
-        if "company_id" in vals:
-            keep_name_po = (
-                self.env["res.company"].browse(vals.get("company_id")).keep_name_po
-            )
-        else:
-            keep_name_po = self.env.company.keep_name_po
-
-        if not keep_name_po and vals.get("name", "New") == "New":
-            vals["name"] = self.env["ir.sequence"].next_by_code("purchase.rfq") or "New"
+            if not keep_name_po and vals.get("name", "New") == "New":
+                vals["name"] = (
+                    self.env["ir.sequence"].next_by_code("purchase.rfq") or "New"
+                )
 
         return super().create(vals)
 
@@ -60,8 +62,8 @@ class PurchaseOrder(models.Model):
         return super().button_confirm()
 
     def action_get_rfq_attachment(self):
-        rfq_pdf = self.env.ref("purchase.report_purchase_quotation")._render_qweb_pdf('purchase.report_purchase_quotation',
-            self.id
+        rfq_pdf = self.env.ref("purchase.report_purchase_quotation")._render_qweb_pdf(
+            "purchase.report_purchase_quotation", self.id
         )[0]
         return self.env["ir.attachment"].create(
             {
