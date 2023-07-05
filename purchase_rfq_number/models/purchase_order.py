@@ -32,7 +32,7 @@ class PurchaseOrder(models.Model):
             else:
                 keep_name_po = self.env.company.keep_name_po
 
-            if not keep_name_po and vals.get("name", "New") == "New":
+            if not keep_name_po or vals.get("name", "New") == "New":
                 vals["name"] = (
                     self.env["ir.sequence"].next_by_code("purchase.rfq") or "New"
                 )
