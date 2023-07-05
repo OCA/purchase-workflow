@@ -34,10 +34,10 @@ class PurchaseOrder(models.Model):
 
             if not keep_name_po and vals.get("name", "New") == "New":
                 vals["name"] = (
-                    self.env["ir.sequence"].next_by_code("purchase.rfq") or "New"
+                    self.env["ir.sequence"].next_by_code("purchase.rfq") or 'New'
                 )
 
-        return super().create(vals)
+        return super().create(vals_list)
 
     def button_confirm(self):
         for order in self:
