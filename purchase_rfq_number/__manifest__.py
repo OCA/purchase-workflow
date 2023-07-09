@@ -4,7 +4,7 @@
 {
     "name": "Purchase For Quotation Numeration",
     "summary": "Different sequence for purchase for quotations",
-    "version": "14.0.1.1.0",
+    "version": "16.0.1.0.0",
     "author": "ProThai, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "category": "Purchase Management",
@@ -16,7 +16,6 @@
         "views/res_config_settings_views.xml",
         "views/purchase_views.xml",
     ],
-    "maintainer": ["prapassornS"],
     "installable": True,
     "auto_install": False,
 }
