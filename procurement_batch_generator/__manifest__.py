@@ -4,7 +4,7 @@
 
 {
     "name": "Procurement Batch Generator",
-    "version": "14.0.1.0.0",
+    "version": "15.0.1.0.0",
     "category": "Warehouse Management",
     "license": "AGPL-3",
     "summary": "Wizard to replenish from product tree view",

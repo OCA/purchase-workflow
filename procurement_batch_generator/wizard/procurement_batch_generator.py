@@ -105,7 +105,7 @@ class ProcurementBatchGenerator(models.TransientModel):
                 )
             )  # values
 
-        pgo.with_context(clean_context(self.env.context)).run(proc_list)
+        pgo.with_context(**clean_context(self.env.context)).run(proc_list)
 
     def _prepare_procurement_group(self):
         self.ensure_one()
@@ -132,9 +132,7 @@ class ProcurementBatchGeneratorLine(models.TransientModel):
         domain="[('product_tmpl_id', '=', product_tmpl_id)]",
     )
     partner_id = fields.Many2one("res.partner", string="Supplier")
-    qty_available = fields.Float(
-        string="Qty Available", digits="Product Unit of Measure"
-    )
+    qty_available = fields.Float(digits="Product Unit of Measure")
     outgoing_qty = fields.Float(digits="Product Unit of Measure")
     incoming_qty = fields.Float(digits="Product Unit of Measure")
     procurement_qty = fields.Float(
