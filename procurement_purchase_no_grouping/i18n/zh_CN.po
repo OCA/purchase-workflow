@@ -56,8 +56,8 @@ msgstr "订单不合并"
 #: model:ir.model.fields,field_description:procurement_purchase_no_grouping.field_product_category__procured_purchase_grouping
 #: model:ir.model.fields,field_description:procurement_purchase_no_grouping.field_res_company__procured_purchase_grouping
 #: model:ir.model.fields,field_description:procurement_purchase_no_grouping.field_res_config_settings__procured_purchase_grouping
-msgid "Procured purchase grouping"
-msgstr "采购补货组"
+msgid "Procured Purchase Grouping"
+msgstr ""
 
 #. module: procurement_purchase_no_grouping
 #: model_terms:ir.ui.view,arch_db:procurement_purchase_no_grouping.res_config_settings_view_form_procurement_purchase_grouping
@@ -136,6 +136,9 @@ msgstr "标准合并"
 #: model:ir.model,name:procurement_purchase_no_grouping.model_stock_rule
 msgid "Stock Rule"
 msgstr "库存规则"
+
+#~ msgid "Procured purchase grouping"
+#~ msgstr "采购补货组"
 
 #~ msgid ""
 #~ "Select the behaviour for grouping procured purchases for the the products "
