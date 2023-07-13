@@ -2,7 +2,7 @@
 # Copyright 2019 Ecosoft Co., Ltd., Kitti U. <kittiu@ecosoft.co.th>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import fields
+from odoo import Command, fields
 from odoo.exceptions import UserError
 from odoo.tests import Form, TransactionCase
 
@@ -14,6 +14,7 @@ class TestPurchaseDeposit(TransactionCase):
         cls.product_model = cls.env["product.product"]
         cls.account_model = cls.env["account.account"]
         cls.invoice_model = cls.env["account.move"]
+        cls.advance_deduct_wizard = cls.env["purchase.advance.deduct.option"]
 
         # Create Deposit Account
         cls.account_deposit = cls.account_model.create(
@@ -37,9 +38,7 @@ class TestPurchaseDeposit(TransactionCase):
             {
                 "partner_id": cls.env.ref("base.res_partner_3").id,
                 "order_line": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": p1.id,
                             "product_uom": p1.uom_id.id,
@@ -47,6 +46,33 @@ class TestPurchaseDeposit(TransactionCase):
                             "price_unit": 100.0,
                             "date_planned": fields.Datetime.now(),
                             "product_qty": 42.0,
+                        },
+                    )
+                ],
+            }
+        )
+        # Create product with control policy = on received quantities
+        p2 = cls.product2 = cls.product_model.create(
+            {
+                "name": "Test Product 2",
+                "type": "service",
+                "default_code": "PROD2",
+                "purchase_method": "receive",  # For testing partial return
+            }
+        )
+        cls.po2 = cls.env["purchase.order"].create(
+            {
+                "partner_id": cls.env.ref("base.res_partner_3").id,
+                "order_line": [
+                    Command.create(
+                        {
+                            "product_id": p2.id,
+                            "product_uom": p2.uom_id.id,
+                            "name": p2.name,
+                            "price_unit": 100.0,
+                            "date_planned": fields.Datetime.now(),
+                            "product_qty": 10,
+                            "qty_received": 1,  # Partial received
                         },
                     )
                 ],
@@ -109,8 +135,10 @@ class TestPurchaseDeposit(TransactionCase):
                 {"product_id": deposit.id, "price_unit": 420.0, "is_deposit": True},
             ],
         )
-        # On Purchase Order, create normal billing
-        res = self.po.with_context(create_bill=True).action_create_invoice()
+        # On Purchase Order, create normal billing with advance return option = Full
+        res = self.po.with_context(
+            create_bill=True, advance_deduct_option="full"
+        ).action_create_invoice()
         invoice = self.invoice_model.browse(res["res_id"])
         self.assertRecordValues(
             invoice.invoice_line_ids,
@@ -210,3 +238,65 @@ class TestPurchaseDeposit(TransactionCase):
         wizard.deposit_account_id = self.account_deposit
         with self.assertRaises(UserError):
             wizard.create_invoices()
+
+    def test_create_deposit_invoice_partial_deduct(self):
+        self.assertEqual(len(self.po2.order_line), 1)
+        # We create invoice from purchase
+        ctx = {
+            "active_id": self.po2.id,
+            "active_ids": [self.po2.id],
+            "active_model": "purchase.order",
+            "create_bills": True,
+        }
+        CreateDeposit = self.env["purchase.advance.payment.inv"]
+        self.po2.button_confirm()
+        with Form(CreateDeposit.with_context(**ctx)) as f:
+            f.advance_payment_method = "percentage"
+            f.deposit_account_id = self.account_deposit
+        wizard = f.save()
+        wizard.amount = 10.0  # 10%
+        wizard.create_invoices()
+        # New Purchase Deposit is created automatically
+        deposit = self.env.company.purchase_deposit_product_id
+        self.assertEqual(deposit.name, "Purchase Deposit")
+        # 1 Deposit Invoice is created
+        self.assertRecordValues(
+            self.po2.invoice_ids.invoice_line_ids,
+            [
+                {
+                    "product_id": deposit.id,
+                    "price_unit": 100.0,
+                    "name": "Deposit Payment",
+                }
+            ],
+        )
+        # On Purchase Order, there will be new deposit line create
+        self.assertRecordValues(
+            self.po2.order_line,
+            [
+                {
+                    "product_id": self.product2.id,
+                    "price_unit": 100.0,
+                    "is_deposit": False,
+                },
+                {"product_id": deposit.id, "price_unit": 100.0, "is_deposit": True},
+            ],
+        )
+        # On Purchase Order,
+        # create normal billing with advance return option = proportional
+        res = self.po2.action_create_invoice()
+        self.assertEqual(res["res_model"], "purchase.advance.deduct.option")
+        advance_deduct = self.advance_deduct_wizard.create(
+            {"advance_deduct_option": "proportional"}
+        )
+        res = advance_deduct.with_context(
+            active_id=self.po2.id, create_bill=True
+        ).create_invoice()
+        invoice = self.invoice_model.browse(res["res_id"])
+        self.assertRecordValues(
+            invoice.invoice_line_ids,
+            [
+                {"product_id": self.product2.id, "price_unit": 100.0, "quantity": 1},
+                {"product_id": deposit.id, "price_unit": 100.0, "quantity": -0.1},
+            ],
+        )
