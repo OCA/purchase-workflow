@@ -2,7 +2,7 @@
 # Copyright 2019 Ecosoft Co., Ltd., Kitti U. <kittiu@ecosoft.co.th>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import fields, models
+from odoo import _, fields, models
 
 
 class PurchaseOrder(models.Model):
@@ -16,6 +16,21 @@ class PurchaseOrder(models.Model):
             for line in self.order_line.filtered(lambda l: not l.is_deposit)
         ]
         return super(PurchaseOrder, self).copy_data(default)
+
+    def action_create_invoice(self):
+        has_deposit = len(self.filtered("order_line.is_deposit")) > 0
+        if not has_deposit or self.env.context.get("advance_deduct_option"):
+            return super().action_create_invoice()
+        wizard = self.env.ref("purchase_deposit.view_purchase_advance_deduct_option")
+        return {
+            "name": _("Advance/Deposit Deduction Option"),
+            "type": "ir.actions.act_window",
+            "view_mode": "form",
+            "res_model": "purchase.advance.deduct.option",
+            "views": [(wizard.id, "form")],
+            "view_id": wizard.id,
+            "target": "new",
+        }
 
 
 class PurchaseOrderLine(models.Model):

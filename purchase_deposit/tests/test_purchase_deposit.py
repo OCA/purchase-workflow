@@ -34,7 +34,6 @@ class TestPurchaseDeposit(TransactionCase):
                 "purchase_method": "purchase",
             }
         )
-
         self.po = self.env["purchase.order"].create(
             {
                 "partner_id": self.ref("base.res_partner_3"),
@@ -49,6 +48,35 @@ class TestPurchaseDeposit(TransactionCase):
                             "price_unit": 100.0,
                             "date_planned": fields.Datetime.now(),
                             "product_qty": 42.0,
+                        },
+                    )
+                ],
+            }
+        )
+        # Create product with control policy = on received quantities
+        p2 = self.product2 = self.product_model.create(
+            {
+                "name": "Test Product 2",
+                "type": "service",
+                "default_code": "PROD2",
+                "purchase_method": "receive",  # For testing partial return
+            }
+        )
+        self.po2 = self.env["purchase.order"].create(
+            {
+                "partner_id": self.ref("base.res_partner_3"),
+                "order_line": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": p2.id,
+                            "product_uom": p2.uom_id.id,
+                            "name": p2.name,
+                            "price_unit": 100.0,
+                            "date_planned": fields.Datetime.now(),
+                            "product_qty": 10,
+                            "qty_received": 1,  # Partial received
                         },
                     )
                 ],
@@ -101,14 +129,75 @@ class TestPurchaseDeposit(TransactionCase):
                 {"product_id": deposit.id, "price_unit": 420.0, "is_deposit": True},
             ],
         )
-        # On Purchase Order, create normal billing
-        res = self.po.with_context(create_bill=True).action_create_invoice()
+        # On Purchase Order, create normal billing with advance return option = Full
+        res = self.po.with_context(
+            create_bill=True, advance_deduct_option="full"
+        ).action_create_invoice()
         invoice = self.invoice_model.browse(res["res_id"])
         self.assertRecordValues(
             invoice.invoice_line_ids,
             [
                 {"product_id": self.product1.id, "price_unit": 100.0, "quantity": 42},
                 {"product_id": deposit.id, "price_unit": 420.0, "quantity": -1},
+            ],
+        )
+
+    def test_create_deposit_invoice_partial_deduct(self):
+        self.assertEqual(len(self.po2.order_line), 1)
+        # We create invoice from expense
+        ctx = {
+            "active_id": self.po2.id,
+            "active_ids": [self.po2.id],
+            "active_model": "purchase.order",
+            "create_bills": True,
+        }
+        CreateDeposit = self.env["purchase.advance.payment.inv"]
+        self.po2.button_confirm()
+        with Form(CreateDeposit.with_context(**ctx)) as f:
+            f.advance_payment_method = "percentage"
+            f.deposit_account_id = self.account_deposit
+        wizard = f.save()
+        wizard.amount = 10.0  # 10%
+        wizard.create_invoices()
+        # New Purchase Deposit is created automatically
+        deposit_id = self.default_model.sudo().get(
+            "purchase.advance.payment.inv", "purchase_deposit_product_id"
+        )
+        deposit = self.product_model.browse(deposit_id)
+        self.assertEqual(deposit.name, "Purchase Deposit")
+        # 1 Deposit Invoice is created
+        self.assertRecordValues(
+            self.po2.invoice_ids.invoice_line_ids,
+            [
+                {
+                    "product_id": deposit.id,
+                    "price_unit": 100.0,
+                    "name": "Deposit Payment",
+                }
+            ],
+        )
+        # On Purchase Order, there will be new deposit line create
+        self.assertRecordValues(
+            self.po2.order_line,
+            [
+                {
+                    "product_id": self.product2.id,
+                    "price_unit": 100.0,
+                    "is_deposit": False,
+                },
+                {"product_id": deposit.id, "price_unit": 100.0, "is_deposit": True},
+            ],
+        )
+        # On Purchase Order, create normal billing with advance return option = proportional
+        res = self.po2.with_context(
+            create_bill=True, advance_deduct_option="proportional"
+        ).action_create_invoice()
+        invoice = self.invoice_model.browse(res["res_id"])
+        self.assertRecordValues(
+            invoice.invoice_line_ids,
+            [
+                {"product_id": self.product2.id, "price_unit": 100.0, "quantity": 1},
+                {"product_id": deposit.id, "price_unit": 100.0, "quantity": -0.1},
             ],
         )
 
