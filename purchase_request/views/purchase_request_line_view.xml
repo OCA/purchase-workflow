@@ -12,6 +12,14 @@
                 decoration-muted="cancelled == True"
                 decoration-info="request_state in ('draft', 'to_approve')"
             >
+                <header>
+                    <button
+                        name="%(action_purchase_request_line_make_purchase_order)d"
+                        string="Create RFQ"
+                        type="action"
+                        class="oe_highlight"
+                    />
+                </header>
                 <field name="request_id" />
                 <field
                     name="request_state"
@@ -46,7 +54,8 @@
                 />
                 <field
                     name="analytic_tag_ids"
-                    groups="analytic.group_analytic_accounting"
+                    groups="analytic.group_analytic_tags"
+                    widget="many2many_tags"
                 />
                 <field name="supplier_id" />
                 <field
@@ -68,6 +77,13 @@
         <field name="arch" type="xml">
             <form string="Purchase Request Line" create="false" duplicate="false">
                 <header>
+                    <button
+                        name="%(action_purchase_request_line_make_purchase_order)d"
+                        string="Create RFQ"
+                        type="action"
+                        class="oe_highlight"
+                        attrs="{'invisible': [('request_state', '!=', 'approved')]}"
+                    />
                     <field name="request_state" widget="statusbar" />
                 </header>
                 <sheet>
@@ -135,8 +151,9 @@
                             />
                             <field
                                 name="analytic_tag_ids"
-                                groups="analytic.group_analytic_accounting"
+                                groups="analytic.group_analytic_tags"
                                 attrs="{'readonly': [('is_editable','=', False)]}"
+                                widget="many2many_tags"
                             />
                             <field
                                 name="date_required"
@@ -587,8 +604,9 @@
                             />
                         <field
                                 name="analytic_tag_ids"
-                                groups="analytic.group_analytic_accounting"
+                                groups="analytic.group_analytic_tags"
                                 attrs="{'readonly': [('is_editable','=', False)]}"
+                                widget="many2many_tags"
                             />
                         <field
                                 name="date_required"

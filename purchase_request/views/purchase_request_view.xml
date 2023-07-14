@@ -182,7 +182,7 @@
                                     />
                                     <field
                                         name="analytic_tag_ids"
-                                        groups="analytic.group_analytic_accounting"
+                                        groups="analytic.group_analytic_tags"
                                         widget="many2many_tags"
                                     />
                                     <field name="date_required" />
