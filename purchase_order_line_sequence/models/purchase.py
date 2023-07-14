@@ -54,7 +54,8 @@ class PurchaseOrder(models.Model):
     def _reset_sequence(self):
         for rec in self:
             current_sequence = 1
-            for line in rec.order_line:
+            order_lines = sorted(rec.order_line, key=lambda l: l.sequence)
+            for line in order_lines:
                 line.sequence = current_sequence
                 current_sequence += 1
 
