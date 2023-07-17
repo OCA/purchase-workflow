@@ -1,0 +1,150 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_merge
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-07-18 10:09+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: purchase_merge
+#: model_terms:ir.ui.view,arch_db:purchase_merge.purchase_merge_automatic_wizard_form
+msgid "Automatic Merge Wizard"
+msgstr "Asistente de fusión automática"
+
+#. module: purchase_merge
+#: model_terms:ir.ui.view,arch_db:purchase_merge.purchase_merge_automatic_wizard_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__dst_purchase_id
+msgid "Destination"
+msgstr "Destino"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__display_name
+msgid "Display Name"
+msgstr "Nombre para Mostrar"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__id
+msgid "ID"
+msgstr "ID (identificación)"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard____last_update
+msgid "Last Modified on"
+msgstr "modificado por última vez el"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__write_uid
+msgid "Last Updated by"
+msgstr "actualizado por última vez por"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__write_date
+msgid "Last Updated on"
+msgstr "actualizado por última vez el"
+
+#. module: purchase_merge
+#: model_terms:ir.ui.view,arch_db:purchase_merge.purchase_merge_automatic_wizard_form
+msgid "Merge Purchase"
+msgstr "Fusionar compra"
+
+#. module: purchase_merge
+#: model:ir.actions.act_window,name:purchase_merge.action_purchase_merge
+msgid "Merge Selected Purchase"
+msgstr "Fusionar compra seleccionada"
+
+#. module: purchase_merge
+#: model:ir.model.fields,field_description:purchase_merge.field_purchase_merge_automatic_wizard__purchase_ids
+#: model_terms:ir.ui.view,arch_db:purchase_merge.purchase_merge_automatic_wizard_form
+msgid "Purchase"
+msgstr "Compra"
+
+#. module: purchase_merge
+#: model_terms:ir.ui.view,arch_db:purchase_merge.purchase_merge_automatic_wizard_form
+msgid "Selected purchase will be merged together."
+msgstr "La compra seleccionada se fusionará."
+
+#. module: purchase_merge
+#. odoo-python
+#: code:addons/purchase_merge/wizard/purchase_merge.py:0
+#, python-format
+msgid "This purchase order lines have been merged {} : {}"
+msgstr "Estas líneas de pedido se han fusionado {} : {}"
+
+#. module: purchase_merge
+#. odoo-python
+#: code:addons/purchase_merge/wizard/purchase_merge.py:0
+#, python-format
+msgid "You can't merge purchase orders that aren't in draft state like: {}"
+msgstr ""
+"No se pueden fusionar pedidos que no estén en estado de borrador como: {}"
+
+#. module: purchase_merge
+#. odoo-python
+#: code:addons/purchase_merge/wizard/purchase_merge.py:0
+#, python-format
+msgid "You can't merge purchase orders with different currencies: %s"
+msgstr "No se pueden fusionar pedidos con divisas diferentes: %s"
+
+#. module: purchase_merge
+#. odoo-python
+#: code:addons/purchase_merge/wizard/purchase_merge.py:0
+#, python-format
+msgid "You can't merge purchase orders with different fiscal positions: %s"
+msgstr "No se pueden fusionar pedidos con diferentes posiciones fiscales: %s"
+
+#. module: purchase_merge
+#. odoo-python
+#: code:addons/purchase_merge/wizard/purchase_merge.py:0
+#, python-format
+msgid "You can't merge purchase orders with different incoterms: %s"
+msgstr "No se pueden fusionar pedidos con diferentes incotérminos: %s"
+
+#. module: purchase_merge
+#. odoo-python
+#: code:addons/purchase_merge/wizard/purchase_merge.py:0
+#, python-format
+msgid "You can't merge purchase orders with different payment terms: %s"
+msgstr "No se pueden fusionar pedidos con diferentes condiciones de pago: %s"
+
+#. module: purchase_merge
+#. odoo-python
+#: code:addons/purchase_merge/wizard/purchase_merge.py:0
+#, python-format
+msgid "You can't merge purchase orders with different picking types: %s"
+msgstr "No se pueden fusionar pedidos con diferentes tipos de recogida: %s"
+
+#. module: purchase_merge
+#. odoo-python
+#: code:addons/purchase_merge/wizard/purchase_merge.py:0
+#, python-format
+msgid "You can't merge purchase orders with different suppliers: %s"
+msgstr "No se pueden fusionar pedidos con diferentes proveedores: %s"
+
+#. module: purchase_merge
+#: model:ir.model,name:purchase_merge.model_purchase_merge_automatic_wizard
+msgid "purchase.merge.automatic.wizard"
+msgstr "asistente.de.fusión.automática.de.compras"
