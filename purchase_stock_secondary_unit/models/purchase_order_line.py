@@ -2,7 +2,7 @@
 # Copyright 2021 Tecnativa - Sergio Teruel
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
-from odoo import models
+from odoo import api, models
 
 
 class PurchaseOrderLine(models.Model):
@@ -42,3 +42,24 @@ class PurchaseOrderLine(models.Model):
         return super(
             PurchaseOrderLine, self.with_context(secondary_uom_for_update_moves=True)
         )._create_or_update_picking()
+
+    def _prepare_stock_move_vals(
+        self, picking, price_unit, product_uom_qty, product_uom
+    ):
+        vals = super()._prepare_stock_move_vals(
+            picking, price_unit, product_uom_qty, product_uom
+        )
+        if self.secondary_uom_id:
+            vals["secondary_uom_id"] = self.secondary_uom_id.id
+        return vals
+
+    @api.model
+    def _prepare_purchase_order_line_from_procurement(
+        self, product_id, product_qty, product_uom, company_id, values, po
+    ):
+        res = super()._prepare_purchase_order_line_from_procurement(
+            product_id, product_qty, product_uom, company_id, values, po
+        )
+        res["secondary_uom_id"] = values.get("secondary_uom_id", False)
+        res["secondary_uom_qty"] = values.get("secondary_uom_qty", 0.0)
+        return res
