@@ -25,7 +25,7 @@ Purchase Order Line Menu
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-Adds a menu item to list all Purchase Order lines.
+Adds a menu item and some views to navigate through Purchase Order lines.
 
 **Table of contents**
 
@@ -62,6 +62,10 @@ Contributors
 
   * Daniel Reis <dreis@opensourceintegrators.com>
   * Freni Patel <fpatel@opensourceintegrators.com>
+
+* `Moduon Team <https://moduon.team>`:
+
+  * Eduardo de Miguel <edu@moduon.team>
 
 Maintainers
 ~~~~~~~~~~~
