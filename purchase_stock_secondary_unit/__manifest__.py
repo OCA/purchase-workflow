@@ -12,6 +12,10 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": ["purchase_order_secondary_unit", "stock_secondary_unit"],
+    "depends": [
+        "purchase_order_secondary_unit",
+        "stock_secondary_unit",
+        "purchase_stock",
+    ],
     "auto_install": True,
 }
