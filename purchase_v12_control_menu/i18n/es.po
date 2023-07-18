@@ -6,21 +6,22 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-05-13 12:05+0000\n"
-"Last-Translator: David Vidal <david.vidal@tecnativa.com>\n"
+"PO-Revision-Date: 2023-07-18 08:10+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: purchase_v12_control_menu
 #: model_terms:ir.ui.view,arch_db:purchase_v12_control_menu.stock_move_view_kanban
 msgid ""
 "<i class=\"fa fa-clock-o\" role=\"img\" aria-label=\"Date\" title=\"Date\"/>"
 msgstr ""
+"<i class=\"fa fa-clock-o\" role=\"img\" aria-label=\"Date\" title=\"Date\"/>"
 
 #. module: purchase_v12_control_menu
 #: model:ir.ui.menu,name:purchase_v12_control_menu.menu_purchase_control
@@ -40,6 +41,9 @@ msgid ""
 "find\n"
 "                the list of all products you are waiting for."
 msgstr ""
+"Aquí puede recibir productos individuales, sin importar de qué\n"
+"                procedan. Encontrará\n"
+"                la lista de todos los productos que está esperando."
 
 #. module: purchase_v12_control_menu
 #: model:ir.actions.act_window,name:purchase_v12_control_menu.action_receipt_picking_move
@@ -56,11 +60,16 @@ msgid ""
 "                all products received using the buttons on the right of each "
 "line."
 msgstr ""
+"Una vez recibido un pedido, puede filtrarlo en función del nombre del\n"
+"                proveedor o la referencia del pedido. A continuación, puede "
+"confirmar\n"
+"                todos los productos recibidos utilizando los botones "
+"situados a la derecha de cada línea."
 
 #. module: purchase_v12_control_menu
 #: model_terms:ir.actions.act_window,help:purchase_v12_control_menu.action_receipt_picking_move
 msgid "Register a product receipt"
-msgstr ""
+msgstr "Registrar la recepción de un producto"
 
 #. module: purchase_v12_control_menu
 #: model_terms:ir.actions.act_window,help:purchase_v12_control_menu.action_invoice_pending
@@ -72,6 +81,12 @@ msgid ""
 "ordered\n"
 "                or received quantities."
 msgstr ""
+"Utilice este menú para controlar las facturas a recibir de sus\n"
+"                proveedores. Cuando registre una nueva factura, establezca "
+"la orden de compra\n"
+"                y Odoo llenará la factura automáticamente de acuerdo a las "
+"cantidades ordenadas\n"
+"                o cantidades recibidas."
 
 #. module: purchase_v12_control_menu
 #: model:ir.actions.act_window,name:purchase_v12_control_menu.action_invoice_pending
