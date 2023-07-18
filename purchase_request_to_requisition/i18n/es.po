@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-11 01:39+0000\n"
-"PO-Revision-Date: 2023-07-18 15:09+0000\n"
+"PO-Revision-Date: 2023-07-18 18:08+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
@@ -220,9 +220,8 @@ msgstr "Acuerdo de compra"
 #. module: purchase_request_to_requisition
 #: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line__requisition_lines
 #: model_terms:ir.ui.view,arch_db:purchase_request_to_requisition.purchase_request_line_form
-#, fuzzy
 msgid "Purchase Agreement Lines"
-msgstr "Líneas de petición de compra"
+msgstr "Líneas de acuerdo de compra"
 
 #. module: purchase_request_to_requisition
 #: model:ir.model,name:purchase_request_to_requisition.model_purchase_request
@@ -232,9 +231,8 @@ msgstr "Petición de compra"
 
 #. module: purchase_request_to_requisition
 #: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_requisition__purchase_request_count
-#, fuzzy
 msgid "Purchase Request Count"
-msgstr "Petición de compra"
+msgstr "Recuento de solicitudes de compra"
 
 #. module: purchase_request_to_requisition
 #: model:ir.model,name:purchase_request_to_requisition.model_purchase_request_line
@@ -244,15 +242,13 @@ msgstr "Línea de petición de compra"
 
 #. module: purchase_request_to_requisition
 #: model:ir.model,name:purchase_request_to_requisition.model_purchase_request_line_make_purchase_requisition
-#, fuzzy
 msgid "Purchase Request Line Make Purchase Agreement"
-msgstr "Líneas de petición de compra"
+msgstr "Línea de solicitud de compra Realizar acuerdo de compra"
 
 #. module: purchase_request_to_requisition
 #: model:ir.model,name:purchase_request_to_requisition.model_purchase_request_line_make_purchase_requisition_item
-#, fuzzy
 msgid "Purchase Request Line Make Purchase Agreement Item"
-msgstr "Líneas de petición de compra"
+msgstr "Línea de solicitud de compra Realizar el acuerdo de compra Artículo"
 
 #. module: purchase_request_to_requisition
 #: code:addons/purchase_request_to_requisition/models/purchase_requisition.py:0
@@ -263,9 +259,8 @@ msgstr "Líneas de petición de compra"
 
 #. module: purchase_request_to_requisition
 #: model:ir.actions.act_window,name:purchase_request_to_requisition.action_purchase_purchase_list
-#, fuzzy
 msgid "Purchase Requests"
-msgstr "Petición de compra"
+msgstr "Solicitudes de Compra"
 
 #. module: purchase_request_to_requisition
 #: model:ir.model,name:purchase_request_to_requisition.model_purchase_requisition
@@ -275,17 +270,17 @@ msgstr "Solicitud de compra"
 #. module: purchase_request_to_requisition
 #: model:ir.model,name:purchase_request_to_requisition.model_purchase_requisition_line
 msgid "Purchase Requisition Line"
-msgstr ""
+msgstr "Línea de Requisición de Compra"
 
 #. module: purchase_request_to_requisition
 #: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line__requisition_qty
 msgid "Quantity in a Bid"
-msgstr ""
+msgstr "Cantidad en una oferta"
 
 #. module: purchase_request_to_requisition
 #: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition_item__product_qty
 msgid "Quantity to Bid"
-msgstr ""
+msgstr "Cantidad a ofertar"
 
 #. module: purchase_request_to_requisition
 #: model_terms:ir.ui.view,arch_db:purchase_request_to_requisition.purchase_request_line_search
@@ -295,22 +290,22 @@ msgstr "Petición"
 #. module: purchase_request_to_requisition
 #: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request__requisition_count
 msgid "Requisition Count"
-msgstr ""
+msgstr "Recuento de requisiciones"
 
 #. module: purchase_request_to_requisition
 #: model_terms:ir.ui.view,arch_db:purchase_request_to_requisition.view_purchase_request_form
 msgid "Requisition Lines"
-msgstr ""
+msgstr "Líneas de Requisición"
 
 #. module: purchase_request_to_requisition
 #: model_terms:ir.ui.view,arch_db:purchase_request_to_requisition.purchase_request_line_search
 msgid "Requisition Status"
-msgstr ""
+msgstr "estado de requisición"
 
 #. module: purchase_request_to_requisition
 #: model_terms:ir.ui.view,arch_db:purchase_request_to_requisition.view_purchase_request_form
 msgid "TEs"
-msgstr ""
+msgstr "TEs"
 
 #. module: purchase_request_to_requisition
 #: code:addons/purchase_request_to_requisition/models/purchase_requisition.py:0
@@ -319,6 +314,8 @@ msgid ""
 "The following requested items from Purchase Request %s have now being sent "
 "to Suppliers using Purchase Bid %s:"
 msgstr ""
+"Los siguientes artículos solicitados de la Solicitud de Compra %s han sido "
+"enviados a los Proveedores utilizando la Oferta de Compra %s:"
 
 #. module: purchase_request_to_requisition
 #: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition_item__product_uom_id
@@ -334,7 +331,7 @@ msgstr "Asistente"
 #: code:addons/purchase_request_to_requisition/models/purchase_request.py:0
 #, python-format
 msgid "You cannot delete a record that refers to purchase lines!"
-msgstr "No puede eliminar un registro que tenga enlazadas líneas de compra"
+msgstr "¡No puede eliminar un registro que tenga enlazadas líneas de compra!"
 
 #. module: purchase_request_to_requisition
 #: code:addons/purchase_request_to_requisition/wizard/purchase_request_line_make_purchase_requisition.py:0
@@ -346,7 +343,7 @@ msgstr "Tiene que seleccionar líneas de la misma compañía."
 #: code:addons/purchase_request_to_requisition/wizard/purchase_request_line_make_purchase_requisition.py:0
 #, python-format
 msgid "You have to select lines from the same picking type."
-msgstr ""
+msgstr "Debe seleccionar líneas del mismo tipo de recogida."
 
 #~ msgid "Purchase Request lines"
 #~ msgstr "Líneas de petición de compra"
