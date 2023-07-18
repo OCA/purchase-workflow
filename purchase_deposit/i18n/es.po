@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-18 08:10+0000\n"
+"PO-Revision-Date: 2023-07-18 11:08+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -163,7 +163,7 @@ msgstr "Última actualización el"
 #. module: purchase_deposit
 #: model:ir.model,name:purchase_deposit.model_res_config_settings
 msgid "Procurement purchase grouping settings"
-msgstr ""
+msgstr "Configuración de la agrupación de compras"
 
 #. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.res_config_settings_view_form_purchase
@@ -255,7 +255,7 @@ msgstr ""
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
 #, python-format
 msgid "This action are allowed only in Purchase Order and Done state"
-msgstr ""
+msgstr "Esta acción sólo está permitida en los estados Orden de compra y Hecho"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__deposit_taxes_id
