@@ -76,6 +76,9 @@ class PurchaseOrderLine(models.Model):
         return moves
 
     def write(self, values):
+        # Do not propagate "date_deadline" to the related moves
+        moves = self.mapped("move_ids.move_dest_ids")
+        self = self.with_context(date_deadline_propagate_ids=set(moves.ids))
         res = super().write(values)
         if "date_planned" in values:
             self.mapped("order_id")._check_split_pickings()
@@ -134,10 +137,13 @@ class PurchaseOrder(models.Model):
                                 pickings_by_date[date_key] = new_picking
                             move._do_unreserve()
                             move.picking_id = pickings_by_date[date_key]
+                            # Field: Deadline
                             move.date_deadline = date_key
+                            # Field: Date Scheduled
+                            move.date = date_key
                             move._action_assign()
             for picking in pickings:
-                if len(picking.move_lines) == 0:
+                if not picking.move_lines:
                     picking.write({"state": "cancel"})
 
 

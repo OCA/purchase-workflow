@@ -85,6 +85,9 @@ class TestDeliverySingle(TransactionCase):
             }
         )
 
+    def assertDateEqual(self, first, second, msg=None):
+        return self.assertEqual(f"{first:%Y-%m-%d}", second, msg=msg)
+
     def test_check_single_date(self):
         """Tests with single date."""
         self.assertEqual(
@@ -98,11 +101,12 @@ class TestDeliverySingle(TransactionCase):
             1,
             "There must be 1 picking for the PO when confirmed",
         )
-        self.assertEqual(
-            str(self.po.picking_ids[0].scheduled_date)[:10],
+        self.assertDateEqual(
+            self.po.picking_ids[0].scheduled_date,
             self.date_sooner,
             "The picking must be planned at the expected date",
         )
+        self.assertDateEqual(self.po.picking_ids[0].date_deadline, self.date_sooner)
 
     def test_check_multiple_dates(self):
         """Tests changing the date of the first line."""
@@ -121,26 +125,30 @@ class TestDeliverySingle(TransactionCase):
         )
 
         sorted_pickings = sorted(self.po.picking_ids, key=lambda x: x.scheduled_date)
-        self.assertEqual(
-            str(sorted_pickings[0].scheduled_date)[:10],
+        self.assertDateEqual(
+            sorted_pickings[0].scheduled_date,
             self.date_sooner,
             "The first picking must be planned at the soonest date",
         )
-        self.assertEqual(
-            str(sorted_pickings[1].scheduled_date)[:10],
+        self.assertDateEqual(
+            sorted_pickings[1].scheduled_date,
             self.date_later,
             "The second picking must be planned at the latest date",
         )
 
+        self.assertDateEqual(sorted_pickings[0].date_deadline, self.date_sooner)
+        self.assertDateEqual(sorted_pickings[1].date_deadline, self.date_later)
+
     def test_purchase_line_date_change(self):
-        self.po.order_line[0].date_planned = self.date_later
+        line1 = self.po.order_line[0]
+        line1.date_planned = self.date_later
         self.po.button_confirm()
-        moves = self.env["stock.move"].search(
-            [("purchase_line_id", "=", self.po.order_line[0].id)]
-        )
-        line = self.po.order_line[0]
-        line.write({"date_planned": self.date_3rd})
-        self.assertEqual(moves.date_deadline.strftime("%Y-%m-%d"), self.date_3rd)
+        moves = self.env["stock.move"].search([("purchase_line_id", "=", line1.id)])
+        line1.write({"date_planned": self.date_3rd})
+        self.assertDateEqual(moves.date_deadline, self.date_3rd)
+        self.assertDateEqual(moves.date, self.date_3rd)
+        self.assertDateEqual(moves.picking_id.scheduled_date, self.date_3rd)
+        self.assertDateEqual(moves.picking_id.date_deadline, self.date_3rd)
 
     def test_group_multiple_picking_same_date(self):
         """Check multiple picking with same planned date are also merged
@@ -148,7 +156,8 @@ class TestDeliverySingle(TransactionCase):
         This can happen if another module changes the picking planned date
         before the _check_split_pickings is being called from the write method.
         """
-        self.po.order_line[0].date_planned = self.date_later
+        line1 = self.po.order_line[0]
+        line1.date_planned = self.date_later
         self.po.button_confirm()
         moves = self.env["stock.move"].search(
             [("purchase_line_id", "in", self.po.order_line.ids)]
@@ -156,14 +165,13 @@ class TestDeliverySingle(TransactionCase):
         pickings = moves.mapped("picking_id")
         self.assertEqual(len(pickings), 2)
         pickings[1].scheduled_date = pickings[0].scheduled_date
-        self.po.order_line[0].date_planned = self.date_sooner
+        line1.date_planned = self.date_sooner
         self.assertEqual(len(moves.mapped("picking_id")), 1)
         self.assertEqual(len(pickings.filtered(lambda r: r.state == "cancel")), 1)
 
     def test_purchase_line_date_change_split_picking(self):
         self.po.button_confirm()
-        line1 = self.po.order_line[0]
-        line2 = self.po.order_line[1]
+        [line1, line2, line3] = self.po.order_line
         move1 = self.env["stock.move"].search([("purchase_line_id", "=", line1.id)])
         move2 = self.env["stock.move"].search([("purchase_line_id", "=", line2.id)])
 
@@ -173,9 +181,15 @@ class TestDeliverySingle(TransactionCase):
             2,
             "There must be 2 pickings when I change the date",
         )
-        self.assertEqual(move1.date_deadline.strftime("%Y-%m-%d"), self.date_later)
-        self.assertEqual(move2.date_deadline.strftime("%Y-%m-%d"), self.date_sooner)
+        self.assertDateEqual(move1.date_deadline, self.date_later)
+        self.assertDateEqual(move1.date, self.date_later)
+        self.assertDateEqual(move2.date_deadline, self.date_sooner)
+        self.assertDateEqual(move2.date, self.date_sooner)
         self.assertNotEqual(move1.picking_id, move2.picking_id)
+        self.assertDateEqual(move1.picking_id.scheduled_date, self.date_later)
+        self.assertDateEqual(move1.picking_id.date_deadline, self.date_later)
+        self.assertDateEqual(move2.picking_id.scheduled_date, self.date_sooner)
+        self.assertDateEqual(move2.picking_id.date_deadline, self.date_sooner)
         line2.write({"date_planned": self.date_later})
         self.assertEqual(
             move1.picking_id,
@@ -184,7 +198,7 @@ class TestDeliverySingle(TransactionCase):
             "both moves must be in the same picking",
         )
 
-    def test_purchase_line_created_afer_confirm(self):
+    def test_purchase_line_created_after_confirm(self):
         """Check new line created when order is confirmed.
 
         When a new line is added on an already `purchased` order
