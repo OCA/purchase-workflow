@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-23 17:50+0000\n"
-"PO-Revision-Date: 2023-07-17 11:12+0000\n"
+"PO-Revision-Date: 2023-07-20 18:09+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -55,7 +55,7 @@ msgstr "Le opzioni sugli sconti sono gestite su"
 #. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_purchase_order
 msgid "Purchase Order"
-msgstr "Ordine d'Acquisto"
+msgstr "Ordine di acquisto"
 
 #. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_purchase_order_line
