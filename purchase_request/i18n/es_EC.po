@@ -686,8 +686,8 @@ msgstr "Nro de error"
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__message_needaction_counter
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__message_needaction_counter
-msgid "Number of messages which requires an action"
-msgstr "Nro de mensajes que requieren acción"
+msgid "Number of messages requiring action"
+msgstr ""
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__message_has_error_counter
@@ -1479,6 +1479,9 @@ msgstr "Debes seleccionar líneas del mismo tipo de picking."
 #, python-format
 msgid "You have to select lines from the same company."
 msgstr "Has seleccionado líneas de la misma compañía."
+
+#~ msgid "Number of messages which requires an action"
+#~ msgstr "Nro de mensajes que requieren acción"
 
 #~ msgid "<strong>Analytic Account</strong>"
 #~ msgstr "<strong>Centro de Costo</strong>"
