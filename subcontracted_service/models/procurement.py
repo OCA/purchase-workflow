@@ -19,11 +19,9 @@ class ProcurementGroup(models.Model):
     @api.model
     def _get_rule(self, product_id, location_id, values):
         res = super()._get_rule(product_id, location_id, values)
-        if not res:
-            if self._is_subcontracted_service(product_id):
-                rule_id = (
-                    location_id.get_warehouse().subcontracting_service_proc_rule_id
-                )
-                if rule_id:
-                    return rule_id
+        # if not res:
+        if self._is_subcontracted_service(product_id) and values.get("warehouse_id"):
+            rule_id = values.get("warehouse_id").subcontracting_service_proc_rule_id
+            if rule_id:
+                return rule_id
         return res

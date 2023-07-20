@@ -40,7 +40,7 @@ class TestSubcontractedService(TransactionCase):
         )
         # 4. find a customer
         self.customer = self.env["res.partner"].search(
-            [("customer", "=", True)], limit=1
+            [("customer_rank", ">", 0)], limit=1
         )
 
     def test_wh_stock_rule(self):
@@ -66,14 +66,20 @@ class TestSubcontractedService(TransactionCase):
             "group_id": self.test_wh.subcontracting_service_proc_rule_id.group_id,
         }
         self.pdt_service.property_subcontracted_service = True
+        pg = self.env["procurement.group"].create({"name": "Test-pg-1"})
         self.procurement_group_obj.run(
-            self.pdt_service,
-            1,
-            self.pdt_service.uom_id,
-            self.test_wh.lot_stock_id,
-            "test",
-            "test",
-            values,
+            [
+                pg.Procurement(
+                    self.pdt_service,
+                    1,
+                    self.pdt_service.uom_id,
+                    self.test_wh.lot_stock_id,
+                    self.pdt_service.display_name,
+                    "test",
+                    self.test_wh.company_id,
+                    values,
+                )
+            ]
         )
         po_line = self.env["purchase.order.line"].search(
             [("product_id", "=", self.pdt_service.id)], limit=1
@@ -99,14 +105,21 @@ class TestSubcontractedService(TransactionCase):
         }
         self.pdt_service.property_subcontracted_service = True
         self.pdt_service.route_ids = False
+        pg = self.env["procurement.group"].create({"name": "Test-pg-2"})
+        final_location = self.customer.property_stock_customer
         self.procurement_group_obj.run(
-            self.pdt_service,
-            1,
-            self.pdt_service.uom_id,
-            self.test_wh.lot_stock_id,
-            "test",
-            "test",
-            values,
+            [
+                pg.Procurement(
+                    self.pdt_service,
+                    1,
+                    self.pdt_service.uom_id,
+                    self.test_wh.lot_stock_id,
+                    self.pdt_service.display_name,
+                    "test",
+                    self.test_wh.company_id,
+                    values,
+                )
+            ]
         )
         po_line = self.env["purchase.order.line"].search(
             [("product_id", "=", self.pdt_service.id)], limit=1
