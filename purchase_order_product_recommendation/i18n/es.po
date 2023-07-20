@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-04 15:19+0000\n"
-"PO-Revision-Date: 2021-05-04 17:19+0200\n"
-"Last-Translator: Carlos <carlos.roca@tecnativa.com>\n"
+"PO-Revision-Date: 2023-07-20 18:09+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
-"X-Generator: Poedit 2.0.6\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: purchase_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:purchase_order_product_recommendation.purchase_order_recommendation_view_form
@@ -142,7 +142,7 @@ msgstr "Categorías de productos"
 #. module: purchase_order_product_recommendation
 #: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__product_name
 msgid "Product Name"
-msgstr ""
+msgstr "Nombre del producto"
 
 #. module: purchase_order_product_recommendation
 #: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__product_code
@@ -197,7 +197,7 @@ msgstr "Productos recomendados"
 #. module: purchase_order_product_recommendation
 #: model:ir.actions.act_window,name:purchase_order_product_recommendation.purchase_order_recommendation_action
 msgid "Recommended Products for this Vendor"
-msgstr ""
+msgstr "Productos recomendados por este vendedor"
 
 #. module: purchase_order_product_recommendation
 #: model:ir.model,name:purchase_order_product_recommendation.model_purchase_order_recommendation_line
@@ -283,7 +283,7 @@ msgstr "Cantidad prevista"
 #. module: purchase_order_product_recommendation
 #: model:ir.model.fields,help:purchase_order_product_recommendation.field_purchase_order_recommendation__show_all_products
 msgid "Useful if a product hasn't been selled by the partner yet"
-msgstr "Resulta útil si un producto aún no ha sido vendido por el proveedor."
+msgstr "Resulta útil si un producto aún no ha sido vendido por el proveedor"
 
 #. module: purchase_order_product_recommendation
 #: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__partner_id
@@ -309,6 +309,8 @@ msgstr "Asistente"
 #: model:ir.model.fields,help:purchase_order_product_recommendation.field_purchase_order_recommendation_line__partner_id
 msgid "You can find a vendor by its Name, TIN, Email or Internal Reference."
 msgstr ""
+"Puede encontrar un proveedor por su nombre, NIF, correo electrónico o "
+"referencia interna."
 
 #~ msgid "Recommended Products for this Customer"
 #~ msgstr "Productos recomendados para este proveedor"
