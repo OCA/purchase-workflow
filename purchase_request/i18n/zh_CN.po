@@ -685,8 +685,8 @@ msgstr "错误计数"
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__message_needaction_counter
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__message_needaction_counter
-msgid "Number of messages which requires an action"
-msgstr "需要采取措施的消息计数"
+msgid "Number of messages requiring action"
+msgstr ""
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__message_has_error_counter
@@ -1469,6 +1469,9 @@ msgstr "您必须选择相同作业类型的请购明细。"
 #, python-format
 msgid "You have to select lines from the same company."
 msgstr "您必须选择同一个公司的请购明细。"
+
+#~ msgid "Number of messages which requires an action"
+#~ msgstr "需要采取措施的消息计数"
 
 #~ msgid "<strong>Analytic Account</strong>"
 #~ msgstr "<strong>分析账户</strong>"
