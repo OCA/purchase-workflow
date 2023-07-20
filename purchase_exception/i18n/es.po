@@ -7,14 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-02-21 14:26+0000\n"
-"PO-Revision-Date: 2023-02-21 14:26+0000\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2023-07-20 10:15+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: purchase_exception
 #: model_terms:ir.ui.view,arch_db:purchase_exception.view_order_form
@@ -29,13 +30,15 @@ msgstr "Aplicar en"
 #. module: purchase_exception
 #: model_terms:ir.ui.view,arch_db:purchase_exception.view_purchase_order_filter
 msgid "Blocked in Draft"
-msgstr "Bloqueado en presupuesto"
+msgstr "Bloqueado en borrador"
 
 #. module: purchase_exception
 #: model_terms:ir.ui.view,arch_db:purchase_exception.view_order_form
 msgid ""
 "Click here to be able to confirm this Agreement regardless of the exceptions."
 msgstr ""
+"Haga clic aquí para poder confirmar este Acuerdo independientemente de las "
+"excepciones."
 
 #. module: purchase_exception
 #: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__create_uid
@@ -93,12 +96,12 @@ msgstr "Última modificación el"
 #. module: purchase_exception
 #: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__write_uid
 msgid "Last Updated by"
-msgstr "Ultima modificacion por"
+msgstr "Última actualización por"
 
 #. module: purchase_exception
 #: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__write_date
 msgid "Last Updated on"
-msgstr "Última modificación el"
+msgstr "Última actualización el"
 
 #. module: purchase_exception
 #: model:ir.model.fields,field_description:purchase_exception.field_purchase_order__main_exception_id
