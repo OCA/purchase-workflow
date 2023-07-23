@@ -72,8 +72,10 @@
         <field name="name">purchase.team.form</field>
         <field name="model">purchase.team</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree editable="bottom">
+                <field name="sequence" widget="handle" />
                 <field name="name" />
+                <field name="user_ids" widget="many2many_tags" />
             </tree>
         </field>
     </record>

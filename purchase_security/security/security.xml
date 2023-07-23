@@ -36,16 +36,13 @@
             <field name="model_id" ref="purchase.model_purchase_order" />
             <field
                 name="domain_force"
-            >['|',('user_id','=',user.id),('user_id','=',False)]</field>
+            >['|',('user_id','=',user.id),'&amp;',('user_id','=',False),('team_id','=',False)]</field>
             <field name="groups" eval="[(4,ref('group_purchase_own_orders'))]" />
         </record>
         <record model="ir.rule" id="purchase_order_group_purchase_order_group_orders">
             <field name="name">View purchase orders (purchase team member)</field>
             <field name="model_id" ref="purchase.model_purchase_order" />
-            <field
-                name="domain_force"
-            >['|', ('team_id.user_ids', 'in', [user.id]),('team_id', '=', False)]
-            </field>
+            <field name="domain_force">[('team_id.user_ids', '=', user.id)]</field>
             <field name="groups" eval="[(4,ref('group_purchase_group_orders'))]" />
         </record>
         <record model="ir.rule" id="purchase_order_line_group_purchase_manager_rule">
@@ -62,7 +59,7 @@
             <field name="model_id" ref="purchase.model_purchase_order_line" />
             <field
                 name="domain_force"
-            >['|',('order_id.user_id','=',user.id),('order_id.user_id','=',False)]</field>
+            >['|',('order_id.user_id','=',user.id),'&amp;',('order_id.user_id','=',False),('order_id.team_id','=',False)]</field>
             <field name="groups" eval="[(4,ref('group_purchase_own_orders'))]" />
         </record>
         <record model="ir.rule" id="purchase_order_user_group_purchases_rule">
@@ -70,7 +67,7 @@
             <field name="model_id" ref="purchase.model_purchase_order_line" />
             <field
                 name="domain_force"
-            >['|', ('order_id.team_id.user_ids', 'in', [user.id]), ('order_id.team_id', '=', False)]</field>
+            >[('order_id.team_id.user_ids', '=', user.id)]</field>
             <field name="groups" eval="[(4, ref('group_purchase_group_orders'))]" />
         </record>
     </data>
