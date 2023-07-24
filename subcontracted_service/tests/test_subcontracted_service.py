@@ -1,5 +1,6 @@
 # Author: Damien Crier
 # Copyright 2017 Camptocamp SA
+# Copyright 2017-23 ForgeFlow S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import fields
@@ -40,7 +41,7 @@ class TestSubcontractedService(TransactionCase):
         )
         # 4. find a customer
         self.customer = self.env["res.partner"].search(
-            [("customer", "=", True)], limit=1
+            [("customer_rank", ">", 0)], limit=1
         )
 
     def test_wh_stock_rule(self):
@@ -67,13 +68,18 @@ class TestSubcontractedService(TransactionCase):
         }
         self.pdt_service.property_subcontracted_service = True
         self.procurement_group_obj.run(
-            self.pdt_service,
-            1,
-            self.pdt_service.uom_id,
-            self.test_wh.lot_stock_id,
-            "test",
-            "test",
-            values,
+            [
+                self.procurement_group_obj.Procurement(
+                    self.pdt_service,
+                    1,
+                    self.pdt_service.uom_id,
+                    self.test_wh.lot_stock_id,
+                    "test",
+                    "test",
+                    self.test_wh.company_id,
+                    values,
+                ),
+            ]
         )
         po_line = self.env["purchase.order.line"].search(
             [("product_id", "=", self.pdt_service.id)], limit=1
@@ -100,13 +106,18 @@ class TestSubcontractedService(TransactionCase):
         self.pdt_service.property_subcontracted_service = True
         self.pdt_service.route_ids = False
         self.procurement_group_obj.run(
-            self.pdt_service,
-            1,
-            self.pdt_service.uom_id,
-            self.test_wh.lot_stock_id,
-            "test",
-            "test",
-            values,
+            [
+                self.procurement_group_obj.Procurement(
+                    self.pdt_service,
+                    1,
+                    self.pdt_service.uom_id,
+                    self.test_wh.lot_stock_id,
+                    "test",
+                    "test",
+                    self.test_wh.company_id,
+                    values,
+                ),
+            ]
         )
         po_line = self.env["purchase.order.line"].search(
             [("product_id", "=", self.pdt_service.id)], limit=1
