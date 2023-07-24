@@ -1,6 +1,7 @@
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
 #   (http://www.eficent.com)
 # Copyright 2019 Rubén Bravo <rubenred18@gmail.com>
+# Copyright 2017-23 ForgeFlow S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models
@@ -18,7 +19,6 @@ class StockWarehouse(models.Model):
             "purchase_stock.route_warehouse0_buy", raise_if_not_found=False
         ).id
 
-    @api.multi
     def _get_vals_for_proc_rule_subcontracting(self):
         self.ensure_one()
         picking_type = self.in_type_id
@@ -43,7 +43,6 @@ class StockWarehouse(models.Model):
             "location_id": picking_type.default_location_dest_id.id,
         }
 
-    @api.multi
     def _set_subcontracting_service_proc_rule(self):
         for rec in self:
             if not rec.subcontracting_service_proc_rule_id:
