@@ -23,4 +23,28 @@
             </field>
         </field>
     </record>
+    <record model="ir.ui.view" id="purchase_order_form_view">
+        <field name="name">purchase.order.form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="team_id" readonly="1" />
+            </xpath>
+        </field>
+    </record>
+    <record id="purchase_order_form_all_group_orders" model="ir.ui.view">
+        <field name="name">purchase.order.form (all orders)</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field
+            name="groups_id"
+            eval="[(4, ref('purchase.group_purchase_manager')),(4, ref('purchase_security.group_purchase_group_orders'))]"
+        />
+        <field name="arch" type="xml">
+            <field name="team_id" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </field>
+        </field>
+    </record>
 </odoo>
