@@ -6,7 +6,7 @@
     "name": "Purchase Default Terms Conditions",
     "summary": """
         This module allows purchase default terms & conditions""",
-    "version": "16.0.1.0.1",
+    "version": "16.0.1.0.2",
     "license": "AGPL-3",
     "author": "Escodoo,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
