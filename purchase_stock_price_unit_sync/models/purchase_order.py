@@ -25,7 +25,7 @@ class PurchaseOrderLine(models.Model):
             if hasattr(line.product_id, "bom_ids") and self.env[
                 "mrp.bom"
             ].sudo()._bom_find(
-                product=line.product_id,
+                line.product_id,
                 company_id=line.company_id.id,
                 bom_type="phantom",
             ):
