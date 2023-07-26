@@ -15,6 +15,7 @@ class TestPurchaseInvoiceGroup(SavepointCase):
             "purchase_invoice_create_security_group.group_purchase_invoice_create"
         )
         cls.product.purchase_method = "purchase"
+        cls.env.company.purchase_invoice_create_security = True
 
     @classmethod
     def create_purchase(cls):
@@ -41,6 +42,13 @@ class TestPurchaseInvoiceGroup(SavepointCase):
 
     def test_invoice_group(self):
         self.env.user.groups_id |= self.group
+        self.create_purchase()
+        self.purchase.button_confirm()
+        self.purchase.action_create_invoice()
+
+    def test_invoice_not_activated(self):
+        self.env.company.purchase_invoice_create_security = False
+        self.env.company.invalidate_cache()
         self.create_purchase()
         self.purchase.button_confirm()
         self.purchase.action_create_invoice()

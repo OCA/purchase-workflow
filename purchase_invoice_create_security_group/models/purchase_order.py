@@ -10,8 +10,11 @@ class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
     def action_create_invoice(self):
-        if not self.user_has_groups(
-            "purchase_invoice_create_security_group.group_purchase_invoice_create"
+        if (
+            self.env.company.purchase_invoice_create_security
+            and not self.user_has_groups(
+                "purchase_invoice_create_security_group.group_purchase_invoice_create"
+            )
         ):
             raise AccessError(
                 _(

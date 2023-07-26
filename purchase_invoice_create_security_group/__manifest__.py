@@ -11,6 +11,7 @@
     "website": "https://github.com/OCA/purchase-workflow",
     "depends": ["purchase"],
     "data": [
+        "views/res_config_settings.xml",
         "security/security.xml",
         "views/purchase_order.xml",
     ],
