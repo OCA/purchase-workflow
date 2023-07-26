@@ -322,7 +322,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_line_make_purchase_order
 #, fuzzy
 msgid "Create RFQ"
-msgstr "Creado por"
+msgstr "Crear SDP"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_stock_move__created_purchase_request_line_id
