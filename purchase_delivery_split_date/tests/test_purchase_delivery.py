@@ -7,7 +7,7 @@ from odoo.tests.common import TransactionCase
 
 class TestDeliverySingle(TransactionCase):
     def setUp(self):
-        super(TestDeliverySingle, self).setUp()
+        super().setUp()
         self.product_model = self.env["product.product"]
 
         # Create products:

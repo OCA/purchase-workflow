@@ -9,7 +9,7 @@ from odoo.tests.common import Form, TransactionCase
 
 class TestPurchaseDeposit(TransactionCase):
     def setUp(self):
-        super(TestPurchaseDeposit, self).setUp()
+        super().setUp()
         self.product_model = self.env["product.product"]
         self.account_model = self.env["account.account"]
         self.invoice_model = self.env["account.move"]

@@ -7,7 +7,7 @@ from odoo.tests import common
 
 class TestPurchaseRequestToRfq(common.TransactionCase):
     def setUp(self):
-        super(TestPurchaseRequestToRfq, self).setUp()
+        super().setUp()
         self.purchase_request = self.env["purchase.request"]
         self.purchase_request_line = self.env["purchase.request.line"]
         self.wiz = self.env["purchase.request.line.make.purchase.order"]

@@ -6,7 +6,7 @@ from odoo.tests import common
 
 class TestPurchaseRequest(common.TransactionCase):
     def setUp(self):
-        super(TestPurchaseRequest, self).setUp()
+        super().setUp()
 
         # common models
         self.purchase_request = self.env["purchase.request"]

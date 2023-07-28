@@ -8,7 +8,7 @@ from odoo.tests.common import TransactionCase
 
 class TestBaseSubstate(TransactionCase):
     def setUp(self):
-        super(TestBaseSubstate, self).setUp()
+        super().setUp()
         self.substate_test_purchase = self.env["purchase.order"]
         self.substate_test_purchase_line = self.env["purchase.order.line"]
 

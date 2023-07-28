@@ -80,7 +80,7 @@ class Picking(models.Model):
                             " quantity not equal accepted quantity"
                         )
                     )
-        return super(Picking, self).button_validate()
+        return super().button_validate()
 
     @api.onchange("wa_id")
     def _onchange_wa_id(self):

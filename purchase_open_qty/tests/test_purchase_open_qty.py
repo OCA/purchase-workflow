@@ -7,7 +7,7 @@ from odoo.tests.common import TransactionCase
 
 class TestPurchaseOpenQty(TransactionCase):
     def setUp(self):
-        super(TestPurchaseOpenQty, self).setUp()
+        super().setUp()
         self.purchase_order_model = self.env["purchase.order"]
         purchase_order_line_model = self.env["purchase.order.line"]
         partner_model = self.env["res.partner"]

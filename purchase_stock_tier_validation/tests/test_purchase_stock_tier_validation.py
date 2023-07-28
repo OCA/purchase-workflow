@@ -7,7 +7,7 @@ from odoo.tests import common
 
 class TestPurchaseStockTierValidation(common.TransactionCase):
     def setUp(self):
-        super(TestPurchaseStockTierValidation, self).setUp()
+        super().setUp()
         # Get purchase order model
         self.po_model = self.env.ref("purchase.model_purchase_order").with_context(
             tracking_disable=True, no_reset_password=True

@@ -111,7 +111,7 @@ class PurchaseOrderLine(models.Model):
         self.discount = seller.discount
 
     def _prepare_account_move_line(self, move=False):
-        vals = super(PurchaseOrderLine, self)._prepare_account_move_line(move)
+        vals = super()._prepare_account_move_line(move)
         vals["discount"] = self.discount
         return vals
 

@@ -56,7 +56,7 @@ class ProductProduct(models.Model):
 
     @api.depends("po_line_ids")
     def _compute_process_qty(self):
-        res = super(ProductProduct, self)._compute_process_qty()
+        res = super()._compute_process_qty()
         if self.env.context.get("parent_model", False) == "purchase.order":
             self._compute_process_qty_purchase()
         return res
@@ -79,7 +79,7 @@ class ProductProduct(models.Model):
                 ("seller_ids.name", "=", seller.id),
                 ("product_variant_ids", "!=", False),
             ]
-        return super(ProductProduct, self).search(
+        return super().search(
             args, offset=offset, limit=limit, order=order, count=count
         )
 

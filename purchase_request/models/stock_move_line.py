@@ -121,6 +121,6 @@ class StockMoveLine(models.Model):
                 allocation._compute_open_product_qty()
 
     def _action_done(self):
-        res = super(StockMoveLine, self)._action_done()
+        res = super()._action_done()
         self.allocate()
         return res

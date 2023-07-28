@@ -7,7 +7,7 @@ from odoo.tests.common import TransactionCase
 
 class TestPurchaseReceptionNotify(TransactionCase):
     def setUp(self):
-        super(TestPurchaseReceptionNotify, self).setUp()
+        super().setUp()
         self.purchase_order_model = self.env["purchase.order"]
         purchase_order_line_model = self.env["purchase.order.line"]
         partner_model = self.env["res.partner"]
