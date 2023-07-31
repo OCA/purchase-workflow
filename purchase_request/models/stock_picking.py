@@ -26,7 +26,7 @@ class StockPicking(models.Model):
         for line in request_dict.values():
             message += _("<li><b>%s</b>: Received quantity %s %s</li>") % (
                 line["name"],
-                line["product_qty"],
+                line["quantity_done"],
                 line["product_uom"],
             )
         message += "</ul>"
@@ -49,7 +49,7 @@ class StockPicking(models.Model):
                             requests_dict[request_id] = {}
                         data = {
                             "name": request_line.name,
-                            "product_qty": move.product_qty,
+                            "quantity_done": move.quantity_done,
                             "product_uom": move.product_uom.name,
                         }
                         requests_dict[request_id][request_line.id] = data
