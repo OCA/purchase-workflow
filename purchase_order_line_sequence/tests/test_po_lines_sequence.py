@@ -9,7 +9,7 @@ from odoo.tests import common, tagged
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 
-@tagged('post_install', '-at_install')
+@tagged("post_install", "-at_install")
 class TestPurchaseOrder(common.TransactionCase):
     def setUp(self):
         super(TestPurchaseOrder, self).setUp()
@@ -136,8 +136,8 @@ class TestPurchaseOrder(common.TransactionCase):
 
     def test_purchase_order_line_sequence_with_section_note(self):
         """
-            Verify that the sequence is correctly assigned to the move associated
-            with the purchase order line it references.
+        Verify that the sequence is correctly assigned to the move associated
+        with the purchase order line it references.
         """
         po = self._create_purchase_order()
         self.PurchaseOrderLine.create(
