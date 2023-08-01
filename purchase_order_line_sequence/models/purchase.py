@@ -39,14 +39,14 @@ class PurchaseOrder(models.Model):
                 ]
             ):
                 for picking in order.picking_ids:
-                    for move in picking.move_lines:
+                    for move in picking.move_ids:
                         if not move.purchase_line_id:
                             continue
                         move.write({"sequence": move.purchase_line_id.visible_sequence})
 
-    @api.model
-    def create(self, vals):
-        res = super(PurchaseOrder, self).create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        res = super(PurchaseOrder, self).create(vals_list)
         self._update_moves_sequence()
         return res
 
