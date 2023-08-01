@@ -31,14 +31,11 @@ class TestPurchaseOrder(common.TransactionCase):
             }
         )
 
-        account_type = self.env["account.account.type"].create(
-            {"name": "RCV type", "type": "other", "internal_group": "expense"}
-        )
         self.account_expense = self.env["account.account"].create(
             {
                 "name": "Expense",
                 "code": "EXP00",
-                "user_type_id": account_type.id,
+                "account_type": "liability_current",
                 "reconcile": True,
             }
         )
@@ -46,7 +43,7 @@ class TestPurchaseOrder(common.TransactionCase):
             {
                 "name": "Payable",
                 "code": "PAY00",
-                "user_type_id": account_type.id,
+                "account_type": "liability_payable",
                 "reconcile": True,
             }
         )
@@ -185,7 +182,7 @@ class TestPurchaseOrder(common.TransactionCase):
         po.button_confirm()
 
         moves = po.picking_ids[0].move_ids_without_package
-        self.assertNotEquals(len(po.order_line), len(moves))
+        self.assertNotEqual(len(po.order_line), len(moves))
 
         for move in moves:
             self.assertEqual(move.sequence, move.purchase_line_id.visible_sequence)
