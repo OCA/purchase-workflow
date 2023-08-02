@@ -4,7 +4,7 @@
 {
     "name": "Purchase Order Origin Link Sale",
     "summary": "Add clickable link to the Sale Order in purchase source document.",
-    "version": "13.0.1.0.0",
+    "version": "13.0.1.0.1",
     "license": "LGPL-3",
     "website": "https://github.com/OCA/purchase-workflow",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
