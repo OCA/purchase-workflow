@@ -25,7 +25,7 @@ Purchase Order Origin Link Sale
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-This module adds a clickable link to Sale Orders on the Source Document of Purchase Orders. It depends on the base module: "purchase_origin_link"
+This module adds a clickable link to Sale Orders on the Source Document of Purchase Orders. It depends on the base module: *purchase_origin_link*
 
 **Table of contents**
 
@@ -53,7 +53,9 @@ Authors
 Contributors
 ~~~~~~~~~~~~
 
-* Judith Almoño <judith.almono@forgeflow.com>
+* ForgeFlow S.L.
+  * Judith Almoño <judith.almono@forgeflow.com>
+  * Guillem Casassas <guillem.casassas@forgeflow.com>
 
 Maintainers
 ~~~~~~~~~~~
