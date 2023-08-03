@@ -17,7 +17,7 @@ class TestPurchaseReturnOrderLine(AccountTestInvoicingCommon):
             {
                 "name": "Vendor Returns",
                 "code": "VR01",
-                "user_type_id": cls.env.ref("account.data_account_type_revenue").id,
+                "account_type": "income",
             }
         )
         cls.product_order = cls.env["product.product"].create(
@@ -74,6 +74,7 @@ class TestPurchaseReturnOrderLine(AccountTestInvoicingCommon):
                 "order_id": purchase_return_order.id,
                 "refund_only": True,
                 "taxes_id": False,
+                "display_type": "product",
             }
         )
         price_subtotal = po_line.product_qty * self.product_order.list_price
@@ -114,7 +115,7 @@ class TestPurchaseReturnOrderLine(AccountTestInvoicingCommon):
         vendor = po_line.product_id.seller_ids.create(
             {
                 "product_tmpl_id": po_line.product_id.product_tmpl_id.id,
-                "name": self.partner_a.id,
+                "partner_id": self.partner_a.id,
             }
         )
         self.service_order.seller_ids = vendor

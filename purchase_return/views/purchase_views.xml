@@ -218,14 +218,12 @@
                                 context="{'default_state': 'draft'}"
                                 attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
                             >
-                                <tree
-                                    string="Purchase Return Order Lines"
-                                    editable="bottom"
-                                >
+                                <tree editable="bottom">
                                     <control>
                                         <create
                                             name="add_product_control"
                                             string="Add a product"
+                                            context="{'default_display_type': 'product'}"
                                         />
                                         <create
                                             name="add_section_control"
@@ -249,10 +247,15 @@
                                     <field name="invoice_lines" invisible="1" />
                                     <field name="sequence" widget="handle" />
                                     <field
+                                        name="product_uom"
+                                        invisible="1"
+                                        groups="!uom.group_uom"
+                                    />
+                                    <field
                                         name="product_id"
                                         attrs="{
                                             'readonly': [('state', 'in', ('purchase', 'to approve','done', 'cancel'))],
-                                            'required': [('display_type', '=', False)],
+                                            'required': [('display_type', '=', 'product')],
                                         }"
                                         context="{'partner_id':parent.partner_id, 'quantity':product_qty,'uom':product_uom, 'company_id': parent.company_id}"
                                         force_save="1"
@@ -270,15 +273,6 @@
                                         optional="hide"
                                         context="{'default_partner_id':parent.partner_id}"
                                         groups="analytic.group_analytic_accounting"
-                                        domain="['|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]"
-                                    />
-                                    <field
-                                        name="analytic_tag_ids"
-                                        optional="hide"
-                                        groups="analytic.group_analytic_tags"
-                                        widget="many2many_tags"
-                                        options="{'color_field': 'color'}"
-                                        domain="['|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]"
                                     />
                                     <field name="product_qty" />
                                     <field name="refund_only" />
@@ -363,13 +357,6 @@
                                                 colspan="2"
                                                 domain="['|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]"
                                                 groups="analytic.group_analytic_accounting"
-                                            />
-                                                <field
-                                                name="analytic_tag_ids"
-                                                groups="analytic.group_analytic_tags"
-                                                domain="['|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]"
-                                                widget="many2many_tags"
-                                                options="{'color_field': 'color'}"
                                             />
                                             </group>
                                             <group colspan="12">
@@ -532,6 +519,11 @@
                                         name="payment_term_id"
                                         attrs="{'readonly': ['|', ('invoice_status','=', 'invoiced'), ('state', '=', 'done')]}"
                                         options="{'no_create': True}"
+                                    />
+                                    <field
+                                        name="company_id"
+                                        invisible="1"
+                                        groups="!base.group_multi_company"
                                     />
                                     <field
                                         name="fiscal_position_id"
@@ -804,14 +796,17 @@
             <field name="priority" eval="1" />
             <field name="arch" type="xml">
                 <tree
-                string="Purchase Return Order"
                 multi_edit="1"
-                decoration-bf="message_unread==True"
                 decoration-muted="state=='cancel'"
                 decoration-info="state in ('wait','confirmed')"
                 sample="1"
             >
-                    <field name="message_unread" invisible="1" />
+                    <!-- pylint : disable=duplicate-xml-fields -->
+                    <field
+                    name="company_id"
+                    invisible="1"
+                    groups="!base.group_multi_company"
+                />
                     <field name="partner_ref" optional="hide" />
                     <field name="name" string="Reference" readonly="1" />
                     <field
@@ -868,15 +863,12 @@
             <field name="model">purchase.return.order</field>
             <field name="arch" type="xml">
                 <tree
-                decoration-bf="message_unread==True"
                 decoration-muted="state=='cancel'"
                 decoration-info="state in ('wait','confirmed')"
-                string="Purchase Order"
                 class="o_purchase_order"
                 sample="1"
             >
                     <header />
-                    <field name="message_unread" invisible="1" />
                     <field name="partner_ref" optional="hide" />
                     <field
                     name="name"
@@ -985,7 +977,7 @@
             <field name="name">purchase.return.order.line.tree</field>
             <field name="model">purchase.return.order.line</field>
             <field name="arch" type="xml">
-                <tree string="Purchase Order Lines" create="false">
+                <tree create="false">
                     <field name="order_id" />
                     <field name="name" />
                     <field name="partner_id" string="Vendor" />
