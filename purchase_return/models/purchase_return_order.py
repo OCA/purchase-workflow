@@ -45,13 +45,17 @@ class PurchaseOrderReturn(models.Model):
 
             if any(
                 not float_is_zero(line.qty_to_invoice, precision_digits=precision)
-                for line in order.order_line.filtered(lambda l: not l.display_type)
+                for line in order.order_line.filtered(
+                    lambda l: l.display_type == "product"
+                )
             ):
                 order.invoice_status = "to invoice"
             elif (
                 all(
                     float_is_zero(line.qty_to_invoice, precision_digits=precision)
-                    for line in order.order_line.filtered(lambda l: not l.display_type)
+                    for line in order.order_line.filtered(
+                        lambda l: l.display_type == "product"
+                    )
                 )
                 and order.invoice_ids
             ):
@@ -245,7 +249,7 @@ class PurchaseOrderReturn(models.Model):
         default=lambda self: self.env.company.id,
     )
     currency_rate = fields.Float(
-        "Currency Rate",
+        "Rate Currency",
         compute="_compute_currency_rate",
         compute_sudo=True,
         store=True,
@@ -362,7 +366,7 @@ class PurchaseOrderReturn(models.Model):
     def copy(self, default=None):
         ctx = dict(self.env.context)
         ctx.pop("default_product_id", None)
-        self = self.with_context(ctx)
+        self = self.with_context(**ctx)
         new_po = super(PurchaseOrderReturn, self).copy(default=default)
         return new_po
 
@@ -414,7 +418,7 @@ class PurchaseOrderReturn(models.Model):
         else:
             self.fiscal_position_id = self.env[
                 "account.fiscal.position"
-            ].get_fiscal_position(self.partner_id.id)
+            ]._get_fiscal_position(self.partner_id)
             self.payment_term_id = self.partner_id.property_supplier_payment_term_id.id
             self.currency_id = (
                 self.partner_id.property_purchase_currency_id.id
@@ -438,19 +442,19 @@ class PurchaseOrderReturn(models.Model):
         ir_model_data = self.env["ir.model.data"]
         try:
             if self.env.context.get("send_draft", False):
-                template_id = ir_model_data.get_object_reference(
-                    "purchase_return", "email_template_edi_purchase_return"
-                )[1]
+                template_id = ir_model_data._xmlid_lookup(
+                    "purchase_return.email_template_edi_purchase_return"
+                )[2]
             else:
-                template_id = ir_model_data.get_object_reference(
-                    "purchase_return", "email_template_edi_purchase_return"
-                )[1]
+                template_id = ir_model_data._xmlid_lookup(
+                    "purchase_return.email_template_edi_purchase_return"
+                )[2]
         except ValueError:
             template_id = False
         try:
-            compose_form_id = ir_model_data.get_object_reference(
-                "mail", "email_compose_message_wizard_form"
-            )[1]
+            compose_form_id = ir_model_data._xmlid_lookup(
+                "mail.email_compose_message_wizard_form"
+            )[2]
         except ValueError:
             compose_form_id = False
         ctx = dict(self.env.context or {})
@@ -645,14 +649,15 @@ class PurchaseOrderReturn(models.Model):
         journal = (
             self.env["account.move"]
             .with_context(default_move_type=move_type)
-            ._get_default_journal()
+            ._search_default_journal()
         )
         if not journal:
             raise UserError(
                 _(
-                    "Please define an accounting purchase journal for the company %s (%s)."
+                    "Please define an accounting purchase journal for "
+                    "the company %(scn)s (%(sci)s)."
                 )
-                % (self.company_id.name, self.company_id.id)
+                % {"scn": self.company_id.name, "sci": self.company_id.id}
             )
 
         partner_invoice_id = self.partner_id.address_get(["invoice"])["invoice"]
@@ -665,7 +670,7 @@ class PurchaseOrderReturn(models.Model):
             "partner_id": partner_invoice_id,
             "fiscal_position_id": (
                 self.fiscal_position_id
-                or self.fiscal_position_id.get_fiscal_position(partner_invoice_id)
+                or self.fiscal_position_id._get_fiscal_position(self.partner_id)
             ).id,
             "payment_reference": "",
             "partner_bank_id": self.partner_id.bank_ids[:1].id,

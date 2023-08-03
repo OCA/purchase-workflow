@@ -21,7 +21,7 @@ class TestPurchaseReturnOrder(AccountTestInvoicingCommon):
             {
                 "name": "Vendor Returns",
                 "code": "VR01",
-                "user_type_id": cls.env.ref("account.data_account_type_revenue").id,
+                "account_type": "income",
             }
         )
         cls.product_order = cls.env["product.product"].create(
@@ -78,6 +78,7 @@ class TestPurchaseReturnOrder(AccountTestInvoicingCommon):
                 "order_id": purchase_return_order.id,
                 "refund_only": True,
                 "taxes_id": False,
+                "display_type": "product",
             }
         )
         self.assertEqual(purchase_return_order.invoice_status, "no")
@@ -115,6 +116,7 @@ class TestPurchaseReturnOrder(AccountTestInvoicingCommon):
                 "order_id": purchase_return_order.id,
                 "refund_only": False,
                 "taxes_id": False,
+                "display_type": "product",
             }
         )
         self.assertEqual(purchase_return_order.invoice_status, "no")
@@ -146,6 +148,7 @@ class TestPurchaseReturnOrder(AccountTestInvoicingCommon):
                 "order_id": purchase_return_order.id,
                 "refund_only": True,
                 "taxes_id": False,
+                "display_type": "product",
             }
         )
         self.assertEqual(purchase_return_order.state, "draft")
@@ -223,6 +226,7 @@ class TestPurchaseReturnOrder(AccountTestInvoicingCommon):
                 "order_id": purchase_return_order.id,
                 "refund_only": False,
                 "taxes_id": False,
+                "display_type": "product",
             }
         )
         purchase_return_order.button_confirm()
@@ -259,25 +263,28 @@ class TestPurchaseReturnOrder(AccountTestInvoicingCommon):
                 )
             )
             self.product_order.company_id = company_b.id
-            PurchaseReturnOrderLine = self.env[
-                "purchase.return.order.line"
-            ].with_context(tracking_disable=True)
-            PurchaseReturnOrderLine.create(
-                {
-                    "name": self.product_order.name,
-                    "product_id": self.product_order.id,
-                    "product_qty": 10.0,
-                    "product_uom": self.product_order.uom_id.id,
-                    "price_unit": self.product_order.list_price,
-                    "order_id": purchase_return_order.id,
-                    "refund_only": False,
-                    "taxes_id": False,
-                    "company_id": company_b.id,
-                }
+            PurchaseReturnOrderLine = (
+                self.env["purchase.return.order.line"]
+                .with_context(tracking_disable=True)
+                .create(
+                    {
+                        "name": self.product_order.name,
+                        "product_id": self.product_order.id,
+                        "product_qty": 10.0,
+                        "product_uom": self.product_order.uom_id.id,
+                        "price_unit": self.product_order.list_price,
+                        "order_id": purchase_return_order.id,
+                        "refund_only": False,
+                        "taxes_id": False,
+                        "company_id": company_b.id,
+                        "display_type": "product",
+                    }
+                )
             )
             purchase_return_order.company_id = company_a.id
+            PurchaseReturnOrderLine.company_id = company_a.id
         except odoo.exceptions.ValidationError:
-            pass
+            return
         else:
             self.fail(
                 "ValidationError was not raised when attempting to change"

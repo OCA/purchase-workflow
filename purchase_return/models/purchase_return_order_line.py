@@ -19,7 +19,7 @@ class PurchaseReturnOrderLine(models.Model):
     _order = "order_id, sequence, id"
 
     name = fields.Text(string="Description", required=True)
-    sequence = fields.Integer(string="Sequence", default=10)
+    sequence = fields.Integer(string="Sequence Line", default=10)
     product_qty = fields.Float(
         string="Quantity", digits="Product Unit of Measure", required=True
     )
@@ -70,14 +70,6 @@ class PurchaseReturnOrderLine(models.Model):
         "account.analytic.account",
         store=True,
         string="Analytic Account",
-        compute="_compute_analytic_id_and_tag_ids",
-        readonly=False,
-    )
-    analytic_tag_ids = fields.Many2many(
-        "account.analytic.tag",
-        store=True,
-        string="Analytic Tags",
-        compute="_compute_analytic_id_and_tag_ids",
         readonly=False,
     )
     company_id = fields.Many2one(
@@ -126,7 +118,7 @@ class PurchaseReturnOrderLine(models.Model):
     )
 
     display_type = fields.Selection(
-        [("line_section", "Section"), ("line_note", "Note")],
+        [("product", "Product"), ("line_section", "Section"), ("line_note", "Note")],
         default=False,
         help="Technical field for UX purpose.",
     )
@@ -134,13 +126,13 @@ class PurchaseReturnOrderLine(models.Model):
     _sql_constraints = [
         (
             "accountable_required_fields",
-            "CHECK(display_type IS NOT NULL OR (product_id IS NOT NULL "
+            "CHECK(display_type IS NOT 'product' OR (product_id IS NOT NULL "
             "AND product_uom IS NOT NULL AND date_planned IS NOT NULL))",
             "Missing required fields on accountable purchase return order line.",
         ),
         (
             "non_accountable_null_fields",
-            "CHECK(display_type IS NULL OR (product_id IS NULL "
+            "CHECK(display_type IS 'product' OR (product_id IS NULL "
             "AND price_unit = 0 AND product_uom_qty = 0 AND product_uom "
             "IS NULL AND date_planned is NULL))",
             "Forbidden values on non-accountable purchase return order line",
@@ -188,17 +180,15 @@ class PurchaseReturnOrderLine(models.Model):
             line = line.with_company(line.company_id)
             fpos = (
                 line.order_id.fiscal_position_id
-                or line.order_id.fiscal_position_id.get_fiscal_position(
-                    line.order_id.partner_id.id
+                or line.order_id.fiscal_position_id._get_fiscal_position(
+                    line.order_id.partner_id
                 )
             )
             # filter taxes by company
             taxes = line.product_id.supplier_taxes_id.filtered(
                 lambda r: r.company_id == line.env.company
             )
-            line.taxes_id = fpos.map_tax(
-                taxes, line.product_id, line.order_id.partner_id
-            )
+            line.taxes_id = fpos.map_tax(taxes)
 
     @api.depends(
         "invoice_lines.move_id.state",
@@ -296,7 +286,7 @@ class PurchaseReturnOrderLine(models.Model):
     def _prepare_account_move_line(self, move=False):
         self.ensure_one()
         res = {
-            "display_type": self.display_type,
+            "display_type": "product",
             "sequence": self.sequence,
             "name": "%s: %s" % (self.order_id.name, self.name),
             "product_id": self.product_id.id,
@@ -304,8 +294,6 @@ class PurchaseReturnOrderLine(models.Model):
             "quantity": self.qty_to_invoice,
             "price_unit": self.price_unit,
             "tax_ids": [(6, 0, self.taxes_id.ids)],
-            "analytic_account_id": self.account_analytic_id.id,
-            "analytic_tag_ids": [(6, 0, self.analytic_tag_ids.ids)],
             "purchase_return_line_id": self.id,
         }
         if not move:
@@ -329,9 +317,7 @@ class PurchaseReturnOrderLine(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         for values in vals_list:
-            if values.get(
-                "display_type", self.default_get(["display_type"])["display_type"]
-            ):
+            if values.get("display_type") != "product":
                 values.update(
                     product_id=False,
                     price_unit=0,
@@ -405,27 +391,6 @@ class PurchaseReturnOrderLine(models.Model):
                 days=seller.delay if seller else 0
             )
         return self._convert_to_middle_of_day(date_planned)
-
-    @api.depends("product_id", "date_order")
-    def _compute_analytic_id_and_tag_ids(self):
-        for rec in self:
-            default_analytic_account = (
-                rec.env["account.analytic.default"]
-                .sudo()
-                .account_get(
-                    product_id=rec.product_id.id,
-                    partner_id=rec.order_id.partner_id.id,
-                    user_id=rec.env.uid,
-                    date=rec.date_order,
-                    company_id=rec.company_id.id,
-                )
-            )
-            rec.account_analytic_id = (
-                rec.account_analytic_id or default_analytic_account.analytic_id
-            )
-            rec.analytic_tag_ids = (
-                rec.analytic_tag_ids or default_analytic_account.analytic_tag_ids
-            )
 
     @api.onchange("product_id")
     def onchange_product_id(self):
