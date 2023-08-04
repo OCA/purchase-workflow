@@ -23,7 +23,7 @@ Purchase Order Line Sequence
     :target: https://runbot.odoo-community.org/runbot/142/14.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 
 The sequence in PO line is propagated to the Stock moves. The sequence number
@@ -64,7 +64,7 @@ Authors
 ~~~~~~~
 
 * Camptocamp
-* Eficent
+* ForgeFlow
 * Serpent CS
 
 Contributors
@@ -72,7 +72,7 @@ Contributors
 
 * Cécile Jallais <cjallais@archeti.com>
 * Damien Crier <damien.crier@camptocamp.com>
-* Eficent Business and IT Consulting Services S.L. <contact@eficent.com>
+* ForgeFlow S.L. <contact@forgeflow.com>
 * Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
 
 Maintainers
