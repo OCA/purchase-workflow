@@ -62,6 +62,7 @@ addon | version | maintainers | summary
 [purchase_order_line_menu](purchase_order_line_menu/) | 14.0.1.0.0 |  | Adds Purchase Order Lines Menu
 [purchase_order_line_packaging_qty](purchase_order_line_packaging_qty/) | 14.0.1.0.1 |  | Define quantities according to product packaging on purchase order lines
 [purchase_order_line_price_history](purchase_order_line_price_history/) | 14.0.1.1.0 |  | Purchase order line price history
+[purchase_order_line_sequence](purchase_order_line_sequence/) | 14.0.1.0.0 |  | Adds sequence to PO lines and propagates it toInvoice lines and Stock Moves
 [purchase_order_line_stock_available](purchase_order_line_stock_available/) | 14.0.1.0.0 |  | Purchase order line stock available
 [purchase_order_payment_term_report](purchase_order_payment_term_report/) | 14.0.1.0.0 |  | Display Purchase Payment Terms in PO Report
 [purchase_order_price_recalculation](purchase_order_price_recalculation/) | 14.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Price recalculation in purchases orders
@@ -114,13 +115,6 @@ addon | version | maintainers | summary
 [sale_purchase_force_vendor](sale_purchase_force_vendor/) | 14.0.2.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Sale Purchase Force Vendor
 [subcontracted_service](subcontracted_service/) | 14.0.1.0.0 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Subcontracted service
 [vendor_transport_lead_time](vendor_transport_lead_time/) | 14.0.1.0.1 |  | Purchase delay based on transport and supplier delays
-
-
-Unported addons
----------------
-addon | version | maintainers | summary
---- | --- | --- | ---
-[purchase_order_line_sequence](purchase_order_line_sequence/) | 14.0.1.0.0 (unported) |  | Adds sequence to PO lines and propagates it toInvoice lines and Stock Moves
 
 [//]: # (end addons)
 
