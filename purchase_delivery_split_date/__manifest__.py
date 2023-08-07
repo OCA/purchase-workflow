@@ -4,10 +4,10 @@
 
 {
     "name": "Purchase Delivery Split Date",
-    "version": "13.0.1.0.6",
+    "version": "13.0.1.0.7",
     "summary": "Allows Purchase Order you confirm to generate one Incoming "
     "Shipment for each expected date indicated in the Purchase Order Lines",
-    "author": "Numerigraphe, ForgeFlow, Camptocamp, Odoo Community Association (OCA)",
+    "author": "Numerigraphe, ForgeFlow, Camptocamp, Odoo Community Association (OCA), Dominik Schmidt",
     "website": "https://github.com/OCA/purchase-workflow",
     "category": "Purchase Management",
     "license": "AGPL-3",

@@ -70,13 +70,13 @@ class PurchaseOrderLine(models.Model):
 
     def write(self, values):
         res = super().write(values)
-        if "date_planned" in values:
+        if "date_planned" in values and not self.env.context.get('skip_check_split_pickings'):
             self.mapped("order_id")._check_split_pickings()
         return res
 
     def create(self, values):
         line = super().create(values)
-        if line.order_id.state == "purchase":
+        if line.order_id.state == "purchase" and not self.env.context.get('skip_check_split_pickings'):
             line.order_id._check_split_pickings()
         return line
 
