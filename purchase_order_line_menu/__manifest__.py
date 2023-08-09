@@ -15,6 +15,6 @@
         "views/purchase_order_line_views.xml",
     ],
     "installable": True,
-    "maintainer": ["dreispt", "Shide"],
+    "maintainer": ["dreispt", "Shide", "EmilioPascual"],
     "development_status": "Beta",
 }

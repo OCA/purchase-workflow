@@ -55,6 +55,14 @@
             <xpath expr="//field[@name='date_planned']" position="attributes">
                 <attribute name="optional">hide</attribute>
             </xpath>
+            <xpath expr="/tree" postion="inside">
+                <field
+                    name="invoice_lines"
+                    widget="many2many_tags"
+                    groups="account.group_account_invoice"
+                    optional="hide"
+                />
+            </xpath>
         </field>
     </record>
 
