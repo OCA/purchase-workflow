@@ -70,6 +70,7 @@ addon | version | maintainers | summary
 [purchase_order_type](purchase_order_type/) | 15.0.1.0.0 |  | Purchase Order Type
 [purchase_order_type_dashboard](purchase_order_type_dashboard/) | 15.0.1.0.0 | [![dalonsod](https://github.com/dalonsod.png?size=30px)](https://github.com/dalonsod) | Purchase Order Type Dashboard
 [purchase_order_uninvoiced_amount](purchase_order_uninvoiced_amount/) | 15.0.1.0.0 |  | Purchase Order Univoiced Amount
+[purchase_order_weight_volume](purchase_order_weight_volume/) | 15.0.1.0.0 |  | Display purchase order weight and volume
 [purchase_partner_incoterm](purchase_partner_incoterm/) | 15.0.3.0.0 | [![TDu](https://github.com/TDu.png?size=30px)](https://github.com/TDu) [![bealdav](https://github.com/bealdav.png?size=30px)](https://github.com/bealdav) | Add a an incoterm field for supplier and use it on purchase order
 [purchase_partner_selectable_option](purchase_partner_selectable_option/) | 15.0.1.0.1 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Purchase Partner Selectable Option
 [purchase_quick](purchase_quick/) | 15.0.1.0.0 |  | Quick Purchase order
