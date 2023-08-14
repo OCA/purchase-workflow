@@ -9,15 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-23 17:50+0000\n"
-"PO-Revision-Date: 2022-12-20 12:45+0000\n"
-"Last-Translator: Víctor Martínez <victor.martinez@tecnativa.com>\n"
+"PO-Revision-Date: 2023-08-14 20:10+0000\n"
+"Last-Translator: Gil <gilarasaverge@gmail.com>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: purchase_discount
 #: model_terms:ir.ui.view,arch_db:purchase_discount.report_purchaseorder_document
@@ -27,13 +27,13 @@ msgstr "<strong>Desc. (%)</strong>"
 #. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contacto"
 
 #. module: purchase_discount
 #: model:ir.model.fields,field_description:purchase_discount.field_res_partner__default_supplierinfo_discount
 #: model:ir.model.fields,field_description:purchase_discount.field_res_users__default_supplierinfo_discount
 msgid "Default Supplier Discount (%)"
-msgstr ""
+msgstr "Descuento de proveedor predeterminado (%)"
 
 #. module: purchase_discount
 #: model:ir.model.fields,field_description:purchase_discount.field_product_supplierinfo__discount
@@ -50,7 +50,7 @@ msgstr "El descuento debe ser menor al 100%."
 #. module: purchase_discount
 #: model_terms:ir.ui.view,arch_db:purchase_discount.res_partner_form_view
 msgid "Discount-related settings are managed on"
-msgstr ""
+msgstr "Los ajustes relacionados con los descuentos se gestionan en"
 
 #. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_purchase_order
@@ -80,7 +80,7 @@ msgstr ""
 #. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_product_supplierinfo
 msgid "Supplier Pricelist"
-msgstr ""
+msgstr "Tarifa proveedor"
 
 #. module: purchase_discount
 #: model:ir.model.fields,help:purchase_discount.field_res_partner__default_supplierinfo_discount
@@ -89,8 +89,11 @@ msgid ""
 "This value will be used as the default one, for each new supplierinfo line "
 "depending on that supplier."
 msgstr ""
+"Este valor se usará como predeterminado, para cada nueva línea de tarifa del "
+"proveedor."
 
 #. module: purchase_discount
 #: model_terms:ir.ui.view,arch_db:purchase_discount.res_partner_form_view
+#, fuzzy
 msgid "the parent company"
-msgstr ""
+msgstr "empresa matriz"
