@@ -1,20 +1,165 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 Moduon Team
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
+
+    <record id="purchase_order_line_tree" model="ir.ui.view">
+        <field name="name">purchase.order.line.tree</field>
+        <field name="model">purchase.order.line</field>
+        <field name="inherit_id" ref="purchase.purchase_order_line_tree" />
+        <field name="mode">primary</field>
+        <field name="priority">17</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_id']" position="after">
+                <field name="state" optional="hide" />
+                <field name="invoice_status" optional="hide" />
+            </xpath>
+            <xpath expr="//field[@name='product_id']" position="after">
+                <field name="product_type" optional="hide" />
+            </xpath>
+            <xpath expr="//field[@name='product_qty']" position="after">
+                <field name="qty_invoiced" optional="hide" />
+                <field name="qty_to_invoice" optional="hide" />
+                <field name="qty_received" optional="hide" />
+                <field name="qty_received_manual" optional="hide" />
+            </xpath>
+            <xpath expr="//field[@name='price_subtotal']" position="after">
+                <field name="taxes_id" widget="many2many_tags" optional="hide" />
+                <field
+                    name="price_tax"
+                    widget="monetary"
+                    optional="hide"
+                    sum="Price Tax"
+                />
+                <field name="price_total" optional="hide" sum="Price Total" />
+            </xpath>
+            <xpath expr="//field[@name='price_subtotal']" position="attributes">
+                <attribute name="sum">Price Subtotal</attribute>
+            </xpath>
+            <xpath expr="//field[@name='date_planned']" position="before">
+                <field name="date_order" optional="show" widget="date" />
+            </xpath>
+            <xpath expr="//tree" position="inside">
+                <field name="product_packaging_id" optional="hide" />
+            </xpath>
+            <xpath expr="//field[@name='name']" position="attributes">
+                <attribute name="optional">show</attribute>
+            </xpath>
+            <xpath expr="//field[@name='date_planned']" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </xpath>
+            <xpath expr="/tree" postion="inside">
+                <field
+                    name="invoice_lines"
+                    widget="many2many_tags"
+                    groups="account.group_account_invoice"
+                    optional="hide"
+                />
+            </xpath>
+        </field>
+    </record>
+
     <record model="ir.ui.view" id="view_purchase_order_line_pivot">
         <field name="name">purchase.order.line.pivot</field>
         <field name="model">purchase.order.line</field>
         <field name="arch" type="xml">
             <pivot string="Order Lines" sample="1">
                 <field name="product_id" type="row" />
-                <field name="product_qty" type="col" />
+                <field name="date_order" type="col" />
                 <field name="price_subtotal" type="measure" />
             </pivot>
         </field>
     </record>
+
+    <record id="purchase_order_line_search" model="ir.ui.view">
+        <field name="name">purchase.order.line.search</field>
+        <field name="model">purchase.order.line</field>
+        <field name="inherit_id" ref="purchase.purchase_order_line_search" />
+        <field name="mode">primary</field>
+        <field name="priority">999</field>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='hide_cancelled']" position="replace">
+                <filter
+                    name="flt_state_draft"
+                    string="RFQ"
+                    domain="[('state','=','draft')]"
+                />
+                <filter
+                    name="flt_state_sent"
+                    string="RFQ Sent"
+                    domain="[('state','=','sent')]"
+                />
+                <filter
+                    name="flt_state_to_approve"
+                    string="To Approve"
+                    domain="[('state','=','to_approve')]"
+                />
+                <filter
+                    name="flt_state_purchase"
+                    string="Purchase Order"
+                    domain="[('state','=','purchase')]"
+                />
+                <filter
+                    name="flt_state_done"
+                    string="Locked"
+                    domain="[('state','=','done')]"
+                />
+                <filter
+                    name="flt_state_cancel"
+                    string="Cancelled"
+                    domain="[('state','=','cancel')]"
+                />
+                <separator />
+                <filter
+                    name="flt_invoice_status_no"
+                    string="Nothing to Bill"
+                    domain="[('invoice_status','=','no')]"
+                />
+                <filter
+                    name="flt_invoice_status_to_invoice"
+                    string="Waiting Bills"
+                    domain="[('invoice_status','=','to invoice')]"
+                />
+                <filter
+                    name="flt_invoice_status_invoiced"
+                    string="Fully Billed"
+                    domain="[('invoice_status','=','invoiced')]"
+                />
+                <separator />
+                <filter name="flt_date_order" string="Order date" date="date_order" />
+                <separator />
+                <filter
+                    name="flt_date_planned"
+                    string="Planned date"
+                    date="date_planned"
+                />
+                <separator />
+            </xpath>
+            <xpath expr="//group" position="inside">
+                <filter
+                    name="groupby_invoice_status"
+                    string="Billing Status"
+                    context="{'group_by' : 'invoice_status'}"
+                />
+                <filter
+                    name="groupby_date_order"
+                    string="Order Date"
+                    context="{'group_by' : 'date_order'}"
+                />
+            </xpath>
+        </field>
+    </record>
+
     <record id="action_purchase_orders_lines" model="ir.actions.act_window">
         <field name="name">Purchase Order Lines</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">purchase.order.line</field>
-        <field name="view_mode">tree,pivot</field>
+        <field name="view_mode">tree,form,pivot</field>
+        <field
+            name="search_view_id"
+            ref="purchase_order_line_menu.purchase_order_line_search"
+        />
+        <field name="view_id" ref="purchase_order_line_menu.purchase_order_line_tree" />
     </record>
 
     <menuitem
@@ -24,6 +169,5 @@
         parent="purchase.menu_procurement_management"
         sequence="7"
     />
-
 
 </odoo>
