@@ -134,9 +134,9 @@ class TestPurchaseOrderUninvoiceAmount(SavepointCase):
 
     def test_create_purchase_receive_and_invoice_more_qty(self):
         purchase = self._create_purchase(10, 10)
-        self.assertEquals(purchase.amount_uninvoiced, 1000)
+        self.assertEqual(purchase.amount_uninvoiced, 1000)
         invoice = self._create_invoice_from_purchase(purchase)
         with Form(invoice) as invoice_form:
             with invoice_form.invoice_line_ids.edit(0) as line_form:
                 line_form.quantity = 20
-        self.assertEquals(purchase.amount_uninvoiced, -1000)
+        self.assertEqual(purchase.amount_uninvoiced, -1000)
