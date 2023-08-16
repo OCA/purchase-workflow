@@ -6,7 +6,7 @@
     "name": "Purchase Order Univoiced Amount",
     "summary": "Show uninvoiced amount on purchase order tree.",
     "author": "Tecnativa, Odoo Community Association (OCA)",
-    "version": "14.0.1.2.0",
+    "version": "14.0.1.2.1",
     "development_status": "Beta",
     "website": "https://github.com/OCA/purchase-workflow",
     "category": "Purchase",
