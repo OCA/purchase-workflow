@@ -1,1 +1,1 @@
-Adds a menu item to list all Purchase Order lines.
+Adds a menu item and some views to navigate through Purchase Order lines.
