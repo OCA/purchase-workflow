@@ -16,17 +16,16 @@
                     />
                     <field name="include_rfq" />
                 </group>
-                <group string="Purchase history">
                     <field name="line_ids" nolabel="1" readonly="1">
                         <form>
                             <div class="oe_button_box" name="button_box">
                                 <button
-                                    class="oe_stat_button"
-                                    string="Set price"
-                                    type="object"
-                                    name="action_set_price"
-                                    icon="fa-check"
-                                />
+                                class="oe_stat_button"
+                                string="Set price"
+                                type="object"
+                                name="action_set_price"
+                                icon="fa-check"
+                            />
                             </div>
                             <group>
                                 <field name="purchase_order_line_id" invisible="1" />
@@ -43,15 +42,14 @@
                         <tree>
                             <field name="order_id" />
                             <field
-                                name="partner_id"
-                                attrs="{'column_invisible': [('parent.partner_id', '!=', False)]}"
-                            />
+                            name="partner_id"
+                            attrs="{'column_invisible': [('parent.partner_id', '!=', False)]}"
+                        />
                             <field name="purchase_order_date_order" />
                             <field name="product_qty" />
                             <field name="price_unit" />
                         </tree>
                     </field>
-                </group>
                 <field name="purchase_order_line_id" invisible="1" />
                 <footer>
                     <button special="cancel" string="Close" />
