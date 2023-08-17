@@ -124,7 +124,6 @@ class PurchaseOrder(models.Model):
             # example: qty is in proposal and purchase is partially received
             return
         body = []
-        initial_state = False
         # these proposals'll reset these lines
         lines_to_0 = self.proposal_ids.filtered(lambda s: s.qty == 0.0).mapped(
             "line_id"
@@ -132,20 +131,9 @@ class PurchaseOrder(models.Model):
         data = self._prepare_proposal_data()
         if data:
             self._hook_pending_proposal_approval()
-            if self._product_qty_key_in_data(data) and self.state in [
-                "confirmed",
-                "approved",
-            ]:
-                # We have to reset order because of changed qty in confirmed order
-                initial_state = self.state
-                self.action_cancel()
-                self.action_cancel_draft()
             self._update_proposal_to_purchase_line(data, body)
             self.message_post(body="\n".join(body))
-        if initial_state in ("approved", "confirmed"):
-            # altered quantity implied to reset order, then we approve them again
-            self.signal_workflow("purchase_confirm")
-            self.signal_workflow("purchase_approve")
+
         # Cancellation cases
         if lines_to_0:
             lines_to_0.cancel_from_proposal()
