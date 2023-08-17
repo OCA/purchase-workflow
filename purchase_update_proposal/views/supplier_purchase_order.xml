@@ -146,16 +146,14 @@
                                 />
                             <span />
                         </group>
-                        <div
-                                attrs="{'invisible': [('proposal_count', '=', 0)]}"
-                            >
+                        <div attrs="{'invisible': [('proposal_count', '=', 0)]}">
                              <div
                                     style="background-color:AntiqueWhite; text-align:center; font-weight: bold; padding: 8px"
                                 >
                                 Update Proposal
                             </div>
                             <group>
-                                <field name="proposal_state"/>
+                                <field name="proposal_state" />
                             </group>
                             <group>
                                 <button
@@ -178,9 +176,7 @@
                             </group>
                             <field name="proposal_count" invisible="1" />
                             <field name="partially_received" invisible="1" />
-                            <div
-                                    attrs="{'invisible': [('proposal_count', '=', 0)]}"
-                                >
+                            <div attrs="{'invisible': [('proposal_count', '=', 0)]}">
                                 <div
                                         attrs="{'invisible': [('proposal_state', '!=', 'submitted')]}"
                                     >These data have to be approved before update purchase line. </div>
@@ -196,10 +192,7 @@
                                     attrs="{'readonly': [('proposal_updatable', '=', 'no')]}"
                                     nolabel="1"
                                 />
-                            <field
-                                    name="check_price_on_proposal"
-                                    invisible="1"
-                                />
+                            <field name="check_price_on_proposal" invisible="1" />
                             <field name="proposal_updatable" invisible="1" />
                             <div
                                     attrs="{'invisible': [('proposal_updatable', '!=', 'no')]}"
@@ -207,14 +200,10 @@
                                 >
                                 We can't complete your request because our incoming workflow is partially finished or cancelled
                             </div>
-                            <div
-                                    attrs="{'invisible': [('proposal_count', '&lt;', 1)]}"
-                                >
+                            <div attrs="{'invisible': [('proposal_count', '&lt;', 1)]}">
                                 <field name="proposal_date" />
                             </div>
-                            <hr
-                                    style="background: AntiqueWhite; height: 12px"
-                                />
+                            <hr style="background: AntiqueWhite; height: 12px" />
                             <div
                                     style="text-align:center; font-weight: bold;"
                                 >Purchase content before update</div>

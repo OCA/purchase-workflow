@@ -36,7 +36,7 @@
                         Update Proposal
                     </div>
                     <group class="col-lg-12">
-                        <field name="proposal_state"/>
+                        <field name="proposal_state" />
                     </group>
                     <group class="col-lg-12">
                         <button
@@ -83,10 +83,10 @@
                         attrs="{'readonly': [('proposal_updatable', '=', 'no')]}"
                     >
                         <tree>
-                            <field name="line_id_"/>
-                            <field name="product_id"/>
-                            <field name="qty"/>
-                            <field name="product_qty"/>
+                            <field name="line_id_" />
+                            <field name="product_id" />
+                            <field name="qty" />
+                            <field name="product_qty" />
                         </tree>
                     </field>
                     <div
