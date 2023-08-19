@@ -38,7 +38,8 @@ class WorkAcceptanceEvaluationReport(models.Model):
                    result.score_id, score.score, result.note,
                    wa.company_id
                 from work_acceptance_evaluation_result result
-                join work_acceptance_evaluation_score score on score.id = result.score_id
+                join work_acceptance_evaluation_score score
+                    on score.id = result.score_id
                 left join work_acceptance wa on result.wa_id = wa.id
             )
             """

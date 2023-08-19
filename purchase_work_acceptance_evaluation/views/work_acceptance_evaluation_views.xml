@@ -15,13 +15,14 @@
         <field name="arch" type="xml">
             <form string="Work Acceptance Evaluation">
                 <sheet>
-                    <widget
-                        name="web_ribbon"
-                        title="Archived"
-                        bg_color="bg-danger"
-                        attrs="{'invisible': [('active', '=', True)]}"
-                    />
-                    <field name="active" invisible="1" />
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-archive">
+                                <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                        </button>
+                    </div>
                     <group>
                         <group>
                             <field name="name" />

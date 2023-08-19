@@ -6,11 +6,11 @@
             <tree>
                 <field name="partner_id" />
                 <field name="wa_id" />
-                <field name="wa_state" optional="hide" />
+                <field name="wa_state"  />
                 <field name="date_accept" widget="date" />
                 <field name="case_id" />
                 <field name="score_id" />
-                <field name="score" optional="hide" />
+                <field name="score"  />
                 <field name="note" />
             </tree>
         </field>
