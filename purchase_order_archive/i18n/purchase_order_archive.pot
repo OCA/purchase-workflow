@@ -15,11 +15,14 @@ msgstr ""
 
 #. module: purchase_order_archive
 #: model:ir.model.fields,field_description:purchase_order_archive.field_purchase_order__active
+#: model_terms:ir.ui.view,arch_db:purchase_order_archive.purchase_order_view_search
+#: model_terms:ir.ui.view,arch_db:purchase_order_archive.view_purchase_order_archive_filter
 msgid "Active"
 msgstr ""
 
 #. module: purchase_order_archive
 #: model_terms:ir.ui.view,arch_db:purchase_order_archive.purchase_order_archive_form
+#: model_terms:ir.ui.view,arch_db:purchase_order_archive.purchase_order_view_search
 #: model_terms:ir.ui.view,arch_db:purchase_order_archive.view_purchase_order_archive_filter
 msgid "Archived"
 msgstr ""

@@ -26,10 +26,36 @@
             <xpath expr="//search" position="inside">
                 <separator />
                 <filter
+                    string="Active"
+                    name="active"
+                    domain="[('active', '=', True)]"
+                />
+                <filter
                     string="Archived"
                     name="inactive"
                     domain="[('active','=',False)]"
                 />
+                <separator />
+            </xpath>
+        </field>
+    </record>
+    <record id="purchase_order_view_search" model="ir.ui.view">
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_view_search" />
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <separator />
+                <filter
+                    string="Active"
+                    name="active"
+                    domain="[('active', '=', True)]"
+                />
+                <filter
+                    string="Archived"
+                    name="inactive"
+                    domain="[('active','=',False)]"
+                />
+                <separator />
             </xpath>
         </field>
     </record>
