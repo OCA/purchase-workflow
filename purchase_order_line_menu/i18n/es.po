@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-13 10:10+0000\n"
+"PO-Revision-Date: 2023-09-03 13:40+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -20,12 +20,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_order_line_menu.field_purchase_order_line__invoice_status
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
 msgid "Billing Status"
-msgstr ""
+msgstr "Estado de facturación"
 
 #. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
 msgid "Cancelled"
-msgstr ""
+msgstr "Cancelado/a"
 
 #. module: purchase_order_line_menu
 #: model:ir.model.fields,help:purchase_order_line_menu.field_purchase_order_line__date_order
@@ -33,27 +33,29 @@ msgid ""
 "Depicts the date within which the Quotation should be confirmed and "
 "converted into a purchase order."
 msgstr ""
+"Indica la fecha en la que la oferta debe confirmarse y convertirse en un "
+"pedido de compra."
 
 #. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
 msgid "Fully Billed"
-msgstr ""
+msgstr "Completamente facturado"
 
 #. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
 msgid "Locked"
-msgstr ""
+msgstr "Bloqueado"
 
 #. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
 msgid "Nothing to Bill"
-msgstr ""
+msgstr "Nada para facturar"
 
 #. module: purchase_order_line_menu
 #: model:ir.model.fields,field_description:purchase_order_line_menu.field_purchase_order_line__date_order
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
 msgid "Order Date"
-msgstr ""
+msgstr "Fecha del Pedido"
 
 #. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.view_purchase_order_line_pivot
@@ -63,37 +65,37 @@ msgstr "Líneas de pedido"
 #. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
 msgid "Order date"
-msgstr ""
+msgstr "Fecha del pedido"
 
 #. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
 msgid "Planned date"
-msgstr ""
+msgstr "Fecha Planeada"
 
 #. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_tree
 msgid "Price Subtotal"
-msgstr ""
+msgstr "Subtotal del precio"
 
 #. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_tree
 msgid "Price Tax"
-msgstr ""
+msgstr "Precio del impuesto"
 
 #. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_tree
 msgid "Price Total"
-msgstr ""
+msgstr "Precio total"
 
 #. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
 msgid "Purchase Order"
-msgstr ""
+msgstr "Orden de Compra"
 
 #. module: purchase_order_line_menu
 #: model:ir.model,name:purchase_order_line_menu.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Línea de Orden de Compra"
 
 #. module: purchase_order_line_menu
 #: model:ir.actions.act_window,name:purchase_order_line_menu.action_purchase_orders_lines
@@ -104,19 +106,19 @@ msgstr "Líneas de pedido de compra"
 #. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
 msgid "RFQ"
-msgstr ""
+msgstr "SDO (Solicitud de Oferta)"
 
 #. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
 msgid "RFQ Sent"
-msgstr ""
+msgstr "SDO enviada"
 
 #. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
 msgid "To Approve"
-msgstr ""
+msgstr "A aprobar"
 
 #. module: purchase_order_line_menu
 #: model_terms:ir.ui.view,arch_db:purchase_order_line_menu.purchase_order_line_search
 msgid "Waiting Bills"
-msgstr ""
+msgstr "Facturas en espera"
