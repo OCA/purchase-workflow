@@ -4,8 +4,6 @@
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
-from odoo.addons import decimal_precision as dp
-
 
 class CreateManualStockPickingWizard(models.TransientModel):
     _name = "create.stock.picking.wizard"
@@ -191,22 +189,22 @@ class CreateManualStockPickingWizardLine(models.TransientModel):
     product_qty = fields.Float(
         string="Quantity",
         related="purchase_order_line_id.product_qty",
-        digits=dp.get_precision("Product Unit of Measure"),
+        digits="Product Unit of Measure",
     )
     existing_qty = fields.Float(
         string="Existing Quantity",
         related="purchase_order_line_id.existing_qty",
-        digits=dp.get_precision("Product Unit of Measure"),
+        digits="Product Unit of Measure",
     )
     remaining_qty = fields.Float(
         string="Remaining Quantity",
         compute="_compute_remaining_qty",
         readonly=True,
-        digits=dp.get_precision("Product Unit of Measure"),
+        digits="Product Unit of Measure",
     )
     qty = fields.Float(
         string="Quantity to Receive",
-        digits=dp.get_precision("Product Unit of Measure"),
+        digits="Product Unit of Measure",
         help="This is the quantity taken into account to create the picking",
     )
     price_unit = fields.Float(
