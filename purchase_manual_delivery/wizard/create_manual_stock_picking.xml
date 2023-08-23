@@ -23,22 +23,20 @@
                         groups="stock.group_stock_multi_locations"
                     />
                 </group>
-                <group>
-                    <field name="line_ids" nolabel="1">
-                        <tree create="false" editable="bottom">
-                            <field name="purchase_order_line_id" invisible="1" />
-                            <field name="product_id" />
-                            <field name="partner_id" />
-                            <field name="date_planned" />
-                            <field name="price_unit" />
-                            <field name="product_qty" string="Ordered Qty" />
-                            <field name="existing_qty" string="Existing Qty" />
-                            <field name="remaining_qty" string="Remaining Qty" />
-                            <field name="qty" string="Quantity" />
-                            <field name="product_uom" groups="uom.group_uom" />
-                        </tree>
-                    </field>
-                </group>
+                <field name="line_ids" nolabel="1">
+                    <tree create="false" editable="bottom">
+                        <field name="purchase_order_line_id" invisible="1" />
+                        <field name="product_id" />
+                        <field name="partner_id" />
+                        <field name="date_planned" />
+                        <field name="price_unit" />
+                        <field name="product_qty" string="Ordered Qty" />
+                        <field name="existing_qty" string="Existing Qty" />
+                        <field name="remaining_qty" string="Remaining Qty" />
+                        <field name="qty" string="Quantity" />
+                        <field name="product_uom" groups="uom.group_uom" />
+                    </tree>
+                </field>
                 <footer>
                     <button
                         name="create_stock_picking"
