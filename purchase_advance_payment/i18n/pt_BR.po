@@ -1,0 +1,220 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_advance_payment
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-11-01 11:38+0000\n"
+"Last-Translator: Adriano Prado <adrianojprado@gmail.com>\n"
+"Language-Team: none\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: purchase_advance_payment
+#: model:ir.model,name:purchase_advance_payment.model_account_voucher_wizard_purchase
+msgid "Account Voucher Wizard Purchase"
+msgstr ""
+
+#. module: purchase_advance_payment
+#: model:ir.actions.act_window,name:purchase_advance_payment.action_view_account_voucher_wizard
+#: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_voucher_wizard
+msgid "Advance Payment"
+msgstr "Pagamento Antecipado"
+
+#. module: purchase_advance_payment
+#: model:ir.model.fields,field_description:purchase_advance_payment.field_purchase_order__advance_payment_status
+msgid "Advance Payment Status"
+msgstr "Situação Pagamento Antecipado"
+
+#. module: purchase_advance_payment
+#: model_terms:ir.ui.view,arch_db:purchase_advance_payment.purchase_order_kpis_tree
+#: model_terms:ir.ui.view,arch_db:purchase_advance_payment.purchase_order_view_tree
+msgid "Amount Residual"
+msgstr "Valor Residual"
+
+#. module: purchase_advance_payment
+#: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__amount_total
+msgid "Amount Total"
+msgstr "Valor Total"
+
+#. module: purchase_advance_payment
+#: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__amount_advance
+msgid "Amount advanced"
+msgstr "Valor Antecipado"
+
+#. module: purchase_advance_payment
+#: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_voucher_wizard
+msgid "Amount in Order Currency"
+msgstr "Valor na Moeda do Pedido"
+
+#. module: purchase_advance_payment
+#. odoo-python
+#: code:addons/purchase_advance_payment/wizard/purchase_advance_payment_wizard.py:0
+#, python-format
+msgid "Amount of advance is greater than residual amount on purchase"
+msgstr "O valor do adiantamento é maior que o valor residual na compra"
+
+#. module: purchase_advance_payment
+#. odoo-python
+#: code:addons/purchase_advance_payment/wizard/purchase_advance_payment_wizard.py:0
+#, python-format
+msgid "Amount of advance must be positive."
+msgstr "O valor do adiantamento deve ser positivo."
+
+#. module: purchase_advance_payment
+#: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_voucher_wizard
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: purchase_advance_payment
+#: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__create_uid
+msgid "Created by"
+msgstr "Criado por"
+
+#. module: purchase_advance_payment
+#: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__create_date
+msgid "Created on"
+msgstr "Criado em"
+
+#. module: purchase_advance_payment
+#: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__currency_amount
+msgid "Curr. amount"
+msgstr "Valor moeda"
+
+#. module: purchase_advance_payment
+#: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__currency_id
+#: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_voucher_wizard
+msgid "Currency"
+msgstr "Moeda"
+
+#. module: purchase_advance_payment
+#: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__date
+msgid "Date"
+msgstr "Data"
+
+#. module: purchase_advance_payment
+#: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__display_name
+msgid "Display Name"
+msgstr "Nome Exibição"
+
+#. module: purchase_advance_payment
+#: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__id
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_advance_payment
+#: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__journal_id
+msgid "Journal"
+msgstr "Diário"
+
+#. module: purchase_advance_payment
+#: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__journal_currency_id
+msgid "Journal Currency"
+msgstr "Moeda Díario"
+
+#. module: purchase_advance_payment
+#: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase____last_update
+msgid "Last Modified on"
+msgstr "Última Modificação em"
+
+#. module: purchase_advance_payment
+#: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__write_uid
+msgid "Last Updated by"
+msgstr "Última Atualização por"
+
+#. module: purchase_advance_payment
+#: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__write_date
+msgid "Last Updated on"
+msgstr "Última Atualização em"
+
+#. module: purchase_advance_payment
+#: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_voucher_wizard
+msgid "Make advance payment"
+msgstr "Faça o Pagamento Antecipado"
+
+#. module: purchase_advance_payment
+#: model:ir.model.fields.selection,name:purchase_advance_payment.selection__purchase_order__advance_payment_status__not_paid
+msgid "Not Paid"
+msgstr "Não Pago"
+
+#. module: purchase_advance_payment
+#: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_voucher_wizard
+msgid "Operation"
+msgstr "Operação"
+
+#. module: purchase_advance_payment
+#: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__order_id
+msgid "Order"
+msgstr "Pedido"
+
+#. module: purchase_advance_payment
+#: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_voucher_wizard
+msgid "Order Currency"
+msgstr "Moeda Pedido"
+
+#. module: purchase_advance_payment
+#: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_voucher_wizard
+msgid "Order Due Amount"
+msgstr "Valor Devido do Pedido"
+
+#. module: purchase_advance_payment
+#: model:ir.model.fields.selection,name:purchase_advance_payment.selection__purchase_order__advance_payment_status__paid
+msgid "Paid"
+msgstr "Pago"
+
+#. module: purchase_advance_payment
+#: model:ir.model.fields.selection,name:purchase_advance_payment.selection__purchase_order__advance_payment_status__partial
+msgid "Partially Paid"
+msgstr "Parcialmente Pago"
+
+#. module: purchase_advance_payment
+#: model:ir.model.fields,field_description:purchase_advance_payment.field_purchase_order__account_payment_ids
+#: model_terms:ir.ui.view,arch_db:purchase_advance_payment.purchase_order_form
+msgid "Pay purchase advanced"
+msgstr "Pagar Compra Antecipadamente"
+
+#. module: purchase_advance_payment
+#: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_voucher_wizard
+msgid "Payment Method"
+msgstr "Forma de Pagamento"
+
+#. module: purchase_advance_payment
+#: model_terms:ir.ui.view,arch_db:purchase_advance_payment.purchase_order_form
+msgid "Payment advances"
+msgstr "Adiantamentos de pagamento"
+
+#. module: purchase_advance_payment
+#: model:ir.model.fields,field_description:purchase_advance_payment.field_purchase_order__payment_line_ids
+msgid "Payment move lines"
+msgstr "Linhas Movimento Pagamento"
+
+#. module: purchase_advance_payment
+#: model:ir.model,name:purchase_advance_payment.model_account_payment
+msgid "Payments"
+msgstr "Pagamentos"
+
+#. module: purchase_advance_payment
+#: model:ir.model.fields,field_description:purchase_advance_payment.field_account_payment__purchase_id
+msgid "Purchase"
+msgstr "Compra"
+
+#. module: purchase_advance_payment
+#: model:ir.model,name:purchase_advance_payment.model_purchase_order
+msgid "Purchase Order"
+msgstr "Pedido Compra"
+
+#. module: purchase_advance_payment
+#: model:ir.model.fields,field_description:purchase_advance_payment.field_account_voucher_wizard_purchase__payment_ref
+msgid "Ref."
+msgstr "Ref."
+
+#. module: purchase_advance_payment
+#: model:ir.model.fields,field_description:purchase_advance_payment.field_purchase_order__amount_residual
+msgid "Residual amount"
+msgstr "Valor Residual"
