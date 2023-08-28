@@ -123,10 +123,16 @@ class PurchaseRequestAllocation(models.Model):
         if not allocated_qty:
             return
         for allocation in self:
-            request = allocation.purchase_request_line_id.request_id
-            po_line = allocation.purchase_line_id
-            message_data = self._prepare_message_data(po_line, request, allocated_qty)
-            message = self._purchase_request_confirm_done_message_content(message_data)
-            request.message_post(
-                body=message, subtype_id=self.env.ref("mail.mt_comment").id
-            )
+            send_mail = allocation.company_id.notify_request_allocations
+            if send_mail:
+                request = allocation.purchase_request_line_id.request_id
+                po_line = allocation.purchase_line_id
+                message_data = self._prepare_message_data(
+                    po_line, request, allocated_qty
+                )
+                message = self._purchase_request_confirm_done_message_content(
+                    message_data
+                )
+                request.message_post(
+                    body=message, subtype_id=self.env.ref("mail.mt_comment").id
+                )
