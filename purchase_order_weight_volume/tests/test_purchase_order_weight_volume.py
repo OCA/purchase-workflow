@@ -11,6 +11,8 @@ class TestPurchaseOrderWeightVolume(TransactionCase):
     def setUpClass(cls):
         super().setUpClass()
 
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
+
         cls.po_obj = cls.env["purchase.order"]
         cls.company_obj = cls.env["res.company"]
 
