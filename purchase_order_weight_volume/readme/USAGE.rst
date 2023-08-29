@@ -9,5 +9,5 @@ To use this module, you need to:
 * You will see order total weight and volume, tab "Other information".
 * From this tab, you can also choose whether to display weight and/or volume info in report.
 
-"Display Order Weight in PO" and "Display Order Weight in PO" can be enabled/disabled
+"Display Order Weight in PO" and "Display Order Volume in PO" can be enabled/disabled
 per company.
