@@ -636,6 +636,7 @@ msgstr ""
 #. module: purchase_blanket_order
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__purchase_lines
 #: model_terms:ir.ui.view,arch_db:purchase_blanket_order.purchase_blanket_order_line_form
+#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.view_purchase_blanket_order_form
 msgid "Purchase Order Lines"
 msgstr ""
 
