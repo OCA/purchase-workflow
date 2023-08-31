@@ -7,7 +7,7 @@
         <field name="priority" eval="25"/>
         <field name="inherit_id" ref="purchase.res_config_settings_view_form_purchase"/>
         <field name="arch" type="xml">
-            <xpath expr="//div[hasclass('app_settings_block')]" position="inside">
+            <xpath expr="//div[@data-key='purchase']" position="inside">
                 <h2>Work Acceptance</h2>
                 <div class="row mt16 o_settings_container" name="purchase_work_acceptance_setting_container">
                     <div class="col-12 col-lg-6 o_setting_box">
