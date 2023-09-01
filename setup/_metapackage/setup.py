@@ -36,6 +36,7 @@ setuptools.setup(
         'odoo14-addon-purchase_lot',
         'odoo14-addon-purchase_manual_currency',
         'odoo14-addon-purchase_manual_delivery',
+        'odoo14-addon-purchase_mass_mail',
         'odoo14-addon-purchase_minimum_amount',
         'odoo14-addon-purchase_open_qty',
         'odoo14-addon-purchase_order_approval_block',
