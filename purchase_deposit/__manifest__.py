@@ -14,6 +14,7 @@
     "data": [
         "security/ir.model.access.csv",
         "wizard/purchase_make_invoice_advance_views.xml",
+        "wizard/purchase_advance_deduct_option_views.xml",
         "views/res_config_settings_views.xml",
         "views/purchase_view.xml",
     ],

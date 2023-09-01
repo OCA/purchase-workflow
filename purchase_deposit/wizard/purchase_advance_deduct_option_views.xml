@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_purchase_advance_deduct_option" model="ir.ui.view">
+        <field name="name">Advance/Deposit Deduction Option</field>
+        <field name="model">purchase.advance.deduct.option</field>
+        <field name="arch" type="xml">
+            <form string="Invoice Purchases Order">
+                <group>
+                    <field
+                        name="advance_deduct_option"
+                        class="oe_inline"
+                        widget="radio"
+                    />
+                </group>
+                <footer>
+                    <button
+                        name="create_invoice"
+                        string="Create and View bill"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record
+        id="action_view_purchase_advance_deduct_option"
+        model="ir.actions.act_window"
+    >
+        <field name="name">Advance/Deposit Deduction Option</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">purchase.advance.deduct.option</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
