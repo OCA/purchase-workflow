@@ -28,3 +28,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_receipt_expectation_from_partner.field_res_users__receipt_expectation
 msgid "Receipt Expectation"
 msgstr ""
+
+#. module: purchase_receipt_expectation_from_partner
+#: model:ir.model.fields.selection,name:purchase_receipt_expectation_from_partner.selection__purchase_order__receipt_expectation__test
+msgid "Test"
+msgstr ""
