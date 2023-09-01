@@ -26,6 +26,11 @@ msgid ""
 msgstr ""
 
 #. module: purchase_receipt_expectation
+#: model:ir.model.fields.selection,name:purchase_receipt_expectation.selection__purchase_order__receipt_expectation__failing
+msgid "Failing"
+msgstr ""
+
+#. module: purchase_receipt_expectation
 #: model:ir.model,name:purchase_receipt_expectation.model_purchase_order
 msgid "Purchase Order"
 msgstr ""
@@ -33,4 +38,9 @@ msgstr ""
 #. module: purchase_receipt_expectation
 #: model:ir.model.fields,field_description:purchase_receipt_expectation.field_purchase_order__receipt_expectation
 msgid "Receipt Expectation"
+msgstr ""
+
+#. module: purchase_receipt_expectation
+#: model:ir.model.fields.selection,name:purchase_receipt_expectation.selection__purchase_order__receipt_expectation__succeeding
+msgid "Succeeding"
 msgstr ""
