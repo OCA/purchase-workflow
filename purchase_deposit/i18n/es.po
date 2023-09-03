@@ -22,13 +22,21 @@ msgid ""
 "<span attrs=\"{'invisible': [('advance_payment_method', '!=', "
 "'percentage')]}\" class=\"oe_inline\">%</span>"
 msgstr ""
-"<span attrs=\"{'invisible': [('advance_payment_method', '!=', 'percentage')]}"
-"\" class=\"oe_inline\">%</span>"
+"<span attrs=\"{'invisible': [('advance_payment_method', '!=', "
+"'percentage')]}\" class=\"oe_inline\">%</span>"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,help:purchase_deposit.field_purchase_advance_payment_inv__deposit_account_id
 msgid "Account used for deposits"
 msgstr "Cuenta contable para el anticipo"
+
+#. module: purchase_deposit
+#: code:addons/purchase_deposit/models/purchase.py:0
+#: model:ir.actions.act_window,name:purchase_deposit.action_view_purchase_advance_deduct_option
+#: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_deduct_option__advance_deduct_option
+#, python-format
+msgid "Advance/Deposit Deduction Option"
+msgstr ""
 
 #. module: purchase_deposit
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
@@ -37,9 +45,15 @@ msgid "Advance: %s"
 msgstr "Anticipo:%s"
 
 #. module: purchase_deposit
+#: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_deduct_option
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
 msgid "Cancel"
 msgstr "Cancelar"
+
+#. module: purchase_deposit
+#: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_deduct_option
+msgid "Create and View bill"
+msgstr ""
 
 #. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
@@ -52,14 +66,26 @@ msgid "Create deposit"
 msgstr "Crear anticipo"
 
 #. module: purchase_deposit
+#: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_deduct_option__create_uid
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__create_uid
 msgid "Created by"
 msgstr "Creado por"
 
 #. module: purchase_deposit
+#: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_deduct_option__create_date
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__create_date
 msgid "Created on"
 msgstr "Creado en"
+
+#. module: purchase_deposit
+#: model:ir.model.fields.selection,name:purchase_deposit.selection__purchase_advance_deduct_option__advance_deduct_option__proportional
+msgid "Deduct Deposit Proportionally"
+msgstr ""
+
+#. module: purchase_deposit
+#: model:ir.model.fields.selection,name:purchase_deposit.selection__purchase_advance_deduct_option__advance_deduct_option__full
+msgid "Deduct Full Deposit (Standard)"
+msgstr ""
 
 #. module: purchase_deposit
 #: model:ir.model.fields,help:purchase_deposit.field_res_config_settings__default_purchase_deposit_product_id
@@ -102,6 +128,7 @@ msgstr ""
 "compra. No se copian al duplicar una orden de compra."
 
 #. module: purchase_deposit
+#: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_deduct_option__display_name
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
@@ -117,6 +144,7 @@ msgid "Expense Account"
 msgstr "Cuenta de coste"
 
 #. module: purchase_deposit
+#: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_deduct_option__id
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__id
 msgid "ID"
 msgstr "Identificación"
@@ -127,6 +155,7 @@ msgid "Invoice Order"
 msgstr "Factura"
 
 #. module: purchase_deposit
+#: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_deduct_option
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
 msgid "Invoice Purchases Order"
 msgstr "Factura de compra"
@@ -146,16 +175,24 @@ msgid "Is a deposit payment"
 msgstr "Es un anticipo"
 
 #. module: purchase_deposit
+#: model:ir.model,name:purchase_deposit.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: purchase_deposit
+#: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_deduct_option____last_update
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv____last_update
 msgid "Last Modified on"
 msgstr "Última modificación el"
 
 #. module: purchase_deposit
+#: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_deduct_option__write_uid
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__write_uid
 msgid "Last Updated by"
 msgstr "Última actualización por"
 
 #. module: purchase_deposit
+#: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_deduct_option__write_date
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__write_date
 msgid "Last Updated on"
 msgstr "Última actualización el"
@@ -194,6 +231,11 @@ msgstr "Línea de pedido de compra"
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_order_form_inherit
 msgid "Register Deposit"
 msgstr "Crear anticipo"
+
+#. module: purchase_deposit
+#: model:ir.model,name:purchase_deposit.model_purchase_advance_deduct_option
+msgid "Select how to return advance in vendor bill"
+msgstr ""
 
 #. module: purchase_deposit
 #: model:ir.model.fields,help:purchase_deposit.field_purchase_advance_payment_inv__deposit_taxes_id
