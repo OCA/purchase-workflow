@@ -33,6 +33,7 @@ class PurchaseOrderLine(models.Model):
                 bom_type="phantom",
             ):
                 continue
+            line.move_ids.write({"price_unit": line._get_stock_move_price_unit()})
             # We check if the stock_landed_costs addon is installed to exclude linked
             # records.
             stock_valuation_layers = line.move_ids.mapped(
