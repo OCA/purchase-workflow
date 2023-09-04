@@ -93,7 +93,7 @@ addon | version | maintainers | summary
 [purchase_requisition_tier_validation](purchase_requisition_tier_validation/) | 13.0.1.0.0 |  | Extends the functionality of Purchase Agreements to support a tier validation process.
 [purchase_security](purchase_security/) | 13.0.2.0.0 | [![joao-p-marques](https://github.com/joao-p-marques.png?size=30px)](https://github.com/joao-p-marques) | See only your purchase orders
 [purchase_stock_picking_show_currency_rate](purchase_stock_picking_show_currency_rate/) | 13.0.1.0.1 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Show currency rate in purchase stock picking.
-[purchase_stock_price_unit_sync](purchase_stock_price_unit_sync/) | 13.0.1.0.3 |  | Update cost price in stock moves already done
+[purchase_stock_price_unit_sync](purchase_stock_price_unit_sync/) | 13.0.1.0.4 |  | Update cost price in stock moves already done
 [purchase_stock_return_request](purchase_stock_return_request/) | 13.0.1.0.0 |  | Purchase Stock Return Request
 [purchase_stock_secondary_unit](purchase_stock_secondary_unit/) | 13.0.1.0.2 |  | Get product quantities in a secondary unit
 [purchase_stock_tier_validation](purchase_stock_tier_validation/) | 13.0.1.0.0 |  | Exclude RFQs pending to validate when procuring
