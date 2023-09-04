@@ -33,6 +33,7 @@ class PurchaseOrderLine(models.Model):
                 bom_type="phantom",
             ):
                 continue
+            line.move_ids.write({"price_unit": line._get_stock_move_price_unit()})
             line.move_ids.mapped("stock_valuation_layer_ids").filtered(
                 # Filter children SVLs (like landed cost)
                 lambda x: not x.stock_valuation_layer_id
