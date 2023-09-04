@@ -7,7 +7,7 @@
     "author": "Onestein, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
     "category": "Purchases",
-    "version": "14.0.1.1.0",
+    "version": "16.0.1.0.0",
     "license": "AGPL-3",
     "depends": ["purchase"],
     "data": ["views/purchase_order.xml"],
