@@ -8,16 +8,6 @@ from odoo import api, models
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
-    def _get_secondary_uom_for_move(self, product_uom_qty):
-        if not self.secondary_uom_id:
-            return 0.0
-        move = self.env["stock.move"].new()
-        move.product_id = self.product_id
-        move.product_uom = self.product_uom
-        move.secondary_uom_id = self.secondary_uom_id
-        move.product_uom_qty = product_uom_qty
-        return move.secondary_uom_qty
-
     def _prepare_stock_moves(self, picking):
         res = super()._prepare_stock_moves(picking)
         # Ensure one method.
@@ -26,22 +16,35 @@ class PurchaseOrderLine(models.Model):
         # have the new quantity added so we always want compute the
         # secondary unit.
         if res:
-            product_uom_qty = res[0]["product_uom_qty"]
-            secondary_uom_qty = self._get_secondary_uom_for_move(product_uom_qty)
             res[0].update(
                 {
                     "secondary_uom_id": self.secondary_uom_id.id,
-                    "secondary_uom_qty": secondary_uom_qty,
+                    "secondary_uom_qty": self.secondary_uom_qty,
                 }
             )
         return res
 
-    def _create_or_update_picking(self):
-        # Inject a context to recompute secondary unit in stock moves after
-        # they have been assigned only for po lines updated and confirmed.
-        return super(
-            PurchaseOrderLine, self.with_context(secondary_uom_for_update_moves=True)
-        )._create_or_update_picking()
+    def write(self, vals):
+        if "secondary_uom_qty" not in vals:
+            return super().write(vals)
+        po_lines = self.filtered(
+            lambda ln: ln.secondary_uom_qty != vals["secondary_uom_qty"]
+        )
+        res = super(PurchaseOrderLine, self).write(vals)
+        for po_line in po_lines:
+            moves = po_line.move_ids
+            if len(moves) == 1:
+                moves.filtered(lambda sm: sm.state not in ["done", "cancel"]).write(
+                    {"secondary_uom_qty": vals["secondary_uom_qty"]}
+                )
+            elif moves and vals.get("secondary_uom_qty"):
+                previous_secondary_qty = sum(m.secondary_uom_qty for m in moves[:-1])
+                moves[-1:].filtered(
+                    lambda sm: sm.state not in ["done", "cancel"]
+                ).secondary_uom_qty = (
+                    vals["secondary_uom_qty"] - previous_secondary_qty
+                )
+        return res
 
     def _prepare_stock_move_vals(
         self, picking, price_unit, product_uom_qty, product_uom
@@ -50,6 +53,7 @@ class PurchaseOrderLine(models.Model):
             picking, price_unit, product_uom_qty, product_uom
         )
         if self.secondary_uom_id:
+            vals["secondary_uom_qty"] = self.secondary_uom_qty
             vals["secondary_uom_id"] = self.secondary_uom_id.id
         return vals
 
