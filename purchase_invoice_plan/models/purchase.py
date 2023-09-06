@@ -313,7 +313,8 @@ class PurchaseInvoicePlan(models.Model):
         plan_qty = order_line.product_qty * (percent / 100)
         return plan_qty
 
-    def unlink(self):
+    @api.ondelete(at_uninstall=False)
+    def _unlink_except_no_edit(self):
         lines = self.filtered("no_edit")
         if lines:
             installments = [str(x) for x in lines.mapped("installment")]
@@ -324,4 +325,3 @@ class PurchaseInvoicePlan(models.Model):
                 )
                 % ", ".join(installments)
             )
-        return super().unlink()
