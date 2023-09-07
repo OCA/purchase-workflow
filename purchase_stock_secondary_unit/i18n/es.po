@@ -22,7 +22,5 @@ msgstr ""
 msgid "Purchase Order Line"
 msgstr "Línea de pedido de compra"
 
-#. module: purchase_stock_secondary_unit
-#: model:ir.model,name:purchase_stock_secondary_unit.model_stock_move
-msgid "Stock Move"
-msgstr "movimiento de existencias"
+#~ msgid "Stock Move"
+#~ msgstr "movimiento de existencias"
