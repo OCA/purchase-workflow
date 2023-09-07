@@ -65,7 +65,7 @@ addon | version | maintainers | summary
 [purchase_order_product_recommendation_xlsx](purchase_order_product_recommendation_xlsx/) | 15.0.1.0.0 |  | Add a way to print recommended products for supplier
 [purchase_order_qty_by_product_category](purchase_order_qty_by_product_category/) | 15.0.1.0.0 |  | Purchase - Order Qty By Product Category
 [purchase_order_qty_change_no_recompute](purchase_order_qty_change_no_recompute/) | 15.0.1.0.1 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Prevent recompute if only quantity has changed in purchase order line
-[purchase_order_secondary_unit](purchase_order_secondary_unit/) | 15.0.1.1.0 |  | Purchase product in a secondary unit
+[purchase_order_secondary_unit](purchase_order_secondary_unit/) | 15.0.1.2.0 |  | Purchase product in a secondary unit
 [purchase_order_supplierinfo_update](purchase_order_supplierinfo_update/) | 15.0.1.0.0 | [![ernestotejeda](https://github.com/ernestotejeda.png?size=30px)](https://github.com/ernestotejeda) | Update product supplierinfo with the last purchase price
 [purchase_order_type](purchase_order_type/) | 15.0.1.0.0 |  | Purchase Order Type
 [purchase_order_type_dashboard](purchase_order_type_dashboard/) | 15.0.1.0.0 | [![dalonsod](https://github.com/dalonsod.png?size=30px)](https://github.com/dalonsod) | Purchase Order Type Dashboard
@@ -95,7 +95,7 @@ addon | version | maintainers | summary
 [purchase_security](purchase_security/) | 15.0.3.1.0 | [![pilarvargas-tecnativa](https://github.com/pilarvargas-tecnativa.png?size=30px)](https://github.com/pilarvargas-tecnativa) | See only your purchase orders
 [purchase_stock_price_unit_sync](purchase_stock_price_unit_sync/) | 15.0.1.0.2 |  | Update cost price in stock moves already done
 [purchase_stock_return_request](purchase_stock_return_request/) | 15.0.1.0.0 |  | Purchase Stock Return Request
-[purchase_stock_secondary_unit](purchase_stock_secondary_unit/) | 15.0.1.0.1 |  | Get product quantities in a secondary unit
+[purchase_stock_secondary_unit](purchase_stock_secondary_unit/) | 15.0.1.1.0 |  | Get product quantities in a secondary unit
 [purchase_stock_tier_validation](purchase_stock_tier_validation/) | 15.0.1.0.0 | [![bosd](https://github.com/bosd.png?size=30px)](https://github.com/bosd) | Exclude RFQs pending to validate when procuring
 [purchase_substate](purchase_substate/) | 15.0.1.0.0 |  | Purchase Sub State
 [purchase_tag](purchase_tag/) | 15.0.1.0.0 |  | Allows to add multiple tags to purchase orders
