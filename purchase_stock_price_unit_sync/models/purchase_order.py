@@ -1,5 +1,5 @@
 # Copyright 2019 Tecnativa - Carlos Dauden
-# Copyright 2022 Tecnativa - Víctor Martínez
+# Copyright 2022-2023 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import models
@@ -34,10 +34,17 @@ class PurchaseOrderLine(models.Model):
             ):
                 continue
             line.move_ids.write({"price_unit": line._get_stock_move_price_unit()})
-            line.move_ids.mapped("stock_valuation_layer_ids").filtered(
-                # Filter children SVLs (like landed cost)
-                lambda x: not x.stock_valuation_layer_id
-            ).write(
+            # Apply sudo() to avoid access errors with users without Inventory > Admin
+            # permissions.
+            svls = (
+                line.move_ids.sudo()
+                .mapped("stock_valuation_layer_ids")
+                .filtered(
+                    # Filter children SVLs (like landed cost)
+                    lambda x: not x.stock_valuation_layer_id
+                )
+            )
+            svls.write(
                 {
                     "unit_cost": line.with_context(
                         skip_stock_price_unit_sync=True
