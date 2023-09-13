@@ -14,7 +14,7 @@ class PurchaseOrderLine(models.Model):
             ("price_unit" in vals or "discount" in vals)
             and not self.env.context.get("skip_stock_price_unit_sync")
             # This context is present when the purchase_discount hack is being made
-            and not self.env.context.get("purchase_discount")
+            and not self.env.context.get("bypass_override_price_unit")
         ):
             self.stock_price_unit_sync()
         return res
