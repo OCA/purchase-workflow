@@ -1,9 +1,9 @@
-This addon creates new groups in Purchase.
+This add-on creates two new groups: "User (own orders)" and "User (own or unrestricted orders)"
+in Purchases.
 
-Visibility of purchase orders is restricted for users in these groups.
-You can only see the purchase order:
+Users in the "User (own orders)" group can only see Purchase Orders where they are
+the representative, or all of them if they are managers.
 
-- User (own orders): If you are a follower of the partner or there is no user
-  or you are the partner's user.
-- User (team orders): If you are a follower of the partner or there is no user
-  or you are a user of your purchasing team.
+Users in the "User (own or unrestricted orders)" group can only see Purchase Orders where
+they are the representative, as well as those where is_restricted is false. If they are managers,
+they can see all orders.
