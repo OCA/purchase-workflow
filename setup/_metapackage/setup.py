@@ -50,6 +50,7 @@ setuptools.setup(
         'odoo14-addon-purchase_order_line_menu',
         'odoo14-addon-purchase_order_line_packaging_qty',
         'odoo14-addon-purchase_order_line_price_history',
+        'odoo14-addon-purchase_order_line_price_history_discount',
         'odoo14-addon-purchase_order_line_sequence',
         'odoo14-addon-purchase_order_line_stock_available',
         'odoo14-addon-purchase_order_payment_term_report',
