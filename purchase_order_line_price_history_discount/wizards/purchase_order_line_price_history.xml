@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2020 Tecnativa - Ernesto Tejeda
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="purchase_order_line_price_history_view_form_2" model="ir.ui.view">
+        <field name="name">purchase.order.line.price.history.view.form.inherit</field>
+        <field name="model">purchase.order.line.price.history</field>
+        <field
+            name="inherit_id"
+            ref="purchase_order_line_price_history.purchase_order_line_price_history_view_form"
+        />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='line_ids']/form//field[@name='price_unit']"
+                position="after"
+            >
+                <field name="discount" />
+            </xpath>
+            <xpath
+                expr="//field[@name='line_ids']/tree/field[@name='price_unit']"
+                position="after"
+            >
+                <field name="discount" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
