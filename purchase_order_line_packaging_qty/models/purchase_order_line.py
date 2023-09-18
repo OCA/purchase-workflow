@@ -21,11 +21,6 @@ class PurchaseOrderLine(models.Model):
         digits="Product Unit of Measure",
     )
 
-    @api.onchange("product_id")
-    def onchange_product_id(self):
-        self.product_packaging = False
-        return super(PurchaseOrderLine, self).onchange_product_id()
-
     @api.depends(
         "product_qty", "product_uom", "product_packaging", "product_packaging.qty"
     )
