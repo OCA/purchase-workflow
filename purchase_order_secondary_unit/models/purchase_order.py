@@ -10,6 +10,7 @@ class PurchaseOrderLine(models.Model):
         "qty_field": "product_qty",
         "uom_field": "product_uom",
     }
+    _product_uom_field = "uom_po_id"
 
     product_qty = fields.Float(
         store=True, readonly=False, compute="_compute_product_qty", copy=True
