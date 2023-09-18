@@ -66,7 +66,7 @@ class TestPurchaseOrderLineDeepSort(common.SavepointCase):
         self.assertEqual(self.po.order_line[2].product_id, self.product_3)
 
     def test_line_by_name(self):
-        """ Test if lines are ordered by purchase line name"""
+        """Test if lines are ordered by purchase line name"""
         self.po.write({"line_order": "name", "line_direction": "asc"})
         lines = self.po_line_model.search([("order_id", "=", self.po.id)])
         self._check_value(lines, self.product_1, self.product_3)
@@ -77,7 +77,7 @@ class TestPurchaseOrderLineDeepSort(common.SavepointCase):
         self.assertEqual(lines[1].name, "Test 2")
 
     def test_line_by_product_name(self):
-        """ Test if lines are ordered by product name"""
+        """Test if lines are ordered by product name"""
         self.po.write({"line_order": "product_id.name", "line_direction": "asc"})
         lines = self.po_line_model.search([("order_id", "=", self.po.id)])
         self._check_value(lines, self.product_1, self.product_3)
@@ -90,7 +90,7 @@ class TestPurchaseOrderLineDeepSort(common.SavepointCase):
         self.assertEqual(lines[1].product_id.name, "Test product 2")
 
     def test_line_by_product_code(self):
-        """ Test if lines are ordered by product code"""
+        """Test if lines are ordered by product code"""
         self.po.write(
             {"line_order": "product_id.default_code", "line_direction": "asc"}
         )
@@ -103,7 +103,7 @@ class TestPurchaseOrderLineDeepSort(common.SavepointCase):
         self.assertEqual(lines[1].product_id.default_code, "BCD")
 
     def test_line_by_date_planned(self):
-        """ Test if lines are ordered by purchase line date planned"""
+        """Test if lines are ordered by purchase line date planned"""
         self.po.write({"line_order": "date_planned", "line_direction": "asc"})
         lines = self.po_line_model.search([("order_id", "=", self.po.id)])
         self._check_value(lines, self.product_1, self.product_2)
@@ -114,7 +114,7 @@ class TestPurchaseOrderLineDeepSort(common.SavepointCase):
         self.assertEqual(fields.Date.to_string(lines[1].date_planned), "2018-11-03")
 
     def test_line_by_price_unit(self):
-        """ Test if lines are ordered by purchase line price"""
+        """Test if lines are ordered by purchase line price"""
         self.po.write({"line_order": "price_unit", "line_direction": "asc"})
         lines = self.po_line_model.search([("order_id", "=", self.po.id)])
         self._check_value(lines, self.product_3, self.product_1)
@@ -125,7 +125,7 @@ class TestPurchaseOrderLineDeepSort(common.SavepointCase):
         self.assertAlmostEqual(lines[1].price_unit, 6.0)
 
     def test_line_by_product_qty(self):
-        """ Test if lines are ordered by purchase line product_qty"""
+        """Test if lines are ordered by purchase line product_qty"""
         self.po.write({"line_order": "product_qty", "line_direction": "asc"})
         lines = self.po_line_model.search([("order_id", "=", self.po.id)])
         self._check_value(lines, self.product_3, self.product_2)

@@ -25,6 +25,6 @@ class ResConfigSettings(models.TransientModel):
 
     @api.onchange("po_line_order_default", "po_line_order_2_default")
     def onchange_po_line_order_default(self):
-        """ Reset direction line order when user remove order field value """
+        """Reset direction line order when user remove order field value"""
         if not self.po_line_order_default and not self.po_line_order_2_default:
             self.po_line_direction_default = False

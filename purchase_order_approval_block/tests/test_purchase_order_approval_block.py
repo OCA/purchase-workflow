@@ -40,7 +40,7 @@ class TestPurchaseOrderApprovalBlock(TransactionCase):
         )
 
     def _create_user(self, login, groups, company):
-        """ Create a user."""
+        """Create a user."""
         group_ids = [group.id for group in groups]
         user = self.users_obj.with_context({"no_reset_password": True}).create(
             {
@@ -56,7 +56,7 @@ class TestPurchaseOrderApprovalBlock(TransactionCase):
         return user.id
 
     def _create_purchase(self, line_products):
-        """ Create a purchase order.
+        """Create a purchase order.
         ``line_products`` is a list of tuple [(product, qty)]
         """
         lines = []

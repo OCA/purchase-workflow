@@ -21,8 +21,7 @@ class TestPackagingTypeCanBePurchased(Common):
             self.assertIn("warning", onchange_res)
 
     def test_product_packaging_can_be_purchased(self):
-        """Check that a product.packaging can be independently set as can be purchased.
-        """
+        """Check that a product.packaging can be independently set as can be purchased."""
         exception_msg = (
             "Packaging Test packaging cannot be purchased on product {} must be set "
             "as 'Can be purchased' in order to be used on a purchase order."

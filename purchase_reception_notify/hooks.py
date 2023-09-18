@@ -9,7 +9,7 @@ _logger = logging.getLogger(__name__)
 
 def post_init_hook(cr, registry):
     """Existing employees should be subscribed to the new subtype for all
-       existing purchase orders..
+    existing purchase orders..
     """
     _logger.info(
         "Starting task to update internal followers for "

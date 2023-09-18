@@ -31,5 +31,6 @@ class TestThreeStepReception(SavepointCase):
         self.po.button_confirm()
         action_data = self.po.action_view_all_pickings()
         self.assertEqual(
-            action_data["domain"], [("id", "in", self.po.all_picking_ids.ids)],
+            action_data["domain"],
+            [("id", "in", self.po.all_picking_ids.ids)],
         )

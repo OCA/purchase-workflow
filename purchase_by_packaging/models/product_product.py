@@ -39,8 +39,7 @@ class ProductProduct(models.Model):
         return qty
 
     def get_first_purchase_packaging_with_multiple_qty(self, qty):
-        """ Return multiple of product packaging for one quantity if exist.
-        """
+        """Return multiple of product packaging for one quantity if exist."""
         self.ensure_one()
         packagings = self._get_purchase_packagings_with_multiple_qty(qty)
         return fields.first(packagings.sorted("qty"))

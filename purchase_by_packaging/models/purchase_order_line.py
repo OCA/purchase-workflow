@@ -76,7 +76,9 @@ class PurchaseOrderLine(models.Model):
         )
 
         return product._convert_purchase_packaging_qty(
-            quantity, uom or product.uom_po_id, packaging=packaging,
+            quantity,
+            uom or product.uom_po_id,
+            packaging=packaging,
         )
 
     def _force_qty_with_package(self):
@@ -213,7 +215,9 @@ class PurchaseOrderLine(models.Model):
                 )
                 != 0
                 or float_compare(
-                    self.product_qty, product_qty, precision_digits=product_precision,
+                    self.product_qty,
+                    product_qty,
+                    precision_digits=product_precision,
                 )
                 != 0
             ):

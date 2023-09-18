@@ -7,5 +7,7 @@ class ProductPackaging(models.Model):
     _inherit = "product.packaging"
 
     product_uom_po_id = fields.Many2one(
-        "uom.uom", related="product_id.uom_po_id", readonly=True,
+        "uom.uom",
+        related="product_id.uom_po_id",
+        readonly=True,
     )

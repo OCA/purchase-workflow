@@ -14,6 +14,9 @@ def _migrate_purchase_request_to_property(env):
     values = dict(env.cr.fetchall())
     for company in env["res.company"].with_context(active_test=False).search([]):
         env["ir.property"].with_context(force_company=company.id).set_multi(
-            "purchase_request", "product.template", values, False,
+            "purchase_request",
+            "product.template",
+            values,
+            False,
         )
     env.cr.execute("alter table product_template drop column purchase_request")

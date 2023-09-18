@@ -87,7 +87,8 @@ class TestPurchaseLastPriceInfo(common.TransactionCase):
         first_order_line = fields.first(purchase_order.order_line)
         self.assertEqual(first_order_line.price_unit, self.product.last_purchase_price)
         self.assertEqual(
-            first_order_line.currency_id, self.product.last_purchase_currency_id,
+            first_order_line.currency_id,
+            self.product.last_purchase_currency_id,
         )
         self.assertEqual(self.product.last_purchase_currency_id, self.currency_extra)
         self.assertEqual(self.product.last_purchase_price_currency, 2.0)
