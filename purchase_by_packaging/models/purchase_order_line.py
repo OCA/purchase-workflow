@@ -92,8 +92,14 @@ class PurchaseOrderLine(models.Model):
     def _onchange_quantity(self):
         self._force_packaging()
         self._force_qty_with_package()
-        res = super()._onchange_quantity()
-        return res
+        return super()._onchange_quantity()
+
+    @api.onchange("product_id")
+    def onchange_product_id(self):
+        self.product_packaging = False
+        self._force_packaging()
+        self._force_qty_with_package()
+        return super(PurchaseOrderLine, self).onchange_product_id()
 
     def _get_product_packaging_having_multiple_qty(self, product, qty, uom):
         if uom != product.uom_po_id:
@@ -179,7 +185,7 @@ class PurchaseOrderLine(models.Model):
         if not self.product_packaging and self.product_id.purchase_only_by_packaging:
             packaging_id = self._get_autoassigned_packaging()
             if packaging_id:
-                self.product_packaging = packaging_id
+                self.update({"product_packaging": packaging_id})
 
     def _check_package(self):
         if self.product_packaging:
