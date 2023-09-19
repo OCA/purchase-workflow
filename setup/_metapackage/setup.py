@@ -74,6 +74,7 @@ setuptools.setup(
         'odoo12-addon-purchase_tier_validation',
         'odoo12-addon-purchase_triple_discount',
         'odoo12-addon-purchase_work_acceptance',
+        'odoo12-addon-purchase_work_acceptance_evaluation',
         'odoo12-addon-subcontracted_service',
         'odoo12-addon-supplier_calendar',
     ],

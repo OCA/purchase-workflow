@@ -87,6 +87,7 @@ addon | version | maintainers | summary
 [purchase_tier_validation](purchase_tier_validation/) | 12.0.1.0.0 |  | Extends the functionality of Purchase Orders to support a tier validation process.
 [purchase_triple_discount](purchase_triple_discount/) | 12.0.1.1.0 |  | Manage triple discount on purchase order lines
 [purchase_work_acceptance](purchase_work_acceptance/) | 12.0.1.1.1 |  | Purchase Work Acceptance
+[purchase_work_acceptance_evaluation](purchase_work_acceptance_evaluation/) | 12.0.1.0.0 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Purchase Work Acceptance Evaluation
 [subcontracted_service](subcontracted_service/) | 12.0.1.0.2 |  | Subcontracted service
 [supplier_calendar](supplier_calendar/) | 12.0.1.0.1 | [![NuriaMForgeFlow](https://github.com/NuriaMForgeFlow.png?size=30px)](https://github.com/NuriaMForgeFlow) | Supplier Calendar
 
