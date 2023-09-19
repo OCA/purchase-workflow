@@ -1,0 +1,227 @@
+<odoo>
+    <record id="view_purchase_invoice_plan_tree" model="ir.ui.view">
+        <field name="name">view.purchase.invoice.plan.tree</field>
+        <field name="model">purchase.invoice.plan</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="no_edit" invisible="1" />
+                <field
+                    name="installment"
+                    attrs="{'readonly': [('no_edit', '=', True)]}"
+                />
+                <field
+                    name="plan_date"
+                    attrs="{'readonly': [('no_edit', '=', True)]}"
+                />
+                <field
+                    name="invoice_type"
+                    attrs="{'readonly': [('no_edit', '=', True)]}"
+                />
+                <field
+                    name="percent"
+                    optional="show"
+                    attrs="{'readonly': [('no_edit', '=', True)]}"
+                />
+                <field
+                    name="amount"
+                    optional="show"
+                    attrs="{'readonly': [('no_edit', '=', True)]}"
+                />
+                <field name="amount_invoiced" optional="hide" sum="Amount" />
+                <field name="to_invoice" />
+                <field name="invoiced" />
+                <field name="invoice_ids" optional="hide" widget="many2many_tags" />
+            </tree>
+        </field>
+    </record>
+    <record id="view_purchase_invoice_plan_form" model="ir.ui.view">
+        <field name="name">view.purchase.invoice.plan.form</field>
+        <field name="model">purchase.invoice.plan</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="installment" />
+                        <field name="plan_date" />
+                        <field name="to_invoice" />
+                    </group>
+                    <group>
+                        <field name="invoice_type" />
+                        <field name="percent" />
+                        <field name="amount" />
+                        <field name="invoiced" />
+                    </group>
+                </group>
+                <separator
+                    string="Related Bills"
+                    attrs="{'invisible': [('invoice_ids', '=', [])]}"
+                />
+                <field name="invoice_ids" widget="many2many_tags" />
+            </form>
+        </field>
+    </record>
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field name="name">purchase_order_form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr='/form/sheet/notebook' position="before">
+                <div attrs="{'readonly': [('invoice_count', '>', 0)]}">
+                    <field name="use_invoice_plan" />
+                    <label for="use_invoice_plan" />
+                </div>
+            </xpath>
+            <xpath expr="//button[@name='action_create_invoice']" position="before">
+                <field name="ip_invoice_plan" invisible="1" />
+                <button
+                    name="%(action_view_purchase_make_planned_invoice)d"
+                    string="Create Bill by Plan"
+                    type="action"
+                    class="btn-primary"
+                    attrs="{'invisible': ['|', ('ip_invoice_plan', '=', False), ('invoice_status', '!=', 'to invoice')]}"
+                />
+            </xpath>
+            <xpath expr="/form/sheet/notebook/page" position="after">
+                <page
+                    string="Invoice Plan"
+                    attrs="{'invisible': [('use_invoice_plan', '=', False)]}"
+                >
+                    <button
+                        name="%(action_purchase_create_invoice_plan)d"
+                        string="⇒ Create Invoice Plan"
+                        type="action"
+                        class="oe_link"
+                        attrs="{'invisible': ['|', ('invoice_plan_ids', '!=', []), ('invoice_count', '>', 0)]}"
+                    />
+                    <button
+                        name="remove_invoice_plan"
+                        string="⇒ Remove Invoice Plan"
+                        type="object"
+                        class="oe_link"
+                        attrs="{'invisible': ['|', ('invoice_plan_ids', '=', []), ('invoice_count', '>', 0)]}"
+                        confirm="Are you sure to remove this invoice plan?"
+                    />
+                    <field
+                        name="invoice_plan_ids"
+                        context="{'tree_view_ref': 'purchase_invoice_plan.view_purchase_invoice_plan_tree'}"
+                        attrs="{'invisible': [('invoice_plan_ids', '=', [])]}"
+                    />
+                    <group class="oe_subtotal_footer oe_right">
+                        <field name="ip_total_percent" />
+                        <field name="ip_total_amount" />
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    <!-- Invoice Plan Lines -->
+    <record id="view_purchase_invoice_plan_filter" model="ir.ui.view">
+        <field name="name">view.purchase.invoice.plan.filter</field>
+        <field name="model">purchase.invoice.plan</field>
+        <field name="arch" type="xml">
+            <search string="Search Purchase Invoice Plan Lines">
+                <field name="partner_id" />
+                <field name="purchase_id" />
+                <field name="installment" />
+                <separator />
+                <filter
+                    name="draft"
+                    string="Quotations"
+                    domain="[('state','in',('draft','sent','to approve'))]"
+                />
+                <filter
+                    name="approved"
+                    string="Purchase Orders"
+                    domain="[('state','in',('purchase','done'))]"
+                />
+                <filter
+                    name="to_approve"
+                    string="To Approve"
+                    domain="[('state', '=', 'to approve')]"
+                />
+                <separator />
+                <filter
+                    name="not_invoiced"
+                    string="Waiting Bills"
+                    domain="[('to_invoice','=', True)]"
+                    help="Purchase orders that include lines not invoiced."
+                />
+                <filter
+                    name="invoiced"
+                    string="Bills Received"
+                    domain="[('invoiced','=', True)]"
+                    help="Purchase orders that have been invoiced."
+                />
+                <group expand="0" string="Group By">
+                    <filter
+                        string="Supplier"
+                        name="supplier"
+                        domain="[]"
+                        context="{'group_by':'partner_id'}"
+                    />
+                    <filter
+                        string="Purchase Order"
+                        name="purchase"
+                        domain="[]"
+                        context="{'group_by':'purchase_id'}"
+                    />
+                    <filter
+                        string="Installment"
+                        name="install"
+                        domain="[]"
+                        context="{'group_by':'installment'}"
+                    />
+                    <filter
+                        string="Status"
+                        name="state"
+                        domain="[]"
+                        context="{'group_by':'state'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="view_purchase_invoice_plan_tree_readonly" model="ir.ui.view">
+        <field name="name">view.purchase.invoice.plan.tree</field>
+        <field name="model">purchase.invoice.plan</field>
+        <field name="arch" type="xml">
+            <tree edit="0" create="0" delete="0">
+                <field name="purchase_id" />
+                <field name="installment" />
+                <field name="plan_date" />
+                <field name="invoice_type" />
+                <field name="percent" optional="show" sum="Percent" />
+                <field name="amount" optional="show" sum="Amount" />
+                <field name="amount_invoiced" optional="show" sum="Amount" />
+                <field name="to_invoice" />
+                <field name="invoiced" />
+                <field name="invoice_ids" widget="many2many_tags" />
+            </tree>
+        </field>
+    </record>
+    <record id="action_purchase_invoice_plan" model="ir.actions.act_window">
+        <field name="name">Purchase Invoice Plan</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">purchase.invoice.plan</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_purchase_invoice_plan_tree_readonly" />
+        <field name="search_view_id" ref="view_purchase_invoice_plan_filter" />
+        <field
+            name="context"
+        >{'search_default_draft': 1, 'search_default_purchase': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+            View purchase invoice plan lines
+          </p>
+            <p>
+            This view show all available invoice plan line for reporting purposes
+          </p>
+        </field>
+    </record>
+    <menuitem
+        action="action_purchase_invoice_plan"
+        id="menu_purchase_invoice_plan"
+        parent="purchase.menu_procurement_management"
+        sequence="7"
+    />
+</odoo>
