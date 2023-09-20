@@ -19,34 +19,17 @@ msgstr ""
 
 #. module: purchase_order_archive
 #: model:ir.model.fields,field_description:purchase_order_archive.field_purchase_order__active
-#: model_terms:ir.ui.view,arch_db:purchase_order_archive.purchase_order_view_search
-#: model_terms:ir.ui.view,arch_db:purchase_order_archive.view_purchase_order_archive_filter
 msgid "Active"
 msgstr "Activo"
 
 #. module: purchase_order_archive
 #: model_terms:ir.ui.view,arch_db:purchase_order_archive.purchase_order_archive_form
-#: model_terms:ir.ui.view,arch_db:purchase_order_archive.purchase_order_view_search
 #: model_terms:ir.ui.view,arch_db:purchase_order_archive.view_purchase_order_archive_filter
 msgid "Archived"
 msgstr "Archivado"
 
 #. module: purchase_order_archive
-#: model:ir.model.fields,field_description:purchase_order_archive.field_purchase_order__display_name
-msgid "Display Name"
-msgstr "Nombre mostrado"
-
-#. module: purchase_order_archive
-#: model:ir.model.fields,field_description:purchase_order_archive.field_purchase_order__id
-msgid "ID"
-msgstr "ID"
-
-#. module: purchase_order_archive
-#: model:ir.model.fields,field_description:purchase_order_archive.field_purchase_order____last_update
-msgid "Last Modified on"
-msgstr "Última modificación el"
-
-#. module: purchase_order_archive
+#. odoo-python
 #: code:addons/purchase_order_archive/models/purchase_order.py:0
 #, python-format
 msgid "Only 'Locked' or 'Canceled' orders can be archived"
@@ -56,3 +39,12 @@ msgstr "Solo se pueden archivar los pedidos 'Bloqueados' o 'Cancelados'"
 #: model:ir.model,name:purchase_order_archive.model_purchase_order
 msgid "Purchase Order"
 msgstr "Pedido de compra"
+
+#~ msgid "Display Name"
+#~ msgstr "Nombre mostrado"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación el"
