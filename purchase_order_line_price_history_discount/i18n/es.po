@@ -23,6 +23,21 @@ msgid "Discount (%)"
 msgstr "(%) Descuento"
 
 #. module: purchase_order_line_price_history_discount
+#: model:ir.model.fields,field_description:purchase_order_line_price_history_discount.field_purchase_order_line_price_history_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: purchase_order_line_price_history_discount
+#: model:ir.model.fields,field_description:purchase_order_line_price_history_discount.field_purchase_order_line_price_history_line__id
+msgid "ID"
+msgstr ""
+
+#. module: purchase_order_line_price_history_discount
+#: model:ir.model.fields,field_description:purchase_order_line_price_history_discount.field_purchase_order_line_price_history_line____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: purchase_order_line_price_history_discount
 #: model:ir.model,name:purchase_order_line_price_history_discount.model_purchase_order_line_price_history_line
 msgid "Purchase order line price history line"
 msgstr "Línea de historial de precios"
