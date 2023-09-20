@@ -18,34 +18,17 @@ msgstr ""
 
 #. module: purchase_order_archive
 #: model:ir.model.fields,field_description:purchase_order_archive.field_purchase_order__active
-#: model_terms:ir.ui.view,arch_db:purchase_order_archive.purchase_order_view_search
-#: model_terms:ir.ui.view,arch_db:purchase_order_archive.view_purchase_order_archive_filter
 msgid "Active"
 msgstr "有效"
 
 #. module: purchase_order_archive
 #: model_terms:ir.ui.view,arch_db:purchase_order_archive.purchase_order_archive_form
-#: model_terms:ir.ui.view,arch_db:purchase_order_archive.purchase_order_view_search
 #: model_terms:ir.ui.view,arch_db:purchase_order_archive.view_purchase_order_archive_filter
 msgid "Archived"
 msgstr "已归档"
 
 #. module: purchase_order_archive
-#: model:ir.model.fields,field_description:purchase_order_archive.field_purchase_order__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: purchase_order_archive
-#: model:ir.model.fields,field_description:purchase_order_archive.field_purchase_order__id
-msgid "ID"
-msgstr ""
-
-#. module: purchase_order_archive
-#: model:ir.model.fields,field_description:purchase_order_archive.field_purchase_order____last_update
-msgid "Last Modified on"
-msgstr ""
-
-#. module: purchase_order_archive
+#. odoo-python
 #: code:addons/purchase_order_archive/models/purchase_order.py:0
 #, python-format
 msgid "Only 'Locked' or 'Canceled' orders can be archived"
