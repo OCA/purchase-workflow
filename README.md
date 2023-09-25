@@ -41,7 +41,7 @@ addon | version | maintainers | summary
 [purchase_open_qty](purchase_open_qty/) | 16.0.2.0.1 |  | Allows to identify the purchase orders that have quantities pending to invoice or to receive.
 [purchase_order_approved](purchase_order_approved/) | 16.0.1.0.0 |  | Add a new state 'Approved' in purchase orders.
 [purchase_order_archive](purchase_order_archive/) | 16.0.1.0.0 |  | Archive Purchase Orders
-[purchase_order_line_menu](purchase_order_line_menu/) | 16.0.2.0.0 |  | Adds Purchase Order Lines Menu
+[purchase_order_line_menu](purchase_order_line_menu/) | 16.0.2.1.0 |  | Adds Purchase Order Lines Menu
 [purchase_order_no_zero_price](purchase_order_no_zero_price/) | 16.0.1.0.0 |  | Prevent zero price lines on Purchase Orders
 [purchase_order_owner](purchase_order_owner/) | 16.0.1.0.0 |  | Purchase Order Owner
 [purchase_order_product_recommendation](purchase_order_product_recommendation/) | 16.0.1.0.1 |  | Recommend products to buy to supplier based on history
