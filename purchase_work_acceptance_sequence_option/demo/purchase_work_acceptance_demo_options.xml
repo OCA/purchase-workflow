@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="seq_work_acceptance_option_1" model="ir.sequence">
+        <field name="name">Work Acceptance: Option 1</field>
+        <field name="padding" eval="5" />
+        <field name="prefix">WA-1/</field>
+    </record>
+
+    <record id="work_acceptance_sequence_option_line_1" model="ir.sequence.option.line">
+        <field
+            name="base_id"
+            ref="purchase_work_acceptance_sequence_option.work_acceptance_sequence_option"
+        />
+        <field name="name">WA Option 1</field>
+        <field name="filter_domain">[]</field>
+        <field
+            name="sequence_id"
+            ref="purchase_work_acceptance_sequence_option.seq_work_acceptance_option_1"
+        />
+    </record>
+
+</odoo>
