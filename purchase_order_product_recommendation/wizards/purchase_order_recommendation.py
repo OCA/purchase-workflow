@@ -299,7 +299,6 @@ class PurchaseOrderRecommendation(models.TransientModel):
             if wiz_line.purchase_line_id:
                 if wiz_line.units_included:
                     wiz_line.purchase_line_id.update(wiz_line._prepare_update_po_line())
-                    wiz_line.purchase_line_id._onchange_quantity()
                 else:
                     wiz_line.purchase_line_id.unlink()
                 continue
@@ -308,7 +307,6 @@ class PurchaseOrderRecommendation(models.TransientModel):
             po_line = po_lines.new(wiz_line._prepare_new_po_line(sequence))
             po_line.onchange_product_id()
             po_line.product_qty = wiz_line.units_included
-            po_line._onchange_quantity()
             po_lines |= po_line
         self.order_id.order_line |= po_lines
 
