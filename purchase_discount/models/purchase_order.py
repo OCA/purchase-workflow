@@ -88,7 +88,7 @@ class PurchaseOrderLine(models.Model):
         selected one.
         """
         res = super()._compute_price_unit_and_date_planned_and_name()
-        for line in self:
+        for line in self.filtered("product_id"):
             seller = line.product_id._select_seller(
                 partner_id=line.partner_id,
                 quantity=line.product_qty,
