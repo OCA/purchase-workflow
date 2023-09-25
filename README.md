@@ -28,7 +28,7 @@ addon | version | maintainers | summary
 [purchase_default_terms_conditions](purchase_default_terms_conditions/) | 16.0.1.0.2 |  | This module allows purchase default terms & conditions
 [purchase_delivery_split_date](purchase_delivery_split_date/) | 16.0.1.0.0 |  | Allows Purchase Order you confirm to generate one Incoming Shipment for each expected date indicated in the Purchase Order Lines
 [purchase_deposit](purchase_deposit/) | 16.0.1.0.0 |  | Option to create deposit from purchase order
-[purchase_discount](purchase_discount/) | 16.0.1.1.1 |  | Purchase order lines with discounts
+[purchase_discount](purchase_discount/) | 16.0.1.1.2 |  | Purchase order lines with discounts
 [purchase_exception](purchase_exception/) | 16.0.1.0.0 |  | Custom exceptions on purchase order
 [purchase_force_invoiced](purchase_force_invoiced/) | 16.0.1.0.0 |  | Allows to force the billing status of the purchase order to "Invoiced"
 [purchase_invoice_plan](purchase_invoice_plan/) | 16.0.1.0.0 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Add to purchases order, ability to manage future invoice plan
