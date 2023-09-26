@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="seq_purchase_requisition_option_1" model="ir.sequence">
+        <field name="name">Purchase Agreement: Option 1</field>
+        <field name="padding" eval="5" />
+        <field name="prefix">TE-1/</field>
+    </record>
+
+    <record
+        id="purchase_requisition_sequence_option_line_1"
+        model="ir.sequence.option.line"
+    >
+        <field
+            name="base_id"
+            ref="purchase_requisition_sequence_option.purchase_requisition_sequence_option"
+        />
+        <field name="name">TE Option 1</field>
+        <field name="filter_domain">[]</field>
+        <field
+            name="sequence_id"
+            ref="purchase_requisition_sequence_option.seq_purchase_requisition_option_1"
+        />
+    </record>
+
+</odoo>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+
+    <record id="purchase_requisition_sequence_option" model="ir.sequence.option">
+        <field name="name">Purchase Agreement</field>
+        <field name="model">purchase.requisition</field>
+        <field name="use_sequence_option" eval="False" />
+    </record>
+
+</odoo>
