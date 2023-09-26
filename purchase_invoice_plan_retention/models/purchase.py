@@ -9,7 +9,6 @@ class PurchaseOrder(models.Model):
 
     payment_retention = fields.Selection(
         selection=[("percent", "Percent"), ("amount", "Amount")],
-        string="Payment Retention",
         readonly=False,
         copy=False,
         help="For each invoice installment, suggested retention amount "
