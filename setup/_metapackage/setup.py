@@ -20,6 +20,7 @@ setuptools.setup(
         'odoo-addon-purchase_default_terms_conditions>=15.0dev,<15.1dev',
         'odoo-addon-purchase_delivery_split_date>=15.0dev,<15.1dev',
         'odoo-addon-purchase_deposit>=15.0dev,<15.1dev',
+        'odoo-addon-purchase_deposit_analytic>=15.0dev,<15.1dev',
         'odoo-addon-purchase_discount>=15.0dev,<15.1dev',
         'odoo-addon-purchase_exception>=15.0dev,<15.1dev',
         'odoo-addon-purchase_fop_shipping>=15.0dev,<15.1dev',
