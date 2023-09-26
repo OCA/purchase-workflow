@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_purchase_advance_payment_inv" model="ir.ui.view">
+        <field name="name">Invoice Orders</field>
+        <field name="model">purchase.advance.payment.inv</field>
+        <field
+            name="inherit_id"
+            ref="purchase_deposit.view_purchase_advance_payment_inv"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//group" position="after">
+                <group name="account_analytic">
+                    <group>
+                        <field name="account_analytic_id" />
+                        <field name="analytic_tag_ids" widget="many2many_tags" />
+                    </group>
+                    <group />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
