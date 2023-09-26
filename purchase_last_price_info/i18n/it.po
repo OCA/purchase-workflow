@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-15 11:37+0000\n"
-"PO-Revision-Date: 2022-07-06 13:05+0000\n"
-"Last-Translator: Mario Riva <mario.riva@agilebg.com>\n"
+"PO-Revision-Date: 2023-10-09 08:30+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/"
 "OCA-purchase-workflow-8-0/language/it/)\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: purchase_last_price_info
 #: model:ir.model.fields,field_description:purchase_last_price_info.field_product_product__last_purchase_date
@@ -45,7 +45,7 @@ msgstr "Prodotto"
 #. module: purchase_last_price_info
 #: model:ir.model,name:purchase_last_price_info.model_product_template
 msgid "Product Template"
-msgstr "Modello Prodotto"
+msgstr "Modello prodotto"
 
 #. module: purchase_last_price_info
 #: model_terms:ir.ui.view,arch_db:purchase_last_price_info.product_product_last_purchase_info_form_view
