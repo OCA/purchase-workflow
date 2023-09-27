@@ -30,6 +30,7 @@ addon | version | maintainers | summary
 [purchase_deposit](purchase_deposit/) | 16.0.1.0.0 |  | Option to create deposit from purchase order
 [purchase_discount](purchase_discount/) | 16.0.1.1.2 |  | Purchase order lines with discounts
 [purchase_exception](purchase_exception/) | 16.0.1.0.0 |  | Custom exceptions on purchase order
+[purchase_fop_shipping](purchase_fop_shipping/) | 16.0.1.0.0 |  | Purchase Free-Of-Payment shipping
 [purchase_force_invoiced](purchase_force_invoiced/) | 16.0.1.0.0 |  | Allows to force the billing status of the purchase order to "Invoiced"
 [purchase_invoice_plan](purchase_invoice_plan/) | 16.0.1.0.0 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Add to purchases order, ability to manage future invoice plan
 [purchase_last_price_info](purchase_last_price_info/) | 16.0.1.0.0 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Purchase Product Last Price Info
