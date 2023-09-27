@@ -24,6 +24,7 @@ addon | version | maintainers | summary
 [procurement_purchase_no_grouping](procurement_purchase_no_grouping/) | 12.0.2.0.1 |  | Procurement Purchase No Grouping
 [product_form_purchase_link](product_form_purchase_link/) | 12.0.1.0.0 | [![rousseldenis](https://github.com/rousseldenis.png?size=30px)](https://github.com/rousseldenis) | Add an option to display the purchases lines from product
 [product_supplier_code_purchase](product_supplier_code_purchase/) | 12.0.1.0.0 |  | This module adds to the purchase order line the supplier code defined in the product.
+[purchase_add_products_from_bom](purchase_add_products_from_bom/) | 12.0.1.0.0 | [![mbcosta](https://github.com/mbcosta.png?size=30px)](https://github.com/mbcosta) | Purchase - Add Products from BoM
 [purchase_allowed_product](purchase_allowed_product/) | 12.0.1.1.0 |  | This module allows to select only products that can be supplied by the vendor
 [purchase_analytic_global](purchase_analytic_global/) | 12.0.1.0.0 |  | Purchase - Analytic Account Global
 [purchase_blanket_order](purchase_blanket_order/) | 12.0.1.0.0 |  | Purchase Blanket Orders
