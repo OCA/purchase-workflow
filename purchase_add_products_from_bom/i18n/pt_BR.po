@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* purchase_add_products_from_bom
+# 	* purchase_add_products_from_bom
 #
 msgid ""
 msgstr ""
@@ -10,6 +10,7 @@ msgstr ""
 "PO-Revision-Date: 2021-12-29 15:30+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -44,12 +45,13 @@ msgstr "Produto já Explodido"
 
 #. module: purchase_add_products_from_bom
 #: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_add_products_from_bom__bom_id
+#: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_add_products_from_bom_lines__bom_id
 msgid "Bill of Material"
 msgstr "Lista de Materiais"
 
 #. module: purchase_add_products_from_bom
 #: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_add_products_from_bom__bom_ids
-#: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_add_products_from_bom_lines__bom_id
+#: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_add_products_from_bom_lines__bom_ids
 msgid "Bill of Materials"
 msgstr "Lista de Materiais"
 
@@ -78,16 +80,26 @@ msgstr "Moeda"
 
 #. module: purchase_add_products_from_bom
 #: model:ir.model.fields,help:purchase_add_products_from_bom.field_add_products_from_bom_lines__product_qty_stock
-msgid "Current quantity of products.\n"
-"In a context with a single Stock Location, this includes goods stored at this Location, or any of its children.\n"
-"In a context with a single Warehouse, this includes goods stored in the Stock Location of this Warehouse, or any of its children.\n"
-"stored in the Stock Location of the Warehouse of this Shop, or any of its children.\n"
-"Otherwise, this includes goods stored in any Stock Location with 'internal' type."
-msgstr "Quantidade atual de produtos.\n"
-"Em um contexto com uma única Localização, isso inclui bens armazenados neste local, ou qualquer um de seus filhos.\n"
-"Em um contexto com um único depósito, isso inclui bens armazenados na localização deste Armazém, ou qualquer um de seus filhos.\n"
-"Armazenados na Localização do Armazém desta Loja, ou qualquer um de seus filhos.\n"
-"Caso contrário, isso inclui bens armazenados em qualquer da localização com tipo 'interno'."
+msgid ""
+"Current quantity of products.\n"
+"In a context with a single Stock Location, this includes goods stored at "
+"this Location, or any of its children.\n"
+"In a context with a single Warehouse, this includes goods stored in the "
+"Stock Location of this Warehouse, or any of its children.\n"
+"stored in the Stock Location of the Warehouse of this Shop, or any of its "
+"children.\n"
+"Otherwise, this includes goods stored in any Stock Location with 'internal' "
+"type."
+msgstr ""
+"Quantidade atual de produtos.\n"
+"Em um contexto com uma única Localização, isso inclui bens armazenados neste "
+"local, ou qualquer um de seus filhos.\n"
+"Em um contexto com um único depósito, isso inclui bens armazenados na "
+"localização deste Armazém, ou qualquer um de seus filhos.\n"
+"Armazenados na Localização do Armazém desta Loja, ou qualquer um de seus "
+"filhos.\n"
+"Caso contrário, isso inclui bens armazenados em qualquer da localização com "
+"tipo 'interno'."
 
 #. module: purchase_add_products_from_bom
 #: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_add_products_from_bom__display_name
@@ -162,15 +174,9 @@ msgid "Purchase Add Products From BoM Line"
 msgstr "Compras Adicionar Produtos de uma LdM"
 
 #. module: purchase_add_products_from_bom
-#: model:ir.model,name:purchase_add_products_from_bom.model_purchase_order
 #: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_add_products_from_bom__purchase_id
 msgid "Purchase Order"
 msgstr "Pedido de Compra"
-
-#. module: purchase_add_products_from_bom
-#: model:ir.model,name:purchase_add_products_from_bom.model_purchase_order_line
-msgid "Purchase Order Line"
-msgstr "Linha de Pedido de Compra"
 
 #. module: purchase_add_products_from_bom
 #: model:ir.model.fields,field_description:purchase_add_products_from_bom.field_add_products_from_bom_lines__purchase_uom_id
@@ -208,7 +214,7 @@ msgid "Return Products from BoM"
 msgstr "Voltar os Produtos da LdM"
 
 #. module: purchase_add_products_from_bom
-#: code:addons/purchase_add_products_from_bom/wizard/add_products_from_bom.py:330
+#: code:addons/purchase_add_products_from_bom/wizard/add_products_from_bom.py:329
 #, python-format
 msgid "Select one of the BoMs."
 msgstr "Selecione uma das LdM"
@@ -234,3 +240,5 @@ msgstr "Preço Unitário"
 msgid "Unit of Measure"
 msgstr "Unidade de Medida"
 
+#~ msgid "Purchase Order Line"
+#~ msgstr "Linha de Pedido de Compra"
