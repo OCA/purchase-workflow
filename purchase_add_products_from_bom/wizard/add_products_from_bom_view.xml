@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="add_products_from_bom_wizard_view" model="ir.ui.view">
+        <field name="name">Add Products From BoM</field>
+        <field name="model">add.products.from.bom</field>
+        <field name="arch" type="xml">
+            <form string="Add Products From BoM">
+                <group>
+                    <group>
+                        <field name="product_id" options="{'no_create':True,'no_open':True}" domain="[('bom_count', '!=', 0)]"/>
+                        <field name="bom_ids" invisible="1"/>
+                        <field name="bom_id" domain="[('id', 'in', bom_ids)]" options="{'no_create':True,'no_open':True}" required="True" />
+                        <label for="product_qty"/>
+                        <div class="o_row">
+                                <field name="product_qty" class="oe_inline" />
+                                <field name="product_uom_id" readonly="1" class="oe_inline" options="{'no_create':True,'no_open':True}"/>
+                            <div class="oe_right">
+                                <button name="button_get_products_from_bom" type="object" string="Get Products from BoM" class="btn-primary" />
+                            </div>
+                        </div>
+                        <!-- field currency should be here to filled Monetary Symbol in price unit -->
+                        <field name="currency_id" invisible="1" />
+                    </group>
+
+                </group>
+                <group>
+                    <field name="raw_product_line_ids" nolabel="1">
+                        <tree editable="top" decoration-danger="product_qty_stock &lt;= 0" decoration-bf="exploded_product==True" create="0" delete="0">
+                            <field name="selected_product" attrs="{'readonly': [('exploded_product', '=', True)]}" />
+                            <field name="has_bom" invisible="1" />
+                            <field name="product_id" required="1" readonly="1" domain="[('id', '!=', parent.product_id)]" options="{'no_open': True, 'no_create': True}" />
+                            <field name="orig_bom_product_id" options="{'no_open': True, 'no_create': True}" />
+                            <field name="bom_ids" invisible="1"/>
+                            <field name="bom_id" domain="[('id', 'in', bom_ids)]" attrs="{'readonly': [('exploded_product', '=', True)]}" options="{'no_create':True,'no_open':True}" />
+                            <button
+                                    name="add_products_from_bom"
+                                    string="Add Products from BoM"
+                                    class="oe_highlight"
+                                    type="object"
+                                    attrs="{'invisible': [('has_bom', '!=', True)]}"
+                            />
+                            <field name="exploded_product" readonly="1" />
+                            <button
+                                    name="return_finished_products_from_bom"
+                                    string="Return Products from BoM"
+                                    class="oe_highlight"
+                                    type="object"
+                                    attrs="{'invisible': [('exploded_product', '!=', True), ('parent.product_id', '!=', 'orig_bom_product_id')]}"
+                            />
+                            <field name="product_uom_id" readonly="1" options="{'no_open': True}" />
+                            <field name="product_qty" attrs="{'readonly': [('exploded_product', '=', True)]}" options="{'no_open': True}" />
+                            <field name="purchase_uom_id" readonly="1" />
+                            <!-- field currency should be here to filled Monetary Symbol in price unit -->
+                            <field name="currency_id" invisible="1"  options="{'no_open': True}" />
+                            <field name="price_unit" attrs="{'readonly': [('exploded_product', '=', True)]}" />
+                            <field name="total_product_value" />
+                            <field name="product_qty_stock" />
+                            <field name="product_qty_after_buy" />
+                        </tree>
+                    </field>
+                </group>
+                <footer>
+                    <button name="add_products" type="object" string="Add Products" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="add_products_from_bom_act_window" model="ir.actions.act_window">
+        <field name="name">Add Products From BoM</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">add.products.from.bom</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="context">{}</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>
