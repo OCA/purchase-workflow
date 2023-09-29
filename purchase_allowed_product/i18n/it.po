@@ -1,0 +1,114 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * purchase_allowed_product
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-01 02:48+0000\n"
+"PO-Revision-Date: 2023-01-02 12:48+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
+
+#. module: purchase_allowed_product
+#: model:ir.model,name:purchase_allowed_product.model_res_partner
+msgid "Contact"
+msgstr "Contatto"
+
+#. module: purchase_allowed_product
+#: model:ir.model.fields,help:purchase_allowed_product.field_res_partner__use_only_supplied_product
+#: model:ir.model.fields,help:purchase_allowed_product.field_res_users__use_only_supplied_product
+msgid ""
+"If checked, by default you will only be able to select products that can be "
+"supplied by this supplier when creating a supplier invoice or purchase for "
+"it. This value can be changed by invoice or purchase."
+msgstr ""
+"Se abilitato, l'utente può solo selezionare prodotti che possono essere "
+"venduti da questo fornitore quando si crea un ordine di acquisto o una "
+"fattura fornitore. Può essere attivato o disattivato a livello di ordine o "
+"di fattura."
+
+#. module: purchase_allowed_product
+#: model:ir.model.fields,help:purchase_allowed_product.field_account_bank_statement_line__use_only_supplied_product
+#: model:ir.model.fields,help:purchase_allowed_product.field_account_move__use_only_supplied_product
+#: model:ir.model.fields,help:purchase_allowed_product.field_account_payment__use_only_supplied_product
+#: model:ir.model.fields,help:purchase_allowed_product.field_purchase_order__use_only_supplied_product
+#: model:ir.model.fields,help:purchase_allowed_product.field_supplied_product_mixin__use_only_supplied_product
+msgid "If checked, only the products provided by this supplier will be shown."
+msgstr ""
+"Se abilitato, solo i prodotti venduti da questo fornitore verranno mostrati."
+
+#. module: purchase_allowed_product
+#: model:ir.model,name:purchase_allowed_product.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: purchase_allowed_product
+#: model:ir.model,name:purchase_allowed_product.model_supplied_product_mixin
+msgid "Mixin for documents that want to restrict products"
+msgstr "Mixin per documenti che devono avere una restrizione sui prodotti"
+
+#. module: purchase_allowed_product
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_product_supplierinfo__name
+msgid "Name"
+msgstr ""
+
+#. module: purchase_allowed_product
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_res_partner__use_only_supplied_product
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_res_users__use_only_supplied_product
+msgid "Order and invoice only supplied products"
+msgstr "Ordina e fattura solo prodotti venduti"
+
+#. module: purchase_allowed_product
+#: model:ir.model,name:purchase_allowed_product.model_product_product
+msgid "Product Variant"
+msgstr ""
+
+#. module: purchase_allowed_product
+#: model:ir.model,name:purchase_allowed_product.model_purchase_order
+msgid "Purchase Order"
+msgstr "Ordine di acquisto"
+
+#. module: purchase_allowed_product
+#: model:ir.model,name:purchase_allowed_product.model_product_supplierinfo
+msgid "Supplier Pricelist"
+msgstr "Listino prezzi fornitore"
+
+#. module: purchase_allowed_product
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_account_bank_statement_line__use_only_supplied_product
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_account_move__use_only_supplied_product
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_account_payment__use_only_supplied_product
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_purchase_order__use_only_supplied_product
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_supplied_product_mixin__use_only_supplied_product
+msgid "Use only allowed products"
+msgstr "Mostra solo prodotti venduti dal fornitore"
+
+#~ msgid "Display Name"
+#~ msgstr "Nome da visualizzare"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Invoice"
+#~ msgstr "Fattura"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
+
+#~ msgid "Product"
+#~ msgstr "Prodotto"
+
+#~ msgid "Vendor"
+#~ msgstr "Fornitore"
+
+#~ msgid "Vendor of this product"
+#~ msgstr "Fornitore di questo prodotto"

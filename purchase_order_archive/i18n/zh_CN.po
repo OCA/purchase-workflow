@@ -1,0 +1,40 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_order_archive
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2020-03-23 13:13+0000\n"
+"Last-Translator: Dong <dong@freshoo.cn>\n"
+"Language-Team: none\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.10\n"
+
+#. module: purchase_order_archive
+#: model:ir.model.fields,field_description:purchase_order_archive.field_purchase_order__active
+msgid "Active"
+msgstr "有效"
+
+#. module: purchase_order_archive
+#: model_terms:ir.ui.view,arch_db:purchase_order_archive.purchase_order_archive_form
+#: model_terms:ir.ui.view,arch_db:purchase_order_archive.view_purchase_order_archive_filter
+msgid "Archived"
+msgstr "已归档"
+
+#. module: purchase_order_archive
+#. odoo-python
+#: code:addons/purchase_order_archive/models/purchase_order.py:0
+#, python-format
+msgid "Only 'Locked' or 'Canceled' orders can be archived"
+msgstr "只允许“已锁定”或“已取消”的订单归档"
+
+#. module: purchase_order_archive
+#: model:ir.model,name:purchase_order_archive.model_purchase_order
+msgid "Purchase Order"
+msgstr "采购订单"

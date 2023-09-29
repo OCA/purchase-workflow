@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2019-2020 ForgeFlow S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_purchase_request_form_inherit_tier" model="ir.ui.view">
+        <field name="name">purchase.request.tier.validation.form</field>
+        <field name="model">purchase.request</field>
+        <field name="inherit_id" ref="purchase_request.view_purchase_request_form" />
+        <field name="arch" type="xml">
+            <button name="button_approved" position="attributes">
+                <attribute name="states">draft</attribute>
+                <attribute name="string">Confirm</attribute>
+            </button>
+            <button name="button_to_approve" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </button>
+            <field name="state" position="attributes">
+                <attribute
+                    name="statusbar_visible"
+                >draft,approved,done,rejected</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_purchase_request_filter" model="ir.ui.view">
+        <field
+            name="name"
+        >purchase.request.select - purchase_request_tier_validation</field>
+        <field name="model">purchase.request</field>
+        <field name="inherit_id" ref="purchase_request.view_purchase_request_search" />
+        <field name="arch" type="xml">
+            <search position="inside">
+                <group expand="0" string="Need actions">
+                    <filter
+                        name="needs_review"
+                        string="Needs my Review"
+                        domain="[('reviewer_ids','in',uid), ('state', 'not in', ['done', 'cancel'])]"
+                        help="My Purchases to review"
+                    />
+                    <filter
+                        name="tier_validated"
+                        string="Validated"
+                        domain="[('validated', '=', True)]"
+                        help="Purchase Requests validated and ready to be confirmed"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+</odoo>

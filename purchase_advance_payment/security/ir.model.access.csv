@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_payment_purchase_advance,account.payment purchase_advance,account.model_account_payment,purchase.group_purchase_user,1,1,1,0
+access_account_payment_method_purchase_advance,account.payment.method purchase_advance,account.model_account_payment_method,purchase.group_purchase_user,1,0,0,0
+access_account_voucher_wizard_purchase_advance,access_account_voucher_wizard_purchase_advance,model_account_voucher_wizard_purchase,purchase.group_purchase_user,1,1,1,0

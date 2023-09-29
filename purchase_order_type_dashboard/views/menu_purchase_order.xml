@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="purchase_order_type_dashboard_action" model="ir.actions.act_window">
+        <field name="name">Dashboard</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">purchase.order.type</field>
+        <field name="view_mode">kanban,tree,form,pivot</field>
+    </record>
+
+    <menuitem
+        id="purchase_order_dashboard_menu"
+        name="Dashboard"
+        parent="purchase.menu_purchase_root"
+        action="purchase_order_type_dashboard_action"
+        sequence="0"
+    />
+</odoo>
