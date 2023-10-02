@@ -4,7 +4,7 @@
 {
     "name": "Purchase Invoice New Picking Line",
     "summary": "When creating an invoice from incoming picking, also adds invoice lines for product that were not in the purchase order",
-    "version": "14.0.1.0.0",
+    "version": "15.0.1.0.0",
     "author": "Coop IT Easy SCRLfs, Odoo Community Association (OCA)",
     "category": "Purchase",
     "license": "AGPL-3",
