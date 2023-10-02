@@ -9,7 +9,6 @@ from odoo.tools.float_utils import float_compare
 class AccountInvoice(models.Model):
     _inherit = "account.invoice"
 
-    @api.multi
     def _get_move_account_id(self, move):
         self.ensure_one()
         invoice_line_obj = self.env["account.invoice.line"]
@@ -17,7 +16,7 @@ class AccountInvoice(models.Model):
             "in_invoice",
             move.product_id,
             self.partner_id.property_account_position_id,
-            self.env.user.company_id,
+            self.env.company,
         )
         if account:
             account_id = account.id
@@ -27,7 +26,6 @@ class AccountInvoice(models.Model):
             )._default_account()
         return account_id
 
-    @api.multi
     def _prepare_invoice_line_from_move(self, move):
         self.ensure_one()
         qty = move.quantity_done
