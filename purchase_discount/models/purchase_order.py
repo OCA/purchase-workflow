@@ -65,6 +65,8 @@ class PurchaseOrderLine(models.Model):
         HACK: This is needed while https://github.com/odoo/odoo/pull/29983
         is not merged.
         """
+        if hasattr(self.env, "ocb"):
+            return super()._get_stock_move_price_unit()
         # Use 'skip_update_price_unit' context key to avoid infinite
         # recursion. Updating the price_unit field here triggers the
         # 'write' method of 'purchase.order.line' in stock_account
