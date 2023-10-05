@@ -34,7 +34,7 @@ addon | version | maintainers | summary
 [purchase_delivery_split_date](purchase_delivery_split_date/) | 15.0.1.0.0 |  | Allows Purchase Order you confirm to generate one Incoming Shipment for each expected date indicated in the Purchase Order Lines
 [purchase_deposit](purchase_deposit/) | 15.0.1.1.0 |  | Option to create deposit from purchase order
 [purchase_deposit_analytic](purchase_deposit_analytic/) | 15.0.1.0.0 | [![Saran440](https://github.com/Saran440.png?size=30px)](https://github.com/Saran440) | Add analytic on wizard register deposit
-[purchase_discount](purchase_discount/) | 15.0.1.2.0 |  | Purchase order lines with discounts
+[purchase_discount](purchase_discount/) | 15.0.1.2.1 |  | Purchase order lines with discounts
 [purchase_exception](purchase_exception/) | 15.0.1.0.0 |  | Custom exceptions on purchase order
 [purchase_fop_shipping](purchase_fop_shipping/) | 15.0.1.0.0 |  | Purchase Free-Of-Payment shipping
 [purchase_force_invoiced](purchase_force_invoiced/) | 15.0.1.0.1 |  | Allows to force the billing status of the purchase order to "Invoiced"
