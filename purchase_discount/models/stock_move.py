@@ -20,6 +20,8 @@ class StockMove(models.Model):
         HACK: This is needed while https://github.com/odoo/odoo/pull/29983
         is not merged.
         """
+        if hasattr(self.env, "ocb"):
+            return super()._get_price_unit()
         price_unit = False
         po_line = self.purchase_line_id
         if po_line and self.product_id == po_line.product_id:
