@@ -1,0 +1,41 @@
+<odoo>
+    <record id="product_supplierinfo_form_view" model="ir.ui.view">
+        <field name="model">product.supplierinfo</field>
+        <field name="inherit_id" ref="product.product_supplierinfo_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/group[1]" position="after">
+                <group invisible="not context.get('update_from_po_id', False)">
+                    <label for="ignore_create_from_po" />
+                    <div>
+                        <field name="ignore_create_from_po" />
+                    </div>
+                </group>
+            </xpath>
+            <xpath expr="//sheet" position="after">
+                <footer
+                    invisible="not context.get('update_from_po_id', False) and not context.get('update_from_po_line_id', False)"
+                >
+                    <button
+                        name="update_from_purchase"
+                        string="Confirm"
+                        type="object"
+                        class="btn-primary"
+                        invisible="not context.get('update_from_po_id', False)"
+                    />
+                    <button
+                        string="Confirm"
+                        class="btn-primary"
+                        special="save"
+                        invisible="not context.get('update_from_po_line_id', False)"
+                    />
+                    <button
+                        name="cancel"
+                        string="Cancel"
+                        class="btn-secondary"
+                        special="cancel"
+                    />
+                </footer>
+            </xpath>
+        </field>
+    </record>
+</odoo>

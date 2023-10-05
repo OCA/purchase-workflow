@@ -1,0 +1,33 @@
+<odoo>
+
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <field name="all_supplierinfo_ok" invisible="True" />
+                <button
+                    name="update_supplierinfo"
+                    type="object"
+                    string="Update supplierinfo"
+                    class="oe_highlight"
+                    attrs="{'invisible': ['|', ('state', 'not in', ('purchase', 'done')), ('all_supplierinfo_ok', '!=', False)]}"
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']//tree/field[@name='sequence']"
+                position="after"
+            >
+                <field name="supplierinfo_ok" invisible="True" />
+                <button
+                    name="create_missing_supplierinfo"
+                    type="object"
+                    icon="fa-th"
+                    attrs="{'invisible': ['|', ('state', 'not in', ('purchase', 'done')), ('supplierinfo_ok', '!=', False)]}"
+                    title="Update supplierinfo"
+                />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
