@@ -3,7 +3,7 @@
 {
     "name": "Purchase Order Weight and Volume",
     "summary": """Display purchase order weight and volume""",
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.1.0",
     "author": "Ilyas, Ooops404, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
     "category": "Purchase Management",
