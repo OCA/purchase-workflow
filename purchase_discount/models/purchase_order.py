@@ -65,6 +65,8 @@ class PurchaseOrderLine(models.Model):
         HACK: This is needed while https://github.com/odoo/odoo/pull/29983
         is not merged.
         """
+        if hasattr(self.env, "ocb"):
+            return super()._get_stock_move_price_unit()
         bypass_price_unit = self.env.context.get("bypass_override_price_unit")
         price_unit = False
         price = self._get_discounted_price_unit()
