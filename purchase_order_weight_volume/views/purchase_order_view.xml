@@ -10,16 +10,16 @@
                 expr="//field[@name='order_line']//tree//field[@name='price_unit']"
                 position="before"
             >
-                <field name="line_weight" optional="show" />
-                <field name="line_volume" optional="show" />
+                <field name="line_weight" optional="hide" />
+                <field name="line_volume" optional="hide" />
             </xpath>
-            <field name="fiscal_position_id" position="after">
+            <xpath expr="//field[@name='tax_totals']" position="after">
                 <label
                     for="total_weight"
                     attrs="{'invisible':[('weight_uom_name', '=', '')]}"
                 />
                 <div
-                    name="total_weight"
+                    class="text-nowrap"
                     attrs="{'invisible':[('weight_uom_name', '=', '')]}"
                 >
                     <field name="total_weight" class="oe_inline" />
@@ -33,15 +33,17 @@
                     attrs="{'invisible':[('volume_uom_name', '=', '')]}"
                 />
                 <div
-                    name="total_volume"
+                    class="text-nowrap"
                     attrs="{'invisible':[('volume_uom_name', '=', '')]}"
                 >
-                    <field name="total_volume" string="Volume" class="oe_inline" />
+                    <field name="total_volume" class="oe_inline" />
                     <span style="margin-left:3px;"><field
                             name="volume_uom_name"
                             class="oe_inline"
                         /></span>
                 </div>
+            </xpath>
+            <field name="fiscal_position_id" position="after">
                 <field name="display_total_weight_in_report" />
                 <field name="display_total_volume_in_report" />
             </field>
