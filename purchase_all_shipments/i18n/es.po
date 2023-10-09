@@ -24,7 +24,7 @@ msgid "All Pickings"
 msgstr "Recepciones (todas)"
 
 #. module: purchase_all_shipments
-#: model:ir.model.fields,field_description:purchase_all_shipments.field_purchase_order__all_shipment_count
+#: model:ir.model.fields,field_description:purchase_all_shipments.field_purchase_order__all_picking_count
 msgid "All Pickings Count"
 msgstr "Contador de todas las recepciones"
 
