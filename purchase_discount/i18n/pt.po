@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* purchase_discount
+# 	* purchase_discount
 #
 msgid ""
 msgstr ""
@@ -87,7 +87,9 @@ msgstr "Lista de Preços de Fornecedor"
 #. module: purchase_discount
 #: model:ir.model.fields,help:purchase_discount.field_res_partner__default_supplierinfo_discount
 #: model:ir.model.fields,help:purchase_discount.field_res_users__default_supplierinfo_discount
-msgid "This value will be used as the default one, for each new supplierinfo line depending on that supplier."
+msgid ""
+"This value will be used as the default one, for each new supplierinfo line "
+"depending on that supplier."
 msgstr ""
 "Este valor será usado como predefinição para cada nova linha de info de "
 "fornecedor, dependendo do fornecedor."
