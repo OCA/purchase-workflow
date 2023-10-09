@@ -20,6 +20,24 @@ msgstr ""
 "2:1));\n"
 
 #. module: product_supplier_code_purchase
+#: model:ir.model.fields,field_description:product_supplier_code_purchase.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:product_supplier_code_purchase.field_purchase_order_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: product_supplier_code_purchase
+#: model:ir.model.fields,field_description:product_supplier_code_purchase.field_purchase_order__id
+#: model:ir.model.fields,field_description:product_supplier_code_purchase.field_purchase_order_line__id
+msgid "ID"
+msgstr ""
+
+#. module: product_supplier_code_purchase
+#: model:ir.model.fields,field_description:product_supplier_code_purchase.field_purchase_order____last_update
+#: model:ir.model.fields,field_description:product_supplier_code_purchase.field_purchase_order_line____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: product_supplier_code_purchase
 #: model:ir.model.fields,field_description:product_supplier_code_purchase.field_purchase_order_line__product_supplier_code
 msgid "Product Supplier Code"
 msgstr ""
