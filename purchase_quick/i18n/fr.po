@@ -35,6 +35,14 @@ msgid "For current supplier"
 msgstr "Ce Fournisseur"
 
 #. module: purchase_quick
+#: code:addons/purchase_quick/models/purchase_order.py:0
+#, python-format
+msgid ""
+"Must have only 1 line per product for mass addition, but there are {} lines "
+"for the product {}"
+msgstr ""
+
+#. module: purchase_quick
 #: model_terms:ir.ui.view,arch_db:purchase_quick.product_tree_view4purchase
 msgid "Open"
 msgstr "Ouvrir"
@@ -50,16 +58,10 @@ msgid "Product"
 msgstr "Article"
 
 #. module: purchase_quick
-#: code:addons/purchase_quick/models/purchase_order.py:25
+#: code:addons/purchase_quick/models/purchase_order.py:0
 #, fuzzy, python-format
 msgid "Product Variants"
 msgstr "Articles"
-
-#. module: purchase_quick
-#: model_terms:ir.ui.view,arch_db:purchase_quick.product_tree_view4purchase
-#, fuzzy
-msgid "Products for purchase"
-msgstr "Qté à acheter"
 
 #. module: purchase_quick
 #: model:ir.model,name:purchase_quick.model_purchase_order
@@ -67,14 +69,28 @@ msgid "Purchase Order"
 msgstr "Bon de commande"
 
 #. module: purchase_quick
+#: model:ir.model.fields,field_description:purchase_quick.field_product_product__seller_price
+msgid "Seller Price"
+msgstr ""
+
+#. module: purchase_quick
 #: model:ir.model.fields,help:purchase_quick.field_product_product__po_line_ids
 msgid "Technical: used to compute quantities to purchase."
 msgstr "Technique : utilisé pour calculer les quantités à acheter."
 
 #. module: purchase_quick
+#: model_terms:ir.ui.view,arch_db:purchase_quick.product_tree_view4purchase
+msgid "UoM"
+msgstr ""
+
+#. module: purchase_quick
 #: model:ir.model.fields,field_description:purchase_quick.field_product_product__variant_specific_seller_ids
 msgid "Variant Specific Seller"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Products for purchase"
+#~ msgstr "Qté à acheter"
 
 #~ msgid "Add product"
 #~ msgstr "Ajouter des articles"
