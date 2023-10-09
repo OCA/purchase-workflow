@@ -98,14 +98,13 @@ msgid "Name"
 msgstr "Nom"
 
 #. module: purchase_order_approval_block
-#: code:addons/purchase_order_approval_block/models/purchase_order.py:44
+#: code:addons/purchase_order_approval_block/models/purchase_order.py:0
 #, python-format
 msgid "Order \"%s\" approval block released."
 msgstr "Suppression du blocage de l'approbation de la commande \"%s\"."
 
 #. module: purchase_order_approval_block
-#: code:addons/purchase_order_approval_block/models/purchase_order.py:29
-#: code:addons/purchase_order_approval_block/models/purchase_order.py:40
+#: code:addons/purchase_order_approval_block/models/purchase_order.py:0
 #, python-format
 msgid "Order \"%s\" blocked with reason \"%s\""
 msgstr "Commande \"%s\" bloquée pour le motif \"%s\""
@@ -132,6 +131,11 @@ msgid "Purchase Order Approval Block Reasons"
 msgstr "Motifs de blocage d'une approbation de commande d'achat"
 
 #. module: purchase_order_approval_block
+#: model:ir.model,name:purchase_order_approval_block.model_purchase_exception_confirm
+msgid "Purchase exception wizard"
+msgstr ""
+
+#. module: purchase_order_approval_block
 #: model_terms:ir.ui.view,arch_db:purchase_order_approval_block.purchase_order_form
 msgid "Release Approval Block"
 msgstr "Supprimer le motif de blocage"
@@ -148,10 +152,8 @@ msgid ""
 "                with a Blocking reason."
 msgstr "L'approbation a été bloquée, à cause d'un motif de blocage."
 
-#. module: purchase_order_approval_block
-#: model:ir.model,name:purchase_order_approval_block.model_purchase_exception_confirm
-msgid "purchase.exception.confirm"
-msgstr "purchase.exception.confirm"
+#~ msgid "purchase.exception.confirm"
+#~ msgstr "purchase.exception.confirm"
 
 #~ msgid "purchase.approval.block.reason"
 #~ msgstr "purchase.approval.block.reason"
