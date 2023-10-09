@@ -74,6 +74,7 @@ msgid "Purchase Order"
 msgstr "Pedido de Compra"
 
 #. module: purchase_fop_shipping
+#. odoo-python
 #: code:addons/purchase_fop_shipping/models/purchase.py:0
 #, python-format
 msgid ""
