@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* purchase_manual_delivery
+# 	* purchase_manual_delivery
 #
 msgid ""
 msgstr ""
@@ -208,14 +208,18 @@ msgstr "Postavke nabavnih nalogov"
 
 #. module: purchase_manual_delivery
 #: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.view_purchase_order_unreceived_line_filter
-msgid "Purchase Order Lines that are confirmed or done and an incoming shipment is created to satisfy them"
+msgid ""
+"Purchase Order Lines that are confirmed or done and an incoming shipment is "
+"created to satisfy them"
 msgstr ""
 "Postavke nabavnega naloga, ki so potrjene ali opravljene in je za njih bila "
 "ustvarjena prejemnica"
 
 #. module: purchase_manual_delivery
 #: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.view_purchase_order_unreceived_line_filter
-msgid "Purchase Order Lines that are confirmed or done and no incoming shipment is created to satisfy them"
+msgid ""
+"Purchase Order Lines that are confirmed or done and no incoming shipment is "
+"created to satisfy them"
 msgstr ""
 "Postavke nabavnega naloga, ki so potrjene ali opravljene in še nimajo "
 "ustvarjene prejemnice"
@@ -260,7 +264,9 @@ msgstr "Načrtovani datum"
 
 #. module: purchase_manual_delivery
 #: model:ir.model.fields,help:purchase_manual_delivery.field_create_stock_picking_wizard__scheduled_date
-msgid "Scheduled time for the first part of the shipment to be processed. Setting manually a value here would set it as expected date for all the stock moves."
+msgid ""
+"Scheduled time for the first part of the shipment to be processed. Setting "
+"manually a value here would set it as expected date for all the stock moves."
 msgstr ""
 "Načrtovani čas za prvi del dobave za obdelavo. Ročna nastavitev vrednosti na "
 "tem mestu ga nastavi kot pričakovani datum za vse premike zaloge."
@@ -323,7 +329,9 @@ msgstr ""
 #. module: purchase_manual_delivery
 #: code:addons/purchase_manual_delivery/wizard/create_manual_stock_picking.py:136
 #, python-format
-msgid "You can not receive more than the remaining quantity. If you need to do so, please edit the purchase order first."
+msgid ""
+"You can not receive more than the remaining quantity. If you need to do so, "
+"please edit the purchase order first."
 msgstr ""
 "Ne morete prejeti več, kot je preostala količina. Če je to potrebno uredite "
 "popravite nabavni nalog."
