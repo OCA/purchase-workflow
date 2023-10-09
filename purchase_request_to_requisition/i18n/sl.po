@@ -22,8 +22,8 @@ msgstr ""
 #. module: purchase_request_to_requisition
 #: code:addons/purchase_request_to_requisition/models/purchase_requisition.py:0
 #, python-format
-msgid "<li><b>%s</b>: Total bid quantity %s %s</li>"
-msgstr "<li><b>%s</b>: Skupna ponudbena količina %s %s</li>"
+msgid "<li><b>{}</b>: Total bid quantity {} {}</li>"
+msgstr ""
 
 #. module: purchase_request_to_requisition
 #: model_terms:ir.ui.view,arch_db:purchase_request_to_requisition.purchase_request_line_search
@@ -58,8 +58,8 @@ msgstr "Ponudba dokončana"
 #. module: purchase_request_to_requisition
 #: code:addons/purchase_request_to_requisition/models/purchase_requisition.py:0
 #, python-format
-msgid "Bid confirmation %s for your Request %s"
-msgstr "Potrditev ponudbe %s za vašo zahtevo %s"
+msgid "Bid confirmation {} for your Request {}"
+msgstr ""
 
 #. module: purchase_request_to_requisition
 #: model_terms:ir.ui.view,arch_db:purchase_request_to_requisition.view_purchase_request_line_make_purchase_requisition
@@ -91,18 +91,8 @@ msgid "Description"
 msgstr "Opis"
 
 #. module: purchase_request_to_requisition
-#: model_terms:ir.ui.view,arch_db:purchase_request_to_requisition.view_purchase_request_line_make_purchase_requisition
-msgid "Details"
-msgstr "Podrobnosti"
-
-#. module: purchase_request_to_requisition
-#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_product_template__display_name
-#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request__display_name
-#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line__display_name
 #: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition__display_name
 #: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition_item__display_name
-#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_requisition__display_name
-#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_requisition_line__display_name
 msgid "Display Name"
 msgstr "Prikazni naziv"
 
@@ -124,13 +114,8 @@ msgid "Has Purchase Request Lines"
 msgstr "Vsebuje postavke nabavne zahteve"
 
 #. module: purchase_request_to_requisition
-#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_product_template__id
-#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request__id
-#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line__id
 #: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition__id
 #: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition_item__id
-#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_requisition__id
-#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_requisition_line__id
 msgid "ID"
 msgstr "ID"
 
@@ -145,13 +130,8 @@ msgid "Items"
 msgstr "Predmeti"
 
 #. module: purchase_request_to_requisition
-#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_product_template____last_update
-#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request____last_update
-#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line____last_update
 #: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition____last_update
 #: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition_item____last_update
-#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_requisition____last_update
-#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_requisition_line____last_update
 msgid "Last Modified on"
 msgstr "Zadnjič spremenjeno"
 
@@ -218,6 +198,7 @@ msgstr "Zahteva po nabavi"
 #. module: purchase_request_to_requisition
 #: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line__requisition_lines
 #: model_terms:ir.ui.view,arch_db:purchase_request_to_requisition.purchase_request_line_form
+#: model_terms:ir.ui.view,arch_db:purchase_request_to_requisition.view_purchase_request_line_details
 #, fuzzy
 msgid "Purchase Agreement Lines"
 msgstr "Postavke nabavne zahteve"
@@ -297,11 +278,6 @@ msgid "Requisition Count"
 msgstr "Postavke zahtevka"
 
 #. module: purchase_request_to_requisition
-#: model_terms:ir.ui.view,arch_db:purchase_request_to_requisition.view_purchase_request_form
-msgid "Requisition Lines"
-msgstr "Postavke zahtevka"
-
-#. module: purchase_request_to_requisition
 #: model_terms:ir.ui.view,arch_db:purchase_request_to_requisition.purchase_request_line_search
 msgid "Requisition Status"
 msgstr "Status zahtevka"
@@ -315,11 +291,9 @@ msgstr ""
 #: code:addons/purchase_request_to_requisition/models/purchase_requisition.py:0
 #, python-format
 msgid ""
-"The following requested items from Purchase Request %s have now being sent "
-"to Suppliers using Purchase Bid %s:"
+"The following requested items from Purchase Request {} have now being sent "
+"to Suppliers using Purchase Bid {}:"
 msgstr ""
-"Naslednji zahtevani predmeti iz nabavne zahteve %s so bili odposlani "
-"dobaviteljem preko nabavne ponudbe %s:"
 
 #. module: purchase_request_to_requisition
 #: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition_item__product_uom_id
@@ -348,6 +322,28 @@ msgstr "Izbrati morate postavke za isto družbo."
 #, python-format
 msgid "You have to select lines from the same picking type."
 msgstr "Izbrati morate postavke za isti tip zbirnika."
+
+#, python-format
+#~ msgid "<li><b>%s</b>: Total bid quantity %s %s</li>"
+#~ msgstr "<li><b>%s</b>: Skupna ponudbena količina %s %s</li>"
+
+#, python-format
+#~ msgid "Bid confirmation %s for your Request %s"
+#~ msgstr "Potrditev ponudbe %s za vašo zahtevo %s"
+
+#~ msgid "Details"
+#~ msgstr "Podrobnosti"
+
+#~ msgid "Requisition Lines"
+#~ msgstr "Postavke zahtevka"
+
+#, python-format
+#~ msgid ""
+#~ "The following requested items from Purchase Request %s have now being "
+#~ "sent to Suppliers using Purchase Bid %s:"
+#~ msgstr ""
+#~ "Naslednji zahtevani predmeti iz nabavne zahteve %s so bili odposlani "
+#~ "dobaviteljem preko nabavne ponudbe %s:"
 
 #~ msgid "Create Call for Bids"
 #~ msgstr "Ustvari razpis za ponudbe"
