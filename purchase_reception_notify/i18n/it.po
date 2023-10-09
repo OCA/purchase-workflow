@@ -19,8 +19,9 @@ msgstr ""
 #. module: purchase_reception_notify
 #: code:addons/purchase_reception_notify/models/stock_picking.py:0
 #, python-format
-msgid "<li><b>%s</b>: Received quantity %s %s</li>"
-msgstr "<li><b>%s</b>: Quantità ricevuta %s %s</li>"
+msgid ""
+"<li><b>%(display_name)s</b>: Received quantity %(product_qty)s %(uom)s</li>"
+msgstr ""
 
 #. module: purchase_reception_notify
 #: model:mail.message.subtype,name:purchase_reception_notify.mt_purchase_reception
@@ -37,9 +38,14 @@ msgstr "Conferma di ricezione %s"
 #: code:addons/purchase_reception_notify/models/stock_picking.py:0
 #, python-format
 msgid "The following items have now been received in Incoming Shipment %s:"
-msgstr "I seguenti oggetti sono stati ricevuti nella spedizioni in ingresso %s:"
+msgstr ""
+"I seguenti oggetti sono stati ricevuti nella spedizioni in ingresso %s:"
 
 #. module: purchase_reception_notify
 #: model:ir.model,name:purchase_reception_notify.model_stock_picking
 msgid "Transfer"
 msgstr "Trasferimento"
+
+#, python-format
+#~ msgid "<li><b>%s</b>: Received quantity %s %s</li>"
+#~ msgstr "<li><b>%s</b>: Quantità ricevuta %s %s</li>"
