@@ -23,6 +23,21 @@ msgid "<li><b>%s</b>: Received quantity %s %s</li>"
 msgstr "<li><b>%s</b>: Quantità ricevuta %s %s</li>"
 
 #. module: purchase_reception_notify
+#: model:ir.model.fields,field_description:purchase_reception_notify.field_stock_picking__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: purchase_reception_notify
+#: model:ir.model.fields,field_description:purchase_reception_notify.field_stock_picking__id
+msgid "ID"
+msgstr ""
+
+#. module: purchase_reception_notify
+#: model:ir.model.fields,field_description:purchase_reception_notify.field_stock_picking____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: purchase_reception_notify
 #: model:mail.message.subtype,name:purchase_reception_notify.mt_purchase_reception
 msgid "Purchase Receptions"
 msgstr "Ricezioni Acquisti"
@@ -37,7 +52,8 @@ msgstr "Conferma di ricezione %s"
 #: code:addons/purchase_reception_notify/models/stock_picking.py:0
 #, python-format
 msgid "The following items have now been received in Incoming Shipment %s:"
-msgstr "I seguenti oggetti sono stati ricevuti nella spedizioni in ingresso %s:"
+msgstr ""
+"I seguenti oggetti sono stati ricevuti nella spedizioni in ingresso %s:"
 
 #. module: purchase_reception_notify
 #: model:ir.model,name:purchase_reception_notify.model_stock_picking

@@ -23,6 +23,21 @@ msgid "<li><b>%s</b>: Received quantity %s %s</li>"
 msgstr "<li><b>%s</b>：已收货数量 %s %s</li>"
 
 #. module: purchase_reception_notify
+#: model:ir.model.fields,field_description:purchase_reception_notify.field_stock_picking__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: purchase_reception_notify
+#: model:ir.model.fields,field_description:purchase_reception_notify.field_stock_picking__id
+msgid "ID"
+msgstr ""
+
+#. module: purchase_reception_notify
+#: model:ir.model.fields,field_description:purchase_reception_notify.field_stock_picking____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: purchase_reception_notify
 #: model:mail.message.subtype,name:purchase_reception_notify.mt_purchase_reception
 msgid "Purchase Receptions"
 msgstr "采购收货"
