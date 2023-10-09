@@ -19,6 +19,16 @@ msgstr ""
 
 #. module: purchase_stock_return_request
 #: model_terms:ir.ui.view,arch_db:purchase_stock_return_request.stock_move_lines_to_return_purchase_value
+msgid "<span>☐</span>"
+msgstr ""
+
+#. module: purchase_stock_return_request
+#: model_terms:ir.ui.view,arch_db:purchase_stock_return_request.stock_move_lines_to_return_purchase_value
+msgid "<span>☑</span>"
+msgstr ""
+
+#. module: purchase_stock_return_request
+#: model_terms:ir.ui.view,arch_db:purchase_stock_return_request.stock_move_lines_to_return_purchase_value
 msgid "<strong>Order Ref.</strong>"
 msgstr "<strong>Ref. Pedido</strong>"
 
