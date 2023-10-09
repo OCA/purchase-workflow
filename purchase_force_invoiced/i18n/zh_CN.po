@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* purchase_force_invoiced
+# 	* purchase_force_invoiced
 #
 msgid ""
 msgstr ""
@@ -33,5 +33,9 @@ msgstr "采购订单"
 
 #. module: purchase_force_invoiced
 #: model:ir.model.fields,help:purchase_force_invoiced.field_purchase_order__force_invoiced
-msgid "When you set this field, the purchase order will be considered as fully billed, even when there may be ordered or delivered quantities pending to bill."
-msgstr "设置此字段时，即使订单或已交付的数量待处理，也会将采购订单视为已完成开票。"
+msgid ""
+"When you set this field, the purchase order will be considered as fully "
+"billed, even when there may be ordered or delivered quantities pending to "
+"bill."
+msgstr ""
+"设置此字段时，即使订单或已交付的数量待处理，也会将采购订单视为已完成开票。"

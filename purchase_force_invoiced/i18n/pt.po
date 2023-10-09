@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* purchase_force_invoiced
+# 	* purchase_force_invoiced
 #
 msgid ""
 msgstr ""
@@ -33,7 +33,10 @@ msgstr "Encomenda de Compra"
 
 #. module: purchase_force_invoiced
 #: model:ir.model.fields,help:purchase_force_invoiced.field_purchase_order__force_invoiced
-msgid "When you set this field, the purchase order will be considered as fully billed, even when there may be ordered or delivered quantities pending to bill."
+msgid ""
+"When you set this field, the purchase order will be considered as fully "
+"billed, even when there may be ordered or delivered quantities pending to "
+"bill."
 msgstr ""
 "Quando define este campo, a encomenda de compra será considerada com "
 "completamente faturada, mesmo que haja quantidades encomendadas ou entregues "
