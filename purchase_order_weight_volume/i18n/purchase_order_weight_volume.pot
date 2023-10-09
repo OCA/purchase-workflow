@@ -91,7 +91,6 @@ msgstr ""
 
 #. module: purchase_order_weight_volume
 #: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order_line__line_volume
-#: model_terms:ir.ui.view,arch_db:purchase_order_weight_volume.purchase_order_form_inerit
 msgid "Volume"
 msgstr ""
 
