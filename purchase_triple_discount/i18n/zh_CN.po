@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* purchase_triple_discount
+# 	* purchase_triple_discount
 #
 msgid ""
 msgstr ""
@@ -95,5 +95,7 @@ msgstr "供应商价格表"
 #: model:ir.model.fields,help:purchase_triple_discount.field_res_partner__default_supplierinfo_discount3
 #: model:ir.model.fields,help:purchase_triple_discount.field_res_users__default_supplierinfo_discount2
 #: model:ir.model.fields,help:purchase_triple_discount.field_res_users__default_supplierinfo_discount3
-msgid "This value will be used as the default one, for each new supplierinfo line depending on that supplier."
+msgid ""
+"This value will be used as the default one, for each new supplierinfo line "
+"depending on that supplier."
 msgstr "根据供应商的不同，此值将用作每个新供应商信息行的默认值。"
