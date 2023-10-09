@@ -22,27 +22,9 @@ msgid "Can Review"
 msgstr "Puede Revisar"
 
 #. module: purchase_tier_validation
-#: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__display_name
-#: model:ir.model.fields,field_description:purchase_tier_validation.field_tier_definition__display_name
-msgid "Display Name"
-msgstr "Nombre a Mostrar"
-
-#. module: purchase_tier_validation
 #: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__has_comment
 msgid "Has Comment"
 msgstr "Tiene Comentario"
-
-#. module: purchase_tier_validation
-#: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__id
-#: model:ir.model.fields,field_description:purchase_tier_validation.field_tier_definition__id
-msgid "ID"
-msgstr "ID (identificación)"
-
-#. module: purchase_tier_validation
-#: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order____last_update
-#: model:ir.model.fields,field_description:purchase_tier_validation.field_tier_definition____last_update
-msgid "Last Modified on"
-msgstr "Última modificación el"
 
 #. module: purchase_tier_validation
 #: model_terms:ir.ui.view,arch_db:purchase_tier_validation.view_purchase_order_filter
@@ -80,6 +62,11 @@ msgid "Rejected"
 msgstr "Rechazada"
 
 #. module: purchase_tier_validation
+#: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__rejected_message
+msgid "Rejected Message"
+msgstr ""
+
+#. module: purchase_tier_validation
 #: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__reviewer_ids
 msgid "Reviewers"
 msgstr "Revisores"
@@ -90,15 +77,34 @@ msgid "Tier Definition"
 msgstr "Definición del nivel"
 
 #. module: purchase_tier_validation
+#: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__to_validate_message
+msgid "To Validate Message"
+msgstr ""
+
+#. module: purchase_tier_validation
 #: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__validated
 #: model_terms:ir.ui.view,arch_db:purchase_tier_validation.view_purchase_order_filter
 msgid "Validated"
 msgstr "Validada"
 
 #. module: purchase_tier_validation
+#: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__validated_message
+msgid "Validated Message"
+msgstr ""
+
+#. module: purchase_tier_validation
 #: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__review_ids
 msgid "Validations"
 msgstr "Validaciones"
+
+#~ msgid "Display Name"
+#~ msgstr "Nombre a Mostrar"
+
+#~ msgid "ID"
+#~ msgstr "ID (identificación)"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación el"
 
 #~ msgid ""
 #~ "<i class=\"fa fa-info-circle\"/>This PO needs to be\n"
