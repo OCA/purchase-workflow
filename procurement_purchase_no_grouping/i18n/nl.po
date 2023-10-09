@@ -54,7 +54,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:procurement_purchase_no_grouping.field_product_category__procured_purchase_grouping
 #: model:ir.model.fields,field_description:procurement_purchase_no_grouping.field_res_company__procured_purchase_grouping
 #: model:ir.model.fields,field_description:procurement_purchase_no_grouping.field_res_config_settings__procured_purchase_grouping
-msgid "Procured purchase grouping"
+msgid "Procured Purchase Grouping"
 msgstr ""
 
 #. module: procurement_purchase_no_grouping

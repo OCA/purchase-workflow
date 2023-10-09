@@ -60,8 +60,8 @@ msgstr "Sin agrupación de pedidos"
 #: model:ir.model.fields,field_description:procurement_purchase_no_grouping.field_product_category__procured_purchase_grouping
 #: model:ir.model.fields,field_description:procurement_purchase_no_grouping.field_res_company__procured_purchase_grouping
 #: model:ir.model.fields,field_description:procurement_purchase_no_grouping.field_res_config_settings__procured_purchase_grouping
-msgid "Procured purchase grouping"
-msgstr "Agrupación de la compra abastecida"
+msgid "Procured Purchase Grouping"
+msgstr ""
 
 #. module: procurement_purchase_no_grouping
 #: model_terms:ir.ui.view,arch_db:procurement_purchase_no_grouping.res_config_settings_view_form_procurement_purchase_grouping
@@ -166,3 +166,6 @@ msgstr "Agrupación estándar"
 #: model:ir.model,name:procurement_purchase_no_grouping.model_stock_rule
 msgid "Stock Rule"
 msgstr "Regla de inventario"
+
+#~ msgid "Procured purchase grouping"
+#~ msgstr "Agrupación de la compra abastecida"
