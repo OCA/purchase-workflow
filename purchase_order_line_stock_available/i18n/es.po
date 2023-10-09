@@ -18,6 +18,11 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 
 #. module: purchase_order_line_stock_available
+#: model:ir.model.fields,field_description:purchase_order_line_stock_available.field_purchase_order_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: purchase_order_line_stock_available
 #: model:ir.model.fields,field_description:purchase_order_line_stock_available.field_purchase_order_line__virtual_available
 msgid "Forecast Quantity"
 msgstr "Cantidad Prevista"
@@ -41,6 +46,16 @@ msgstr ""
 "de stock de ese almacén o en cualquier hijo suyo. \n"
 "En cualquiero otro caso, te añade las cantidades existentes en todas las "
 "ubicaciones de tipo interno."
+
+#. module: purchase_order_line_stock_available
+#: model:ir.model.fields,field_description:purchase_order_line_stock_available.field_purchase_order_line__id
+msgid "ID"
+msgstr ""
+
+#. module: purchase_order_line_stock_available
+#: model:ir.model.fields,field_description:purchase_order_line_stock_available.field_purchase_order_line____last_update
+msgid "Last Modified on"
+msgstr ""
 
 #. module: purchase_order_line_stock_available
 #: model:ir.model,name:purchase_order_line_stock_available.model_purchase_order_line
