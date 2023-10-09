@@ -17,6 +17,11 @@ msgstr ""
 "X-Generator: Weblate 4.14.1\n"
 
 #. module: purchase_reception_status
+#: model:ir.model.fields,field_description:purchase_reception_status.field_purchase_order__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: purchase_reception_status
 #: model:ir.model.fields,field_description:purchase_reception_status.field_purchase_order__force_received
 msgid "Force Received"
 msgstr "Forza Ricevuto"
@@ -28,15 +33,25 @@ msgid "Fully Received"
 msgstr "Ricevuto Completamente"
 
 #. module: purchase_reception_status
+#: model:ir.model.fields,field_description:purchase_reception_status.field_purchase_order__id
+msgid "ID"
+msgstr ""
+
+#. module: purchase_reception_status
 #: model:ir.model.fields,help:purchase_reception_status.field_purchase_order__force_received
 msgid ""
-"If true, the reception status will be forced to Fully Received, even if some"
-" lines are not fully received. To be able to modify this field, you must "
+"If true, the reception status will be forced to Fully Received, even if some "
+"lines are not fully received. To be able to modify this field, you must "
 "first lock the order."
 msgstr ""
 "Se vero, lo stato di ricezione sarà forzato a Completamente Ricevuto, anche "
 "se alcune righe non sono state completamente ricevute. Per essere in grado "
 "di modificare questo campo, devi prima aver bloccato l'ordine."
+
+#. module: purchase_reception_status
+#: model:ir.model.fields,field_description:purchase_reception_status.field_purchase_order____last_update
+msgid "Last Modified on"
+msgstr ""
 
 #. module: purchase_reception_status
 #: model_terms:ir.ui.view,arch_db:purchase_reception_status.view_purchase_order_filter

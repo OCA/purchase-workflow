@@ -38,8 +38,8 @@ msgstr ""
 #. module: purchase_reception_status
 #: model:ir.model.fields,help:purchase_reception_status.field_purchase_order__force_received
 msgid ""
-"If true, the reception status will be forced to Fully Received, even if some"
-" lines are not fully received. To be able to modify this field, you must "
+"If true, the reception status will be forced to Fully Received, even if some "
+"lines are not fully received. To be able to modify this field, you must "
 "first lock the order."
 msgstr ""
 
