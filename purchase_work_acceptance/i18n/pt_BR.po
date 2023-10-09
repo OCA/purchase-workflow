@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* purchase_work_acceptance
+# 	* purchase_work_acceptance
 #
 msgid ""
 msgstr ""
@@ -466,7 +466,8 @@ msgstr "Status"
 
 #. module: purchase_work_acceptance
 #: model:ir.model.fields,help:purchase_work_acceptance.field_work_acceptance__activity_state
-msgid "Status based on activities\n"
+msgid ""
+"Status based on activities\n"
 "Overdue: Due date is already passed\n"
 "Today: Activity date is today\n"
 "Planned: Future activities."
@@ -483,7 +484,9 @@ msgstr "Subtotal"
 
 #. module: purchase_work_acceptance
 #: model:ir.model.fields,help:purchase_work_acceptance.field_account_invoice__wa_id
-msgid "To control quantity and unit price of the vendor bill, to be according to the quantity and unit price of the work acceptance."
+msgid ""
+"To control quantity and unit price of the vendor bill, to be according to "
+"the quantity and unit price of the work acceptance."
 msgstr ""
 "Controlar a quantidade e o preço unitário da fatura do fornecedor, de acordo "
 "com a quantidade e o preço unitário da aceitação do trabalho."
@@ -506,7 +509,9 @@ msgstr "Transferir"
 #. module: purchase_work_acceptance
 #: code:addons/purchase_work_acceptance/models/work_acceptance.py:137
 #, python-format
-msgid "Unable set to draft this work acceptance. You must first cancel the related receipts."
+msgid ""
+"Unable set to draft this work acceptance. You must first cancel the related "
+"receipts."
 msgstr ""
 "Não foi possível definir esta aceitação de trabalho como rascunho. Você deve "
 "primeiro cancelar os recibos relacionados."
@@ -610,7 +615,8 @@ msgstr ""
 #. module: purchase_work_acceptance
 #: code:addons/purchase_work_acceptance/models/stock_picking.py:57
 #, python-format
-msgid "You cannot validate a transfer if done quantity not equal accepted quantity"
+msgid ""
+"You cannot validate a transfer if done quantity not equal accepted quantity"
 msgstr ""
 "Você não pode validar uma transferência se a quantidade realizada não for "
 "igual à quantidade aceita"
