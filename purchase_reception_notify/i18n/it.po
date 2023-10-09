@@ -37,7 +37,8 @@ msgstr "Conferma di ricezione %s"
 #: code:addons/purchase_reception_notify/models/stock_picking.py:0
 #, python-format
 msgid "The following items have now been received in Incoming Shipment %s:"
-msgstr "I seguenti oggetti sono stati ricevuti nella spedizioni in ingresso %s:"
+msgstr ""
+"I seguenti oggetti sono stati ricevuti nella spedizioni in ingresso %s:"
 
 #. module: purchase_reception_notify
 #: model:ir.model,name:purchase_reception_notify.model_stock_picking
