@@ -30,31 +30,31 @@ msgstr "Znesek postavke"
 
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
-msgid "Are you sure that you want to update product prices?"
-msgstr "Ste prepričani, da želite posodobiti cene proizvodov?"
+msgid "Are you sure that you want to set done state?"
+msgstr ""
 
 #. module: purchase_landed_cost
-#: selection:purchase.expense.type,calculation_method:0
+#: model:ir.model.fields.selection,name:purchase_landed_cost.selection__purchase_expense_type__calculation_method__amount
 msgid "By amount of the line"
 msgstr "Po znesku postavke"
 
 #. module: purchase_landed_cost
-#: selection:purchase.expense.type,calculation_method:0
+#: model:ir.model.fields.selection,name:purchase_landed_cost.selection__purchase_expense_type__calculation_method__price
 msgid "By product price"
 msgstr "Po ceni proizvoda"
 
 #. module: purchase_landed_cost
-#: selection:purchase.expense.type,calculation_method:0
+#: model:ir.model.fields.selection,name:purchase_landed_cost.selection__purchase_expense_type__calculation_method__qty
 msgid "By product quantity"
 msgstr "Po količini proizvoda"
 
 #. module: purchase_landed_cost
-#: selection:purchase.expense.type,calculation_method:0
+#: model:ir.model.fields.selection,name:purchase_landed_cost.selection__purchase_expense_type__calculation_method__volume
 msgid "By product volume"
 msgstr "Po prostornini proizvoda"
 
 #. module: purchase_landed_cost
-#: selection:purchase.expense.type,calculation_method:0
+#: model:ir.model.fields.selection,name:purchase_landed_cost.selection__purchase_expense_type__calculation_method__weight
 msgid "By product weight"
 msgstr "Po masi proizvoda"
 
@@ -64,7 +64,7 @@ msgid "Calculate"
 msgstr "Izračunaj"
 
 #. module: purchase_landed_cost
-#: selection:purchase.cost.distribution,state:0
+#: model:ir.model.fields.selection,name:purchase_landed_cost.selection__purchase_cost_distribution__state__calculated
 msgid "Calculated"
 msgstr "Izračunano"
 
@@ -83,8 +83,6 @@ msgstr "Metoda izračuna"
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.import_invoice_line_wizard_view
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.import_landed_cost_pickings_wizard_view
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.picking_import_wizard_view
-#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
-#: selection:purchase.cost.distribution,state:0
 msgid "Cancel"
 msgstr "Preklic"
 
@@ -111,11 +109,6 @@ msgstr "Družba"
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_purchase_cost_distribution_line_form
 msgid "Cost Line Expenses"
 msgstr "Postavka stroškov nabave"
-
-#. module: purchase_landed_cost
-#: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__cost_update_type
-msgid "Cost Update Type"
-msgstr "Tip posodobitve stroška"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line__expense_amount
@@ -154,16 +147,6 @@ msgstr "Opombe k distribuciji stroškov..."
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_expense_type__note
 msgid "Cost documentation"
 msgstr "Stroškovna dokumentacija"
-
-#. module: purchase_landed_cost
-#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:308
-#, python-format
-msgid ""
-"Cost update cannot be undone because there has been a later update. Restore "
-"correct price and try again."
-msgstr ""
-"Posodobitve stroškov ni mogoče razveljaviti, ker obstaja že kasnejša "
-"posodobitev. Povrnite pravilno ceno in poskusite ponovno."
 
 #. module: purchase_landed_cost
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
@@ -237,11 +220,6 @@ msgid ""
 msgstr ""
 
 #. module: purchase_landed_cost
-#: selection:purchase.cost.distribution,cost_update_type:0
-msgid "Direct Update"
-msgstr "Neposredna posodobitev"
-
-#. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_import_invoice_line_wizard__display_name
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_import_landed_cost_pickings_wizard__display_name
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_picking_import_wizard__display_name
@@ -274,12 +252,12 @@ msgid "Documentation for this order"
 msgstr "Dokumentacija za ta nalog"
 
 #. module: purchase_landed_cost
-#: selection:purchase.cost.distribution,state:0
+#: model:ir.model.fields.selection,name:purchase_landed_cost.selection__purchase_cost_distribution__state__done
 msgid "Done"
 msgstr "Opravljeno"
 
 #. module: purchase_landed_cost
-#: selection:purchase.cost.distribution,state:0
+#: model:ir.model.fields.selection,name:purchase_landed_cost.selection__purchase_cost_distribution__state__draft
 msgid "Draft"
 msgstr "Osnutek"
 
@@ -289,14 +267,9 @@ msgid "Duplicate expense"
 msgstr "Podvoji strošek"
 
 #. module: purchase_landed_cost
-#: selection:purchase.expense.type,calculation_method:0
+#: model:ir.model.fields.selection,name:purchase_landed_cost.selection__purchase_expense_type__calculation_method__equal
 msgid "Equally to all lines"
 msgstr "Enakomerno na vse postavke"
-
-#. module: purchase_landed_cost
-#: selection:purchase.cost.distribution,state:0
-msgid "Error"
-msgstr "Napaka"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_expense__expense_amount
@@ -374,7 +347,7 @@ msgid "Import"
 msgstr "Uvoz"
 
 #. module: purchase_landed_cost
-#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.invoice_supplier_form
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_move_form
 msgid "Import from pickings"
 msgstr "Uvozi iz dobavnic"
 
@@ -417,16 +390,10 @@ msgid "Incoming shipments"
 msgstr "Prihajajoče pošiljke"
 
 #. module: purchase_landed_cost
-#: model:ir.model,name:purchase_landed_cost.model_account_invoice
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_import_invoice_line_wizard__invoice
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_expense__invoice_id
 msgid "Invoice"
 msgstr "Račun"
-
-#. module: purchase_landed_cost
-#: model:ir.model,name:purchase_landed_cost.model_account_invoice_line
-msgid "Invoice Line"
-msgstr "Postavka računa"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_import_invoice_line_wizard__invoice_line
@@ -434,10 +401,20 @@ msgid "Invoice line"
 msgstr "Postavka računa"
 
 #. module: purchase_landed_cost
-#: model:ir.model.fields,field_description:purchase_landed_cost.field_account_invoice__expense_line_ids
-#: model:ir.model.fields,field_description:purchase_landed_cost.field_account_invoice_line__expense_line_ids
-#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.invoice_supplier_form
+#: model:ir.model,name:purchase_landed_cost.model_account_move
+msgid "Journal Entries"
+msgstr ""
+
+#. module: purchase_landed_cost
+#: model:ir.model,name:purchase_landed_cost.model_account_move_line
+msgid "Journal Item"
+msgstr ""
+
+#. module: purchase_landed_cost
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_account_move__expense_line_ids
+#: model:ir.model.fields,field_description:purchase_landed_cost.field_account_move_line__expense_line_ids
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_order_form
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_move_form
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.view_picking_form
 msgid "Landed costs"
 msgstr "Odvisni stroški dobave"
@@ -500,7 +477,7 @@ msgid "New cost"
 msgstr "Nov strošek"
 
 #. module: purchase_landed_cost
-#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:200
+#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:0
 #, python-format
 msgid "No valid distribution type."
 msgstr "Ni veljavnega tipa distribucije."
@@ -538,7 +515,7 @@ msgid "Pickings"
 msgstr "Zbirniki"
 
 #. module: purchase_landed_cost
-#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:221
+#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:0
 #, python-format
 msgid "Please enter an amount for all the expenses"
 msgstr "Vnesite znesek za vse stroške"
@@ -689,6 +666,16 @@ msgid "Select supplier invoice line wizard"
 msgstr "Čarovnik za izbiro postavk prejetih računov"
 
 #. module: purchase_landed_cost
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
+msgid "Set done"
+msgstr ""
+
+#. module: purchase_landed_cost
+#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
+msgid "Set draft"
+msgstr ""
+
+#. module: purchase_landed_cost
 #: model:ir.model.fields,help:purchase_landed_cost.field_purchase_expense_type__default_expense
 msgid ""
 "Specify if the expense will be automatically added in a purchase cost "
@@ -721,7 +708,7 @@ msgid ""
 msgstr ""
 
 #. module: purchase_landed_cost
-#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:206
+#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:0
 #, python-format
 msgid ""
 "The cost for the line '%s' can't be distributed because the calculation "
@@ -749,19 +736,10 @@ msgid "The volume in m3."
 msgstr "Prostornina v m3."
 
 #. module: purchase_landed_cost
-#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:225
+#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:0
 #, python-format
 msgid "There is no picking lines in the distribution"
 msgstr "V distribuciji ni postavk dobavnice"
-
-#. module: purchase_landed_cost
-#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
-msgid ""
-"This will undo the product price update (only if current value matches with "
-"the calculated price in this distribution). Do you want to continue?"
-msgstr ""
-"To razveljavi posodobitev cene proizvoda (le, če trenutna vrednost ustreza "
-"izračunani ceni te distribucije). Želite nadaljevati?"
 
 #. module: purchase_landed_cost
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution__amount_total
@@ -825,11 +803,6 @@ msgid "Unit price"
 msgstr "Cena enote"
 
 #. module: purchase_landed_cost
-#: model_terms:ir.ui.view,arch_db:purchase_landed_cost.purchase_cost_distribution_form
-msgid "Update Cost"
-msgstr "Posodobitev cene"
-
-#. module: purchase_landed_cost
 #: model_terms:ir.actions.act_window,help:purchase_landed_cost.action_purchase_cost_distribution
 msgid ""
 "Use this menu to control the cost of purchases by expense type\n"
@@ -867,13 +840,13 @@ msgid "You can find a vendor by its Name, TIN, Email or Internal Reference."
 msgstr ""
 
 #. module: purchase_landed_cost
-#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:132
+#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:0
 #, python-format
 msgid "You can't delete a confirmed cost distribution"
 msgstr "Ne morete izbrisati potrjene distribucije stroškov"
 
 #. module: purchase_landed_cost
-#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:153
+#: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:0
 #, python-format
 msgid ""
 "You can't delete a cost line if it's an affected line of any expense line."
@@ -885,6 +858,39 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:purchase_landed_cost.picking_import_wizard_view
 msgid "or"
 msgstr "ali"
+
+#~ msgid "Are you sure that you want to update product prices?"
+#~ msgstr "Ste prepričani, da želite posodobiti cene proizvodov?"
+
+#~ msgid "Cost Update Type"
+#~ msgstr "Tip posodobitve stroška"
+
+#, python-format
+#~ msgid ""
+#~ "Cost update cannot be undone because there has been a later update. "
+#~ "Restore correct price and try again."
+#~ msgstr ""
+#~ "Posodobitve stroškov ni mogoče razveljaviti, ker obstaja že kasnejša "
+#~ "posodobitev. Povrnite pravilno ceno in poskusite ponovno."
+
+#~ msgid "Direct Update"
+#~ msgstr "Neposredna posodobitev"
+
+#~ msgid "Error"
+#~ msgstr "Napaka"
+
+#~ msgid "Invoice Line"
+#~ msgstr "Postavka računa"
+
+#~ msgid ""
+#~ "This will undo the product price update (only if current value matches "
+#~ "with the calculated price in this distribution). Do you want to continue?"
+#~ msgstr ""
+#~ "To razveljavi posodobitev cene proizvoda (le, če trenutna vrednost "
+#~ "ustreza izračunani ceni te distribucije). Želite nadaljevati?"
+
+#~ msgid "Update Cost"
+#~ msgstr "Posodobitev cene"
 
 #~ msgid ""
 #~ "<p class=\"oe_view_nocontent_create\">\n"
