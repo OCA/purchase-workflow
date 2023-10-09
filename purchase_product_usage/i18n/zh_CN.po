@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* purchase_product_usage
+# 	* purchase_product_usage
 #
 msgid ""
 msgstr ""
