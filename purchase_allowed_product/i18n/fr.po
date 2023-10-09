@@ -48,7 +48,7 @@ msgstr ""
 "facture ou de l'achat."
 
 #. module: purchase_allowed_product
-#: model:ir.model.fields,help:purchase_allowed_product.field_account_invoice__use_only_supplied_product
+#: model:ir.model.fields,help:purchase_allowed_product.field_account_move__use_only_supplied_product
 #: model:ir.model.fields,help:purchase_allowed_product.field_purchase_order__use_only_supplied_product
 #: model:ir.model.fields,help:purchase_allowed_product.field_supplied_product_mixin__use_only_supplied_product
 msgid "If checked, only the products provided by this supplier will be shown."
@@ -56,9 +56,9 @@ msgstr ""
 "En cochant cette case, seul les produits de se fournisseur seront accessibles"
 
 #. module: purchase_allowed_product
-#: model:ir.model,name:purchase_allowed_product.model_account_invoice
-msgid "Invoice"
-msgstr "Facture"
+#: model:ir.model,name:purchase_allowed_product.model_account_move
+msgid "Journal Entries"
+msgstr ""
 
 #. module: purchase_allowed_product
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_supplied_product_mixin____last_update
@@ -92,7 +92,7 @@ msgid "Supplier Pricelist"
 msgstr ""
 
 #. module: purchase_allowed_product
-#: model:ir.model.fields,field_description:purchase_allowed_product.field_account_invoice__use_only_supplied_product
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_account_move__use_only_supplied_product
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_purchase_order__use_only_supplied_product
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_supplied_product_mixin__use_only_supplied_product
 msgid "Use only allowed products"
@@ -107,6 +107,9 @@ msgstr ""
 #: model:ir.model.fields,help:purchase_allowed_product.field_product_supplierinfo__name
 msgid "Vendor of this product"
 msgstr ""
+
+#~ msgid "Invoice"
+#~ msgstr "Facture"
 
 #~ msgid "Partner"
 #~ msgstr "Partenaire"

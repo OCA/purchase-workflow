@@ -42,19 +42,21 @@ msgid ""
 "If checked, by default you will only be able to select products that can be "
 "supplied by this supplier when creating a supplier invoice or purchase for "
 "it. This value can be changed by invoice or purchase."
-msgstr "如果选中，默认情况下，您只能在创建采购应付单或发起采购时选择该供应商可以提供的产品。该值可在采购应付单或采购订单中更改。"
+msgstr ""
+"如果选中，默认情况下，您只能在创建采购应付单或发起采购时选择该供应商可以提供"
+"的产品。该值可在采购应付单或采购订单中更改。"
 
 #. module: purchase_allowed_product
-#: model:ir.model.fields,help:purchase_allowed_product.field_account_invoice__use_only_supplied_product
+#: model:ir.model.fields,help:purchase_allowed_product.field_account_move__use_only_supplied_product
 #: model:ir.model.fields,help:purchase_allowed_product.field_purchase_order__use_only_supplied_product
 #: model:ir.model.fields,help:purchase_allowed_product.field_supplied_product_mixin__use_only_supplied_product
 msgid "If checked, only the products provided by this supplier will be shown."
 msgstr "如果选中，则仅允许选择该供应商可提供的产品。"
 
 #. module: purchase_allowed_product
-#: model:ir.model,name:purchase_allowed_product.model_account_invoice
-msgid "Invoice"
-msgstr "应付单"
+#: model:ir.model,name:purchase_allowed_product.model_account_move
+msgid "Journal Entries"
+msgstr ""
 
 #. module: purchase_allowed_product
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_supplied_product_mixin____last_update
@@ -88,7 +90,7 @@ msgid "Supplier Pricelist"
 msgstr "供应协议价"
 
 #. module: purchase_allowed_product
-#: model:ir.model.fields,field_description:purchase_allowed_product.field_account_invoice__use_only_supplied_product
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_account_move__use_only_supplied_product
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_purchase_order__use_only_supplied_product
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_supplied_product_mixin__use_only_supplied_product
 msgid "Use only allowed products"
@@ -103,3 +105,6 @@ msgstr "供应商"
 #: model:ir.model.fields,help:purchase_allowed_product.field_product_supplierinfo__name
 msgid "Vendor of this product"
 msgstr "该产品的供应商"
+
+#~ msgid "Invoice"
+#~ msgstr "应付单"

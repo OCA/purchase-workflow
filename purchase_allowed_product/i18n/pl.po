@@ -45,15 +45,15 @@ msgid ""
 msgstr ""
 
 #. module: purchase_allowed_product
-#: model:ir.model.fields,help:purchase_allowed_product.field_account_invoice__use_only_supplied_product
+#: model:ir.model.fields,help:purchase_allowed_product.field_account_move__use_only_supplied_product
 #: model:ir.model.fields,help:purchase_allowed_product.field_purchase_order__use_only_supplied_product
 #: model:ir.model.fields,help:purchase_allowed_product.field_supplied_product_mixin__use_only_supplied_product
 msgid "If checked, only the products provided by this supplier will be shown."
 msgstr ""
 
 #. module: purchase_allowed_product
-#: model:ir.model,name:purchase_allowed_product.model_account_invoice
-msgid "Invoice"
+#: model:ir.model,name:purchase_allowed_product.model_account_move
+msgid "Journal Entries"
 msgstr ""
 
 #. module: purchase_allowed_product
@@ -88,7 +88,7 @@ msgid "Supplier Pricelist"
 msgstr ""
 
 #. module: purchase_allowed_product
-#: model:ir.model.fields,field_description:purchase_allowed_product.field_account_invoice__use_only_supplied_product
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_account_move__use_only_supplied_product
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_purchase_order__use_only_supplied_product
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_supplied_product_mixin__use_only_supplied_product
 msgid "Use only allowed products"
