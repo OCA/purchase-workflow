@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* purchase_deposit
+# 	* purchase_deposit
 #
 msgid ""
 msgstr ""
@@ -90,7 +90,9 @@ msgstr "Monto del depósito (monto fijo)"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,help:purchase_deposit.field_purchase_order_line__is_deposit
-msgid "Deposit payments are made when creating invoices from a purhcase order. They are not copied when duplicating a purchase order."
+msgid ""
+"Deposit payments are made when creating invoices from a purhcase order. They "
+"are not copied when duplicating a purchase order."
 msgstr ""
 
 #. module: purchase_deposit
@@ -130,7 +132,9 @@ msgstr ""
 
 #. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
-msgid "Invoices will be created in draft so that you can review them before validation."
+msgid ""
+"Invoices will be created in draft so that you can review them before "
+"validation."
 msgstr ""
 "Las facturas serán generadas en borrador para poder ser validadas antes de "
 "ser validadas."
@@ -204,13 +208,18 @@ msgstr "El porcentaje del depósito no debe ser superior a 100"
 #. module: purchase_deposit
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:156
 #, python-format
-msgid "The product used to invoice a down payment should be of type \"Service\". Please use another product or update this product."
+msgid ""
+"The product used to invoice a down payment should be of type \"Service\". "
+"Please use another product or update this product."
 msgstr ""
 
 #. module: purchase_deposit
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:150
 #, python-format
-msgid "The product used to invoice a down payment should have an invoice policy set to \"Ordered quantities\". Please update your deposit product to be able to create a deposit invoice."
+msgid ""
+"The product used to invoice a down payment should have an invoice policy set "
+"to \"Ordered quantities\". Please update your deposit product to be able to "
+"create a deposit invoice."
 msgstr ""
 
 #. module: purchase_deposit
@@ -222,8 +231,10 @@ msgstr ""
 #. module: purchase_deposit
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:75
 #, python-format
-msgid "There is no purchase account defined for this product: %s.\n"
-"You may have to install a chart of account from Accounting app, settings menu."
+msgid ""
+"There is no purchase account defined for this product: %s.\n"
+"You may have to install a chart of account from Accounting app, settings "
+"menu."
 msgstr ""
 
 #. module: purchase_deposit
