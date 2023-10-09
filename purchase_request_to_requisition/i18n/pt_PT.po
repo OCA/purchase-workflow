@@ -22,7 +22,7 @@ msgstr ""
 #. module: purchase_request_to_requisition
 #: code:addons/purchase_request_to_requisition/models/purchase_requisition.py:0
 #, python-format
-msgid "<li><b>%s</b>: Total bid quantity %s %s</li>"
+msgid "<li><b>{}</b>: Total bid quantity {} {}</li>"
 msgstr ""
 
 #. module: purchase_request_to_requisition
@@ -58,7 +58,7 @@ msgstr ""
 #. module: purchase_request_to_requisition
 #: code:addons/purchase_request_to_requisition/models/purchase_requisition.py:0
 #, python-format
-msgid "Bid confirmation %s for your Request %s"
+msgid "Bid confirmation {} for your Request {}"
 msgstr ""
 
 #. module: purchase_request_to_requisition
@@ -91,18 +91,8 @@ msgid "Description"
 msgstr "Descrição"
 
 #. module: purchase_request_to_requisition
-#: model_terms:ir.ui.view,arch_db:purchase_request_to_requisition.view_purchase_request_line_make_purchase_requisition
-msgid "Details"
-msgstr ""
-
-#. module: purchase_request_to_requisition
-#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_product_template__display_name
-#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request__display_name
-#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line__display_name
 #: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition__display_name
 #: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition_item__display_name
-#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_requisition__display_name
-#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_requisition_line__display_name
 msgid "Display Name"
 msgstr "Nome a Apresentar"
 
@@ -123,13 +113,8 @@ msgid "Has Purchase Request Lines"
 msgstr ""
 
 #. module: purchase_request_to_requisition
-#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_product_template__id
-#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request__id
-#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line__id
 #: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition__id
 #: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition_item__id
-#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_requisition__id
-#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_requisition_line__id
 msgid "ID"
 msgstr "ID"
 
@@ -144,13 +129,8 @@ msgid "Items"
 msgstr ""
 
 #. module: purchase_request_to_requisition
-#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_product_template____last_update
-#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request____last_update
-#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line____last_update
 #: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition____last_update
 #: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition_item____last_update
-#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_requisition____last_update
-#: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_requisition_line____last_update
 msgid "Last Modified on"
 msgstr "Última Modificação Em"
 
@@ -217,6 +197,7 @@ msgstr ""
 #. module: purchase_request_to_requisition
 #: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line__requisition_lines
 #: model_terms:ir.ui.view,arch_db:purchase_request_to_requisition.purchase_request_line_form
+#: model_terms:ir.ui.view,arch_db:purchase_request_to_requisition.view_purchase_request_line_details
 msgid "Purchase Agreement Lines"
 msgstr ""
 
@@ -290,11 +271,6 @@ msgid "Requisition Count"
 msgstr ""
 
 #. module: purchase_request_to_requisition
-#: model_terms:ir.ui.view,arch_db:purchase_request_to_requisition.view_purchase_request_form
-msgid "Requisition Lines"
-msgstr ""
-
-#. module: purchase_request_to_requisition
 #: model_terms:ir.ui.view,arch_db:purchase_request_to_requisition.purchase_request_line_search
 msgid "Requisition Status"
 msgstr ""
@@ -308,8 +284,8 @@ msgstr ""
 #: code:addons/purchase_request_to_requisition/models/purchase_requisition.py:0
 #, python-format
 msgid ""
-"The following requested items from Purchase Request %s have now being sent "
-"to Suppliers using Purchase Bid %s:"
+"The following requested items from Purchase Request {} have now being sent "
+"to Suppliers using Purchase Bid {}:"
 msgstr ""
 
 #. module: purchase_request_to_requisition
