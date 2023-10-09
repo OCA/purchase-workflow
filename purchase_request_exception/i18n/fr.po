@@ -34,8 +34,7 @@ msgstr "Bloqué à l'état brouillon"
 #. module: purchase_request_exception
 #: model_terms:ir.ui.view,arch_db:purchase_request_exception.view_purchase_request_form
 msgid ""
-"Click here to be able to confirm this Agreement regardless of the "
-"exceptions."
+"Click here to be able to confirm this Agreement regardless of the exceptions."
 msgstr ""
 
 #. module: purchase_request_exception
