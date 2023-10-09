@@ -22,12 +22,6 @@ msgid "Add"
 msgstr "Aggiungi"
 
 #. module: purchase_quick
-#: model:ir.model.fields,field_description:purchase_quick.field_product_product__display_name
-#: model:ir.model.fields,field_description:purchase_quick.field_purchase_order__display_name
-msgid "Display Name"
-msgstr "Nome visualizzato"
-
-#. module: purchase_quick
 #: model_terms:ir.ui.view,arch_db:purchase_quick.product_search_form_view
 msgid "Filter products supplied by the supplier of the current parent object"
 msgstr "Filtra prodotti forniti dal fornitore dell'oggetto genitore corrente"
@@ -38,26 +32,12 @@ msgid "For current supplier"
 msgstr "Per il fornitore selezionato"
 
 #. module: purchase_quick
-#: model:ir.model.fields,field_description:purchase_quick.field_product_product__id
-#: model:ir.model.fields,field_description:purchase_quick.field_purchase_order__id
-msgid "ID"
-msgstr "ID"
-
-#. module: purchase_quick
-#: model:ir.model.fields,field_description:purchase_quick.field_product_product____last_update
-#: model:ir.model.fields,field_description:purchase_quick.field_purchase_order____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
-
-#. module: purchase_quick
 #: code:addons/purchase_quick/models/purchase_order.py:0
 #, python-format
 msgid ""
-"Must have only 1 line per product for mass addition, but there are %s lines "
-"for the product %s"
+"Must have only 1 line per product for mass addition, but there are {} lines "
+"for the product {}"
 msgstr ""
-"Dev'esserci solo 1 riga per prodotto per aggiungerli massivamente, ma ci "
-"sono %s righe per il prodotto %s"
 
 #. module: purchase_quick
 #: model_terms:ir.ui.view,arch_db:purchase_quick.product_tree_view4purchase
@@ -79,11 +59,6 @@ msgstr "Prodotto"
 #, python-format
 msgid "Product Variants"
 msgstr "Varianti prodotto"
-
-#. module: purchase_quick
-#: model_terms:ir.ui.view,arch_db:purchase_quick.product_tree_view4purchase
-msgid "Products for purchase"
-msgstr "Prodotti da acquistare"
 
 #. module: purchase_quick
 #: model:ir.model,name:purchase_quick.model_purchase_order
@@ -109,3 +84,23 @@ msgstr "UdM"
 #: model:ir.model.fields,field_description:purchase_quick.field_product_product__variant_specific_seller_ids
 msgid "Variant Specific Seller"
 msgstr "Fornitore specifica variante"
+
+#~ msgid "Display Name"
+#~ msgstr "Nome visualizzato"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
+
+#, python-format
+#~ msgid ""
+#~ "Must have only 1 line per product for mass addition, but there are %s "
+#~ "lines for the product %s"
+#~ msgstr ""
+#~ "Dev'esserci solo 1 riga per prodotto per aggiungerli massivamente, ma ci "
+#~ "sono %s righe per il prodotto %s"
+
+#~ msgid "Products for purchase"
+#~ msgstr "Prodotti da acquistare"
