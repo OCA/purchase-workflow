@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* purchase_exception
+# 	* purchase_exception
 #
 msgid ""
 msgstr ""
@@ -152,7 +152,8 @@ msgstr "数量不是负数"
 
 #. module: purchase_exception
 #: model_terms:ir.ui.view,arch_db:purchase_exception.view_order_form
-msgid "You have an outstanding\n"
+msgid ""
+"You have an outstanding\n"
 "                    exception to manage:"
 msgstr ""
 "你有一个突出的\n"
