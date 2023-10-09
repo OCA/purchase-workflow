@@ -50,6 +50,36 @@ msgid "Discount-related settings are managed on"
 msgstr "与折扣相关的设置进行管理"
 
 #. module: purchase_discount
+#: model:ir.model.fields,field_description:purchase_discount.field_product_supplierinfo__display_name
+#: model:ir.model.fields,field_description:purchase_discount.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:purchase_discount.field_purchase_order_line__display_name
+#: model:ir.model.fields,field_description:purchase_discount.field_purchase_report__display_name
+#: model:ir.model.fields,field_description:purchase_discount.field_res_partner__display_name
+#: model:ir.model.fields,field_description:purchase_discount.field_stock_move__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: purchase_discount
+#: model:ir.model.fields,field_description:purchase_discount.field_product_supplierinfo__id
+#: model:ir.model.fields,field_description:purchase_discount.field_purchase_order__id
+#: model:ir.model.fields,field_description:purchase_discount.field_purchase_order_line__id
+#: model:ir.model.fields,field_description:purchase_discount.field_purchase_report__id
+#: model:ir.model.fields,field_description:purchase_discount.field_res_partner__id
+#: model:ir.model.fields,field_description:purchase_discount.field_stock_move__id
+msgid "ID"
+msgstr ""
+
+#. module: purchase_discount
+#: model:ir.model.fields,field_description:purchase_discount.field_product_supplierinfo____last_update
+#: model:ir.model.fields,field_description:purchase_discount.field_purchase_order____last_update
+#: model:ir.model.fields,field_description:purchase_discount.field_purchase_order_line____last_update
+#: model:ir.model.fields,field_description:purchase_discount.field_purchase_report____last_update
+#: model:ir.model.fields,field_description:purchase_discount.field_res_partner____last_update
+#: model:ir.model.fields,field_description:purchase_discount.field_stock_move____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_purchase_order
 msgid "Purchase Order"
 msgstr "采购订单"
@@ -70,11 +100,6 @@ msgid "Stock Move"
 msgstr "库存移动"
 
 #. module: purchase_discount
-#: model:ir.model,name:purchase_discount.model_stock_rule
-msgid "Stock Rule"
-msgstr "库存规则"
-
-#. module: purchase_discount
 #: model:ir.model,name:purchase_discount.model_product_supplierinfo
 msgid "Supplier Pricelist"
 msgstr "供应商价格表"
@@ -91,6 +116,9 @@ msgstr "根据供应商的不同，此值将用作每个新供应商信息行的
 #: model_terms:ir.ui.view,arch_db:purchase_discount.res_partner_form_view
 msgid "the parent company"
 msgstr "上级公司"
+
+#~ msgid "Stock Rule"
+#~ msgstr "库存规则"
 
 #~ msgid "Invoice"
 #~ msgstr "发票"
