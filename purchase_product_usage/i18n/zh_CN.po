@@ -67,6 +67,8 @@ msgid "Description"
 msgstr "说明"
 
 #. module: purchase_product_usage
+#: model:ir.model.fields,field_description:purchase_product_usage.field_account_move_line__display_name
+#: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_order_line__display_name
 #: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_product_usage__display_name
 msgid "Display Name"
 msgstr "显示名称"
@@ -77,6 +79,8 @@ msgid "Expense account for vendor bills"
 msgstr "供应商账单的费用账户"
 
 #. module: purchase_product_usage
+#: model:ir.model.fields,field_description:purchase_product_usage.field_account_move_line__id
+#: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_order_line__id
 #: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_product_usage__id
 msgid "ID"
 msgstr "ID"
@@ -87,6 +91,8 @@ msgid "Journal Item"
 msgstr "会计分录"
 
 #. module: purchase_product_usage
+#: model:ir.model.fields,field_description:purchase_product_usage.field_account_move_line____last_update
+#: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_order_line____last_update
 #: model:ir.model.fields,field_description:purchase_product_usage.field_purchase_product_usage____last_update
 msgid "Last Modified on"
 msgstr "最近修改时间"
