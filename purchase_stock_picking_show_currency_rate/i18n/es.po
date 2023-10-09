@@ -18,11 +18,6 @@ msgstr ""
 "X-Generator: Poedit 2.3\n"
 
 #. module: purchase_stock_picking_show_currency_rate
-#: model:ir.model.fields,field_description:purchase_stock_picking_show_currency_rate.field_stock_picking__company_currency_id
-msgid "Company Currency"
-msgstr "Moneda"
-
-#. module: purchase_stock_picking_show_currency_rate
 #: model:ir.model.fields,field_description:purchase_stock_picking_show_currency_rate.field_stock_picking__purchase_currency_id
 msgid "Purchase currency"
 msgstr "Moneda de la compra"
@@ -41,3 +36,6 @@ msgstr "Mostrar el valor de cambio de la moneda"
 #: model:ir.model,name:purchase_stock_picking_show_currency_rate.model_stock_picking
 msgid "Transfer"
 msgstr "Albarán"
+
+#~ msgid "Company Currency"
+#~ msgstr "Moneda"
