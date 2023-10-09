@@ -91,7 +91,6 @@ msgstr "Ctd"
 #. module: purchase_order_product_recommendation_xlsx
 #: model:ir.model.fields,field_description:purchase_order_product_recommendation_xlsx.field_purchase_order_recommendation_line__units_avg_delivered
 #, fuzzy
-#| msgid "Qty Dlvd./day"
 msgid "Qty Dlvd./day"
 msgstr "Ctd entrg./día"
 
@@ -113,7 +112,6 @@ msgstr "Ctd entregada"
 #. module: purchase_order_product_recommendation_xlsx
 #: model:ir.model,name:purchase_order_product_recommendation_xlsx.model_purchase_order_recommendation_line
 #, fuzzy
-#| msgid "Recommended products for current purchase order"
 msgid "Recommended product for current purchase order"
 msgstr "Productos recomendados para el pedido de compra en curso"
 
