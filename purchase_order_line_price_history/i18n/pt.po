@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* purchase_order_line_price_history
+# 	* purchase_order_line_price_history
 #
 msgid ""
 msgstr ""
@@ -35,7 +35,9 @@ msgstr "Criado em"
 
 #. module: purchase_order_line_price_history
 #: model:ir.model.fields,help:purchase_order_line_price_history.field_purchase_order_line_price_history_line__purchase_order_date_order
-msgid "Depicts the date where the Quotation should be validated and converted into a purchase order."
+msgid ""
+"Depicts the date where the Quotation should be validated and converted into "
+"a purchase order."
 msgstr ""
 "Descreve a data em que a Cotação deve ser validada e convertida numa ordem "
 "de compra ."
