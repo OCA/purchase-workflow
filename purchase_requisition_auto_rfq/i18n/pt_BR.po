@@ -24,8 +24,8 @@ msgid ""
 "suppliers and are not included in the generated RFQs:<ul>%s</ul></p>"
 msgstr ""
 "<p><b>Geração se SdC</b></p><p>Os seguintes produtos não possuem "
-"fornecedores atribuídos e não serão incluídos nas SdC geradas: "
-":<ul>%s</ul></p>"
+"fornecedores atribuídos e não serão incluídos nas SdC geradas: :<ul>%s</ul></"
+"p>"
 
 #. module: purchase_requisition_auto_rfq
 #: model:product.product,name:purchase_requisition_auto_rfq.blankets
