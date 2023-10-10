@@ -115,3 +115,5 @@ class PurchaseReturnRequestCase(StockReturnRequestCase):
         self.assertAlmostEqual(
             sum(purchase_orders.mapped("order_line.qty_received")), 66.0
         )
+        action = self.return_request_supplier.action_view_purchases()
+        self.assertEqual(action["domain"], "[('id', 'in', %s)]" % purchase_orders.ids)
