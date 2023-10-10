@@ -48,7 +48,8 @@ class StockInventory(models.Model):
         for val in vals:
             product_id = val['product_id']
             product = product_obj.browse(product_id)
-            seller = product._select_seller(quantity=1)
+            # seller = product._select_seller(quantity=1)
+            seller = product.default_seller_id
             val['package_qty'] = seller.package_qty or 1
             new_val.append(val)
         return new_val
