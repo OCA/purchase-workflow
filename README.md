@@ -95,7 +95,7 @@ addon | version | maintainers | summary
 [purchase_rfq_number](purchase_rfq_number/) | 15.0.1.0.0 |  | Different sequence for purchase for quotations
 [purchase_security](purchase_security/) | 15.0.3.1.0 | [![pilarvargas-tecnativa](https://github.com/pilarvargas-tecnativa.png?size=30px)](https://github.com/pilarvargas-tecnativa) | See only your purchase orders
 [purchase_stock_price_unit_sync](purchase_stock_price_unit_sync/) | 15.0.1.0.3 |  | Update cost price in stock moves already done
-[purchase_stock_return_request](purchase_stock_return_request/) | 15.0.1.0.0 |  | Purchase Stock Return Request
+[purchase_stock_return_request](purchase_stock_return_request/) | 15.0.1.0.1 |  | Purchase Stock Return Request
 [purchase_stock_secondary_unit](purchase_stock_secondary_unit/) | 15.0.1.1.0 |  | Get product quantities in a secondary unit
 [purchase_stock_tier_validation](purchase_stock_tier_validation/) | 15.0.1.0.0 | [![bosd](https://github.com/bosd.png?size=30px)](https://github.com/bosd) | Exclude RFQs pending to validate when procuring
 [purchase_substate](purchase_substate/) | 15.0.1.0.0 |  | Purchase Sub State
