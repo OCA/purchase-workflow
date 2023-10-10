@@ -12,8 +12,8 @@ msgstr ""
 "POT-Creation-Date: 2016-12-17 04:15+0000\n"
 "PO-Revision-Date: 2023-09-03 13:40+0000\n"
 "Last-Translator: sofien-moalla <s.moalla@cadrinsitu.com>\n"
-"Language-Team: French (http://www.transifex.com/oca/"
-"OCA-purchase-workflow-8-0/language/fr/)\n"
+"Language-Team: French (http://www.transifex.com/oca/OCA-purchase-"
+"workflow-8-0/language/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,7 +34,8 @@ msgstr "Archivé"
 #. module: purchase_order_type
 #: model_terms:ir.actions.act_window,help:purchase_order_type.action_purchase_order_type_view
 msgid "Click to set a new type for purchase order."
-msgstr "Cliquez sur ce bouton pour définir un nouveau type de commande d'achat."
+msgstr ""
+"Cliquez sur ce bouton pour définir un nouveau type de commande d'achat."
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__company_id
