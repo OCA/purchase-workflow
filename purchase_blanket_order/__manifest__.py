@@ -20,6 +20,7 @@
         "views/purchase_order_views.xml",
         "report/templates.xml",
         "report/report.xml",
+        "data/mail_template_data.xml",
     ],
     "installable": True,
 }
