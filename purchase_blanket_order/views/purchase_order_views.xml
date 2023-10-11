@@ -17,7 +17,10 @@
                 />
             </xpath>
             <field name="order_line" position="attributes">
-                <attribute name="context">{'from_purchase_order': True}</attribute>
+                <attribute
+                    name="context"
+                    operation="update"
+                >{'from_purchase_order': True}</attribute>
             </field>
         </field>
     </record>
