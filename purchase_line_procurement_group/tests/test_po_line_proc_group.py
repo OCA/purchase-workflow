@@ -1,9 +1,9 @@
 # Copyright 2018 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from odoo.tests import TransactionCase
+from odoo.tests.common import SavepointCase
 
 
-class TestPOLineProcurementGroup(TransactionCase):
+class TestPOLineProcurementGroup(SavepointCase):
     @classmethod
     def setUpClass(cls):
 
@@ -40,7 +40,7 @@ class TestPOLineProcurementGroup(TransactionCase):
                             0,
                             0,
                             {
-                                "partner_id": cls.pyromaniacs.id,
+                                "name": cls.pyromaniacs.id,
                                 "min_qty": 1,
                                 "price": 1.0,
                             },
@@ -60,7 +60,7 @@ class TestPOLineProcurementGroup(TransactionCase):
         cls.wh_wh2_pg = cls.env["procurement.group"].create(
             {"name": "WH > WH2", "move_type": "direct"}
         )
-        wh_wh2_route = cls.env["stock.route"].create(
+        wh_wh2_route = cls.env["stock.location.route"].create(
             {
                 "name": "WH > WH2",
                 "product_selectable": True,
@@ -71,7 +71,7 @@ class TestPOLineProcurementGroup(TransactionCase):
                         {
                             "name": "WH>WH2",
                             "action": "pull",
-                            "location_dest_id": wh2.lot_stock_id.id,
+                            "location_id": wh2.lot_stock_id.id,
                             "location_src_id": cls.warehouse.lot_stock_id.id,
                             "procure_method": "make_to_order",
                             "picking_type_id": cls.env.ref(
