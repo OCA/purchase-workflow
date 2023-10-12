@@ -13,35 +13,40 @@
                 <field name="line_weight" optional="hide" />
                 <field name="line_volume" optional="hide" />
             </xpath>
-            <xpath expr="//field[@name='tax_totals']" position="after">
-                <label
-                    for="total_weight"
-                    attrs="{'invisible':[('weight_uom_name', '=', '')]}"
-                />
-                <div
-                    class="text-nowrap"
-                    attrs="{'invisible':[('weight_uom_name', '=', '')]}"
-                >
-                    <field name="total_weight" class="oe_inline" />
-                    <span style="margin-left:3px;"><field
-                            name="weight_uom_name"
-                            class="oe_inline"
-                        /></span>
-                </div>
-                <label
-                    for="total_volume"
-                    attrs="{'invisible':[('volume_uom_name', '=', '')]}"
-                />
-                <div
-                    class="text-nowrap"
-                    attrs="{'invisible':[('volume_uom_name', '=', '')]}"
-                >
-                    <field name="total_volume" class="oe_inline" />
-                    <span style="margin-left:3px;"><field
-                            name="volume_uom_name"
-                            class="oe_inline"
-                        /></span>
-                </div>
+            <xpath
+                expr="//field[@name='tax_totals']/parent::group[last()]/parent::group[last()]"
+                position="after"
+            >
+                <group class="oe_right">
+                    <label
+                        for="total_weight"
+                        attrs="{'invisible':[('total_weight_uom_id', '=', False)]}"
+                    />
+                    <div
+                        class="text-nowrap"
+                        attrs="{'invisible':[('total_weight_uom_id', '=', False)]}"
+                    >
+                        <field name="total_weight" class="oe_inline" />
+                        <span style="margin-left:3px;"><field
+                                name="total_weight_uom_id"
+                                class="oe_inline pull-right"
+                            /></span>
+                    </div>
+                    <label
+                        for="total_volume"
+                        attrs="{'invisible':[('total_volume_uom_id', '=', False)]}"
+                    />
+                    <div
+                        class="text-nowrap"
+                        attrs="{'invisible':[('total_volume_uom_id', '=', False)]}"
+                    >
+                        <field name="total_volume" class="oe_inline" />
+                        <span style="margin-left:3px;"><field
+                                name="total_volume_uom_id"
+                                class="oe_inline pull-right"
+                            /></span>
+                    </div>
+                </group>
             </xpath>
             <field name="fiscal_position_id" position="after">
                 <field name="display_total_weight_in_report" />

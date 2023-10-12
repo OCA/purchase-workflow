@@ -80,26 +80,26 @@ class TestPurchaseOrderWeightVolume(TransactionCase):
     @classmethod
     def _prepare_uom(cls):
         # Configure weight in kg
-        cls.env["ir.config_parameter"].sudo().set_param("product.weight_in_lbs", 0)
-
         cls.product_uom_kgm = cls.env.ref("uom.product_uom_kgm")
-
-        # Configure volume in m3
         cls.env["ir.config_parameter"].sudo().set_param(
-            "product.volume_in_cubic_feet", 0
+            "product_default_weight_uom_id", cls.product_uom_kgm.id
         )
 
+        # Configure volume in m3
         cls.product_uom_cubic_meter = cls.env.ref("uom.product_uom_cubic_meter")
+        cls.env["ir.config_parameter"].sudo().set_param(
+            "product_default_volume_uom_id", cls.product_uom_cubic_meter.id
+        )
 
     def test_purchase_order_weight_volume(self):
         po = self._create_purchase(self.line_products)
 
         # Purchase Order
         self.assertEqual(po.total_weight, self.total_weight)
-        self.assertEqual(po.weight_uom_name, self.product_uom_kgm.name)
+        self.assertEqual(po.total_weight_uom_id, self.product_uom_kgm)
 
         self.assertEqual(po.total_volume, self.total_volume)
-        self.assertEqual(po.volume_uom_name, self.product_uom_cubic_meter.name)
+        self.assertEqual(po.total_volume_uom_id, self.product_uom_cubic_meter)
 
         # Purchase Order Line
         for line in po.order_line:

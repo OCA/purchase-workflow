@@ -30,8 +30,12 @@ class PurchaseOrder(models.Model):
     total_volume = fields.Float(
         compute="_compute_total_physical_properties", digits="Volume"
     )
-    weight_uom_name = fields.Char(compute="_compute_total_physical_properties")
-    volume_uom_name = fields.Char(compute="_compute_total_physical_properties")
+    total_weight_uom_id = fields.Many2one(
+        "uom.uom", compute="_compute_total_physical_properties"
+    )
+    total_volume_uom_id = fields.Many2one(
+        "uom.uom", compute="_compute_total_physical_properties"
+    )
     display_total_weight_in_report = fields.Boolean(
         "Display Weight in Report", default=True
     )
@@ -41,25 +45,25 @@ class PurchaseOrder(models.Model):
 
     @api.depends("order_line.product_uom_qty", "order_line.product_id")
     def _compute_total_physical_properties(self):
+        default_weight_uom = (
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("product_default_weight_uom_id")
+        )
+        default_volume_uom = (
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("product_default_volume_uom_id")
+        )
+
         for po in self:
             po.total_weight = 0
             po.total_volume = 0
-            po.weight_uom_name = ""
-            po.volume_uom_name = ""
-
-            if po.company_id.display_order_weight_in_po:
-                weight_uoms = po.mapped("order_line.product_id.weight_uom_name")
-                # values are computed only if all products in PO have same UOMs.
-                if len(weight_uoms) > 0:
-                    same_weight_uom = all(el == weight_uoms[0] for el in weight_uoms)
-                    if same_weight_uom:
-                        po.total_weight = sum(po.mapped("order_line.line_weight"))
-                        po.weight_uom_name = weight_uoms[0]
-
-            if po.company_id.display_order_volume_in_po:
-                volume_uoms = po.mapped("order_line.product_id.volume_uom_name")
-                if len(volume_uoms) > 0:
-                    same_volume_uom = all(el == volume_uoms[0] for el in volume_uoms)
-                    if same_volume_uom:
-                        po.total_volume = sum(po.mapped("order_line.line_volume"))
-                        po.volume_uom_name = volume_uoms[0]
+            if default_weight_uom:
+                po.total_weight_uom_id = int(default_weight_uom)
+            if default_volume_uom:
+                po.total_volume_uom_id = int(default_volume_uom)
+            if po.company_id.display_order_weight_in_po and po.total_weight_uom_id:
+                po.total_weight = sum(po.mapped("order_line.line_weight"))
+            if po.company_id.display_order_volume_in_po and po.total_volume_uom_id:
+                po.total_volume = sum(po.mapped("order_line.line_volume"))
