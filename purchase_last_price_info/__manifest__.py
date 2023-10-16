@@ -2,7 +2,7 @@
 
 {
     "name": "Purchase Product Last Price Info",
-    "version": "13.0.2.0.2",
+    "version": "13.0.2.0.3",
     "category": "Purchase Management",
     "license": "AGPL-3",
     "author": "OdooMRP team, "
