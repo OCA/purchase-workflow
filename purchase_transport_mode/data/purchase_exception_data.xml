@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="po_excep_transport_mode" model="exception.rule">
+        <field name="name">Transport mode</field>
+        <field name="description">Transport mode requirements not satisfied</field>
+        <field name="sequence">50</field>
+        <field name="model">purchase.order</field>
+        <field name="code">if not self.transport_mode_status_ok:
+            failed=True</field>
+    </record>
+</odoo>
