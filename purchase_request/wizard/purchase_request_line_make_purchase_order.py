@@ -342,6 +342,8 @@ class PurchaseRequestLineMakePurchaseOrderItem(models.TransientModel):
     @api.onchange("product_id")
     def onchange_product_id(self):
         if self.product_id:
+            name = False
+            self.name = self.product_id.name
             if not self.keep_description:
                 name = self.product_id.name
             code = self.product_id.code
