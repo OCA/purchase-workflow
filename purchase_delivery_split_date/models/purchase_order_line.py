@@ -85,11 +85,13 @@ class PurchaseOrderLine(models.Model):
             self._check_split_moves_by_date()
         return res
 
-    def create(self, values):
-        line = super().create(values)
-        if line.order_id.state == "purchase":
-            line.order_id._check_split_pickings()
-        return line
+    @api.model_create_multi
+    def create(self, vals_list):
+        lines = super().create(vals_list)
+        lines.filtered(
+            lambda line: lines.order_id.state == "purchase"
+        )._check_split_moves_by_date()
+        return lines
 
     def _compute_price_unit_and_date_planned_and_name(self):
         """
