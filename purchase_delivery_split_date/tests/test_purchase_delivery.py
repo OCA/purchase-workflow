@@ -223,6 +223,9 @@ class TestDeliverySingle(BaseCommon):
             "If I change the other line to the same date as the first, "
             "both moves must be in the same picking",
         )
+        # Check move is well assigned
+        self.assertEqual("assigned", move2.picking_id.state)
+        self.assertTrue(move2.move_line_ids)
 
     def test_purchase_line_created_afer_confirm(self):
         """Check new line created when order is confirmed.
@@ -278,7 +281,7 @@ class TestDeliverySingle(BaseCommon):
 
         self.env.user.tz = "Etc/UTC"
         line1.write({"date_planned": "2021-05-05 03:00:00"})
-        self.assertEqual(len(self.po.picking_ids), 2)
+        self.assertEqual(len(self.po.picking_ids), 1)
         # No time difference so will be another day (2 pickings)
         line2.write({"date_planned": "2021-05-04 23:00:00"})
         self.assertEqual(len(self.po.picking_ids), 2)
