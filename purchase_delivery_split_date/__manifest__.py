@@ -11,7 +11,7 @@
     "website": "https://github.com/OCA/purchase-workflow",
     "category": "Purchase Management",
     "license": "AGPL-3",
-    "depends": ["purchase_stock"],
+    "depends": ["purchase_stock", "base_partition"],
     "installable": True,
     "application": False,
 }
