@@ -22,6 +22,9 @@ class PurchaseOrderLine(models.Model):
         key = ({"date_planned": fields.Date.to_string(date)},)
         return key
 
+    def _get_split_move_by_date_group(self):
+        return lambda line: fields.Date.context_today(self.env.user, line.date_planned)
+
     @api.model
     def _first_picking_copy_vals(self, key, lines):
         """The data to be copied to new pickings is updated with data from the
@@ -82,17 +85,15 @@ class PurchaseOrderLine(models.Model):
     def write(self, values):
         res = super().write(values)
         if "date_planned" in values:
-            self.mapped("order_id")._check_split_pickings()
+            self._check_split_moves_by_date()
         return res
 
     @api.model_create_multi
-    def create(self, values):
-        lines = super().create(values)
-        orders = lines.mapped("order_id").filtered(
-            lambda order: order.state == "purchase"
-        )
-        if orders:
-            orders._check_split_pickings()
+    def create(self, vals_list):
+        lines = super().create(vals_list)
+        lines.filtered(
+            lambda line: lines.order_id.state == "purchase"
+        )._check_split_moves_by_date()
         return lines
 
     def _compute_price_unit_and_date_planned_and_name(self):
@@ -111,3 +112,36 @@ class PurchaseOrderLine(models.Model):
             ):
                 line.date_planned = date_planned_by_record[line.id]
         return res
+
+    def _get_picking_domain_split_by_date(self):
+        """
+        Don't split pickings that are done or cancel or that have been
+        printed.
+        """
+        return [("state", "not in", ("done", "cancel")), ("printed", "=", False)]
+
+    def _check_split_moves_by_date(self):
+        for group_date, lines in self.partition(
+            self._get_split_move_by_date_group()
+        ).items():
+            for picking, moves in lines.move_ids.partition("picking_id").items():
+                if not picking.filtered_domain(
+                    self._get_picking_domain_split_by_date()
+                ):
+                    continue
+                moves._do_unreserve()
+                moves.update(
+                    {
+                        "date": group_date,
+                        "date_deadline": group_date,
+                        "picking_id": False,
+                    }
+                )
+                moves.with_context(purchase_delivery_split_date=True)._assign_picking()
+                for move in moves:
+                    if not move.picking_id.partner_id:
+                        move.picking_id.write({"partner_id": picking.partner_id.id})
+                moves._action_assign()
+                picking.filtered(lambda picking: not picking.move_ids).write(
+                    {"state": "cancel"}
+                )
