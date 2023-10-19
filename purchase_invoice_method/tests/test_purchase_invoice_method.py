@@ -6,17 +6,18 @@ from odoo.tests.common import TransactionCase
 
 
 class TestPurchaseInvoiceMethod(TransactionCase):
-    def setUp(self):
-        super().setUp()
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
 
-        self.vendor = self.env["res.partner"].create(
+        cls.vendor = cls.env["res.partner"].create(
             {
                 "name": "Supplier",
                 "email": "supplier.serv@supercompany.com",
             }
         )
 
-        self.product = self.env["product.product"].create(
+        cls.product = cls.env["product.product"].create(
             {
                 "name": "Product",
                 "standard_price": 200.0,
