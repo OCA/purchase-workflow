@@ -7,6 +7,7 @@
             name="name"
         >product.template.purchase.button.inherit (in product_form_purchase_link)</field>
         <field name="model">product.template</field>
+        <field name="groups_id" eval="[(4, ref('purchase.group_purchase_user'))]" />
         <field
             name="inherit_id"
             ref="purchase.view_product_template_purchase_buttons_from"
@@ -21,7 +22,7 @@
                 >
                     <field
                         string="Purchases"
-                        name="purchased_product_qty"
+                        name="purchase_lines_count"
                         widget="statinfo"
                     />
                 </button>
