@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field name="name">purchase.order.form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='currency_id']" position="after">
+                <field name="is_manual" invisible="1" />
+                <label
+                    for="manual_currency"
+                    groups="base.group_multi_currency"
+                    attrs="{'invisible': [('is_manual', '=', False)]}"
+                />
+                <div groups="base.group_multi_currency">
+                    <field
+                        name="manual_currency"
+                        attrs="{'invisible': [('is_manual', '=', False)], 'readonly': [('state', '!=', 'draft')]}"
+                    />
+                    <field
+                        name="custom_rate"
+                        attrs="{'invisible': [('manual_currency', '=', False)], 'readonly': [('state', '!=', 'draft')]}"
+                    />
+                    <button
+                        aria-label="Opened"
+                        type="object"
+                        name="action_refresh_currency"
+                        class="btn-link"
+                        states="draft"
+                    >
+                        <i
+                            title="Update Currency"
+                            class="fa fa-fw fa-refresh"
+                            attrs="{'invisible': [('manual_currency', '=', False)]}"
+                        />
+                    </button>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
