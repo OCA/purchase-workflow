@@ -4,7 +4,7 @@
 {
     "name": "Sale Purchase Secondary Unit",
     "summary": "Propagate sale secondary uom to purchase orders",
-    "version": "15.0.1.0.0",
+    "version": "15.0.1.0.1",
     "development_status": "Beta",
     "category": "stock",
     "website": "https://github.com/OCA/purchase-workflow",

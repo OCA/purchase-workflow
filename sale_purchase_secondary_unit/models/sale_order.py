@@ -5,6 +5,17 @@
 from odoo import models
 
 
+class SaleOrder(models.Model):
+    _inherit = "sale.order"
+
+    def action_cancel(self):
+        # When a SO linked to a purchase order is cancelled we must update the
+        # secondary_uom_qty on po line
+        return super(
+            SaleOrder, self.with_context(cancelled_so_lines=self.order_line.ids)
+        ).action_cancel()
+
+
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
