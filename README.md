@@ -62,6 +62,7 @@ addon | version | maintainers | summary
 [purchase_tag](purchase_tag/) | 16.0.1.0.0 |  | Allows to add multiple tags to purchase orders
 [purchase_tier_validation](purchase_tier_validation/) | 16.0.1.0.0 |  | Extends the functionality of Purchase Orders to support a tier validation process.
 [purchase_triple_discount](purchase_triple_discount/) | 16.0.1.0.0 |  | Manage triple discount on purchase order lines
+[purchase_receipt_expectation](purchase_receipt_expectation/) | 16.0.1.0.0 |  | Purchase Receipt Expectation
 
 [//]: # (end addons)
 
