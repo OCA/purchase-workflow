@@ -31,12 +31,24 @@ class PurchaseOrderLine(models.Model):
         for line in self:
             total = line.product_uom_qty
             for move in line.move_ids.filtered(
-                    lambda m: m.state == 'done'):
+                lambda m: m.state == 'done' and
+                    m.location_dest_id.usage in ['internal', 'transit']):
+
                 if move.product_uom != line.product_uom:
                     total -= move.product_uom._compute_quantity(
                         move.product_uom_qty, line.product_uom)
                 else:
                     total -= move.product_uom_qty
+            for move in line.move_ids.filtered(
+                lambda m: m.state == 'done' and
+                    m.location_dest_id.usage not in ['internal', 'transit']):
+
+                if move.product_uom != line.product_uom:
+                    total += move.product_uom._compute_quantity(
+                        move.product_uom_qty, line.product_uom)
+                else:
+                    total += move.product_uom_qty
+
             line.qty_to_receive = total
 
     qty_to_invoice = fields.Float(compute='_compute_qty_to_invoice',
