@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="purchase_order_manual_receipt_wizard" model="ir.ui.view">
+        <field name="name">purchase.order.manual.receipt.wizard</field>
+        <field name="model">purchase.order.manual.receipt.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group name="data">
+                        <field name="purchase_order_id" invisible="1" />
+                        <group name="picking_data">
+                            <field name="scheduled_date" />
+                            <field name="auto_confirm_picking" />
+                        </group>
+                    </group>
+                    <div
+                        role="alert"
+                        class="alert alert-warning"
+                        name="checks_result"
+                        attrs="{'invisible': [('checks_result', '=', 'success')]}"
+                    >
+                        <field name="checks_result" invisible="1" />
+                        <field name="checks_result_msg" nolabel="1" readonly="1" />
+                    </div>
+                    <field name="line_ids" nolabel="1">
+                        <tree editable="bottom">
+                            <field name="wizard_id" invisible="1" />
+                            <field name="purchase_order_id" invisible="1" />
+                            <field name="uom_category_id" invisible="1" />
+                            <field
+                                name="purchase_line_id"
+                                string="Line to receive"
+                                domain="[('order_id', '=', purchase_order_id), ('feasible_for_manual_receipt', '=', True)]"
+                            />
+                            <field name="product_id" />
+                            <field name="qty" />
+                            <field
+                                name="uom_id"
+                                domain="[('category_id', '=', uom_category_id)]"
+                            />
+                            <field name="currency_id" invisible="1" />
+                            <field name="unit_price" />
+                        </tree>
+                    </field>
+                </sheet>
+                <footer>
+                    <button
+                        string="Check without Confirm"
+                        name="button_check"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    <button
+                        string="Check and Confirm"
+                        name="button_confirm"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    <button string="Cancel" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>
