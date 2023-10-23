@@ -99,6 +99,11 @@ msgid "Validated Message"
 msgstr ""
 
 #. module: purchase_work_acceptance_tier_validation
+#: model:ir.model.fields,field_description:purchase_work_acceptance_tier_validation.field_work_acceptance__validation_status
+msgid "Validation Status"
+msgstr ""
+
+#. module: purchase_work_acceptance_tier_validation
 #: model:ir.model.fields,field_description:purchase_work_acceptance_tier_validation.field_work_acceptance__review_ids
 msgid "Validations"
 msgstr ""
