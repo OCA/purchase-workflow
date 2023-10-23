@@ -58,11 +58,7 @@ class PurchaseOrder(models.Model):
         }
         vals_to_add.update(vals)
         vals = vals_to_add
-        return super(PurchaseOrder, self)._complete_quick_line_vals(
-            vals, lines_key="order_line"
-        )
+        return super()._complete_quick_line_vals(vals, lines_key="order_line")
 
     def _add_quick_line(self, product, lines_key=""):
-        return super(PurchaseOrder, self)._add_quick_line(
-            product, lines_key="order_line"
-        )
+        return super()._add_quick_line(product, lines_key="order_line")

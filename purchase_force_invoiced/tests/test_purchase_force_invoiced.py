@@ -8,7 +8,7 @@ from odoo.tests.common import TransactionCase
 
 class TestPurchaseForceInvoiced(TransactionCase):
     def setUp(self):
-        super(TestPurchaseForceInvoiced, self).setUp()
+        super().setUp()
         self.purchase_order_model = self.env["purchase.order"]
         self.purchase_order_line_model = self.env["purchase.order.line"]
         self.account_invoice_model = self.env["account.move"]

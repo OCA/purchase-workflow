@@ -32,9 +32,7 @@ class PurchaseRequestLineMakePurchaseRequisition(models.TransientModel):
 
     @api.model
     def default_get(self, fields):
-        res = super(PurchaseRequestLineMakePurchaseRequisition, self).default_get(
-            fields
-        )
+        res = super().default_get(fields)
 
         # By default, expect called from PR Line
         request_line_obj = self.env["purchase.request.line"]

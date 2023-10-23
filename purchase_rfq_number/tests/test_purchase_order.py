@@ -7,7 +7,7 @@ from odoo.tests.common import TransactionCase
 
 class TestPurchaseOrder(TransactionCase):
     def setUp(self, *args, **kwargs):
-        super(TestPurchaseOrder, self).setUp()
+        super().setUp()
         self.purchase_order_model = self.env["purchase.order"]
         company = self.env.company
         company.keep_name_po = False

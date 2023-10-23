@@ -9,7 +9,7 @@ from odoo.tests.common import TransactionCase
 class TestAnalyticSearch(TransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(TestAnalyticSearch, cls).setUpClass()
+        super().setUpClass()
         # purchase_order
         cls.purchase_order_model = cls.env["purchase.order"]
         partner_model = cls.env["res.partner"]

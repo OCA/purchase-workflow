@@ -24,7 +24,7 @@ class MergePurchaseAutomatic(models.TransientModel):
 
     @api.model
     def default_get(self, fields_list):
-        res = super(MergePurchaseAutomatic, self).default_get(fields_list)
+        res = super().default_get(fields_list)
         active_ids = self.env.context.get("active_ids")
         purchase_orders = self.purchase_ids.browse(active_ids)
         self._check_all_values(purchase_orders)

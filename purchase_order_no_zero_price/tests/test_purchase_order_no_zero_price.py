@@ -10,7 +10,7 @@ from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 class TestPurchaseOrderNoZeroPrice(common.TransactionCase):
     def setUp(self):
-        super(TestPurchaseOrderNoZeroPrice, self).setUp()
+        super().setUp()
 
         self.PurchaseOrder = self.env["purchase.order"]
         # Partner

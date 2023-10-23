@@ -8,7 +8,7 @@ from odoo.tests.common import Form, TransactionCase
 
 class TestPurchaseRequest(TransactionCase):
     def setUp(self):
-        super(TestPurchaseRequest, self).setUp()
+        super().setUp()
         self.purchase_request_obj = self.env["purchase.request"]
         self.purchase_request_line_obj = self.env["purchase.request.line"]
         self.purchase_order = self.env["purchase.order"]

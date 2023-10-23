@@ -10,7 +10,7 @@ from odoo.tests.common import TransactionCase
 class TestPurchaseOrder(TransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(TestPurchaseOrder, cls).setUpClass()
+        super().setUpClass()
         cls.Product = cls.env["product.product"]
         cls.Purchase = cls.env["purchase.order"]
         cls.PurchaseLine = cls.env["purchase.order.line"]

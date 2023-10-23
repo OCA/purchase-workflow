@@ -100,7 +100,7 @@ class WorkAcceptance(models.Model):
             vals["name"] = (
                 self.env["ir.sequence"].next_by_code("work.acceptance") or "/"
             )
-        return super(WorkAcceptance, self).create(vals)
+        return super().create(vals)
 
     def button_accept(self, force=False):
         if self.env.context.get("manual_date_accept"):

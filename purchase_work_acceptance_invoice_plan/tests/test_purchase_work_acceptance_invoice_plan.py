@@ -8,7 +8,7 @@ from odoo.tests.common import Form, TransactionCase
 
 class TestPurchaseWorkAcceptanceInvoicePlan(TransactionCase):
     def setUp(self):
-        super(TestPurchaseWorkAcceptanceInvoicePlan, self).setUp()
+        super().setUp()
         self.PurchaseInvoicePlan = self.env["purchase.create.invoice.plan"]
         self.PurchaseOrder = self.env["purchase.order"]
         self.PurchaseInvoicePlan = self.env["purchase.create.invoice.plan"]

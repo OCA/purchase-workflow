@@ -9,7 +9,7 @@ from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 class TestPurchaseRequestException(TransactionCase):
     def setUp(self):
-        super(TestPurchaseRequestException, self).setUp()
+        super().setUp()
         # Useful models
         self.PurchaseRequest = self.env["purchase.request"]
         self.PurchaseRequestLine = self.env["purchase.request.line"]

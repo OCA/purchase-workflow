@@ -9,7 +9,7 @@ from odoo.tests.common import TransactionCase
 class TestPurchaseOrder(TransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(TestPurchaseOrder, cls).setUpClass()
+        super().setUpClass()
         cls.categ_cost_average = cls.env["product.category"].create(
             {"name": "Average cost method category", "property_cost_method": "average"}
         )

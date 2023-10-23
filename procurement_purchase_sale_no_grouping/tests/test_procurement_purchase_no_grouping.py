@@ -7,7 +7,7 @@ from odoo.tests import common
 class TestProcurementPurchaseNoGrouping(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(TestProcurementPurchaseNoGrouping, cls).setUpClass()
+        super().setUpClass()
         cls.category = cls.env["product.category"].create({"name": "Test category"})
         cls.customer = cls.env["res.partner"].create({"name": "Test customer"})
         cls.supplier = cls.env["res.partner"].create({"name": "Test supplier"})
