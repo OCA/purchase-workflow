@@ -42,7 +42,10 @@ class StockRule(models.Model):
             moves = self.env["stock.move"].browse(
                 list(moves_dest._rollup_move_dests(set()))
             )
-            sale_lines = moves.mapped("sale_line_id")
+            cancelled_so_lines = self.env.context.get("cancelled_so_lines", [])
+            sale_lines = moves.mapped("sale_line_id").filtered(
+                lambda ln: ln.id not in cancelled_so_lines
+            )
             vals["secondary_uom_qty"] = sum(sale_lines.mapped("secondary_uom_qty"))
         return vals
 
