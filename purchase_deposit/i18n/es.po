@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-18 11:08+0000\n"
+"PO-Revision-Date: 2023-10-28 19:58+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -36,7 +36,7 @@ msgstr "Cuenta contable para el anticipo"
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_deduct_option__advance_deduct_option
 #, python-format
 msgid "Advance/Deposit Deduction Option"
-msgstr ""
+msgstr "Opción de deducción anticipada/depósito"
 
 #. module: purchase_deposit
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
@@ -53,7 +53,7 @@ msgstr "Cancelar"
 #. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_deduct_option
 msgid "Create and View bill"
-msgstr ""
+msgstr "Crear y Ver facturas"
 
 #. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
@@ -80,12 +80,12 @@ msgstr "Creado en"
 #. module: purchase_deposit
 #: model:ir.model.fields.selection,name:purchase_deposit.selection__purchase_advance_deduct_option__advance_deduct_option__proportional
 msgid "Deduct Deposit Proportionally"
-msgstr ""
+msgstr "Deducción Proporcional del Depósito"
 
 #. module: purchase_deposit
 #: model:ir.model.fields.selection,name:purchase_deposit.selection__purchase_advance_deduct_option__advance_deduct_option__full
 msgid "Deduct Full Deposit (Standard)"
-msgstr ""
+msgstr "Deducción del Depósito Completo (Estándar)"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,help:purchase_deposit.field_res_config_settings__default_purchase_deposit_product_id
@@ -177,7 +177,7 @@ msgstr "Es un anticipo"
 #. module: purchase_deposit
 #: model:ir.model,name:purchase_deposit.model_account_move
 msgid "Journal Entry"
-msgstr ""
+msgstr "Entrada Diaria"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_deduct_option____last_update
@@ -235,7 +235,7 @@ msgstr "Crear anticipo"
 #. module: purchase_deposit
 #: model:ir.model,name:purchase_deposit.model_purchase_advance_deduct_option
 msgid "Select how to return advance in vendor bill"
-msgstr ""
+msgstr "Seleccione cómo devolver el anticipo en la factura del vendedor"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,help:purchase_deposit.field_purchase_advance_payment_inv__deposit_taxes_id
