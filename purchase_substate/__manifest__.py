@@ -4,7 +4,7 @@
 
 {
     "name": "Purchase Sub State",
-    "version": "15.0.1.0.0",
+    "version": "15.0.1.1.0",
     "category": "Tools",
     "author": "Akretion,Ecosoft,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
@@ -15,6 +15,6 @@
         "data/purchase_substate_mail_template_data.xml",
         "data/purchase_substate_data.xml",
     ],
-    "demo": ["data/purchase_substate_demo.xml"],
+    "demo": ["demo/purchase_substate_demo.xml"],
     "installable": True,
 }
