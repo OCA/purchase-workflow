@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-02 12:31+0000\n"
-"PO-Revision-Date: 2023-07-13 10:09+0000\n"
+"PO-Revision-Date: 2023-10-28 19:58+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
@@ -61,7 +61,7 @@ msgstr "Sin agrupación de pedidos"
 #: model:ir.model.fields,field_description:procurement_purchase_no_grouping.field_res_company__procured_purchase_grouping
 #: model:ir.model.fields,field_description:procurement_purchase_no_grouping.field_res_config_settings__procured_purchase_grouping
 msgid "Procured Purchase Grouping"
-msgstr ""
+msgstr "Agrupación de la Compra Abastecida"
 
 #. module: procurement_purchase_no_grouping
 #: model_terms:ir.ui.view,arch_db:procurement_purchase_no_grouping.res_config_settings_view_form_procurement_purchase_grouping
