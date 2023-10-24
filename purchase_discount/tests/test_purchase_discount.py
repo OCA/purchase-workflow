@@ -5,11 +5,14 @@
 from odoo import fields
 from odoo.tests.common import Form, TransactionCase
 
+from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
+
 
 class TestPurchaseOrder(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super(TestPurchaseOrder, cls).setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT))
         cls.categ_cost_average = cls.env["product.category"].create(
             {"name": "Average cost method category", "property_cost_method": "average"}
         )

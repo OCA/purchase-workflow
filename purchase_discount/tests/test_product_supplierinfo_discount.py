@@ -5,11 +5,14 @@
 from odoo import fields
 from odoo.tests.common import Form, TransactionCase
 
+from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
+
 
 class TestProductSupplierinfoDiscount(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT))
         cls.supplierinfo_model = cls.env["product.supplierinfo"]
         cls.purchase_order_line_model = cls.env["purchase.order.line"]
         cls.partner_1 = cls.env.ref("base.res_partner_1")
