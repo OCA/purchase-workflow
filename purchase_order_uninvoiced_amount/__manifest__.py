@@ -5,7 +5,7 @@
 {
     "name": "Purchase Order Univoiced Amount",
     "author": "Tecnativa, Odoo Community Association (OCA)",
-    "version": "15.0.1.0.0",
+    "version": "15.0.1.0.1",
     "development_status": "Production/Stable",
     "website": "https://github.com/OCA/purchase-workflow",
     "category": "Purchase",

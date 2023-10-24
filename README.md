@@ -21,7 +21,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
-[procurement_purchase_no_grouping](procurement_purchase_no_grouping/) | 15.0.1.0.1 |  | Procurement Purchase No Grouping
+[procurement_purchase_no_grouping](procurement_purchase_no_grouping/) | 15.0.1.0.2 |  | Procurement Purchase No Grouping
 [procurement_purchase_sale_no_grouping](procurement_purchase_sale_no_grouping/) | 15.0.1.0.0 |  | Procurement Purchase Service No Grouping
 [product_form_purchase_link](product_form_purchase_link/) | 15.0.1.1.0 | [![rousseldenis](https://github.com/rousseldenis.png?size=30px)](https://github.com/rousseldenis) | Add an option to display the purchases lines from product
 [product_supplier_code_purchase](product_supplier_code_purchase/) | 15.0.1.0.0 |  | This module adds to the purchase order line the supplier code defined in the product.
@@ -34,10 +34,10 @@ addon | version | maintainers | summary
 [purchase_delivery_split_date](purchase_delivery_split_date/) | 15.0.1.0.0 |  | Allows Purchase Order you confirm to generate one Incoming Shipment for each expected date indicated in the Purchase Order Lines
 [purchase_deposit](purchase_deposit/) | 15.0.1.1.0 |  | Option to create deposit from purchase order
 [purchase_deposit_analytic](purchase_deposit_analytic/) | 15.0.1.0.0 | [![Saran440](https://github.com/Saran440.png?size=30px)](https://github.com/Saran440) | Add analytic on wizard register deposit
-[purchase_discount](purchase_discount/) | 15.0.1.2.1 |  | Purchase order lines with discounts
+[purchase_discount](purchase_discount/) | 15.0.1.2.2 |  | Purchase order lines with discounts
 [purchase_exception](purchase_exception/) | 15.0.1.0.0 |  | Custom exceptions on purchase order
 [purchase_fop_shipping](purchase_fop_shipping/) | 15.0.1.0.0 |  | Purchase Free-Of-Payment shipping
-[purchase_force_invoiced](purchase_force_invoiced/) | 15.0.1.0.1 |  | Allows to force the billing status of the purchase order to "Invoiced"
+[purchase_force_invoiced](purchase_force_invoiced/) | 15.0.1.0.2 |  | Allows to force the billing status of the purchase order to "Invoiced"
 [purchase_fully_invoiced](purchase_fully_invoiced/) | 15.0.1.0.0 |  | Useful filters in Purchases to know the actual status of invoices.
 [purchase_fully_received](purchase_fully_received/) | 15.0.1.0.0 |  | Useful filters in Purchases to know the actual status of shipments.and invoices
 [purchase_invoice_method](purchase_invoice_method/) | 15.0.1.0.0 |  | Allow to force the invoice method of a purchase
@@ -52,28 +52,28 @@ addon | version | maintainers | summary
 [purchase_order_general_discount](purchase_order_general_discount/) | 15.0.1.0.1 |  | General discount per purchase order
 [purchase_order_line_deep_sort](purchase_order_line_deep_sort/) | 15.0.1.0.0 |  | Purchase Order Line Sort
 [purchase_order_line_menu](purchase_order_line_menu/) | 15.0.1.2.0 |  | Adds Purchase Order Lines Menu
-[purchase_order_line_price_history](purchase_order_line_price_history/) | 15.0.1.0.0 |  | Purchase order line price history
-[purchase_order_line_price_history_discount](purchase_order_line_price_history_discount/) | 15.0.1.0.0 |  | Purchase order line price history discount
+[purchase_order_line_price_history](purchase_order_line_price_history/) | 15.0.1.0.1 |  | Purchase order line price history
+[purchase_order_line_price_history_discount](purchase_order_line_price_history_discount/) | 15.0.1.0.1 |  | Purchase order line price history discount
 [purchase_order_line_qty_to_receive](purchase_order_line_qty_to_receive/) | 15.0.1.0.0 |  | Purchase Line - Qty To Receive
 [purchase_order_line_sequence](purchase_order_line_sequence/) | 15.0.1.0.1 |  | Adds sequence to PO lines and propagates it toInvoice lines and Stock Moves
 [purchase_order_line_stock_available](purchase_order_line_stock_available/) | 15.0.1.0.0 |  | Purchase order line stock available
 [purchase_order_no_zero_price](purchase_order_no_zero_price/) | 15.0.1.0.0 |  | Prevent zero price lines on Purchase Orders
-[purchase_order_product_recommendation](purchase_order_product_recommendation/) | 15.0.1.0.1 |  | Recommend products to buy to supplier based on history
-[purchase_order_product_recommendation_brand](purchase_order_product_recommendation_brand/) | 15.0.1.0.0 |  | Allow to filter recommendations by brand
+[purchase_order_product_recommendation](purchase_order_product_recommendation/) | 15.0.1.0.2 |  | Recommend products to buy to supplier based on history
+[purchase_order_product_recommendation_brand](purchase_order_product_recommendation_brand/) | 15.0.1.0.1 |  | Allow to filter recommendations by brand
 [purchase_order_product_recommendation_classification](purchase_order_product_recommendation_classification/) | 15.0.1.0.0 |  | Extends the purchase recomendator with classification filters
 [purchase_order_product_recommendation_forecast](purchase_order_product_recommendation_forecast/) | 15.0.1.0.0 |  | Obtain linear progression forecast from reference years
 [purchase_order_product_recommendation_secondary_unit](purchase_order_product_recommendation_secondary_unit/) | 15.0.1.0.0 |  | Add secondary unit to recommend products wizard
-[purchase_order_product_recommendation_xlsx](purchase_order_product_recommendation_xlsx/) | 15.0.1.0.0 |  | Add a way to print recommended products for supplier
+[purchase_order_product_recommendation_xlsx](purchase_order_product_recommendation_xlsx/) | 15.0.1.0.1 |  | Add a way to print recommended products for supplier
 [purchase_order_qty_by_product_category](purchase_order_qty_by_product_category/) | 15.0.1.0.0 |  | Purchase - Order Qty By Product Category
-[purchase_order_qty_change_no_recompute](purchase_order_qty_change_no_recompute/) | 15.0.1.0.1 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Prevent recompute if only quantity has changed in purchase order line
+[purchase_order_qty_change_no_recompute](purchase_order_qty_change_no_recompute/) | 15.0.1.0.2 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Prevent recompute if only quantity has changed in purchase order line
 [purchase_order_secondary_unit](purchase_order_secondary_unit/) | 15.0.1.2.1 |  | Purchase product in a secondary unit
-[purchase_order_supplierinfo_update](purchase_order_supplierinfo_update/) | 15.0.1.0.0 | [![ernestotejeda](https://github.com/ernestotejeda.png?size=30px)](https://github.com/ernestotejeda) | Update product supplierinfo with the last purchase price
+[purchase_order_supplierinfo_update](purchase_order_supplierinfo_update/) | 15.0.1.0.1 | [![ernestotejeda](https://github.com/ernestotejeda.png?size=30px)](https://github.com/ernestotejeda) | Update product supplierinfo with the last purchase price
 [purchase_order_type](purchase_order_type/) | 15.0.1.0.0 |  | Purchase Order Type
 [purchase_order_type_dashboard](purchase_order_type_dashboard/) | 15.0.1.0.0 | [![dalonsod](https://github.com/dalonsod.png?size=30px)](https://github.com/dalonsod) | Purchase Order Type Dashboard
-[purchase_order_uninvoiced_amount](purchase_order_uninvoiced_amount/) | 15.0.1.0.0 |  | Purchase Order Univoiced Amount
+[purchase_order_uninvoiced_amount](purchase_order_uninvoiced_amount/) | 15.0.1.0.1 |  | Purchase Order Univoiced Amount
 [purchase_order_weight_volume](purchase_order_weight_volume/) | 15.0.1.0.1 | [![ilyasProgrammer](https://github.com/ilyasProgrammer.png?size=30px)](https://github.com/ilyasProgrammer) | Display purchase order weight and volume
 [purchase_partner_incoterm](purchase_partner_incoterm/) | 15.0.3.0.0 | [![TDu](https://github.com/TDu.png?size=30px)](https://github.com/TDu) [![bealdav](https://github.com/bealdav.png?size=30px)](https://github.com/bealdav) | Add a an incoterm field for supplier and use it on purchase order
-[purchase_partner_selectable_option](purchase_partner_selectable_option/) | 15.0.1.0.1 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Purchase Partner Selectable Option
+[purchase_partner_selectable_option](purchase_partner_selectable_option/) | 15.0.1.0.2 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Purchase Partner Selectable Option
 [purchase_quick](purchase_quick/) | 15.0.1.0.0 |  | Quick Purchase order
 [purchase_receipt_expectation](purchase_receipt_expectation/) | 15.0.1.0.0 |  | Purchase Receipt Expectation
 [purchase_receipt_expectation_from_partner](purchase_receipt_expectation_from_partner/) | 15.0.1.0.0 |  | Purchase Receipt Expectation From Partner
@@ -94,7 +94,7 @@ addon | version | maintainers | summary
 [purchase_requisition_tier_validation](purchase_requisition_tier_validation/) | 15.0.1.0.0 |  | Extends the functionality of Purchase Agreements to support a tier validation process.
 [purchase_rfq_number](purchase_rfq_number/) | 15.0.1.0.0 |  | Different sequence for purchase for quotations
 [purchase_security](purchase_security/) | 15.0.3.1.0 | [![pilarvargas-tecnativa](https://github.com/pilarvargas-tecnativa.png?size=30px)](https://github.com/pilarvargas-tecnativa) | See only your purchase orders
-[purchase_stock_price_unit_sync](purchase_stock_price_unit_sync/) | 15.0.1.0.3 |  | Update cost price in stock moves already done
+[purchase_stock_price_unit_sync](purchase_stock_price_unit_sync/) | 15.0.1.0.4 |  | Update cost price in stock moves already done
 [purchase_stock_return_request](purchase_stock_return_request/) | 15.0.1.0.1 |  | Purchase Stock Return Request
 [purchase_stock_secondary_unit](purchase_stock_secondary_unit/) | 15.0.1.1.0 |  | Get product quantities in a secondary unit
 [purchase_stock_tier_validation](purchase_stock_tier_validation/) | 15.0.1.0.0 | [![bosd](https://github.com/bosd.png?size=30px)](https://github.com/bosd) | Exclude RFQs pending to validate when procuring
@@ -109,7 +109,7 @@ addon | version | maintainers | summary
 [purchase_work_acceptance_invoice_plan](purchase_work_acceptance_invoice_plan/) | 15.0.1.0.0 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Purchase Work Acceptance Invoice Plan
 [purchase_work_acceptance_late_fines](purchase_work_acceptance_late_fines/) | 15.0.1.1.0 | [![Saran440](https://github.com/Saran440.png?size=30px)](https://github.com/Saran440) | Purchase Work Acceptance - Late Delivery Fines
 [purchase_work_acceptance_tier_validation](purchase_work_acceptance_tier_validation/) | 15.0.1.0.0 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Extends the functionality of Work Acceptance to support a tier validation process.
-[sale_purchase_force_vendor](sale_purchase_force_vendor/) | 15.0.1.0.1 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Sale Purchase Force Vendor
+[sale_purchase_force_vendor](sale_purchase_force_vendor/) | 15.0.1.0.2 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Sale Purchase Force Vendor
 [sale_purchase_secondary_unit](sale_purchase_secondary_unit/) | 15.0.1.0.1 |  | Propagate sale secondary uom to purchase orders
 [subcontracted_service](subcontracted_service/) | 15.0.1.0.0 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Subcontracted service
 
