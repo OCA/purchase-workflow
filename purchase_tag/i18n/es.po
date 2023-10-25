@@ -6,78 +6,80 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2023-10-28 19:59+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: purchase_tag
 #: model:ir.model.fields,field_description:purchase_tag.field_purchase_tag__color
 msgid "Color"
-msgstr ""
+msgstr "Color"
 
 #. module: purchase_tag
 #: model_terms:ir.actions.act_window,help:purchase_tag.purchase_tag_action
 msgid "Create new tags for your purchase orders"
-msgstr ""
+msgstr "Crea nuevas etiquetas para tus órdenes de compra"
 
 #. module: purchase_tag
 #: model:ir.model.fields,field_description:purchase_tag.field_purchase_tag__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creado por"
 
 #. module: purchase_tag
 #: model:ir.model.fields,field_description:purchase_tag.field_purchase_tag__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creado el"
 
 #. module: purchase_tag
 #: model:ir.model.fields,field_description:purchase_tag.field_purchase_tag__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Mostrar Nombre"
 
 #. module: purchase_tag
 #: model:ir.model.fields,field_description:purchase_tag.field_purchase_tag__id
 msgid "ID"
-msgstr ""
+msgstr "ID (identificación)"
 
 #. module: purchase_tag
 #: model:ir.model.fields,field_description:purchase_tag.field_purchase_tag____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última Modificación el"
 
 #. module: purchase_tag
 #: model:ir.model.fields,field_description:purchase_tag.field_purchase_tag__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Última Actualización por"
 
 #. module: purchase_tag
 #: model:ir.model.fields,field_description:purchase_tag.field_purchase_tag__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Última Actualización el"
 
 #. module: purchase_tag
 #: model:ir.model,name:purchase_tag.model_purchase_order
 msgid "Purchase Order"
-msgstr ""
+msgstr "Orden de Compra"
 
 #. module: purchase_tag
 #: model:ir.model,name:purchase_tag.model_purchase_tag
 msgid "Purchase Tag"
-msgstr ""
+msgstr "Etiqueta de Compra"
 
 #. module: purchase_tag
 #: model:ir.model.fields,field_description:purchase_tag.field_purchase_tag__name
 msgid "Tag Name"
-msgstr ""
+msgstr "Nombre de Etiqueta"
 
 #. module: purchase_tag
 #: model:ir.model.constraint,message:purchase_tag.constraint_purchase_tag_tag_name_uniq
 msgid "Tag name already exists !"
-msgstr ""
+msgstr "¡Este nombre de etiqueta ya existe !"
 
 #. module: purchase_tag
 #: model:ir.actions.act_window,name:purchase_tag.purchase_tag_action
@@ -85,4 +87,4 @@ msgstr ""
 #: model:ir.ui.menu,name:purchase_tag.menu_purchase_tag_config
 #: model_terms:ir.ui.view,arch_db:purchase_tag.purchase_tag_view_form
 msgid "Tags"
-msgstr ""
+msgstr "Etiquetas"
