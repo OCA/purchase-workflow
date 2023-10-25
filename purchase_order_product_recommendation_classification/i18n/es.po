@@ -6,84 +6,86 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2023-10-28 19:59+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: purchase_order_product_recommendation_classification
 #: model:ir.model.fields,field_description:purchase_order_product_recommendation_classification.field_purchase_order_recommendation_line__abc_classification_level_id
 msgid "Abc Classification Level"
-msgstr ""
+msgstr "Nivel de Clasificación Abc"
 
 #. module: purchase_order_product_recommendation_classification
 #: model:ir.model.fields,field_description:purchase_order_product_recommendation_classification.field_purchase_order_recommendation_line__abc_classification_profile_id
 msgid "Abc Classification Profile"
-msgstr ""
+msgstr "Perfil de Clasificación Abc"
 
 #. module: purchase_order_product_recommendation_classification
 #: model:ir.model.fields,field_description:purchase_order_product_recommendation_classification.field_purchase_order_recommendation__abc_classification_level_id
 msgid "Classification Level"
-msgstr ""
+msgstr "Nivel de Clasificación"
 
 #. module: purchase_order_product_recommendation_classification
 #: model:ir.model.fields,field_description:purchase_order_product_recommendation_classification.field_purchase_order_recommendation__abc_classification_profile_id
 msgid "Classification Profile"
-msgstr ""
+msgstr "Perfil de Clasificación"
 
 #. module: purchase_order_product_recommendation_classification
 #: model:ir.model.fields.selection,name:purchase_order_product_recommendation_classification.selection__purchase_order_recommendation__seasonality_classification__high
 msgid "High"
-msgstr ""
+msgstr "Alta"
 
 #. module: purchase_order_product_recommendation_classification
 #: model:ir.model.fields.selection,name:purchase_order_product_recommendation_classification.selection__purchase_order_recommendation__seasonality_classification__low
 msgid "Low"
-msgstr ""
+msgstr "Bajo/a"
 
 #. module: purchase_order_product_recommendation_classification
 #: model:ir.model.fields.selection,name:purchase_order_product_recommendation_classification.selection__purchase_order_recommendation__seasonality_classification__medium
 msgid "Medium"
-msgstr ""
+msgstr "Mediana"
 
 #. module: purchase_order_product_recommendation_classification
 #: model:ir.model,name:purchase_order_product_recommendation_classification.model_purchase_order_recommendation_line
 msgid "Recommended product for current purchase order"
-msgstr ""
+msgstr "Producto recomendado para el pedido de compra en curso"
 
 #. module: purchase_order_product_recommendation_classification
 #: model:ir.model,name:purchase_order_product_recommendation_classification.model_purchase_order_recommendation
 msgid "Recommended products for current purchase order"
-msgstr ""
+msgstr "Productos recomendados para el pedido de compra en curso"
 
 #. module: purchase_order_product_recommendation_classification
 #: model_terms:ir.ui.view,arch_db:purchase_order_product_recommendation_classification.purchase_order_recommendation_view_form
 msgid "Sale"
-msgstr ""
+msgstr "Ventas"
 
 #. module: purchase_order_product_recommendation_classification
 #: model_terms:ir.ui.view,arch_db:purchase_order_product_recommendation_classification.purchase_order_recommendation_view_form
 msgid "Sale Profile"
-msgstr ""
+msgstr "Perfil de Venta"
 
 #. module: purchase_order_product_recommendation_classification
 #: model_terms:ir.ui.view,arch_db:purchase_order_product_recommendation_classification.purchase_order_recommendation_view_form
 msgid "Season"
-msgstr ""
+msgstr "Temporada"
 
 #. module: purchase_order_product_recommendation_classification
 #: model:ir.model.fields,field_description:purchase_order_product_recommendation_classification.field_purchase_order_recommendation__seasonality_classification
 #: model:ir.model.fields,field_description:purchase_order_product_recommendation_classification.field_purchase_order_recommendation_line__seasonality_classification
 msgid "Seasonility"
-msgstr ""
+msgstr "Temporalidad"
 
 #. module: purchase_order_product_recommendation_classification
 #: model:ir.model.fields.selection,name:purchase_order_product_recommendation_classification.selection__purchase_order_recommendation__seasonality_classification__very_high
 msgid "Very high"
-msgstr ""
+msgstr "Muy alta"
 
 #. module: purchase_order_product_recommendation_classification
 #: model:ir.model.fields,help:purchase_order_product_recommendation_classification.field_purchase_order_recommendation_line__seasonality_classification
@@ -91,3 +93,5 @@ msgid ""
 "Whether this product is selled during very short periods of time or steadily"
 " across the whole year"
 msgstr ""
+"Si este producto se vende durante cortos periodos de tiempo o de forma "
+"constante a lo largo del año"
