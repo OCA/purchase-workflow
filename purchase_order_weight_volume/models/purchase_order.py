@@ -26,15 +26,22 @@ class PurchaseOrder(models.Model):
     total_weight = fields.Float(
         compute="_compute_total_physical_properties",
         digits="Stock Weight",
+        store=True,
     )
     total_volume = fields.Float(
-        compute="_compute_total_physical_properties", digits="Volume"
+        compute="_compute_total_physical_properties",
+        digits="Volume",
+        store=True,
     )
     total_weight_uom_id = fields.Many2one(
-        "uom.uom", compute="_compute_total_physical_properties"
+        "uom.uom",
+        compute="_compute_total_physical_properties",
+        store=True,
     )
     total_volume_uom_id = fields.Many2one(
-        "uom.uom", compute="_compute_total_physical_properties"
+        "uom.uom",
+        compute="_compute_total_physical_properties",
+        store=True,
     )
     display_total_weight_in_report = fields.Boolean(
         "Display Weight in Report", default=True
