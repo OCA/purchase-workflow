@@ -12,16 +12,32 @@ class PurchaseOrder(models.Model):
     _name = "purchase.order"
     _inherit = ["purchase.order", "product.mass.addition"]
 
+    def _get_context_add_products(self):
+        res = {
+            "search_default_filter_to_purchase": 1,
+            "search_default_filter_for_current_supplier": 1,
+            "quick_access_rights_purchase": 1,
+        }
+        # Lazy dependency with purchase_stock
+        if "picking_type_id" in self._fields:
+            res.update(
+                {
+                    "warehouse": self.picking_type_id.warehouse_id.id,
+                    "to_date": self.date_planned,
+                }
+            )
+        return res
+
+    def _get_domain_add_products(self):
+        return []
+
     def add_product(self):
         self.ensure_one()
         res = self._common_action_keys()
-        res["context"].update(
-            {
-                "search_default_filter_to_purchase": 1,
-                "search_default_filter_for_current_supplier": 1,
-                "quick_access_rights_purchase": 1,
-            }
-        )
+        res["context"].update(self._get_context_add_products())
+        domain = self._get_domain_add_products()
+        if domain:
+            res["domain"] = domain
         commercial = self.partner_id.commercial_partner_id.name
         res["name"] = "🔙 {} ({})".format(_("Product Variants"), commercial)
         res["view_id"] = (self.env.ref("purchase_quick.product_tree_view4purchase").id,)
