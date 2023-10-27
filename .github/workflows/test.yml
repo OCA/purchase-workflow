@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Detect unreleased dependencies
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - run: |
           for reqfile in requirements.txt test-requirements.txt ; do
               if [ -f ${reqfile} ] ; then
@@ -37,39 +37,49 @@ jobs:
         include:
           - container: ghcr.io/oca/oca-ci/py3.6-odoo14.0:latest
             include: "purchase_cancel_reason"
-            makepot: "true"
             name: test with Odoo
           - container: ghcr.io/oca/oca-ci/py3.6-ocb14.0:latest
             include: "purchase_cancel_reason"
             name: test with OCB
+            makepot: "true"
           - container: ghcr.io/oca/oca-ci/py3.6-odoo14.0:latest
             include: "purchase_cancel_confirm"
-            makepot: "true"
             name: test with Odoo
           - container: ghcr.io/oca/oca-ci/py3.6-ocb14.0:latest
             include: "purchase_cancel_confirm"
             name: test with OCB
+            makepot: "true"
           - container: ghcr.io/oca/oca-ci/py3.6-odoo14.0:latest
+<<<<<<< before updating
             include: "purchase_order_type,purchase_order_type_dashboard"
             makepot: "true"
+=======
+            include: "purchase_order_type"
+>>>>>>> after updating
             name: test with Odoo
           - container: ghcr.io/oca/oca-ci/py3.6-ocb14.0:latest
             include: "purchase_order_type,purchase_order_type_dashboard"
             name: test with OCB
+            makepot: "true"
           - container: ghcr.io/oca/oca-ci/py3.6-odoo14.0:latest
             include: "purchase_quick"
-            makepot: "true"
             name: test with Odoo
           - container: ghcr.io/oca/oca-ci/py3.6-ocb14.0:latest
             include: "purchase_quick"
             name: test with OCB
+            makepot: "true"
           - container: ghcr.io/oca/oca-ci/py3.6-odoo14.0:latest
+<<<<<<< before updating
             exclude: "purchase_cancel_reason,purchase_cancel_confirm,purchase_order_type,purchase_order_type_dashboard,purchase_quick"
             makepot: "true"
+=======
+            exclude: "purchase_cancel_reason,purchase_cancel_confirm,purchase_order_type,purchase_quick"
+>>>>>>> after updating
             name: test with Odoo
           - container: ghcr.io/oca/oca-ci/py3.6-ocb14.0:latest
             exclude: "purchase_cancel_reason,purchase_cancel_confirm,purchase_order_type,purchase_order_type_dashboard,purchase_quick"
             name: test with OCB
+            makepot: "true"
     services:
       postgres:
         image: postgres:9.6
@@ -83,7 +93,7 @@ jobs:
       INCLUDE: "${{ matrix.include }}"
       EXCLUDE: "${{ matrix.exclude }}"
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           persist-credentials: false
       - name: Install addons and dependencies
