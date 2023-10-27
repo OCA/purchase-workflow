@@ -64,7 +64,11 @@ class PurchaseOrderLine(models.Model):
             total = 0.0
             for move in line.move_ids:
                 if move.state not in ["cancel"]:
-                    if move.location_dest_id.usage == "supplier":
+                    if (
+                        move.location_id
+                        == self.order_id.picking_type_id.default_location_dest_id
+                    ):
+                        # This is a return to vendor
                         if move.to_refund:
                             total -= move.product_uom._compute_quantity(
                                 move.product_uom_qty, line.product_uom
