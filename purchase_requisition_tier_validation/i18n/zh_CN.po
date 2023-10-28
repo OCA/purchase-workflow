@@ -93,6 +93,11 @@ msgid "Validated Message"
 msgstr ""
 
 #. module: purchase_requisition_tier_validation
+#: model:ir.model.fields,field_description:purchase_requisition_tier_validation.field_purchase_requisition__validation_status
+msgid "Validation Status"
+msgstr ""
+
+#. module: purchase_requisition_tier_validation
 #: model:ir.model.fields,field_description:purchase_requisition_tier_validation.field_purchase_requisition__review_ids
 msgid "Validations"
 msgstr ""
