@@ -161,10 +161,10 @@ class MergePurchaseAutomatic(models.TransientModel):
         :param po_name : the po where the message will be posted
         """
         subject = "Merge purchase order"
-        body = _("This purchase order lines have been merged {} : {}").format(
-            way, " ,".join(po_name)
-        )
-
+        body = _("These purchase order lines have been merged %(way)s : %(names)s") % {
+            "way": way,
+            "names": " ,".join(po_name),
+        }
         po.message_post(body=body, subject=subject, content_subtype="plaintext")
 
     def _merge(self, purchases, dst_purchase=None):
