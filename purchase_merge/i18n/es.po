@@ -90,8 +90,8 @@ msgstr "La compra seleccionada se fusionará."
 #. module: purchase_merge
 #: code:addons/purchase_merge/wizard/purchase_merge.py:0
 #, python-format
-msgid "This purchase order lines have been merged {} : {}"
-msgstr "Estas líneas de pedido se han fusionado {} : {}"
+msgid "These purchase order lines have been merged %(way)s : %(names)s"
+msgstr ""
 
 #. module: purchase_merge
 #: code:addons/purchase_merge/wizard/purchase_merge.py:0
@@ -140,3 +140,7 @@ msgstr "No puedes fusionar pedidos con diferentes proveedores: %s"
 #: model:ir.model,name:purchase_merge.model_purchase_merge_automatic_wizard
 msgid "purchase.merge.automatic.wizard"
 msgstr "purchase.merge.automatic.wizard"
+
+#, python-format
+#~ msgid "This purchase order lines have been merged {} : {}"
+#~ msgstr "Estas líneas de pedido se han fusionado {} : {}"
