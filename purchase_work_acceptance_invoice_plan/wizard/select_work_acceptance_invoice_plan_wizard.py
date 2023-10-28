@@ -151,9 +151,13 @@ class SelectWorkAcceptanceInvoicePlanWizard(models.TransientModel):
                 "warning": {
                     "title": _("Installment Warning:"),
                     "message": _(
-                        "The 1st installment is 'Invoice Plan {}' "
-                        "but you are choosing 'Invoice Plan {}'"
-                    ).format(min_installment, self.installment_id.installment),
+                        "The 1st installment is 'Invoice Plan %(min_installment)s' "
+                        "but you are choosing 'Invoice Plan %(installment)s'"
+                    )
+                    % {
+                        "min_installment": min_installment,
+                        "installment": self.installment_id.installment,
+                    },
                 }
             }
 
