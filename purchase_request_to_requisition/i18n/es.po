@@ -24,8 +24,8 @@ msgstr ""
 #. module: purchase_request_to_requisition
 #: code:addons/purchase_request_to_requisition/models/purchase_requisition.py:0
 #, python-format
-msgid "<li><b>{}</b>: Total bid quantity {} {}</li>"
-msgstr "<li><b>{}</b>: Cantidad total de oferta {} {}</li>"
+msgid "<li><b>%(name)s</b>: Total bid quantity %(qty)s %(uom)s</li>"
+msgstr ""
 
 #. module: purchase_request_to_requisition
 #: model_terms:ir.ui.view,arch_db:purchase_request_to_requisition.purchase_request_line_search
@@ -60,8 +60,8 @@ msgstr "Oferta Completada"
 #. module: purchase_request_to_requisition
 #: code:addons/purchase_request_to_requisition/models/purchase_requisition.py:0
 #, python-format
-msgid "Bid confirmation {} for your Request {}"
-msgstr "Confirmación de oferta {} para su solicitud {}"
+msgid "Bid confirmation %(bid_name)s for your Request %(request_name)s"
+msgstr ""
 
 #. module: purchase_request_to_requisition
 #: model_terms:ir.ui.view,arch_db:purchase_request_to_requisition.view_purchase_request_line_make_purchase_requisition
@@ -287,11 +287,9 @@ msgstr "TEs"
 #: code:addons/purchase_request_to_requisition/models/purchase_requisition.py:0
 #, python-format
 msgid ""
-"The following requested items from Purchase Request {} have now being sent "
-"to Suppliers using Purchase Bid {}:"
+"The following requested items from Purchase Request %(request_name)s have "
+"now being sent to Suppliers using Purchase Bid %(bid_name)s:"
 msgstr ""
-"Los siguientes artículos solicitados de la Solicitud de Compra {} han sido "
-"ahora enviados a los Proveedores utilizando la Oferta de Compra {}:"
 
 #. module: purchase_request_to_requisition
 #: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line_make_purchase_requisition_item__product_uom_id
@@ -320,6 +318,22 @@ msgstr "Tiene que seleccionar líneas de la misma compañía."
 #, python-format
 msgid "You have to select lines from the same picking type."
 msgstr "Debe seleccionar líneas del mismo tipo de recogida."
+
+#, python-format
+#~ msgid "<li><b>{}</b>: Total bid quantity {} {}</li>"
+#~ msgstr "<li><b>{}</b>: Cantidad total de oferta {} {}</li>"
+
+#, python-format
+#~ msgid "Bid confirmation {} for your Request {}"
+#~ msgstr "Confirmación de oferta {} para su solicitud {}"
+
+#, python-format
+#~ msgid ""
+#~ "The following requested items from Purchase Request {} have now being "
+#~ "sent to Suppliers using Purchase Bid {}:"
+#~ msgstr ""
+#~ "Los siguientes artículos solicitados de la Solicitud de Compra {} han "
+#~ "sido ahora enviados a los Proveedores utilizando la Oferta de Compra {}:"
 
 #, python-format
 #~ msgid "<li><b>%s</b>: Total bid quantity %s %s</li>"
