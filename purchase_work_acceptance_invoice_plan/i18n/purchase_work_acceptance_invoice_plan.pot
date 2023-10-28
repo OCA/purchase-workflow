@@ -215,8 +215,8 @@ msgstr ""
 #: code:addons/purchase_work_acceptance_invoice_plan/wizard/select_work_acceptance_invoice_plan_wizard.py:0
 #, python-format
 msgid ""
-"The 1st installment is 'Invoice Plan {}' but you are choosing 'Invoice Plan "
-"{}'"
+"The 1st installment is 'Invoice Plan %(min_installment)s' but you are "
+"choosing 'Invoice Plan %(installment)s'"
 msgstr ""
 
 #. module: purchase_work_acceptance_invoice_plan
