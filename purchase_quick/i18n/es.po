@@ -36,11 +36,11 @@ msgstr "Para el proveedor actual"
 #: code:addons/purchase_quick/models/purchase_order.py:0
 #, python-format
 msgid ""
-"Must have only 1 line per product for mass addition, but there are {} lines "
-"for the product {}"
+"Must have only 1 line per product for mass addition, but there are {nr_lines}s lines "
+"for the product %(product)s"
 msgstr ""
-"Sólo debe haber 1 línea por producto para la adición en masa, pero hay {} "
-"líneas para el producto {}"
+"Sólo debe haber 1 línea por producto para la adición en masa, pero hay {nr_lines}s "
+"líneas para el producto %(product)s"
 
 #. module: purchase_quick
 #: model_terms:ir.ui.view,arch_db:purchase_quick.product_tree_view4purchase

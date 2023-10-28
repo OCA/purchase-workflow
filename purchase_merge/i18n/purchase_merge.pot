@@ -87,7 +87,7 @@ msgstr ""
 #. module: purchase_merge
 #: code:addons/purchase_merge/wizard/purchase_merge.py:0
 #, python-format
-msgid "This purchase order lines have been merged {} : {}"
+msgid "These purchase order lines have been merged %(way)s : %(names)s"
 msgstr ""
 
 #. module: purchase_merge
