@@ -16,7 +16,7 @@ msgstr ""
 #. module: purchase_request_to_requisition
 #: code:addons/purchase_request_to_requisition/models/purchase_requisition.py:0
 #, python-format
-msgid "<li><b>{}</b>: Total bid quantity {} {}</li>"
+msgid "<li><b>%(name)s</b>: Total bid quantity %(qty)s %(uom)s</li>"
 msgstr ""
 
 #. module: purchase_request_to_requisition
@@ -52,7 +52,7 @@ msgstr ""
 #. module: purchase_request_to_requisition
 #: code:addons/purchase_request_to_requisition/models/purchase_requisition.py:0
 #, python-format
-msgid "Bid confirmation {} for your Request {}"
+msgid "Bid confirmation %(bid_name)s for your Request %(request_name)s"
 msgstr ""
 
 #. module: purchase_request_to_requisition
@@ -278,8 +278,8 @@ msgstr ""
 #: code:addons/purchase_request_to_requisition/models/purchase_requisition.py:0
 #, python-format
 msgid ""
-"The following requested items from Purchase Request {} have now being sent "
-"to Suppliers using Purchase Bid {}:"
+"The following requested items from Purchase Request %(request_name)s have "
+"now being sent to Suppliers using Purchase Bid %(bid_name)s:"
 msgstr ""
 
 #. module: purchase_request_to_requisition
