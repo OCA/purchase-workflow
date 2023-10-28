@@ -15,22 +15,27 @@ class PurchaseRequisition(models.Model):
     def _purchase_request_confirm_message_content(self, pr, request, request_dict):
         if not request_dict:
             request_dict = {}
-        title = _("Bid confirmation {} for your Request {}").format(
-            pr.name, request.name
-        )
-        message = "<h3>{}</h3><ul>".format(title)
+        title = _("Bid confirmation %(bid_name)s for your Request %(request_name)s") % {
+            "bid_name": pr.name,
+            "request_name": request.name,
+        }
+        message = f"<h3>{title}</h3><ul>"
         message += _(
-            "The following requested items from Purchase Request {} "
+            "The following requested items from Purchase Request %(request_name)s "
             "have now being sent to Suppliers using Purchase Bid "
-            "{}:"
-        ).format(request.name, pr.name)
-
+            "%(bid_name)s:"
+        ) % {
+            "bid_name": pr.name,
+            "request_name": request.name,
+        }
         for line in request_dict.values():
-            message += _("<li><b>{}</b>: Total bid quantity {} {}</li>").format(
-                line["name"],
-                line["product_qty"],
-                line["product_uom_id"],
-            )
+            message += _(
+                "<li><b>%(name)s</b>: Total bid quantity %(qty)s %(uom)s</li>"
+            ) % {
+                "name": line["name"],
+                "qty": line["product_qty"],
+                "uom": line["product_uom_id"],
+            }
         message += "</ul>"
         return message
 
