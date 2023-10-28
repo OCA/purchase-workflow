@@ -39,8 +39,12 @@ class PurchaseOrder(models.Model):
             raise ValidationError(
                 _(
                     "Must have only 1 line per product for mass addition, but "
-                    "there are {} lines for the product {}"
-                ).format(nr_lines, product.display_name),
+                    "there are {nr_lines}s lines for the product %(product)s"
+                )
+                % {
+                    "nr_lines": nr_lines,
+                    "product": product.display_name,
+                }
             )
         return result
 
