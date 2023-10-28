@@ -88,9 +88,19 @@ msgid "Total Volume"
 msgstr "Volume totale"
 
 #. module: purchase_order_weight_volume
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order__total_volume_uom_id
+msgid "Total Volume Uom"
+msgstr ""
+
+#. module: purchase_order_weight_volume
 #: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order__total_weight
 msgid "Total Weight"
 msgstr "Peso totale"
+
+#. module: purchase_order_weight_volume
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order__total_weight_uom_id
+msgid "Total Weight Uom"
+msgstr ""
 
 #. module: purchase_order_weight_volume
 #: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order_line__line_volume
@@ -98,19 +108,15 @@ msgid "Volume"
 msgstr "Volume"
 
 #. module: purchase_order_weight_volume
-#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order__volume_uom_name
-msgid "Volume Uom Name"
-msgstr "Nome udm volume"
-
-#. module: purchase_order_weight_volume
 #: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order_line__line_weight
 msgid "Weight"
 msgstr "Peso"
 
-#. module: purchase_order_weight_volume
-#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order__weight_uom_name
-msgid "Weight Uom Name"
-msgstr "Nome udm peso"
+#~ msgid "Volume Uom Name"
+#~ msgstr "Nome udm volume"
+
+#~ msgid "Weight Uom Name"
+#~ msgstr "Nome udm peso"
 
 #~ msgid "Procurement purchase grouping settings"
 #~ msgstr "Impostazioni raggruppamento approvvigionamento acquisti"

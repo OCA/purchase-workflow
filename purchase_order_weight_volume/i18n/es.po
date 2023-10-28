@@ -88,9 +88,19 @@ msgid "Total Volume"
 msgstr "Volumen Total"
 
 #. module: purchase_order_weight_volume
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order__total_volume_uom_id
+msgid "Total Volume Uom"
+msgstr ""
+
+#. module: purchase_order_weight_volume
 #: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order__total_weight
 msgid "Total Weight"
 msgstr "Peso Total"
+
+#. module: purchase_order_weight_volume
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order__total_weight_uom_id
+msgid "Total Weight Uom"
+msgstr ""
 
 #. module: purchase_order_weight_volume
 #: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order_line__line_volume
@@ -98,16 +108,12 @@ msgid "Volume"
 msgstr "Volumen"
 
 #. module: purchase_order_weight_volume
-#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order__volume_uom_name
-msgid "Volume Uom Name"
-msgstr "Nombre UdM Volumen"
-
-#. module: purchase_order_weight_volume
 #: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order_line__line_weight
 msgid "Weight"
 msgstr "Peso"
 
-#. module: purchase_order_weight_volume
-#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order__weight_uom_name
-msgid "Weight Uom Name"
-msgstr "Nombre UdM Peso"
+#~ msgid "Volume Uom Name"
+#~ msgstr "Nombre UdM Volumen"
+
+#~ msgid "Weight Uom Name"
+#~ msgstr "Nombre UdM Peso"
