@@ -269,7 +269,6 @@ msgstr "Si está marcado, nuevos mensajes requieren de su atención."
 
 #. module: purchase_work_acceptance
 #: model:ir.model.fields,help:purchase_work_acceptance.field_work_acceptance__message_has_error
-#: model:ir.model.fields,help:purchase_work_acceptance.field_work_acceptance__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si está marcada, algunos mensajes tienen error de entrega."
 
@@ -483,11 +482,6 @@ msgstr "Persona Responsable"
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__activity_user_id
 msgid "Responsible User"
 msgstr "Usuario Responsable"
-
-#. module: purchase_work_acceptance
-#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "Error en la entrega de SMS"
 
 #. module: purchase_work_acceptance
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__access_token
@@ -729,3 +723,6 @@ msgid ""
 msgstr ""
 "No se puede validar una transferencia si la cantidad realizada no es igual a "
 "la cantidad aceptada"
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Error en la entrega de SMS"
