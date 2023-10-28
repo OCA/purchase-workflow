@@ -35,8 +35,8 @@ msgstr "Per il fornitore selezionato"
 #: code:addons/purchase_quick/models/purchase_order.py:0
 #, python-format
 msgid ""
-"Must have only 1 line per product for mass addition, but there are {} lines "
-"for the product {}"
+"Must have only 1 line per product for mass addition, but there are {nr_lines}"
+"s lines for the product %(product)s"
 msgstr ""
 
 #. module: purchase_quick
