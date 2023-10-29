@@ -1,5 +1,4 @@
-<odoo>
-    <data noupdate="1">
+<odoo noupdate="1">
         <record id="score_on_time" model="work.acceptance.evaluation.score">
             <field name="name">On time</field>
             <field name="score" eval="3" />
@@ -45,9 +44,9 @@
             <field name="active">True</field>
             <field name="state_required">draft</field>
             <field
-                name="score_ids"
-                eval="[(6,0,[ref('score_on_time'), ref('score_late_one'), ref('score_late_two'), ref('score_late_three')])]"
-            >
+            name="score_ids"
+            eval="[(6,0,[ref('score_on_time'), ref('score_late_one'), ref('score_late_two'), ref('score_late_three')])]"
+        >
             </field>
         </record>
         <record id="case_name_02" model="work.acceptance.evaluation">
@@ -55,9 +54,9 @@
             <field name="active">True</field>
             <field name="state_required">draft</field>
             <field
-                name="score_ids"
-                eval="[(6,0,[ref('score_better'), ref('score_as_expec')])]"
-            >
+            name="score_ids"
+            eval="[(6,0,[ref('score_better'), ref('score_as_expec')])]"
+        >
             </field>
         </record>
         <record id="case_name_03" model="work.acceptance.evaluation">
@@ -65,10 +64,9 @@
             <field name="active">True</field>
             <field name="state_required">draft</field>
             <field
-                name="score_ids"
-                eval="[(6,0,[ref('score_excellent'), ref('score_good'), ref('score_satisfactory'), ref('score_need_improvement')])]"
-            >
+            name="score_ids"
+            eval="[(6,0,[ref('score_excellent'), ref('score_good'), ref('score_satisfactory'), ref('score_need_improvement')])]"
+        >
             </field>
         </record>
-    </data>
 </odoo>
