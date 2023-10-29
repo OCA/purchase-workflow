@@ -122,7 +122,6 @@ msgstr ""
 #. module: purchase_product_usage
 #: model:ir.actions.act_window,name:purchase_product_usage.action_purchase_product_usage
 #: model:ir.ui.menu,name:purchase_product_usage.menu_purchase_product_usage
-#: model_terms:ir.ui.view,arch_db:purchase_product_usage.purchase_product_usage_tree
 msgid "Purchase Product Usages"
 msgstr ""
 
