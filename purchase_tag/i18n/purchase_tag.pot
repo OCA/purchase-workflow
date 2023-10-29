@@ -86,6 +86,5 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_tag.field_purchase_order__tag_ids
 #: model:ir.ui.menu,name:purchase_tag.menu_purchase_tag_config
 #: model_terms:ir.ui.view,arch_db:purchase_tag.purchase_tag_view_form
-#: model_terms:ir.ui.view,arch_db:purchase_tag.purchase_tag_view_tree
 msgid "Tags"
 msgstr ""
