@@ -30,6 +30,11 @@ class ProductSupplierInfoComponent(models.Model):
         domain=[("category_id", "=", component_uom_category_id)],
         required=True,
     )
+    variant_ids = fields.Many2many(
+        comodel_name="product.template.attribute.value",
+        relation="product_supplierinfo_component_product_attribute_value_rel",
+        string="Apply to Variant",
+    )
 
     @api.onchange("component_id")
     def onchange_component_id(self):
@@ -41,3 +46,34 @@ class ProductSupplierInfoComponent(models.Model):
                 "product_uom_id": component.uom_po_id or component.uom_id,
             }
         )
+
+    @api.model
+    def _get_component_by_product_variant(self, product, components):
+        """Get components by product variant"""
+        new_components = self.env["product.supplierinfo.component"]
+        attribute_value_ids = product.product_template_attribute_value_ids
+        for component in components:
+            if not component.variant_ids:
+                new_components |= component
+            arr = [
+                component.variant_ids.filtered(lambda l: l.attribute_id == attr)
+                for attr in component.variant_ids.mapped("attribute_id")
+            ]
+            state = [
+                bool(set(item.ids).intersection(attribute_value_ids.ids))
+                for item in arr
+            ]
+            if all(state):
+                new_components |= component
+        return new_components
+
+    def search(self, args, offset=0, limit=None, order=None, count=False):
+        result = super(ProductSupplierInfoComponent, self).search(
+            args, offset, limit, order, count
+        )
+        product_id = self._context.get("product_id")
+
+        if not product_id or not self.user_has_groups("product.group_product_variant"):
+            return result
+        product = self.env["product.product"].browse(product_id)
+        return self._get_component_by_product_variant(product, result)
