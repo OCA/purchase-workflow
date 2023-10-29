@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <data>
     <record id="purchase_order_form_shipping_date" model="ir.ui.view">
         <field name="name">purchase.order.inherited.form.shipping.date</field>
         <field name="model">purchase.order</field>
@@ -23,6 +22,4 @@
             </xpath>
         </field>
     </record>
-
-</data>
 </odoo>

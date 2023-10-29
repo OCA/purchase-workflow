@@ -37,7 +37,7 @@
                     <field name="last_qty_invoiced" invisible="1" />
                     <field name="invoice_lines" invisible="1" />
                     <field name="component_ids" widget="one2many" readonly="1">
-                        <tree string="Components" editable="bottom">
+                        <tree editable="bottom">
                             <control>
                                 <create
                                     name="add_product_control"

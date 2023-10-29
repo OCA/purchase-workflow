@@ -50,12 +50,7 @@ jobs:
             name: test with OCB
             makepot: "true"
           - container: ghcr.io/oca/oca-ci/py3.6-odoo14.0:latest
-<<<<<<< before updating
-            include: "purchase_order_type,purchase_order_type_dashboard"
-            makepot: "true"
-=======
             include: "purchase_order_type"
->>>>>>> after updating
             name: test with Odoo
           - container: ghcr.io/oca/oca-ci/py3.6-ocb14.0:latest
             include: "purchase_order_type,purchase_order_type_dashboard"
@@ -69,12 +64,7 @@ jobs:
             name: test with OCB
             makepot: "true"
           - container: ghcr.io/oca/oca-ci/py3.6-odoo14.0:latest
-<<<<<<< before updating
-            exclude: "purchase_cancel_reason,purchase_cancel_confirm,purchase_order_type,purchase_order_type_dashboard,purchase_quick"
-            makepot: "true"
-=======
             exclude: "purchase_cancel_reason,purchase_cancel_confirm,purchase_order_type,purchase_quick"
->>>>>>> after updating
             name: test with Odoo
           - container: ghcr.io/oca/oca-ci/py3.6-ocb14.0:latest
             exclude: "purchase_cancel_reason,purchase_cancel_confirm,purchase_order_type,purchase_order_type_dashboard,purchase_quick"

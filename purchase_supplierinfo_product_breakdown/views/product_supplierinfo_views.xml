@@ -9,7 +9,7 @@
             <form string="Product Components">
                 <sheet>
                     <field name="component_ids" widget="one2many">
-                        <tree string="Product Components" editable="bottom">
+                        <tree editable="bottom">
                             <control>
                                 <create
                                     name="add_product_control"

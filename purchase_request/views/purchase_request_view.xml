@@ -334,7 +334,6 @@
                 decoration-bf="message_needaction==True"
                 decoration-info="state in ('draft','to_approve')"
                 decoration-muted="state in ('rejected')"
-                string="Purchase Request"
             >
                 <field name="message_needaction" invisible="1" />
                 <field name="name" />

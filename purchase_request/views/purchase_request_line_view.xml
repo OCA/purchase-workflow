@@ -7,7 +7,6 @@
         <field name="model">purchase.request.line</field>
         <field name="arch" type="xml">
             <tree
-                string="Purchase Request Lines"
                 create="false"
                 decoration-muted="cancelled == True"
                 decoration-info="request_state in ('draft', 'to_approve')"
@@ -499,7 +498,7 @@
         <field name="name">purchase.order.line.tree</field>
         <field name="model">purchase.order.line</field>
         <field name="arch" type="xml">
-            <tree string="Purchase Order Lines" create="true">
+            <tree create="true">
                 <field name="order_id" />
                 <field name="name" />
                 <field name="partner_id" string="Vendor" />

@@ -1,32 +1,31 @@
-<odoo>
-<data noupdate="1">
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="1">
     <record id="kitchenset" model="product.product">
         <field name="name">Kitchen Set</field>
         <field name="type">consu</field>
         <field
-                name="seller_ids"
-                eval="[
+            name="seller_ids"
+            eval="[
 (0, False, {'name': ref('base.res_partner_2')}),
 (0, False, {'name': ref('base.res_partner_3')}),
 ]"
-            />
+        />
     </record>
 
     <record id="blankets" model="product.product">
         <field name="name">Blankets</field>
         <field name="type">consu</field>
         <field
-                name="seller_ids"
-                eval="[
+            name="seller_ids"
+            eval="[
 (0, False, {'name': ref('base.res_partner_3')}),
 (0, False, {'name': ref('base.res_partner_4')}),
 ]"
-            />
+        />
     </record>
 
     <record id="tarpaulin" model="product.product">
         <field name="name">Tarpaulin</field>
         <field name="type">consu</field>
     </record>
-</data>
 </odoo>
