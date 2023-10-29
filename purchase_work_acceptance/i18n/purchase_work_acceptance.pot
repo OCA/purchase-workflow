@@ -278,7 +278,6 @@ msgstr ""
 
 #. module: purchase_work_acceptance
 #: model:ir.model.fields,help:purchase_work_acceptance.field_work_acceptance__message_has_error
-#: model:ir.model.fields,help:purchase_work_acceptance.field_work_acceptance__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -494,11 +493,6 @@ msgid "Responsible User"
 msgstr ""
 
 #. module: purchase_work_acceptance
-#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr ""
-
-#. module: purchase_work_acceptance
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__access_token
 msgid "Security Token"
 msgstr ""
@@ -683,7 +677,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.res_config_settings_view_form_purchase
 #: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_work_acceptance_form
 #: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_work_acceptance_search
-#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_work_acceptance_tree
 msgid "Work Acceptance"
 msgstr ""
 
@@ -695,7 +688,6 @@ msgstr ""
 
 #. module: purchase_work_acceptance
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__wa_line_ids
-#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_work_acceptance_form
 msgid "Work Acceptance Lines"
 msgstr ""
 
