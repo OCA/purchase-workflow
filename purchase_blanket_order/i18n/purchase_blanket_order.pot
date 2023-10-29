@@ -120,7 +120,6 @@ msgstr ""
 #. module: purchase_blanket_order
 #: model:ir.actions.act_window,name:purchase_blanket_order.act_open_purchase_blanket_order_lines_view_tree
 #: model:ir.ui.menu,name:purchase_blanket_order.menu_purchase_blanket_order_line
-#: model_terms:ir.ui.view,arch_db:purchase_blanket_order.purchase_blanket_order_line_tree
 msgid "Blanket Order Lines"
 msgstr ""
 
@@ -357,9 +356,7 @@ msgstr ""
 
 #. module: purchase_blanket_order
 #: model:ir.model.fields,help:purchase_blanket_order.field_purchase_blanket_order__message_has_error
-#: model:ir.model.fields,help:purchase_blanket_order.field_purchase_blanket_order__message_has_sms_error
 #: model:ir.model.fields,help:purchase_blanket_order.field_purchase_blanket_order_line__message_has_error
-#: model:ir.model.fields,help:purchase_blanket_order.field_purchase_blanket_order_line__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -700,12 +697,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__activity_user_id
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__activity_user_id
 msgid "Responsible User"
-msgstr ""
-
-#. module: purchase_blanket_order
-#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__message_has_sms_error
-#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__message_has_sms_error
-msgid "SMS Delivery error"
 msgstr ""
 
 #. module: purchase_blanket_order
