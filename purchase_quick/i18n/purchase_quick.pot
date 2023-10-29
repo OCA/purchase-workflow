@@ -76,11 +76,6 @@ msgid "Product Variants"
 msgstr ""
 
 #. module: purchase_quick
-#: model_terms:ir.ui.view,arch_db:purchase_quick.product_tree_view4purchase
-msgid "Products for purchase"
-msgstr ""
-
-#. module: purchase_quick
 #: model:ir.model,name:purchase_quick.model_purchase_order
 msgid "Purchase Order"
 msgstr ""
