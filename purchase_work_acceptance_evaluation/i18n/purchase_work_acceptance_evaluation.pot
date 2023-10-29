@@ -102,7 +102,6 @@ msgstr ""
 
 #. module: purchase_work_acceptance_evaluation
 #: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance__evaluation_result_ids
-#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance_evaluation.view_work_acceptance_evaluation_tab_form
 msgid "Evaluation Results"
 msgstr ""
 
@@ -183,11 +182,6 @@ msgid "Score ID"
 msgstr ""
 
 #. module: purchase_work_acceptance_evaluation
-#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance_evaluation.view_work_acceptance_evaluation_form
-msgid "Score Lines"
-msgstr ""
-
-#. module: purchase_work_acceptance_evaluation
 #: model:ir.model.fields,field_description:purchase_work_acceptance_evaluation.field_work_acceptance_evaluation__state_required
 msgid "State Required"
 msgstr ""
@@ -231,7 +225,6 @@ msgstr ""
 #: model:ir.ui.menu,name:purchase_work_acceptance_evaluation.menu_work_acceptance_evaluation
 #: model_terms:ir.ui.view,arch_db:purchase_work_acceptance_evaluation.view_work_acceptance_evaluation_form
 #: model_terms:ir.ui.view,arch_db:purchase_work_acceptance_evaluation.view_work_acceptance_evaluation_search
-#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance_evaluation.view_work_acceptance_evaluation_tree
 msgid "Work Acceptance Evaluation"
 msgstr ""
 
