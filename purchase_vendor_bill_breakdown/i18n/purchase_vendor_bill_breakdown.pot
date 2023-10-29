@@ -56,11 +56,6 @@ msgid "Component Qty"
 msgstr ""
 
 #. module: purchase_vendor_bill_breakdown
-#: model_terms:ir.ui.view,arch_db:purchase_vendor_bill_breakdown.purchase_order_line_components_form_view
-msgid "Components"
-msgstr ""
-
-#. module: purchase_vendor_bill_breakdown
 #: code:addons/purchase_vendor_bill_breakdown/models/purchase_order_line.py:0
 #, python-format
 msgid "Components must be unique!"
