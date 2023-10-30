@@ -71,8 +71,8 @@ class TestPurchaseOrderSecondaryUnit(TransactionCase):
         with purchase_order.order_line.new() as line_new:
             # Test default purchase order line secondary uom
             line_new.product_id = self.product
-            self.assertEqual(line_new.product_qty, 1.0)
             self.assertEqual(line_new.secondary_uom_id, self.secondary_unit)
-            self.assertEqual(line_new.secondary_uom_qty, 1.43)
-            line_new.secondary_uom_qty = 1
+            self.assertEqual(line_new.secondary_uom_qty, 1.0)
             self.assertAlmostEqual(line_new.product_qty, 0.7, places=2)
+            line_new.product_qty = 1
+            self.assertEqual(line_new.secondary_uom_qty, 1.43)
