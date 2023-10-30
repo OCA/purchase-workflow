@@ -64,3 +64,22 @@ class TestPurchaseOrder(TransactionCase):
         self.assertTrue(po.fop_reached)
         po.button_approve()
         self.assertEqual(po.state, "purchase")
+
+    def test_fop_shipping_negative(self):
+        po = self.Purchase.create({"partner_id": self.partner_3.id})
+        self.PurchaseLine.create(
+            {
+                "order_id": po.id,
+                "product_id": self.product_1.id,
+                "date_planned": fields.Datetime.now(),
+                "name": "Test",
+                "product_qty": 1.0,
+                "product_uom": self.product_1.uom_id.id,
+                "price_unit": -100.0,
+            }
+        )
+
+        self.assertTrue(po.fop_reached)
+
+        po.button_approve()
+        self.assertEqual(po.state, "purchase")
