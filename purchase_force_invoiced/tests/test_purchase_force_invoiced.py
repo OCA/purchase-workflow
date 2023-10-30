@@ -6,41 +6,48 @@ from odoo import fields
 from odoo.tests import tagged
 from odoo.tests.common import TransactionCase
 
+from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
+
 
 @tagged("post_install", "-at_install")
 class TestPurchaseForceInvoiced(TransactionCase):
-    def setUp(self):
-        super(TestPurchaseForceInvoiced, self).setUp()
-        self.purchase_order_model = self.env["purchase.order"]
-        self.purchase_order_line_model = self.env["purchase.order.line"]
-        self.account_invoice_model = self.env["account.move"]
-        self.account_invoice_line = self.env["account.move.line"]
-        self.invoice_account = self.env["account.account"].search(
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT))
+        cls.purchase_order_model = cls.env["purchase.order"]
+        cls.purchase_order_line_model = cls.env["purchase.order.line"]
+        cls.account_invoice_model = cls.env["account.move"]
+        cls.account_invoice_line = cls.env["account.move.line"]
+        cls.invoice_account = cls.env["account.account"].search(
             [
                 ("account_type", "=", "expense"),
-                ("company_id", "=", self.env.company.id),
+                ("company_id", "=", cls.env.company.id),
             ],
             limit=1,
         )
 
         # Data
-        product_ctg = self._create_product_category()
-        self.service_1 = self._create_product("test_product1", product_ctg)
-        self.service_2 = self._create_product("test_product2", product_ctg)
-        self.customer = self._create_supplier("Test Supplier")
+        product_ctg = cls._create_product_category()
+        cls.service_1 = cls._create_product("test_product1", product_ctg)
+        cls.service_2 = cls._create_product("test_product2", product_ctg)
+        cls.customer = cls._create_supplier("Test Supplier")
 
-    def _create_supplier(self, name):
+    @classmethod
+    def _create_supplier(cls, name):
         """Create a Partner."""
-        return self.env["res.partner"].create(
+        return cls.env["res.partner"].create(
             {"name": name, "email": "example@yourcompany.com", "phone": 123456}
         )
 
-    def _create_product_category(self):
-        product_ctg = self.env["product.category"].create({"name": "test_product_ctg"})
+    @classmethod
+    def _create_product_category(cls):
+        product_ctg = cls.env["product.category"].create({"name": "test_product_ctg"})
         return product_ctg
 
-    def _create_product(self, name, product_ctg):
-        product = self.env["product.product"].create(
+    @classmethod
+    def _create_product(cls, name, product_ctg):
+        product = cls.env["product.product"].create(
             {
                 "name": name,
                 "categ_id": product_ctg.id,
