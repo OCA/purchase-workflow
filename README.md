@@ -28,10 +28,10 @@ addon | version | maintainers | summary
 [purchase_default_terms_conditions](purchase_default_terms_conditions/) | 16.0.1.0.2 |  | This module allows purchase default terms & conditions
 [purchase_delivery_split_date](purchase_delivery_split_date/) | 16.0.1.0.0 |  | Allows Purchase Order you confirm to generate one Incoming Shipment for each expected date indicated in the Purchase Order Lines
 [purchase_deposit](purchase_deposit/) | 16.0.1.0.0 |  | Option to create deposit from purchase order
-[purchase_discount](purchase_discount/) | 16.0.1.1.2 |  | Purchase order lines with discounts
+[purchase_discount](purchase_discount/) | 16.0.1.1.3 |  | Purchase order lines with discounts
 [purchase_exception](purchase_exception/) | 16.0.1.0.0 |  | Custom exceptions on purchase order
 [purchase_fop_shipping](purchase_fop_shipping/) | 16.0.1.0.0 |  | Purchase Free-Of-Payment shipping
-[purchase_force_invoiced](purchase_force_invoiced/) | 16.0.1.0.0 |  | Allows to force the billing status of the purchase order to "Invoiced"
+[purchase_force_invoiced](purchase_force_invoiced/) | 16.0.1.0.1 |  | Allows to force the billing status of the purchase order to "Invoiced"
 [purchase_invoice_method](purchase_invoice_method/) | 16.0.1.0.0 |  | Allow to force the invoice method of a purchase
 [purchase_invoice_plan](purchase_invoice_plan/) | 16.0.1.0.0 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Add to purchases order, ability to manage future invoice plan
 [purchase_last_price_info](purchase_last_price_info/) | 16.0.1.0.0 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Purchase Product Last Price Info
@@ -46,14 +46,14 @@ addon | version | maintainers | summary
 [purchase_order_line_menu](purchase_order_line_menu/) | 16.0.2.1.0 |  | Adds Purchase Order Lines Menu
 [purchase_order_no_zero_price](purchase_order_no_zero_price/) | 16.0.1.0.0 |  | Prevent zero price lines on Purchase Orders
 [purchase_order_owner](purchase_order_owner/) | 16.0.1.0.0 |  | Purchase Order Owner
-[purchase_order_product_recommendation](purchase_order_product_recommendation/) | 16.0.1.0.1 |  | Recommend products to buy to supplier based on history
-[purchase_order_supplierinfo_update](purchase_order_supplierinfo_update/) | 16.0.1.0.0 | [![ernestotejeda](https://github.com/ernestotejeda.png?size=30px)](https://github.com/ernestotejeda) | Update product supplierinfo with the last purchase price
+[purchase_order_product_recommendation](purchase_order_product_recommendation/) | 16.0.1.0.2 |  | Recommend products to buy to supplier based on history
+[purchase_order_supplierinfo_update](purchase_order_supplierinfo_update/) | 16.0.1.0.1 | [![ernestotejeda](https://github.com/ernestotejeda.png?size=30px)](https://github.com/ernestotejeda) | Update product supplierinfo with the last purchase price
 [purchase_order_type](purchase_order_type/) | 16.0.1.0.0 |  | Purchase Order Type
 [purchase_order_type_dashboard](purchase_order_type_dashboard/) | 16.0.1.0.0 | [![dalonsod](https://github.com/dalonsod.png?size=30px)](https://github.com/dalonsod) | Purchase Order Type Dashboard
-[purchase_order_uninvoiced_amount](purchase_order_uninvoiced_amount/) | 16.0.1.0.0 |  | Purchase Order Univoiced Amount
+[purchase_order_uninvoiced_amount](purchase_order_uninvoiced_amount/) | 16.0.1.0.1 |  | Purchase Order Univoiced Amount
 [purchase_order_weight_volume](purchase_order_weight_volume/) | 16.0.2.0.0 | [![ilyasProgrammer](https://github.com/ilyasProgrammer.png?size=30px)](https://github.com/ilyasProgrammer) | Display purchase order weight and volume
 [purchase_partner_incoterm](purchase_partner_incoterm/) | 16.0.1.0.0 | [![TDu](https://github.com/TDu.png?size=30px)](https://github.com/TDu) [![bealdav](https://github.com/bealdav.png?size=30px)](https://github.com/bealdav) | Add a an incoterm field for supplier and use it on purchase order
-[purchase_partner_selectable_option](purchase_partner_selectable_option/) | 16.0.1.0.2 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Purchase Partner Selectable Option
+[purchase_partner_selectable_option](purchase_partner_selectable_option/) | 16.0.1.0.3 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Purchase Partner Selectable Option
 [purchase_request](purchase_request/) | 16.0.1.0.2 |  | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
 [purchase_request_tier_validation](purchase_request_tier_validation/) | 16.0.1.0.0 |  | Extends the functionality of Purchase Requests to support a tier validation process.
 [purchase_requisition_tier_validation](purchase_requisition_tier_validation/) | 16.0.1.0.0 |  | Extends the functionality of Purchase Agreements to support a tier validation process.
