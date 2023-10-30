@@ -145,7 +145,6 @@ msgstr ""
 #: model:ir.actions.act_window,name:purchase_order_type.action_purchase_order_type_view
 #: model:ir.ui.menu,name:purchase_order_type.menu_purchase_order_type
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_search
-#: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_tree
 msgid "Purchase Order Types"
 msgstr ""
 
