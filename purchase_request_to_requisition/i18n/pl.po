@@ -91,11 +91,6 @@ msgid "Description"
 msgstr "Opis"
 
 #. module: purchase_request_to_requisition
-#: model_terms:ir.ui.view,arch_db:purchase_request_to_requisition.view_purchase_request_line_make_purchase_requisition
-msgid "Details"
-msgstr ""
-
-#. module: purchase_request_to_requisition
 #: model:ir.model.fields,field_description:purchase_request_to_requisition.field_product_template__display_name
 #: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request__display_name
 #: model:ir.model.fields,field_description:purchase_request_to_requisition.field_purchase_request_line__display_name
