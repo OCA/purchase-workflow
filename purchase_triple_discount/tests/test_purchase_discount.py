@@ -259,3 +259,57 @@ class TestPurchaseOrder(common.TransactionCase):
         # https://bit.ly/3ESkdiO
         self.assertEqual(self.po_line2.price_tax, 36)
         self.assertEqual(rec.price_total, 276)
+
+    def test_09_no_seller_purchase_supplier_discount_real_disabled(self):
+        """
+        Tests that if the quantity of a product is below the supplier's minimum quantity
+        and the checkbow 'Show Only Purchase Supplier Discount' is disabled,
+        the discounts are kept in the purchase line.
+        """
+        self.product1.seller_ids.unlink()
+        self.supplierinfo_obj.create(
+            {
+                "min_qty": 10.0,
+                "name": self.partner.id,
+                "product_tmpl_id": self.product1.product_tmpl_id.id,
+                "discount2": 20.00,
+                "discount3": 20.00,
+            }
+        )
+        purchase_order = Form(self.env["purchase.order"])
+        purchase_order.partner_id = self.partner
+        purchase_order = purchase_order.save()
+        purchase_order.company_id.purchase_supplier_discount_real = False
+        with Form(purchase_order) as po:
+            with po.order_line.new() as line:
+                line.product_id = self.product1
+                line.product_qty = 1
+        self.assertEqual(purchase_order.order_line[0].discount2, 20.00)
+        self.assertEqual(purchase_order.order_line[0].discount3, 20.00)
+
+    def test_10_no_seller_purchase_supplier_discount_real_enabled(self):
+        """
+        Tests that if the quantity of a product is below the supplier's minimum quantity
+        and the checkbow 'Show Only Purchase Supplier Discount' is enabled,
+        the discounts is set to 0.00 in the purchase line.
+        """
+        self.product1.seller_ids.unlink()
+        self.supplierinfo_obj.create(
+            {
+                "min_qty": 10.0,
+                "name": self.partner.id,
+                "product_tmpl_id": self.product1.product_tmpl_id.id,
+                "discount2": 20.0,
+                "discount3": 20.0,
+            }
+        )
+        purchase_order = Form(self.env["purchase.order"])
+        purchase_order.partner_id = self.partner
+        purchase_order = purchase_order.save()
+        purchase_order.company_id.purchase_supplier_discount_real = True
+        with Form(purchase_order) as po:
+            with po.order_line.new() as line:
+                line.product_id = self.product1
+                line.product_qty = 1
+        self.assertEqual(purchase_order.order_line[0].discount2, 0.0)
+        self.assertEqual(purchase_order.order_line[0].discount3, 0.0)
