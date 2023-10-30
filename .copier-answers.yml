@@ -17,7 +17,7 @@ org_slug: OCA
 rebel_module_groups:
 - purchase_cancel_reason
 - purchase_cancel_confirm
-- purchase_order_type
+- purchase_order_type,purchase_order_type_dashboard
 - purchase_quick
 repo_description: 'TODO: add repo description.'
 repo_name: purchase-workflow
