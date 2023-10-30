@@ -132,11 +132,6 @@ msgid "Purchase Order"
 msgstr "Commande fournisseur"
 
 #. module: purchase_order_approval_block
-#: model_terms:ir.ui.view,arch_db:purchase_order_approval_block.purchase_approval_block_reason_tree_view
-msgid "Purchase Order Approval Block Reasons"
-msgstr "Motifs de blocage d'une approbation de commande d'achat"
-
-#. module: purchase_order_approval_block
 #: model:ir.model,name:purchase_order_approval_block.model_purchase_exception_confirm
 msgid "Purchase exception wizard"
 msgstr ""
@@ -157,6 +152,9 @@ msgid ""
 "The approval has been blocked,\n"
 "                with a Blocking reason."
 msgstr "L'approbation a été bloquée, à cause d'un motif de blocage."
+
+#~ msgid "Purchase Order Approval Block Reasons"
+#~ msgstr "Motifs de blocage d'une approbation de commande d'achat"
 
 #~ msgid "purchase.exception.confirm"
 #~ msgstr "purchase.exception.confirm"
