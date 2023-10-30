@@ -81,11 +81,6 @@ msgid "Product Variants"
 msgstr "Varianti prodotto"
 
 #. module: purchase_quick
-#: model_terms:ir.ui.view,arch_db:purchase_quick.product_tree_view4purchase
-msgid "Products for purchase"
-msgstr "Prodotti da acquistare"
-
-#. module: purchase_quick
 #: model:ir.model,name:purchase_quick.model_purchase_order
 msgid "Purchase Order"
 msgstr "Ordine di acquisto"
@@ -109,3 +104,6 @@ msgstr "UdM"
 #: model:ir.model.fields,field_description:purchase_quick.field_product_product__variant_specific_seller_ids
 msgid "Variant Specific Seller"
 msgstr "Fornitore specifica variante"
+
+#~ msgid "Products for purchase"
+#~ msgstr "Prodotti da acquistare"

@@ -82,12 +82,6 @@ msgid "Product Variants"
 msgstr "Articles"
 
 #. module: purchase_quick
-#: model_terms:ir.ui.view,arch_db:purchase_quick.product_tree_view4purchase
-#, fuzzy
-msgid "Products for purchase"
-msgstr "Qté à acheter"
-
-#. module: purchase_quick
 #: model:ir.model,name:purchase_quick.model_purchase_order
 msgid "Purchase Order"
 msgstr "Bon de commande"
@@ -111,6 +105,10 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_quick.field_product_product__variant_specific_seller_ids
 msgid "Variant Specific Seller"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Products for purchase"
+#~ msgstr "Qté à acheter"
 
 #~ msgid "Add product"
 #~ msgstr "Ajouter des articles"
