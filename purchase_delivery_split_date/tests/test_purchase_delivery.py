@@ -214,16 +214,16 @@ class TestDeliverySingle(TransactionCase):
         line1 = self.po.order_line[0]
         line2 = self.po.order_line[1]
         self.env.user.tz = "Europe/Brussels"
-        self.assertEquals(len(self.po.picking_ids), 1)
+        self.assertEqual(len(self.po.picking_ids), 1)
         line1.write({"date_planned": "2021-05-05 03:00:00"})
-        self.assertEquals(len(self.po.picking_ids), 2)
+        self.assertEqual(len(self.po.picking_ids), 2)
         # Time difference of at least +1 so  should be same day (1 picking)
         line2.write({"date_planned": "2021-05-04 23:00:00"})
-        self.assertEquals(len(self.po.picking_ids), 1)
+        self.assertEqual(len(self.po.picking_ids), 1)
 
         self.env.user.tz = "Etc/UTC"
         line1.write({"date_planned": "2021-05-05 03:00:00"})
-        self.assertEquals(len(self.po.picking_ids), 2)
+        self.assertEqual(len(self.po.picking_ids), 2)
         # No time difference so will be another day (2 pickings)
         line2.write({"date_planned": "2021-05-04 23:00:00"})
-        self.assertEquals(len(self.po.picking_ids), 2)
+        self.assertEqual(len(self.po.picking_ids), 2)

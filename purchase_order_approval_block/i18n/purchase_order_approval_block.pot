@@ -123,11 +123,6 @@ msgid "Purchase Order"
 msgstr ""
 
 #. module: purchase_order_approval_block
-#: model_terms:ir.ui.view,arch_db:purchase_order_approval_block.purchase_approval_block_reason_tree_view
-msgid "Purchase Order Approval Block Reasons"
-msgstr ""
-
-#. module: purchase_order_approval_block
 #: model:ir.model,name:purchase_order_approval_block.model_purchase_exception_confirm
 msgid "Purchase exception wizard"
 msgstr ""

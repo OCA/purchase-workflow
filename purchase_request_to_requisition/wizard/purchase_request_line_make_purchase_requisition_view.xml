@@ -2,11 +2,10 @@
 <!-- Copyright 2016 Eficent Business and IT Consulting Services S.L.
      License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
 <odoo>
-    <data>
         <record
-            id="view_purchase_request_line_make_purchase_requisition"
-            model="ir.ui.view"
-        >
+        id="view_purchase_request_line_make_purchase_requisition"
+        model="ir.ui.view"
+    >
             <field name="name">Purchase Request Line Make Purchase Agreement</field>
             <field name="model">purchase.request.line.make.purchase.requisition</field>
             <field name="type">form</field>
@@ -20,13 +19,13 @@
                      <newline />
                      <group>
                          <field name="item_ids" nolabel="1" colspan="2">
-                              <tree string="Details" create="false" editable="bottom">
+                              <tree create="false" editable="bottom">
                                   <field name="request_id" />
                                   <field
-                                    name="line_id"
-                                    options="{'no_open': true}"
-                                    invisible="1"
-                                />
+                                name="line_id"
+                                options="{'no_open': true}"
+                                invisible="1"
+                            />
                                   <field name="product_id" />
                                   <field name="name" />
                                   <field name="product_qty" />
@@ -37,11 +36,11 @@
                      <newline />
                      <footer>
                         <button
-                            name="make_purchase_requisition"
-                            type="object"
-                            class="btn-primary"
-                            string="Create Purchase Agreements"
-                        />
+                        name="make_purchase_requisition"
+                        type="object"
+                        class="btn-primary"
+                        string="Create Purchase Agreements"
+                    />
                         <button special="cancel" string="Cancel" class="oe_link" />
                     </footer>
                 </form>
@@ -50,47 +49,45 @@
 
         <!-- Create requisition from PR Lines -->
         <record
-            id="action_purchase_request_line_make_purchase_requisition"
-            model="ir.actions.act_window"
-        >
+        id="action_purchase_request_line_make_purchase_requisition"
+        model="ir.actions.act_window"
+    >
             <field name="name">Create Purchase Agreements</field>
             <field name="type">ir.actions.act_window</field>
             <field
-                name="res_model"
-            >purchase.request.line.make.purchase.requisition</field>
+            name="res_model"
+        >purchase.request.line.make.purchase.requisition</field>
             <field name="view_mode">form</field>
             <field
-                name="view_id"
-                ref="view_purchase_request_line_make_purchase_requisition"
-            />
+            name="view_id"
+            ref="view_purchase_request_line_make_purchase_requisition"
+        />
             <field name="target">new</field>
             <field
-                name="binding_model_id"
-                ref="purchase_request.model_purchase_request_line"
-            />
+            name="binding_model_id"
+            ref="purchase_request.model_purchase_request_line"
+        />
         </record>
 
         <!-- Create requisition from PRs -->
         <record
-            id="action_purchase_request_make_purchase_requisition"
-            model="ir.actions.act_window"
-        >
+        id="action_purchase_request_make_purchase_requisition"
+        model="ir.actions.act_window"
+    >
             <field name="name">Create Purchase Agreements</field>
             <field name="type">ir.actions.act_window</field>
             <field
-                name="res_model"
-            >purchase.request.line.make.purchase.requisition</field>
+            name="res_model"
+        >purchase.request.line.make.purchase.requisition</field>
             <field name="view_mode">form</field>
             <field
-                name="view_id"
-                ref="view_purchase_request_line_make_purchase_requisition"
-            />
+            name="view_id"
+            ref="view_purchase_request_line_make_purchase_requisition"
+        />
             <field name="target">new</field>
             <field
-                name="binding_model_id"
-                ref="purchase_request.model_purchase_request"
-            />
+            name="binding_model_id"
+            ref="purchase_request.model_purchase_request"
+        />
         </record>
-
-    </data>
 </odoo>
