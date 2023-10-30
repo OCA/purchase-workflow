@@ -19,6 +19,7 @@
         "views/report_purchaseorder.xml",
         "views/product_supplierinfo_view.xml",
         "views/res_partner_view.xml",
+        "views/res_config_view.xml",
     ],
     "license": "AGPL-3",
     "installable": True,
