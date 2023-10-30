@@ -56,11 +56,6 @@ msgid "Mixin for documents that want to restrict products"
 msgstr "混合到你想要限制允许采购产品的文档模型中"
 
 #. module: purchase_allowed_product
-#: model:ir.model.fields,field_description:purchase_allowed_product.field_product_supplierinfo__name
-msgid "Name"
-msgstr ""
-
-#. module: purchase_allowed_product
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_res_partner__use_only_supplied_product
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_res_users__use_only_supplied_product
 msgid "Order and invoice only supplied products"
@@ -90,6 +85,11 @@ msgstr "供应协议价"
 msgid "Use only allowed products"
 msgstr "仅允许协议中的产品"
 
+#. module: purchase_allowed_product
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_product_supplierinfo__partner_id
+msgid "Vendor"
+msgstr "供应商"
+
 #~ msgid "Display Name"
 #~ msgstr "显示名称"
 
@@ -104,9 +104,6 @@ msgstr "仅允许协议中的产品"
 
 #~ msgid "Product"
 #~ msgstr "产品"
-
-#~ msgid "Vendor"
-#~ msgstr "供应商"
 
 #~ msgid "Vendor of this product"
 #~ msgstr "该产品的供应商"
