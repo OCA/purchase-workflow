@@ -84,7 +84,7 @@ class TestPurchaseRequisition(SavepointCase):
         self.assertDictEqual(expected, dict(actual))
 
         msg = "Expected 1 messages, got: %d" % len(self._requisition1.message_ids)
-        self.assertEquals(1, len(self._requisition1.message_ids), msg=msg)
+        self.assertEqual(1, len(self._requisition1.message_ids), msg=msg)
 
     def _get_supplier_products(self, rfqs):
         return {
@@ -104,7 +104,7 @@ class TestPurchaseRequisition(SavepointCase):
         }
 
         self.assertDictEqual(expected, dict(actual))
-        self.assertEquals(2, len(self._requisition2.message_ids))
+        self.assertEqual(2, len(self._requisition2.message_ids))
 
         found = False
         for msg in self._requisition2.message_ids:
