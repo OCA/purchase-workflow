@@ -2,7 +2,7 @@
     "name": "Purchase Vendor Bill Breakdown",
     "summary": "Purchase Vendor Bill Breakdown",
     "author": "Ooops, Cetmix, Odoo Community Association (OCA)",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "category": "Purchase Management",
     "website": "https://github.com/OCA/purchase-workflow",
     "maintainers": ["geomer198", "CetmixGitDrone"],

@@ -5,7 +5,7 @@
     "name": "Purchase Order Line Image",
     "summary": """Order Line Product Image In Purchase Order.""",
     "author": "ooops404, Ashish Hirapara, Odoo Community Association (OCA), Cetmix",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "website": "https://github.com/OCA/purchase-workflow",
     "category": "Purchase",
     "license": "AGPL-3",

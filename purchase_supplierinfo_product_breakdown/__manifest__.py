@@ -2,7 +2,7 @@
     "name": "Purchase Supplierinfo Product Breakdown",
     "summary": "Purchase Supplierinfo Product Breakdown",
     "author": "Ooops, Cetmix, Odoo Community Association (OCA)",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "category": "Purchase Management",
     "website": "https://github.com/OCA/purchase-workflow",
     "depends": ["purchase"],
