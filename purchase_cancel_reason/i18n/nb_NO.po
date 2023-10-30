@@ -116,7 +116,6 @@ msgstr ""
 #. module: purchase_cancel_reason
 #: model:ir.ui.menu,name:purchase_cancel_reason.menu_purchase_order_cancel_reason
 #: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.view_purchase_order_cancel_reason_form
-#: model_terms:ir.ui.view,arch_db:purchase_cancel_reason.view_purchase_order_cancel_reason_tree
 msgid "Purchase Order Cancel Reasons"
 msgstr ""
 
