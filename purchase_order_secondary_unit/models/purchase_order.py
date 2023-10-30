@@ -13,7 +13,17 @@ class PurchaseOrderLine(models.Model):
     _product_uom_field = "uom_po_id"
 
     product_qty = fields.Float(
-        store=True, readonly=False, compute="_compute_product_qty", copy=True
+        store=True,
+        readonly=False,
+        compute="_compute_product_qty",
+        copy=True,
+        precompute=True,
+    )
+    product_packaging_qty = fields.Float(
+        compute="_compute_product_packaging_qty", store=True, precompute=True
+    )
+    product_packaging_id = fields.Many2one(
+        compute="_compute_product_packaging_id", store=True, precompute=True
     )
 
     @api.depends("secondary_uom_qty", "secondary_uom_id")
@@ -35,8 +45,12 @@ class PurchaseOrderLine(models.Model):
         res = super().onchange_product_id()
         # Check to avoid executing onchange unnecessarily,
         # which can sometimes cause tests of other modules to fail
-        if self.secondary_uom_id != self.product_id.purchase_secondary_uom_id:
-            self.secondary_uom_id = self.product_id.purchase_secondary_uom_id
+        product_sec_uom = (
+            self.product_id.purchase_secondary_uom_id
+            or self.product_id.product_tmpl_id.purchase_secondary_uom_id
+        )
+        if self.secondary_uom_id != product_sec_uom:
+            self.secondary_uom_id = product_sec_uom
         if self.secondary_uom_id:
             self.secondary_uom_qty = 1.0
         return res
