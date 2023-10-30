@@ -281,7 +281,6 @@ msgstr "Se estiver marcado, há novas mensagens que requerem a sua atenção."
 
 #. module: purchase_work_acceptance
 #: model:ir.model.fields,help:purchase_work_acceptance.field_work_acceptance__message_has_error
-#: model:ir.model.fields,help:purchase_work_acceptance.field_work_acceptance__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Se marcada, algumas mensagens têm um erro de entrega."
 
@@ -497,11 +496,6 @@ msgid "Responsible User"
 msgstr "Usuário Responsável"
 
 #. module: purchase_work_acceptance
-#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "Erro de entrega de SMS"
-
-#. module: purchase_work_acceptance
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__access_token
 msgid "Security Token"
 msgstr "Token de segurança"
@@ -696,7 +690,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.res_config_settings_view_form_purchase
 #: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_work_acceptance_form
 #: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_work_acceptance_search
-#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_work_acceptance_tree
 msgid "Work Acceptance"
 msgstr "Aceitação do Trabalho"
 
@@ -708,7 +701,6 @@ msgstr "Linha de Aceitação de Trabalho"
 
 #. module: purchase_work_acceptance
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__wa_line_ids
-#: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_work_acceptance_form
 msgid "Work Acceptance Lines"
 msgstr "Linhas de Aceitação de Trabalho"
 
@@ -738,3 +730,6 @@ msgid ""
 msgstr ""
 "Você não pode validar uma transferência se a quantidade realizada não for "
 "igual à quantidade aceita"
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Erro de entrega de SMS"
