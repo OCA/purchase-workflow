@@ -83,7 +83,7 @@ addon | version | maintainers | summary
 [purchase_picking_state](purchase_picking_state/) | 14.0.1.1.0 |  | Purchase Picking State
 [purchase_product_usage](purchase_product_usage/) | 14.0.1.1.1 |  | Purchase Product Usage
 [purchase_propagate_qty](purchase_propagate_qty/) | 14.0.1.0.3 |  | Quantity decrease on purchase line are propagated to the corresponding stock.move
-[purchase_quick](purchase_quick/) | 14.0.1.0.2 |  | Quick Purchase order
+[purchase_quick](purchase_quick/) | 14.0.1.0.3 |  | Quick Purchase order
 [purchase_reception_notify](purchase_reception_notify/) | 14.0.1.0.0 |  | Purchase Reception Notify
 [purchase_reception_status](purchase_reception_status/) | 14.0.1.1.0 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Add reception status on purchase orders
 [purchase_report_menu_move](purchase_report_menu_move/) | 14.0.1.0.0 | [![newtratip](https://github.com/newtratip.png?size=30px)](https://github.com/newtratip) | Purchase Report Menu Move
