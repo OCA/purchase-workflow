@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-10-29 17:39+0000\n"
+"PO-Revision-Date: 2023-10-31 09:37+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -242,7 +242,7 @@ msgstr "Componente listino prezzi fornitore"
 #. module: purchase_vendor_bill_breakdown
 #: model:ir.model.fields,help:purchase_vendor_bill_breakdown.field_product_supplierinfo__price
 msgid "The price to purchase a product"
-msgstr "Il prezzo di acquisto di un prodotto"
+msgstr "Prezzo di acquisto di un prodotto"
 
 #. module: purchase_vendor_bill_breakdown
 #: model:ir.model.fields,field_description:purchase_vendor_bill_breakdown.field_purchase_order_line_component__qty_to_invoice
