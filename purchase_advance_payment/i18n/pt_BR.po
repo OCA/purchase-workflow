@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-10-31 14:38+0000\n"
+"PO-Revision-Date: 2023-11-01 11:38+0000\n"
 "Last-Translator: Adriano Prado <adrianojprado@gmail.com>\n"
 "Language-Team: none\n"
 "Language: pt_BR\n"
@@ -25,12 +25,12 @@ msgstr ""
 #: model:ir.actions.act_window,name:purchase_advance_payment.action_view_account_voucher_wizard
 #: model_terms:ir.ui.view,arch_db:purchase_advance_payment.view_account_voucher_wizard
 msgid "Advance Payment"
-msgstr "pagamentos Antecipados"
+msgstr "Pagamento Antecipado"
 
 #. module: purchase_advance_payment
 #: model:ir.model.fields,field_description:purchase_advance_payment.field_purchase_order__advance_payment_status
 msgid "Advance Payment Status"
-msgstr "Situação Pagamento Adiantado"
+msgstr "Situação Pagamento Antecipado"
 
 #. module: purchase_advance_payment
 #: model_terms:ir.ui.view,arch_db:purchase_advance_payment.purchase_order_kpis_tree
