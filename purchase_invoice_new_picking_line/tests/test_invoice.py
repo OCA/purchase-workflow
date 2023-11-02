@@ -18,7 +18,7 @@ class TestAccountInvoice(tests.common.TransactionCase):
         purchase_order.button_confirm()
         picking = purchase_order.picking_ids
         moves = picking.move_ids_without_package
-        self.assertEquals(len(purchase_order.order_line), len(moves))
+        self.assertEqual(len(purchase_order.order_line), len(moves))
 
         moves[0].quantity_done = moves[0].product_qty
         moves[1].quantity_done = moves[1].product_qty
@@ -37,17 +37,20 @@ class TestAccountInvoice(tests.common.TransactionCase):
         )
 
         wizard = picking.button_validate()
-        backorder_confirmation = self.env[wizard["res_model"]].browse(
-            wizard["res_id"]
+        # TODO: this doesn't seem right to me. Previously, button_validate()
+        # created a stock.backorder.confirmation. Now, only the defaults are put
+        # in the context, meaning we have to manually create it.
+        backorder_confirmation = (
+            self.env[wizard["res_model"]].with_context(wizard["context"]).create({})
         )
         backorder_confirmation.process_cancel_backorder()
 
-        res = purchase_order.with_context(
-            create_bill=True
-        ).action_view_invoice()
+        res = purchase_order.with_context(create_bill=True).action_view_invoice()
+        # TODO: There is no key 'context' here. In fact, res is empty, because
+        # purchase_order.invoice_ids is an empty recordset.
         ctx = res.get("context")
         f = Form(
-            self.env["account.invoice"].with_context(ctx),
+            self.env["account.move"].with_context(ctx),
             view="account.invoice_supplier_form",
         )
         invoice = f.save()
