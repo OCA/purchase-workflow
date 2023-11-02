@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-06-07 19:09+0000\n"
-"Last-Translator: gelo joga Rodríguez <gelo.joga@factorlibre.com>\n"
+"PO-Revision-Date: 2024-04-18 08:37+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -46,11 +46,6 @@ msgstr "Cancelar"
 #: model:ir.model,name:purchase_deposit.model_res_company
 msgid "Companies"
 msgstr "Compañías"
-
-#. module: purchase_deposit
-#: model:ir.model,name:purchase_deposit.model_res_config_settings
-msgid "Config Settings"
-msgstr "Ajustes de configuración"
 
 #. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
@@ -113,11 +108,11 @@ msgstr "Anticipo (porcentaje)"
 #. module: purchase_deposit
 #: model:ir.model.fields,help:purchase_deposit.field_purchase_order_line__is_deposit
 msgid ""
-"Deposit payments are made when creating bills from a purhcase order. They "
+"Deposit payments are made when creating bills from a purchase order. They "
 "are not copied when duplicating a purchase order."
 msgstr ""
-"Los anticipos se realizan al crear una factura a partir de un pedido de "
-"compra. No se copian al duplicar una orden de compra."
+"Los pagos a cuenta se realizan al crear facturas a partir de un pedido. No "
+"se copian al duplicar una orden de compra."
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__display_name
@@ -177,6 +172,11 @@ msgstr "Última actualización por"
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__write_date
 msgid "Last Updated on"
 msgstr "Última actualización el"
+
+#. module: purchase_deposit
+#: model:ir.model,name:purchase_deposit.model_res_config_settings
+msgid "Procurement purchase grouping settings"
+msgstr "Configuración de la agrupación de compra abastecida"
 
 #. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.res_config_settings_view_form_purchase
@@ -279,6 +279,16 @@ msgstr "Impuestos de proveedor"
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__advance_payment_method
 msgid "What do you want to invoice?"
 msgstr "¿Que quieres facturar?"
+
+#~ msgid "Config Settings"
+#~ msgstr "Ajustes de configuración"
+
+#~ msgid ""
+#~ "Deposit payments are made when creating bills from a purhcase order. They "
+#~ "are not copied when duplicating a purchase order."
+#~ msgstr ""
+#~ "Los anticipos se realizan al crear una factura a partir de un pedido de "
+#~ "compra. No se copian al duplicar una orden de compra."
 
 #~ msgid "Create deposit"
 #~ msgstr "Crear anticipo"
