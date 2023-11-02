@@ -27,10 +27,10 @@ class TestProductSupplierinfoDiscount(TransactionCase):
             {
                 "min_qty": 10.0,
                 "name": cls.partner_3.id,
-                "product_tmpl_id": cls.product.product_tmpl_id.id,
                 "discount": 20,
             }
         )
+        cls.supplierinfo2["product_tmpl_id"] = cls.product.product_tmpl_id
         cls.purchase_order = cls.env["purchase.order"].create(
             {"partner_id": cls.partner_3.id}
         )
