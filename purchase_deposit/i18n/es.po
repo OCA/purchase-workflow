@@ -113,11 +113,9 @@ msgstr "Anticipo (porcentaje)"
 #. module: purchase_deposit
 #: model:ir.model.fields,help:purchase_deposit.field_purchase_order_line__is_deposit
 msgid ""
-"Deposit payments are made when creating bills from a purhcase order. They "
+"Deposit payments are made when creating bills from a purchase order. They "
 "are not copied when duplicating a purchase order."
 msgstr ""
-"Los anticipos se realizan al crear una factura a partir de un pedido de "
-"compra. No se copian al duplicar una orden de compra."
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__display_name
@@ -279,6 +277,13 @@ msgstr "Impuestos de proveedor"
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__advance_payment_method
 msgid "What do you want to invoice?"
 msgstr "¿Que quieres facturar?"
+
+#~ msgid ""
+#~ "Deposit payments are made when creating bills from a purhcase order. They "
+#~ "are not copied when duplicating a purchase order."
+#~ msgstr ""
+#~ "Los anticipos se realizan al crear una factura a partir de un pedido de "
+#~ "compra. No se copian al duplicar una orden de compra."
 
 #~ msgid "Create deposit"
 #~ msgstr "Crear anticipo"

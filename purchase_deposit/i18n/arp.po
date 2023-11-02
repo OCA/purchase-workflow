@@ -109,7 +109,7 @@ msgstr ""
 #. module: purchase_deposit
 #: model:ir.model.fields,help:purchase_deposit.field_purchase_order_line__is_deposit
 msgid ""
-"Deposit payments are made when creating bills from a purhcase order. They "
+"Deposit payments are made when creating bills from a purchase order. They "
 "are not copied when duplicating a purchase order."
 msgstr ""
 
