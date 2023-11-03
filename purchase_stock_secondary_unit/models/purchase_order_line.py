@@ -30,7 +30,7 @@ class PurchaseOrderLine(models.Model):
         po_lines = self.filtered(
             lambda ln: ln.secondary_uom_qty != vals["secondary_uom_qty"]
         )
-        res = super(PurchaseOrderLine, self).write(vals)
+        res = super().write(vals)
         for po_line in po_lines:
             moves = po_line.move_ids
             if len(moves) == 1:
