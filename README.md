@@ -67,6 +67,7 @@ addon | version | maintainers | summary
 [purchase_order_line_price_history_discount](purchase_order_line_price_history_discount/) | 14.0.1.0.0 |  | Purchase order line price history discount
 [purchase_order_line_sequence](purchase_order_line_sequence/) | 14.0.2.0.0 |  | Adds sequence to PO lines and propagates it toInvoice lines and Stock Moves
 [purchase_order_line_stock_available](purchase_order_line_stock_available/) | 14.0.1.0.0 |  | Purchase order line stock available
+[purchase_order_partner_manual_rank](purchase_order_partner_manual_rank/) | 14.0.1.0.0 |  | Purchase Order Partner Manual Rank
 [purchase_order_payment_term_report](purchase_order_payment_term_report/) | 14.0.1.0.1 |  | Display Purchase Payment Terms in PO Report
 [purchase_order_price_recalculation](purchase_order_price_recalculation/) | 14.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Price recalculation in purchases orders
 [purchase_order_product_attachment_mgmt](purchase_order_product_attachment_mgmt/) | 14.0.1.0.1 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Purchase Order Product Attachment Mgmt
