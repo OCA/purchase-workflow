@@ -39,7 +39,7 @@ class PurchaseOrder(models.Model):
                             continue
                         if (
                             move.picking_id.scheduled_date.date() != date_key
-                            or pickings_by_date[date_key] != move.picking_id
+                            or pickings_by_date.get(date_key) != move.picking_id
                         ):
                             if date_key not in pickings_by_date:
                                 copy_vals = line._first_picking_copy_vals(key, line)
