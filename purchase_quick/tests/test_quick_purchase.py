@@ -214,3 +214,23 @@ class TestQuickPurchase(TransactionCase):
         product_in_quick_edit.write(
             {"qty_to_process": 5.0, "quick_uom_id": self.uom_unit.id}
         )
+
+    def test_no_pricelist_for_the_min_qty(self):
+        """
+        Checks that if you enter a qty_to_process lower than the seller's min_qty,
+        the price_unit in de pusrchase.order.line is the standard_price.
+        """
+        po = self.env["purchase.order"].create({"partner_id": self.partner.id})
+        ctx = {
+            "parent_id": po.id,
+            "parent_model": "purchase.order",
+            "quick_access_rights_purchase": 1,
+        }
+        product_3 = self.env.ref("product.product_product_5")
+        self._add_seller(product_3, [(5, 5), (10, 1)])
+        product_3 = product_3.with_context(**ctx)
+        product_3.write({"qty_to_process": 1.0, "quick_uom_id": self.uom_unit.id})
+        line_1 = po.order_line
+        self.assertEqual(line_1.product_qty, 1.0)
+        self.assertEqual(line_1.product_uom, self.uom_unit)
+        self.assertEqual(line_1.price_unit, product_3.standard_price)
