@@ -78,7 +78,7 @@ class TestStockWarehouseCalendar(TransactionCase):
                 "product_uom_qty": 80.0,
                 "procure_method": "make_to_order",
                 "picking_id": customer_picking.id,
-                "date_expected": "2097-01-14 09:00:00",  # Monday
+                "scheduled_date": "2097-01-14 09:00:00",  # Monday
             }
         )
 
