@@ -17,15 +17,23 @@
                     groups="base.group_user"
                 />
             </xpath>
+            <xpath expr="//div[hasclass('oe_title')]" position="attributes">
+                <attribute name="class" add="pb-4" separator=" " />
+            </xpath>
+            <xpath expr="/form/sheet/div/h1" position="attributes">
+                <attribute name="style">min-height:35px;</attribute>
+            </xpath>
             <xpath expr="/form/sheet/div/h1" position="after">
-                <h5 class="mb-3" attrs="{'invisible': [('state', '!=', 'cancel')]}">
-                    <label for="cancel_reason_id" string="Cancellation reason:" />
-                    <field
-                        name="cancel_reason_id"
-                        class="oe_inline"
-                        options='{"no_open": True}'
-                    />
-                </h5>
+                <div>
+                    <div attrs="{'invisible': [('state', '!=', 'cancel')]}">
+                        <label for="cancel_reason_id" string="Cancellation reason:" />
+                        <field
+                            name="cancel_reason_id"
+                            class="oe_inline"
+                            options='{"no_open": True}'
+                        />
+                    </div>
+                </div>
             </xpath>
         </field>
     </record>
