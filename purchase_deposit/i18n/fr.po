@@ -22,8 +22,8 @@ msgid ""
 "<span attrs=\"{'invisible': [('advance_payment_method', '!=', "
 "'percentage')]}\" class=\"oe_inline\">%</span>"
 msgstr ""
-"<span attrs=\"{'invisible': [('advance_payment_method', '!=', 'percentage')]}"
-"\" class=\"oe_inline\">%</span>"
+"<span attrs=\"{'invisible': [('advance_payment_method', '!=', "
+"'percentage')]}\" class=\"oe_inline\">%</span>"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,help:purchase_deposit.field_purchase_advance_payment_inv__deposit_account_id
@@ -113,12 +113,9 @@ msgstr "Acompte (pourcentage)"
 #. module: purchase_deposit
 #: model:ir.model.fields,help:purchase_deposit.field_purchase_order_line__is_deposit
 msgid ""
-"Deposit payments are made when creating bills from a purhcase order. They "
+"Deposit payments are made when creating bills from a purchase order. They "
 "are not copied when duplicating a purchase order."
 msgstr ""
-"Les acomptes sont générés lors de la création de factures à partir d'une "
-"commande fournisseur. Ils ne sont pas copiés lors de la duplication d'une "
-"commande fournisseur."
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__display_name
@@ -280,6 +277,14 @@ msgstr "Taxes fournisseur"
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__advance_payment_method
 msgid "What do you want to invoice?"
 msgstr "Que voulez-vous facturer ?"
+
+#~ msgid ""
+#~ "Deposit payments are made when creating bills from a purhcase order. They "
+#~ "are not copied when duplicating a purchase order."
+#~ msgstr ""
+#~ "Les acomptes sont générés lors de la création de factures à partir d'une "
+#~ "commande fournisseur. Ils ne sont pas copiés lors de la duplication d'une "
+#~ "commande fournisseur."
 
 #~ msgid "Down payment (percentage)"
 #~ msgstr "Acompte (pourcentage)"
