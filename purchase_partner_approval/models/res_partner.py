@@ -9,11 +9,13 @@ class Partner(models.Model):
 
     purchase_ok = fields.Boolean(
         string="Can Purchase To",
+        default=True,
         copy=False,
         readonly=True,
     )
     candidate_purchase = fields.Boolean(
         string="Candidate Purchase To",
+        default=True,
     )
 
     @api.model

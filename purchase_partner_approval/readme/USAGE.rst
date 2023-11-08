@@ -1,7 +1,7 @@
-To approve a Partner to be used in purchase:
+To exclude a Partner from being used in purchase:
 
-* Edit the Partner form, and in the "Sales & Purchase" tab check the "Candidate to Purchase" box.
-* Make sure the Parter is in a Stage that has the "Approved for Purchase" checkbox enabled.
+* Edit the Partner form, and in the "Sales & Purchase" tab uncheck the "Candidate to Purchase" box.
+* Make sure the Parter is not in a Stage that has the "Approved for Purchase" checkbox enabled.
   If this is the case, the Partner will automatically have enabled the "Can Purchase To" checkbox.
   found next to the "Candidate to Purchase" checkbox.
 
