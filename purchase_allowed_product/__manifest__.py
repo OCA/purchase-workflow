@@ -13,9 +13,11 @@
     "license": "AGPL-3",
     "depends": ["purchase", "base_view_inheritance_extension"],
     "data": [
+        "security/purchase_security.xml",
         "views/res_partner_view.xml",
         "views/account_move_views.xml",
         "views/purchase_order_view.xml",
+        "views/res_config_settings_views.xml",
     ],
     "installable": True,
 }
