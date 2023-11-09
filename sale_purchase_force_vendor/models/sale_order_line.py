@@ -49,13 +49,19 @@ class SaleOrderLine(models.Model):
                 uom_id=self.product_uom,
             )
             if not suppinfo:
-                suppinfo = self.env["product.supplierinfo"].create(
-                    {
-                        "product_tmpl_id": product.product_tmpl_id.id,
-                        "name": self.vendor_id.id,
-                        "min_qty": 0,
-                        "company_id": self.company_id.id,
-                    }
+                # By default user with group_sale_salesman group can not creates
+                # supplierinfo records.
+                suppinfo = (
+                    self.env["product.supplierinfo"]
+                    .sudo()
+                    .create(
+                        {
+                            "product_tmpl_id": product.product_tmpl_id.id,
+                            "name": self.vendor_id.id,
+                            "min_qty": 0,
+                            "company_id": self.company_id.id,
+                        }
+                    )
                 )
             res["supplierinfo_id"] = suppinfo
         return res
