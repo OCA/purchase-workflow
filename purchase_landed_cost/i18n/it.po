@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: odoomrp-wip (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-23 16:33+0000\n"
-"PO-Revision-Date: 2023-06-22 08:09+0000\n"
+"PO-Revision-Date: 2023-11-10 12:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/odoomrp-wip-8-0/"
 "language/it/)\n"
@@ -305,7 +305,7 @@ msgstr "Errore"
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_expense_expense_amount
 #: model:ir.model.fields,field_description:purchase_landed_cost.field_purchase_cost_distribution_line_expense_expense_amount
 msgid "Expense amount"
-msgstr "Importos pese"
+msgstr "Importo spese"
 
 #. module: purchase_landed_cost
 #: model:ir.actions.act_window,name:purchase_landed_cost.action_purchase_cost_distribution_line_expense
