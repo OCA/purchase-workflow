@@ -54,11 +54,6 @@ msgid "Mixin for documents that want to restrict products"
 msgstr ""
 
 #. module: purchase_allowed_product
-#: model:ir.model.fields,field_description:purchase_allowed_product.field_product_supplierinfo__name
-msgid "Name"
-msgstr ""
-
-#. module: purchase_allowed_product
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_res_partner__use_only_supplied_product
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_res_users__use_only_supplied_product
 msgid "Order and invoice only supplied products"
@@ -86,6 +81,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_purchase_order__use_only_supplied_product
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_supplied_product_mixin__use_only_supplied_product
 msgid "Use only allowed products"
+msgstr ""
+
+#. module: purchase_allowed_product
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_product_supplierinfo__partner_id
+msgid "Vendor"
 msgstr ""
 
 #~ msgid "ID"

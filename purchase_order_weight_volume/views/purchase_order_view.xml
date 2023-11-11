@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="purchase_order_form_inerit" model="ir.ui.view">
+        <field name="name">purchase.order.form.inherit</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='order_line']//tree//field[@name='price_unit']"
+                position="before"
+            >
+                <field name="line_weight" optional="hide" />
+                <field name="line_volume" optional="hide" />
+            </xpath>
+            <xpath
+                expr="//field[@name='tax_totals']/parent::group[last()]/parent::group[last()]"
+                position="after"
+            >
+                <group class="oe_right">
+                    <label
+                        for="total_weight"
+                        attrs="{'invisible':[('total_weight_uom_id', '=', False)]}"
+                    />
+                    <div
+                        class="text-nowrap"
+                        attrs="{'invisible':[('total_weight_uom_id', '=', False)]}"
+                    >
+                        <field name="total_weight" class="oe_inline" />
+                        <span style="margin-left:3px;"><field
+                                name="total_weight_uom_id"
+                                class="oe_inline pull-right"
+                            /></span>
+                    </div>
+                    <label
+                        for="total_volume"
+                        attrs="{'invisible':[('total_volume_uom_id', '=', False)]}"
+                    />
+                    <div
+                        class="text-nowrap"
+                        attrs="{'invisible':[('total_volume_uom_id', '=', False)]}"
+                    >
+                        <field name="total_volume" class="oe_inline" />
+                        <span style="margin-left:3px;"><field
+                                name="total_volume_uom_id"
+                                class="oe_inline pull-right"
+                            /></span>
+                    </div>
+                </group>
+            </xpath>
+            <field name="fiscal_position_id" position="after">
+                <field name="display_total_weight_in_report" />
+                <field name="display_total_volume_in_report" />
+            </field>
+        </field>
+    </record>
+
+</odoo>

@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="purchase.purchase_order_line_form2" />
         <field name="arch" type="xml">
             <field name="price_unit" position="after">
-                <field name="discount" />
+                <field name="discount" optional="show" />
             </field>
         </field>
     </record>
@@ -16,7 +16,7 @@
         <field name="inherit_id" ref="purchase.purchase_order_line_tree" />
         <field name="arch" type="xml">
             <field name="price_unit" position="after">
-                <field name="discount" />
+                <field name="discount" optional="show" />
             </field>
         </field>
     </record>
@@ -31,6 +31,7 @@
             >
                 <field
                     name="discount"
+                    optional="show"
                     attrs="{'readonly': [('qty_invoiced', '!=', 0)]}"
                 />
             </xpath>
@@ -40,6 +41,7 @@
             >
                 <field
                     name="discount"
+                    optional="show"
                     attrs="{'readonly': [('qty_invoiced', '!=', 0)]}"
                 />
             </xpath>

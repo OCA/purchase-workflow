@@ -6,47 +6,49 @@
 from odoo import fields
 from odoo.tests.common import Form, TransactionCase
 
+from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
+
 
 class TestPurchaseOrderUninvoiceAmount(TransactionCase):
-    def setUp(self):
-        super().setUp()
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT))
         # Environmet
-        self.purchase_order_model = self.env["purchase.order"]
-        self.purchase_order_line_model = self.env["purchase.order.line"]
-        self.account_move_model = self.env["account.move"]
-        self.res_partner_model = self.env["res.partner"]
-        self.product_product_model = self.env["product.product"]
-        self.product_category_model = self.env["product.category"]
+        cls.purchase_order_model = cls.env["purchase.order"]
+        cls.purchase_order_line_model = cls.env["purchase.order.line"]
+        cls.account_move_model = cls.env["account.move"]
+        cls.res_partner_model = cls.env["res.partner"]
+        cls.product_product_model = cls.env["product.product"]
+        cls.product_category_model = cls.env["product.category"]
         # Company
-        self.company = self.env.ref("base.main_company")
+        cls.company = cls.env.ref("base.main_company")
         # Partner
-        self.partner = self.res_partner_model.create(
+        cls.partner = cls.res_partner_model.create(
             {"name": "Partner 1", "supplier_rank": 1, "is_company": True}
         )
         # Category
-        self.product_categ = self.product_category_model.create(
-            {"name": "Test category"}
-        )
-        self.uom_categ = self.env["uom.category"].create({"name": "Category 1"})
-        self.uom1 = self.env["uom.uom"].create(
+        cls.product_categ = cls.product_category_model.create({"name": "Test category"})
+        cls.uom_categ = cls.env["uom.category"].create({"name": "Category 1"})
+        cls.uom1 = cls.env["uom.uom"].create(
             {
                 "name": "UOM 1",
-                "category_id": self.uom_categ.id,
+                "category_id": cls.uom_categ.id,
                 "factor": 1,
                 "active": True,
                 "uom_type": "reference",
             }
         )
         # Products
-        self.product_category = self.env["product.category"].create(
+        cls.product_category = cls.env["product.category"].create(
             {"name": "Test Product category"}
         )
-        self.product_1 = self.env["product.product"].create(
+        cls.product_1 = cls.env["product.product"].create(
             {
                 "name": "Test Sale Product",
                 "sale_ok": True,
                 "type": "consu",
-                "categ_id": self.product_category.id,
+                "categ_id": cls.product_category.id,
                 "description_sale": "Test Description Sale",
                 "purchase_method": "receive",
             }

@@ -1,0 +1,119 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_order_weight_volume
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-11-03 21:37+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: purchase_order_weight_volume
+#: model_terms:ir.ui.view,arch_db:purchase_order_weight_volume.report_purchaseorder_document
+#: model_terms:ir.ui.view,arch_db:purchase_order_weight_volume.report_purchasequotation_document
+msgid "<strong>Total Volume</strong>"
+msgstr "<strong>Volumen total</strong>"
+
+#. module: purchase_order_weight_volume
+#: model_terms:ir.ui.view,arch_db:purchase_order_weight_volume.report_purchaseorder_document
+#: model_terms:ir.ui.view,arch_db:purchase_order_weight_volume.report_purchasequotation_document
+msgid "<strong>Total Weight</strong>"
+msgstr "<strong>Peso total</strong>"
+
+#. module: purchase_order_weight_volume
+#: model_terms:ir.ui.view,arch_db:purchase_order_weight_volume.report_purchaseorder_document
+#: model_terms:ir.ui.view,arch_db:purchase_order_weight_volume.report_purchasequotation_document
+msgid "<strong>Volume</strong>"
+msgstr "<strong>Volumen</strong>"
+
+#. module: purchase_order_weight_volume
+#: model_terms:ir.ui.view,arch_db:purchase_order_weight_volume.report_purchaseorder_document
+#: model_terms:ir.ui.view,arch_db:purchase_order_weight_volume.report_purchasequotation_document
+msgid "<strong>Weight</strong>"
+msgstr "<strong>Peso</strong>"
+
+#. module: purchase_order_weight_volume
+#: model:ir.model,name:purchase_order_weight_volume.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: purchase_order_weight_volume
+#: model:ir.model,name:purchase_order_weight_volume.model_res_config_settings
+msgid "Config Settings"
+msgstr "Ajustes de Configuración"
+
+#. module: purchase_order_weight_volume
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_res_company__display_order_volume_in_po
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_res_config_settings__display_order_volume_in_po
+msgid "Display Order Volume in PO"
+msgstr "Visualizar volumen de pedido en PO"
+
+#. module: purchase_order_weight_volume
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_res_company__display_order_weight_in_po
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_res_config_settings__display_order_weight_in_po
+msgid "Display Order Weight in PO"
+msgstr "Visualizar peso de pedido en PO"
+
+#. module: purchase_order_weight_volume
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order__display_total_volume_in_report
+msgid "Display Volume in Report"
+msgstr "Mostrar volumen en el informe"
+
+#. module: purchase_order_weight_volume
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order__display_total_weight_in_report
+msgid "Display Weight in Report"
+msgstr "Mostrar el peso en el informe"
+
+#. module: purchase_order_weight_volume
+#: model:ir.model,name:purchase_order_weight_volume.model_purchase_order
+msgid "Purchase Order"
+msgstr "Orden de Compra"
+
+#. module: purchase_order_weight_volume
+#: model:ir.model,name:purchase_order_weight_volume.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Línea de Orden de Compra"
+
+#. module: purchase_order_weight_volume
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order__total_volume
+msgid "Total Volume"
+msgstr "Volumen Total"
+
+#. module: purchase_order_weight_volume
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order__total_volume_uom_id
+msgid "Total Volume Uom"
+msgstr "Volumen Total Udm"
+
+#. module: purchase_order_weight_volume
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order__total_weight
+msgid "Total Weight"
+msgstr "Peso Total"
+
+#. module: purchase_order_weight_volume
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order__total_weight_uom_id
+msgid "Total Weight Uom"
+msgstr "Peso Total Udm"
+
+#. module: purchase_order_weight_volume
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order_line__line_volume
+msgid "Volume"
+msgstr "Volumen"
+
+#. module: purchase_order_weight_volume
+#: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order_line__line_weight
+msgid "Weight"
+msgstr "Peso"
+
+#~ msgid "Volume Uom Name"
+#~ msgstr "Nombre UdM Volumen"
+
+#~ msgid "Weight Uom Name"
+#~ msgstr "Nombre UdM Peso"

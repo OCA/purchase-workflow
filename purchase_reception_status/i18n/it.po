@@ -1,0 +1,65 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_reception_status
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2020-11-07 18:08+0000\n"
+"Last-Translator: Alessandro Fiorino <alessandro.fiorino@digitaldomus.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.10\n"
+
+#. module: purchase_reception_status
+#: model:ir.model.fields,field_description:purchase_reception_status.field_purchase_order__force_received
+msgid "Force Received"
+msgstr "Forza Ricevuto"
+
+#. module: purchase_reception_status
+#: model:ir.model.fields.selection,name:purchase_reception_status.selection__purchase_order__reception_status__received
+#: model_terms:ir.ui.view,arch_db:purchase_reception_status.view_purchase_order_filter
+msgid "Fully Received"
+msgstr "Ricevuto Completamente"
+
+#. module: purchase_reception_status
+#: model:ir.model.fields,help:purchase_reception_status.field_purchase_order__force_received
+msgid ""
+"If true, the reception status will be forced to Fully Received, even if some "
+"lines are not fully received. To be able to modify this field, you must "
+"first lock the order."
+msgstr ""
+"Se vero, lo stato di ricezione sarà forzato a Completamente Ricevuto, anche "
+"se alcune righe non sono state completamente ricevute. Per essere in grado "
+"di modificare questo campo, devi prima aver bloccato l'ordine."
+
+#. module: purchase_reception_status
+#: model_terms:ir.ui.view,arch_db:purchase_reception_status.view_purchase_order_filter
+msgid "Not Fully Received"
+msgstr "Ricevuto Parzialmente"
+
+#. module: purchase_reception_status
+#: model:ir.model.fields.selection,name:purchase_reception_status.selection__purchase_order__reception_status__no
+msgid "Nothing Received"
+msgstr "Nulla Ricevuto"
+
+#. module: purchase_reception_status
+#: model:ir.model.fields.selection,name:purchase_reception_status.selection__purchase_order__reception_status__partial
+msgid "Partially Received"
+msgstr "Ricevuto Parzialmente"
+
+#. module: purchase_reception_status
+#: model:ir.model,name:purchase_reception_status.model_purchase_order
+msgid "Purchase Order"
+msgstr "Ordine d'Acquisto"
+
+#. module: purchase_reception_status
+#: model:ir.model.fields,field_description:purchase_reception_status.field_purchase_order__reception_status
+#: model_terms:ir.ui.view,arch_db:purchase_reception_status.view_purchase_order_filter
+msgid "Reception Status"
+msgstr "Stato Ricezione"

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 02:48+0000\n"
-"PO-Revision-Date: 2023-01-02 12:48+0000\n"
+"PO-Revision-Date: 2023-11-08 19:39+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: purchase_allowed_product
 #: model:ir.model,name:purchase_allowed_product.model_res_partner
@@ -50,17 +50,12 @@ msgstr ""
 #. module: purchase_allowed_product
 #: model:ir.model,name:purchase_allowed_product.model_account_move
 msgid "Journal Entry"
-msgstr ""
+msgstr "Registrazione contabile"
 
 #. module: purchase_allowed_product
 #: model:ir.model,name:purchase_allowed_product.model_supplied_product_mixin
 msgid "Mixin for documents that want to restrict products"
 msgstr "Mixin per documenti che devono avere una restrizione sui prodotti"
-
-#. module: purchase_allowed_product
-#: model:ir.model.fields,field_description:purchase_allowed_product.field_product_supplierinfo__name
-msgid "Name"
-msgstr ""
 
 #. module: purchase_allowed_product
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_res_partner__use_only_supplied_product
@@ -71,7 +66,7 @@ msgstr "Ordina e fattura solo prodotti venduti"
 #. module: purchase_allowed_product
 #: model:ir.model,name:purchase_allowed_product.model_product_product
 msgid "Product Variant"
-msgstr ""
+msgstr "Variante prodotto"
 
 #. module: purchase_allowed_product
 #: model:ir.model,name:purchase_allowed_product.model_purchase_order
@@ -92,6 +87,11 @@ msgstr "Listino prezzi fornitore"
 msgid "Use only allowed products"
 msgstr "Mostra solo prodotti venduti dal fornitore"
 
+#. module: purchase_allowed_product
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_product_supplierinfo__partner_id
+msgid "Vendor"
+msgstr "Fornitore"
+
 #~ msgid "Display Name"
 #~ msgstr "Nome da visualizzare"
 
@@ -106,9 +106,6 @@ msgstr "Mostra solo prodotti venduti dal fornitore"
 
 #~ msgid "Product"
 #~ msgstr "Prodotto"
-
-#~ msgid "Vendor"
-#~ msgstr "Fornitore"
 
 #~ msgid "Vendor of this product"
 #~ msgstr "Fornitore di questo prodotto"

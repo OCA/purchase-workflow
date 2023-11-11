@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2023-07-29 11:10+0000\n"
+"PO-Revision-Date: 2023-11-03 21:37+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
@@ -58,11 +58,6 @@ msgid "Mixin for documents that want to restrict products"
 msgstr "Mezclador para documentos que desean restringir productos"
 
 #. module: purchase_allowed_product
-#: model:ir.model.fields,field_description:purchase_allowed_product.field_product_supplierinfo__name
-msgid "Name"
-msgstr "Nombre"
-
-#. module: purchase_allowed_product
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_res_partner__use_only_supplied_product
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_res_users__use_only_supplied_product
 msgid "Order and invoice only supplied products"
@@ -91,6 +86,14 @@ msgstr "Lista de precios para proveedores"
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_supplied_product_mixin__use_only_supplied_product
 msgid "Use only allowed products"
 msgstr "Usar solo los productos permitidos"
+
+#. module: purchase_allowed_product
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_product_supplierinfo__partner_id
+msgid "Vendor"
+msgstr "Vendedor"
+
+#~ msgid "Name"
+#~ msgstr "Nombre"
 
 #~ msgid "Display Name"
 #~ msgstr "Nombre mostrado"

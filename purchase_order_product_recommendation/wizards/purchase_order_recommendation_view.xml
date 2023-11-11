@@ -38,7 +38,7 @@
                             <tree
                                 decoration-info="purchase_line_id != False"
                                 decoration-success="units_included &gt; 0 and not purchase_line_id"
-                                decoration-danger="units_virtual_available &lt; 0 and units_included &lt; abs(units_virtual_available)"
+                                decoration-danger="units_virtual_available &lt; 0 and units_included &lt; units_virtual_available * (1 if units_virtual_available &gt; 0 else -1)"
                                 decoration-muted="units_received == 0 and units_delivered == 0"
                                 create="0"
                                 delete="0"

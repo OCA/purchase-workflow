@@ -1,0 +1,312 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_order_product_recommendation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-10-24 10:54+0000\n"
+"Last-Translator: Adriano Prado <adrianojprado@gmail.com>\n"
+"Language-Team: none\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: purchase_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:purchase_order_product_recommendation.purchase_order_recommendation_view_form
+msgid "Accept"
+msgstr "Aceitar"
+
+#. module: purchase_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:purchase_order_product_recommendation.purchase_order_recommendation_view_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,help:purchase_order_product_recommendation.field_purchase_order_recommendation__warehouse_ids
+msgid "Constrain search to an specific warehouse"
+msgstr "Restringir a pesquisa a um armazém específico"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation__create_uid
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__create_uid
+msgid "Created by"
+msgstr "Criado por"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation__create_date
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__create_date
+msgid "Created on"
+msgstr "Criado em"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__currency_id
+msgid "Currency"
+msgstr "Moéda"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation__date_begin
+msgid "Date Begin"
+msgstr "Data Inicial"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation__date_end
+msgid "Date End"
+msgstr "Data Final"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation__display_name
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__display_name
+msgid "Display Name"
+msgstr "Nome Exibição"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,help:purchase_order_product_recommendation.field_purchase_order_recommendation__product_category_ids
+msgid "Filter by product internal category"
+msgstr "Filtrar por categoria interna do produto"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,help:purchase_order_product_recommendation.field_purchase_order_recommendation__date_end
+msgid "Final date to compute recommendations."
+msgstr "Data final para calcular recomendações."
+
+#. module: purchase_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:purchase_order_product_recommendation.purchase_order_recommendation_view_form
+msgid "Forecasted Qty"
+msgstr "Prevista"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation__id
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__id
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,help:purchase_order_product_recommendation.field_purchase_order_recommendation__date_begin
+msgid "Initial date to compute recommendations."
+msgstr "Data inicial para calcular recomendações."
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__is_modified
+msgid "Is Modified"
+msgstr "Está Modificado"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation____last_update
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line____last_update
+msgid "Last Modified on"
+msgstr "Última Modificação em"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation__write_uid
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__write_uid
+msgid "Last Updated by"
+msgstr "Última Atualização por"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation__write_date
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__write_date
+msgid "Last Updated on"
+msgstr "Última Atualização em"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation__line_amount
+msgid "Number of recommendations"
+msgstr "Número de Recomendações"
+
+#. module: purchase_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:purchase_order_product_recommendation.purchase_order_recommendation_view_form
+msgid "Price"
+msgstr "Preço"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__price_unit
+msgid "Price Unit"
+msgstr "Preço Unitário"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__product_id
+msgid "Product"
+msgstr "Produto"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation__product_category_ids
+msgid "Product Categories"
+msgstr "Categorias Produtos"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__product_name
+msgid "Product Name"
+msgstr "Nome Produto"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__product_code
+msgid "Product reference"
+msgstr "Ref. Produto"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation__line_ids
+msgid "Products"
+msgstr "Produtos"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__purchase_line_id
+msgid "Purchase Line"
+msgstr "Item Compra"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation__order_id
+msgid "Purchase Order"
+msgstr "Pedido Compra"
+
+#. module: purchase_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:purchase_order_product_recommendation.purchase_order_recommendation_view_form
+msgid "Qty"
+msgstr "Qtd"
+
+#. module: purchase_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:purchase_order_product_recommendation.purchase_order_recommendation_view_form
+msgid "Qty Dlvd./day"
+msgstr "Ent./dia"
+
+#. module: purchase_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:purchase_order_product_recommendation.purchase_order_recommendation_view_form
+msgid "Qty On Hand"
+msgstr "Qtd na Mão"
+
+#. module: purchase_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:purchase_order_product_recommendation.purchase_order_recommendation_view_form
+msgid "Qty Received"
+msgstr "Recebida"
+
+#. module: purchase_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:purchase_order_product_recommendation.purchase_order_recommendation_view_form
+msgid "Qty delivered"
+msgstr "Entregue"
+
+#. module: purchase_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:purchase_order_product_recommendation.purchase_order_form
+msgid "Recommended Products"
+msgstr "Produtos Recomendados"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.actions.act_window,name:purchase_order_product_recommendation.purchase_order_recommendation_action
+msgid "Recommended Products for this Vendor"
+msgstr "Produtos Recomendados para este Fornecedor"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model,name:purchase_order_product_recommendation.model_purchase_order_recommendation_line
+msgid "Recommended product for current purchase order"
+msgstr "Produto recomendado para pedido de compra atual"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model,name:purchase_order_product_recommendation.model_purchase_order_recommendation
+msgid "Recommended products for current purchase order"
+msgstr "Produto recomendado para pedido de compra atual"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,help:purchase_order_product_recommendation.field_purchase_order_recommendation__show_all_partner_products
+msgid "Show all products with supplier infos for this supplier"
+msgstr ""
+"Mostrar todos os produtos com informações de fornecimento deste fornecedor"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation__show_all_products
+msgid "Show all purchasable products"
+msgstr "Mostrar todos os produtos compráveis"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation__show_all_partner_products
+msgid "Show all supplier products"
+msgstr "Mostrar todos os produtos do fornecedor"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,help:purchase_order_product_recommendation.field_purchase_order_recommendation__line_amount
+msgid ""
+"Stablish a limit on how many recommendations you want to get.Leave it as 0 "
+"to set no limit"
+msgstr ""
+"Estabeleça um limite de quantas recomendações você deseja obter. Deixe como "
+"0 para não definir limite"
+
+#. module: purchase_order_product_recommendation
+#. odoo-python
+#: code:addons/purchase_order_product_recommendation/wizards/purchase_order_recommendation.py:0
+#, python-format
+msgid "This wizard is only valid for purchases"
+msgstr "Este assistente só é válido para compras"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__times_delivered
+msgid "Times Delivered"
+msgstr "Tempos de Entrega"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__times_received
+msgid "Times Received"
+msgstr "Tempos de Recebimento"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__units_available
+msgid "Units Available"
+msgstr "Unidades Disponíveis"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__units_avg_delivered
+msgid "Units Avg Delivered"
+msgstr "Média de Unidades Entregues"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__units_delivered
+msgid "Units Delivered"
+msgstr "Unidades Entregues"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__units_included
+msgid "Units Included"
+msgstr "Unidades Incluidas"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__units_received
+msgid "Units Received"
+msgstr "Unidades Recebidas"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__units_virtual_available
+msgid "Units Virtual Available"
+msgstr "Unidades Virtuais Disponíveis"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,help:purchase_order_product_recommendation.field_purchase_order_recommendation__show_all_products
+msgid "Useful if a product hasn't been selled by the partner yet"
+msgstr "Útil se um produto ainda não foi vendido pelo parceiro"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__partner_id
+msgid "Vendor"
+msgstr "Fornecedor"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation__warehouse_ids
+msgid "Warehouse"
+msgstr "Armazém"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation__warehouse_count
+msgid "Warehouse Count"
+msgstr "Contagem de Armazém"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__wizard_id
+msgid "Wizard"
+msgstr "Assistente"
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,help:purchase_order_product_recommendation.field_purchase_order_recommendation_line__partner_id
+msgid "You can find a vendor by its Name, TIN, Email or Internal Reference."
+msgstr ""
+"Você pode encontrar um fornecedor por Nome, NIF, Email ou Referência Interna."

@@ -6,11 +6,14 @@ from dateutil.relativedelta import relativedelta
 from odoo import fields
 from odoo.tests import Form, TransactionCase
 
+from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
+
 
 class TestPurchaseOrderSupplierinfoUpdate(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT))
         cls.product = cls.env["product.product"].create(
             {"name": "Product Test", "type": "consu"}  # do not depend on stock module
         )
