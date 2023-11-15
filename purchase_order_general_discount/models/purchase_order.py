@@ -76,3 +76,13 @@ class PurchaseOrder(models.Model):
                 order_line_field.attrib["context"] = context
                 res["arch"] = etree.tostring(order_xml)
         return res
+
+    class PurchaseOrderLine(models.Model):
+        _inherit = "purchase.order.line"
+
+        @api.model
+        def _apply_value_from_seller(self, seller):
+            res = super()._apply_value_from_seller(seller)
+            if self.company_id.purchase_supplier_discount_real and not seller:
+                self.discount = self.order_id.general_discount
+            return res

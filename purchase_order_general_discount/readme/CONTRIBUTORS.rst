@@ -10,3 +10,7 @@
 
     * Jose Zambudio
     * Anna Martinez
+
+* `Sygel <https://www.sygel.es>`_:
+
+    * Àngel García de la Chica Herrera <angel.garcia@sygel.es>
