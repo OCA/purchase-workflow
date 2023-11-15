@@ -86,6 +86,11 @@ msgid "Purchase Order"
 msgstr "Encomenda de Compra"
 
 #. module: purchase_order_general_discount
+#: model:ir.model,name:purchase_order_general_discount.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr ""
+
+#. module: purchase_order_general_discount
 #: model_terms:ir.ui.view,arch_db:purchase_order_general_discount.res_config_settings_view_form_purchase
 msgid ""
 "Select to which purchase line field will the purchase general discount be "
