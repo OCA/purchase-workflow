@@ -108,9 +108,10 @@ class PurchaseOrderLine(models.Model):
     def _apply_value_from_seller(self, seller):
         """Overload this function to prepare other data from seller,
         like in purchase_triple_discount module"""
-        if not seller:
+        discount = seller.discount if seller else 0.00
+        if not seller and not self.company_id.purchase_supplier_discount_real:
             return
-        self.discount = seller.discount
+        self.discount = discount
 
     def _prepare_account_move_line(self, move=False):
         vals = super(PurchaseOrderLine, self)._prepare_account_move_line(move)

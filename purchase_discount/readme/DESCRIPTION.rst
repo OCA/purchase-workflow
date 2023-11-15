@@ -20,6 +20,15 @@ it to purchase order lines:
 .. image:: ../static/description/res_partner_company_form.png
 
 
+You can choose between the following two ways of operation by enabling/disabling
+the 'Real Only Purchase Supplier Discount' checkbox in the purchase module settings:
+
+* Show only the discounts stored in the system for a given seller.
+* Keep the discounts entered in the purchase order line even if there is no rate for the quantity entered.
+
+.. image:: ../static/description/res_config_settings_form.png
+
+
 Note: this setting is a new 'company' setting, unavailable for related
 partners, as accounting-related Settings.
 

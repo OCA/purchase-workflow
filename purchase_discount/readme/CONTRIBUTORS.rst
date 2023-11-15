@@ -14,3 +14,6 @@
 * Luisa Miguéns <luisa.miguens@solvos.es>
 * Vishnu Vanneri <vanneri.odoodev@gmail.com>
 * Moaad Bourhim <moaad.bourhim@gmail.com>
+* `Sygel <https://www.sygel.es>`_:
+
+  * Ángel García de la Chica Herrera <angel.garcia@sygel.es>
