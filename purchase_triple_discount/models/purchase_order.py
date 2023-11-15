@@ -44,11 +44,16 @@ class PurchaseOrderLine(models.Model):
 
     @api.model
     def _apply_value_from_seller(self, seller):
-        super()._apply_value_from_seller(seller)
-        if not seller:
+        res = super()._apply_value_from_seller(seller)
+        discounts = (
+            {"discount2": seller.discount2, "discount3": seller.discount3}
+            if seller
+            else {"discount2": 0.00, "discount3": 0.00}
+        )
+        if not seller and not self.env.company.purchase_supplier_discount_real:
             return
-        self.discount2 = seller.discount2
-        self.discount3 = seller.discount3
+        self.write(discounts)
+        return res
 
     def _prepare_account_move_line(self, move=False):
         self.ensure_one()
