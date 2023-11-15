@@ -20,11 +20,11 @@
                 <group class="oe_right">
                     <label
                         for="total_weight"
-                        attrs="{'invisible':[('total_weight_uom_id', '=', False)]}"
+                        attrs="{'invisible':['|',('total_weight_uom_id', '=', False),('display_order_weight_in_po', '=', False)]}"
                     />
                     <div
                         class="text-nowrap"
-                        attrs="{'invisible':[('total_weight_uom_id', '=', False)]}"
+                        attrs="{'invisible':['|',('total_weight_uom_id', '=', False),('display_order_weight_in_po', '=', False)]}"
                     >
                         <field name="total_weight" class="oe_inline" />
                         <span style="margin-left:3px;"><field
@@ -34,11 +34,11 @@
                     </div>
                     <label
                         for="total_volume"
-                        attrs="{'invisible':[('total_volume_uom_id', '=', False)]}"
+                        attrs="{'invisible':['|',('total_volume_uom_id', '=', False),('display_order_volume_in_po', '=', False)]}"
                     />
                     <div
                         class="text-nowrap"
-                        attrs="{'invisible':[('total_volume_uom_id', '=', False)]}"
+                        attrs="{'invisible':['|',('total_volume_uom_id', '=', False),('display_order_volume_in_po', '=', False)]}"
                     >
                         <field name="total_volume" class="oe_inline" />
                         <span style="margin-left:3px;"><field
@@ -51,6 +51,8 @@
             <field name="fiscal_position_id" position="after">
                 <field name="display_total_weight_in_report" />
                 <field name="display_total_volume_in_report" />
+                <field name="display_order_weight_in_po" invisible="1" />
+                <field name="display_order_volume_in_po" invisible="1" />
             </field>
         </field>
     </record>
