@@ -23,16 +23,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:procurement_purchase_no_grouping.res_config_settings_view_form_procurement_purchase_grouping
 msgid ""
 "<span class=\"o_form_label\">Grouping</span>\n"
-"                                <span class=\"fa fa-lg fa-object-group\" "
-"title=\"Value to be used if individual category is set to 'System default'\" "
-"aria-label=\"Value set here is default. Specific values are set per category."
-"\" role=\"img\"/>"
+"                            <span class=\"fa fa-lg fa-object-group\" title="
+"\"Value to be used if individual category is set to 'System default'\" aria-"
+"label=\"Value set here is default. Specific values are set per category.\" "
+"role=\"img\"/>"
 msgstr ""
-"<span class=\"o_form_label\">Agrupando</span>\n"
-"                                <span class=\"fa fa-lg fa-object-group\" "
-"title=\"Value to be used if individual category is set to 'System default'\" "
-"aria-label=\"Value set here is default. Specific values are set per category."
-"\" role=\"img\"/>"
 
 #. module: procurement_purchase_no_grouping
 #: model:ir.model,name:procurement_purchase_no_grouping.model_res_company
@@ -83,11 +78,6 @@ msgstr "Categoría de producto"
 #: model:ir.model.fields.selection,name:procurement_purchase_no_grouping.selection__res_company__procured_purchase_grouping__product_category
 msgid "Product category grouping"
 msgstr "Agrupación por categoría de producto"
-
-#. module: procurement_purchase_no_grouping
-#: model_terms:ir.ui.view,arch_db:procurement_purchase_no_grouping.res_config_settings_view_form_procurement_purchase_grouping
-msgid "Purchase"
-msgstr "Compra"
 
 #. module: procurement_purchase_no_grouping
 #: model:ir.model,name:procurement_purchase_no_grouping.model_purchase_order_line
@@ -166,6 +156,22 @@ msgstr "Agrupación estándar"
 #: model:ir.model,name:procurement_purchase_no_grouping.model_stock_rule
 msgid "Stock Rule"
 msgstr "Regla de inventario"
+
+#~ msgid ""
+#~ "<span class=\"o_form_label\">Grouping</span>\n"
+#~ "                                <span class=\"fa fa-lg fa-object-group\" "
+#~ "title=\"Value to be used if individual category is set to 'System "
+#~ "default'\" aria-label=\"Value set here is default. Specific values are "
+#~ "set per category.\" role=\"img\"/>"
+#~ msgstr ""
+#~ "<span class=\"o_form_label\">Agrupando</span>\n"
+#~ "                                <span class=\"fa fa-lg fa-object-group\" "
+#~ "title=\"Value to be used if individual category is set to 'System "
+#~ "default'\" aria-label=\"Value set here is default. Specific values are "
+#~ "set per category.\" role=\"img\"/>"
+
+#~ msgid "Purchase"
+#~ msgstr "Compra"
 
 #~ msgid "Procured purchase grouping"
 #~ msgstr "Agrupación de la compra abastecida"

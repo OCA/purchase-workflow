@@ -24,10 +24,10 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:procurement_purchase_no_grouping.res_config_settings_view_form_procurement_purchase_grouping
 msgid ""
 "<span class=\"o_form_label\">Grouping</span>\n"
-"                                <span class=\"fa fa-lg fa-object-group\" "
-"title=\"Value to be used if individual category is set to 'System default'\" "
-"aria-label=\"Value set here is default. Specific values are set per category."
-"\" role=\"img\"/>"
+"                            <span class=\"fa fa-lg fa-object-group\" title="
+"\"Value to be used if individual category is set to 'System default'\" aria-"
+"label=\"Value set here is default. Specific values are set per category.\" "
+"role=\"img\"/>"
 msgstr ""
 
 #. module: procurement_purchase_no_grouping
@@ -81,11 +81,6 @@ msgid "Product category grouping"
 msgstr "Grupiranje kategorije proizvoda"
 
 #. module: procurement_purchase_no_grouping
-#: model_terms:ir.ui.view,arch_db:procurement_purchase_no_grouping.res_config_settings_view_form_procurement_purchase_grouping
-msgid "Purchase"
-msgstr "Nabava"
-
-#. module: procurement_purchase_no_grouping
 #: model:ir.model,name:procurement_purchase_no_grouping.model_purchase_order_line
 msgid "Purchase Order Line"
 msgstr "Stavka naloga za nabavu"
@@ -136,6 +131,9 @@ msgstr "Standardno grupiranje"
 #: model:ir.model,name:procurement_purchase_no_grouping.model_stock_rule
 msgid "Stock Rule"
 msgstr ""
+
+#~ msgid "Purchase"
+#~ msgstr "Nabava"
 
 #, fuzzy
 #~ msgid "Procurement Rule"
