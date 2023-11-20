@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* purchase_manual_delivery
+# 	* purchase_manual_delivery
 #
 msgid ""
 msgstr ""
@@ -21,6 +21,16 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.view_create_stock_picking
 msgid "Cancel"
 msgstr "Preklic"
+
+#. module: purchase_manual_delivery
+#: model:ir.model,name:purchase_manual_delivery.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: purchase_manual_delivery
+#: model:ir.model,name:purchase_manual_delivery.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
 
 #. module: purchase_manual_delivery
 #: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.purchase_order_view_form_inherit
@@ -75,6 +85,23 @@ msgid "Currency"
 msgstr "Valuta"
 
 #. module: purchase_manual_delivery
+#: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.res_config_settings_view_form
+msgid "Deliveries on purchase orders should be created manually."
+msgstr ""
+
+#. module: purchase_manual_delivery
+#: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.res_config_settings_view_form
+msgid "Delivery"
+msgstr ""
+
+#. module: purchase_manual_delivery
+#: model:ir.model.fields,help:purchase_manual_delivery.field_create_stock_picking_wizard_line__date_planned
+msgid ""
+"Delivery date expected from vendor. This date respectively defaults to "
+"vendor pricelist lead time then today's date."
+msgstr ""
+
+#. module: purchase_manual_delivery
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__name
 msgid "Description"
 msgstr "Opis"
@@ -91,15 +118,20 @@ msgid "Display Name"
 msgstr "Prikazani naziv"
 
 #. module: purchase_manual_delivery
-#: model:ir.model.fields,field_description:purchase_manual_delivery.field_purchase_order_line__existing_qty
 #: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.view_create_stock_picking
 msgid "Existing Qty"
 msgstr "Obstoječa kol"
 
 #. module: purchase_manual_delivery
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__existing_qty
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_purchase_order_line__existing_qty
 msgid "Existing Quantity"
 msgstr "Obstoječa količina"
+
+#. module: purchase_manual_delivery
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__date_planned
+msgid "Expected Arrival"
+msgstr ""
 
 #. module: purchase_manual_delivery
 #: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.view_purchase_order_unreceived_line_filter
@@ -116,6 +148,11 @@ msgstr "Tu je seznam postavk nabavnega naloga za prejem."
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__id
 msgid "ID"
 msgstr "ID"
+
+#. module: purchase_manual_delivery
+#: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.res_config_settings_view_form
+msgid "If active, Receipt of purchase orders should be manual created."
+msgstr ""
 
 #. module: purchase_manual_delivery
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard____last_update
@@ -146,6 +183,11 @@ msgid "Location where the system will stock the received products."
 msgstr "Lokacija zaloge za prejem proizvodov."
 
 #. module: purchase_manual_delivery
+#: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.res_config_settings_view_form
+msgid "Manual Delivery"
+msgstr ""
+
+#. module: purchase_manual_delivery
 #: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.view_create_stock_picking
 msgid "Ordered Qty"
 msgstr "Naročena kol"
@@ -171,13 +213,15 @@ msgid "Picking Scheduled Date"
 msgstr "Načrtovani datum dobave"
 
 #. module: purchase_manual_delivery
-#: code:addons/purchase_manual_delivery/wizard/create_manual_stock_picking.py:60
+#. odoo-python
+#: code:addons/purchase_manual_delivery/wizard/create_manual_stock_picking.py:0
 #, python-format
 msgid "Please select one partner at a time"
 msgstr "Prosimo, da izberete le po enega partnerja hkrati"
 
 #. module: purchase_manual_delivery
-#: code:addons/purchase_manual_delivery/wizard/create_manual_stock_picking.py:62
+#. odoo-python
+#: code:addons/purchase_manual_delivery/wizard/create_manual_stock_picking.py:0
 #, python-format
 msgid "Please select one purchase order at a time"
 msgstr "Prosimo, da izberete po en nabavni nalog hkrati"
@@ -208,17 +252,28 @@ msgstr "Postavke nabavnih nalogov"
 
 #. module: purchase_manual_delivery
 #: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.view_purchase_order_unreceived_line_filter
-msgid "Purchase Order Lines that are confirmed or done and an incoming shipment is created to satisfy them"
+msgid ""
+"Purchase Order Lines that are confirmed or done and an incoming shipment is "
+"created to satisfy them"
 msgstr ""
 "Postavke nabavnega naloga, ki so potrjene ali opravljene in je za njih bila "
 "ustvarjena prejemnica"
 
 #. module: purchase_manual_delivery
 #: model_terms:ir.ui.view,arch_db:purchase_manual_delivery.view_purchase_order_unreceived_line_filter
-msgid "Purchase Order Lines that are confirmed or done and no incoming shipment is created to satisfy them"
+msgid ""
+"Purchase Order Lines that are confirmed or done and no incoming shipment is "
+"created to satisfy them"
 msgstr ""
 "Postavke nabavnega naloga, ki so potrjene ali opravljene in še nimajo "
 "ustvarjene prejemnice"
+
+#. module: purchase_manual_delivery
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_purchase_order__manual_delivery
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_res_company__purchase_manual_delivery
+#: model:ir.model.fields,field_description:purchase_manual_delivery.field_res_config_settings__purchase_manual_delivery
+msgid "Purchase manual delivery?"
+msgstr ""
 
 #. module: purchase_manual_delivery
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__product_qty
@@ -254,13 +309,14 @@ msgstr "Preostala količina"
 
 #. module: purchase_manual_delivery
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard__scheduled_date
-#: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard_line__date_planned
 msgid "Scheduled Date"
 msgstr "Načrtovani datum"
 
 #. module: purchase_manual_delivery
 #: model:ir.model.fields,help:purchase_manual_delivery.field_create_stock_picking_wizard__scheduled_date
-msgid "Scheduled time for the first part of the shipment to be processed. Setting manually a value here would set it as expected date for all the stock moves."
+msgid ""
+"Scheduled time for the first part of the shipment to be processed. Setting "
+"manually a value here would set it as expected date for all the stock moves."
 msgstr ""
 "Načrtovani čas za prvi del dobave za obdelavo. Ročna nastavitev vrednosti na "
 "tem mestu ga nastavi kot pričakovani datum za vse premike zaloge."
@@ -271,7 +327,8 @@ msgid "Search Undelivered Lines"
 msgstr "Iskanje ne dobavljenih postavk"
 
 #. module: purchase_manual_delivery
-#: code:addons/purchase_manual_delivery/wizard/create_manual_stock_picking.py:158
+#. odoo-python
+#: code:addons/purchase_manual_delivery/wizard/create_manual_stock_picking.py:0
 #: model:ir.model.fields,field_description:purchase_manual_delivery.field_create_stock_picking_wizard__picking_id
 #, python-format
 msgid "Stock Picking"
@@ -321,9 +378,12 @@ msgstr ""
 "internem sklicu."
 
 #. module: purchase_manual_delivery
-#: code:addons/purchase_manual_delivery/wizard/create_manual_stock_picking.py:136
+#. odoo-python
+#: code:addons/purchase_manual_delivery/wizard/create_manual_stock_picking.py:0
 #, python-format
-msgid "You can not receive more than the remaining quantity. If you need to do so, please edit the purchase order first."
+msgid ""
+"You can not receive more than the remaining quantity. If you need to do so, "
+"please edit the purchase order first."
 msgstr ""
 "Ne morete prejeti več, kot je preostala količina. Če je to potrebno uredite "
 "popravite nabavni nalog."
