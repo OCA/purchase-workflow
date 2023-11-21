@@ -21,7 +21,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
-[procurement_purchase_no_grouping](procurement_purchase_no_grouping/) | 15.0.1.0.2 |  | Procurement Purchase No Grouping
+[procurement_purchase_no_grouping](procurement_purchase_no_grouping/) | 15.0.1.1.0 |  | Procurement Purchase No Grouping
 [procurement_purchase_sale_no_grouping](procurement_purchase_sale_no_grouping/) | 15.0.1.0.0 |  | Procurement Purchase Service No Grouping
 [product_form_purchase_link](product_form_purchase_link/) | 15.0.1.1.0 | [![rousseldenis](https://github.com/rousseldenis.png?size=30px)](https://github.com/rousseldenis) | Add an option to display the purchases lines from product
 [product_supplier_code_purchase](product_supplier_code_purchase/) | 15.0.1.0.0 |  | This module adds to the purchase order line the supplier code defined in the product.
