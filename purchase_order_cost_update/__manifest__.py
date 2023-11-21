@@ -10,5 +10,5 @@
     "maintainers": ["victor-champonnois"],
     "license": "AGPL-3",
     "depends": ["purchase_order_supplierinfo_update"],
-    "data": ["views/purchase_view.xml"]
+    "data": ["views/purchase_view.xml"],
 }

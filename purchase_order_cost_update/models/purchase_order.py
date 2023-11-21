@@ -12,7 +12,6 @@ class PurchaseOrder(models.Model):
         self.mapped("order_line").update_product_standard_price()
 
 
-
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
