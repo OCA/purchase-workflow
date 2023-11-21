@@ -29,16 +29,30 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_product_product__display_name
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_product_supplierinfo__display_name
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_res_config_settings__display_name
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_res_partner__display_name
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_supplied_product_mixin__display_name
 msgid "Display Name"
 msgstr "Nome a Apresentar"
 
 #. module: purchase_allowed_product
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_res_config_settings__default_use_only_supplied_product
+msgid "Enable \"Use only allowed products\" by default"
+msgstr ""
+
+#. module: purchase_allowed_product
+#: model:res.groups,name:purchase_allowed_product.group_purchase_hide_allowed_product_option
+msgid ""
+"Hide \"Use only allowed products\" in PO and invoice\n"
+"        "
+msgstr ""
+
+#. module: purchase_allowed_product
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_account_move__id
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_product_product__id
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_product_supplierinfo__id
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_purchase_order__id
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_res_config_settings__id
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_res_partner__id
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_supplied_product_mixin__id
 msgid "ID"
@@ -72,6 +86,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_product_product____last_update
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_product_supplierinfo____last_update
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_purchase_order____last_update
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_res_config_settings____last_update
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_res_partner____last_update
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_supplied_product_mixin____last_update
 msgid "Last Modified on"
@@ -86,6 +101,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_res_partner__use_only_supplied_product
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_res_users__use_only_supplied_product
 msgid "Order and invoice only supplied products"
+msgstr ""
+
+#. module: purchase_allowed_product
+#: model:ir.model,name:purchase_allowed_product.model_res_config_settings
+msgid "Procurement purchase grouping settings"
 msgstr ""
 
 #. module: purchase_allowed_product
