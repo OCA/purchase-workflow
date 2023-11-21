@@ -9,3 +9,6 @@
 * `Via laurea <https://www.vialaurea.com>`__:
 
   * Darius Žižys
+
+* Ooops404 <info@ooops404.com>
+* PyTech SRL <info@pytech.it>

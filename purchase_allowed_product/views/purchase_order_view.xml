@@ -8,11 +8,13 @@
                 <field
                     name="use_only_supplied_product"
                     attrs="{'invisible': [('state', 'not in', ('draft', 'sent'))]}"
+                    groups="!purchase_allowed_product.group_purchase_hide_allowed_product_option"
                     class="oe_edit_only"
                 />
                 <label
                     for="use_only_supplied_product"
                     attrs="{'invisible': [('state', 'not in', ('draft', 'sent'))]}"
+                    groups="!purchase_allowed_product.group_purchase_hide_allowed_product_option"
                     class="oe_edit_only"
                 />
             </field>
