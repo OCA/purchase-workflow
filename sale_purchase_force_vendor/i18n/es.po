@@ -1,0 +1,93 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_purchase_force_vendor
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-06-16 06:57+0000\n"
+"PO-Revision-Date: 2023-07-18 08:10+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: sale_purchase_force_vendor
+#: model:ir.model,name:sale_purchase_force_vendor.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: sale_purchase_force_vendor
+#: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_res_company__display_name
+#: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_sale_order__display_name
+#: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_sale_order_line__display_name
+#: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_stock_move__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: sale_purchase_force_vendor
+#: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_res_company__id
+#: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_res_config_settings__id
+#: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_sale_order__id
+#: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_sale_order_line__id
+#: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_stock_move__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_purchase_force_vendor
+#: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_res_company____last_update
+#: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_res_config_settings____last_update
+#: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_sale_order____last_update
+#: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_sale_order_line____last_update
+#: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_stock_move____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: sale_purchase_force_vendor
+#: model:ir.model,name:sale_purchase_force_vendor.model_res_config_settings
+msgid "Procurement purchase grouping settings"
+msgstr "Configuración de la agrupación de compras"
+
+#. module: sale_purchase_force_vendor
+#: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_res_company__sale_purchase_force_vendor_restrict
+#: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_res_config_settings__sale_purchase_force_vendor_restrict
+#: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_sale_order__sale_purchase_force_vendor_restrict
+msgid "Restrict allowed vendors in sale orders"
+msgstr "Restringir proveedores permitidos en pedidos de venta"
+
+#. module: sale_purchase_force_vendor
+#: model:ir.model,name:sale_purchase_force_vendor.model_sale_order
+msgid "Sales Order"
+msgstr "Pedidos de Ventas"
+
+#. module: sale_purchase_force_vendor
+#: model:ir.model,name:sale_purchase_force_vendor.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de pedido de venta"
+
+#. module: sale_purchase_force_vendor
+#: model:ir.model,name:sale_purchase_force_vendor.model_stock_move
+msgid "Stock Move"
+msgstr "Movimiento de existencias"
+
+#. module: sale_purchase_force_vendor
+#: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_sale_order_line__vendor_id
+msgid "Vendor"
+msgstr "Proveedor"
+
+#. module: sale_purchase_force_vendor
+#: model:ir.model.fields,field_description:sale_purchase_force_vendor.field_sale_order_line__vendor_id_domain
+msgid "Vendor Id Domain"
+msgstr "Id de vendedor Dominio"
+
+#~ msgid "Proveedor"
+#~ msgstr "Proveedor"
+
+#~ msgid "Config Settings"
+#~ msgstr "Ajustes de configuración"
