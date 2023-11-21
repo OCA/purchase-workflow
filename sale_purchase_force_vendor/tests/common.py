@@ -19,8 +19,8 @@ class TestSalePurchaseForceVendorBase(common.TransactionCase):
             {
                 "name": "Test product A",
                 "seller_ids": [
-                    (0, 0, {"name": cls.vendor_a.id, "min_qty": 1, "price": 10}),
-                    (0, 0, {"name": cls.vendor_b.id, "min_qty": 1, "price": 20}),
+                    (0, 0, {"partner_id": cls.vendor_a.id, "min_qty": 1, "price": 10}),
+                    (0, 0, {"partner_id": cls.vendor_b.id, "min_qty": 1, "price": 20}),
                 ],
                 "route_ids": [(6, 0, [cls.mto.id, cls.buy.id])],
             }
@@ -39,6 +39,5 @@ class TestSalePurchaseForceVendorBase(common.TransactionCase):
         for product in [self.product_a, self.product_b]:
             with order_form.order_line.new() as line_form:
                 line_form.product_id = product
-                line_form.route_id = self.buy
                 line_form.vendor_id = self.vendor_b
         return order_form.save()

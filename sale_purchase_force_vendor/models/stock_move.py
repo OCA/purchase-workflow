@@ -7,7 +7,7 @@ class StockMove(models.Model):
     _inherit = "stock.move"
 
     def _prepare_procurement_values(self):
-        """Inject the preferred vendor in case of a MTO that first creates the OUT
+        """Inject the preferred vendor in case of an MTO that first creates the OUT
         move.
         """
         res = super()._prepare_procurement_values()

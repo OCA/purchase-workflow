@@ -1,6 +1,5 @@
 # Copyright 2022 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-import json
 
 from odoo import api, fields, models
 
@@ -20,7 +19,7 @@ class SaleOrderLine(models.Model):
         comodel_name="res.partner",
         string="Vendor",
     )
-    vendor_id_domain = fields.Char(
+    vendor_id_domain = fields.Binary(
         compute="_compute_vendor_id_domain",
         readonly=True,
         store=False,
@@ -30,11 +29,11 @@ class SaleOrderLine(models.Model):
     def _compute_vendor_id_domain(self):
         for item in self:
             domain = (
-                [("id", "in", item.product_id.variant_seller_ids.name.ids)]
+                [("id", "in", item.product_id.variant_seller_ids.partner_id.ids)]
                 if item.order_id.sale_purchase_force_vendor_restrict
                 else []
             )
-            item.vendor_id_domain = json.dumps(domain)
+            item.vendor_id_domain = domain
 
     def _prepare_procurement_values(self, group_id=False):
         """Inject in the procurement values the preferred vendor if any, and create
@@ -52,7 +51,7 @@ class SaleOrderLine(models.Model):
                 suppinfo = self.env["product.supplierinfo"].create(
                     {
                         "product_tmpl_id": product.product_tmpl_id.id,
-                        "name": self.vendor_id.id,
+                        "partner_id": self.vendor_id.id,
                         "min_qty": 0,
                         "company_id": self.company_id.id,
                     }
