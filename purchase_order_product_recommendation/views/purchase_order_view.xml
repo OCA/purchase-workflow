@@ -8,7 +8,7 @@
             <header>
                 <button
                     name="%(purchase_order_recommendation_action)d"
-                    states="draft,sent,sale"
+                    states="draft,sent,purchase"
                     string="Recommended Products"
                     type="action"
                 />
