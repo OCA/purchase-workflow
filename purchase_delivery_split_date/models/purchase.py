@@ -124,6 +124,7 @@ class PurchaseOrder(models.Model):
                                 continue
                             if (
                                 move.picking_id.scheduled_date.date() != date_key
+                                or date_key not in pickings_by_date
                                 or pickings_by_date[date_key] != move.picking_id
                             ):
                                 if date_key not in pickings_by_date:
