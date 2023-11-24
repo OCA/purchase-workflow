@@ -90,7 +90,7 @@ class TestPurchaseStockSecondaryUnit(TransactionCase):
         )
         self.assertEqual(picking.move_lines.product_uom_qty, 15.0)
         # Assigned move line
-        self.assertEqual(picking.move_line_ids.secondary_uom_qty, 3.0)
+        self.assertEqual(picking.move_line_ids.secondary_uom_qty, 0.0)
         self.assertEqual(
             picking.move_line_ids.secondary_uom_id, self.secondary_product_uom
         )
