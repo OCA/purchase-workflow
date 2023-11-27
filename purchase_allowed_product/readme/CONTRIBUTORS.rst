@@ -10,5 +10,8 @@
 
   * Darius Žižys
 
-* Ooops404 <info@ooops404.com>
+* `Ooops404 <https://www.ooops404.com>`__:
+
+  * Giovanni Serra <giovanni@ooops404.com>
+
 * PyTech SRL <info@pytech.it>
