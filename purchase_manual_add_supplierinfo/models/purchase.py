@@ -44,16 +44,13 @@ class PurchaseOrderLine(models.Model):
 
     supplierinfo_ok = fields.Boolean(string="supplierinfo is ok ?")
 
-    def create_missing_supplierinfo(self):
-        update_from_po_line_id = False
-        if not self._context.get("update_from_po_id", False):
-            update_from_po_line_id = self.id
+    def action_create_missing_supplierinfo(self):
         return {
             "name": _("Supplierinfo"),
             "type": "ir.actions.act_window",
             "context": {
-                "update_from_po_id": self._context.get("update_from_po_id", False),
-                "update_from_po_line_id": update_from_po_line_id,
+                "update_from_po_id": self._context.get("update_from_po_id"),
+                "update_from_po_line_id": self.id,
                 "visible_product_tmpl_id": False,
                 "default_product_tmpl_id": self.product_id.product_tmpl_id.id,
                 "default_product_id": self.product_id.id,

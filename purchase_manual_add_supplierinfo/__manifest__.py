@@ -14,6 +14,7 @@
     "data": [
         "views/purchase.xml",
         "views/product.xml",
+        "security/ir.model.access.csv",
     ],
     "installable": True,
 }

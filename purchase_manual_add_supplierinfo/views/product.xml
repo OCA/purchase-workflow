@@ -3,35 +3,27 @@
         <field name="model">product.supplierinfo</field>
         <field name="inherit_id" ref="product.product_supplierinfo_form_view" />
         <field name="arch" type="xml">
-            <xpath expr="//sheet/group[1]" position="after">
-                <group invisible="not context.get('update_from_po_id', False)">
-                    <label for="ignore_create_from_po" />
-                    <div>
-                        <field name="ignore_create_from_po" />
-                    </div>
-                </group>
-            </xpath>
             <xpath expr="//sheet" position="after">
                 <footer
-                    invisible="not context.get('update_from_po_id', False) and not context.get('update_from_po_line_id', False)"
+                    invisible="not context.get('update_from_po_id') and not context.get('update_from_po_line_id')"
                 >
                     <button
                         name="update_from_purchase"
                         string="Confirm"
                         type="object"
                         class="btn-primary"
-                        invisible="not context.get('update_from_po_id', False)"
                     />
                     <button
-                        string="Confirm"
+                        name="update_from_purchase_skip"
+                        string="Ignore"
+                        type="object"
                         class="btn-primary"
-                        special="save"
-                        invisible="not context.get('update_from_po_line_id', False)"
                     />
                     <button
                         name="cancel"
                         string="Cancel"
                         class="btn-secondary"
+                        type="object"
                         special="cancel"
                     />
                 </footer>
