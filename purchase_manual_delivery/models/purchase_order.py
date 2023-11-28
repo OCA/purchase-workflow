@@ -39,6 +39,7 @@ class PurchaseOrderLine(models.Model):
 
     existing_qty = fields.Float(
         compute="_compute_existing_qty",
+        store=True,
         string="Existing Quantity",
         digits="Product Unit of Measure",
         help="Quantity already planned or shipped (stock movements " "already created)",
