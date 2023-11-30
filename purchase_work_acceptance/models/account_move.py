@@ -63,11 +63,14 @@ class AccountMove(models.Model):
                     )
         return super().action_post()
 
-    @api.model
-    def create(self, vals):
+    @api.model_create_multi
+    def create(self, vals_list):
         if self.env.context.get("wa_id"):
-            # When use WA, filter for line with qty != 0, good for deposit too.
-            lines = vals.get("invoice_line_ids", [])
-            lines = filter(lambda l: len(l) == 3 and l[2].get("quantity") != 0, lines)
-            vals["invoice_line_ids"] = list(lines)
-        return super().create(vals)
+            for vals in vals_list:
+                # When use WA, filter for line with qty != 0, good for deposit too.
+                lines = vals.get("invoice_line_ids", [])
+                lines = filter(
+                    lambda l: len(l) == 3 and l[2].get("quantity") != 0, lines
+                )
+                vals["invoice_line_ids"] = list(lines)
+        return super().create(vals_list)
