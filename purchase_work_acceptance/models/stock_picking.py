@@ -23,14 +23,14 @@ class Picking(models.Model):
     @api.depends("picking_type_id")
     def _compute_require_wa(self):
         for rec in self:
-            if rec.picking_type_id.bypass_wa:
-                rec.require_wa = False
-            elif rec.picking_type_code == "incoming":
+            rec.require_wa = False
+            if (
+                not rec.picking_type_id.bypass_wa
+                and rec.picking_type_code == "incoming"
+            ):
                 rec.require_wa = self.env.user.has_group(
                     "purchase_work_acceptance.group_enforce_wa_on_in"
                 )
-            else:
-                rec.require_wa = False
 
     @api.depends("require_wa")
     def _compute_wa_ids(self):
@@ -84,6 +84,7 @@ class Picking(models.Model):
 
     @api.onchange("wa_id")
     def _onchange_wa_id(self):
+        """Change qty in picking"""
         if self.wa_id:
             wa_line = {}
             for line in self.wa_id.wa_line_ids:
@@ -97,9 +98,9 @@ class Picking(models.Model):
             for move_line in self.move_line_ids_without_package:
                 if move_line.product_id.id in wa_line:
                     qty = wa_line[move_line.product_id.id]
-                    if move_line.product_uom_qty < qty:
-                        move_line._origin.qty_done = move_line.product_uom_qty
-                        wa_line[line.product_id.id] = qty - move_line.product_uom_qty
+                    if move_line.reserved_uom_qty < qty:
+                        move_line._origin.qty_done = move_line.reserved_uom_qty
+                        wa_line[line.product_id.id] = qty - move_line.reserved_uom_qty
                     else:
                         move_line._origin.qty_done = qty
 
