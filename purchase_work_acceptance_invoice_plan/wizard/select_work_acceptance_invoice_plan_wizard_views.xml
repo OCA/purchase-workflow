@@ -34,15 +34,10 @@
                         <field name="order_id" invisible="1" />
                         <field name="order_line_id" />
                         <field
-                            name="account_analytic_id"
+                            name="analytic_distribution"
+                            widget="analytic_distribution"
                             optional="hide"
                             groups="analytic.group_analytic_accounting"
-                        />
-                        <field
-                            name="analytic_tag_ids"
-                            widget="many2many_tags"
-                            optional="hide"
-                            groups="analytic.group_analytic_tags"
                         />
                         <field name="qty_not_accepted" />
                         <field

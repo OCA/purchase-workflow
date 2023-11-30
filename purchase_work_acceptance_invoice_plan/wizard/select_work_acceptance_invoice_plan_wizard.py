@@ -179,6 +179,7 @@ class SelectWorkAcceptanceInvoicePlanWizard(models.TransientModel):
 
 class ComputeWorkAcceptanceInvoicePlan(models.TransientModel):
     _name = "select.work.acceptance.invoice.plan.qty"
+    _inherit = "analytic.mixin"
     _description = "Compute quantity of each WA lines, according to product lines"
 
     wizard_id = fields.Many2one(
@@ -199,13 +200,8 @@ class ComputeWorkAcceptanceInvoicePlan(models.TransientModel):
         index=True,
         domain="[('order_id', '=', order_id)]",
     )
-    account_analytic_id = fields.Many2one(
-        comodel_name="account.analytic.account",
-        related="order_line_id.account_analytic_id",
-    )
-    analytic_tag_ids = fields.Many2many(
-        comodel_name="account.analytic.tag",
-        related="order_line_id.analytic_tag_ids",
+    analytic_distribution = fields.Json(
+        related="order_line_id.analytic_distribution",
     )
     qty_not_accepted = fields.Float(
         string="Not Accepted",
