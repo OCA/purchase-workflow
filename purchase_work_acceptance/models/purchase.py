@@ -1,7 +1,7 @@
 # Copyright 2019 Ecosoft Co., Ltd. (http://ecosoft.co.th)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import Command, _, api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -26,6 +26,7 @@ class PurchaseOrder(models.Model):
         search="_search_wa_accepted",
     )
 
+    @api.depends("wa_line_ids")
     def _compute_wa_ids(self):
         for order in self:
             order.wa_ids = (
@@ -45,9 +46,7 @@ class PurchaseOrder(models.Model):
             "default_currency_id": self.currency_id.id,
             "default_date_due": self.date_planned,
             "default_wa_line_ids": [
-                (
-                    0,
-                    0,
+                Command.create(
                     {
                         "purchase_line_id": line.id,
                         "name": line.name,
@@ -55,7 +54,7 @@ class PurchaseOrder(models.Model):
                         "product_id": line.product_id.id,
                         "price_unit": line.price_unit,
                         "product_qty": line._get_product_qty(),
-                    },
+                    }
                 )
                 for line in self.order_line
                 if line._get_product_qty() != 0
@@ -168,7 +167,7 @@ class PurchaseOrderLine(models.Model):
         if wa_id:
             wa_line = self.wa_line_ids.filtered(lambda l: l.wa_id.id == wa_id)
             res["quantity"] = wa_line.product_qty
-            res["product_uom_id"] = wa_line.product_uom
+            res["product_uom_id"] = wa_line.product_uom.id
         return res
 
     @api.depends(

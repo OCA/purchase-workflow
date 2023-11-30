@@ -94,13 +94,14 @@ class WorkAcceptance(models.Model):
         comodel_name="purchase.order", string="Purchase Order", readonly=True
     )
 
-    @api.model
-    def create(self, vals):
-        if vals.get("name", "New") == "New":
-            vals["name"] = (
-                self.env["ir.sequence"].next_by_code("work.acceptance") or "/"
-            )
-        return super(WorkAcceptance, self).create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get("name", "New") == "New":
+                vals["name"] = (
+                    self.env["ir.sequence"].next_by_code("work.acceptance") or "/"
+                )
+        return super().create(vals_list)
 
     def button_accept(self, force=False):
         if self.env.context.get("manual_date_accept"):
