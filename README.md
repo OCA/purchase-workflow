@@ -45,6 +45,7 @@ addon | version | maintainers | summary
 [purchase_last_price_info](purchase_last_price_info/) | 15.0.2.0.1 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Purchase Product Last Price Info
 [purchase_line_reassign](purchase_line_reassign/) | 15.0.1.0.0 |  | Purchase Line Reassign
 [purchase_location_by_line](purchase_location_by_line/) | 15.0.1.0.0 |  | Allows to define a specific destination location on each PO line
+[purchase_manual_currency](purchase_manual_currency/) | 15.0.1.0.0 |  | Allows to manual currency of Purchase
 [purchase_merge](purchase_merge/) | 15.0.1.0.1 |  | Wizard to merge purchase with required conditions
 [purchase_open_qty](purchase_open_qty/) | 15.0.2.0.1 |  | Allows to identify the purchase orders that have quantities pending to invoice or to receive.
 [purchase_order_analytic_search](purchase_order_analytic_search/) | 15.0.1.0.0 |  | Search purchase orders by analytic account. New menu entry in Purchasing to list purchase order lines.

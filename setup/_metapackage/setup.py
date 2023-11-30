@@ -32,6 +32,7 @@ setuptools.setup(
         'odoo-addon-purchase_last_price_info>=15.0dev,<15.1dev',
         'odoo-addon-purchase_line_reassign>=15.0dev,<15.1dev',
         'odoo-addon-purchase_location_by_line>=15.0dev,<15.1dev',
+        'odoo-addon-purchase_manual_currency>=15.0dev,<15.1dev',
         'odoo-addon-purchase_merge>=15.0dev,<15.1dev',
         'odoo-addon-purchase_open_qty>=15.0dev,<15.1dev',
         'odoo-addon-purchase_order_analytic_search>=15.0dev,<15.1dev',
