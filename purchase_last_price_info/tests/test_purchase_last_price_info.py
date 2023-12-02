@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import odoo.tests.common as common
-from odoo import fields
+from odoo import fields, Command
 
 
 class TestPurchaseLastPriceInfo(common.TransactionCase):
@@ -57,22 +57,18 @@ class TestPurchaseLastPriceInfo(common.TransactionCase):
     def test_purchase_last_price_info_new_order(self):
         purchase_order = self.purchase_model.create(
             {
-                "date_order": "2000-01-01",
+                "date_order": "2000-01-01 09:00:00",
                 "currency_id": self.currency_eur.id,
                 "partner_id": self.partner.id,
                 "order_line": [
-                    (
-                        0,
-                        0,
-                        {
+                    Command.create({
                             "product_id": self.product.id,
                             "product_uom": self.product.uom_id.id,
                             "price_unit": self.product.standard_price,
                             "name": self.product.name,
                             "date_planned": fields.Datetime.now(),
                             "product_qty": 1,
-                        },
-                    )
+                        })
                 ],
             }
         )
@@ -89,3 +85,4 @@ class TestPurchaseLastPriceInfo(common.TransactionCase):
         self.assertEqual(self.partner, self.product.last_purchase_supplier_id)
         purchase_order.button_cancel()
         self.assertEqual(purchase_order.state, "cancel")
+
