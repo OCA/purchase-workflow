@@ -16,6 +16,11 @@ TODO: add repo description.
 <!-- prettier-ignore-start -->
 
 [//]: # (addons)
+Available addons
+----------------
+addon | version | maintainers | summary
+
+[purchase_last_price_info](purchase_last_price_info/) | 17.0.1.0.0 | [![Fasil](https://github.com/fasilwdr.png?size=30px)](https://github.com/fasilwdr) | Purchase Product Last Price Info
 
 This part will be replaced when running the oca-gen-addons-table script from OCA/maintainer-tools.
 
