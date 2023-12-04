@@ -78,7 +78,7 @@ class TestStockWarehouseCalendar(TransactionCase):
                 "product_uom_qty": 80.0,
                 "procure_method": "make_to_order",
                 "picking_id": customer_picking.id,
-                "date_expected": "2097-01-14 09:00:00",  # Monday
+                "date": "2097-01-14 09:00:00",  # Monday
             }
         )
 
@@ -114,10 +114,10 @@ class TestStockWarehouseCalendar(TransactionCase):
         # With calendar
         result = self.company_partner.supplier_plan_days(reference, 3).date()
         next_wednesday = fields.Date.to_date("2097-01-23")
-        self.assertEquals(result, next_wednesday)
+        self.assertEqual(result, next_wednesday)
         reference_2 = "2097-01-11 12:00:00"  # friday
         result = self.company_partner.supplier_plan_days(reference_2, 3).date()
-        self.assertEquals(result, next_wednesday)
+        self.assertEqual(result, next_wednesday)
         # Without calendar
         self.company_partner.write(
             {"delay_calendar_type": "natural", "factory_calendar_id": False}
@@ -125,4 +125,4 @@ class TestStockWarehouseCalendar(TransactionCase):
         reference_3 = "2097-01-25 12:00:00"  # friday
         result = self.company_partner.supplier_plan_days(reference_3, 3).date()
         monday = fields.Date.to_date("2097-01-28")
-        self.assertEquals(result, monday)
+        self.assertEqual(result, monday)
