@@ -1,0 +1,31 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_order_purchase_manager
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-10 17:29+0000\n"
+"PO-Revision-Date: 2023-12-10 18:30+0100\n"
+"Last-Translator: Emilio Pascual <emilio@moduom.team>\n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4\n"
+
+#. module: purchase_order_purchase_manager
+#: model:ir.model.fields,field_description:purchase_order_purchase_manager.field_purchase_order__user_id
+msgid "Buyer"
+msgstr "Comprador"
+
+#. module: purchase_order_purchase_manager
+#: model:ir.model,name:purchase_order_purchase_manager.model_purchase_order
+msgid "Purchase Order"
+msgstr "Pedido de compra"
+
+#~ msgid "Purchase Manager"
+#~ msgstr "Responsable de compras"
