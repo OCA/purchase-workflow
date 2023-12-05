@@ -118,6 +118,7 @@ addon | version | maintainers | summary
 [purchase_work_acceptance_tier_validation](purchase_work_acceptance_tier_validation/) | 14.0.1.0.0 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Extends the functionality of Work Acceptance to support a tier validation process.
 [sale_purchase_force_vendor](sale_purchase_force_vendor/) | 14.0.2.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Sale Purchase Force Vendor
 [subcontracted_service](subcontracted_service/) | 14.0.1.0.0 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Subcontracted service
+[supplier_calendar](supplier_calendar/) | 14.0.1.0.0 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Supplier Calendar
 [vendor_transport_lead_time](vendor_transport_lead_time/) | 14.0.1.0.1 |  | Purchase delay based on transport and supplier delays
 
 [//]: # (end addons)
