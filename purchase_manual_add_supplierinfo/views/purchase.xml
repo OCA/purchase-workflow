@@ -15,14 +15,14 @@
                 />
             </xpath>
             <xpath
-                expr="//field[@name='order_line']//tree/field[@name='sequence']"
+                expr="//field[@name='order_line']//tree/field[@name='price_subtotal']"
                 position="after"
             >
                 <field name="supplierinfo_ok" invisible="True" />
                 <button
                     name="action_create_missing_supplierinfo"
                     type="object"
-                    icon="fa-th"
+                    icon="fa-edit"
                     attrs="{'invisible': ['|', ('state', 'not in', ('purchase', 'done')), ('supplierinfo_ok', '!=', False)]}"
                     title="Update supplierinfo"
                 />

@@ -2,31 +2,27 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
-from odoo import _, fields, models
+from odoo import _, api, fields, models
 
 
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
-    all_supplierinfo_ok = fields.Boolean(string="supplierinfo is ok ?")
+    all_supplierinfo_ok = fields.Boolean(
+        string="supplierinfo is ok ?",
+        compute="_compute_all_supplierinfo_ok",
+        store=True,
+    )
 
-    def _check_supplierinfo(self):
+    @api.depends("state", "order_line.supplierinfo_ok")
+    def _compute_all_supplierinfo_ok(self):
         for purchase in self:
             all_supplierinfo_ok = True
-            for line in purchase.order_line:
-                l_supplierinfo_ok = False
-                if line.product_id.seller_ids.filtered(
-                    lambda s: s.name == purchase.partner_id.commercial_partner_id
-                ):
-                    l_supplierinfo_ok = True
-                line.supplierinfo_ok = l_supplierinfo_ok
-            if purchase.order_line.filtered(lambda l: not l.supplierinfo_ok):
+            if purchase.state in ("purchase", "done") and purchase.order_line.filtered(
+                lambda l: not l.supplierinfo_ok
+            ):
                 all_supplierinfo_ok = False
             purchase.all_supplierinfo_ok = all_supplierinfo_ok
-
-    def button_confirm(self):
-        self._check_supplierinfo()
-        return super().button_confirm()
 
     def update_supplierinfo(self):
         return (
@@ -42,7 +38,22 @@ class PurchaseOrder(models.Model):
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
-    supplierinfo_ok = fields.Boolean(string="supplierinfo is ok ?")
+    supplierinfo_ok = fields.Boolean(
+        string="supplierinfo is ok ?", compute="_compute_supplierinfo_ok", store=True
+    )
+
+    @api.depends("state", "product_id.seller_ids")
+    def _compute_supplierinfo_ok(self):
+        for line in self:
+            supplierinfo_ok = True
+            if line.state in (
+                "purchase",
+                "done",
+            ) and not line.product_id.seller_ids.filtered(
+                lambda s: s.name == line.order_id.partner_id.commercial_partner_id
+            ):
+                supplierinfo_ok = False
+            line.supplierinfo_ok = supplierinfo_ok
 
     def action_create_missing_supplierinfo(self):
         return {
