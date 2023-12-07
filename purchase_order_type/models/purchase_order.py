@@ -48,7 +48,9 @@ class PurchaseOrder(models.Model):
         if vals.get("name", "/") == "/" and vals.get("order_type"):
             purchase_type = self.env["purchase.order.type"].browse(vals["order_type"])
             if purchase_type.sequence_id:
-                vals["name"] = purchase_type.sequence_id.next_by_id()
+                vals["name"] = purchase_type.sequence_id.next_by_id(
+                    sequence_date=vals.get("date_order")
+                )
         return super().create(vals)
 
     @api.constrains("company_id")
