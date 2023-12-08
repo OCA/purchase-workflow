@@ -17,43 +17,46 @@ Purchase order lines with discounts
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fpurchase--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/purchase-workflow/tree/16.0/purchase_discount
+    :target: https://github.com/OCA/purchase-workflow/tree/17.0/purchase_discount
     :alt: OCA/purchase-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/purchase-workflow-16-0/purchase-workflow-16-0-purchase_discount
+    :target: https://translation.odoo-community.org/projects/purchase-workflow-17-0/purchase-workflow-17-0-purchase_discount
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module allows to define a discount per line in the purchase orders. This
-discount can be also negative, interpreting it as an increment.
+This module allows to define a discount per line in the purchase orders.
+This discount can be also negative, interpreting it as an increment.
 
-It also modifies the purchase order report to include the discount field in it.
+It also modifies the purchase order report to include the discount field
+in it.
 
-This module allows to input a discount in the supplier info form, and propagate
-it to purchase order lines:
+This module allows to input a discount in the supplier info form, and
+propagate it to purchase order lines:
 
-* The discount appears explicitly in purchase orders instead of being directly
-  discounted in price.
-* You can set prices and discounts on the same screen.
+-  The discount appears explicitly in purchase orders instead of being
+   directly discounted in price.
+-  You can set prices and discounts on the same screen.
 
-.. image:: https://raw.githubusercontent.com/OCA/purchase-workflow/16.0/purchase_discount/static/description/product_supplierinfo_form.png
+|image|
 
+-  A new field default_supplierinfo_discount is added on res.partner
+   model. This value will be used as the default one, on each
+   supplierinfo of that supplier.
 
-* A new field default_supplierinfo_discount is added on res.partner model.
-  This value will be used as the default one, on each supplierinfo of that
-  supplier.
-
-.. image:: https://raw.githubusercontent.com/OCA/purchase-workflow/16.0/purchase_discount/static/description/res_partner_company_form.png
-
+|image1|
 
 Note: this setting is a new 'company' setting, unavailable for related
 partners, as accounting-related Settings.
 
-.. image:: https://raw.githubusercontent.com/OCA/purchase-workflow/16.0/purchase_discount/static/description/res_partner_individual_form.png
+|image2|
+
+.. |image| image:: https://raw.githubusercontent.com/OCA/purchase-workflow/17.0/purchase_discount/static/description/product_supplierinfo_form.png
+.. |image1| image:: https://raw.githubusercontent.com/OCA/purchase-workflow/17.0/purchase_discount/static/description/res_partner_company_form.png
+.. |image2| image:: https://raw.githubusercontent.com/OCA/purchase-workflow/17.0/purchase_discount/static/description/res_partner_individual_form.png
 
 **Table of contents**
 
@@ -63,19 +66,21 @@ partners, as accounting-related Settings.
 Usage
 =====
 
-Go to **Purchase > Products**, open one product, and edit or add a record on
-the **Vendors** section of the **Purchase** tab. You will see in the prices
-section in the down part a new column called **Discount (%)**. You can enter
-here the desired discount for that quantity.
+Go to **Purchase > Products**, open one product, and edit or add a
+record on the **Vendors** section of the **Purchase** tab. You will see
+in the prices section in the down part a new column called **Discount
+(%)**. You can enter here the desired discount for that quantity.
 
-When you make a purchase order for that supplier and that product, discount
-will be put automatically.
+When you make a purchase order for that supplier and that product,
+discount will be put automatically.
 
 Known issues / Roadmap
 ======================
 
-With this module, the *price_unit* field of purchase order line stores the gross price instead of the net price, which is a change in the meaning of
-this field. So this module breaks all the other modules that use the *price_unit* field with it's native meaning.
+With this module, the *price_unit* field of purchase order line stores
+the gross price instead of the net price, which is a change in the
+meaning of this field. So this module breaks all the other modules that
+use the *price_unit* field with it's native meaning.
 
 Bug Tracker
 ===========
@@ -83,7 +88,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/purchase-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/purchase-workflow/issues/new?body=module:%20purchase_discount%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/purchase-workflow/issues/new?body=module:%20purchase_discount%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -91,7 +96,7 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Tiny
 * Acysos S.L.
@@ -100,27 +105,27 @@ Authors
 * GRAP
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* OpenERP S.A.
-* Ignacio Ibeas <ignacio@acysos.com>
-* Pedro M. Baeza <pedro.baeza@tecnativa.com>
-* Jonathan Nemry <jonathan.nemry@acsone.eu>
-* Sylvain LE GAL (https://twitter.com/legalsylvain)
-* Stefan Rijnhart <stefan@opener.amsterdam>
-* `Tecnativa <https://www.tecnativa.com>`_:
+-  OpenERP S.A.
+-  Ignacio Ibeas <ignacio@acysos.com>
+-  Pedro M. Baeza <pedro.baeza@tecnativa.com>
+-  Jonathan Nemry <jonathan.nemry@acsone.eu>
+-  Sylvain LE GAL (https://twitter.com/legalsylvain)
+-  Stefan Rijnhart <stefan@opener.amsterdam>
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-  * Pedro M. Baeza
-  * Vicent Cubells <vicent.cubells@tecnativa.com>
+   -  Pedro M. Baeza
+   -  Vicent Cubells <vicent.cubells@tecnativa.com>
 
-* Sudhir Arya <sudhir@erpharbor.com>
-* Lorenzo Battistini <https://github.com/eLBati>
-* Luisa Miguéns <luisa.miguens@solvos.es>
-* Vishnu Vanneri <vanneri.odoodev@gmail.com>
-* Moaad Bourhim <moaad.bourhim@gmail.com>
+-  Sudhir Arya <sudhir@erpharbor.com>
+-  Lorenzo Battistini <https://github.com/eLBati>
+-  Luisa Miguéns <luisa.miguens@solvos.es>
+-  Vishnu Vanneri <vanneri.odoodev@gmail.com>
+-  Moaad Bourhim <moaad.bourhim@gmail.com>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -132,6 +137,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/16.0/purchase_discount>`_ project on GitHub.
+This module is part of the `OCA/purchase-workflow <https://github.com/OCA/purchase-workflow/tree/17.0/purchase_discount>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
