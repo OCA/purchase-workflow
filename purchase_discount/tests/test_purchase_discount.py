@@ -11,7 +11,7 @@ from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
 class TestPurchaseOrder(TransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(TestPurchaseOrder, cls).setUpClass()
+        super().setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT))
         cls.categ_cost_average = cls.env["product.category"].create(
             {"name": "Average cost method category", "property_cost_method": "average"}
@@ -144,8 +144,7 @@ class TestPurchaseOrder(TransactionCase):
         move3 = moves.filtered(lambda x: x.purchase_line_id == self.po_line_3)
         self.assertEqual(move3.price_unit, 10)
         # Confirm the picking to see the cost price
-        move1.move_line_ids.qty_done = 1
-        picking._action_done()
+        picking.button_validate()
         self.assertAlmostEqual(self.product_1.standard_price, 5.0)
         # Check data in PO remains the same - This is due to the hack
         self.assertAlmostEqual(self.po_line_1.price_unit, 10.0)

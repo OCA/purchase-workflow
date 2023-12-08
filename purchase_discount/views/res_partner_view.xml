@@ -6,12 +6,12 @@
             <xpath expr="//group[@name='purchase']" position="inside">
                 <field
                     name="default_supplierinfo_discount"
-                    attrs="{'invisible': [('is_company', '=', False), ('parent_id', '!=', False)]}"
+                    invisible="not is_company and parent_id"
                 />
                 <div
                     name="supplierinfo_discount_disabled"
                     colspan="2"
-                    attrs="{'invisible': ['|',('is_company', '=', True), ('parent_id', '=', False)]}"
+                    invisible="is_company or not parent_id"
                 >
                     <p>Discount-related settings are managed on <button
                             name="open_commercial_entity"

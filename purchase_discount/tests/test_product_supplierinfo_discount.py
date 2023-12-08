@@ -21,6 +21,7 @@ class TestProductSupplierinfoDiscount(TransactionCase):
         cls.supplierinfo = cls.supplierinfo_model.create(
             {
                 "min_qty": 0.0,
+                "price": 10,
                 "partner_id": cls.partner_3.id,
                 "product_tmpl_id": cls.product.product_tmpl_id.id,
                 "discount": 10,
@@ -29,6 +30,7 @@ class TestProductSupplierinfoDiscount(TransactionCase):
         cls.supplierinfo2 = cls.supplierinfo_model.create(
             {
                 "min_qty": 10.0,
+                "price": 10,
                 "partner_id": cls.partner_3.id,
                 "product_tmpl_id": cls.product.product_tmpl_id.id,
                 "discount": 20,
@@ -62,6 +64,7 @@ class TestProductSupplierinfoDiscount(TransactionCase):
 
     def test_002_purchase_order_partner_3_qty_10(self):
         purchase_form = Form(self.purchase_order)
+        print(self.supplierinfo2)
         with purchase_form.order_line.edit(0) as line:
             line.product_qty = 10.0
             self.assertEqual(

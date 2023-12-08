@@ -25,16 +25,6 @@ class PurchaseOrder(models.Model):
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
-    # adding discount to depends
-    @api.depends("discount")
-    def _compute_amount(self):
-        return super()._compute_amount()
-
-    def _convert_to_tax_base_line_dict(self):
-        vals = super()._convert_to_tax_base_line_dict()
-        vals.update({"discount": self.discount})
-        return vals
-
     discount = fields.Float(string="Discount (%)", digits="Discount")
 
     _sql_constraints = [
@@ -82,38 +72,6 @@ class PurchaseOrderLine(models.Model):
             self.with_context(skip_update_price_unit=True).price_unit = price_unit
         return price
 
-    def _compute_price_unit_and_date_planned_and_name(self):
-        """Get also the discount from the seller. Unfortunately, this requires to
-        select again the seller to be used, as there isn't any hook to use the already
-        selected one.
-        """
-        res = super()._compute_price_unit_and_date_planned_and_name()
-        for line in self.filtered("product_id"):
-            seller = line.product_id._select_seller(
-                partner_id=line.partner_id,
-                quantity=line.product_qty,
-                date=line.order_id.date_order
-                and line.order_id.date_order.date()
-                or fields.Date.context_today(line),
-                uom_id=line.product_uom,
-                params={"order_id": line.order_id},
-            )
-            line._apply_value_from_seller(seller)
-        return res
-
-    @api.model
-    def _apply_value_from_seller(self, seller):
-        """Overload this function to prepare other data from seller,
-        like in purchase_triple_discount module"""
-        if not seller:
-            return
-        self.discount = seller.discount
-
-    def _prepare_account_move_line(self, move=False):
-        vals = super(PurchaseOrderLine, self)._prepare_account_move_line(move)
-        vals["discount"] = self.discount
-        return vals
-
     @api.model
     def _prepare_purchase_order_line(
         self, product_id, product_qty, product_uom, company_id, supplier, po
@@ -144,11 +102,11 @@ class PurchaseOrderLine(models.Model):
     def write(self, vals):
         res = super().write(vals)
         if "discount" in vals or "price_unit" in vals:
-            for line in self.filtered(lambda l: l.order_id.state == "purchase"):
+            for line in self.filtered(lambda x: x.order_id.state == "purchase"):
                 # Avoid updating kit components' stock.move
                 moves = line.move_ids.filtered(
-                    lambda s: s.state not in ("cancel", "done")
-                    and s.product_id == line.product_id
+                    lambda s, ln=line: s.state not in ("cancel", "done")
+                    and s.product_id == ln.product_id
                 )
                 moves.write({"price_unit": line._get_discounted_price_unit()})
         return res
