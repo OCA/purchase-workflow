@@ -51,19 +51,18 @@ class StockRule(models.Model):
         extended.
         :return: False
         """
-        domain = (
-            ("state", "in", ("draft", "to_approve", "approved")),
-            ("picking_type_id", "=", self.picking_type_id.id),
-            ("company_id", "=", values["company_id"].id),
-        )
         gpo = self.group_propagation_option
         group_id = (
             (gpo == "fixed" and self.group_id.id)
             or (gpo == "propagate" and values["group_id"].id)
             or False
         )
-        if group_id:
-            domain += (("group_id", "=", group_id),)
+        domain = (
+            ("state", "in", ("draft", "to_approve", "approved")),
+            ("picking_type_id", "=", self.picking_type_id.id),
+            ("company_id", "=", values["company_id"].id),
+            ("group_id", "=", group_id),
+        )
         return domain
 
     def is_create_purchase_request_allowed(self, procurement):
