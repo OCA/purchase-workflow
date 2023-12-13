@@ -4,7 +4,7 @@
 {
     "name": "Purchase Order Purchase Manager",
     "summary": "Purchase Manager from Supplier in Purchase Order",
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.0.1",
     "development_status": "Alpha",
     "category": "Purchase",
     "website": "https://github.com/OCA/purchase-workflow",
