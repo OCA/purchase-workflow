@@ -18,6 +18,7 @@ class SuppliedProductMixin(models.AbstractModel):
     def _onchange_partner_id_supplied_product(self):
         if self.partner_id:
             self.use_only_supplied_product = (
-                self.partner_id.use_only_supplied_product
+                self.partner_id.force_only_supplied_product
+                or self.partner_id.use_only_supplied_product
                 or self.partner_id.commercial_partner_id.use_only_supplied_product
             )
