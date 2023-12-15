@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-12-06 18:33+0000\n"
+"PO-Revision-Date: 2023-12-15 18:33+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -77,7 +77,7 @@ msgstr "Includere RDA"
 #. module: purchase_order_line_price_history
 #: model:ir.model.fields,field_description:purchase_order_line_price_history.field_purchase_order_line_price_history__include_commercial_partner
 msgid "Include commercial entity"
-msgstr "Includere entità commerciale"
+msgstr "Includi entità commerciale"
 
 #. module: purchase_order_line_price_history
 #: model:ir.model.fields,help:purchase_order_line_price_history.field_purchase_order_line_price_history__include_commercial_partner
