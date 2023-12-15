@@ -17,15 +17,9 @@ class TestStockWarehouseCalendar(TransactionCase):
         self.supplier_info = self.env["product.supplierinfo"]
         self.PurchaseOrder = self.env["purchase.order"]
         self.PurchaseOrderLine = self.env["purchase.order.line"]
-        self.stock_location = self.env["ir.model.data"].xmlid_to_object(
-            "stock.stock_location_stock"
-        )
-        self.customer_location = self.env["ir.model.data"].xmlid_to_object(
-            "stock.stock_location_customers"
-        )
-        self.picking_type_out = self.env["ir.model.data"].xmlid_to_object(
-            "stock.picking_type_out"
-        )
+        self.stock_location = self.env.ref("stock.stock_location_stock")
+        self.customer_location = self.env.ref("stock.stock_location_customers")
+        self.picking_type_out = self.env.ref("stock.picking_type_out")
         self.route_buy = self.env.ref("purchase_stock.route_warehouse0_buy").id
 
         # Create product
