@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="delta_ipa" model="product.product">
+        <field name="name">Delta IPA</field>
+    </record>
+
+</odoo>
