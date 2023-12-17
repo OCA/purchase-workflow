@@ -12,7 +12,8 @@
                 <field
                     name="force_invoiced"
                     groups="purchase.group_purchase_manager"
-                    attrs="{'invisible': [('state', 'not in', ('purchase', 'done'))]}"
+                    invisible="state not in ('purchase', 'done')"
+                    readonly="state == 'done'"
                     widget="boolean_toggle"
                 />
             </field>
