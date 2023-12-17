@@ -5,7 +5,7 @@
         <field name="arch" type="xml">
             <tree name="Purchase Order Types" decoration-muted="active == False">
                 <field name="sequence" widget="handle" />
-                <field name="active" invisible="True" />
+                <field name="active" column_invisible="1" />
                 <field name="name" />
                 <field name="sequence_id" />
                 <field name="payment_term_id" />
@@ -25,7 +25,7 @@
                         name="web_ribbon"
                         title="Archived"
                         bg_color="bg-danger"
-                        attrs="{'invisible': [('active', '=', True)]}"
+                        invisible="active"
                     />
                     <field name="active" invisible="1" />
                     <div class="oe_title">

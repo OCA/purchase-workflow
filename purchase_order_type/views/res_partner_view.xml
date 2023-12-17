@@ -7,11 +7,7 @@
         <field name="arch" type="xml">
             <page name="sales_purchases" position="inside">
                 <field name="supplier_rank" invisible="1" />
-                <group
-                    colspan="2"
-                    col="2"
-                    attrs="{'invisible':[('supplier_rank','=', 0)]}"
-                >
+                <group colspan="2" col="2" invisible="supplier_rank == 0">
                     <separator string="Purchase Order Type" colspan="2" />
                     <field name="purchase_type" />
                 </group>
