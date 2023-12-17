@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="supplierinfo_delta_ipa" model="product.supplierinfo">
+        <field name="partner_id" ref="supplier" />
+        <field
+            name="product_tmpl_id"
+            model="product.template"
+            eval="obj().env.ref('product_supplierinfo_qty_multiplier.delta_ipa').product_tmpl_id.id"
+        />
+        <field name="multiplier_qty">6</field>
+        <field name="price">13</field>
+    </record>
+
+</odoo>
