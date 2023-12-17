@@ -4,16 +4,12 @@
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
-from odoo.addons.purchase.models.purchase import PurchaseOrder as Purchase
-
 
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
     order_type = fields.Many2one(
         comodel_name="purchase.order.type",
-        readonly=False,
-        states=Purchase.READONLY_STATES,
         string="Type",
         ondelete="restrict",
         domain="[('company_id', 'in', [False, company_id])]",
