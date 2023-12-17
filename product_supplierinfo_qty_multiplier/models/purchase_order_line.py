@@ -4,14 +4,15 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from math import ceil
 
-from odoo import _, api, models
 from openerp.tools import frozendict
+
+from odoo import _, api, models
 
 
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
-    @api.onchange('product_id')
+    @api.onchange("product_id")
     def onchange_product_id(self):
         # Change context in a compatible way with onchange usage
         # See : https://github.com/odoo/odoo/issues/7472#issuecomment-119503916
