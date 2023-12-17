@@ -9,4 +9,4 @@ from odoo import fields, models
 class ProductSupplierinfo(models.Model):
     _inherit = "product.supplierinfo"
 
-    multiplier_qty = fields.Float(string="Multiplier Qty")
+    multiplier_qty = fields.Float(digits="Product Unit of Measure")
