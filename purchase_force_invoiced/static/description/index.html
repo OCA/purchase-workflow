@@ -369,18 +369,18 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:7d452e133208229977a8a07928757d73e70d8257c5b692e1b7b3ae8b18a9fba7
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/purchase-workflow/tree/16.0/purchase_force_invoiced"><img alt="OCA/purchase-workflow" src="https://img.shields.io/badge/github-OCA%2Fpurchase--workflow-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/purchase-workflow-16-0/purchase-workflow-16-0-purchase_force_invoiced"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&amp;target_branch=16.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
-<p>This module adds the possibility for users to force the invoice status of the
-purchase orders to ‘No Bill to Receive’, even when not all the
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/purchase-workflow/tree/17.0/purchase_force_invoiced"><img alt="OCA/purchase-workflow" src="https://img.shields.io/badge/github-OCA%2Fpurchase--workflow-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/purchase-workflow-17-0/purchase-workflow-17-0-purchase_force_invoiced"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&amp;target_branch=17.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p>This module adds the possibility for users to force the invoice status
+of the purchase orders to ‘No Bill to Receive’, even when not all the
 quantities, ordered or delivered, have been invoiced.</p>
 <p>This feature is useful in the following scenario:</p>
 <ul class="simple">
 <li>The supplier disputes the quantities to be billed for, after the
 products have been delivered to her/him, and you agree to reduce the
 quantity to invoice (without expecting a refund).</li>
-<li>When migrating from a previous Odoo version, in some cases there is less
-quantity billed to what was delivered, and you don’t want these old purchase
-orders to appear in your ‘Waiting Bills’ list.</li>
+<li>When migrating from a previous Odoo version, in some cases there is
+less quantity billed to what was delivered, and you don’t want these
+old purchase orders to appear in your ‘Waiting Bills’ list.</li>
 </ul>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
@@ -400,8 +400,8 @@ orders to appear in your ‘Waiting Bills’ list.</li>
 <ol class="arabic simple">
 <li>Create a purchase order and confirm it.</li>
 <li>Receive the products/services.</li>
-<li>Create a vendor bill and reduce the invoiced quantity. The purchase order
-invoicing status is ‘Waiting Bills’.</li>
+<li>Create a vendor bill and reduce the invoiced quantity. The purchase
+order invoicing status is ‘Waiting Bills’.</li>
 <li>Lock the Purchase Order and change its status to ‘Done’.</li>
 <li>Check the field ‘Force Invoiced’.</li>
 </ol>
@@ -411,7 +411,7 @@ invoicing status is ‘Waiting Bills’.</li>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/purchase-workflow/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/purchase-workflow/issues/new?body=module:%20purchase_force_invoiced%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/purchase-workflow/issues/new?body=module:%20purchase_force_invoiced%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
@@ -436,7 +436,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/purchase-workflow/tree/16.0/purchase_force_invoiced">OCA/purchase-workflow</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/purchase-workflow/tree/17.0/purchase_force_invoiced">OCA/purchase-workflow</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>
