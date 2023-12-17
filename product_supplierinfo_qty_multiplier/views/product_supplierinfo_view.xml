@@ -7,7 +7,7 @@
         <field name="inherit_id" ref="product.product_supplierinfo_form_view" />
         <field name="arch" type="xml">
             <label for="price" position="before">
-                <field name="multiplier_qty"/>
+                <field name="multiplier_qty" />
             </label>
         </field>
     </record>
@@ -17,7 +17,7 @@
         <field name="inherit_id" ref="product.product_supplierinfo_tree_view" />
         <field name="arch" type="xml">
             <field name="min_qty" position="after">
-                <field name="multiplier_qty"/>
+                <field name="multiplier_qty" />
             </field>
         </field>
     </record>
