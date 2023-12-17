@@ -3,7 +3,7 @@
 from odoo.tests import Form, common
 
 
-class TestPurchaseOrder(common.SavepointCase):
+class TestPurchaseOrder(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -17,7 +17,7 @@ class TestPurchaseOrder(common.SavepointCase):
                         0,
                         False,
                         {
-                            "name": cls.partner.id,
+                            "partner_id": cls.partner.id,
                             "min_qty": 1,
                             "multiplier_qty": 2,
                             "price": 100,
@@ -27,7 +27,7 @@ class TestPurchaseOrder(common.SavepointCase):
                         0,
                         False,
                         {
-                            "name": cls.partner.id,
+                            "partner_id": cls.partner.id,
                             "min_qty": 100,
                             "multiplier_qty": 2,
                             "price": 95,
