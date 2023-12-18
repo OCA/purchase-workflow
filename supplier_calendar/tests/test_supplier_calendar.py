@@ -1,5 +1,6 @@
 # Copyright 2020 ForgeFlow S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
+from datetime import datetime
 
 from odoo import fields
 from odoo.tests import tagged
@@ -44,7 +45,7 @@ class TestStockWarehouseCalendar(TransactionCase):
         )
         self.seller_01 = self.supplier_info.create(
             {
-                "name": self.company_partner.id,
+                "partner_id": self.company_partner.id,
                 "product_id": self.product.id,
                 "product_tmpl_id": self.product.product_tmpl_id.id,
                 "delay": 3,
@@ -120,3 +121,18 @@ class TestStockWarehouseCalendar(TransactionCase):
         result = self.company_partner.supplier_plan_days(reference_3, 3).date()
         monday = fields.Date.to_date("2097-01-28")
         self.assertEqual(result, monday)
+
+    def test_03_get_seller_date_planned_from_purchase_line(self):
+        # We want to test the case when only the seller is provided and there is no other date.
+        test_date = self.company_partner.supplier_plan_days(
+            datetime.today(), self.seller_01.delay
+        )
+        date = self.env["purchase.order.line"]._get_date_planned(self.seller_01)
+        self.assertEqual(test_date, date)
+
+    def test_04_supplier_plan_days_without_delay(self):
+        date = fields.Date.to_date("2097-01-28")
+        aux_date = self.company_partner.supplier_plan_days(date, 0).date()
+        self.assertEqual(
+            date, aux_date, "The date should be the same if the delay is 0."
+        )
