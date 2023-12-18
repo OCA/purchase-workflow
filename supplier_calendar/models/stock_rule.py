@@ -13,7 +13,7 @@ class StockRule(models.Model):
         res = super()._prepare_purchase_order(company_id, origins, values)
         dates = [fields.Datetime.from_string(value["date_planned"]) for value in values]
         values = values[0]
-        partner = values["supplier"].name
+        partner = values["supplier"].partner_id
         procurement_date_planned = min(dates)
         schedule_date = procurement_date_planned - relativedelta(
             days=company_id.po_lead
