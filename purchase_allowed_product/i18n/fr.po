@@ -20,6 +20,11 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: purchase_allowed_product
+#: model:ir.model,name:purchase_allowed_product.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: purchase_allowed_product
 #: model:ir.model,name:purchase_allowed_product.model_res_partner
 msgid "Contact"
 msgstr "Contact"
@@ -29,6 +34,7 @@ msgstr "Contact"
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_product_product__display_name
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_product_supplierinfo__display_name
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_res_company__display_name
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_res_config_settings__display_name
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_res_partner__display_name
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_supplied_product_mixin__display_name
@@ -36,8 +42,15 @@ msgid "Display Name"
 msgstr "Nom affiché"
 
 #. module: purchase_allowed_product
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_res_company__force_only_supplied_product
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_res_config_settings__default_use_only_supplied_product
-msgid "Enable \"Use only allowed products\" by default"
+msgid "Force \"Use only allowed products\" by default"
+msgstr ""
+
+#. module: purchase_allowed_product
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_res_partner__force_only_supplied_product
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_res_users__force_only_supplied_product
+msgid "Force Only Supplied Product"
 msgstr ""
 
 #. module: purchase_allowed_product
@@ -52,6 +65,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_product_product__id
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_product_supplierinfo__id
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_purchase_order__id
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_res_company__id
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_res_config_settings__id
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_res_partner__id
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_supplied_product_mixin__id
@@ -91,6 +105,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_product_product____last_update
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_product_supplierinfo____last_update
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_purchase_order____last_update
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_res_company____last_update
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_res_config_settings____last_update
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_res_partner____last_update
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_supplied_product_mixin____last_update
