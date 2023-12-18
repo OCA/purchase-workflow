@@ -8,5 +8,5 @@ class ProductSupplierInfo(models.Model):
     _inherit = "product.supplierinfo"
 
     delay_calendar_type = fields.Selection(
-        related="name.delay_calendar_type", readonly=True
+        related="partner_id.delay_calendar_type", readonly=True
     )
