@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_create_stock_picking" model="ir.ui.view">
+        <field name="name">Create Stock Picking</field>
+        <field name="model">create.stock.picking.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Create Stock Picking">
+                <group>
+                    <field name="purchase_id" />
+                    <field
+                        name="picking_id"
+                        domain="[('purchase_id', '=', purchase_id)]"
+                    />
+                    <field
+                        name="scheduled_date"
+                        string="Picking Scheduled Date"
+                        attrs="{'invisible': [('picking_id', '=', False)]}"
+                    />
+                    <field
+                        name="location_dest_id"
+                        attrs="{'readonly': [('picking_id', '!=', False)]}"
+                        groups="stock.group_stock_multi_locations"
+                    />
+                </group>
+                <field name="line_ids" nolabel="1">
+                    <tree create="false" editable="bottom">
+                        <field name="purchase_order_line_id" invisible="1" />
+                        <field name="product_id" />
+                        <field name="partner_id" />
+                        <field name="date_planned" />
+                        <field name="price_unit" />
+                        <field name="product_qty" string="Ordered Qty" />
+                        <field name="existing_qty" string="Existing Qty" />
+                        <field name="remaining_qty" string="Remaining Qty" />
+                        <field name="qty" string="Quantity" />
+                        <field name="product_uom" groups="uom.group_uom" />
+                    </tree>
+                </field>
+                <footer>
+                    <button
+                        name="create_stock_picking"
+                        string="Create and View Picking"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_create_manual_stock_picking" model="ir.actions.act_window">
+        <field name="name">Create Manual Stock Picking</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">create.stock.picking.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="purchase.model_purchase_order_line" />
+    </record>
+
+</odoo>

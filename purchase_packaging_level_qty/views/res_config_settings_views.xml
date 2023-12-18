@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="res_config_settings_view_form_purchase_inherit" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="25" />
+        <field
+            name="inherit_id"
+            ref="purchase.res_config_settings_view_form_purchase"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='auto_receipt_reminder']" position="after">
+                <div class="col-12 col-lg-6 o_setting_box">
+                    <div class="o_setting_right_pane">
+                        <label
+                            for="purchase_packaging_level_id"
+                            string="Purchase Packaging Level"
+                        />
+                        <div class="text-muted">
+                            Count purchase order packaging needed for this packing level.
+                            This information will be shown on each purchase order.
+                        </div>
+                        <div class="content-group">
+                            <field name="purchase_packaging_level_id" />
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
