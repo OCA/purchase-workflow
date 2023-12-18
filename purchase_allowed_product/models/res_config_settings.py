@@ -5,6 +5,7 @@ class ResConfigSettings(models.TransientModel):
     _inherit = "res.config.settings"
 
     default_use_only_supplied_product = fields.Boolean(
-        string='Enable "Use only allowed products" by default',
+        related="company_id.force_only_supplied_product",
         default_model="purchase.order",
+        readonly=False,
     )

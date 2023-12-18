@@ -5,7 +5,11 @@
         <field name="inherit_id" ref="base.view_partner_form" />
         <field name="arch" type="xml">
             <group name="purchase" position="inside">
-                <field name="use_only_supplied_product" />
+                <field name="force_only_supplied_product" invisible="1" />
+                <field
+                    name="use_only_supplied_product"
+                    attrs="{'invisible': [('force_only_supplied_product', '=', True)]}"
+                />
             </group>
         </field>
     </record>

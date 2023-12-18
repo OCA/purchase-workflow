@@ -10,6 +10,7 @@
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/purchase-workflow",
     "author": "Akretion, Odoo Community Association (OCA)",
+    "maintainers": ["aleuffre", "renda-dev"],
     "license": "AGPL-3",
     "depends": ["purchase", "base_view_inheritance_extension"],
     "data": [
