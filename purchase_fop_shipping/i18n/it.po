@@ -9,63 +9,63 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-18 07:33+0000\n"
-"PO-Revision-Date: 2023-01-02 12:45+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-12-20 18:34+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: purchase_fop_shipping
 #: model:ir.model.fields,field_description:purchase_fop_shipping.field_purchase_order__force_order_under_fop
 msgid "Confirm under FOP"
-msgstr ""
+msgstr "Conferma con FOP"
 
 #. module: purchase_fop_shipping
 #: model:ir.model,name:purchase_fop_shipping.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contatto"
 
 #. module: purchase_fop_shipping
 #: model:ir.model.fields,field_description:purchase_fop_shipping.field_purchase_order__fop_reached
 msgid "FOP reached"
-msgstr ""
+msgstr "FOP raggiunto"
 
 #. module: purchase_fop_shipping
 #: model:ir.model.fields,field_description:purchase_fop_shipping.field_purchase_order__fop_shipping
 #: model:ir.model.fields,field_description:purchase_fop_shipping.field_res_partner__fop_shipping
 #: model:ir.model.fields,field_description:purchase_fop_shipping.field_res_users__fop_shipping
 msgid "FOP shipping"
-msgstr ""
+msgstr "Spedizione FOP"
 
 #. module: purchase_fop_shipping
 #: model:res.groups,name:purchase_fop_shipping.group_fop_shipping_purchase_manager
 msgid "FOP shipping Manager"
-msgstr ""
+msgstr "Responsabile spedizione FOP"
 
 #. module: purchase_fop_shipping
 #: model:ir.model.fields,help:purchase_fop_shipping.field_purchase_order__force_order_under_fop
 msgid "Force confirm purchase order under Free-Of-Payment shipping"
-msgstr ""
+msgstr "Forza conferma ordine acquisto in spedizione Free-Of-Payment"
 
 #. module: purchase_fop_shipping
 #: model:ir.model.fields,help:purchase_fop_shipping.field_purchase_order__fop_reached
 msgid "Free-Of-Payment shipping reached"
-msgstr ""
+msgstr "Raggiunta spedizione Free-Of-Payment"
 
 #. module: purchase_fop_shipping
 #: model:ir.model.fields,help:purchase_fop_shipping.field_res_partner__fop_shipping
 #: model:ir.model.fields,help:purchase_fop_shipping.field_res_users__fop_shipping
 msgid "Min purchase order amount for FOP shipping"
-msgstr ""
+msgstr "Importo minimo ordine acquisto per spedizione FOP"
 
 #. module: purchase_fop_shipping
 #: model:ir.model.fields,help:purchase_fop_shipping.field_purchase_order__fop_shipping
 msgid "Min purchase order amount for Free-Of-Payment shipping"
-msgstr ""
+msgstr "Importo minimo ordine acquisto per spedizione Free-Of-Payment"
 
 #. module: purchase_fop_shipping
 #: model:ir.model,name:purchase_fop_shipping.model_purchase_order
@@ -80,3 +80,6 @@ msgid ""
 "You cannot confirm a purchase order with amount under FOP shipping. To force "
 "confirm you must belongs to \"FOP shipping Manager\"."
 msgstr ""
+"Non è possibile confermare un ordine di acquisto con un importo inferiore "
+"alla spedizione FOP. Per forzare la conferma bisogna essere un \"Responsabile"
+" spedizine FOP\"."
