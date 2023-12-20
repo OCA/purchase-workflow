@@ -9,25 +9,25 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-24 07:53+0000\n"
-"PO-Revision-Date: 2023-05-15 19:34+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-12-20 18:34+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: purchase_triple_discount
 #: model_terms:ir.ui.view,arch_db:purchase_triple_discount.report_purchaseorder_document_triple_discount
 msgid "<strong>Disc. 2 (%)</strong>"
-msgstr ""
+msgstr "<strong>Sc. 2 (%)</strong>"
 
 #. module: purchase_triple_discount
 #: model_terms:ir.ui.view,arch_db:purchase_triple_discount.report_purchaseorder_document_triple_discount
 msgid "<strong>Disc. 3 (%)</strong>"
-msgstr ""
+msgstr "<strong>Sc. 3 (%)</strong>"
 
 #. module: purchase_triple_discount
 #: model:ir.model,name:purchase_triple_discount.model_res_partner
