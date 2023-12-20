@@ -92,7 +92,7 @@ msgstr "Volume totale"
 #. module: purchase_order_weight_volume
 #: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order__total_volume_uom_id
 msgid "Total Volume Uom"
-msgstr ""
+msgstr "UdM volume totale"
 
 #. module: purchase_order_weight_volume
 #: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order__total_weight
@@ -102,7 +102,7 @@ msgstr "Peso totale"
 #. module: purchase_order_weight_volume
 #: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order__total_weight_uom_id
 msgid "Total Weight Uom"
-msgstr ""
+msgstr "UdM peso totale"
 
 #. module: purchase_order_weight_volume
 #: model:ir.model.fields,field_description:purchase_order_weight_volume.field_purchase_order_line__line_volume
