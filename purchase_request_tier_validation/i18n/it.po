@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-12-22 11:36+0000\n"
+"PO-Revision-Date: 2023-12-22 14:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -94,7 +94,7 @@ msgstr "Definizione livello"
 #. module: purchase_request_tier_validation
 #: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__to_validate_message
 msgid "To Validate Message"
-msgstr ""
+msgstr "Messaggio per 'Da validare'"
 
 #. module: purchase_request_tier_validation
 #: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__validated
@@ -105,17 +105,17 @@ msgstr "Approvato"
 #. module: purchase_request_tier_validation
 #: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__validated_message
 msgid "Validated Message"
-msgstr ""
+msgstr "Messaggio per 'Validato'"
 
 #. module: purchase_request_tier_validation
 #: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__validation_status
 msgid "Validation Status"
-msgstr ""
+msgstr "Stato validazione"
 
 #. module: purchase_request_tier_validation
 #: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__review_ids
 msgid "Validations"
-msgstr ""
+msgstr "Validazioni"
 
 #~ msgid ""
 #~ "<i class=\"fa fa-info-circle\"/>This Purchase Request needs to be\n"
