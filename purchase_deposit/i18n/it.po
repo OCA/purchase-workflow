@@ -1,0 +1,284 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_deposit
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-03-05 14:35+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: purchase_deposit
+#: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
+msgid ""
+"<span attrs=\"{'invisible': [('advance_payment_method', '!=', "
+"'percentage')]}\" class=\"oe_inline\">%</span>"
+msgstr ""
+"<span attrs=\"{'invisible': [('advance_payment_method', '!=', "
+"'percentage')]}\" class=\"oe_inline\">%</span>"
+
+#. module: purchase_deposit
+#: model:ir.model.fields,help:purchase_deposit.field_purchase_advance_payment_inv__deposit_account_id
+msgid "Account used for deposits"
+msgstr "Conto usato per le cauzioni"
+
+#. module: purchase_deposit
+#. odoo-python
+#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
+#, python-format
+msgid "Advance: %s"
+msgstr "Anticipo: %s"
+
+#. module: purchase_deposit
+#: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
+msgid "Cancel"
+msgstr "Annulla"
+
+#. module: purchase_deposit
+#: model:ir.model,name:purchase_deposit.model_res_company
+msgid "Companies"
+msgstr "Aziende"
+
+#. module: purchase_deposit
+#: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
+msgid "Create Bill"
+msgstr "Crea conto"
+
+#. module: purchase_deposit
+#: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
+msgid "Create and View bills"
+msgstr "Crea e visualizza conti"
+
+#. module: purchase_deposit
+#: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: purchase_deposit
+#: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: purchase_deposit
+#: model:ir.model.fields,help:purchase_deposit.field_res_company__purchase_deposit_product_id
+#: model:ir.model.fields,help:purchase_deposit.field_res_config_settings__purchase_deposit_product_id
+msgid "Default product used for payment advances."
+msgstr "Prodotto predefinito utilizzato per anticipi pagamenti."
+
+#. module: purchase_deposit
+#. odoo-python
+#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
+#, python-format
+msgid "Deposit Payment"
+msgstr "Pagamento cauzione"
+
+#. module: purchase_deposit
+#: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__amount
+msgid "Deposit Payment Amount"
+msgstr "Valore pagamento cauzione"
+
+#. module: purchase_deposit
+#: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__purchase_deposit_product_id
+msgid "Deposit Payment Product"
+msgstr "Prodotto pagamento cauzione"
+
+#. module: purchase_deposit
+#: model_terms:ir.ui.view,arch_db:purchase_deposit.res_config_settings_view_form_purchase
+msgid "Deposit Payments"
+msgstr "Pagamenti cauzione"
+
+#. module: purchase_deposit
+#: model:ir.model.fields.selection,name:purchase_deposit.selection__purchase_advance_payment_inv__advance_payment_method__fixed
+msgid "Deposit payment (fixed amount)"
+msgstr "Pagamento cauzione (valore fisso)"
+
+#. module: purchase_deposit
+#: model:ir.model.fields.selection,name:purchase_deposit.selection__purchase_advance_payment_inv__advance_payment_method__percentage
+msgid "Deposit payment (percentage)"
+msgstr "Pagamento cauzione (percentuale)"
+
+#. module: purchase_deposit
+#: model:ir.model.fields,help:purchase_deposit.field_purchase_order_line__is_deposit
+msgid ""
+"Deposit payments are made when creating bills from a purchase order. They "
+"are not copied when duplicating a purchase order."
+msgstr ""
+"I pagamenti cauzione sono fatti quando si creano i conti da un ordine di "
+"vendita. Non vengono copiati quando si duplica un ordine di acquisto."
+
+#. module: purchase_deposit
+#: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: purchase_deposit
+#: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__deposit_account_id
+msgid "Expense Account"
+msgstr "Conto spese"
+
+#. module: purchase_deposit
+#: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__id
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_deposit
+#: model:ir.actions.act_window,name:purchase_deposit.action_view_purchase_advance_payment_inv
+msgid "Invoice Order"
+msgstr "Ordine fattura"
+
+#. module: purchase_deposit
+#: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
+msgid "Invoice Purchases Order"
+msgstr "Fattura ordine acquisti"
+
+#. module: purchase_deposit
+#: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
+msgid ""
+"Invoices will be created in draft so that you can review them before "
+"validation."
+msgstr ""
+"Le fatture verranno create in bozza così potranno essere revisionate prima "
+"della validazione."
+
+#. module: purchase_deposit
+#: model:ir.model.fields,field_description:purchase_deposit.field_purchase_order_line__is_deposit
+msgid "Is a deposit payment"
+msgstr "È un pagamento cauzione"
+
+#. module: purchase_deposit
+#: model:ir.model,name:purchase_deposit.model_account_move
+msgid "Journal Entry"
+msgstr "Registrazione contabile"
+
+#. module: purchase_deposit
+#: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: purchase_deposit
+#: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: purchase_deposit
+#: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: purchase_deposit
+#: model:ir.model,name:purchase_deposit.model_res_config_settings
+msgid "Procurement purchase grouping settings"
+msgstr "Impostazioni raggruppamento approvvigionamento acquisti"
+
+#. module: purchase_deposit
+#: model_terms:ir.ui.view,arch_db:purchase_deposit.res_config_settings_view_form_purchase
+msgid "Product used for deposit payments"
+msgstr "Prodotto utilizzato per i pagamenti cauzione"
+
+#. module: purchase_deposit
+#: model:ir.model,name:purchase_deposit.model_purchase_advance_payment_inv
+msgid "Purchase Advance Payment Invoice"
+msgstr "Fattura di acquisto con pagamento anticipato"
+
+#. module: purchase_deposit
+#: model:ir.model.fields,field_description:purchase_deposit.field_res_company__purchase_deposit_product_id
+#: model:ir.model.fields,field_description:purchase_deposit.field_res_config_settings__purchase_deposit_product_id
+msgid "Purchase Deposit Product"
+msgstr "Prodotto cauzione acquisto"
+
+#. module: purchase_deposit
+#: model:ir.model,name:purchase_deposit.model_purchase_order
+msgid "Purchase Order"
+msgstr "Ordine di acquisto"
+
+#. module: purchase_deposit
+#: model:ir.model,name:purchase_deposit.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Riga ordine di acquisto"
+
+#. module: purchase_deposit
+#: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_order_form_inherit
+msgid "Register Deposit"
+msgstr "Registra cauzione"
+
+#. module: purchase_deposit
+#: model:ir.model.fields,help:purchase_deposit.field_purchase_advance_payment_inv__deposit_taxes_id
+msgid "Taxes used for deposits"
+msgstr "Imposte utilizzate per le cauzioni"
+
+#. module: purchase_deposit
+#: model:ir.model.fields,help:purchase_deposit.field_purchase_advance_payment_inv__amount
+msgid "The amount to be invoiced in advance, taxes excluded."
+msgstr "Valore da fatturare in anticipo, imposte escluse."
+
+#. module: purchase_deposit
+#. odoo-python
+#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
+#, python-format
+msgid "The percentage of the deposit must be not over 100"
+msgstr "La percentuale della cauzione non può essere più di 100"
+
+#. module: purchase_deposit
+#. odoo-python
+#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
+#, python-format
+msgid ""
+"The product used to invoice a down payment should be of type \"Service\". "
+"Please use another product or update this product."
+msgstr ""
+"Il prodottoutilizzato per fatturare un acconto deve essere di tipo \"Servizio"
+"\". Utilizzare un altro prodotto o modificare questo."
+
+#. module: purchase_deposit
+#. odoo-python
+#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
+#, python-format
+msgid ""
+"The product used to invoice a down payment should have an invoice policy set "
+"to \"Ordered quantities\". Please update your deposit product to be able to "
+"create a deposit invoice."
+msgstr ""
+"Il prodotto utilizzato per fatturare un acconto deve avere una politica di "
+"fatturazione impostata a \"Quantità ordinate\". Modificare il prodotto "
+"cauzione per consentire la creazione di una fattura cauzione."
+
+#. module: purchase_deposit
+#. odoo-python
+#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
+#, python-format
+msgid "The value of the deposit must be positive."
+msgstr "Il valore della cauzione deve essere positivo."
+
+#. module: purchase_deposit
+#. odoo-python
+#: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
+#, python-format
+msgid ""
+"There is no purchase account defined for this product: %s.\n"
+"You may have to install a chart of account from Accounting app, settings "
+"menu."
+msgstr ""
+"Non c'è un conto acquisto definito per questo prodotto: %s\n"
+"Bisogna installare il piano dei conti dall'app Contabilità, menu "
+"impostazioni."
+
+#. module: purchase_deposit
+#: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__deposit_taxes_id
+msgid "Vendor Taxes"
+msgstr "Imposte venditore"
+
+#. module: purchase_deposit
+#: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__advance_payment_method
+msgid "What do you want to invoice?"
+msgstr "Cosa si vuole fatturare?"
+
+#~ msgid "Config Settings"
+#~ msgstr "Impostazioni configurazione"
