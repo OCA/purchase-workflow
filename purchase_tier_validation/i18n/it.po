@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-12-14 10:34+0000\n"
+"PO-Revision-Date: 2023-12-22 14:35+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -82,7 +82,7 @@ msgstr "Rifiutato"
 #. module: purchase_tier_validation
 #: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__rejected_message
 msgid "Rejected Message"
-msgstr "Messaggio rifiutato"
+msgstr "Messaggio di rifiuto"
 
 #. module: purchase_tier_validation
 #: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__reviewer_ids
@@ -97,7 +97,7 @@ msgstr "Definizione livello"
 #. module: purchase_tier_validation
 #: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__to_validate_message
 msgid "To Validate Message"
-msgstr "Messaggio da validare"
+msgstr "Messaggio per 'Da validare'"
 
 #. module: purchase_tier_validation
 #: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__validated
@@ -108,7 +108,7 @@ msgstr "Approvato"
 #. module: purchase_tier_validation
 #: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__validated_message
 msgid "Validated Message"
-msgstr "Messaggio validato"
+msgstr "Messaggio per 'Validato'"
 
 #. module: purchase_tier_validation
 #: model:ir.model.fields,field_description:purchase_tier_validation.field_purchase_order__validation_status
