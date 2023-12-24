@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-17 03:38+0000\n"
-"PO-Revision-Date: 2023-12-22 19:36+0000\n"
+"PO-Revision-Date: 2023-12-24 16:37+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/"
 "OCA-purchase-workflow-10-0/language/it/)\n"
@@ -424,7 +424,8 @@ msgstr "Costo Stimato"
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__estimated_cost
 msgid "Estimated cost of Purchase Request Line, not propagated to PO."
 msgstr ""
-"Costo stimato della linea della Richiesta d'Acquisto, non riportato sull' OA."
+"Costo stimato della Riga della Richiesta d'Acquisto, non esteso all'Ordine "
+"d'Acquisto."
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_line_make_purchase_order
@@ -455,8 +456,8 @@ msgstr ""
 msgid ""
 "From last reception this quantity has been allocated to this purchase request"
 msgstr ""
-"Dall'ultima consegna questa quantità è stata allocata a questa richiesta "
-"d'acquisto"
+"Dall'ultima ricezione questa quantità è stata assegnata a questa richiesta "
+"di acquisto"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_search_sub
@@ -521,7 +522,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__is_editable
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__is_editable
 msgid "Is editable"
-msgstr "E' modificabile"
+msgstr "È modificabile"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order__item_ids
@@ -672,7 +673,7 @@ msgstr "Riferimento ordine"
 #: code:addons/purchase_request/models/purchase_order.py:0
 #, python-format
 msgid "Order confirmation %s for your Request %s"
-msgstr "Confermato ordine  %s per la tua Richiesta %s"
+msgstr "Confermato ordine %s per la tua Richiesta %s"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__orderpoint_id
@@ -688,7 +689,7 @@ msgstr "Descrizione RdA"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__pending_qty_to_receive
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Pending Qty to Receive"
-msgstr "Q.tà da Ricevere in Attesa"
+msgstr "Q.tà da ricevere in attesa"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__picking_type_id
@@ -1119,13 +1120,13 @@ msgstr ""
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_search_sub
 msgid "Search Purchase Order Line"
-msgstr "Ricerca Linee Ordini d'Acquisto"
+msgstr "Cerca riga ordine di acquisto"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Search Purchase Request"
-msgstr "Ricerca Richiesta d'Acquisto"
+msgstr "Cerca richiesta di acquisto"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_allocation__purchase_line_id
@@ -1136,7 +1137,7 @@ msgstr ""
 #: code:addons/purchase_request/models/purchase_order.py:0
 #, python-format
 msgid "Service confirmation for Request %s"
-msgstr "Conferma di servizio per la Richiesta %s"
+msgstr "Conferma del servizio per la richiesta %s"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line_make_purchase_order_item__keep_description
@@ -1217,7 +1218,7 @@ msgstr "Fornitore"
 msgid ""
 "The company of the purchase request must match with that of the location."
 msgstr ""
-"L'azienda della richiesta d'acquisto deve coincidere con quella "
+"L'azienda della richiesta di acquisto deve corrispondere a quella "
 "dell'ubicazione."
 
 #. module: purchase_request
@@ -1227,7 +1228,7 @@ msgid ""
 "The following requested items from Purchase Request %s have now been "
 "confirmed in Purchase Order %s:"
 msgstr ""
-"I seguenti item richiesti  nella Richiesta d'Acquisto %s sono stati "
+"I seguenti item richiesti nella Richiesta d'Acquisto %s sono stati "
 "confermati nell'Ordine d'Acquisto %s:"
 
 #. module: purchase_request
@@ -1379,8 +1380,8 @@ msgid ""
 "You can only delete a purchase request line if the purchase request is in "
 "draft state."
 msgstr ""
-"Puoi cancellare una linea della richiesta d'acquisto solo se la richiesta "
-"d'acquisto è in stato bozza."
+"Si può cancellare una riga della richiesta di acquisto solo se la richiesta "
+"di acquisto è in stato bozza."
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_request.py:0
@@ -1410,7 +1411,7 @@ msgstr "Non puoi cancellare una richiesta d'acquisto che non è in bozza."
 #, python-format
 msgid "You cannot delete a record that refers to purchase lines!"
 msgstr ""
-"Non puoi cancellare un record che fa riferimento a una linea d'acquisto!"
+"Non è possibile eliminare un record che si riferisce alle righe di acquisto!"
 
 #. module: purchase_request
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
@@ -1428,4 +1429,4 @@ msgstr ""
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
 #, python-format
 msgid "You have to select lines from the same company."
-msgstr "Devi selezionare linee dalla stessa azienda."
+msgstr "Bisogna selezionare linee dalla stessa azienda."
