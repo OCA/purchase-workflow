@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: odoomrp-wip (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-23 16:33+0000\n"
-"PO-Revision-Date: 2023-11-10 12:36+0000\n"
+"PO-Revision-Date: 2023-12-24 18:34+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/odoomrp-wip-8-0/"
 "language/it/)\n"
@@ -679,7 +679,7 @@ msgstr ""
 #. module: purchase_landed_cost
 #: model:ir.ui.view,arch_db:purchase_landed_cost.picking_import_wizard_view
 msgid "Select incoming shipment wizard"
-msgstr "Wizard di selezione spedizioni  in arrivo"
+msgstr "Wizard di selezione spedizioni in arrivo"
 
 #. module: purchase_landed_cost
 #: model:ir.ui.view,arch_db:purchase_landed_cost.import_invoice_line_wizard_view
