@@ -5,20 +5,13 @@
 from odoo import fields
 from odoo.tests.common import TransactionCase, new_test_user, users
 
+from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
+
 
 class TestProductCostPriceAvcoSync(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        # Remove this variable in v16 and put instead:
-        # from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
-        DISABLED_MAIL_CONTEXT = {
-            "tracking_disable": True,
-            "mail_create_nolog": True,
-            "mail_create_nosubscribe": True,
-            "mail_notrack": True,
-            "no_reset_password": True,
-        }
         cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT))
         cls.partner = cls.env["res.partner"].create({"name": "Test Partner"})
         cls.product_category = cls.env["product.category"].create(
@@ -65,7 +58,7 @@ class TestProductCostPriceAvcoSync(TransactionCase):
         self.order = self.order.with_user(self.env.user)
         self.order.button_confirm()
         picking = self.order.picking_ids[:1]
-        move = picking.move_lines[:1]
+        move = picking.move_ids[:1]
         move.quantity_done = move.product_uom_qty
         picking._action_done()
         svl = move.sudo().stock_valuation_layer_ids[:1]
