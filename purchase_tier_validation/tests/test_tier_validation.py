@@ -11,7 +11,7 @@ from odoo.tests.common import tagged
 class TestPurchaseTierValidation(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(TestPurchaseTierValidation, cls).setUpClass()
+        super().setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.loader = FakeModelLoader(cls.env, cls.__module__)
         cls.loader.backup_registry()
@@ -60,7 +60,7 @@ class TestPurchaseTierValidation(common.TransactionCase):
     @classmethod
     def tearDownClass(cls):
         cls.loader.restore_registry()
-        return super(TestPurchaseTierValidation, cls).tearDownClass()
+        return super().tearDownClass()
 
     def test_01_tier_definition_models(self):
         """When the user can validate all future reviews, it is not needed
