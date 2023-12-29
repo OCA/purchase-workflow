@@ -102,6 +102,7 @@ setuptools.setup(
         'odoo-addon-sale_purchase_force_vendor>=15.0dev,<15.1dev',
         'odoo-addon-sale_purchase_secondary_unit>=15.0dev,<15.1dev',
         'odoo-addon-subcontracted_service>=15.0dev,<15.1dev',
+        'odoo-addon-supplier_calendar>=15.0dev,<15.1dev',
     ],
     classifiers=[
         'Programming Language :: Python',

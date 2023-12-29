@@ -115,6 +115,7 @@ addon | version | maintainers | summary
 [sale_purchase_force_vendor](sale_purchase_force_vendor/) | 15.0.1.0.3 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Sale Purchase Force Vendor
 [sale_purchase_secondary_unit](sale_purchase_secondary_unit/) | 15.0.1.0.1 |  | Propagate sale secondary uom to purchase orders
 [subcontracted_service](subcontracted_service/) | 15.0.1.0.0 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Subcontracted service
+[supplier_calendar](supplier_calendar/) | 15.0.1.0.0 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Supplier Calendar
 
 [//]: # (end addons)
 
