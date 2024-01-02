@@ -27,6 +27,7 @@ setuptools.setup(
         'odoo14-addon-purchase_exception',
         'odoo14-addon-purchase_fop_shipping',
         'odoo14-addon-purchase_force_invoiced',
+        'odoo14-addon-purchase_invoice_create_security_group',
         'odoo14-addon-purchase_invoice_method',
         'odoo14-addon-purchase_invoice_plan',
         'odoo14-addon-purchase_invoice_plan_deposit',
