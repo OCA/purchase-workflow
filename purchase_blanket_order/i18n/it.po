@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-12-29 20:35+0000\n"
+"PO-Revision-Date: 2024-01-02 12:18+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -249,6 +249,8 @@ msgid ""
 "Date until which the blanket order will be valid, after this date the "
 "blanket order will be marked as expired"
 msgstr ""
+"Data fino alla quale l'ordine aperto sarà valido, dopo questa data l'ordine "
+"aperto sarà indicato come scaduto"
 
 #. module: purchase_blanket_order
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__name
@@ -259,16 +261,17 @@ msgstr "Descrizione"
 #: model:res.groups,name:purchase_blanket_order.purchase_blanket_orders_disable_adding_lines
 msgid "Disable adding more lines to POs from Purchase Blanket Orders"
 msgstr ""
+"Disabilita l'aggiunta di altre righe nei PO da ordini aperti di acquisto"
 
 #. module: purchase_blanket_order
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_res_config_settings__group_purchase_blanket_disable_adding_lines
 msgid "Disable adding more lines to SOs"
-msgstr ""
+msgstr "Disabilita l'aggiunta di altre righe nei SO"
 
 #. module: purchase_blanket_order
 #: model_terms:ir.ui.view,arch_db:purchase_blanket_order.purchase_config_settings_form_view
 msgid "Disable adding more lines to SOs from Blanket Orders"
-msgstr ""
+msgstr "Disabilita l'aggiunta di altre righe nei SO da ordini aperti"
 
 #. module: purchase_blanket_order
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__display_name
@@ -296,41 +299,41 @@ msgstr "Bozza"
 #: model:ir.cron,cron_name:purchase_blanket_order.expired_purchase_blanket_orders_cron
 #: model:ir.cron,name:purchase_blanket_order.expired_purchase_blanket_orders_cron
 msgid "Expire Blanket Orders"
-msgstr ""
+msgstr "Scadenza ordini aperti"
 
 #. module: purchase_blanket_order
 #: model:ir.model.fields.selection,name:purchase_blanket_order.selection__purchase_blanket_order__state__expired
 msgid "Expired"
-msgstr ""
+msgstr "Scaduto"
 
 #. module: purchase_blanket_order
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__fiscal_position_id
 msgid "Fiscal Position"
-msgstr ""
+msgstr "Posizione fiscale"
 
 #. module: purchase_blanket_order
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__message_follower_ids
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "Seguito da"
 
 #. module: purchase_blanket_order
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__message_channel_ids
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__message_channel_ids
 msgid "Followers (Channels)"
-msgstr ""
+msgstr "Seguito da (canali)"
 
 #. module: purchase_blanket_order
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__message_partner_ids
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__message_partner_ids
 msgid "Followers (Partners)"
-msgstr ""
+msgstr "Seguito da (partner)"
 
 #. module: purchase_blanket_order
 #: model:ir.model.fields,help:purchase_blanket_order.field_purchase_blanket_order__activity_type_icon
 #: model:ir.model.fields,help:purchase_blanket_order.field_purchase_blanket_order_line__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
-msgstr ""
+msgstr "Icona Font Awesome es. fa-tasks"
 
 #. module: purchase_blanket_order
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__id
@@ -341,19 +344,19 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_order_line__id
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_res_config_settings__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: purchase_blanket_order
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__activity_exception_icon
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__activity_exception_icon
 msgid "Icon"
-msgstr ""
+msgstr "Icona"
 
 #. module: purchase_blanket_order
 #: model:ir.model.fields,help:purchase_blanket_order.field_purchase_blanket_order__activity_exception_icon
 #: model:ir.model.fields,help:purchase_blanket_order.field_purchase_blanket_order_line__activity_exception_icon
 msgid "Icon to indicate an exception activity."
-msgstr ""
+msgstr "Icona per indicare un'attività eccezione."
 
 #. module: purchase_blanket_order
 #: model:ir.model.fields,help:purchase_blanket_order.field_purchase_blanket_order__message_needaction
@@ -361,13 +364,13 @@ msgstr ""
 #: model:ir.model.fields,help:purchase_blanket_order.field_purchase_blanket_order_line__message_needaction
 #: model:ir.model.fields,help:purchase_blanket_order.field_purchase_blanket_order_line__message_unread
 msgid "If checked, new messages require your attention."
-msgstr ""
+msgstr "Se selezionata, nuovi messaggi richiedono attenzione."
 
 #. module: purchase_blanket_order
 #: model:ir.model.fields,help:purchase_blanket_order.field_purchase_blanket_order__message_has_error
 #: model:ir.model.fields,help:purchase_blanket_order.field_purchase_blanket_order_line__message_has_error
 msgid "If checked, some messages have a delivery error."
-msgstr ""
+msgstr "Se selezionata, alcuni messaggi hanno un errore di consegna."
 
 #. module: purchase_blanket_order
 #: model_terms:ir.ui.view,arch_db:purchase_blanket_order.view_purchase_blanket_order_search
@@ -715,6 +718,8 @@ msgid ""
 "Schedule dates defined on the Purchase Order Line and on the Blanket Order "
 "Line do not match."
 msgstr ""
+"Le date pianificate definite sulla riga ordine di acquisto e sulla riga "
+"ordine aperto non corrispondono."
 
 #. module: purchase_blanket_order
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__date_schedule
@@ -726,7 +731,7 @@ msgstr "Data programmata"
 #. module: purchase_blanket_order
 #: model_terms:ir.ui.view,arch_db:purchase_blanket_order.purchase_blanket_order_line_search
 msgid "Search Purchase Blanket Order Line"
-msgstr ""
+msgstr "Cerca riga ordine di acquisto aperto"
 
 #. module: purchase_blanket_order
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__sequence
