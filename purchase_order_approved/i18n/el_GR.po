@@ -132,6 +132,11 @@ msgid "Purchase Order"
 msgstr ""
 
 #. module: purchase_order_approved
+#: model_terms:ir.ui.view,arch_db:purchase_order_approved.report_purchaseorder_document
+msgid "Purchase Order #"
+msgstr ""
+
+#. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_res_partner__purchase_requires_second_approval
 #: model:ir.model.fields,field_description:purchase_order_approved.field_res_users__purchase_requires_second_approval
 msgid "Purchase Requires Second Approval"
