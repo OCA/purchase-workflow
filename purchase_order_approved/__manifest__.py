@@ -12,6 +12,7 @@
     "installable": True,
     "depends": ["purchase_stock"],
     "data": [
+        "reports/purchase_order_templates.xml",
         "views/res_partner.xml",
         "views/purchase_order_view.xml",
         "views/res_config_view.xml",
