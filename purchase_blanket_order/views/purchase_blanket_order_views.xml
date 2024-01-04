@@ -48,16 +48,36 @@
                         type="object"
                     />
                     <button
-                        name="action_confirm"
+                        name="action_pbo_send"
                         states="draft"
+                        string="Send Blanket Order"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    <button
+                        name="action_confirm"
+                        states="sent"
                         string="Confirm"
                         class="btn-primary o_purchase_confirm"
                         type="object"
                     />
+                    <button
+                        name="action_pbo_send"
+                        states="sent"
+                        string="Re-Send Blanket Order"
+                        type="object"
+                    />
+                    <button
+                        name="action_confirm"
+                        type="object"
+                        states="draft"
+                        string="Confirm"
+                        class="o_purchase_confirm"
+                    />
                     <field
                         name="state"
                         widget="statusbar"
-                        statusbar_visible="draft,open,expired"
+                        statusbar_visible="draft,sent,open,expired"
                     />
                 </header>
                 <sheet>
