@@ -1,4 +1,4 @@
-# Copyright 2017 ForgeFlow S.L.
+# Copyright 2023 ForgeFlow S.L.
 #   (http://www.forgeflow.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
@@ -56,6 +56,34 @@ class PurchaseOrderLine(models.Model):
         for line in service_lines:
             line.qty_to_receive = line.product_qty - line.qty_received
 
+    @api.depends("qty_received", "price_unit")
+    def _compute_subtotal_to_receive(self):
+        for line in self:
+            vals = line._prepare_compute_all_values()
+            vals["product_qty"] = line.product_qty - line.qty_received
+            taxes = line.taxes_id.compute_all(
+                vals["price_unit"],
+                vals["currency_id"],
+                vals["product_qty"],
+                vals["product"],
+                vals["partner"],
+            )
+            line.update({"subtotal_to_receive": taxes["total_excluded"]})
+
+    @api.depends("qty_received", "price_unit")
+    def _compute_subtotal_received(self):
+        for line in self:
+            vals = line._prepare_compute_all_values()
+            vals["product_qty"] = line.qty_received
+            taxes = line.taxes_id.compute_all(
+                vals["price_unit"],
+                vals["currency_id"],
+                vals["product_qty"],
+                vals["product"],
+                vals["partner"],
+            )
+            line.update({"subtotal_received": taxes["total_excluded"]})
+
     qty_to_invoice = fields.Float(
         compute="_compute_qty_to_invoice",
         digits="Product Unit of Measure",
@@ -68,6 +96,21 @@ class PurchaseOrderLine(models.Model):
         digits="Product Unit of Measure",
         copy=False,
         string="Qty to Receive",
+        store=True,
+    )
+    subtotal_to_receive = fields.Monetary(
+        compute="_compute_subtotal_to_receive",
+        digits="Product Unit of Measure",
+        copy=False,
+        string="Subtotal to Receive",
+        store=True,
+    )
+
+    subtotal_received = fields.Monetary(
+        compute="_compute_subtotal_received",
+        digits="Product Unit of Measure",
+        copy=False,
+        string="Subtotal Received",
         store=True,
     )
 

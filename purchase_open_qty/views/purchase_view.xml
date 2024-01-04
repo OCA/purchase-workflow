@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<!--Copyright 2017 ForgeFlow S.L.-->
+<!--Copyright 2023 ForgeFlow S.L.-->
 <!--(http://www.forgeflow.com)-->
 <!--License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).-->
 <odoo>
+    <record model="ir.ui.view" id="purchase_order_line_tree_new">
+        <field name="name">purchase_discount.order.line.tree.new</field>
+        <field name="model">purchase.order.line</field>
+        <field name="inherit_id" ref="purchase.purchase_order_line_tree" />
+        <field name="arch" type="xml">
+            <field name="price_unit" position="after">
+                <field name="qty_to_receive" />
+                <field name="qty_to_invoice" />
+                <field name="subtotal_received" optional="hide" />
+                <field name="subtotal_to_receive" optional="show" />
+            </field>
+        </field>
+    </record>
     <record id="purchase_order_form" model="ir.ui.view">
         <field name="name">purchase.order.form -- open qty fields</field>
         <field name="model">purchase.order</field>
