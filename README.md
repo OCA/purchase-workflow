@@ -34,7 +34,7 @@ addon | version | maintainers | summary
 [purchase_delivery_split_date](purchase_delivery_split_date/) | 15.0.1.0.0 |  | Allows Purchase Order you confirm to generate one Incoming Shipment for each expected date indicated in the Purchase Order Lines
 [purchase_deposit](purchase_deposit/) | 15.0.1.1.0 |  | Option to create deposit from purchase order
 [purchase_deposit_analytic](purchase_deposit_analytic/) | 15.0.1.0.0 | [![Saran440](https://github.com/Saran440.png?size=30px)](https://github.com/Saran440) | Add analytic on wizard register deposit
-[purchase_discount](purchase_discount/) | 15.0.2.0.0 |  | Purchase order lines with discounts
+[purchase_discount](purchase_discount/) | 15.0.2.0.1 |  | Purchase order lines with discounts
 [purchase_exception](purchase_exception/) | 15.0.1.0.0 |  | Custom exceptions on purchase order
 [purchase_fop_shipping](purchase_fop_shipping/) | 15.0.1.0.0 |  | Purchase Free-Of-Payment shipping
 [purchase_force_invoiced](purchase_force_invoiced/) | 15.0.1.0.2 |  | Allows to force the billing status of the purchase order to "Invoiced"
@@ -104,7 +104,7 @@ addon | version | maintainers | summary
 [purchase_tag](purchase_tag/) | 15.0.1.0.0 |  | Allows to add multiple tags to purchase orders
 [purchase_tier_validation](purchase_tier_validation/) | 15.0.1.1.0 |  | Extends the functionality of Purchase Orders to support a tier validation process.
 [purchase_total_ordered_qty](purchase_total_ordered_qty/) | 15.0.1.0.0 |  | Purchase - Total Ordered Qty
-[purchase_triple_discount](purchase_triple_discount/) | 15.0.2.0.0 |  | Manage triple discount on purchase order lines
+[purchase_triple_discount](purchase_triple_discount/) | 15.0.2.0.1 |  | Manage triple discount on purchase order lines
 [purchase_v12_control_menu](purchase_v12_control_menu/) | 15.0.1.0.0 |  | Purchase Control Menu from v12
 [purchase_warn_message](purchase_warn_message/) | 15.0.1.0.0 |  | Add a popup warning on purchase to ensure warning is populated
 [purchase_work_acceptance](purchase_work_acceptance/) | 15.0.1.1.1 | [![ps-tubtim](https://github.com/ps-tubtim.png?size=30px)](https://github.com/ps-tubtim) | Purchase Work Acceptance
