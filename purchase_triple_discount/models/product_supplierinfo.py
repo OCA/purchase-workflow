@@ -23,9 +23,3 @@ class ProductSupplierInfo(models.Model):
             supplierinfo.discount2 = supplierinfo.name.default_supplierinfo_discount2
             supplierinfo.discount3 = supplierinfo.name.default_supplierinfo_discount3
         return super().onchange_name()
-
-    @api.model
-    def _get_po_to_supplierinfo_synced_fields(self):
-        res = super()._get_po_to_supplierinfo_synced_fields()
-        res += ["discount2", "discount3"]
-        return res
