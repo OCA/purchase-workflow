@@ -3,6 +3,20 @@
 from odoo import api, fields, models
 
 
+class PurchaseOrder(models.Model):
+    _inherit = "purchase.order"
+
+    def _prepare_supplier_info(self, partner, line, price, currency):
+        vals = super()._prepare_supplier_info(partner, line, price, currency)
+        vals.update(
+            {
+                "discount2": line.discount2,
+                "discount3": line.discount3,
+            }
+        )
+        return vals
+
+
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
