@@ -76,6 +76,11 @@ msgid "Discount 3 must be lower than 100%."
 msgstr "折扣3必须低于100％。"
 
 #. module: purchase_triple_discount
+#: model:ir.model,name:purchase_triple_discount.model_purchase_order
+msgid "Purchase Order"
+msgstr ""
+
+#. module: purchase_triple_discount
 #: model:ir.model,name:purchase_triple_discount.model_purchase_order_line
 msgid "Purchase Order Line"
 msgstr "采购订单行"
