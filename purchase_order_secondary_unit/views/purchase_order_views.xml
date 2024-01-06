@@ -24,7 +24,7 @@
                                 '&amp;', ('product_tmpl_id.product_variant_ids', 'in', [product_id]),
                                          ('product_id', '=', False)]"
                     options="{'no_create': True}"
-                    attrs="{'readonly': [('state', 'in', ('purchase', 'done', 'cancel'))]}"
+                    attrs="{'readonly': [('state', 'in', ('purchase', 'done', 'cancel'))], 'required': [('secondary_uom_qty', '!=', 0.0)]}"
                 />
             </xpath>
             <xpath
@@ -41,7 +41,7 @@
                                 '&amp;', ('product_tmpl_id.product_variant_ids', 'in', [product_id]),
                                          ('product_id', '=', False)]"
                     options="{'no_create': True}"
-                    attrs="{'readonly': [('state', 'in', ('purchase','done', 'cancel'))]}"
+                    attrs="{'readonly': [('state', 'in', ('purchase','done', 'cancel'))], 'required': [('secondary_uom_qty', '!=', 0.0)]}"
                 />
             </xpath>
         </field>
