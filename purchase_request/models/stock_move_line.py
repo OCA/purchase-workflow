@@ -38,8 +38,8 @@ class StockMoveLine(models.Model):
 
     @api.model
     def _picking_confirm_done_message_content(self, message_data):
-        title = _("Receipt confirmation for Request %s") % (
-            message_data["request_name"]
+        title = (
+            _("Receipt confirmation for Request %s") % (message_data["request_name"])
         )
         message = "<h3>%s</h3>" % title
         message += _(
@@ -78,7 +78,6 @@ class StockMoveLine(models.Model):
         for ml in self.filtered(
             lambda m: m.exists() and m.move_id.purchase_request_allocation_ids
         ):
-
             # We do sudo because potentially the user that completes the move
             #  may not have permissions for purchase.request.
             to_allocate_qty = ml.qty_done
