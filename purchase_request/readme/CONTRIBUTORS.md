@@ -7,3 +7,6 @@
 - Ben Cai \<<ben.cai@elico-corp.com>\>
 - Rattapong Chokmasermkul \<<rattapongc@ecosoft.co.th>\>
 - Stefan Rijnhart \<<stefan@opener.amsterdam>\>
+- `Trobz <https://trobz.com>`_:
+
+    * Son Ho <sonhd@trobz.com>
