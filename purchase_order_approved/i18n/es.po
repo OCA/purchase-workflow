@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-10 05:30+0000\n"
-"PO-Revision-Date: 2024-01-03 15:36+0000\n"
+"PO-Revision-Date: 2024-01-09 14:36+0000\n"
 "Last-Translator: \"David Alonso (Solvos)\" <david.alonso@solvos.es>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
@@ -139,7 +139,7 @@ msgstr "Configuración de la agrupación de compras"
 #. module: purchase_order_approved
 #: model:ir.model,name:purchase_order_approved.model_purchase_order
 msgid "Purchase Order"
-msgstr "Pedido de compra"
+msgstr "Orden de compra #"
 
 #. module: purchase_order_approved
 #: model_terms:ir.ui.view,arch_db:purchase_order_approved.report_purchaseorder_document
