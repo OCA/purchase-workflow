@@ -357,14 +357,10 @@ class PurchaseRequestLineMakePurchaseOrderItem(models.TransientModel):
             if sup_info_id:
                 p_code = sup_info_id[0].product_code
                 p_name = sup_info_id[0].product_name
-                name = "[{}] {}".format(
-                    p_code if p_code else code, p_name if p_name else name
-                )
+                name = f"[{p_code if p_code else code}] {p_name if p_name else name}"
             else:
                 if code:
-                    name = "[{}] {}".format(
-                        code, self.name if self.keep_description else name
-                    )
+                    name = f"[{code}] {self.name if self.keep_description else name}"
             if self.product_id.description_purchase and not self.keep_description:
                 name += "\n" + self.product_id.description_purchase
             self.product_uom_id = self.product_id.uom_id.id

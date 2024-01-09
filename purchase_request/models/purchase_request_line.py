@@ -14,7 +14,6 @@ _STATES = [
 
 
 class PurchaseRequestLine(models.Model):
-
     _name = "purchase.request.line"
     _description = "Purchase Request Line"
     _inherit = ["mail.thread", "mail.activity.mixin", "analytic.mixin"]
@@ -267,7 +266,7 @@ class PurchaseRequestLine(models.Model):
         if self.product_id:
             name = self.product_id.name
             if self.product_id.code:
-                name = "[{}] {}".format(self.product_id.code, name)
+                name = f"[{self.product_id.code}] {name}"
             if self.product_id.description_purchase:
                 name += "\n" + self.product_id.description_purchase
             self.product_uom_id = self.product_id.uom_id.id

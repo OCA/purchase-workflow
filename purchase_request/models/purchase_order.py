@@ -188,8 +188,8 @@ class PurchaseOrderLine(models.Model):
 
     @api.model
     def _purchase_request_confirm_done_message_content(self, message_data):
-        title = _("Service confirmation for Request %s") % (
-            message_data["request_name"]
+        title = (
+            _("Service confirmation for Request %s") % (message_data["request_name"])
         )
         message = "<h3>%s</h3>" % title
         message += _(
