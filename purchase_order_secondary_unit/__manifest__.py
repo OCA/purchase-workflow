@@ -3,7 +3,7 @@
 {
     "name": "Purchase Order Secondary Unit",
     "summary": "Purchase product in a secondary unit",
-    "version": "15.0.1.2.1",
+    "version": "15.0.1.3.0",
     "development_status": "Beta",
     "category": "Purchase",
     "website": "https://github.com/OCA/purchase-workflow",
