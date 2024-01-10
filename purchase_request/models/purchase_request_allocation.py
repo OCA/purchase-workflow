@@ -75,7 +75,7 @@ class PurchaseRequestAllocation(models.Model):
         "stock_move_id",
         "stock_move_id.state",
         "stock_move_id.product_uom_qty",
-        "stock_move_id.move_line_ids.qty_done",
+        "stock_move_id.move_line_ids.quantity",
         "purchase_line_id",
         "purchase_line_id.qty_received",
         "purchase_state",
@@ -114,7 +114,7 @@ class PurchaseRequestAllocation(models.Model):
         return {
             "request_name": request.name,
             "po_name": po_line.order_id.name,
-            "product_name": po_line.product_id.name_get()[0][1],
+            "product_name": po_line.product_id.display_name,
             "product_qty": allocated_qty,
             "product_uom": po_line.product_uom.name,
         }

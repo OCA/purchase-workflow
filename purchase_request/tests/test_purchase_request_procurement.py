@@ -7,7 +7,7 @@ from odoo.tests import common
 
 class TestPurchaseRequestProcurement(common.TransactionCase):
     def setUp(self):
-        super(TestPurchaseRequestProcurement, self).setUp()
+        super().setUp()
 
         # Get required Model
         self.pr_model = self.env["purchase.request"]
