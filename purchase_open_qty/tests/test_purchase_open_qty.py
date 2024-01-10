@@ -141,7 +141,7 @@ class TestPurchaseOpenQty(TransactionCase):
         # Now we receive the products
         for picking in self.purchase_order_2.picking_ids:
             picking.action_confirm()
-            picking.move_ids.write({"quantity_done": 5.0})
+            picking.move_ids.write({"quantity": 5.0})
             picking.button_validate()
 
         # The value is computed when you run it as at user but not in the test
@@ -190,8 +190,7 @@ class TestPurchaseOpenQty(TransactionCase):
         )
         self.assertFalse(
             self.purchase_order_2.id not in found.ids,
-            "Expected PO %s not to be in POs %s"
-            % (self.purchase_order_2.id, found.ids),
+            f"Expected PO {self.purchase_order_2.id} not to be in POs {found.ids}",
         )
 
     def test_03_po_line_with_services(self):
