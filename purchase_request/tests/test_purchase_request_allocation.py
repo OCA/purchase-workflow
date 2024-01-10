@@ -7,7 +7,7 @@ from odoo.tests import common
 
 class TestPurchaseRequestToRfq(common.TransactionCase):
     def setUp(self):
-        super(TestPurchaseRequestToRfq, self).setUp()
+        super().setUp()
         self.purchase_request = self.env["purchase.request"]
         self.purchase_request_line = self.env["purchase.request.line"]
         self.wiz = self.env["purchase.request.line.make.purchase.order"]
@@ -110,7 +110,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         move._do_unreserve()
         move._action_assign()
 
-        picking.move_line_ids[0].write({"qty_done": 2.0})
+        picking.move_line_ids[0].write({"quantity": 2.0})
         backorder_wiz_id = picking.button_validate()
         common.Form(
             self.env[backorder_wiz_id["res_model"]].with_context(
@@ -121,7 +121,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         self.assertEqual(sum(request_lines.mapped("qty_done")), 2.0)
 
         backorder_picking = purchase.picking_ids.filtered(lambda p: p.id != picking.id)
-        backorder_picking.move_line_ids[0].write({"qty_done": 1.0})
+        backorder_picking.move_line_ids[0].write({"quantity": 1.0})
         backorder_wiz_id2 = backorder_picking.button_validate()
         common.Form(
             self.env[backorder_wiz_id2["res_model"]].with_context(
@@ -307,7 +307,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         )
         purchase.button_confirm()
         picking = purchase.picking_ids[0]
-        picking.move_line_ids[0].write({"qty_done": 24.0})
+        picking.move_line_ids[0].write({"quantity": 24.0})
         picking.button_validate()
         self.assertEqual(
             purchase_request_line1.purchase_request_allocation_ids[

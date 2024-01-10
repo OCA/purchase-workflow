@@ -421,8 +421,16 @@ consolidated into as few as possible lines in the RFQ.</p>
 <ol class="arabic simple">
 <li>Go to a product form.</li>
 <li>Go to <em>Inventory</em> tab.</li>
-<li>Check the box <em>Purchase Request</em> along with the route <em>Buy</em>.</li>
+<li>Check the box <em>Purchase Request</em> along with the route <em>Buy</em> and
+<em>Replenish on Order (MTO)</em></li>
 </ol>
+<p>Note that MTO route is archived by default, you should unarchive it
+first:</p>
+<ul class="simple">
+<li>Go to Inventory &gt; Configuration &gt; Routes, in the Search dropdown
+menu, click <em>Archived</em> to show <em>Replenish on Order (MTO)</em> route and
+<em>Unarchive</em> it.</li>
+</ul>
 <p>With this configuration, whenever a procurement order is created and the
 supply rule selected is ‘Buy’ the application will create a Purchase
 Request instead of a Purchase Order.</p>

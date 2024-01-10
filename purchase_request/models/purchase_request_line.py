@@ -282,7 +282,7 @@ class PurchaseRequestLine(models.Model):
         self.write({"cancelled": False})
 
     def write(self, vals):
-        res = super(PurchaseRequestLine, self).write(vals)
+        res = super().write(vals)
         if vals.get("cancelled"):
             requests = self.mapped("request_id")
             requests.check_auto_reject()
@@ -378,7 +378,7 @@ class PurchaseRequestLine(models.Model):
                         "if the purchase request is in draft state."
                     )
                 )
-        return super(PurchaseRequestLine, self).unlink()
+        return super().unlink()
 
     def action_show_details(self):
         self.ensure_one()

@@ -7,7 +7,7 @@ from odoo.tests import common
 
 class TestPurchaseRequestToRfq(common.TransactionCase):
     def setUp(self):
-        super(TestPurchaseRequestToRfq, self).setUp()
+        super().setUp()
         self.purchase_request_obj = self.env["purchase.request"]
         self.purchase_request_line_obj = self.env["purchase.request.line"]
         self.wiz = self.env["purchase.request.line.make.purchase.order"]
@@ -136,7 +136,7 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         request_lines.mapped("is_editable")
 
         # Test also for onchanges on non created lines
-        self.purchase_request_line_obj.new({}).is_editable
+        self.assertTrue(self.purchase_request_line_obj.new({}).is_editable)
 
     def test_purchase_request_to_purchase_rfq_minimum_order_qty(self):
         vals = {
@@ -367,13 +367,11 @@ class TestPurchaseRequestToRfq(common.TransactionCase):
         # auto change state to done
         po_line.order_id.button_confirm()
         picking = po_line.order_id.picking_ids[0]
-        picking.move_line_ids[0].write({"qty_done": 6.0})
+        picking.move_line_ids[0].write({"quantity": 6.0})
         picking.button_validate()
 
     def _setup_analytic_distribution(self):
-        analytic_plan = self.env["account.analytic.plan"].create(
-            {"name": "Plan Test", "company_id": False}
-        )
+        analytic_plan = self.env["account.analytic.plan"].create({"name": "Plan Test"})
         analytic_account = self.env["account.analytic.account"].create(
             {"name": "default", "plan_id": analytic_plan.id}
         )
