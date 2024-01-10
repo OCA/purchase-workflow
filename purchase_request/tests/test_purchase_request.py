@@ -8,7 +8,7 @@ from odoo.tests.common import Form, TransactionCase
 
 class TestPurchaseRequest(TransactionCase):
     def setUp(self):
-        super(TestPurchaseRequest, self).setUp()
+        super().setUp()
         self.purchase_request_obj = self.env["purchase.request"]
         self.purchase_request_line_obj = self.env["purchase.request.line"]
         self.purchase_order = self.env["purchase.order"]
@@ -21,6 +21,7 @@ class TestPurchaseRequest(TransactionCase):
         }
         self.purchase_request = self.purchase_request_obj.create(vals)
         vals = {
+            "name": "Test line",
             "request_id": self.purchase_request.id,
             "product_id": self.env.ref("product.product_product_13").id,
             "product_uom_id": self.env.ref("uom.product_uom_unit").id,
@@ -60,6 +61,7 @@ class TestPurchaseRequest(TransactionCase):
         purchase_request.button_rejected()
         self.assertEqual(purchase_request.is_editable, False, "Should not be editable")
         vals = {
+            "name": "Test line 1",
             "request_id": purchase_request.id,
             "product_id": self.env.ref("product.product_product_6").id,
             "product_uom_id": self.env.ref("uom.product_uom_unit").id,
@@ -102,7 +104,7 @@ class TestPurchaseRequest(TransactionCase):
         ).create(vals)
         wiz_id.make_purchase_order()
         # Unlink purchase_lines from state approved
-        with self.assertRaises(UserError):
+        with self.assertRaises(exceptions.UserError):
             purchase_request_line.unlink()
         purchase = purchase_request_line.purchase_lines.order_id
         purchase.button_done()
