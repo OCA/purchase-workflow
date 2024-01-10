@@ -16,7 +16,6 @@ def pre_init_hook(cr):
 
 
 def store_field_qty_to_receive_and_invoice(cr):
-
     cr.execute(
         """SELECT column_name
     FROM information_schema.columns
