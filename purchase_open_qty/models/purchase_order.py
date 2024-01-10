@@ -17,7 +17,7 @@ class PurchaseOrderLine(models.Model):
         "qty_received",
     )
     def _compute_qty_to_receive(self):
-        service_lines = self.filtered(lambda l: l.product_id.type == "service")
+        service_lines = self.filtered(lambda line: line.product_id.type == "service")
         for line in self - service_lines:
             total = 0.0
             for move in line.move_ids.filtered(
