@@ -33,7 +33,7 @@ class StockMove(models.Model):
 
     @api.model
     def _prepare_merge_moves_distinct_fields(self):
-        distinct_fields = super(StockMove, self)._prepare_merge_moves_distinct_fields()
+        distinct_fields = super()._prepare_merge_moves_distinct_fields()
         distinct_fields += ["created_purchase_request_line_id"]
         return distinct_fields
 
@@ -63,7 +63,7 @@ class StockMove(models.Model):
                         ).id,
                     }
                 )
-        return super(StockMove, self)._action_cancel()
+        return super()._action_cancel()
 
     @api.depends("purchase_request_allocation_ids")
     def _compute_purchase_request_ids(self):
@@ -73,7 +73,7 @@ class StockMove(models.Model):
             )
 
     def _merge_moves_fields(self):
-        res = super(StockMove, self)._merge_moves_fields()
+        res = super()._merge_moves_fields()
         res["purchase_request_allocation_ids"] = [
             (4, m.id) for m in self.mapped("purchase_request_allocation_ids")
         ]
@@ -146,4 +146,4 @@ class StockMove(models.Model):
                     )
                 )
                 alloc.requested_product_uom_qty -= open_qty
-        return super(StockMove, self).copy_data(default)
+        return super().copy_data(default)

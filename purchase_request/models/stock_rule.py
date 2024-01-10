@@ -89,7 +89,7 @@ class StockRule(models.Model):
                 procurements.pop(index)
         if not procurements:
             return
-        return super(StockRule, self)._run_buy(procurements)
+        return super()._run_buy(procurements)
 
     def create_purchase_request(self, procurement_group):
         """
