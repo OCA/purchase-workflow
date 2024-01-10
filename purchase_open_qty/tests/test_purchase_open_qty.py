@@ -179,7 +179,7 @@ class TestPurchaseOpenQty(TransactionCase):
         )
         self.assertTrue(
             self.purchase_order_1.id in found.ids,
-            "Expected PO {} in POs {}".format(self.purchase_order_1.id, found.ids),
+            f"Expected PO {self.purchase_order_1.id} in POs {found.ids}",
         )
         found = self.purchase_order_model.search(
             [
