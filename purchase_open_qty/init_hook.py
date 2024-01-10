@@ -7,24 +7,24 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-def pre_init_hook(cr):
+def pre_init_hook(env):
     """
     The objective of this hook is to speed up the installation
     of the module on an existing Odoo instance.
     """
-    store_field_qty_to_receive_and_invoice(cr)
+    store_field_qty_to_receive_and_invoice(env)
 
 
-def store_field_qty_to_receive_and_invoice(cr):
-    cr.execute(
+def store_field_qty_to_receive_and_invoice(env):
+    env.cr.execute(
         """SELECT column_name
     FROM information_schema.columns
     WHERE table_name='purchase_order_line' AND
     column_name='qty_to_receive'"""
     )
-    if not cr.fetchone():
+    if not env.cr.fetchone():
         logger.info("Creating field qty_to_receive on purchase_order_line")
-        cr.execute(
+        env.cr.execute(
             """
             ALTER TABLE purchase_order_line ADD COLUMN qty_to_receive float;
             COMMENT ON COLUMN purchase_order_line.qty_to_receive IS
@@ -32,15 +32,15 @@ def store_field_qty_to_receive_and_invoice(cr):
             """
         )
 
-    cr.execute(
+    env.cr.execute(
         """SELECT column_name
     FROM information_schema.columns
     WHERE table_name='purchase_order_line' AND
     column_name='qty_to_invoice'"""
     )
-    if not cr.fetchone():
+    if not env.cr.fetchone():
         logger.info("Creating field qty_to_invoice on purchase_order_line")
-        cr.execute(
+        env.cr.execute(
             """
             ALTER TABLE purchase_order_line ADD COLUMN qty_to_invoice float;
             COMMENT ON COLUMN purchase_order_line.qty_to_invoice IS
@@ -52,7 +52,7 @@ def store_field_qty_to_receive_and_invoice(cr):
         "Computing values for fields qty_to_receive and qty_to_invoice"
         " on purchase_order_line"
     )
-    cr.execute(
+    env.cr.execute(
         """
         UPDATE purchase_order_line pol
         SET qty_to_invoice = pol.qty_received - pol.qty_invoiced
@@ -61,7 +61,7 @@ def store_field_qty_to_receive_and_invoice(cr):
         WHERE t.purchase_method = 'receive' AND pol.product_id = p.id
         """
     )
-    cr.execute(
+    env.cr.execute(
         """
         UPDATE purchase_order_line pol
         SET qty_to_invoice = pol.product_qty - pol.qty_invoiced
@@ -70,7 +70,7 @@ def store_field_qty_to_receive_and_invoice(cr):
         WHERE t.purchase_method != 'receive' AND pol.product_id = p.id
         """
     )
-    cr.execute(
+    env.cr.execute(
         """
         UPDATE purchase_order_line
         SET qty_to_receive = pol.qty
