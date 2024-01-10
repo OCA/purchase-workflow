@@ -10,21 +10,21 @@
                 <header>
                     <button
                         name="button_draft"
-                        states="to_approve,approved,rejected,done"
                         string="Reset"
+                        invisible="state not in ('to_approve','approved','rejected','done')"
                         type="object"
                         groups="purchase_request.group_purchase_request_manager"
                     />
                     <button
                         name="button_to_approve"
-                        states="draft"
+                        invisible="state not in ('draft')"
                         string="Request approval"
                         type="object"
                         class="oe_highlight"
                     />
                     <button
                         name="button_approved"
-                        states="to_approve"
+                        invisible="state not in ('to_approve')"
                         string="Approve"
                         type="object"
                         class="oe_highlight"
@@ -32,13 +32,13 @@
                     />
                     <button
                         name="%(action_purchase_request_line_make_purchase_order)d"
-                        states="approved"
+                        invisible="state not in ('approved')"
                         string="Create RFQ"
                         type="action"
                     />
                     <button
                         name="button_done"
-                        states="approved"
+                        invisible="state not in ('approved')"
                         string="Done"
                         type="object"
                         class="oe_highlight"
@@ -46,7 +46,7 @@
                     />
                     <button
                         name="button_rejected"
-                        states="to_approve,approved"
+                        invisible="state not in ('to_approve', 'approved')"
                         string="Reject"
                         type="object"
                         groups="purchase_request.group_purchase_request_manager"
@@ -64,7 +64,7 @@
                             type="object"
                             name="action_view_purchase_request_line"
                             class="oe_stat_button"
-                            attrs="{'invisible':[('line_count', '=', 0)]}"
+                            invisible="line_count == 0"
                             icon="fa-list"
                         >
                             <field name="line_count" widget="statinfo" string="Lines" />
@@ -73,7 +73,7 @@
                             type="object"
                             name="action_view_purchase_order"
                             class="oe_stat_button"
-                            attrs="{'invisible':[('purchase_count', '=', 0)]}"
+                            invisible="purchase_count == 0"
                             icon="fa-shopping-cart"
                             string="Purchase Order"
                         >
@@ -87,7 +87,7 @@
                             type="object"
                             name="action_view_stock_picking"
                             class="oe_stat_button"
-                            attrs="{'invisible':[('move_count', '=', 0)]}"
+                            invisible="move_count == 0"
                             groups="stock.group_stock_manager"
                             icon="fa-truck"
                             string="Picking"
@@ -108,49 +108,37 @@
                         <field
                             name="name"
                             class="oe_inline"
-                            attrs="{'readonly': [('is_name_editable','=', False)]}"
+                            readonly="is_name_editable == False"
                         />
                     </h1>
                     <group>
                         <group>
                             <field
                                 name="requested_by"
-                                attrs="{'readonly': [('is_editable','=', False)]}"
+                                readonly="is_editable == False"
                             />
-                            <field
-                                name="assigned_to"
-                                attrs="{'readonly': [('is_editable','=', False)]}"
-                            />
+                            <field name="assigned_to" readonly="is_editable == False" />
                         </group>
                         <group>
                             <field
                                 name="origin"
                                 class="oe_inline"
-                                attrs="{'readonly': [('is_editable','=', False)]}"
+                                readonly="is_editable == False"
                             />
-                            <field
-                                name="description"
-                                attrs="{'readonly': [('is_editable','=', False)]}"
-                            />
-                            <field
-                                name="group_id"
-                                attrs="{'readonly': [('is_editable','=', False)]}"
-                            />
+                            <field name="description" readonly="is_editable == False" />
+                            <field name="group_id" readonly="is_editable == False" />
                         </group>
                         <group>
-                            <field
-                                name="date_start"
-                                attrs="{'readonly': [('is_editable','=', False)]}"
-                            />
+                            <field name="date_start" readonly="is_editable == False" />
                             <field
                                 name="picking_type_id"
-                                attrs="{'readonly': [('is_editable','=', False)]}"
+                                readonly="is_editable == False"
                             />
                             <field
                                 name="company_id"
                                 groups="base.group_multi_company"
                                 widget="selection"
-                                attrs="{'readonly': [('is_editable','=', False)]}"
+                                readonly="is_editable == False"
                             />
                         </group>
                     </group>
@@ -166,11 +154,11 @@
                                     <field name="product_qty" />
                                     <field
                                         name="product_uom_category_id"
-                                        invisible="1"
+                                        column_invisible="1"
                                     />
                                     <field
                                         name="product_uom_id"
-                                        invisible="1"
+                                        column_invisible="1"
                                         groups="!uom.group_uom"
                                     />
                                     <field
@@ -185,14 +173,14 @@
                                     />
                                     <field name="date_required" />
                                     <field name="estimated_cost" widget="monetary" />
-                                    <field name="currency_id" invisible="1" />
+                                    <field name="currency_id" column_invisible="1" />
                                     <field
                                         name="company_id"
                                         groups="base.group_multi_company"
                                         widget="selection"
                                     />
-                                    <field name="cancelled" invisible="1" />
-                                    <field name="is_editable" invisible="1" />
+                                    <field name="cancelled" column_invisible="1" />
+                                    <field name="is_editable" column_invisible="1" />
                                     <field name="purchased_qty" />
                                     <field
                                         name="purchase_state"
@@ -214,7 +202,7 @@
                                 </tree>
                             </field>
                             <group class="oe_subtotal_footer oe_right">
-                                <field name="currency_id" invisible="1" />
+                                <field name="currency_id" column_invisible="1" />
                                 <div class="oe_subtotal_footer_separator oe_inline">
                                     <label for="estimated_cost" />
                                 </div>
@@ -248,7 +236,7 @@
                 decoration-muted="state in ('rejected')"
                 name="Purchase Request"
             >
-                <field name="message_needaction" invisible="1" />
+                <field name="message_needaction" column_invisible="1" />
                 <field name="name" />
                 <field name="date_start" />
                 <field name="requested_by" widget="many2one_avatar_user" />
@@ -259,7 +247,7 @@
                 />
                 <field name="activity_ids" widget="list_activity" optional="show" />
                 <field name="origin" />
-                <field name="currency_id" invisible="1" />
+                <field name="currency_id" column_invisible="1" />
                 <field name="estimated_cost" optional="hide" />
                 <field
                     name="state"

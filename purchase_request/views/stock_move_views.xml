@@ -33,7 +33,11 @@
         <field name="inherit_id" ref="stock.view_move_form" />
         <field name="arch" type="xml">
             <group name="linked_group" position="after">
-                <group name="allocations" string="Purchase Request Allocations">
+                <group
+                    name="allocations"
+                    string="Purchase Request Allocations"
+                    colspan="2"
+                >
                     <field name="purchase_request_allocation_ids" />
                 </group>
             </group>

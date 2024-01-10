@@ -8,7 +8,7 @@ class Orderpoint(models.Model):
     _inherit = "stock.warehouse.orderpoint"
 
     def _quantity_in_progress(self):
-        res = super(Orderpoint, self)._quantity_in_progress()
+        res = super()._quantity_in_progress()
         for prline in self.env["purchase.request.line"].search(
             [
                 ("request_id.state", "in", ("draft", "approved", "to_approve")),
