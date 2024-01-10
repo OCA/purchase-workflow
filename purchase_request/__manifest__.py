@@ -4,7 +4,7 @@
 {
     "name": "Purchase Request",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
-    "version": "16.0.1.0.3",
+    "version": "17.0.1.0.0",
     "summary": "Use this module to have notification of requirements of "
     "materials and/or external services and keep track of such "
     "requirements.",
@@ -24,7 +24,6 @@
         "views/product_template.xml",
         "views/purchase_order_view.xml",
         "views/stock_move_views.xml",
-        "views/stock_picking_views.xml",
     ],
     "demo": ["demo/purchase_request_demo.xml"],
     "license": "LGPL-3",
