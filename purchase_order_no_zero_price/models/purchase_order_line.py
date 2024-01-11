@@ -15,7 +15,7 @@ class PurchaseOrderLine(models.Model):
         # Also supports `purchase_triple_discount` module
         no_price_lines = self.filtered(
             lambda x: not x.display_type
-            and x.state not in ["draft", "done", "cancel"]
+            and x.state not in ["draft", "cancel"]
             and not x.price_unit
             # Allow zero price for 100% discounts:
             and getattr(x, "discount", 0.0) != 100.0
