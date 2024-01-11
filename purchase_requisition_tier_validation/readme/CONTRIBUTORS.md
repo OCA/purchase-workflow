@@ -4,3 +4,4 @@
 
 - [Trobz](https://trobz.com):  
   - Dzung Tran \<<dungtd@trobz.com>\>
+  - Son Ho \<<sonhd@trobz.com>\>

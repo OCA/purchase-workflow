@@ -99,12 +99,13 @@ Contributors
 -  `Trobz <https://trobz.com>`__:
 
    -  Dzung Tran <dungtd@trobz.com>
+   -  Son Ho <sonhd@trobz.com>
 
 Other credits
 -------------
 
-This module extends the functionality of Purchase Agreements to support
-a tier validation process.
+The migration of this module from 16.0 to 17.0 was financially supported
+by Camptocamp
 
 Maintainers
 -----------
