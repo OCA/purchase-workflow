@@ -27,7 +27,7 @@
                     class="alert alert-danger"
                     role="alert"
                     style="margin-bottom:0px;"
-                    attrs="{'invisible': [('exceptions_summary','=',False)]}"
+                    invisible="not exceptions_summary"
                 >
                     <p>
                         <strong
@@ -47,7 +47,7 @@
             <xpath expr="//field[@name='date_order']/.." position="inside">
                 <field
                     name="ignore_exception"
-                    states="purchase"
+                    invisible="state != 'purchase'"
                     groups='base_exception.group_exception_rule_manager'
                 />
             </xpath>

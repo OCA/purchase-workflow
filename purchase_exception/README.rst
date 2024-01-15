@@ -65,6 +65,15 @@ Contributors
 -  Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
 -  Sudhir Arya <sudhir@erpharbor.com>
 -  Kitti U. <kittiu@ecosoft.co.th> (migration to v14)
+-  ``Trobz <https://trobz.com>``\ \_:
+
+   -  Son Ho <sonhd@trobz.com>
+
+Other credits
+-------------
+
+The migration of this module from 16.0 to 17.0 was financially supported
+by Camptocamp
 
 Maintainers
 -----------

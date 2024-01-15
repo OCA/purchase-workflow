@@ -5,7 +5,7 @@
 {
     "name": "Purchase Exception",
     "summary": "Custom exceptions on purchase order",
-    "version": "16.0.1.0.0",
+    "version": "17.0.1.0.0",
     "category": "Generic Modules/Purchase",
     "author": "Akretion, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/purchase-workflow",
