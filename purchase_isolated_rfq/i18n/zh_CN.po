@@ -1,0 +1,79 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_isolated_rfq
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2021-01-25 08:44+0000\n"
+"Last-Translator: Dong <dong@freshoo.cn>\n"
+"Language-Team: none\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.3.2\n"
+
+#. module: purchase_isolated_rfq
+#: model_terms:ir.ui.view,arch_db:purchase_isolated_rfq.purchase_order_form
+msgid "Cancel"
+msgstr "取消"
+
+#. module: purchase_isolated_rfq
+#: model_terms:ir.ui.view,arch_db:purchase_isolated_rfq.purchase_order_form
+msgid "Convert to Order"
+msgstr "转为采购订单"
+
+#. module: purchase_isolated_rfq
+#: model:ir.model.fields,help:purchase_isolated_rfq.field_purchase_order__quote_id
+msgid "For Purchases Order, this field references to its RFQ"
+msgstr "对于采购订单，该字段引用自采购询价单"
+
+#. module: purchase_isolated_rfq
+#: model:ir.model.fields,help:purchase_isolated_rfq.field_purchase_order__purchase_order_id
+msgid "For RFQ, this field references to its Purchases Order"
+msgstr "对于采购询价单，该字段引用自采购订单"
+
+#. module: purchase_isolated_rfq
+#: code:addons/purchase_isolated_rfq/models/purchase_order.py:0
+#, python-format
+msgid "Only quotation can convert to order"
+msgstr "只有采购询价单可以转为采购订单"
+
+#. module: purchase_isolated_rfq
+#: model:ir.model.fields,help:purchase_isolated_rfq.field_purchase_order__rfq_state
+msgid "Only relative RFQ states"
+msgstr "采购询价单状态"
+
+#. module: purchase_isolated_rfq
+#: model:ir.model.fields,field_description:purchase_isolated_rfq.field_purchase_order__purchase_order_id
+msgid "Order"
+msgstr "采购订单"
+
+#. module: purchase_isolated_rfq
+#: model:ir.model.fields,field_description:purchase_isolated_rfq.field_purchase_order__order_sequence
+msgid "Order Sequence"
+msgstr "订单编号"
+
+#. module: purchase_isolated_rfq
+#: model:ir.model,name:purchase_isolated_rfq.model_purchase_order
+msgid "Purchase Order"
+msgstr "采购订单"
+
+#. module: purchase_isolated_rfq
+#: code:addons/purchase_isolated_rfq/models/purchase_order.py:0
+#, python-format
+msgid "Purchases Order"
+msgstr "采购订单"
+
+#. module: purchase_isolated_rfq
+#: model:ir.model.fields,field_description:purchase_isolated_rfq.field_purchase_order__quote_id
+msgid "Quotation"
+msgstr "询价单"
+
+#. module: purchase_isolated_rfq
+#: model:ir.model.fields,field_description:purchase_isolated_rfq.field_purchase_order__rfq_state
+msgid "RFQ Status"
+msgstr "询价单状态"
