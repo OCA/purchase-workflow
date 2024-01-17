@@ -19,15 +19,16 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-01-07 05:29+0000\n"
-"PO-Revision-Date: 2017-01-11 15:36+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/OCA-purchase-"
-"workflow-8-0/language/es/)\n"
+"PO-Revision-Date: 2024-01-17 21:35+0000\n"
+"Last-Translator: Gil Arasa Verge <gilarasaverge@gmail.com>\n"
+"Language-Team: Spanish (http://www.transifex.com/oca/"
+"OCA-purchase-workflow-8-0/language/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: procurement_batch_generator
 #: model_terms:ir.ui.view,arch_db:procurement_batch_generator.procurement_batch_generator_form
@@ -38,7 +39,7 @@ msgstr "Cancelar"
 #: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator__company_id
 #: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator_line__company_id
 msgid "Company"
-msgstr ""
+msgstr "Compañia"
 
 #. module: procurement_batch_generator
 #: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator__create_uid
@@ -61,7 +62,7 @@ msgstr "Nombre mostrado"
 #. module: procurement_batch_generator
 #: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator_line__product_has_variants
 msgid "Has variants"
-msgstr ""
+msgstr "Tiene variantes"
 
 #. module: procurement_batch_generator
 #: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator__id
@@ -72,7 +73,7 @@ msgstr "ID"
 #. module: procurement_batch_generator
 #: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator_line__incoming_qty
 msgid "Incoming Qty"
-msgstr ""
+msgstr "Ctd entrante"
 
 #. module: procurement_batch_generator
 #: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator____last_update
@@ -95,33 +96,33 @@ msgstr "Última actualización el"
 #. module: procurement_batch_generator
 #: model:ir.model,name:procurement_batch_generator.model_procurement_batch_generator_line
 msgid "Lines of the wizard to request procurements"
-msgstr ""
+msgstr "Líneas del asistente para solicitar reabastecimientos"
 
 #. module: procurement_batch_generator
 #: code:addons/procurement_batch_generator/wizard/procurement_batch_generator.py:0
 #, python-format
 msgid "Manual Replenishment"
-msgstr ""
+msgstr "Reposición manual"
 
 #. module: procurement_batch_generator
 #: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator_line__outgoing_qty
 msgid "Outgoing Qty"
-msgstr ""
+msgstr "Ctd saliente"
 
 #. module: procurement_batch_generator
 #: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator_line__parent_id
 msgid "Parent"
-msgstr ""
+msgstr "Padre"
 
 #. module: procurement_batch_generator
 #: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator_line__route_ids
 msgid "Preferred Routes"
-msgstr ""
+msgstr "Rutas preferidas"
 
 #. module: procurement_batch_generator
 #: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator__line_ids
 msgid "Procurement Request Lines"
-msgstr ""
+msgstr "Líneas de solicitud de abastecimiento"
 
 #. module: procurement_batch_generator
 #: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator_line__product_id
@@ -131,33 +132,33 @@ msgstr "Producto"
 #. module: procurement_batch_generator
 #: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator_line__product_tmpl_id
 msgid "Product Template"
-msgstr ""
+msgstr "Plantilla de producto"
 
 #. module: procurement_batch_generator
 #: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator_line__qty_available
 msgid "Qty Available"
-msgstr ""
+msgstr "Ctd disponible"
 
 #. module: procurement_batch_generator
 #: model_terms:ir.ui.view,arch_db:procurement_batch_generator.procurement_batch_generator_form
 msgid "Replanish"
-msgstr ""
+msgstr "Reabastecer"
 
 #. module: procurement_batch_generator
 #: model:ir.actions.act_window,name:procurement_batch_generator.procurement_batch_generator_product_product_tree_action
 #: model:ir.actions.act_window,name:procurement_batch_generator.procurement_batch_generator_product_template_tree_action
 msgid "Replenish"
-msgstr ""
+msgstr "Reabastecer"
 
 #. module: procurement_batch_generator
 #: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator_line__procurement_qty
 msgid "Requested Qty"
-msgstr ""
+msgstr "Ctd pedida"
 
 #. module: procurement_batch_generator
 #: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator_line__date_planned
 msgid "Scheduled Date"
-msgstr ""
+msgstr "Fecha planificada"
 
 #. module: procurement_batch_generator
 #: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator_line__partner_id
@@ -168,13 +169,13 @@ msgstr "Proveedor"
 #: code:addons/procurement_batch_generator/wizard/procurement_batch_generator.py:0
 #, python-format
 msgid "The requested quantity cannot be negative for product '%s'."
-msgstr ""
+msgstr "La cantidad solicitada no puede ser negativa para el producto '%s'."
 
 #. module: procurement_batch_generator
 #: code:addons/procurement_batch_generator/wizard/procurement_batch_generator.py:0
 #, python-format
 msgid "There are no lines!"
-msgstr ""
+msgstr "No hay líneas!"
 
 #. module: procurement_batch_generator
 #: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator_line__uom_id
@@ -184,12 +185,12 @@ msgstr "Unidad de medida"
 #. module: procurement_batch_generator
 #: model_terms:ir.ui.view,arch_db:procurement_batch_generator.procurement_batch_generator_form
 msgid "UoM"
-msgstr ""
+msgstr "UdM"
 
 #. module: procurement_batch_generator
 #: model_terms:ir.ui.view,arch_db:procurement_batch_generator.procurement_batch_generator_form
 msgid "Validate"
-msgstr ""
+msgstr "Validar"
 
 #. module: procurement_batch_generator
 #: model:ir.model.fields,field_description:procurement_batch_generator.field_procurement_batch_generator__warehouse_id
@@ -199,7 +200,7 @@ msgstr "Almacén"
 #. module: procurement_batch_generator
 #: model:ir.model,name:procurement_batch_generator.model_procurement_batch_generator
 msgid "Wizard to create procurements from product tree"
-msgstr ""
+msgstr "Asistente para crear abastecimientos desde el árbol de productos"
 
 #~ msgid "Planned Date"
 #~ msgstr "Fecha planificada"
