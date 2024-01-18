@@ -3,6 +3,7 @@
 from datetime import date, timedelta
 
 from odoo import fields
+from odoo.exceptions import ValidationError
 from odoo.tests import common
 
 
@@ -17,11 +18,14 @@ class TestPurchaseOrder(common.TransactionCase):
         self.partner = self.env["res.partner"].create(
             {"name": "TEST SUPPLIER", "supplier_rank": 1}
         )
+        self.partner_2 = self.env["res.partner"].create(
+            {"name": "TEST SUPPLIER 2", "supplier_rank": 2}
+        )
         self.payment_term = self.env.ref("account.account_payment_term_30days")
 
         # Seller IDS
         seller = self.env["product.supplierinfo"].create(
-            {"name": self.partner.id, "price": 30.0}
+            {"partner_id": self.partner.id, "price": 30.0}
         )
 
         self.product = self.env["product.product"].create(
@@ -49,6 +53,9 @@ class TestPurchaseOrder(common.TransactionCase):
         self.validity = date.today() + timedelta(days=365)
         self.date_schedule_1 = date.today() + timedelta(days=10)
         self.date_schedule_2 = date.today() + timedelta(days=20)
+        self.currency_test = self.env["res.currency"].create(
+            {"name": "Test Currency", "symbol": "T"}
+        )
 
     def create_blanket_order_01(self):
         blanket_order = self.blanket_order_obj.create(
@@ -200,3 +207,11 @@ class TestPurchaseOrder(common.TransactionCase):
             ]
         )
         self.assertEqual(po_line.blanket_order_line, bo_line_assigned)
+
+        # change currency of the PO line
+        with self.assertRaises(ValidationError):
+            po.write({"currency_id": self.currency_test})
+
+        # change partner of the PO line
+        with self.assertRaises(ValidationError):
+            po.write({"partner_id": self.partner_2})

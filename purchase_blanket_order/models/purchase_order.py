@@ -66,7 +66,9 @@ class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
     blanket_order_line = fields.Many2one(
-        comodel_name="purchase.blanket.order.line", copy=False
+        comodel_name="purchase.blanket.order.line",
+        copy=False,
+        domain="[('product_id', '=', product_id)]",
     )
 
     def _get_assigned_bo_line(self, bo_lines):
@@ -126,11 +128,12 @@ class PurchaseOrderLine(models.Model):
             return self.get_assigned_bo_line()
         return res
 
-    @api.onchange("product_qty", "product_uom")
-    def _onchange_quantity(self):
-        res = super()._onchange_quantity()
-        if self.product_id and not self.env.context.get("skip_blanket_find", False):
-            return self.get_assigned_bo_line()
+    @api.depends("product_qty", "product_uom")
+    def _compute_price_unit_and_date_planned_and_name(self):
+        res = super()._compute_price_unit_and_date_planned_and_name()
+        for rec in self:
+            if rec.product_id and not rec.env.context.get("skip_blanket_find", False):
+                return rec.get_assigned_bo_line()
         return res
 
     @api.onchange("blanket_order_line")
@@ -151,7 +154,9 @@ class PurchaseOrderLine(models.Model):
                 self.taxes_id = bol.taxes_id
         else:
             self._compute_tax_id()
-            self.with_context(skip_blanket_find=True)._onchange_quantity()
+            self.with_context(
+                skip_blanket_find=True
+            )._compute_price_unit_and_date_planned_and_name()
 
     @api.constrains("date_planned")
     def check_date_planned(self):

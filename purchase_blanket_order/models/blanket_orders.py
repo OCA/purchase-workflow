@@ -14,10 +14,6 @@ class BlanketOrder(models.Model):
     _order = "date_start desc, id desc"
 
     @api.model
-    def _default_currency(self):
-        return self.env.user.company_id.currency_id
-
-    @api.model
     def _default_company(self):
         return self.env.user.company_id
 
@@ -227,7 +223,7 @@ class BlanketOrder(models.Model):
         self.fiscal_position_id = (
             self.env["account.fiscal.position"]
             .with_context(company_id=self.company_id.id)
-            .get_fiscal_position(self.partner_id.id)
+            ._get_fiscal_position(partner=self.partner_id)
         )
 
         self.currency_id = (
@@ -329,7 +325,7 @@ class BlanketOrder(models.Model):
             [("state", "=", "open"), ("validity_date", "<=", today)]
         )
         expired_orders.modified(["validity_date"])
-        expired_orders.recompute()
+        expired_orders.env.flush_all()
 
     @api.model
     def _search_original_uom_qty(self, operator, value):
