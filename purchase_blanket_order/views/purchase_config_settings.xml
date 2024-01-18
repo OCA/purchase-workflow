@@ -23,7 +23,7 @@
                         <div class="o_setting_right_pane">
                             <label for="group_purchase_blanket_disable_adding_lines" />
                             <div class="text-muted">
-                                Disable adding more lines to SOs from Blanket Orders
+                                Disable adding more lines to POs from Blanket Orders
                             </div>
                         </div>
                     </div>

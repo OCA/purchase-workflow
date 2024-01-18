@@ -14,6 +14,9 @@ class TestPurchaseBlanketOrders(common.TransactionCase):
         self.blanket_order_line_obj = self.env["purchase.blanket.order.line"]
         self.blanket_order_wiz_obj = self.env["purchase.blanket.order.wizard"]
 
+        self.user_test = self.env["res.users"].create(
+            {"name": "Test user", "login": "test_login"}
+        )
         self.partner = self.env["res.partner"].create(
             {"name": "TEST SUPPLIER", "supplier_rank": 1}
         )
@@ -21,7 +24,7 @@ class TestPurchaseBlanketOrders(common.TransactionCase):
 
         # Seller IDS
         seller = self.env["product.supplierinfo"].create(
-            {"name": self.partner.id, "price": 30.0}
+            {"partner_id": self.partner.id, "price": 30.0}
         )
 
         self.product = self.env["product.product"].create(
@@ -33,6 +36,7 @@ class TestPurchaseBlanketOrders(common.TransactionCase):
                 "type": "consu",
                 "uom_id": self.env.ref("uom.product_uom_unit").id,
                 "default_code": "PROD_DEL01",
+                "description_purchase": "Purchase Description",
             }
         )
         self.product2 = self.env["product.product"].create(
@@ -65,18 +69,26 @@ class TestPurchaseBlanketOrders(common.TransactionCase):
                         0,
                         {
                             "product_id": self.product.id,
-                            "product_uom": self.product.uom_id.id,
                             "original_uom_qty": 20.0,
                             "price_unit": 0.0,  # will be updated later
+                            "product_uom": self.product.uom_id.id,
                         },
                     )
                 ],
             }
         )
         blanket_order.sudo().onchange_partner_id()
+        blanket_order.line_ids[0].write({"product_uom": False})
         blanket_order.line_ids[0].sudo().onchange_product()
         blanket_order._compute_line_count()
         blanket_order._compute_uom_qty()
+        name = (
+            "[{}] {}".format(self.product.name, self.product.code)
+            + "\n"
+            + self.product.description_purchase
+        )
+        self.assertEqual(blanket_order.line_ids[0].name, name)
+        self.assertEqual(blanket_order.line_ids[0].product_uom, self.product.uom_id)
 
         self.assertEqual(blanket_order.state, "draft")
         self.assertEqual(blanket_order.line_ids[0].price_unit, 30.0)
@@ -111,7 +123,7 @@ class TestPurchaseBlanketOrders(common.TransactionCase):
         blanket_order._search_received_uom_qty(">=", 0.0)
         blanket_order._search_remaining_uom_qty(">=", 0.0)
 
-    def test__02_create_purchase_orders_from_blanket_order(self):
+    def test_02_create_purchase_orders_from_blanket_order(self):
         """We create a blanket order and create two purchase orders"""
         blanket_order = self.blanket_order_obj.create(
             {
@@ -226,3 +238,61 @@ class TestPurchaseBlanketOrders(common.TransactionCase):
 
         self.assertEqual(bo_lines[0].remaining_uom_qty, 10.0)
         self.assertEqual(bo_lines[1].remaining_uom_qty, 30.0)
+
+    def test_04_constraints_blanket_order(self):
+        """We create a blanket order and check constraints"""
+        blanket_order = self.blanket_order_obj.create(
+            {
+                "partner_id": self.partner.id,
+                "partner_ref": "REF",
+                "validity_date": fields.Date.to_string(self.tomorrow),
+                "payment_term_id": self.payment_term.id,
+                "line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.product.id,
+                            "product_uom": self.product.uom_id.id,
+                            "original_uom_qty": 20.0,
+                            "price_unit": 30.0,
+                        },
+                    )
+                ],
+            }
+        )
+        blanket_order.write({"partner_id": False})
+        blanket_order.onchange_partner_id()
+        self.assertFalse(blanket_order.payment_term_id)
+        self.assertFalse(blanket_order.fiscal_position_id)
+
+        self.partner.user_id = self.user_test
+        blanket_order.write({"partner_id": self.partner.id})
+        blanket_order.onchange_partner_id()
+        self.assertEqual(blanket_order.user_id, self.user_test)
+        blanket_order.sudo().action_confirm()
+        self.assertEqual(blanket_order.state, "open")
+
+        # remove open BO
+        with self.assertRaises(UserError):
+            blanket_order.sudo().unlink()
+
+        wizard1 = self.blanket_order_wiz_obj.with_context(
+            active_id=blanket_order.id, active_model="purchase.blanket.order"
+        ).create({})
+        wizard1.line_ids[0].write({"qty": 10.0})
+        res = wizard1.sudo().create_purchase_order()
+        po = self._get_po_from_wizard(res)
+
+        # cancel BO with PO not cancelled
+        with self.assertRaises(UserError):
+            blanket_order.sudo().action_cancel()
+
+        po.button_cancel()
+        blanket_order.sudo().action_cancel()
+
+        with self.assertRaises(UserError):
+            # Blanket order expired
+            self.blanket_order_wiz_obj.with_context(
+                active_id=blanket_order.id, active_model="purchase.blanket.order"
+            ).create({})

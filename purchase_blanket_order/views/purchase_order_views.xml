@@ -30,13 +30,13 @@
         >purchase.order.from.blanket.form - disable adding lines</field>
         <field name="model">purchase.order</field>
         <field name="inherit_id" ref="purchase.purchase_order_form" />
-        <field
-            name="groups_id"
-            eval="[(6,0,[ref('purchase_blanket_order.purchase_blanket_orders_disable_adding_lines')])]"
-        />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='order_line']//tree" position="attributes">
                 <attribute name="create">blanket_order_id==False</attribute>
+                <field
+                    name="groups"
+                    eval="[(6,0,[ref('purchase_blanket_order.purchase_blanket_orders_disable_adding_lines')])]"
+                />
             </xpath>
         </field>
     </record>
