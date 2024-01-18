@@ -3,7 +3,7 @@
 
 {
     "name": "Purchase Order No Zero Price",
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.0.1",
     "author": "Open Source Integrators, Odoo Community Association (OCA)",
     "summary": "Prevent zero price lines on Purchase Orders",
     "website": "https://github.com/OCA/purchase-workflow",
