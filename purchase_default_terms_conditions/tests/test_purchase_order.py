@@ -29,6 +29,7 @@ class TestPurchase(AccountTestInvoicingCommon):
         cls.partner_a.write(
             {"purchase_note": "Purchase Default Terms and Conditions Partner"}
         )
+        cls.company = cls.company_data["company"]
 
     def test_onchange_partner_id(self):
 
@@ -62,3 +63,46 @@ class TestPurchase(AccountTestInvoicingCommon):
         self.env["ir.config_parameter"].set_param("purchase.use_purchase_note", "Test")
 
         purchase_order.onchange_partner_id()
+
+    def test_create(self):
+        purchase_order1 = (
+            self.env["purchase.order"]
+            .with_context(tracking_disable=True)
+            .create({"partner_id": self.partner_a.id, "company_id": self.company.id})
+        )
+        self.assertEqual(
+            purchase_order1.notes, "Purchase Default Terms and Conditions Partner"
+        )
+
+        self.partner_a.write({"purchase_note": False})
+
+        company_notes = "Purchase Default Terms and Conditions Company"
+        self.env["ir.config_parameter"].set_param(
+            "purchase.use_purchase_note", company_notes
+        )
+        self.company.write({"purchase_note": company_notes})
+
+        purchase_order2 = (
+            self.env["purchase.order"]
+            .with_context(tracking_disable=True)
+            .create({"partner_id": self.partner_a.id, "company_id": self.company.id})
+        )
+        self.assertEqual(purchase_order2.notes, company_notes)
+
+        self.env["ir.config_parameter"].set_param("purchase.use_purchase_note", False)
+        self.company.write({"purchase_note": False})
+
+        po_notes = "Purchase Order Terms and Conditions"
+
+        purchase_order3 = (
+            self.env["purchase.order"]
+            .with_context(tracking_disable=True)
+            .create(
+                {
+                    "partner_id": self.partner_a.id,
+                    "company_id": self.company.id,
+                    "notes": po_notes,
+                }
+            )
+        )
+        self.assertEqual(purchase_order3.notes, po_notes)
