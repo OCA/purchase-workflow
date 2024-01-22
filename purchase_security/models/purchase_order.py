@@ -1,6 +1,7 @@
 # © 2023 Solvos Consultoría Informática (<http://www.solvos.es>)
 # Copyright 2023 Tecnativa - Stefan Ungureanu
 # Copyright 2023 Tecnativa - Pedro M. Baeza
+# Copyright 2024 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
@@ -35,11 +36,18 @@ class PurchaseOrder(models.Model):
         """
         first_team = self.env["purchase.team"].search([], limit=1)
         for record in self:
-            if record.user_id:
-                team = self.env["purchase.team"].search(
-                    [("user_ids", "=", record.user_id.id)], limit=1
+            record.team_id = record.user_id.purchase_team_ids[:1] or first_team
+
+    def onchange_partner_id(self):
+        res = super().onchange_partner_id()
+        if self.partner_id:
+            partner = self.partner_id.commercial_partner_id
+            if not self.env.context.get("default_user_id"):
+                self.user_id = partner.purchase_user_id or self.env.user
+            if not self.env.context.get("default_team_id"):
+                self.team_id = (
+                    partner.purchase_team_id
+                    or self.user_id.purchase_team_ids[:1]
+                    or self.env["purchase.team"].search([], limit=1)
                 )
-                if team:
-                    record.team_id = team.id
-                    continue
-            record.team_id = first_team.id
+        return res
