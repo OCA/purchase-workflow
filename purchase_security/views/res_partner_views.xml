@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_res_partner_filter" model="ir.ui.view">
+        <field name="name">res.partner.select</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter" />
+        <field name="arch" type="xml">
+            <field name="user_id" position="after">
+                <field
+                    name="purchase_user_id"
+                    groups="purchase_security.group_purchase_own_orders"
+                />
+            </field>
+            <filter name="salesperson" position="after">
+                <filter
+                    name="purchase_user_id_filter"
+                    groups="purchase_security.group_purchase_own_orders"
+                    string="Purchase representative"
+                    domain="[]"
+                    context="{'group_by' : 'purchase_user_id'}"
+                />
+            </filter>
+        </field>
+    </record>
+    <record id="view_partner_tree" model="ir.ui.view">
+        <field name="name">res.partner.tree</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree" />
+        <field name="arch" type="xml">
+            <field name="user_id" position="after">
+                <field
+                    name="purchase_user_id"
+                    groups="purchase_security.group_purchase_own_orders"
+                    optional="show"
+                    widget="many2one_avatar_user"
+                />
+            </field>
+        </field>
+    </record>
+    <record id="view_partner_property_form" model="ir.ui.view">
+        <field name="name">res.partner.property.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.view_partner_property_form" />
+        <field name="arch" type="xml">
+            <!-- Use this field to place the field first in Purchase group. !-->
+            <field name="property_supplier_payment_term_id" position="before">
+                <field
+                    name="purchase_user_id"
+                    groups="purchase_security.group_purchase_own_orders"
+                    widget="many2one_avatar_user"
+                />
+                <field
+                    name="purchase_team_id"
+                    groups="purchase_security.group_purchase_own_orders"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>

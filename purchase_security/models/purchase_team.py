@@ -12,4 +12,10 @@ class PurchaseTeam(models.Model):
 
     name = fields.Char(required=True)
     sequence = fields.Integer(default=10)
-    user_ids = fields.Many2many("res.users", string="Purchase Users")
+    user_ids = fields.Many2many(
+        comodel_name="res.users",
+        relation="purchase_team_res_users_rel",
+        column1="purchase_team_id",
+        column2="res_users_id",
+        string="Purchase Users",
+    )
