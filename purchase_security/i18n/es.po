@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2023-07-24 20:25+0200\n"
+"POT-Creation-Date: 2024-02-13 13:34+0000\n"
+"PO-Revision-Date: 2024-02-13 14:34+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -20,16 +20,21 @@ msgstr ""
 #. module: purchase_security
 #: model_terms:ir.ui.view,arch_db:purchase_security.purchase_team_form
 msgid ""
-"<i class=\"fa fa-envelope mr-1\" role=\"img\" aria-label=\"Email\" title="
-"\"Email\"/>"
+"<i class=\"fa fa-envelope mr-1\" role=\"img\" aria-label=\"Email\" "
+"title=\"Email\"/>"
 msgstr ""
-"<i class=\"fa fa-envelope mr-1\" role=\"img\" aria-label=\"Correo electrónico"
-"\" title=\"Correo electrónico\"/>"
+"<i class=\"fa fa-envelope mr-1\" role=\"img\" aria-label=\"Correo "
+"electrónico\" title=\"Correo electrónico\"/>"
 
 #. module: purchase_security
 #: model_terms:ir.ui.view,arch_db:purchase_security.purchase_team_form
 msgid "Avatar"
 msgstr "Avatar"
+
+#. module: purchase_security
+#: model:ir.model,name:purchase_security.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
 
 #. module: purchase_security
 #: model:ir.model.fields,field_description:purchase_security.field_purchase_team__create_uid
@@ -99,6 +104,29 @@ msgid "Purchase Users"
 msgstr "Usuarios de compra"
 
 #. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_res_partner__purchase_user_id
+#: model:ir.model.fields,field_description:purchase_security.field_res_users__purchase_user_id
+#: model_terms:ir.ui.view,arch_db:purchase_security.view_res_partner_filter
+msgid "Purchase representative"
+msgstr "Representante de compra"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_res_partner__purchase_team_id
+#: model:ir.model.fields,field_description:purchase_security.field_res_users__purchase_team_id
+msgid "Purchase team"
+msgstr "Equipo de compra"
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_res_users__purchase_team_ids
+msgid "Purchases Teams"
+msgstr "Equipos de compras"
+
+#. module: purchase_security
+#: model:ir.model,name:purchase_security.model_ir_rule
+msgid "Record Rule"
+msgstr ""
+
+#. module: purchase_security
 #: model:ir.model.fields,field_description:purchase_security.field_purchase_team__sequence
 msgid "Sequence"
 msgstr "Secuencia"
@@ -117,6 +145,11 @@ msgstr "Usuario (pedidos propios)"
 #: model:res.groups,name:purchase_security.group_purchase_group_orders
 msgid "User (team orders)"
 msgstr "Usuario (pedidos del equipo)"
+
+#. module: purchase_security
+#: model:ir.model,name:purchase_security.model_res_users
+msgid "Users"
+msgstr "Usuarios"
 
 #. module: purchase_security
 #: model_terms:ir.ui.view,arch_db:purchase_security.purchase_team_form
