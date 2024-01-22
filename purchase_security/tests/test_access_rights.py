@@ -1,17 +1,14 @@
 # Copyright 2020 Tecnativa - Víctor Martínez
 # Copyright 2023 Tecnativa - Stefan Ungureanu
 # Copyright 2023 Tecnativa - Pedro M. Baeza
+# Copyright 2024 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-import logging
-
-from odoo.tests import new_test_user
-from odoo.tests.common import TransactionCase
-
-_logger = logging.getLogger(__name__)
+from odoo.tests import Form, common, new_test_user
+from odoo.tests.common import users
 
 
-class TestPurchaseOrderSecurity(TransactionCase):
+class TestPurchaseOrderSecurity(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -98,6 +95,50 @@ class TestPurchaseOrderSecurity(TransactionCase):
                 },
             )
         )
+
+    @users("group_purchase_team_1_orders")
+    def test_new_purchase_order(self):
+        order_form_1 = Form(self.env["purchase.order"])
+        self.assertEqual(order_form_1.user_id, self.user_group_team_1)
+        self.assertEqual(order_form_1.team_id, self.team1)
+        order_form_1.partner_id = self.partner_po
+        self.assertEqual(order_form_1.user_id, self.user_group_team_1)
+        self.assertEqual(order_form_1.team_id, self.team1)
+        # order_form with default_user_id (user_group_team_2 > team_2)
+        self.team1.write({"user_ids": [(3, self.user_group_team_2.id)]})
+        self.team2.write({"user_ids": [(4, self.user_group_team_2.id)]})
+        order_form_2 = Form(
+            self.env["purchase.order"].with_context(
+                default_user_id=self.user_group_team_2.id
+            )
+        )
+        self.assertEqual(order_form_2.user_id, self.user_group_team_2)
+        self.assertEqual(order_form_2.team_id, self.team2)
+        order_form_2.partner_id = self.partner_po
+        self.assertEqual(order_form_2.user_id, self.user_group_team_2)
+        self.assertEqual(order_form_2.team_id, self.team2)
+        # order_form with default_user_id (user_group_team_3 > without team)
+        order_form_2 = Form(
+            self.env["purchase.order"].with_context(
+                default_user_id=self.user_group_team_3.id
+            )
+        )
+        self.assertEqual(order_form_2.user_id, self.user_group_team_3)
+        self.assertEqual(order_form_2.team_id, self.team1)
+        order_form_2.partner_id = self.partner_po
+        self.assertEqual(order_form_2.user_id, self.user_group_team_3)
+        self.assertEqual(order_form_2.team_id, self.team1)
+
+    def _check_permission(self, user, team, expected):
+        self.partner_po.write(
+            {
+                "purchase_user_id": user.id if user else user,
+                "purchase_team_id": team.id if team else team,
+            }
+        )
+        domain = [("id", "=", self.partner_po.id)]
+        obj = self.env[self.partner_po._name]
+        self.assertEqual(bool(obj.search(domain)), expected)
 
     def test_po_auto_team(self):
         order = self.env["purchase.order"].search([("name", "=", "po_security_2")])
@@ -194,3 +235,143 @@ class TestPurchaseOrderSecurity(TransactionCase):
             ),
             1,
         )
+
+    @users("po_user")
+    def test_partner_permissions_01(self):
+        """User with purchase.group_purchase_user group."""
+        self._check_permission(False, False, True)
+        self._check_permission(False, self.team1, True)
+        self._check_permission(False, self.team2, True)
+        self._check_permission(self.user_group_purchase_own_orders, False, True)
+        self._check_permission(self.user_group_purchase_own_orders, self.team1, True)
+        self._check_permission(self.user_group_purchase_own_orders, self.team2, True)
+        self._check_permission(self.user_group_team_1, False, True)
+        self._check_permission(self.user_group_team_1, self.team1, True)
+        self._check_permission(self.user_group_team_1, self.team2, True)
+        self._check_permission(self.user_group_team_2, False, True)
+        self._check_permission(self.user_group_team_2, self.team1, True)
+        self._check_permission(self.user_group_team_2, self.team2, True)
+        self._check_permission(self.user_group_team_3, False, True)
+        self._check_permission(self.user_group_team_3, self.team1, True)
+        self._check_permission(self.user_group_team_3, self.team2, True)
+        self._check_permission(self.user_po_user, False, True)
+        self._check_permission(self.user_po_user, self.team1, True)
+        self._check_permission(self.user_po_user, self.team2, True)
+        self._check_permission(self.user_po_manager, False, True)
+        self._check_permission(self.user_po_manager, self.team1, True)
+        self._check_permission(self.user_po_manager, self.team2, True)
+        self._check_permission(self.user_without_groups, False, True)
+        self._check_permission(self.user_without_groups, self.team1, True)
+        self._check_permission(self.user_without_groups, self.team2, True)
+
+    @users("group_purchase_own_orders")
+    def test_partner_permissions_02(self):
+        """User with purchase_security.group_purchase_own_orders group."""
+        self._check_permission(False, False, True)
+        self._check_permission(False, self.team1, False)
+        self._check_permission(False, self.team2, False)
+        self._check_permission(self.user_group_purchase_own_orders, False, True)
+        self._check_permission(self.user_group_purchase_own_orders, self.team1, True)
+        self._check_permission(self.user_group_purchase_own_orders, self.team2, True)
+        self._check_permission(self.user_group_team_1, False, False)
+        self._check_permission(self.user_group_team_1, self.team1, False)
+        self._check_permission(self.user_group_team_1, self.team2, False)
+        self._check_permission(self.user_group_team_2, False, False)
+        self._check_permission(self.user_group_team_2, self.team1, False)
+        self._check_permission(self.user_group_team_2, self.team2, False)
+        self._check_permission(self.user_group_team_3, False, False)
+        self._check_permission(self.user_group_team_3, self.team1, False)
+        self._check_permission(self.user_group_team_3, self.team2, False)
+        self._check_permission(self.user_po_user, False, False)
+        self._check_permission(self.user_po_user, self.team1, False)
+        self._check_permission(self.user_po_user, self.team2, False)
+        self._check_permission(self.user_po_manager, False, False)
+        self._check_permission(self.user_po_manager, self.team1, False)
+        self._check_permission(self.user_po_manager, self.team2, False)
+        self._check_permission(self.user_without_groups, False, False)
+        self._check_permission(self.user_without_groups, self.team1, False)
+        self._check_permission(self.user_without_groups, self.team2, False)
+
+    @users("group_purchase_team_1_orders")
+    def test_partner_permissions_03(self):
+        """User with purchase_security.group_purchase_group_orders group."""
+        self._check_permission(False, False, True)
+        self._check_permission(False, self.team1, True)
+        self._check_permission(False, self.team2, False)
+        self._check_permission(self.user_group_purchase_own_orders, False, True)
+        self._check_permission(self.user_group_purchase_own_orders, self.team1, True)
+        self._check_permission(self.user_group_purchase_own_orders, self.team2, False)
+        self._check_permission(self.user_group_team_1, False, True)
+        self._check_permission(self.user_group_team_1, self.team1, True)
+        self._check_permission(self.user_group_team_1, self.team2, False)
+        self._check_permission(self.user_group_team_2, False, True)
+        self._check_permission(self.user_group_team_2, self.team1, True)
+        self._check_permission(self.user_group_team_2, self.team2, False)
+        self._check_permission(self.user_group_team_3, False, True)
+        self._check_permission(self.user_group_team_3, self.team1, True)
+        self._check_permission(self.user_group_team_3, self.team2, False)
+        self._check_permission(self.user_po_user, False, True)
+        self._check_permission(self.user_po_user, self.team1, True)
+        self._check_permission(self.user_po_user, self.team2, False)
+        self._check_permission(self.user_po_manager, False, True)
+        self._check_permission(self.user_po_manager, self.team1, True)
+        self._check_permission(self.user_po_manager, self.team2, False)
+        self._check_permission(self.user_without_groups, False, True)
+        self._check_permission(self.user_without_groups, self.team1, True)
+        self._check_permission(self.user_without_groups, self.team2, False)
+
+    @users("po_manager")
+    def test_partner_permissions_04(self):
+        """User with purchase.group_purchase_manager group."""
+        self._check_permission(False, False, True)
+        self._check_permission(False, self.team1, True)
+        self._check_permission(False, self.team2, True)
+        self._check_permission(self.user_group_purchase_own_orders, False, True)
+        self._check_permission(self.user_group_purchase_own_orders, self.team1, True)
+        self._check_permission(self.user_group_purchase_own_orders, self.team2, True)
+        self._check_permission(self.user_group_team_1, False, True)
+        self._check_permission(self.user_group_team_1, self.team1, True)
+        self._check_permission(self.user_group_team_1, self.team2, True)
+        self._check_permission(self.user_group_team_2, False, True)
+        self._check_permission(self.user_group_team_2, self.team1, True)
+        self._check_permission(self.user_group_team_2, self.team2, True)
+        self._check_permission(self.user_group_team_3, False, True)
+        self._check_permission(self.user_group_team_3, self.team1, True)
+        self._check_permission(self.user_group_team_3, self.team2, True)
+        self._check_permission(self.user_po_user, False, True)
+        self._check_permission(self.user_po_user, self.team1, True)
+        self._check_permission(self.user_po_user, self.team2, True)
+        self._check_permission(self.user_po_manager, False, True)
+        self._check_permission(self.user_po_manager, self.team1, True)
+        self._check_permission(self.user_po_manager, self.team2, True)
+        self._check_permission(self.user_without_groups, False, True)
+        self._check_permission(self.user_without_groups, self.team1, True)
+        self._check_permission(self.user_without_groups, self.team2, True)
+
+    @users("without_groups")
+    def test_partner_permissions_05(self):
+        """User witout groups"""
+        self._check_permission(False, False, True)
+        self._check_permission(False, self.team1, True)
+        self._check_permission(False, self.team2, True)
+        self._check_permission(self.user_group_purchase_own_orders, False, True)
+        self._check_permission(self.user_group_purchase_own_orders, self.team1, True)
+        self._check_permission(self.user_group_purchase_own_orders, self.team2, True)
+        self._check_permission(self.user_group_team_1, False, True)
+        self._check_permission(self.user_group_team_1, self.team1, True)
+        self._check_permission(self.user_group_team_1, self.team2, True)
+        self._check_permission(self.user_group_team_2, False, True)
+        self._check_permission(self.user_group_team_2, self.team1, True)
+        self._check_permission(self.user_group_team_2, self.team2, True)
+        self._check_permission(self.user_group_team_3, False, True)
+        self._check_permission(self.user_group_team_3, self.team1, True)
+        self._check_permission(self.user_group_team_3, self.team2, True)
+        self._check_permission(self.user_po_user, False, True)
+        self._check_permission(self.user_po_user, self.team1, True)
+        self._check_permission(self.user_po_user, self.team2, True)
+        self._check_permission(self.user_po_manager, False, True)
+        self._check_permission(self.user_po_manager, self.team1, True)
+        self._check_permission(self.user_po_manager, self.team2, True)
+        self._check_permission(self.user_without_groups, False, True)
+        self._check_permission(self.user_without_groups, self.team1, True)
+        self._check_permission(self.user_without_groups, self.team2, True)
