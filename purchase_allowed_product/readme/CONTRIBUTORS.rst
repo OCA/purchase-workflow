@@ -9,3 +9,5 @@
 * `Via laurea <https://www.vialaurea.com>`__:
 
   * Darius Žižys
+
+* Eduardo de Miguel (`Moduon <https://www.moduon.team/>`__)
