@@ -71,6 +71,14 @@ class PurchaseOrderLine(models.Model):
         domain="[('product_id', '=', product_id)]",
     )
 
+    @api.model_create_multi
+    def create(self, vals_list):
+        lines = super().create(vals_list)
+        for line in lines:
+            if not line.blanket_order_line:
+                line.with_context(assigned_from_creation=True).get_assigned_bo_line()
+        return lines
+
     def _get_assigned_bo_line(self, bo_lines):
         # We get the blanket order line with enough quantity and closest
         # scheduled date
@@ -132,7 +140,11 @@ class PurchaseOrderLine(models.Model):
     def _compute_price_unit_and_date_planned_and_name(self):
         res = super()._compute_price_unit_and_date_planned_and_name()
         for rec in self:
-            if rec.product_id and not rec.env.context.get("skip_blanket_find", False):
+            if (
+                rec.product_id
+                and not rec.env.context.get("skip_blanket_find", False)
+                and not rec.env.context.get("assigned_from_creation", False)
+            ):
                 return rec.get_assigned_bo_line()
         return res
 
@@ -153,10 +165,11 @@ class PurchaseOrderLine(models.Model):
             if bol.taxes_id:
                 self.taxes_id = bol.taxes_id
         else:
-            self._compute_tax_id()
-            self.with_context(
-                skip_blanket_find=True
-            )._compute_price_unit_and_date_planned_and_name()
+            if not self.env.context.get("assigned_from_creation", False):
+                self._compute_tax_id()
+                self.with_context(
+                    skip_blanket_find=True
+                )._compute_price_unit_and_date_planned_and_name()
 
     @api.constrains("date_planned")
     def check_date_planned(self):
@@ -166,6 +179,7 @@ class PurchaseOrderLine(models.Model):
                 line.blanket_order_line
                 and line.blanket_order_line.date_schedule
                 and line.blanket_order_line.date_schedule != date_planned
+                and not line.env.context.get("assigned_from_creation", False)
             ):
                 raise ValidationError(
                     _(
