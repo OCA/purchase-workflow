@@ -49,31 +49,32 @@ class TestPurchaseRequestManualCurrency(TransactionCase):
         )
         self.assertFalse(purchase_requisition.currency_diff)
         # use manual currency
-        self.assertEqual(purchase_requisition.custom_rate, 1)
+        self.assertEqual(purchase_requisition.manual_currency_rate, 1)
         with Form(purchase_requisition) as pr:
             pr.currency_id = self.currency_usd
             pr.manual_currency = True
             pr.type_currency = "company_rate"
-        self.assertNotEqual(purchase_requisition.custom_rate, 1)
+        self.assertNotEqual(purchase_requisition.manual_currency_rate, 1)
         pr_line = purchase_requisition.line_ids[0]
         self.assertNotEqual(
             pr_line.price_unit * pr_line.product_qty,
             pr_line.subtotal_company_currency,
         )
-        company_rate = purchase_requisition.custom_rate
+        company_rate = purchase_requisition.manual_currency_rate
         # Check type curreny -> company currency (USD -> EUR)
         with Form(purchase_requisition) as pr:
             pr.type_currency = "inverse_company_rate"
         self.assertEqual(
-            round(purchase_requisition.custom_rate, 8), round(1 / company_rate, 8)
+            round(purchase_requisition.manual_currency_rate, 8),
+            round(1 / company_rate, 8),
         )
-        currency_rate = purchase_requisition.custom_rate
+        currency_rate = purchase_requisition.manual_currency_rate
         # Change manual rate to 100.0
-        purchase_requisition.custom_rate = 100.0
-        self.assertNotEqual(purchase_requisition.custom_rate, currency_rate)
+        purchase_requisition.manual_currency_rate = 100.0
+        self.assertNotEqual(purchase_requisition.manual_currency_rate, currency_rate)
         # Check refresh currency, it should back to normal
         purchase_requisition.action_refresh_currency()
-        self.assertAlmostEqual(purchase_requisition.custom_rate, currency_rate)
+        self.assertAlmostEqual(purchase_requisition.manual_currency_rate, currency_rate)
         purchase_requisition.action_in_progress()
         self.assertEqual(purchase_requisition.state, "in_progress")
         # Check refresh currency can't do it when state is not draft
@@ -94,7 +95,7 @@ class TestPurchaseRequestManualCurrency(TransactionCase):
             pr.currency_id = self.currency_usd
             pr.manual_currency = True
             pr.type_currency = "inverse_company_rate"
-            pr.custom_rate = 100.0
+            pr.manual_currency_rate = 100.0
         purchase_requisition.action_in_progress()
         self.assertEqual(purchase_requisition.state, "in_progress")
 
@@ -106,4 +107,6 @@ class TestPurchaseRequestManualCurrency(TransactionCase):
         # Manual currency of PO should same as Purchase Requisition
         self.assertEqual(purchase.manual_currency, purchase_requisition.manual_currency)
         self.assertEqual(purchase.type_currency, purchase_requisition.type_currency)
-        self.assertEqual(purchase.custom_rate, purchase_requisition.custom_rate)
+        self.assertEqual(
+            purchase.manual_currency_rate, purchase_requisition.manual_currency_rate
+        )

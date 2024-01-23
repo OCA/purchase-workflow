@@ -20,7 +20,7 @@ class PurchaseRequisition(models.Model):
         readonly=True,
         states={"draft": [("readonly", False)]},
     )
-    custom_rate = fields.Float(
+    manual_currency_rate = fields.Float(
         digits="Purchase Currency",
         tracking=True,
         readonly=True,
@@ -76,7 +76,7 @@ class PurchaseRequisition(models.Model):
         )
         if self.type_currency == "inverse_company_rate":
             amount_currency = 1.0 / amount_currency
-        self.custom_rate = amount_currency
+        self.manual_currency_rate = amount_currency
 
     def action_refresh_currency(self):
         self.ensure_one()
@@ -125,7 +125,7 @@ class PurchaseRequisitionLine(models.Model):
     @api.depends(
         "price_unit",
         "product_qty",
-        "requisition_id.custom_rate",
+        "requisition_id.manual_currency_rate",
         "requisition_id.type_currency",
         "requisition_id.manual_currency",
     )
@@ -139,9 +139,9 @@ class PurchaseRequisitionLine(models.Model):
             # check manual currency
             if rec.requisition_id.manual_currency:
                 rate = (
-                    rec.requisition_id.custom_rate
+                    rec.requisition_id.manual_currency_rate
                     if rec.requisition_id.type_currency == "inverse_company_rate"
-                    else (1.0 / rec.requisition_id.custom_rate)
+                    else (1.0 / rec.requisition_id.manual_currency_rate)
                 )
                 rec.subtotal_company_currency = rec.subtotal_company_currency * rate
             # default rate currency

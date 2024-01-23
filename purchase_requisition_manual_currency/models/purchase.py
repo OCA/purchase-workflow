@@ -25,5 +25,5 @@ class PurchaseOrder(models.Model):
     def _onchange_currency_change_rate(self):
         res = super()._onchange_currency_change_rate()
         if self.requisition_id:
-            self.custom_rate = self.requisition_id.custom_rate
+            self.manual_currency_rate = self.requisition_id.manual_currency_rate
         return res

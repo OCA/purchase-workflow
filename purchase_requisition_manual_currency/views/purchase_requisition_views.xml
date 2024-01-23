@@ -20,12 +20,12 @@
                     attrs="{'invisible': [('currency_diff', '=', False)]}"
                 >
                     <field name="manual_currency" />
-                    <label for="custom_rate" invisible='1' />
+                    <label for="manual_currency_rate" invisible='1' />
                     <div
                         class="o_row"
                         attrs="{'invisible': [('manual_currency', '=', False)]}"
                     >
-                        <field name="custom_rate" />
+                        <field name="manual_currency_rate" />
                         <field
                             name="type_currency"
                             attrs="{'required': [('manual_currency', '=', True)]}"
