@@ -18,7 +18,7 @@ class PurchaseRequestLineMakePurchaseRequisition(models.TransientModel):
                 {
                     "manual_currency": pr.manual_currency,
                     "type_currency": pr.type_currency,
-                    "custom_rate": pr.custom_rate,
+                    "manual_currency_rate": pr.manual_currency_rate,
                 }
             )
         elif model == "purchase.request.line":
@@ -28,7 +28,7 @@ class PurchaseRequestLineMakePurchaseRequisition(models.TransientModel):
                 {
                     "manual_currency": pr_line.request_id.manual_currency,
                     "type_currency": pr_line.request_id.type_currency,
-                    "custom_rate": pr_line.request_id.custom_rate,
+                    "manual_currency_rate": pr_line.request_id.manual_currency_rate,
                 }
             )
         return data
