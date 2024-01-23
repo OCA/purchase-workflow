@@ -328,6 +328,11 @@ class BlanketOrder(models.Model):
         expired_orders.env.flush_all()
 
     @api.model
+    def compute_warnings(self):
+        """Base function to create activity warnings"""
+        return True
+
+    @api.model
     def _search_original_uom_qty(self, operator, value):
         bo_line_obj = self.env["purchase.blanket.order.line"]
         res = []
