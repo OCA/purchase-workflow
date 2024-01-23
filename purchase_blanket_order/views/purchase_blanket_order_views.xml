@@ -16,6 +16,7 @@
                 <field name="user_id" />
                 <field name="partner_id" />
                 <field name="validity_date" />
+                <field name="activity_ids" widget="list_activity" />
                 <field name="state" />
             </tree>
         </field>
@@ -60,6 +61,7 @@
                         statusbar_visible="draft,open,expired"
                     />
                 </header>
+
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                         <button
@@ -292,6 +294,7 @@
                 <field name="invoiced_uom_qty" />
                 <field name="received_uom_qty" />
                 <field name="remaining_uom_qty" />
+                <field name="activity_ids" widget="list_activity" />
             </tree>
         </field>
     </record>
