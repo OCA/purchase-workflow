@@ -24,6 +24,7 @@ addon | version | maintainers | summary
 [purchase_force_invoiced](purchase_force_invoiced/) | 17.0.1.0.0 |  | Allows to force the billing status of the purchase order to "Invoiced"
 [purchase_open_qty](purchase_open_qty/) | 17.0.1.0.0 |  | Allows to identify the purchase orders that have quantities pending to invoice or to receive.
 [purchase_order_type](purchase_order_type/) | 17.0.1.0.0 |  | Purchase Order Type
+[purchase_request](purchase_request/) | 17.0.1.0.0 |  | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
 [purchase_requisition_tier_validation](purchase_requisition_tier_validation/) | 17.0.1.0.0 |  | Extends the functionality of Purchase Agreements to support a tier validation process.
 [purchase_tag](purchase_tag/) | 17.0.1.0.0 |  | Allows to add multiple tags to purchase orders
 
