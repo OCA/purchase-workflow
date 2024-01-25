@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_purchase_requisition_filter" model="ir.ui.view">
+        <field name="name">purchase.requisition.filter</field>
+        <field name="model">purchase.requisition</field>
+        <field
+            name="inherit_id"
+            ref="purchase_requisition.view_purchase_requisition_filter"
+        />
+        <field name="arch" type="xml">
+            <filter name="my_agreements" position="after">
+                <separator />
+                <filter
+                    name="needs_review"
+                    string="Needs my Review"
+                    domain="[('reviewer_ids', 'in', uid), ('state', 'not in', ['ongoing', 'in_progress', 'done', 'cancel'])]"
+                    help="My Purchase Agreements to review"
+                />
+                <filter
+                    name="tier_validated"
+                    string="Validated"
+                    domain="[('validated', '=', True)]"
+                    help="Purchase Agreements validated and ready to be confirmed"
+                />
+            </filter>
+        </field>
+    </record>
+</odoo>
