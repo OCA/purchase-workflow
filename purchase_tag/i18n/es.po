@@ -1,0 +1,90 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_tag
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-09-03 13:40+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: purchase_tag
+#: model:ir.model.fields,field_description:purchase_tag.field_purchase_tag__color
+msgid "Color"
+msgstr "Color"
+
+#. module: purchase_tag
+#: model_terms:ir.actions.act_window,help:purchase_tag.purchase_tag_action
+msgid "Create new tags for your purchase orders"
+msgstr "Crea nuevas etiquetas para tus órdenes de compra"
+
+#. module: purchase_tag
+#: model:ir.model.fields,field_description:purchase_tag.field_purchase_tag__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: purchase_tag
+#: model:ir.model.fields,field_description:purchase_tag.field_purchase_tag__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: purchase_tag
+#: model:ir.model.fields,field_description:purchase_tag.field_purchase_tag__display_name
+msgid "Display Name"
+msgstr "Mostrar Nombre"
+
+#. module: purchase_tag
+#: model:ir.model.fields,field_description:purchase_tag.field_purchase_tag__id
+msgid "ID"
+msgstr "ID (identificación)"
+
+#. module: purchase_tag
+#: model:ir.model.fields,field_description:purchase_tag.field_purchase_tag____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"
+
+#. module: purchase_tag
+#: model:ir.model.fields,field_description:purchase_tag.field_purchase_tag__write_uid
+msgid "Last Updated by"
+msgstr "Actualizado por última vez por"
+
+#. module: purchase_tag
+#: model:ir.model.fields,field_description:purchase_tag.field_purchase_tag__write_date
+msgid "Last Updated on"
+msgstr "Última Actualización el"
+
+#. module: purchase_tag
+#: model:ir.model,name:purchase_tag.model_purchase_order
+msgid "Purchase Order"
+msgstr "Orden de compra"
+
+#. module: purchase_tag
+#: model:ir.model,name:purchase_tag.model_purchase_tag
+msgid "Purchase Tag"
+msgstr "Etiqueta de compra"
+
+#. module: purchase_tag
+#: model:ir.model.fields,field_description:purchase_tag.field_purchase_tag__name
+msgid "Tag Name"
+msgstr "Nombre de etiqueta"
+
+#. module: purchase_tag
+#: model:ir.model.constraint,message:purchase_tag.constraint_purchase_tag_tag_name_uniq
+msgid "Tag name already exists !"
+msgstr "¡El nombre de etiqueta ya existe!"
+
+#. module: purchase_tag
+#: model:ir.actions.act_window,name:purchase_tag.purchase_tag_action
+#: model:ir.model.fields,field_description:purchase_tag.field_purchase_order__tag_ids
+#: model:ir.ui.menu,name:purchase_tag.menu_purchase_tag_config
+#: model_terms:ir.ui.view,arch_db:purchase_tag.purchase_tag_view_form
+msgid "Tags"
+msgstr "Etiquetas"
