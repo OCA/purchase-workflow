@@ -1,1 +1,3 @@
-**Financial support** \* Cosanum \* Camptocamp R&D
+**Financial support**
+- Cosanum
+- Camptocamp R&D
