@@ -8,3 +8,4 @@
     * Raphaël Reverdy <raphael.reverdy@akretion.com>
 * `InitOS <https://www.initos.com>`_:
     * Dhara Solanki <dhara.solanki@initos.com>
+* Manish Kumar Bohra <manishkumarbohra@outlook.com>
