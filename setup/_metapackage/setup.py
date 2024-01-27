@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo-addon-product_supplier_code_purchase>=16.0dev,<16.1dev',
+        'odoo-addon-product_supplierinfo_qty_multiplier>=16.0dev,<16.1dev',
         'odoo-addon-purchase_advance_payment>=16.0dev,<16.1dev',
         'odoo-addon-purchase_all_shipments>=16.0dev,<16.1dev',
         'odoo-addon-purchase_allowed_product>=16.0dev,<16.1dev',
