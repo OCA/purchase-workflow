@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-11-20 23:36+0000\n"
-"Last-Translator: Alessandro Fiorino <alessandro.fiorino@digitaldomus.it>\n"
+"PO-Revision-Date: 2024-01-29 17:34+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: purchase_reception_notify
 #: code:addons/purchase_reception_notify/models/stock_picking.py:0
@@ -25,17 +25,17 @@ msgstr "<li><b>%s</b>: Quantità ricevuta %s %s</li>"
 #. module: purchase_reception_notify
 #: model:ir.model.fields,field_description:purchase_reception_notify.field_stock_picking__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: purchase_reception_notify
 #: model:ir.model.fields,field_description:purchase_reception_notify.field_stock_picking__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: purchase_reception_notify
 #: model:ir.model.fields,field_description:purchase_reception_notify.field_stock_picking____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: purchase_reception_notify
 #: model:mail.message.subtype,name:purchase_reception_notify.mt_purchase_reception
