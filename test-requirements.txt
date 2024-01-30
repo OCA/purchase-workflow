@@ -1,3 +1,2 @@
 odoo_test_helper
-# tmp
 odoo-addon-base_group_backend @ git+https://github.com/OCA/server-backend.git@refs/pull/205/head#subdirectory=setup/base_group_backend
