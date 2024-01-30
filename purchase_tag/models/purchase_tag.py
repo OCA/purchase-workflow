@@ -20,7 +20,7 @@ class PurchaseTag(models.Model):
     color = fields.Integer(default=lambda self: self._get_default_color())
     parent_id = fields.Many2one("purchase.tag", index=True, ondelete="cascade")
     child_ids = fields.One2many("purchase.tag", "parent_id")
-    parent_path = fields.Char(index=True)
+    parent_path = fields.Char(index=True, unaccent=False)
 
     _sql_constraints = [
         ("tag_name_uniq", "unique (name)", "Tag name already exists !"),
