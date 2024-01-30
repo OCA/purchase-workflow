@@ -37,6 +37,7 @@ class TestPurchaseInvoicePlan(TransactionCase):
                             "product_qty": 1,
                             "product_uom": cls.test_service.uom_id.id,
                             "price_unit": 500,
+                            "taxes_id": False,
                         },
                     )
                 ],
@@ -57,6 +58,7 @@ class TestPurchaseInvoicePlan(TransactionCase):
                             "product_qty": 10,
                             "product_uom": cls.test_product.uom_id.id,
                             "price_unit": 1000,
+                            "taxes_id": False,
                         },
                     )
                 ],
@@ -81,9 +83,11 @@ class TestPurchaseInvoicePlan(TransactionCase):
         self.test_po_product.button_confirm()
         self.assertEqual(self.test_po_product.state, "purchase")
         # Receive all products
-        receive = self.test_po_product.picking_ids.filtered(lambda l: l.state != "done")
-        receive.move_ids_without_package.quantity_done = 10.0
-        receive._action_done()
+        receive = self.test_po_product.picking_ids.filtered(
+            lambda pick: pick.state != "done"
+        )
+        receive.move_ids_without_package.quantity = 10.0
+        receive.button_validate()
         purchase_create = self.env["purchase.make.planned.invoice"].create({})
         purchase_create.with_context(**ctx).create_invoices_by_plan()
         self.assertEqual(
@@ -137,9 +141,18 @@ class TestPurchaseInvoicePlan(TransactionCase):
                 per.percent = 0
             self.test_po_product._check_invoice_plan()
         # Receive product 1 unit
-        receive = self.test_po_product.picking_ids.filtered(lambda l: l.state != "done")
-        receive.move_ids_without_package.quantity_done = 1.0
-        receive._action_done()
+        receive = self.test_po_product.picking_ids.filtered(
+            lambda pick: pick.state != "done"
+        )
+        receive.move_ids_without_package.quantity = 1.0
+        # receive.button_validate()
+        backorder_wizard_dict = receive.button_validate()
+        backorder_wizard = Form(
+            self.env[backorder_wizard_dict["res_model"]].with_context(
+                backorder_wizard_dict["context"]
+            )
+        ).save()
+        backorder_wizard.process()
         # ValidationError Create all invoice plan - Receive < Invoice require
         purchase_create = self.env["purchase.make.planned.invoice"].create({})
         with self.assertRaises(ValidationError) as e:
@@ -172,9 +185,11 @@ class TestPurchaseInvoicePlan(TransactionCase):
         self.test_po_product.button_confirm()
         self.assertEqual(self.test_po_product.state, "purchase")
         # Receive all products
-        receive = self.test_po_product.picking_ids.filtered(lambda l: l.state != "done")
-        receive.move_ids_without_package.quantity_done = 10.0
-        receive._action_done()
+        receive = self.test_po_product.picking_ids.filtered(
+            lambda pick: pick.state != "done"
+        )
+        receive.move_ids_without_package.quantity = 10.0
+        receive.button_validate()
         purchase_create = self.env["purchase.make.planned.invoice"].create({})
         # Create only the 1st invoice, amount should be 1000, and percent is 10
         purchase_create.with_context(**ctx).create_invoices_by_plan()
@@ -194,6 +209,7 @@ class TestPurchaseInvoicePlan(TransactionCase):
                             "product_qty": 1,
                             "product_uom": self.test_product.uom_id.id,
                             "price_unit": 1000,
+                            "taxes_id": False,
                         },
                     )
                 ],

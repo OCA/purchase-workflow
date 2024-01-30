@@ -13,7 +13,7 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
         purchase.ensure_one()
         invoice_plans = (
             self._context.get("all_remain_invoices")
-            and purchase.invoice_plan_ids.filtered(lambda l: not l.invoiced)
+            and purchase.invoice_plan_ids.filtered(lambda pln: not pln.invoiced)
             or purchase.invoice_plan_ids.filtered("to_invoice")
         )
         for plan in invoice_plans.sorted("installment"):

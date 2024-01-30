@@ -47,7 +47,7 @@ class PurchaseOrder(models.Model):
             rec.ip_invoice_plan = (
                 rec.use_invoice_plan
                 and rec.invoice_plan_ids
-                and len(rec.invoice_plan_ids.filtered(lambda l: not l.invoiced))
+                and len(rec.invoice_plan_ids.filtered(lambda pln: not pln.invoiced))
             )
 
     @api.constrains("invoice_plan_ids")
@@ -62,7 +62,7 @@ class PurchaseOrder(models.Model):
     def _check_invoice_plan(self):
         for rec in self:
             if rec.state != "draft":
-                if rec.invoice_plan_ids.filtered(lambda l: not l.percent):
+                if rec.invoice_plan_ids.filtered(lambda pln: not pln.percent):
                     raise ValidationError(
                         _("Please fill percentage for all invoice plan lines")
                     )
@@ -223,7 +223,7 @@ class PurchaseInvoicePlan(models.Model):
             # For last line, amount is the left over
             if rec.last:
                 installments = rec.purchase_id.invoice_plan_ids.filtered(
-                    lambda l: l.invoice_type == "installment"
+                    lambda pln: pln.invoice_type == "installment"
                 )
                 prev_amount = sum((installments - rec).mapped("amount"))
                 rec.amount = amount_untaxed - prev_amount
@@ -236,7 +236,7 @@ class PurchaseInvoicePlan(models.Model):
             if rec.purchase_id.amount_untaxed != 0:
                 if rec.last:
                     installments = rec.purchase_id.invoice_plan_ids.filtered(
-                        lambda l: l.invoice_type == "installment"
+                        lambda pln: pln.invoice_type == "installment"
                     )
                     prev_percent = sum((installments - rec).mapped("percent"))
                     rec.percent = 100 - prev_percent
@@ -267,7 +267,7 @@ class PurchaseInvoicePlan(models.Model):
     def _compute_invoiced(self):
         for rec in self:
             invoiced = rec.invoice_ids.filtered(
-                lambda l: l.state in ("draft", "posted")
+                lambda inv: inv.state in ("draft", "posted")
             )
             rec.invoiced = invoiced and True or False
             rec.amount_invoiced = rec._get_amount_invoice(invoiced[:1])
