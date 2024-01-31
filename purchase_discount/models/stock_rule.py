@@ -16,7 +16,7 @@ class StockRule(models.Model):
         date = None
         if po.date_order:
             date = po.date_order.date()
-        seller = product_id._select_seller(
+        seller = product_id.with_context(force_company=company_id.id)._select_seller(
             partner_id=values["supplier"].name,
             quantity=product_qty,
             date=date,
