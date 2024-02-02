@@ -102,7 +102,7 @@ addon | version | maintainers | summary
 [purchase_stock_secondary_unit](purchase_stock_secondary_unit/) | 15.0.1.1.1 |  | Get product quantities in a secondary unit
 [purchase_stock_tier_validation](purchase_stock_tier_validation/) | 15.0.1.0.0 | [![bosd](https://github.com/bosd.png?size=30px)](https://github.com/bosd) | Exclude RFQs pending to validate when procuring
 [purchase_substate](purchase_substate/) | 15.0.1.0.0 |  | Purchase Sub State
-[purchase_tag](purchase_tag/) | 15.0.1.0.0 |  | Allows to add multiple tags to purchase orders
+[purchase_tag](purchase_tag/) | 15.0.1.1.0 |  | Allows to add multiple tags to purchase orders
 [purchase_tier_validation](purchase_tier_validation/) | 15.0.1.1.0 |  | Extends the functionality of Purchase Orders to support a tier validation process.
 [purchase_total_ordered_qty](purchase_total_ordered_qty/) | 15.0.1.0.0 |  | Purchase - Total Ordered Qty
 [purchase_triple_discount](purchase_triple_discount/) | 15.0.2.0.1 |  | Manage triple discount on purchase order lines
