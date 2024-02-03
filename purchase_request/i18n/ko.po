@@ -194,10 +194,6 @@ msgstr ""
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__analytic_distribution
-msgid "Analytic"
-msgstr ""
-
-#. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Analytic Distribution"
 msgstr ""
@@ -512,7 +508,9 @@ msgstr ""
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__message_has_error
+#: model:ir.model.fields,help:purchase_request.field_purchase_request__message_has_sms_error
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__message_has_error
+#: model:ir.model.fields,help:purchase_request.field_purchase_request_line__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -539,15 +537,6 @@ msgid "Items"
 msgstr ""
 
 #. module: purchase_request
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request____last_update
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation____last_update
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line____last_update
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order____last_update
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item____last_update
-msgid "Last Modified on"
-msgstr ""
-
-#. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__write_uid
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__write_uid
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__write_uid
@@ -568,12 +557,6 @@ msgstr "최근 갱신 날짜"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Lines"
-msgstr ""
-
-#. module: purchase_request
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_main_attachment_id
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_main_attachment_id
-msgid "Main Attachment"
 msgstr ""
 
 #. module: purchase_request
@@ -844,7 +827,6 @@ msgstr ""
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_move_form
-#: model_terms:ir.ui.view,arch_db:purchase_request.view_picking_form
 msgid "Purchase Request Allocations"
 msgstr ""
 
@@ -1131,6 +1113,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__activity_user_id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__activity_user_id
 msgid "Responsible User"
+msgstr ""
+
+#. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_has_sms_error
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_has_sms_error
+msgid "SMS Delivery error"
 msgstr ""
 
 #. module: purchase_request
