@@ -12,8 +12,8 @@ msgstr ""
 "POT-Creation-Date: 2016-11-17 03:38+0000\n"
 "PO-Revision-Date: 2023-11-06 16:39+0000\n"
 "Last-Translator: Ediz Duman <neps1192@gmail.com>\n"
-"Language-Team: Turkish (http://www.transifex.com/oca/"
-"OCA-purchase-workflow-10-0/language/tr/)\n"
+"Language-Team: Turkish (http://www.transifex.com/oca/OCA-purchase-"
+"workflow-10-0/language/tr/)\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -41,8 +41,8 @@ msgid ""
 "<li><b>%(product_name)s</b>: Received quantity %(product_qty)s "
 "%(product_uom)s</li>"
 msgstr ""
-"<li><b>%(product_name)s</b>: Alınan miktar %(product_qty)s "
-"%(product_uom)s</li>"
+"<li><b>%(product_name)s</b>: Alınan miktar %(product_qty)s %(product_uom)s</"
+"li>"
 
 #. module: purchase_request
 #. odoo-python
@@ -203,10 +203,6 @@ msgstr "Tahsisler"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__analytic_distribution
-msgid "Analytic"
-msgstr "Analitik"
-
-#. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Analytic Distribution"
 msgstr "Analitik Dağıtım"
@@ -522,7 +518,9 @@ msgstr "İşaretliyse, yeni mesajlar dikkatinize sunulacak."
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__message_has_error
+#: model:ir.model.fields,help:purchase_request.field_purchase_request__message_has_sms_error
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__message_has_error
+#: model:ir.model.fields,help:purchase_request.field_purchase_request_line__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "İşaretliyse,bazı mesajlar gönderi hatası içermektedir."
 
@@ -549,15 +547,6 @@ msgid "Items"
 msgstr "Öğe"
 
 #. module: purchase_request
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request____last_update
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation____last_update
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line____last_update
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order____last_update
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item____last_update
-msgid "Last Modified on"
-msgstr "Son Değiştirilme"
-
-#. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__write_uid
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__write_uid
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__write_uid
@@ -579,12 +568,6 @@ msgstr "Son güncelleme"
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Lines"
 msgstr "Satırlar"
-
-#. module: purchase_request
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_main_attachment_id
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_main_attachment_id
-msgid "Main Attachment"
-msgstr "Ana Ek"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_form2_sub
@@ -854,7 +837,6 @@ msgstr ""
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_move_form
-#: model_terms:ir.ui.view,arch_db:purchase_request.view_picking_form
 msgid "Purchase Request Allocations"
 msgstr ""
 
@@ -1142,6 +1124,12 @@ msgstr "Sıfırla"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__activity_user_id
 msgid "Responsible User"
 msgstr "Sorumlu Kullanıcı"
+
+#. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_has_sms_error
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_search_sub
@@ -1454,6 +1442,15 @@ msgstr ""
 #, python-format
 msgid "You have to select lines from the same company."
 msgstr ""
+
+#~ msgid "Analytic"
+#~ msgstr "Analitik"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Son Değiştirilme"
+
+#~ msgid "Main Attachment"
+#~ msgstr "Ana Ek"
 
 #, fuzzy
 #~ msgid "Number of unread messages"

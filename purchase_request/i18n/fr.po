@@ -219,10 +219,6 @@ msgstr "Allocations"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__analytic_distribution
-msgid "Analytic"
-msgstr ""
-
-#. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Analytic Distribution"
 msgstr ""
@@ -542,7 +538,9 @@ msgstr "Si coché les nouveaux messages requièrent votre attention."
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__message_has_error
+#: model:ir.model.fields,help:purchase_request.field_purchase_request__message_has_sms_error
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__message_has_error
+#: model:ir.model.fields,help:purchase_request.field_purchase_request_line__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si coché, certains messages ont une erreur d'envoi."
 
@@ -569,15 +567,6 @@ msgid "Items"
 msgstr "Lignes"
 
 #. module: purchase_request
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request____last_update
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation____last_update
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line____last_update
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order____last_update
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
-
-#. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__write_uid
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__write_uid
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__write_uid
@@ -599,12 +588,6 @@ msgstr "Dernière mise à jour le"
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Lines"
 msgstr "Lignes"
-
-#. module: purchase_request
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_main_attachment_id
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_main_attachment_id
-msgid "Main Attachment"
-msgstr ""
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_form2_sub
@@ -885,7 +868,6 @@ msgstr "Lignes de demande d'achat"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_move_form
-#: model_terms:ir.ui.view,arch_db:purchase_request.view_picking_form
 #, fuzzy
 msgid "Purchase Request Allocations"
 msgstr "Lignes de demande d'achat"
@@ -1184,6 +1166,12 @@ msgstr "Réinitialiser"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__activity_user_id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__activity_user_id
 msgid "Responsible User"
+msgstr ""
+
+#. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_has_sms_error
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_has_sms_error
+msgid "SMS Delivery error"
 msgstr ""
 
 #. module: purchase_request
@@ -1496,6 +1484,9 @@ msgstr ""
 #, python-format
 msgid "You have to select lines from the same company."
 msgstr ""
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
 
 #~ msgid "<strong>Analytic Account</strong>"
 #~ msgstr "<strong>Compte analytique</strong>"
