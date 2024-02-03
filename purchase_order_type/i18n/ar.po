@@ -95,11 +95,6 @@ msgid "Incoterm"
 msgstr ""
 
 #. module: purchase_order_type
-#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type____last_update
-msgid "Last Modified on"
-msgstr "آخر تعديل في"
-
-#. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__write_uid
 msgid "Last Updated by"
 msgstr "آخر تحديث بواسطة"
@@ -150,6 +145,7 @@ msgstr ""
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order__order_type
+#: model_terms:ir.ui.view,arch_db:purchase_order_type.purchase_order_view_search
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_filter
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_form
 msgid "Type"
@@ -159,6 +155,9 @@ msgstr "النوع"
 #: model:ir.model,name:purchase_order_type.model_purchase_order_type
 msgid "Type of purchase order"
 msgstr ""
+
+#~ msgid "Last Modified on"
+#~ msgstr "آخر تعديل في"
 
 #~ msgid "Partner"
 #~ msgstr "الشريك"
