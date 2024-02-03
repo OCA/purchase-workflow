@@ -24,8 +24,8 @@ msgstr ""
 "POT-Creation-Date: 2016-11-16 12:06+0000\n"
 "PO-Revision-Date: 2023-11-06 16:39+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
-"Language-Team: Italian (http://www.transifex.com/oca/"
-"OCA-purchase-workflow-8-0/language/it/)\n"
+"Language-Team: Italian (http://www.transifex.com/oca/OCA-purchase-"
+"workflow-8-0/language/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -109,11 +109,6 @@ msgid "Incoterm"
 msgstr ""
 
 #. module: purchase_order_type
-#: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
-
-#. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order_type__write_uid
 msgid "Last Updated by"
 msgstr "Ultimo aggiornamento di"
@@ -164,6 +159,7 @@ msgstr "Sequenza"
 
 #. module: purchase_order_type
 #: model:ir.model.fields,field_description:purchase_order_type.field_purchase_order__order_type
+#: model_terms:ir.ui.view,arch_db:purchase_order_type.purchase_order_view_search
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_filter
 #: model_terms:ir.ui.view,arch_db:purchase_order_type.view_purchase_order_type_form
 msgid "Type"
@@ -173,6 +169,9 @@ msgstr "Tipo"
 #: model:ir.model,name:purchase_order_type.model_purchase_order_type
 msgid "Type of purchase order"
 msgstr "Tipo ordine acquisto"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
 
 #~ msgid "Partner"
 #~ msgstr "Partner"
