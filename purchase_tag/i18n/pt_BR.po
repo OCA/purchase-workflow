@@ -17,6 +17,11 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: purchase_tag
+#: model:ir.model.fields,field_description:purchase_tag.field_purchase_tag__child_ids
+msgid "Child"
+msgstr ""
+
+#. module: purchase_tag
 #: model:ir.model.fields,field_description:purchase_tag.field_purchase_tag__color
 msgid "Color"
 msgstr "Cor"
@@ -47,11 +52,6 @@ msgid "ID"
 msgstr "ID"
 
 #. module: purchase_tag
-#: model:ir.model.fields,field_description:purchase_tag.field_purchase_tag____last_update
-msgid "Last Modified on"
-msgstr "Última Modificação em"
-
-#. module: purchase_tag
 #: model:ir.model.fields,field_description:purchase_tag.field_purchase_tag__write_uid
 msgid "Last Updated by"
 msgstr "Última Atualização por"
@@ -60,6 +60,16 @@ msgstr "Última Atualização por"
 #: model:ir.model.fields,field_description:purchase_tag.field_purchase_tag__write_date
 msgid "Last Updated on"
 msgstr "Última Atualização em"
+
+#. module: purchase_tag
+#: model:ir.model.fields,field_description:purchase_tag.field_purchase_tag__parent_id
+msgid "Parent"
+msgstr ""
+
+#. module: purchase_tag
+#: model:ir.model.fields,field_description:purchase_tag.field_purchase_tag__parent_path
+msgid "Parent Path"
+msgstr ""
 
 #. module: purchase_tag
 #: model:ir.model,name:purchase_tag.model_purchase_order
@@ -88,3 +98,13 @@ msgstr "Marcador já Existe!"
 #: model_terms:ir.ui.view,arch_db:purchase_tag.purchase_tag_view_form
 msgid "Tags"
 msgstr "Marcadores"
+
+#. module: purchase_tag
+#. odoo-python
+#: code:addons/purchase_tag/models/purchase_tag.py:0
+#, python-format
+msgid "Tags cannot be recursive."
+msgstr ""
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última Modificação em"
