@@ -9,36 +9,36 @@ msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-16 12:06+0000\n"
-"PO-Revision-Date: 2022-11-16 19:44+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2024-02-05 09:33+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: purchase_commercial_partner
 #: model:ir.model.fields,field_description:purchase_commercial_partner.field_purchase_order__commercial_partner_id
 #: model_terms:ir.ui.view,arch_db:purchase_commercial_partner.view_purchase_order_filter
 msgid "Commercial Vendor"
-msgstr ""
+msgstr "Venditore commerciale"
 
 #. module: purchase_commercial_partner
 #: model:ir.model.fields,field_description:purchase_commercial_partner.field_purchase_order__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: purchase_commercial_partner
 #: model:ir.model.fields,field_description:purchase_commercial_partner.field_purchase_order__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: purchase_commercial_partner
 #: model:ir.model.fields,field_description:purchase_commercial_partner.field_purchase_order____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: purchase_commercial_partner
 #: model:ir.model,name:purchase_commercial_partner.model_purchase_order
