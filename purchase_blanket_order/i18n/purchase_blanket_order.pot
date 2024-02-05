@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -79,6 +79,7 @@ msgid "Activity Type Icon"
 msgstr ""
 
 #. module: purchase_blanket_order
+#. odoo-python
 #: code:addons/purchase_blanket_order/wizard/create_purchase_orders.py:0
 #, python-format
 msgid "All lines have already been completed."
@@ -90,6 +91,7 @@ msgid "Amount"
 msgstr ""
 
 #. module: purchase_blanket_order
+#. odoo-python
 #: code:addons/purchase_blanket_order/wizard/create_purchase_orders.py:0
 #, python-format
 msgid "An order can't be empty"
@@ -141,6 +143,7 @@ msgid "Blanket Orders"
 msgstr ""
 
 #. module: purchase_blanket_order
+#. odoo-python
 #: code:addons/purchase_blanket_order/wizard/create_purchase_orders.py:0
 #, python-format
 msgid ""
@@ -160,6 +163,7 @@ msgid "Cancelled"
 msgstr ""
 
 #. module: purchase_blanket_order
+#. odoo-python
 #: code:addons/purchase_blanket_order/models/purchase_order.py:0
 #, python-format
 msgid ""
@@ -177,6 +181,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__company_id
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__company_id
 msgid "Company"
+msgstr ""
+
+#. module: purchase_blanket_order
+#: model:ir.model,name:purchase_blanket_order.model_res_config_settings
+msgid "Config Settings"
 msgstr ""
 
 #. module: purchase_blanket_order
@@ -229,6 +238,7 @@ msgid "Currency"
 msgstr ""
 
 #. module: purchase_blanket_order
+#. odoo-python
 #: code:addons/purchase_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid "Date Scheduled"
@@ -247,18 +257,18 @@ msgid "Description"
 msgstr ""
 
 #. module: purchase_blanket_order
-#: model:res.groups,name:purchase_blanket_order.purchase_blanket_orders_disable_adding_lines
-msgid "Disable adding more lines to POs from Purchase Blanket Orders"
-msgstr ""
-
-#. module: purchase_blanket_order
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_res_config_settings__group_purchase_blanket_disable_adding_lines
-msgid "Disable adding more lines to SOs"
+msgid "Disable adding more lines to POs"
 msgstr ""
 
 #. module: purchase_blanket_order
 #: model_terms:ir.ui.view,arch_db:purchase_blanket_order.purchase_config_settings_form_view
-msgid "Disable adding more lines to SOs from Blanket Orders"
+msgid "Disable adding more lines to POs from Blanket Orders"
+msgstr ""
+
+#. module: purchase_blanket_order
+#: model:res.groups,name:purchase_blanket_order.purchase_blanket_orders_disable_adding_lines
+msgid "Disable adding more lines to POs from Purchase Blanket Orders"
 msgstr ""
 
 #. module: purchase_blanket_order
@@ -282,7 +292,6 @@ msgstr ""
 #. module: purchase_blanket_order
 #: model:ir.actions.server,name:purchase_blanket_order.expired_purchase_blanket_orders_cron_ir_actions_server
 #: model:ir.cron,cron_name:purchase_blanket_order.expired_purchase_blanket_orders_cron
-#: model:ir.cron,name:purchase_blanket_order.expired_purchase_blanket_orders_cron
 msgid "Expire Blanket Orders"
 msgstr ""
 
@@ -342,9 +351,7 @@ msgstr ""
 
 #. module: purchase_blanket_order
 #: model:ir.model.fields,help:purchase_blanket_order.field_purchase_blanket_order__message_needaction
-#: model:ir.model.fields,help:purchase_blanket_order.field_purchase_blanket_order__message_unread
 #: model:ir.model.fields,help:purchase_blanket_order.field_purchase_blanket_order_line__message_needaction
-#: model:ir.model.fields,help:purchase_blanket_order.field_purchase_blanket_order_line__message_unread
 msgid "If checked, new messages require your attention."
 msgstr ""
 
@@ -420,6 +427,7 @@ msgid "Messages"
 msgstr ""
 
 #. module: purchase_blanket_order
+#. odoo-python
 #: code:addons/purchase_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid "Must have some lines"
@@ -474,19 +482,13 @@ msgstr ""
 #. module: purchase_blanket_order
 #: model:ir.model.fields,help:purchase_blanket_order.field_purchase_blanket_order__message_needaction_counter
 #: model:ir.model.fields,help:purchase_blanket_order.field_purchase_blanket_order_line__message_needaction_counter
-msgid "Number of messages which requires an action"
+msgid "Number of messages requiring action"
 msgstr ""
 
 #. module: purchase_blanket_order
 #: model:ir.model.fields,help:purchase_blanket_order.field_purchase_blanket_order__message_has_error_counter
 #: model:ir.model.fields,help:purchase_blanket_order.field_purchase_blanket_order_line__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
-
-#. module: purchase_blanket_order
-#: model:ir.model.fields,help:purchase_blanket_order.field_purchase_blanket_order__message_unread_counter
-#: model:ir.model.fields,help:purchase_blanket_order.field_purchase_blanket_order_line__message_unread_counter
-msgid "Number of unread messages"
 msgstr ""
 
 #. module: purchase_blanket_order
@@ -541,6 +543,7 @@ msgid "Original quantity"
 msgstr ""
 
 #. module: purchase_blanket_order
+#. odoo-python
 #: code:addons/purchase_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid "Partner is mandatory"
@@ -559,14 +562,10 @@ msgid "Price"
 msgstr ""
 
 #. module: purchase_blanket_order
+#. odoo-python
 #: code:addons/purchase_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid "Price must be greater than zero"
-msgstr ""
-
-#. module: purchase_blanket_order
-#: model:ir.model,name:purchase_blanket_order.model_res_config_settings
-msgid "Procurement purchase grouping settings"
 msgstr ""
 
 #. module: purchase_blanket_order
@@ -584,6 +583,7 @@ msgid "Purchase Blanket Order"
 msgstr ""
 
 #. module: purchase_blanket_order
+#. odoo-python
 #: code:addons/purchase_blanket_order/wizard/create_purchase_orders.py:0
 #, python-format
 msgid "Purchase Blanket Order %s is not open"
@@ -628,6 +628,7 @@ msgid "Purchase Order Lines"
 msgstr ""
 
 #. module: purchase_blanket_order
+#. odoo-python
 #: code:addons/purchase_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid "Quantity must be greater than zero"
@@ -639,6 +640,7 @@ msgid "Quantity to Order"
 msgstr ""
 
 #. module: purchase_blanket_order
+#. odoo-python
 #: code:addons/purchase_blanket_order/wizard/create_purchase_orders.py:0
 #, python-format
 msgid "RFQ"
@@ -690,6 +692,7 @@ msgid "Responsible User"
 msgstr ""
 
 #. module: purchase_blanket_order
+#. odoo-python
 #: code:addons/purchase_blanket_order/models/purchase_order.py:0
 #, python-format
 msgid ""
@@ -763,6 +766,7 @@ msgid "Terms and Conditions"
 msgstr ""
 
 #. module: purchase_blanket_order
+#. odoo-python
 #: code:addons/purchase_blanket_order/models/purchase_order.py:0
 #: code:addons/purchase_blanket_order/models/purchase_order.py:0
 #, python-format
@@ -772,6 +776,7 @@ msgid ""
 msgstr ""
 
 #. module: purchase_blanket_order
+#. odoo-python
 #: code:addons/purchase_blanket_order/models/purchase_order.py:0
 #, python-format
 msgid "The vendor must be equal to the blanket order lines vendor"
@@ -806,18 +811,6 @@ msgid "Unit of Measure"
 msgstr ""
 
 #. module: purchase_blanket_order
-#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__message_unread
-#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__message_unread
-msgid "Unread Messages"
-msgstr ""
-
-#. module: purchase_blanket_order
-#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__message_unread_counter
-#: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__message_unread_counter
-msgid "Unread Messages Counter"
-msgstr ""
-
-#. module: purchase_blanket_order
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__amount_untaxed
 msgid "Untaxed Amount"
 msgstr ""
@@ -841,12 +834,14 @@ msgid "Validity Date"
 msgstr ""
 
 #. module: purchase_blanket_order
+#. odoo-python
 #: code:addons/purchase_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid "Validity date is mandatory"
 msgstr ""
 
 #. module: purchase_blanket_order
+#. odoo-python
 #: code:addons/purchase_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid "Validity date must be in the future"
@@ -882,6 +877,7 @@ msgid "Wizard"
 msgstr ""
 
 #. module: purchase_blanket_order
+#. odoo-python
 #: code:addons/purchase_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid ""
@@ -890,30 +886,35 @@ msgid ""
 msgstr ""
 
 #. module: purchase_blanket_order
+#. odoo-python
 #: code:addons/purchase_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid "You can not delete an open blanket order! Try to cancel it before."
 msgstr ""
 
 #. module: purchase_blanket_order
+#. odoo-python
 #: code:addons/purchase_blanket_order/wizard/create_purchase_orders.py:0
 #, python-format
 msgid "You can't create a purchase order from an expired blanket order!"
 msgstr ""
 
 #. module: purchase_blanket_order
+#. odoo-python
 #: code:addons/purchase_blanket_order/wizard/create_purchase_orders.py:0
 #, python-format
 msgid "You can't order more than the remaining quantities"
 msgstr ""
 
 #. module: purchase_blanket_order
+#. odoo-python
 #: code:addons/purchase_blanket_order/wizard/create_purchase_orders.py:0
 #, python-format
 msgid "You have to select lines from the same company."
 msgstr ""
 
 #. module: purchase_blanket_order
+#. odoo-python
 #: code:addons/purchase_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid "remaining"
