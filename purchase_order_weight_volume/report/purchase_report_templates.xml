@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template
+        id="report_purchasequotation_document"
+        inherit_id="purchase.report_purchasequotation_document"
+    >
+        <xpath expr="//table" position="after">
+            <br />
+            <div id="weight_and_volume" class="row justify-content-end">
+                <div class="col-4">
+                    <table class="table table-sm">
+                        <tr t-if="o.display_total_weight_in_report">
+                            <td><strong>Total Weight</strong></td>
+                            <td class="text-right">
+                                <span t-field="o.total_weight" />
+                                <span t-field="o.total_weight_uom_id" />
+                            </td>
+                        </tr>
+                        <tr t-if="o.display_total_volume_in_report">
+                            <td><strong>Total Volume</strong></td>
+                            <td class="text-right">
+                                <span t-field="o.total_volume" />
+                                <span t-field="o.total_volume_uom_id" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </xpath>
+
+        <xpath expr="//th[@name='th_quantity']" position="before">
+            <th
+                t-if="o.display_total_weight_in_report"
+                name="th_weight"
+                class="text-right"
+            >
+                <strong>Weight</strong>
+            </th>
+            <th
+                t-if="o.display_total_volume_in_report"
+                name="th_volume"
+                class="text-right"
+            >
+                <strong>Volume</strong>
+            </th>
+        </xpath>
+
+        <xpath expr="//span[@t-field='order_line.product_qty']/.." position="before">
+            <td t-if="o.display_total_weight_in_report" class="text-right">
+                <span t-field="order_line.line_weight" />
+                <span t-field="order_line.order_id.total_weight_uom_id" />
+            </td>
+            <td t-if="o.display_total_volume_in_report" class="text-right">
+                <span t-field="order_line.line_volume" />
+                <span t-field="order_line.order_id.total_volume_uom_id" />
+            </td>
+        </xpath>
+    </template>
+
+    <template
+        id="report_purchaseorder_document"
+        inherit_id="purchase.report_purchaseorder_document"
+    >
+        <xpath expr="//div[@id='total']" position="after">
+            <br />
+            <div id="weight_and_volume" class="row justify-content-end">
+                <div class="col-4">
+                    <table class="table table-sm">
+                        <tr t-if="o.display_total_weight_in_report">
+                            <td><strong>Total Weight</strong></td>
+                            <td class="text-right">
+                                <span t-field="o.total_weight" />
+                                <span t-field="o.total_weight_uom_id" />
+                            </td>
+                        </tr>
+                        <tr t-if="o.display_total_volume_in_report">
+                            <td><strong>Total Volume</strong></td>
+                            <td class="text-right">
+                                <span t-field="o.total_volume" />
+                                <span t-field="o.total_volume_uom_id" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </xpath>
+
+        <xpath expr="//th[@name='th_quantity']" position="before">
+            <th
+                t-if="o.display_total_weight_in_report"
+                name="th_weight"
+                class="text-right"
+            >
+                <strong>Weight</strong>
+            </th>
+            <th
+                t-if="o.display_total_volume_in_report"
+                name="th_volume"
+                class="text-right"
+            >
+                <strong>Volume</strong>
+            </th>
+        </xpath>
+
+        <xpath expr="//span[@t-field='line.product_qty']/.." position="before">
+            <td t-if="o.display_total_weight_in_report" class="text-right">
+                <span t-field="line.line_weight" />
+                <span t-field="line.order_id.total_weight_uom_id" />
+            </td>
+            <td t-if="o.display_total_volume_in_report" class="text-right">
+                <span t-field="line.line_volume" />
+                <span t-field="line.order_id.total_volume_uom_id" />
+            </td>
+        </xpath>
+    </template>
+
+</odoo>

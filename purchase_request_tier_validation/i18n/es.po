@@ -6,20 +6,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2019-05-23 11:19+0000\n"
-"Last-Translator: Lois Rilo <lois.rilo@eficent.com>\n"
+"PO-Revision-Date: 2023-11-06 21:37+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.6.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: purchase_request_tier_validation
 #: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__can_review
 msgid "Can Review"
-msgstr ""
+msgstr "Puede Revisar"
 
 #. module: purchase_request_tier_validation
 #: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_form_inherit_tier
@@ -27,27 +27,9 @@ msgid "Confirm"
 msgstr "Confirmar"
 
 #. module: purchase_request_tier_validation
-#: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__display_name
-#: model:ir.model.fields,field_description:purchase_request_tier_validation.field_tier_definition__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: purchase_request_tier_validation
 #: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__has_comment
 msgid "Has Comment"
-msgstr ""
-
-#. module: purchase_request_tier_validation
-#: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__id
-#: model:ir.model.fields,field_description:purchase_request_tier_validation.field_tier_definition__id
-msgid "ID"
-msgstr ""
-
-#. module: purchase_request_tier_validation
-#: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request____last_update
-#: model:ir.model.fields,field_description:purchase_request_tier_validation.field_tier_definition____last_update
-msgid "Last Modified on"
-msgstr ""
+msgstr "Tiene Comentario"
 
 #. module: purchase_request_tier_validation
 #: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_filter
@@ -57,7 +39,7 @@ msgstr "Mis Compras a revisar"
 #. module: purchase_request_tier_validation
 #: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__need_validation
 msgid "Need Validation"
-msgstr ""
+msgstr "Necesita validación"
 
 #. module: purchase_request_tier_validation
 #: model_terms:ir.ui.view,arch_db:purchase_request_tier_validation.view_purchase_request_filter
@@ -77,7 +59,7 @@ msgstr "Nueva Validación de Nivel"
 #. module: purchase_request_tier_validation
 #: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__next_review
 msgid "Next Review"
-msgstr ""
+msgstr "Siguiente revisión"
 
 #. module: purchase_request_tier_validation
 #: model:ir.model,name:purchase_request_tier_validation.model_purchase_request
@@ -92,18 +74,27 @@ msgstr "Solicitudes de compra validadas y preparadas para ser confirmadas"
 #. module: purchase_request_tier_validation
 #: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__rejected
 msgid "Rejected"
-msgstr ""
+msgstr "Rechazado/a"
+
+#. module: purchase_request_tier_validation
+#: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__rejected_message
+msgid "Rejected Message"
+msgstr "Mensaje Rechazado"
 
 #. module: purchase_request_tier_validation
 #: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__reviewer_ids
 msgid "Reviewers"
-msgstr ""
+msgstr "Revisores"
 
 #. module: purchase_request_tier_validation
 #: model:ir.model,name:purchase_request_tier_validation.model_tier_definition
-#, fuzzy
 msgid "Tier Definition"
-msgstr "tier.definition"
+msgstr "Definición del nivel"
+
+#. module: purchase_request_tier_validation
+#: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__to_validate_message
+msgid "To Validate Message"
+msgstr "Para validar el mensaje"
 
 #. module: purchase_request_tier_validation
 #: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__validated
@@ -112,9 +103,28 @@ msgid "Validated"
 msgstr "Validada"
 
 #. module: purchase_request_tier_validation
+#: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__validated_message
+msgid "Validated Message"
+msgstr "Mensaje Validado"
+
+#. module: purchase_request_tier_validation
+#: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__validation_status
+msgid "Validation Status"
+msgstr "Estado de la Validación"
+
+#. module: purchase_request_tier_validation
 #: model:ir.model.fields,field_description:purchase_request_tier_validation.field_purchase_request__review_ids
 msgid "Validations"
-msgstr ""
+msgstr "Validaciones"
+
+#~ msgid "Display Name"
+#~ msgstr "Mostrar Nombre"
+
+#~ msgid "ID"
+#~ msgstr "ID (identificación)"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última Modificación el"
 
 #~ msgid ""
 #~ "<i class=\"fa fa-info-circle\"/>This Purchase Request needs to be\n"

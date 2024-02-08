@@ -3,13 +3,16 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import fields
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import Form, TransactionCase
+
+from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
 
 
 class TestPurchaseOrder(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super(TestPurchaseOrder, cls).setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT))
         cls.categ_cost_average = cls.env["product.category"].create(
             {"name": "Average cost method category", "property_cost_method": "average"}
         )
@@ -108,6 +111,15 @@ class TestPurchaseOrder(TransactionCase):
                 "price_unit": 10.0,
             }
         )
+        cls.po_line_4 = po_model.create(
+            {
+                "order_id": cls.purchase_order.id,
+                "display_type": "line_section",
+                "name": "Test Section",
+                "product_qty": 0.0,
+                "product_uom_qty": 0.0,
+            }
+        )
 
     def test_purchase_order_vals(self):
         self.assertEqual(self.po_line_1.price_subtotal, 5.0)
@@ -168,6 +180,12 @@ class TestPurchaseOrder(TransactionCase):
         )
         self.assertEqual(rec.price_total, 5)
         self.assertEqual(rec.discount, 50)
+
+    def test_no_product(self):
+        purchase_form = Form(self.purchase_order)
+        with purchase_form.order_line.edit(3) as line:
+            line.product_qty = 0.0
+        self.assertEqual(self.po_line_4.discount, 0.0)
 
     def test_invoice(self):
         invoice = self.env["account.move"].new(

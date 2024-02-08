@@ -530,9 +530,7 @@ msgstr "如果选中，您需要注意新消息。"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__message_has_error
-#: model:ir.model.fields,help:purchase_request.field_purchase_request__message_has_sms_error
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__message_has_error
-#: model:ir.model.fields,help:purchase_request.field_purchase_request_line__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "如果选中，消息会附带交货错误信息。"
 
@@ -685,8 +683,8 @@ msgstr "错误计数"
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__message_needaction_counter
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__message_needaction_counter
-msgid "Number of messages which requires an action"
-msgstr "需要采取措施的消息计数"
+msgid "Number of messages requiring action"
+msgstr ""
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request__message_has_error_counter
@@ -1154,12 +1152,6 @@ msgid "Responsible User"
 msgstr "责任人"
 
 #. module: purchase_request
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request__message_has_sms_error
-#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "交货错误短信"
-
-#. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_search_sub
 msgid "Search Purchase Order Line"
 msgstr "搜索采购订单明细"
@@ -1469,6 +1461,12 @@ msgstr "您必须选择相同作业类型的请购明细。"
 #, python-format
 msgid "You have to select lines from the same company."
 msgstr "您必须选择同一个公司的请购明细。"
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "交货错误短信"
+
+#~ msgid "Number of messages which requires an action"
+#~ msgstr "需要采取措施的消息计数"
 
 #~ msgid "<strong>Analytic Account</strong>"
 #~ msgstr "<strong>分析账户</strong>"

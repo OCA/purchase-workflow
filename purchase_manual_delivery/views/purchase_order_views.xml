@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="purchase_order_view_form_inherit" model="ir.ui.view">
+        <field name="name">purchase.order.form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//header/button[@name='action_rfq_send']" position="after">
+                <field name="pending_to_receive" invisible="1" />
+                <button
+                    name="%(action_create_manual_stock_picking)d"
+                    string="Create Incoming Shipment"
+                    type="action"
+                    class="btn-primary"
+                    attrs="{'invisible': ['|', ('state', '!=', 'purchase'), ('pending_to_receive', '=', False)]}"
+                />
+            </xpath>
+            <button id="draft_confirm" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </button>
+            <button id="draft_confirm" position="after">
+                <button
+                    name="button_confirm_manual"
+                    type="object"
+                    states="draft"
+                    string="Confirm Order"
+                    id="draft_confirm_manual"
+                />
+            </button>
+            <button id="bid_confirm" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </button>
+            <button id="bid_confirm" position="after">
+                <button
+                    name="button_confirm_manual"
+                    type="object"
+                    states="sent"
+                    string="Confirm Order"
+                    class="oe_highlight"
+                    id="bid_confirm_manual"
+                />
+            </button>
+            <field name="qty_received" position="before">
+                <field name="pending_to_receive" invisible="1" />
+                <field
+                    name="existing_qty"
+                    optional="hide"
+                    attrs="{'column_invisible': [('parent.state', 'not in', ('purchase', 'done'))]}"
+                />
+            </field>
+            <xpath expr="//field[@name='order_line']/tree" position="attributes">
+                <attribute
+                    name="decoration-info"
+                >state == 'purchase' and pending_to_receive</attribute>
+            </xpath>
+            <group name="other_info" position="inside">
+                <field name="manual_delivery" />
+            </group>
+        </field>
+    </record>
+
+    <record id="purchase_order_line_tree" model="ir.ui.view">
+        <field name="model">purchase.order.line</field>
+        <field name="inherit_id" ref="purchase.purchase_order_line_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="/tree" position="attributes">
+                <attribute
+                    name="decoration-info"
+                >state == 'purchase' and pending_to_receive</attribute>
+            </xpath>
+            <field name="product_qty" position="after">
+                <field name="existing_qty" />
+            </field>
+            <field name="date_planned" position="after">
+                <field name="pending_to_receive" />
+                <field name="state" invisible="1" />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_purchase_order_unreceived_line_filter" model="ir.ui.view">
+        <field name="name">purchase.order.unreceived.line</field>
+        <field name="model">purchase.order.line</field>
+        <field name="arch" type="xml">
+            <search string="Search Undelivered Lines">
+                <field name="order_id" />
+                <separator />
+                <filter
+                    string="Reception confirmed"
+                    name="received"
+                    domain="[('pending_to_receive','=', False), ('state', '=', 'purchase')]"
+                    help="Purchase Order Lines that are confirmed or done and an incoming shipment is created to satisfy them"
+                />
+                <filter
+                    string="Pending to receive"
+                    name="unreceived"
+                    domain="[('pending_to_receive','=', True), ('state', '=', 'purchase')]"
+                    help="Purchase Order Lines that are confirmed or done and no incoming shipment is created to satisfy them"
+                />
+                <group expand="0" string="Group By">
+                    <filter
+                        name="purchase"
+                        string="Purchase Order"
+                        context="{'group_by':'order_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_order_line_delivery_tree" model="ir.actions.act_window">
+        <field name="name">Purchase Order Lines</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">purchase.order.line</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_purchase_order_unreceived_line_filter" />
+        <field
+            name="context"
+        >{"search_default_unreceived":0, "search_default_received":0}</field>
+        <field name="filter" eval="True" />
+        <field name="help" type="html">
+          <p>
+            Here is a list of each purchase order line to be received.
+          </p>
+        </field>
+    </record>
+
+    <menuitem
+        id="menu_delivery_purchase_order_lines"
+        parent="purchase.menu_procurement_management"
+        action="action_order_line_delivery_tree"
+        sequence="7"
+    />
+
+</odoo>

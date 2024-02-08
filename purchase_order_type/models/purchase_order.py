@@ -46,7 +46,9 @@ class PurchaseOrder(models.Model):
                     values["order_type"]
                 )
                 if purchase_type.sequence_id:
-                    values["name"] = purchase_type.sequence_id.next_by_id()
+                    values["name"] = purchase_type.sequence_id.next_by_id(
+                        sequence_date=values.get("date_order")
+                    )
         return super().create(vals_list)
 
     @api.constrains("company_id")

@@ -1,0 +1,68 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_packaging_level_qty
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_packaging_level_qty
+#: model:ir.model,name:purchase_packaging_level_qty.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: purchase_packaging_level_qty
+#: model:ir.model,name:purchase_packaging_level_qty.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: purchase_packaging_level_qty
+#: model:ir.model.fields,help:purchase_packaging_level_qty.field_res_config_settings__purchase_packaging_level_id
+msgid "Count purchase order packaging needed for this packing level."
+msgstr ""
+
+#. module: purchase_packaging_level_qty
+#: model_terms:ir.ui.view,arch_db:purchase_packaging_level_qty.res_config_settings_view_form_purchase_inherit
+msgid ""
+"Count purchase order packaging needed for this packing level.\n"
+"                            This information will be shown on each purchase order."
+msgstr ""
+
+#. module: purchase_packaging_level_qty
+#: model:ir.model,name:purchase_packaging_level_qty.model_purchase_order
+msgid "Purchase Order"
+msgstr ""
+
+#. module: purchase_packaging_level_qty
+#: model:ir.model,name:purchase_packaging_level_qty.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr ""
+
+#. module: purchase_packaging_level_qty
+#: model:ir.model.fields,field_description:purchase_packaging_level_qty.field_res_company__purchase_packaging_level_id
+#: model:ir.model.fields,field_description:purchase_packaging_level_qty.field_res_config_settings__purchase_packaging_level_id
+#: model_terms:ir.ui.view,arch_db:purchase_packaging_level_qty.res_config_settings_view_form_purchase_inherit
+msgid "Purchase Packaging Level"
+msgstr ""
+
+#. module: purchase_packaging_level_qty
+#: model:ir.model.fields,field_description:purchase_packaging_level_qty.field_purchase_order__total_transport_qty
+msgid "Total Transport Qty"
+msgstr ""
+
+#. module: purchase_packaging_level_qty
+#: model:ir.model.fields,field_description:purchase_packaging_level_qty.field_purchase_order__transport_packaging_level_id
+msgid "Transport Packaging Level"
+msgstr ""
+
+#. module: purchase_packaging_level_qty
+#: model:ir.model.fields,field_description:purchase_packaging_level_qty.field_purchase_order_line__transport_qty
+msgid "Transport Qty"
+msgstr ""

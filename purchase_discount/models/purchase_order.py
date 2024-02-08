@@ -82,24 +82,24 @@ class PurchaseOrderLine(models.Model):
             self.with_context(skip_update_price_unit=True).price_unit = price_unit
         return price
 
-    @api.onchange("product_qty", "product_uom")
-    def _onchange_quantity(self):
+    def _compute_price_unit_and_date_planned_and_name(self):
+        """Get also the discount from the seller. Unfortunately, this requires to
+        select again the seller to be used, as there isn't any hook to use the already
+        selected one.
         """
-        Check if a discount is defined into the supplier info and if so then
-        apply it to the current purchase order line
-        """
-        if self.product_id:
-            date = None
-            if self.order_id.date_order:
-                date = self.order_id.date_order.date()
-            seller = self.product_id._select_seller(
-                partner_id=self.partner_id,
-                quantity=self.product_qty,
-                date=date,
-                uom_id=self.product_uom,
+        res = super()._compute_price_unit_and_date_planned_and_name()
+        for line in self.filtered("product_id"):
+            seller = line.product_id._select_seller(
+                partner_id=line.partner_id,
+                quantity=line.product_qty,
+                date=line.order_id.date_order
+                and line.order_id.date_order.date()
+                or fields.Date.context_today(line),
+                uom_id=line.product_uom,
+                params={"order_id": line.order_id},
             )
-            self._apply_value_from_seller(seller)
-        return
+            line._apply_value_from_seller(seller)
+        return res
 
     @api.model
     def _apply_value_from_seller(self, seller):

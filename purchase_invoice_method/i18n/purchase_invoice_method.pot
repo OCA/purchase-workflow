@@ -1,0 +1,29 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_invoice_method
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_invoice_method
+#: model:ir.model.fields,field_description:purchase_invoice_method.field_purchase_order__invoice_method
+msgid "Invoice Method"
+msgstr ""
+
+#. module: purchase_invoice_method
+#: model:ir.model,name:purchase_invoice_method.model_purchase_order
+msgid "Purchase Order"
+msgstr ""
+
+#. module: purchase_invoice_method
+#: model:ir.model,name:purchase_invoice_method.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr ""

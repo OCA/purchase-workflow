@@ -58,11 +58,6 @@ msgid "Mixin for documents that want to restrict products"
 msgstr "Mixin pour les documents qui veulent limiter les produits"
 
 #. module: purchase_allowed_product
-#: model:ir.model.fields,field_description:purchase_allowed_product.field_product_supplierinfo__name
-msgid "Name"
-msgstr ""
-
-#. module: purchase_allowed_product
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_res_partner__use_only_supplied_product
 #: model:ir.model.fields,field_description:purchase_allowed_product.field_res_users__use_only_supplied_product
 msgid "Order and invoice only supplied products"
@@ -92,6 +87,11 @@ msgstr "Liste de prix fournisseur"
 msgid "Use only allowed products"
 msgstr "Utiliser seulement les produits du fournisseur ci-dessus"
 
+#. module: purchase_allowed_product
+#: model:ir.model.fields,field_description:purchase_allowed_product.field_product_supplierinfo__partner_id
+msgid "Vendor"
+msgstr "Vendeur"
+
 #~ msgid "Display Name"
 #~ msgstr "Nom affiché"
 
@@ -106,9 +106,6 @@ msgstr "Utiliser seulement les produits du fournisseur ci-dessus"
 
 #~ msgid "Product"
 #~ msgstr "Produit"
-
-#~ msgid "Vendor"
-#~ msgstr "Vendeur"
 
 #~ msgid "Vendor of this product"
 #~ msgstr "Vendeur de ce produit"
