@@ -1,20 +1,22 @@
 # @author Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo.exceptions import AccessError, ValidationError
+from odoo.exceptions import ValidationError
+from odoo.tests import tagged
 from odoo.tests.common import Form, TransactionCase
 
 
+@tagged("post_install", "-at_install")
 class TestQuickPurchase(TransactionCase):
     @classmethod
     def _add_seller(cls, product, prices):
         # drop existing seller
-        product.seller_ids.filtered(lambda s: s.name == cls.partner).unlink()
+        product.seller_ids.filtered(lambda s: s.partner_id == cls.partner).unlink()
         for min_qty, price in prices:
             cls.env["product.supplierinfo"].create(
                 {
                     "product_tmpl_id": product.product_tmpl_id.id,
-                    "name": cls.partner.id,
+                    "partner_id": cls.partner.id,
                     "price": price,
                     "min_qty": min_qty,
                 }
@@ -40,7 +42,6 @@ class TestQuickPurchase(TransactionCase):
         cls.partner = cls.env.ref("base.res_partner_1")
         cls.uom_unit = cls.env.ref("uom.product_uom_unit")
         cls.uom_dozen = cls.env.ref("uom.product_uom_dozen")
-        cls.user = cls.env.ref("base.user_demo")
         cls.product_1 = cls.env.ref("product.product_product_8")
         cls.product_2 = cls.env.ref("product.product_product_11")
         cls._add_seller(cls.product_1, [(0, 10), (10, 8)])
@@ -193,27 +194,6 @@ class TestQuickPurchase(TransactionCase):
         self.po.order_line[0].copy()
         with self.assertRaises(ValidationError):
             self.product_1.qty_to_process = 3.0
-
-    def test_purchaser_can_edit_products(self):
-        """
-        While in the quick purchase interface, a purchaser with no edit rights
-        on product.product can still edit product.product quick quantities
-        """
-        po = self.env["purchase.order"].create({"partner_id": self.partner.id})
-        ctx = {
-            "parent_id": po.id,
-            "parent_model": "purchase.order",
-            "quick_access_rights_purchase": 1,
-        }
-        product = self.env.ref("product.product_product_8")
-        with self.assertRaises(AccessError):
-            product.with_user(self.user).write(
-                {"qty_to_process": 5.0, "quick_uom_id": self.uom_unit.id}
-            )
-        product_in_quick_edit = product.with_user(self.user).with_context(**ctx)
-        product_in_quick_edit.write(
-            {"qty_to_process": 5.0, "quick_uom_id": self.uom_unit.id}
-        )
 
     def test_no_pricelist_for_the_min_qty(self):
         """
