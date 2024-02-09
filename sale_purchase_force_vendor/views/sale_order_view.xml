@@ -16,6 +16,7 @@
                 <field
                     name="vendor_id"
                     domain="vendor_id_domain"
+                    attrs="{'readonly': [('state', 'in', ('sale', 'done', 'cancel'))]}"
                     options='{"no_create": True}'
                     optional="hide"
                 />
@@ -26,7 +27,7 @@
                     <field
                         name="vendor_id"
                         domain="vendor_id_domain"
-                        attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
+                        attrs="{'readonly': [('state', 'in', ('sale', 'done', 'cancel'))]}"
                         options='{"no_create": True}'
                     />
                 </group>
