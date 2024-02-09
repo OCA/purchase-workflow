@@ -1,6 +1,7 @@
 # @author Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+from odoo import Command
 from odoo.exceptions import AccessError, ValidationError
 from odoo.tests.common import Form, TransactionCase
 
@@ -9,12 +10,12 @@ class TestQuickPurchase(TransactionCase):
     @classmethod
     def _add_seller(cls, product, prices):
         # drop existing seller
-        product.seller_ids.filtered(lambda s: s.name == cls.partner).unlink()
+        product.seller_ids.filtered(lambda s: s.partner_id == cls.partner).unlink()
         for min_qty, price in prices:
             cls.env["product.supplierinfo"].create(
                 {
                     "product_tmpl_id": product.product_tmpl_id.id,
-                    "name": cls.partner.id,
+                    "partner_id": cls.partner.id,
                     "price": price,
                     "min_qty": min_qty,
                 }
@@ -40,7 +41,11 @@ class TestQuickPurchase(TransactionCase):
         cls.partner = cls.env.ref("base.res_partner_1")
         cls.uom_unit = cls.env.ref("uom.product_uom_unit")
         cls.uom_dozen = cls.env.ref("uom.product_uom_dozen")
-        cls.user = cls.env.ref("base.user_demo")
+        cls.group_purchase_user = cls.env.ref("purchase.group_purchase_user")
+        cls.user = cls.env.ref("base.user_demo").copy()
+        cls.user.write(
+            {"groups_id": [Command.clear(), Command.link(cls.group_purchase_user.id)]}
+        )
         cls.product_1 = cls.env.ref("product.product_product_8")
         cls.product_2 = cls.env.ref("product.product_product_11")
         cls._add_seller(cls.product_1, [(0, 10), (10, 8)])
