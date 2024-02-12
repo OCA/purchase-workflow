@@ -1,0 +1,9 @@
+- Chafique Delli \<<chafique.delli@akretion.com>\>
+- Mourad EL HADJ MIMOUNE \<<mourad.elhadj.mimoune@akretion.com>\>
+- Hieu, Vo Minh Bao \<<hieu.vmb@komit-consulting.com>\>
+- [Tecnativa](https://www.tecnativa.com):
+  - Manuel Calero
+  - Pedro M. Baeza
+- [Via laurea](https://www.vialaurea.com):
+  - Darius Žižys
+- Eduardo de Miguel ([Moduon](https://www.moduon.team/))
