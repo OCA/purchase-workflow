@@ -12,10 +12,10 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-17 03:38+0000\n"
-"PO-Revision-Date: 2023-12-06 15:36+0000\n"
+"PO-Revision-Date: 2024-02-13 09:42+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
-"Language-Team: Italian (http://www.transifex.com/oca/OCA-purchase-"
-"workflow-10-0/language/it/)\n"
+"Language-Team: Italian (http://www.transifex.com/oca/"
+"OCA-purchase-workflow-10-0/language/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1303,9 +1303,8 @@ msgstr "Da Approvare"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__to_approve_allowed
-#, fuzzy
 msgid "To Approve Allowed"
-msgstr "To Approve Allowed"
+msgstr "Consentite da approvare"
 
 #. module: purchase_request
 #: model:ir.model.fields.selection,name:purchase_request.selection__purchase_request__state__to_approve
