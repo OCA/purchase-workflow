@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-02-11 13:34+0000\n"
+"PO-Revision-Date: 2024-02-13 19:37+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -35,6 +35,7 @@ msgstr "Ocultar Comentarios"
 #: model:ir.model.fields,help:purchase_tier_validation.field_purchase_order__has_comment
 msgid "If set, Allow the reviewer to leave a comment on the review."
 msgstr ""
+"Si se establece, permite al revisor dejar un comentario sobre la reseña."
 
 #. module: purchase_tier_validation
 #: model_terms:ir.ui.view,arch_db:purchase_tier_validation.view_purchase_order_filter
