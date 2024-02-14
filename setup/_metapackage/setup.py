@@ -8,9 +8,12 @@ setuptools.setup(
     description="Meta package for oca-purchase-workflow Odoo addons",
     version=version,
     install_requires=[
+        'odoo-addon-product_supplier_code_purchase>=16.0dev,<16.1dev',
+        'odoo-addon-product_supplierinfo_qty_multiplier>=16.0dev,<16.1dev',
         'odoo-addon-purchase_advance_payment>=16.0dev,<16.1dev',
         'odoo-addon-purchase_all_shipments>=16.0dev,<16.1dev',
         'odoo-addon-purchase_allowed_product>=16.0dev,<16.1dev',
+        'odoo-addon-purchase_blanket_order>=16.0dev,<16.1dev',
         'odoo-addon-purchase_commercial_partner>=16.0dev,<16.1dev',
         'odoo-addon-purchase_default_terms_conditions>=16.0dev,<16.1dev',
         'odoo-addon-purchase_delivery_split_date>=16.0dev,<16.1dev',
@@ -32,6 +35,7 @@ setuptools.setup(
         'odoo-addon-purchase_open_qty>=16.0dev,<16.1dev',
         'odoo-addon-purchase_order_approved>=16.0dev,<16.1dev',
         'odoo-addon-purchase_order_archive>=16.0dev,<16.1dev',
+        'odoo-addon-purchase_order_general_discount>=16.0dev,<16.1dev',
         'odoo-addon-purchase_order_hide_receipt_status>=16.0dev,<16.1dev',
         'odoo-addon-purchase_order_line_menu>=16.0dev,<16.1dev',
         'odoo-addon-purchase_order_no_zero_price>=16.0dev,<16.1dev',
@@ -58,6 +62,7 @@ setuptools.setup(
         'odoo-addon-purchase_triple_discount>=16.0dev,<16.1dev',
         'odoo-addon-purchase_warn_message>=16.0dev,<16.1dev',
         'odoo-addon-sale_purchase_force_vendor>=16.0dev,<16.1dev',
+        'odoo-addon-supplier_calendar>=16.0dev,<16.1dev',
     ],
     classifiers=[
         'Programming Language :: Python',

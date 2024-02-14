@@ -9,15 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-10 05:30+0000\n"
-"PO-Revision-Date: 2023-01-02 12:45+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-12-22 14:36+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: purchase_order_approved
 #: model_terms:ir.ui.view,arch_db:purchase_order_approved.view_purchase_configuration
@@ -25,12 +25,16 @@ msgid ""
 "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
 "specific.\" groups=\"base.group_multi_company\"/>"
 msgstr ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"I valori impostati qui sono "
+"specifici per azienda.\" groups=\"base.group_multi_company\"/>"
 
 #. module: purchase_order_approved
 #: model_terms:ir.ui.view,arch_db:purchase_order_approved.view_purchase_configuration
 msgid ""
 "Adds an extra state in purchase orders previous to 'Purchase Order' state."
 msgstr ""
+"Aggiunge uno stato extra negli ordini di acquisto prima dello stato 'Ordine "
+"di acquisto'."
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,help:purchase_order_approved.field_res_company__purchase_approve_active
@@ -42,26 +46,32 @@ msgid ""
 "back to draft. You can release the creation of the incoming shipments moving "
 "the purchase order to state 'Purchase Order'."
 msgstr ""
+"Aggiunge uno stato aggiuntivo 'Ordine acquisto' negli ordini di acquisto . "
+"Dopo la conferma e l'approvazione di un ordinei di acquisto verrà passato ad "
+"'Approvato'. In questo stato le spedizioni in entrata non vengono ancora "
+"create e si può ancora tornare in bozza. Si può rilasciare la creazione "
+"delle spedizioni in entrata movendo l'ordine di acquisto in stato 'Ordine "
+"acquisto'."
 
 #. module: purchase_order_approved
 #: model:ir.model.fields.selection,name:purchase_order_approved.selection__res_partner__purchase_requires_second_approval__always
 msgid "Always"
-msgstr ""
+msgstr "Sempre"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields.selection,name:purchase_order_approved.selection__purchase_order__state__approved
 msgid "Approved"
-msgstr ""
+msgstr "Approvato"
 
 #. module: purchase_order_approved
 #: model_terms:ir.ui.view,arch_db:purchase_order_approved.view_purchase_order_filter
 msgid "Approved Orders"
-msgstr ""
+msgstr "Ordini approvati"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields.selection,name:purchase_order_approved.selection__res_partner__purchase_requires_second_approval__based_on_company
 msgid "Based on company policy"
-msgstr ""
+msgstr "Basato sulla politica aziendale"
 
 #. module: purchase_order_approved
 #: model:ir.model,name:purchase_order_approved.model_res_company
@@ -70,34 +80,33 @@ msgstr "Aziende"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__company_id
-#, fuzzy
 msgid "Company"
-msgstr "Aziende"
+msgstr "Azienda"
 
 #. module: purchase_order_approved
 #: model:ir.model,name:purchase_order_approved.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Impostazioni configurazione"
 
 #. module: purchase_order_approved
 #: model:ir.model,name:purchase_order_approved.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contatto"
 
 #. module: purchase_order_approved
 #: model_terms:ir.ui.view,arch_db:purchase_order_approved.purchase_order_form
 msgid "Convert to Purchase Order"
-msgstr ""
+msgstr "Converti in ordine di acquisto"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__currency_id
 msgid "Currency"
-msgstr ""
+msgstr "Valuta"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__picking_type_id
 msgid "Deliver To"
-msgstr ""
+msgstr "Consegna a"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,help:purchase_order_approved.field_purchase_order__date_order
@@ -105,26 +114,28 @@ msgid ""
 "Depicts the date within which the Quotation should be confirmed and "
 "converted into a purchase order."
 msgstr ""
+"Rappresenta la data entro cui il preventivo dovrebbe essere validato e "
+"convertito in ordine di acquisto."
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__dest_address_id
 msgid "Dropship Address"
-msgstr ""
+msgstr "Indirizzo consegna"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields.selection,name:purchase_order_approved.selection__res_partner__purchase_requires_second_approval__never
 msgid "Never"
-msgstr ""
+msgstr "Mai"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__date_order
 msgid "Order Deadline"
-msgstr ""
+msgstr "Scadenza ordine"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__order_line
 msgid "Order Lines"
-msgstr ""
+msgstr "Righe ordine"
 
 #. module: purchase_order_approved
 #: model:ir.model,name:purchase_order_approved.model_purchase_order
@@ -135,7 +146,7 @@ msgstr "Ordine di acquisto"
 #: model:ir.model.fields,field_description:purchase_order_approved.field_res_partner__purchase_requires_second_approval
 #: model:ir.model.fields,field_description:purchase_order_approved.field_res_users__purchase_requires_second_approval
 msgid "Purchase Requires Second Approval"
-msgstr ""
+msgstr "Acquisti che richiedono seconda approvazione"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,help:purchase_order_approved.field_purchase_order__dest_address_id
@@ -143,6 +154,8 @@ msgid ""
 "Put an address if you want to deliver directly from the vendor to the "
 "customer. Otherwise, keep empty to deliver to your own company."
 msgstr ""
+"Inserire un indirizzo se si vuole consegnare direttamente dal fornitore al "
+"cliente. Altrimenti, lasciare vuoto per consegnare alla propria azienda."
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,help:purchase_order_approved.field_purchase_order__origin
@@ -150,38 +163,42 @@ msgid ""
 "Reference of the document that generated this purchase order request (e.g. a "
 "sales order)"
 msgstr ""
+"Riferimento al documento che ha generato questa richiesta di ordine di "
+"acquisto (es. ordine di vendita)"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__origin
 msgid "Source Document"
-msgstr ""
+msgstr "Documento origine"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_res_config_settings__purchase_approve_active
 msgid "State 'Approved' in Purchase Orders"
-msgstr ""
+msgstr "Stato 'Confermato' negli ordini di acquisto"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__state
 msgid "Status"
-msgstr ""
+msgstr "Stato"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,help:purchase_order_approved.field_purchase_order__picking_type_id
 msgid "This will determine operation type of incoming shipment"
-msgstr ""
+msgstr "Questo determinerà il tipo di operazione per la consegna in ingresso"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_res_company__purchase_approve_active
 msgid "Use State 'Approved' in Purchase Orders"
-msgstr ""
+msgstr "Usa lo Stato 'Confermato' negli ordini di acquisto"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__partner_id
 msgid "Vendor"
-msgstr ""
+msgstr "Fornitore"
 
 #. module: purchase_order_approved
 #: model:ir.model.fields,help:purchase_order_approved.field_purchase_order__partner_id
 msgid "You can find a vendor by its Name, TIN, Email or Internal Reference."
 msgstr ""
+"Un fornitore può essere trovato per nome, codice fiscale, e-mail o "
+"riferimento interno."

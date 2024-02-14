@@ -1,0 +1,112 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_order_general_discount
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2021-03-03 17:45+0000\n"
+"Last-Translator: Pedro Castro Silva <pedrocs@exo.pt>\n"
+"Language-Team: none\n"
+"Language: pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.3.2\n"
+
+#. module: purchase_order_general_discount
+#: model_terms:ir.ui.view,arch_db:purchase_order_general_discount.res_config_settings_view_form_purchase
+msgid ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" groups=\"base.group_multi_company\"/>"
+msgstr ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Os valores atribuídos aqui "
+"são específicos por empresa.\" groups=\"base.group_multi_company\"/>"
+
+#. module: purchase_order_general_discount
+#: model:ir.model,name:purchase_order_general_discount.model_res_company
+msgid "Companies"
+msgstr "Empresas"
+
+#. module: purchase_order_general_discount
+#: model:ir.model,name:purchase_order_general_discount.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: purchase_order_general_discount
+#: code:addons/purchase_order_general_discount/models/res_company.py:0
+#, python-format
+msgid "Discount"
+msgstr "Desconto"
+
+#. module: purchase_order_general_discount
+#: code:addons/purchase_order_general_discount/models/res_company.py:0
+#, python-format
+msgid "Discount 2"
+msgstr "Desconto 2"
+
+#. module: purchase_order_general_discount
+#: code:addons/purchase_order_general_discount/models/res_company.py:0
+#, python-format
+msgid "Discount 3"
+msgstr "Desconto 3"
+
+#. module: purchase_order_general_discount
+#: model:ir.model.constraint,message:purchase_order_general_discount.constraint_purchase_order_general_discount_limit
+msgid "Discount must be lower than 100%."
+msgstr "O desconto tem que ser inferior a 100%."
+
+#. module: purchase_order_general_discount
+#: model:ir.model.fields,field_description:purchase_order_general_discount.field_purchase_order__general_discount
+msgid "Gen. Disc. (%)"
+msgstr "Desc. Ger. (%)"
+
+#. module: purchase_order_general_discount
+#: model:ir.model,name:purchase_order_general_discount.model_res_config_settings
+msgid "Procurement purchase grouping settings"
+msgstr ""
+
+#. module: purchase_order_general_discount
+#: model:ir.model.fields,field_description:purchase_order_general_discount.field_res_company__purchase_general_discount_field
+#: model:ir.model.fields,field_description:purchase_order_general_discount.field_res_config_settings__purchase_general_discount_field
+msgid "Purchase Discount Field"
+msgstr "Campo de Desconto de Compra"
+
+#. module: purchase_order_general_discount
+#: model:ir.model.fields,field_description:purchase_order_general_discount.field_res_partner__purchase_general_discount
+#: model:ir.model.fields,field_description:purchase_order_general_discount.field_res_users__purchase_general_discount
+msgid "Purchase General Discount (%)"
+msgstr "Desconto Geral de Compra (%)"
+
+#. module: purchase_order_general_discount
+#: model:ir.model,name:purchase_order_general_discount.model_purchase_order
+msgid "Purchase Order"
+msgstr "Encomenda de Compra"
+
+#. module: purchase_order_general_discount
+#: model_terms:ir.ui.view,arch_db:purchase_order_general_discount.res_config_settings_view_form_purchase
+msgid ""
+"Select to which purchase line field will the purchase general discount be "
+"propagated."
+msgstr ""
+"Selecione para que campo de linha de compra será propagado o desconto geral "
+"de compra."
+
+#. module: purchase_order_general_discount
+#: model:ir.model.fields,help:purchase_order_general_discount.field_res_company__purchase_general_discount_field
+#: model:ir.model.fields,help:purchase_order_general_discount.field_res_config_settings__purchase_general_discount_field
+msgid ""
+"Set the purchase line discount field in which the discounts will be applied."
+msgstr ""
+"Defina o campo de desconto de linha de compra ao qual serão aplicados os "
+"descontos."
+
+#. module: purchase_order_general_discount
+#: model_terms:ir.ui.view,arch_db:purchase_order_general_discount.purchase_order_form
+msgid "Update general discounts"
+msgstr "Atualizar descontos gerais"
+
+#~ msgid "Config Settings"
+#~ msgstr "Parâmetros de Configuração"
