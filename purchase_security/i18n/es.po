@@ -20,11 +20,11 @@ msgstr ""
 #. module: purchase_security
 #: model_terms:ir.ui.view,arch_db:purchase_security.purchase_team_form
 msgid ""
-"<i class=\"fa fa-envelope mr-1\" role=\"img\" aria-label=\"Email\" "
-"title=\"Email\"/>"
+"<i class=\"fa fa-envelope mr-1\" role=\"img\" aria-label=\"Email\" title="
+"\"Email\"/>"
 msgstr ""
-"<i class=\"fa fa-envelope mr-1\" role=\"img\" aria-label=\"Correo "
-"electrónico\" title=\"Correo electrónico\"/>"
+"<i class=\"fa fa-envelope mr-1\" role=\"img\" aria-label=\"Correo electrónico"
+"\" title=\"Correo electrónico\"/>"
 
 #. module: purchase_security
 #: model_terms:ir.ui.view,arch_db:purchase_security.purchase_team_form

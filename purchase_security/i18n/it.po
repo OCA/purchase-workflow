@@ -29,6 +29,11 @@ msgid "Avatar"
 msgstr ""
 
 #. module: purchase_security
+#: model:ir.model,name:purchase_security.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: purchase_security
 #: model:ir.model.fields,field_description:purchase_security.field_purchase_team__create_uid
 msgid "Created by"
 msgstr ""
@@ -96,6 +101,29 @@ msgid "Purchase Users"
 msgstr ""
 
 #. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_res_partner__purchase_user_id
+#: model:ir.model.fields,field_description:purchase_security.field_res_users__purchase_user_id
+#: model_terms:ir.ui.view,arch_db:purchase_security.view_res_partner_filter
+msgid "Purchase representative"
+msgstr ""
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_res_partner__purchase_team_id
+#: model:ir.model.fields,field_description:purchase_security.field_res_users__purchase_team_id
+msgid "Purchase team"
+msgstr ""
+
+#. module: purchase_security
+#: model:ir.model.fields,field_description:purchase_security.field_res_users__purchase_team_ids
+msgid "Purchases Teams"
+msgstr ""
+
+#. module: purchase_security
+#: model:ir.model,name:purchase_security.model_ir_rule
+msgid "Record Rule"
+msgstr ""
+
+#. module: purchase_security
 #: model:ir.model.fields,field_description:purchase_security.field_purchase_team__sequence
 msgid "Sequence"
 msgstr ""
@@ -113,6 +141,11 @@ msgstr "Utente (solo propri ordini)"
 #. module: purchase_security
 #: model:res.groups,name:purchase_security.group_purchase_group_orders
 msgid "User (team orders)"
+msgstr ""
+
+#. module: purchase_security
+#: model:ir.model,name:purchase_security.model_res_users
+msgid "Users"
 msgstr ""
 
 #. module: purchase_security
