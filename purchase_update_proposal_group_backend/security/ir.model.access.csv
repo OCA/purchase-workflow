@@ -1,0 +1,23 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_purchase_order,purchase.order,purchase.model_purchase_order,base_group_backend.group_backend,1,1,1,1
+access_purchase_order_line,purchase.order.line user,purchase.model_purchase_order_line,base_group_backend.group_backend,1,1,1,1
+access_account_tax_purchase_user,account.tax,account.model_account_tax,base_group_backend.group_backend,1,0,0,0
+access_account_tag_purchase_user,account.account.tag,account.model_account_account_tag,base_group_backend.group_backend,1,0,0,0
+access_product_product_purchase_user,product.product.purchase.user,product.model_product_product,base_group_backend.group_backend,1,0,0,0
+access_product_template_purchase_user,product.template purchase_user,product.model_product_template,base_group_backend.group_backend,1,0,0,0
+access_account_fiscal_position_purchase_user,account.fiscal.position purchase,account.model_account_fiscal_position,base_group_backend.group_backend,1,0,0,0
+access_res_partner_purchase_user,res.partner purchase,base.model_res_partner,base_group_backend.group_backend,1,0,0,0
+access_account_journal,account.journal,account.model_account_journal,base_group_backend.group_backend,1,0,0,0
+access_account_move,account.move,account.model_account_move,base_group_backend.group_backend,1,1,1,1
+access_account_move_line,account.move.line,account.model_account_move_line,base_group_backend.group_backend,1,1,1,0
+access_account_analytic_line,account.analytic.line,account.model_account_analytic_line,base_group_backend.group_backend,1,0,0,0
+account_partial_reconcile,account.partial.reconcile.purchase.user,account.model_account_partial_reconcile,base_group_backend.group_backend,1,0,0,0
+access_purchase_bill_union,access_purchase_bill_union,purchase.model_purchase_bill_union,base_group_backend.group_backend,1,0,0,0
+access_report_purchase_order_user,purchase.stock.report user,purchase.model_purchase_report,base_group_backend.group_backend,1,0,0,0
+
+purch_proposal_supplier,purch_proposal_supplier,purchase_update_proposal.model_purchase_line_proposal,base_group_backend.group_backend,1,1,0,1
+stock_move_supplier,supplier stock.move,purchase_stock.model_stock_move,base_group_backend.group_backend,1,0,0,0
+access_stock_picking_type_backend,stock.picking.type all users,stock.model_stock_picking_type,base_group_backend.group_backend,1,0,0,0
+access_stock_warehouse_backend,stock.picking.type all users,stock.model_stock_warehouse,base_group_backend.group_backend,1,0,0,0
+access_stock_location_backend,stock.picking.type all users,stock.model_stock_location,base_group_backend.group_backend,1,0,0,0
+access_stock_quant_backend,stock.picking.type all users,stock.model_stock_quant,base_group_backend.group_backend,1,0,0,0
