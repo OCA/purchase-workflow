@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-12-22 14:36+0000\n"
+"PO-Revision-Date: 2024-02-16 17:45+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -212,12 +212,12 @@ msgstr "Registra cauzione"
 #. module: purchase_deposit
 #: model:ir.model.fields,help:purchase_deposit.field_purchase_advance_payment_inv__deposit_taxes_id
 msgid "Taxes used for deposits"
-msgstr "Tasse utilizzate per le cauzioni"
+msgstr "Imposte utilizzate per le cauzioni"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,help:purchase_deposit.field_purchase_advance_payment_inv__amount
 msgid "The amount to be invoiced in advance, taxes excluded."
-msgstr "Valore da fatturare in anticipo, tasse escluse."
+msgstr "Valore da fatturare in anticipo, imposte escluse."
 
 #. module: purchase_deposit
 #. odoo-python
@@ -272,7 +272,7 @@ msgstr ""
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__deposit_taxes_id
 msgid "Vendor Taxes"
-msgstr "Tasse venditore"
+msgstr "Imposte venditore"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__advance_payment_method
