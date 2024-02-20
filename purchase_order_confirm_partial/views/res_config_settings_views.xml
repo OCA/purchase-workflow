@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record
+        id="res_config_settings_view_form_purchase_inherit_partial_confirm"
+        model="ir.ui.view"
+    >
+        <field
+            name="name"
+        >res.config.settings.view.form.purchase.inherit.partial.confirm</field>
+        <field name="model">res.config.settings</field>
+        <field
+            name="inherit_id"
+            ref="purchase.res_config_settings_view_form_purchase"
+        />
+        <field name="arch" type="xml">
+            <div name="purchase_setting_container" position="inside">
+                <div
+                    class="col-12 col-lg-6 o_setting_box"
+                    id="partial_confirmation_setting"
+                >
+                    <div class="o_setting_left_pane">
+                        <field name="purchase_order_confirm_partial_enabled" />
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="purchase_order_confirm_partial_enabled" />
+                        <div class="text-muted">
+                            Enables opportunity to confirm selected purchase order lines only
+                        </div>
+                        <div
+                            class="content-group"
+                            attrs="{'invisible': [('purchase_order_confirm_partial_enabled', '=', False)]}"
+                        >
+                            <div class="mt16">
+                                <field
+                                    name="po_confirm_partial_save_unconfirmed"
+                                    class="oe_inline"
+                                />
+                                <label for="po_confirm_partial_save_unconfirmed" />
+                            </div>
+                            <div
+                                class="mt16"
+                                attrs="{'invisible': [('po_confirm_partial_save_unconfirmed', '=', False)]}"
+                            >
+                                <label for="po_confirm_partial_unconfirmed_suffix" />
+                                <field
+                                    name="po_confirm_partial_unconfirmed_suffix"
+                                    class="oe_inline"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </field>
+    </record>
+
+</odoo>

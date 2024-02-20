@@ -1,0 +1,1 @@
+This module allows to select which purchase order lines you would like to confirm. It also can create a new RFQ in the "Cancel" state with all the unconfirmed lines from the original RFQ in case you need to keep that information.
