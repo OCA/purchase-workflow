@@ -23,8 +23,9 @@ class PurchaseOrder(models.Model):
                 order.pending_to_receive = False
 
     def button_confirm_manual(self):
-        super(PurchaseOrder, self.with_context(manual_delivery=True)).button_confirm()
-        return
+        return super(
+            PurchaseOrder, self.with_context(manual_delivery=True)
+        ).button_confirm()
 
     def _create_picking(self):
         if self.env.context.get("manual_delivery", False) and self.manual_delivery:
