@@ -34,7 +34,7 @@ class ProductSupplierInfo(models.Model):
         """Insert discount (or others) from context from purchase.order's
         _add_supplier_to_product method"""
         for vals in vals_list:
-            product_tmpl_id = vals["product_tmpl_id"]
+            product_tmpl_id = vals.get("product_tmpl_id")
             po_line_map = self.env.context.get("po_line_map", {})
             if product_tmpl_id in po_line_map:
                 po_line = po_line_map[product_tmpl_id]
