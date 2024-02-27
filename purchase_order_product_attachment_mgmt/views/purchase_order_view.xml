@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field name="name">purchase.order.form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_view_invoice']" position="after">
+                <button
+                    class="oe_stat_button"
+                    name="action_see_purchase_order_attachments"
+                    type="object"
+                    icon="fa-files-o"
+                    string="Attachments"
+                />
+            </xpath>
+        </field>
+    </record>
+    <record id="action_see_purchase_order_attachments" model="ir.actions.server">
+        <field name="name">Attachments</field>
+        <field name="model_id" ref="purchase.model_purchase_order" />
+        <field name="binding_model_id" ref="purchase.model_purchase_order" />
+        <field name="state">code</field>
+        <field name="code">
+            if records:
+                action = records.action_see_purchase_order_attachments()
+        </field>
+    </record>
+</odoo>
