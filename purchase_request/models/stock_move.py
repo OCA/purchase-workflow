@@ -62,7 +62,7 @@ class StockMove(models.Model):
                             "purchase request has been cancelled/deleted. "
                             "Check if an action is needed."
                         ),
-                        "user_id": pr_line.product_id.responsible_id.id,
+                        "user_id": pr_line.product_id.responsible_id.id or self.env.uid,
                         "res_id": pr_line.request_id.id,
                         "res_model_id": self.env.ref(
                             "purchase_request.model_purchase_request"
