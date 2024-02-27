@@ -15,7 +15,7 @@
                 />
             </button>
             <notebook position="inside">
-                <page string="Payment advances" groups="account.group_account_invoice">
+                <page string="Payment advances" groups="purchase_advance_payment.group_purchase_payments, purchase.group_purchase_manager">
                     <field
                         name="account_payment_ids"
                         nolabel="1"
@@ -45,6 +45,7 @@
         <field name="inherit_id" ref="purchase.purchase_order_view_tree" />
         <field name="arch" type="xml">
             <field name="invoice_status" position="before">
+                <field name="payments_date" optional="hide" />
                 <field
                     name="advance_payment_status"
                     decoration-success="advance_payment_status == 'paid'"
@@ -72,6 +73,7 @@
         <field name="inherit_id" ref="purchase.purchase_order_kpis_tree" />
         <field name="arch" type="xml">
             <field name="invoice_status" position="before">
+                <field name="payments_date" optional="hide" />
                 <field
                     name="advance_payment_status"
                     decoration-success="advance_payment_status == 'paid'"
