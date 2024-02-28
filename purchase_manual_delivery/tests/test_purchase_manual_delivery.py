@@ -5,6 +5,8 @@ from odoo import fields
 from odoo.exceptions import UserError
 from odoo.tests.common import TransactionCase
 
+from odoo.addons.mail.tests.common import mail_new_test_user
+
 
 class TestPurchaseManualDelivery(TransactionCase):
     def setUp(self):
@@ -357,3 +359,67 @@ class TestPurchaseManualDelivery(TransactionCase):
             location_ids=location.ids
         )
         self.assertEqual(qty.get((product_in_progress.id, location.id)), 3)
+
+    def test_06_purchase_order_manual_delivery_double_validation(self):
+        """
+        Confirm Purchase Order 1, check no incoming shipments have been
+        pre-created. Approve Purchase Order 1, check no incoming shipments
+        have been pre-created.
+        """
+        self.user_purchase_user = mail_new_test_user(
+            self.env,
+            name="Pauline Poivraisselle",
+            login="pauline",
+            email="pur@example.com",
+            notification_type="inbox",
+            groups="purchase.group_purchase_user",
+        )
+
+        # make double validation two step
+        self.env.company.write(
+            {"po_double_validation": "two_step", "po_double_validation_amount": 2000.00}
+        )
+
+        # Create draft RFQ
+        po_vals = {
+            "partner_id": self.ref("base.res_partner_3"),
+            "order_line": [
+                (
+                    0,
+                    0,
+                    {
+                        "name": self.product1.name,
+                        "product_id": self.product1.id,
+                        "product_qty": 5.0,
+                        "product_uom": self.product1.uom_po_id.id,
+                        "price_unit": 5000000.0,
+                    },
+                )
+            ],
+        }
+        self.po = (
+            self.env["purchase.order"]
+            .with_user(self.user_purchase_user)
+            .create(po_vals)
+        )
+
+        # confirm RFQ
+        self.po.button_confirm_manual()
+        self.assertTrue(self.po.order_line.pending_to_receive)
+        self.assertEqual(self.po.order_line.existing_qty, 0)
+        self.assertFalse(
+            self.po.picking_ids,
+            "Purchase Manual Delivery: no picking should had been created",
+        )
+        self.assertEqual(self.po.state, "to approve")
+
+        # PO approved by manager
+        self.po.env.user.groups_id += self.env.ref("purchase.group_purchase_manager")
+        self.po.button_approve()
+        self.assertTrue(self.po.order_line.pending_to_receive)
+        self.assertEqual(self.po.order_line.existing_qty, 0)
+        self.assertFalse(
+            self.po.picking_ids,
+            "Purchase Manual Delivery: no picking should had been created",
+        )
+        self.assertEqual(self.po.state, "purchase")
