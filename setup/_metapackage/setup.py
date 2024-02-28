@@ -40,6 +40,7 @@ setuptools.setup(
         'odoo-addon-purchase_order_line_menu>=16.0dev,<16.1dev',
         'odoo-addon-purchase_order_no_zero_price>=16.0dev,<16.1dev',
         'odoo-addon-purchase_order_owner>=16.0dev,<16.1dev',
+        'odoo-addon-purchase_order_product_attachment_mgmt>=16.0dev,<16.1dev',
         'odoo-addon-purchase_order_product_recommendation>=16.0dev,<16.1dev',
         'odoo-addon-purchase_order_purchase_manager>=16.0dev,<16.1dev',
         'odoo-addon-purchase_order_supplierinfo_update>=16.0dev,<16.1dev',
