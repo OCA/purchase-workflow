@@ -24,21 +24,15 @@ msgid "Attachments"
 msgstr "Adjuntos"
 
 #. module: purchase_order_product_attachment_mgmt
-#: model:ir.model.fields,field_description:purchase_order_product_attachment_mgmt.field_purchase_order__display_name
-msgid "Display Name"
-msgstr "Nombre mostrado"
-
-#. module: purchase_order_product_attachment_mgmt
-#: model:ir.model.fields,field_description:purchase_order_product_attachment_mgmt.field_purchase_order__id
-msgid "ID"
-msgstr "ID"
-
-#. module: purchase_order_product_attachment_mgmt
-#: model:ir.model.fields,field_description:purchase_order_product_attachment_mgmt.field_purchase_order____last_update
-msgid "Last Modified on"
-msgstr "Última modificación el"
-
-#. module: purchase_order_product_attachment_mgmt
 #: model:ir.model,name:purchase_order_product_attachment_mgmt.model_purchase_order
 msgid "Purchase Order"
 msgstr "Pedido de compra"
+
+#~ msgid "Display Name"
+#~ msgstr "Nombre mostrado"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación el"
