@@ -1,11 +1,13 @@
-# Copyright 2022 Tecnativa - Víctor Martínez
+# Copyright 2022-2024 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import base64
 
-from odoo.tests import Form, common
+from odoo.tests import Form
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestPurchaseOrderProductAttachmentMgmt(common.SavepointCase):
+class TestPurchaseOrderProductAttachmentMgmt(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
