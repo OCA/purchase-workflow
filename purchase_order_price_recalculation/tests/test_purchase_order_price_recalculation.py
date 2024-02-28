@@ -1,10 +1,12 @@
-# Copyright 2022 Tecnativa - Víctor Martínez
+# Copyright 2022-2024 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 
-from odoo.tests import Form, common
+from odoo.tests import Form
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestPurchaseOrderPriceRecalculation(common.SavepointCase):
+class TestPurchaseOrderPriceRecalculation(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -14,8 +16,8 @@ class TestPurchaseOrderPriceRecalculation(common.SavepointCase):
             {
                 "name": "Test product",
                 "seller_ids": [
-                    (0, 0, {"name": cls.partner_a.id, "price": 10}),
-                    (0, 0, {"name": cls.partner_b.id, "price": 20}),
+                    (0, 0, {"partner_id": cls.partner_a.id, "price": 10}),
+                    (0, 0, {"partner_id": cls.partner_b.id, "price": 20}),
                 ],
             }
         )
