@@ -18,21 +18,6 @@ msgstr ""
 "X-Generator: Poedit 2.3\n"
 
 #. module: purchase_order_price_recalculation
-#: model:ir.model.fields,field_description:purchase_order_price_recalculation.field_purchase_order__display_name
-msgid "Display Name"
-msgstr "Nombre mostrado"
-
-#. module: purchase_order_price_recalculation
-#: model:ir.model.fields,field_description:purchase_order_price_recalculation.field_purchase_order__id
-msgid "ID"
-msgstr "ID"
-
-#. module: purchase_order_price_recalculation
-#: model:ir.model.fields,field_description:purchase_order_price_recalculation.field_purchase_order____last_update
-msgid "Last Modified on"
-msgstr "Última modificación el"
-
-#. module: purchase_order_price_recalculation
 #: model:ir.model,name:purchase_order_price_recalculation.model_purchase_order
 msgid "Purchase Order"
 msgstr "Pedido de compra"
@@ -50,3 +35,12 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:purchase_order_price_recalculation.purchase_order_form
 msgid "Update lines info"
 msgstr "Actualizar información de líneas"
+
+#~ msgid "Display Name"
+#~ msgstr "Nombre mostrado"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación el"
