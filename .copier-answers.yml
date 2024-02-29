@@ -16,7 +16,7 @@ odoo_version: 16.0
 org_name: Odoo Community Association (OCA)
 org_slug: OCA
 rebel_module_groups:
-- purchase_security
+- purchase_security,purchase_order_qty_change_no_recompute
 repo_description: 'TODO: add repo description.'
 repo_name: purchase-workflow
 repo_slug: purchase-workflow

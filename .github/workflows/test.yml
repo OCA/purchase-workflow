@@ -36,17 +36,17 @@ jobs:
       matrix:
         include:
           - container: ghcr.io/oca/oca-ci/py3.10-odoo16.0:latest
-            include: "purchase_security"
+            include: "purchase_security,purchase_order_qty_change_no_recompute"
             name: test with Odoo
           - container: ghcr.io/oca/oca-ci/py3.10-ocb16.0:latest
-            include: "purchase_security"
+            include: "purchase_security,purchase_order_qty_change_no_recompute"
             name: test with OCB
             makepot: "true"
           - container: ghcr.io/oca/oca-ci/py3.10-odoo16.0:latest
-            exclude: "purchase_security"
+            exclude: "purchase_security,purchase_order_qty_change_no_recompute"
             name: test with Odoo
           - container: ghcr.io/oca/oca-ci/py3.10-ocb16.0:latest
-            exclude: "purchase_security"
+            exclude: "purchase_security,purchase_order_qty_change_no_recompute"
             name: test with OCB
             makepot: "true"
     services:
