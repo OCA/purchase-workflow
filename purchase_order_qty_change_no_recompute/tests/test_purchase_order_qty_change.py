@@ -1,22 +1,14 @@
 # Copyright 2021 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests.common import Form
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestPurchaseOrderQtyChange(TransactionCase):
+class TestPurchaseOrderQtyChange(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        # Remove this variable in v16 and put instead:
-        # from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
-        DISABLED_MAIL_CONTEXT = {
-            "tracking_disable": True,
-            "mail_create_nolog": True,
-            "mail_create_nosubscribe": True,
-            "mail_notrack": True,
-            "no_reset_password": True,
-        }
-        cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT))
         cls.partner = cls.env["res.partner"].create({"name": "Test supplier"})
         cls.product_1 = cls.env["product.product"].create(
             {
@@ -44,9 +36,7 @@ class TestPurchaseOrderQtyChange(TransactionCase):
                 ],
             }
         )
-        purchase_order_form = Form(
-            cls.env["purchase.order"].with_context(prevent_onchange_quantity=True)
-        )
+        purchase_order_form = Form(cls.env["purchase.order"])
         purchase_order_form.partner_id = cls.partner
         with purchase_order_form.order_line.new() as cls.line_form:
             cls.line_form.product_id = cls.product_1
