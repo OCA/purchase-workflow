@@ -49,11 +49,11 @@ class TestSaleProductByPackagingOnly(Common):
         """
         self.product.purchase_only_by_packaging = True
         packaging = self.packaging_tu
-        self.order_line.product_packaging_id = packaging
         # For this step, the qty is not forced on the packaging
         # But the warning will be raise because the value of packaging qty is
         # not integer package
         with self.assertRaises(ValidationError):
+            self.order_line.product_packaging_id = packaging
             self.order_line.product_packaging_qty = 0.6
             self.assertAlmostEqual(
                 self.order_line.product_qty, 12, places=self.precision

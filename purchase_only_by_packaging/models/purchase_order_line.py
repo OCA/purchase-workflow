@@ -50,3 +50,13 @@ class PurchaseOrderLine(models.Model):
     @api.onchange("product_qty")
     def _onchange_product_qty(self):
         self._force_qty_with_package()
+
+    @api.depends("product_packaging_id")
+    def _compute_product_qty(self):
+        res = super()._compute_product_qty()
+        for item in self.filtered(lambda x: x.product_packaging_id):
+            old_qty = item.product_qty
+            item.product_qty = item.product_id._convert_packaging_qty(
+                old_qty, item.product_uom, packaging=item.product_packaging_id
+            )
+        return res
