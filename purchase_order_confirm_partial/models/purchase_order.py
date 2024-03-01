@@ -140,7 +140,10 @@ class PurchaseOrder(models.Model):
         self.ensure_one()
         unconfirmed_rfq = self._process_unconfirmed_rfq(confirmed_lines)
         self._update_order_lines_qty(confirmed_lines)
-        self.with_context(standard_confirm_proceed=True).button_confirm()
+        self.with_context(
+            standard_confirm_proceed=True,
+            skip_alternative_check=True,
+        ).button_confirm()
         if unconfirmed_rfq:
             self.message_post(
                 body=_(
