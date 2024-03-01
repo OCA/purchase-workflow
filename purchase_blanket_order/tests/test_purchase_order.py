@@ -4,56 +4,58 @@ from datetime import date, timedelta
 
 from odoo import fields
 from odoo.exceptions import ValidationError
-from odoo.tests import common
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestPurchaseOrder(common.TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.blanket_order_obj = self.env["purchase.blanket.order"]
-        self.blanket_order_line_obj = self.env["purchase.blanket.order.line"]
-        self.purchase_order_obj = self.env["purchase.order"]
-        self.purchase_order_line_obj = self.env["purchase.order.line"]
+class TestPurchaseOrder(BaseCommon):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.blanket_order_obj = cls.env["purchase.blanket.order"]
+        cls.blanket_order_line_obj = cls.env["purchase.blanket.order.line"]
+        cls.purchase_order_obj = cls.env["purchase.order"]
+        cls.purchase_order_line_obj = cls.env["purchase.order.line"]
 
-        self.partner = self.env["res.partner"].create(
+        cls.partner = cls.env["res.partner"].create(
             {"name": "TEST SUPPLIER", "supplier_rank": 1}
         )
-        self.partner_2 = self.env["res.partner"].create(
+        cls.partner_2 = cls.env["res.partner"].create(
             {"name": "TEST SUPPLIER 2", "supplier_rank": 2}
         )
-        self.payment_term = self.env.ref("account.account_payment_term_30days")
+        cls.payment_term = cls.env.ref("account.account_payment_term_30days")
 
         # Seller IDS
-        seller = self.env["product.supplierinfo"].create(
-            {"partner_id": self.partner.id, "price": 30.0}
+        seller = cls.env["product.supplierinfo"].create(
+            {"partner_id": cls.partner.id, "price": 30.0}
         )
 
-        self.product = self.env["product.product"].create(
+        cls.product = cls.env["product.product"].create(
             {
                 "name": "Demo",
-                "categ_id": self.env.ref("product.product_category_1").id,
+                "categ_id": cls.env.ref("product.product_category_1").id,
                 "standard_price": 35.0,
                 "seller_ids": [(6, 0, [seller.id])],
                 "type": "consu",
-                "uom_id": self.env.ref("uom.product_uom_unit").id,
+                "uom_id": cls.env.ref("uom.product_uom_unit").id,
                 "default_code": "PROD_DEL01",
             }
         )
-        self.product_2 = self.env["product.product"].create(
+        cls.product_2 = cls.env["product.product"].create(
             {
                 "name": "Demo 2",
-                "categ_id": self.env.ref("product.product_category_1").id,
+                "categ_id": cls.env.ref("product.product_category_1").id,
                 "standard_price": 35.0,
                 "seller_ids": [(6, 0, [seller.id])],
                 "type": "consu",
-                "uom_id": self.env.ref("uom.product_uom_unit").id,
+                "uom_id": cls.env.ref("uom.product_uom_unit").id,
                 "default_code": "PROD_DEL02",
             }
         )
-        self.validity = date.today() + timedelta(days=365)
-        self.date_schedule_1 = date.today() + timedelta(days=10)
-        self.date_schedule_2 = date.today() + timedelta(days=20)
-        self.currency_test = self.env["res.currency"].create(
+        cls.validity = date.today() + timedelta(days=365)
+        cls.date_schedule_1 = date.today() + timedelta(days=10)
+        cls.date_schedule_2 = date.today() + timedelta(days=20)
+        cls.currency_test = cls.env["res.currency"].create(
             {"name": "Test Currency", "symbol": "T"}
         )
 
@@ -161,7 +163,7 @@ class TestPurchaseOrder(common.TransactionCase):
         po_line.onchange_product_id()
         self.assertEqual(po_line._get_eligible_bo_lines(), bo_lines)
         bo_line_assigned = self.blanket_order_line_obj.search(
-            [("date_schedule", "=", fields.Date.to_string(self.date_schedule_1))]
+            [("date_schedule", "=", date.today())]
         )
         self.assertEqual(po_line.blanket_order_line, bo_line_assigned)
 

@@ -1,6 +1,7 @@
 # Copyright (C) 2018 ForgeFlow S.L. (https://www.forgeflow.com)
+# Copyright 2024 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from datetime import date, timedelta
+from datetime import date
 
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
@@ -67,26 +68,44 @@ class PurchaseOrderLine(models.Model):
 
     blanket_order_line = fields.Many2one(
         comodel_name="purchase.blanket.order.line",
+        compute="_compute_blanket_order_line",
+        store=True,
         copy=False,
         domain="[('product_id', '=', product_id)]",
     )
 
+    @api.depends("blanket_order_line")
+    def _compute_date_planned(self):
+        res = super()._compute_date_planned()
+        for item in self.filtered("blanket_order_line"):
+            item.date_planned = item.blanket_order_line.date_schedule
+        return res
+
+    @api.depends("product_id", "product_qty", "product_uom", "date_planned")
+    def _compute_blanket_order_line(self):
+        for item in self.filtered(lambda x: x.product_id):
+            eligible_bo_lines = item._get_eligible_bo_lines()
+            item.blanket_order_line = (
+                item._get_assigned_bo_line(eligible_bo_lines)
+                if eligible_bo_lines
+                else item.blanket_order_line
+            )
+
     def _get_assigned_bo_line(self, bo_lines):
         # We get the blanket order line with enough quantity and closest
         # scheduled date
-        assigned_bo_line = False
-        date_planned = fields.Date.from_string(self.date_planned) or date.today()
-        date_delta = timedelta(days=365)
-        for line in bo_lines.filtered(lambda l: l.date_schedule):
-            date_schedule = fields.Date.from_string(line.date_schedule)
-            if date_schedule and abs(date_schedule - date_planned) < date_delta:
-                assigned_bo_line = line
-                date_delta = abs(date_schedule - date_planned)
-        if assigned_bo_line:
-            return assigned_bo_line
-        non_date_bo_lines = bo_lines.filtered(lambda l: not l.date_schedule)
-        if non_date_bo_lines:
-            return non_date_bo_lines[0]
+        dates_list = self.order_id.order_line.filtered(
+            lambda x: not x.display_type and x.date_planned
+        ).mapped("date_planned")
+        min_date = min(dates_list).date() if dates_list else date.today()
+        max_date = max(dates_list).date() if dates_list else date.today()
+        items = bo_lines.filtered(
+            lambda x: x.date_schedule
+            and x.date_schedule >= min_date
+            and x.date_schedule <= max_date
+        )
+        assigned_bo_lines = items or bo_lines.filtered(lambda x: not x.date_schedule)
+        return fields.first(assigned_bo_lines)
 
     def _get_eligible_bo_lines_domain(self, base_qty):
         filters = [
@@ -103,76 +122,13 @@ class PurchaseOrderLine(models.Model):
         base_qty = self.product_uom._compute_quantity(
             self.product_qty, self.product_id.uom_id
         )
-        filters = self._get_eligible_bo_lines_domain(base_qty)
-        return self.env["purchase.blanket.order.line"].search(filters)
-
-    def get_assigned_bo_line(self):
-        self.ensure_one()
-        eligible_bo_lines = self._get_eligible_bo_lines()
-        if eligible_bo_lines:
-            if (
-                not self.blanket_order_line
-                or self.blanket_order_line not in eligible_bo_lines
-            ):
-                self.blanket_order_line = self._get_assigned_bo_line(eligible_bo_lines)
-        else:
-            self.blanket_order_line = False
-        self.onchange_blanket_order_line()
-        return {"domain": {"blanket_order_line": [("id", "in", eligible_bo_lines.ids)]}}
-
-    @api.onchange("product_id", "partner_id")
-    def onchange_product_id(self):
-        res = super().onchange_product_id()
-        # If product has changed remove the relation with blanket order line
-        if self.product_id:
-            return self.get_assigned_bo_line()
-        return res
-
-    @api.depends("product_qty", "product_uom")
-    def _compute_price_unit_and_date_planned_and_name(self):
-        res = super()._compute_price_unit_and_date_planned_and_name()
-        for rec in self:
-            if rec.product_id and not rec.env.context.get("skip_blanket_find", False):
-                return rec.get_assigned_bo_line()
-        return res
+        domain = self._get_eligible_bo_lines_domain(base_qty)
+        return self.env["purchase.blanket.order.line"].search(domain)
 
     @api.onchange("blanket_order_line")
     def onchange_blanket_order_line(self):
-        bol = self.blanket_order_line
-        if bol:
-            self.product_id = bol.product_id
-            if bol.date_schedule:
-                self.date_planned = bol.date_schedule
-            if bol.product_uom != self.product_uom:
-                price_unit = bol.product_uom._compute_price(
-                    bol.price_unit, self.product_uom
-                )
-            else:
-                price_unit = bol.price_unit
-            self.price_unit = price_unit
-            if bol.taxes_id:
-                self.taxes_id = bol.taxes_id
-        else:
-            self._compute_tax_id()
-            self.with_context(
-                skip_blanket_find=True
-            )._compute_price_unit_and_date_planned_and_name()
-
-    @api.constrains("date_planned")
-    def check_date_planned(self):
-        for line in self:
-            date_planned = fields.Date.from_string(line.date_planned)
-            if (
-                line.blanket_order_line
-                and line.blanket_order_line.date_schedule
-                and line.blanket_order_line.date_schedule != date_planned
-            ):
-                raise ValidationError(
-                    _(
-                        "Schedule dates defined on the Purchase Order Line "
-                        "and on the Blanket Order Line do not match."
-                    )
-                )
+        if self.blanket_order_line and self.blanket_order_line.taxes_id:
+            self.taxes_id = self.blanket_order_line.taxes_id
 
     @api.constrains("currency_id")
     def check_currency(self):
