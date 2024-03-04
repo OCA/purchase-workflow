@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-17 03:38+0000\n"
-"PO-Revision-Date: 2024-02-29 17:45+0000\n"
+"PO-Revision-Date: 2024-03-04 13:34+0000\n"
 "Last-Translator: Anna Martínez <anna080678@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/"
 "OCA-purchase-workflow-10-0/language/es/)\n"
@@ -1129,28 +1129,27 @@ msgstr "La solicitud esta rechazada"
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Request is to be approved"
-msgstr ""
+msgstr "La solicitud debe ser aprobada"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.res_config_settings_view_form
 msgid "Request mail options"
-msgstr ""
+msgstr "Opciones de correo de la solicitud"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__request_state
 msgid "Request state"
-msgstr ""
+msgstr "Estado de la solicitud"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Request status"
-msgstr ""
+msgstr "Estado de la solicitud"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__requested_product_uom_qty
-#, fuzzy
 msgid "Requested Quantity"
-msgstr "Cantidad"
+msgstr "Cantidad solicitada"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__requested_by
@@ -1158,56 +1157,55 @@ msgstr "Cantidad"
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Requested by"
-msgstr ""
+msgstr "Solicitado por"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Requested for Quotation"
-msgstr ""
+msgstr "Solicitado para el presupuesto"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Reset"
-msgstr ""
+msgstr "Reiniciar"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__activity_user_id
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__activity_user_id
 msgid "Responsible User"
-msgstr ""
+msgstr "Usuario responsable"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_search_sub
 msgid "Search Purchase Order Line"
-msgstr ""
+msgstr "Buscar línea de pedido de compra"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Search Purchase Request"
-msgstr ""
+msgstr "Buscar solicitud de compra"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_res_company__notify_request_allocations
 msgid "Send emails on confirmaion"
-msgstr ""
+msgstr "Enviar correos en la confirmación"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_res_config_settings__notify_request_allocations
 msgid "Send emails with request confirmaion"
-msgstr ""
+msgstr "Enviar correos electrónicos con confirmación de solicitud"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_allocation__purchase_line_id
-#, fuzzy
 msgid "Service Purchase Order Line"
-msgstr "Abastecimiento"
+msgstr "Línea de pedido de compra de servicio"
 
 #. module: purchase_request
 #: code:addons/purchase_request/models/purchase_order.py:0
 #, python-format
 msgid "Service confirmation for Request %s"
-msgstr ""
+msgstr "Confirmación del servicio para la solicitud %s"
 
 #. module: purchase_request
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line_make_purchase_order_item__keep_description
@@ -1215,6 +1213,8 @@ msgid ""
 "Set true if you want to keep the descriptions provided in the wizard in the "
 "new PO."
 msgstr ""
+"Establezca verdadero si desea conservar las descripciones proporcionadas en "
+"el asistente en el nuevo pedido de compra."
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
@@ -1225,14 +1225,14 @@ msgstr "Origen"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__origin
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__origin
 msgid "Source Document"
-msgstr ""
+msgstr "Documento de origen"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__specifications
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_form
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Specifications"
-msgstr ""
+msgstr "Características"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
