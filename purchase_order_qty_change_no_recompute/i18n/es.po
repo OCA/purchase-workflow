@@ -16,7 +16,5 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.17\n"
 
-#. module: purchase_order_qty_change_no_recompute
-#: model:ir.model,name:purchase_order_qty_change_no_recompute.model_purchase_order_line
-msgid "Purchase Order Line"
-msgstr "Línea de pedido de compra"
+#~ msgid "Purchase Order Line"
+#~ msgstr "Línea de pedido de compra"
