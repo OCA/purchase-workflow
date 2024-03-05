@@ -48,11 +48,6 @@ msgid "Companies"
 msgstr "Compañías"
 
 #. module: purchase_deposit
-#: model:ir.model,name:purchase_deposit.model_res_config_settings
-msgid "Config Settings"
-msgstr "Ajustes de configuración"
-
-#. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
 msgid "Create Bill"
 msgstr "Crear factura"
@@ -179,6 +174,11 @@ msgid "Last Updated on"
 msgstr "Última actualización el"
 
 #. module: purchase_deposit
+#: model:ir.model,name:purchase_deposit.model_res_config_settings
+msgid "Procurement purchase grouping settings"
+msgstr ""
+
+#. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.res_config_settings_view_form_purchase
 msgid "Product used for deposit payments"
 msgstr "Producto usado para los anticipos"
@@ -279,6 +279,9 @@ msgstr "Impuestos de proveedor"
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__advance_payment_method
 msgid "What do you want to invoice?"
 msgstr "¿Que quieres facturar?"
+
+#~ msgid "Config Settings"
+#~ msgstr "Ajustes de configuración"
 
 #~ msgid ""
 #~ "Deposit payments are made when creating bills from a purhcase order. They "
