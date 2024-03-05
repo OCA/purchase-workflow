@@ -31,11 +31,6 @@ msgid "Companies"
 msgstr "Aziende"
 
 #. module: purchase_order_general_discount
-#: model:ir.model,name:purchase_order_general_discount.model_res_config_settings
-msgid "Config Settings"
-msgstr "Impostazioni configurazione"
-
-#. module: purchase_order_general_discount
 #: model:ir.model,name:purchase_order_general_discount.model_res_partner
 msgid "Contact"
 msgstr "Contatto"
@@ -70,6 +65,11 @@ msgstr "Lo sconto deve essere minore del 100%."
 #: model:ir.model.fields,field_description:purchase_order_general_discount.field_purchase_order__general_discount
 msgid "Gen. Disc. (%)"
 msgstr "Sc. gen. (%)"
+
+#. module: purchase_order_general_discount
+#: model:ir.model,name:purchase_order_general_discount.model_res_config_settings
+msgid "Procurement purchase grouping settings"
+msgstr ""
 
 #. module: purchase_order_general_discount
 #: model:ir.model.fields,field_description:purchase_order_general_discount.field_res_company__purchase_general_discount_field
@@ -110,3 +110,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:purchase_order_general_discount.purchase_order_form
 msgid "Update general discounts"
 msgstr "Aggiorna sconti generali"
+
+#~ msgid "Config Settings"
+#~ msgstr "Impostazioni configurazione"
