@@ -22,8 +22,8 @@ msgid ""
 "<span attrs=\"{'invisible': [('advance_payment_method', '!=', "
 "'percentage')]}\" class=\"oe_inline\">%</span>"
 msgstr ""
-"<span attrs=\"{'invisible': [('advance_payment_method', '!=', 'percentage')]}"
-"\" class=\"oe_inline\">%</span>"
+"<span attrs=\"{'invisible': [('advance_payment_method', '!=', "
+"'percentage')]}\" class=\"oe_inline\">%</span>"
 
 #. module: purchase_deposit
 #: model:ir.model.fields,help:purchase_deposit.field_purchase_advance_payment_inv__deposit_account_id
@@ -46,11 +46,6 @@ msgstr "Annulla"
 #: model:ir.model,name:purchase_deposit.model_res_company
 msgid "Companies"
 msgstr "Aziende"
-
-#. module: purchase_deposit
-#: model:ir.model,name:purchase_deposit.model_res_config_settings
-msgid "Config Settings"
-msgstr "Impostazioni configurazione"
 
 #. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.view_purchase_advance_payment_inv
@@ -179,6 +174,11 @@ msgid "Last Updated on"
 msgstr "Ultimo aggiornamento il"
 
 #. module: purchase_deposit
+#: model:ir.model,name:purchase_deposit.model_res_config_settings
+msgid "Procurement purchase grouping settings"
+msgstr ""
+
+#. module: purchase_deposit
 #: model_terms:ir.ui.view,arch_db:purchase_deposit.res_config_settings_view_form_purchase
 msgid "Product used for deposit payments"
 msgstr "Prodotto utilizzato per i pagamenti cauzione"
@@ -242,9 +242,9 @@ msgstr ""
 #: code:addons/purchase_deposit/wizard/purchase_make_invoice_advance.py:0
 #, python-format
 msgid ""
-"The product used to invoice a down payment should have an invoice policy set"
-" to \"Ordered quantities\". Please update your deposit product to be able to"
-" create a deposit invoice."
+"The product used to invoice a down payment should have an invoice policy set "
+"to \"Ordered quantities\". Please update your deposit product to be able to "
+"create a deposit invoice."
 msgstr ""
 "Il prodotto utilizzato per fatturare un acconto deve avere una politica di "
 "fatturazione impostata a \"Quantità ordinate\". Modificare il prodotto "
@@ -263,7 +263,8 @@ msgstr "Il valore della cauzione deve essere positivo."
 #, python-format
 msgid ""
 "There is no purchase account defined for this product: %s.\n"
-"You may have to install a chart of account from Accounting app, settings menu."
+"You may have to install a chart of account from Accounting app, settings "
+"menu."
 msgstr ""
 "Non c'è un conto acquisto definito per questo prodotto: %s\n"
 "Bisogna installare il piano dei conti dall'app Contabilità, menu "
@@ -278,3 +279,6 @@ msgstr "Imposte venditore"
 #: model:ir.model.fields,field_description:purchase_deposit.field_purchase_advance_payment_inv__advance_payment_method
 msgid "What do you want to invoice?"
 msgstr "Cosa si vuole fatturare?"
+
+#~ msgid "Config Settings"
+#~ msgstr "Impostazioni configurazione"
