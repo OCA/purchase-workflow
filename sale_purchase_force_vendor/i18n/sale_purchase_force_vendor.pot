@@ -20,7 +20,7 @@ msgstr ""
 
 #. module: sale_purchase_force_vendor
 #: model:ir.model,name:sale_purchase_force_vendor.model_res_config_settings
-msgid "Config Settings"
+msgid "Procurement purchase grouping settings"
 msgstr ""
 
 #. module: sale_purchase_force_vendor
