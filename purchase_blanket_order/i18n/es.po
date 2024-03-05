@@ -193,11 +193,6 @@ msgid "Company"
 msgstr "Companía"
 
 #. module: purchase_blanket_order
-#: model:ir.model,name:purchase_blanket_order.model_res_config_settings
-msgid "Config Settings"
-msgstr "Ajustes Config"
-
-#. module: purchase_blanket_order
 #: model_terms:ir.ui.view,arch_db:purchase_blanket_order.view_purchase_blanket_order_form
 msgid "Confirm"
 msgstr "Confirmar"
@@ -584,6 +579,11 @@ msgid "Price must be greater than zero"
 msgstr "El precio debe ser mayor que cero"
 
 #. module: purchase_blanket_order
+#: model:ir.model,name:purchase_blanket_order.model_res_config_settings
+msgid "Procurement purchase grouping settings"
+msgstr ""
+
+#. module: purchase_blanket_order
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__product_id
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__product_id
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_wizard_line__product_id
@@ -791,11 +791,9 @@ msgstr "Términos y Condiciones"
 #. module: purchase_blanket_order
 #. odoo-python
 #: code:addons/purchase_blanket_order/models/purchase_order.py:0
-#: code:addons/purchase_blanket_order/models/purchase_order.py:0
 #, python-format
 msgid ""
-"The currency of the blanket order must match with that of the purchase "
-"order."
+"The currency of the blanket order must match with that of the purchase order."
 msgstr ""
 "La divisa de la orden global debe coincidir con la de la orden de compra."
 
@@ -844,7 +842,8 @@ msgstr "Importe no Tributable"
 #: model_terms:ir.actions.act_window,help:purchase_blanket_order.act_open_purchase_blanket_order_view
 msgid ""
 "Use this menu to search within your blanket orders. For each blanket order,\n"
-"                you can track the related discussion with the vendor, control\n"
+"                you can track the related discussion with the vendor, "
+"control\n"
 "                the products received and control the vendor bills."
 msgstr ""
 "Utilice este menú para buscar dentro de sus pedidos abiertos. Para cada "
@@ -952,3 +951,6 @@ msgstr "Debe seleccionar líneas de la misma compañía."
 #, python-format
 msgid "remaining"
 msgstr "restante"
+
+#~ msgid "Config Settings"
+#~ msgstr "Ajustes Config"
