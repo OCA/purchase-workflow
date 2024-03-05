@@ -2,3 +2,4 @@
 
   * Víctor Martínez
   * Pedro M. Baeza
+  * Sergio Teruel
