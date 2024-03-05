@@ -26,11 +26,6 @@ msgid "Companies"
 msgstr ""
 
 #. module: purchase_order_general_discount
-#: model:ir.model,name:purchase_order_general_discount.model_res_config_settings
-msgid "Config Settings"
-msgstr ""
-
-#. module: purchase_order_general_discount
 #: model:ir.model,name:purchase_order_general_discount.model_res_partner
 msgid "Contact"
 msgstr ""
@@ -64,6 +59,11 @@ msgstr ""
 #. module: purchase_order_general_discount
 #: model:ir.model.fields,field_description:purchase_order_general_discount.field_purchase_order__general_discount
 msgid "Gen. Disc. (%)"
+msgstr ""
+
+#. module: purchase_order_general_discount
+#: model:ir.model,name:purchase_order_general_discount.model_res_config_settings
+msgid "Procurement purchase grouping settings"
 msgstr ""
 
 #. module: purchase_order_general_discount
