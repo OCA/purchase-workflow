@@ -22,11 +22,6 @@ msgid "Companies"
 msgstr "Compañías"
 
 #. module: purchase_packaging_level_qty
-#: model:ir.model,name:purchase_packaging_level_qty.model_res_config_settings
-msgid "Config Settings"
-msgstr "Ajustes de Config"
-
-#. module: purchase_packaging_level_qty
 #: model:ir.model.fields,help:purchase_packaging_level_qty.field_res_config_settings__purchase_packaging_level_id
 msgid "Count purchase order packaging needed for this packing level."
 msgstr "Contar los embalajes de pedido necesarios para este nivel de embalaje."
@@ -35,11 +30,17 @@ msgstr "Contar los embalajes de pedido necesarios para este nivel de embalaje."
 #: model_terms:ir.ui.view,arch_db:purchase_packaging_level_qty.res_config_settings_view_form_purchase_inherit
 msgid ""
 "Count purchase order packaging needed for this packing level.\n"
-"                            This information will be shown on each purchase order."
+"                            This information will be shown on each purchase "
+"order."
 msgstr ""
 "Cuente los embalajes de pedido necesarios para este nivel de embalaje.\n"
 "                            Esta información se mostrará en cada orden de "
 "compra."
+
+#. module: purchase_packaging_level_qty
+#: model:ir.model,name:purchase_packaging_level_qty.model_res_config_settings
+msgid "Procurement purchase grouping settings"
+msgstr ""
 
 #. module: purchase_packaging_level_qty
 #: model:ir.model,name:purchase_packaging_level_qty.model_purchase_order
@@ -72,3 +73,6 @@ msgstr "Nivel de Embalaje de Transporte"
 #: model:ir.model.fields,field_description:purchase_packaging_level_qty.field_purchase_order_line__transport_qty
 msgid "Transport Qty"
 msgstr "Ctd Transporte"
+
+#~ msgid "Config Settings"
+#~ msgstr "Ajustes de Config"
