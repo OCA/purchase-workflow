@@ -37,18 +37,21 @@ msgid "Contact"
 msgstr "Contacto"
 
 #. module: purchase_order_general_discount
+#. odoo-python
 #: code:addons/purchase_order_general_discount/models/res_company.py:0
 #, python-format
 msgid "Discount"
 msgstr "Descuento"
 
 #. module: purchase_order_general_discount
+#. odoo-python
 #: code:addons/purchase_order_general_discount/models/res_company.py:0
 #, python-format
 msgid "Discount 2"
 msgstr "Descuento 2"
 
 #. module: purchase_order_general_discount
+#. odoo-python
 #: code:addons/purchase_order_general_discount/models/res_company.py:0
 #, python-format
 msgid "Discount 3"
