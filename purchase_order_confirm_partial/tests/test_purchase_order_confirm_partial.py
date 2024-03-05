@@ -16,26 +16,22 @@ class TestPurchaseOrderConfirmPartial(TransactionCase):
             {
                 "name": "PO-TEST",
                 "partner_id": cls.env.ref("base.res_partner_1").id,
-                "order_line": [
-                    (
-                        0,
-                        0,
-                        {
-                            "product_id": cls.env.ref("product.product_product_6").id,
-                            "product_qty": 10,
-                            "price_unit": 100,
-                        },
-                    ),
-                    (
-                        0,
-                        0,
-                        {
-                            "product_id": cls.env.ref("product.product_product_7").id,
-                            "product_qty": 7,
-                            "price_unit": 200,
-                        },
-                    ),
-                ],
+            }
+        )
+        cls.po_line_1 = cls.env["purchase.order.line"].create(
+            {
+                "order_id": cls.purchase_order.id,
+                "product_id": cls.env.ref("product.product_product_6").id,
+                "product_qty": 10,
+                "price_unit": 100,
+            }
+        )
+        cls.po_line_2 = cls.env["purchase.order.line"].create(
+            {
+                "order_id": cls.purchase_order.id,
+                "product_id": cls.env.ref("product.product_product_7").id,
+                "product_qty": 7,
+                "price_unit": 200,
             }
         )
 
@@ -66,12 +62,12 @@ class TestPurchaseOrderConfirmPartial(TransactionCase):
         # Check original order lines quantities
         # (they should stay the same)
         self.assertEqual(
-            self.purchase_order.order_line[0].product_qty,
+            self.po_line_1.product_qty,
             10,
             "Original order line 1 qty is wrong",
         )
         self.assertEqual(
-            self.purchase_order.order_line[1].product_qty,
+            self.po_line_2.product_qty,
             7,
             "Original order line 2 qty is wrong",
         )
@@ -90,7 +86,7 @@ class TestPurchaseOrderConfirmPartial(TransactionCase):
                         0,
                         0,
                         {
-                            "po_line_id": self.purchase_order.order_line[0].id,
+                            "po_line_id": self.po_line_1.id,
                             "confirmed_qty": 4,
                         },
                     ),
@@ -119,12 +115,16 @@ class TestPurchaseOrderConfirmPartial(TransactionCase):
         # Check unconfirmed order lines quantities
         # (they should be equal to statement original_qty - confirmed_qty)
         self.assertEqual(
-            unconfirmed_po.order_line[0].product_qty,
+            unconfirmed_po.order_line.filtered(
+                lambda x: x.po_line_id == self.po_line_1
+            ).product_qty,
             6,
             "Unconfirmed part of order line 1 qty is wrong",
         )
         self.assertEqual(
-            unconfirmed_po.order_line[1].product_qty,
+            unconfirmed_po.order_line.filtered(
+                lambda x: x.po_line_id == self.po_line_2
+            ).product_qty,
             7,
             "Unconfirmed part of order line 2 qty is wrong",
         )
@@ -132,12 +132,12 @@ class TestPurchaseOrderConfirmPartial(TransactionCase):
         # Check original order lines quantities
         # (they should be reduced accordingly to the confirmed quantities)
         self.assertEqual(
-            self.purchase_order.order_line[0].product_qty,
+            self.po_line_1.product_qty,
             4,
             "Original order line 1 qty is wrong",
         )
         self.assertEqual(
-            self.purchase_order.order_line[1].product_qty,
+            self.po_line_2.product_qty,
             0,
             "Original order line 2 qty is wrong",
         )
@@ -153,7 +153,7 @@ class TestPurchaseOrderConfirmPartial(TransactionCase):
                         0,
                         0,
                         {
-                            "po_line_id": self.purchase_order.order_line[0].id,
+                            "po_line_id": self.po_line_1.id,
                             "confirmed_qty": 4,
                         },
                     ),
@@ -179,12 +179,12 @@ class TestPurchaseOrderConfirmPartial(TransactionCase):
         # Check original order lines quantities
         # (they should be reduced accordingly to the confirmed quantities)
         self.assertEqual(
-            self.purchase_order.order_line[0].product_qty,
+            self.po_line_1.product_qty,
             4,
             "Original order line 1 qty is wrong",
         )
         self.assertEqual(
-            self.purchase_order.order_line[1].product_qty,
+            self.po_line_2.product_qty,
             0,
             "Original order line 2 qty is wrong",
         )
@@ -201,7 +201,7 @@ class TestPurchaseOrderConfirmPartial(TransactionCase):
                             0,
                             0,
                             {
-                                "po_line_id": self.purchase_order.order_line[0].id,
+                                "po_line_id": self.po_line_1.id,
                                 "confirmed_qty": -4,
                             },
                         ),
@@ -219,7 +219,7 @@ class TestPurchaseOrderConfirmPartial(TransactionCase):
                             0,
                             0,
                             {
-                                "po_line_id": self.purchase_order.order_line[0].id,
+                                "po_line_id": self.po_line_1.id,
                                 "confirmed_qty": 15,
                             },
                         ),
