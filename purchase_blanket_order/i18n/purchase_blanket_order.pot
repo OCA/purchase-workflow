@@ -184,11 +184,6 @@ msgid "Company"
 msgstr ""
 
 #. module: purchase_blanket_order
-#: model:ir.model,name:purchase_blanket_order.model_res_config_settings
-msgid "Config Settings"
-msgstr ""
-
-#. module: purchase_blanket_order
 #: model_terms:ir.ui.view,arch_db:purchase_blanket_order.view_purchase_blanket_order_form
 msgid "Confirm"
 msgstr ""
@@ -566,6 +561,11 @@ msgstr ""
 #: code:addons/purchase_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid "Price must be greater than zero"
+msgstr ""
+
+#. module: purchase_blanket_order
+#: model:ir.model,name:purchase_blanket_order.model_res_config_settings
+msgid "Procurement purchase grouping settings"
 msgstr ""
 
 #. module: purchase_blanket_order
