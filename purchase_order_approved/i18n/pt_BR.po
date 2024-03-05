@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2017-06-10 05:30+0000\n"
 "PO-Revision-Date: 2023-12-28 23:57+0000\n"
 "Last-Translator: Adriano Prado <adrianojprado@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
-"23907/pt_BR/)\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
+"teams/23907/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -84,11 +84,6 @@ msgid "Company"
 msgstr "Empresa"
 
 #. module: purchase_order_approved
-#: model:ir.model,name:purchase_order_approved.model_res_config_settings
-msgid "Config Settings"
-msgstr "Ajustes de Configuração"
-
-#. module: purchase_order_approved
 #: model:ir.model,name:purchase_order_approved.model_res_partner
 msgid "Contact"
 msgstr "Contato"
@@ -136,6 +131,11 @@ msgstr "Prazo final do pedido"
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__order_line
 msgid "Order Lines"
 msgstr "Linhas Pedido"
+
+#. module: purchase_order_approved
+#: model:ir.model,name:purchase_order_approved.model_res_config_settings
+msgid "Procurement purchase grouping settings"
+msgstr ""
 
 #. module: purchase_order_approved
 #: model:ir.model,name:purchase_order_approved.model_purchase_order
@@ -202,6 +202,9 @@ msgid "You can find a vendor by its Name, TIN, Email or Internal Reference."
 msgstr ""
 "Você pode encontrar um fornecedor por seu nome, TIN, e-mail ou referência "
 "interna."
+
+#~ msgid "Config Settings"
+#~ msgstr "Ajustes de Configuração"
 
 #~ msgid "Drop Ship Address"
 #~ msgstr "Endereço Remessa Direta"

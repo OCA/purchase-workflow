@@ -83,11 +83,6 @@ msgid "Company"
 msgstr "Compañía"
 
 #. module: purchase_order_approved
-#: model:ir.model,name:purchase_order_approved.model_res_config_settings
-msgid "Config Settings"
-msgstr "ajustes de configuración"
-
-#. module: purchase_order_approved
 #: model:ir.model,name:purchase_order_approved.model_res_partner
 msgid "Contact"
 msgstr "Contacto"
@@ -135,6 +130,11 @@ msgstr "Fecha límite de pedido"
 #: model:ir.model.fields,field_description:purchase_order_approved.field_purchase_order__order_line
 msgid "Order Lines"
 msgstr "Líneas del pedido"
+
+#. module: purchase_order_approved
+#: model:ir.model,name:purchase_order_approved.model_res_config_settings
+msgid "Procurement purchase grouping settings"
+msgstr ""
 
 #. module: purchase_order_approved
 #: model:ir.model,name:purchase_order_approved.model_purchase_order
@@ -201,3 +201,6 @@ msgid "You can find a vendor by its Name, TIN, Email or Internal Reference."
 msgstr ""
 "Puede encontrar un vendedor por su nombre, NIF, correo electrónico o "
 "referencia interna."
+
+#~ msgid "Config Settings"
+#~ msgstr "ajustes de configuración"
