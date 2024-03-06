@@ -1,0 +1,99 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* quick_purchase
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-01 09:09+0000\n"
+"PO-Revision-Date: 2021-11-30 13:56+0000\n"
+"Last-Translator: Kévin Roche <kevin.roche@akretion.com>\n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.3.2\n"
+
+#. module: purchase_quick
+#: model_terms:ir.ui.view,arch_db:purchase_quick.view_purchase_form
+msgid "Add"
+msgstr "Ajout Rapide"
+
+#. module: purchase_quick
+#: model_terms:ir.ui.view,arch_db:purchase_quick.product_search_form_view
+msgid "Filter products supplied by the supplier of the current parent object"
+msgstr ""
+"Afficher uniquement les articles du fournisseur de la commande d'achat en "
+"cours"
+
+#. module: purchase_quick
+#: model_terms:ir.ui.view,arch_db:purchase_quick.product_search_form_view
+msgid "For current supplier"
+msgstr "Ce Fournisseur"
+
+#. module: purchase_quick
+#: model_terms:ir.ui.view,arch_db:purchase_quick.product_tree_view4purchase
+msgid "Open"
+msgstr "Ouvrir"
+
+#. module: purchase_quick
+#: model:ir.model.fields,field_description:purchase_quick.field_product_product__po_line_ids
+msgid "Po Line"
+msgstr "Ligne de Commande"
+
+#. module: purchase_quick
+#: model:ir.model,name:purchase_quick.model_product_product
+msgid "Product"
+msgstr "Article"
+
+#. module: purchase_quick
+#: code:addons/purchase_quick/models/purchase_order.py:25
+#, fuzzy, python-format
+msgid "Product Variants"
+msgstr "Articles"
+
+#. module: purchase_quick
+#: model_terms:ir.ui.view,arch_db:purchase_quick.product_tree_view4purchase
+#, fuzzy
+msgid "Products for purchase"
+msgstr "Qté à acheter"
+
+#. module: purchase_quick
+#: model:ir.model,name:purchase_quick.model_purchase_order
+msgid "Purchase Order"
+msgstr "Bon de commande"
+
+#. module: purchase_quick
+#: model:ir.model.fields,help:purchase_quick.field_product_product__po_line_ids
+msgid "Technical: used to compute quantities to purchase."
+msgstr "Technique : utilisé pour calculer les quantités à acheter."
+
+#. module: purchase_quick
+#: model:ir.model.fields,field_description:purchase_quick.field_product_product__variant_specific_seller_ids
+msgid "Variant Specific Seller"
+msgstr ""
+
+#~ msgid "Add product"
+#~ msgstr "Ajouter des articles"
+
+#~ msgid "Filter the product that are in current purchase"
+#~ msgstr "Afficher uniquement les articles de la commande d'achat encours"
+
+#~ msgid "In current purchase"
+#~ msgstr "Commande encours"
+
+#~ msgid "Po line ids"
+#~ msgstr "Ligne d'achats"
+
+#~ msgid "Purchase Products"
+#~ msgstr "Articles à acheter"
+
+#~ msgid ""
+#~ "Set this quantity to create a new purchase line for this product or "
+#~ "update the existing one."
+#~ msgstr ""
+#~ "Renseigner cette valeur pour créer une nouvelle ligne d'achat ou mettre à "
+#~ "jour la ligne dans la commande en cours"
