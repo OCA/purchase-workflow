@@ -17,12 +17,14 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: purchase_work_acceptance
+#. odoo-python
 #: code:addons/purchase_work_acceptance/wizard/select_work_acceptance_wizard.py:0
 #, python-format
 msgid "%s was already used by some bill"
 msgstr "%s ya fue utilizado por alguna factura"
 
 #. module: purchase_work_acceptance
+#. odoo-python
 #: code:addons/purchase_work_acceptance/models/stock_picking.py:0
 #, python-format
 msgid "%s was used in some picking."
@@ -263,7 +265,6 @@ msgstr "Icono para indicar una actividad por excepción."
 
 #. module: purchase_work_acceptance
 #: model:ir.model.fields,help:purchase_work_acceptance.field_work_acceptance__message_needaction
-#: model:ir.model.fields,help:purchase_work_acceptance.field_work_acceptance__message_unread
 msgid "If checked, new messages require your attention."
 msgstr "Si está marcado, nuevos mensajes requieren de su atención."
 
@@ -373,8 +374,8 @@ msgstr "Número de errores"
 
 #. module: purchase_work_acceptance
 #: model:ir.model.fields,help:purchase_work_acceptance.field_work_acceptance__message_needaction_counter
-msgid "Number of messages which requires an action"
-msgstr "Número de mensajes que requieren una acción"
+msgid "Number of messages requiring action"
+msgstr ""
 
 #. module: purchase_work_acceptance
 #: model:ir.model.fields,help:purchase_work_acceptance.field_work_acceptance__message_has_error_counter
@@ -382,11 +383,7 @@ msgid "Number of messages with delivery error"
 msgstr "Número de mensajes con error de entrega"
 
 #. module: purchase_work_acceptance
-#: model:ir.model.fields,help:purchase_work_acceptance.field_work_acceptance__message_unread_counter
-msgid "Number of unread messages"
-msgstr "Número de mensajes no leídos"
-
-#. module: purchase_work_acceptance
+#. odoo-python
 #: code:addons/purchase_work_acceptance/models/purchase.py:0
 #, python-format
 msgid "Operation not supported"
@@ -489,6 +486,7 @@ msgid "Security Token"
 msgstr "Ficha de Seguridad"
 
 #. module: purchase_work_acceptance
+#. odoo-python
 #: code:addons/purchase_work_acceptance/models/work_acceptance.py:0
 #, python-format
 msgid "Select Accept Date"
@@ -500,6 +498,7 @@ msgid "Select Accepted Date"
 msgstr "Seleccionar Fecha Aceptada"
 
 #. module: purchase_work_acceptance
+#. odoo-python
 #: code:addons/purchase_work_acceptance/models/purchase.py:0
 #: model_terms:ir.ui.view,arch_db:purchase_work_acceptance.view_select_work_acceptance_wizard
 #, python-format
@@ -582,6 +581,7 @@ msgid "Type of the exception activity on record."
 msgstr "Tipo (o clase) de actividad excepcional registrada."
 
 #. module: purchase_work_acceptance
+#. odoo-python
 #: code:addons/purchase_work_acceptance/models/work_acceptance.py:0
 #, python-format
 msgid ""
@@ -595,16 +595,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance_line__price_unit
 msgid "Unit Price"
 msgstr "Precio Unitario"
-
-#. module: purchase_work_acceptance
-#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__message_unread
-msgid "Unread Messages"
-msgstr "Mensajes no Leídos"
-
-#. module: purchase_work_acceptance
-#: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__message_unread_counter
-msgid "Unread Messages Counter"
-msgstr "Contador de Mensajes no Leídos"
 
 #. module: purchase_work_acceptance
 #: model:ir.model.fields,field_description:purchase_work_acceptance.field_work_acceptance__partner_id
@@ -709,6 +699,7 @@ msgid "Work Acceptances"
 msgstr "Aceptaciones de Trabajo"
 
 #. module: purchase_work_acceptance
+#. odoo-python
 #: code:addons/purchase_work_acceptance/models/account_move.py:0
 #, python-format
 msgid "You cannot validate a bill if Quantity not equal accepted quantity"
@@ -716,6 +707,7 @@ msgstr ""
 "No se puede validar una factura si Cantidad no es igual a cantidad aceptada"
 
 #. module: purchase_work_acceptance
+#. odoo-python
 #: code:addons/purchase_work_acceptance/models/stock_picking.py:0
 #, python-format
 msgid ""
@@ -723,6 +715,18 @@ msgid ""
 msgstr ""
 "No se puede validar una transferencia si la cantidad realizada no es igual a "
 "la cantidad aceptada"
+
+#~ msgid "Number of messages which requires an action"
+#~ msgstr "Número de mensajes que requieren una acción"
+
+#~ msgid "Number of unread messages"
+#~ msgstr "Número de mensajes no leídos"
+
+#~ msgid "Unread Messages"
+#~ msgstr "Mensajes no Leídos"
+
+#~ msgid "Unread Messages Counter"
+#~ msgstr "Contador de Mensajes no Leídos"
 
 #~ msgid "SMS Delivery error"
 #~ msgstr "Error en la entrega de SMS"
