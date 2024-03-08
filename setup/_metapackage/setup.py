@@ -66,6 +66,7 @@ setuptools.setup(
         'odoo-addon-purchase_tier_validation>=16.0dev,<16.1dev',
         'odoo-addon-purchase_triple_discount>=16.0dev,<16.1dev',
         'odoo-addon-purchase_warn_message>=16.0dev,<16.1dev',
+        'odoo-addon-purchase_work_acceptance>=16.0dev,<16.1dev',
         'odoo-addon-sale_purchase_force_vendor>=16.0dev,<16.1dev',
         'odoo-addon-supplier_calendar>=16.0dev,<16.1dev',
     ],
