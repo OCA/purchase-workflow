@@ -29,14 +29,27 @@ class PurchaseOrderLine(models.Model):
                  'move_ids.product_uom_qty', 'order_id.state')
     def _compute_qty_to_receive(self):
         for line in self:
-            total = line.product_uom_qty
+            if line.product_id.uom_id != line.product_uom:
+                # line.product_uom_qty is already in line.product_id.uom_id, so
+                # get qty in line.product_uom
+                total = line.product_id.uom_id._compute_quantity(
+                    line.product_uom_qty, line.product_uom
+                )
+            else:
+                total = line.product_uom_qty
             for move in line.move_ids.filtered(
                     lambda m: m.state == 'done'):
+                sign = 1
+                # in case of outgoing (refund) sign is inverted
+                if move.location_id.usage == 'internal' and \
+                        move.location_dest_id.usage != 'internal':
+                    sign = -1
+                product_uom_qty = move.product_uom_qty * sign
                 if move.product_uom != line.product_uom:
                     total -= move.product_uom._compute_quantity(
-                        move.product_uom_qty, line.product_uom)
+                        product_uom_qty, line.product_uom)
                 else:
-                    total -= move.product_uom_qty
+                    total -= product_uom_qty
             line.qty_to_receive = total
 
     qty_to_invoice = fields.Float(compute='_compute_qty_to_invoice',
