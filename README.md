@@ -46,7 +46,7 @@ addon | version | maintainers | summary
 [purchase_manual_delivery](purchase_manual_delivery/) | 12.0.1.0.0 |  | Prevents pickings to be auto generated upon Purchase Order confirmation and adds the ability to manually generate them as the supplier confirms the different purchase order lines.
 [purchase_minimum_amount](purchase_minimum_amount/) | 12.0.1.0.1 |  | Purchase Minimum Amount
 [purchase_no_rfq](purchase_no_rfq/) | 12.0.1.0.0 | [![legalsylvain](https://github.com/legalsylvain.png?size=30px)](https://github.com/legalsylvain) | Purchase Order - No Request For Quotation
-[purchase_open_qty](purchase_open_qty/) | 12.0.1.1.2 |  | Allows to identify the purchase orders that have quantities pending to invoice or to receive.
+[purchase_open_qty](purchase_open_qty/) | 12.0.1.1.3 |  | Allows to identify the purchase orders that have quantities pending to invoice or to receive.
 [purchase_order_analytic_search](purchase_order_analytic_search/) | 12.0.1.0.0 |  | Search purchase orders by analytic account. New menu entry in Purchasing to list purchase order lines.
 [purchase_order_approval_block](purchase_order_approval_block/) | 12.0.1.0.1 |  | Purchase Order Approval Block
 [purchase_order_approved](purchase_order_approved/) | 12.0.1.1.0 |  | Add a new state 'Approved' in purchase orders.
