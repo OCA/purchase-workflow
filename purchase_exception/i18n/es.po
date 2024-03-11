@@ -89,11 +89,6 @@ msgid "Ignore Exceptions"
 msgstr "Ignorar excepciones"
 
 #. module: purchase_exception
-#: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm____last_update
-msgid "Last Modified on"
-msgstr "Última modificación el"
-
-#. module: purchase_exception
 #: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__write_uid
 msgid "Last Updated by"
 msgstr "Última actualización por"
@@ -166,7 +161,6 @@ msgstr "Línea de pedido de compra"
 
 #. module: purchase_exception
 #: model:ir.actions.server,name:purchase_exception.ir_cron_test_po_order_except_ir_actions_server
-#: model:ir.cron,cron_name:purchase_exception.ir_cron_test_po_order_except
 msgid "Purchase: Test Draft Orders Exception"
 msgstr "Compra: Excepción de borradores de órdenes de prueba"
 
@@ -179,3 +173,6 @@ msgstr "Compras"
 #: model:exception.rule,name:purchase_exception.pol_excep_qty_check
 msgid "Quantity not positive"
 msgstr "Cantidad no positiva"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación el"
