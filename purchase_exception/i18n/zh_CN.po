@@ -86,11 +86,6 @@ msgid "Ignore Exceptions"
 msgstr "忽略异常"
 
 #. module: purchase_exception
-#: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm____last_update
-msgid "Last Modified on"
-msgstr "最后修改时间"
-
-#. module: purchase_exception
 #: model:ir.model.fields,field_description:purchase_exception.field_purchase_exception_confirm__write_uid
 msgid "Last Updated by"
 msgstr "最后更新者"
@@ -163,7 +158,6 @@ msgstr "采购订单行"
 
 #. module: purchase_exception
 #: model:ir.actions.server,name:purchase_exception.ir_cron_test_po_order_except_ir_actions_server
-#: model:ir.cron,cron_name:purchase_exception.ir_cron_test_po_order_except
 msgid "Purchase: Test Draft Orders Exception"
 msgstr "购买：测试草稿订单异常"
 
@@ -176,6 +170,9 @@ msgstr "采购"
 #: model:exception.rule,name:purchase_exception.pol_excep_qty_check
 msgid "Quantity not positive"
 msgstr ""
+
+#~ msgid "Last Modified on"
+#~ msgstr "最后修改时间"
 
 #~ msgid ""
 #~ "You have an outstanding\n"
