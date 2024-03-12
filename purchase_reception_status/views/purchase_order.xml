@@ -11,11 +11,14 @@
         <field name="inherit_id" ref="purchase.purchase_order_form" />
         <field name="arch" type="xml">
             <field name="invoice_status" position="before">
-                <field name="reception_status" states="purchase,done" />
+                <field
+                    name="reception_status"
+                    invisible="state not in ['purchase', 'done']"
+                />
                 <field
                     name="force_received"
                     groups="purchase.group_purchase_manager"
-                    states="purchase,done"
+                    invisible="state not in ['purchase', 'done']"
                 />
             </field>
         </field>
