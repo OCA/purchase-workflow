@@ -1,0 +1,1 @@
+This module filter products by department in the purchase order.
