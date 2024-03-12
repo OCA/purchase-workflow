@@ -20,7 +20,6 @@ class PurchaseOrder(models.Model):
     )
     force_received = fields.Boolean(
         readonly=True,
-        states={"done": [("readonly", False)]},
         copy=False,
         help="If true, the reception status will be forced to Fully Received, "
         "even if some lines are not fully received. "
