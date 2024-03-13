@@ -19,7 +19,7 @@ class PurchaseOrderLine(models.Model):
         additional keys or replace them by others."""
         date = fields.Date.context_today(self.env.user, line.date_planned)
         # Split date value to obtain only the attributes year, month and day
-        key = ({"date_planned": fields.Date.to_string(date)},)
+        key = ({"date_planned": date},)
         return key
 
     @api.model
