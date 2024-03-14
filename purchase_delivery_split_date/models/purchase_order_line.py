@@ -44,11 +44,12 @@ class PurchaseOrderLine(models.Model):
         moves = self.env["stock.move"]
         # Group the order lines by group key
         order_lines = sorted(
-            self.filtered(lambda l: not l.display_type),
-            key=lambda l: self._get_sorted_keys(l),
+            self.filtered(lambda line: not line.display_type),
+            key=lambda line: self._get_sorted_keys(line),
         )
         date_groups = groupby(
-            order_lines, lambda l: self._get_group_keys(l.order_id, l, picking=picking)
+            order_lines,
+            lambda line: self._get_group_keys(line.order_id, line, picking=picking),
         )
 
         first_picking = False
@@ -81,11 +82,15 @@ class PurchaseOrderLine(models.Model):
             self.mapped("order_id")._check_split_pickings()
         return res
 
+    @api.model_create_multi
     def create(self, values):
-        line = super().create(values)
-        if line.order_id.state == "purchase":
-            line.order_id._check_split_pickings()
-        return line
+        lines = super().create(values)
+        orders = lines.mapped("order_id").filtered(
+            lambda order: order.state == "purchase"
+        )
+        if orders:
+            orders._check_split_pickings()
+        return lines
 
     def _compute_price_unit_and_date_planned_and_name(self):
         """

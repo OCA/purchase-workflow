@@ -20,7 +20,7 @@ class PurchaseOrder(models.Model):
         )
         for order in self:
             moves = purchases_moves.filtered(
-                lambda move: move.purchase_line_id.id in order.order_line.ids
+                lambda move, o=order: move.purchase_line_id.id in o.order_line.ids
             )
             pickings = moves.mapped("picking_id")
             pickings_by_date = {}
@@ -29,7 +29,7 @@ class PurchaseOrder(models.Model):
 
             order_lines = moves.mapped("purchase_line_id")
             date_groups = groupby(
-                order_lines, lambda l: l._get_group_keys(l.order_id, l)
+                order_lines, lambda line: line._get_group_keys(line.order_id, line)
             )
             for key, lines in date_groups:
                 date_key = fields.Date.from_string(key[0]["date_planned"])
