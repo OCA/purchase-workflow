@@ -369,15 +369,15 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:d9410a588b8e9bba9ade6d7e399f1ebe4c3b7da7413a1ea6a6a467dad6fee2f3
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/purchase-workflow/tree/16.0/purchase_delivery_split_date"><img alt="OCA/purchase-workflow" src="https://img.shields.io/badge/github-OCA%2Fpurchase--workflow-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/purchase-workflow-16-0/purchase-workflow-16-0-purchase_delivery_split_date"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&amp;target_branch=16.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/purchase-workflow/tree/17.0/purchase_delivery_split_date"><img alt="OCA/purchase-workflow" src="https://img.shields.io/badge/github-OCA%2Fpurchase--workflow-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/purchase-workflow-17-0/purchase-workflow-17-0-purchase_delivery_split_date"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/purchase-workflow&amp;target_branch=17.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
 <p>When this module is installed, each Purchase Order you confirm will
 generate one Incoming Shipment for each schedule date indicated in the
 Purchase Order Lines.</p>
-<p>Once the Purchase Order has been confirmed, subsequent changes made to the
-scheduled dates in the PO lines will produce a reorganization of the
-corresponding stock moves in the Incoming Shipments, creating/deleting new
-Incoming Shipments when needed, to ensure that each Incoming Shipment
-contains moves to be received in the same date.</p>
+<p>Once the Purchase Order has been confirmed, subsequent changes made to
+the scheduled dates in the PO lines will produce a reorganization of the
+corresponding stock moves in the Incoming Shipments, creating/deleting
+new Incoming Shipments when needed, to ensure that each Incoming
+Shipment contains moves to be received in the same date.</p>
 <p>This module is also designed for extensibility, so that you can define
 in other modules new criteria to split deliveries.</p>
 <p><strong>Table of contents</strong></p>
@@ -401,26 +401,28 @@ in other modules new criteria to split deliveries.</p>
 </div>
 <div class="section" id="usage">
 <h1><a class="toc-backref" href="#toc-entry-1">Usage</a></h1>
-<p>When a Purchase Order is confirmed, shipments will be grouped by same scheduled date.</p>
+<p>When a Purchase Order is confirmed, shipments will be grouped by same
+scheduled date.</p>
 </div>
 <div class="section" id="changelog">
 <h1><a class="toc-backref" href="#toc-entry-2">Changelog</a></h1>
 <div class="section" id="section-1">
 <h2><a class="toc-backref" href="#toc-entry-3">12.0.2.1.0 (2020-04-30)</a></h2>
 <ul class="simple">
-<li>[FIX] when adding a new line on a confirmed PO, split the delivery (this was
-done only if a date was changed on an existing line)</li>
-<li>[IMP] when the quantity on a line is changed, the onchange would reset the
-planned date -&gt; change this to prevent setting a date earlier than the one on
-the line, since if we are using this module the user probably has manually
-set the date first</li>
+<li>[FIX] when adding a new line on a confirmed PO, split the delivery
+(this was done only if a date was changed on an existing line)</li>
+<li>[IMP] when the quantity on a line is changed, the onchange would
+reset the planned date -&gt; change this to prevent setting a date
+earlier than the one on the line, since if we are using this module
+the user probably has manually set the date first</li>
 </ul>
 </div>
 <div class="section" id="section-2">
 <h2><a class="toc-backref" href="#toc-entry-4">12.0.2.0.0 (2020-04-10)</a></h2>
 <ul class="simple">
-<li>Improve the module: when changing the date on a purchase line, this will
-cause a split or a merge of the pickings, to keep 1 picking per date.</li>
+<li>Improve the module: when changing the date on a purchase line, this
+will cause a split or a merge of the pickings, to keep 1 picking per
+date.</li>
 </ul>
 </div>
 <div class="section" id="section-3">
@@ -429,8 +431,8 @@ cause a split or a merge of the pickings, to keep 1 picking per date.</li>
 <li>Migration to 11.0.
 (<a class="reference external" href="https://github.com/OCA/purchase-workflow/issues/461">#461</a>)</li>
 <li>When the scheduled date is changed in the PO after confirmation the
-pickings are reorganized so as to force that every picking will have only
-moves to be delivered on the same date.</li>
+pickings are reorganized so as to force that every picking will have
+only moves to be delivered on the same date.</li>
 </ul>
 </div>
 </div>
@@ -439,7 +441,7 @@ moves to be delivered on the same date.</li>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/purchase-workflow/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/purchase-workflow/issues/new?body=module:%20purchase_delivery_split_date%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/purchase-workflow/issues/new?body=module:%20purchase_delivery_split_date%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
@@ -457,7 +459,8 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <ul class="simple">
 <li>Philippe Rossi &lt;<a class="reference external" href="mailto:pr&#64;numerigraphe.com">pr&#64;numerigraphe.com</a>&gt; (initial patch against v6.0)</li>
 <li>Lionel Sausin &lt;<a class="reference external" href="mailto:ls&#64;numerigraphe.com">ls&#64;numerigraphe.com</a>&gt; (modularization for v7+)</li>
-<li>Jordi Ballester Alomar &lt;<a class="reference external" href="mailto:jordi.ballester&#64;forgeflow.com">jordi.ballester&#64;forgeflow.com</a>&gt; (modularization v8, v9)</li>
+<li>Jordi Ballester Alomar &lt;<a class="reference external" href="mailto:jordi.ballester&#64;forgeflow.com">jordi.ballester&#64;forgeflow.com</a>&gt;
+(modularization v8, v9)</li>
 <li>Lois Rilo &lt;<a class="reference external" href="mailto:lois.rilo&#64;forgeflow.com">lois.rilo&#64;forgeflow.com</a>&gt; (migration to v10)</li>
 <li>Alexandre Fayolle &lt;<a class="reference external" href="mailto:alexandre.fayolle&#64;camptocamp.com">alexandre.fayolle&#64;camptocamp.com</a>&gt;</li>
 <li>Pimolnat Suntian &lt;<a class="reference external" href="mailto:pimolnats&#64;ecosoft.co.th">pimolnats&#64;ecosoft.co.th</a>&gt;</li>
@@ -471,7 +474,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/purchase-workflow/tree/16.0/purchase_delivery_split_date">OCA/purchase-workflow</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/purchase-workflow/tree/17.0/purchase_delivery_split_date">OCA/purchase-workflow</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>

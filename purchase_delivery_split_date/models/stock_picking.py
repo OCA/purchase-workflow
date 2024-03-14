@@ -5,7 +5,6 @@ from odoo import models
 
 
 class StockPicking(models.Model):
-
     _inherit = "stock.picking"
 
     def _update_picking_from_group_key(self, key):
