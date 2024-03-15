@@ -26,7 +26,8 @@ msgid ""
 "                            <span class=\"fa fa-lg fa-object-group\" title="
 "\"Value to be used if individual category is set to 'System default'\" aria-"
 "label=\"Value set here is default. Specific values are set per category.\" "
-"role=\"img\"/>"
+"role=\"img\">\n"
+"                            </span>"
 msgstr ""
 
 #. module: procurement_purchase_no_grouping
