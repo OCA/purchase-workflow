@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-17 03:38+0000\n"
-"PO-Revision-Date: 2023-12-29 20:33+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2024-03-15 15:37+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/"
 "OCA-purchase-workflow-10-0/language/it/)\n"
 "Language: it\n"
@@ -356,7 +356,7 @@ msgstr "Copia le descrizioni in un nuovo ordine d'acquisto"
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_line_make_purchase_order
 msgid "Create RFQ"
-msgstr "Crea Richiesta di preventivo"
+msgstr "Crea RdP"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_stock_move__created_purchase_request_line_id
@@ -1508,7 +1508,7 @@ msgstr "Bisogna selezionare le righe dallo stesso tipo di prelievo."
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
 #, python-format
 msgid "You have to select lines from the same company."
-msgstr "Devi selezionare le righe della stessa azienda."
+msgstr "Bisogna selezionare le righe della stessa azienda."
 
 #~ msgid "Number of messages which requires an action"
 #~ msgstr "Numero di messaggi che richiedono un'azione"
