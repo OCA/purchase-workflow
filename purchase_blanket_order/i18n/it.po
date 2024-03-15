@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-01-25 16:33+0000\n"
+"PO-Revision-Date: 2024-03-15 15:38+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -261,7 +261,7 @@ msgstr "Descrizione"
 #: model:res.groups,name:purchase_blanket_order.purchase_blanket_orders_disable_adding_lines
 msgid "Disable adding more lines to POs from Purchase Blanket Orders"
 msgstr ""
-"Disabilita l'aggiunta di altre righe nei PO da ordini aperti di acquisto"
+"Disabilita l'aggiunta di altre righe negli OA da ordini aperti di acquisto"
 
 #. module: purchase_blanket_order
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_res_config_settings__group_purchase_blanket_disable_adding_lines
@@ -674,7 +674,7 @@ msgstr "RdP/Ordini"
 #. module: purchase_blanket_order
 #: model_terms:ir.ui.view,arch_db:purchase_blanket_order.view_purchase_blanket_order_search
 msgid "Received Qty"
-msgstr "Qtà ricevuta"
+msgstr "Q.tà ricevuta"
 
 #. module: purchase_blanket_order
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__received_uom_qty
@@ -924,34 +924,34 @@ msgid ""
 "You can not delete a blanket order with opened purchase orders! Try to "
 "cancel them before."
 msgstr ""
-"Non puoi annullare un ordine aperto con ordini di acquisto aperti! Prova ad "
-"annullarli prima."
+"Non si può cancellare un ordine aperto con ordini di acquisto aperti! "
+"Provare prima a cancellarli."
 
 #. module: purchase_blanket_order
 #: code:addons/purchase_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid "You can not delete an open blanket order! Try to cancel it before."
 msgstr ""
-"Non puoi annullare un ordine aperto in stato aperto! Prova prima ad "
+"Non si può cancellare un ordine aperto in stato aperto! Prova prima ad "
 "annullarlo."
 
 #. module: purchase_blanket_order
 #: code:addons/purchase_blanket_order/wizard/create_purchase_orders.py:0
 #, python-format
 msgid "You can't create a purchase order from an expired blanket order!"
-msgstr "Non puoi creare un ordine di acquisto da un ordine aperto scaduto!"
+msgstr "Non si può creare un ordine di acquisto da un ordine aperto scaduto!"
 
 #. module: purchase_blanket_order
 #: code:addons/purchase_blanket_order/wizard/create_purchase_orders.py:0
 #, python-format
 msgid "You can't order more than the remaining quantities"
-msgstr "Non puoi ordinare più della quantità rimanente"
+msgstr "Non si può ordinare più della quantità rimanente"
 
 #. module: purchase_blanket_order
 #: code:addons/purchase_blanket_order/wizard/create_purchase_orders.py:0
 #, python-format
 msgid "You have to select lines from the same company."
-msgstr "Devi selezionare le righe della stessa azienda."
+msgstr "Bisogna selezionare le righe della stessa azienda."
 
 #. module: purchase_blanket_order
 #: code:addons/purchase_blanket_order/models/blanket_orders.py:0
