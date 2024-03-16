@@ -73,3 +73,6 @@ docs/_build/
 
 # OCA rules
 !static/lib/
+
+.python-version
+*.pkg
