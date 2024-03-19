@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-17 03:38+0000\n"
-"PO-Revision-Date: 2024-03-19 15:34+0000\n"
+"PO-Revision-Date: 2024-03-19 18:37+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/"
 "OCA-purchase-workflow-10-0/language/it/)\n"
@@ -115,13 +115,13 @@ msgid ""
 "<strong>Request Reference:</strong>\n"
 "                                <br/>"
 msgstr ""
-"<strong>Riferimento Richiesta:</strong>\n"
+"<strong>Riferimento richiesta:</strong>\n"
 "                                <br/>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 msgid "<strong>Requested Date</strong>"
-msgstr "<strong>Data Richiesta</strong>"
+msgstr "<strong>Data richiesta</strong>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
@@ -833,7 +833,7 @@ msgstr "Richiesta di acquisto"
 #: code:addons/purchase_request/models/purchase_order.py:0
 #, python-format
 msgid "Purchase Request %s has already been completed"
-msgstr "La Richiesta di Acquisto %s è già stata completata"
+msgstr "La richiesta di acquisto %s è già stata completata"
 
 #. module: purchase_request
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:0
@@ -1030,7 +1030,7 @@ msgstr ""
 #: code:addons/purchase_request/models/stock_move_line.py:0
 #, python-format
 msgid "Receipt confirmation for Request %s"
-msgstr "Ricevuta di conferma per la Richiesta %s"
+msgstr "Ricevuta di conferma per la richiesta %s"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
@@ -1079,13 +1079,13 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Request is rejected"
-msgstr "La Richiesta è rifiutata"
+msgstr "La richiesta è rifiutata"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Request is to be approved"
-msgstr "La Richiesta è in approvazione"
+msgstr "La richiesta è in approvazione"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__request_state
@@ -1095,7 +1095,7 @@ msgstr "Stato richiesta"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Request status"
-msgstr "Stato Richiesta"
+msgstr "Stato richiesta"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__requested_by
@@ -1117,7 +1117,7 @@ msgstr "Richiesta da"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Requested for Quotation"
-msgstr "Richiesta Offerta"
+msgstr "Richiesta per offerta"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
