@@ -18,11 +18,6 @@ msgstr ""
 "X-Generator: Poedit 2.3\n"
 
 #. module: purchase_requisition_grouped_by_procurement
-#: model:ir.model.fields,field_description:purchase_requisition_grouped_by_procurement.field_purchase_requisition__group_id
-msgid "Group"
-msgstr "Grupo"
-
-#. module: purchase_requisition_grouped_by_procurement
 #: model:ir.model,name:purchase_requisition_grouped_by_procurement.model_purchase_requisition
 msgid "Purchase Requisition"
 msgstr "Solicitud de compra"
@@ -31,3 +26,6 @@ msgstr "Solicitud de compra"
 #: model:ir.model,name:purchase_requisition_grouped_by_procurement.model_stock_rule
 msgid "Stock Rule"
 msgstr "Regla de Inventario"
+
+#~ msgid "Group"
+#~ msgstr "Grupo"
