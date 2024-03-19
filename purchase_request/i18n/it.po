@@ -1071,7 +1071,7 @@ msgstr ""
 #: code:addons/purchase_request/models/stock_move_line.py:0
 #, python-format
 msgid "Receipt confirmation for Request %s"
-msgstr "Ricevuta di conferma per la Richiesta %s"
+msgstr "Ricevuta di conferma per la richiesta %s"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
