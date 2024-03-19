@@ -842,8 +842,8 @@ msgid ""
 "control\n"
 "                the products received and control the vendor bills."
 msgstr ""
-"Usa questo menu per ricercare nei tuoi ordini aperto. Per ogni ordine aperto,"
-"\n"
+"Usa questo menu per ricercare nei tuoi ordini aperto. Per ogni ordine "
+"aperto,\n"
 "                puoi tracciare le relative conversazioni con il cliente, "
 "controllare\n"
 "                i prodotti spediti e controllare le fatture del fornitore."
@@ -883,6 +883,12 @@ msgstr "Fornitore"
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__partner_ref
 msgid "Vendor Reference"
 msgstr "Riferimento venditore"
+
+#. module: purchase_blanket_order
+#: model:ir.actions.server,name:purchase_blanket_order.warnings_purchase_blanket_orders_cron_ir_actions_server
+#: model:ir.cron,cron_name:purchase_blanket_order.warnings_purchase_blanket_orders_cron
+msgid "Warnings Blanket Orders"
+msgstr ""
 
 #. module: purchase_blanket_order
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__website_message_ids
