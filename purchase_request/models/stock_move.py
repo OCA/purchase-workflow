@@ -37,7 +37,7 @@ class StockMove(models.Model):
         distinct_fields += ["created_purchase_request_line_id"]
         return distinct_fields
 
-    def _action_cancel(self):
+    def _action_cancel_create_mail_activity(self):
         """Create an activity on the request for the cancelled procurement move"""
         for move in self:
             if move.created_purchase_request_line_id:
@@ -69,6 +69,9 @@ class StockMove(models.Model):
                         ).id,
                     }
                 )
+
+    def _action_cancel(self):
+        self._action_cancel_create_mail_activity()
         return super(StockMove, self)._action_cancel()
 
     @api.depends("purchase_request_allocation_ids")
