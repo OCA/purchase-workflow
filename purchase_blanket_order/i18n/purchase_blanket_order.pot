@@ -860,6 +860,12 @@ msgid "Vendor Reference"
 msgstr ""
 
 #. module: purchase_blanket_order
+#: model:ir.actions.server,name:purchase_blanket_order.warnings_purchase_blanket_orders_cron_ir_actions_server
+#: model:ir.cron,cron_name:purchase_blanket_order.warnings_purchase_blanket_orders_cron
+msgid "Warnings Blanket Orders"
+msgstr ""
+
+#. module: purchase_blanket_order
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order__website_message_ids
 #: model:ir.model.fields,field_description:purchase_blanket_order.field_purchase_blanket_order_line__website_message_ids
 msgid "Website Messages"
