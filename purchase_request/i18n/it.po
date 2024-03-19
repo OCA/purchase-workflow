@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: purchase-workflow (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-17 03:38+0000\n"
-"PO-Revision-Date: 2024-03-15 16:37+0000\n"
+"PO-Revision-Date: 2024-03-19 18:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/"
 "OCA-purchase-workflow-10-0/language/it/)\n"
@@ -97,7 +97,7 @@ msgstr "<strong>Riferimento Richiesta:</strong><br/>"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
 msgid "<strong>Requested Date</strong>"
-msgstr "<strong>Data Richiesta</strong>"
+msgstr "<strong>Data richiesta</strong>"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.report_purchase_request
@@ -121,7 +121,7 @@ msgid ""
 "            a certain quantity of materials services, so that they are\n"
 "            available at a certain point in time."
 msgstr ""
-"Una richiesta di acquisto è un'istruzione all'Acquisto per procurarsi\n"
+"Una richiesta di acquisto è un'istruzione all'ufficio acquisti di procurare\n"
 "            una determinata quantità di servizi materiali, in modo che "
 "siano\n"
 "            disponibili in un determinato momento."
@@ -254,8 +254,8 @@ msgid ""
 "Check this box to generate Purchase Request instead of generating Requests "
 "For Quotation from procurement."
 msgstr ""
-"Selezionare questa casella per generare una Richiesta d'Acquisto invece di "
-"generare Richieste di Preventivo dall'approvvigionamento."
+"Selezionare questa casella per generare una richiesta di acquisto invece di "
+"generare richieste di preventivo dall'approvvigionamento."
 
 #. module: purchase_request
 #: model_terms:ir.actions.act_window,help:purchase_request.purchase_request_form_action
@@ -284,7 +284,7 @@ msgstr "Crea RdP"
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_stock_move__created_purchase_request_line_id
 msgid "Created Purchase Request Line"
-msgstr "Riga Richiesta di Acquisto creata"
+msgstr "Riga richiesta di acquisto creata"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__create_uid
@@ -382,8 +382,8 @@ msgstr "Costo Stimato"
 #: model:ir.model.fields,help:purchase_request.field_purchase_request_line__estimated_cost
 msgid "Estimated cost of Purchase Request Line, not propagated to PO."
 msgstr ""
-"Costo stimato della Riga della Richiesta d'Acquisto, non esteso all'Ordine "
-"d'Acquisto."
+"Costo stimato della riga della richiesta di acquisto, non esteso all'ordine "
+"di acquisto."
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_line_make_purchase_order
@@ -769,13 +769,13 @@ msgstr "Richiesta di acquisto"
 #: code:addons/purchase_request/models/purchase_order.py:66
 #, python-format
 msgid "Purchase Request %s has already been completed"
-msgstr "La richiesta d'Acquisto %s è stata già completata"
+msgstr "La richiesta di acquisto %s è già stata completata"
 
 #. module: purchase_request
 #: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:48
 #, python-format
 msgid "Purchase Request %s is not approved"
-msgstr "La Richiesta d'Acquisto %s non è stata approvata"
+msgstr "La richiesta di acquisto %s non è approvata"
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_purchase_request_allocation
@@ -783,13 +783,13 @@ msgstr "La Richiesta d'Acquisto %s non è stata approvata"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__purchase_request_allocation_ids
 #: model:ir.model.fields,field_description:purchase_request.field_stock_move__purchase_request_allocation_ids
 msgid "Purchase Request Allocation"
-msgstr "Assegnazione Richiesta d'Acquisto"
+msgstr "Allocazione richiesta di acquisto"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_move_form
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_move_picking_form
 msgid "Purchase Request Allocations"
-msgstr "Assegnazioni Richieste d'Acquisto"
+msgstr "Allocazioni richiesta di acquisto"
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_purchase_request_line
@@ -797,7 +797,7 @@ msgstr "Assegnazioni Richieste d'Acquisto"
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__line_id
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_form
 msgid "Purchase Request Line"
-msgstr "Riga Richiesta d'Acquisto"
+msgstr "Riga richiesta di acquisto"
 
 #. module: purchase_request
 #: model:ir.model,name:purchase_request.model_purchase_request_line_make_purchase_order
@@ -825,51 +825,51 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_tree
 #, python-format
 msgid "Purchase Request Lines"
-msgstr "Righe Richieste d'Acquisto"
+msgstr "Righe richieste di acquisto"
 
 #. module: purchase_request
 #: model:res.groups,name:purchase_request.group_purchase_request_manager
 msgid "Purchase Request Manager"
-msgstr "Manager Richieste d'Acquisto"
+msgstr "Responsabile richiesta di acquisto"
 
 #. module: purchase_request
 #: model:res.groups,name:purchase_request.group_purchase_request_user
 msgid "Purchase Request User"
-msgstr "User Richieste d'Acquisto"
+msgstr "Utente richiesta di acquisto"
 
 #. module: purchase_request
 #: model:mail.message.subtype,description:purchase_request.mt_request_approved
 #: model:mail.message.subtype,name:purchase_request.mt_request_approved
 msgid "Purchase Request approved"
-msgstr "Richiesta d'Acquisto approvata"
+msgstr "Richiesta di acquisto approvata"
 
 #. module: purchase_request
 #: model:mail.message.subtype,name:purchase_request.mt_request_done
 msgid "Purchase Request done"
-msgstr "Richiesta d'Acquisto completata"
+msgstr "Richiesta di acquisto completata"
 
 #. module: purchase_request
 #: model:mail.message.subtype,description:purchase_request.mt_request_done
 msgid "Purchase Request is done"
-msgstr "La Richiesta d'Acquisto è completata"
+msgstr "La richiesta di acquisto è completata"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_form
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_order_line_tree
 msgid "Purchase Request lines"
-msgstr "Righe Richiesta d'Acquisto"
+msgstr "Righe richieste di acquisto"
 
 #. module: purchase_request
 #: model:mail.message.subtype,description:purchase_request.mt_request_rejected
 #: model:mail.message.subtype,name:purchase_request.mt_request_rejected
 msgid "Purchase Request rejected"
-msgstr "Richiesta d'Acquisto rifiutata"
+msgstr "Richiesta di acquisto rifiutata"
 
 #. module: purchase_request
 #: model:mail.message.subtype,description:purchase_request.mt_request_to_approve
 #: model:mail.message.subtype,name:purchase_request.mt_request_to_approve
 msgid "Purchase Request to be approved"
-msgstr "Richiesta d'Acquisto da approvare"
+msgstr "Richiesta di acquisto da approvare"
 
 #. module: purchase_request
 #: model:ir.actions.act_window,name:purchase_request.action_purchase_request_line_product_tree
@@ -879,7 +879,7 @@ msgstr "Richiesta d'Acquisto da approvare"
 #: model:ir.ui.menu,name:purchase_request.menu_purchase_request_act
 #: model:ir.ui.menu,name:purchase_request.menu_purchase_request_pro_mgt
 msgid "Purchase Requests"
-msgstr "Richieste d'Acquisto"
+msgstr "Richieste di acquisto"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__purchase_state
@@ -983,7 +983,7 @@ msgstr "Ricevuta di conferma %s per la tua richiesta %s"
 #: code:addons/purchase_request/models/stock_move_line.py:31
 #, python-format
 msgid "Receipt confirmation for Request %s"
-msgstr "Conferma Ricevuta per la Richiesta %s"
+msgstr "Ricevuta di conferma per la richiesta %s"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
@@ -1010,12 +1010,12 @@ msgstr "Data richiesta"
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request__name
 msgid "Request Reference"
-msgstr "Riferimento Richiesta"
+msgstr "Riferimento richiesta"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 msgid "Request approval"
-msgstr "Richiedi l'approvazione"
+msgstr "Approvazione richiesta"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
@@ -1032,13 +1032,13 @@ msgstr "La richiesta è completata"
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Request is rejected"
-msgstr "La Richiesta è rifiutata"
+msgstr "La richiesta è rifiutata"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Request is to be approved"
-msgstr "La Richiesta è da approvare"
+msgstr "La richiesta è in approvazione"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__request_state
@@ -1048,7 +1048,7 @@ msgstr "Stato richiesta"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Request status"
-msgstr "Stato Richiesta"
+msgstr "Stato richiesta"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_allocation__requested_product_uom_qty
@@ -1067,7 +1067,7 @@ msgstr "Richiesto da"
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.purchase_request_line_search
 msgid "Requested for Quotation"
-msgstr "Richiesto per Preventivo"
+msgstr "Richiesta per offerta"
 
 #. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
