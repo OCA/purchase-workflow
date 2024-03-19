@@ -14,11 +14,6 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: purchase_requisition_grouped_by_procurement
-#: model:ir.model.fields,field_description:purchase_requisition_grouped_by_procurement.field_purchase_requisition__group_id
-msgid "Group"
-msgstr ""
-
-#. module: purchase_requisition_grouped_by_procurement
 #: model:ir.model,name:purchase_requisition_grouped_by_procurement.model_purchase_requisition
 msgid "Purchase Requisition"
 msgstr ""
