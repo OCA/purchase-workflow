@@ -42,7 +42,7 @@
                                 groups="!uom.group_uom"
                             />
                             <field name="product_uom_id" groups="uom.group_uom" />
-                            <field name="keep_description" widget="boolean_toggle" />
+                            <field name="keep_description" />
                         </tree>
                     </field>
                 </group>
