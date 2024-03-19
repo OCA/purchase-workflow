@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-12-22 14:36+0000\n"
+"PO-Revision-Date: 2024-03-19 15:41+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -25,7 +25,7 @@ msgstr "Forza Ricevuto"
 #: model:ir.model.fields.selection,name:purchase_reception_status.selection__purchase_order__reception_status__received
 #: model_terms:ir.ui.view,arch_db:purchase_reception_status.view_purchase_order_filter
 msgid "Fully Received"
-msgstr "Ricevuto Completamente"
+msgstr "Ricevuto completamente"
 
 #. module: purchase_reception_status
 #: model:ir.model.fields,help:purchase_reception_status.field_purchase_order__force_received
@@ -46,12 +46,12 @@ msgstr "Ricevuto Parzialmente"
 #. module: purchase_reception_status
 #: model:ir.model.fields.selection,name:purchase_reception_status.selection__purchase_order__reception_status__no
 msgid "Nothing Received"
-msgstr "Nulla Ricevuto"
+msgstr "Nulla ricevuto"
 
 #. module: purchase_reception_status
 #: model:ir.model.fields.selection,name:purchase_reception_status.selection__purchase_order__reception_status__partial
 msgid "Partially Received"
-msgstr "Ricevuto Parzialmente"
+msgstr "Ricevuto parzialmente"
 
 #. module: purchase_reception_status
 #: model:ir.model,name:purchase_reception_status.model_purchase_order
