@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 ACSONE SA/NV
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="purchase_order_line_stock_move_cancel_form" model="ir.ui.view">
+        <field
+            name="name"
+        >purchase.order.line.stock.move.cancel.form (in purchase_order_line_stock_move_cancel)</field>
+        <field name="model">purchase.order.line.stock.move.cancel</field>
+        <field name="arch" type="xml">
+            <form>
+                <p class="oe_grey">
+                    You are about to cancel stock moves related to those purchase
+                    order lines:
+                </p>
+                <group>
+                    <field name="purchase_line_ids">
+                        <tree>
+                            <field name="name" />
+                        </tree>
+                    </field>
+                </group>
+                <footer>
+                    <button
+                        string="Cancel Moves"
+                        help="This will cancel stock moves related to purchase order lines"
+                        class="btn-primary"
+                        type="object"
+                        name="process"
+                    />
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+
+
+</odoo>
