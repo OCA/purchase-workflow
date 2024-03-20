@@ -73,7 +73,7 @@ addon | version | maintainers | summary
 [purchase_quick](purchase_quick/) | 12.0.1.0.3 | [![PierrickBrun](https://github.com/PierrickBrun.png?size=30px)](https://github.com/PierrickBrun) [![bealdav](https://github.com/bealdav.png?size=30px)](https://github.com/bealdav) | Quick Purchase order
 [purchase_reception_notify](purchase_reception_notify/) | 12.0.1.0.0 |  | Purchase Reception Notify
 [purchase_reception_status](purchase_reception_status/) | 12.0.1.0.0 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Add reception status on purchase orders
-[purchase_request](purchase_request/) | 12.0.5.3.2 |  | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
+[purchase_request](purchase_request/) | 12.0.5.4.0 |  | Use this module to have notification of requirements of materials and/or external services and keep track of such requirements.
 [purchase_request_department](purchase_request_department/) | 12.0.1.0.0 |  | Purchase Request Department
 [purchase_request_order_approved](purchase_request_order_approved/) | 12.0.1.0.1 |  | Purchase Request Order Approved
 [purchase_request_product_usage](purchase_request_product_usage/) | 12.0.1.0.0 |  | Purchase Request Product Usage
