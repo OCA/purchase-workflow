@@ -1,0 +1,36 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * purchase_delivery_split_date
+#
+# Translators:
+# Bole <bole@dajmi5.com>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-07-11 12:52+0000\n"
+"PO-Revision-Date: 2017-07-11 12:52+0000\n"
+"Last-Translator: Bole <bole@dajmi5.com>, 2017\n"
+"Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
+"Language: hr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+
+#. module: purchase_delivery_split_date
+#: model:ir.model,name:purchase_delivery_split_date.model_purchase_order
+#, fuzzy
+msgid "Purchase Order"
+msgstr "Stavka naloga za nabavu"
+
+#. module: purchase_delivery_split_date
+#: model:ir.model,name:purchase_delivery_split_date.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Stavka naloga za nabavu"
+
+#. module: purchase_delivery_split_date
+#: model:ir.model,name:purchase_delivery_split_date.model_stock_picking
+msgid "Transfer"
+msgstr "Transfer"
