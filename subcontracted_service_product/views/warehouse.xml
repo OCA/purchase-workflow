@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="view_warehouse_subcontraced_product" model="ir.ui.view">
+        <field name="name">stock.warehouse.form</field>
+        <field name="model">stock.warehouse</field>
+        <field name="inherit_id" ref="subcontracted_service.view_warehouse" />
+        <field name="arch" type="xml">
+            <field name="subcontracting_service_proc_rule_id" position="after">
+                <field name="subcontracted_service_proc_rule_id" />
+            </field>
+        </field>
+    </record>
+
+</odoo>
