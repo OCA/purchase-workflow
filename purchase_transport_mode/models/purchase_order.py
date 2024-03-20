@@ -41,6 +41,7 @@ class PurchaseOrder(models.Model):
             self.transport_mode_id = (
                 self.partner_id.commercial_partner_id.purchase_transport_mode_id
             )
+        return super().onchange_partner_id()
 
     def _get_transport_mode_validation_status(self):
         self.ensure_one()
