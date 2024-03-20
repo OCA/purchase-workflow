@@ -21,4 +21,9 @@ class StockPicking(models.Model):
                     and key_element["location_dest_id"]
                 ):
                     rec.location_dest_id = key_element["location_dest_id"]
+                if (
+                    "picking_type_id" in key_element.keys()
+                    and key_element["picking_type_id"]
+                ):
+                    rec.picking_type_id = key_element["picking_type_id"]
         return False
