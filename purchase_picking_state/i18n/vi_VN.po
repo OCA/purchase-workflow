@@ -1,0 +1,74 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * purchase_picking_state
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-01 02:48+0000\n"
+"PO-Revision-Date: 2017-06-01 02:48+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Vietnamese (Viet Nam) (https://www.transifex.com/oca/"
+"teams/23907/vi_VN/)\n"
+"Language: vi_VN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: purchase_picking_state
+#: code:addons/purchase_picking_state/models/purchase.py:0
+#, python-format
+msgid "Cancelled"
+msgstr ""
+
+#. module: purchase_picking_state
+#: model:ir.model.fields,field_description:purchase_picking_state.field_purchase_order__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: purchase_picking_state
+#: model:ir.model.fields,field_description:purchase_picking_state.field_purchase_order__id
+msgid "ID"
+msgstr ""
+
+#. module: purchase_picking_state
+#: model:ir.model.fields,field_description:purchase_picking_state.field_purchase_order____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: purchase_picking_state
+#: code:addons/purchase_picking_state/models/purchase.py:0
+#, python-format
+msgid "Not Received"
+msgstr ""
+
+#. module: purchase_picking_state
+#: model:ir.model.fields,help:purchase_picking_state.field_purchase_order__picking_state
+msgid "Overall status based on all pickings"
+msgstr ""
+
+#. module: purchase_picking_state
+#: code:addons/purchase_picking_state/models/purchase.py:0
+#, python-format
+msgid "Partially Received"
+msgstr ""
+
+#. module: purchase_picking_state
+#: model:ir.model.fields,field_description:purchase_picking_state.field_purchase_order__picking_state
+msgid "Picking status"
+msgstr ""
+
+#. module: purchase_picking_state
+#: model:ir.model,name:purchase_picking_state.model_purchase_order
+msgid "Purchase Order"
+msgstr "Đơn hàng Mua"
+
+#. module: purchase_picking_state
+#: code:addons/purchase_picking_state/models/purchase.py:0
+#, python-format
+msgid "Transferred"
+msgstr ""

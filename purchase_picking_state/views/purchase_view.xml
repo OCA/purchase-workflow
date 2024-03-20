@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <field name="currency_id" position="after">
+                <field
+                    name="picking_state"
+                    attrs="{'invisible':[('picking_state','=', 'draft')]}"
+                />
+            </field>
+        </field>
+    </record>
+    <record id="purchase_order_tree" model="ir.ui.view">
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_tree" />
+        <field name="arch" type="xml">
+            <field name="state" position="after">
+                <field
+                    name="picking_state"
+                    attrs="{'invisible':[('picking_state','=', 'draft')]}"
+                />
+            </field>
+        </field>
+    </record>
+    <record id="purchase_order_view_tree" model="ir.ui.view">
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_view_tree" />
+        <field name="arch" type="xml">
+            <field name="state" position="after">
+                <field
+                    name="picking_state"
+                    optional="hide"
+                    attrs="{'invisible':[('picking_state','=', 'draft')]}"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
