@@ -14,8 +14,8 @@ msgstr ""
 "POT-Creation-Date: 2016-11-17 03:38+0000\n"
 "PO-Revision-Date: 2024-03-19 18:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
-"Language-Team: Italian (http://www.transifex.com/oca/"
-"OCA-purchase-workflow-10-0/language/it/)\n"
+"Language-Team: Italian (http://www.transifex.com/oca/OCA-purchase-"
+"workflow-10-0/language/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -275,6 +275,11 @@ msgid "Copy descriptions to new PO"
 msgstr "Copia le descrizioni nel nuovo PO"
 
 #. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__keep_estimated_cost
+msgid "Copy estimative cost to new PO"
+msgstr ""
+
+#. module: purchase_request
 #: model:ir.actions.act_window,name:purchase_request.action_purchase_request_line_make_purchase_order
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_line_make_purchase_order
@@ -312,6 +317,7 @@ msgstr "Data creazione"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__currency_id
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__currency_id
 msgid "Currency"
 msgstr "Valuta"
 
@@ -362,19 +368,20 @@ msgid "Draft"
 msgstr "Bozza"
 
 #. module: purchase_request
-#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:240
+#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:241
 #, python-format
 msgid "Enter a positive quantity."
 msgstr "Inserisci una quantità positiva."
 
 #. module: purchase_request
-#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:120
+#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:121
 #, python-format
 msgid "Enter a supplier."
 msgstr "Inserisci un fornitore."
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__estimated_cost
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__estimated_cost
 msgid "Estimated Cost"
 msgstr "Costo Stimato"
 
@@ -660,7 +667,7 @@ msgid "Planned"
 msgstr "Pianificato"
 
 #. module: purchase_request
-#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:164
+#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:165
 #, python-format
 msgid "Please select a product for all lines"
 msgstr "Per favore seleziona un prodotto per tutte le linee"
@@ -772,7 +779,7 @@ msgid "Purchase Request %s has already been completed"
 msgstr "La richiesta di acquisto %s è già stata completata"
 
 #. module: purchase_request
-#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:48
+#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:49
 #, python-format
 msgid "Purchase Request %s is not approved"
 msgstr "La richiesta di acquisto %s non è approvata"
@@ -967,7 +974,7 @@ msgid "Quantity to purchase"
 msgstr "Quantità da acquistare"
 
 #. module: purchase_request
-#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:308
+#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:314
 #, python-format
 msgid "RFQ"
 msgstr ""
@@ -1112,6 +1119,13 @@ msgstr ""
 "procedura guidata nel nuovo OA."
 
 #. module: purchase_request
+#: model:ir.model.fields,help:purchase_request.field_purchase_request_line_make_purchase_order_item__keep_estimated_cost
+msgid ""
+"Set true if you want to keep the estimated cost provided in the wizard in "
+"the new PO."
+msgstr ""
+
+#. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Source"
 msgstr "Origine"
@@ -1241,7 +1255,7 @@ msgstr ""
 "%s richiesta da %s:"
 
 #. module: purchase_request
-#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:53
+#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:54
 #, python-format
 msgid "The purchase has already been completed."
 msgstr "L'acquisto è già stato completato."
@@ -1362,7 +1376,7 @@ msgstr ""
 "vuota. (%s)"
 
 #. module: purchase_request
-#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:81
+#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:82
 #, python-format
 msgid ""
 "You cannot create a single purchase order from purchase requests that have "
@@ -1387,19 +1401,19 @@ msgstr ""
 "Non è possibile eliminare un record che si riferisce alle righe di acquisto!"
 
 #. module: purchase_request
-#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:68
+#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:69
 #, python-format
 msgid "You have to enter a Picking Type."
 msgstr "Bisogna inserire un tipo di prelievo."
 
 #. module: purchase_request
-#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:72
+#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:73
 #, python-format
 msgid "You have to select lines from the same Picking Type."
 msgstr "Bisogna selezionare le righe dallo stesso tipo di prelievo."
 
 #. module: purchase_request
-#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:60
+#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:61
 #, python-format
 msgid "You have to select lines from the same company."
 msgstr "Bisogna selezionare linee dalla stessa azienda."

@@ -272,6 +272,11 @@ msgid "Copy descriptions to new PO"
 msgstr "Copiar descripción a nueva PO"
 
 #. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__keep_estimated_cost
+msgid "Copy estimative cost to new PO"
+msgstr ""
+
+#. module: purchase_request
 #: model:ir.actions.act_window,name:purchase_request.action_purchase_request_line_make_purchase_order
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_line_make_purchase_order
@@ -309,6 +314,7 @@ msgstr "Creación"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__currency_id
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__currency_id
 msgid "Currency"
 msgstr "Moneda"
 
@@ -359,19 +365,20 @@ msgid "Draft"
 msgstr "Borrador"
 
 #. module: purchase_request
-#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:240
+#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:241
 #, python-format
 msgid "Enter a positive quantity."
 msgstr "Ingrese una cantidad positiva."
 
 #. module: purchase_request
-#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:120
+#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:121
 #, python-format
 msgid "Enter a supplier."
 msgstr "Ingrese un proveedor."
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__estimated_cost
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__estimated_cost
 msgid "Estimated Cost"
 msgstr "Costo estimado"
 
@@ -652,7 +659,7 @@ msgid "Planned"
 msgstr "Planificado"
 
 #. module: purchase_request
-#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:164
+#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:165
 #, python-format
 msgid "Please select a product for all lines"
 msgstr ""
@@ -764,7 +771,7 @@ msgid "Purchase Request %s has already been completed"
 msgstr "Requisición %s ha sido completada"
 
 #. module: purchase_request
-#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:48
+#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:49
 #, python-format
 msgid "Purchase Request %s is not approved"
 msgstr "Requisición %s no está aprobada"
@@ -958,7 +965,7 @@ msgid "Quantity to purchase"
 msgstr "Cantidad a comprar"
 
 #. module: purchase_request
-#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:308
+#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:314
 #, python-format
 msgid "RFQ"
 msgstr "RFQ"
@@ -1102,6 +1109,13 @@ msgstr ""
 "PO."
 
 #. module: purchase_request
+#: model:ir.model.fields,help:purchase_request.field_purchase_request_line_make_purchase_order_item__keep_estimated_cost
+msgid ""
+"Set true if you want to keep the estimated cost provided in the wizard in "
+"the new PO."
+msgstr ""
+
+#. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Source"
 msgstr "Fuente"
@@ -1229,7 +1243,7 @@ msgstr ""
 "solicitada por %s ahora ha sido recibida:"
 
 #. module: purchase_request
-#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:53
+#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:54
 #, python-format
 msgid "The purchase has already been completed."
 msgstr "La compra ha sido completada."
@@ -1345,7 +1359,7 @@ msgid ""
 msgstr "No puedes solicitar aprobación de una requisición vacía. (%s)"
 
 #. module: purchase_request
-#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:81
+#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:82
 #, python-format
 msgid ""
 "You cannot create a single purchase order from purchase requests that have "
@@ -1367,19 +1381,19 @@ msgid "You cannot delete a record that refers to purchase lines!"
 msgstr "No puedes borrar un registro que refiere a líneas de pedidos compra!"
 
 #. module: purchase_request
-#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:68
+#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:69
 #, python-format
 msgid "You have to enter a Picking Type."
 msgstr "Debes ingresar un tipo de picking."
 
 #. module: purchase_request
-#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:72
+#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:73
 #, python-format
 msgid "You have to select lines from the same Picking Type."
 msgstr "Debes seleccionar líneas del mismo tipo de picking."
 
 #. module: purchase_request
-#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:60
+#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:61
 #, python-format
 msgid "You have to select lines from the same company."
 msgstr "Has seleccionado líneas de la misma compañía."

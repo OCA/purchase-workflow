@@ -267,6 +267,11 @@ msgid "Copy descriptions to new PO"
 msgstr "Kopiatu erosketa agindu berriaren deskribapenak"
 
 #. module: purchase_request
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__keep_estimated_cost
+msgid "Copy estimative cost to new PO"
+msgstr ""
+
+#. module: purchase_request
 #: model:ir.actions.act_window,name:purchase_request.action_purchase_request_line_make_purchase_order
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_form
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_line_make_purchase_order
@@ -304,6 +309,7 @@ msgstr "Sortutako data"
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__currency_id
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__currency_id
 msgid "Currency"
 msgstr "Moneta"
 
@@ -354,19 +360,20 @@ msgid "Draft"
 msgstr "Zirriborroa"
 
 #. module: purchase_request
-#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:240
+#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:241
 #, python-format
 msgid "Enter a positive quantity."
 msgstr "Kantitate positibo bat sartu."
 
 #. module: purchase_request
-#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:120
+#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:121
 #, python-format
 msgid "Enter a supplier."
 msgstr "Hornitzaile bat sartu."
 
 #. module: purchase_request
 #: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line__estimated_cost
+#: model:ir.model.fields,field_description:purchase_request.field_purchase_request_line_make_purchase_order_item__estimated_cost
 msgid "Estimated Cost"
 msgstr "Gutxi gorabeherako prezioa"
 
@@ -645,7 +652,7 @@ msgid "Planned"
 msgstr "Planifikatua"
 
 #. module: purchase_request
-#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:164
+#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:165
 #, python-format
 msgid "Please select a product for all lines"
 msgstr "Mesedez, hautatu produktu bat lerro guztietarako"
@@ -757,7 +764,7 @@ msgid "Purchase Request %s has already been completed"
 msgstr "%s Erosketa eskaera osatuta dago"
 
 #. module: purchase_request
-#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:48
+#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:49
 #, python-format
 msgid "Purchase Request %s is not approved"
 msgstr "%s Erosketa eskaera ez dago baieztatuta"
@@ -951,7 +958,7 @@ msgid "Quantity to purchase"
 msgstr "Erosteko kantitatea"
 
 #. module: purchase_request
-#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:308
+#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:314
 #, python-format
 msgid "RFQ"
 msgstr "Aurrekontu-Eskaera"
@@ -1093,6 +1100,13 @@ msgid ""
 msgstr "Deskribapen hau erosketa-eskaera berrian mantentzeko markatu."
 
 #. module: purchase_request
+#: model:ir.model.fields,help:purchase_request.field_purchase_request_line_make_purchase_order_item__keep_estimated_cost
+msgid ""
+"Set true if you want to keep the estimated cost provided in the wizard in "
+"the new PO."
+msgstr ""
+
+#. module: purchase_request
 #: model_terms:ir.ui.view,arch_db:purchase_request.view_purchase_request_search
 msgid "Source"
 msgstr "Jatorria"
@@ -1220,7 +1234,7 @@ msgstr ""
 "%s Erosketa eskaeraren hurrengo serbitzuak eskatuta %s -gatik jaso dira:"
 
 #. module: purchase_request
-#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:53
+#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:54
 #, python-format
 msgid "The purchase has already been completed."
 msgstr "Erosketa osatu da."
@@ -1338,7 +1352,7 @@ msgstr ""
 "Ezin duzu onespenik eskatu hutsik dagoen erosketa-eskaera baterako ( %s)"
 
 #. module: purchase_request
-#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:81
+#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:82
 #, python-format
 msgid ""
 "You cannot create a single purchase order from purchase requests that have "
@@ -1360,19 +1374,19 @@ msgid "You cannot delete a record that refers to purchase lines!"
 msgstr "Ezin dituzu ezabatu erosketa-lerroekin lotutako erregistroak!"
 
 #. module: purchase_request
-#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:68
+#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:69
 #, python-format
 msgid "You have to enter a Picking Type."
 msgstr "Eragiketa mota bat sartu behar duzu."
 
 #. module: purchase_request
-#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:72
+#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:73
 #, python-format
 msgid "You have to select lines from the same Picking Type."
 msgstr "Eragiketa mota bereko lerroak aukeratu behar dituzu."
 
 #. module: purchase_request
-#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:60
+#: code:addons/purchase_request/wizard/purchase_request_line_make_purchase_order.py:61
 #, python-format
 msgid "You have to select lines from the same company."
 msgstr "Konpainia bereko lerroa aukeratu behar duzu."
