@@ -1,0 +1,1 @@
+Create a purchase order with a negative quantity, confirm it and validate the related stock picking. Quantity received will be updated.
