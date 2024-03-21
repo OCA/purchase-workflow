@@ -1,0 +1,100 @@
+<odoo>
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field name="name">purchase.order.form.invoice.plan</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase_invoice_plan.purchase_order_form" />
+        <field name="arch" type="xml">
+            <button
+                name="%(purchase_invoice_plan.action_view_purchase_make_planned_invoice)d"
+                position="attributes"
+            >
+                <attribute name="invisible">1</attribute>
+            </button>
+        </field>
+    </record>
+
+    <record id="purchase_order_form_inherit" model="ir.ui.view">
+        <field name="name">purchase.order.form.invoice.plan</field>
+        <field name="model">purchase.order</field>
+        <field
+            name="inherit_id"
+            ref="purchase_work_acceptance.purchase_order_form_inherit"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_view_wa']" position="after">
+                <button
+                    name="%(action_view_wa_installment)d"
+                    string="Create WA by Installment"
+                    type="action"
+                    class="oe_highlight"
+                    groups="purchase_work_acceptance.group_enable_wa_on_po"
+                    attrs="{'invisible': ['|', '|', ('use_invoice_plan', '=', False), ('state', 'not in', ('purchase', 'done')), ('wa_accepted', '=', True)]}"
+                />
+            </xpath>
+            <xpath expr="//button[@name='action_view_wa']" position="attributes">
+                <field name="action_view_wa" position="attributes">
+                    <attribute name="attrs">
+                          {'invisible': ['|', '|', ('use_invoice_plan', '=', True), ('state', 'not in', ('purchase', 'done')), ('wa_accepted', '=', True)]}
+                     </attribute>
+                </field>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_purchase_invoice_plan_tree_readonly" model="ir.ui.view">
+        <field name="name">view_purchase_invoice_plan_tree_readonly</field>
+        <field name="model">purchase.invoice.plan</field>
+        <field
+            name="inherit_id"
+            ref="purchase_invoice_plan.view_purchase_invoice_plan_tree_readonly"
+        />
+        <field name="arch" type="xml">
+            <field name="to_invoice" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="invoiced" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_purchase_invoice_plan_tree" model="ir.ui.view">
+        <field name="name">view_purchase_invoice_plan_tree</field>
+        <field name="model">purchase.invoice.plan</field>
+        <field
+            name="inherit_id"
+            ref="purchase_invoice_plan.view_purchase_invoice_plan_tree"
+        />
+        <field name="arch" type="xml">
+            <field name="to_invoice" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="invoiced" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="invoice_ids" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_purchase_invoice_plan_form" model="ir.ui.view">
+        <field name="name">view_purchase_invoice_plan_form</field>
+        <field name="model">purchase.invoice.plan</field>
+        <field
+            name="inherit_id"
+            ref="purchase_invoice_plan.view_purchase_invoice_plan_form"
+        />
+        <field name="arch" type="xml">
+            <field name="to_invoice" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="invoiced" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="invoice_ids" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>
