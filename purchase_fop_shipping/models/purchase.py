@@ -35,6 +35,12 @@ class PurchaseOrder(models.Model):
     def _compute_fop_shipping_reached(self):
         digit_precision = self.env["decimal.precision"].precision_get("Account")
         for record in self:
+            if (
+                float_compare(record.amount_total, 0, precision_digits=digit_precision)
+                < 0
+            ):
+                record.fop_reached = True
+                continue
             record.fop_reached = (
                 float_compare(
                     record.amount_total,
