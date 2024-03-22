@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <!-- Purchase-related subtypes for messaging / Chatter -->
+    <record id="mt_return_confirmed" model="mail.message.subtype">
+        <field name="name">Return Confirmed</field>
+        <field name="default" eval="False" />
+        <field name="res_model">purchase.return.order</field>
+    </record>
+    <record id="mt_return_approved" model="mail.message.subtype">
+        <field name="name">Return Approved</field>
+        <field name="default" eval="False" />
+        <field name="res_model">purchase.return.order</field>
+    </record>
+    <record id="mt_return_done" model="mail.message.subtype">
+        <field name="name">Return Done</field>
+        <field name="default" eval="False" />
+        <field name="res_model">purchase.return.order</field>
+    </record>
+
+    <!-- Sequences for purchase.return.order -->
+    <record id="seq_purchase_return_order" model="ir.sequence">
+        <field name="name">Purchase Return Order</field>
+        <field name="code">purchase.return.order</field>
+        <field name="prefix">PRT</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False" />
+    </record>
+</odoo>
