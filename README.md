@@ -33,7 +33,7 @@ addon | version | maintainers | summary
 [purchase_cancel_confirm](purchase_cancel_confirm/) | 14.0.1.0.1 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Purchase Cancel Confirm
 [purchase_cancel_reason](purchase_cancel_reason/) | 14.0.1.0.1 |  | Purchase Cancel Reason
 [purchase_commercial_partner](purchase_commercial_partner/) | 14.0.1.0.0 |  | Add stored related field 'Commercial Supplier' on POs
-[purchase_default_terms_conditions](purchase_default_terms_conditions/) | 14.0.1.0.1 |  | This module allows purchase default terms & conditions
+[purchase_default_terms_conditions](purchase_default_terms_conditions/) | 14.0.1.0.2 |  | This module allows purchase default terms & conditions
 [purchase_delivery_split_date](purchase_delivery_split_date/) | 14.0.1.1.2 |  | Allows Purchase Order you confirm to generate one Incoming Shipment for each expected date indicated in the Purchase Order Lines
 [purchase_deposit](purchase_deposit/) | 14.0.1.1.2 |  | Option to create deposit from purchase order
 [purchase_discount](purchase_discount/) | 14.0.1.2.1 |  | Purchase order lines with discounts
@@ -82,7 +82,7 @@ addon | version | maintainers | summary
 [purchase_order_weight_volume](purchase_order_weight_volume/) | 14.0.1.0.1 | [![ilyasProgrammer](https://github.com/ilyasProgrammer.png?size=30px)](https://github.com/ilyasProgrammer) | Display purchase order weight and volume
 [purchase_partner_approval](purchase_partner_approval/) | 14.0.1.0.0 | [![dreispt](https://github.com/dreispt.png?size=30px)](https://github.com/dreispt) | Control Partners that can be used in Purchase Orders
 [purchase_partner_incoterm](purchase_partner_incoterm/) | 14.0.3.0.0 | [![TDu](https://github.com/TDu.png?size=30px)](https://github.com/TDu) [![bealdav](https://github.com/bealdav.png?size=30px)](https://github.com/bealdav) | Add a an incoterm field for supplier and use it on purchase order
-[purchase_picking_state](purchase_picking_state/) | 14.0.1.1.0 |  | Purchase Picking State
+[purchase_picking_state](purchase_picking_state/) | 14.0.1.1.1 |  | Purchase Picking State
 [purchase_product_usage](purchase_product_usage/) | 14.0.1.1.1 |  | Purchase Product Usage
 [purchase_propagate_qty](purchase_propagate_qty/) | 14.0.1.0.3 |  | Quantity decrease on purchase line are propagated to the corresponding stock.move
 [purchase_quick](purchase_quick/) | 14.0.1.0.3 |  | Quick Purchase order
