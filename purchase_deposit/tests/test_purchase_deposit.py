@@ -26,12 +26,13 @@ class TestPurchaseDeposit(TransactionCase):
         # Create products:
         p1 = cls.product1 = cls.product_model.create(
             {
-                "name": "Test Product 1",
+                "name": "Purchase Deposit",
                 "type": "service",
                 "default_code": "PROD1",
                 "purchase_method": "purchase",
             }
         )
+        cls.env.company.purchase_deposit_product_id = p1
 
         cls.po = cls.env["purchase.order"].create(
             {

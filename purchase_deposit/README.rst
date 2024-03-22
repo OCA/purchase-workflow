@@ -79,6 +79,7 @@ Contributors
 -  Kitti Upariphutthiphong <kittiu@ecosoft.co.th>
 -  Rattapong Chokmasermkul <rattapongc@ecosoft.co.th>
 -  Joan Mateu <joan.mateu@forgeflow.com>
+-  Murtuza Saleh <msaleh@opensourceintegrators.com>
 -  `Quartile <https://www.quartile.co>`__:
 
    -  Aung Ko Ko Lin
