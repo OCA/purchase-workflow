@@ -90,12 +90,11 @@ class PurchaseOrder(models.Model):
         if unconfirmed_order.order_line:
             unconfirmed_order.order_line.unlink()
 
-        unconfirmed_lines = self.env["purchase.order.line"]
         for line in self.order_line:
             confirmed_line = confirmed_lines.filtered(lambda x: x.po_line_id == line)
             if confirmed_line.confirmed_qty == line.product_qty:
                 continue
-            unconfirmed_lines |= line.copy(
+            line.copy(
                 {
                     "order_id": unconfirmed_order.id,
                     "product_qty": line.product_qty - confirmed_line.confirmed_qty,
