@@ -11,20 +11,19 @@ from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 @tagged("post_install", "-at_install")
 class TestPurchaseOrder(common.TransactionCase):
-    @classmethod
-    def setUpClass(cls):
-        super(TestPurchaseOrder, cls).setUpClass()
+    def setUp(self):
+        super().setUp()
         # Useful models
-        cls.PurchaseOrder = cls.env["purchase.order"]
-        cls.PurchaseOrderLine = cls.env["purchase.order.line"]
-        cls.partner_id = cls.env.ref("base.res_partner_1")
-        cls.product_id_1 = cls.env.ref("product.product_product_8")
-        cls.product_id_2 = cls.env.ref("product.product_product_11")
+        self.PurchaseOrder = self.env["purchase.order"]
+        self.PurchaseOrderLine = self.env["purchase.order.line"]
+        self.partner_id = self.env.ref("base.res_partner_1")
+        self.product_id_1 = self.env.ref("product.product_product_8")
+        self.product_id_2 = self.env.ref("product.product_product_11")
 
-        cls.AccountInvoice = cls.env["account.move"]
-        cls.AccountInvoiceLine = cls.env["account.move.line"]
+        self.AccountInvoice = self.env["account.move"]
+        self.AccountInvoiceLine = self.env["account.move.line"]
 
-        cls.category = cls.env.ref("product.product_category_1").copy(
+        self.category = self.env.ref("product.product_category_1").copy(
             {
                 "name": "Test category",
                 "property_valuation": "real_time",
@@ -32,34 +31,31 @@ class TestPurchaseOrder(common.TransactionCase):
             }
         )
 
-        account_type = cls.env["account.account.type"].create(
-            {"name": "RCV type", "type": "other", "internal_group": "expense"}
-        )
-        cls.account_expense = cls.env["account.account"].create(
+        self.account_expense = self.env["account.account"].create(
             {
                 "name": "Expense",
                 "code": "EXP00",
-                "user_type_id": account_type.id,
+                "account_type": "liability_current",
                 "reconcile": True,
             }
         )
-        cls.account_payable = cls.env["account.account"].create(
+        self.account_payable = self.env["account.account"].create(
             {
                 "name": "Payable",
                 "code": "PAY00",
-                "user_type_id": account_type.id,
+                "account_type": "liability_payable",
                 "reconcile": True,
             }
         )
 
-        cls.category.property_account_expense_categ_id = cls.account_expense
+        self.category.property_account_expense_categ_id = self.account_expense
 
-        cls.category.property_stock_journal = cls.env["account.journal"].create(
+        self.category.property_stock_journal = self.env["account.journal"].create(
             {"name": "Stock journal", "type": "sale", "code": "STK00"}
         )
-        cls.product_id_1.categ_id = cls.category
-        cls.product_id_2.categ_id = cls.category
-        cls.partner_id.property_account_payable_id = cls.account_payable
+        self.product_id_1.categ_id = self.category
+        self.product_id_2.categ_id = self.category
+        self.partner_id.property_account_payable_id = self.account_payable
 
     def _create_purchase_order(self):
         po_vals = {
