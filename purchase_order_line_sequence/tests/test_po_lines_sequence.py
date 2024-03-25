@@ -99,7 +99,6 @@ class TestPurchaseOrder(common.TransactionCase):
         return self.PurchaseOrder.create(po_vals)
 
     def test_purchase_order_line_sequence(self):
-
         self.po = self._create_purchase_order()
         self.po.button_confirm()
 
@@ -267,9 +266,9 @@ class TestPurchaseOrder(common.TransactionCase):
 
         self.assertEqual(
             invoice.invoice_line_ids[0].related_po_sequence,
-            "{}/{}".format(po2.name, po2.order_line[0].visible_sequence),
+            f"{po2.name}/{po2.order_line[0].visible_sequence}",
         )
         self.assertEqual(
             invoice.invoice_line_ids[3].related_po_sequence,
-            "{}/{}".format(po.name, po.order_line[1].visible_sequence),
+            f"{po.name}/{po.order_line[1].visible_sequence}",
         )
